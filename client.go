@@ -19338,6 +19338,16 @@ type InvoicesRetrieveParams struct {
 // InvoicesRetrieveParamsField defines parameters for InvoicesRetrieve.
 type InvoicesRetrieveParamsField string
 
+// InvoicesItemsRetrieveParams defines parameters for InvoicesItemsRetrieve.
+type InvoicesItemsRetrieveParams struct {
+	// ConcealCompensationItems Conceal compensation items
+	ConcealCompensationItems *bool   `form:"conceal_compensation_items,omitempty" json:"conceal_compensation_items,omitempty"`
+	OfferingUuid             *string `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	ProjectUuid              *string `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	ProviderUuid             *string `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
+	Query                    *string `form:"query,omitempty" json:"query,omitempty"`
+}
+
 // InvoicesStatsListParams defines parameters for InvoicesStatsList.
 type InvoicesStatsListParams struct {
 	Created      *openapi_types.Date `form:"created,omitempty" json:"created,omitempty"`
@@ -31300,6 +31310,9 @@ type ClientInterface interface {
 	// InvoicesRetrieve request
 	InvoicesRetrieve(ctx context.Context, uuid openapi_types.UUID, params *InvoicesRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// InvoicesItemsRetrieve request
+	InvoicesItemsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *InvoicesItemsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// InvoicesPaidWithBody request with any body
 	InvoicesPaidWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -40323,6 +40336,18 @@ func (c *Client) InvoicesGrowthRetrieve(ctx context.Context, params *InvoicesGro
 
 func (c *Client) InvoicesRetrieve(ctx context.Context, uuid openapi_types.UUID, params *InvoicesRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewInvoicesRetrieveRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) InvoicesItemsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *InvoicesItemsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewInvoicesItemsRetrieveRequest(c.Server, uuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -77450,6 +77475,126 @@ func NewInvoicesRetrieveRequest(server string, uuid openapi_types.UUID, params *
 		if params.Field != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "field", runtime.ParamLocationQuery, *params.Field); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewInvoicesItemsRetrieveRequest generates requests for InvoicesItemsRetrieve
+func NewInvoicesItemsRetrieveRequest(server string, uuid openapi_types.UUID, params *InvoicesItemsRetrieveParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/invoices/%s/items/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.ConcealCompensationItems != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "conceal_compensation_items", runtime.ParamLocationQuery, *params.ConcealCompensationItems); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_uuid", runtime.ParamLocationQuery, *params.ProjectUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProviderUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "provider_uuid", runtime.ParamLocationQuery, *params.ProviderUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "query", runtime.ParamLocationQuery, *params.Query); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -146807,6 +146952,9 @@ type ClientWithResponsesInterface interface {
 	// InvoicesRetrieveWithResponse request
 	InvoicesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *InvoicesRetrieveParams, reqEditors ...RequestEditorFn) (*InvoicesRetrieveResponse, error)
 
+	// InvoicesItemsRetrieveWithResponse request
+	InvoicesItemsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *InvoicesItemsRetrieveParams, reqEditors ...RequestEditorFn) (*InvoicesItemsRetrieveResponse, error)
+
 	// InvoicesPaidWithBodyWithResponse request with any body
 	InvoicesPaidWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*InvoicesPaidResponse, error)
 
@@ -156465,6 +156613,28 @@ func (r InvoicesRetrieveResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r InvoicesRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type InvoicesItemsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *InvoiceItem
+}
+
+// Status returns HTTPResponse.Status
+func (r InvoicesItemsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r InvoicesItemsRetrieveResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -178928,6 +179098,15 @@ func (c *ClientWithResponses) InvoicesRetrieveWithResponse(ctx context.Context, 
 	return ParseInvoicesRetrieveResponse(rsp)
 }
 
+// InvoicesItemsRetrieveWithResponse request returning *InvoicesItemsRetrieveResponse
+func (c *ClientWithResponses) InvoicesItemsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *InvoicesItemsRetrieveParams, reqEditors ...RequestEditorFn) (*InvoicesItemsRetrieveResponse, error) {
+	rsp, err := c.InvoicesItemsRetrieve(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseInvoicesItemsRetrieveResponse(rsp)
+}
+
 // InvoicesPaidWithBodyWithResponse request with arbitrary body returning *InvoicesPaidResponse
 func (c *ClientWithResponses) InvoicesPaidWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*InvoicesPaidResponse, error) {
 	rsp, err := c.InvoicesPaidWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -197998,6 +198177,32 @@ func ParseInvoicesRetrieveResponse(rsp *http.Response) (*InvoicesRetrieveRespons
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest Invoice
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseInvoicesItemsRetrieveResponse parses an HTTP response from a InvoicesItemsRetrieveWithResponse call
+func ParseInvoicesItemsRetrieveResponse(rsp *http.Response) (*InvoicesItemsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &InvoicesItemsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest InvoiceItem
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
