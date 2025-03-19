@@ -22517,8 +22517,11 @@ type ProjectsListParams struct {
 	CanAdmin *bool `form:"can_admin,omitempty" json:"can_admin,omitempty"`
 
 	// CanManage Return a list of projects where current user is manager or a customer owner.
-	CanManage *bool      `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	Created   *time.Time `form:"created,omitempty" json:"created,omitempty"`
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// ConcealEndedProjects Conceal ended projects
+	ConcealEndedProjects *bool      `form:"conceal_ended_projects,omitempty" json:"conceal_ended_projects,omitempty"`
+	Created              *time.Time `form:"created,omitempty" json:"created,omitempty"`
 
 	// Customer Multiple values may be separated by commas.
 	Customer             *[]openapi_types.UUID      `form:"customer,omitempty" json:"customer,omitempty"`
@@ -22564,8 +22567,11 @@ type ProjectsListUsersListParams struct {
 	CanAdmin *bool `form:"can_admin,omitempty" json:"can_admin,omitempty"`
 
 	// CanManage Return a list of projects where current user is manager or a customer owner.
-	CanManage *bool      `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	Created   *time.Time `form:"created,omitempty" json:"created,omitempty"`
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// ConcealEndedProjects Conceal ended projects
+	ConcealEndedProjects *bool      `form:"conceal_ended_projects,omitempty" json:"conceal_ended_projects,omitempty"`
+	Created              *time.Time `form:"created,omitempty" json:"created,omitempty"`
 
 	// Customer Multiple values may be separated by commas.
 	Customer             *[]openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
@@ -120361,6 +120367,22 @@ func NewProjectsListRequest(server string, params *ProjectsListParams) (*http.Re
 
 		}
 
+		if params.ConcealEndedProjects != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "conceal_ended_projects", runtime.ParamLocationQuery, *params.ConcealEndedProjects); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Created != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "created", runtime.ParamLocationQuery, *params.Created); err != nil {
@@ -121051,6 +121073,22 @@ func NewProjectsListUsersListRequest(server string, uuid openapi_types.UUID, par
 		if params.CanManage != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "can_manage", runtime.ParamLocationQuery, *params.CanManage); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ConcealEndedProjects != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "conceal_ended_projects", runtime.ParamLocationQuery, *params.ConcealEndedProjects); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
