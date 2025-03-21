@@ -14577,6 +14577,8 @@ type Proposal struct {
 	CallUuid          *openapi_types.UUID `json:"call_uuid,omitempty"`
 	Created           *time.Time          `json:"created,omitempty"`
 	CreatedBy         *string             `json:"created_by"`
+	CreatedByName     *string             `json:"created_by_name,omitempty"`
+	CreatedByUuid     *openapi_types.UUID `json:"created_by_uuid,omitempty"`
 	Description       *string             `json:"description,omitempty"`
 
 	// DurationInDays Duration in days after provisioning of resources.
