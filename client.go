@@ -19409,8 +19409,23 @@ type MarketplaceOfferingPermissionsLogListParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	User     *openapi_types.UUID `form:"user,omitempty" json:"user,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// RoleName Role name contains
+	RoleName *string `form:"role_name,omitempty" json:"role_name,omitempty"`
+
+	// RoleUuid Role UUID
+	RoleUuid *openapi_types.UUID `form:"role_uuid,omitempty" json:"role_uuid,omitempty"`
+
+	// ScopeName Scope name
+	ScopeName *string `form:"scope_name,omitempty" json:"scope_name,omitempty"`
+
+	// ScopeType Scope type
+	ScopeType *string `form:"scope_type,omitempty" json:"scope_type,omitempty"`
+
+	// ScopeUuid Scope UUID
+	ScopeUuid *openapi_types.UUID `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
+	User      *openapi_types.UUID `form:"user,omitempty" json:"user,omitempty"`
 
 	// UserSlug User slug contains
 	UserSlug *string `form:"user_slug,omitempty" json:"user_slug,omitempty"`
@@ -19438,8 +19453,23 @@ type MarketplaceOfferingPermissionsListParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	User     *openapi_types.UUID `form:"user,omitempty" json:"user,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// RoleName Role name contains
+	RoleName *string `form:"role_name,omitempty" json:"role_name,omitempty"`
+
+	// RoleUuid Role UUID
+	RoleUuid *openapi_types.UUID `form:"role_uuid,omitempty" json:"role_uuid,omitempty"`
+
+	// ScopeName Scope name
+	ScopeName *string `form:"scope_name,omitempty" json:"scope_name,omitempty"`
+
+	// ScopeType Scope type
+	ScopeType *string `form:"scope_type,omitempty" json:"scope_type,omitempty"`
+
+	// ScopeUuid Scope UUID
+	ScopeUuid *openapi_types.UUID `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
+	User      *openapi_types.UUID `form:"user,omitempty" json:"user,omitempty"`
 
 	// UserSlug User slug contains
 	UserSlug *string `form:"user_slug,omitempty" json:"user_slug,omitempty"`
@@ -22836,8 +22866,23 @@ type UserPermissionsListParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	User     *openapi_types.UUID `form:"user,omitempty" json:"user,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// RoleName Role name contains
+	RoleName *string `form:"role_name,omitempty" json:"role_name,omitempty"`
+
+	// RoleUuid Role UUID
+	RoleUuid *openapi_types.UUID `form:"role_uuid,omitempty" json:"role_uuid,omitempty"`
+
+	// ScopeName Scope name
+	ScopeName *string `form:"scope_name,omitempty" json:"scope_name,omitempty"`
+
+	// ScopeType Scope type
+	ScopeType *string `form:"scope_type,omitempty" json:"scope_type,omitempty"`
+
+	// ScopeUuid Scope UUID
+	ScopeUuid *openapi_types.UUID `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
+	User      *openapi_types.UUID `form:"user,omitempty" json:"user,omitempty"`
 
 	// UserSlug User slug contains
 	UserSlug *string `form:"user_slug,omitempty" json:"user_slug,omitempty"`
@@ -82287,6 +82332,86 @@ func NewMarketplaceOfferingPermissionsLogListRequest(server string, params *Mark
 
 		}
 
+		if params.RoleName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "role_name", runtime.ParamLocationQuery, *params.RoleName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.RoleUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "role_uuid", runtime.ParamLocationQuery, *params.RoleUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ScopeName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope_name", runtime.ParamLocationQuery, *params.ScopeName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ScopeType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope_type", runtime.ParamLocationQuery, *params.ScopeType); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ScopeUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope_uuid", runtime.ParamLocationQuery, *params.ScopeUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.User != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user", runtime.ParamLocationQuery, *params.User); err != nil {
@@ -82517,6 +82642,86 @@ func NewMarketplaceOfferingPermissionsListRequest(server string, params *Marketp
 		if params.PageSize != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.RoleName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "role_name", runtime.ParamLocationQuery, *params.RoleName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.RoleUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "role_uuid", runtime.ParamLocationQuery, *params.RoleUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ScopeName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope_name", runtime.ParamLocationQuery, *params.ScopeName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ScopeType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope_type", runtime.ParamLocationQuery, *params.ScopeType); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ScopeUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope_uuid", runtime.ParamLocationQuery, *params.ScopeUuid); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -134217,6 +134422,86 @@ func NewUserPermissionsListRequest(server string, params *UserPermissionsListPar
 		if params.PageSize != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.RoleName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "role_name", runtime.ParamLocationQuery, *params.RoleName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.RoleUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "role_uuid", runtime.ParamLocationQuery, *params.RoleUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ScopeName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope_name", runtime.ParamLocationQuery, *params.ScopeName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ScopeType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope_type", runtime.ParamLocationQuery, *params.ScopeType); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ScopeUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope_uuid", runtime.ParamLocationQuery, *params.ScopeUuid); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
