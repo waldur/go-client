@@ -4340,6 +4340,270 @@ const (
 	MarketplaceServiceProvidersListParamsOMinusCustomerName MarketplaceServiceProvidersListParamsO = "-customer_name"
 )
 
+// Defines values for MarketplaceServiceProvidersCustomerProjectsListParamsField.
+const (
+	MarketplaceServiceProvidersCustomerProjectsListParamsFieldBillingPriceEstimate MarketplaceServiceProvidersCustomerProjectsListParamsField = "billing_price_estimate"
+	MarketplaceServiceProvidersCustomerProjectsListParamsFieldDescription          MarketplaceServiceProvidersCustomerProjectsListParamsField = "description"
+	MarketplaceServiceProvidersCustomerProjectsListParamsFieldEndDate              MarketplaceServiceProvidersCustomerProjectsListParamsField = "end_date"
+	MarketplaceServiceProvidersCustomerProjectsListParamsFieldName                 MarketplaceServiceProvidersCustomerProjectsListParamsField = "name"
+	MarketplaceServiceProvidersCustomerProjectsListParamsFieldResourcesCount       MarketplaceServiceProvidersCustomerProjectsListParamsField = "resources_count"
+	MarketplaceServiceProvidersCustomerProjectsListParamsFieldUsersCount           MarketplaceServiceProvidersCustomerProjectsListParamsField = "users_count"
+	MarketplaceServiceProvidersCustomerProjectsListParamsFieldUuid                 MarketplaceServiceProvidersCustomerProjectsListParamsField = "uuid"
+)
+
+// Defines values for MarketplaceServiceProvidersCustomerProjectsListParamsO.
+const (
+	MarketplaceServiceProvidersCustomerProjectsListParamsOCreated                   MarketplaceServiceProvidersCustomerProjectsListParamsO = "created"
+	MarketplaceServiceProvidersCustomerProjectsListParamsOCustomerAbbreviation      MarketplaceServiceProvidersCustomerProjectsListParamsO = "customer_abbreviation"
+	MarketplaceServiceProvidersCustomerProjectsListParamsOCustomerName              MarketplaceServiceProvidersCustomerProjectsListParamsO = "customer_name"
+	MarketplaceServiceProvidersCustomerProjectsListParamsOCustomerNativeName        MarketplaceServiceProvidersCustomerProjectsListParamsO = "customer_native_name"
+	MarketplaceServiceProvidersCustomerProjectsListParamsOEndDate                   MarketplaceServiceProvidersCustomerProjectsListParamsO = "end_date"
+	MarketplaceServiceProvidersCustomerProjectsListParamsOEstimatedCost             MarketplaceServiceProvidersCustomerProjectsListParamsO = "estimated_cost"
+	MarketplaceServiceProvidersCustomerProjectsListParamsOMinusCreated              MarketplaceServiceProvidersCustomerProjectsListParamsO = "-created"
+	MarketplaceServiceProvidersCustomerProjectsListParamsOMinusCustomerAbbreviation MarketplaceServiceProvidersCustomerProjectsListParamsO = "-customer_abbreviation"
+	MarketplaceServiceProvidersCustomerProjectsListParamsOMinusCustomerName         MarketplaceServiceProvidersCustomerProjectsListParamsO = "-customer_name"
+	MarketplaceServiceProvidersCustomerProjectsListParamsOMinusCustomerNativeName   MarketplaceServiceProvidersCustomerProjectsListParamsO = "-customer_native_name"
+	MarketplaceServiceProvidersCustomerProjectsListParamsOMinusEndDate              MarketplaceServiceProvidersCustomerProjectsListParamsO = "-end_date"
+	MarketplaceServiceProvidersCustomerProjectsListParamsOMinusEstimatedCost        MarketplaceServiceProvidersCustomerProjectsListParamsO = "-estimated_cost"
+	MarketplaceServiceProvidersCustomerProjectsListParamsOMinusName                 MarketplaceServiceProvidersCustomerProjectsListParamsO = "-name"
+	MarketplaceServiceProvidersCustomerProjectsListParamsOMinusStartDate            MarketplaceServiceProvidersCustomerProjectsListParamsO = "-start_date"
+	MarketplaceServiceProvidersCustomerProjectsListParamsOName                      MarketplaceServiceProvidersCustomerProjectsListParamsO = "name"
+	MarketplaceServiceProvidersCustomerProjectsListParamsOStartDate                 MarketplaceServiceProvidersCustomerProjectsListParamsO = "start_date"
+)
+
+// Defines values for MarketplaceServiceProvidersCustomersListParamsField.
+const (
+	MarketplaceServiceProvidersCustomersListParamsFieldAbbreviation         MarketplaceServiceProvidersCustomersListParamsField = "abbreviation"
+	MarketplaceServiceProvidersCustomersListParamsFieldBillingPriceEstimate MarketplaceServiceProvidersCustomersListParamsField = "billing_price_estimate"
+	MarketplaceServiceProvidersCustomersListParamsFieldEmail                MarketplaceServiceProvidersCustomersListParamsField = "email"
+	MarketplaceServiceProvidersCustomersListParamsFieldName                 MarketplaceServiceProvidersCustomersListParamsField = "name"
+	MarketplaceServiceProvidersCustomersListParamsFieldPaymentProfiles      MarketplaceServiceProvidersCustomersListParamsField = "payment_profiles"
+	MarketplaceServiceProvidersCustomersListParamsFieldPhoneNumber          MarketplaceServiceProvidersCustomersListParamsField = "phone_number"
+	MarketplaceServiceProvidersCustomersListParamsFieldProjects             MarketplaceServiceProvidersCustomersListParamsField = "projects"
+	MarketplaceServiceProvidersCustomersListParamsFieldProjectsCount        MarketplaceServiceProvidersCustomersListParamsField = "projects_count"
+	MarketplaceServiceProvidersCustomersListParamsFieldSlug                 MarketplaceServiceProvidersCustomersListParamsField = "slug"
+	MarketplaceServiceProvidersCustomersListParamsFieldUsers                MarketplaceServiceProvidersCustomersListParamsField = "users"
+	MarketplaceServiceProvidersCustomersListParamsFieldUsersCount           MarketplaceServiceProvidersCustomersListParamsField = "users_count"
+	MarketplaceServiceProvidersCustomersListParamsFieldUuid                 MarketplaceServiceProvidersCustomersListParamsField = "uuid"
+)
+
+// Defines values for MarketplaceServiceProvidersKeysListParamsField.
+const (
+	MarketplaceServiceProvidersKeysListParamsFieldFingerprintMd5    MarketplaceServiceProvidersKeysListParamsField = "fingerprint_md5"
+	MarketplaceServiceProvidersKeysListParamsFieldFingerprintSha256 MarketplaceServiceProvidersKeysListParamsField = "fingerprint_sha256"
+	MarketplaceServiceProvidersKeysListParamsFieldFingerprintSha512 MarketplaceServiceProvidersKeysListParamsField = "fingerprint_sha512"
+	MarketplaceServiceProvidersKeysListParamsFieldIsShared          MarketplaceServiceProvidersKeysListParamsField = "is_shared"
+	MarketplaceServiceProvidersKeysListParamsFieldName              MarketplaceServiceProvidersKeysListParamsField = "name"
+	MarketplaceServiceProvidersKeysListParamsFieldPublicKey         MarketplaceServiceProvidersKeysListParamsField = "public_key"
+	MarketplaceServiceProvidersKeysListParamsFieldType              MarketplaceServiceProvidersKeysListParamsField = "type"
+	MarketplaceServiceProvidersKeysListParamsFieldUrl               MarketplaceServiceProvidersKeysListParamsField = "url"
+	MarketplaceServiceProvidersKeysListParamsFieldUserUuid          MarketplaceServiceProvidersKeysListParamsField = "user_uuid"
+	MarketplaceServiceProvidersKeysListParamsFieldUuid              MarketplaceServiceProvidersKeysListParamsField = "uuid"
+)
+
+// Defines values for MarketplaceServiceProvidersKeysListParamsO.
+const (
+	MarketplaceServiceProvidersKeysListParamsOMinusName MarketplaceServiceProvidersKeysListParamsO = "-name"
+	MarketplaceServiceProvidersKeysListParamsOName      MarketplaceServiceProvidersKeysListParamsO = "name"
+)
+
+// Defines values for MarketplaceServiceProvidersOfferingsListParamsField.
+const (
+	MarketplaceServiceProvidersOfferingsListParamsFieldBillingPriceEstimate MarketplaceServiceProvidersOfferingsListParamsField = "billing_price_estimate"
+	MarketplaceServiceProvidersOfferingsListParamsFieldCategoryTitle        MarketplaceServiceProvidersOfferingsListParamsField = "category_title"
+	MarketplaceServiceProvidersOfferingsListParamsFieldComponents           MarketplaceServiceProvidersOfferingsListParamsField = "components"
+	MarketplaceServiceProvidersOfferingsListParamsFieldCustomerUuid         MarketplaceServiceProvidersOfferingsListParamsField = "customer_uuid"
+	MarketplaceServiceProvidersOfferingsListParamsFieldName                 MarketplaceServiceProvidersOfferingsListParamsField = "name"
+	MarketplaceServiceProvidersOfferingsListParamsFieldOptions              MarketplaceServiceProvidersOfferingsListParamsField = "options"
+	MarketplaceServiceProvidersOfferingsListParamsFieldPlans                MarketplaceServiceProvidersOfferingsListParamsField = "plans"
+	MarketplaceServiceProvidersOfferingsListParamsFieldResourceOptions      MarketplaceServiceProvidersOfferingsListParamsField = "resource_options"
+	MarketplaceServiceProvidersOfferingsListParamsFieldResourcesCount       MarketplaceServiceProvidersOfferingsListParamsField = "resources_count"
+	MarketplaceServiceProvidersOfferingsListParamsFieldSecretOptions        MarketplaceServiceProvidersOfferingsListParamsField = "secret_options"
+	MarketplaceServiceProvidersOfferingsListParamsFieldSlug                 MarketplaceServiceProvidersOfferingsListParamsField = "slug"
+	MarketplaceServiceProvidersOfferingsListParamsFieldState                MarketplaceServiceProvidersOfferingsListParamsField = "state"
+	MarketplaceServiceProvidersOfferingsListParamsFieldType                 MarketplaceServiceProvidersOfferingsListParamsField = "type"
+	MarketplaceServiceProvidersOfferingsListParamsFieldUuid                 MarketplaceServiceProvidersOfferingsListParamsField = "uuid"
+)
+
+// Defines values for MarketplaceServiceProvidersOfferingsListParamsO.
+const (
+	MarketplaceServiceProvidersOfferingsListParamsOCreated                 MarketplaceServiceProvidersOfferingsListParamsO = "created"
+	MarketplaceServiceProvidersOfferingsListParamsOMinusCreated            MarketplaceServiceProvidersOfferingsListParamsO = "-created"
+	MarketplaceServiceProvidersOfferingsListParamsOMinusName               MarketplaceServiceProvidersOfferingsListParamsO = "-name"
+	MarketplaceServiceProvidersOfferingsListParamsOMinusState              MarketplaceServiceProvidersOfferingsListParamsO = "-state"
+	MarketplaceServiceProvidersOfferingsListParamsOMinusTotalCost          MarketplaceServiceProvidersOfferingsListParamsO = "-total_cost"
+	MarketplaceServiceProvidersOfferingsListParamsOMinusTotalCostEstimated MarketplaceServiceProvidersOfferingsListParamsO = "-total_cost_estimated"
+	MarketplaceServiceProvidersOfferingsListParamsOMinusTotalCustomers     MarketplaceServiceProvidersOfferingsListParamsO = "-total_customers"
+	MarketplaceServiceProvidersOfferingsListParamsOMinusType               MarketplaceServiceProvidersOfferingsListParamsO = "-type"
+	MarketplaceServiceProvidersOfferingsListParamsOName                    MarketplaceServiceProvidersOfferingsListParamsO = "name"
+	MarketplaceServiceProvidersOfferingsListParamsOState                   MarketplaceServiceProvidersOfferingsListParamsO = "state"
+	MarketplaceServiceProvidersOfferingsListParamsOTotalCost               MarketplaceServiceProvidersOfferingsListParamsO = "total_cost"
+	MarketplaceServiceProvidersOfferingsListParamsOTotalCostEstimated      MarketplaceServiceProvidersOfferingsListParamsO = "total_cost_estimated"
+	MarketplaceServiceProvidersOfferingsListParamsOTotalCustomers          MarketplaceServiceProvidersOfferingsListParamsO = "total_customers"
+	MarketplaceServiceProvidersOfferingsListParamsOType                    MarketplaceServiceProvidersOfferingsListParamsO = "type"
+)
+
+// Defines values for MarketplaceServiceProvidersOfferingsListParamsState.
+const (
+	MarketplaceServiceProvidersOfferingsListParamsStateActive   MarketplaceServiceProvidersOfferingsListParamsState = "Active"
+	MarketplaceServiceProvidersOfferingsListParamsStateArchived MarketplaceServiceProvidersOfferingsListParamsState = "Archived"
+	MarketplaceServiceProvidersOfferingsListParamsStateDraft    MarketplaceServiceProvidersOfferingsListParamsState = "Draft"
+	MarketplaceServiceProvidersOfferingsListParamsStatePaused   MarketplaceServiceProvidersOfferingsListParamsState = "Paused"
+)
+
+// Defines values for MarketplaceServiceProvidersProjectPermissionsListParamsField.
+const (
+	MarketplaceServiceProvidersProjectPermissionsListParamsFieldCreated           MarketplaceServiceProvidersProjectPermissionsListParamsField = "created"
+	MarketplaceServiceProvidersProjectPermissionsListParamsFieldCreatedBy         MarketplaceServiceProvidersProjectPermissionsListParamsField = "created_by"
+	MarketplaceServiceProvidersProjectPermissionsListParamsFieldCreatedByFullName MarketplaceServiceProvidersProjectPermissionsListParamsField = "created_by_full_name"
+	MarketplaceServiceProvidersProjectPermissionsListParamsFieldCreatedByUsername MarketplaceServiceProvidersProjectPermissionsListParamsField = "created_by_username"
+	MarketplaceServiceProvidersProjectPermissionsListParamsFieldCustomerName      MarketplaceServiceProvidersProjectPermissionsListParamsField = "customer_name"
+	MarketplaceServiceProvidersProjectPermissionsListParamsFieldCustomerUuid      MarketplaceServiceProvidersProjectPermissionsListParamsField = "customer_uuid"
+	MarketplaceServiceProvidersProjectPermissionsListParamsFieldExpirationTime    MarketplaceServiceProvidersProjectPermissionsListParamsField = "expiration_time"
+	MarketplaceServiceProvidersProjectPermissionsListParamsFieldProject           MarketplaceServiceProvidersProjectPermissionsListParamsField = "project"
+	MarketplaceServiceProvidersProjectPermissionsListParamsFieldProjectCreated    MarketplaceServiceProvidersProjectPermissionsListParamsField = "project_created"
+	MarketplaceServiceProvidersProjectPermissionsListParamsFieldProjectEndDate    MarketplaceServiceProvidersProjectPermissionsListParamsField = "project_end_date"
+	MarketplaceServiceProvidersProjectPermissionsListParamsFieldProjectName       MarketplaceServiceProvidersProjectPermissionsListParamsField = "project_name"
+	MarketplaceServiceProvidersProjectPermissionsListParamsFieldProjectUuid       MarketplaceServiceProvidersProjectPermissionsListParamsField = "project_uuid"
+	MarketplaceServiceProvidersProjectPermissionsListParamsFieldRole              MarketplaceServiceProvidersProjectPermissionsListParamsField = "role"
+	MarketplaceServiceProvidersProjectPermissionsListParamsFieldRoleName          MarketplaceServiceProvidersProjectPermissionsListParamsField = "role_name"
+	MarketplaceServiceProvidersProjectPermissionsListParamsFieldUser              MarketplaceServiceProvidersProjectPermissionsListParamsField = "user"
+	MarketplaceServiceProvidersProjectPermissionsListParamsFieldUserEmail         MarketplaceServiceProvidersProjectPermissionsListParamsField = "user_email"
+	MarketplaceServiceProvidersProjectPermissionsListParamsFieldUserFullName      MarketplaceServiceProvidersProjectPermissionsListParamsField = "user_full_name"
+	MarketplaceServiceProvidersProjectPermissionsListParamsFieldUserNativeName    MarketplaceServiceProvidersProjectPermissionsListParamsField = "user_native_name"
+	MarketplaceServiceProvidersProjectPermissionsListParamsFieldUserUsername      MarketplaceServiceProvidersProjectPermissionsListParamsField = "user_username"
+	MarketplaceServiceProvidersProjectPermissionsListParamsFieldUserUuid          MarketplaceServiceProvidersProjectPermissionsListParamsField = "user_uuid"
+)
+
+// Defines values for MarketplaceServiceProvidersProjectPermissionsListParamsO.
+const (
+	MarketplaceServiceProvidersProjectPermissionsListParamsOCreated             MarketplaceServiceProvidersProjectPermissionsListParamsO = "created"
+	MarketplaceServiceProvidersProjectPermissionsListParamsOEmail               MarketplaceServiceProvidersProjectPermissionsListParamsO = "email"
+	MarketplaceServiceProvidersProjectPermissionsListParamsOExpirationTime      MarketplaceServiceProvidersProjectPermissionsListParamsO = "expiration_time"
+	MarketplaceServiceProvidersProjectPermissionsListParamsOFullName            MarketplaceServiceProvidersProjectPermissionsListParamsO = "full_name"
+	MarketplaceServiceProvidersProjectPermissionsListParamsOMinusCreated        MarketplaceServiceProvidersProjectPermissionsListParamsO = "-created"
+	MarketplaceServiceProvidersProjectPermissionsListParamsOMinusEmail          MarketplaceServiceProvidersProjectPermissionsListParamsO = "-email"
+	MarketplaceServiceProvidersProjectPermissionsListParamsOMinusExpirationTime MarketplaceServiceProvidersProjectPermissionsListParamsO = "-expiration_time"
+	MarketplaceServiceProvidersProjectPermissionsListParamsOMinusFullName       MarketplaceServiceProvidersProjectPermissionsListParamsO = "-full_name"
+	MarketplaceServiceProvidersProjectPermissionsListParamsOMinusNativeName     MarketplaceServiceProvidersProjectPermissionsListParamsO = "-native_name"
+	MarketplaceServiceProvidersProjectPermissionsListParamsOMinusRole           MarketplaceServiceProvidersProjectPermissionsListParamsO = "-role"
+	MarketplaceServiceProvidersProjectPermissionsListParamsOMinusUsername       MarketplaceServiceProvidersProjectPermissionsListParamsO = "-username"
+	MarketplaceServiceProvidersProjectPermissionsListParamsONativeName          MarketplaceServiceProvidersProjectPermissionsListParamsO = "native_name"
+	MarketplaceServiceProvidersProjectPermissionsListParamsORole                MarketplaceServiceProvidersProjectPermissionsListParamsO = "role"
+	MarketplaceServiceProvidersProjectPermissionsListParamsOUsername            MarketplaceServiceProvidersProjectPermissionsListParamsO = "username"
+)
+
+// Defines values for MarketplaceServiceProvidersProjectsListParamsField.
+const (
+	MarketplaceServiceProvidersProjectsListParamsFieldBackendId                MarketplaceServiceProvidersProjectsListParamsField = "backend_id"
+	MarketplaceServiceProvidersProjectsListParamsFieldBillingPriceEstimate     MarketplaceServiceProvidersProjectsListParamsField = "billing_price_estimate"
+	MarketplaceServiceProvidersProjectsListParamsFieldCreated                  MarketplaceServiceProvidersProjectsListParamsField = "created"
+	MarketplaceServiceProvidersProjectsListParamsFieldCustomer                 MarketplaceServiceProvidersProjectsListParamsField = "customer"
+	MarketplaceServiceProvidersProjectsListParamsFieldCustomerAbbreviation     MarketplaceServiceProvidersProjectsListParamsField = "customer_abbreviation"
+	MarketplaceServiceProvidersProjectsListParamsFieldCustomerName             MarketplaceServiceProvidersProjectsListParamsField = "customer_name"
+	MarketplaceServiceProvidersProjectsListParamsFieldCustomerNativeName       MarketplaceServiceProvidersProjectsListParamsField = "customer_native_name"
+	MarketplaceServiceProvidersProjectsListParamsFieldCustomerSlug             MarketplaceServiceProvidersProjectsListParamsField = "customer_slug"
+	MarketplaceServiceProvidersProjectsListParamsFieldCustomerUuid             MarketplaceServiceProvidersProjectsListParamsField = "customer_uuid"
+	MarketplaceServiceProvidersProjectsListParamsFieldDescription              MarketplaceServiceProvidersProjectsListParamsField = "description"
+	MarketplaceServiceProvidersProjectsListParamsFieldEndDate                  MarketplaceServiceProvidersProjectsListParamsField = "end_date"
+	MarketplaceServiceProvidersProjectsListParamsFieldEndDateRequestedBy       MarketplaceServiceProvidersProjectsListParamsField = "end_date_requested_by"
+	MarketplaceServiceProvidersProjectsListParamsFieldImage                    MarketplaceServiceProvidersProjectsListParamsField = "image"
+	MarketplaceServiceProvidersProjectsListParamsFieldIsIndustry               MarketplaceServiceProvidersProjectsListParamsField = "is_industry"
+	MarketplaceServiceProvidersProjectsListParamsFieldMarketplaceResourceCount MarketplaceServiceProvidersProjectsListParamsField = "marketplace_resource_count"
+	MarketplaceServiceProvidersProjectsListParamsFieldName                     MarketplaceServiceProvidersProjectsListParamsField = "name"
+	MarketplaceServiceProvidersProjectsListParamsFieldOecdFos2007Code          MarketplaceServiceProvidersProjectsListParamsField = "oecd_fos_2007_code"
+	MarketplaceServiceProvidersProjectsListParamsFieldOecdFos2007Label         MarketplaceServiceProvidersProjectsListParamsField = "oecd_fos_2007_label"
+	MarketplaceServiceProvidersProjectsListParamsFieldProjectCredit            MarketplaceServiceProvidersProjectsListParamsField = "project_credit"
+	MarketplaceServiceProvidersProjectsListParamsFieldResourcesCount           MarketplaceServiceProvidersProjectsListParamsField = "resources_count"
+	MarketplaceServiceProvidersProjectsListParamsFieldSlug                     MarketplaceServiceProvidersProjectsListParamsField = "slug"
+	MarketplaceServiceProvidersProjectsListParamsFieldStartDate                MarketplaceServiceProvidersProjectsListParamsField = "start_date"
+	MarketplaceServiceProvidersProjectsListParamsFieldType                     MarketplaceServiceProvidersProjectsListParamsField = "type"
+	MarketplaceServiceProvidersProjectsListParamsFieldTypeName                 MarketplaceServiceProvidersProjectsListParamsField = "type_name"
+	MarketplaceServiceProvidersProjectsListParamsFieldTypeUuid                 MarketplaceServiceProvidersProjectsListParamsField = "type_uuid"
+	MarketplaceServiceProvidersProjectsListParamsFieldUrl                      MarketplaceServiceProvidersProjectsListParamsField = "url"
+	MarketplaceServiceProvidersProjectsListParamsFieldUuid                     MarketplaceServiceProvidersProjectsListParamsField = "uuid"
+)
+
+// Defines values for MarketplaceServiceProvidersProjectsListParamsO.
+const (
+	MarketplaceServiceProvidersProjectsListParamsOCreated                   MarketplaceServiceProvidersProjectsListParamsO = "created"
+	MarketplaceServiceProvidersProjectsListParamsOCustomerAbbreviation      MarketplaceServiceProvidersProjectsListParamsO = "customer_abbreviation"
+	MarketplaceServiceProvidersProjectsListParamsOCustomerName              MarketplaceServiceProvidersProjectsListParamsO = "customer_name"
+	MarketplaceServiceProvidersProjectsListParamsOCustomerNativeName        MarketplaceServiceProvidersProjectsListParamsO = "customer_native_name"
+	MarketplaceServiceProvidersProjectsListParamsOEndDate                   MarketplaceServiceProvidersProjectsListParamsO = "end_date"
+	MarketplaceServiceProvidersProjectsListParamsOEstimatedCost             MarketplaceServiceProvidersProjectsListParamsO = "estimated_cost"
+	MarketplaceServiceProvidersProjectsListParamsOMinusCreated              MarketplaceServiceProvidersProjectsListParamsO = "-created"
+	MarketplaceServiceProvidersProjectsListParamsOMinusCustomerAbbreviation MarketplaceServiceProvidersProjectsListParamsO = "-customer_abbreviation"
+	MarketplaceServiceProvidersProjectsListParamsOMinusCustomerName         MarketplaceServiceProvidersProjectsListParamsO = "-customer_name"
+	MarketplaceServiceProvidersProjectsListParamsOMinusCustomerNativeName   MarketplaceServiceProvidersProjectsListParamsO = "-customer_native_name"
+	MarketplaceServiceProvidersProjectsListParamsOMinusEndDate              MarketplaceServiceProvidersProjectsListParamsO = "-end_date"
+	MarketplaceServiceProvidersProjectsListParamsOMinusEstimatedCost        MarketplaceServiceProvidersProjectsListParamsO = "-estimated_cost"
+	MarketplaceServiceProvidersProjectsListParamsOMinusName                 MarketplaceServiceProvidersProjectsListParamsO = "-name"
+	MarketplaceServiceProvidersProjectsListParamsOMinusStartDate            MarketplaceServiceProvidersProjectsListParamsO = "-start_date"
+	MarketplaceServiceProvidersProjectsListParamsOName                      MarketplaceServiceProvidersProjectsListParamsO = "name"
+	MarketplaceServiceProvidersProjectsListParamsOStartDate                 MarketplaceServiceProvidersProjectsListParamsO = "start_date"
+)
+
+// Defines values for MarketplaceServiceProvidersUserCustomersListParamsField.
+const (
+	MarketplaceServiceProvidersUserCustomersListParamsFieldAbbreviation         MarketplaceServiceProvidersUserCustomersListParamsField = "abbreviation"
+	MarketplaceServiceProvidersUserCustomersListParamsFieldBillingPriceEstimate MarketplaceServiceProvidersUserCustomersListParamsField = "billing_price_estimate"
+	MarketplaceServiceProvidersUserCustomersListParamsFieldEmail                MarketplaceServiceProvidersUserCustomersListParamsField = "email"
+	MarketplaceServiceProvidersUserCustomersListParamsFieldName                 MarketplaceServiceProvidersUserCustomersListParamsField = "name"
+	MarketplaceServiceProvidersUserCustomersListParamsFieldPaymentProfiles      MarketplaceServiceProvidersUserCustomersListParamsField = "payment_profiles"
+	MarketplaceServiceProvidersUserCustomersListParamsFieldPhoneNumber          MarketplaceServiceProvidersUserCustomersListParamsField = "phone_number"
+	MarketplaceServiceProvidersUserCustomersListParamsFieldProjects             MarketplaceServiceProvidersUserCustomersListParamsField = "projects"
+	MarketplaceServiceProvidersUserCustomersListParamsFieldProjectsCount        MarketplaceServiceProvidersUserCustomersListParamsField = "projects_count"
+	MarketplaceServiceProvidersUserCustomersListParamsFieldSlug                 MarketplaceServiceProvidersUserCustomersListParamsField = "slug"
+	MarketplaceServiceProvidersUserCustomersListParamsFieldUsers                MarketplaceServiceProvidersUserCustomersListParamsField = "users"
+	MarketplaceServiceProvidersUserCustomersListParamsFieldUsersCount           MarketplaceServiceProvidersUserCustomersListParamsField = "users_count"
+	MarketplaceServiceProvidersUserCustomersListParamsFieldUuid                 MarketplaceServiceProvidersUserCustomersListParamsField = "uuid"
+)
+
+// Defines values for MarketplaceServiceProvidersUsersListParamsField.
+const (
+	MarketplaceServiceProvidersUsersListParamsFieldAffiliations       MarketplaceServiceProvidersUsersListParamsField = "affiliations"
+	MarketplaceServiceProvidersUsersListParamsFieldEmail              MarketplaceServiceProvidersUsersListParamsField = "email"
+	MarketplaceServiceProvidersUsersListParamsFieldFirstName          MarketplaceServiceProvidersUsersListParamsField = "first_name"
+	MarketplaceServiceProvidersUsersListParamsFieldFullName           MarketplaceServiceProvidersUsersListParamsField = "full_name"
+	MarketplaceServiceProvidersUsersListParamsFieldIsActive           MarketplaceServiceProvidersUsersListParamsField = "is_active"
+	MarketplaceServiceProvidersUsersListParamsFieldLastName           MarketplaceServiceProvidersUsersListParamsField = "last_name"
+	MarketplaceServiceProvidersUsersListParamsFieldOrganization       MarketplaceServiceProvidersUsersListParamsField = "organization"
+	MarketplaceServiceProvidersUsersListParamsFieldPhoneNumber        MarketplaceServiceProvidersUsersListParamsField = "phone_number"
+	MarketplaceServiceProvidersUsersListParamsFieldProjectsCount      MarketplaceServiceProvidersUsersListParamsField = "projects_count"
+	MarketplaceServiceProvidersUsersListParamsFieldRegistrationMethod MarketplaceServiceProvidersUsersListParamsField = "registration_method"
+	MarketplaceServiceProvidersUsersListParamsFieldUsername           MarketplaceServiceProvidersUsersListParamsField = "username"
+	MarketplaceServiceProvidersUsersListParamsFieldUuid               MarketplaceServiceProvidersUsersListParamsField = "uuid"
+)
+
+// Defines values for MarketplaceServiceProvidersUsersListParamsO.
+const (
+	MarketplaceServiceProvidersUsersListParamsODescription             MarketplaceServiceProvidersUsersListParamsO = "description"
+	MarketplaceServiceProvidersUsersListParamsOEmail                   MarketplaceServiceProvidersUsersListParamsO = "email"
+	MarketplaceServiceProvidersUsersListParamsOFullName                MarketplaceServiceProvidersUsersListParamsO = "full_name"
+	MarketplaceServiceProvidersUsersListParamsOIsActive                MarketplaceServiceProvidersUsersListParamsO = "is_active"
+	MarketplaceServiceProvidersUsersListParamsOIsStaff                 MarketplaceServiceProvidersUsersListParamsO = "is_staff"
+	MarketplaceServiceProvidersUsersListParamsOIsSupport               MarketplaceServiceProvidersUsersListParamsO = "is_support"
+	MarketplaceServiceProvidersUsersListParamsOJobTitle                MarketplaceServiceProvidersUsersListParamsO = "job_title"
+	MarketplaceServiceProvidersUsersListParamsOMinusDescription        MarketplaceServiceProvidersUsersListParamsO = "-description"
+	MarketplaceServiceProvidersUsersListParamsOMinusEmail              MarketplaceServiceProvidersUsersListParamsO = "-email"
+	MarketplaceServiceProvidersUsersListParamsOMinusFullName           MarketplaceServiceProvidersUsersListParamsO = "-full_name"
+	MarketplaceServiceProvidersUsersListParamsOMinusIsActive           MarketplaceServiceProvidersUsersListParamsO = "-is_active"
+	MarketplaceServiceProvidersUsersListParamsOMinusIsStaff            MarketplaceServiceProvidersUsersListParamsO = "-is_staff"
+	MarketplaceServiceProvidersUsersListParamsOMinusIsSupport          MarketplaceServiceProvidersUsersListParamsO = "-is_support"
+	MarketplaceServiceProvidersUsersListParamsOMinusJobTitle           MarketplaceServiceProvidersUsersListParamsO = "-job_title"
+	MarketplaceServiceProvidersUsersListParamsOMinusNativeName         MarketplaceServiceProvidersUsersListParamsO = "-native_name"
+	MarketplaceServiceProvidersUsersListParamsOMinusOrganization       MarketplaceServiceProvidersUsersListParamsO = "-organization"
+	MarketplaceServiceProvidersUsersListParamsOMinusPhoneNumber        MarketplaceServiceProvidersUsersListParamsO = "-phone_number"
+	MarketplaceServiceProvidersUsersListParamsOMinusRegistrationMethod MarketplaceServiceProvidersUsersListParamsO = "-registration_method"
+	MarketplaceServiceProvidersUsersListParamsOMinusUsername           MarketplaceServiceProvidersUsersListParamsO = "-username"
+	MarketplaceServiceProvidersUsersListParamsONativeName              MarketplaceServiceProvidersUsersListParamsO = "native_name"
+	MarketplaceServiceProvidersUsersListParamsOOrganization            MarketplaceServiceProvidersUsersListParamsO = "organization"
+	MarketplaceServiceProvidersUsersListParamsOPhoneNumber             MarketplaceServiceProvidersUsersListParamsO = "phone_number"
+	MarketplaceServiceProvidersUsersListParamsORegistrationMethod      MarketplaceServiceProvidersUsersListParamsO = "registration_method"
+	MarketplaceServiceProvidersUsersListParamsOUsername                MarketplaceServiceProvidersUsersListParamsO = "username"
+)
+
 // Defines values for MarketplaceServiceProvidersRetrieveParamsField.
 const (
 	MarketplaceServiceProvidersRetrieveParamsFieldCreated              MarketplaceServiceProvidersRetrieveParamsField = "created"
@@ -4384,32 +4648,6 @@ const (
 	MarketplaceServiceProvidersListUsersListParamsONativeName     MarketplaceServiceProvidersListUsersListParamsO = "native_name"
 	MarketplaceServiceProvidersListUsersListParamsORole           MarketplaceServiceProvidersListUsersListParamsO = "role"
 	MarketplaceServiceProvidersListUsersListParamsOUsername       MarketplaceServiceProvidersListUsersListParamsO = "username"
-)
-
-// Defines values for MarketplaceServiceProvidersOfferingsListParamsO.
-const (
-	MarketplaceServiceProvidersOfferingsListParamsOCreated                 MarketplaceServiceProvidersOfferingsListParamsO = "created"
-	MarketplaceServiceProvidersOfferingsListParamsOMinusCreated            MarketplaceServiceProvidersOfferingsListParamsO = "-created"
-	MarketplaceServiceProvidersOfferingsListParamsOMinusName               MarketplaceServiceProvidersOfferingsListParamsO = "-name"
-	MarketplaceServiceProvidersOfferingsListParamsOMinusState              MarketplaceServiceProvidersOfferingsListParamsO = "-state"
-	MarketplaceServiceProvidersOfferingsListParamsOMinusTotalCost          MarketplaceServiceProvidersOfferingsListParamsO = "-total_cost"
-	MarketplaceServiceProvidersOfferingsListParamsOMinusTotalCostEstimated MarketplaceServiceProvidersOfferingsListParamsO = "-total_cost_estimated"
-	MarketplaceServiceProvidersOfferingsListParamsOMinusTotalCustomers     MarketplaceServiceProvidersOfferingsListParamsO = "-total_customers"
-	MarketplaceServiceProvidersOfferingsListParamsOMinusType               MarketplaceServiceProvidersOfferingsListParamsO = "-type"
-	MarketplaceServiceProvidersOfferingsListParamsOName                    MarketplaceServiceProvidersOfferingsListParamsO = "name"
-	MarketplaceServiceProvidersOfferingsListParamsOState                   MarketplaceServiceProvidersOfferingsListParamsO = "state"
-	MarketplaceServiceProvidersOfferingsListParamsOTotalCost               MarketplaceServiceProvidersOfferingsListParamsO = "total_cost"
-	MarketplaceServiceProvidersOfferingsListParamsOTotalCostEstimated      MarketplaceServiceProvidersOfferingsListParamsO = "total_cost_estimated"
-	MarketplaceServiceProvidersOfferingsListParamsOTotalCustomers          MarketplaceServiceProvidersOfferingsListParamsO = "total_customers"
-	MarketplaceServiceProvidersOfferingsListParamsOType                    MarketplaceServiceProvidersOfferingsListParamsO = "type"
-)
-
-// Defines values for MarketplaceServiceProvidersOfferingsListParamsState.
-const (
-	MarketplaceServiceProvidersOfferingsListParamsStateActive   MarketplaceServiceProvidersOfferingsListParamsState = "Active"
-	MarketplaceServiceProvidersOfferingsListParamsStateArchived MarketplaceServiceProvidersOfferingsListParamsState = "Archived"
-	MarketplaceServiceProvidersOfferingsListParamsStateDraft    MarketplaceServiceProvidersOfferingsListParamsState = "Draft"
-	MarketplaceServiceProvidersOfferingsListParamsStatePaused   MarketplaceServiceProvidersOfferingsListParamsState = "Paused"
 )
 
 // Defines values for OpenstackBackupsListParamsField.
@@ -7712,8 +7950,8 @@ type AccountNameGenerationPolicyEnum = interface{}
 
 // AdminAnnouncement defines model for AdminAnnouncement.
 type AdminAnnouncement struct {
-	ActiveFrom  time.Time                  `json:"active_from"`
-	ActiveTo    time.Time                  `json:"active_to"`
+	ActiveFrom  *time.Time                 `json:"active_from,omitempty"`
+	ActiveTo    *time.Time                 `json:"active_to,omitempty"`
 	Created     *time.Time                 `json:"created,omitempty"`
 	Description *string                    `json:"description,omitempty"`
 	IsActive    *bool                      `json:"is_active,omitempty"`
@@ -7761,10 +7999,10 @@ type Attachment struct {
 	BackendId          *string             `json:"backend_id,omitempty"`
 	Created            *time.Time          `json:"created,omitempty"`
 	DestroyIsAvailable *bool               `json:"destroy_is_available,omitempty"`
-	File               string              `json:"file"`
+	File               *string             `json:"file,omitempty"`
 	FileName           *string             `json:"file_name,omitempty"`
 	FileSize           *int                `json:"file_size,omitempty"`
-	Issue              string              `json:"issue"`
+	Issue              *string             `json:"issue,omitempty"`
 	IssueKey           *string             `json:"issue_key,omitempty"`
 	MimeType           *string             `json:"mime_type,omitempty"`
 	Url                *string             `json:"url,omitempty"`
@@ -7873,8 +8111,8 @@ type AwsInstance struct {
 	// MinRam Minimum memory size in MiB
 	MinRam      *int                `json:"min_ram,omitempty"`
 	Modified    *time.Time          `json:"modified,omitempty"`
-	Name        string              `json:"name"`
-	Project     string              `json:"project"`
+	Name        *string             `json:"name,omitempty"`
+	Project     *string             `json:"project,omitempty"`
 	ProjectName *string             `json:"project_name,omitempty"`
 	ProjectUuid *openapi_types.UUID `json:"project_uuid,omitempty"`
 
@@ -7882,7 +8120,7 @@ type AwsInstance struct {
 	Ram                         *int                `json:"ram,omitempty"`
 	ResourceType                *string             `json:"resource_type,omitempty"`
 	ServiceName                 *string             `json:"service_name,omitempty"`
-	ServiceSettings             string              `json:"service_settings"`
+	ServiceSettings             *string             `json:"service_settings,omitempty"`
 	ServiceSettingsErrorMessage *string             `json:"service_settings_error_message,omitempty"`
 	ServiceSettingsState        *string             `json:"service_settings_state,omitempty"`
 	ServiceSettingsUuid         *openapi_types.UUID `json:"service_settings_uuid,omitempty"`
@@ -7969,24 +8207,24 @@ type AwsVolume struct {
 	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
 	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid,omitempty"`
 	Modified                         *time.Time              `json:"modified,omitempty"`
-	Name                             string                  `json:"name"`
-	Project                          string                  `json:"project"`
+	Name                             *string                 `json:"name,omitempty"`
+	Project                          *string                 `json:"project,omitempty"`
 	ProjectName                      *string                 `json:"project_name,omitempty"`
 	ProjectUuid                      *openapi_types.UUID     `json:"project_uuid,omitempty"`
 	ResourceType                     *string                 `json:"resource_type,omitempty"`
 	RuntimeState                     *string                 `json:"runtime_state,omitempty"`
 	ServiceName                      *string                 `json:"service_name,omitempty"`
-	ServiceSettings                  string                  `json:"service_settings"`
+	ServiceSettings                  *string                 `json:"service_settings,omitempty"`
 	ServiceSettingsErrorMessage      *string                 `json:"service_settings_error_message,omitempty"`
 	ServiceSettingsState             *string                 `json:"service_settings_state,omitempty"`
 	ServiceSettingsUuid              *openapi_types.UUID     `json:"service_settings_uuid,omitempty"`
 
 	// Size Size of volume in gigabytes
-	Size       int                 `json:"size"`
+	Size       *int                `json:"size,omitempty"`
 	State      *CoreStates         `json:"state,omitempty"`
 	Url        *string             `json:"url,omitempty"`
 	Uuid       *openapi_types.UUID `json:"uuid,omitempty"`
-	VolumeType VolumeTypeEnum      `json:"volume_type"`
+	VolumeType *VolumeTypeEnum     `json:"volume_type,omitempty"`
 }
 
 // AwsVolumeAttach defines model for AwsVolumeAttach.
@@ -8049,7 +8287,7 @@ type AzurePublicIP struct {
 	ErrorTraceback                   *string                 `json:"error_traceback,omitempty"`
 	IsLimitBased                     *bool                   `json:"is_limit_based,omitempty"`
 	IsUsageBased                     *bool                   `json:"is_usage_based,omitempty"`
-	Location                         string                  `json:"location"`
+	Location                         *string                 `json:"location,omitempty"`
 	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
 	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
@@ -8059,14 +8297,14 @@ type AzurePublicIP struct {
 	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
 	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid,omitempty"`
 	Modified                         *time.Time              `json:"modified,omitempty"`
-	Name                             string                  `json:"name"`
-	Project                          string                  `json:"project"`
+	Name                             *string                 `json:"name,omitempty"`
+	Project                          *string                 `json:"project,omitempty"`
 	ProjectName                      *string                 `json:"project_name,omitempty"`
 	ProjectUuid                      *openapi_types.UUID     `json:"project_uuid,omitempty"`
-	ResourceGroup                    string                  `json:"resource_group"`
+	ResourceGroup                    *string                 `json:"resource_group,omitempty"`
 	ResourceType                     *string                 `json:"resource_type,omitempty"`
 	ServiceName                      *string                 `json:"service_name,omitempty"`
-	ServiceSettings                  string                  `json:"service_settings"`
+	ServiceSettings                  *string                 `json:"service_settings,omitempty"`
 	ServiceSettingsErrorMessage      *string                 `json:"service_settings_error_message,omitempty"`
 	ServiceSettingsState             *string                 `json:"service_settings_state,omitempty"`
 	ServiceSettingsUuid              *openapi_types.UUID     `json:"service_settings_uuid,omitempty"`
@@ -8099,7 +8337,7 @@ type AzureResourceGroup struct {
 	ErrorTraceback                   *string                 `json:"error_traceback,omitempty"`
 	IsLimitBased                     *bool                   `json:"is_limit_based,omitempty"`
 	IsUsageBased                     *bool                   `json:"is_usage_based,omitempty"`
-	Location                         string                  `json:"location"`
+	Location                         *string                 `json:"location,omitempty"`
 	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
 	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
@@ -8109,13 +8347,13 @@ type AzureResourceGroup struct {
 	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
 	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid,omitempty"`
 	Modified                         *time.Time              `json:"modified,omitempty"`
-	Name                             string                  `json:"name"`
-	Project                          string                  `json:"project"`
+	Name                             *string                 `json:"name,omitempty"`
+	Project                          *string                 `json:"project,omitempty"`
 	ProjectName                      *string                 `json:"project_name,omitempty"`
 	ProjectUuid                      *openapi_types.UUID     `json:"project_uuid,omitempty"`
 	ResourceType                     *string                 `json:"resource_type,omitempty"`
 	ServiceName                      *string                 `json:"service_name,omitempty"`
-	ServiceSettings                  string                  `json:"service_settings"`
+	ServiceSettings                  *string                 `json:"service_settings,omitempty"`
 	ServiceSettingsErrorMessage      *string                 `json:"service_settings_error_message,omitempty"`
 	ServiceSettingsState             *string                 `json:"service_settings_state,omitempty"`
 	ServiceSettingsUuid              *openapi_types.UUID     `json:"service_settings_uuid,omitempty"`
@@ -8162,18 +8400,18 @@ type AzureSqlDatabase struct {
 	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
 	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid,omitempty"`
 	Modified                         *time.Time              `json:"modified,omitempty"`
-	Name                             string                  `json:"name"`
-	Project                          string                  `json:"project"`
+	Name                             *string                 `json:"name,omitempty"`
+	Project                          *string                 `json:"project,omitempty"`
 	ProjectName                      *string                 `json:"project_name,omitempty"`
 	ProjectUuid                      *openapi_types.UUID     `json:"project_uuid,omitempty"`
 	ResourceGroupName                *string                 `json:"resource_group_name,omitempty"`
 	ResourceType                     *string                 `json:"resource_type,omitempty"`
-	Server                           string                  `json:"server"`
+	Server                           *string                 `json:"server,omitempty"`
 	ServerMarketplaceUuid            *openapi_types.UUID     `json:"server_marketplace_uuid,omitempty"`
 	ServerName                       *string                 `json:"server_name,omitempty"`
 	ServerUuid                       *openapi_types.UUID     `json:"server_uuid,omitempty"`
 	ServiceName                      *string                 `json:"service_name,omitempty"`
-	ServiceSettings                  string                  `json:"service_settings"`
+	ServiceSettings                  *string                 `json:"service_settings,omitempty"`
 	ServiceSettingsErrorMessage      *string                 `json:"service_settings_error_message,omitempty"`
 	ServiceSettingsState             *string                 `json:"service_settings_state,omitempty"`
 	ServiceSettingsUuid              *openapi_types.UUID     `json:"service_settings_uuid,omitempty"`
@@ -8230,16 +8468,16 @@ type AzureSqlServer struct {
 	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
 	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid,omitempty"`
 	Modified                         *time.Time              `json:"modified,omitempty"`
-	Name                             string                  `json:"name"`
+	Name                             *string                 `json:"name,omitempty"`
 	Password                         *string                 `json:"password,omitempty"`
-	Project                          string                  `json:"project"`
+	Project                          *string                 `json:"project,omitempty"`
 	ProjectName                      *string                 `json:"project_name,omitempty"`
 	ProjectUuid                      *openapi_types.UUID     `json:"project_uuid,omitempty"`
 	ResourceGroup                    *string                 `json:"resource_group,omitempty"`
 	ResourceGroupName                *string                 `json:"resource_group_name,omitempty"`
 	ResourceType                     *string                 `json:"resource_type,omitempty"`
 	ServiceName                      *string                 `json:"service_name,omitempty"`
-	ServiceSettings                  string                  `json:"service_settings"`
+	ServiceSettings                  *string                 `json:"service_settings,omitempty"`
 	ServiceSettingsErrorMessage      *string                 `json:"service_settings_error_message,omitempty"`
 	ServiceSettingsState             *string                 `json:"service_settings_state,omitempty"`
 	ServiceSettingsUuid              *openapi_types.UUID     `json:"service_settings_uuid,omitempty"`
@@ -8279,7 +8517,7 @@ type AzureVirtualMachine struct {
 	ErrorMessage                     *string                 `json:"error_message,omitempty"`
 	ErrorTraceback                   *string                 `json:"error_traceback,omitempty"`
 	ExternalIps                      *[]string               `json:"external_ips,omitempty"`
-	Image                            string                  `json:"image"`
+	Image                            *string                 `json:"image,omitempty"`
 	ImageName                        *string                 `json:"image_name,omitempty"`
 	InternalIps                      *[]string               `json:"internal_ips,omitempty"`
 	IsLimitBased                     *bool                   `json:"is_limit_based,omitempty"`
@@ -8304,9 +8542,9 @@ type AzureVirtualMachine struct {
 	// MinRam Minimum memory size in MiB
 	MinRam      *int                `json:"min_ram,omitempty"`
 	Modified    *time.Time          `json:"modified,omitempty"`
-	Name        string              `json:"name"`
+	Name        *string             `json:"name,omitempty"`
 	Password    *string             `json:"password,omitempty"`
-	Project     string              `json:"project"`
+	Project     *string             `json:"project,omitempty"`
 	ProjectName *string             `json:"project_name,omitempty"`
 	ProjectUuid *openapi_types.UUID `json:"project_uuid,omitempty"`
 
@@ -8317,11 +8555,11 @@ type AzureVirtualMachine struct {
 	ResourceType                *string             `json:"resource_type,omitempty"`
 	RuntimeState                *string             `json:"runtime_state,omitempty"`
 	ServiceName                 *string             `json:"service_name,omitempty"`
-	ServiceSettings             string              `json:"service_settings"`
+	ServiceSettings             *string             `json:"service_settings,omitempty"`
 	ServiceSettingsErrorMessage *string             `json:"service_settings_error_message,omitempty"`
 	ServiceSettingsState        *string             `json:"service_settings_state,omitempty"`
 	ServiceSettingsUuid         *openapi_types.UUID `json:"service_settings_uuid,omitempty"`
-	Size                        string              `json:"size"`
+	Size                        *string             `json:"size,omitempty"`
 	SizeName                    *string             `json:"size_name,omitempty"`
 	StartTime                   *time.Time          `json:"start_time"`
 	State                       *CoreStates         `json:"state,omitempty"`
@@ -8396,7 +8634,7 @@ type BaseProviderPlan struct {
 	// MaxAmount Maximum number of plans that could be active. Plan is disabled when maximum amount is reached.
 	MaxAmount          *int                 `json:"max_amount"`
 	MinimalPrice       *float64             `json:"minimal_price,omitempty"`
-	Name               string               `json:"name"`
+	Name               *string              `json:"name,omitempty"`
 	OrganizationGroups *[]OrganizationGroup `json:"organization_groups,omitempty"`
 	PlanType           *string              `json:"plan_type,omitempty"`
 	Prices             *map[string]float64  `json:"prices,omitempty"`
@@ -8438,7 +8676,7 @@ type BasePublicPlan struct {
 	// MaxAmount Maximum number of plans that could be active. Plan is disabled when maximum amount is reached.
 	MaxAmount          *int                 `json:"max_amount"`
 	MinimalPrice       *float64             `json:"minimal_price,omitempty"`
-	Name               string               `json:"name"`
+	Name               *string              `json:"name,omitempty"`
 	OrganizationGroups *[]OrganizationGroup `json:"organization_groups,omitempty"`
 	PlanType           *string              `json:"plan_type,omitempty"`
 	Prices             *map[string]float64  `json:"prices,omitempty"`
@@ -8447,7 +8685,7 @@ type BasePublicPlan struct {
 	SwitchPrice        *float64             `json:"switch_price,omitempty"`
 	Unit               *BillingUnit         `json:"unit,omitempty"`
 	UnitPrice          *string              `json:"unit_price,omitempty"`
-	Url                string               `json:"url"`
+	Url                *string              `json:"url,omitempty"`
 	Uuid               *openapi_types.UUID  `json:"uuid,omitempty"`
 }
 
@@ -8527,8 +8765,8 @@ type BookingResource struct {
 	LimitUsage         *float64            `json:"limit_usage"`
 	Limits             *map[string]int     `json:"limits,omitempty"`
 	Modified           *time.Time          `json:"modified,omitempty"`
-	Name               string              `json:"name"`
-	Offering           string              `json:"offering"`
+	Name               *string             `json:"name,omitempty"`
+	Offering           *string             `json:"offering,omitempty"`
 
 	// OfferingBillable Purchase and usage is invoiced.
 	OfferingBillable     *bool               `json:"offering_billable,omitempty"`
@@ -8570,7 +8808,7 @@ type BookingResource struct {
 	ProviderUuid              *openapi_types.UUID `json:"provider_uuid,omitempty"`
 	Report                    *[]ReportSection    `json:"report,omitempty"`
 	ResourceType              *string             `json:"resource_type"`
-	ResourceUuid              *openapi_types.UUID `json:"resource_uuid,omitempty"`
+	ResourceUuid              *openapi_types.UUID `json:"resource_uuid"`
 	RestrictMemberAccess      *bool               `json:"restrict_member_access,omitempty"`
 	Scope                     *string             `json:"scope,omitempty"`
 	Slots                     *[]BookingSlot      `json:"slots,omitempty"`
@@ -8583,21 +8821,21 @@ type BookingResource struct {
 
 // BookingSlot defines model for BookingSlot.
 type BookingSlot struct {
-	BackendId string    `json:"backend_id"`
-	End       time.Time `json:"end"`
-	Start     time.Time `json:"start"`
+	BackendId *string    `json:"backend_id,omitempty"`
+	End       *time.Time `json:"end,omitempty"`
+	Start     *time.Time `json:"start,omitempty"`
 }
 
 // BroadcastMessage defines model for BroadcastMessage.
 type BroadcastMessage struct {
 	AuthorFullName *string                    `json:"author_full_name,omitempty"`
-	Body           string                     `json:"body"`
+	Body           *string                    `json:"body,omitempty"`
 	Created        *time.Time                 `json:"created,omitempty"`
 	Emails         *interface{}               `json:"emails,omitempty"`
-	Query          interface{}                `json:"query"`
+	Query          *interface{}               `json:"query,omitempty"`
 	SendAt         *openapi_types.Date        `json:"send_at"`
 	State          *BroadcastMessageStateEnum `json:"state,omitempty"`
-	Subject        string                     `json:"subject"`
+	Subject        *string                    `json:"subject,omitempty"`
 	Uuid           *openapi_types.UUID        `json:"uuid,omitempty"`
 }
 
@@ -8793,17 +9031,17 @@ type CategoryComponent struct {
 	MeasuredUnit *string `json:"measured_unit,omitempty"`
 
 	// Name Display name for the measured unit, for example, Floating IP.
-	Name string `json:"name"`
+	Name *string `json:"name,omitempty"`
 
 	// Type Unique internal name of the measured unit, for example floating_ip.
-	Type string `json:"type"`
+	Type *string `json:"type,omitempty"`
 }
 
 // CategoryComponentUsage defines model for CategoryComponentUsage.
 type CategoryComponentUsage struct {
 	CategoryTitle *string             `json:"category_title,omitempty"`
 	CategoryUuid  *openapi_types.UUID `json:"category_uuid,omitempty"`
-	Date          openapi_types.Date  `json:"date"`
+	Date          *openapi_types.Date `json:"date,omitempty"`
 	FixedUsage    *int64              `json:"fixed_usage"`
 
 	// MeasuredUnit Unit of measurement, for example, GB.
@@ -8812,7 +9050,7 @@ type CategoryComponentUsage struct {
 	// Name Display name for the measured unit, for example, Floating IP.
 	Name          *string `json:"name,omitempty"`
 	ReportedUsage *int64  `json:"reported_usage"`
-	Scope         string  `json:"scope"`
+	Scope         *string `json:"scope,omitempty"`
 
 	// Type Unique internal name of the measured unit, for example floating_ip.
 	Type *string `json:"type,omitempty"`
@@ -8853,7 +9091,7 @@ type CategoryComponentsRequest struct {
 type CategoryGroup struct {
 	Description *string             `json:"description,omitempty"`
 	Icon        *string             `json:"icon"`
-	Title       string              `json:"title"`
+	Title       *string             `json:"title,omitempty"`
 	Url         *string             `json:"url,omitempty"`
 	Uuid        *openapi_types.UUID `json:"uuid,omitempty"`
 }
@@ -8868,7 +9106,7 @@ type CategoryGroupRequest struct {
 // CategoryHelpArticle defines model for CategoryHelpArticle.
 type CategoryHelpArticle struct {
 	Title *string `json:"title"`
-	Url   string  `json:"url"`
+	Url   *string `json:"url,omitempty"`
 }
 
 // CategoryHelpArticles defines model for CategoryHelpArticles.
@@ -8980,12 +9218,12 @@ type ComponentStats struct {
 
 // ComponentUsage defines model for ComponentUsage.
 type ComponentUsage struct {
-	BillingPeriod openapi_types.Date `json:"billing_period"`
-	Created       *time.Time         `json:"created,omitempty"`
-	CustomerName  *string            `json:"customer_name,omitempty"`
-	CustomerUuid  *string            `json:"customer_uuid,omitempty"`
-	Date          time.Time          `json:"date"`
-	Description   *string            `json:"description,omitempty"`
+	BillingPeriod *openapi_types.Date `json:"billing_period,omitempty"`
+	Created       *time.Time          `json:"created,omitempty"`
+	CustomerName  *string             `json:"customer_name,omitempty"`
+	CustomerUuid  *string             `json:"customer_uuid,omitempty"`
+	Date          *time.Time          `json:"date,omitempty"`
+	Description   *string             `json:"description,omitempty"`
 
 	// MeasuredUnit Unit of measurement, for example, GB.
 	MeasuredUnit *string `json:"measured_unit,omitempty"`
@@ -9046,7 +9284,7 @@ type ComponentUserUsage struct {
 
 	// ComponentType Unique internal name of the measured unit, for example floating_ip.
 	ComponentType  *string             `json:"component_type,omitempty"`
-	ComponentUsage string              `json:"component_usage"`
+	ComponentUsage *string             `json:"component_usage,omitempty"`
 	Created        *time.Time          `json:"created,omitempty"`
 	CustomerName   *string             `json:"customer_name,omitempty"`
 	CustomerUuid   *openapi_types.UUID `json:"customer_uuid,omitempty"`
@@ -9063,8 +9301,8 @@ type ComponentUserUsage struct {
 	ResourceName *string             `json:"resource_name,omitempty"`
 	ResourceUuid *openapi_types.UUID `json:"resource_uuid,omitempty"`
 	Usage        *int                `json:"usage,omitempty"`
-	User         string              `json:"user"`
-	Username     string              `json:"username"`
+	User         *string             `json:"user,omitempty"`
+	Username     *string             `json:"username,omitempty"`
 	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
@@ -9481,7 +9719,7 @@ type Customer struct {
 	IsServiceProvider            *bool                `json:"is_service_provider,omitempty"`
 	Latitude                     *float64             `json:"latitude"`
 	Longitude                    *float64             `json:"longitude"`
-	Name                         string               `json:"name"`
+	Name                         *string              `json:"name,omitempty"`
 	NativeName                   *string              `json:"native_name,omitempty"`
 	OrganizationGroups           *[]OrganizationGroup `json:"organization_groups,omitempty"`
 	PaymentProfiles              *[]PaymentProfile    `json:"payment_profiles,omitempty"`
@@ -9555,7 +9793,7 @@ type CustomerDetails struct {
 	Country     *string              `json:"country,omitempty"`
 	CountryName *string              `json:"country_name,omitempty"`
 	Email       *openapi_types.Email `json:"email,omitempty"`
-	Name        string               `json:"name"`
+	Name        *string              `json:"name,omitempty"`
 	PhoneNumber *string              `json:"phone_number,omitempty"`
 	Postal      *string              `json:"postal,omitempty"`
 
@@ -9687,7 +9925,7 @@ type CustomerUser struct {
 	Url            *string                    `json:"url,omitempty"`
 
 	// Username Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
-	Username string              `json:"username"`
+	Username *string             `json:"username,omitempty"`
 	Uuid     *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
@@ -9710,29 +9948,6 @@ type DeleteAttachmentsRequest struct {
 type DetailState struct {
 	Detail *string `json:"detail,omitempty"`
 	State  *string `json:"state,omitempty"`
-}
-
-// DetailedProviderUser defines model for DetailedProviderUser.
-type DetailedProviderUser struct {
-	// Affiliations Person's affiliation within organization such as student, faculty, staff.
-	Affiliations *interface{}         `json:"affiliations,omitempty"`
-	Email        *openapi_types.Email `json:"email,omitempty"`
-	FirstName    *string              `json:"first_name,omitempty"`
-	FullName     *string              `json:"full_name,omitempty"`
-
-	// IsActive Designates whether this user should be treated as active. Unselect this instead of deleting accounts.
-	IsActive      *bool   `json:"is_active,omitempty"`
-	LastName      *string `json:"last_name,omitempty"`
-	Organization  *string `json:"organization,omitempty"`
-	PhoneNumber   *string `json:"phone_number,omitempty"`
-	ProjectsCount *int    `json:"projects_count,omitempty"`
-
-	// RegistrationMethod Indicates what registration method was used.
-	RegistrationMethod *string `json:"registration_method,omitempty"`
-
-	// Username Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
-	Username string              `json:"username"`
-	Uuid     *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // DigitalOceanDroplet defines model for DigitalOceanDroplet.
@@ -9777,8 +9992,8 @@ type DigitalOceanDroplet struct {
 	// MinRam Minimum memory size in MiB
 	MinRam      *int                `json:"min_ram,omitempty"`
 	Modified    *time.Time          `json:"modified,omitempty"`
-	Name        string              `json:"name"`
-	Project     string              `json:"project"`
+	Name        *string             `json:"name,omitempty"`
+	Project     *string             `json:"project,omitempty"`
 	ProjectName *string             `json:"project_name,omitempty"`
 	ProjectUuid *openapi_types.UUID `json:"project_uuid,omitempty"`
 
@@ -9788,7 +10003,7 @@ type DigitalOceanDroplet struct {
 	ResourceType                *string             `json:"resource_type,omitempty"`
 	RuntimeState                *string             `json:"runtime_state,omitempty"`
 	ServiceName                 *string             `json:"service_name,omitempty"`
-	ServiceSettings             string              `json:"service_settings"`
+	ServiceSettings             *string             `json:"service_settings,omitempty"`
 	ServiceSettingsErrorMessage *string             `json:"service_settings_error_message,omitempty"`
 	ServiceSettingsState        *string             `json:"service_settings_state,omitempty"`
 	ServiceSettingsUuid         *openapi_types.UUID `json:"service_settings_uuid,omitempty"`
@@ -9950,8 +10165,8 @@ type EthertypeEnum string
 type Event struct {
 	Context   *interface{}        `json:"context,omitempty"`
 	Created   *time.Time          `json:"created,omitempty"`
-	EventType string              `json:"event_type"`
-	Message   string              `json:"message"`
+	EventType *string             `json:"event_type,omitempty"`
+	Message   *string             `json:"message,omitempty"`
 	Uuid      *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
@@ -10047,17 +10262,17 @@ type FirecrestJob struct {
 	Description                 *string             `json:"description,omitempty"`
 	ErrorMessage                *string             `json:"error_message,omitempty"`
 	ErrorTraceback              *string             `json:"error_traceback,omitempty"`
-	File                        string              `json:"file"`
+	File                        *string             `json:"file,omitempty"`
 	Modified                    *time.Time          `json:"modified,omitempty"`
-	Name                        string              `json:"name"`
-	Project                     string              `json:"project"`
+	Name                        *string             `json:"name,omitempty"`
+	Project                     *string             `json:"project,omitempty"`
 	ProjectName                 *string             `json:"project_name,omitempty"`
 	ProjectUuid                 *openapi_types.UUID `json:"project_uuid,omitempty"`
 	Report                      *interface{}        `json:"report"`
 	ResourceType                *string             `json:"resource_type,omitempty"`
 	RuntimeState                *string             `json:"runtime_state,omitempty"`
 	ServiceName                 *string             `json:"service_name,omitempty"`
-	ServiceSettings             string              `json:"service_settings"`
+	ServiceSettings             *string             `json:"service_settings,omitempty"`
 	ServiceSettingsErrorMessage *string             `json:"service_settings_error_message,omitempty"`
 	ServiceSettingsState        *string             `json:"service_settings_state,omitempty"`
 	ServiceSettingsUuid         *openapi_types.UUID `json:"service_settings_uuid,omitempty"`
@@ -10121,7 +10336,7 @@ type GoogleCredentials struct {
 	CalendarRefreshToken *string              `json:"calendar_refresh_token,omitempty"`
 	CalendarToken        *string              `json:"calendar_token,omitempty"`
 	Created              *time.Time           `json:"created,omitempty"`
-	Customer             string               `json:"customer"`
+	Customer             *string              `json:"customer,omitempty"`
 	CustomerAbbreviation *string              `json:"customer_abbreviation,omitempty"`
 	CustomerCountry      *string              `json:"customer_country,omitempty"`
 	CustomerImage        *string              `json:"customer_image,omitempty"`
@@ -10172,10 +10387,10 @@ type GuestPowerStateEnum string
 // IPMapping defines model for IPMapping.
 type IPMapping struct {
 	// ExternalIp External IP
-	ExternalIp string `json:"external_ip"`
+	ExternalIp *string `json:"external_ip,omitempty"`
 
 	// FloatingIp Floating IP
-	FloatingIp string `json:"floating_ip"`
+	FloatingIp *string `json:"floating_ip,omitempty"`
 }
 
 // IPMappingRequest defines model for IPMappingRequest.
@@ -10339,10 +10554,10 @@ type InvitationStateEnum string
 
 // Invoice defines model for Invoice.
 type Invoice struct {
-	BackendId       *string            `json:"backend_id,omitempty"`
-	Customer        string             `json:"customer"`
-	CustomerDetails CustomerDetails    `json:"customer_details"`
-	DueDate         openapi_types.Date `json:"due_date"`
+	BackendId       *string             `json:"backend_id,omitempty"`
+	Customer        *string             `json:"customer,omitempty"`
+	CustomerDetails *CustomerDetails    `json:"customer_details,omitempty"`
+	DueDate         *openapi_types.Date `json:"due_date,omitempty"`
 
 	// InvoiceDate Date then invoice moved from state pending to created.
 	InvoiceDate   *openapi_types.Date `json:"invoice_date"`
@@ -10353,13 +10568,13 @@ type Invoice struct {
 
 	// PaymentUrl URL for initiating payment via payment gateway.
 	PaymentUrl *string `json:"payment_url,omitempty"`
-	Price      string  `json:"price"`
+	Price      *string `json:"price,omitempty"`
 
 	// ReferenceNumber Reference number associated with the invoice.
 	ReferenceNumber *string             `json:"reference_number,omitempty"`
 	State           *InvoiceStateEnum   `json:"state,omitempty"`
-	Tax             string              `json:"tax"`
-	Total           string              `json:"total"`
+	Tax             *string             `json:"tax,omitempty"`
+	Total           *string             `json:"total,omitempty"`
 	Url             *string             `json:"url,omitempty"`
 	Uuid            *openapi_types.UUID `json:"uuid,omitempty"`
 	Year            *int                `json:"year,omitempty"`
@@ -10392,7 +10607,7 @@ type InvoiceItem struct {
 	BackendUuid *openapi_types.UUID `json:"backend_uuid"`
 	BillingType *string             `json:"billing_type,omitempty"`
 	Credit      *bool               `json:"credit,omitempty"`
-	Details     InvoiceItemDetails  `json:"details"`
+	Details     *InvoiceItemDetails `json:"details,omitempty"`
 
 	// End Date and time when item usage has ended.
 	End          *time.Time          `json:"end,omitempty"`
@@ -10409,8 +10624,8 @@ type InvoiceItem struct {
 
 	// Start Date and time when item usage has started.
 	Start     *time.Time          `json:"start,omitempty"`
-	Tax       string              `json:"tax"`
-	Total     string              `json:"total"`
+	Tax       *string             `json:"tax,omitempty"`
+	Total     *string             `json:"total,omitempty"`
 	Unit      *BillingUnit        `json:"unit,omitempty"`
 	UnitPrice *string             `json:"unit_price,omitempty"`
 	Url       *string             `json:"url,omitempty"`
@@ -10453,19 +10668,19 @@ type InvoiceItemDetail struct {
 
 // InvoiceItemDetails defines model for InvoiceItemDetails.
 type InvoiceItemDetails struct {
-	OfferingComponentName string                `json:"offering_component_name"`
-	OfferingComponentType string                `json:"offering_component_type"`
-	OfferingName          string                `json:"offering_name"`
-	OfferingType          string                `json:"offering_type"`
-	OfferingUuid          openapi_types.UUID    `json:"offering_uuid"`
-	PlanComponentId       int                   `json:"plan_component_id"`
-	PlanName              string                `json:"plan_name"`
-	PlanUuid              openapi_types.UUID    `json:"plan_uuid"`
-	ResourceLimitPeriods  []ResourceLimitPeriod `json:"resource_limit_periods"`
-	ResourceName          string                `json:"resource_name"`
-	ResourceUuid          openapi_types.UUID    `json:"resource_uuid"`
-	ServiceProviderName   string                `json:"service_provider_name"`
-	ServiceProviderUuid   openapi_types.UUID    `json:"service_provider_uuid"`
+	OfferingComponentName *string                `json:"offering_component_name,omitempty"`
+	OfferingComponentType *string                `json:"offering_component_type,omitempty"`
+	OfferingName          *string                `json:"offering_name,omitempty"`
+	OfferingType          *string                `json:"offering_type,omitempty"`
+	OfferingUuid          *openapi_types.UUID    `json:"offering_uuid,omitempty"`
+	PlanComponentId       *int                   `json:"plan_component_id,omitempty"`
+	PlanName              *string                `json:"plan_name,omitempty"`
+	PlanUuid              *openapi_types.UUID    `json:"plan_uuid,omitempty"`
+	ResourceLimitPeriods  *[]ResourceLimitPeriod `json:"resource_limit_periods,omitempty"`
+	ResourceName          *string                `json:"resource_name,omitempty"`
+	ResourceUuid          *openapi_types.UUID    `json:"resource_uuid,omitempty"`
+	ServiceProviderName   *string                `json:"service_provider_name,omitempty"`
+	ServiceProviderUuid   *openapi_types.UUID    `json:"service_provider_uuid,omitempty"`
 }
 
 // InvoiceItemMigrateTo defines model for InvoiceItemMigrateTo.
@@ -10744,7 +10959,7 @@ type MarketplaceCategory struct {
 	Icon                  *string             `json:"icon"`
 	OfferingCount         *int                `json:"offering_count,omitempty"`
 	Sections              *[]NestedSection    `json:"sections,omitempty"`
-	Title                 string              `json:"title"`
+	Title                 *string             `json:"title,omitempty"`
 	Url                   *string             `json:"url,omitempty"`
 	Uuid                  *openapi_types.UUID `json:"uuid,omitempty"`
 }
@@ -10771,6 +10986,58 @@ type MarketplaceCustomerStats struct {
 	Count        *int    `json:"count,omitempty"`
 	Name         *string `json:"name,omitempty"`
 	Uuid         *string `json:"uuid,omitempty"`
+}
+
+// MarketplaceProviderCustomer defines model for MarketplaceProviderCustomer.
+type MarketplaceProviderCustomer struct {
+	Abbreviation         *string              `json:"abbreviation,omitempty"`
+	BillingPriceEstimate *NestedPriceEstimate `json:"billing_price_estimate,omitempty"`
+	Email                *openapi_types.Email `json:"email,omitempty"`
+	Name                 *string              `json:"name,omitempty"`
+	PaymentProfiles      *[]PaymentProfile    `json:"payment_profiles,omitempty"`
+	PhoneNumber          *string              `json:"phone_number,omitempty"`
+	Projects             *[]ProviderProject   `json:"projects,omitempty"`
+	ProjectsCount        *int                 `json:"projects_count,omitempty"`
+	Slug                 *string              `json:"slug,omitempty"`
+	Users                *[]ProviderUser      `json:"users,omitempty"`
+	UsersCount           *int                 `json:"users_count,omitempty"`
+	Uuid                 *openapi_types.UUID  `json:"uuid,omitempty"`
+}
+
+// MarketplaceProviderCustomerProject defines model for MarketplaceProviderCustomerProject.
+type MarketplaceProviderCustomerProject struct {
+	BillingPriceEstimate *NestedPriceEstimate `json:"billing_price_estimate,omitempty"`
+	Description          *string              `json:"description,omitempty"`
+
+	// EndDate The date is inclusive. Once reached, all project resource will be scheduled for termination.
+	EndDate        *openapi_types.Date `json:"end_date"`
+	Name           *string             `json:"name,omitempty"`
+	ResourcesCount *int                `json:"resources_count,omitempty"`
+	UsersCount     *int                `json:"users_count,omitempty"`
+	Uuid           *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// MarketplaceServiceProviderUser defines model for MarketplaceServiceProviderUser.
+type MarketplaceServiceProviderUser struct {
+	// Affiliations Person's affiliation within organization such as student, faculty, staff.
+	Affiliations *interface{}         `json:"affiliations,omitempty"`
+	Email        *openapi_types.Email `json:"email,omitempty"`
+	FirstName    *string              `json:"first_name,omitempty"`
+	FullName     *string              `json:"full_name,omitempty"`
+
+	// IsActive Designates whether this user should be treated as active. Unselect this instead of deleting accounts.
+	IsActive      *bool   `json:"is_active,omitempty"`
+	LastName      *string `json:"last_name,omitempty"`
+	Organization  *string `json:"organization,omitempty"`
+	PhoneNumber   *string `json:"phone_number,omitempty"`
+	ProjectsCount *int    `json:"projects_count,omitempty"`
+
+	// RegistrationMethod Indicates what registration method was used.
+	RegistrationMethod *string `json:"registration_method,omitempty"`
+
+	// Username Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
+	Username *string             `json:"username,omitempty"`
+	Uuid     *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // MergedPluginOptions defines model for MergedPluginOptions.
@@ -11119,20 +11386,20 @@ type NameUUID struct {
 
 // NestedAttribute defines model for NestedAttribute.
 type NestedAttribute struct {
-	Default *interface{}            `json:"default"`
-	Key     string                  `json:"key"`
-	Options []NestedAttributeOption `json:"options"`
+	Default *interface{}             `json:"default"`
+	Key     *string                  `json:"key,omitempty"`
+	Options *[]NestedAttributeOption `json:"options,omitempty"`
 
 	// Required A value must be provided for the attribute.
-	Required *bool                   `json:"required,omitempty"`
-	Title    string                  `json:"title"`
-	Type     NestedAttributeTypeEnum `json:"type"`
+	Required *bool                    `json:"required,omitempty"`
+	Title    *string                  `json:"title,omitempty"`
+	Type     *NestedAttributeTypeEnum `json:"type,omitempty"`
 }
 
 // NestedAttributeOption defines model for NestedAttributeOption.
 type NestedAttributeOption struct {
-	Key   string `json:"key"`
-	Title string `json:"title"`
+	Key   *string `json:"key,omitempty"`
+	Title *string `json:"title,omitempty"`
 }
 
 // NestedAttributeTypeEnum defines model for NestedAttributeTypeEnum.
@@ -11140,20 +11407,20 @@ type NestedAttributeTypeEnum string
 
 // NestedCampaign defines model for NestedCampaign.
 type NestedCampaign struct {
-	Description  *string          `json:"description,omitempty"`
-	Discount     int              `json:"discount"`
-	DiscountType DiscountTypeEnum `json:"discount_type"`
+	Description  *string           `json:"description,omitempty"`
+	Discount     *int              `json:"discount,omitempty"`
+	DiscountType *DiscountTypeEnum `json:"discount_type,omitempty"`
 
 	// EndDate The last day the campaign is active.
-	EndDate openapi_types.Date `json:"end_date"`
+	EndDate *openapi_types.Date `json:"end_date,omitempty"`
 
 	// Months How many months in a row should the related service (when activated) get special deal (0 for indefinitely until active)
-	Months          *int   `json:"months,omitempty"`
-	Name            string `json:"name"`
-	ServiceProvider string `json:"service_provider"`
+	Months          *int    `json:"months,omitempty"`
+	Name            *string `json:"name,omitempty"`
+	ServiceProvider *string `json:"service_provider,omitempty"`
 
 	// StartDate Starting from this date, the campaign is active.
-	StartDate openapi_types.Date  `json:"start_date"`
+	StartDate *openapi_types.Date `json:"start_date,omitempty"`
 	Stock     *int                `json:"stock"`
 	Uuid      *openapi_types.UUID `json:"uuid,omitempty"`
 }
@@ -11164,10 +11431,10 @@ type NestedColumn struct {
 	Attribute *string `json:"attribute,omitempty"`
 
 	// Index Index allows to reorder columns.
-	Index int `json:"index"`
+	Index *int `json:"index,omitempty"`
 
 	// Title Title is rendered as column header.
-	Title string              `json:"title"`
+	Title *string             `json:"title,omitempty"`
 	Uuid  *openapi_types.UUID `json:"uuid,omitempty"`
 
 	// Widget Widget field allows to customise table cell rendering.
@@ -11181,8 +11448,8 @@ type NestedColumn_Widget struct {
 
 // NestedEndpoint defines model for NestedEndpoint.
 type NestedEndpoint struct {
-	Name string              `json:"name"`
-	Url  string              `json:"url"`
+	Name *string             `json:"name,omitempty"`
+	Url  *string             `json:"url,omitempty"`
 	Uuid *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
@@ -11215,8 +11482,8 @@ type NestedOfferingComponentLimitRequest struct {
 // NestedOfferingFile defines model for NestedOfferingFile.
 type NestedOfferingFile struct {
 	Created *time.Time `json:"created,omitempty"`
-	File    string     `json:"file"`
-	Name    string     `json:"name"`
+	File    *string    `json:"file,omitempty"`
+	Name    *string    `json:"name,omitempty"`
 }
 
 // NestedPriceEstimate defines model for NestedPriceEstimate.
@@ -11281,7 +11548,7 @@ type NestedRequestedOffering struct {
 	CategoryName             *string                  `json:"category_name,omitempty"`
 	CategoryUuid             *openapi_types.UUID      `json:"category_uuid,omitempty"`
 	Components               *[]OfferingComponent     `json:"components,omitempty"`
-	Offering                 string                   `json:"offering"`
+	Offering                 *string                  `json:"offering,omitempty"`
 	OfferingName             *string                  `json:"offering_name,omitempty"`
 	OfferingUuid             *openapi_types.UUID      `json:"offering_uuid,omitempty"`
 	Options                  *OfferingOptions         `json:"options,omitempty"`
@@ -11294,7 +11561,7 @@ type NestedRequestedOffering struct {
 
 // NestedRole defines model for NestedRole.
 type NestedRole struct {
-	Name string              `json:"name"`
+	Name *string             `json:"name,omitempty"`
 	Url  *string             `json:"url,omitempty"`
 	Uuid *openapi_types.UUID `json:"uuid,omitempty"`
 }
@@ -11303,14 +11570,14 @@ type NestedRole struct {
 type NestedRound struct {
 	AllocationDate           *time.Time          `json:"allocation_date"`
 	AllocationTime           *AllocationTimeEnum `json:"allocation_time,omitempty"`
-	CutoffTime               time.Time           `json:"cutoff_time"`
+	CutoffTime               *time.Time          `json:"cutoff_time,omitempty"`
 	DecidingEntity           *DecidingEntityEnum `json:"deciding_entity,omitempty"`
 	MinimalAverageScoring    *string             `json:"minimal_average_scoring"`
 	MinimumNumberOfReviewers *int                `json:"minimum_number_of_reviewers"`
 	Name                     *string             `json:"name,omitempty"`
 	ReviewDurationInDays     *int                `json:"review_duration_in_days"`
 	ReviewStrategy           *ReviewStrategyEnum `json:"review_strategy,omitempty"`
-	StartTime                time.Time           `json:"start_time"`
+	StartTime                *time.Time          `json:"start_time,omitempty"`
 	Status                   *StatusEnum         `json:"status,omitempty"`
 	Uuid                     *openapi_types.UUID `json:"uuid,omitempty"`
 }
@@ -11319,8 +11586,8 @@ type NestedRound struct {
 type NestedScreenshot struct {
 	Created     *time.Time          `json:"created,omitempty"`
 	Description *string             `json:"description,omitempty"`
-	Image       string              `json:"image"`
-	Name        string              `json:"name"`
+	Image       *string             `json:"image,omitempty"`
+	Name        *string             `json:"name,omitempty"`
 	Thumbnail   *string             `json:"thumbnail"`
 	Uuid        *openapi_types.UUID `json:"uuid,omitempty"`
 }
@@ -11330,9 +11597,9 @@ type NestedSection struct {
 	Attributes *[]NestedAttribute `json:"attributes,omitempty"`
 
 	// IsStandalone Whether section is rendered as a separate tab.
-	IsStandalone *bool  `json:"is_standalone,omitempty"`
-	Key          string `json:"key"`
-	Title        string `json:"title"`
+	IsStandalone *bool   `json:"is_standalone,omitempty"`
+	Key          *string `json:"key,omitempty"`
+	Title        *string `json:"title,omitempty"`
 }
 
 // NestedSecurityGroupRule defines model for NestedSecurityGroupRule.
@@ -11421,7 +11688,7 @@ type Offering struct {
 
 	// Billable Purchase and usage is invoiced.
 	Billable      *bool               `json:"billable,omitempty"`
-	Category      string              `json:"category"`
+	Category      *string             `json:"category,omitempty"`
 	CategoryTitle *string             `json:"category_title,omitempty"`
 	CategoryUuid  *openapi_types.UUID `json:"category_uuid,omitempty"`
 
@@ -11444,7 +11711,7 @@ type Offering struct {
 	IntegrationGuide   *string               `json:"integration_guide,omitempty"`
 	Latitude           *float64              `json:"latitude"`
 	Longitude          *float64              `json:"longitude"`
-	Name               string                `json:"name"`
+	Name               *string               `json:"name,omitempty"`
 	Options            *OfferingOptions      `json:"options,omitempty"`
 	OrderCount         *int                  `json:"order_count,omitempty"`
 	OrganizationGroups *[]OrganizationGroup  `json:"organization_groups,omitempty"`
@@ -11462,9 +11729,9 @@ type Offering struct {
 	ResourceOptions    *OfferingOptions      `json:"resource_options,omitempty"`
 	Roles              *[]NestedRole         `json:"roles,omitempty"`
 	Scope              *string               `json:"scope,omitempty"`
-	ScopeName          *openapi_types.UUID   `json:"scope_name,omitempty"`
-	ScopeState         *CoreStates           `json:"scope_state,omitempty"`
-	ScopeUuid          *openapi_types.UUID   `json:"scope_uuid,omitempty"`
+	ScopeName          *openapi_types.UUID   `json:"scope_name"`
+	ScopeState         *CoreStates           `json:"scope_state"`
+	ScopeUuid          *openapi_types.UUID   `json:"scope_uuid"`
 	Screenshots        *[]NestedScreenshot   `json:"screenshots,omitempty"`
 
 	// Shared Accessible to all customers.
@@ -11475,10 +11742,10 @@ type Offering struct {
 	TermsOfService     *string             `json:"terms_of_service,omitempty"`
 	TermsOfServiceLink *string             `json:"terms_of_service_link,omitempty"`
 	Thumbnail          *string             `json:"thumbnail"`
-	TotalCost          *int                `json:"total_cost,omitempty"`
-	TotalCostEstimated *int                `json:"total_cost_estimated,omitempty"`
-	TotalCustomers     *int                `json:"total_customers,omitempty"`
-	Type               string              `json:"type"`
+	TotalCost          *int                `json:"total_cost"`
+	TotalCostEstimated *int                `json:"total_cost_estimated"`
+	TotalCustomers     *int                `json:"total_customers"`
+	Type               *string             `json:"type,omitempty"`
 	Url                *string             `json:"url,omitempty"`
 	Uuid               *openapi_types.UUID `json:"uuid,omitempty"`
 	VendorDetails      *string             `json:"vendor_details,omitempty"`
@@ -11497,7 +11764,7 @@ type OfferingBackendMetadataRequest struct {
 // OfferingComponent defines model for OfferingComponent.
 type OfferingComponent struct {
 	ArticleCode       *string                        `json:"article_code,omitempty"`
-	BillingType       BillingTypeEnum                `json:"billing_type"`
+	BillingType       *BillingTypeEnum               `json:"billing_type,omitempty"`
 	DefaultLimit      *int                           `json:"default_limit"`
 	Description       *string                        `json:"description,omitempty"`
 	Factor            *int                           `json:"factor,omitempty"`
@@ -11513,10 +11780,10 @@ type OfferingComponent struct {
 	MinValue     *int    `json:"min_value"`
 
 	// Name Display name for the measured unit, for example, Floating IP.
-	Name string `json:"name"`
+	Name *string `json:"name,omitempty"`
 
 	// Type Unique internal name of the measured unit, for example floating_ip.
-	Type string `json:"type"`
+	Type *string `json:"type,omitempty"`
 
 	// UnitFactor The conversion factor from backend units to measured_unit
 	UnitFactor *int                `json:"unit_factor,omitempty"`
@@ -11634,9 +11901,9 @@ type OfferingCreate struct {
 	ResourceOptions    *OfferingOptions        `json:"resource_options,omitempty"`
 	Roles              *[]NestedRole           `json:"roles,omitempty"`
 	Scope              *string                 `json:"scope,omitempty"`
-	ScopeName          *openapi_types.UUID     `json:"scope_name,omitempty"`
-	ScopeState         *CoreStates             `json:"scope_state,omitempty"`
-	ScopeUuid          *openapi_types.UUID     `json:"scope_uuid,omitempty"`
+	ScopeName          *openapi_types.UUID     `json:"scope_name"`
+	ScopeState         *CoreStates             `json:"scope_state"`
+	ScopeUuid          *openapi_types.UUID     `json:"scope_uuid"`
 	Screenshots        *[]NestedScreenshot     `json:"screenshots,omitempty"`
 	SecretOptions      *MergedSecretOptions    `json:"secret_options,omitempty"`
 	ServiceAttributes  *map[string]interface{} `json:"service_attributes,omitempty"`
@@ -11649,9 +11916,9 @@ type OfferingCreate struct {
 	TermsOfService     *string             `json:"terms_of_service,omitempty"`
 	TermsOfServiceLink *string             `json:"terms_of_service_link,omitempty"`
 	Thumbnail          *string             `json:"thumbnail"`
-	TotalCost          *int                `json:"total_cost,omitempty"`
-	TotalCostEstimated *int                `json:"total_cost_estimated,omitempty"`
-	TotalCustomers     *int                `json:"total_customers,omitempty"`
+	TotalCost          *int                `json:"total_cost"`
+	TotalCostEstimated *int                `json:"total_cost_estimated"`
+	TotalCustomers     *int                `json:"total_customers"`
 	Type               string              `json:"type"`
 	Url                *string             `json:"url,omitempty"`
 	Uuid               *openapi_types.UUID `json:"uuid,omitempty"`
@@ -11753,9 +12020,9 @@ type OfferingEstimatedCostPolicyRequest struct {
 // OfferingFile defines model for OfferingFile.
 type OfferingFile struct {
 	Created  *time.Time          `json:"created,omitempty"`
-	File     string              `json:"file"`
-	Name     string              `json:"name"`
-	Offering string              `json:"offering"`
+	File     *string             `json:"file,omitempty"`
+	Name     *string             `json:"name,omitempty"`
+	Offering *string             `json:"offering,omitempty"`
 	Url      *string             `json:"url,omitempty"`
 	Uuid     *openapi_types.UUID `json:"uuid,omitempty"`
 }
@@ -11802,8 +12069,8 @@ type OfferingLocationUpdateRequest struct {
 
 // OfferingOptions defines model for OfferingOptions.
 type OfferingOptions struct {
-	Options map[string]OptionField `json:"options"`
-	Order   []string               `json:"order"`
+	Options *map[string]OptionField `json:"options,omitempty"`
+	Order   *[]string               `json:"order,omitempty"`
 }
 
 // OfferingOptionsRequest defines model for OfferingOptionsRequest.
@@ -11973,12 +12240,12 @@ type OfferingUser struct {
 	// IsRestricted Signal to service if the user account is restricted or not
 	IsRestricted    *bool               `json:"is_restricted,omitempty"`
 	Modified        *time.Time          `json:"modified,omitempty"`
-	Offering        string              `json:"offering"`
+	Offering        *string             `json:"offering,omitempty"`
 	OfferingName    *string             `json:"offering_name,omitempty"`
 	OfferingUuid    *openapi_types.UUID `json:"offering_uuid,omitempty"`
 	PropagationDate *time.Time          `json:"propagation_date"`
 	Url             *string             `json:"url,omitempty"`
-	User            string              `json:"user"`
+	User            *string             `json:"user,omitempty"`
 	UserFullName    *string             `json:"user_full_name,omitempty"`
 
 	// UserUsername Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
@@ -12089,7 +12356,7 @@ type OpenStackBackup struct {
 	MarketplaceResourceUuid          *string                       `json:"marketplace_resource_uuid,omitempty"`
 	Metadata                         *interface{}                  `json:"metadata,omitempty"`
 	Modified                         *time.Time                    `json:"modified,omitempty"`
-	Name                             string                        `json:"name"`
+	Name                             *string                       `json:"name,omitempty"`
 	Project                          *string                       `json:"project,omitempty"`
 	ProjectName                      *string                       `json:"project_name,omitempty"`
 	ProjectUuid                      *openapi_types.UUID           `json:"project_uuid,omitempty"`
@@ -12118,7 +12385,7 @@ type OpenStackBackupRequest struct {
 // OpenStackBackupRestoration defines model for OpenStackBackupRestoration.
 type OpenStackBackupRestoration struct {
 	Created     *time.Time                   `json:"created,omitempty"`
-	Flavor      string                       `json:"flavor"`
+	Flavor      *string                      `json:"flavor,omitempty"`
 	FloatingIps *[]OpenStackNestedFloatingIP `json:"floating_ips,omitempty"`
 	Instance    *string                      `json:"instance,omitempty"`
 
@@ -12147,8 +12414,8 @@ type OpenStackDataVolumeRequest struct {
 
 // OpenStackFixedIp defines model for OpenStackFixedIp.
 type OpenStackFixedIp struct {
-	IpAddress string `json:"ip_address"`
-	SubnetId  string `json:"subnet_id"`
+	IpAddress *string `json:"ip_address,omitempty"`
+	SubnetId  *string `json:"subnet_id,omitempty"`
 }
 
 // OpenStackFixedIpRequest defines model for OpenStackFixedIpRequest.
@@ -12159,19 +12426,19 @@ type OpenStackFixedIpRequest struct {
 
 // OpenStackFlavor defines model for OpenStackFlavor.
 type OpenStackFlavor struct {
-	BackendId string `json:"backend_id"`
+	BackendId *string `json:"backend_id,omitempty"`
 
 	// Cores Number of cores in a VM
-	Cores int `json:"cores"`
+	Cores *int `json:"cores,omitempty"`
 
 	// Disk Root disk size in MiB
-	Disk        int     `json:"disk"`
+	Disk        *int    `json:"disk,omitempty"`
 	DisplayName *string `json:"display_name,omitempty"`
-	Name        string  `json:"name"`
+	Name        *string `json:"name,omitempty"`
 
 	// Ram Memory size in MiB
-	Ram      int                 `json:"ram"`
-	Settings string              `json:"settings"`
+	Ram      *int                `json:"ram,omitempty"`
+	Settings *string             `json:"settings,omitempty"`
 	Url      *string             `json:"url,omitempty"`
 	Uuid     *openapi_types.UUID `json:"uuid,omitempty"`
 }
@@ -12305,17 +12572,17 @@ type OpenStackInstance struct {
 	MinDisk *int `json:"min_disk,omitempty"`
 
 	// MinRam Minimum memory size in MiB
-	MinRam      *int                  `json:"min_ram,omitempty"`
-	Modified    *time.Time            `json:"modified,omitempty"`
-	Name        string                `json:"name"`
-	Ports       []OpenStackNestedPort `json:"ports"`
-	Project     string                `json:"project"`
-	ProjectName *string               `json:"project_name,omitempty"`
-	ProjectUuid *openapi_types.UUID   `json:"project_uuid,omitempty"`
+	MinRam      *int                   `json:"min_ram,omitempty"`
+	Modified    *time.Time             `json:"modified,omitempty"`
+	Name        *string                `json:"name,omitempty"`
+	Ports       *[]OpenStackNestedPort `json:"ports,omitempty"`
+	Project     *string                `json:"project,omitempty"`
+	ProjectName *string                `json:"project_name,omitempty"`
+	ProjectUuid *openapi_types.UUID    `json:"project_uuid,omitempty"`
 
 	// Ram Memory size in MiB
 	Ram                         *int                            `json:"ram,omitempty"`
-	RancherCluster              *RancherClusterReference        `json:"rancher_cluster,omitempty"`
+	RancherCluster              *RancherClusterReference        `json:"rancher_cluster"`
 	ResourceType                *string                         `json:"resource_type,omitempty"`
 	RuntimeState                *string                         `json:"runtime_state,omitempty"`
 	SecurityGroups              *[]OpenStackNestedSecurityGroup `json:"security_groups,omitempty"`
@@ -12327,7 +12594,7 @@ type OpenStackInstance struct {
 	ServiceSettingsUuid         *openapi_types.UUID             `json:"service_settings_uuid,omitempty"`
 	StartTime                   *time.Time                      `json:"start_time"`
 	State                       *CoreStates                     `json:"state,omitempty"`
-	Tenant                      string                          `json:"tenant"`
+	Tenant                      *string                         `json:"tenant,omitempty"`
 	TenantUuid                  *openapi_types.UUID             `json:"tenant_uuid,omitempty"`
 	Url                         *string                         `json:"url,omitempty"`
 
@@ -12381,7 +12648,7 @@ type OpenStackNestedFloatingIP struct {
 	Address           *string             `json:"address"`
 	PortFixedIps      *[]OpenStackFixedIp `json:"port_fixed_ips,omitempty"`
 	PortMacAddress    *string             `json:"port_mac_address,omitempty"`
-	Subnet            string              `json:"subnet"`
+	Subnet            *string             `json:"subnet,omitempty"`
 	SubnetCidr        *string             `json:"subnet_cidr,omitempty"`
 	SubnetDescription *string             `json:"subnet_description,omitempty"`
 	SubnetName        *string             `json:"subnet_name,omitempty"`
@@ -12398,7 +12665,7 @@ type OpenStackNestedFloatingIPRequest struct {
 // OpenStackNestedInstance defines model for OpenStackNestedInstance.
 type OpenStackNestedInstance struct {
 	BackendId *string             `json:"backend_id"`
-	Name      string              `json:"name"`
+	Name      *string             `json:"name,omitempty"`
 	Uuid      *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
@@ -12446,7 +12713,7 @@ type OpenStackNestedSubNet struct {
 	EnableDhcp      *bool                            `json:"enable_dhcp,omitempty"`
 	GatewayIp       *string                          `json:"gateway_ip"`
 	IpVersion       *int                             `json:"ip_version,omitempty"`
-	Name            string                           `json:"name"`
+	Name            *string                          `json:"name,omitempty"`
 }
 
 // OpenStackNestedVolume defines model for OpenStackNestedVolume.
@@ -12461,7 +12728,7 @@ type OpenStackNestedVolume struct {
 	ResourceType            *string `json:"resource_type,omitempty"`
 
 	// Size Size in MiB
-	Size     int                 `json:"size"`
+	Size     *int                `json:"size,omitempty"`
 	State    *string             `json:"state,omitempty"`
 	Type     *string             `json:"type"`
 	TypeName *string             `json:"type_name,omitempty"`
@@ -12496,7 +12763,7 @@ type OpenStackNetwork struct {
 
 	// Mtu The maximum transmission unit (MTU) value to address fragmentation.
 	Mtu                         *int                     `json:"mtu"`
-	Name                        string                   `json:"name"`
+	Name                        *string                  `json:"name,omitempty"`
 	Project                     *string                  `json:"project,omitempty"`
 	ProjectName                 *string                  `json:"project_name,omitempty"`
 	ProjectUuid                 *openapi_types.UUID      `json:"project_uuid,omitempty"`
@@ -12551,7 +12818,7 @@ type OpenStackPort struct {
 	MarketplaceResourceState         *string                             `json:"marketplace_resource_state,omitempty"`
 	MarketplaceResourceUuid          *string                             `json:"marketplace_resource_uuid,omitempty"`
 	Modified                         *time.Time                          `json:"modified,omitempty"`
-	Name                             string                              `json:"name"`
+	Name                             *string                             `json:"name,omitempty"`
 	Network                          *string                             `json:"network"`
 	NetworkName                      *string                             `json:"network_name,omitempty"`
 	NetworkUuid                      *openapi_types.UUID                 `json:"network_uuid,omitempty"`
@@ -12576,7 +12843,7 @@ type OpenStackPort struct {
 
 // OpenStackPortNestedSecurityGroup defines model for OpenStackPortNestedSecurityGroup.
 type OpenStackPortNestedSecurityGroup struct {
-	Name string              `json:"name"`
+	Name *string             `json:"name,omitempty"`
 	Uuid *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
@@ -12613,20 +12880,20 @@ type OpenStackRouter struct {
 	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
 	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid,omitempty"`
 	Modified                         *time.Time              `json:"modified,omitempty"`
-	Name                             string                  `json:"name"`
+	Name                             *string                 `json:"name,omitempty"`
 	OfferingExternalIps              *[]string               `json:"offering_external_ips"`
-	Project                          string                  `json:"project"`
+	Project                          *string                 `json:"project,omitempty"`
 	ProjectName                      *string                 `json:"project_name,omitempty"`
 	ProjectUuid                      *openapi_types.UUID     `json:"project_uuid,omitempty"`
 	ResourceType                     *string                 `json:"resource_type,omitempty"`
-	Routes                           []OpenStackStaticRoute  `json:"routes"`
+	Routes                           *[]OpenStackStaticRoute `json:"routes,omitempty"`
 	ServiceName                      *string                 `json:"service_name,omitempty"`
-	ServiceSettings                  string                  `json:"service_settings"`
+	ServiceSettings                  *string                 `json:"service_settings,omitempty"`
 	ServiceSettingsErrorMessage      *string                 `json:"service_settings_error_message,omitempty"`
 	ServiceSettingsState             *string                 `json:"service_settings_state,omitempty"`
 	ServiceSettingsUuid              *openapi_types.UUID     `json:"service_settings_uuid,omitempty"`
 	State                            *CoreStates             `json:"state,omitempty"`
-	Tenant                           string                  `json:"tenant"`
+	Tenant                           *string                 `json:"tenant,omitempty"`
 	TenantName                       *string                 `json:"tenant_name,omitempty"`
 	TenantUuid                       *openapi_types.UUID     `json:"tenant_uuid,omitempty"`
 	Url                              *string                 `json:"url,omitempty"`
@@ -12645,44 +12912,44 @@ type OpenStackRouterSetRoutesRequest struct {
 
 // OpenStackSecurityGroup defines model for OpenStackSecurityGroup.
 type OpenStackSecurityGroup struct {
-	AccessUrl                        *string                            `json:"access_url"`
-	BackendId                        *string                            `json:"backend_id,omitempty"`
-	Created                          *time.Time                         `json:"created,omitempty"`
-	Customer                         *string                            `json:"customer,omitempty"`
-	CustomerAbbreviation             *string                            `json:"customer_abbreviation,omitempty"`
-	CustomerName                     *string                            `json:"customer_name,omitempty"`
-	CustomerNativeName               *string                            `json:"customer_native_name,omitempty"`
-	Description                      *string                            `json:"description,omitempty"`
-	ErrorMessage                     *string                            `json:"error_message,omitempty"`
-	ErrorTraceback                   *string                            `json:"error_traceback,omitempty"`
-	IsLimitBased                     *bool                              `json:"is_limit_based,omitempty"`
-	IsUsageBased                     *bool                              `json:"is_usage_based,omitempty"`
-	MarketplaceCategoryName          *string                            `json:"marketplace_category_name,omitempty"`
-	MarketplaceCategoryUuid          *string                            `json:"marketplace_category_uuid,omitempty"`
-	MarketplaceOfferingName          *string                            `json:"marketplace_offering_name,omitempty"`
-	MarketplaceOfferingPluginOptions *map[string]interface{}            `json:"marketplace_offering_plugin_options,omitempty"`
-	MarketplaceOfferingUuid          *string                            `json:"marketplace_offering_uuid,omitempty"`
-	MarketplacePlanUuid              *string                            `json:"marketplace_plan_uuid,omitempty"`
-	MarketplaceResourceState         *string                            `json:"marketplace_resource_state,omitempty"`
-	MarketplaceResourceUuid          *string                            `json:"marketplace_resource_uuid,omitempty"`
-	Modified                         *time.Time                         `json:"modified,omitempty"`
-	Name                             string                             `json:"name"`
-	Project                          *string                            `json:"project,omitempty"`
-	ProjectName                      *string                            `json:"project_name,omitempty"`
-	ProjectUuid                      *openapi_types.UUID                `json:"project_uuid,omitempty"`
-	ResourceType                     *string                            `json:"resource_type,omitempty"`
-	Rules                            []OpenStackSecurityGroupRuleCreate `json:"rules"`
-	ServiceName                      *string                            `json:"service_name,omitempty"`
-	ServiceSettings                  *string                            `json:"service_settings,omitempty"`
-	ServiceSettingsErrorMessage      *string                            `json:"service_settings_error_message,omitempty"`
-	ServiceSettingsState             *string                            `json:"service_settings_state,omitempty"`
-	ServiceSettingsUuid              *openapi_types.UUID                `json:"service_settings_uuid,omitempty"`
-	State                            *CoreStates                        `json:"state,omitempty"`
-	Tenant                           *string                            `json:"tenant,omitempty"`
-	TenantName                       *string                            `json:"tenant_name,omitempty"`
-	TenantUuid                       *openapi_types.UUID                `json:"tenant_uuid,omitempty"`
-	Url                              *string                            `json:"url,omitempty"`
-	Uuid                             *openapi_types.UUID                `json:"uuid,omitempty"`
+	AccessUrl                        *string                             `json:"access_url"`
+	BackendId                        *string                             `json:"backend_id,omitempty"`
+	Created                          *time.Time                          `json:"created,omitempty"`
+	Customer                         *string                             `json:"customer,omitempty"`
+	CustomerAbbreviation             *string                             `json:"customer_abbreviation,omitempty"`
+	CustomerName                     *string                             `json:"customer_name,omitempty"`
+	CustomerNativeName               *string                             `json:"customer_native_name,omitempty"`
+	Description                      *string                             `json:"description,omitempty"`
+	ErrorMessage                     *string                             `json:"error_message,omitempty"`
+	ErrorTraceback                   *string                             `json:"error_traceback,omitempty"`
+	IsLimitBased                     *bool                               `json:"is_limit_based,omitempty"`
+	IsUsageBased                     *bool                               `json:"is_usage_based,omitempty"`
+	MarketplaceCategoryName          *string                             `json:"marketplace_category_name,omitempty"`
+	MarketplaceCategoryUuid          *string                             `json:"marketplace_category_uuid,omitempty"`
+	MarketplaceOfferingName          *string                             `json:"marketplace_offering_name,omitempty"`
+	MarketplaceOfferingPluginOptions *map[string]interface{}             `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingUuid          *string                             `json:"marketplace_offering_uuid,omitempty"`
+	MarketplacePlanUuid              *string                             `json:"marketplace_plan_uuid,omitempty"`
+	MarketplaceResourceState         *string                             `json:"marketplace_resource_state,omitempty"`
+	MarketplaceResourceUuid          *string                             `json:"marketplace_resource_uuid,omitempty"`
+	Modified                         *time.Time                          `json:"modified,omitempty"`
+	Name                             *string                             `json:"name,omitempty"`
+	Project                          *string                             `json:"project,omitempty"`
+	ProjectName                      *string                             `json:"project_name,omitempty"`
+	ProjectUuid                      *openapi_types.UUID                 `json:"project_uuid,omitempty"`
+	ResourceType                     *string                             `json:"resource_type,omitempty"`
+	Rules                            *[]OpenStackSecurityGroupRuleCreate `json:"rules,omitempty"`
+	ServiceName                      *string                             `json:"service_name,omitempty"`
+	ServiceSettings                  *string                             `json:"service_settings,omitempty"`
+	ServiceSettingsErrorMessage      *string                             `json:"service_settings_error_message,omitempty"`
+	ServiceSettingsState             *string                             `json:"service_settings_state,omitempty"`
+	ServiceSettingsUuid              *openapi_types.UUID                 `json:"service_settings_uuid,omitempty"`
+	State                            *CoreStates                         `json:"state,omitempty"`
+	Tenant                           *string                             `json:"tenant,omitempty"`
+	TenantName                       *string                             `json:"tenant_name,omitempty"`
+	TenantUuid                       *openapi_types.UUID                 `json:"tenant_uuid,omitempty"`
+	Url                              *string                             `json:"url,omitempty"`
+	Uuid                             *openapi_types.UUID                 `json:"uuid,omitempty"`
 }
 
 // OpenStackSecurityGroupRequest defines model for OpenStackSecurityGroupRequest.
@@ -12783,7 +13050,7 @@ type OpenStackServerGroup struct {
 	MarketplaceResourceState         *string                      `json:"marketplace_resource_state,omitempty"`
 	MarketplaceResourceUuid          *string                      `json:"marketplace_resource_uuid,omitempty"`
 	Modified                         *time.Time                   `json:"modified,omitempty"`
-	Name                             string                       `json:"name"`
+	Name                             *string                      `json:"name,omitempty"`
 	Policy                           *OpenStackServerGroup_Policy `json:"policy,omitempty"`
 	Project                          *string                      `json:"project,omitempty"`
 	ProjectName                      *string                      `json:"project_name,omitempty"`
@@ -12848,7 +13115,7 @@ type OpenStackSnapshot struct {
 	MarketplaceResourceUuid          *string                         `json:"marketplace_resource_uuid,omitempty"`
 	Metadata                         *interface{}                    `json:"metadata,omitempty"`
 	Modified                         *time.Time                      `json:"modified,omitempty"`
-	Name                             string                          `json:"name"`
+	Name                             *string                         `json:"name,omitempty"`
 	Project                          *string                         `json:"project,omitempty"`
 	ProjectName                      *string                         `json:"project_name,omitempty"`
 	ProjectUuid                      *openapi_types.UUID             `json:"project_uuid,omitempty"`
@@ -12911,8 +13178,8 @@ type OpenStackSnapshotRestorationRequest struct {
 
 // OpenStackStaticRoute defines model for OpenStackStaticRoute.
 type OpenStackStaticRoute struct {
-	Destination string `json:"destination"`
-	Nexthop     string `json:"nexthop"`
+	Destination *string `json:"destination,omitempty"`
+	Nexthop     *string `json:"nexthop,omitempty"`
 }
 
 // OpenStackStaticRouteRequest defines model for OpenStackStaticRouteRequest.
@@ -12955,7 +13222,7 @@ type OpenStackSubNet struct {
 	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
 	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid,omitempty"`
 	Modified                         *time.Time              `json:"modified,omitempty"`
-	Name                             string                  `json:"name"`
+	Name                             *string                 `json:"name,omitempty"`
 	Network                          *string                 `json:"network,omitempty"`
 	NetworkName                      *string                 `json:"network_name,omitempty"`
 	Project                          *string                 `json:"project,omitempty"`
@@ -12976,8 +13243,8 @@ type OpenStackSubNet struct {
 
 // OpenStackSubNetAllocationPool defines model for OpenStackSubNetAllocationPool.
 type OpenStackSubNetAllocationPool struct {
-	End   string `json:"end"`
-	Start string `json:"start"`
+	End   *string `json:"end,omitempty"`
+	Start *string `json:"start,omitempty"`
 }
 
 // OpenStackSubNetRequest defines model for OpenStackSubNetRequest.
@@ -13020,14 +13287,14 @@ type OpenStackTenant struct {
 	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
 	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid,omitempty"`
 	Modified                         *time.Time              `json:"modified,omitempty"`
-	Name                             string                  `json:"name"`
-	Project                          string                  `json:"project"`
+	Name                             *string                 `json:"name,omitempty"`
+	Project                          *string                 `json:"project,omitempty"`
 	ProjectName                      *string                 `json:"project_name,omitempty"`
 	ProjectUuid                      *openapi_types.UUID     `json:"project_uuid,omitempty"`
 	Quotas                           *[]Quota                `json:"quotas,omitempty"`
 	ResourceType                     *string                 `json:"resource_type,omitempty"`
 	ServiceName                      *string                 `json:"service_name,omitempty"`
-	ServiceSettings                  string                  `json:"service_settings"`
+	ServiceSettings                  *string                 `json:"service_settings,omitempty"`
 	ServiceSettingsErrorMessage      *string                 `json:"service_settings_error_message,omitempty"`
 	ServiceSettingsState             *string                 `json:"service_settings_state,omitempty"`
 	ServiceSettingsUuid              *openapi_types.UUID     `json:"service_settings_uuid,omitempty"`
@@ -13118,8 +13385,8 @@ type OpenStackVolume struct {
 	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid,omitempty"`
 	Metadata                         *interface{}            `json:"metadata,omitempty"`
 	Modified                         *time.Time              `json:"modified,omitempty"`
-	Name                             string                  `json:"name"`
-	Project                          string                  `json:"project"`
+	Name                             *string                 `json:"name,omitempty"`
+	Project                          *string                 `json:"project,omitempty"`
 	ProjectName                      *string                 `json:"project_name,omitempty"`
 	ProjectUuid                      *openapi_types.UUID     `json:"project_uuid,omitempty"`
 	ResourceType                     *string                 `json:"resource_type,omitempty"`
@@ -13134,7 +13401,7 @@ type OpenStackVolume struct {
 	Size           *int                `json:"size"`
 	SourceSnapshot *string             `json:"source_snapshot"`
 	State          *CoreStates         `json:"state,omitempty"`
-	Tenant         string              `json:"tenant"`
+	Tenant         *string             `json:"tenant,omitempty"`
 	TenantUuid     *openapi_types.UUID `json:"tenant_uuid,omitempty"`
 	Type           *string             `json:"type"`
 	TypeName       *string             `json:"type_name,omitempty"`
@@ -13261,8 +13528,8 @@ type OrderCreate struct {
 	ProviderName           *string             `json:"provider_name,omitempty"`
 	ProviderUuid           *openapi_types.UUID `json:"provider_uuid,omitempty"`
 	ResourceName           *string             `json:"resource_name,omitempty"`
-	ResourceType           *string             `json:"resource_type,omitempty"`
-	ResourceUuid           *openapi_types.UUID `json:"resource_uuid,omitempty"`
+	ResourceType           *string             `json:"resource_type"`
+	ResourceUuid           *openapi_types.UUID `json:"resource_uuid"`
 	State                  *OrderState         `json:"state,omitempty"`
 	Type                   *RequestTypes       `json:"type,omitempty"`
 	Url                    *string             `json:"url,omitempty"`
@@ -13315,14 +13582,14 @@ type OrderDetails struct {
 	CustomerUuid            *openapi_types.UUID `json:"customer_uuid,omitempty"`
 	ErrorMessage            *string             `json:"error_message,omitempty"`
 	FixedPrice              *float64            `json:"fixed_price,omitempty"`
-	Issue                   *IssueReference     `json:"issue,omitempty"`
+	Issue                   *IssueReference     `json:"issue"`
 	Limits                  *map[string]int     `json:"limits,omitempty"`
 	MarketplaceResourceUuid *openapi_types.UUID `json:"marketplace_resource_uuid,omitempty"`
 	Modified                *time.Time          `json:"modified,omitempty"`
 	NewCostEstimate         *string             `json:"new_cost_estimate"`
 	NewPlanName             *string             `json:"new_plan_name,omitempty"`
 	NewPlanUuid             *openapi_types.UUID `json:"new_plan_uuid,omitempty"`
-	Offering                string              `json:"offering"`
+	Offering                *string             `json:"offering,omitempty"`
 
 	// OfferingBillable Purchase and usage is invoiced.
 	OfferingBillable    *bool   `json:"offering_billable,omitempty"`
@@ -13363,8 +13630,8 @@ type OrderDetails struct {
 	ProviderReviewedByUsername *string             `json:"provider_reviewed_by_username,omitempty"`
 	ProviderUuid               *openapi_types.UUID `json:"provider_uuid,omitempty"`
 	ResourceName               *string             `json:"resource_name,omitempty"`
-	ResourceType               *string             `json:"resource_type,omitempty"`
-	ResourceUuid               *openapi_types.UUID `json:"resource_uuid,omitempty"`
+	ResourceType               *string             `json:"resource_type"`
+	ResourceUuid               *openapi_types.UUID `json:"resource_uuid"`
 	State                      *OrderState         `json:"state,omitempty"`
 	TerminationComment         *string             `json:"termination_comment"`
 	Type                       *RequestTypes       `json:"type,omitempty"`
@@ -13383,7 +13650,7 @@ type OrderState string
 // OrganizationGroup defines model for OrganizationGroup.
 type OrganizationGroup struct {
 	CustomersCount *int                `json:"customers_count,omitempty"`
-	Name           string              `json:"name"`
+	Name           *string             `json:"name,omitempty"`
 	Parent         *string             `json:"parent"`
 	ParentName     *string             `json:"parent_name,omitempty"`
 	ParentUuid     *openapi_types.UUID `json:"parent_uuid,omitempty"`
@@ -14206,10 +14473,10 @@ type Payment struct {
 type PaymentProfile struct {
 	Attributes         *PaymentProfileAttributes `json:"attributes,omitempty"`
 	IsActive           *bool                     `json:"is_active"`
-	Name               string                    `json:"name"`
-	Organization       string                    `json:"organization"`
+	Name               *string                   `json:"name,omitempty"`
+	Organization       *string                   `json:"organization,omitempty"`
 	OrganizationUuid   *openapi_types.UUID       `json:"organization_uuid,omitempty"`
-	PaymentType        PaymentTypeEnum           `json:"payment_type"`
+	PaymentType        *PaymentTypeEnum          `json:"payment_type,omitempty"`
 	PaymentTypeDisplay *string                   `json:"payment_type_display,omitempty"`
 	Url                *string                   `json:"url,omitempty"`
 	Uuid               *openapi_types.UUID       `json:"uuid,omitempty"`
@@ -14282,7 +14549,7 @@ type PermissionProject struct {
 	// EndDate The date is inclusive. Once reached, all project resource will be scheduled for termination.
 	EndDate       *openapi_types.Date `json:"end_date"`
 	Image         *string             `json:"image"`
-	Name          string              `json:"name"`
+	Name          *string             `json:"name,omitempty"`
 	ResourceCount *int                `json:"resource_count,omitempty"`
 	Url           *string             `json:"url,omitempty"`
 	Uuid          *openapi_types.UUID `json:"uuid,omitempty"`
@@ -14376,7 +14643,7 @@ type Project struct {
 	BackendId            *string              `json:"backend_id,omitempty"`
 	BillingPriceEstimate *NestedPriceEstimate `json:"billing_price_estimate,omitempty"`
 	Created              *time.Time           `json:"created,omitempty"`
-	Customer             string               `json:"customer"`
+	Customer             *string              `json:"customer,omitempty"`
 	CustomerAbbreviation *string              `json:"customer_abbreviation,omitempty"`
 	CustomerName         *string              `json:"customer_name,omitempty"`
 	CustomerNativeName   *string              `json:"customer_native_name,omitempty"`
@@ -14390,7 +14657,7 @@ type Project struct {
 	Image                    *string                  `json:"image"`
 	IsIndustry               *bool                    `json:"is_industry,omitempty"`
 	MarketplaceResourceCount *map[string]int          `json:"marketplace_resource_count,omitempty"`
-	Name                     string                   `json:"name"`
+	Name                     *string                  `json:"name,omitempty"`
 	OecdFos2007Code          *Project_OecdFos2007Code `json:"oecd_fos_2007_code"`
 	OecdFos2007Label         *string                  `json:"oecd_fos_2007_label,omitempty"`
 	ProjectCredit            *float64                 `json:"project_credit"`
@@ -14497,7 +14764,7 @@ type ProjectPermissionLog struct {
 	ProjectUuid       *openapi_types.UUID  `json:"project_uuid,omitempty"`
 	Role              *string              `json:"role,omitempty"`
 	RoleName          *string              `json:"role_name,omitempty"`
-	User              string               `json:"user"`
+	User              *string              `json:"user,omitempty"`
 	UserEmail         *openapi_types.Email `json:"user_email,omitempty"`
 	UserFullName      *string              `json:"user_full_name,omitempty"`
 	UserNativeName    *string              `json:"user_native_name,omitempty"`
@@ -14728,8 +14995,8 @@ type ProtectedCall struct {
 	Documents                     *[]CallDocument            `json:"documents,omitempty"`
 	EndDate                       *time.Time                 `json:"end_date,omitempty"`
 	ExternalUrl                   *string                    `json:"external_url"`
-	Manager                       string                     `json:"manager"`
-	Name                          string                     `json:"name"`
+	Manager                       *string                    `json:"manager,omitempty"`
+	Name                          *string                    `json:"name,omitempty"`
 	Offerings                     *[]NestedRequestedOffering `json:"offerings,omitempty"`
 	ReferenceCode                 *string                    `json:"reference_code,omitempty"`
 	Rounds                        *[]NestedRound             `json:"rounds,omitempty"`
@@ -14797,42 +15064,13 @@ type ProtectedRoundRequest struct {
 // ProtocolEnum defines model for ProtocolEnum.
 type ProtocolEnum string
 
-// ProviderCustomer defines model for ProviderCustomer.
-type ProviderCustomer struct {
-	Abbreviation         *string              `json:"abbreviation,omitempty"`
-	BillingPriceEstimate *NestedPriceEstimate `json:"billing_price_estimate,omitempty"`
-	Email                *openapi_types.Email `json:"email,omitempty"`
-	Name                 string               `json:"name"`
-	PaymentProfiles      *[]PaymentProfile    `json:"payment_profiles,omitempty"`
-	PhoneNumber          *string              `json:"phone_number,omitempty"`
-	Projects             *[]ProviderProject   `json:"projects,omitempty"`
-	ProjectsCount        *int                 `json:"projects_count,omitempty"`
-	Slug                 string               `json:"slug"`
-	Users                *[]ProviderUser      `json:"users,omitempty"`
-	UsersCount           *int                 `json:"users_count,omitempty"`
-	Uuid                 *openapi_types.UUID  `json:"uuid,omitempty"`
-}
-
-// ProviderCustomerProject defines model for ProviderCustomerProject.
-type ProviderCustomerProject struct {
-	BillingPriceEstimate *NestedPriceEstimate `json:"billing_price_estimate,omitempty"`
-	Description          *string              `json:"description,omitempty"`
-
-	// EndDate The date is inclusive. Once reached, all project resource will be scheduled for termination.
-	EndDate        *openapi_types.Date `json:"end_date"`
-	Name           string              `json:"name"`
-	ResourcesCount *int                `json:"resources_count,omitempty"`
-	UsersCount     *int                `json:"users_count,omitempty"`
-	Uuid           *openapi_types.UUID `json:"uuid,omitempty"`
-}
-
 // ProviderOffering defines model for ProviderOffering.
 type ProviderOffering struct {
 	BillingPriceEstimate *NestedPriceEstimate `json:"billing_price_estimate,omitempty"`
 	CategoryTitle        *string              `json:"category_title,omitempty"`
 	Components           *[]OfferingComponent `json:"components,omitempty"`
 	CustomerUuid         *openapi_types.UUID  `json:"customer_uuid,omitempty"`
-	Name                 string               `json:"name"`
+	Name                 *string              `json:"name,omitempty"`
 
 	// Options Fields describing resource provision form.
 	Options *interface{}        `json:"options,omitempty"`
@@ -14844,7 +15082,7 @@ type ProviderOffering struct {
 	SecretOptions   *MergedSecretOptions `json:"secret_options,omitempty"`
 	Slug            *string              `json:"slug,omitempty"`
 	State           *OfferingState       `json:"state,omitempty"`
-	Type            string               `json:"type"`
+	Type            *string              `json:"type,omitempty"`
 	Uuid            *openapi_types.UUID  `json:"uuid,omitempty"`
 }
 
@@ -14876,7 +15114,7 @@ type ProviderOfferingDetails struct {
 
 	// Billable Purchase and usage is invoiced.
 	Billable      *bool               `json:"billable,omitempty"`
-	Category      string              `json:"category"`
+	Category      *string             `json:"category,omitempty"`
 	CategoryTitle *string             `json:"category_title,omitempty"`
 	CategoryUuid  *openapi_types.UUID `json:"category_uuid,omitempty"`
 
@@ -14901,7 +15139,7 @@ type ProviderOfferingDetails struct {
 	IntegrationStatus      *[]IntegrationStatus             `json:"integration_status,omitempty"`
 	Latitude               *float64                         `json:"latitude"`
 	Longitude              *float64                         `json:"longitude"`
-	Name                   string                           `json:"name"`
+	Name                   *string                          `json:"name,omitempty"`
 	Options                *OfferingOptions                 `json:"options,omitempty"`
 	OrderCount             *int                             `json:"order_count,omitempty"`
 	OrganizationGroups     *[]OrganizationGroup             `json:"organization_groups,omitempty"`
@@ -14919,9 +15157,9 @@ type ProviderOfferingDetails struct {
 	ResourceOptions        *OfferingOptions                 `json:"resource_options,omitempty"`
 	Roles                  *[]NestedRole                    `json:"roles,omitempty"`
 	Scope                  *string                          `json:"scope,omitempty"`
-	ScopeName              *openapi_types.UUID              `json:"scope_name,omitempty"`
-	ScopeState             *CoreStates                      `json:"scope_state,omitempty"`
-	ScopeUuid              *openapi_types.UUID              `json:"scope_uuid,omitempty"`
+	ScopeName              *openapi_types.UUID              `json:"scope_name"`
+	ScopeState             *CoreStates                      `json:"scope_state"`
+	ScopeUuid              *openapi_types.UUID              `json:"scope_uuid"`
 	Screenshots            *[]NestedScreenshot              `json:"screenshots,omitempty"`
 	SecretOptions          *MergedSecretOptions             `json:"secret_options,omitempty"`
 	ServiceAttributes      *map[string]interface{}          `json:"service_attributes,omitempty"`
@@ -14934,10 +15172,10 @@ type ProviderOfferingDetails struct {
 	TermsOfService     *string             `json:"terms_of_service,omitempty"`
 	TermsOfServiceLink *string             `json:"terms_of_service_link,omitempty"`
 	Thumbnail          *string             `json:"thumbnail"`
-	TotalCost          *int                `json:"total_cost,omitempty"`
-	TotalCostEstimated *int                `json:"total_cost_estimated,omitempty"`
-	TotalCustomers     *int                `json:"total_customers,omitempty"`
-	Type               string              `json:"type"`
+	TotalCost          *int                `json:"total_cost"`
+	TotalCostEstimated *int                `json:"total_cost_estimated"`
+	TotalCustomers     *int                `json:"total_customers"`
+	Type               *string             `json:"type,omitempty"`
 	Url                *string             `json:"url,omitempty"`
 	Uuid               *openapi_types.UUID `json:"uuid,omitempty"`
 	VendorDetails      *string             `json:"vendor_details,omitempty"`
@@ -15035,7 +15273,7 @@ type ProviderPlanDetailsRequest struct {
 // ProviderProject defines model for ProviderProject.
 type ProviderProject struct {
 	Image *string             `json:"image"`
-	Name  string              `json:"name"`
+	Name  *string             `json:"name,omitempty"`
 	Uuid  *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
@@ -15097,8 +15335,8 @@ type PublicCall struct {
 	Documents    *[]CallDocument            `json:"documents,omitempty"`
 	EndDate      *time.Time                 `json:"end_date,omitempty"`
 	ExternalUrl  *string                    `json:"external_url"`
-	Manager      string                     `json:"manager"`
-	Name         string                     `json:"name"`
+	Manager      *string                    `json:"manager,omitempty"`
+	Name         *string                    `json:"name,omitempty"`
 	Offerings    *[]NestedRequestedOffering `json:"offerings,omitempty"`
 	Rounds       *[]NestedRound             `json:"rounds,omitempty"`
 	Slug         *string                    `json:"slug,omitempty"`
@@ -15118,7 +15356,7 @@ type PublicOfferingDetails struct {
 
 	// Billable Purchase and usage is invoiced.
 	Billable      *bool               `json:"billable,omitempty"`
-	Category      string              `json:"category"`
+	Category      *string             `json:"category,omitempty"`
 	CategoryTitle *string             `json:"category_title,omitempty"`
 	CategoryUuid  *openapi_types.UUID `json:"category_uuid,omitempty"`
 
@@ -15142,7 +15380,7 @@ type PublicOfferingDetails struct {
 	IntegrationGuide       *string                        `json:"integration_guide,omitempty"`
 	Latitude               *float64                       `json:"latitude"`
 	Longitude              *float64                       `json:"longitude"`
-	Name                   string                         `json:"name"`
+	Name                   *string                        `json:"name,omitempty"`
 	Options                *OfferingOptions               `json:"options,omitempty"`
 	OrderCount             *int                           `json:"order_count,omitempty"`
 	OrganizationGroups     *[]OrganizationGroup           `json:"organization_groups,omitempty"`
@@ -15156,14 +15394,14 @@ type PublicOfferingDetails struct {
 	Project                *string                        `json:"project"`
 	ProjectName            *string                        `json:"project_name,omitempty"`
 	ProjectUuid            *openapi_types.UUID            `json:"project_uuid,omitempty"`
-	PromotionCampaigns     *NestedCampaign                `json:"promotion_campaigns,omitempty"`
+	PromotionCampaigns     *[]NestedCampaign              `json:"promotion_campaigns,omitempty"`
 	Quotas                 *[]Quota                       `json:"quotas,omitempty"`
 	ResourceOptions        *OfferingOptions               `json:"resource_options,omitempty"`
 	Roles                  *[]NestedRole                  `json:"roles,omitempty"`
 	Scope                  *string                        `json:"scope,omitempty"`
-	ScopeName              *openapi_types.UUID            `json:"scope_name,omitempty"`
-	ScopeState             *CoreStates                    `json:"scope_state,omitempty"`
-	ScopeUuid              *openapi_types.UUID            `json:"scope_uuid,omitempty"`
+	ScopeName              *openapi_types.UUID            `json:"scope_name"`
+	ScopeState             *CoreStates                    `json:"scope_state"`
+	ScopeUuid              *openapi_types.UUID            `json:"scope_uuid"`
 	Screenshots            *[]NestedScreenshot            `json:"screenshots,omitempty"`
 
 	// Shared Accessible to all customers.
@@ -15174,10 +15412,10 @@ type PublicOfferingDetails struct {
 	TermsOfService     *string             `json:"terms_of_service,omitempty"`
 	TermsOfServiceLink *string             `json:"terms_of_service_link,omitempty"`
 	Thumbnail          *string             `json:"thumbnail"`
-	TotalCost          *int                `json:"total_cost,omitempty"`
-	TotalCostEstimated *int                `json:"total_cost_estimated,omitempty"`
-	TotalCustomers     *int                `json:"total_customers,omitempty"`
-	Type               string              `json:"type"`
+	TotalCost          *int                `json:"total_cost"`
+	TotalCostEstimated *int                `json:"total_cost_estimated"`
+	TotalCustomers     *int                `json:"total_customers"`
+	Type               *string             `json:"type,omitempty"`
 	Url                *string             `json:"url,omitempty"`
 	Uuid               *openapi_types.UUID `json:"uuid,omitempty"`
 	VendorDetails      *string             `json:"vendor_details,omitempty"`
@@ -15205,9 +15443,9 @@ type QueryRequest struct {
 
 // Quota defines model for Quota.
 type Quota struct {
-	Limit int    `json:"limit"`
-	Name  string `json:"name"`
-	Usage int    `json:"usage"`
+	Limit *int    `json:"limit,omitempty"`
+	Name  *string `json:"name,omitempty"`
+	Usage *int    `json:"usage,omitempty"`
 }
 
 // QuotasUpdateRequest defines model for QuotasUpdateRequest.
@@ -15241,26 +15479,26 @@ type RancherApplication struct {
 	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
 	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid,omitempty"`
 	Modified                         *time.Time              `json:"modified,omitempty"`
-	Name                             string                  `json:"name"`
+	Name                             *string                 `json:"name,omitempty"`
 	Namespace                        *string                 `json:"namespace,omitempty"`
-	Project                          string                  `json:"project"`
+	Project                          *string                 `json:"project,omitempty"`
 	ProjectName                      *string                 `json:"project_name,omitempty"`
 	ProjectUuid                      *openapi_types.UUID     `json:"project_uuid,omitempty"`
-	RancherProject                   string                  `json:"rancher_project"`
+	RancherProject                   *string                 `json:"rancher_project,omitempty"`
 	RancherProjectName               *string                 `json:"rancher_project_name,omitempty"`
 	ResourceType                     *string                 `json:"resource_type,omitempty"`
 	RuntimeState                     *string                 `json:"runtime_state,omitempty"`
 	ServiceName                      *string                 `json:"service_name,omitempty"`
-	ServiceSettings                  string                  `json:"service_settings"`
+	ServiceSettings                  *string                 `json:"service_settings,omitempty"`
 	ServiceSettingsErrorMessage      *string                 `json:"service_settings_error_message,omitempty"`
 	ServiceSettingsState             *string                 `json:"service_settings_state,omitempty"`
 	ServiceSettingsUuid              *openapi_types.UUID     `json:"service_settings_uuid,omitempty"`
 	State                            *CoreStates             `json:"state,omitempty"`
-	Template                         string                  `json:"template"`
+	Template                         *string                 `json:"template,omitempty"`
 	TemplateName                     *string                 `json:"template_name,omitempty"`
 	Url                              *string                 `json:"url,omitempty"`
 	Uuid                             *openapi_types.UUID     `json:"uuid,omitempty"`
-	Version                          string                  `json:"version"`
+	Version                          *string                 `json:"version,omitempty"`
 }
 
 // RancherApplicationRequest defines model for RancherApplicationRequest.
@@ -15387,32 +15625,32 @@ type RancherCluster struct {
 	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
 	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid,omitempty"`
 	Modified                         *time.Time              `json:"modified,omitempty"`
-	Name                             string                  `json:"name"`
+	Name                             *string                 `json:"name,omitempty"`
 
 	// NodeCommand Rancher generated node installation command base.
-	NodeCommand                 *string             `json:"node_command,omitempty"`
-	Nodes                       []RancherNestedNode `json:"nodes"`
-	Project                     string              `json:"project"`
-	ProjectName                 *string             `json:"project_name,omitempty"`
-	ProjectUuid                 *openapi_types.UUID `json:"project_uuid,omitempty"`
-	ResourceType                *string             `json:"resource_type,omitempty"`
-	RuntimeState                *string             `json:"runtime_state,omitempty"`
-	ServiceName                 *string             `json:"service_name,omitempty"`
-	ServiceSettings             string              `json:"service_settings"`
-	ServiceSettingsErrorMessage *string             `json:"service_settings_error_message,omitempty"`
-	ServiceSettingsState        *string             `json:"service_settings_state,omitempty"`
-	ServiceSettingsUuid         *openapi_types.UUID `json:"service_settings_uuid,omitempty"`
-	State                       *CoreStates         `json:"state,omitempty"`
-	Tenant                      string              `json:"tenant"`
-	TenantUuid                  *openapi_types.UUID `json:"tenant_uuid,omitempty"`
-	Url                         *string             `json:"url,omitempty"`
-	Uuid                        *openapi_types.UUID `json:"uuid,omitempty"`
+	NodeCommand                 *string              `json:"node_command,omitempty"`
+	Nodes                       *[]RancherNestedNode `json:"nodes,omitempty"`
+	Project                     *string              `json:"project,omitempty"`
+	ProjectName                 *string              `json:"project_name,omitempty"`
+	ProjectUuid                 *openapi_types.UUID  `json:"project_uuid,omitempty"`
+	ResourceType                *string              `json:"resource_type,omitempty"`
+	RuntimeState                *string              `json:"runtime_state,omitempty"`
+	ServiceName                 *string              `json:"service_name,omitempty"`
+	ServiceSettings             *string              `json:"service_settings,omitempty"`
+	ServiceSettingsErrorMessage *string              `json:"service_settings_error_message,omitempty"`
+	ServiceSettingsState        *string              `json:"service_settings_state,omitempty"`
+	ServiceSettingsUuid         *openapi_types.UUID  `json:"service_settings_uuid,omitempty"`
+	State                       *CoreStates          `json:"state,omitempty"`
+	Tenant                      *string              `json:"tenant,omitempty"`
+	TenantUuid                  *openapi_types.UUID  `json:"tenant_uuid,omitempty"`
+	Url                         *string              `json:"url,omitempty"`
+	Uuid                        *openapi_types.UUID  `json:"uuid,omitempty"`
 }
 
 // RancherClusterReference defines model for RancherClusterReference.
 type RancherClusterReference struct {
 	MarketplaceUuid *string             `json:"marketplace_uuid,omitempty"`
-	Name            string              `json:"name"`
+	Name            *string             `json:"name,omitempty"`
 	Uuid            *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
@@ -15543,19 +15781,19 @@ type RancherIngress struct {
 	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
 	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid,omitempty"`
 	Modified                         *time.Time              `json:"modified,omitempty"`
-	Name                             string                  `json:"name"`
+	Name                             *string                 `json:"name,omitempty"`
 	Namespace                        *string                 `json:"namespace,omitempty"`
 	NamespaceName                    *string                 `json:"namespace_name,omitempty"`
-	Project                          string                  `json:"project"`
+	Project                          *string                 `json:"project,omitempty"`
 	ProjectName                      *string                 `json:"project_name,omitempty"`
 	ProjectUuid                      *openapi_types.UUID     `json:"project_uuid,omitempty"`
-	RancherProject                   string                  `json:"rancher_project"`
+	RancherProject                   *string                 `json:"rancher_project,omitempty"`
 	RancherProjectName               *string                 `json:"rancher_project_name,omitempty"`
 	ResourceType                     *string                 `json:"resource_type,omitempty"`
 	Rules                            *interface{}            `json:"rules,omitempty"`
 	RuntimeState                     *string                 `json:"runtime_state,omitempty"`
 	ServiceName                      *string                 `json:"service_name,omitempty"`
-	ServiceSettings                  string                  `json:"service_settings"`
+	ServiceSettings                  *string                 `json:"service_settings,omitempty"`
 	ServiceSettingsErrorMessage      *string                 `json:"service_settings_error_message,omitempty"`
 	ServiceSettingsState             *string                 `json:"service_settings_state,omitempty"`
 	ServiceSettingsUuid              *openapi_types.UUID     `json:"service_settings_uuid,omitempty"`
@@ -15647,7 +15885,7 @@ type RancherNestedNodeRequest struct {
 
 // RancherNestedWorkload defines model for RancherNestedWorkload.
 type RancherNestedWorkload struct {
-	Name string              `json:"name"`
+	Name *string             `json:"name,omitempty"`
 	Url  *string             `json:"url,omitempty"`
 	Uuid *openapi_types.UUID `json:"uuid,omitempty"`
 }
@@ -15735,17 +15973,17 @@ type RancherService struct {
 	MarketplaceResourceState         *string                  `json:"marketplace_resource_state,omitempty"`
 	MarketplaceResourceUuid          *string                  `json:"marketplace_resource_uuid,omitempty"`
 	Modified                         *time.Time               `json:"modified,omitempty"`
-	Name                             string                   `json:"name"`
+	Name                             *string                  `json:"name,omitempty"`
 	Namespace                        *string                  `json:"namespace,omitempty"`
 	NamespaceName                    *string                  `json:"namespace_name,omitempty"`
-	Project                          string                   `json:"project"`
+	Project                          *string                  `json:"project,omitempty"`
 	ProjectName                      *string                  `json:"project_name,omitempty"`
 	ProjectUuid                      *openapi_types.UUID      `json:"project_uuid,omitempty"`
 	ResourceType                     *string                  `json:"resource_type,omitempty"`
 	RuntimeState                     *string                  `json:"runtime_state,omitempty"`
 	Selector                         *interface{}             `json:"selector"`
 	ServiceName                      *string                  `json:"service_name,omitempty"`
-	ServiceSettings                  string                   `json:"service_settings"`
+	ServiceSettings                  *string                  `json:"service_settings,omitempty"`
 	ServiceSettingsErrorMessage      *string                  `json:"service_settings_error_message,omitempty"`
 	ServiceSettingsState             *string                  `json:"service_settings_state,omitempty"`
 	ServiceSettingsUuid              *openapi_types.UUID      `json:"service_settings_uuid,omitempty"`
@@ -16003,8 +16241,8 @@ type RemoveOfferingComponentRequest struct {
 
 // ReportSection defines model for ReportSection.
 type ReportSection struct {
-	Body   string `json:"body"`
-	Header string `json:"header"`
+	Body   *string `json:"body,omitempty"`
+	Header *string `json:"header,omitempty"`
 }
 
 // ReportSectionRequest defines model for ReportSectionRequest.
@@ -16104,8 +16342,8 @@ type Resource struct {
 	LimitUsage         *float64            `json:"limit_usage"`
 	Limits             *map[string]int     `json:"limits,omitempty"`
 	Modified           *time.Time          `json:"modified,omitempty"`
-	Name               string              `json:"name"`
-	Offering           string              `json:"offering"`
+	Name               *string             `json:"name,omitempty"`
+	Offering           *string             `json:"offering,omitempty"`
 
 	// OfferingBillable Purchase and usage is invoiced.
 	OfferingBillable     *bool               `json:"offering_billable,omitempty"`
@@ -16147,7 +16385,7 @@ type Resource struct {
 	ProviderUuid              *openapi_types.UUID `json:"provider_uuid,omitempty"`
 	Report                    *[]ReportSection    `json:"report,omitempty"`
 	ResourceType              *string             `json:"resource_type"`
-	ResourceUuid              *openapi_types.UUID `json:"resource_uuid,omitempty"`
+	ResourceUuid              *openapi_types.UUID `json:"resource_uuid"`
 	RestrictMemberAccess      *bool               `json:"restrict_member_access,omitempty"`
 	Scope                     *string             `json:"scope,omitempty"`
 	Slug                      *string             `json:"slug,omitempty"`
@@ -16185,11 +16423,11 @@ type ResourceEndDateByProviderRequest struct {
 
 // ResourceLimitPeriod defines model for ResourceLimitPeriod.
 type ResourceLimitPeriod struct {
-	BillingPeriods int    `json:"billing_periods"`
-	End            string `json:"end"`
-	Quantity       int    `json:"quantity"`
-	Start          string `json:"start"`
-	Total          string `json:"total"`
+	BillingPeriods *int    `json:"billing_periods,omitempty"`
+	End            *string `json:"end,omitempty"`
+	Quantity       *int    `json:"quantity,omitempty"`
+	Start          *string `json:"start,omitempty"`
+	Total          *string `json:"total,omitempty"`
 }
 
 // ResourceOffering defines model for ResourceOffering.
@@ -16516,7 +16754,7 @@ type RoleDetails struct {
 	DescriptionSv *string             `json:"description_sv"`
 	IsActive      *bool               `json:"is_active,omitempty"`
 	IsSystemRole  *bool               `json:"is_system_role,omitempty"`
-	Name          string              `json:"name"`
+	Name          *string             `json:"name,omitempty"`
 	Permissions   *[]string           `json:"permissions,omitempty"`
 	Uuid          *openapi_types.UUID `json:"uuid,omitempty"`
 }
@@ -16656,7 +16894,7 @@ type SectionRequest struct {
 // ServiceProvider defines model for ServiceProvider.
 type ServiceProvider struct {
 	Created              *time.Time           `json:"created,omitempty"`
-	Customer             string               `json:"customer"`
+	Customer             *string              `json:"customer,omitempty"`
 	CustomerAbbreviation *string              `json:"customer_abbreviation,omitempty"`
 	CustomerCountry      *string              `json:"customer_country,omitempty"`
 	CustomerImage        *string              `json:"customer_image,omitempty"`
@@ -16724,7 +16962,7 @@ type ServiceSettings struct {
 	CustomerName       *string                 `json:"customer_name,omitempty"`
 	CustomerNativeName *string                 `json:"customer_native_name,omitempty"`
 	ErrorMessage       *string                 `json:"error_message,omitempty"`
-	Name               string                  `json:"name"`
+	Name               *string                 `json:"name,omitempty"`
 	Options            *map[string]interface{} `json:"options,omitempty"`
 	Scope              *string                 `json:"scope"`
 	ScopeUuid          *openapi_types.UUID     `json:"scope_uuid,omitempty"`
@@ -16733,7 +16971,7 @@ type ServiceSettings struct {
 	Shared          *bool                     `json:"shared,omitempty"`
 	State           *ServiceSettingsStateEnum `json:"state,omitempty"`
 	TermsOfServices *string                   `json:"terms_of_services,omitempty"`
-	Type            string                    `json:"type"`
+	Type            *string                   `json:"type,omitempty"`
 	Url             *string                   `json:"url,omitempty"`
 	Uuid            *openapi_types.UUID       `json:"uuid,omitempty"`
 }
@@ -16792,15 +17030,15 @@ type SlurmAllocation struct {
 	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
 	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid,omitempty"`
 	Modified                         *time.Time              `json:"modified,omitempty"`
-	Name                             string                  `json:"name"`
-	Project                          string                  `json:"project"`
+	Name                             *string                 `json:"name,omitempty"`
+	Project                          *string                 `json:"project,omitempty"`
 	ProjectName                      *string                 `json:"project_name,omitempty"`
 	ProjectUuid                      *openapi_types.UUID     `json:"project_uuid,omitempty"`
 	RamLimit                         *int                    `json:"ram_limit,omitempty"`
 	RamUsage                         *int                    `json:"ram_usage,omitempty"`
 	ResourceType                     *string                 `json:"resource_type,omitempty"`
 	ServiceName                      *string                 `json:"service_name,omitempty"`
-	ServiceSettings                  string                  `json:"service_settings"`
+	ServiceSettings                  *string                 `json:"service_settings,omitempty"`
 	ServiceSettingsErrorMessage      *string                 `json:"service_settings_error_message,omitempty"`
 	ServiceSettingsState             *string                 `json:"service_settings_state,omitempty"`
 	ServiceSettingsUuid              *openapi_types.UUID     `json:"service_settings_uuid,omitempty"`
@@ -16869,7 +17107,7 @@ type SshKey struct {
 	FingerprintSha512 *string             `json:"fingerprint_sha512,omitempty"`
 	IsShared          *bool               `json:"is_shared,omitempty"`
 	Name              *string             `json:"name,omitempty"`
-	PublicKey         string              `json:"public_key"`
+	PublicKey         *string             `json:"public_key,omitempty"`
 	Type              *string             `json:"type,omitempty"`
 	Url               *string             `json:"url,omitempty"`
 	UserUuid          *openapi_types.UUID `json:"user_uuid,omitempty"`
@@ -16985,18 +17223,18 @@ type User struct {
 	Affiliations *interface{} `json:"affiliations,omitempty"`
 
 	// AgreementDate Indicates when the user has agreed with the policy.
-	AgreementDate                 *time.Time          `json:"agreement_date"`
-	CivilNumber                   *string             `json:"civil_number"`
-	DateJoined                    *time.Time          `json:"date_joined,omitempty"`
-	Description                   *string             `json:"description,omitempty"`
-	Email                         openapi_types.Email `json:"email"`
-	FirstName                     *string             `json:"first_name,omitempty"`
-	FullName                      *string             `json:"full_name,omitempty"`
-	HasActiveSession              *bool               `json:"has_active_session,omitempty"`
-	IdentityProviderFields        *[]string           `json:"identity_provider_fields,omitempty"`
-	IdentityProviderLabel         *string             `json:"identity_provider_label,omitempty"`
-	IdentityProviderManagementUrl *string             `json:"identity_provider_management_url,omitempty"`
-	IdentityProviderName          *string             `json:"identity_provider_name,omitempty"`
+	AgreementDate                 *time.Time           `json:"agreement_date"`
+	CivilNumber                   *string              `json:"civil_number"`
+	DateJoined                    *time.Time           `json:"date_joined,omitempty"`
+	Description                   *string              `json:"description,omitempty"`
+	Email                         *openapi_types.Email `json:"email,omitempty"`
+	FirstName                     *string              `json:"first_name,omitempty"`
+	FullName                      *string              `json:"full_name,omitempty"`
+	HasActiveSession              *bool                `json:"has_active_session,omitempty"`
+	IdentityProviderFields        *[]string            `json:"identity_provider_fields,omitempty"`
+	IdentityProviderLabel         *string              `json:"identity_provider_label,omitempty"`
+	IdentityProviderManagementUrl *string              `json:"identity_provider_management_url,omitempty"`
+	IdentityProviderName          *string              `json:"identity_provider_name,omitempty"`
 
 	// IdentitySource Indicates what identity provider was used.
 	IdentitySource *string `json:"identity_source,omitempty"`
@@ -17029,7 +17267,7 @@ type User struct {
 	Url           *string `json:"url,omitempty"`
 
 	// Username Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
-	Username string              `json:"username"`
+	Username *string             `json:"username,omitempty"`
 	Uuid     *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
@@ -17232,7 +17470,7 @@ type VmwareDisk struct {
 	ServiceSettingsUuid              *openapi_types.UUID     `json:"service_settings_uuid,omitempty"`
 
 	// Size Size in MiB
-	Size   int                 `json:"size"`
+	Size   *int                `json:"size,omitempty"`
 	State  *CoreStates         `json:"state,omitempty"`
 	Url    *string             `json:"url,omitempty"`
 	Uuid   *openapi_types.UUID `json:"uuid,omitempty"`
@@ -17280,7 +17518,7 @@ type VmwareLimit struct {
 // VmwareNestedDisk defines model for VmwareNestedDisk.
 type VmwareNestedDisk struct {
 	// Size Size in MiB
-	Size int                 `json:"size"`
+	Size *int                `json:"size,omitempty"`
 	Url  *string             `json:"url,omitempty"`
 	Uuid *openapi_types.UUID `json:"uuid,omitempty"`
 }
@@ -17294,8 +17532,8 @@ type VmwareNestedNetworkRequest struct {
 // VmwareNestedPort defines model for VmwareNestedPort.
 type VmwareNestedPort struct {
 	MacAddress *string             `json:"mac_address,omitempty"`
-	Name       string              `json:"name"`
-	Network    string              `json:"network"`
+	Name       *string             `json:"name,omitempty"`
+	Network    *string             `json:"network,omitempty"`
 	Url        *string             `json:"url,omitempty"`
 	Uuid       *openapi_types.UUID `json:"uuid,omitempty"`
 }
@@ -17333,7 +17571,7 @@ type VmwarePort struct {
 	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid,omitempty"`
 	Modified                         *time.Time              `json:"modified,omitempty"`
 	Name                             *string                 `json:"name,omitempty"`
-	Network                          string                  `json:"network"`
+	Network                          *string                 `json:"network,omitempty"`
 	NetworkName                      *string                 `json:"network_name,omitempty"`
 	Project                          *string                 `json:"project,omitempty"`
 	ProjectName                      *string                 `json:"project_name,omitempty"`
@@ -17425,9 +17663,9 @@ type VmwareVirtualMachine struct {
 	MarketplaceResourceState         *string                       `json:"marketplace_resource_state,omitempty"`
 	MarketplaceResourceUuid          *string                       `json:"marketplace_resource_uuid,omitempty"`
 	Modified                         *time.Time                    `json:"modified,omitempty"`
-	Name                             string                        `json:"name"`
+	Name                             *string                       `json:"name,omitempty"`
 	Ports                            *[]VmwareNestedPort           `json:"ports,omitempty"`
-	Project                          string                        `json:"project"`
+	Project                          *string                       `json:"project,omitempty"`
 	ProjectName                      *string                       `json:"project_name,omitempty"`
 	ProjectUuid                      *openapi_types.UUID           `json:"project_uuid,omitempty"`
 
@@ -17436,7 +17674,7 @@ type VmwareVirtualMachine struct {
 	ResourceType                *string             `json:"resource_type,omitempty"`
 	RuntimeState                *string             `json:"runtime_state,omitempty"`
 	ServiceName                 *string             `json:"service_name,omitempty"`
-	ServiceSettings             string              `json:"service_settings"`
+	ServiceSettings             *string             `json:"service_settings,omitempty"`
 	ServiceSettingsErrorMessage *string             `json:"service_settings_error_message,omitempty"`
 	ServiceSettingsState        *string             `json:"service_settings_state,omitempty"`
 	ServiceSettingsUuid         *openapi_types.UUID `json:"service_settings_uuid,omitempty"`
@@ -18037,7 +18275,7 @@ type BookingResourcesListParams struct {
 	ConnectedCustomerUuid *openapi_types.UUID `form:"connected_customer_uuid,omitempty" json:"connected_customer_uuid,omitempty"`
 
 	// Created Created after
-	Created      *openapi_types.Date                `form:"created,omitempty" json:"created,omitempty"`
+	Created      *time.Time                         `form:"created,omitempty" json:"created,omitempty"`
 	Customer     *string                            `form:"customer,omitempty" json:"customer,omitempty"`
 	CustomerUuid *openapi_types.UUID                `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
 	Downscaled   *bool                              `form:"downscaled,omitempty" json:"downscaled,omitempty"`
@@ -18047,9 +18285,9 @@ type BookingResourcesListParams struct {
 	LexisLinksSupported *bool `form:"lexis_links_supported,omitempty" json:"lexis_links_supported,omitempty"`
 
 	// Modified Modified after
-	Modified  *openapi_types.Date `form:"modified,omitempty" json:"modified,omitempty"`
-	Name      *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+	Name      *string    `form:"name,omitempty" json:"name,omitempty"`
+	NameExact *string    `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// O Ordering
 	//
@@ -18994,13 +19232,18 @@ type InvoicesStatsListParamsState string
 
 // KeysListParams defines parameters for KeysList.
 type KeysListParams struct {
+	// Created Created after
+	Created           *time.Time             `form:"created,omitempty" json:"created,omitempty"`
 	Field             *[]KeysListParamsField `form:"field,omitempty" json:"field,omitempty"`
 	FingerprintMd5    *string                `form:"fingerprint_md5,omitempty" json:"fingerprint_md5,omitempty"`
 	FingerprintSha256 *string                `form:"fingerprint_sha256,omitempty" json:"fingerprint_sha256,omitempty"`
 	FingerprintSha512 *string                `form:"fingerprint_sha512,omitempty" json:"fingerprint_sha512,omitempty"`
 	IsShared          *bool                  `form:"is_shared,omitempty" json:"is_shared,omitempty"`
-	Name              *string                `form:"name,omitempty" json:"name,omitempty"`
-	NameExact         *string                `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// Modified Modified after
+	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+	Name      *string    `form:"name,omitempty" json:"name,omitempty"`
+	NameExact *string    `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// O Ordering
 	//
@@ -19523,13 +19766,13 @@ type MarketplaceOfferingUserRolesListParams struct {
 // MarketplaceOfferingUsersListParams defines parameters for MarketplaceOfferingUsersList.
 type MarketplaceOfferingUsersListParams struct {
 	// Created Created after
-	Created         *openapi_types.Date                        `form:"created,omitempty" json:"created,omitempty"`
+	Created         *time.Time                                 `form:"created,omitempty" json:"created,omitempty"`
 	Field           *[]MarketplaceOfferingUsersListParamsField `form:"field,omitempty" json:"field,omitempty"`
 	IsNotPropagated *bool                                      `form:"is_not_propagated,omitempty" json:"is_not_propagated,omitempty"`
 	IsRestricted    *bool                                      `form:"is_restricted,omitempty" json:"is_restricted,omitempty"`
 
 	// Modified Modified after
-	Modified *openapi_types.Date `form:"modified,omitempty" json:"modified,omitempty"`
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
 
 	// O Ordering
 	//
@@ -19708,20 +19951,26 @@ type MarketplaceProviderOfferingsListParams struct {
 	AccessibleViaCalls *bool `form:"accessible_via_calls,omitempty" json:"accessible_via_calls,omitempty"`
 
 	// AllowedCustomerUuid Allowed customer UUID
-	AllowedCustomerUuid *openapi_types.UUID                            `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
-	Attributes          *string                                        `form:"attributes,omitempty" json:"attributes,omitempty"`
-	Billable            *bool                                          `form:"billable,omitempty" json:"billable,omitempty"`
-	CategoryGroupUuid   *openapi_types.UUID                            `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
-	CategoryUuid        *openapi_types.UUID                            `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
-	Customer            *string                                        `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerUuid        *openapi_types.UUID                            `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description         *string                                        `form:"description,omitempty" json:"description,omitempty"`
-	Field               *[]MarketplaceProviderOfferingsListParamsField `form:"field,omitempty" json:"field,omitempty"`
+	AllowedCustomerUuid *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
+	Attributes          *string             `form:"attributes,omitempty" json:"attributes,omitempty"`
+	Billable            *bool               `form:"billable,omitempty" json:"billable,omitempty"`
+	CategoryGroupUuid   *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
+	CategoryUuid        *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
+
+	// Created Created after
+	Created      *time.Time                                     `form:"created,omitempty" json:"created,omitempty"`
+	Customer     *string                                        `form:"customer,omitempty" json:"customer,omitempty"`
+	CustomerUuid *openapi_types.UUID                            `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+	Description  *string                                        `form:"description,omitempty" json:"description,omitempty"`
+	Field        *[]MarketplaceProviderOfferingsListParamsField `form:"field,omitempty" json:"field,omitempty"`
 
 	// Keyword Keyword
-	Keyword   *string `form:"keyword,omitempty" json:"keyword,omitempty"`
-	Name      *string `form:"name,omitempty" json:"name,omitempty"`
-	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	Keyword *string `form:"keyword,omitempty" json:"keyword,omitempty"`
+
+	// Modified Modified after
+	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+	Name      *string    `form:"name,omitempty" json:"name,omitempty"`
+	NameExact *string    `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// O Ordering
 	//
@@ -19784,17 +20033,23 @@ type MarketplaceProviderOfferingsComponentStatsListParams struct {
 	Billable            *bool               `form:"billable,omitempty" json:"billable,omitempty"`
 	CategoryGroupUuid   *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
 	CategoryUuid        *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
-	Customer            *string             `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerUuid        *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description         *string             `form:"description,omitempty" json:"description,omitempty"`
+
+	// Created Created after
+	Created      *time.Time          `form:"created,omitempty" json:"created,omitempty"`
+	Customer     *string             `form:"customer,omitempty" json:"customer,omitempty"`
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+	Description  *string             `form:"description,omitempty" json:"description,omitempty"`
 
 	// End End date in format YYYY-MM.
 	End *string `form:"end,omitempty" json:"end,omitempty"`
 
 	// Keyword Keyword
-	Keyword   *string `form:"keyword,omitempty" json:"keyword,omitempty"`
-	Name      *string `form:"name,omitempty" json:"name,omitempty"`
-	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	Keyword *string `form:"keyword,omitempty" json:"keyword,omitempty"`
+
+	// Modified Modified after
+	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+	Name      *string    `form:"name,omitempty" json:"name,omitempty"`
+	NameExact *string    `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// O Ordering
 	//
@@ -19842,17 +20097,23 @@ type MarketplaceProviderOfferingsCostsListParams struct {
 	Billable            *bool               `form:"billable,omitempty" json:"billable,omitempty"`
 	CategoryGroupUuid   *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
 	CategoryUuid        *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
-	Customer            *string             `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerUuid        *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description         *string             `form:"description,omitempty" json:"description,omitempty"`
+
+	// Created Created after
+	Created      *time.Time          `form:"created,omitempty" json:"created,omitempty"`
+	Customer     *string             `form:"customer,omitempty" json:"customer,omitempty"`
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+	Description  *string             `form:"description,omitempty" json:"description,omitempty"`
 
 	// End End date in format YYYY-MM.
 	End *string `form:"end,omitempty" json:"end,omitempty"`
 
 	// Keyword Keyword
-	Keyword   *string `form:"keyword,omitempty" json:"keyword,omitempty"`
-	Name      *string `form:"name,omitempty" json:"name,omitempty"`
-	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	Keyword *string `form:"keyword,omitempty" json:"keyword,omitempty"`
+
+	// Modified Modified after
+	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+	Name      *string    `form:"name,omitempty" json:"name,omitempty"`
+	NameExact *string    `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// O Ordering
 	//
@@ -19899,14 +20160,20 @@ type MarketplaceProviderOfferingsCustomersListParams struct {
 	Billable            *bool               `form:"billable,omitempty" json:"billable,omitempty"`
 	CategoryGroupUuid   *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
 	CategoryUuid        *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
-	Customer            *string             `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerUuid        *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description         *string             `form:"description,omitempty" json:"description,omitempty"`
+
+	// Created Created after
+	Created      *time.Time          `form:"created,omitempty" json:"created,omitempty"`
+	Customer     *string             `form:"customer,omitempty" json:"customer,omitempty"`
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+	Description  *string             `form:"description,omitempty" json:"description,omitempty"`
 
 	// Keyword Keyword
-	Keyword   *string `form:"keyword,omitempty" json:"keyword,omitempty"`
-	Name      *string `form:"name,omitempty" json:"name,omitempty"`
-	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	Keyword *string `form:"keyword,omitempty" json:"keyword,omitempty"`
+
+	// Modified Modified after
+	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+	Name      *string    `form:"name,omitempty" json:"name,omitempty"`
+	NameExact *string    `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// O Ordering
 	//
@@ -20047,7 +20314,7 @@ type MarketplaceProviderResourcesListParams struct {
 	CategoryUuid *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
 
 	// Created Created after
-	Created      *openapi_types.Date                            `form:"created,omitempty" json:"created,omitempty"`
+	Created      *time.Time                                     `form:"created,omitempty" json:"created,omitempty"`
 	Customer     *string                                        `form:"customer,omitempty" json:"customer,omitempty"`
 	CustomerUuid *openapi_types.UUID                            `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
 	Downscaled   *bool                                          `form:"downscaled,omitempty" json:"downscaled,omitempty"`
@@ -20057,9 +20324,9 @@ type MarketplaceProviderResourcesListParams struct {
 	LexisLinksSupported *bool `form:"lexis_links_supported,omitempty" json:"lexis_links_supported,omitempty"`
 
 	// Modified Modified after
-	Modified  *openapi_types.Date `form:"modified,omitempty" json:"modified,omitempty"`
-	Name      *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+	Name      *string    `form:"name,omitempty" json:"name,omitempty"`
+	NameExact *string    `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// O Ordering
 	//
@@ -20126,20 +20393,26 @@ type MarketplacePublicOfferingsListParams struct {
 	AccessibleViaCalls *bool `form:"accessible_via_calls,omitempty" json:"accessible_via_calls,omitempty"`
 
 	// AllowedCustomerUuid Allowed customer UUID
-	AllowedCustomerUuid *openapi_types.UUID                          `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
-	Attributes          *string                                      `form:"attributes,omitempty" json:"attributes,omitempty"`
-	Billable            *bool                                        `form:"billable,omitempty" json:"billable,omitempty"`
-	CategoryGroupUuid   *openapi_types.UUID                          `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
-	CategoryUuid        *openapi_types.UUID                          `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
-	Customer            *string                                      `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerUuid        *openapi_types.UUID                          `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description         *string                                      `form:"description,omitempty" json:"description,omitempty"`
-	Field               *[]MarketplacePublicOfferingsListParamsField `form:"field,omitempty" json:"field,omitempty"`
+	AllowedCustomerUuid *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
+	Attributes          *string             `form:"attributes,omitempty" json:"attributes,omitempty"`
+	Billable            *bool               `form:"billable,omitempty" json:"billable,omitempty"`
+	CategoryGroupUuid   *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
+	CategoryUuid        *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
+
+	// Created Created after
+	Created      *time.Time                                   `form:"created,omitempty" json:"created,omitempty"`
+	Customer     *string                                      `form:"customer,omitempty" json:"customer,omitempty"`
+	CustomerUuid *openapi_types.UUID                          `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+	Description  *string                                      `form:"description,omitempty" json:"description,omitempty"`
+	Field        *[]MarketplacePublicOfferingsListParamsField `form:"field,omitempty" json:"field,omitempty"`
 
 	// Keyword Keyword
-	Keyword   *string `form:"keyword,omitempty" json:"keyword,omitempty"`
-	Name      *string `form:"name,omitempty" json:"name,omitempty"`
-	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	Keyword *string `form:"keyword,omitempty" json:"keyword,omitempty"`
+
+	// Modified Modified after
+	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+	Name      *string    `form:"name,omitempty" json:"name,omitempty"`
+	NameExact *string    `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// O Ordering
 	//
@@ -20237,7 +20510,7 @@ type MarketplaceResourcesListParams struct {
 	CategoryUuid *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
 
 	// Created Created after
-	Created      *openapi_types.Date                    `form:"created,omitempty" json:"created,omitempty"`
+	Created      *time.Time                             `form:"created,omitempty" json:"created,omitempty"`
 	Customer     *string                                `form:"customer,omitempty" json:"customer,omitempty"`
 	CustomerUuid *openapi_types.UUID                    `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
 	Downscaled   *bool                                  `form:"downscaled,omitempty" json:"downscaled,omitempty"`
@@ -20247,9 +20520,9 @@ type MarketplaceResourcesListParams struct {
 	LexisLinksSupported *bool `form:"lexis_links_supported,omitempty" json:"lexis_links_supported,omitempty"`
 
 	// Modified Modified after
-	Modified  *openapi_types.Date `form:"modified,omitempty" json:"modified,omitempty"`
-	Name      *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+	Name      *string    `form:"name,omitempty" json:"name,omitempty"`
+	NameExact *string    `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// O Ordering
 	//
@@ -20312,7 +20585,12 @@ type MarketplaceResourcesDetailsRetrieveParamsField string
 
 // MarketplaceRobotAccountsListParams defines parameters for MarketplaceRobotAccountsList.
 type MarketplaceRobotAccountsListParams struct {
+	// Created Created after
+	Created      *time.Time          `form:"created,omitempty" json:"created,omitempty"`
 	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Modified Modified after
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -20396,6 +20674,355 @@ type MarketplaceServiceProvidersListParamsField string
 // MarketplaceServiceProvidersListParamsO defines parameters for MarketplaceServiceProvidersList.
 type MarketplaceServiceProvidersListParamsO string
 
+// MarketplaceServiceProvidersCustomerProjectsListParams defines parameters for MarketplaceServiceProvidersCustomerProjectsList.
+type MarketplaceServiceProvidersCustomerProjectsListParams struct {
+	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+
+	// CanAdmin Return a list of projects where current user is admin.
+	CanAdmin *bool `form:"can_admin,omitempty" json:"can_admin,omitempty"`
+
+	// CanManage Return a list of projects where current user is manager or a customer owner.
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// ConcealFinishedProjects Conceal finished projects
+	ConcealFinishedProjects *bool `form:"conceal_finished_projects,omitempty" json:"conceal_finished_projects,omitempty"`
+
+	// Created Created after
+	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
+
+	// Customer Multiple values may be separated by commas.
+	Customer             *[]openapi_types.UUID                                         `form:"customer,omitempty" json:"customer,omitempty"`
+	CustomerAbbreviation *string                                                       `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+	CustomerName         *string                                                       `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+	CustomerNativeName   *string                                                       `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+	Description          *string                                                       `form:"description,omitempty" json:"description,omitempty"`
+	Field                *[]MarketplaceServiceProvidersCustomerProjectsListParamsField `form:"field,omitempty" json:"field,omitempty"`
+
+	// Modified Modified after
+	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+	Name      *string    `form:"name,omitempty" json:"name,omitempty"`
+	NameExact *string    `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// O Ordering
+	//
+	O *[]MarketplaceServiceProvidersCustomerProjectsListParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Query    *string   `form:"query,omitempty" json:"query,omitempty"`
+}
+
+// MarketplaceServiceProvidersCustomerProjectsListParamsField defines parameters for MarketplaceServiceProvidersCustomerProjectsList.
+type MarketplaceServiceProvidersCustomerProjectsListParamsField string
+
+// MarketplaceServiceProvidersCustomerProjectsListParamsO defines parameters for MarketplaceServiceProvidersCustomerProjectsList.
+type MarketplaceServiceProvidersCustomerProjectsListParamsO string
+
+// MarketplaceServiceProvidersCustomersListParams defines parameters for MarketplaceServiceProvidersCustomersList.
+type MarketplaceServiceProvidersCustomersListParams struct {
+	Abbreviation          *string                                                `form:"abbreviation,omitempty" json:"abbreviation,omitempty"`
+	AgreementNumber       *string                                                `form:"agreement_number,omitempty" json:"agreement_number,omitempty"`
+	Archived              *bool                                                  `form:"archived,omitempty" json:"archived,omitempty"`
+	BackendId             *string                                                `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	ContactDetails        *string                                                `form:"contact_details,omitempty" json:"contact_details,omitempty"`
+	Field                 *[]MarketplaceServiceProvidersCustomersListParamsField `form:"field,omitempty" json:"field,omitempty"`
+	Name                  *string                                                `form:"name,omitempty" json:"name,omitempty"`
+	NameExact             *string                                                `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	NativeName            *string                                                `form:"native_name,omitempty" json:"native_name,omitempty"`
+	OrganizationGroupName *string                                                `form:"organization_group_name,omitempty" json:"organization_group_name,omitempty"`
+
+	// OrganizationGroupUuid organization_group_uuid
+	OrganizationGroupUuid *[]openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize         *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Query            *string   `form:"query,omitempty" json:"query,omitempty"`
+	RegistrationCode *string   `form:"registration_code,omitempty" json:"registration_code,omitempty"`
+}
+
+// MarketplaceServiceProvidersCustomersListParamsField defines parameters for MarketplaceServiceProvidersCustomersList.
+type MarketplaceServiceProvidersCustomersListParamsField string
+
+// MarketplaceServiceProvidersKeysListParams defines parameters for MarketplaceServiceProvidersKeysList.
+type MarketplaceServiceProvidersKeysListParams struct {
+	// Created Created after
+	Created           *time.Time                                        `form:"created,omitempty" json:"created,omitempty"`
+	Field             *[]MarketplaceServiceProvidersKeysListParamsField `form:"field,omitempty" json:"field,omitempty"`
+	FingerprintMd5    *string                                           `form:"fingerprint_md5,omitempty" json:"fingerprint_md5,omitempty"`
+	FingerprintSha256 *string                                           `form:"fingerprint_sha256,omitempty" json:"fingerprint_sha256,omitempty"`
+	FingerprintSha512 *string                                           `form:"fingerprint_sha512,omitempty" json:"fingerprint_sha512,omitempty"`
+	IsShared          *bool                                             `form:"is_shared,omitempty" json:"is_shared,omitempty"`
+
+	// Modified Modified after
+	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+	Name      *string    `form:"name,omitempty" json:"name,omitempty"`
+	NameExact *string    `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// O Ordering
+	//
+	O *[]MarketplaceServiceProvidersKeysListParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
+	Uuid     *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
+}
+
+// MarketplaceServiceProvidersKeysListParamsField defines parameters for MarketplaceServiceProvidersKeysList.
+type MarketplaceServiceProvidersKeysListParamsField string
+
+// MarketplaceServiceProvidersKeysListParamsO defines parameters for MarketplaceServiceProvidersKeysList.
+type MarketplaceServiceProvidersKeysListParamsO string
+
+// MarketplaceServiceProvidersOfferingsListParams defines parameters for MarketplaceServiceProvidersOfferingsList.
+type MarketplaceServiceProvidersOfferingsListParams struct {
+	// AccessibleViaCalls Accessible via calls
+	AccessibleViaCalls *bool `form:"accessible_via_calls,omitempty" json:"accessible_via_calls,omitempty"`
+
+	// AllowedCustomerUuid Allowed customer UUID
+	AllowedCustomerUuid *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
+	Attributes          *string             `form:"attributes,omitempty" json:"attributes,omitempty"`
+	Billable            *bool               `form:"billable,omitempty" json:"billable,omitempty"`
+	CategoryGroupUuid   *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
+	CategoryUuid        *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
+
+	// Created Created after
+	Created      *time.Time                                             `form:"created,omitempty" json:"created,omitempty"`
+	Customer     *string                                                `form:"customer,omitempty" json:"customer,omitempty"`
+	CustomerUuid *openapi_types.UUID                                    `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+	Description  *string                                                `form:"description,omitempty" json:"description,omitempty"`
+	Field        *[]MarketplaceServiceProvidersOfferingsListParamsField `form:"field,omitempty" json:"field,omitempty"`
+
+	// Keyword Keyword
+	Keyword *string `form:"keyword,omitempty" json:"keyword,omitempty"`
+
+	// Modified Modified after
+	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+	Name      *string    `form:"name,omitempty" json:"name,omitempty"`
+	NameExact *string    `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// O Ordering
+	//
+	O                     *[]MarketplaceServiceProvidersOfferingsListParamsO `form:"o,omitempty" json:"o,omitempty"`
+	OrganizationGroupUuid *[]openapi_types.UUID                              `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize   *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ParentUuid *openapi_types.UUID `form:"parent_uuid,omitempty" json:"parent_uuid,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ScopeUuid Scope UUID
+	ScopeUuid *openapi_types.UUID `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
+
+	// ServiceManagerUuid Service manager UUID
+	ServiceManagerUuid *openapi_types.UUID                                    `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
+	Shared             *bool                                                  `form:"shared,omitempty" json:"shared,omitempty"`
+	State              *[]MarketplaceServiceProvidersOfferingsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+	Type               *[]string                                              `form:"type,omitempty" json:"type,omitempty"`
+}
+
+// MarketplaceServiceProvidersOfferingsListParamsField defines parameters for MarketplaceServiceProvidersOfferingsList.
+type MarketplaceServiceProvidersOfferingsListParamsField string
+
+// MarketplaceServiceProvidersOfferingsListParamsO defines parameters for MarketplaceServiceProvidersOfferingsList.
+type MarketplaceServiceProvidersOfferingsListParamsO string
+
+// MarketplaceServiceProvidersOfferingsListParamsState defines parameters for MarketplaceServiceProvidersOfferingsList.
+type MarketplaceServiceProvidersOfferingsListParamsState string
+
+// MarketplaceServiceProvidersProjectPermissionsListParams defines parameters for MarketplaceServiceProvidersProjectPermissionsList.
+type MarketplaceServiceProvidersProjectPermissionsListParams struct {
+	Created        *time.Time                                                      `form:"created,omitempty" json:"created,omitempty"`
+	ExpirationTime *time.Time                                                      `form:"expiration_time,omitempty" json:"expiration_time,omitempty"`
+	Field          *[]MarketplaceServiceProvidersProjectPermissionsListParamsField `form:"field,omitempty" json:"field,omitempty"`
+
+	// FullName User full name contains
+	FullName   *string `form:"full_name,omitempty" json:"full_name,omitempty"`
+	NativeName *string `form:"native_name,omitempty" json:"native_name,omitempty"`
+
+	// O Ordering
+	//
+	O *[]MarketplaceServiceProvidersProjectPermissionsListParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// RoleName Role name contains
+	RoleName *string `form:"role_name,omitempty" json:"role_name,omitempty"`
+
+	// RoleUuid Role UUID
+	RoleUuid *openapi_types.UUID `form:"role_uuid,omitempty" json:"role_uuid,omitempty"`
+
+	// ScopeName Scope name
+	ScopeName *string `form:"scope_name,omitempty" json:"scope_name,omitempty"`
+
+	// ScopeType Scope type
+	ScopeType *string `form:"scope_type,omitempty" json:"scope_type,omitempty"`
+
+	// ScopeUuid Scope UUID
+	ScopeUuid *openapi_types.UUID `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
+	User      *openapi_types.UUID `form:"user,omitempty" json:"user,omitempty"`
+
+	// UserSlug User slug contains
+	UserSlug *string `form:"user_slug,omitempty" json:"user_slug,omitempty"`
+	UserUrl  *string `form:"user_url,omitempty" json:"user_url,omitempty"`
+	Username *string `form:"username,omitempty" json:"username,omitempty"`
+}
+
+// MarketplaceServiceProvidersProjectPermissionsListParamsField defines parameters for MarketplaceServiceProvidersProjectPermissionsList.
+type MarketplaceServiceProvidersProjectPermissionsListParamsField string
+
+// MarketplaceServiceProvidersProjectPermissionsListParamsO defines parameters for MarketplaceServiceProvidersProjectPermissionsList.
+type MarketplaceServiceProvidersProjectPermissionsListParamsO string
+
+// MarketplaceServiceProvidersProjectsListParams defines parameters for MarketplaceServiceProvidersProjectsList.
+type MarketplaceServiceProvidersProjectsListParams struct {
+	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+
+	// CanAdmin Return a list of projects where current user is admin.
+	CanAdmin *bool `form:"can_admin,omitempty" json:"can_admin,omitempty"`
+
+	// CanManage Return a list of projects where current user is manager or a customer owner.
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// ConcealFinishedProjects Conceal finished projects
+	ConcealFinishedProjects *bool `form:"conceal_finished_projects,omitempty" json:"conceal_finished_projects,omitempty"`
+
+	// Created Created after
+	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
+
+	// Customer Multiple values may be separated by commas.
+	Customer             *[]openapi_types.UUID                                 `form:"customer,omitempty" json:"customer,omitempty"`
+	CustomerAbbreviation *string                                               `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+	CustomerName         *string                                               `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+	CustomerNativeName   *string                                               `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+	Description          *string                                               `form:"description,omitempty" json:"description,omitempty"`
+	Field                *[]MarketplaceServiceProvidersProjectsListParamsField `form:"field,omitempty" json:"field,omitempty"`
+
+	// Modified Modified after
+	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+	Name      *string    `form:"name,omitempty" json:"name,omitempty"`
+	NameExact *string    `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// O Ordering
+	//
+	O *[]MarketplaceServiceProvidersProjectsListParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Query    *string   `form:"query,omitempty" json:"query,omitempty"`
+}
+
+// MarketplaceServiceProvidersProjectsListParamsField defines parameters for MarketplaceServiceProvidersProjectsList.
+type MarketplaceServiceProvidersProjectsListParamsField string
+
+// MarketplaceServiceProvidersProjectsListParamsO defines parameters for MarketplaceServiceProvidersProjectsList.
+type MarketplaceServiceProvidersProjectsListParamsO string
+
+// MarketplaceServiceProvidersUserCustomersListParams defines parameters for MarketplaceServiceProvidersUserCustomersList.
+type MarketplaceServiceProvidersUserCustomersListParams struct {
+	Abbreviation          *string                                                    `form:"abbreviation,omitempty" json:"abbreviation,omitempty"`
+	AgreementNumber       *string                                                    `form:"agreement_number,omitempty" json:"agreement_number,omitempty"`
+	Archived              *bool                                                      `form:"archived,omitempty" json:"archived,omitempty"`
+	BackendId             *string                                                    `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	ContactDetails        *string                                                    `form:"contact_details,omitempty" json:"contact_details,omitempty"`
+	Field                 *[]MarketplaceServiceProvidersUserCustomersListParamsField `form:"field,omitempty" json:"field,omitempty"`
+	Name                  *string                                                    `form:"name,omitempty" json:"name,omitempty"`
+	NameExact             *string                                                    `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	NativeName            *string                                                    `form:"native_name,omitempty" json:"native_name,omitempty"`
+	OrganizationGroupName *string                                                    `form:"organization_group_name,omitempty" json:"organization_group_name,omitempty"`
+
+	// OrganizationGroupUuid organization_group_uuid
+	OrganizationGroupUuid *[]openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize         *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Query            *string   `form:"query,omitempty" json:"query,omitempty"`
+	RegistrationCode *string   `form:"registration_code,omitempty" json:"registration_code,omitempty"`
+
+	// UserUuid UUID of user to get related customers for
+	UserUuid openapi_types.UUID `form:"user_uuid" json:"user_uuid"`
+}
+
+// MarketplaceServiceProvidersUserCustomersListParamsField defines parameters for MarketplaceServiceProvidersUserCustomersList.
+type MarketplaceServiceProvidersUserCustomersListParamsField string
+
+// MarketplaceServiceProvidersUsersListParams defines parameters for MarketplaceServiceProvidersUsersList.
+type MarketplaceServiceProvidersUsersListParams struct {
+	// AgreementDate Agreement date after
+	AgreementDate *time.Time          `form:"agreement_date,omitempty" json:"agreement_date,omitempty"`
+	CivilNumber   *string             `form:"civil_number,omitempty" json:"civil_number,omitempty"`
+	CustomerUuid  *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// DateJoined Date joined after
+	DateJoined  *time.Time                                         `form:"date_joined,omitempty" json:"date_joined,omitempty"`
+	Description *string                                            `form:"description,omitempty" json:"description,omitempty"`
+	Email       *string                                            `form:"email,omitempty" json:"email,omitempty"`
+	Field       *[]MarketplaceServiceProvidersUsersListParamsField `form:"field,omitempty" json:"field,omitempty"`
+
+	// FullName Full name
+	FullName   *string `form:"full_name,omitempty" json:"full_name,omitempty"`
+	IsActive   *bool   `form:"is_active,omitempty" json:"is_active,omitempty"`
+	IsStaff    *bool   `form:"is_staff,omitempty" json:"is_staff,omitempty"`
+	IsSupport  *bool   `form:"is_support,omitempty" json:"is_support,omitempty"`
+	JobTitle   *string `form:"job_title,omitempty" json:"job_title,omitempty"`
+	NativeName *string `form:"native_name,omitempty" json:"native_name,omitempty"`
+
+	// O Ordering
+	//
+	O            *[]MarketplaceServiceProvidersUsersListParamsO `form:"o,omitempty" json:"o,omitempty"`
+	Organization *string                                        `form:"organization,omitempty" json:"organization,omitempty"`
+
+	// OrganizationRoles Organization roles
+	OrganizationRoles *string `form:"organization_roles,omitempty" json:"organization_roles,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize    *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PhoneNumber *string   `form:"phone_number,omitempty" json:"phone_number,omitempty"`
+
+	// ProjectRoles Project roles
+	ProjectRoles       *string             `form:"project_roles,omitempty" json:"project_roles,omitempty"`
+	ProjectUuid        *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	Query              *string             `form:"query,omitempty" json:"query,omitempty"`
+	RegistrationMethod *string             `form:"registration_method,omitempty" json:"registration_method,omitempty"`
+
+	// UserKeyword User keyword
+	UserKeyword *string `form:"user_keyword,omitempty" json:"user_keyword,omitempty"`
+	Username    *string `form:"username,omitempty" json:"username,omitempty"`
+}
+
+// MarketplaceServiceProvidersUsersListParamsField defines parameters for MarketplaceServiceProvidersUsersList.
+type MarketplaceServiceProvidersUsersListParamsField string
+
+// MarketplaceServiceProvidersUsersListParamsO defines parameters for MarketplaceServiceProvidersUsersList.
+type MarketplaceServiceProvidersUsersListParamsO string
+
 // MarketplaceServiceProvidersRetrieveParams defines parameters for MarketplaceServiceProvidersRetrieve.
 type MarketplaceServiceProvidersRetrieveParams struct {
 	Field *[]MarketplaceServiceProvidersRetrieveParamsField `form:"field,omitempty" json:"field,omitempty"`
@@ -20403,33 +21030,6 @@ type MarketplaceServiceProvidersRetrieveParams struct {
 
 // MarketplaceServiceProvidersRetrieveParamsField defines parameters for MarketplaceServiceProvidersRetrieve.
 type MarketplaceServiceProvidersRetrieveParamsField string
-
-// MarketplaceServiceProvidersCustomerProjectsListParams defines parameters for MarketplaceServiceProvidersCustomerProjectsList.
-type MarketplaceServiceProvidersCustomerProjectsListParams struct {
-	// Page A page number within the paginated result set.
-	Page *Page `form:"page,omitempty" json:"page,omitempty"`
-
-	// PageSize Number of results to return per page.
-	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-}
-
-// MarketplaceServiceProvidersCustomersListParams defines parameters for MarketplaceServiceProvidersCustomersList.
-type MarketplaceServiceProvidersCustomersListParams struct {
-	// Page A page number within the paginated result set.
-	Page *Page `form:"page,omitempty" json:"page,omitempty"`
-
-	// PageSize Number of results to return per page.
-	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-}
-
-// MarketplaceServiceProvidersKeysListParams defines parameters for MarketplaceServiceProvidersKeysList.
-type MarketplaceServiceProvidersKeysListParams struct {
-	// Page A page number within the paginated result set.
-	Page *Page `form:"page,omitempty" json:"page,omitempty"`
-
-	// PageSize Number of results to return per page.
-	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-}
 
 // MarketplaceServiceProvidersListUsersListParams defines parameters for MarketplaceServiceProvidersListUsersList.
 type MarketplaceServiceProvidersListUsersListParams struct {
@@ -20476,96 +21076,6 @@ type MarketplaceServiceProvidersListUsersListParamsField string
 // MarketplaceServiceProvidersListUsersListParamsO defines parameters for MarketplaceServiceProvidersListUsersList.
 type MarketplaceServiceProvidersListUsersListParamsO string
 
-// MarketplaceServiceProvidersOfferingsListParams defines parameters for MarketplaceServiceProvidersOfferingsList.
-type MarketplaceServiceProvidersOfferingsListParams struct {
-	// AccessibleViaCalls Filter by accessibility via calls
-	AccessibleViaCalls *bool `form:"accessible_via_calls,omitempty" json:"accessible_via_calls,omitempty"`
-
-	// AllowedCustomerUuid Allowed customer UUID
-	AllowedCustomerUuid *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
-
-	// Attributes Filter by attributes
-	Attributes *string `form:"attributes,omitempty" json:"attributes,omitempty"`
-
-	// Billable Filter by billable status
-	Billable *bool `form:"billable,omitempty" json:"billable,omitempty"`
-
-	// CategoryGroupUuid Filter by category group UUID
-	CategoryGroupUuid *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
-
-	// CategoryUuid Filter by category UUID
-	CategoryUuid *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
-
-	// Customer Filter by customer URL
-	Customer *string `form:"customer,omitempty" json:"customer,omitempty"`
-
-	// CustomerUuid Filter by customer UUID
-	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-
-	// Description Filter by description (case-insensitive contains)
-	Description *string `form:"description,omitempty" json:"description,omitempty"`
-
-	// Keyword Filter by keyword
-	Keyword *string `form:"keyword,omitempty" json:"keyword,omitempty"`
-
-	// O Ordering field
-	O *MarketplaceServiceProvidersOfferingsListParamsO `form:"o,omitempty" json:"o,omitempty"`
-
-	// OrganizationGroupUuid Filter by organization group UUID
-	OrganizationGroupUuid *[]openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
-
-	// Page A page number within the paginated result set.
-	Page *Page `form:"page,omitempty" json:"page,omitempty"`
-
-	// PageSize Number of results to return per page.
-	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-
-	// ParentUuid Filter by parent UUID
-	ParentUuid *openapi_types.UUID `form:"parent_uuid,omitempty" json:"parent_uuid,omitempty"`
-
-	// ProjectUuid Project UUID
-	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-
-	// ScopeUuid Scope UUID
-	ScopeUuid *openapi_types.UUID `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
-
-	// ServiceManagerUuid Service manager UUID
-	ServiceManagerUuid *openapi_types.UUID `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
-
-	// Shared Filter by shared status
-	Shared *bool `form:"shared,omitempty" json:"shared,omitempty"`
-
-	// State Filter by state
-	State *[]MarketplaceServiceProvidersOfferingsListParamsState `form:"state,omitempty" json:"state,omitempty"`
-
-	// Type Filter by type
-	Type *[]string `form:"type,omitempty" json:"type,omitempty"`
-}
-
-// MarketplaceServiceProvidersOfferingsListParamsO defines parameters for MarketplaceServiceProvidersOfferingsList.
-type MarketplaceServiceProvidersOfferingsListParamsO string
-
-// MarketplaceServiceProvidersOfferingsListParamsState defines parameters for MarketplaceServiceProvidersOfferingsList.
-type MarketplaceServiceProvidersOfferingsListParamsState string
-
-// MarketplaceServiceProvidersProjectPermissionsListParams defines parameters for MarketplaceServiceProvidersProjectPermissionsList.
-type MarketplaceServiceProvidersProjectPermissionsListParams struct {
-	// Page A page number within the paginated result set.
-	Page *Page `form:"page,omitempty" json:"page,omitempty"`
-
-	// PageSize Number of results to return per page.
-	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-}
-
-// MarketplaceServiceProvidersProjectsListParams defines parameters for MarketplaceServiceProvidersProjectsList.
-type MarketplaceServiceProvidersProjectsListParams struct {
-	// Page A page number within the paginated result set.
-	Page *Page `form:"page,omitempty" json:"page,omitempty"`
-
-	// PageSize Number of results to return per page.
-	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-}
-
 // MarketplaceServiceProvidersRevenueListParams defines parameters for MarketplaceServiceProvidersRevenueList.
 type MarketplaceServiceProvidersRevenueListParams struct {
 	// Page A page number within the paginated result set.
@@ -20594,24 +21104,6 @@ type MarketplaceServiceProvidersRobotAccountProjectsListParams struct {
 	// PageSize Number of results to return per page.
 	PageSize    *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 	ProjectName *string   `form:"project_name,omitempty" json:"project_name,omitempty"`
-}
-
-// MarketplaceServiceProvidersUserCustomersListParams defines parameters for MarketplaceServiceProvidersUserCustomersList.
-type MarketplaceServiceProvidersUserCustomersListParams struct {
-	// Page A page number within the paginated result set.
-	Page *Page `form:"page,omitempty" json:"page,omitempty"`
-
-	// PageSize Number of results to return per page.
-	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-}
-
-// MarketplaceServiceProvidersUsersListParams defines parameters for MarketplaceServiceProvidersUsersList.
-type MarketplaceServiceProvidersUsersListParams struct {
-	// Page A page number within the paginated result set.
-	Page *Page `form:"page,omitempty" json:"page,omitempty"`
-
-	// PageSize Number of results to return per page.
-	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 }
 
 // MarketplaceStatsCountActiveResourcesGroupedByOfferingListParams defines parameters for MarketplaceStatsCountActiveResourcesGroupedByOfferingList.
@@ -21588,8 +22080,10 @@ type ProjectsListParams struct {
 	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
 
 	// ConcealFinishedProjects Conceal finished projects
-	ConcealFinishedProjects *bool      `form:"conceal_finished_projects,omitempty" json:"conceal_finished_projects,omitempty"`
-	Created                 *time.Time `form:"created,omitempty" json:"created,omitempty"`
+	ConcealFinishedProjects *bool `form:"conceal_finished_projects,omitempty" json:"conceal_finished_projects,omitempty"`
+
+	// Created Created after
+	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
 
 	// Customer Multiple values may be separated by commas.
 	Customer             *[]openapi_types.UUID      `form:"customer,omitempty" json:"customer,omitempty"`
@@ -21598,8 +22092,11 @@ type ProjectsListParams struct {
 	CustomerNativeName   *string                    `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
 	Description          *string                    `form:"description,omitempty" json:"description,omitempty"`
 	Field                *[]ProjectsListParamsField `form:"field,omitempty" json:"field,omitempty"`
-	Name                 *string                    `form:"name,omitempty" json:"name,omitempty"`
-	NameExact            *string                    `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// Modified Modified after
+	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+	Name      *string    `form:"name,omitempty" json:"name,omitempty"`
+	NameExact *string    `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// O Ordering
 	//
@@ -22854,6 +23351,9 @@ type UserPermissionRequestsListParamsState string
 
 // UserPermissionsListParams defines parameters for UserPermissionsList.
 type UserPermissionsListParams struct {
+	Created        *time.Time `form:"created,omitempty" json:"created,omitempty"`
+	ExpirationTime *time.Time `form:"expiration_time,omitempty" json:"expiration_time,omitempty"`
+
 	// FullName User full name contains
 	FullName   *string `form:"full_name,omitempty" json:"full_name,omitempty"`
 	NativeName *string `form:"native_name,omitempty" json:"native_name,omitempty"`
@@ -22895,11 +23395,16 @@ type UserPermissionsListParamsO string
 
 // UsersListParams defines parameters for UsersList.
 type UsersListParams struct {
-	CivilNumber  *string                 `form:"civil_number,omitempty" json:"civil_number,omitempty"`
-	CustomerUuid *openapi_types.UUID     `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description  *string                 `form:"description,omitempty" json:"description,omitempty"`
-	Email        *string                 `form:"email,omitempty" json:"email,omitempty"`
-	Field        *[]UsersListParamsField `form:"field,omitempty" json:"field,omitempty"`
+	// AgreementDate Agreement date after
+	AgreementDate *time.Time          `form:"agreement_date,omitempty" json:"agreement_date,omitempty"`
+	CivilNumber   *string             `form:"civil_number,omitempty" json:"civil_number,omitempty"`
+	CustomerUuid  *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// DateJoined Date joined after
+	DateJoined  *time.Time              `form:"date_joined,omitempty" json:"date_joined,omitempty"`
+	Description *string                 `form:"description,omitempty" json:"description,omitempty"`
+	Email       *string                 `form:"email,omitempty" json:"email,omitempty"`
+	Field       *[]UsersListParamsField `form:"field,omitempty" json:"field,omitempty"`
 
 	// FullName Full name
 	FullName   *string `form:"full_name,omitempty" json:"full_name,omitempty"`
@@ -31592,6 +32097,30 @@ type ClientInterface interface {
 
 	MarketplaceServiceProvidersCreateWithFormdataBody(ctx context.Context, body MarketplaceServiceProvidersCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceServiceProvidersCustomerProjectsList request
+	MarketplaceServiceProvidersCustomerProjectsList(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersCustomerProjectsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceServiceProvidersCustomersList request
+	MarketplaceServiceProvidersCustomersList(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersCustomersListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceServiceProvidersKeysList request
+	MarketplaceServiceProvidersKeysList(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersKeysListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceServiceProvidersOfferingsList request
+	MarketplaceServiceProvidersOfferingsList(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersOfferingsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceServiceProvidersProjectPermissionsList request
+	MarketplaceServiceProvidersProjectPermissionsList(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersProjectPermissionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceServiceProvidersProjectsList request
+	MarketplaceServiceProvidersProjectsList(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersProjectsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceServiceProvidersUserCustomersList request
+	MarketplaceServiceProvidersUserCustomersList(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersUserCustomersListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceServiceProvidersUsersList request
+	MarketplaceServiceProvidersUsersList(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersUsersListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceServiceProvidersDestroy request
 	MarketplaceServiceProvidersDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -31625,12 +32154,6 @@ type ClientInterface interface {
 	// ServiceProviderApiSecretCodeGenerate request
 	ServiceProviderApiSecretCodeGenerate(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// MarketplaceServiceProvidersCustomerProjectsList request
-	MarketplaceServiceProvidersCustomerProjectsList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceServiceProvidersCustomerProjectsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceServiceProvidersCustomersList request
-	MarketplaceServiceProvidersCustomersList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceServiceProvidersCustomersListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
 	// MarketplaceServiceProvidersDeleteUserWithBody request with any body
 	MarketplaceServiceProvidersDeleteUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -31638,20 +32161,8 @@ type ClientInterface interface {
 
 	MarketplaceServiceProvidersDeleteUserWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body MarketplaceServiceProvidersDeleteUserFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// MarketplaceServiceProvidersKeysList request
-	MarketplaceServiceProvidersKeysList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceServiceProvidersKeysListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
 	// MarketplaceServiceProvidersListUsersList request
 	MarketplaceServiceProvidersListUsersList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceServiceProvidersListUsersListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceServiceProvidersOfferingsList request
-	MarketplaceServiceProvidersOfferingsList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceServiceProvidersOfferingsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceServiceProvidersProjectPermissionsList request
-	MarketplaceServiceProvidersProjectPermissionsList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceServiceProvidersProjectPermissionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceServiceProvidersProjectsList request
-	MarketplaceServiceProvidersProjectsList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceServiceProvidersProjectsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceServiceProvidersRevenueList request
 	MarketplaceServiceProvidersRevenueList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceServiceProvidersRevenueListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -31678,12 +32189,6 @@ type ClientInterface interface {
 	MarketplaceServiceProvidersUpdateUser(ctx context.Context, uuid openapi_types.UUID, body MarketplaceServiceProvidersUpdateUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	MarketplaceServiceProvidersUpdateUserWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body MarketplaceServiceProvidersUpdateUserFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceServiceProvidersUserCustomersList request
-	MarketplaceServiceProvidersUserCustomersList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceServiceProvidersUserCustomersListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceServiceProvidersUsersList request
-	MarketplaceServiceProvidersUsersList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceServiceProvidersUsersListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceStatsComponentUsagesRetrieve request
 	MarketplaceStatsComponentUsagesRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -45584,6 +46089,102 @@ func (c *Client) MarketplaceServiceProvidersCreateWithFormdataBody(ctx context.C
 	return c.Client.Do(req)
 }
 
+func (c *Client) MarketplaceServiceProvidersCustomerProjectsList(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersCustomerProjectsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceServiceProvidersCustomerProjectsListRequest(c.Server, serviceProviderUuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceServiceProvidersCustomersList(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersCustomersListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceServiceProvidersCustomersListRequest(c.Server, serviceProviderUuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceServiceProvidersKeysList(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersKeysListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceServiceProvidersKeysListRequest(c.Server, serviceProviderUuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceServiceProvidersOfferingsList(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersOfferingsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceServiceProvidersOfferingsListRequest(c.Server, serviceProviderUuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceServiceProvidersProjectPermissionsList(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersProjectPermissionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceServiceProvidersProjectPermissionsListRequest(c.Server, serviceProviderUuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceServiceProvidersProjectsList(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersProjectsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceServiceProvidersProjectsListRequest(c.Server, serviceProviderUuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceServiceProvidersUserCustomersList(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersUserCustomersListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceServiceProvidersUserCustomersListRequest(c.Server, serviceProviderUuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceServiceProvidersUsersList(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersUsersListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceServiceProvidersUsersListRequest(c.Server, serviceProviderUuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) MarketplaceServiceProvidersDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceServiceProvidersDestroyRequest(c.Server, uuid)
 	if err != nil {
@@ -45740,30 +46341,6 @@ func (c *Client) ServiceProviderApiSecretCodeGenerate(ctx context.Context, uuid 
 	return c.Client.Do(req)
 }
 
-func (c *Client) MarketplaceServiceProvidersCustomerProjectsList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceServiceProvidersCustomerProjectsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceServiceProvidersCustomerProjectsListRequest(c.Server, uuid, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceServiceProvidersCustomersList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceServiceProvidersCustomersListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceServiceProvidersCustomersListRequest(c.Server, uuid, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
 func (c *Client) MarketplaceServiceProvidersDeleteUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceServiceProvidersDeleteUserRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
@@ -45800,56 +46377,8 @@ func (c *Client) MarketplaceServiceProvidersDeleteUserWithFormdataBody(ctx conte
 	return c.Client.Do(req)
 }
 
-func (c *Client) MarketplaceServiceProvidersKeysList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceServiceProvidersKeysListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceServiceProvidersKeysListRequest(c.Server, uuid, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
 func (c *Client) MarketplaceServiceProvidersListUsersList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceServiceProvidersListUsersListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceServiceProvidersListUsersListRequest(c.Server, uuid, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceServiceProvidersOfferingsList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceServiceProvidersOfferingsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceServiceProvidersOfferingsListRequest(c.Server, uuid, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceServiceProvidersProjectPermissionsList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceServiceProvidersProjectPermissionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceServiceProvidersProjectPermissionsListRequest(c.Server, uuid, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceServiceProvidersProjectsList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceServiceProvidersProjectsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceServiceProvidersProjectsListRequest(c.Server, uuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -45970,30 +46499,6 @@ func (c *Client) MarketplaceServiceProvidersUpdateUser(ctx context.Context, uuid
 
 func (c *Client) MarketplaceServiceProvidersUpdateUserWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body MarketplaceServiceProvidersUpdateUserFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceServiceProvidersUpdateUserRequestWithFormdataBody(c.Server, uuid, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceServiceProvidersUserCustomersList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceServiceProvidersUserCustomersListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceServiceProvidersUserCustomersListRequest(c.Server, uuid, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceServiceProvidersUsersList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceServiceProvidersUsersListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceServiceProvidersUsersListRequest(c.Server, uuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -76897,6 +77402,22 @@ func NewKeysListRequest(server string, params *KeysListParams) (*http.Request, e
 	if params != nil {
 		queryValues := queryURL.Query()
 
+		if params.Created != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "created", runtime.ParamLocationQuery, *params.Created); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Field != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "field", runtime.ParamLocationQuery, *params.Field); err != nil {
@@ -76964,6 +77485,22 @@ func NewKeysListRequest(server string, params *KeysListParams) (*http.Request, e
 		if params.IsShared != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_shared", runtime.ParamLocationQuery, *params.IsShared); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Modified != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "modified", runtime.ParamLocationQuery, *params.Modified); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -86903,6 +87440,22 @@ func NewMarketplaceProviderOfferingsListRequest(server string, params *Marketpla
 
 		}
 
+		if params.Created != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "created", runtime.ParamLocationQuery, *params.Created); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Customer != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer", runtime.ParamLocationQuery, *params.Customer); err != nil {
@@ -86970,6 +87523,22 @@ func NewMarketplaceProviderOfferingsListRequest(server string, params *Marketpla
 		if params.Keyword != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "keyword", runtime.ParamLocationQuery, *params.Keyword); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Modified != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "modified", runtime.ParamLocationQuery, *params.Modified); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -87701,6 +88270,22 @@ func NewMarketplaceProviderOfferingsComponentStatsListRequest(server string, uui
 
 		}
 
+		if params.Created != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "created", runtime.ParamLocationQuery, *params.Created); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Customer != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer", runtime.ParamLocationQuery, *params.Customer); err != nil {
@@ -87768,6 +88353,22 @@ func NewMarketplaceProviderOfferingsComponentStatsListRequest(server string, uui
 		if params.Keyword != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "keyword", runtime.ParamLocationQuery, *params.Keyword); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Modified != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "modified", runtime.ParamLocationQuery, *params.Modified); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -88157,6 +88758,22 @@ func NewMarketplaceProviderOfferingsCostsListRequest(server string, uuid openapi
 
 		}
 
+		if params.Created != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "created", runtime.ParamLocationQuery, *params.Created); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Customer != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer", runtime.ParamLocationQuery, *params.Customer); err != nil {
@@ -88224,6 +88841,22 @@ func NewMarketplaceProviderOfferingsCostsListRequest(server string, uuid openapi
 		if params.Keyword != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "keyword", runtime.ParamLocationQuery, *params.Keyword); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Modified != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "modified", runtime.ParamLocationQuery, *params.Modified); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -88655,6 +89288,22 @@ func NewMarketplaceProviderOfferingsCustomersListRequest(server string, uuid ope
 
 		}
 
+		if params.Created != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "created", runtime.ParamLocationQuery, *params.Created); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Customer != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer", runtime.ParamLocationQuery, *params.Customer); err != nil {
@@ -88706,6 +89355,22 @@ func NewMarketplaceProviderOfferingsCustomersListRequest(server string, uuid ope
 		if params.Keyword != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "keyword", runtime.ParamLocationQuery, *params.Keyword); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Modified != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "modified", runtime.ParamLocationQuery, *params.Modified); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -92671,6 +93336,22 @@ func NewMarketplacePublicOfferingsListRequest(server string, params *Marketplace
 
 		}
 
+		if params.Created != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "created", runtime.ParamLocationQuery, *params.Created); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Customer != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer", runtime.ParamLocationQuery, *params.Customer); err != nil {
@@ -92738,6 +93419,22 @@ func NewMarketplacePublicOfferingsListRequest(server string, params *Marketplace
 		if params.Keyword != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "keyword", runtime.ParamLocationQuery, *params.Keyword); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Modified != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "modified", runtime.ParamLocationQuery, *params.Modified); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -95291,9 +95988,41 @@ func NewMarketplaceRobotAccountsListRequest(server string, params *MarketplaceRo
 	if params != nil {
 		queryValues := queryURL.Query()
 
+		if params.Created != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "created", runtime.ParamLocationQuery, *params.Created); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.CustomerUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer_uuid", runtime.ParamLocationQuery, *params.CustomerUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Modified != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "modified", runtime.ParamLocationQuery, *params.Modified); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -96856,6 +97585,2706 @@ func NewMarketplaceServiceProvidersCreateRequestWithBody(server string, contentT
 	return req, nil
 }
 
+// NewMarketplaceServiceProvidersCustomerProjectsListRequest generates requests for MarketplaceServiceProvidersCustomerProjectsList
+func NewMarketplaceServiceProvidersCustomerProjectsListRequest(server string, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersCustomerProjectsListParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "service_provider_uuid", runtime.ParamLocationPath, serviceProviderUuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-service-providers/%s/customer_projects/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.BackendId != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "backend_id", runtime.ParamLocationQuery, *params.BackendId); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CanAdmin != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "can_admin", runtime.ParamLocationQuery, *params.CanAdmin); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CanManage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "can_manage", runtime.ParamLocationQuery, *params.CanManage); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ConcealFinishedProjects != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "conceal_finished_projects", runtime.ParamLocationQuery, *params.ConcealFinishedProjects); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Created != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "created", runtime.ParamLocationQuery, *params.Created); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Customer != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "customer", runtime.ParamLocationQuery, *params.Customer); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerAbbreviation != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer_abbreviation", runtime.ParamLocationQuery, *params.CustomerAbbreviation); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer_name", runtime.ParamLocationQuery, *params.CustomerName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerNativeName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer_native_name", runtime.ParamLocationQuery, *params.CustomerNativeName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Description != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "description", runtime.ParamLocationQuery, *params.Description); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Field != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "field", runtime.ParamLocationQuery, *params.Field); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Modified != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "modified", runtime.ParamLocationQuery, *params.Modified); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name", runtime.ParamLocationQuery, *params.Name); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.NameExact != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name_exact", runtime.ParamLocationQuery, *params.NameExact); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "query", runtime.ParamLocationQuery, *params.Query); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceServiceProvidersCustomersListRequest generates requests for MarketplaceServiceProvidersCustomersList
+func NewMarketplaceServiceProvidersCustomersListRequest(server string, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersCustomersListParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "service_provider_uuid", runtime.ParamLocationPath, serviceProviderUuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-service-providers/%s/customers/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Abbreviation != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "abbreviation", runtime.ParamLocationQuery, *params.Abbreviation); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.AgreementNumber != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "agreement_number", runtime.ParamLocationQuery, *params.AgreementNumber); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Archived != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "archived", runtime.ParamLocationQuery, *params.Archived); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.BackendId != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "backend_id", runtime.ParamLocationQuery, *params.BackendId); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ContactDetails != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "contact_details", runtime.ParamLocationQuery, *params.ContactDetails); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Field != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "field", runtime.ParamLocationQuery, *params.Field); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name", runtime.ParamLocationQuery, *params.Name); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.NameExact != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name_exact", runtime.ParamLocationQuery, *params.NameExact); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.NativeName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "native_name", runtime.ParamLocationQuery, *params.NativeName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OrganizationGroupName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "organization_group_name", runtime.ParamLocationQuery, *params.OrganizationGroupName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OrganizationGroupUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "organization_group_uuid", runtime.ParamLocationQuery, *params.OrganizationGroupUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "query", runtime.ParamLocationQuery, *params.Query); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.RegistrationCode != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "registration_code", runtime.ParamLocationQuery, *params.RegistrationCode); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceServiceProvidersKeysListRequest generates requests for MarketplaceServiceProvidersKeysList
+func NewMarketplaceServiceProvidersKeysListRequest(server string, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersKeysListParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "service_provider_uuid", runtime.ParamLocationPath, serviceProviderUuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-service-providers/%s/keys/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Created != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "created", runtime.ParamLocationQuery, *params.Created); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Field != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "field", runtime.ParamLocationQuery, *params.Field); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.FingerprintMd5 != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "fingerprint_md5", runtime.ParamLocationQuery, *params.FingerprintMd5); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.FingerprintSha256 != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "fingerprint_sha256", runtime.ParamLocationQuery, *params.FingerprintSha256); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.FingerprintSha512 != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "fingerprint_sha512", runtime.ParamLocationQuery, *params.FingerprintSha512); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsShared != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_shared", runtime.ParamLocationQuery, *params.IsShared); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Modified != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "modified", runtime.ParamLocationQuery, *params.Modified); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name", runtime.ParamLocationQuery, *params.Name); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.NameExact != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name_exact", runtime.ParamLocationQuery, *params.NameExact); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UserUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_uuid", runtime.ParamLocationQuery, *params.UserUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Uuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "uuid", runtime.ParamLocationQuery, *params.Uuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceServiceProvidersOfferingsListRequest generates requests for MarketplaceServiceProvidersOfferingsList
+func NewMarketplaceServiceProvidersOfferingsListRequest(server string, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersOfferingsListParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "service_provider_uuid", runtime.ParamLocationPath, serviceProviderUuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-service-providers/%s/offerings/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.AccessibleViaCalls != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "accessible_via_calls", runtime.ParamLocationQuery, *params.AccessibleViaCalls); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.AllowedCustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "allowed_customer_uuid", runtime.ParamLocationQuery, *params.AllowedCustomerUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Attributes != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "attributes", runtime.ParamLocationQuery, *params.Attributes); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Billable != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "billable", runtime.ParamLocationQuery, *params.Billable); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CategoryGroupUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "category_group_uuid", runtime.ParamLocationQuery, *params.CategoryGroupUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CategoryUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "category_uuid", runtime.ParamLocationQuery, *params.CategoryUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Created != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "created", runtime.ParamLocationQuery, *params.Created); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Customer != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer", runtime.ParamLocationQuery, *params.Customer); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer_uuid", runtime.ParamLocationQuery, *params.CustomerUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Description != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "description", runtime.ParamLocationQuery, *params.Description); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Field != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "field", runtime.ParamLocationQuery, *params.Field); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Keyword != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "keyword", runtime.ParamLocationQuery, *params.Keyword); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Modified != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "modified", runtime.ParamLocationQuery, *params.Modified); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name", runtime.ParamLocationQuery, *params.Name); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.NameExact != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name_exact", runtime.ParamLocationQuery, *params.NameExact); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OrganizationGroupUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "organization_group_uuid", runtime.ParamLocationQuery, *params.OrganizationGroupUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ParentUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "parent_uuid", runtime.ParamLocationQuery, *params.ParentUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_uuid", runtime.ParamLocationQuery, *params.ProjectUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ScopeUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope_uuid", runtime.ParamLocationQuery, *params.ScopeUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ServiceManagerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "service_manager_uuid", runtime.ParamLocationQuery, *params.ServiceManagerUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Shared != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "shared", runtime.ParamLocationQuery, *params.Shared); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "state", runtime.ParamLocationQuery, *params.State); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Type != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "type", runtime.ParamLocationQuery, *params.Type); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceServiceProvidersProjectPermissionsListRequest generates requests for MarketplaceServiceProvidersProjectPermissionsList
+func NewMarketplaceServiceProvidersProjectPermissionsListRequest(server string, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersProjectPermissionsListParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "service_provider_uuid", runtime.ParamLocationPath, serviceProviderUuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-service-providers/%s/project_permissions/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Created != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "created", runtime.ParamLocationQuery, *params.Created); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ExpirationTime != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "expiration_time", runtime.ParamLocationQuery, *params.ExpirationTime); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Field != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "field", runtime.ParamLocationQuery, *params.Field); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.FullName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "full_name", runtime.ParamLocationQuery, *params.FullName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.NativeName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "native_name", runtime.ParamLocationQuery, *params.NativeName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.RoleName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "role_name", runtime.ParamLocationQuery, *params.RoleName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.RoleUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "role_uuid", runtime.ParamLocationQuery, *params.RoleUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ScopeName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope_name", runtime.ParamLocationQuery, *params.ScopeName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ScopeType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope_type", runtime.ParamLocationQuery, *params.ScopeType); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ScopeUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope_uuid", runtime.ParamLocationQuery, *params.ScopeUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.User != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user", runtime.ParamLocationQuery, *params.User); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UserSlug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_slug", runtime.ParamLocationQuery, *params.UserSlug); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UserUrl != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_url", runtime.ParamLocationQuery, *params.UserUrl); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Username != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "username", runtime.ParamLocationQuery, *params.Username); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceServiceProvidersProjectsListRequest generates requests for MarketplaceServiceProvidersProjectsList
+func NewMarketplaceServiceProvidersProjectsListRequest(server string, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersProjectsListParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "service_provider_uuid", runtime.ParamLocationPath, serviceProviderUuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-service-providers/%s/projects/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.BackendId != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "backend_id", runtime.ParamLocationQuery, *params.BackendId); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CanAdmin != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "can_admin", runtime.ParamLocationQuery, *params.CanAdmin); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CanManage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "can_manage", runtime.ParamLocationQuery, *params.CanManage); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ConcealFinishedProjects != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "conceal_finished_projects", runtime.ParamLocationQuery, *params.ConcealFinishedProjects); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Created != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "created", runtime.ParamLocationQuery, *params.Created); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Customer != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "customer", runtime.ParamLocationQuery, *params.Customer); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerAbbreviation != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer_abbreviation", runtime.ParamLocationQuery, *params.CustomerAbbreviation); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer_name", runtime.ParamLocationQuery, *params.CustomerName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerNativeName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer_native_name", runtime.ParamLocationQuery, *params.CustomerNativeName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Description != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "description", runtime.ParamLocationQuery, *params.Description); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Field != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "field", runtime.ParamLocationQuery, *params.Field); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Modified != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "modified", runtime.ParamLocationQuery, *params.Modified); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name", runtime.ParamLocationQuery, *params.Name); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.NameExact != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name_exact", runtime.ParamLocationQuery, *params.NameExact); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "query", runtime.ParamLocationQuery, *params.Query); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceServiceProvidersUserCustomersListRequest generates requests for MarketplaceServiceProvidersUserCustomersList
+func NewMarketplaceServiceProvidersUserCustomersListRequest(server string, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersUserCustomersListParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "service_provider_uuid", runtime.ParamLocationPath, serviceProviderUuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-service-providers/%s/user_customers/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Abbreviation != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "abbreviation", runtime.ParamLocationQuery, *params.Abbreviation); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.AgreementNumber != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "agreement_number", runtime.ParamLocationQuery, *params.AgreementNumber); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Archived != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "archived", runtime.ParamLocationQuery, *params.Archived); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.BackendId != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "backend_id", runtime.ParamLocationQuery, *params.BackendId); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ContactDetails != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "contact_details", runtime.ParamLocationQuery, *params.ContactDetails); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Field != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "field", runtime.ParamLocationQuery, *params.Field); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name", runtime.ParamLocationQuery, *params.Name); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.NameExact != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name_exact", runtime.ParamLocationQuery, *params.NameExact); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.NativeName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "native_name", runtime.ParamLocationQuery, *params.NativeName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OrganizationGroupName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "organization_group_name", runtime.ParamLocationQuery, *params.OrganizationGroupName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OrganizationGroupUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "organization_group_uuid", runtime.ParamLocationQuery, *params.OrganizationGroupUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "query", runtime.ParamLocationQuery, *params.Query); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.RegistrationCode != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "registration_code", runtime.ParamLocationQuery, *params.RegistrationCode); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_uuid", runtime.ParamLocationQuery, params.UserUuid); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceServiceProvidersUsersListRequest generates requests for MarketplaceServiceProvidersUsersList
+func NewMarketplaceServiceProvidersUsersListRequest(server string, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersUsersListParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "service_provider_uuid", runtime.ParamLocationPath, serviceProviderUuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-service-providers/%s/users/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.AgreementDate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "agreement_date", runtime.ParamLocationQuery, *params.AgreementDate); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CivilNumber != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "civil_number", runtime.ParamLocationQuery, *params.CivilNumber); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer_uuid", runtime.ParamLocationQuery, *params.CustomerUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.DateJoined != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "date_joined", runtime.ParamLocationQuery, *params.DateJoined); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Description != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "description", runtime.ParamLocationQuery, *params.Description); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Email != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "email", runtime.ParamLocationQuery, *params.Email); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Field != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "field", runtime.ParamLocationQuery, *params.Field); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.FullName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "full_name", runtime.ParamLocationQuery, *params.FullName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsActive != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_active", runtime.ParamLocationQuery, *params.IsActive); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsStaff != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_staff", runtime.ParamLocationQuery, *params.IsStaff); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsSupport != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_support", runtime.ParamLocationQuery, *params.IsSupport); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.JobTitle != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "job_title", runtime.ParamLocationQuery, *params.JobTitle); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.NativeName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "native_name", runtime.ParamLocationQuery, *params.NativeName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Organization != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "organization", runtime.ParamLocationQuery, *params.Organization); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OrganizationRoles != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "organization_roles", runtime.ParamLocationQuery, *params.OrganizationRoles); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PhoneNumber != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "phone_number", runtime.ParamLocationQuery, *params.PhoneNumber); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectRoles != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_roles", runtime.ParamLocationQuery, *params.ProjectRoles); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_uuid", runtime.ParamLocationQuery, *params.ProjectUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "query", runtime.ParamLocationQuery, *params.Query); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.RegistrationMethod != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "registration_method", runtime.ParamLocationQuery, *params.RegistrationMethod); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UserKeyword != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_keyword", runtime.ParamLocationQuery, *params.UserKeyword); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Username != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "username", runtime.ParamLocationQuery, *params.Username); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewMarketplaceServiceProvidersDestroyRequest generates requests for MarketplaceServiceProvidersDestroy
 func NewMarketplaceServiceProvidersDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -97188,150 +100617,6 @@ func NewServiceProviderApiSecretCodeGenerateRequest(server string, uuid openapi_
 	return req, nil
 }
 
-// NewMarketplaceServiceProvidersCustomerProjectsListRequest generates requests for MarketplaceServiceProvidersCustomerProjectsList
-func NewMarketplaceServiceProvidersCustomerProjectsListRequest(server string, uuid openapi_types.UUID, params *MarketplaceServiceProvidersCustomerProjectsListParams) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-service-providers/%s/customer_projects/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if params.Page != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.PageSize != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewMarketplaceServiceProvidersCustomersListRequest generates requests for MarketplaceServiceProvidersCustomersList
-func NewMarketplaceServiceProvidersCustomersListRequest(server string, uuid openapi_types.UUID, params *MarketplaceServiceProvidersCustomersListParams) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-service-providers/%s/customers/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if params.Page != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.PageSize != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
 // NewMarketplaceServiceProvidersDeleteUserRequest calls the generic MarketplaceServiceProvidersDeleteUser builder with application/json body
 func NewMarketplaceServiceProvidersDeleteUserRequest(server string, uuid openapi_types.UUID, body MarketplaceServiceProvidersDeleteUserJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -97386,78 +100671,6 @@ func NewMarketplaceServiceProvidersDeleteUserRequestWithBody(server string, uuid
 	}
 
 	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewMarketplaceServiceProvidersKeysListRequest generates requests for MarketplaceServiceProvidersKeysList
-func NewMarketplaceServiceProvidersKeysListRequest(server string, uuid openapi_types.UUID, params *MarketplaceServiceProvidersKeysListParams) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-service-providers/%s/keys/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if params.Page != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.PageSize != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
 
 	return req, nil
 }
@@ -97670,526 +100883,6 @@ func NewMarketplaceServiceProvidersListUsersListRequest(server string, uuid open
 		if params.Username != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "username", runtime.ParamLocationQuery, *params.Username); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewMarketplaceServiceProvidersOfferingsListRequest generates requests for MarketplaceServiceProvidersOfferingsList
-func NewMarketplaceServiceProvidersOfferingsListRequest(server string, uuid openapi_types.UUID, params *MarketplaceServiceProvidersOfferingsListParams) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-service-providers/%s/offerings/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if params.AccessibleViaCalls != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "accessible_via_calls", runtime.ParamLocationQuery, *params.AccessibleViaCalls); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.AllowedCustomerUuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "allowed_customer_uuid", runtime.ParamLocationQuery, *params.AllowedCustomerUuid); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Attributes != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "attributes", runtime.ParamLocationQuery, *params.Attributes); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Billable != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "billable", runtime.ParamLocationQuery, *params.Billable); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.CategoryGroupUuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "category_group_uuid", runtime.ParamLocationQuery, *params.CategoryGroupUuid); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.CategoryUuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "category_uuid", runtime.ParamLocationQuery, *params.CategoryUuid); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Customer != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer", runtime.ParamLocationQuery, *params.Customer); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.CustomerUuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer_uuid", runtime.ParamLocationQuery, *params.CustomerUuid); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Description != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "description", runtime.ParamLocationQuery, *params.Description); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Keyword != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "keyword", runtime.ParamLocationQuery, *params.Keyword); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.O != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "o", runtime.ParamLocationQuery, *params.O); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.OrganizationGroupUuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "organization_group_uuid", runtime.ParamLocationQuery, *params.OrganizationGroupUuid); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Page != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.PageSize != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.ParentUuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "parent_uuid", runtime.ParamLocationQuery, *params.ParentUuid); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.ProjectUuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_uuid", runtime.ParamLocationQuery, *params.ProjectUuid); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.ScopeUuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope_uuid", runtime.ParamLocationQuery, *params.ScopeUuid); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.ServiceManagerUuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "service_manager_uuid", runtime.ParamLocationQuery, *params.ServiceManagerUuid); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Shared != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "shared", runtime.ParamLocationQuery, *params.Shared); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.State != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "state", runtime.ParamLocationQuery, *params.State); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Type != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "type", runtime.ParamLocationQuery, *params.Type); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewMarketplaceServiceProvidersProjectPermissionsListRequest generates requests for MarketplaceServiceProvidersProjectPermissionsList
-func NewMarketplaceServiceProvidersProjectPermissionsListRequest(server string, uuid openapi_types.UUID, params *MarketplaceServiceProvidersProjectPermissionsListParams) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-service-providers/%s/project_permissions/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if params.Page != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.PageSize != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewMarketplaceServiceProvidersProjectsListRequest generates requests for MarketplaceServiceProvidersProjectsList
-func NewMarketplaceServiceProvidersProjectsListRequest(server string, uuid openapi_types.UUID, params *MarketplaceServiceProvidersProjectsListParams) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-service-providers/%s/projects/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if params.Page != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.PageSize != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -98608,150 +101301,6 @@ func NewMarketplaceServiceProvidersUpdateUserRequestWithBody(server string, uuid
 	}
 
 	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewMarketplaceServiceProvidersUserCustomersListRequest generates requests for MarketplaceServiceProvidersUserCustomersList
-func NewMarketplaceServiceProvidersUserCustomersListRequest(server string, uuid openapi_types.UUID, params *MarketplaceServiceProvidersUserCustomersListParams) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-service-providers/%s/user_customers/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if params.Page != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.PageSize != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewMarketplaceServiceProvidersUsersListRequest generates requests for MarketplaceServiceProvidersUsersList
-func NewMarketplaceServiceProvidersUsersListRequest(server string, uuid openapi_types.UUID, params *MarketplaceServiceProvidersUsersListParams) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-service-providers/%s/users/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if params.Page != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.PageSize != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
 
 	return req, nil
 }
@@ -114554,6 +117103,22 @@ func NewProjectsListRequest(server string, params *ProjectsListParams) (*http.Re
 		if params.Field != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "field", runtime.ParamLocationQuery, *params.Field); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Modified != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "modified", runtime.ParamLocationQuery, *params.Modified); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -134355,6 +136920,38 @@ func NewUserPermissionsListRequest(server string, params *UserPermissionsListPar
 	if params != nil {
 		queryValues := queryURL.Query()
 
+		if params.Created != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "created", runtime.ParamLocationQuery, *params.Created); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ExpirationTime != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "expiration_time", runtime.ParamLocationQuery, *params.ExpirationTime); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.FullName != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "full_name", runtime.ParamLocationQuery, *params.FullName); err != nil {
@@ -134646,6 +137243,22 @@ func NewUsersListRequest(server string, params *UsersListParams) (*http.Request,
 	if params != nil {
 		queryValues := queryURL.Query()
 
+		if params.AgreementDate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "agreement_date", runtime.ParamLocationQuery, *params.AgreementDate); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.CivilNumber != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "civil_number", runtime.ParamLocationQuery, *params.CivilNumber); err != nil {
@@ -134665,6 +137278,22 @@ func NewUsersListRequest(server string, params *UsersListParams) (*http.Request,
 		if params.CustomerUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer_uuid", runtime.ParamLocationQuery, *params.CustomerUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.DateJoined != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "date_joined", runtime.ParamLocationQuery, *params.DateJoined); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -141386,6 +144015,30 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceServiceProvidersCreateWithFormdataBodyWithResponse(ctx context.Context, body MarketplaceServiceProvidersCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersCreateResponse, error)
 
+	// MarketplaceServiceProvidersCustomerProjectsListWithResponse request
+	MarketplaceServiceProvidersCustomerProjectsListWithResponse(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersCustomerProjectsListParams, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersCustomerProjectsListResponse, error)
+
+	// MarketplaceServiceProvidersCustomersListWithResponse request
+	MarketplaceServiceProvidersCustomersListWithResponse(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersCustomersListParams, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersCustomersListResponse, error)
+
+	// MarketplaceServiceProvidersKeysListWithResponse request
+	MarketplaceServiceProvidersKeysListWithResponse(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersKeysListParams, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersKeysListResponse, error)
+
+	// MarketplaceServiceProvidersOfferingsListWithResponse request
+	MarketplaceServiceProvidersOfferingsListWithResponse(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersOfferingsListParams, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersOfferingsListResponse, error)
+
+	// MarketplaceServiceProvidersProjectPermissionsListWithResponse request
+	MarketplaceServiceProvidersProjectPermissionsListWithResponse(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersProjectPermissionsListParams, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersProjectPermissionsListResponse, error)
+
+	// MarketplaceServiceProvidersProjectsListWithResponse request
+	MarketplaceServiceProvidersProjectsListWithResponse(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersProjectsListParams, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersProjectsListResponse, error)
+
+	// MarketplaceServiceProvidersUserCustomersListWithResponse request
+	MarketplaceServiceProvidersUserCustomersListWithResponse(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersUserCustomersListParams, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersUserCustomersListResponse, error)
+
+	// MarketplaceServiceProvidersUsersListWithResponse request
+	MarketplaceServiceProvidersUsersListWithResponse(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersUsersListParams, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersUsersListResponse, error)
+
 	// MarketplaceServiceProvidersDestroyWithResponse request
 	MarketplaceServiceProvidersDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersDestroyResponse, error)
 
@@ -141419,12 +144072,6 @@ type ClientWithResponsesInterface interface {
 	// ServiceProviderApiSecretCodeGenerateWithResponse request
 	ServiceProviderApiSecretCodeGenerateWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ServiceProviderApiSecretCodeGenerateResponse, error)
 
-	// MarketplaceServiceProvidersCustomerProjectsListWithResponse request
-	MarketplaceServiceProvidersCustomerProjectsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceServiceProvidersCustomerProjectsListParams, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersCustomerProjectsListResponse, error)
-
-	// MarketplaceServiceProvidersCustomersListWithResponse request
-	MarketplaceServiceProvidersCustomersListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceServiceProvidersCustomersListParams, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersCustomersListResponse, error)
-
 	// MarketplaceServiceProvidersDeleteUserWithBodyWithResponse request with any body
 	MarketplaceServiceProvidersDeleteUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersDeleteUserResponse, error)
 
@@ -141432,20 +144079,8 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceServiceProvidersDeleteUserWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceServiceProvidersDeleteUserFormdataRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersDeleteUserResponse, error)
 
-	// MarketplaceServiceProvidersKeysListWithResponse request
-	MarketplaceServiceProvidersKeysListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceServiceProvidersKeysListParams, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersKeysListResponse, error)
-
 	// MarketplaceServiceProvidersListUsersListWithResponse request
 	MarketplaceServiceProvidersListUsersListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceServiceProvidersListUsersListParams, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersListUsersListResponse, error)
-
-	// MarketplaceServiceProvidersOfferingsListWithResponse request
-	MarketplaceServiceProvidersOfferingsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceServiceProvidersOfferingsListParams, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersOfferingsListResponse, error)
-
-	// MarketplaceServiceProvidersProjectPermissionsListWithResponse request
-	MarketplaceServiceProvidersProjectPermissionsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceServiceProvidersProjectPermissionsListParams, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersProjectPermissionsListResponse, error)
-
-	// MarketplaceServiceProvidersProjectsListWithResponse request
-	MarketplaceServiceProvidersProjectsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceServiceProvidersProjectsListParams, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersProjectsListResponse, error)
 
 	// MarketplaceServiceProvidersRevenueListWithResponse request
 	MarketplaceServiceProvidersRevenueListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceServiceProvidersRevenueListParams, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersRevenueListResponse, error)
@@ -141472,12 +144107,6 @@ type ClientWithResponsesInterface interface {
 	MarketplaceServiceProvidersUpdateUserWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceServiceProvidersUpdateUserJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersUpdateUserResponse, error)
 
 	MarketplaceServiceProvidersUpdateUserWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceServiceProvidersUpdateUserFormdataRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersUpdateUserResponse, error)
-
-	// MarketplaceServiceProvidersUserCustomersListWithResponse request
-	MarketplaceServiceProvidersUserCustomersListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceServiceProvidersUserCustomersListParams, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersUserCustomersListResponse, error)
-
-	// MarketplaceServiceProvidersUsersListWithResponse request
-	MarketplaceServiceProvidersUsersListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceServiceProvidersUsersListParams, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersUsersListResponse, error)
 
 	// MarketplaceStatsComponentUsagesRetrieveWithResponse request
 	MarketplaceStatsComponentUsagesRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*MarketplaceStatsComponentUsagesRetrieveResponse, error)
@@ -155903,6 +158532,182 @@ func (r MarketplaceServiceProvidersCreateResponse) StatusCode() int {
 	return 0
 }
 
+type MarketplaceServiceProvidersCustomerProjectsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]MarketplaceProviderCustomerProject
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceServiceProvidersCustomerProjectsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceServiceProvidersCustomerProjectsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceServiceProvidersCustomersListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]MarketplaceProviderCustomer
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceServiceProvidersCustomersListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceServiceProvidersCustomersListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceServiceProvidersKeysListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]SshKey
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceServiceProvidersKeysListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceServiceProvidersKeysListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceServiceProvidersOfferingsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]ProviderOffering
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceServiceProvidersOfferingsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceServiceProvidersOfferingsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceServiceProvidersProjectPermissionsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]ProjectPermissionLog
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceServiceProvidersProjectPermissionsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceServiceProvidersProjectPermissionsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceServiceProvidersProjectsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]Project
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceServiceProvidersProjectsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceServiceProvidersProjectsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceServiceProvidersUserCustomersListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]MarketplaceProviderCustomer
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceServiceProvidersUserCustomersListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceServiceProvidersUserCustomersListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceServiceProvidersUsersListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]MarketplaceServiceProviderUser
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceServiceProvidersUsersListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceServiceProvidersUsersListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type MarketplaceServiceProvidersDestroyResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -156055,50 +158860,6 @@ func (r ServiceProviderApiSecretCodeGenerateResponse) StatusCode() int {
 	return 0
 }
 
-type MarketplaceServiceProvidersCustomerProjectsListResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *[]ProviderCustomerProject
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceServiceProvidersCustomerProjectsListResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceServiceProvidersCustomerProjectsListResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type MarketplaceServiceProvidersCustomersListResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *[]ProviderCustomer
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceServiceProvidersCustomersListResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceServiceProvidersCustomersListResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
 type MarketplaceServiceProvidersDeleteUserResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -156114,28 +158875,6 @@ func (r MarketplaceServiceProvidersDeleteUserResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceServiceProvidersDeleteUserResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type MarketplaceServiceProvidersKeysListResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *[]SshKey
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceServiceProvidersKeysListResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceServiceProvidersKeysListResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -156158,72 +158897,6 @@ func (r MarketplaceServiceProvidersListUsersListResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceServiceProvidersListUsersListResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type MarketplaceServiceProvidersOfferingsListResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *[]ProviderOffering
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceServiceProvidersOfferingsListResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceServiceProvidersOfferingsListResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type MarketplaceServiceProvidersProjectPermissionsListResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *[]ProjectPermissionLog
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceServiceProvidersProjectPermissionsListResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceServiceProvidersProjectPermissionsListResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type MarketplaceServiceProvidersProjectsListResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *[]Project
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceServiceProvidersProjectsListResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceServiceProvidersProjectsListResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -156355,50 +159028,6 @@ func (r MarketplaceServiceProvidersUpdateUserResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceServiceProvidersUpdateUserResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type MarketplaceServiceProvidersUserCustomersListResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *[]ProviderCustomer
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceServiceProvidersUserCustomersListResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceServiceProvidersUserCustomersListResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type MarketplaceServiceProvidersUsersListResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *[]DetailedProviderUser
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceServiceProvidersUsersListResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceServiceProvidersUsersListResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -176676,6 +179305,78 @@ func (c *ClientWithResponses) MarketplaceServiceProvidersCreateWithFormdataBodyW
 	return ParseMarketplaceServiceProvidersCreateResponse(rsp)
 }
 
+// MarketplaceServiceProvidersCustomerProjectsListWithResponse request returning *MarketplaceServiceProvidersCustomerProjectsListResponse
+func (c *ClientWithResponses) MarketplaceServiceProvidersCustomerProjectsListWithResponse(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersCustomerProjectsListParams, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersCustomerProjectsListResponse, error) {
+	rsp, err := c.MarketplaceServiceProvidersCustomerProjectsList(ctx, serviceProviderUuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceServiceProvidersCustomerProjectsListResponse(rsp)
+}
+
+// MarketplaceServiceProvidersCustomersListWithResponse request returning *MarketplaceServiceProvidersCustomersListResponse
+func (c *ClientWithResponses) MarketplaceServiceProvidersCustomersListWithResponse(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersCustomersListParams, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersCustomersListResponse, error) {
+	rsp, err := c.MarketplaceServiceProvidersCustomersList(ctx, serviceProviderUuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceServiceProvidersCustomersListResponse(rsp)
+}
+
+// MarketplaceServiceProvidersKeysListWithResponse request returning *MarketplaceServiceProvidersKeysListResponse
+func (c *ClientWithResponses) MarketplaceServiceProvidersKeysListWithResponse(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersKeysListParams, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersKeysListResponse, error) {
+	rsp, err := c.MarketplaceServiceProvidersKeysList(ctx, serviceProviderUuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceServiceProvidersKeysListResponse(rsp)
+}
+
+// MarketplaceServiceProvidersOfferingsListWithResponse request returning *MarketplaceServiceProvidersOfferingsListResponse
+func (c *ClientWithResponses) MarketplaceServiceProvidersOfferingsListWithResponse(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersOfferingsListParams, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersOfferingsListResponse, error) {
+	rsp, err := c.MarketplaceServiceProvidersOfferingsList(ctx, serviceProviderUuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceServiceProvidersOfferingsListResponse(rsp)
+}
+
+// MarketplaceServiceProvidersProjectPermissionsListWithResponse request returning *MarketplaceServiceProvidersProjectPermissionsListResponse
+func (c *ClientWithResponses) MarketplaceServiceProvidersProjectPermissionsListWithResponse(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersProjectPermissionsListParams, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersProjectPermissionsListResponse, error) {
+	rsp, err := c.MarketplaceServiceProvidersProjectPermissionsList(ctx, serviceProviderUuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceServiceProvidersProjectPermissionsListResponse(rsp)
+}
+
+// MarketplaceServiceProvidersProjectsListWithResponse request returning *MarketplaceServiceProvidersProjectsListResponse
+func (c *ClientWithResponses) MarketplaceServiceProvidersProjectsListWithResponse(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersProjectsListParams, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersProjectsListResponse, error) {
+	rsp, err := c.MarketplaceServiceProvidersProjectsList(ctx, serviceProviderUuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceServiceProvidersProjectsListResponse(rsp)
+}
+
+// MarketplaceServiceProvidersUserCustomersListWithResponse request returning *MarketplaceServiceProvidersUserCustomersListResponse
+func (c *ClientWithResponses) MarketplaceServiceProvidersUserCustomersListWithResponse(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersUserCustomersListParams, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersUserCustomersListResponse, error) {
+	rsp, err := c.MarketplaceServiceProvidersUserCustomersList(ctx, serviceProviderUuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceServiceProvidersUserCustomersListResponse(rsp)
+}
+
+// MarketplaceServiceProvidersUsersListWithResponse request returning *MarketplaceServiceProvidersUsersListResponse
+func (c *ClientWithResponses) MarketplaceServiceProvidersUsersListWithResponse(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersUsersListParams, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersUsersListResponse, error) {
+	rsp, err := c.MarketplaceServiceProvidersUsersList(ctx, serviceProviderUuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceServiceProvidersUsersListResponse(rsp)
+}
+
 // MarketplaceServiceProvidersDestroyWithResponse request returning *MarketplaceServiceProvidersDestroyResponse
 func (c *ClientWithResponses) MarketplaceServiceProvidersDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersDestroyResponse, error) {
 	rsp, err := c.MarketplaceServiceProvidersDestroy(ctx, uuid, reqEditors...)
@@ -176787,24 +179488,6 @@ func (c *ClientWithResponses) ServiceProviderApiSecretCodeGenerateWithResponse(c
 	return ParseServiceProviderApiSecretCodeGenerateResponse(rsp)
 }
 
-// MarketplaceServiceProvidersCustomerProjectsListWithResponse request returning *MarketplaceServiceProvidersCustomerProjectsListResponse
-func (c *ClientWithResponses) MarketplaceServiceProvidersCustomerProjectsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceServiceProvidersCustomerProjectsListParams, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersCustomerProjectsListResponse, error) {
-	rsp, err := c.MarketplaceServiceProvidersCustomerProjectsList(ctx, uuid, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceServiceProvidersCustomerProjectsListResponse(rsp)
-}
-
-// MarketplaceServiceProvidersCustomersListWithResponse request returning *MarketplaceServiceProvidersCustomersListResponse
-func (c *ClientWithResponses) MarketplaceServiceProvidersCustomersListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceServiceProvidersCustomersListParams, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersCustomersListResponse, error) {
-	rsp, err := c.MarketplaceServiceProvidersCustomersList(ctx, uuid, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceServiceProvidersCustomersListResponse(rsp)
-}
-
 // MarketplaceServiceProvidersDeleteUserWithBodyWithResponse request with arbitrary body returning *MarketplaceServiceProvidersDeleteUserResponse
 func (c *ClientWithResponses) MarketplaceServiceProvidersDeleteUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersDeleteUserResponse, error) {
 	rsp, err := c.MarketplaceServiceProvidersDeleteUserWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -176830,15 +179513,6 @@ func (c *ClientWithResponses) MarketplaceServiceProvidersDeleteUserWithFormdataB
 	return ParseMarketplaceServiceProvidersDeleteUserResponse(rsp)
 }
 
-// MarketplaceServiceProvidersKeysListWithResponse request returning *MarketplaceServiceProvidersKeysListResponse
-func (c *ClientWithResponses) MarketplaceServiceProvidersKeysListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceServiceProvidersKeysListParams, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersKeysListResponse, error) {
-	rsp, err := c.MarketplaceServiceProvidersKeysList(ctx, uuid, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceServiceProvidersKeysListResponse(rsp)
-}
-
 // MarketplaceServiceProvidersListUsersListWithResponse request returning *MarketplaceServiceProvidersListUsersListResponse
 func (c *ClientWithResponses) MarketplaceServiceProvidersListUsersListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceServiceProvidersListUsersListParams, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersListUsersListResponse, error) {
 	rsp, err := c.MarketplaceServiceProvidersListUsersList(ctx, uuid, params, reqEditors...)
@@ -176846,33 +179520,6 @@ func (c *ClientWithResponses) MarketplaceServiceProvidersListUsersListWithRespon
 		return nil, err
 	}
 	return ParseMarketplaceServiceProvidersListUsersListResponse(rsp)
-}
-
-// MarketplaceServiceProvidersOfferingsListWithResponse request returning *MarketplaceServiceProvidersOfferingsListResponse
-func (c *ClientWithResponses) MarketplaceServiceProvidersOfferingsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceServiceProvidersOfferingsListParams, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersOfferingsListResponse, error) {
-	rsp, err := c.MarketplaceServiceProvidersOfferingsList(ctx, uuid, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceServiceProvidersOfferingsListResponse(rsp)
-}
-
-// MarketplaceServiceProvidersProjectPermissionsListWithResponse request returning *MarketplaceServiceProvidersProjectPermissionsListResponse
-func (c *ClientWithResponses) MarketplaceServiceProvidersProjectPermissionsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceServiceProvidersProjectPermissionsListParams, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersProjectPermissionsListResponse, error) {
-	rsp, err := c.MarketplaceServiceProvidersProjectPermissionsList(ctx, uuid, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceServiceProvidersProjectPermissionsListResponse(rsp)
-}
-
-// MarketplaceServiceProvidersProjectsListWithResponse request returning *MarketplaceServiceProvidersProjectsListResponse
-func (c *ClientWithResponses) MarketplaceServiceProvidersProjectsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceServiceProvidersProjectsListParams, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersProjectsListResponse, error) {
-	rsp, err := c.MarketplaceServiceProvidersProjectsList(ctx, uuid, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceServiceProvidersProjectsListResponse(rsp)
 }
 
 // MarketplaceServiceProvidersRevenueListWithResponse request returning *MarketplaceServiceProvidersRevenueListResponse
@@ -176959,24 +179606,6 @@ func (c *ClientWithResponses) MarketplaceServiceProvidersUpdateUserWithFormdataB
 		return nil, err
 	}
 	return ParseMarketplaceServiceProvidersUpdateUserResponse(rsp)
-}
-
-// MarketplaceServiceProvidersUserCustomersListWithResponse request returning *MarketplaceServiceProvidersUserCustomersListResponse
-func (c *ClientWithResponses) MarketplaceServiceProvidersUserCustomersListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceServiceProvidersUserCustomersListParams, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersUserCustomersListResponse, error) {
-	rsp, err := c.MarketplaceServiceProvidersUserCustomersList(ctx, uuid, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceServiceProvidersUserCustomersListResponse(rsp)
-}
-
-// MarketplaceServiceProvidersUsersListWithResponse request returning *MarketplaceServiceProvidersUsersListResponse
-func (c *ClientWithResponses) MarketplaceServiceProvidersUsersListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceServiceProvidersUsersListParams, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersUsersListResponse, error) {
-	rsp, err := c.MarketplaceServiceProvidersUsersList(ctx, uuid, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceServiceProvidersUsersListResponse(rsp)
 }
 
 // MarketplaceStatsComponentUsagesRetrieveWithResponse request returning *MarketplaceStatsComponentUsagesRetrieveResponse
@@ -198013,6 +200642,214 @@ func ParseMarketplaceServiceProvidersCreateResponse(rsp *http.Response) (*Market
 	return response, nil
 }
 
+// ParseMarketplaceServiceProvidersCustomerProjectsListResponse parses an HTTP response from a MarketplaceServiceProvidersCustomerProjectsListWithResponse call
+func ParseMarketplaceServiceProvidersCustomerProjectsListResponse(rsp *http.Response) (*MarketplaceServiceProvidersCustomerProjectsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceServiceProvidersCustomerProjectsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []MarketplaceProviderCustomerProject
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceServiceProvidersCustomersListResponse parses an HTTP response from a MarketplaceServiceProvidersCustomersListWithResponse call
+func ParseMarketplaceServiceProvidersCustomersListResponse(rsp *http.Response) (*MarketplaceServiceProvidersCustomersListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceServiceProvidersCustomersListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []MarketplaceProviderCustomer
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceServiceProvidersKeysListResponse parses an HTTP response from a MarketplaceServiceProvidersKeysListWithResponse call
+func ParseMarketplaceServiceProvidersKeysListResponse(rsp *http.Response) (*MarketplaceServiceProvidersKeysListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceServiceProvidersKeysListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []SshKey
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceServiceProvidersOfferingsListResponse parses an HTTP response from a MarketplaceServiceProvidersOfferingsListWithResponse call
+func ParseMarketplaceServiceProvidersOfferingsListResponse(rsp *http.Response) (*MarketplaceServiceProvidersOfferingsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceServiceProvidersOfferingsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []ProviderOffering
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceServiceProvidersProjectPermissionsListResponse parses an HTTP response from a MarketplaceServiceProvidersProjectPermissionsListWithResponse call
+func ParseMarketplaceServiceProvidersProjectPermissionsListResponse(rsp *http.Response) (*MarketplaceServiceProvidersProjectPermissionsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceServiceProvidersProjectPermissionsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []ProjectPermissionLog
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceServiceProvidersProjectsListResponse parses an HTTP response from a MarketplaceServiceProvidersProjectsListWithResponse call
+func ParseMarketplaceServiceProvidersProjectsListResponse(rsp *http.Response) (*MarketplaceServiceProvidersProjectsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceServiceProvidersProjectsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []Project
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceServiceProvidersUserCustomersListResponse parses an HTTP response from a MarketplaceServiceProvidersUserCustomersListWithResponse call
+func ParseMarketplaceServiceProvidersUserCustomersListResponse(rsp *http.Response) (*MarketplaceServiceProvidersUserCustomersListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceServiceProvidersUserCustomersListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []MarketplaceProviderCustomer
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceServiceProvidersUsersListResponse parses an HTTP response from a MarketplaceServiceProvidersUsersListWithResponse call
+func ParseMarketplaceServiceProvidersUsersListResponse(rsp *http.Response) (*MarketplaceServiceProvidersUsersListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceServiceProvidersUsersListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []MarketplaceServiceProviderUser
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseMarketplaceServiceProvidersDestroyResponse parses an HTTP response from a MarketplaceServiceProvidersDestroyWithResponse call
 func ParseMarketplaceServiceProvidersDestroyResponse(rsp *http.Response) (*MarketplaceServiceProvidersDestroyResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -198175,58 +201012,6 @@ func ParseServiceProviderApiSecretCodeGenerateResponse(rsp *http.Response) (*Ser
 	return response, nil
 }
 
-// ParseMarketplaceServiceProvidersCustomerProjectsListResponse parses an HTTP response from a MarketplaceServiceProvidersCustomerProjectsListWithResponse call
-func ParseMarketplaceServiceProvidersCustomerProjectsListResponse(rsp *http.Response) (*MarketplaceServiceProvidersCustomerProjectsListResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceServiceProvidersCustomerProjectsListResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []ProviderCustomerProject
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceServiceProvidersCustomersListResponse parses an HTTP response from a MarketplaceServiceProvidersCustomersListWithResponse call
-func ParseMarketplaceServiceProvidersCustomersListResponse(rsp *http.Response) (*MarketplaceServiceProvidersCustomersListResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceServiceProvidersCustomersListResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []ProviderCustomer
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
 // ParseMarketplaceServiceProvidersDeleteUserResponse parses an HTTP response from a MarketplaceServiceProvidersDeleteUserWithResponse call
 func ParseMarketplaceServiceProvidersDeleteUserResponse(rsp *http.Response) (*MarketplaceServiceProvidersDeleteUserResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -198238,32 +201023,6 @@ func ParseMarketplaceServiceProvidersDeleteUserResponse(rsp *http.Response) (*Ma
 	response := &MarketplaceServiceProvidersDeleteUserResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceServiceProvidersKeysListResponse parses an HTTP response from a MarketplaceServiceProvidersKeysListWithResponse call
-func ParseMarketplaceServiceProvidersKeysListResponse(rsp *http.Response) (*MarketplaceServiceProvidersKeysListResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceServiceProvidersKeysListResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []SshKey
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
 	}
 
 	return response, nil
@@ -198285,84 +201044,6 @@ func ParseMarketplaceServiceProvidersListUsersListResponse(rsp *http.Response) (
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest []UserRoleDetails
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceServiceProvidersOfferingsListResponse parses an HTTP response from a MarketplaceServiceProvidersOfferingsListWithResponse call
-func ParseMarketplaceServiceProvidersOfferingsListResponse(rsp *http.Response) (*MarketplaceServiceProvidersOfferingsListResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceServiceProvidersOfferingsListResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []ProviderOffering
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceServiceProvidersProjectPermissionsListResponse parses an HTTP response from a MarketplaceServiceProvidersProjectPermissionsListWithResponse call
-func ParseMarketplaceServiceProvidersProjectPermissionsListResponse(rsp *http.Response) (*MarketplaceServiceProvidersProjectPermissionsListResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceServiceProvidersProjectPermissionsListResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []ProjectPermissionLog
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceServiceProvidersProjectsListResponse parses an HTTP response from a MarketplaceServiceProvidersProjectsListWithResponse call
-func ParseMarketplaceServiceProvidersProjectsListResponse(rsp *http.Response) (*MarketplaceServiceProvidersProjectsListResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceServiceProvidersProjectsListResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []Project
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -198514,58 +201195,6 @@ func ParseMarketplaceServiceProvidersUpdateUserResponse(rsp *http.Response) (*Ma
 	response := &MarketplaceServiceProvidersUpdateUserResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceServiceProvidersUserCustomersListResponse parses an HTTP response from a MarketplaceServiceProvidersUserCustomersListWithResponse call
-func ParseMarketplaceServiceProvidersUserCustomersListResponse(rsp *http.Response) (*MarketplaceServiceProvidersUserCustomersListResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceServiceProvidersUserCustomersListResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []ProviderCustomer
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceServiceProvidersUsersListResponse parses an HTTP response from a MarketplaceServiceProvidersUsersListWithResponse call
-func ParseMarketplaceServiceProvidersUsersListResponse(rsp *http.Response) (*MarketplaceServiceProvidersUsersListResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceServiceProvidersUsersListResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []DetailedProviderUser
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
 	}
 
 	return response, nil
