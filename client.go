@@ -19639,11 +19639,16 @@ type MarketplaceOfferingFilesRetrieveParamsField string
 
 // MarketplaceOfferingPermissionsLogListParams defines parameters for MarketplaceOfferingPermissionsLogList.
 type MarketplaceOfferingPermissionsLogListParams struct {
+	// Created Created after
+	Created  *time.Time          `form:"created,omitempty" json:"created,omitempty"`
 	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
 
 	// FullName User full name contains
-	FullName   *string `form:"full_name,omitempty" json:"full_name,omitempty"`
-	NativeName *string `form:"native_name,omitempty" json:"native_name,omitempty"`
+	FullName *string `form:"full_name,omitempty" json:"full_name,omitempty"`
+
+	// Modified Modified after
+	Modified   *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+	NativeName *string    `form:"native_name,omitempty" json:"native_name,omitempty"`
 
 	// O Ordering
 	//
@@ -19683,11 +19688,16 @@ type MarketplaceOfferingPermissionsLogListParamsO string
 
 // MarketplaceOfferingPermissionsListParams defines parameters for MarketplaceOfferingPermissionsList.
 type MarketplaceOfferingPermissionsListParams struct {
+	// Created Created after
+	Created  *time.Time          `form:"created,omitempty" json:"created,omitempty"`
 	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
 
 	// FullName User full name contains
-	FullName   *string `form:"full_name,omitempty" json:"full_name,omitempty"`
-	NativeName *string `form:"native_name,omitempty" json:"native_name,omitempty"`
+	FullName *string `form:"full_name,omitempty" json:"full_name,omitempty"`
+
+	// Modified Modified after
+	Modified   *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+	NativeName *string    `form:"native_name,omitempty" json:"native_name,omitempty"`
 
 	// O Ordering
 	//
@@ -20854,13 +20864,17 @@ type MarketplaceServiceProvidersOfferingsListParamsState string
 
 // MarketplaceServiceProvidersProjectPermissionsListParams defines parameters for MarketplaceServiceProvidersProjectPermissionsList.
 type MarketplaceServiceProvidersProjectPermissionsListParams struct {
+	// Created Created after
 	Created        *time.Time                                                      `form:"created,omitempty" json:"created,omitempty"`
 	ExpirationTime *time.Time                                                      `form:"expiration_time,omitempty" json:"expiration_time,omitempty"`
 	Field          *[]MarketplaceServiceProvidersProjectPermissionsListParamsField `form:"field,omitempty" json:"field,omitempty"`
 
 	// FullName User full name contains
-	FullName   *string `form:"full_name,omitempty" json:"full_name,omitempty"`
-	NativeName *string `form:"native_name,omitempty" json:"native_name,omitempty"`
+	FullName *string `form:"full_name,omitempty" json:"full_name,omitempty"`
+
+	// Modified Modified after
+	Modified   *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+	NativeName *string    `form:"native_name,omitempty" json:"native_name,omitempty"`
 
 	// O Ordering
 	//
@@ -23362,12 +23376,16 @@ type UserPermissionRequestsListParamsState string
 
 // UserPermissionsListParams defines parameters for UserPermissionsList.
 type UserPermissionsListParams struct {
+	// Created Created after
 	Created        *time.Time `form:"created,omitempty" json:"created,omitempty"`
 	ExpirationTime *time.Time `form:"expiration_time,omitempty" json:"expiration_time,omitempty"`
 
 	// FullName User full name contains
-	FullName   *string `form:"full_name,omitempty" json:"full_name,omitempty"`
-	NativeName *string `form:"native_name,omitempty" json:"native_name,omitempty"`
+	FullName *string `form:"full_name,omitempty" json:"full_name,omitempty"`
+
+	// Modified Modified after
+	Modified   *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+	NativeName *string    `form:"native_name,omitempty" json:"native_name,omitempty"`
 
 	// O Ordering
 	//
@@ -82801,6 +82819,22 @@ func NewMarketplaceOfferingPermissionsLogListRequest(server string, params *Mark
 	if params != nil {
 		queryValues := queryURL.Query()
 
+		if params.Created != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "created", runtime.ParamLocationQuery, *params.Created); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Customer != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer", runtime.ParamLocationQuery, *params.Customer); err != nil {
@@ -82820,6 +82854,22 @@ func NewMarketplaceOfferingPermissionsLogListRequest(server string, params *Mark
 		if params.FullName != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "full_name", runtime.ParamLocationQuery, *params.FullName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Modified != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "modified", runtime.ParamLocationQuery, *params.Modified); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -83124,6 +83174,22 @@ func NewMarketplaceOfferingPermissionsListRequest(server string, params *Marketp
 	if params != nil {
 		queryValues := queryURL.Query()
 
+		if params.Created != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "created", runtime.ParamLocationQuery, *params.Created); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Customer != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer", runtime.ParamLocationQuery, *params.Customer); err != nil {
@@ -83143,6 +83209,22 @@ func NewMarketplaceOfferingPermissionsListRequest(server string, params *Marketp
 		if params.FullName != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "full_name", runtime.ParamLocationQuery, *params.FullName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Modified != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "modified", runtime.ParamLocationQuery, *params.Modified); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -99102,6 +99184,22 @@ func NewMarketplaceServiceProvidersProjectPermissionsListRequest(server string, 
 		if params.FullName != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "full_name", runtime.ParamLocationQuery, *params.FullName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Modified != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "modified", runtime.ParamLocationQuery, *params.Modified); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -137080,6 +137178,22 @@ func NewUserPermissionsListRequest(server string, params *UserPermissionsListPar
 		if params.FullName != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "full_name", runtime.ParamLocationQuery, *params.FullName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Modified != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "modified", runtime.ParamLocationQuery, *params.Modified); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
