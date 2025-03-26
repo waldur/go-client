@@ -2942,54 +2942,50 @@ const (
 
 // Defines values for MarketplaceOfferingUsersListParamsField.
 const (
-	MarketplaceOfferingUsersListParamsFieldCreated         MarketplaceOfferingUsersListParamsField = "created"
-	MarketplaceOfferingUsersListParamsFieldCustomerName    MarketplaceOfferingUsersListParamsField = "customer_name"
-	MarketplaceOfferingUsersListParamsFieldCustomerUuid    MarketplaceOfferingUsersListParamsField = "customer_uuid"
-	MarketplaceOfferingUsersListParamsFieldIsRestricted    MarketplaceOfferingUsersListParamsField = "is_restricted"
-	MarketplaceOfferingUsersListParamsFieldModified        MarketplaceOfferingUsersListParamsField = "modified"
-	MarketplaceOfferingUsersListParamsFieldOffering        MarketplaceOfferingUsersListParamsField = "offering"
-	MarketplaceOfferingUsersListParamsFieldOfferingName    MarketplaceOfferingUsersListParamsField = "offering_name"
-	MarketplaceOfferingUsersListParamsFieldOfferingUuid    MarketplaceOfferingUsersListParamsField = "offering_uuid"
-	MarketplaceOfferingUsersListParamsFieldPropagationDate MarketplaceOfferingUsersListParamsField = "propagation_date"
-	MarketplaceOfferingUsersListParamsFieldUrl             MarketplaceOfferingUsersListParamsField = "url"
-	MarketplaceOfferingUsersListParamsFieldUser            MarketplaceOfferingUsersListParamsField = "user"
-	MarketplaceOfferingUsersListParamsFieldUserFullName    MarketplaceOfferingUsersListParamsField = "user_full_name"
-	MarketplaceOfferingUsersListParamsFieldUserUsername    MarketplaceOfferingUsersListParamsField = "user_username"
-	MarketplaceOfferingUsersListParamsFieldUserUuid        MarketplaceOfferingUsersListParamsField = "user_uuid"
-	MarketplaceOfferingUsersListParamsFieldUsername        MarketplaceOfferingUsersListParamsField = "username"
-	MarketplaceOfferingUsersListParamsFieldUuid            MarketplaceOfferingUsersListParamsField = "uuid"
+	MarketplaceOfferingUsersListParamsFieldCreated      MarketplaceOfferingUsersListParamsField = "created"
+	MarketplaceOfferingUsersListParamsFieldCustomerName MarketplaceOfferingUsersListParamsField = "customer_name"
+	MarketplaceOfferingUsersListParamsFieldCustomerUuid MarketplaceOfferingUsersListParamsField = "customer_uuid"
+	MarketplaceOfferingUsersListParamsFieldIsRestricted MarketplaceOfferingUsersListParamsField = "is_restricted"
+	MarketplaceOfferingUsersListParamsFieldModified     MarketplaceOfferingUsersListParamsField = "modified"
+	MarketplaceOfferingUsersListParamsFieldOffering     MarketplaceOfferingUsersListParamsField = "offering"
+	MarketplaceOfferingUsersListParamsFieldOfferingName MarketplaceOfferingUsersListParamsField = "offering_name"
+	MarketplaceOfferingUsersListParamsFieldOfferingUuid MarketplaceOfferingUsersListParamsField = "offering_uuid"
+	MarketplaceOfferingUsersListParamsFieldUrl          MarketplaceOfferingUsersListParamsField = "url"
+	MarketplaceOfferingUsersListParamsFieldUser         MarketplaceOfferingUsersListParamsField = "user"
+	MarketplaceOfferingUsersListParamsFieldUserFullName MarketplaceOfferingUsersListParamsField = "user_full_name"
+	MarketplaceOfferingUsersListParamsFieldUserUsername MarketplaceOfferingUsersListParamsField = "user_username"
+	MarketplaceOfferingUsersListParamsFieldUserUuid     MarketplaceOfferingUsersListParamsField = "user_uuid"
+	MarketplaceOfferingUsersListParamsFieldUsername     MarketplaceOfferingUsersListParamsField = "username"
+	MarketplaceOfferingUsersListParamsFieldUuid         MarketplaceOfferingUsersListParamsField = "uuid"
 )
 
 // Defines values for MarketplaceOfferingUsersListParamsO.
 const (
-	MarketplaceOfferingUsersListParamsOCreated              MarketplaceOfferingUsersListParamsO = "created"
-	MarketplaceOfferingUsersListParamsOMinusCreated         MarketplaceOfferingUsersListParamsO = "-created"
-	MarketplaceOfferingUsersListParamsOMinusModified        MarketplaceOfferingUsersListParamsO = "-modified"
-	MarketplaceOfferingUsersListParamsOMinusPropagationDate MarketplaceOfferingUsersListParamsO = "-propagation_date"
-	MarketplaceOfferingUsersListParamsOMinusUsername        MarketplaceOfferingUsersListParamsO = "-username"
-	MarketplaceOfferingUsersListParamsOModified             MarketplaceOfferingUsersListParamsO = "modified"
-	MarketplaceOfferingUsersListParamsOPropagationDate      MarketplaceOfferingUsersListParamsO = "propagation_date"
-	MarketplaceOfferingUsersListParamsOUsername             MarketplaceOfferingUsersListParamsO = "username"
+	MarketplaceOfferingUsersListParamsOCreated       MarketplaceOfferingUsersListParamsO = "created"
+	MarketplaceOfferingUsersListParamsOMinusCreated  MarketplaceOfferingUsersListParamsO = "-created"
+	MarketplaceOfferingUsersListParamsOMinusModified MarketplaceOfferingUsersListParamsO = "-modified"
+	MarketplaceOfferingUsersListParamsOMinusUsername MarketplaceOfferingUsersListParamsO = "-username"
+	MarketplaceOfferingUsersListParamsOModified      MarketplaceOfferingUsersListParamsO = "modified"
+	MarketplaceOfferingUsersListParamsOUsername      MarketplaceOfferingUsersListParamsO = "username"
 )
 
 // Defines values for MarketplaceOfferingUsersRetrieveParamsField.
 const (
-	MarketplaceOfferingUsersRetrieveParamsFieldCreated         MarketplaceOfferingUsersRetrieveParamsField = "created"
-	MarketplaceOfferingUsersRetrieveParamsFieldCustomerName    MarketplaceOfferingUsersRetrieveParamsField = "customer_name"
-	MarketplaceOfferingUsersRetrieveParamsFieldCustomerUuid    MarketplaceOfferingUsersRetrieveParamsField = "customer_uuid"
-	MarketplaceOfferingUsersRetrieveParamsFieldIsRestricted    MarketplaceOfferingUsersRetrieveParamsField = "is_restricted"
-	MarketplaceOfferingUsersRetrieveParamsFieldModified        MarketplaceOfferingUsersRetrieveParamsField = "modified"
-	MarketplaceOfferingUsersRetrieveParamsFieldOffering        MarketplaceOfferingUsersRetrieveParamsField = "offering"
-	MarketplaceOfferingUsersRetrieveParamsFieldOfferingName    MarketplaceOfferingUsersRetrieveParamsField = "offering_name"
-	MarketplaceOfferingUsersRetrieveParamsFieldOfferingUuid    MarketplaceOfferingUsersRetrieveParamsField = "offering_uuid"
-	MarketplaceOfferingUsersRetrieveParamsFieldPropagationDate MarketplaceOfferingUsersRetrieveParamsField = "propagation_date"
-	MarketplaceOfferingUsersRetrieveParamsFieldUrl             MarketplaceOfferingUsersRetrieveParamsField = "url"
-	MarketplaceOfferingUsersRetrieveParamsFieldUser            MarketplaceOfferingUsersRetrieveParamsField = "user"
-	MarketplaceOfferingUsersRetrieveParamsFieldUserFullName    MarketplaceOfferingUsersRetrieveParamsField = "user_full_name"
-	MarketplaceOfferingUsersRetrieveParamsFieldUserUsername    MarketplaceOfferingUsersRetrieveParamsField = "user_username"
-	MarketplaceOfferingUsersRetrieveParamsFieldUserUuid        MarketplaceOfferingUsersRetrieveParamsField = "user_uuid"
-	MarketplaceOfferingUsersRetrieveParamsFieldUsername        MarketplaceOfferingUsersRetrieveParamsField = "username"
-	MarketplaceOfferingUsersRetrieveParamsFieldUuid            MarketplaceOfferingUsersRetrieveParamsField = "uuid"
+	MarketplaceOfferingUsersRetrieveParamsFieldCreated      MarketplaceOfferingUsersRetrieveParamsField = "created"
+	MarketplaceOfferingUsersRetrieveParamsFieldCustomerName MarketplaceOfferingUsersRetrieveParamsField = "customer_name"
+	MarketplaceOfferingUsersRetrieveParamsFieldCustomerUuid MarketplaceOfferingUsersRetrieveParamsField = "customer_uuid"
+	MarketplaceOfferingUsersRetrieveParamsFieldIsRestricted MarketplaceOfferingUsersRetrieveParamsField = "is_restricted"
+	MarketplaceOfferingUsersRetrieveParamsFieldModified     MarketplaceOfferingUsersRetrieveParamsField = "modified"
+	MarketplaceOfferingUsersRetrieveParamsFieldOffering     MarketplaceOfferingUsersRetrieveParamsField = "offering"
+	MarketplaceOfferingUsersRetrieveParamsFieldOfferingName MarketplaceOfferingUsersRetrieveParamsField = "offering_name"
+	MarketplaceOfferingUsersRetrieveParamsFieldOfferingUuid MarketplaceOfferingUsersRetrieveParamsField = "offering_uuid"
+	MarketplaceOfferingUsersRetrieveParamsFieldUrl          MarketplaceOfferingUsersRetrieveParamsField = "url"
+	MarketplaceOfferingUsersRetrieveParamsFieldUser         MarketplaceOfferingUsersRetrieveParamsField = "user"
+	MarketplaceOfferingUsersRetrieveParamsFieldUserFullName MarketplaceOfferingUsersRetrieveParamsField = "user_full_name"
+	MarketplaceOfferingUsersRetrieveParamsFieldUserUsername MarketplaceOfferingUsersRetrieveParamsField = "user_username"
+	MarketplaceOfferingUsersRetrieveParamsFieldUserUuid     MarketplaceOfferingUsersRetrieveParamsField = "user_uuid"
+	MarketplaceOfferingUsersRetrieveParamsFieldUsername     MarketplaceOfferingUsersRetrieveParamsField = "username"
+	MarketplaceOfferingUsersRetrieveParamsFieldUuid         MarketplaceOfferingUsersRetrieveParamsField = "uuid"
 )
 
 // Defines values for MarketplaceOrdersListParamsField.
@@ -12238,15 +12234,14 @@ type OfferingUser struct {
 	CustomerUuid *openapi_types.UUID `json:"customer_uuid,omitempty"`
 
 	// IsRestricted Signal to service if the user account is restricted or not
-	IsRestricted    *bool               `json:"is_restricted,omitempty"`
-	Modified        *time.Time          `json:"modified,omitempty"`
-	Offering        *string             `json:"offering,omitempty"`
-	OfferingName    *string             `json:"offering_name,omitempty"`
-	OfferingUuid    *openapi_types.UUID `json:"offering_uuid,omitempty"`
-	PropagationDate *time.Time          `json:"propagation_date"`
-	Url             *string             `json:"url,omitempty"`
-	User            *string             `json:"user,omitempty"`
-	UserFullName    *string             `json:"user_full_name,omitempty"`
+	IsRestricted *bool               `json:"is_restricted,omitempty"`
+	Modified     *time.Time          `json:"modified,omitempty"`
+	Offering     *string             `json:"offering,omitempty"`
+	OfferingName *string             `json:"offering_name,omitempty"`
+	OfferingUuid *openapi_types.UUID `json:"offering_uuid,omitempty"`
+	Url          *string             `json:"url,omitempty"`
+	User         *string             `json:"user,omitempty"`
+	UserFullName *string             `json:"user_full_name,omitempty"`
 
 	// UserUsername Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
 	UserUsername *string             `json:"user_username,omitempty"`
@@ -12257,10 +12252,9 @@ type OfferingUser struct {
 
 // OfferingUserRequest defines model for OfferingUserRequest.
 type OfferingUserRequest struct {
-	Offering        string     `json:"offering"`
-	PropagationDate *time.Time `json:"propagation_date"`
-	User            string     `json:"user"`
-	Username        *string    `json:"username"`
+	Offering string  `json:"offering"`
+	User     string  `json:"user"`
+	Username *string `json:"username"`
 }
 
 // OfferingUserRole defines model for OfferingUserRole.
@@ -13247,15 +13241,22 @@ type OpenStackSubNetAllocationPool struct {
 	Start *string `json:"start,omitempty"`
 }
 
+// OpenStackSubNetAllocationPoolRequest defines model for OpenStackSubNetAllocationPoolRequest.
+type OpenStackSubNetAllocationPoolRequest struct {
+	End   string `json:"end"`
+	Start string `json:"start"`
+}
+
 // OpenStackSubNetRequest defines model for OpenStackSubNetRequest.
 type OpenStackSubNetRequest struct {
-	Cidr           *string                        `json:"cidr,omitempty"`
-	Description    *string                        `json:"description,omitempty"`
-	DisableGateway *bool                          `json:"disable_gateway,omitempty"`
-	DnsNameservers *[]string                      `json:"dns_nameservers,omitempty"`
-	GatewayIp      *string                        `json:"gateway_ip"`
-	HostRoutes     *[]OpenStackStaticRouteRequest `json:"host_routes,omitempty"`
-	Name           string                         `json:"name"`
+	AllocationPools *[]OpenStackSubNetAllocationPoolRequest `json:"allocation_pools,omitempty"`
+	Cidr            *string                                 `json:"cidr,omitempty"`
+	Description     *string                                 `json:"description,omitempty"`
+	DisableGateway  *bool                                   `json:"disable_gateway,omitempty"`
+	DnsNameservers  *[]string                               `json:"dns_nameservers,omitempty"`
+	GatewayIp       *string                                 `json:"gateway_ip"`
+	HostRoutes      *[]OpenStackStaticRouteRequest          `json:"host_routes,omitempty"`
+	Name            string                                  `json:"name"`
 }
 
 // OpenStackTenant defines model for OpenStackTenant.
@@ -13997,10 +13998,9 @@ type PatchedOfferingUsagePolicyRequest struct {
 
 // PatchedOfferingUserRequest defines model for PatchedOfferingUserRequest.
 type PatchedOfferingUserRequest struct {
-	Offering        *string    `json:"offering,omitempty"`
-	PropagationDate *time.Time `json:"propagation_date"`
-	User            *string    `json:"user,omitempty"`
-	Username        *string    `json:"username"`
+	Offering *string `json:"offering,omitempty"`
+	User     *string `json:"user,omitempty"`
+	Username *string `json:"username"`
 }
 
 // PatchedOfferingUserRoleRequest defines model for PatchedOfferingUserRoleRequest.
@@ -14063,12 +14063,14 @@ type PatchedOpenStackSnapshotRequest struct {
 
 // PatchedOpenStackSubNetRequest defines model for PatchedOpenStackSubNetRequest.
 type PatchedOpenStackSubNetRequest struct {
-	Description    *string                        `json:"description,omitempty"`
-	DisableGateway *bool                          `json:"disable_gateway,omitempty"`
-	DnsNameservers *[]string                      `json:"dns_nameservers,omitempty"`
-	GatewayIp      *string                        `json:"gateway_ip"`
-	HostRoutes     *[]OpenStackStaticRouteRequest `json:"host_routes,omitempty"`
-	Name           *string                        `json:"name,omitempty"`
+	AllocationPools *[]OpenStackSubNetAllocationPoolRequest `json:"allocation_pools,omitempty"`
+	Cidr            *string                                 `json:"cidr,omitempty"`
+	Description     *string                                 `json:"description,omitempty"`
+	DisableGateway  *bool                                   `json:"disable_gateway,omitempty"`
+	DnsNameservers  *[]string                               `json:"dns_nameservers,omitempty"`
+	GatewayIp       *string                                 `json:"gateway_ip"`
+	HostRoutes      *[]OpenStackStaticRouteRequest          `json:"host_routes,omitempty"`
+	Name            *string                                 `json:"name,omitempty"`
 }
 
 // PatchedOpenStackTenantRequest defines model for PatchedOpenStackTenantRequest.
@@ -19766,10 +19768,9 @@ type MarketplaceOfferingUserRolesListParams struct {
 // MarketplaceOfferingUsersListParams defines parameters for MarketplaceOfferingUsersList.
 type MarketplaceOfferingUsersListParams struct {
 	// Created Created after
-	Created         *time.Time                                 `form:"created,omitempty" json:"created,omitempty"`
-	Field           *[]MarketplaceOfferingUsersListParamsField `form:"field,omitempty" json:"field,omitempty"`
-	IsNotPropagated *bool                                      `form:"is_not_propagated,omitempty" json:"is_not_propagated,omitempty"`
-	IsRestricted    *bool                                      `form:"is_restricted,omitempty" json:"is_restricted,omitempty"`
+	Created      *time.Time                                 `form:"created,omitempty" json:"created,omitempty"`
+	Field        *[]MarketplaceOfferingUsersListParamsField `form:"field,omitempty" json:"field,omitempty"`
+	IsRestricted *bool                                      `form:"is_restricted,omitempty" json:"is_restricted,omitempty"`
 
 	// Modified Modified after
 	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
@@ -19786,8 +19787,6 @@ type MarketplaceOfferingUsersListParams struct {
 	// PageSize Number of results to return per page.
 	PageSize           *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
 	ParentOfferingUuid *openapi_types.UUID `form:"parent_offering_uuid,omitempty" json:"parent_offering_uuid,omitempty"`
-	PropagatedAfter    *time.Time          `form:"propagated_after,omitempty" json:"propagated_after,omitempty"`
-	PropagatedBefore   *time.Time          `form:"propagated_before,omitempty" json:"propagated_before,omitempty"`
 	ProviderUuid       *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
 	Query              *string             `form:"query,omitempty" json:"query,omitempty"`
 	UserUsername       *string             `form:"user_username,omitempty" json:"user_username,omitempty"`
@@ -20277,6 +20276,15 @@ type MarketplaceProviderOfferingsListUsersListParamsField string
 
 // MarketplaceProviderOfferingsListUsersListParamsO defines parameters for MarketplaceProviderOfferingsListUsersList.
 type MarketplaceProviderOfferingsListUsersListParamsO string
+
+// MarketplaceProviderOfferingsOrdersListParams defines parameters for MarketplaceProviderOfferingsOrdersList.
+type MarketplaceProviderOfferingsOrdersListParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
 
 // MarketplaceProviderOfferingsStatsRetrieveParams defines parameters for MarketplaceProviderOfferingsStatsRetrieve.
 type MarketplaceProviderOfferingsStatsRetrieveParams struct {
@@ -20984,12 +20992,15 @@ type MarketplaceServiceProvidersUsersListParams struct {
 	Field       *[]MarketplaceServiceProvidersUsersListParamsField `form:"field,omitempty" json:"field,omitempty"`
 
 	// FullName Full name
-	FullName   *string `form:"full_name,omitempty" json:"full_name,omitempty"`
-	IsActive   *bool   `form:"is_active,omitempty" json:"is_active,omitempty"`
-	IsStaff    *bool   `form:"is_staff,omitempty" json:"is_staff,omitempty"`
-	IsSupport  *bool   `form:"is_support,omitempty" json:"is_support,omitempty"`
-	JobTitle   *string `form:"job_title,omitempty" json:"job_title,omitempty"`
-	NativeName *string `form:"native_name,omitempty" json:"native_name,omitempty"`
+	FullName  *string `form:"full_name,omitempty" json:"full_name,omitempty"`
+	IsActive  *bool   `form:"is_active,omitempty" json:"is_active,omitempty"`
+	IsStaff   *bool   `form:"is_staff,omitempty" json:"is_staff,omitempty"`
+	IsSupport *bool   `form:"is_support,omitempty" json:"is_support,omitempty"`
+	JobTitle  *string `form:"job_title,omitempty" json:"job_title,omitempty"`
+
+	// Modified Date modified after
+	Modified   *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+	NativeName *string    `form:"native_name,omitempty" json:"native_name,omitempty"`
 
 	// O Ordering
 	//
@@ -23407,12 +23418,15 @@ type UsersListParams struct {
 	Field       *[]UsersListParamsField `form:"field,omitempty" json:"field,omitempty"`
 
 	// FullName Full name
-	FullName   *string `form:"full_name,omitempty" json:"full_name,omitempty"`
-	IsActive   *bool   `form:"is_active,omitempty" json:"is_active,omitempty"`
-	IsStaff    *bool   `form:"is_staff,omitempty" json:"is_staff,omitempty"`
-	IsSupport  *bool   `form:"is_support,omitempty" json:"is_support,omitempty"`
-	JobTitle   *string `form:"job_title,omitempty" json:"job_title,omitempty"`
-	NativeName *string `form:"native_name,omitempty" json:"native_name,omitempty"`
+	FullName  *string `form:"full_name,omitempty" json:"full_name,omitempty"`
+	IsActive  *bool   `form:"is_active,omitempty" json:"is_active,omitempty"`
+	IsStaff   *bool   `form:"is_staff,omitempty" json:"is_staff,omitempty"`
+	IsSupport *bool   `form:"is_support,omitempty" json:"is_support,omitempty"`
+	JobTitle  *string `form:"job_title,omitempty" json:"job_title,omitempty"`
+
+	// Modified Date modified after
+	Modified   *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+	NativeName *string    `form:"native_name,omitempty" json:"native_name,omitempty"`
 
 	// O Ordering
 	//
@@ -31547,6 +31561,12 @@ type ClientInterface interface {
 
 	// MarketplaceProviderOfferingsListUsersList request
 	MarketplaceProviderOfferingsListUsersList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListUsersListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProviderOfferingsOrdersList request
+	MarketplaceProviderOfferingsOrdersList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsOrdersListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProviderOfferingsOrdersRetrieve request
+	MarketplaceProviderOfferingsOrdersRetrieve(ctx context.Context, uuid string, orderUuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceProviderOfferingsPauseWithBody request with any body
 	MarketplaceProviderOfferingsPauseWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -43427,6 +43447,30 @@ func (c *Client) MarketplaceProviderOfferingsListCustomerUsersList(ctx context.C
 
 func (c *Client) MarketplaceProviderOfferingsListUsersList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListUsersListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProviderOfferingsListUsersListRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderOfferingsOrdersList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsOrdersListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsOrdersListRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderOfferingsOrdersRetrieve(ctx context.Context, uuid string, orderUuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsOrdersRetrieveRequest(c.Server, uuid, orderUuid)
 	if err != nil {
 		return nil, err
 	}
@@ -84257,22 +84301,6 @@ func NewMarketplaceOfferingUsersListRequest(server string, params *MarketplaceOf
 
 		}
 
-		if params.IsNotPropagated != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_not_propagated", runtime.ParamLocationQuery, *params.IsNotPropagated); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
 		if params.IsRestricted != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_restricted", runtime.ParamLocationQuery, *params.IsRestricted); err != nil {
@@ -84388,38 +84416,6 @@ func NewMarketplaceOfferingUsersListRequest(server string, params *MarketplaceOf
 		if params.ParentOfferingUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "parent_offering_uuid", runtime.ParamLocationQuery, *params.ParentOfferingUuid); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.PropagatedAfter != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "propagated_after", runtime.ParamLocationQuery, *params.PropagatedAfter); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.PropagatedBefore != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "propagated_before", runtime.ParamLocationQuery, *params.PropagatedBefore); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -90385,6 +90381,119 @@ func NewMarketplaceProviderOfferingsListUsersListRequest(server string, uuid ope
 		}
 
 		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceProviderOfferingsOrdersListRequest generates requests for MarketplaceProviderOfferingsOrdersList
+func NewMarketplaceProviderOfferingsOrdersListRequest(server string, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsOrdersListParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-offerings/%s/orders/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceProviderOfferingsOrdersRetrieveRequest generates requests for MarketplaceProviderOfferingsOrdersRetrieve
+func NewMarketplaceProviderOfferingsOrdersRetrieveRequest(server string, uuid string, orderUuid string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithLocation("simple", false, "order_uuid", runtime.ParamLocationPath, orderUuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-offerings/%s/orders/%s/", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
 	}
 
 	req, err := http.NewRequest("GET", queryURL.String(), nil)
@@ -100053,6 +100162,22 @@ func NewMarketplaceServiceProvidersUsersListRequest(server string, serviceProvid
 		if params.JobTitle != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "job_title", runtime.ParamLocationQuery, *params.JobTitle); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Modified != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "modified", runtime.ParamLocationQuery, *params.Modified); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -137435,6 +137560,22 @@ func NewUsersListRequest(server string, params *UsersListParams) (*http.Request,
 
 		}
 
+		if params.Modified != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "modified", runtime.ParamLocationQuery, *params.Modified); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.NativeName != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "native_name", runtime.ParamLocationQuery, *params.NativeName); err != nil {
@@ -143465,6 +143606,12 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceProviderOfferingsListUsersListWithResponse request
 	MarketplaceProviderOfferingsListUsersListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListUsersListParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsListUsersListResponse, error)
+
+	// MarketplaceProviderOfferingsOrdersListWithResponse request
+	MarketplaceProviderOfferingsOrdersListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsOrdersListParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsOrdersListResponse, error)
+
+	// MarketplaceProviderOfferingsOrdersRetrieveWithResponse request
+	MarketplaceProviderOfferingsOrdersRetrieveWithResponse(ctx context.Context, uuid string, orderUuid string, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsOrdersRetrieveResponse, error)
 
 	// MarketplaceProviderOfferingsPauseWithBodyWithResponse request with any body
 	MarketplaceProviderOfferingsPauseWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsPauseResponse, error)
@@ -156192,6 +156339,50 @@ func (r MarketplaceProviderOfferingsListUsersListResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceProviderOfferingsListUsersListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceProviderOfferingsOrdersListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]OrderDetails
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderOfferingsOrdersListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderOfferingsOrdersListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceProviderOfferingsOrdersRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OrderDetails
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderOfferingsOrdersRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderOfferingsOrdersRetrieveResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -177430,6 +177621,24 @@ func (c *ClientWithResponses) MarketplaceProviderOfferingsListUsersListWithRespo
 	return ParseMarketplaceProviderOfferingsListUsersListResponse(rsp)
 }
 
+// MarketplaceProviderOfferingsOrdersListWithResponse request returning *MarketplaceProviderOfferingsOrdersListResponse
+func (c *ClientWithResponses) MarketplaceProviderOfferingsOrdersListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsOrdersListParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsOrdersListResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsOrdersList(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsOrdersListResponse(rsp)
+}
+
+// MarketplaceProviderOfferingsOrdersRetrieveWithResponse request returning *MarketplaceProviderOfferingsOrdersRetrieveResponse
+func (c *ClientWithResponses) MarketplaceProviderOfferingsOrdersRetrieveWithResponse(ctx context.Context, uuid string, orderUuid string, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsOrdersRetrieveResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsOrdersRetrieve(ctx, uuid, orderUuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsOrdersRetrieveResponse(rsp)
+}
+
 // MarketplaceProviderOfferingsPauseWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderOfferingsPauseResponse
 func (c *ClientWithResponses) MarketplaceProviderOfferingsPauseWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsPauseResponse, error) {
 	rsp, err := c.MarketplaceProviderOfferingsPauseWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -198050,6 +198259,58 @@ func ParseMarketplaceProviderOfferingsListUsersListResponse(rsp *http.Response) 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest []UserRoleDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProviderOfferingsOrdersListResponse parses an HTTP response from a MarketplaceProviderOfferingsOrdersListWithResponse call
+func ParseMarketplaceProviderOfferingsOrdersListResponse(rsp *http.Response) (*MarketplaceProviderOfferingsOrdersListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderOfferingsOrdersListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []OrderDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProviderOfferingsOrdersRetrieveResponse parses an HTTP response from a MarketplaceProviderOfferingsOrdersRetrieveWithResponse call
+func ParseMarketplaceProviderOfferingsOrdersRetrieveResponse(rsp *http.Response) (*MarketplaceProviderOfferingsOrdersRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderOfferingsOrdersRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OrderDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
