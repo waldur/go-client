@@ -19,8 +19,7 @@ import (
 )
 
 const (
-	TokenAuthScopes        = "tokenAuth.Scopes"
-	WaldurCookieAuthScopes = "waldurCookieAuth.Scopes"
+	TokenAuthScopes = "tokenAuth.Scopes"
 )
 
 // Defines values for AdminAnnouncementTypeEnum.
