@@ -12707,6 +12707,7 @@ type OpenStackNestedSubNet struct {
 	GatewayIp       *string                          `json:"gateway_ip"`
 	IpVersion       *int                             `json:"ip_version,omitempty"`
 	Name            *string                          `json:"name,omitempty"`
+	Uuid            *openapi_types.UUID              `json:"uuid,omitempty"`
 }
 
 // OpenStackNestedVolume defines model for OpenStackNestedVolume.
