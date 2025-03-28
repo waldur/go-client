@@ -15439,11 +15439,6 @@ type PullMarketplaceScriptResourceRequest struct {
 	ResourceUuid openapi_types.UUID `json:"resource_uuid"`
 }
 
-// Query defines model for Query.
-type Query struct {
-	Query string `json:"query"`
-}
-
 // QueryRequest defines model for QueryRequest.
 type QueryRequest struct {
 	Query string `json:"query"`
@@ -152619,7 +152614,7 @@ func (r ProviderInvoiceItemsRetrieveResponse) StatusCode() int {
 type QueryResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Query
+	JSON200      *[]interface{}
 }
 
 // Status returns HTTPResponse.Status
@@ -191843,7 +191838,7 @@ func ParseQueryResponse(rsp *http.Response) (*QueryResponse, error) {
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Query
+		var dest []interface{}
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
