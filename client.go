@@ -9699,7 +9699,7 @@ type Customer struct {
 	BankName                     *string              `json:"bank_name,omitempty"`
 	BillingPriceEstimate         *NestedPriceEstimate `json:"billing_price_estimate,omitempty"`
 	Blocked                      *bool                `json:"blocked,omitempty"`
-	CallManagingOrganizationUuid *string              `json:"call_managing_organization_uuid,omitempty"`
+	CallManagingOrganizationUuid *string              `json:"call_managing_organization_uuid"`
 	ContactDetails               *string              `json:"contact_details,omitempty"`
 	Country                      *Customer_Country    `json:"country,omitempty"`
 	CountryName                  *string              `json:"country_name,omitempty"`
@@ -9723,8 +9723,8 @@ type Customer struct {
 	Projects                     *[]PermissionProject `json:"projects,omitempty"`
 	ProjectsCount                *int                 `json:"projects_count,omitempty"`
 	RegistrationCode             *string              `json:"registration_code,omitempty"`
-	ServiceProvider              *string              `json:"service_provider,omitempty"`
-	ServiceProviderUuid          *openapi_types.UUID  `json:"service_provider_uuid,omitempty"`
+	ServiceProvider              *string              `json:"service_provider"`
+	ServiceProviderUuid          *openapi_types.UUID  `json:"service_provider_uuid"`
 	Slug                         *string              `json:"slug,omitempty"`
 
 	// SponsorNumber External ID of the sponsor covering the costs
@@ -12453,9 +12453,9 @@ type OpenStackFloatingIP struct {
 
 	// ExternalAddress An optional address that maps to floating IP's address
 	ExternalAddress                  *string                 `json:"external_address"`
-	InstanceName                     *string                 `json:"instance_name,omitempty"`
-	InstanceUrl                      *string                 `json:"instance_url,omitempty"`
-	InstanceUuid                     *string                 `json:"instance_uuid,omitempty"`
+	InstanceName                     *string                 `json:"instance_name"`
+	InstanceUrl                      *string                 `json:"instance_url"`
+	InstanceUuid                     *string                 `json:"instance_uuid"`
 	IsLimitBased                     *bool                   `json:"is_limit_based,omitempty"`
 	IsUsageBased                     *bool                   `json:"is_usage_based,omitempty"`
 	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
@@ -12717,7 +12717,7 @@ type OpenStackNestedVolume struct {
 	// Device Name of volume as instance device e.g. /dev/vdb.
 	Device                  *string `json:"device,omitempty"`
 	ImageName               *string `json:"image_name,omitempty"`
-	MarketplaceResourceUuid *string `json:"marketplace_resource_uuid,omitempty"`
+	MarketplaceResourceUuid *string `json:"marketplace_resource_uuid"`
 	Name                    *string `json:"name,omitempty"`
 	ResourceType            *string `json:"resource_type,omitempty"`
 
@@ -15134,11 +15134,11 @@ type ProviderOfferingDetails struct {
 	Files                  *[]NestedOfferingFile            `json:"files,omitempty"`
 	FullDescription        *string                          `json:"full_description,omitempty"`
 	GettingStarted         *string                          `json:"getting_started,omitempty"`
-	GoogleCalendarIsPublic *bool                            `json:"google_calendar_is_public,omitempty"`
+	GoogleCalendarIsPublic *bool                            `json:"google_calendar_is_public"`
 	GoogleCalendarLink     *string                          `json:"google_calendar_link"`
 	Image                  *string                          `json:"image"`
 	IntegrationGuide       *string                          `json:"integration_guide,omitempty"`
-	IntegrationStatus      *[]IntegrationStatus             `json:"integration_status,omitempty"`
+	IntegrationStatus      *[]IntegrationStatus             `json:"integration_status"`
 	Latitude               *float64                         `json:"latitude"`
 	Longitude              *float64                         `json:"longitude"`
 	Name                   *string                          `json:"name,omitempty"`
@@ -15376,7 +15376,7 @@ type PublicOfferingDetails struct {
 	Files                  *[]NestedOfferingFile          `json:"files,omitempty"`
 	FullDescription        *string                        `json:"full_description,omitempty"`
 	GettingStarted         *string                        `json:"getting_started,omitempty"`
-	GoogleCalendarIsPublic *bool                          `json:"google_calendar_is_public,omitempty"`
+	GoogleCalendarIsPublic *bool                          `json:"google_calendar_is_public"`
 	GoogleCalendarLink     *string                        `json:"google_calendar_link"`
 	Image                  *string                        `json:"image"`
 	IntegrationGuide       *string                        `json:"integration_guide,omitempty"`
