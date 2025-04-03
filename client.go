@@ -23791,20 +23791,11 @@ type BroadcastMessagesUpdateJSONRequestBody = BroadcastMessageRequest
 // CallManagingOrganisationsCreateJSONRequestBody defines body for CallManagingOrganisationsCreate for application/json ContentType.
 type CallManagingOrganisationsCreateJSONRequestBody = CallManagingOrganisationRequest
 
-// CallManagingOrganisationsCreateMultipartRequestBody defines body for CallManagingOrganisationsCreate for multipart/form-data ContentType.
-type CallManagingOrganisationsCreateMultipartRequestBody = CallManagingOrganisationRequest
-
 // CallManagingOrganisationsPartialUpdateJSONRequestBody defines body for CallManagingOrganisationsPartialUpdate for application/json ContentType.
 type CallManagingOrganisationsPartialUpdateJSONRequestBody = PatchedCallManagingOrganisationRequest
 
-// CallManagingOrganisationsPartialUpdateMultipartRequestBody defines body for CallManagingOrganisationsPartialUpdate for multipart/form-data ContentType.
-type CallManagingOrganisationsPartialUpdateMultipartRequestBody = PatchedCallManagingOrganisationRequest
-
 // CallManagingOrganisationsUpdateJSONRequestBody defines body for CallManagingOrganisationsUpdate for application/json ContentType.
 type CallManagingOrganisationsUpdateJSONRequestBody = CallManagingOrganisationRequest
-
-// CallManagingOrganisationsUpdateMultipartRequestBody defines body for CallManagingOrganisationsUpdate for multipart/form-data ContentType.
-type CallManagingOrganisationsUpdateMultipartRequestBody = CallManagingOrganisationRequest
 
 // CallManagingOrganisationsAddUserJSONRequestBody defines body for CallManagingOrganisationsAddUser for application/json ContentType.
 type CallManagingOrganisationsAddUserJSONRequestBody = UserRoleCreateRequest
@@ -23842,23 +23833,14 @@ type CustomerCreditsClearCompensationsJSONRequestBody = CustomerCreditRequest
 // CustomersCreateJSONRequestBody defines body for CustomersCreate for application/json ContentType.
 type CustomersCreateJSONRequestBody = CustomerRequest
 
-// CustomersCreateMultipartRequestBody defines body for CustomersCreate for multipart/form-data ContentType.
-type CustomersCreateMultipartRequestBody = CustomerRequest
-
 // MarketplaceChecklistsCustomerUpdateJSONRequestBody defines body for MarketplaceChecklistsCustomerUpdate for application/json ContentType.
 type MarketplaceChecklistsCustomerUpdateJSONRequestBody = MarketplaceChecklistsCustomerUpdateJSONBody
 
 // CustomersPartialUpdateJSONRequestBody defines body for CustomersPartialUpdate for application/json ContentType.
 type CustomersPartialUpdateJSONRequestBody = PatchedCustomerRequest
 
-// CustomersPartialUpdateMultipartRequestBody defines body for CustomersPartialUpdate for multipart/form-data ContentType.
-type CustomersPartialUpdateMultipartRequestBody = PatchedCustomerRequest
-
 // CustomersUpdateJSONRequestBody defines body for CustomersUpdate for application/json ContentType.
 type CustomersUpdateJSONRequestBody = CustomerRequest
-
-// CustomersUpdateMultipartRequestBody defines body for CustomersUpdate for multipart/form-data ContentType.
-type CustomersUpdateMultipartRequestBody = CustomerRequest
 
 // CustomersAddUserJSONRequestBody defines body for CustomersAddUser for application/json ContentType.
 type CustomersAddUserJSONRequestBody = UserRoleCreateRequest
@@ -23941,9 +23923,6 @@ type InvoiceSendFinancialReportByMailJSONRequestBody = FinancialReportEmailReque
 // InvoicesPaidJSONRequestBody defines body for InvoicesPaid for application/json ContentType.
 type InvoicesPaidJSONRequestBody = PaidRequest
 
-// InvoicesPaidMultipartRequestBody defines body for InvoicesPaid for multipart/form-data ContentType.
-type InvoicesPaidMultipartRequestBody = PaidRequest
-
 // InvoicesSetBackendIdJSONRequestBody defines body for InvoicesSetBackendId for application/json ContentType.
 type InvoicesSetBackendIdJSONRequestBody = BackendIdRequest
 
@@ -23968,20 +23947,11 @@ type LexisLinksUpdateJSONRequestBody = LexisLinkRequest
 // MarketplaceCategoriesCreateJSONRequestBody defines body for MarketplaceCategoriesCreate for application/json ContentType.
 type MarketplaceCategoriesCreateJSONRequestBody = MarketplaceCategoryRequest
 
-// MarketplaceCategoriesCreateMultipartRequestBody defines body for MarketplaceCategoriesCreate for multipart/form-data ContentType.
-type MarketplaceCategoriesCreateMultipartRequestBody = MarketplaceCategoryRequest
-
 // MarketplaceCategoriesPartialUpdateJSONRequestBody defines body for MarketplaceCategoriesPartialUpdate for application/json ContentType.
 type MarketplaceCategoriesPartialUpdateJSONRequestBody = PatchedMarketplaceCategoryRequest
 
-// MarketplaceCategoriesPartialUpdateMultipartRequestBody defines body for MarketplaceCategoriesPartialUpdate for multipart/form-data ContentType.
-type MarketplaceCategoriesPartialUpdateMultipartRequestBody = PatchedMarketplaceCategoryRequest
-
 // MarketplaceCategoriesUpdateJSONRequestBody defines body for MarketplaceCategoriesUpdate for application/json ContentType.
 type MarketplaceCategoriesUpdateJSONRequestBody = MarketplaceCategoryRequest
-
-// MarketplaceCategoriesUpdateMultipartRequestBody defines body for MarketplaceCategoriesUpdate for multipart/form-data ContentType.
-type MarketplaceCategoriesUpdateMultipartRequestBody = MarketplaceCategoryRequest
 
 // MarketplaceCategoryColumnsCreateJSONRequestBody defines body for MarketplaceCategoryColumnsCreate for application/json ContentType.
 type MarketplaceCategoryColumnsCreateJSONRequestBody = CategoryColumnRequest
@@ -24004,20 +23974,11 @@ type MarketplaceCategoryComponentsUpdateJSONRequestBody = CategoryComponentsRequ
 // MarketplaceCategoryGroupsCreateJSONRequestBody defines body for MarketplaceCategoryGroupsCreate for application/json ContentType.
 type MarketplaceCategoryGroupsCreateJSONRequestBody = CategoryGroupRequest
 
-// MarketplaceCategoryGroupsCreateMultipartRequestBody defines body for MarketplaceCategoryGroupsCreate for multipart/form-data ContentType.
-type MarketplaceCategoryGroupsCreateMultipartRequestBody = CategoryGroupRequest
-
 // MarketplaceCategoryGroupsPartialUpdateJSONRequestBody defines body for MarketplaceCategoryGroupsPartialUpdate for application/json ContentType.
 type MarketplaceCategoryGroupsPartialUpdateJSONRequestBody = PatchedCategoryGroupRequest
 
-// MarketplaceCategoryGroupsPartialUpdateMultipartRequestBody defines body for MarketplaceCategoryGroupsPartialUpdate for multipart/form-data ContentType.
-type MarketplaceCategoryGroupsPartialUpdateMultipartRequestBody = PatchedCategoryGroupRequest
-
 // MarketplaceCategoryGroupsUpdateJSONRequestBody defines body for MarketplaceCategoryGroupsUpdate for application/json ContentType.
 type MarketplaceCategoryGroupsUpdateJSONRequestBody = CategoryGroupRequest
-
-// MarketplaceCategoryGroupsUpdateMultipartRequestBody defines body for MarketplaceCategoryGroupsUpdate for multipart/form-data ContentType.
-type MarketplaceCategoryGroupsUpdateMultipartRequestBody = CategoryGroupRequest
 
 // MarketplaceCategoryHelpArticlesCreateJSONRequestBody defines body for MarketplaceCategoryHelpArticlesCreate for application/json ContentType.
 type MarketplaceCategoryHelpArticlesCreateJSONRequestBody = CategoryHelpArticlesRequest
@@ -24057,9 +24018,6 @@ type MarketplaceOfferingEstimatedCostPoliciesUpdateJSONRequestBody = OfferingEst
 
 // MarketplaceOfferingFilesCreateJSONRequestBody defines body for MarketplaceOfferingFilesCreate for application/json ContentType.
 type MarketplaceOfferingFilesCreateJSONRequestBody = OfferingFileRequest
-
-// MarketplaceOfferingFilesCreateMultipartRequestBody defines body for MarketplaceOfferingFilesCreate for multipart/form-data ContentType.
-type MarketplaceOfferingFilesCreateMultipartRequestBody = OfferingFileRequest
 
 // MarketplaceOfferingUsagePoliciesCreateJSONRequestBody defines body for MarketplaceOfferingUsagePoliciesCreate for application/json ContentType.
 type MarketplaceOfferingUsagePoliciesCreateJSONRequestBody = OfferingUsagePolicyRequest
@@ -24133,9 +24091,6 @@ type MarketplaceProjectUpdateRequestsRejectJSONRequestBody = ReviewCommentReques
 // MarketplaceProviderOfferingsCreateJSONRequestBody defines body for MarketplaceProviderOfferingsCreate for application/json ContentType.
 type MarketplaceProviderOfferingsCreateJSONRequestBody = OfferingCreateRequest
 
-// MarketplaceProviderOfferingsCreateMultipartRequestBody defines body for MarketplaceProviderOfferingsCreate for multipart/form-data ContentType.
-type MarketplaceProviderOfferingsCreateMultipartRequestBody = OfferingCreateRequest
-
 // MarketplaceProviderOfferingsAddEndpointJSONRequestBody defines body for MarketplaceProviderOfferingsAddEndpoint for application/json ContentType.
 type MarketplaceProviderOfferingsAddEndpointJSONRequestBody = NestedEndpointRequest
 
@@ -24160,9 +24115,6 @@ type MarketplaceProviderOfferingsPauseJSONRequestBody = OfferingPauseRequest
 // MarketplaceProviderOfferingsRefreshOfferingUsernamesJSONRequestBody defines body for MarketplaceProviderOfferingsRefreshOfferingUsernames for application/json ContentType.
 type MarketplaceProviderOfferingsRefreshOfferingUsernamesJSONRequestBody = ProviderOfferingDetailsRequest
 
-// MarketplaceProviderOfferingsRefreshOfferingUsernamesMultipartRequestBody defines body for MarketplaceProviderOfferingsRefreshOfferingUsernames for multipart/form-data ContentType.
-type MarketplaceProviderOfferingsRefreshOfferingUsernamesMultipartRequestBody = ProviderOfferingDetailsRequest
-
 // MarketplaceProviderOfferingsRemoveOfferingComponentJSONRequestBody defines body for MarketplaceProviderOfferingsRemoveOfferingComponent for application/json ContentType.
 type MarketplaceProviderOfferingsRemoveOfferingComponentJSONRequestBody = RemoveOfferingComponentRequest
 
@@ -24177,9 +24129,6 @@ type MarketplaceProviderOfferingsUpdateDescriptionJSONRequestBody = OfferingDesc
 
 // MarketplaceProviderOfferingsUpdateImageJSONRequestBody defines body for MarketplaceProviderOfferingsUpdateImage for application/json ContentType.
 type MarketplaceProviderOfferingsUpdateImageJSONRequestBody = OfferingImageRequest
-
-// MarketplaceProviderOfferingsUpdateImageMultipartRequestBody defines body for MarketplaceProviderOfferingsUpdateImage for multipart/form-data ContentType.
-type MarketplaceProviderOfferingsUpdateImageMultipartRequestBody = OfferingImageRequest
 
 // MarketplaceProviderOfferingsUpdateIntegrationJSONRequestBody defines body for MarketplaceProviderOfferingsUpdateIntegration for application/json ContentType.
 type MarketplaceProviderOfferingsUpdateIntegrationJSONRequestBody = OfferingIntegrationUpdateRequest
@@ -24204,9 +24153,6 @@ type MarketplaceProviderOfferingsUpdateResourceOptionsJSONRequestBody = Offering
 
 // MarketplaceProviderOfferingsUpdateThumbnailJSONRequestBody defines body for MarketplaceProviderOfferingsUpdateThumbnail for application/json ContentType.
 type MarketplaceProviderOfferingsUpdateThumbnailJSONRequestBody = OfferingThumbnailRequest
-
-// MarketplaceProviderOfferingsUpdateThumbnailMultipartRequestBody defines body for MarketplaceProviderOfferingsUpdateThumbnail for multipart/form-data ContentType.
-type MarketplaceProviderOfferingsUpdateThumbnailMultipartRequestBody = OfferingThumbnailRequest
 
 // MarketplaceProviderOfferingsUpdateUserJSONRequestBody defines body for MarketplaceProviderOfferingsUpdateUser for application/json ContentType.
 type MarketplaceProviderOfferingsUpdateUserJSONRequestBody = UserRoleUpdateRequest
@@ -24307,17 +24253,11 @@ type MarketplaceRobotAccountsUpdateJSONRequestBody = RobotAccountRequest
 // MarketplaceScreenshotsCreateJSONRequestBody defines body for MarketplaceScreenshotsCreate for application/json ContentType.
 type MarketplaceScreenshotsCreateJSONRequestBody = ScreenshotRequest
 
-// MarketplaceScreenshotsCreateMultipartRequestBody defines body for MarketplaceScreenshotsCreate for multipart/form-data ContentType.
-type MarketplaceScreenshotsCreateMultipartRequestBody = ScreenshotRequest
-
 // MarketplaceScreenshotsPartialUpdateJSONRequestBody defines body for MarketplaceScreenshotsPartialUpdate for application/json ContentType.
 type MarketplaceScreenshotsPartialUpdateJSONRequestBody = PatchedScreenshotRequest
 
 // MarketplaceScreenshotsUpdateJSONRequestBody defines body for MarketplaceScreenshotsUpdate for application/json ContentType.
 type MarketplaceScreenshotsUpdateJSONRequestBody = ScreenshotRequest
-
-// MarketplaceScreenshotsUpdateMultipartRequestBody defines body for MarketplaceScreenshotsUpdate for multipart/form-data ContentType.
-type MarketplaceScreenshotsUpdateMultipartRequestBody = ScreenshotRequest
 
 // MarketplaceScriptDryRunAsyncRunJSONRequestBody defines body for MarketplaceScriptDryRunAsyncRun for application/json ContentType.
 type MarketplaceScriptDryRunAsyncRunJSONRequestBody = DryRunRequest
@@ -24340,20 +24280,11 @@ type MarketplaceSectionsUpdateJSONRequestBody = SectionRequest
 // MarketplaceServiceProvidersCreateJSONRequestBody defines body for MarketplaceServiceProvidersCreate for application/json ContentType.
 type MarketplaceServiceProvidersCreateJSONRequestBody = ServiceProviderRequest
 
-// MarketplaceServiceProvidersCreateMultipartRequestBody defines body for MarketplaceServiceProvidersCreate for multipart/form-data ContentType.
-type MarketplaceServiceProvidersCreateMultipartRequestBody = ServiceProviderRequest
-
 // MarketplaceServiceProvidersPartialUpdateJSONRequestBody defines body for MarketplaceServiceProvidersPartialUpdate for application/json ContentType.
 type MarketplaceServiceProvidersPartialUpdateJSONRequestBody = PatchedServiceProviderRequest
 
-// MarketplaceServiceProvidersPartialUpdateMultipartRequestBody defines body for MarketplaceServiceProvidersPartialUpdate for multipart/form-data ContentType.
-type MarketplaceServiceProvidersPartialUpdateMultipartRequestBody = PatchedServiceProviderRequest
-
 // MarketplaceServiceProvidersUpdateJSONRequestBody defines body for MarketplaceServiceProvidersUpdate for application/json ContentType.
 type MarketplaceServiceProvidersUpdateJSONRequestBody = ServiceProviderRequest
-
-// MarketplaceServiceProvidersUpdateMultipartRequestBody defines body for MarketplaceServiceProvidersUpdate for multipart/form-data ContentType.
-type MarketplaceServiceProvidersUpdateMultipartRequestBody = ServiceProviderRequest
 
 // MarketplaceServiceProvidersAddUserJSONRequestBody defines body for MarketplaceServiceProvidersAddUser for application/json ContentType.
 type MarketplaceServiceProvidersAddUserJSONRequestBody = UserRoleCreateRequest
@@ -24541,9 +24472,6 @@ type OrganizationGroupsUpdateJSONRequestBody = OrganizationGroupRequest
 // OverrideSettingsJSONRequestBody defines body for OverrideSettings for application/json ContentType.
 type OverrideSettingsJSONRequestBody = ConstanceSettingsRequest
 
-// OverrideSettingsMultipartRequestBody defines body for OverrideSettings for multipart/form-data ContentType.
-type OverrideSettingsMultipartRequestBody = ConstanceSettingsRequest
-
 // PaymentProfilesCreateJSONRequestBody defines body for PaymentProfilesCreate for application/json ContentType.
 type PaymentProfilesCreateJSONRequestBody = PaymentProfileRequest
 
@@ -24556,20 +24484,11 @@ type PaymentProfilesUpdateJSONRequestBody = PaymentProfileRequest
 // PaymentsCreateJSONRequestBody defines body for PaymentsCreate for application/json ContentType.
 type PaymentsCreateJSONRequestBody = PaymentRequest
 
-// PaymentsCreateMultipartRequestBody defines body for PaymentsCreate for multipart/form-data ContentType.
-type PaymentsCreateMultipartRequestBody = PaymentRequest
-
 // PaymentsPartialUpdateJSONRequestBody defines body for PaymentsPartialUpdate for application/json ContentType.
 type PaymentsPartialUpdateJSONRequestBody = PatchedPaymentRequest
 
-// PaymentsPartialUpdateMultipartRequestBody defines body for PaymentsPartialUpdate for multipart/form-data ContentType.
-type PaymentsPartialUpdateMultipartRequestBody = PatchedPaymentRequest
-
 // PaymentsUpdateJSONRequestBody defines body for PaymentsUpdate for application/json ContentType.
 type PaymentsUpdateJSONRequestBody = PaymentRequest
-
-// PaymentsUpdateMultipartRequestBody defines body for PaymentsUpdate for multipart/form-data ContentType.
-type PaymentsUpdateMultipartRequestBody = PaymentRequest
 
 // PaymentsLinkToInvoiceJSONRequestBody defines body for PaymentsLinkToInvoice for application/json ContentType.
 type PaymentsLinkToInvoiceJSONRequestBody = LinkToInvoiceRequest
@@ -24586,20 +24505,11 @@ type ProjectCreditsUpdateJSONRequestBody = ProjectCreditRequest
 // ProjectsCreateJSONRequestBody defines body for ProjectsCreate for application/json ContentType.
 type ProjectsCreateJSONRequestBody = ProjectRequest
 
-// ProjectsCreateMultipartRequestBody defines body for ProjectsCreate for multipart/form-data ContentType.
-type ProjectsCreateMultipartRequestBody = ProjectRequest
-
 // ProjectsPartialUpdateJSONRequestBody defines body for ProjectsPartialUpdate for application/json ContentType.
 type ProjectsPartialUpdateJSONRequestBody = PatchedProjectRequest
 
-// ProjectsPartialUpdateMultipartRequestBody defines body for ProjectsPartialUpdate for multipart/form-data ContentType.
-type ProjectsPartialUpdateMultipartRequestBody = PatchedProjectRequest
-
 // ProjectsUpdateJSONRequestBody defines body for ProjectsUpdate for application/json ContentType.
 type ProjectsUpdateJSONRequestBody = ProjectRequest
-
-// ProjectsUpdateMultipartRequestBody defines body for ProjectsUpdate for multipart/form-data ContentType.
-type ProjectsUpdateMultipartRequestBody = ProjectRequest
 
 // ProjectsAddUserJSONRequestBody defines body for ProjectsAddUser for application/json ContentType.
 type ProjectsAddUserJSONRequestBody = UserRoleCreateRequest
@@ -24630,9 +24540,6 @@ type ProposalProposalsApproveJSONRequestBody = ProposalApproveRequest
 
 // ProposalProposalsAttachDocumentJSONRequestBody defines body for ProposalProposalsAttachDocument for application/json ContentType.
 type ProposalProposalsAttachDocumentJSONRequestBody = ProposalDocumentationRequest
-
-// ProposalProposalsAttachDocumentMultipartRequestBody defines body for ProposalProposalsAttachDocument for multipart/form-data ContentType.
-type ProposalProposalsAttachDocumentMultipartRequestBody = ProposalDocumentationRequest
 
 // ProposalProposalsDeleteUserJSONRequestBody defines body for ProposalProposalsDeleteUser for application/json ContentType.
 type ProposalProposalsDeleteUserJSONRequestBody = UserRoleDeleteRequest
@@ -24669,9 +24576,6 @@ type ProposalProtectedCallsAddUserJSONRequestBody = UserRoleCreateRequest
 
 // ProposalProtectedCallsAttachDocumentsJSONRequestBody defines body for ProposalProtectedCallsAttachDocuments for application/json ContentType.
 type ProposalProtectedCallsAttachDocumentsJSONRequestBody = CallAttachDocumentsRequest
-
-// ProposalProtectedCallsAttachDocumentsMultipartRequestBody defines body for ProposalProtectedCallsAttachDocuments for multipart/form-data ContentType.
-type ProposalProtectedCallsAttachDocumentsMultipartRequestBody = CallAttachDocumentsRequest
 
 // ProposalProtectedCallsDeleteUserJSONRequestBody defines body for ProposalProtectedCallsDeleteUser for application/json ContentType.
 type ProposalProtectedCallsDeleteUserJSONRequestBody = UserRoleDeleteRequest
@@ -24850,23 +24754,14 @@ type SlurmAllocationsSetLimitsJSONRequestBody = SlurmAllocationSetLimitsRequest
 // SlurmJobsCreateJSONRequestBody defines body for SlurmJobsCreate for application/json ContentType.
 type SlurmJobsCreateJSONRequestBody = FirecrestJobRequest
 
-// SlurmJobsCreateMultipartRequestBody defines body for SlurmJobsCreate for multipart/form-data ContentType.
-type SlurmJobsCreateMultipartRequestBody = FirecrestJobRequest
-
 // SlurmJobsPartialUpdateJSONRequestBody defines body for SlurmJobsPartialUpdate for application/json ContentType.
 type SlurmJobsPartialUpdateJSONRequestBody = PatchedFirecrestJobRequest
 
 // SlurmJobsUpdateJSONRequestBody defines body for SlurmJobsUpdate for application/json ContentType.
 type SlurmJobsUpdateJSONRequestBody = FirecrestJobRequest
 
-// SlurmJobsUpdateMultipartRequestBody defines body for SlurmJobsUpdate for multipart/form-data ContentType.
-type SlurmJobsUpdateMultipartRequestBody = FirecrestJobRequest
-
 // SupportAttachmentsCreateJSONRequestBody defines body for SupportAttachmentsCreate for application/json ContentType.
 type SupportAttachmentsCreateJSONRequestBody = AttachmentRequest
-
-// SupportAttachmentsCreateMultipartRequestBody defines body for SupportAttachmentsCreate for multipart/form-data ContentType.
-type SupportAttachmentsCreateMultipartRequestBody = AttachmentRequest
 
 // SupportCommentsPartialUpdateJSONRequestBody defines body for SupportCommentsPartialUpdate for application/json ContentType.
 type SupportCommentsPartialUpdateJSONRequestBody = PatchedCommentRequest
@@ -24910,9 +24805,6 @@ type SupportTemplatesUpdateJSONRequestBody = TemplateRequest
 // SupportTemplatesCreateAttachmentsJSONRequestBody defines body for SupportTemplatesCreateAttachments for application/json ContentType.
 type SupportTemplatesCreateAttachmentsJSONRequestBody = CreateAttachmentsRequest
 
-// SupportTemplatesCreateAttachmentsMultipartRequestBody defines body for SupportTemplatesCreateAttachments for multipart/form-data ContentType.
-type SupportTemplatesCreateAttachmentsMultipartRequestBody = CreateAttachmentsRequest
-
 // SupportTemplatesDeleteAttachmentsJSONRequestBody defines body for SupportTemplatesDeleteAttachments for application/json ContentType.
 type SupportTemplatesDeleteAttachmentsJSONRequestBody = DeleteAttachmentsRequest
 
@@ -24946,23 +24838,14 @@ type UserPermissionRequestsRejectJSONRequestBody = ReviewCommentRequest
 // UsersCreateJSONRequestBody defines body for UsersCreate for application/json ContentType.
 type UsersCreateJSONRequestBody = UserRequest
 
-// UsersCreateMultipartRequestBody defines body for UsersCreate for multipart/form-data ContentType.
-type UsersCreateMultipartRequestBody = UserRequest
-
 // UsersConfirmEmailJSONRequestBody defines body for UsersConfirmEmail for application/json ContentType.
 type UsersConfirmEmailJSONRequestBody = ConfirmEmailRequestRequest
 
 // UsersPartialUpdateJSONRequestBody defines body for UsersPartialUpdate for application/json ContentType.
 type UsersPartialUpdateJSONRequestBody = PatchedUserRequest
 
-// UsersPartialUpdateMultipartRequestBody defines body for UsersPartialUpdate for multipart/form-data ContentType.
-type UsersPartialUpdateMultipartRequestBody = PatchedUserRequest
-
 // UsersUpdateJSONRequestBody defines body for UsersUpdate for application/json ContentType.
 type UsersUpdateJSONRequestBody = UserRequest
-
-// UsersUpdateMultipartRequestBody defines body for UsersUpdate for multipart/form-data ContentType.
-type UsersUpdateMultipartRequestBody = UserRequest
 
 // UsersChangeEmailJSONRequestBody defines body for UsersChangeEmail for application/json ContentType.
 type UsersChangeEmailJSONRequestBody = UserEmailChangeRequest
