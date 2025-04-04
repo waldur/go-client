@@ -11103,6 +11103,9 @@ type MergedPluginOptions struct {
 	// MaxVolumes Default limit for number of volumes in OpenStack tenant
 	MaxVolumes *int `json:"max_volumes,omitempty"`
 
+	// OpenstackOfferingUuidList List of UUID of OpenStack offerings where tenant can be created
+	OpenstackOfferingUuidList *[]openapi_types.UUID `json:"openstack_offering_uuid_list,omitempty"`
+
 	// ServiceProviderCanCreateOfferingUser Service provider can create offering user
 	ServiceProviderCanCreateOfferingUser *bool `json:"service_provider_can_create_offering_user,omitempty"`
 
@@ -11192,6 +11195,9 @@ type MergedPluginOptionsRequest struct {
 	// MaxVolumes Default limit for number of volumes in OpenStack tenant
 	MaxVolumes *int `json:"max_volumes,omitempty"`
 
+	// OpenstackOfferingUuidList List of UUID of OpenStack offerings where tenant can be created
+	OpenstackOfferingUuidList *[]openapi_types.UUID `json:"openstack_offering_uuid_list,omitempty"`
+
 	// ServiceProviderCanCreateOfferingUser Service provider can create offering user
 	ServiceProviderCanCreateOfferingUser *bool `json:"service_provider_can_create_offering_user,omitempty"`
 
@@ -11249,6 +11255,9 @@ type MergedSecretOptions struct {
 	// Pull Script for regular resource pull
 	Pull *string `json:"pull,omitempty"`
 
+	// RancherOfferingUuid UUID of Rancher offering where cluster can be created
+	RancherOfferingUuid *openapi_types.UUID `json:"rancher_offering_uuid,omitempty"`
+
 	// SharedUserPassword GLAuth shared user password
 	SharedUserPassword *string `json:"shared_user_password,omitempty"`
 
@@ -11294,6 +11303,9 @@ type MergedSecretOptionsRequest struct {
 
 	// Pull Script for regular resource pull
 	Pull *string `json:"pull,omitempty"`
+
+	// RancherOfferingUuid UUID of Rancher offering where cluster can be created
+	RancherOfferingUuid *openapi_types.UUID `json:"rancher_offering_uuid,omitempty"`
 
 	// SharedUserPassword GLAuth shared user password
 	SharedUserPassword *string `json:"shared_user_password,omitempty"`
@@ -18659,6 +18671,11 @@ type CustomersListUsersListParamsField string
 // CustomersListUsersListParamsO defines parameters for CustomersListUsersList.
 type CustomersListUsersListParamsO string
 
+// CustomersStatsRetrieveParams defines parameters for CustomersStatsRetrieve.
+type CustomersStatsRetrieveParams struct {
+	ForCurrentMonth *bool `form:"for_current_month,omitempty" json:"for_current_month,omitempty"`
+}
+
 // CustomersUsersListParams defines parameters for CustomersUsersList.
 type CustomersUsersListParams struct {
 	CivilNumber      *string                          `form:"civil_number,omitempty" json:"civil_number,omitempty"`
@@ -22159,6 +22176,11 @@ type ProjectsListUsersListParamsField string
 
 // ProjectsListUsersListParamsO defines parameters for ProjectsListUsersList.
 type ProjectsListUsersListParamsO string
+
+// ProjectsStatsRetrieveParams defines parameters for ProjectsStatsRetrieve.
+type ProjectsStatsRetrieveParams struct {
+	ForCurrentMonth *bool `form:"for_current_month,omitempty" json:"for_current_month,omitempty"`
+}
 
 // PromotionsCampaignsListParams defines parameters for PromotionsCampaignsList.
 type PromotionsCampaignsListParams struct {
@@ -27879,7 +27901,7 @@ type ClientInterface interface {
 	CustomersListUsersList(ctx context.Context, uuid openapi_types.UUID, params *CustomersListUsersListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// CustomersStatsRetrieve request
-	CustomersStatsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+	CustomersStatsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *CustomersStatsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// CustomersUpdateOrganizationGroupsWithBody request with any body
 	CustomersUpdateOrganizationGroupsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -30187,7 +30209,7 @@ type ClientInterface interface {
 	ProjectsMoveProject(ctx context.Context, uuid openapi_types.UUID, body ProjectsMoveProjectJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProjectsStatsRetrieve request
-	ProjectsStatsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ProjectsStatsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *ProjectsStatsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProjectsUpdateUserWithBody request with any body
 	ProjectsUpdateUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -34225,8 +34247,8 @@ func (c *Client) CustomersListUsersList(ctx context.Context, uuid openapi_types.
 	return c.Client.Do(req)
 }
 
-func (c *Client) CustomersStatsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewCustomersStatsRetrieveRequest(c.Server, uuid)
+func (c *Client) CustomersStatsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *CustomersStatsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCustomersStatsRetrieveRequest(c.Server, uuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -44353,8 +44375,8 @@ func (c *Client) ProjectsMoveProject(ctx context.Context, uuid openapi_types.UUI
 	return c.Client.Do(req)
 }
 
-func (c *Client) ProjectsStatsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewProjectsStatsRetrieveRequest(c.Server, uuid)
+func (c *Client) ProjectsStatsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *ProjectsStatsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProjectsStatsRetrieveRequest(c.Server, uuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -61559,7 +61581,7 @@ func NewCustomersListUsersListRequest(server string, uuid openapi_types.UUID, pa
 }
 
 // NewCustomersStatsRetrieveRequest generates requests for CustomersStatsRetrieve
-func NewCustomersStatsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+func NewCustomersStatsRetrieveRequest(server string, uuid openapi_types.UUID, params *CustomersStatsRetrieveParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -61582,6 +61604,28 @@ func NewCustomersStatsRetrieveRequest(server string, uuid openapi_types.UUID) (*
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.ForCurrentMonth != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "for_current_month", runtime.ParamLocationQuery, *params.ForCurrentMonth); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
 	}
 
 	req, err := http.NewRequest("GET", queryURL.String(), nil)
@@ -107044,7 +107088,7 @@ func NewProjectsMoveProjectRequestWithBody(server string, uuid openapi_types.UUI
 }
 
 // NewProjectsStatsRetrieveRequest generates requests for ProjectsStatsRetrieve
-func NewProjectsStatsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+func NewProjectsStatsRetrieveRequest(server string, uuid openapi_types.UUID, params *ProjectsStatsRetrieveParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -107067,6 +107111,28 @@ func NewProjectsStatsRetrieveRequest(server string, uuid openapi_types.UUID) (*h
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.ForCurrentMonth != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "for_current_month", runtime.ParamLocationQuery, *params.ForCurrentMonth); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
 	}
 
 	req, err := http.NewRequest("GET", queryURL.String(), nil)
@@ -130045,7 +130111,7 @@ type ClientWithResponsesInterface interface {
 	CustomersListUsersListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *CustomersListUsersListParams, reqEditors ...RequestEditorFn) (*CustomersListUsersListResponse, error)
 
 	// CustomersStatsRetrieveWithResponse request
-	CustomersStatsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*CustomersStatsRetrieveResponse, error)
+	CustomersStatsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *CustomersStatsRetrieveParams, reqEditors ...RequestEditorFn) (*CustomersStatsRetrieveResponse, error)
 
 	// CustomersUpdateOrganizationGroupsWithBodyWithResponse request with any body
 	CustomersUpdateOrganizationGroupsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CustomersUpdateOrganizationGroupsResponse, error)
@@ -132353,7 +132419,7 @@ type ClientWithResponsesInterface interface {
 	ProjectsMoveProjectWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProjectsMoveProjectJSONRequestBody, reqEditors ...RequestEditorFn) (*ProjectsMoveProjectResponse, error)
 
 	// ProjectsStatsRetrieveWithResponse request
-	ProjectsStatsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProjectsStatsRetrieveResponse, error)
+	ProjectsStatsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProjectsStatsRetrieveParams, reqEditors ...RequestEditorFn) (*ProjectsStatsRetrieveResponse, error)
 
 	// ProjectsUpdateUserWithBodyWithResponse request with any body
 	ProjectsUpdateUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProjectsUpdateUserResponse, error)
@@ -160249,8 +160315,8 @@ func (c *ClientWithResponses) CustomersListUsersListWithResponse(ctx context.Con
 }
 
 // CustomersStatsRetrieveWithResponse request returning *CustomersStatsRetrieveResponse
-func (c *ClientWithResponses) CustomersStatsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*CustomersStatsRetrieveResponse, error) {
-	rsp, err := c.CustomersStatsRetrieve(ctx, uuid, reqEditors...)
+func (c *ClientWithResponses) CustomersStatsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *CustomersStatsRetrieveParams, reqEditors ...RequestEditorFn) (*CustomersStatsRetrieveResponse, error) {
+	rsp, err := c.CustomersStatsRetrieve(ctx, uuid, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -167621,8 +167687,8 @@ func (c *ClientWithResponses) ProjectsMoveProjectWithResponse(ctx context.Contex
 }
 
 // ProjectsStatsRetrieveWithResponse request returning *ProjectsStatsRetrieveResponse
-func (c *ClientWithResponses) ProjectsStatsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProjectsStatsRetrieveResponse, error) {
-	rsp, err := c.ProjectsStatsRetrieve(ctx, uuid, reqEditors...)
+func (c *ClientWithResponses) ProjectsStatsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProjectsStatsRetrieveParams, reqEditors ...RequestEditorFn) (*ProjectsStatsRetrieveResponse, error) {
+	rsp, err := c.ProjectsStatsRetrieve(ctx, uuid, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
