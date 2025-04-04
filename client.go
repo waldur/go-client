@@ -391,6 +391,7 @@ const (
 	ResourceRetypeSucceeded                          EventTypesEnum = "resource_retype_succeeded"
 	ResourceRobotAccountCreated                      EventTypesEnum = "resource_robot_account_created"
 	ResourceRobotAccountDeleted                      EventTypesEnum = "resource_robot_account_deleted"
+	ResourceRobotAccountStateChanged                 EventTypesEnum = "resource_robot_account_state_changed"
 	ResourceRobotAccountUpdated                      EventTypesEnum = "resource_robot_account_updated"
 	ResourceStartFailed                              EventTypesEnum = "resource_start_failed"
 	ResourceStartScheduled                           EventTypesEnum = "resource_start_scheduled"
@@ -2672,10 +2673,10 @@ const (
 
 // Defines values for MarketplaceCategoriesListParamsCustomersOfferingsState.
 const (
-	N1 MarketplaceCategoriesListParamsCustomersOfferingsState = "1"
-	N2 MarketplaceCategoriesListParamsCustomersOfferingsState = "2"
-	N3 MarketplaceCategoriesListParamsCustomersOfferingsState = "3"
-	N4 MarketplaceCategoriesListParamsCustomersOfferingsState = "4"
+	MarketplaceCategoriesListParamsCustomersOfferingsStateN1 MarketplaceCategoriesListParamsCustomersOfferingsState = "1"
+	MarketplaceCategoriesListParamsCustomersOfferingsStateN2 MarketplaceCategoriesListParamsCustomersOfferingsState = "2"
+	MarketplaceCategoriesListParamsCustomersOfferingsStateN3 MarketplaceCategoriesListParamsCustomersOfferingsState = "3"
+	MarketplaceCategoriesListParamsCustomersOfferingsStateN4 MarketplaceCategoriesListParamsCustomersOfferingsState = "4"
 )
 
 // Defines values for MarketplaceCategoriesListParamsField.
@@ -4304,6 +4305,16 @@ const (
 	MarketplaceResourcesDetailsRetrieveParamsFieldUrl                       MarketplaceResourcesDetailsRetrieveParamsField = "url"
 	MarketplaceResourcesDetailsRetrieveParamsFieldUsername                  MarketplaceResourcesDetailsRetrieveParamsField = "username"
 	MarketplaceResourcesDetailsRetrieveParamsFieldUuid                      MarketplaceResourcesDetailsRetrieveParamsField = "uuid"
+)
+
+// Defines values for MarketplaceRobotAccountsListParamsState.
+const (
+	MarketplaceRobotAccountsListParamsStateN1 MarketplaceRobotAccountsListParamsState = 1
+	MarketplaceRobotAccountsListParamsStateN2 MarketplaceRobotAccountsListParamsState = 2
+	MarketplaceRobotAccountsListParamsStateN3 MarketplaceRobotAccountsListParamsState = 3
+	MarketplaceRobotAccountsListParamsStateN4 MarketplaceRobotAccountsListParamsState = 4
+	MarketplaceRobotAccountsListParamsStateN5 MarketplaceRobotAccountsListParamsState = 5
+	MarketplaceRobotAccountsListParamsStateN6 MarketplaceRobotAccountsListParamsState = 6
 )
 
 // Defines values for MarketplaceScreenshotsListParamsO.
@@ -16664,11 +16675,14 @@ type RmqWaldurUser struct {
 type RobotAccount struct {
 	BackendId       *string             `json:"backend_id,omitempty"`
 	Created         *time.Time          `json:"created,omitempty"`
+	ErrorMessage    *string             `json:"error_message,omitempty"`
+	ErrorTraceback  *string             `json:"error_traceback,omitempty"`
 	Fingerprints    *[]Fingerprint      `json:"fingerprints,omitempty"`
 	Keys            *interface{}        `json:"keys,omitempty"`
 	Modified        *time.Time          `json:"modified,omitempty"`
 	Resource        string              `json:"resource"`
 	ResponsibleUser *string             `json:"responsible_user"`
+	State           *string             `json:"state,omitempty"`
 	Type            string              `json:"type"`
 	Url             *string             `json:"url,omitempty"`
 	Username        *string             `json:"username,omitempty"`
@@ -16682,6 +16696,8 @@ type RobotAccountDetails struct {
 	Created               *time.Time           `json:"created,omitempty"`
 	CustomerName          *string              `json:"customer_name,omitempty"`
 	CustomerUuid          *openapi_types.UUID  `json:"customer_uuid,omitempty"`
+	ErrorMessage          *string              `json:"error_message,omitempty"`
+	ErrorTraceback        *string              `json:"error_traceback,omitempty"`
 	Fingerprints          *[]Fingerprint       `json:"fingerprints,omitempty"`
 	Keys                  *interface{}         `json:"keys,omitempty"`
 	Modified              *time.Time           `json:"modified,omitempty"`
@@ -16693,12 +16709,19 @@ type RobotAccountDetails struct {
 	ResourceName          *string              `json:"resource_name,omitempty"`
 	ResourceUuid          *openapi_types.UUID  `json:"resource_uuid,omitempty"`
 	ResponsibleUser       *BasicUser           `json:"responsible_user,omitempty"`
+	State                 *string              `json:"state,omitempty"`
 	Type                  string               `json:"type"`
 	Url                   *string              `json:"url,omitempty"`
 	UserKeys              *[]SshKey            `json:"user_keys,omitempty"`
 	Username              *string              `json:"username,omitempty"`
 	Users                 *[]BasicUser         `json:"users,omitempty"`
 	Uuid                  *openapi_types.UUID  `json:"uuid,omitempty"`
+}
+
+// RobotAccountErrorRequest defines model for RobotAccountErrorRequest.
+type RobotAccountErrorRequest struct {
+	// ErrorMessage Error message to be saved to the robot account
+	ErrorMessage *string `json:"error_message,omitempty"`
 }
 
 // RobotAccountRequest defines model for RobotAccountRequest.
@@ -17137,6 +17160,12 @@ type SshKeyRequest struct {
 
 // StateCodeEnum defines model for StateCodeEnum.
 type StateCodeEnum int
+
+// StateTransitionError defines model for StateTransitionError.
+type StateTransitionError struct {
+	// Detail Error message to be displayed to the user
+	Detail string `json:"detail"`
+}
 
 // StatusEnum defines model for StatusEnum.
 type StatusEnum string
@@ -20604,13 +20633,17 @@ type MarketplaceRobotAccountsListParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	ProjectUuid  *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	ProviderUuid *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
-	Resource     *string             `form:"resource,omitempty" json:"resource,omitempty"`
-	ResourceUuid *openapi_types.UUID `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
-	Type         *string             `form:"type,omitempty" json:"type,omitempty"`
+	PageSize     *PageSize                                `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ProjectUuid  *openapi_types.UUID                      `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	ProviderUuid *openapi_types.UUID                      `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
+	Resource     *string                                  `form:"resource,omitempty" json:"resource,omitempty"`
+	ResourceUuid *openapi_types.UUID                      `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
+	State        *MarketplaceRobotAccountsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+	Type         *string                                  `form:"type,omitempty" json:"type,omitempty"`
 }
+
+// MarketplaceRobotAccountsListParamsState defines parameters for MarketplaceRobotAccountsList.
+type MarketplaceRobotAccountsListParamsState int
 
 // MarketplaceRuntimeStatesListParams defines parameters for MarketplaceRuntimeStatesList.
 type MarketplaceRuntimeStatesListParams struct {
@@ -24271,6 +24304,9 @@ type MarketplaceRobotAccountsPartialUpdateJSONRequestBody = PatchedRobotAccountR
 
 // MarketplaceRobotAccountsUpdateJSONRequestBody defines body for MarketplaceRobotAccountsUpdate for application/json ContentType.
 type MarketplaceRobotAccountsUpdateJSONRequestBody = RobotAccountRequest
+
+// MarketplaceRobotAccountsSetStateErredJSONRequestBody defines body for MarketplaceRobotAccountsSetStateErred for application/json ContentType.
+type MarketplaceRobotAccountsSetStateErredJSONRequestBody = RobotAccountErrorRequest
 
 // MarketplaceScreenshotsCreateJSONRequestBody defines body for MarketplaceScreenshotsCreate for application/json ContentType.
 type MarketplaceScreenshotsCreateJSONRequestBody = ScreenshotRequest
@@ -29244,6 +29280,23 @@ type ClientInterface interface {
 	MarketplaceRobotAccountsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	MarketplaceRobotAccountsUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceRobotAccountsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceRobotAccountsSetStateCreating request
+	MarketplaceRobotAccountsSetStateCreating(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceRobotAccountsSetStateDeleted request
+	MarketplaceRobotAccountsSetStateDeleted(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceRobotAccountsSetStateErredWithBody request with any body
+	MarketplaceRobotAccountsSetStateErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceRobotAccountsSetStateErred(ctx context.Context, uuid openapi_types.UUID, body MarketplaceRobotAccountsSetStateErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceRobotAccountsSetStateOk request
+	MarketplaceRobotAccountsSetStateOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceRobotAccountsSetStateRequestDeletion request
+	MarketplaceRobotAccountsSetStateRequestDeletion(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceRuntimeStatesList request
 	MarketplaceRuntimeStatesList(ctx context.Context, params *MarketplaceRuntimeStatesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -40153,6 +40206,78 @@ func (c *Client) MarketplaceRobotAccountsUpdateWithBody(ctx context.Context, uui
 
 func (c *Client) MarketplaceRobotAccountsUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceRobotAccountsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceRobotAccountsUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceRobotAccountsSetStateCreating(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceRobotAccountsSetStateCreatingRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceRobotAccountsSetStateDeleted(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceRobotAccountsSetStateDeletedRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceRobotAccountsSetStateErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceRobotAccountsSetStateErredRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceRobotAccountsSetStateErred(ctx context.Context, uuid openapi_types.UUID, body MarketplaceRobotAccountsSetStateErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceRobotAccountsSetStateErredRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceRobotAccountsSetStateOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceRobotAccountsSetStateOkRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceRobotAccountsSetStateRequestDeletion(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceRobotAccountsSetStateRequestDeletionRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -86274,6 +86399,22 @@ func NewMarketplaceRobotAccountsListRequest(server string, params *MarketplaceRo
 
 		}
 
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "state", runtime.ParamLocationQuery, *params.State); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Type != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "type", runtime.ParamLocationQuery, *params.Type); err != nil {
@@ -86499,6 +86640,189 @@ func NewMarketplaceRobotAccountsUpdateRequestWithBody(server string, uuid openap
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceRobotAccountsSetStateCreatingRequest generates requests for MarketplaceRobotAccountsSetStateCreating
+func NewMarketplaceRobotAccountsSetStateCreatingRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-robot-accounts/%s/set_state_creating/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceRobotAccountsSetStateDeletedRequest generates requests for MarketplaceRobotAccountsSetStateDeleted
+func NewMarketplaceRobotAccountsSetStateDeletedRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-robot-accounts/%s/set_state_deleted/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceRobotAccountsSetStateErredRequest calls the generic MarketplaceRobotAccountsSetStateErred builder with application/json body
+func NewMarketplaceRobotAccountsSetStateErredRequest(server string, uuid openapi_types.UUID, body MarketplaceRobotAccountsSetStateErredJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceRobotAccountsSetStateErredRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceRobotAccountsSetStateErredRequestWithBody generates requests for MarketplaceRobotAccountsSetStateErred with any type of body
+func NewMarketplaceRobotAccountsSetStateErredRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-robot-accounts/%s/set_state_erred/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceRobotAccountsSetStateOkRequest generates requests for MarketplaceRobotAccountsSetStateOk
+func NewMarketplaceRobotAccountsSetStateOkRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-robot-accounts/%s/set_state_ok/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceRobotAccountsSetStateRequestDeletionRequest generates requests for MarketplaceRobotAccountsSetStateRequestDeletion
+func NewMarketplaceRobotAccountsSetStateRequestDeletionRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-robot-accounts/%s/set_state_request_deletion/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
 
 	return req, nil
 }
@@ -131455,6 +131779,23 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceRobotAccountsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceRobotAccountsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceRobotAccountsUpdateResponse, error)
 
+	// MarketplaceRobotAccountsSetStateCreatingWithResponse request
+	MarketplaceRobotAccountsSetStateCreatingWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceRobotAccountsSetStateCreatingResponse, error)
+
+	// MarketplaceRobotAccountsSetStateDeletedWithResponse request
+	MarketplaceRobotAccountsSetStateDeletedWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceRobotAccountsSetStateDeletedResponse, error)
+
+	// MarketplaceRobotAccountsSetStateErredWithBodyWithResponse request with any body
+	MarketplaceRobotAccountsSetStateErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceRobotAccountsSetStateErredResponse, error)
+
+	MarketplaceRobotAccountsSetStateErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceRobotAccountsSetStateErredJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceRobotAccountsSetStateErredResponse, error)
+
+	// MarketplaceRobotAccountsSetStateOkWithResponse request
+	MarketplaceRobotAccountsSetStateOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceRobotAccountsSetStateOkResponse, error)
+
+	// MarketplaceRobotAccountsSetStateRequestDeletionWithResponse request
+	MarketplaceRobotAccountsSetStateRequestDeletionWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceRobotAccountsSetStateRequestDeletionResponse, error)
+
 	// MarketplaceRuntimeStatesListWithResponse request
 	MarketplaceRuntimeStatesListWithResponse(ctx context.Context, params *MarketplaceRuntimeStatesListParams, reqEditors ...RequestEditorFn) (*MarketplaceRuntimeStatesListResponse, error)
 
@@ -145259,6 +145600,117 @@ func (r MarketplaceRobotAccountsUpdateResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceRobotAccountsUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceRobotAccountsSetStateCreatingResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *RobotAccountDetails
+	JSON400      *StateTransitionError
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceRobotAccountsSetStateCreatingResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceRobotAccountsSetStateCreatingResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceRobotAccountsSetStateDeletedResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *RobotAccountDetails
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceRobotAccountsSetStateDeletedResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceRobotAccountsSetStateDeletedResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceRobotAccountsSetStateErredResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *RobotAccountDetails
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceRobotAccountsSetStateErredResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceRobotAccountsSetStateErredResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceRobotAccountsSetStateOkResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *RobotAccountDetails
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceRobotAccountsSetStateOkResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceRobotAccountsSetStateOkResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceRobotAccountsSetStateRequestDeletionResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *RobotAccountDetails
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceRobotAccountsSetStateRequestDeletionResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceRobotAccountsSetStateRequestDeletionResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -164615,6 +165067,59 @@ func (c *ClientWithResponses) MarketplaceRobotAccountsUpdateWithResponse(ctx con
 		return nil, err
 	}
 	return ParseMarketplaceRobotAccountsUpdateResponse(rsp)
+}
+
+// MarketplaceRobotAccountsSetStateCreatingWithResponse request returning *MarketplaceRobotAccountsSetStateCreatingResponse
+func (c *ClientWithResponses) MarketplaceRobotAccountsSetStateCreatingWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceRobotAccountsSetStateCreatingResponse, error) {
+	rsp, err := c.MarketplaceRobotAccountsSetStateCreating(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceRobotAccountsSetStateCreatingResponse(rsp)
+}
+
+// MarketplaceRobotAccountsSetStateDeletedWithResponse request returning *MarketplaceRobotAccountsSetStateDeletedResponse
+func (c *ClientWithResponses) MarketplaceRobotAccountsSetStateDeletedWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceRobotAccountsSetStateDeletedResponse, error) {
+	rsp, err := c.MarketplaceRobotAccountsSetStateDeleted(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceRobotAccountsSetStateDeletedResponse(rsp)
+}
+
+// MarketplaceRobotAccountsSetStateErredWithBodyWithResponse request with arbitrary body returning *MarketplaceRobotAccountsSetStateErredResponse
+func (c *ClientWithResponses) MarketplaceRobotAccountsSetStateErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceRobotAccountsSetStateErredResponse, error) {
+	rsp, err := c.MarketplaceRobotAccountsSetStateErredWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceRobotAccountsSetStateErredResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceRobotAccountsSetStateErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceRobotAccountsSetStateErredJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceRobotAccountsSetStateErredResponse, error) {
+	rsp, err := c.MarketplaceRobotAccountsSetStateErred(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceRobotAccountsSetStateErredResponse(rsp)
+}
+
+// MarketplaceRobotAccountsSetStateOkWithResponse request returning *MarketplaceRobotAccountsSetStateOkResponse
+func (c *ClientWithResponses) MarketplaceRobotAccountsSetStateOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceRobotAccountsSetStateOkResponse, error) {
+	rsp, err := c.MarketplaceRobotAccountsSetStateOk(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceRobotAccountsSetStateOkResponse(rsp)
+}
+
+// MarketplaceRobotAccountsSetStateRequestDeletionWithResponse request returning *MarketplaceRobotAccountsSetStateRequestDeletionResponse
+func (c *ClientWithResponses) MarketplaceRobotAccountsSetStateRequestDeletionWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceRobotAccountsSetStateRequestDeletionResponse, error) {
+	rsp, err := c.MarketplaceRobotAccountsSetStateRequestDeletion(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceRobotAccountsSetStateRequestDeletionResponse(rsp)
 }
 
 // MarketplaceRuntimeStatesListWithResponse request returning *MarketplaceRuntimeStatesListResponse
@@ -184190,6 +184695,143 @@ func ParseMarketplaceRobotAccountsUpdateResponse(rsp *http.Response) (*Marketpla
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest RobotAccount
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceRobotAccountsSetStateCreatingResponse parses an HTTP response from a MarketplaceRobotAccountsSetStateCreatingWithResponse call
+func ParseMarketplaceRobotAccountsSetStateCreatingResponse(rsp *http.Response) (*MarketplaceRobotAccountsSetStateCreatingResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceRobotAccountsSetStateCreatingResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest RobotAccountDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest StateTransitionError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceRobotAccountsSetStateDeletedResponse parses an HTTP response from a MarketplaceRobotAccountsSetStateDeletedWithResponse call
+func ParseMarketplaceRobotAccountsSetStateDeletedResponse(rsp *http.Response) (*MarketplaceRobotAccountsSetStateDeletedResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceRobotAccountsSetStateDeletedResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest RobotAccountDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceRobotAccountsSetStateErredResponse parses an HTTP response from a MarketplaceRobotAccountsSetStateErredWithResponse call
+func ParseMarketplaceRobotAccountsSetStateErredResponse(rsp *http.Response) (*MarketplaceRobotAccountsSetStateErredResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceRobotAccountsSetStateErredResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest RobotAccountDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceRobotAccountsSetStateOkResponse parses an HTTP response from a MarketplaceRobotAccountsSetStateOkWithResponse call
+func ParseMarketplaceRobotAccountsSetStateOkResponse(rsp *http.Response) (*MarketplaceRobotAccountsSetStateOkResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceRobotAccountsSetStateOkResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest RobotAccountDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceRobotAccountsSetStateRequestDeletionResponse parses an HTTP response from a MarketplaceRobotAccountsSetStateRequestDeletionWithResponse call
+func ParseMarketplaceRobotAccountsSetStateRequestDeletionResponse(rsp *http.Response) (*MarketplaceRobotAccountsSetStateRequestDeletionResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceRobotAccountsSetStateRequestDeletionResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest RobotAccountDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
