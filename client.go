@@ -11722,8 +11722,8 @@ type Offering struct {
 	Country            *Offering_Country     `json:"country,omitempty"`
 	Created            *time.Time            `json:"created,omitempty"`
 	Customer           *string               `json:"customer"`
-	CustomerName       *string               `json:"customer_name,omitempty"`
-	CustomerUuid       *openapi_types.UUID   `json:"customer_uuid,omitempty"`
+	CustomerName       *string               `json:"customer_name"`
+	CustomerUuid       *openapi_types.UUID   `json:"customer_uuid"`
 	DataciteDoi        *string               `json:"datacite_doi,omitempty"`
 	Description        *string               `json:"description,omitempty"`
 	Endpoints          *[]NestedEndpoint     `json:"endpoints,omitempty"`
@@ -11739,16 +11739,16 @@ type Offering struct {
 	Options            *OfferingOptions      `json:"options,omitempty"`
 	OrderCount         *int                  `json:"order_count,omitempty"`
 	OrganizationGroups *[]OrganizationGroup  `json:"organization_groups,omitempty"`
-	ParentDescription  *string               `json:"parent_description,omitempty"`
-	ParentName         *string               `json:"parent_name,omitempty"`
-	ParentUuid         *openapi_types.UUID   `json:"parent_uuid,omitempty"`
+	ParentDescription  *string               `json:"parent_description"`
+	ParentName         *string               `json:"parent_name"`
+	ParentUuid         *openapi_types.UUID   `json:"parent_uuid"`
 	PausedReason       *string               `json:"paused_reason,omitempty"`
 	Plans              *[]BasePublicPlan     `json:"plans,omitempty"`
 	PluginOptions      *MergedPluginOptions  `json:"plugin_options,omitempty"`
 	PrivacyPolicyLink  *string               `json:"privacy_policy_link,omitempty"`
 	Project            *string               `json:"project"`
-	ProjectName        *string               `json:"project_name,omitempty"`
-	ProjectUuid        *openapi_types.UUID   `json:"project_uuid,omitempty"`
+	ProjectName        *string               `json:"project_name"`
+	ProjectUuid        *openapi_types.UUID   `json:"project_uuid"`
 	Quotas             *[]Quota              `json:"quotas,omitempty"`
 	ResourceOptions    *OfferingOptions      `json:"resource_options,omitempty"`
 	Roles              *[]NestedRole         `json:"roles,omitempty"`
@@ -11895,8 +11895,8 @@ type OfferingCreate struct {
 	Country            *OfferingCreate_Country `json:"country,omitempty"`
 	Created            *time.Time              `json:"created,omitempty"`
 	Customer           *string                 `json:"customer"`
-	CustomerName       *string                 `json:"customer_name,omitempty"`
-	CustomerUuid       *openapi_types.UUID     `json:"customer_uuid,omitempty"`
+	CustomerName       *string                 `json:"customer_name"`
+	CustomerUuid       *openapi_types.UUID     `json:"customer_uuid"`
 	DataciteDoi        *string                 `json:"datacite_doi,omitempty"`
 	Description        *string                 `json:"description,omitempty"`
 	Endpoints          *[]NestedEndpoint       `json:"endpoints,omitempty"`
@@ -11911,16 +11911,16 @@ type OfferingCreate struct {
 	Options            *OfferingOptions        `json:"options,omitempty"`
 	OrderCount         *int                    `json:"order_count,omitempty"`
 	OrganizationGroups *[]OrganizationGroup    `json:"organization_groups,omitempty"`
-	ParentDescription  *string                 `json:"parent_description,omitempty"`
-	ParentName         *string                 `json:"parent_name,omitempty"`
-	ParentUuid         *openapi_types.UUID     `json:"parent_uuid,omitempty"`
+	ParentDescription  *string                 `json:"parent_description"`
+	ParentName         *string                 `json:"parent_name"`
+	ParentUuid         *openapi_types.UUID     `json:"parent_uuid"`
 	PausedReason       *string                 `json:"paused_reason,omitempty"`
 	Plans              *[]BaseProviderPlan     `json:"plans,omitempty"`
 	PluginOptions      *MergedPluginOptions    `json:"plugin_options,omitempty"`
 	PrivacyPolicyLink  *string                 `json:"privacy_policy_link,omitempty"`
 	Project            *string                 `json:"project"`
-	ProjectName        *string                 `json:"project_name,omitempty"`
-	ProjectUuid        *openapi_types.UUID     `json:"project_uuid,omitempty"`
+	ProjectName        *string                 `json:"project_name"`
+	ProjectUuid        *openapi_types.UUID     `json:"project_uuid"`
 	Quotas             *[]Quota                `json:"quotas,omitempty"`
 	ResourceOptions    *OfferingOptions        `json:"resource_options,omitempty"`
 	Roles              *[]NestedRole           `json:"roles,omitempty"`
@@ -15155,8 +15155,8 @@ type ProviderOfferingDetails struct {
 	Country                *ProviderOfferingDetails_Country `json:"country,omitempty"`
 	Created                *time.Time                       `json:"created,omitempty"`
 	Customer               *string                          `json:"customer"`
-	CustomerName           *string                          `json:"customer_name,omitempty"`
-	CustomerUuid           *openapi_types.UUID              `json:"customer_uuid,omitempty"`
+	CustomerName           *string                          `json:"customer_name"`
+	CustomerUuid           *openapi_types.UUID              `json:"customer_uuid"`
 	DataciteDoi            *string                          `json:"datacite_doi,omitempty"`
 	Description            *string                          `json:"description,omitempty"`
 	Endpoints              *[]NestedEndpoint                `json:"endpoints,omitempty"`
@@ -15174,16 +15174,16 @@ type ProviderOfferingDetails struct {
 	Options                *OfferingOptions                 `json:"options,omitempty"`
 	OrderCount             *int                             `json:"order_count,omitempty"`
 	OrganizationGroups     *[]OrganizationGroup             `json:"organization_groups,omitempty"`
-	ParentDescription      *string                          `json:"parent_description,omitempty"`
-	ParentName             *string                          `json:"parent_name,omitempty"`
-	ParentUuid             *openapi_types.UUID              `json:"parent_uuid,omitempty"`
+	ParentDescription      *string                          `json:"parent_description"`
+	ParentName             *string                          `json:"parent_name"`
+	ParentUuid             *openapi_types.UUID              `json:"parent_uuid"`
 	PausedReason           *string                          `json:"paused_reason,omitempty"`
 	Plans                  *[]BaseProviderPlan              `json:"plans,omitempty"`
 	PluginOptions          *MergedPluginOptions             `json:"plugin_options,omitempty"`
 	PrivacyPolicyLink      *string                          `json:"privacy_policy_link,omitempty"`
 	Project                *string                          `json:"project"`
-	ProjectName            *string                          `json:"project_name,omitempty"`
-	ProjectUuid            *openapi_types.UUID              `json:"project_uuid,omitempty"`
+	ProjectName            *string                          `json:"project_name"`
+	ProjectUuid            *openapi_types.UUID              `json:"project_uuid"`
 	Quotas                 *[]Quota                         `json:"quotas,omitempty"`
 	ResourceOptions        *OfferingOptions                 `json:"resource_options,omitempty"`
 	Roles                  *[]NestedRole                    `json:"roles,omitempty"`
@@ -15397,8 +15397,8 @@ type PublicOfferingDetails struct {
 	Country                *PublicOfferingDetails_Country `json:"country,omitempty"`
 	Created                *time.Time                     `json:"created,omitempty"`
 	Customer               *string                        `json:"customer"`
-	CustomerName           *string                        `json:"customer_name,omitempty"`
-	CustomerUuid           *openapi_types.UUID            `json:"customer_uuid,omitempty"`
+	CustomerName           *string                        `json:"customer_name"`
+	CustomerUuid           *openapi_types.UUID            `json:"customer_uuid"`
 	DataciteDoi            *string                        `json:"datacite_doi,omitempty"`
 	Description            *string                        `json:"description,omitempty"`
 	Endpoints              *[]NestedEndpoint              `json:"endpoints,omitempty"`
@@ -15415,16 +15415,16 @@ type PublicOfferingDetails struct {
 	Options                *OfferingOptions               `json:"options,omitempty"`
 	OrderCount             *int                           `json:"order_count,omitempty"`
 	OrganizationGroups     *[]OrganizationGroup           `json:"organization_groups,omitempty"`
-	ParentDescription      *string                        `json:"parent_description,omitempty"`
-	ParentName             *string                        `json:"parent_name,omitempty"`
-	ParentUuid             *openapi_types.UUID            `json:"parent_uuid,omitempty"`
+	ParentDescription      *string                        `json:"parent_description"`
+	ParentName             *string                        `json:"parent_name"`
+	ParentUuid             *openapi_types.UUID            `json:"parent_uuid"`
 	PausedReason           *string                        `json:"paused_reason,omitempty"`
 	Plans                  *[]BasePublicPlan              `json:"plans,omitempty"`
 	PluginOptions          *MergedPluginOptions           `json:"plugin_options,omitempty"`
 	PrivacyPolicyLink      *string                        `json:"privacy_policy_link,omitempty"`
 	Project                *string                        `json:"project"`
-	ProjectName            *string                        `json:"project_name,omitempty"`
-	ProjectUuid            *openapi_types.UUID            `json:"project_uuid,omitempty"`
+	ProjectName            *string                        `json:"project_name"`
+	ProjectUuid            *openapi_types.UUID            `json:"project_uuid"`
 	PromotionCampaigns     *[]NestedCampaign              `json:"promotion_campaigns,omitempty"`
 	Quotas                 *[]Quota                       `json:"quotas,omitempty"`
 	ResourceOptions        *OfferingOptions               `json:"resource_options,omitempty"`
