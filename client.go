@@ -1766,6 +1766,7 @@ const (
 	BookingOfferingsListParamsFieldResourceOptions    BookingOfferingsListParamsField = "resource_options"
 	BookingOfferingsListParamsFieldRoles              BookingOfferingsListParamsField = "roles"
 	BookingOfferingsListParamsFieldScope              BookingOfferingsListParamsField = "scope"
+	BookingOfferingsListParamsFieldScopeErrorMessage  BookingOfferingsListParamsField = "scope_error_message"
 	BookingOfferingsListParamsFieldScopeName          BookingOfferingsListParamsField = "scope_name"
 	BookingOfferingsListParamsFieldScopeState         BookingOfferingsListParamsField = "scope_state"
 	BookingOfferingsListParamsFieldScopeUuid          BookingOfferingsListParamsField = "scope_uuid"
@@ -1832,6 +1833,7 @@ const (
 	BookingOfferingsRetrieveParamsFieldResourceOptions    BookingOfferingsRetrieveParamsField = "resource_options"
 	BookingOfferingsRetrieveParamsFieldRoles              BookingOfferingsRetrieveParamsField = "roles"
 	BookingOfferingsRetrieveParamsFieldScope              BookingOfferingsRetrieveParamsField = "scope"
+	BookingOfferingsRetrieveParamsFieldScopeErrorMessage  BookingOfferingsRetrieveParamsField = "scope_error_message"
 	BookingOfferingsRetrieveParamsFieldScopeName          BookingOfferingsRetrieveParamsField = "scope_name"
 	BookingOfferingsRetrieveParamsFieldScopeState         BookingOfferingsRetrieveParamsField = "scope_state"
 	BookingOfferingsRetrieveParamsFieldScopeUuid          BookingOfferingsRetrieveParamsField = "scope_uuid"
@@ -3224,6 +3226,7 @@ const (
 	MarketplaceProviderOfferingsListParamsFieldResourceOptions        MarketplaceProviderOfferingsListParamsField = "resource_options"
 	MarketplaceProviderOfferingsListParamsFieldRoles                  MarketplaceProviderOfferingsListParamsField = "roles"
 	MarketplaceProviderOfferingsListParamsFieldScope                  MarketplaceProviderOfferingsListParamsField = "scope"
+	MarketplaceProviderOfferingsListParamsFieldScopeErrorMessage      MarketplaceProviderOfferingsListParamsField = "scope_error_message"
 	MarketplaceProviderOfferingsListParamsFieldScopeName              MarketplaceProviderOfferingsListParamsField = "scope_name"
 	MarketplaceProviderOfferingsListParamsFieldScopeState             MarketplaceProviderOfferingsListParamsField = "scope_state"
 	MarketplaceProviderOfferingsListParamsFieldScopeUuid              MarketplaceProviderOfferingsListParamsField = "scope_uuid"
@@ -3320,6 +3323,7 @@ const (
 	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldResourceOptions        MarketplaceProviderOfferingsGroupsRetrieveParamsField = "resource_options"
 	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldRoles                  MarketplaceProviderOfferingsGroupsRetrieveParamsField = "roles"
 	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldScope                  MarketplaceProviderOfferingsGroupsRetrieveParamsField = "scope"
+	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldScopeErrorMessage      MarketplaceProviderOfferingsGroupsRetrieveParamsField = "scope_error_message"
 	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldScopeName              MarketplaceProviderOfferingsGroupsRetrieveParamsField = "scope_name"
 	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldScopeState             MarketplaceProviderOfferingsGroupsRetrieveParamsField = "scope_state"
 	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldScopeUuid              MarketplaceProviderOfferingsGroupsRetrieveParamsField = "scope_uuid"
@@ -3390,6 +3394,7 @@ const (
 	MarketplaceProviderOfferingsRetrieveParamsFieldResourceOptions        MarketplaceProviderOfferingsRetrieveParamsField = "resource_options"
 	MarketplaceProviderOfferingsRetrieveParamsFieldRoles                  MarketplaceProviderOfferingsRetrieveParamsField = "roles"
 	MarketplaceProviderOfferingsRetrieveParamsFieldScope                  MarketplaceProviderOfferingsRetrieveParamsField = "scope"
+	MarketplaceProviderOfferingsRetrieveParamsFieldScopeErrorMessage      MarketplaceProviderOfferingsRetrieveParamsField = "scope_error_message"
 	MarketplaceProviderOfferingsRetrieveParamsFieldScopeName              MarketplaceProviderOfferingsRetrieveParamsField = "scope_name"
 	MarketplaceProviderOfferingsRetrieveParamsFieldScopeState             MarketplaceProviderOfferingsRetrieveParamsField = "scope_state"
 	MarketplaceProviderOfferingsRetrieveParamsFieldScopeUuid              MarketplaceProviderOfferingsRetrieveParamsField = "scope_uuid"
@@ -3565,6 +3570,7 @@ const (
 	MarketplaceProviderOfferingsStatsRetrieveParamsFieldResourceOptions        MarketplaceProviderOfferingsStatsRetrieveParamsField = "resource_options"
 	MarketplaceProviderOfferingsStatsRetrieveParamsFieldRoles                  MarketplaceProviderOfferingsStatsRetrieveParamsField = "roles"
 	MarketplaceProviderOfferingsStatsRetrieveParamsFieldScope                  MarketplaceProviderOfferingsStatsRetrieveParamsField = "scope"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldScopeErrorMessage      MarketplaceProviderOfferingsStatsRetrieveParamsField = "scope_error_message"
 	MarketplaceProviderOfferingsStatsRetrieveParamsFieldScopeName              MarketplaceProviderOfferingsStatsRetrieveParamsField = "scope_name"
 	MarketplaceProviderOfferingsStatsRetrieveParamsFieldScopeState             MarketplaceProviderOfferingsStatsRetrieveParamsField = "scope_state"
 	MarketplaceProviderOfferingsStatsRetrieveParamsFieldScopeUuid              MarketplaceProviderOfferingsStatsRetrieveParamsField = "scope_uuid"
@@ -3635,6 +3641,7 @@ const (
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldResourceOptions        MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "resource_options"
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldRoles                  MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "roles"
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldScope                  MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "scope"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldScopeErrorMessage      MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "scope_error_message"
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldScopeName              MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "scope_name"
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldScopeState             MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "scope_state"
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldScopeUuid              MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "scope_uuid"
@@ -3949,6 +3956,7 @@ const (
 	MarketplacePublicOfferingsListParamsFieldResourceOptions        MarketplacePublicOfferingsListParamsField = "resource_options"
 	MarketplacePublicOfferingsListParamsFieldRoles                  MarketplacePublicOfferingsListParamsField = "roles"
 	MarketplacePublicOfferingsListParamsFieldScope                  MarketplacePublicOfferingsListParamsField = "scope"
+	MarketplacePublicOfferingsListParamsFieldScopeErrorMessage      MarketplacePublicOfferingsListParamsField = "scope_error_message"
 	MarketplacePublicOfferingsListParamsFieldScopeName              MarketplacePublicOfferingsListParamsField = "scope_name"
 	MarketplacePublicOfferingsListParamsFieldScopeState             MarketplacePublicOfferingsListParamsField = "scope_state"
 	MarketplacePublicOfferingsListParamsFieldScopeUuid              MarketplacePublicOfferingsListParamsField = "scope_uuid"
@@ -4043,6 +4051,7 @@ const (
 	MarketplacePublicOfferingsRetrieveParamsFieldResourceOptions        MarketplacePublicOfferingsRetrieveParamsField = "resource_options"
 	MarketplacePublicOfferingsRetrieveParamsFieldRoles                  MarketplacePublicOfferingsRetrieveParamsField = "roles"
 	MarketplacePublicOfferingsRetrieveParamsFieldScope                  MarketplacePublicOfferingsRetrieveParamsField = "scope"
+	MarketplacePublicOfferingsRetrieveParamsFieldScopeErrorMessage      MarketplacePublicOfferingsRetrieveParamsField = "scope_error_message"
 	MarketplacePublicOfferingsRetrieveParamsFieldScopeName              MarketplacePublicOfferingsRetrieveParamsField = "scope_name"
 	MarketplacePublicOfferingsRetrieveParamsFieldScopeState             MarketplacePublicOfferingsRetrieveParamsField = "scope_state"
 	MarketplacePublicOfferingsRetrieveParamsFieldScopeUuid              MarketplacePublicOfferingsRetrieveParamsField = "scope_uuid"
@@ -11753,6 +11762,7 @@ type Offering struct {
 	ResourceOptions    *OfferingOptions      `json:"resource_options,omitempty"`
 	Roles              *[]NestedRole         `json:"roles,omitempty"`
 	Scope              *string               `json:"scope,omitempty"`
+	ScopeErrorMessage  *string               `json:"scope_error_message"`
 	ScopeName          *openapi_types.UUID   `json:"scope_name"`
 	ScopeState         *CoreStates           `json:"scope_state"`
 	ScopeUuid          *openapi_types.UUID   `json:"scope_uuid"`
@@ -11925,6 +11935,7 @@ type OfferingCreate struct {
 	ResourceOptions    *OfferingOptions        `json:"resource_options,omitempty"`
 	Roles              *[]NestedRole           `json:"roles,omitempty"`
 	Scope              *string                 `json:"scope,omitempty"`
+	ScopeErrorMessage  *string                 `json:"scope_error_message"`
 	ScopeName          *openapi_types.UUID     `json:"scope_name"`
 	ScopeState         *CoreStates             `json:"scope_state"`
 	ScopeUuid          *openapi_types.UUID     `json:"scope_uuid"`
@@ -15188,6 +15199,7 @@ type ProviderOfferingDetails struct {
 	ResourceOptions        *OfferingOptions                 `json:"resource_options,omitempty"`
 	Roles                  *[]NestedRole                    `json:"roles,omitempty"`
 	Scope                  *string                          `json:"scope,omitempty"`
+	ScopeErrorMessage      *string                          `json:"scope_error_message"`
 	ScopeName              *openapi_types.UUID              `json:"scope_name"`
 	ScopeState             *CoreStates                      `json:"scope_state"`
 	ScopeUuid              *openapi_types.UUID              `json:"scope_uuid"`
@@ -15430,6 +15442,7 @@ type PublicOfferingDetails struct {
 	ResourceOptions        *OfferingOptions               `json:"resource_options,omitempty"`
 	Roles                  *[]NestedRole                  `json:"roles,omitempty"`
 	Scope                  *string                        `json:"scope,omitempty"`
+	ScopeErrorMessage      *string                        `json:"scope_error_message"`
 	ScopeName              *openapi_types.UUID            `json:"scope_name"`
 	ScopeState             *CoreStates                    `json:"scope_state"`
 	ScopeUuid              *openapi_types.UUID            `json:"scope_uuid"`
