@@ -10172,6 +10172,16 @@ type EmailLog struct {
 	Uuid    *openapi_types.UUID   `json:"uuid,omitempty"`
 }
 
+// EndpointUUID defines model for EndpointUUID.
+type EndpointUUID struct {
+	Uuid openapi_types.UUID `json:"uuid"`
+}
+
+// EndpointUUIDRequest defines model for EndpointUUIDRequest.
+type EndpointUUIDRequest struct {
+	Uuid openapi_types.UUID `json:"uuid"`
+}
+
 // EthertypeEnum defines model for EthertypeEnum.
 type EthertypeEnum string
 
@@ -17225,16 +17235,6 @@ type TotalCustomerCost struct {
 	Total *float64 `json:"total,omitempty"`
 }
 
-// UUID defines model for UUID.
-type UUID struct {
-	Uuid openapi_types.UUID `json:"uuid"`
-}
-
-// UUIDRequest defines model for UUIDRequest.
-type UUIDRequest struct {
-	Uuid openapi_types.UUID `json:"uuid"`
-}
-
 // User defines model for User.
 type User struct {
 	// Affiliations Person's affiliation within organization such as student, faculty, staff.
@@ -24135,7 +24135,7 @@ type MarketplaceProviderOfferingsAddUserJSONRequestBody = UserRoleCreateRequest
 type MarketplaceProviderOfferingsCreateOfferingComponentJSONRequestBody = OfferingComponentRequest
 
 // MarketplaceProviderOfferingsDeleteEndpointJSONRequestBody defines body for MarketplaceProviderOfferingsDeleteEndpoint for application/json ContentType.
-type MarketplaceProviderOfferingsDeleteEndpointJSONRequestBody = UUIDRequest
+type MarketplaceProviderOfferingsDeleteEndpointJSONRequestBody = EndpointUUIDRequest
 
 // MarketplaceProviderOfferingsDeleteUserJSONRequestBody defines body for MarketplaceProviderOfferingsDeleteUser for application/json ContentType.
 type MarketplaceProviderOfferingsDeleteUserJSONRequestBody = UserRoleDeleteRequest
@@ -143241,7 +143241,7 @@ func (r MarketplaceProviderOfferingsActivateResponse) StatusCode() int {
 type MarketplaceProviderOfferingsAddEndpointResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON201      *UUID
+	JSON201      *EndpointUUID
 }
 
 // Status returns HTTPResponse.Status
@@ -182187,7 +182187,7 @@ func ParseMarketplaceProviderOfferingsAddEndpointResponse(rsp *http.Response) (*
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest UUID
+		var dest EndpointUUID
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
