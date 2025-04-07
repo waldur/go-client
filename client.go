@@ -17429,6 +17429,11 @@ type UserRoleDetails struct {
 	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
+// UserRoleExpirationTime defines model for UserRoleExpirationTime.
+type UserRoleExpirationTime struct {
+	ExpirationTime *time.Time `json:"expiration_time"`
+}
+
 // UserRoleUpdateRequest defines model for UserRoleUpdateRequest.
 type UserRoleUpdateRequest struct {
 	ExpirationTime *time.Time         `json:"expiration_time"`
@@ -136912,6 +136917,7 @@ func (r CallManagingOrganisationsUpdateResponse) StatusCode() int {
 type CallManagingOrganisationsAddUserResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON201      *UserRoleExpirationTime
 }
 
 // Status returns HTTPResponse.Status
@@ -136998,6 +137004,7 @@ func (r CallManagingOrganisationsStatsRetrieveResponse) StatusCode() int {
 type CallManagingOrganisationsUpdateUserResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *UserRoleExpirationTime
 }
 
 // Status returns HTTPResponse.Status
@@ -137740,6 +137747,7 @@ func (r CustomersUpdateResponse) StatusCode() int {
 type CustomersAddUserResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON201      *UserRoleExpirationTime
 }
 
 // Status returns HTTPResponse.Status
@@ -137847,6 +137855,7 @@ func (r CustomersUpdateOrganizationGroupsResponse) StatusCode() int {
 type CustomersUpdateUserResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *UserRoleExpirationTime
 }
 
 // Status returns HTTPResponse.Status
@@ -143293,6 +143302,7 @@ func (r MarketplaceProviderOfferingsAddEndpointResponse) StatusCode() int {
 type MarketplaceProviderOfferingsAddUserResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON201      *UserRoleExpirationTime
 }
 
 // Status returns HTTPResponse.Status
@@ -144116,6 +144126,7 @@ func (r MarketplaceProviderOfferingsUpdateThumbnailResponse) StatusCode() int {
 type MarketplaceProviderOfferingsUpdateUserResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *UserRoleExpirationTime
 }
 
 // Status returns HTTPResponse.Status
@@ -146433,6 +146444,7 @@ func (r MarketplaceServiceProvidersUpdateResponse) StatusCode() int {
 type MarketplaceServiceProvidersAddUserResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON201      *UserRoleExpirationTime
 }
 
 // Status returns HTTPResponse.Status
@@ -146651,6 +146663,7 @@ func (r MarketplaceServiceProvidersStatRetrieveResponse) StatusCode() int {
 type MarketplaceServiceProvidersUpdateUserResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *UserRoleExpirationTime
 }
 
 // Status returns HTTPResponse.Status
@@ -151300,6 +151313,7 @@ func (r ProjectsUpdateResponse) StatusCode() int {
 type ProjectsAddUserResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON201      *UserRoleExpirationTime
 }
 
 // Status returns HTTPResponse.Status
@@ -151408,6 +151422,7 @@ func (r ProjectsStatsRetrieveResponse) StatusCode() int {
 type ProjectsUpdateUserResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *UserRoleExpirationTime
 }
 
 // Status returns HTTPResponse.Status
@@ -151711,6 +151726,7 @@ func (r ProposalProposalsRetrieveResponse) StatusCode() int {
 type ProposalProposalsAddUserResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON201      *UserRoleExpirationTime
 }
 
 // Status returns HTTPResponse.Status
@@ -152011,6 +152027,7 @@ func (r ProposalProposalsUpdateProjectDetailsResponse) StatusCode() int {
 type ProposalProposalsUpdateUserResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *UserRoleExpirationTime
 }
 
 // Status returns HTTPResponse.Status
@@ -152184,6 +152201,7 @@ func (r ProposalProtectedCallsActivateResponse) StatusCode() int {
 type ProposalProtectedCallsAddUserResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON201      *UserRoleExpirationTime
 }
 
 // Status returns HTTPResponse.Status
@@ -152595,6 +152613,7 @@ func (r ProposalProtectedCallsRoundsCloseResponse) StatusCode() int {
 type ProposalProtectedCallsUpdateUserResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *UserRoleExpirationTime
 }
 
 // Status returns HTTPResponse.Status
@@ -175231,6 +175250,16 @@ func ParseCallManagingOrganisationsAddUserResponse(rsp *http.Response) (*CallMan
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest UserRoleExpirationTime
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -175313,6 +175342,16 @@ func ParseCallManagingOrganisationsUpdateUserResponse(rsp *http.Response) (*Call
 	response := &CallManagingOrganisationsUpdateUserResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest UserRoleExpirationTime
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
@@ -176139,6 +176178,16 @@ func ParseCustomersAddUserResponse(rsp *http.Response) (*CustomersAddUserRespons
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest UserRoleExpirationTime
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -176237,6 +176286,16 @@ func ParseCustomersUpdateUserResponse(rsp *http.Response) (*CustomersUpdateUserR
 	response := &CustomersUpdateUserResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest UserRoleExpirationTime
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
@@ -182199,6 +182258,16 @@ func ParseMarketplaceProviderOfferingsAddUserResponse(rsp *http.Response) (*Mark
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest UserRoleExpirationTime
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -183055,6 +183124,16 @@ func ParseMarketplaceProviderOfferingsUpdateUserResponse(rsp *http.Response) (*M
 	response := &MarketplaceProviderOfferingsUpdateUserResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest UserRoleExpirationTime
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
@@ -185660,6 +185739,16 @@ func ParseMarketplaceServiceProvidersAddUserResponse(rsp *http.Response) (*Marke
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest UserRoleExpirationTime
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -185898,6 +185987,16 @@ func ParseMarketplaceServiceProvidersUpdateUserResponse(rsp *http.Response) (*Ma
 	response := &MarketplaceServiceProvidersUpdateUserResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest UserRoleExpirationTime
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
@@ -190680,6 +190779,16 @@ func ParseProjectsAddUserResponse(rsp *http.Response) (*ProjectsAddUserResponse,
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest UserRoleExpirationTime
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -190788,6 +190897,16 @@ func ParseProjectsUpdateUserResponse(rsp *http.Response) (*ProjectsUpdateUserRes
 	response := &ProjectsUpdateUserResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest UserRoleExpirationTime
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
@@ -191104,6 +191223,16 @@ func ParseProposalProposalsAddUserResponse(rsp *http.Response) (*ProposalProposa
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest UserRoleExpirationTime
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -191388,6 +191517,16 @@ func ParseProposalProposalsUpdateUserResponse(rsp *http.Response) (*ProposalProp
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest UserRoleExpirationTime
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -191564,6 +191703,16 @@ func ParseProposalProtectedCallsAddUserResponse(rsp *http.Response) (*ProposalPr
 	response := &ProposalProtectedCallsAddUserResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest UserRoleExpirationTime
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
 	}
 
 	return response, nil
@@ -191988,6 +192137,16 @@ func ParseProposalProtectedCallsUpdateUserResponse(rsp *http.Response) (*Proposa
 	response := &ProposalProtectedCallsUpdateUserResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest UserRoleExpirationTime
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
