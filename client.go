@@ -10172,11 +10172,6 @@ type EmailLog struct {
 	Uuid    *openapi_types.UUID   `json:"uuid,omitempty"`
 }
 
-// EndpointDeleteRequest defines model for EndpointDeleteRequest.
-type EndpointDeleteRequest struct {
-	Uuid openapi_types.UUID `json:"uuid"`
-}
-
 // EthertypeEnum defines model for EthertypeEnum.
 type EthertypeEnum string
 
@@ -12008,11 +12003,6 @@ type OfferingCreateRequest_Country struct {
 	union json.RawMessage
 }
 
-// OfferingDescriptionUpdate defines model for OfferingDescriptionUpdate.
-type OfferingDescriptionUpdate struct {
-	Category string `json:"category"`
-}
-
 // OfferingDescriptionUpdateRequest defines model for OfferingDescriptionUpdateRequest.
 type OfferingDescriptionUpdateRequest struct {
 	Category string `json:"category"`
@@ -12074,26 +12064,12 @@ type OfferingImageRequest struct {
 	Image openapi_types.File `json:"image"`
 }
 
-// OfferingIntegrationUpdate defines model for OfferingIntegrationUpdate.
-type OfferingIntegrationUpdate struct {
-	BackendId         *string              `json:"backend_id,omitempty"`
-	PluginOptions     *MergedPluginOptions `json:"plugin_options,omitempty"`
-	SecretOptions     *MergedSecretOptions `json:"secret_options,omitempty"`
-	ServiceAttributes *interface{}         `json:"service_attributes,omitempty"`
-}
-
 // OfferingIntegrationUpdateRequest defines model for OfferingIntegrationUpdateRequest.
 type OfferingIntegrationUpdateRequest struct {
 	BackendId         *string                     `json:"backend_id,omitempty"`
 	PluginOptions     *MergedPluginOptionsRequest `json:"plugin_options,omitempty"`
 	SecretOptions     *MergedSecretOptionsRequest `json:"secret_options,omitempty"`
 	ServiceAttributes *interface{}                `json:"service_attributes,omitempty"`
-}
-
-// OfferingLocationUpdate defines model for OfferingLocationUpdate.
-type OfferingLocationUpdate struct {
-	Latitude  float64 `json:"latitude"`
-	Longitude float64 `json:"longitude"`
 }
 
 // OfferingLocationUpdateRequest defines model for OfferingLocationUpdateRequest.
@@ -12114,29 +12090,9 @@ type OfferingOptionsRequest struct {
 	Order   []string                      `json:"order"`
 }
 
-// OfferingOptionsUpdate defines model for OfferingOptionsUpdate.
-type OfferingOptionsUpdate struct {
-	Options OfferingOptions `json:"options"`
-}
-
 // OfferingOptionsUpdateRequest defines model for OfferingOptionsUpdateRequest.
 type OfferingOptionsUpdateRequest struct {
 	Options OfferingOptionsRequest `json:"options"`
-}
-
-// OfferingOverviewUpdate defines model for OfferingOverviewUpdate.
-type OfferingOverviewUpdate struct {
-	// AccessUrl Publicly accessible offering access URL
-	AccessUrl          *string `json:"access_url,omitempty"`
-	Description        *string `json:"description,omitempty"`
-	FullDescription    *string `json:"full_description,omitempty"`
-	GettingStarted     *string `json:"getting_started,omitempty"`
-	IntegrationGuide   *string `json:"integration_guide,omitempty"`
-	Name               string  `json:"name"`
-	PrivacyPolicyLink  *string `json:"privacy_policy_link,omitempty"`
-	Slug               *string `json:"slug,omitempty"`
-	TermsOfService     *string `json:"terms_of_service,omitempty"`
-	TermsOfServiceLink *string `json:"terms_of_service_link,omitempty"`
 }
 
 // OfferingOverviewUpdateRequest defines model for OfferingOverviewUpdateRequest.
@@ -12195,11 +12151,6 @@ type OfferingReferral struct {
 	Title        *string             `json:"title,omitempty"`
 	Url          *string             `json:"url,omitempty"`
 	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
-}
-
-// OfferingResourceOptionsUpdate defines model for OfferingResourceOptionsUpdate.
-type OfferingResourceOptionsUpdate struct {
-	ResourceOptions OfferingOptions `json:"resource_options"`
 }
 
 // OfferingResourceOptionsUpdateRequest defines model for OfferingResourceOptionsUpdateRequest.
@@ -17272,6 +17223,16 @@ type TokenRequest struct {
 type TotalCustomerCost struct {
 	Price *float64 `json:"price,omitempty"`
 	Total *float64 `json:"total,omitempty"`
+}
+
+// UUID defines model for UUID.
+type UUID struct {
+	Uuid openapi_types.UUID `json:"uuid"`
+}
+
+// UUIDRequest defines model for UUIDRequest.
+type UUIDRequest struct {
+	Uuid openapi_types.UUID `json:"uuid"`
 }
 
 // User defines model for User.
@@ -24174,7 +24135,7 @@ type MarketplaceProviderOfferingsAddUserJSONRequestBody = UserRoleCreateRequest
 type MarketplaceProviderOfferingsCreateOfferingComponentJSONRequestBody = OfferingComponentRequest
 
 // MarketplaceProviderOfferingsDeleteEndpointJSONRequestBody defines body for MarketplaceProviderOfferingsDeleteEndpoint for application/json ContentType.
-type MarketplaceProviderOfferingsDeleteEndpointJSONRequestBody = EndpointDeleteRequest
+type MarketplaceProviderOfferingsDeleteEndpointJSONRequestBody = UUIDRequest
 
 // MarketplaceProviderOfferingsDeleteUserJSONRequestBody defines body for MarketplaceProviderOfferingsDeleteUser for application/json ContentType.
 type MarketplaceProviderOfferingsDeleteUserJSONRequestBody = UserRoleDeleteRequest
@@ -143280,7 +143241,7 @@ func (r MarketplaceProviderOfferingsActivateResponse) StatusCode() int {
 type MarketplaceProviderOfferingsAddEndpointResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *NestedEndpoint
+	JSON201      *UUID
 }
 
 // Status returns HTTPResponse.Status
@@ -143907,7 +143868,6 @@ func (r MarketplaceProviderOfferingsUpdateAttributesResponse) StatusCode() int {
 type MarketplaceProviderOfferingsUpdateDescriptionResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *OfferingDescriptionUpdate
 }
 
 // Status returns HTTPResponse.Status
@@ -143951,7 +143911,6 @@ func (r MarketplaceProviderOfferingsUpdateImageResponse) StatusCode() int {
 type MarketplaceProviderOfferingsUpdateIntegrationResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *OfferingIntegrationUpdate
 }
 
 // Status returns HTTPResponse.Status
@@ -143973,7 +143932,6 @@ func (r MarketplaceProviderOfferingsUpdateIntegrationResponse) StatusCode() int 
 type MarketplaceProviderOfferingsUpdateLocationResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *OfferingLocationUpdate
 }
 
 // Status returns HTTPResponse.Status
@@ -144016,7 +143974,6 @@ func (r MarketplaceProviderOfferingsUpdateOfferingComponentResponse) StatusCode(
 type MarketplaceProviderOfferingsUpdateOptionsResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *OfferingOptionsUpdate
 }
 
 // Status returns HTTPResponse.Status
@@ -144038,7 +143995,6 @@ func (r MarketplaceProviderOfferingsUpdateOptionsResponse) StatusCode() int {
 type MarketplaceProviderOfferingsUpdateOrganizationGroupsResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *ProviderOfferingDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -144060,7 +144016,6 @@ func (r MarketplaceProviderOfferingsUpdateOrganizationGroupsResponse) StatusCode
 type MarketplaceProviderOfferingsUpdateOverviewResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *OfferingOverviewUpdate
 }
 
 // Status returns HTTPResponse.Status
@@ -144082,7 +144037,6 @@ func (r MarketplaceProviderOfferingsUpdateOverviewResponse) StatusCode() int {
 type MarketplaceProviderOfferingsUpdateResourceOptionsResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *OfferingResourceOptionsUpdate
 }
 
 // Status returns HTTPResponse.Status
@@ -144104,7 +144058,6 @@ func (r MarketplaceProviderOfferingsUpdateResourceOptionsResponse) StatusCode() 
 type MarketplaceProviderOfferingsUpdateThumbnailResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *ProviderOfferingDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -182233,12 +182186,12 @@ func ParseMarketplaceProviderOfferingsAddEndpointResponse(rsp *http.Response) (*
 	}
 
 	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest NestedEndpoint
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest UUID
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.JSON201 = &dest
 
 	}
 
@@ -182876,16 +182829,6 @@ func ParseMarketplaceProviderOfferingsUpdateDescriptionResponse(rsp *http.Respon
 		HTTPResponse: rsp,
 	}
 
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest OfferingDescriptionUpdate
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
 	return response, nil
 }
 
@@ -182928,16 +182871,6 @@ func ParseMarketplaceProviderOfferingsUpdateIntegrationResponse(rsp *http.Respon
 		HTTPResponse: rsp,
 	}
 
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest OfferingIntegrationUpdate
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
 	return response, nil
 }
 
@@ -182952,16 +182885,6 @@ func ParseMarketplaceProviderOfferingsUpdateLocationResponse(rsp *http.Response)
 	response := &MarketplaceProviderOfferingsUpdateLocationResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest OfferingLocationUpdate
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
 	}
 
 	return response, nil
@@ -182996,16 +182919,6 @@ func ParseMarketplaceProviderOfferingsUpdateOptionsResponse(rsp *http.Response) 
 		HTTPResponse: rsp,
 	}
 
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest OfferingOptionsUpdate
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
 	return response, nil
 }
 
@@ -183020,16 +182933,6 @@ func ParseMarketplaceProviderOfferingsUpdateOrganizationGroupsResponse(rsp *http
 	response := &MarketplaceProviderOfferingsUpdateOrganizationGroupsResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ProviderOfferingDetails
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
 	}
 
 	return response, nil
@@ -183048,16 +182951,6 @@ func ParseMarketplaceProviderOfferingsUpdateOverviewResponse(rsp *http.Response)
 		HTTPResponse: rsp,
 	}
 
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest OfferingOverviewUpdate
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
 	return response, nil
 }
 
@@ -183074,16 +182967,6 @@ func ParseMarketplaceProviderOfferingsUpdateResourceOptionsResponse(rsp *http.Re
 		HTTPResponse: rsp,
 	}
 
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest OfferingResourceOptionsUpdate
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
 	return response, nil
 }
 
@@ -183098,16 +182981,6 @@ func ParseMarketplaceProviderOfferingsUpdateThumbnailResponse(rsp *http.Response
 	response := &MarketplaceProviderOfferingsUpdateThumbnailResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ProviderOfferingDetails
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
 	}
 
 	return response, nil
