@@ -13649,6 +13649,11 @@ type OrderSetStateErredRequest struct {
 // OrderState defines model for OrderState.
 type OrderState string
 
+// OrderUUID defines model for OrderUUID.
+type OrderUUID struct {
+	OrderUuid *openapi_types.UUID `json:"order_uuid,omitempty"`
+}
+
 // OrganizationGroup defines model for OrganizationGroup.
 type OrganizationGroup struct {
 	CustomersCount *int                `json:"customers_count,omitempty"`
@@ -16520,19 +16525,9 @@ type ResourceSuggestNameRequest struct {
 	Project  openapi_types.UUID `json:"project"`
 }
 
-// ResourceSwitchPlan defines model for ResourceSwitchPlan.
-type ResourceSwitchPlan struct {
-	Plan string `json:"plan"`
-}
-
 // ResourceSwitchPlanRequest defines model for ResourceSwitchPlanRequest.
 type ResourceSwitchPlanRequest struct {
 	Plan string `json:"plan"`
-}
-
-// ResourceTerminate defines model for ResourceTerminate.
-type ResourceTerminate struct {
-	Attributes *interface{} `json:"attributes,omitempty"`
 }
 
 // ResourceTerminateRequest defines model for ResourceTerminateRequest.
@@ -16547,11 +16542,6 @@ type ResourceUpdate struct {
 	// EndDate The date is inclusive. Once reached, a resource will be scheduled for termination.
 	EndDate *openapi_types.Date `json:"end_date"`
 	Name    string              `json:"name"`
-}
-
-// ResourceUpdateLimits defines model for ResourceUpdateLimits.
-type ResourceUpdateLimits struct {
-	Limits map[string]int `json:"limits"`
 }
 
 // ResourceUpdateLimitsRequest defines model for ResourceUpdateLimitsRequest.
@@ -18317,8 +18307,11 @@ type BookingResourcesListParams struct {
 	O                *[]BookingResourcesListParamsO `form:"o,omitempty" json:"o,omitempty"`
 	Offering         *string                        `form:"offering,omitempty" json:"offering,omitempty"`
 	OfferingBillable *openapi_types.UUID            `form:"offering_billable,omitempty" json:"offering_billable,omitempty"`
-	OfferingType     *string                        `form:"offering_type,omitempty" json:"offering_type,omitempty"`
-	OfferingUuid     *openapi_types.UUID            `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// OfferingShared Offering shared
+	OfferingShared *bool               `form:"offering_shared,omitempty" json:"offering_shared,omitempty"`
+	OfferingType   *string             `form:"offering_type,omitempty" json:"offering_type,omitempty"`
+	OfferingUuid   *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -20349,8 +20342,11 @@ type MarketplaceProviderResourcesListParams struct {
 	O                *[]MarketplaceProviderResourcesListParamsO `form:"o,omitempty" json:"o,omitempty"`
 	Offering         *string                                    `form:"offering,omitempty" json:"offering,omitempty"`
 	OfferingBillable *openapi_types.UUID                        `form:"offering_billable,omitempty" json:"offering_billable,omitempty"`
-	OfferingType     *string                                    `form:"offering_type,omitempty" json:"offering_type,omitempty"`
-	OfferingUuid     *openapi_types.UUID                        `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// OfferingShared Offering shared
+	OfferingShared *bool               `form:"offering_shared,omitempty" json:"offering_shared,omitempty"`
+	OfferingType   *string             `form:"offering_type,omitempty" json:"offering_type,omitempty"`
+	OfferingUuid   *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -20545,8 +20541,11 @@ type MarketplaceResourcesListParams struct {
 	O                *[]MarketplaceResourcesListParamsO `form:"o,omitempty" json:"o,omitempty"`
 	Offering         *string                            `form:"offering,omitempty" json:"offering,omitempty"`
 	OfferingBillable *openapi_types.UUID                `form:"offering_billable,omitempty" json:"offering_billable,omitempty"`
-	OfferingType     *string                            `form:"offering_type,omitempty" json:"offering_type,omitempty"`
-	OfferingUuid     *openapi_types.UUID                `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// OfferingShared Offering shared
+	OfferingShared *bool               `form:"offering_shared,omitempty" json:"offering_shared,omitempty"`
+	OfferingType   *string             `form:"offering_type,omitempty" json:"offering_type,omitempty"`
+	OfferingUuid   *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -57359,6 +57358,22 @@ func NewBookingResourcesListRequest(server string, params *BookingResourcesListP
 
 		}
 
+		if params.OfferingShared != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_shared", runtime.ParamLocationQuery, *params.OfferingShared); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.OfferingType != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_type", runtime.ParamLocationQuery, *params.OfferingType); err != nil {
@@ -82315,6 +82330,22 @@ func NewMarketplaceProviderResourcesListRequest(server string, params *Marketpla
 
 		}
 
+		if params.OfferingShared != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_shared", runtime.ParamLocationQuery, *params.OfferingShared); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.OfferingType != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_type", runtime.ParamLocationQuery, *params.OfferingType); err != nil {
@@ -85182,6 +85213,22 @@ func NewMarketplaceResourcesListRequest(server string, params *MarketplaceResour
 		if params.OfferingBillable != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_billable", runtime.ParamLocationQuery, *params.OfferingBillable); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OfferingShared != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_shared", runtime.ParamLocationQuery, *params.OfferingShared); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -144582,7 +144629,7 @@ func (r MarketplaceProviderResourcesTeamListResponse) StatusCode() int {
 type MarketplaceProviderResourcesTerminateResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *ResourceTerminate
+	JSON200      *OrderUUID
 }
 
 // Status returns HTTPResponse.Status
@@ -145324,7 +145371,7 @@ func (r MarketplaceResourcesSetSlugResponse) StatusCode() int {
 type MarketplaceResourcesSwitchPlanResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *ResourceSwitchPlan
+	JSON200      *OrderUUID
 }
 
 // Status returns HTTPResponse.Status
@@ -145368,7 +145415,7 @@ func (r MarketplaceResourcesTeamListResponse) StatusCode() int {
 type MarketplaceResourcesTerminateResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *ResourceTerminate
+	JSON200      *OrderUUID
 }
 
 // Status returns HTTPResponse.Status
@@ -145411,7 +145458,7 @@ func (r MarketplaceResourcesUnlinkResponse) StatusCode() int {
 type MarketplaceResourcesUpdateLimitsResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *ResourceUpdateLimits
+	JSON200      *OrderUUID
 }
 
 // Status returns HTTPResponse.Status
@@ -183569,7 +183616,7 @@ func ParseMarketplaceProviderResourcesTerminateResponse(rsp *http.Response) (*Ma
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ResourceTerminate
+		var dest OrderUUID
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -184393,7 +184440,7 @@ func ParseMarketplaceResourcesSwitchPlanResponse(rsp *http.Response) (*Marketpla
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ResourceSwitchPlan
+		var dest OrderUUID
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -184445,7 +184492,7 @@ func ParseMarketplaceResourcesTerminateResponse(rsp *http.Response) (*Marketplac
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ResourceTerminate
+		var dest OrderUUID
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -184487,7 +184534,7 @@ func ParseMarketplaceResourcesUpdateLimitsResponse(rsp *http.Response) (*Marketp
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ResourceUpdateLimits
+		var dest OrderUUID
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
