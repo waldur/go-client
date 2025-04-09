@@ -11253,7 +11253,8 @@ type MergedPluginOptionsRequest_AccountNameGenerationPolicy struct {
 // MergedSecretOptions defines model for MergedSecretOptions.
 type MergedSecretOptions struct {
 	// ApiUrl API URL
-	ApiUrl *string `json:"api_url,omitempty"`
+	ApiUrl     *string `json:"api_url,omitempty"`
+	BackendUrl *string `json:"backend_url,omitempty"`
 
 	// Create Script for resource creation
 	Create *string `json:"create,omitempty"`
@@ -11276,12 +11277,10 @@ type MergedSecretOptions struct {
 	// Language Script language: Python or Bash
 	Language                   *string `json:"language,omitempty"`
 	OpenstackApiTlsCertificate *string `json:"openstack_api_tls_certificate,omitempty"`
+	Password                   *string `json:"password,omitempty"`
 
 	// Pull Script for regular resource pull
 	Pull *string `json:"pull,omitempty"`
-
-	// RancherOfferingUuid UUID of Rancher offering where cluster can be created
-	RancherOfferingUuid *openapi_types.UUID `json:"rancher_offering_uuid,omitempty"`
 
 	// SharedUserPassword GLAuth shared user password
 	SharedUserPassword *string `json:"shared_user_password,omitempty"`
@@ -11296,13 +11295,15 @@ type MergedSecretOptions struct {
 	Token *string `json:"token,omitempty"`
 
 	// Update Script for resource update
-	Update *string `json:"update,omitempty"`
+	Update   *string `json:"update,omitempty"`
+	Username *string `json:"username,omitempty"`
 }
 
 // MergedSecretOptionsRequest defines model for MergedSecretOptionsRequest.
 type MergedSecretOptionsRequest struct {
 	// ApiUrl API URL
-	ApiUrl *string `json:"api_url,omitempty"`
+	ApiUrl     *string `json:"api_url,omitempty"`
+	BackendUrl *string `json:"backend_url,omitempty"`
 
 	// Create Script for resource creation
 	Create *string `json:"create,omitempty"`
@@ -11325,12 +11326,10 @@ type MergedSecretOptionsRequest struct {
 	// Language Script language: Python or Bash
 	Language                   *string `json:"language,omitempty"`
 	OpenstackApiTlsCertificate *string `json:"openstack_api_tls_certificate,omitempty"`
+	Password                   *string `json:"password,omitempty"`
 
 	// Pull Script for regular resource pull
 	Pull *string `json:"pull,omitempty"`
-
-	// RancherOfferingUuid UUID of Rancher offering where cluster can be created
-	RancherOfferingUuid *openapi_types.UUID `json:"rancher_offering_uuid,omitempty"`
 
 	// SharedUserPassword GLAuth shared user password
 	SharedUserPassword *string `json:"shared_user_password,omitempty"`
@@ -11345,7 +11344,8 @@ type MergedSecretOptionsRequest struct {
 	Token *string `json:"token,omitempty"`
 
 	// Update Script for resource update
-	Update *string `json:"update,omitempty"`
+	Update   *string `json:"update,omitempty"`
+	Username *string `json:"username,omitempty"`
 }
 
 // MessageTemplate defines model for MessageTemplate.
