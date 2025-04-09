@@ -6626,7 +6626,6 @@ const (
 	RancherClustersListParamsFieldMarketplaceResourceUuid          RancherClustersListParamsField = "marketplace_resource_uuid"
 	RancherClustersListParamsFieldModified                         RancherClustersListParamsField = "modified"
 	RancherClustersListParamsFieldName                             RancherClustersListParamsField = "name"
-	RancherClustersListParamsFieldNodeCommand                      RancherClustersListParamsField = "node_command"
 	RancherClustersListParamsFieldNodes                            RancherClustersListParamsField = "nodes"
 	RancherClustersListParamsFieldProject                          RancherClustersListParamsField = "project"
 	RancherClustersListParamsFieldProjectName                      RancherClustersListParamsField = "project_name"
@@ -6685,7 +6684,6 @@ const (
 	RancherClustersRetrieveParamsFieldMarketplaceResourceUuid          RancherClustersRetrieveParamsField = "marketplace_resource_uuid"
 	RancherClustersRetrieveParamsFieldModified                         RancherClustersRetrieveParamsField = "modified"
 	RancherClustersRetrieveParamsFieldName                             RancherClustersRetrieveParamsField = "name"
-	RancherClustersRetrieveParamsFieldNodeCommand                      RancherClustersRetrieveParamsField = "node_command"
 	RancherClustersRetrieveParamsFieldNodes                            RancherClustersRetrieveParamsField = "nodes"
 	RancherClustersRetrieveParamsFieldProject                          RancherClustersRetrieveParamsField = "project"
 	RancherClustersRetrieveParamsFieldProjectName                      RancherClustersRetrieveParamsField = "project_name"
@@ -6732,7 +6730,6 @@ const (
 	RancherClustersKubeconfigFileRetrieveParamsFieldMarketplaceResourceUuid          RancherClustersKubeconfigFileRetrieveParamsField = "marketplace_resource_uuid"
 	RancherClustersKubeconfigFileRetrieveParamsFieldModified                         RancherClustersKubeconfigFileRetrieveParamsField = "modified"
 	RancherClustersKubeconfigFileRetrieveParamsFieldName                             RancherClustersKubeconfigFileRetrieveParamsField = "name"
-	RancherClustersKubeconfigFileRetrieveParamsFieldNodeCommand                      RancherClustersKubeconfigFileRetrieveParamsField = "node_command"
 	RancherClustersKubeconfigFileRetrieveParamsFieldNodes                            RancherClustersKubeconfigFileRetrieveParamsField = "nodes"
 	RancherClustersKubeconfigFileRetrieveParamsFieldProject                          RancherClustersKubeconfigFileRetrieveParamsField = "project"
 	RancherClustersKubeconfigFileRetrieveParamsFieldProjectName                      RancherClustersKubeconfigFileRetrieveParamsField = "project_name"
@@ -11413,7 +11410,8 @@ type MountPointEnum string
 
 // MoveProjectRequest defines model for MoveProjectRequest.
 type MoveProjectRequest struct {
-	Customer string `json:"customer"`
+	Customer            string `json:"customer"`
+	PreservePermissions bool   `json:"preserve_permissions"`
 }
 
 // NameUUID defines model for NameUUID.
@@ -15631,25 +15629,22 @@ type RancherCluster struct {
 	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid,omitempty"`
 	Modified                         *time.Time              `json:"modified,omitempty"`
 	Name                             *string                 `json:"name,omitempty"`
-
-	// NodeCommand Rancher generated node installation command base.
-	NodeCommand                 *string              `json:"node_command,omitempty"`
-	Nodes                       *[]RancherNestedNode `json:"nodes,omitempty"`
-	Project                     *string              `json:"project,omitempty"`
-	ProjectName                 *string              `json:"project_name,omitempty"`
-	ProjectUuid                 *openapi_types.UUID  `json:"project_uuid,omitempty"`
-	ResourceType                *string              `json:"resource_type,omitempty"`
-	RuntimeState                *string              `json:"runtime_state,omitempty"`
-	ServiceName                 *string              `json:"service_name,omitempty"`
-	ServiceSettings             *string              `json:"service_settings,omitempty"`
-	ServiceSettingsErrorMessage *string              `json:"service_settings_error_message,omitempty"`
-	ServiceSettingsState        *string              `json:"service_settings_state,omitempty"`
-	ServiceSettingsUuid         *openapi_types.UUID  `json:"service_settings_uuid,omitempty"`
-	State                       *CoreStates          `json:"state,omitempty"`
-	Tenant                      *string              `json:"tenant,omitempty"`
-	TenantUuid                  *openapi_types.UUID  `json:"tenant_uuid,omitempty"`
-	Url                         *string              `json:"url,omitempty"`
-	Uuid                        *openapi_types.UUID  `json:"uuid,omitempty"`
+	Nodes                            *[]RancherNestedNode    `json:"nodes,omitempty"`
+	Project                          *string                 `json:"project,omitempty"`
+	ProjectName                      *string                 `json:"project_name,omitempty"`
+	ProjectUuid                      *openapi_types.UUID     `json:"project_uuid,omitempty"`
+	ResourceType                     *string                 `json:"resource_type,omitempty"`
+	RuntimeState                     *string                 `json:"runtime_state,omitempty"`
+	ServiceName                      *string                 `json:"service_name,omitempty"`
+	ServiceSettings                  *string                 `json:"service_settings,omitempty"`
+	ServiceSettingsErrorMessage      *string                 `json:"service_settings_error_message,omitempty"`
+	ServiceSettingsState             *string                 `json:"service_settings_state,omitempty"`
+	ServiceSettingsUuid              *openapi_types.UUID     `json:"service_settings_uuid,omitempty"`
+	State                            *CoreStates             `json:"state,omitempty"`
+	Tenant                           *string                 `json:"tenant,omitempty"`
+	TenantUuid                       *openapi_types.UUID     `json:"tenant_uuid,omitempty"`
+	Url                              *string                 `json:"url,omitempty"`
+	Uuid                             *openapi_types.UUID     `json:"uuid,omitempty"`
 }
 
 // RancherClusterReference defines model for RancherClusterReference.
@@ -15913,7 +15908,6 @@ type RancherNode struct {
 	Created                 *time.Time          `json:"created,omitempty"`
 	DockerVersion           *string             `json:"docker_version,omitempty"`
 	EtcdRole                *bool               `json:"etcd_role,omitempty"`
-	GetNodeCommand          *string             `json:"get_node_command,omitempty"`
 	Instance                string              `json:"instance"`
 	InstanceMarketplaceUuid *openapi_types.UUID `json:"instance_marketplace_uuid,omitempty"`
 	InstanceName            *string             `json:"instance_name,omitempty"`
@@ -18577,6 +18571,9 @@ type CustomersListParams struct {
 	// OrganizationGroupUuid organization_group_uuid
 	OrganizationGroupUuid *[]openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
 
+	// OwnedByCurrentUser Return a list of customers where current user is owner.
+	OwnedByCurrentUser *bool `form:"owned_by_current_user,omitempty" json:"owned_by_current_user,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
@@ -18606,6 +18603,9 @@ type CustomersCountriesListParams struct {
 
 	// OrganizationGroupUuid organization_group_uuid
 	OrganizationGroupUuid *[]openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
+
+	// OwnedByCurrentUser Return a list of customers where current user is owner.
+	OwnedByCurrentUser *bool `form:"owned_by_current_user,omitempty" json:"owned_by_current_user,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -18944,6 +18944,9 @@ type FinancialReportsListParams struct {
 
 	// OrganizationGroupUuid organization_group_uuid
 	OrganizationGroupUuid *[]openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
+
+	// OwnedByCurrentUser Return a list of customers where current user is owner.
+	OwnedByCurrentUser *bool `form:"owned_by_current_user,omitempty" json:"owned_by_current_user,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -20756,6 +20759,9 @@ type MarketplaceServiceProvidersCustomersListParams struct {
 	// OrganizationGroupUuid organization_group_uuid
 	OrganizationGroupUuid *[]openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
 
+	// OwnedByCurrentUser Return a list of customers where current user is owner.
+	OwnedByCurrentUser *bool `form:"owned_by_current_user,omitempty" json:"owned_by_current_user,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
@@ -20977,6 +20983,9 @@ type MarketplaceServiceProvidersUserCustomersListParams struct {
 
 	// OrganizationGroupUuid organization_group_uuid
 	OrganizationGroupUuid *[]openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
+
+	// OwnedByCurrentUser Return a list of customers where current user is owner.
+	OwnedByCurrentUser *bool `form:"owned_by_current_user,omitempty" json:"owned_by_current_user,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -60679,6 +60688,22 @@ func NewCustomersListRequest(server string, params *CustomersListParams) (*http.
 
 		}
 
+		if params.OwnedByCurrentUser != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "owned_by_current_user", runtime.ParamLocationQuery, *params.OwnedByCurrentUser); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Page != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
@@ -60979,6 +61004,22 @@ func NewCustomersCountriesListRequest(server string, params *CustomersCountriesL
 		if params.OrganizationGroupUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "organization_group_uuid", runtime.ParamLocationQuery, *params.OrganizationGroupUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OwnedByCurrentUser != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "owned_by_current_user", runtime.ParamLocationQuery, *params.OwnedByCurrentUser); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -64670,6 +64711,22 @@ func NewFinancialReportsListRequest(server string, params *FinancialReportsListP
 		if params.OrganizationGroupUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "organization_group_uuid", runtime.ParamLocationQuery, *params.OrganizationGroupUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OwnedByCurrentUser != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "owned_by_current_user", runtime.ParamLocationQuery, *params.OwnedByCurrentUser); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -88467,6 +88524,22 @@ func NewMarketplaceServiceProvidersCustomersListRequest(server string, servicePr
 
 		}
 
+		if params.OwnedByCurrentUser != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "owned_by_current_user", runtime.ParamLocationQuery, *params.OwnedByCurrentUser); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Page != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
@@ -90110,6 +90183,22 @@ func NewMarketplaceServiceProvidersUserCustomersListRequest(server string, servi
 		if params.OrganizationGroupUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "organization_group_uuid", runtime.ParamLocationQuery, *params.OrganizationGroupUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OwnedByCurrentUser != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "owned_by_current_user", runtime.ParamLocationQuery, *params.OwnedByCurrentUser); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
