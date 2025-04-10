@@ -783,6 +783,12 @@ const (
 	Affinity PolicyEnum = "affinity"
 )
 
+// Defines values for PolicyTypeEnum.
+const (
+	AccessAsExternal PolicyTypeEnum = "access_as_external"
+	AccessAsShared   PolicyTypeEnum = "access_as_shared"
+)
+
 // Defines values for ProposalReviewStateEnum.
 const (
 	ProposalReviewStateEnumCreated   ProposalReviewStateEnum = "created"
@@ -887,14 +893,6 @@ const (
 	ServiceSettingsStateEnumOK                ServiceSettingsStateEnum = "OK"
 	ServiceSettingsStateEnumUPDATESCHEDULED   ServiceSettingsStateEnum = "UPDATE_SCHEDULED"
 	ServiceSettingsStateEnumUPDATING          ServiceSettingsStateEnum = "UPDATING"
-)
-
-// Defines values for StateCodeEnum.
-const (
-	StateCodeEnumN1 StateCodeEnum = 1
-	StateCodeEnumN2 StateCodeEnum = 2
-	StateCodeEnumN3 StateCodeEnum = 3
-	StateCodeEnumN4 StateCodeEnum = 4
 )
 
 // Defines values for StatusEnum.
@@ -1774,7 +1772,6 @@ const (
 	BookingOfferingsListParamsFieldShared             BookingOfferingsListParamsField = "shared"
 	BookingOfferingsListParamsFieldSlug               BookingOfferingsListParamsField = "slug"
 	BookingOfferingsListParamsFieldState              BookingOfferingsListParamsField = "state"
-	BookingOfferingsListParamsFieldStateCode          BookingOfferingsListParamsField = "state_code"
 	BookingOfferingsListParamsFieldTermsOfService     BookingOfferingsListParamsField = "terms_of_service"
 	BookingOfferingsListParamsFieldTermsOfServiceLink BookingOfferingsListParamsField = "terms_of_service_link"
 	BookingOfferingsListParamsFieldThumbnail          BookingOfferingsListParamsField = "thumbnail"
@@ -1841,7 +1838,6 @@ const (
 	BookingOfferingsRetrieveParamsFieldShared             BookingOfferingsRetrieveParamsField = "shared"
 	BookingOfferingsRetrieveParamsFieldSlug               BookingOfferingsRetrieveParamsField = "slug"
 	BookingOfferingsRetrieveParamsFieldState              BookingOfferingsRetrieveParamsField = "state"
-	BookingOfferingsRetrieveParamsFieldStateCode          BookingOfferingsRetrieveParamsField = "state_code"
 	BookingOfferingsRetrieveParamsFieldTermsOfService     BookingOfferingsRetrieveParamsField = "terms_of_service"
 	BookingOfferingsRetrieveParamsFieldTermsOfServiceLink BookingOfferingsRetrieveParamsField = "terms_of_service_link"
 	BookingOfferingsRetrieveParamsFieldThumbnail          BookingOfferingsRetrieveParamsField = "thumbnail"
@@ -3236,7 +3232,6 @@ const (
 	MarketplaceProviderOfferingsListParamsFieldShared                 MarketplaceProviderOfferingsListParamsField = "shared"
 	MarketplaceProviderOfferingsListParamsFieldSlug                   MarketplaceProviderOfferingsListParamsField = "slug"
 	MarketplaceProviderOfferingsListParamsFieldState                  MarketplaceProviderOfferingsListParamsField = "state"
-	MarketplaceProviderOfferingsListParamsFieldStateCode              MarketplaceProviderOfferingsListParamsField = "state_code"
 	MarketplaceProviderOfferingsListParamsFieldTermsOfService         MarketplaceProviderOfferingsListParamsField = "terms_of_service"
 	MarketplaceProviderOfferingsListParamsFieldTermsOfServiceLink     MarketplaceProviderOfferingsListParamsField = "terms_of_service_link"
 	MarketplaceProviderOfferingsListParamsFieldThumbnail              MarketplaceProviderOfferingsListParamsField = "thumbnail"
@@ -3333,7 +3328,6 @@ const (
 	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldShared                 MarketplaceProviderOfferingsGroupsRetrieveParamsField = "shared"
 	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldSlug                   MarketplaceProviderOfferingsGroupsRetrieveParamsField = "slug"
 	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldState                  MarketplaceProviderOfferingsGroupsRetrieveParamsField = "state"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldStateCode              MarketplaceProviderOfferingsGroupsRetrieveParamsField = "state_code"
 	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldTermsOfService         MarketplaceProviderOfferingsGroupsRetrieveParamsField = "terms_of_service"
 	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldTermsOfServiceLink     MarketplaceProviderOfferingsGroupsRetrieveParamsField = "terms_of_service_link"
 	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldThumbnail              MarketplaceProviderOfferingsGroupsRetrieveParamsField = "thumbnail"
@@ -3404,7 +3398,6 @@ const (
 	MarketplaceProviderOfferingsRetrieveParamsFieldShared                 MarketplaceProviderOfferingsRetrieveParamsField = "shared"
 	MarketplaceProviderOfferingsRetrieveParamsFieldSlug                   MarketplaceProviderOfferingsRetrieveParamsField = "slug"
 	MarketplaceProviderOfferingsRetrieveParamsFieldState                  MarketplaceProviderOfferingsRetrieveParamsField = "state"
-	MarketplaceProviderOfferingsRetrieveParamsFieldStateCode              MarketplaceProviderOfferingsRetrieveParamsField = "state_code"
 	MarketplaceProviderOfferingsRetrieveParamsFieldTermsOfService         MarketplaceProviderOfferingsRetrieveParamsField = "terms_of_service"
 	MarketplaceProviderOfferingsRetrieveParamsFieldTermsOfServiceLink     MarketplaceProviderOfferingsRetrieveParamsField = "terms_of_service_link"
 	MarketplaceProviderOfferingsRetrieveParamsFieldThumbnail              MarketplaceProviderOfferingsRetrieveParamsField = "thumbnail"
@@ -3580,7 +3573,6 @@ const (
 	MarketplaceProviderOfferingsStatsRetrieveParamsFieldShared                 MarketplaceProviderOfferingsStatsRetrieveParamsField = "shared"
 	MarketplaceProviderOfferingsStatsRetrieveParamsFieldSlug                   MarketplaceProviderOfferingsStatsRetrieveParamsField = "slug"
 	MarketplaceProviderOfferingsStatsRetrieveParamsFieldState                  MarketplaceProviderOfferingsStatsRetrieveParamsField = "state"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldStateCode              MarketplaceProviderOfferingsStatsRetrieveParamsField = "state_code"
 	MarketplaceProviderOfferingsStatsRetrieveParamsFieldTermsOfService         MarketplaceProviderOfferingsStatsRetrieveParamsField = "terms_of_service"
 	MarketplaceProviderOfferingsStatsRetrieveParamsFieldTermsOfServiceLink     MarketplaceProviderOfferingsStatsRetrieveParamsField = "terms_of_service_link"
 	MarketplaceProviderOfferingsStatsRetrieveParamsFieldThumbnail              MarketplaceProviderOfferingsStatsRetrieveParamsField = "thumbnail"
@@ -3651,7 +3643,6 @@ const (
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldShared                 MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "shared"
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldSlug                   MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "slug"
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldState                  MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "state"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldStateCode              MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "state_code"
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldTermsOfService         MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "terms_of_service"
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldTermsOfServiceLink     MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "terms_of_service_link"
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldThumbnail              MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "thumbnail"
@@ -3964,7 +3955,6 @@ const (
 	MarketplacePublicOfferingsListParamsFieldShared                 MarketplacePublicOfferingsListParamsField = "shared"
 	MarketplacePublicOfferingsListParamsFieldSlug                   MarketplacePublicOfferingsListParamsField = "slug"
 	MarketplacePublicOfferingsListParamsFieldState                  MarketplacePublicOfferingsListParamsField = "state"
-	MarketplacePublicOfferingsListParamsFieldStateCode              MarketplacePublicOfferingsListParamsField = "state_code"
 	MarketplacePublicOfferingsListParamsFieldTermsOfService         MarketplacePublicOfferingsListParamsField = "terms_of_service"
 	MarketplacePublicOfferingsListParamsFieldTermsOfServiceLink     MarketplacePublicOfferingsListParamsField = "terms_of_service_link"
 	MarketplacePublicOfferingsListParamsFieldThumbnail              MarketplacePublicOfferingsListParamsField = "thumbnail"
@@ -4059,7 +4049,6 @@ const (
 	MarketplacePublicOfferingsRetrieveParamsFieldShared                 MarketplacePublicOfferingsRetrieveParamsField = "shared"
 	MarketplacePublicOfferingsRetrieveParamsFieldSlug                   MarketplacePublicOfferingsRetrieveParamsField = "slug"
 	MarketplacePublicOfferingsRetrieveParamsFieldState                  MarketplacePublicOfferingsRetrieveParamsField = "state"
-	MarketplacePublicOfferingsRetrieveParamsFieldStateCode              MarketplacePublicOfferingsRetrieveParamsField = "state_code"
 	MarketplacePublicOfferingsRetrieveParamsFieldTermsOfService         MarketplacePublicOfferingsRetrieveParamsField = "terms_of_service"
 	MarketplacePublicOfferingsRetrieveParamsFieldTermsOfServiceLink     MarketplacePublicOfferingsRetrieveParamsField = "terms_of_service_link"
 	MarketplacePublicOfferingsRetrieveParamsFieldThumbnail              MarketplacePublicOfferingsRetrieveParamsField = "thumbnail"
@@ -4318,12 +4307,12 @@ const (
 
 // Defines values for MarketplaceRobotAccountsListParamsState.
 const (
-	MarketplaceRobotAccountsListParamsStateN1 MarketplaceRobotAccountsListParamsState = 1
-	MarketplaceRobotAccountsListParamsStateN2 MarketplaceRobotAccountsListParamsState = 2
-	MarketplaceRobotAccountsListParamsStateN3 MarketplaceRobotAccountsListParamsState = 3
-	MarketplaceRobotAccountsListParamsStateN4 MarketplaceRobotAccountsListParamsState = 4
-	MarketplaceRobotAccountsListParamsStateN5 MarketplaceRobotAccountsListParamsState = 5
-	MarketplaceRobotAccountsListParamsStateN6 MarketplaceRobotAccountsListParamsState = 6
+	N1 MarketplaceRobotAccountsListParamsState = 1
+	N2 MarketplaceRobotAccountsListParamsState = 2
+	N3 MarketplaceRobotAccountsListParamsState = 3
+	N4 MarketplaceRobotAccountsListParamsState = 4
+	N5 MarketplaceRobotAccountsListParamsState = 5
+	N6 MarketplaceRobotAccountsListParamsState = 6
 )
 
 // Defines values for MarketplaceScreenshotsListParamsO.
@@ -5133,6 +5122,7 @@ const (
 	OpenstackNetworksListParamsFieldProject                          OpenstackNetworksListParamsField = "project"
 	OpenstackNetworksListParamsFieldProjectName                      OpenstackNetworksListParamsField = "project_name"
 	OpenstackNetworksListParamsFieldProjectUuid                      OpenstackNetworksListParamsField = "project_uuid"
+	OpenstackNetworksListParamsFieldRbacPolicies                     OpenstackNetworksListParamsField = "rbac_policies"
 	OpenstackNetworksListParamsFieldResourceType                     OpenstackNetworksListParamsField = "resource_type"
 	OpenstackNetworksListParamsFieldServiceName                      OpenstackNetworksListParamsField = "service_name"
 	OpenstackNetworksListParamsFieldServiceSettings                  OpenstackNetworksListParamsField = "service_settings"
@@ -5190,6 +5180,7 @@ const (
 	OpenstackNetworksRetrieveParamsFieldProject                          OpenstackNetworksRetrieveParamsField = "project"
 	OpenstackNetworksRetrieveParamsFieldProjectName                      OpenstackNetworksRetrieveParamsField = "project_name"
 	OpenstackNetworksRetrieveParamsFieldProjectUuid                      OpenstackNetworksRetrieveParamsField = "project_uuid"
+	OpenstackNetworksRetrieveParamsFieldRbacPolicies                     OpenstackNetworksRetrieveParamsField = "rbac_policies"
 	OpenstackNetworksRetrieveParamsFieldResourceType                     OpenstackNetworksRetrieveParamsField = "resource_type"
 	OpenstackNetworksRetrieveParamsFieldServiceName                      OpenstackNetworksRetrieveParamsField = "service_name"
 	OpenstackNetworksRetrieveParamsFieldServiceSettings                  OpenstackNetworksRetrieveParamsField = "service_settings"
@@ -11657,6 +11648,22 @@ type NestedSecurityGroupRule_Protocol struct {
 	union json.RawMessage
 }
 
+// NetworkRBACPolicy defines model for NetworkRBACPolicy.
+type NetworkRBACPolicy struct {
+	BackendId    *string             `json:"backend_id,omitempty"`
+	Created      *time.Time          `json:"created,omitempty"`
+	Network      *string             `json:"network,omitempty"`
+	PolicyType   *PolicyTypeEnum     `json:"policy_type,omitempty"`
+	TargetTenant *string             `json:"target_tenant,omitempty"`
+	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// NetworkRBACPolicyRequest defines model for NetworkRBACPolicyRequest.
+type NetworkRBACPolicyRequest struct {
+	PolicyType   *PolicyTypeEnum `json:"policy_type,omitempty"`
+	TargetTenant string          `json:"target_tenant"`
+}
+
 // Notification defines model for Notification.
 type Notification struct {
 	Created     *time.Time `json:"created,omitempty"`
@@ -11775,7 +11782,6 @@ type Offering struct {
 	Shared             *bool               `json:"shared,omitempty"`
 	Slug               *string             `json:"slug,omitempty"`
 	State              *OfferingState      `json:"state,omitempty"`
-	StateCode          *StateCodeEnum      `json:"state_code,omitempty"`
 	TermsOfService     *string             `json:"terms_of_service,omitempty"`
 	TermsOfServiceLink *string             `json:"terms_of_service_link,omitempty"`
 	Thumbnail          *string             `json:"thumbnail"`
@@ -11950,7 +11956,6 @@ type OfferingCreate struct {
 	Shared             *bool               `json:"shared,omitempty"`
 	Slug               *string             `json:"slug,omitempty"`
 	State              *OfferingState      `json:"state,omitempty"`
-	StateCode          *StateCodeEnum      `json:"state_code,omitempty"`
 	TermsOfService     *string             `json:"terms_of_service,omitempty"`
 	TermsOfServiceLink *string             `json:"terms_of_service_link,omitempty"`
 	Thumbnail          *string             `json:"thumbnail"`
@@ -12760,6 +12765,7 @@ type OpenStackNetwork struct {
 	Project                     *string                  `json:"project,omitempty"`
 	ProjectName                 *string                  `json:"project_name,omitempty"`
 	ProjectUuid                 *openapi_types.UUID      `json:"project_uuid,omitempty"`
+	RbacPolicies                *[]NetworkRBACPolicy     `json:"rbac_policies,omitempty"`
 	ResourceType                *string                  `json:"resource_type,omitempty"`
 	ServiceName                 *string                  `json:"service_name,omitempty"`
 	ServiceSettings             *string                  `json:"service_settings,omitempty"`
@@ -14630,6 +14636,9 @@ type PluginOfferingType struct {
 // PolicyEnum defines model for PolicyEnum.
 type PolicyEnum string
 
+// PolicyTypeEnum defines model for PolicyTypeEnum.
+type PolicyTypeEnum string
+
 // PricesUpdateRequest defines model for PricesUpdateRequest.
 type PricesUpdateRequest struct {
 	Prices map[string]string `json:"prices"`
@@ -15175,7 +15184,6 @@ type ProviderOfferingDetails struct {
 	Shared             *bool               `json:"shared,omitempty"`
 	Slug               *string             `json:"slug,omitempty"`
 	State              *OfferingState      `json:"state,omitempty"`
-	StateCode          *StateCodeEnum      `json:"state_code,omitempty"`
 	TermsOfService     *string             `json:"terms_of_service,omitempty"`
 	TermsOfServiceLink *string             `json:"terms_of_service_link,omitempty"`
 	Thumbnail          *string             `json:"thumbnail"`
@@ -15416,7 +15424,6 @@ type PublicOfferingDetails struct {
 	Shared             *bool               `json:"shared,omitempty"`
 	Slug               *string             `json:"slug,omitempty"`
 	State              *OfferingState      `json:"state,omitempty"`
-	StateCode          *StateCodeEnum      `json:"state_code,omitempty"`
 	TermsOfService     *string             `json:"terms_of_service,omitempty"`
 	TermsOfServiceLink *string             `json:"terms_of_service_link,omitempty"`
 	Thumbnail          *string             `json:"thumbnail"`
@@ -17116,9 +17123,6 @@ type SshKeyRequest struct {
 	PublicKey string  `json:"public_key"`
 }
 
-// StateCodeEnum defines model for StateCodeEnum.
-type StateCodeEnum int
-
 // StateTransitionError defines model for StateTransitionError.
 type StateTransitionError struct {
 	// Detail Error message to be displayed to the user
@@ -17908,7 +17912,10 @@ type AwsImagesListParams struct {
 
 // AwsInstancesListParams defines parameters for AwsInstancesList.
 type AwsInstancesListParams struct {
-	BackendId            *string                        `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+
+	// CanManage Can manage
+	CanManage            *bool                          `form:"can_manage,omitempty" json:"can_manage,omitempty"`
 	Customer             *openapi_types.UUID            `form:"customer,omitempty" json:"customer,omitempty"`
 	CustomerAbbreviation *string                        `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
 	CustomerName         *string                        `form:"customer_name,omitempty" json:"customer_name,omitempty"`
@@ -18028,7 +18035,10 @@ type AzureLocationsListParams struct {
 
 // AzurePublicIpsListParams defines parameters for AzurePublicIpsList.
 type AzurePublicIpsListParams struct {
-	BackendId            *string                          `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+
+	// CanManage Can manage
+	CanManage            *bool                            `form:"can_manage,omitempty" json:"can_manage,omitempty"`
 	Customer             *openapi_types.UUID              `form:"customer,omitempty" json:"customer,omitempty"`
 	CustomerAbbreviation *string                          `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
 	CustomerName         *string                          `form:"customer_name,omitempty" json:"customer_name,omitempty"`
@@ -18111,7 +18121,10 @@ type AzureSizesListParams struct {
 
 // AzureSqlDatabasesListParams defines parameters for AzureSqlDatabasesList.
 type AzureSqlDatabasesListParams struct {
-	BackendId            *string                             `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+
+	// CanManage Can manage
+	CanManage            *bool                               `form:"can_manage,omitempty" json:"can_manage,omitempty"`
 	Customer             *openapi_types.UUID                 `form:"customer,omitempty" json:"customer,omitempty"`
 	CustomerAbbreviation *string                             `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
 	CustomerName         *string                             `form:"customer_name,omitempty" json:"customer_name,omitempty"`
@@ -18157,7 +18170,10 @@ type AzureSqlDatabasesRetrieveParamsField string
 
 // AzureSqlServersListParams defines parameters for AzureSqlServersList.
 type AzureSqlServersListParams struct {
-	BackendId            *string                           `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+
+	// CanManage Can manage
+	CanManage            *bool                             `form:"can_manage,omitempty" json:"can_manage,omitempty"`
 	Customer             *openapi_types.UUID               `form:"customer,omitempty" json:"customer,omitempty"`
 	CustomerAbbreviation *string                           `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
 	CustomerName         *string                           `form:"customer_name,omitempty" json:"customer_name,omitempty"`
@@ -18201,7 +18217,10 @@ type AzureSqlServersRetrieveParamsField string
 
 // AzureVirtualmachinesListParams defines parameters for AzureVirtualmachinesList.
 type AzureVirtualmachinesListParams struct {
-	BackendId            *string                                `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+
+	// CanManage Can manage
+	CanManage            *bool                                  `form:"can_manage,omitempty" json:"can_manage,omitempty"`
 	Customer             *openapi_types.UUID                    `form:"customer,omitempty" json:"customer,omitempty"`
 	CustomerAbbreviation *string                                `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
 	CustomerName         *string                                `form:"customer_name,omitempty" json:"customer_name,omitempty"`
@@ -18723,7 +18742,10 @@ type DailyQuotasRetrieveParams struct {
 
 // DigitaloceanDropletsListParams defines parameters for DigitaloceanDropletsList.
 type DigitaloceanDropletsListParams struct {
-	BackendId            *string                                `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+
+	// CanManage Can manage
+	CanManage            *bool                                  `form:"can_manage,omitempty" json:"can_manage,omitempty"`
 	Customer             *openapi_types.UUID                    `form:"customer,omitempty" json:"customer,omitempty"`
 	CustomerAbbreviation *string                                `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
 	CustomerName         *string                                `form:"customer_name,omitempty" json:"customer_name,omitempty"`
@@ -21255,7 +21277,10 @@ type NotificationMessagesListParams struct {
 
 // OpenstackBackupsListParams defines parameters for OpenstackBackupsList.
 type OpenstackBackupsListParams struct {
-	BackendId            *string                            `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+
+	// CanManage Can manage
+	CanManage            *bool                              `form:"can_manage,omitempty" json:"can_manage,omitempty"`
 	Customer             *openapi_types.UUID                `form:"customer,omitempty" json:"customer,omitempty"`
 	CustomerAbbreviation *string                            `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
 	CustomerName         *string                            `form:"customer_name,omitempty" json:"customer_name,omitempty"`
@@ -21354,8 +21379,11 @@ type OpenstackFlavorsRetrieveParamsField string
 
 // OpenstackFloatingIpsListParams defines parameters for OpenstackFloatingIpsList.
 type OpenstackFloatingIpsListParams struct {
-	Address              *string                                `form:"address,omitempty" json:"address,omitempty"`
-	BackendId            *string                                `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	Address   *string `form:"address,omitempty" json:"address,omitempty"`
+	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+
+	// CanManage Can manage
+	CanManage            *bool                                  `form:"can_manage,omitempty" json:"can_manage,omitempty"`
 	Customer             *openapi_types.UUID                    `form:"customer,omitempty" json:"customer,omitempty"`
 	CustomerAbbreviation *string                                `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
 	CustomerName         *string                                `form:"customer_name,omitempty" json:"customer_name,omitempty"`
@@ -21433,9 +21461,12 @@ type OpenstackInstanceAvailabilityZonesListParams struct {
 
 // OpenstackInstancesListParams defines parameters for OpenstackInstancesList.
 type OpenstackInstancesListParams struct {
-	AttachVolumeUuid     *openapi_types.UUID                  `form:"attach_volume_uuid,omitempty" json:"attach_volume_uuid,omitempty"`
-	AvailabilityZoneName *string                              `form:"availability_zone_name,omitempty" json:"availability_zone_name,omitempty"`
-	BackendId            *string                              `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	AttachVolumeUuid     *openapi_types.UUID `form:"attach_volume_uuid,omitempty" json:"attach_volume_uuid,omitempty"`
+	AvailabilityZoneName *string             `form:"availability_zone_name,omitempty" json:"availability_zone_name,omitempty"`
+	BackendId            *string             `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+
+	// CanManage Can manage
+	CanManage            *bool                                `form:"can_manage,omitempty" json:"can_manage,omitempty"`
 	Customer             *openapi_types.UUID                  `form:"customer,omitempty" json:"customer,omitempty"`
 	CustomerAbbreviation *string                              `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
 	CustomerName         *string                              `form:"customer_name,omitempty" json:"customer_name,omitempty"`
@@ -21515,7 +21546,10 @@ type OpenstackMigrationsListParams struct {
 
 // OpenstackNetworksListParams defines parameters for OpenstackNetworksList.
 type OpenstackNetworksListParams struct {
-	BackendId            *string                             `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+
+	// CanManage Can manage
+	CanManage            *bool                               `form:"can_manage,omitempty" json:"can_manage,omitempty"`
 	Customer             *openapi_types.UUID                 `form:"customer,omitempty" json:"customer,omitempty"`
 	CustomerAbbreviation *string                             `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
 	CustomerName         *string                             `form:"customer_name,omitempty" json:"customer_name,omitempty"`
@@ -21539,10 +21573,14 @@ type OpenstackNetworksListParams struct {
 	ServiceSettingsName *string                             `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
 	ServiceSettingsUuid *openapi_types.UUID                 `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
 	State               *[]OpenstackNetworksListParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Tenant              *string                             `form:"tenant,omitempty" json:"tenant,omitempty"`
-	TenantUuid          *openapi_types.UUID                 `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
-	Type                *string                             `form:"type,omitempty" json:"type,omitempty"`
-	Uuid                *openapi_types.UUID                 `form:"uuid,omitempty" json:"uuid,omitempty"`
+
+	// Tenant Tenant URL
+	Tenant *string `form:"tenant,omitempty" json:"tenant,omitempty"`
+
+	// TenantUuid Tenant UUID
+	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
+	Type       *string             `form:"type,omitempty" json:"type,omitempty"`
+	Uuid       *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenstackNetworksListParamsField defines parameters for OpenstackNetworksList.
@@ -21620,7 +21658,10 @@ type OpenstackRoutersRetrieveParamsField string
 
 // OpenstackSecurityGroupsListParams defines parameters for OpenstackSecurityGroupsList.
 type OpenstackSecurityGroupsListParams struct {
-	BackendId            *string                                   `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+
+	// CanManage Can manage
+	CanManage            *bool                                     `form:"can_manage,omitempty" json:"can_manage,omitempty"`
 	Customer             *openapi_types.UUID                       `form:"customer,omitempty" json:"customer,omitempty"`
 	CustomerAbbreviation *string                                   `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
 	CustomerName         *string                                   `form:"customer_name,omitempty" json:"customer_name,omitempty"`
@@ -21668,7 +21709,10 @@ type OpenstackSecurityGroupsSetRulesJSONBody = []OpenStackSecurityGroupRuleUpdat
 
 // OpenstackServerGroupsListParams defines parameters for OpenstackServerGroupsList.
 type OpenstackServerGroupsListParams struct {
-	BackendId            *string                                 `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+
+	// CanManage Can manage
+	CanManage            *bool                                   `form:"can_manage,omitempty" json:"can_manage,omitempty"`
 	Customer             *openapi_types.UUID                     `form:"customer,omitempty" json:"customer,omitempty"`
 	CustomerAbbreviation *string                                 `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
 	CustomerName         *string                                 `form:"customer_name,omitempty" json:"customer_name,omitempty"`
@@ -21712,9 +21756,12 @@ type OpenstackServerGroupsRetrieveParamsField string
 
 // OpenstackSnapshotsListParams defines parameters for OpenstackSnapshotsList.
 type OpenstackSnapshotsListParams struct {
-	BackendId            *string                              `form:"backend_id,omitempty" json:"backend_id,omitempty"`
-	Backup               *string                              `form:"backup,omitempty" json:"backup,omitempty"`
-	BackupUuid           *openapi_types.UUID                  `form:"backup_uuid,omitempty" json:"backup_uuid,omitempty"`
+	BackendId  *string             `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	Backup     *string             `form:"backup,omitempty" json:"backup,omitempty"`
+	BackupUuid *openapi_types.UUID `form:"backup_uuid,omitempty" json:"backup_uuid,omitempty"`
+
+	// CanManage Can manage
+	CanManage            *bool                                `form:"can_manage,omitempty" json:"can_manage,omitempty"`
 	Customer             *openapi_types.UUID                  `form:"customer,omitempty" json:"customer,omitempty"`
 	CustomerAbbreviation *string                              `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
 	CustomerName         *string                              `form:"customer_name,omitempty" json:"customer_name,omitempty"`
@@ -21770,7 +21817,10 @@ type OpenstackSnapshotsRestorationsListParams struct {
 
 // OpenstackSubnetsListParams defines parameters for OpenstackSubnetsList.
 type OpenstackSubnetsListParams struct {
-	BackendId            *string                            `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+
+	// CanManage Can manage
+	CanManage            *bool                              `form:"can_manage,omitempty" json:"can_manage,omitempty"`
 	Customer             *openapi_types.UUID                `form:"customer,omitempty" json:"customer,omitempty"`
 	CustomerAbbreviation *string                            `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
 	CustomerName         *string                            `form:"customer_name,omitempty" json:"customer_name,omitempty"`
@@ -21797,9 +21847,13 @@ type OpenstackSubnetsListParams struct {
 	ServiceSettingsName *string                            `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
 	ServiceSettingsUuid *openapi_types.UUID                `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
 	State               *[]OpenstackSubnetsListParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Tenant              *string                            `form:"tenant,omitempty" json:"tenant,omitempty"`
-	TenantUuid          *openapi_types.UUID                `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
-	Uuid                *openapi_types.UUID                `form:"uuid,omitempty" json:"uuid,omitempty"`
+
+	// Tenant Tenant URL
+	Tenant *string `form:"tenant,omitempty" json:"tenant,omitempty"`
+
+	// TenantUuid Tenant UUID
+	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
+	Uuid       *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenstackSubnetsListParamsField defines parameters for OpenstackSubnetsList.
@@ -21818,7 +21872,10 @@ type OpenstackSubnetsRetrieveParamsField string
 
 // OpenstackTenantsListParams defines parameters for OpenstackTenantsList.
 type OpenstackTenantsListParams struct {
-	BackendId            *string                            `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+
+	// CanManage Can manage
+	CanManage            *bool                              `form:"can_manage,omitempty" json:"can_manage,omitempty"`
 	Customer             *openapi_types.UUID                `form:"customer,omitempty" json:"customer,omitempty"`
 	CustomerAbbreviation *string                            `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
 	CustomerName         *string                            `form:"customer_name,omitempty" json:"customer_name,omitempty"`
@@ -21860,7 +21917,10 @@ type OpenstackTenantsRetrieveParamsField string
 
 // OpenstackTenantsBackendInstancesListParams defines parameters for OpenstackTenantsBackendInstancesList.
 type OpenstackTenantsBackendInstancesListParams struct {
-	BackendId            *string             `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+
+	// CanManage Can manage
+	CanManage            *bool               `form:"can_manage,omitempty" json:"can_manage,omitempty"`
 	Customer             *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
 	CustomerAbbreviation *string             `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
 	CustomerName         *string             `form:"customer_name,omitempty" json:"customer_name,omitempty"`
@@ -21890,7 +21950,10 @@ type OpenstackTenantsBackendInstancesListParamsState string
 
 // OpenstackTenantsBackendVolumesListParams defines parameters for OpenstackTenantsBackendVolumesList.
 type OpenstackTenantsBackendVolumesListParams struct {
-	BackendId            *string             `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+
+	// CanManage Can manage
+	CanManage            *bool               `form:"can_manage,omitempty" json:"can_manage,omitempty"`
 	Customer             *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
 	CustomerAbbreviation *string             `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
 	CustomerName         *string             `form:"customer_name,omitempty" json:"customer_name,omitempty"`
@@ -21952,9 +22015,12 @@ type OpenstackVolumeTypesListParams struct {
 
 // OpenstackVolumesListParams defines parameters for OpenstackVolumesList.
 type OpenstackVolumesListParams struct {
-	AttachInstanceUuid   *openapi_types.UUID                `form:"attach_instance_uuid,omitempty" json:"attach_instance_uuid,omitempty"`
-	AvailabilityZoneName *string                            `form:"availability_zone_name,omitempty" json:"availability_zone_name,omitempty"`
-	BackendId            *string                            `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	AttachInstanceUuid   *openapi_types.UUID `form:"attach_instance_uuid,omitempty" json:"attach_instance_uuid,omitempty"`
+	AvailabilityZoneName *string             `form:"availability_zone_name,omitempty" json:"availability_zone_name,omitempty"`
+	BackendId            *string             `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+
+	// CanManage Can manage
+	CanManage            *bool                              `form:"can_manage,omitempty" json:"can_manage,omitempty"`
 	Customer             *openapi_types.UUID                `form:"customer,omitempty" json:"customer,omitempty"`
 	CustomerAbbreviation *string                            `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
 	CustomerName         *string                            `form:"customer_name,omitempty" json:"customer_name,omitempty"`
@@ -22593,7 +22659,10 @@ type RabbitmqUserStatsListParams struct {
 
 // RancherAppsListParams defines parameters for RancherAppsList.
 type RancherAppsListParams struct {
-	BackendId            *string                       `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+
+	// CanManage Can manage
+	CanManage            *bool                         `form:"can_manage,omitempty" json:"can_manage,omitempty"`
 	ClusterUuid          *openapi_types.UUID           `form:"cluster_uuid,omitempty" json:"cluster_uuid,omitempty"`
 	Customer             *openapi_types.UUID           `form:"customer,omitempty" json:"customer,omitempty"`
 	CustomerAbbreviation *string                       `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
@@ -22656,7 +22725,10 @@ type RancherClusterTemplatesListParams struct {
 
 // RancherClustersListParams defines parameters for RancherClustersList.
 type RancherClustersListParams struct {
-	BackendId            *string                           `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+
+	// CanManage Can manage
+	CanManage            *bool                             `form:"can_manage,omitempty" json:"can_manage,omitempty"`
 	Customer             *openapi_types.UUID               `form:"customer,omitempty" json:"customer,omitempty"`
 	CustomerAbbreviation *string                           `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
 	CustomerName         *string                           `form:"customer_name,omitempty" json:"customer_name,omitempty"`
@@ -22724,7 +22796,10 @@ type RancherHpasListParams struct {
 
 // RancherIngressesListParams defines parameters for RancherIngressesList.
 type RancherIngressesListParams struct {
-	BackendId            *string                            `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+
+	// CanManage Can manage
+	CanManage            *bool                              `form:"can_manage,omitempty" json:"can_manage,omitempty"`
 	ClusterUuid          *openapi_types.UUID                `form:"cluster_uuid,omitempty" json:"cluster_uuid,omitempty"`
 	Customer             *openapi_types.UUID                `form:"customer,omitempty" json:"customer,omitempty"`
 	CustomerAbbreviation *string                            `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
@@ -22831,7 +22906,10 @@ type RancherProjectsListParams struct {
 
 // RancherServicesListParams defines parameters for RancherServicesList.
 type RancherServicesListParams struct {
-	BackendId            *string                           `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+
+	// CanManage Can manage
+	CanManage            *bool                             `form:"can_manage,omitempty" json:"can_manage,omitempty"`
 	ClusterUuid          *openapi_types.UUID               `form:"cluster_uuid,omitempty" json:"cluster_uuid,omitempty"`
 	Customer             *openapi_types.UUID               `form:"customer,omitempty" json:"customer,omitempty"`
 	CustomerAbbreviation *string                           `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
@@ -23059,7 +23137,10 @@ type SlurmAllocationUserUsageListParams struct {
 
 // SlurmAllocationsListParams defines parameters for SlurmAllocationsList.
 type SlurmAllocationsListParams struct {
-	BackendId            *string                            `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+
+	// CanManage Can manage
+	CanManage            *bool                              `form:"can_manage,omitempty" json:"can_manage,omitempty"`
 	Customer             *openapi_types.UUID                `form:"customer,omitempty" json:"customer,omitempty"`
 	CustomerAbbreviation *string                            `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
 	CustomerName         *string                            `form:"customer_name,omitempty" json:"customer_name,omitempty"`
@@ -23536,7 +23617,10 @@ type VmwareDatastoresListParams struct {
 
 // VmwareDisksListParams defines parameters for VmwareDisksList.
 type VmwareDisksListParams struct {
-	BackendId            *string                       `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+
+	// CanManage Can manage
+	CanManage            *bool                         `form:"can_manage,omitempty" json:"can_manage,omitempty"`
 	Customer             *openapi_types.UUID           `form:"customer,omitempty" json:"customer,omitempty"`
 	CustomerAbbreviation *string                       `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
 	CustomerName         *string                       `form:"customer_name,omitempty" json:"customer_name,omitempty"`
@@ -23615,7 +23699,10 @@ type VmwareNetworksListParams struct {
 
 // VmwarePortsListParams defines parameters for VmwarePortsList.
 type VmwarePortsListParams struct {
-	BackendId            *string                       `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+
+	// CanManage Can manage
+	CanManage            *bool                         `form:"can_manage,omitempty" json:"can_manage,omitempty"`
 	Customer             *openapi_types.UUID           `form:"customer,omitempty" json:"customer,omitempty"`
 	CustomerAbbreviation *string                       `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
 	CustomerName         *string                       `form:"customer_name,omitempty" json:"customer_name,omitempty"`
@@ -23675,7 +23762,10 @@ type VmwareTemplatesListParams struct {
 
 // VmwareVirtualMachineListParams defines parameters for VmwareVirtualMachineList.
 type VmwareVirtualMachineListParams struct {
-	BackendId            *string                                `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+
+	// CanManage Can manage
+	CanManage            *bool                                  `form:"can_manage,omitempty" json:"can_manage,omitempty"`
 	Customer             *openapi_types.UUID                    `form:"customer,omitempty" json:"customer,omitempty"`
 	CustomerAbbreviation *string                                `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
 	CustomerName         *string                                `form:"customer_name,omitempty" json:"customer_name,omitempty"`
@@ -24423,6 +24513,9 @@ type OpenstackNetworksCreatePortJSONRequestBody = OpenStackPortRequest
 
 // OpenstackNetworksCreateSubnetJSONRequestBody defines body for OpenstackNetworksCreateSubnet for application/json ContentType.
 type OpenstackNetworksCreateSubnetJSONRequestBody = OpenStackSubNetRequest
+
+// OpenstackNetworksRbacPolicyCreateJSONRequestBody defines body for OpenstackNetworksRbacPolicyCreate for application/json ContentType.
+type OpenstackNetworksRbacPolicyCreateJSONRequestBody = NetworkRBACPolicyRequest
 
 // OpenstackNetworksSetMtuJSONRequestBody defines body for OpenstackNetworksSetMtu for application/json ContentType.
 type OpenstackNetworksSetMtuJSONRequestBody = SetMtuRequest
@@ -29787,6 +29880,14 @@ type ClientInterface interface {
 
 	// OpenstackNetworksPull request
 	OpenstackNetworksPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackNetworksRbacPolicyCreateWithBody request with any body
+	OpenstackNetworksRbacPolicyCreateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackNetworksRbacPolicyCreate(ctx context.Context, uuid openapi_types.UUID, body OpenstackNetworksRbacPolicyCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackNetworksRbacPolicyDeleteDestroy request
+	OpenstackNetworksRbacPolicyDeleteDestroy(ctx context.Context, uuid openapi_types.UUID, rbacPolicyUuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenstackNetworksSetMtuWithBody request with any body
 	OpenstackNetworksSetMtuWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -42459,6 +42560,42 @@ func (c *Client) OpenstackNetworksPull(ctx context.Context, uuid openapi_types.U
 	return c.Client.Do(req)
 }
 
+func (c *Client) OpenstackNetworksRbacPolicyCreateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackNetworksRbacPolicyCreateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackNetworksRbacPolicyCreate(ctx context.Context, uuid openapi_types.UUID, body OpenstackNetworksRbacPolicyCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackNetworksRbacPolicyCreateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackNetworksRbacPolicyDeleteDestroy(ctx context.Context, uuid openapi_types.UUID, rbacPolicyUuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackNetworksRbacPolicyDeleteDestroyRequest(c.Server, uuid, rbacPolicyUuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) OpenstackNetworksSetMtuWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenstackNetworksSetMtuRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
@@ -51667,6 +51804,22 @@ func NewAwsInstancesListRequest(server string, params *AwsInstancesListParams) (
 
 		}
 
+		if params.CanManage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "can_manage", runtime.ParamLocationQuery, *params.CanManage); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Customer != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer", runtime.ParamLocationQuery, *params.Customer); err != nil {
@@ -53554,6 +53707,22 @@ func NewAzurePublicIpsListRequest(server string, params *AzurePublicIpsListParam
 
 		}
 
+		if params.CanManage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "can_manage", runtime.ParamLocationQuery, *params.CanManage); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Customer != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer", runtime.ParamLocationQuery, *params.Customer); err != nil {
@@ -54579,6 +54748,22 @@ func NewAzureSqlDatabasesListRequest(server string, params *AzureSqlDatabasesLis
 
 		}
 
+		if params.CanManage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "can_manage", runtime.ParamLocationQuery, *params.CanManage); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Customer != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer", runtime.ParamLocationQuery, *params.Customer); err != nil {
@@ -55275,6 +55460,22 @@ func NewAzureSqlServersListRequest(server string, params *AzureSqlServersListPar
 		if params.BackendId != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "backend_id", runtime.ParamLocationQuery, *params.BackendId); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CanManage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "can_manage", runtime.ParamLocationQuery, *params.CanManage); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -55999,6 +56200,22 @@ func NewAzureVirtualmachinesListRequest(server string, params *AzureVirtualmachi
 		if params.BackendId != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "backend_id", runtime.ParamLocationQuery, *params.BackendId); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CanManage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "can_manage", runtime.ParamLocationQuery, *params.CanManage); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -62367,6 +62584,22 @@ func NewDigitaloceanDropletsListRequest(server string, params *DigitaloceanDropl
 		if params.BackendId != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "backend_id", runtime.ParamLocationQuery, *params.BackendId); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CanManage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "can_manage", runtime.ParamLocationQuery, *params.CanManage); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -93542,6 +93775,22 @@ func NewOpenstackBackupsListRequest(server string, params *OpenstackBackupsListP
 
 		}
 
+		if params.CanManage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "can_manage", runtime.ParamLocationQuery, *params.CanManage); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Customer != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer", runtime.ParamLocationQuery, *params.Customer); err != nil {
@@ -94732,6 +94981,22 @@ func NewOpenstackFloatingIpsListRequest(server string, params *OpenstackFloating
 
 		}
 
+		if params.CanManage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "can_manage", runtime.ParamLocationQuery, *params.CanManage); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Customer != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer", runtime.ParamLocationQuery, *params.Customer); err != nil {
@@ -95871,6 +96136,22 @@ func NewOpenstackInstancesListRequest(server string, params *OpenstackInstancesL
 		if params.BackendId != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "backend_id", runtime.ParamLocationQuery, *params.BackendId); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CanManage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "can_manage", runtime.ParamLocationQuery, *params.CanManage); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -97454,6 +97735,22 @@ func NewOpenstackNetworksListRequest(server string, params *OpenstackNetworksLis
 
 		}
 
+		if params.CanManage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "can_manage", runtime.ParamLocationQuery, *params.CanManage); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Customer != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer", runtime.ParamLocationQuery, *params.Customer); err != nil {
@@ -98145,6 +98442,94 @@ func NewOpenstackNetworksPullRequest(server string, uuid openapi_types.UUID) (*h
 	return req, nil
 }
 
+// NewOpenstackNetworksRbacPolicyCreateRequest calls the generic OpenstackNetworksRbacPolicyCreate builder with application/json body
+func NewOpenstackNetworksRbacPolicyCreateRequest(server string, uuid openapi_types.UUID, body OpenstackNetworksRbacPolicyCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackNetworksRbacPolicyCreateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOpenstackNetworksRbacPolicyCreateRequestWithBody generates requests for OpenstackNetworksRbacPolicyCreate with any type of body
+func NewOpenstackNetworksRbacPolicyCreateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-networks/%s/rbac_policy_create/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenstackNetworksRbacPolicyDeleteDestroyRequest generates requests for OpenstackNetworksRbacPolicyDeleteDestroy
+func NewOpenstackNetworksRbacPolicyDeleteDestroyRequest(server string, uuid openapi_types.UUID, rbacPolicyUuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithLocation("simple", false, "rbac_policy_uuid", runtime.ParamLocationPath, rbacPolicyUuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-networks/%s/rbac_policy_delete/%s/", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewOpenstackNetworksSetMtuRequest calls the generic OpenstackNetworksSetMtu builder with application/json body
 func NewOpenstackNetworksSetMtuRequest(server string, uuid openapi_types.UUID, body OpenstackNetworksSetMtuJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -98818,6 +99203,22 @@ func NewOpenstackSecurityGroupsListRequest(server string, params *OpenstackSecur
 		if params.BackendId != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "backend_id", runtime.ParamLocationQuery, *params.BackendId); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CanManage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "can_manage", runtime.ParamLocationQuery, *params.CanManage); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -99531,6 +99932,22 @@ func NewOpenstackServerGroupsListRequest(server string, params *OpenstackServerG
 
 		}
 
+		if params.CanManage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "can_manage", runtime.ParamLocationQuery, *params.CanManage); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Customer != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer", runtime.ParamLocationQuery, *params.Customer); err != nil {
@@ -100227,6 +100644,22 @@ func NewOpenstackSnapshotsListRequest(server string, params *OpenstackSnapshotsL
 		if params.BackupUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "backup_uuid", runtime.ParamLocationQuery, *params.BackupUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CanManage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "can_manage", runtime.ParamLocationQuery, *params.CanManage); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -101044,6 +101477,22 @@ func NewOpenstackSubnetsListRequest(server string, params *OpenstackSubnetsListP
 
 		}
 
+		if params.CanManage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "can_manage", runtime.ParamLocationQuery, *params.CanManage); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Customer != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer", runtime.ParamLocationQuery, *params.Customer); err != nil {
@@ -101813,6 +102262,22 @@ func NewOpenstackTenantsListRequest(server string, params *OpenstackTenantsListP
 
 		}
 
+		if params.CanManage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "can_manage", runtime.ParamLocationQuery, *params.CanManage); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Customer != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer", runtime.ParamLocationQuery, *params.Customer); err != nil {
@@ -102397,6 +102862,22 @@ func NewOpenstackTenantsBackendInstancesListRequest(server string, uuid openapi_
 
 		}
 
+		if params.CanManage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "can_manage", runtime.ParamLocationQuery, *params.CanManage); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Customer != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer", runtime.ParamLocationQuery, *params.Customer); err != nil {
@@ -102728,6 +103209,22 @@ func NewOpenstackTenantsBackendVolumesListRequest(server string, uuid openapi_ty
 		if params.BackendId != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "backend_id", runtime.ParamLocationQuery, *params.BackendId); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CanManage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "can_manage", runtime.ParamLocationQuery, *params.CanManage); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -103960,6 +104457,22 @@ func NewOpenstackVolumesListRequest(server string, params *OpenstackVolumesListP
 		if params.BackendId != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "backend_id", runtime.ParamLocationQuery, *params.BackendId); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CanManage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "can_manage", runtime.ParamLocationQuery, *params.CanManage); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -112696,6 +113209,22 @@ func NewRancherAppsListRequest(server string, params *RancherAppsListParams) (*h
 
 		}
 
+		if params.CanManage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "can_manage", runtime.ParamLocationQuery, *params.CanManage); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.ClusterUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "cluster_uuid", runtime.ParamLocationQuery, *params.ClusterUuid); err != nil {
@@ -113789,6 +114318,22 @@ func NewRancherClustersListRequest(server string, params *RancherClustersListPar
 		if params.BackendId != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "backend_id", runtime.ParamLocationQuery, *params.BackendId); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CanManage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "can_manage", runtime.ParamLocationQuery, *params.CanManage); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -115128,6 +115673,22 @@ func NewRancherIngressesListRequest(server string, params *RancherIngressesListP
 		if params.BackendId != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "backend_id", runtime.ParamLocationQuery, *params.BackendId); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CanManage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "can_manage", runtime.ParamLocationQuery, *params.CanManage); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -116776,6 +117337,22 @@ func NewRancherServicesListRequest(server string, params *RancherServicesListPar
 		if params.BackendId != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "backend_id", runtime.ParamLocationQuery, *params.BackendId); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CanManage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "can_manage", runtime.ParamLocationQuery, *params.CanManage); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -120227,6 +120804,22 @@ func NewSlurmAllocationsListRequest(server string, params *SlurmAllocationsListP
 		if params.BackendId != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "backend_id", runtime.ParamLocationQuery, *params.BackendId); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CanManage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "can_manage", runtime.ParamLocationQuery, *params.CanManage); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -127143,6 +127736,22 @@ func NewVmwareDisksListRequest(server string, params *VmwareDisksListParams) (*h
 
 		}
 
+		if params.CanManage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "can_manage", runtime.ParamLocationQuery, *params.CanManage); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Customer != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer", runtime.ParamLocationQuery, *params.Customer); err != nil {
@@ -128141,6 +128750,22 @@ func NewVmwarePortsListRequest(server string, params *VmwarePortsListParams) (*h
 
 		}
 
+		if params.CanManage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "can_manage", runtime.ParamLocationQuery, *params.CanManage); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Customer != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer", runtime.ParamLocationQuery, *params.Customer); err != nil {
@@ -128866,6 +129491,22 @@ func NewVmwareVirtualMachineListRequest(server string, params *VmwareVirtualMach
 		if params.BackendId != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "backend_id", runtime.ParamLocationQuery, *params.BackendId); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CanManage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "can_manage", runtime.ParamLocationQuery, *params.CanManage); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -132413,6 +133054,14 @@ type ClientWithResponsesInterface interface {
 
 	// OpenstackNetworksPullWithResponse request
 	OpenstackNetworksPullWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackNetworksPullResponse, error)
+
+	// OpenstackNetworksRbacPolicyCreateWithBodyWithResponse request with any body
+	OpenstackNetworksRbacPolicyCreateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackNetworksRbacPolicyCreateResponse, error)
+
+	OpenstackNetworksRbacPolicyCreateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackNetworksRbacPolicyCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackNetworksRbacPolicyCreateResponse, error)
+
+	// OpenstackNetworksRbacPolicyDeleteDestroyWithResponse request
+	OpenstackNetworksRbacPolicyDeleteDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, rbacPolicyUuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackNetworksRbacPolicyDeleteDestroyResponse, error)
 
 	// OpenstackNetworksSetMtuWithBodyWithResponse request with any body
 	OpenstackNetworksSetMtuWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackNetworksSetMtuResponse, error)
@@ -148836,6 +149485,49 @@ func (r OpenstackNetworksPullResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r OpenstackNetworksPullResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackNetworksRbacPolicyCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *NetworkRBACPolicy
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackNetworksRbacPolicyCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackNetworksRbacPolicyCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackNetworksRbacPolicyDeleteDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackNetworksRbacPolicyDeleteDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackNetworksRbacPolicyDeleteDestroyResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -166836,6 +167528,32 @@ func (c *ClientWithResponses) OpenstackNetworksPullWithResponse(ctx context.Cont
 		return nil, err
 	}
 	return ParseOpenstackNetworksPullResponse(rsp)
+}
+
+// OpenstackNetworksRbacPolicyCreateWithBodyWithResponse request with arbitrary body returning *OpenstackNetworksRbacPolicyCreateResponse
+func (c *ClientWithResponses) OpenstackNetworksRbacPolicyCreateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackNetworksRbacPolicyCreateResponse, error) {
+	rsp, err := c.OpenstackNetworksRbacPolicyCreateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackNetworksRbacPolicyCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackNetworksRbacPolicyCreateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackNetworksRbacPolicyCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackNetworksRbacPolicyCreateResponse, error) {
+	rsp, err := c.OpenstackNetworksRbacPolicyCreate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackNetworksRbacPolicyCreateResponse(rsp)
+}
+
+// OpenstackNetworksRbacPolicyDeleteDestroyWithResponse request returning *OpenstackNetworksRbacPolicyDeleteDestroyResponse
+func (c *ClientWithResponses) OpenstackNetworksRbacPolicyDeleteDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, rbacPolicyUuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackNetworksRbacPolicyDeleteDestroyResponse, error) {
+	rsp, err := c.OpenstackNetworksRbacPolicyDeleteDestroy(ctx, uuid, rbacPolicyUuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackNetworksRbacPolicyDeleteDestroyResponse(rsp)
 }
 
 // OpenstackNetworksSetMtuWithBodyWithResponse request with arbitrary body returning *OpenstackNetworksSetMtuResponse
@@ -188090,6 +188808,48 @@ func ParseOpenstackNetworksPullResponse(rsp *http.Response) (*OpenstackNetworksP
 	}
 
 	response := &OpenstackNetworksPullResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackNetworksRbacPolicyCreateResponse parses an HTTP response from a OpenstackNetworksRbacPolicyCreateWithResponse call
+func ParseOpenstackNetworksRbacPolicyCreateResponse(rsp *http.Response) (*OpenstackNetworksRbacPolicyCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackNetworksRbacPolicyCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest NetworkRBACPolicy
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackNetworksRbacPolicyDeleteDestroyResponse parses an HTTP response from a OpenstackNetworksRbacPolicyDeleteDestroyWithResponse call
+func ParseOpenstackNetworksRbacPolicyDeleteDestroyResponse(rsp *http.Response) (*OpenstackNetworksRbacPolicyDeleteDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackNetworksRbacPolicyDeleteDestroyResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
