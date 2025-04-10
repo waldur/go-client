@@ -13565,11 +13565,11 @@ type OrderDetails struct {
 	ConsumerReviewedAt *time.Time              `json:"consumer_reviewed_at"`
 
 	// ConsumerReviewedBy Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
-	ConsumerReviewedBy         *string `json:"consumer_reviewed_by,omitempty"`
-	ConsumerReviewedByFullName *string `json:"consumer_reviewed_by_full_name,omitempty"`
+	ConsumerReviewedBy         *string `json:"consumer_reviewed_by"`
+	ConsumerReviewedByFullName *string `json:"consumer_reviewed_by_full_name"`
 
 	// ConsumerReviewedByUsername Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
-	ConsumerReviewedByUsername *string    `json:"consumer_reviewed_by_username,omitempty"`
+	ConsumerReviewedByUsername *string    `json:"consumer_reviewed_by_username"`
 	Cost                       *string    `json:"cost"`
 	Created                    *time.Time `json:"created,omitempty"`
 	CreatedByCivilNumber       *string    `json:"created_by_civil_number"`
@@ -13587,8 +13587,8 @@ type OrderDetails struct {
 	MarketplaceResourceUuid *openapi_types.UUID `json:"marketplace_resource_uuid,omitempty"`
 	Modified                *time.Time          `json:"modified,omitempty"`
 	NewCostEstimate         *string             `json:"new_cost_estimate"`
-	NewPlanName             *string             `json:"new_plan_name,omitempty"`
-	NewPlanUuid             *openapi_types.UUID `json:"new_plan_uuid,omitempty"`
+	NewPlanName             *string             `json:"new_plan_name"`
+	NewPlanUuid             *openapi_types.UUID `json:"new_plan_uuid"`
 	Offering                *string             `json:"offering,omitempty"`
 
 	// OfferingBillable Purchase and usage is invoiced.
@@ -13607,8 +13607,8 @@ type OrderDetails struct {
 	OfferingType           *string             `json:"offering_type,omitempty"`
 	OfferingUuid           *openapi_types.UUID `json:"offering_uuid,omitempty"`
 	OldCostEstimate        *string             `json:"old_cost_estimate"`
-	OldPlanName            *string             `json:"old_plan_name,omitempty"`
-	OldPlanUuid            *openapi_types.UUID `json:"old_plan_uuid,omitempty"`
+	OldPlanName            *string             `json:"old_plan_name"`
+	OldPlanUuid            *openapi_types.UUID `json:"old_plan_uuid"`
 	Output                 *string             `json:"output,omitempty"`
 	Plan                   *string             `json:"plan,omitempty"`
 	PlanDescription        *string             `json:"plan_description,omitempty"`
@@ -13623,11 +13623,11 @@ type OrderDetails struct {
 	ProviderReviewedAt     *time.Time          `json:"provider_reviewed_at"`
 
 	// ProviderReviewedBy Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
-	ProviderReviewedBy         *string `json:"provider_reviewed_by,omitempty"`
-	ProviderReviewedByFullName *string `json:"provider_reviewed_by_full_name,omitempty"`
+	ProviderReviewedBy         *string `json:"provider_reviewed_by"`
+	ProviderReviewedByFullName *string `json:"provider_reviewed_by_full_name"`
 
 	// ProviderReviewedByUsername Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
-	ProviderReviewedByUsername *string             `json:"provider_reviewed_by_username,omitempty"`
+	ProviderReviewedByUsername *string             `json:"provider_reviewed_by_username"`
 	ProviderUuid               *openapi_types.UUID `json:"provider_uuid,omitempty"`
 	ResourceName               *string             `json:"resource_name,omitempty"`
 	ResourceType               *string             `json:"resource_type"`
