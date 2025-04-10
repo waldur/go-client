@@ -13481,10 +13481,10 @@ type OrderCreate struct {
 	CompletedAt                *time.Time          `json:"completed_at"`
 	ConsumerReviewedAt         *time.Time          `json:"consumer_reviewed_at"`
 	ConsumerReviewedBy         *string             `json:"consumer_reviewed_by"`
-	ConsumerReviewedByFullName *string             `json:"consumer_reviewed_by_full_name,omitempty"`
+	ConsumerReviewedByFullName *string             `json:"consumer_reviewed_by_full_name"`
 
 	// ConsumerReviewedByUsername Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
-	ConsumerReviewedByUsername *string    `json:"consumer_reviewed_by_username,omitempty"`
+	ConsumerReviewedByUsername *string    `json:"consumer_reviewed_by_username"`
 	Cost                       *string    `json:"cost"`
 	Created                    *time.Time `json:"created,omitempty"`
 	CreatedBy                  *string    `json:"created_by,omitempty"`
