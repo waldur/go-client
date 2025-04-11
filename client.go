@@ -11117,7 +11117,7 @@ type MergedPluginOptions struct {
 	MaxVolumes *int `json:"max_volumes,omitempty"`
 
 	// OpenstackOfferingUuidList List of UUID of OpenStack offerings where tenant can be created
-	OpenstackOfferingUuidList *[]openapi_types.UUID `json:"openstack_offering_uuid_list,omitempty"`
+	OpenstackOfferingUuidList *[]string `json:"openstack_offering_uuid_list,omitempty"`
 
 	// ServiceProviderCanCreateOfferingUser Service provider can create offering user
 	ServiceProviderCanCreateOfferingUser *bool `json:"service_provider_can_create_offering_user,omitempty"`
@@ -11209,7 +11209,7 @@ type MergedPluginOptionsRequest struct {
 	MaxVolumes *int `json:"max_volumes,omitempty"`
 
 	// OpenstackOfferingUuidList List of UUID of OpenStack offerings where tenant can be created
-	OpenstackOfferingUuidList *[]openapi_types.UUID `json:"openstack_offering_uuid_list,omitempty"`
+	OpenstackOfferingUuidList *[]string `json:"openstack_offering_uuid_list,omitempty"`
 
 	// ServiceProviderCanCreateOfferingUser Service provider can create offering user
 	ServiceProviderCanCreateOfferingUser *bool `json:"service_provider_can_create_offering_user,omitempty"`
@@ -11248,7 +11248,7 @@ type MergedSecretOptions struct {
 	Create *string `json:"create,omitempty"`
 
 	// CustomerUuid Organization UUID
-	CustomerUuid *openapi_types.UUID `json:"customer_uuid,omitempty"`
+	CustomerUuid *string `json:"customer_uuid,omitempty"`
 
 	// Environ Script environment variables
 	Environ *interface{} `json:"environ,omitempty"`
@@ -11297,7 +11297,7 @@ type MergedSecretOptionsRequest struct {
 	Create *string `json:"create,omitempty"`
 
 	// CustomerUuid Organization UUID
-	CustomerUuid *openapi_types.UUID `json:"customer_uuid,omitempty"`
+	CustomerUuid *string `json:"customer_uuid,omitempty"`
 
 	// Environ Script environment variables
 	Environ *interface{} `json:"environ,omitempty"`
