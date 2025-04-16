@@ -827,10 +827,10 @@ const (
 	RancherCatalogScopeTypeProject RancherCatalogScopeType = "project"
 )
 
-// Defines values for RancherKeycloakGroupScopeType.
+// Defines values for RancherRoleScopeType.
 const (
-	RancherKeycloakGroupScopeTypeCluster RancherKeycloakGroupScopeType = "cluster"
-	RancherKeycloakGroupScopeTypeProject RancherKeycloakGroupScopeType = "project"
+	RancherRoleScopeTypeCluster RancherRoleScopeType = "cluster"
+	RancherRoleScopeTypeProject RancherRoleScopeType = "project"
 )
 
 // Defines values for RancherTemplateQuestionType.
@@ -869,12 +869,6 @@ const (
 const (
 	AfterProposal ReviewStrategyEnum = "after_proposal"
 	AfterRound    ReviewStrategyEnum = "after_round"
-)
-
-// Defines values for RoleEnum.
-const (
-	Member RoleEnum = "member"
-	Owner  RoleEnum = "owner"
 )
 
 // Defines values for RoleType.
@@ -10903,8 +10897,8 @@ type KeycloakGroup struct {
 	Role      string     `json:"role"`
 
 	// ScopeName Get the name of the cluster or project
-	ScopeName *string                       `json:"scope_name,omitempty"`
-	ScopeType RancherKeycloakGroupScopeType `json:"scope_type"`
+	ScopeName *string `json:"scope_name,omitempty"`
+	ScopeType *string `json:"scope_type,omitempty"`
 
 	// ScopeUuid UUID of the cluster or project
 	ScopeUuid openapi_types.UUID  `json:"scope_uuid"`
@@ -10914,8 +10908,7 @@ type KeycloakGroup struct {
 
 // KeycloakGroupRequest defines model for KeycloakGroupRequest.
 type KeycloakGroupRequest struct {
-	Role      string                        `json:"role"`
-	ScopeType RancherKeycloakGroupScopeType `json:"scope_type"`
+	Role string `json:"role"`
 
 	// ScopeUuid UUID of the cluster or project
 	ScopeUuid openapi_types.UUID `json:"scope_uuid"`
@@ -10932,7 +10925,7 @@ type KeycloakUserGroupMembership struct {
 	Group          string                            `json:"group"`
 	GroupName      *string                           `json:"group_name,omitempty"`
 	GroupRole      *string                           `json:"group_role,omitempty"`
-	GroupScopeType *RancherCatalogScopeType          `json:"group_scope_type,omitempty"`
+	GroupScopeType *string                           `json:"group_scope_type,omitempty"`
 	LastChecked    *time.Time                        `json:"last_checked,omitempty"`
 	Modified       *time.Time                        `json:"modified,omitempty"`
 	State          *KeycloakUserGroupMembershipState `json:"state,omitempty"`
@@ -11179,7 +11172,10 @@ type MergedPluginOptions struct {
 	IsResourceTerminationDateRequired *bool `json:"is_resource_termination_date_required,omitempty"`
 
 	// LatestDateForResourceTermination If set, it will be used as a latest date for resource termination
-	LatestDateForResourceTermination *openapi_types.Date `json:"latest_date_for_resource_termination,omitempty"`
+	LatestDateForResourceTermination   *openapi_types.Date `json:"latest_date_for_resource_termination,omitempty"`
+	ManagedRancherServerFlavorName     *string             `json:"managed_rancher_server_flavor_name,omitempty"`
+	ManagedRancherSystemVolumeSizeGb   *int                `json:"managed_rancher_system_volume_size_gb,omitempty"`
+	ManagedRancherSystemVolumeTypeName *string             `json:"managed_rancher_system_volume_type_name,omitempty"`
 
 	// MaxInstances Default limit for number of instances in OpenStack tenant
 	MaxInstances *int `json:"max_instances,omitempty"`
@@ -11271,7 +11267,10 @@ type MergedPluginOptionsRequest struct {
 	IsResourceTerminationDateRequired *bool `json:"is_resource_termination_date_required,omitempty"`
 
 	// LatestDateForResourceTermination If set, it will be used as a latest date for resource termination
-	LatestDateForResourceTermination *openapi_types.Date `json:"latest_date_for_resource_termination,omitempty"`
+	LatestDateForResourceTermination   *openapi_types.Date `json:"latest_date_for_resource_termination,omitempty"`
+	ManagedRancherServerFlavorName     *string             `json:"managed_rancher_server_flavor_name,omitempty"`
+	ManagedRancherSystemVolumeSizeGb   *int                `json:"managed_rancher_system_volume_size_gb,omitempty"`
+	ManagedRancherSystemVolumeTypeName *string             `json:"managed_rancher_system_volume_type_name,omitempty"`
 
 	// MaxInstances Default limit for number of instances in OpenStack tenant
 	MaxInstances *int `json:"max_instances,omitempty"`
@@ -11315,8 +11314,9 @@ type MergedPluginOptionsRequest_AccountNameGenerationPolicy struct {
 // MergedSecretOptions defines model for MergedSecretOptions.
 type MergedSecretOptions struct {
 	// ApiUrl API URL
-	ApiUrl     *string `json:"api_url,omitempty"`
-	BackendUrl *string `json:"backend_url,omitempty"`
+	ApiUrl            *string `json:"api_url,omitempty"`
+	BackendUrl        *string `json:"backend_url,omitempty"`
+	CloudInitTemplate *string `json:"cloud_init_template,omitempty"`
 
 	// Create Script for resource creation
 	Create *string `json:"create,omitempty"`
@@ -11364,8 +11364,9 @@ type MergedSecretOptions struct {
 // MergedSecretOptionsRequest defines model for MergedSecretOptionsRequest.
 type MergedSecretOptionsRequest struct {
 	// ApiUrl API URL
-	ApiUrl     *string `json:"api_url,omitempty"`
-	BackendUrl *string `json:"backend_url,omitempty"`
+	ApiUrl            *string `json:"api_url,omitempty"`
+	BackendUrl        *string `json:"backend_url,omitempty"`
+	CloudInitTemplate *string `json:"cloud_init_template,omitempty"`
 
 	// Create Script for resource creation
 	Create *string `json:"create,omitempty"`
@@ -14012,8 +14013,7 @@ type PatchedIssueRequest struct {
 
 // PatchedKeycloakGroupRequest defines model for PatchedKeycloakGroupRequest.
 type PatchedKeycloakGroupRequest struct {
-	Role      *string                        `json:"role,omitempty"`
-	ScopeType *RancherKeycloakGroupScopeType `json:"scope_type,omitempty"`
+	Role *string `json:"role,omitempty"`
 
 	// ScopeUuid UUID of the cluster or project
 	ScopeUuid *openapi_types.UUID `json:"scope_uuid,omitempty"`
@@ -15921,9 +15921,6 @@ type RancherIngressRequest struct {
 	ServiceSettings string       `json:"service_settings"`
 }
 
-// RancherKeycloakGroupScopeType defines model for RancherKeycloakGroupScopeType.
-type RancherKeycloakGroupScopeType string
-
 // RancherNamespace defines model for RancherNamespace.
 type RancherNamespace struct {
 	Created      *time.Time          `json:"created,omitempty"`
@@ -16055,6 +16052,9 @@ type RancherProject struct {
 	Uuid         *openapi_types.UUID      `json:"uuid,omitempty"`
 }
 
+// RancherRoleScopeType defines model for RancherRoleScopeType.
+type RancherRoleScopeType string
+
 // RancherService defines model for RancherService.
 type RancherService struct {
 	AccessUrl                        *string                  `json:"access_url"`
@@ -16185,7 +16185,7 @@ type RancherUserClusterLink struct {
 	Cluster     string              `json:"cluster"`
 	ClusterName *string             `json:"cluster_name,omitempty"`
 	ClusterUuid *openapi_types.UUID `json:"cluster_uuid,omitempty"`
-	Role        RoleEnum            `json:"role"`
+	Role        string              `json:"role"`
 }
 
 // RancherUserProjectLink defines model for RancherUserProjectLink.
@@ -16862,9 +16862,6 @@ type RoleDetails struct {
 	Uuid          *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
-// RoleEnum defines model for RoleEnum.
-type RoleEnum string
-
 // RoleModifyRequest defines model for RoleModifyRequest.
 type RoleModifyRequest struct {
 	ContentType   string      `json:"content_type"`
@@ -16886,6 +16883,19 @@ type RoleModifyRequest struct {
 	IsActive      *bool       `json:"is_active,omitempty"`
 	Name          string      `json:"name"`
 	Permissions   interface{} `json:"permissions"`
+}
+
+// RoleTemplate defines model for RoleTemplate.
+type RoleTemplate struct {
+	// DisplayName Role public name
+	DisplayName *string `json:"display_name,omitempty"`
+
+	// Name Role internal name
+	Name      *string               `json:"name,omitempty"`
+	ScopeType *RancherRoleScopeType `json:"scope_type,omitempty"`
+	Settings  *string               `json:"settings,omitempty"`
+	Url       *string               `json:"url,omitempty"`
+	Uuid      *openapi_types.UUID   `json:"uuid,omitempty"`
 }
 
 // RoleType defines model for RoleType.
@@ -23022,6 +23032,15 @@ type RancherProjectsListParams struct {
 	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
 	Settings     *string             `form:"settings,omitempty" json:"settings,omitempty"`
 	SettingsUuid *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
+}
+
+// RancherRoleTemplatesListParams defines parameters for RancherRoleTemplatesList.
+type RancherRoleTemplatesListParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 }
 
 // RancherServicesListParams defines parameters for RancherServicesList.
@@ -31072,6 +31091,12 @@ type ClientInterface interface {
 
 	// RancherProjectsSecretsRetrieve request
 	RancherProjectsSecretsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// RancherRoleTemplatesList request
+	RancherRoleTemplatesList(ctx context.Context, params *RancherRoleTemplatesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// RancherRoleTemplatesRetrieve request
+	RancherRoleTemplatesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// RancherServicesList request
 	RancherServicesList(ctx context.Context, params *RancherServicesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -47392,6 +47417,30 @@ func (c *Client) RancherProjectsRetrieve(ctx context.Context, uuid openapi_types
 
 func (c *Client) RancherProjectsSecretsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewRancherProjectsSecretsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) RancherRoleTemplatesList(ctx context.Context, params *RancherRoleTemplatesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewRancherRoleTemplatesListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) RancherRoleTemplatesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewRancherRoleTemplatesRetrieveRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -118312,6 +118361,105 @@ func NewRancherProjectsSecretsRetrieveRequest(server string, uuid openapi_types.
 	return req, nil
 }
 
+// NewRancherRoleTemplatesListRequest generates requests for RancherRoleTemplatesList
+func NewRancherRoleTemplatesListRequest(server string, params *RancherRoleTemplatesListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/rancher-role-templates/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewRancherRoleTemplatesRetrieveRequest generates requests for RancherRoleTemplatesRetrieve
+func NewRancherRoleTemplatesRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/rancher-role-templates/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewRancherServicesListRequest generates requests for RancherServicesList
 func NewRancherServicesListRequest(server string, params *RancherServicesListParams) (*http.Request, error) {
 	var err error
@@ -135108,6 +135256,12 @@ type ClientWithResponsesInterface interface {
 
 	// RancherProjectsSecretsRetrieveWithResponse request
 	RancherProjectsSecretsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*RancherProjectsSecretsRetrieveResponse, error)
+
+	// RancherRoleTemplatesListWithResponse request
+	RancherRoleTemplatesListWithResponse(ctx context.Context, params *RancherRoleTemplatesListParams, reqEditors ...RequestEditorFn) (*RancherRoleTemplatesListResponse, error)
+
+	// RancherRoleTemplatesRetrieveWithResponse request
+	RancherRoleTemplatesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*RancherRoleTemplatesRetrieveResponse, error)
 
 	// RancherServicesListWithResponse request
 	RancherServicesListWithResponse(ctx context.Context, params *RancherServicesListParams, reqEditors ...RequestEditorFn) (*RancherServicesListResponse, error)
@@ -156569,6 +156723,50 @@ func (r RancherProjectsSecretsRetrieveResponse) StatusCode() int {
 	return 0
 }
 
+type RancherRoleTemplatesListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]RoleTemplate
+}
+
+// Status returns HTTPResponse.Status
+func (r RancherRoleTemplatesListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r RancherRoleTemplatesListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type RancherRoleTemplatesRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *RoleTemplate
+}
+
+// Status returns HTTPResponse.Status
+func (r RancherRoleTemplatesRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r RancherRoleTemplatesRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type RancherServicesListResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -172220,6 +172418,24 @@ func (c *ClientWithResponses) RancherProjectsSecretsRetrieveWithResponse(ctx con
 		return nil, err
 	}
 	return ParseRancherProjectsSecretsRetrieveResponse(rsp)
+}
+
+// RancherRoleTemplatesListWithResponse request returning *RancherRoleTemplatesListResponse
+func (c *ClientWithResponses) RancherRoleTemplatesListWithResponse(ctx context.Context, params *RancherRoleTemplatesListParams, reqEditors ...RequestEditorFn) (*RancherRoleTemplatesListResponse, error) {
+	rsp, err := c.RancherRoleTemplatesList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseRancherRoleTemplatesListResponse(rsp)
+}
+
+// RancherRoleTemplatesRetrieveWithResponse request returning *RancherRoleTemplatesRetrieveResponse
+func (c *ClientWithResponses) RancherRoleTemplatesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*RancherRoleTemplatesRetrieveResponse, error) {
+	rsp, err := c.RancherRoleTemplatesRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseRancherRoleTemplatesRetrieveResponse(rsp)
 }
 
 // RancherServicesListWithResponse request returning *RancherServicesListResponse
@@ -196639,6 +196855,58 @@ func ParseRancherProjectsSecretsRetrieveResponse(rsp *http.Response) (*RancherPr
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest RancherProject
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseRancherRoleTemplatesListResponse parses an HTTP response from a RancherRoleTemplatesListWithResponse call
+func ParseRancherRoleTemplatesListResponse(rsp *http.Response) (*RancherRoleTemplatesListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &RancherRoleTemplatesListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []RoleTemplate
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseRancherRoleTemplatesRetrieveResponse parses an HTTP response from a RancherRoleTemplatesRetrieveWithResponse call
+func ParseRancherRoleTemplatesRetrieveResponse(rsp *http.Response) (*RancherRoleTemplatesRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &RancherRoleTemplatesRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest RoleTemplate
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
