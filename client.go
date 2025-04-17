@@ -10906,14 +10906,6 @@ type KeycloakGroup struct {
 	Uuid      *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
-// KeycloakGroupRequest defines model for KeycloakGroupRequest.
-type KeycloakGroupRequest struct {
-	Role string `json:"role"`
-
-	// ScopeUuid UUID of the cluster or project
-	ScopeUuid openapi_types.UUID `json:"scope_uuid"`
-}
-
 // KeycloakUserGroupMembership defines model for KeycloakUserGroupMembership.
 type KeycloakUserGroupMembership struct {
 	Created *time.Time `json:"created,omitempty"`
@@ -10922,11 +10914,13 @@ type KeycloakUserGroupMembership struct {
 	Email          openapi_types.Email               `json:"email"`
 	ErrorMessage   *string                           `json:"error_message,omitempty"`
 	ErrorTraceback *string                           `json:"error_traceback,omitempty"`
-	Group          string                            `json:"group"`
+	FirstName      *string                           `json:"first_name,omitempty"`
+	Group          *string                           `json:"group,omitempty"`
 	GroupName      *string                           `json:"group_name,omitempty"`
 	GroupRole      *string                           `json:"group_role,omitempty"`
 	GroupScopeType *string                           `json:"group_scope_type,omitempty"`
 	LastChecked    *time.Time                        `json:"last_checked,omitempty"`
+	LastName       *string                           `json:"last_name,omitempty"`
 	Modified       *time.Time                        `json:"modified,omitempty"`
 	State          *KeycloakUserGroupMembershipState `json:"state,omitempty"`
 	Url            *string                           `json:"url,omitempty"`
@@ -10940,7 +10934,10 @@ type KeycloakUserGroupMembership struct {
 type KeycloakUserGroupMembershipRequest struct {
 	// Email User's email for notifications
 	Email openapi_types.Email `json:"email"`
-	Group string              `json:"group"`
+	Role  *string             `json:"role,omitempty"`
+
+	// ScopeUuid UUID of a cluster or a project in Rancher
+	ScopeUuid *openapi_types.UUID `json:"scope_uuid,omitempty"`
 
 	// Username Keycloak user username
 	Username string `json:"username"`
@@ -14011,19 +14008,14 @@ type PatchedIssueRequest struct {
 	Summary            *string `json:"summary,omitempty"`
 }
 
-// PatchedKeycloakGroupRequest defines model for PatchedKeycloakGroupRequest.
-type PatchedKeycloakGroupRequest struct {
-	Role *string `json:"role,omitempty"`
-
-	// ScopeUuid UUID of the cluster or project
-	ScopeUuid *openapi_types.UUID `json:"scope_uuid,omitempty"`
-}
-
 // PatchedKeycloakUserGroupMembershipRequest defines model for PatchedKeycloakUserGroupMembershipRequest.
 type PatchedKeycloakUserGroupMembershipRequest struct {
 	// Email User's email for notifications
 	Email *openapi_types.Email `json:"email,omitempty"`
-	Group *string              `json:"group,omitempty"`
+	Role  *string              `json:"role,omitempty"`
+
+	// ScopeUuid UUID of a cluster or a project in Rancher
+	ScopeUuid *openapi_types.UUID `json:"scope_uuid,omitempty"`
 
 	// Username Keycloak user username
 	Username *string `json:"username,omitempty"`
@@ -19383,13 +19375,20 @@ type KeycloakGroupsListParams struct {
 
 // KeycloakUserGroupMembershipsListParams defines parameters for KeycloakUserGroupMembershipsList.
 type KeycloakUserGroupMembershipsListParams struct {
+	Email     *string             `form:"email,omitempty" json:"email,omitempty"`
+	FirstName *string             `form:"first_name,omitempty" json:"first_name,omitempty"`
 	GroupUuid *openapi_types.UUID `form:"group_uuid,omitempty" json:"group_uuid,omitempty"`
+	LastName  *string             `form:"last_name,omitempty" json:"last_name,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize  *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	RoleUuid  *openapi_types.UUID `form:"role_uuid,omitempty" json:"role_uuid,omitempty"`
+	ScopeType *string             `form:"scope_type,omitempty" json:"scope_type,omitempty"`
+	ScopeUuid *openapi_types.UUID `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
+	Username  *string             `form:"username,omitempty" json:"username,omitempty"`
 }
 
 // KeysListParams defines parameters for KeysList.
@@ -24203,15 +24202,6 @@ type InvoicesSetPaymentUrlJSONRequestBody = PaymentURLRequest
 // InvoicesSetReferenceNumberJSONRequestBody defines body for InvoicesSetReferenceNumber for application/json ContentType.
 type InvoicesSetReferenceNumberJSONRequestBody = ReferenceNumberRequest
 
-// KeycloakGroupsCreateJSONRequestBody defines body for KeycloakGroupsCreate for application/json ContentType.
-type KeycloakGroupsCreateJSONRequestBody = KeycloakGroupRequest
-
-// KeycloakGroupsPartialUpdateJSONRequestBody defines body for KeycloakGroupsPartialUpdate for application/json ContentType.
-type KeycloakGroupsPartialUpdateJSONRequestBody = PatchedKeycloakGroupRequest
-
-// KeycloakGroupsUpdateJSONRequestBody defines body for KeycloakGroupsUpdate for application/json ContentType.
-type KeycloakGroupsUpdateJSONRequestBody = KeycloakGroupRequest
-
 // KeycloakUserGroupMembershipsCreateJSONRequestBody defines body for KeycloakUserGroupMembershipsCreate for application/json ContentType.
 type KeycloakUserGroupMembershipsCreateJSONRequestBody = KeycloakUserGroupMembershipRequest
 
@@ -28532,26 +28522,8 @@ type ClientInterface interface {
 	// KeycloakGroupsList request
 	KeycloakGroupsList(ctx context.Context, params *KeycloakGroupsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// KeycloakGroupsCreateWithBody request with any body
-	KeycloakGroupsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	KeycloakGroupsCreate(ctx context.Context, body KeycloakGroupsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// KeycloakGroupsDestroy request
-	KeycloakGroupsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
-
 	// KeycloakGroupsRetrieve request
 	KeycloakGroupsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// KeycloakGroupsPartialUpdateWithBody request with any body
-	KeycloakGroupsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	KeycloakGroupsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body KeycloakGroupsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// KeycloakGroupsUpdateWithBody request with any body
-	KeycloakGroupsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	KeycloakGroupsUpdate(ctx context.Context, uuid openapi_types.UUID, body KeycloakGroupsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// KeycloakUserGroupMembershipsList request
 	KeycloakUserGroupMembershipsList(ctx context.Context, params *KeycloakUserGroupMembershipsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -36147,92 +36119,8 @@ func (c *Client) KeycloakGroupsList(ctx context.Context, params *KeycloakGroupsL
 	return c.Client.Do(req)
 }
 
-func (c *Client) KeycloakGroupsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewKeycloakGroupsCreateRequestWithBody(c.Server, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) KeycloakGroupsCreate(ctx context.Context, body KeycloakGroupsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewKeycloakGroupsCreateRequest(c.Server, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) KeycloakGroupsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewKeycloakGroupsDestroyRequest(c.Server, uuid)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
 func (c *Client) KeycloakGroupsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewKeycloakGroupsRetrieveRequest(c.Server, uuid)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) KeycloakGroupsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewKeycloakGroupsPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) KeycloakGroupsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body KeycloakGroupsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewKeycloakGroupsPartialUpdateRequest(c.Server, uuid, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) KeycloakGroupsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewKeycloakGroupsUpdateRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) KeycloakGroupsUpdate(ctx context.Context, uuid openapi_types.UUID, body KeycloakGroupsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewKeycloakGroupsUpdateRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -69499,80 +69387,6 @@ func NewKeycloakGroupsListRequest(server string, params *KeycloakGroupsListParam
 	return req, nil
 }
 
-// NewKeycloakGroupsCreateRequest calls the generic KeycloakGroupsCreate builder with application/json body
-func NewKeycloakGroupsCreateRequest(server string, body KeycloakGroupsCreateJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewKeycloakGroupsCreateRequestWithBody(server, "application/json", bodyReader)
-}
-
-// NewKeycloakGroupsCreateRequestWithBody generates requests for KeycloakGroupsCreate with any type of body
-func NewKeycloakGroupsCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/keycloak-groups/")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("POST", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewKeycloakGroupsDestroyRequest generates requests for KeycloakGroupsDestroy
-func NewKeycloakGroupsDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/keycloak-groups/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
 // NewKeycloakGroupsRetrieveRequest generates requests for KeycloakGroupsRetrieve
 func NewKeycloakGroupsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -69607,100 +69421,6 @@ func NewKeycloakGroupsRetrieveRequest(server string, uuid openapi_types.UUID) (*
 	return req, nil
 }
 
-// NewKeycloakGroupsPartialUpdateRequest calls the generic KeycloakGroupsPartialUpdate builder with application/json body
-func NewKeycloakGroupsPartialUpdateRequest(server string, uuid openapi_types.UUID, body KeycloakGroupsPartialUpdateJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewKeycloakGroupsPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewKeycloakGroupsPartialUpdateRequestWithBody generates requests for KeycloakGroupsPartialUpdate with any type of body
-func NewKeycloakGroupsPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/keycloak-groups/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("PATCH", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewKeycloakGroupsUpdateRequest calls the generic KeycloakGroupsUpdate builder with application/json body
-func NewKeycloakGroupsUpdateRequest(server string, uuid openapi_types.UUID, body KeycloakGroupsUpdateJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewKeycloakGroupsUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewKeycloakGroupsUpdateRequestWithBody generates requests for KeycloakGroupsUpdate with any type of body
-func NewKeycloakGroupsUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/keycloak-groups/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("PUT", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
 // NewKeycloakUserGroupMembershipsListRequest generates requests for KeycloakUserGroupMembershipsList
 func NewKeycloakUserGroupMembershipsListRequest(server string, params *KeycloakUserGroupMembershipsListParams) (*http.Request, error) {
 	var err error
@@ -69723,9 +69443,57 @@ func NewKeycloakUserGroupMembershipsListRequest(server string, params *KeycloakU
 	if params != nil {
 		queryValues := queryURL.Query()
 
+		if params.Email != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "email", runtime.ParamLocationQuery, *params.Email); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.FirstName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "first_name", runtime.ParamLocationQuery, *params.FirstName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.GroupUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "group_uuid", runtime.ParamLocationQuery, *params.GroupUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.LastName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "last_name", runtime.ParamLocationQuery, *params.LastName); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -69758,6 +69526,70 @@ func NewKeycloakUserGroupMembershipsListRequest(server string, params *KeycloakU
 		if params.PageSize != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.RoleUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "role_uuid", runtime.ParamLocationQuery, *params.RoleUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ScopeType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope_type", runtime.ParamLocationQuery, *params.ScopeType); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ScopeUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope_uuid", runtime.ParamLocationQuery, *params.ScopeUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Username != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "username", runtime.ParamLocationQuery, *params.Username); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -132697,26 +132529,8 @@ type ClientWithResponsesInterface interface {
 	// KeycloakGroupsListWithResponse request
 	KeycloakGroupsListWithResponse(ctx context.Context, params *KeycloakGroupsListParams, reqEditors ...RequestEditorFn) (*KeycloakGroupsListResponse, error)
 
-	// KeycloakGroupsCreateWithBodyWithResponse request with any body
-	KeycloakGroupsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*KeycloakGroupsCreateResponse, error)
-
-	KeycloakGroupsCreateWithResponse(ctx context.Context, body KeycloakGroupsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*KeycloakGroupsCreateResponse, error)
-
-	// KeycloakGroupsDestroyWithResponse request
-	KeycloakGroupsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*KeycloakGroupsDestroyResponse, error)
-
 	// KeycloakGroupsRetrieveWithResponse request
 	KeycloakGroupsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*KeycloakGroupsRetrieveResponse, error)
-
-	// KeycloakGroupsPartialUpdateWithBodyWithResponse request with any body
-	KeycloakGroupsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*KeycloakGroupsPartialUpdateResponse, error)
-
-	KeycloakGroupsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body KeycloakGroupsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*KeycloakGroupsPartialUpdateResponse, error)
-
-	// KeycloakGroupsUpdateWithBodyWithResponse request with any body
-	KeycloakGroupsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*KeycloakGroupsUpdateResponse, error)
-
-	KeycloakGroupsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body KeycloakGroupsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*KeycloakGroupsUpdateResponse, error)
 
 	// KeycloakUserGroupMembershipsListWithResponse request
 	KeycloakUserGroupMembershipsListWithResponse(ctx context.Context, params *KeycloakUserGroupMembershipsListParams, reqEditors ...RequestEditorFn) (*KeycloakUserGroupMembershipsListResponse, error)
@@ -141959,49 +141773,6 @@ func (r KeycloakGroupsListResponse) StatusCode() int {
 	return 0
 }
 
-type KeycloakGroupsCreateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON201      *KeycloakGroup
-}
-
-// Status returns HTTPResponse.Status
-func (r KeycloakGroupsCreateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r KeycloakGroupsCreateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type KeycloakGroupsDestroyResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// Status returns HTTPResponse.Status
-func (r KeycloakGroupsDestroyResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r KeycloakGroupsDestroyResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
 type KeycloakGroupsRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -142018,50 +141789,6 @@ func (r KeycloakGroupsRetrieveResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r KeycloakGroupsRetrieveResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type KeycloakGroupsPartialUpdateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *KeycloakGroup
-}
-
-// Status returns HTTPResponse.Status
-func (r KeycloakGroupsPartialUpdateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r KeycloakGroupsPartialUpdateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type KeycloakGroupsUpdateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *KeycloakGroup
-}
-
-// Status returns HTTPResponse.Status
-func (r KeycloakGroupsUpdateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r KeycloakGroupsUpdateResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -164220,32 +163947,6 @@ func (c *ClientWithResponses) KeycloakGroupsListWithResponse(ctx context.Context
 	return ParseKeycloakGroupsListResponse(rsp)
 }
 
-// KeycloakGroupsCreateWithBodyWithResponse request with arbitrary body returning *KeycloakGroupsCreateResponse
-func (c *ClientWithResponses) KeycloakGroupsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*KeycloakGroupsCreateResponse, error) {
-	rsp, err := c.KeycloakGroupsCreateWithBody(ctx, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseKeycloakGroupsCreateResponse(rsp)
-}
-
-func (c *ClientWithResponses) KeycloakGroupsCreateWithResponse(ctx context.Context, body KeycloakGroupsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*KeycloakGroupsCreateResponse, error) {
-	rsp, err := c.KeycloakGroupsCreate(ctx, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseKeycloakGroupsCreateResponse(rsp)
-}
-
-// KeycloakGroupsDestroyWithResponse request returning *KeycloakGroupsDestroyResponse
-func (c *ClientWithResponses) KeycloakGroupsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*KeycloakGroupsDestroyResponse, error) {
-	rsp, err := c.KeycloakGroupsDestroy(ctx, uuid, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseKeycloakGroupsDestroyResponse(rsp)
-}
-
 // KeycloakGroupsRetrieveWithResponse request returning *KeycloakGroupsRetrieveResponse
 func (c *ClientWithResponses) KeycloakGroupsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*KeycloakGroupsRetrieveResponse, error) {
 	rsp, err := c.KeycloakGroupsRetrieve(ctx, uuid, reqEditors...)
@@ -164253,40 +163954,6 @@ func (c *ClientWithResponses) KeycloakGroupsRetrieveWithResponse(ctx context.Con
 		return nil, err
 	}
 	return ParseKeycloakGroupsRetrieveResponse(rsp)
-}
-
-// KeycloakGroupsPartialUpdateWithBodyWithResponse request with arbitrary body returning *KeycloakGroupsPartialUpdateResponse
-func (c *ClientWithResponses) KeycloakGroupsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*KeycloakGroupsPartialUpdateResponse, error) {
-	rsp, err := c.KeycloakGroupsPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseKeycloakGroupsPartialUpdateResponse(rsp)
-}
-
-func (c *ClientWithResponses) KeycloakGroupsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body KeycloakGroupsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*KeycloakGroupsPartialUpdateResponse, error) {
-	rsp, err := c.KeycloakGroupsPartialUpdate(ctx, uuid, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseKeycloakGroupsPartialUpdateResponse(rsp)
-}
-
-// KeycloakGroupsUpdateWithBodyWithResponse request with arbitrary body returning *KeycloakGroupsUpdateResponse
-func (c *ClientWithResponses) KeycloakGroupsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*KeycloakGroupsUpdateResponse, error) {
-	rsp, err := c.KeycloakGroupsUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseKeycloakGroupsUpdateResponse(rsp)
-}
-
-func (c *ClientWithResponses) KeycloakGroupsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body KeycloakGroupsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*KeycloakGroupsUpdateResponse, error) {
-	rsp, err := c.KeycloakGroupsUpdate(ctx, uuid, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseKeycloakGroupsUpdateResponse(rsp)
 }
 
 // KeycloakUserGroupMembershipsListWithResponse request returning *KeycloakUserGroupMembershipsListResponse
@@ -181148,48 +180815,6 @@ func ParseKeycloakGroupsListResponse(rsp *http.Response) (*KeycloakGroupsListRes
 	return response, nil
 }
 
-// ParseKeycloakGroupsCreateResponse parses an HTTP response from a KeycloakGroupsCreateWithResponse call
-func ParseKeycloakGroupsCreateResponse(rsp *http.Response) (*KeycloakGroupsCreateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &KeycloakGroupsCreateResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest KeycloakGroup
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON201 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseKeycloakGroupsDestroyResponse parses an HTTP response from a KeycloakGroupsDestroyWithResponse call
-func ParseKeycloakGroupsDestroyResponse(rsp *http.Response) (*KeycloakGroupsDestroyResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &KeycloakGroupsDestroyResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	return response, nil
-}
-
 // ParseKeycloakGroupsRetrieveResponse parses an HTTP response from a KeycloakGroupsRetrieveWithResponse call
 func ParseKeycloakGroupsRetrieveResponse(rsp *http.Response) (*KeycloakGroupsRetrieveResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -181199,58 +180824,6 @@ func ParseKeycloakGroupsRetrieveResponse(rsp *http.Response) (*KeycloakGroupsRet
 	}
 
 	response := &KeycloakGroupsRetrieveResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest KeycloakGroup
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseKeycloakGroupsPartialUpdateResponse parses an HTTP response from a KeycloakGroupsPartialUpdateWithResponse call
-func ParseKeycloakGroupsPartialUpdateResponse(rsp *http.Response) (*KeycloakGroupsPartialUpdateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &KeycloakGroupsPartialUpdateResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest KeycloakGroup
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseKeycloakGroupsUpdateResponse parses an HTTP response from a KeycloakGroupsUpdateWithResponse call
-func ParseKeycloakGroupsUpdateResponse(rsp *http.Response) (*KeycloakGroupsUpdateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &KeycloakGroupsUpdateResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
