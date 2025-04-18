@@ -11006,6 +11006,7 @@ type Mapping struct {
 	Networks             *[]openapi_types.UUID `json:"networks,omitempty"`
 	SkipConnectionExtnet *bool                 `json:"skip_connection_extnet,omitempty"`
 	Subnets              *[]SubNetMapping      `json:"subnets,omitempty"`
+	SyncInstancePorts    *bool                 `json:"sync_instance_ports,omitempty"`
 	VolumeTypes          *[]VolumeTypeMapping  `json:"volume_types,omitempty"`
 }
 
@@ -11014,6 +11015,7 @@ type MappingRequest struct {
 	Networks             *[]openapi_types.UUID       `json:"networks,omitempty"`
 	SkipConnectionExtnet *bool                       `json:"skip_connection_extnet,omitempty"`
 	Subnets              *[]SubNetMappingRequest     `json:"subnets,omitempty"`
+	SyncInstancePorts    *bool                       `json:"sync_instance_ports,omitempty"`
 	VolumeTypes          *[]VolumeTypeMappingRequest `json:"volume_types,omitempty"`
 }
 
