@@ -11171,10 +11171,10 @@ type MergedPluginOptions struct {
 	IsResourceTerminationDateRequired *bool `json:"is_resource_termination_date_required,omitempty"`
 
 	// LatestDateForResourceTermination If set, it will be used as a latest date for resource termination
-	LatestDateForResourceTermination   *openapi_types.Date `json:"latest_date_for_resource_termination,omitempty"`
-	ManagedRancherServerFlavorName     *string             `json:"managed_rancher_server_flavor_name,omitempty"`
-	ManagedRancherSystemVolumeSizeGb   *int                `json:"managed_rancher_system_volume_size_gb,omitempty"`
-	ManagedRancherSystemVolumeTypeName *string             `json:"managed_rancher_system_volume_type_name,omitempty"`
+	LatestDateForResourceTermination         *openapi_types.Date `json:"latest_date_for_resource_termination,omitempty"`
+	ManagedRancherServerFlavorName           *string             `json:"managed_rancher_server_flavor_name,omitempty"`
+	ManagedRancherServerSystemVolumeSizeGb   *int                `json:"managed_rancher_server_system_volume_size_gb,omitempty"`
+	ManagedRancherServerSystemVolumeTypeName *string             `json:"managed_rancher_server_system_volume_type_name,omitempty"`
 
 	// MaxInstances Default limit for number of instances in OpenStack tenant
 	MaxInstances *int `json:"max_instances,omitempty"`
@@ -11266,10 +11266,10 @@ type MergedPluginOptionsRequest struct {
 	IsResourceTerminationDateRequired *bool `json:"is_resource_termination_date_required,omitempty"`
 
 	// LatestDateForResourceTermination If set, it will be used as a latest date for resource termination
-	LatestDateForResourceTermination   *openapi_types.Date `json:"latest_date_for_resource_termination,omitempty"`
-	ManagedRancherServerFlavorName     *string             `json:"managed_rancher_server_flavor_name,omitempty"`
-	ManagedRancherSystemVolumeSizeGb   *int                `json:"managed_rancher_system_volume_size_gb,omitempty"`
-	ManagedRancherSystemVolumeTypeName *string             `json:"managed_rancher_system_volume_type_name,omitempty"`
+	LatestDateForResourceTermination         *openapi_types.Date `json:"latest_date_for_resource_termination,omitempty"`
+	ManagedRancherServerFlavorName           *string             `json:"managed_rancher_server_flavor_name,omitempty"`
+	ManagedRancherServerSystemVolumeSizeGb   *int                `json:"managed_rancher_server_system_volume_size_gb,omitempty"`
+	ManagedRancherServerSystemVolumeTypeName *string             `json:"managed_rancher_server_system_volume_type_name,omitempty"`
 
 	// MaxInstances Default limit for number of instances in OpenStack tenant
 	MaxInstances *int `json:"max_instances,omitempty"`
