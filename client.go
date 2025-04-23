@@ -791,8 +791,8 @@ const (
 
 // Defines values for PolicyTypeEnum.
 const (
-	AccessAsExternal PolicyTypeEnum = "access_as_external"
-	AccessAsShared   PolicyTypeEnum = "access_as_shared"
+	PolicyTypeEnumAccessAsExternal PolicyTypeEnum = "access_as_external"
+	PolicyTypeEnumAccessAsShared   PolicyTypeEnum = "access_as_shared"
 )
 
 // Defines values for ProposalReviewStateEnum.
@@ -2168,6 +2168,7 @@ const (
 	CustomersListParamsFieldCountryName                  CustomersListParamsField = "country_name"
 	CustomersListParamsFieldCreated                      CustomersListParamsField = "created"
 	CustomersListParamsFieldCustomerCredit               CustomersListParamsField = "customer_credit"
+	CustomersListParamsFieldCustomerUnallocatedCredit    CustomersListParamsField = "customer_unallocated_credit"
 	CustomersListParamsFieldDefaultTaxPercent            CustomersListParamsField = "default_tax_percent"
 	CustomersListParamsFieldDisplayName                  CustomersListParamsField = "display_name"
 	CustomersListParamsFieldDomain                       CustomersListParamsField = "domain"
@@ -2215,6 +2216,7 @@ const (
 	CustomersRetrieveParamsFieldCountryName                  CustomersRetrieveParamsField = "country_name"
 	CustomersRetrieveParamsFieldCreated                      CustomersRetrieveParamsField = "created"
 	CustomersRetrieveParamsFieldCustomerCredit               CustomersRetrieveParamsField = "customer_credit"
+	CustomersRetrieveParamsFieldCustomerUnallocatedCredit    CustomersRetrieveParamsField = "customer_unallocated_credit"
 	CustomersRetrieveParamsFieldDefaultTaxPercent            CustomersRetrieveParamsField = "default_tax_percent"
 	CustomersRetrieveParamsFieldDisplayName                  CustomersRetrieveParamsField = "display_name"
 	CustomersRetrieveParamsFieldDomain                       CustomersRetrieveParamsField = "domain"
@@ -5097,6 +5099,12 @@ const (
 	OpenstackInstancesRetrieveParamsFieldUserData                         OpenstackInstancesRetrieveParamsField = "user_data"
 	OpenstackInstancesRetrieveParamsFieldUuid                             OpenstackInstancesRetrieveParamsField = "uuid"
 	OpenstackInstancesRetrieveParamsFieldVolumes                          OpenstackInstancesRetrieveParamsField = "volumes"
+)
+
+// Defines values for OpenstackNetworkRbacPoliciesListParamsPolicyType.
+const (
+	OpenstackNetworkRbacPoliciesListParamsPolicyTypeAccessAsExternal OpenstackNetworkRbacPoliciesListParamsPolicyType = "access_as_external"
+	OpenstackNetworkRbacPoliciesListParamsPolicyTypeAccessAsShared   OpenstackNetworkRbacPoliciesListParamsPolicyType = "access_as_shared"
 )
 
 // Defines values for OpenstackNetworksListParamsField.
@@ -9723,6 +9731,7 @@ type Customer struct {
 	CountryName                  *string              `json:"country_name,omitempty"`
 	Created                      *time.Time           `json:"created,omitempty"`
 	CustomerCredit               *float64             `json:"customer_credit"`
+	CustomerUnallocatedCredit    *float64             `json:"customer_unallocated_credit"`
 	DefaultTaxPercent            *string              `json:"default_tax_percent,omitempty"`
 	DisplayName                  *string              `json:"display_name,omitempty"`
 	Domain                       *string              `json:"domain,omitempty"`
@@ -11724,12 +11733,15 @@ type NestedSecurityGroupRule_Protocol struct {
 
 // NetworkRBACPolicy defines model for NetworkRBACPolicy.
 type NetworkRBACPolicy struct {
-	BackendId    *string             `json:"backend_id,omitempty"`
-	Created      *time.Time          `json:"created,omitempty"`
-	Network      *string             `json:"network,omitempty"`
-	PolicyType   *PolicyTypeEnum     `json:"policy_type,omitempty"`
-	TargetTenant *string             `json:"target_tenant,omitempty"`
-	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
+	BackendId        *string             `json:"backend_id,omitempty"`
+	Created          *time.Time          `json:"created,omitempty"`
+	Network          *string             `json:"network,omitempty"`
+	NetworkName      *string             `json:"network_name,omitempty"`
+	PolicyType       *PolicyTypeEnum     `json:"policy_type,omitempty"`
+	TargetTenant     *string             `json:"target_tenant,omitempty"`
+	TargetTenantName *string             `json:"target_tenant_name,omitempty"`
+	Url              *string             `json:"url,omitempty"`
+	Uuid             *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // NetworkRBACPolicyRequest defines model for NetworkRBACPolicyRequest.
@@ -14959,6 +14971,7 @@ type Proposal struct {
 	Project                   *string                   `json:"project"`
 	ProjectHasCivilianPurpose *bool                     `json:"project_has_civilian_purpose,omitempty"`
 	ProjectIsConfidential     *bool                     `json:"project_is_confidential,omitempty"`
+	ProjectName               *string                   `json:"project_name,omitempty"`
 	ProjectSummary            *string                   `json:"project_summary,omitempty"`
 	Round                     *NestedRound              `json:"round,omitempty"`
 	State                     *ProposalStates           `json:"state,omitempty"`
@@ -15026,6 +15039,7 @@ type ProposalReview struct {
 	CommentTeam                           *string                  `json:"comment_team"`
 	Proposal                              string                   `json:"proposal"`
 	ProposalName                          *string                  `json:"proposal_name,omitempty"`
+	ProposalUuid                          *openapi_types.UUID      `json:"proposal_uuid,omitempty"`
 	ReviewEndDate                         *time.Time               `json:"review_end_date,omitempty"`
 	Reviewer                              string                   `json:"reviewer"`
 	ReviewerFullName                      *string                  `json:"reviewer_full_name,omitempty"`
@@ -21674,6 +21688,24 @@ type OpenstackMigrationsListParams struct {
 	PageSize        *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
 	SrcResourceUuid *openapi_types.UUID `form:"src_resource_uuid,omitempty" json:"src_resource_uuid,omitempty"`
 }
+
+// OpenstackNetworkRbacPoliciesListParams defines parameters for OpenstackNetworkRbacPoliciesList.
+type OpenstackNetworkRbacPoliciesListParams struct {
+	Network     *string             `form:"network,omitempty" json:"network,omitempty"`
+	NetworkUuid *openapi_types.UUID `form:"network_uuid,omitempty" json:"network_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize         *PageSize                                         `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PolicyType       *OpenstackNetworkRbacPoliciesListParamsPolicyType `form:"policy_type,omitempty" json:"policy_type,omitempty"`
+	TargetTenant     *string                                           `form:"target_tenant,omitempty" json:"target_tenant,omitempty"`
+	TargetTenantUuid *openapi_types.UUID                               `form:"target_tenant_uuid,omitempty" json:"target_tenant_uuid,omitempty"`
+}
+
+// OpenstackNetworkRbacPoliciesListParamsPolicyType defines parameters for OpenstackNetworkRbacPoliciesList.
+type OpenstackNetworkRbacPoliciesListParamsPolicyType string
 
 // OpenstackNetworksListParams defines parameters for OpenstackNetworksList.
 type OpenstackNetworksListParams struct {
@@ -29997,6 +30029,12 @@ type ClientInterface interface {
 
 	// OpenstackMigrationsRun request
 	OpenstackMigrationsRun(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackNetworkRbacPoliciesList request
+	OpenstackNetworkRbacPoliciesList(ctx context.Context, params *OpenstackNetworkRbacPoliciesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackNetworkRbacPoliciesRetrieve request
+	OpenstackNetworkRbacPoliciesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenstackNetworksList request
 	OpenstackNetworksList(ctx context.Context, params *OpenstackNetworksListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -42573,6 +42611,30 @@ func (c *Client) OpenstackMigrationsUpdate(ctx context.Context, uuid openapi_typ
 
 func (c *Client) OpenstackMigrationsRun(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenstackMigrationsRunRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackNetworkRbacPoliciesList(ctx context.Context, params *OpenstackNetworkRbacPoliciesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackNetworkRbacPoliciesListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackNetworkRbacPoliciesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackNetworkRbacPoliciesRetrieveRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -98160,6 +98222,185 @@ func NewOpenstackMigrationsRunRequest(server string, uuid openapi_types.UUID) (*
 	return req, nil
 }
 
+// NewOpenstackNetworkRbacPoliciesListRequest generates requests for OpenstackNetworkRbacPoliciesList
+func NewOpenstackNetworkRbacPoliciesListRequest(server string, params *OpenstackNetworkRbacPoliciesListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-network-rbac-policies/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Network != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "network", runtime.ParamLocationQuery, *params.Network); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.NetworkUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "network_uuid", runtime.ParamLocationQuery, *params.NetworkUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PolicyType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "policy_type", runtime.ParamLocationQuery, *params.PolicyType); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TargetTenant != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "target_tenant", runtime.ParamLocationQuery, *params.TargetTenant); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TargetTenantUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "target_tenant_uuid", runtime.ParamLocationQuery, *params.TargetTenantUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenstackNetworkRbacPoliciesRetrieveRequest generates requests for OpenstackNetworkRbacPoliciesRetrieve
+func NewOpenstackNetworkRbacPoliciesRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-network-rbac-policies/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewOpenstackNetworksListRequest generates requests for OpenstackNetworksList
 func NewOpenstackNetworksListRequest(server string, params *OpenstackNetworksListParams) (*http.Request, error) {
 	var err error
@@ -133585,6 +133826,12 @@ type ClientWithResponsesInterface interface {
 	// OpenstackMigrationsRunWithResponse request
 	OpenstackMigrationsRunWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackMigrationsRunResponse, error)
 
+	// OpenstackNetworkRbacPoliciesListWithResponse request
+	OpenstackNetworkRbacPoliciesListWithResponse(ctx context.Context, params *OpenstackNetworkRbacPoliciesListParams, reqEditors ...RequestEditorFn) (*OpenstackNetworkRbacPoliciesListResponse, error)
+
+	// OpenstackNetworkRbacPoliciesRetrieveWithResponse request
+	OpenstackNetworkRbacPoliciesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackNetworkRbacPoliciesRetrieveResponse, error)
+
 	// OpenstackNetworksListWithResponse request
 	OpenstackNetworksListWithResponse(ctx context.Context, params *OpenstackNetworksListParams, reqEditors ...RequestEditorFn) (*OpenstackNetworksListResponse, error)
 
@@ -149834,6 +150081,50 @@ func (r OpenstackMigrationsRunResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r OpenstackMigrationsRunResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackNetworkRbacPoliciesListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]NetworkRBACPolicy
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackNetworkRbacPoliciesListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackNetworkRbacPoliciesListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackNetworkRbacPoliciesRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *NetworkRBACPolicy
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackNetworkRbacPoliciesRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackNetworkRbacPoliciesRetrieveResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -167997,6 +168288,24 @@ func (c *ClientWithResponses) OpenstackMigrationsRunWithResponse(ctx context.Con
 		return nil, err
 	}
 	return ParseOpenstackMigrationsRunResponse(rsp)
+}
+
+// OpenstackNetworkRbacPoliciesListWithResponse request returning *OpenstackNetworkRbacPoliciesListResponse
+func (c *ClientWithResponses) OpenstackNetworkRbacPoliciesListWithResponse(ctx context.Context, params *OpenstackNetworkRbacPoliciesListParams, reqEditors ...RequestEditorFn) (*OpenstackNetworkRbacPoliciesListResponse, error) {
+	rsp, err := c.OpenstackNetworkRbacPoliciesList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackNetworkRbacPoliciesListResponse(rsp)
+}
+
+// OpenstackNetworkRbacPoliciesRetrieveWithResponse request returning *OpenstackNetworkRbacPoliciesRetrieveResponse
+func (c *ClientWithResponses) OpenstackNetworkRbacPoliciesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackNetworkRbacPoliciesRetrieveResponse, error) {
+	rsp, err := c.OpenstackNetworkRbacPoliciesRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackNetworkRbacPoliciesRetrieveResponse(rsp)
 }
 
 // OpenstackNetworksListWithResponse request returning *OpenstackNetworksListResponse
@@ -189151,6 +189460,58 @@ func ParseOpenstackMigrationsRunResponse(rsp *http.Response) (*OpenstackMigratio
 	response := &OpenstackMigrationsRunResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackNetworkRbacPoliciesListResponse parses an HTTP response from a OpenstackNetworkRbacPoliciesListWithResponse call
+func ParseOpenstackNetworkRbacPoliciesListResponse(rsp *http.Response) (*OpenstackNetworkRbacPoliciesListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackNetworkRbacPoliciesListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []NetworkRBACPolicy
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackNetworkRbacPoliciesRetrieveResponse parses an HTTP response from a OpenstackNetworkRbacPoliciesRetrieveWithResponse call
+func ParseOpenstackNetworkRbacPoliciesRetrieveResponse(rsp *http.Response) (*OpenstackNetworkRbacPoliciesRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackNetworkRbacPoliciesRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest NetworkRBACPolicy
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
