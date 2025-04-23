@@ -16755,7 +16755,7 @@ type RobotAccount struct {
 	Modified        *time.Time          `json:"modified,omitempty"`
 	Resource        string              `json:"resource"`
 	ResponsibleUser *string             `json:"responsible_user"`
-	State           *string             `json:"state"`
+	State           *string             `json:"state,omitempty"`
 	Type            string              `json:"type"`
 	Url             *string             `json:"url,omitempty"`
 	Username        *string             `json:"username,omitempty"`
@@ -16782,7 +16782,7 @@ type RobotAccountDetails struct {
 	ResourceName          *string              `json:"resource_name,omitempty"`
 	ResourceUuid          *openapi_types.UUID  `json:"resource_uuid,omitempty"`
 	ResponsibleUser       *BasicUser           `json:"responsible_user"`
-	State                 *string              `json:"state"`
+	State                 *string              `json:"state,omitempty"`
 	Type                  string               `json:"type"`
 	Url                   *string              `json:"url,omitempty"`
 	UserKeys              *[]SshKey            `json:"user_keys,omitempty"`
