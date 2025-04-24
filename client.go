@@ -2643,6 +2643,12 @@ const (
 	InvoicesStatsListParamsStatePending  InvoicesStatsListParamsState = "pending"
 )
 
+// Defines values for KeycloakUserGroupMembershipsListParamsState.
+const (
+	KeycloakUserGroupMembershipsListParamsStateActive  KeycloakUserGroupMembershipsListParamsState = "active"
+	KeycloakUserGroupMembershipsListParamsStatePending KeycloakUserGroupMembershipsListParamsState = "pending"
+)
+
 // Defines values for KeysListParamsField.
 const (
 	KeysListParamsFieldFingerprintMd5    KeysListParamsField = "fingerprint_md5"
@@ -15579,7 +15585,7 @@ type RancherApplication struct {
 	Description                      *string                 `json:"description,omitempty"`
 	ErrorMessage                     *string                 `json:"error_message,omitempty"`
 	ErrorTraceback                   *string                 `json:"error_traceback,omitempty"`
-	ExternalUrl                      *string                 `json:"external_url,omitempty"`
+	ExternalUrl                      *string                 `json:"external_url"`
 	IsLimitBased                     *bool                   `json:"is_limit_based,omitempty"`
 	IsUsageBased                     *bool                   `json:"is_usage_based,omitempty"`
 	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
@@ -19400,12 +19406,16 @@ type KeycloakUserGroupMembershipsListParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize  *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	RoleUuid  *openapi_types.UUID `form:"role_uuid,omitempty" json:"role_uuid,omitempty"`
-	ScopeType *string             `form:"scope_type,omitempty" json:"scope_type,omitempty"`
-	ScopeUuid *openapi_types.UUID `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
-	Username  *string             `form:"username,omitempty" json:"username,omitempty"`
+	PageSize  *PageSize                                      `form:"page_size,omitempty" json:"page_size,omitempty"`
+	RoleUuid  *openapi_types.UUID                            `form:"role_uuid,omitempty" json:"role_uuid,omitempty"`
+	ScopeType *string                                        `form:"scope_type,omitempty" json:"scope_type,omitempty"`
+	ScopeUuid *openapi_types.UUID                            `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
+	State     *[]KeycloakUserGroupMembershipsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+	Username  *string                                        `form:"username,omitempty" json:"username,omitempty"`
 }
+
+// KeycloakUserGroupMembershipsListParamsState defines parameters for KeycloakUserGroupMembershipsList.
+type KeycloakUserGroupMembershipsListParamsState string
 
 // KeysListParams defines parameters for KeysList.
 type KeysListParams struct {
@@ -20164,6 +20174,12 @@ type MarketplaceProviderOfferingsListParams struct {
 	// ProjectUuid Project UUID
 	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 
+	// ResourceCustomerUuid Resource customer UUID
+	ResourceCustomerUuid *openapi_types.UUID `form:"resource_customer_uuid,omitempty" json:"resource_customer_uuid,omitempty"`
+
+	// ResourceProjectUuid Resource project UUID
+	ResourceProjectUuid *openapi_types.UUID `form:"resource_project_uuid,omitempty" json:"resource_project_uuid,omitempty"`
+
 	// ScopeUuid Scope UUID
 	ScopeUuid *openapi_types.UUID `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
 
@@ -20243,6 +20259,12 @@ type MarketplaceProviderOfferingsComponentStatsListParams struct {
 	// ProjectUuid Project UUID
 	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 
+	// ResourceCustomerUuid Resource customer UUID
+	ResourceCustomerUuid *openapi_types.UUID `form:"resource_customer_uuid,omitempty" json:"resource_customer_uuid,omitempty"`
+
+	// ResourceProjectUuid Resource project UUID
+	ResourceProjectUuid *openapi_types.UUID `form:"resource_project_uuid,omitempty" json:"resource_project_uuid,omitempty"`
+
 	// ScopeUuid Scope UUID
 	ScopeUuid *openapi_types.UUID `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
 
@@ -20307,6 +20329,12 @@ type MarketplaceProviderOfferingsCostsListParams struct {
 	// ProjectUuid Project UUID
 	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 
+	// ResourceCustomerUuid Resource customer UUID
+	ResourceCustomerUuid *openapi_types.UUID `form:"resource_customer_uuid,omitempty" json:"resource_customer_uuid,omitempty"`
+
+	// ResourceProjectUuid Resource project UUID
+	ResourceProjectUuid *openapi_types.UUID `form:"resource_project_uuid,omitempty" json:"resource_project_uuid,omitempty"`
+
 	// ScopeUuid Scope UUID
 	ScopeUuid *openapi_types.UUID `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
 
@@ -20366,6 +20394,12 @@ type MarketplaceProviderOfferingsCustomersListParams struct {
 
 	// ProjectUuid Project UUID
 	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ResourceCustomerUuid Resource customer UUID
+	ResourceCustomerUuid *openapi_types.UUID `form:"resource_customer_uuid,omitempty" json:"resource_customer_uuid,omitempty"`
+
+	// ResourceProjectUuid Resource project UUID
+	ResourceProjectUuid *openapi_types.UUID `form:"resource_project_uuid,omitempty" json:"resource_project_uuid,omitempty"`
 
 	// ScopeUuid Scope UUID
 	ScopeUuid *openapi_types.UUID `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
@@ -20610,6 +20644,12 @@ type MarketplacePublicOfferingsListParams struct {
 
 	// ProjectUuid Project UUID
 	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ResourceCustomerUuid Resource customer UUID
+	ResourceCustomerUuid *openapi_types.UUID `form:"resource_customer_uuid,omitempty" json:"resource_customer_uuid,omitempty"`
+
+	// ResourceProjectUuid Resource project UUID
+	ResourceProjectUuid *openapi_types.UUID `form:"resource_project_uuid,omitempty" json:"resource_project_uuid,omitempty"`
 
 	// ScopeUuid Scope UUID
 	ScopeUuid *openapi_types.UUID `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
@@ -21016,6 +21056,12 @@ type MarketplaceServiceProvidersOfferingsListParams struct {
 
 	// ProjectUuid Project UUID
 	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ResourceCustomerUuid Resource customer UUID
+	ResourceCustomerUuid *openapi_types.UUID `form:"resource_customer_uuid,omitempty" json:"resource_customer_uuid,omitempty"`
+
+	// ResourceProjectUuid Resource project UUID
+	ResourceProjectUuid *openapi_types.UUID `form:"resource_project_uuid,omitempty" json:"resource_project_uuid,omitempty"`
 
 	// ScopeUuid Scope UUID
 	ScopeUuid *openapi_types.UUID `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
@@ -23069,11 +23115,15 @@ type RancherProjectsListParams struct {
 
 // RancherRoleTemplatesListParams defines parameters for RancherRoleTemplatesList.
 type RancherRoleTemplatesListParams struct {
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ScopeType    *string             `form:"scope_type,omitempty" json:"scope_type,omitempty"`
+	SettingsUuid *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
 }
 
 // RancherServicesListParams defines parameters for RancherServicesList.
@@ -69231,6 +69281,22 @@ func NewKeycloakUserGroupMembershipsListRequest(server string, params *KeycloakU
 
 		}
 
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "state", runtime.ParamLocationQuery, *params.State); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Username != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "username", runtime.ParamLocationQuery, *params.Username); err != nil {
@@ -79204,6 +79270,38 @@ func NewMarketplaceProviderOfferingsListRequest(server string, params *Marketpla
 
 		}
 
+		if params.ResourceCustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "resource_customer_uuid", runtime.ParamLocationQuery, *params.ResourceCustomerUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ResourceProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "resource_project_uuid", runtime.ParamLocationQuery, *params.ResourceProjectUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.ScopeUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope_uuid", runtime.ParamLocationQuery, *params.ScopeUuid); err != nil {
@@ -80001,6 +80099,38 @@ func NewMarketplaceProviderOfferingsComponentStatsListRequest(server string, uui
 
 		}
 
+		if params.ResourceCustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "resource_customer_uuid", runtime.ParamLocationQuery, *params.ResourceCustomerUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ResourceProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "resource_project_uuid", runtime.ParamLocationQuery, *params.ResourceProjectUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.ScopeUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope_uuid", runtime.ParamLocationQuery, *params.ScopeUuid); err != nil {
@@ -80476,6 +80606,38 @@ func NewMarketplaceProviderOfferingsCostsListRequest(server string, uuid openapi
 		if params.ProjectUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_uuid", runtime.ParamLocationQuery, *params.ProjectUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ResourceCustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "resource_customer_uuid", runtime.ParamLocationQuery, *params.ResourceCustomerUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ResourceProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "resource_project_uuid", runtime.ParamLocationQuery, *params.ResourceProjectUuid); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -80979,6 +81141,38 @@ func NewMarketplaceProviderOfferingsCustomersListRequest(server string, uuid ope
 		if params.ProjectUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_uuid", runtime.ParamLocationQuery, *params.ProjectUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ResourceCustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "resource_customer_uuid", runtime.ParamLocationQuery, *params.ResourceCustomerUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ResourceProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "resource_project_uuid", runtime.ParamLocationQuery, *params.ResourceProjectUuid); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -84798,6 +84992,38 @@ func NewMarketplacePublicOfferingsListRequest(server string, params *Marketplace
 		if params.ProjectUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_uuid", runtime.ParamLocationQuery, *params.ProjectUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ResourceCustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "resource_customer_uuid", runtime.ParamLocationQuery, *params.ResourceCustomerUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ResourceProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "resource_project_uuid", runtime.ParamLocationQuery, *params.ResourceProjectUuid); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -89989,6 +90215,38 @@ func NewMarketplaceServiceProvidersOfferingsListRequest(server string, servicePr
 		if params.ProjectUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_uuid", runtime.ParamLocationQuery, *params.ProjectUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ResourceCustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "resource_customer_uuid", runtime.ParamLocationQuery, *params.ResourceCustomerUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ResourceProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "resource_project_uuid", runtime.ParamLocationQuery, *params.ResourceProjectUuid); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -118038,6 +118296,22 @@ func NewRancherRoleTemplatesListRequest(server string, params *RancherRoleTempla
 	if params != nil {
 		queryValues := queryURL.Query()
 
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name", runtime.ParamLocationQuery, *params.Name); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Page != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
@@ -118057,6 +118331,38 @@ func NewRancherRoleTemplatesListRequest(server string, params *RancherRoleTempla
 		if params.PageSize != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ScopeType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope_type", runtime.ParamLocationQuery, *params.ScopeType); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.SettingsUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "settings_uuid", runtime.ParamLocationQuery, *params.SettingsUuid); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
