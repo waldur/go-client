@@ -299,6 +299,7 @@ const (
 	OpenstackPortDeleted                             EventTypesEnum = "openstack_port_deleted"
 	OpenstackPortImported                            EventTypesEnum = "openstack_port_imported"
 	OpenstackPortPulled                              EventTypesEnum = "openstack_port_pulled"
+	OpenstackPortUpdated                             EventTypesEnum = "openstack_port_updated"
 	OpenstackRouterUpdated                           EventTypesEnum = "openstack_router_updated"
 	OpenstackSecurityGroupCleaned                    EventTypesEnum = "openstack_security_group_cleaned"
 	OpenstackSecurityGroupCreated                    EventTypesEnum = "openstack_security_group_created"
@@ -12939,13 +12940,21 @@ type OpenStackPortNestedSecurityGroup struct {
 	Uuid *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
+// OpenStackPortNestedSecurityGroupRequest defines model for OpenStackPortNestedSecurityGroupRequest.
+type OpenStackPortNestedSecurityGroupRequest struct {
+	Name string `json:"name"`
+}
+
 // OpenStackPortRequest defines model for OpenStackPortRequest.
 type OpenStackPortRequest struct {
-	Description *string                    `json:"description,omitempty"`
-	FixedIps    *[]OpenStackFixedIpRequest `json:"fixed_ips,omitempty"`
-	MacAddress  *string                    `json:"mac_address,omitempty"`
-	Name        string                     `json:"name"`
-	Network     *string                    `json:"network"`
+	AllowedAddressPairs *[]OpenStackAllowedAddressPairRequest      `json:"allowed_address_pairs,omitempty"`
+	Description         *string                                    `json:"description,omitempty"`
+	FixedIps            *[]OpenStackFixedIpRequest                 `json:"fixed_ips,omitempty"`
+	MacAddress          *string                                    `json:"mac_address,omitempty"`
+	Name                string                                     `json:"name"`
+	Network             *string                                    `json:"network"`
+	PortSecurityEnabled *bool                                      `json:"port_security_enabled,omitempty"`
+	SecurityGroups      *[]OpenStackPortNestedSecurityGroupRequest `json:"security_groups,omitempty"`
 }
 
 // OpenStackRouter defines model for OpenStackRouter.
@@ -14147,6 +14156,13 @@ type PatchedOpenStackInstanceRequest struct {
 type PatchedOpenStackNetworkRequest struct {
 	Description *string `json:"description,omitempty"`
 	Name        *string `json:"name,omitempty"`
+}
+
+// PatchedOpenStackPortRequest defines model for PatchedOpenStackPortRequest.
+type PatchedOpenStackPortRequest struct {
+	Description    *string                                    `json:"description,omitempty"`
+	Name           *string                                    `json:"name,omitempty"`
+	SecurityGroups *[]OpenStackPortNestedSecurityGroupRequest `json:"security_groups,omitempty"`
 }
 
 // PatchedOpenStackSecurityGroupUpdateRequest defines model for PatchedOpenStackSecurityGroupUpdateRequest.
@@ -24739,9 +24755,6 @@ type OpenstackNetworksPartialUpdateJSONRequestBody = PatchedOpenStackNetworkRequ
 // OpenstackNetworksUpdateJSONRequestBody defines body for OpenstackNetworksUpdate for application/json ContentType.
 type OpenstackNetworksUpdateJSONRequestBody = OpenStackNetworkRequest
 
-// OpenstackNetworksCreatePortJSONRequestBody defines body for OpenstackNetworksCreatePort for application/json ContentType.
-type OpenstackNetworksCreatePortJSONRequestBody = OpenStackPortRequest
-
 // OpenstackNetworksCreateSubnetJSONRequestBody defines body for OpenstackNetworksCreateSubnet for application/json ContentType.
 type OpenstackNetworksCreateSubnetJSONRequestBody = OpenStackSubNetRequest
 
@@ -24750,6 +24763,15 @@ type OpenstackNetworksRbacPolicyCreateJSONRequestBody = NetworkRBACPolicyRequest
 
 // OpenstackNetworksSetMtuJSONRequestBody defines body for OpenstackNetworksSetMtu for application/json ContentType.
 type OpenstackNetworksSetMtuJSONRequestBody = SetMtuRequest
+
+// OpenstackPortsCreateJSONRequestBody defines body for OpenstackPortsCreate for application/json ContentType.
+type OpenstackPortsCreateJSONRequestBody = OpenStackPortRequest
+
+// OpenstackPortsPartialUpdateJSONRequestBody defines body for OpenstackPortsPartialUpdate for application/json ContentType.
+type OpenstackPortsPartialUpdateJSONRequestBody = PatchedOpenStackPortRequest
+
+// OpenstackPortsUpdateJSONRequestBody defines body for OpenstackPortsUpdate for application/json ContentType.
+type OpenstackPortsUpdateJSONRequestBody = OpenStackPortRequest
 
 // OpenstackRoutersSetRoutesJSONRequestBody defines body for OpenstackRoutersSetRoutes for application/json ContentType.
 type OpenstackRoutersSetRoutesJSONRequestBody = OpenStackRouterSetRoutesRequest
@@ -30105,11 +30127,6 @@ type ClientInterface interface {
 
 	OpenstackNetworksUpdate(ctx context.Context, uuid openapi_types.UUID, body OpenstackNetworksUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// OpenstackNetworksCreatePortWithBody request with any body
-	OpenstackNetworksCreatePortWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	OpenstackNetworksCreatePort(ctx context.Context, uuid openapi_types.UUID, body OpenstackNetworksCreatePortJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
 	// OpenstackNetworksCreateSubnetWithBody request with any body
 	OpenstackNetworksCreateSubnetWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -30137,11 +30154,26 @@ type ClientInterface interface {
 	// OpenstackPortsList request
 	OpenstackPortsList(ctx context.Context, params *OpenstackPortsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// OpenstackPortsCreateWithBody request with any body
+	OpenstackPortsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackPortsCreate(ctx context.Context, body OpenstackPortsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// OpenstackPortsDestroy request
 	OpenstackPortsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenstackPortsRetrieve request
 	OpenstackPortsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *OpenstackPortsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackPortsPartialUpdateWithBody request with any body
+	OpenstackPortsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackPortsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackPortsUpdateWithBody request with any body
+	OpenstackPortsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackPortsUpdate(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenstackPortsPull request
 	OpenstackPortsPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -42779,30 +42811,6 @@ func (c *Client) OpenstackNetworksUpdate(ctx context.Context, uuid openapi_types
 	return c.Client.Do(req)
 }
 
-func (c *Client) OpenstackNetworksCreatePortWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOpenstackNetworksCreatePortRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) OpenstackNetworksCreatePort(ctx context.Context, uuid openapi_types.UUID, body OpenstackNetworksCreatePortJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOpenstackNetworksCreatePortRequest(c.Server, uuid, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
 func (c *Client) OpenstackNetworksCreateSubnetWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenstackNetworksCreateSubnetRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
@@ -42923,6 +42931,30 @@ func (c *Client) OpenstackPortsList(ctx context.Context, params *OpenstackPortsL
 	return c.Client.Do(req)
 }
 
+func (c *Client) OpenstackPortsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackPortsCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackPortsCreate(ctx context.Context, body OpenstackPortsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackPortsCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) OpenstackPortsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenstackPortsDestroyRequest(c.Server, uuid)
 	if err != nil {
@@ -42937,6 +42969,54 @@ func (c *Client) OpenstackPortsDestroy(ctx context.Context, uuid openapi_types.U
 
 func (c *Client) OpenstackPortsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *OpenstackPortsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenstackPortsRetrieveRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackPortsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackPortsPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackPortsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackPortsPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackPortsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackPortsUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackPortsUpdate(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackPortsUpdateRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -99276,53 +99356,6 @@ func NewOpenstackNetworksUpdateRequestWithBody(server string, uuid openapi_types
 	return req, nil
 }
 
-// NewOpenstackNetworksCreatePortRequest calls the generic OpenstackNetworksCreatePort builder with application/json body
-func NewOpenstackNetworksCreatePortRequest(server string, uuid openapi_types.UUID, body OpenstackNetworksCreatePortJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewOpenstackNetworksCreatePortRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewOpenstackNetworksCreatePortRequestWithBody generates requests for OpenstackNetworksCreatePort with any type of body
-func NewOpenstackNetworksCreatePortRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/openstack-networks/%s/create_port/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("POST", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
 // NewOpenstackNetworksCreateSubnetRequest calls the generic OpenstackNetworksCreateSubnet builder with application/json body
 func NewOpenstackNetworksCreateSubnetRequest(server string, uuid openapi_types.UUID, body OpenstackNetworksCreateSubnetJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -99734,6 +99767,46 @@ func NewOpenstackPortsListRequest(server string, params *OpenstackPortsListParam
 	return req, nil
 }
 
+// NewOpenstackPortsCreateRequest calls the generic OpenstackPortsCreate builder with application/json body
+func NewOpenstackPortsCreateRequest(server string, body OpenstackPortsCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackPortsCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewOpenstackPortsCreateRequestWithBody generates requests for OpenstackPortsCreate with any type of body
+func NewOpenstackPortsCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-ports/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewOpenstackPortsDestroyRequest generates requests for OpenstackPortsDestroy
 func NewOpenstackPortsDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -99820,6 +99893,100 @@ func NewOpenstackPortsRetrieveRequest(server string, uuid openapi_types.UUID, pa
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewOpenstackPortsPartialUpdateRequest calls the generic OpenstackPortsPartialUpdate builder with application/json body
+func NewOpenstackPortsPartialUpdateRequest(server string, uuid openapi_types.UUID, body OpenstackPortsPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackPortsPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOpenstackPortsPartialUpdateRequestWithBody generates requests for OpenstackPortsPartialUpdate with any type of body
+func NewOpenstackPortsPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-ports/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenstackPortsUpdateRequest calls the generic OpenstackPortsUpdate builder with application/json body
+func NewOpenstackPortsUpdateRequest(server string, uuid openapi_types.UUID, body OpenstackPortsUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackPortsUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOpenstackPortsUpdateRequestWithBody generates requests for OpenstackPortsUpdate with any type of body
+func NewOpenstackPortsUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-ports/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -134157,11 +134324,6 @@ type ClientWithResponsesInterface interface {
 
 	OpenstackNetworksUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackNetworksUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackNetworksUpdateResponse, error)
 
-	// OpenstackNetworksCreatePortWithBodyWithResponse request with any body
-	OpenstackNetworksCreatePortWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackNetworksCreatePortResponse, error)
-
-	OpenstackNetworksCreatePortWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackNetworksCreatePortJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackNetworksCreatePortResponse, error)
-
 	// OpenstackNetworksCreateSubnetWithBodyWithResponse request with any body
 	OpenstackNetworksCreateSubnetWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackNetworksCreateSubnetResponse, error)
 
@@ -134189,11 +134351,26 @@ type ClientWithResponsesInterface interface {
 	// OpenstackPortsListWithResponse request
 	OpenstackPortsListWithResponse(ctx context.Context, params *OpenstackPortsListParams, reqEditors ...RequestEditorFn) (*OpenstackPortsListResponse, error)
 
+	// OpenstackPortsCreateWithBodyWithResponse request with any body
+	OpenstackPortsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackPortsCreateResponse, error)
+
+	OpenstackPortsCreateWithResponse(ctx context.Context, body OpenstackPortsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackPortsCreateResponse, error)
+
 	// OpenstackPortsDestroyWithResponse request
 	OpenstackPortsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackPortsDestroyResponse, error)
 
 	// OpenstackPortsRetrieveWithResponse request
 	OpenstackPortsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *OpenstackPortsRetrieveParams, reqEditors ...RequestEditorFn) (*OpenstackPortsRetrieveResponse, error)
+
+	// OpenstackPortsPartialUpdateWithBodyWithResponse request with any body
+	OpenstackPortsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackPortsPartialUpdateResponse, error)
+
+	OpenstackPortsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackPortsPartialUpdateResponse, error)
+
+	// OpenstackPortsUpdateWithBodyWithResponse request with any body
+	OpenstackPortsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackPortsUpdateResponse, error)
+
+	OpenstackPortsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackPortsUpdateResponse, error)
 
 	// OpenstackPortsPullWithResponse request
 	OpenstackPortsPullWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackPortsPullResponse, error)
@@ -150546,28 +150723,6 @@ func (r OpenstackNetworksUpdateResponse) StatusCode() int {
 	return 0
 }
 
-type OpenstackNetworksCreatePortResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *OpenStackPort
-}
-
-// Status returns HTTPResponse.Status
-func (r OpenstackNetworksCreatePortResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r OpenstackNetworksCreatePortResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
 type OpenstackNetworksCreateSubnetResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -150719,6 +150874,28 @@ func (r OpenstackPortsListResponse) StatusCode() int {
 	return 0
 }
 
+type OpenstackPortsCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *OpenStackPort
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackPortsCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackPortsCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type OpenstackPortsDestroyResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -150756,6 +150933,50 @@ func (r OpenstackPortsRetrieveResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r OpenstackPortsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackPortsPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OpenStackPort
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackPortsPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackPortsPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackPortsUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OpenStackPort
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackPortsUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackPortsUpdateResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -168675,23 +168896,6 @@ func (c *ClientWithResponses) OpenstackNetworksUpdateWithResponse(ctx context.Co
 	return ParseOpenstackNetworksUpdateResponse(rsp)
 }
 
-// OpenstackNetworksCreatePortWithBodyWithResponse request with arbitrary body returning *OpenstackNetworksCreatePortResponse
-func (c *ClientWithResponses) OpenstackNetworksCreatePortWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackNetworksCreatePortResponse, error) {
-	rsp, err := c.OpenstackNetworksCreatePortWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseOpenstackNetworksCreatePortResponse(rsp)
-}
-
-func (c *ClientWithResponses) OpenstackNetworksCreatePortWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackNetworksCreatePortJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackNetworksCreatePortResponse, error) {
-	rsp, err := c.OpenstackNetworksCreatePort(ctx, uuid, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseOpenstackNetworksCreatePortResponse(rsp)
-}
-
 // OpenstackNetworksCreateSubnetWithBodyWithResponse request with arbitrary body returning *OpenstackNetworksCreateSubnetResponse
 func (c *ClientWithResponses) OpenstackNetworksCreateSubnetWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackNetworksCreateSubnetResponse, error) {
 	rsp, err := c.OpenstackNetworksCreateSubnetWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -168779,6 +168983,23 @@ func (c *ClientWithResponses) OpenstackPortsListWithResponse(ctx context.Context
 	return ParseOpenstackPortsListResponse(rsp)
 }
 
+// OpenstackPortsCreateWithBodyWithResponse request with arbitrary body returning *OpenstackPortsCreateResponse
+func (c *ClientWithResponses) OpenstackPortsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackPortsCreateResponse, error) {
+	rsp, err := c.OpenstackPortsCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackPortsCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackPortsCreateWithResponse(ctx context.Context, body OpenstackPortsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackPortsCreateResponse, error) {
+	rsp, err := c.OpenstackPortsCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackPortsCreateResponse(rsp)
+}
+
 // OpenstackPortsDestroyWithResponse request returning *OpenstackPortsDestroyResponse
 func (c *ClientWithResponses) OpenstackPortsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackPortsDestroyResponse, error) {
 	rsp, err := c.OpenstackPortsDestroy(ctx, uuid, reqEditors...)
@@ -168795,6 +169016,40 @@ func (c *ClientWithResponses) OpenstackPortsRetrieveWithResponse(ctx context.Con
 		return nil, err
 	}
 	return ParseOpenstackPortsRetrieveResponse(rsp)
+}
+
+// OpenstackPortsPartialUpdateWithBodyWithResponse request with arbitrary body returning *OpenstackPortsPartialUpdateResponse
+func (c *ClientWithResponses) OpenstackPortsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackPortsPartialUpdateResponse, error) {
+	rsp, err := c.OpenstackPortsPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackPortsPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackPortsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackPortsPartialUpdateResponse, error) {
+	rsp, err := c.OpenstackPortsPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackPortsPartialUpdateResponse(rsp)
+}
+
+// OpenstackPortsUpdateWithBodyWithResponse request with arbitrary body returning *OpenstackPortsUpdateResponse
+func (c *ClientWithResponses) OpenstackPortsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackPortsUpdateResponse, error) {
+	rsp, err := c.OpenstackPortsUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackPortsUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackPortsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackPortsUpdateResponse, error) {
+	rsp, err := c.OpenstackPortsUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackPortsUpdateResponse(rsp)
 }
 
 // OpenstackPortsPullWithResponse request returning *OpenstackPortsPullResponse
@@ -189943,32 +190198,6 @@ func ParseOpenstackNetworksUpdateResponse(rsp *http.Response) (*OpenstackNetwork
 	return response, nil
 }
 
-// ParseOpenstackNetworksCreatePortResponse parses an HTTP response from a OpenstackNetworksCreatePortWithResponse call
-func ParseOpenstackNetworksCreatePortResponse(rsp *http.Response) (*OpenstackNetworksCreatePortResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &OpenstackNetworksCreatePortResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest OpenStackPort
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
 // ParseOpenstackNetworksCreateSubnetResponse parses an HTTP response from a OpenstackNetworksCreateSubnetWithResponse call
 func ParseOpenstackNetworksCreateSubnetResponse(rsp *http.Response) (*OpenstackNetworksCreateSubnetResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -190121,6 +190350,32 @@ func ParseOpenstackPortsListResponse(rsp *http.Response) (*OpenstackPortsListRes
 	return response, nil
 }
 
+// ParseOpenstackPortsCreateResponse parses an HTTP response from a OpenstackPortsCreateWithResponse call
+func ParseOpenstackPortsCreateResponse(rsp *http.Response) (*OpenstackPortsCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackPortsCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest OpenStackPort
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseOpenstackPortsDestroyResponse parses an HTTP response from a OpenstackPortsDestroyWithResponse call
 func ParseOpenstackPortsDestroyResponse(rsp *http.Response) (*OpenstackPortsDestroyResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -190146,6 +190401,58 @@ func ParseOpenstackPortsRetrieveResponse(rsp *http.Response) (*OpenstackPortsRet
 	}
 
 	response := &OpenstackPortsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OpenStackPort
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackPortsPartialUpdateResponse parses an HTTP response from a OpenstackPortsPartialUpdateWithResponse call
+func ParseOpenstackPortsPartialUpdateResponse(rsp *http.Response) (*OpenstackPortsPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackPortsPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OpenStackPort
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackPortsUpdateResponse parses an HTTP response from a OpenstackPortsUpdateWithResponse call
+func ParseOpenstackPortsUpdateResponse(rsp *http.Response) (*OpenstackPortsUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackPortsUpdateResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
