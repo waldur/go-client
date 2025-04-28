@@ -423,6 +423,9 @@ const (
 	RoleUpdated                                      EventTypesEnum = "role_updated"
 	RollBackCustomerCredit                           EventTypesEnum = "roll_back_customer_credit"
 	RollBackProjectCredit                            EventTypesEnum = "roll_back_project_credit"
+	ServiceAccountCreated                            EventTypesEnum = "service_account_created"
+	ServiceAccountDeleted                            EventTypesEnum = "service_account_deleted"
+	ServiceAccountUpdated                            EventTypesEnum = "service_account_updated"
 	SetToZeroOverdueCredit                           EventTypesEnum = "set_to_zero_overdue_credit"
 	SshKeyCreationSucceeded                          EventTypesEnum = "ssh_key_creation_succeeded"
 	SshKeyDeletionSucceeded                          EventTypesEnum = "ssh_key_deletion_succeeded"
@@ -870,6 +873,16 @@ const (
 const (
 	AfterProposal ReviewStrategyEnum = "after_proposal"
 	AfterRound    ReviewStrategyEnum = "after_round"
+)
+
+// Defines values for RobotAccountStates.
+const (
+	RobotAccountStatesN1 RobotAccountStates = 1
+	RobotAccountStatesN2 RobotAccountStates = 2
+	RobotAccountStatesN3 RobotAccountStates = 3
+	RobotAccountStatesN4 RobotAccountStates = 4
+	RobotAccountStatesN5 RobotAccountStates = 5
+	RobotAccountStatesN6 RobotAccountStates = 6
 )
 
 // Defines values for RoleType.
@@ -4322,12 +4335,12 @@ const (
 
 // Defines values for MarketplaceRobotAccountsListParamsState.
 const (
-	N1 MarketplaceRobotAccountsListParamsState = 1
-	N2 MarketplaceRobotAccountsListParamsState = 2
-	N3 MarketplaceRobotAccountsListParamsState = 3
-	N4 MarketplaceRobotAccountsListParamsState = 4
-	N5 MarketplaceRobotAccountsListParamsState = 5
-	N6 MarketplaceRobotAccountsListParamsState = 6
+	MarketplaceRobotAccountsListParamsStateN1 MarketplaceRobotAccountsListParamsState = 1
+	MarketplaceRobotAccountsListParamsStateN2 MarketplaceRobotAccountsListParamsState = 2
+	MarketplaceRobotAccountsListParamsStateN3 MarketplaceRobotAccountsListParamsState = 3
+	MarketplaceRobotAccountsListParamsStateN4 MarketplaceRobotAccountsListParamsState = 4
+	MarketplaceRobotAccountsListParamsStateN5 MarketplaceRobotAccountsListParamsState = 5
+	MarketplaceRobotAccountsListParamsStateN6 MarketplaceRobotAccountsListParamsState = 6
 )
 
 // Defines values for MarketplaceScreenshotsListParamsO.
@@ -6714,52 +6727,6 @@ const (
 	RancherClustersRetrieveParamsFieldTenantUuid                       RancherClustersRetrieveParamsField = "tenant_uuid"
 	RancherClustersRetrieveParamsFieldUrl                              RancherClustersRetrieveParamsField = "url"
 	RancherClustersRetrieveParamsFieldUuid                             RancherClustersRetrieveParamsField = "uuid"
-)
-
-// Defines values for RancherClustersKubeconfigFileRetrieveParamsField.
-const (
-	RancherClustersKubeconfigFileRetrieveParamsFieldAccessUrl                        RancherClustersKubeconfigFileRetrieveParamsField = "access_url"
-	RancherClustersKubeconfigFileRetrieveParamsFieldBackendId                        RancherClustersKubeconfigFileRetrieveParamsField = "backend_id"
-	RancherClustersKubeconfigFileRetrieveParamsFieldCreated                          RancherClustersKubeconfigFileRetrieveParamsField = "created"
-	RancherClustersKubeconfigFileRetrieveParamsFieldCustomer                         RancherClustersKubeconfigFileRetrieveParamsField = "customer"
-	RancherClustersKubeconfigFileRetrieveParamsFieldCustomerAbbreviation             RancherClustersKubeconfigFileRetrieveParamsField = "customer_abbreviation"
-	RancherClustersKubeconfigFileRetrieveParamsFieldCustomerName                     RancherClustersKubeconfigFileRetrieveParamsField = "customer_name"
-	RancherClustersKubeconfigFileRetrieveParamsFieldCustomerNativeName               RancherClustersKubeconfigFileRetrieveParamsField = "customer_native_name"
-	RancherClustersKubeconfigFileRetrieveParamsFieldDescription                      RancherClustersKubeconfigFileRetrieveParamsField = "description"
-	RancherClustersKubeconfigFileRetrieveParamsFieldErrorMessage                     RancherClustersKubeconfigFileRetrieveParamsField = "error_message"
-	RancherClustersKubeconfigFileRetrieveParamsFieldErrorTraceback                   RancherClustersKubeconfigFileRetrieveParamsField = "error_traceback"
-	RancherClustersKubeconfigFileRetrieveParamsFieldInstallLonghorn                  RancherClustersKubeconfigFileRetrieveParamsField = "install_longhorn"
-	RancherClustersKubeconfigFileRetrieveParamsFieldIsLimitBased                     RancherClustersKubeconfigFileRetrieveParamsField = "is_limit_based"
-	RancherClustersKubeconfigFileRetrieveParamsFieldIsUsageBased                     RancherClustersKubeconfigFileRetrieveParamsField = "is_usage_based"
-	RancherClustersKubeconfigFileRetrieveParamsFieldManagementSecurityGroup          RancherClustersKubeconfigFileRetrieveParamsField = "management_security_group"
-	RancherClustersKubeconfigFileRetrieveParamsFieldMarketplaceCategoryName          RancherClustersKubeconfigFileRetrieveParamsField = "marketplace_category_name"
-	RancherClustersKubeconfigFileRetrieveParamsFieldMarketplaceCategoryUuid          RancherClustersKubeconfigFileRetrieveParamsField = "marketplace_category_uuid"
-	RancherClustersKubeconfigFileRetrieveParamsFieldMarketplaceOfferingName          RancherClustersKubeconfigFileRetrieveParamsField = "marketplace_offering_name"
-	RancherClustersKubeconfigFileRetrieveParamsFieldMarketplaceOfferingPluginOptions RancherClustersKubeconfigFileRetrieveParamsField = "marketplace_offering_plugin_options"
-	RancherClustersKubeconfigFileRetrieveParamsFieldMarketplaceOfferingUuid          RancherClustersKubeconfigFileRetrieveParamsField = "marketplace_offering_uuid"
-	RancherClustersKubeconfigFileRetrieveParamsFieldMarketplacePlanUuid              RancherClustersKubeconfigFileRetrieveParamsField = "marketplace_plan_uuid"
-	RancherClustersKubeconfigFileRetrieveParamsFieldMarketplaceResourceState         RancherClustersKubeconfigFileRetrieveParamsField = "marketplace_resource_state"
-	RancherClustersKubeconfigFileRetrieveParamsFieldMarketplaceResourceUuid          RancherClustersKubeconfigFileRetrieveParamsField = "marketplace_resource_uuid"
-	RancherClustersKubeconfigFileRetrieveParamsFieldModified                         RancherClustersKubeconfigFileRetrieveParamsField = "modified"
-	RancherClustersKubeconfigFileRetrieveParamsFieldName                             RancherClustersKubeconfigFileRetrieveParamsField = "name"
-	RancherClustersKubeconfigFileRetrieveParamsFieldNodes                            RancherClustersKubeconfigFileRetrieveParamsField = "nodes"
-	RancherClustersKubeconfigFileRetrieveParamsFieldProject                          RancherClustersKubeconfigFileRetrieveParamsField = "project"
-	RancherClustersKubeconfigFileRetrieveParamsFieldProjectName                      RancherClustersKubeconfigFileRetrieveParamsField = "project_name"
-	RancherClustersKubeconfigFileRetrieveParamsFieldProjectUuid                      RancherClustersKubeconfigFileRetrieveParamsField = "project_uuid"
-	RancherClustersKubeconfigFileRetrieveParamsFieldResourceType                     RancherClustersKubeconfigFileRetrieveParamsField = "resource_type"
-	RancherClustersKubeconfigFileRetrieveParamsFieldRuntimeState                     RancherClustersKubeconfigFileRetrieveParamsField = "runtime_state"
-	RancherClustersKubeconfigFileRetrieveParamsFieldSecurityGroups                   RancherClustersKubeconfigFileRetrieveParamsField = "security_groups"
-	RancherClustersKubeconfigFileRetrieveParamsFieldServiceName                      RancherClustersKubeconfigFileRetrieveParamsField = "service_name"
-	RancherClustersKubeconfigFileRetrieveParamsFieldServiceSettings                  RancherClustersKubeconfigFileRetrieveParamsField = "service_settings"
-	RancherClustersKubeconfigFileRetrieveParamsFieldServiceSettingsErrorMessage      RancherClustersKubeconfigFileRetrieveParamsField = "service_settings_error_message"
-	RancherClustersKubeconfigFileRetrieveParamsFieldServiceSettingsState             RancherClustersKubeconfigFileRetrieveParamsField = "service_settings_state"
-	RancherClustersKubeconfigFileRetrieveParamsFieldServiceSettingsUuid              RancherClustersKubeconfigFileRetrieveParamsField = "service_settings_uuid"
-	RancherClustersKubeconfigFileRetrieveParamsFieldSshPublicKey                     RancherClustersKubeconfigFileRetrieveParamsField = "ssh_public_key"
-	RancherClustersKubeconfigFileRetrieveParamsFieldState                            RancherClustersKubeconfigFileRetrieveParamsField = "state"
-	RancherClustersKubeconfigFileRetrieveParamsFieldTenant                           RancherClustersKubeconfigFileRetrieveParamsField = "tenant"
-	RancherClustersKubeconfigFileRetrieveParamsFieldTenantUuid                       RancherClustersKubeconfigFileRetrieveParamsField = "tenant_uuid"
-	RancherClustersKubeconfigFileRetrieveParamsFieldUrl                              RancherClustersKubeconfigFileRetrieveParamsField = "url"
-	RancherClustersKubeconfigFileRetrieveParamsFieldUuid                             RancherClustersKubeconfigFileRetrieveParamsField = "uuid"
 )
 
 // Defines values for RancherIngressesListParamsField.
@@ -9942,6 +9909,30 @@ type CustomerRequest_Country struct {
 	union json.RawMessage
 }
 
+// CustomerServiceAccount defines model for CustomerServiceAccount.
+type CustomerServiceAccount struct {
+	Created        *time.Time           `json:"created,omitempty"`
+	Customer       openapi_types.UUID   `json:"customer"`
+	Description    *string              `json:"description,omitempty"`
+	Email          *openapi_types.Email `json:"email,omitempty"`
+	ErrorMessage   *string              `json:"error_message,omitempty"`
+	ErrorTraceback *string              `json:"error_traceback,omitempty"`
+	Modified       *time.Time           `json:"modified,omitempty"`
+	Token          *string              `json:"token"`
+	Url            *string              `json:"url,omitempty"`
+	Username       *string              `json:"username,omitempty"`
+	Uuid           *openapi_types.UUID  `json:"uuid,omitempty"`
+}
+
+// CustomerServiceAccountRequest defines model for CustomerServiceAccountRequest.
+type CustomerServiceAccountRequest struct {
+	Customer       openapi_types.UUID   `json:"customer"`
+	Description    *string              `json:"description,omitempty"`
+	Email          *openapi_types.Email `json:"email,omitempty"`
+	ErrorTraceback *string              `json:"error_traceback,omitempty"`
+	Username       *string              `json:"username,omitempty"`
+}
+
 // CustomerUser defines model for CustomerUser.
 type CustomerUser struct {
 	Email          *openapi_types.Email       `json:"email,omitempty"`
@@ -11329,9 +11320,15 @@ type MergedPluginOptionsRequest_AccountNameGenerationPolicy struct {
 // MergedSecretOptions defines model for MergedSecretOptions.
 type MergedSecretOptions struct {
 	// ApiUrl API URL
-	ApiUrl            *string `json:"api_url,omitempty"`
-	BackendUrl        *string `json:"backend_url,omitempty"`
-	CloudInitTemplate *string `json:"cloud_init_template,omitempty"`
+	ApiUrl *string `json:"api_url,omitempty"`
+
+	// ArgocdK8sKubeconfig Kubeconfig with access to namespace where ArgoCD is deployed
+	ArgocdK8sKubeconfig *string `json:"argocd_k8s_kubeconfig,omitempty"`
+
+	// ArgocdK8sNamespace Namespace where ArgoCD is deployed
+	ArgocdK8sNamespace *string `json:"argocd_k8s_namespace,omitempty"`
+	BackendUrl         *string `json:"backend_url,omitempty"`
+	CloudInitTemplate  *string `json:"cloud_init_template,omitempty"`
 
 	// Create Script for resource creation
 	Create *string `json:"create,omitempty"`
@@ -11351,6 +11348,27 @@ type MergedSecretOptions struct {
 	// Ipv4ExternalIpMapping OpenStack IPv4 external IP mapping
 	Ipv4ExternalIpMapping *[]IPMapping `json:"ipv4_external_ip_mapping,omitempty"`
 
+	// KeycloakPassword Password of the Keycloak integration user
+	KeycloakPassword *string `json:"keycloak_password,omitempty"`
+
+	// KeycloakRealm Keycloak realm for Rancher
+	KeycloakRealm *string `json:"keycloak_realm,omitempty"`
+
+	// KeycloakSslVerify Indicates whether verify SSL certificates
+	KeycloakSslVerify *bool `json:"keycloak_ssl_verify,omitempty"`
+
+	// KeycloakSyncFrequency Frequency in minutes for syncing Keycloak users
+	KeycloakSyncFrequency *int `json:"keycloak_sync_frequency,omitempty"`
+
+	// KeycloakUrl URL of the Keycloak server
+	KeycloakUrl *string `json:"keycloak_url,omitempty"`
+
+	// KeycloakUserRealm Keycloak user realm for auth
+	KeycloakUserRealm *string `json:"keycloak_user_realm,omitempty"`
+
+	// KeycloakUsername Username of the Keycloak integration user
+	KeycloakUsername *string `json:"keycloak_username,omitempty"`
+
 	// Language Script language: Python or Bash
 	Language                   *string `json:"language,omitempty"`
 	OpenstackApiTlsCertificate *string `json:"openstack_api_tls_certificate,omitempty"`
@@ -11374,14 +11392,32 @@ type MergedSecretOptions struct {
 	// Update Script for resource update
 	Update   *string `json:"update,omitempty"`
 	Username *string `json:"username,omitempty"`
+
+	// VaultHost Host of the Vault server
+	VaultHost *string `json:"vault_host,omitempty"`
+
+	// VaultPort Port of the Vault server
+	VaultPort *int `json:"vault_port,omitempty"`
+
+	// VaultTlsVerify Whether to verify the Vault server certificate
+	VaultTlsVerify *bool `json:"vault_tls_verify,omitempty"`
+
+	// VaultToken Token for the Vault server
+	VaultToken *string `json:"vault_token,omitempty"`
 }
 
 // MergedSecretOptionsRequest defines model for MergedSecretOptionsRequest.
 type MergedSecretOptionsRequest struct {
 	// ApiUrl API URL
-	ApiUrl            *string `json:"api_url,omitempty"`
-	BackendUrl        *string `json:"backend_url,omitempty"`
-	CloudInitTemplate *string `json:"cloud_init_template,omitempty"`
+	ApiUrl *string `json:"api_url,omitempty"`
+
+	// ArgocdK8sKubeconfig Kubeconfig with access to namespace where ArgoCD is deployed
+	ArgocdK8sKubeconfig *string `json:"argocd_k8s_kubeconfig,omitempty"`
+
+	// ArgocdK8sNamespace Namespace where ArgoCD is deployed
+	ArgocdK8sNamespace *string `json:"argocd_k8s_namespace,omitempty"`
+	BackendUrl         *string `json:"backend_url,omitempty"`
+	CloudInitTemplate  *string `json:"cloud_init_template,omitempty"`
 
 	// Create Script for resource creation
 	Create *string `json:"create,omitempty"`
@@ -11401,6 +11437,27 @@ type MergedSecretOptionsRequest struct {
 	// Ipv4ExternalIpMapping OpenStack IPv4 external IP mapping
 	Ipv4ExternalIpMapping *[]IPMappingRequest `json:"ipv4_external_ip_mapping,omitempty"`
 
+	// KeycloakPassword Password of the Keycloak integration user
+	KeycloakPassword *string `json:"keycloak_password,omitempty"`
+
+	// KeycloakRealm Keycloak realm for Rancher
+	KeycloakRealm *string `json:"keycloak_realm,omitempty"`
+
+	// KeycloakSslVerify Indicates whether verify SSL certificates
+	KeycloakSslVerify *bool `json:"keycloak_ssl_verify,omitempty"`
+
+	// KeycloakSyncFrequency Frequency in minutes for syncing Keycloak users
+	KeycloakSyncFrequency *int `json:"keycloak_sync_frequency,omitempty"`
+
+	// KeycloakUrl URL of the Keycloak server
+	KeycloakUrl *string `json:"keycloak_url,omitempty"`
+
+	// KeycloakUserRealm Keycloak user realm for auth
+	KeycloakUserRealm *string `json:"keycloak_user_realm,omitempty"`
+
+	// KeycloakUsername Username of the Keycloak integration user
+	KeycloakUsername *string `json:"keycloak_username,omitempty"`
+
 	// Language Script language: Python or Bash
 	Language                   *string `json:"language,omitempty"`
 	OpenstackApiTlsCertificate *string `json:"openstack_api_tls_certificate,omitempty"`
@@ -11424,6 +11481,18 @@ type MergedSecretOptionsRequest struct {
 	// Update Script for resource update
 	Update   *string `json:"update,omitempty"`
 	Username *string `json:"username,omitempty"`
+
+	// VaultHost Host of the Vault server
+	VaultHost *string `json:"vault_host,omitempty"`
+
+	// VaultPort Port of the Vault server
+	VaultPort *int `json:"vault_port,omitempty"`
+
+	// VaultTlsVerify Whether to verify the Vault server certificate
+	VaultTlsVerify *bool `json:"vault_tls_verify,omitempty"`
+
+	// VaultToken Token for the Vault server
+	VaultToken *string `json:"vault_token,omitempty"`
 }
 
 // MessageTemplate defines model for MessageTemplate.
@@ -13973,6 +14042,15 @@ type PatchedCustomerRequest_Country struct {
 	union json.RawMessage
 }
 
+// PatchedCustomerServiceAccountRequest defines model for PatchedCustomerServiceAccountRequest.
+type PatchedCustomerServiceAccountRequest struct {
+	Customer       *openapi_types.UUID  `json:"customer,omitempty"`
+	Description    *string              `json:"description,omitempty"`
+	Email          *openapi_types.Email `json:"email,omitempty"`
+	ErrorTraceback *string              `json:"error_traceback,omitempty"`
+	Username       *string              `json:"username,omitempty"`
+}
+
 // PatchedDigitalOceanDropletRequest defines model for PatchedDigitalOceanDropletRequest.
 type PatchedDigitalOceanDropletRequest struct {
 	Description *string `json:"description,omitempty"`
@@ -14289,6 +14367,15 @@ type PatchedProjectRequest_OecdFos2007Code struct {
 	union json.RawMessage
 }
 
+// PatchedProjectServiceAccountRequest defines model for PatchedProjectServiceAccountRequest.
+type PatchedProjectServiceAccountRequest struct {
+	Description    *string              `json:"description,omitempty"`
+	Email          *openapi_types.Email `json:"email,omitempty"`
+	ErrorTraceback *string              `json:"error_traceback,omitempty"`
+	Project        *openapi_types.UUID  `json:"project,omitempty"`
+	Username       *string              `json:"username,omitempty"`
+}
+
 // PatchedProposalReviewRequest defines model for PatchedProposalReviewRequest.
 type PatchedProposalReviewRequest struct {
 	CommentProjectDescription             *string `json:"comment_project_description"`
@@ -14468,11 +14555,17 @@ type PatchedResourceUpdateRequest struct {
 
 // PatchedRobotAccountRequest defines model for PatchedRobotAccountRequest.
 type PatchedRobotAccountRequest struct {
+	Description     *string      `json:"description,omitempty"`
 	Keys            *interface{} `json:"keys,omitempty"`
+	Resource        *string      `json:"resource,omitempty"`
 	ResponsibleUser *string      `json:"responsible_user"`
-	Type            *string      `json:"type,omitempty"`
-	Username        *string      `json:"username,omitempty"`
-	Users           *[]string    `json:"users,omitempty"`
+
+	// Type Type of the robot account.
+	Type     *string `json:"type,omitempty"`
+	Username *string `json:"username,omitempty"`
+
+	// Users Users who have access to this robot account.
+	Users *[]string `json:"users,omitempty"`
 }
 
 // PatchedRoleDetailsRequest defines model for PatchedRoleDetailsRequest.
@@ -14939,6 +15032,30 @@ type ProjectRequest struct {
 // ProjectRequest_OecdFos2007Code defines model for ProjectRequest.OecdFos2007Code.
 type ProjectRequest_OecdFos2007Code struct {
 	union json.RawMessage
+}
+
+// ProjectServiceAccount defines model for ProjectServiceAccount.
+type ProjectServiceAccount struct {
+	Created        *time.Time           `json:"created,omitempty"`
+	Description    *string              `json:"description,omitempty"`
+	Email          *openapi_types.Email `json:"email,omitempty"`
+	ErrorMessage   *string              `json:"error_message,omitempty"`
+	ErrorTraceback *string              `json:"error_traceback,omitempty"`
+	Modified       *time.Time           `json:"modified,omitempty"`
+	Project        openapi_types.UUID   `json:"project"`
+	Token          *string              `json:"token"`
+	Url            *string              `json:"url,omitempty"`
+	Username       *string              `json:"username,omitempty"`
+	Uuid           *openapi_types.UUID  `json:"uuid,omitempty"`
+}
+
+// ProjectServiceAccountRequest defines model for ProjectServiceAccountRequest.
+type ProjectServiceAccountRequest struct {
+	Description    *string              `json:"description,omitempty"`
+	Email          *openapi_types.Email `json:"email,omitempty"`
+	ErrorTraceback *string              `json:"error_traceback,omitempty"`
+	Project        openapi_types.UUID   `json:"project"`
+	Username       *string              `json:"username,omitempty"`
 }
 
 // ProjectStatsItem defines model for ProjectStatsItem.
@@ -16770,6 +16887,7 @@ type RmqWaldurUser struct {
 type RobotAccount struct {
 	BackendId       *string             `json:"backend_id,omitempty"`
 	Created         *time.Time          `json:"created,omitempty"`
+	Description     *string             `json:"description,omitempty"`
 	ErrorMessage    *string             `json:"error_message,omitempty"`
 	ErrorTraceback  *string             `json:"error_traceback,omitempty"`
 	Fingerprints    *[]Fingerprint      `json:"fingerprints,omitempty"`
@@ -16777,12 +16895,16 @@ type RobotAccount struct {
 	Modified        *time.Time          `json:"modified,omitempty"`
 	Resource        string              `json:"resource"`
 	ResponsibleUser *string             `json:"responsible_user"`
-	State           *string             `json:"state,omitempty"`
-	Type            string              `json:"type"`
-	Url             *string             `json:"url,omitempty"`
-	Username        *string             `json:"username,omitempty"`
-	Users           *[]string           `json:"users,omitempty"`
-	Uuid            *openapi_types.UUID `json:"uuid,omitempty"`
+	State           *RobotAccountStates `json:"state,omitempty"`
+
+	// Type Type of the robot account.
+	Type     string  `json:"type"`
+	Url      *string `json:"url,omitempty"`
+	Username *string `json:"username,omitempty"`
+
+	// Users Users who have access to this robot account.
+	Users *[]string           `json:"users,omitempty"`
+	Uuid  *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // RobotAccountDetails defines model for RobotAccountDetails.
@@ -16791,6 +16913,7 @@ type RobotAccountDetails struct {
 	Created               *time.Time           `json:"created,omitempty"`
 	CustomerName          *string              `json:"customer_name,omitempty"`
 	CustomerUuid          *openapi_types.UUID  `json:"customer_uuid,omitempty"`
+	Description           *string              `json:"description,omitempty"`
 	ErrorMessage          *string              `json:"error_message,omitempty"`
 	ErrorTraceback        *string              `json:"error_traceback,omitempty"`
 	Fingerprints          *[]Fingerprint       `json:"fingerprints,omitempty"`
@@ -16804,13 +16927,15 @@ type RobotAccountDetails struct {
 	ResourceName          *string              `json:"resource_name,omitempty"`
 	ResourceUuid          *openapi_types.UUID  `json:"resource_uuid,omitempty"`
 	ResponsibleUser       *BasicUser           `json:"responsible_user"`
-	State                 *string              `json:"state,omitempty"`
-	Type                  string               `json:"type"`
-	Url                   *string              `json:"url,omitempty"`
-	UserKeys              *[]SshKey            `json:"user_keys,omitempty"`
-	Username              *string              `json:"username,omitempty"`
-	Users                 *[]BasicUser         `json:"users,omitempty"`
-	Uuid                  *openapi_types.UUID  `json:"uuid,omitempty"`
+	State                 *RobotAccountStates  `json:"state,omitempty"`
+
+	// Type Type of the robot account.
+	Type     string              `json:"type"`
+	Url      *string             `json:"url,omitempty"`
+	UserKeys *[]SshKey           `json:"user_keys,omitempty"`
+	Username *string             `json:"username,omitempty"`
+	Users    *[]BasicUser        `json:"users,omitempty"`
+	Uuid     *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // RobotAccountErrorRequest defines model for RobotAccountErrorRequest.
@@ -16821,13 +16946,21 @@ type RobotAccountErrorRequest struct {
 
 // RobotAccountRequest defines model for RobotAccountRequest.
 type RobotAccountRequest struct {
+	Description     *string      `json:"description,omitempty"`
 	Keys            *interface{} `json:"keys,omitempty"`
 	Resource        string       `json:"resource"`
 	ResponsibleUser *string      `json:"responsible_user"`
-	Type            string       `json:"type"`
-	Username        *string      `json:"username,omitempty"`
-	Users           *[]string    `json:"users,omitempty"`
+
+	// Type Type of the robot account.
+	Type     string  `json:"type"`
+	Username *string `json:"username,omitempty"`
+
+	// Users Users who have access to this robot account.
+	Users *[]string `json:"users,omitempty"`
 }
+
+// RobotAccountStates defines model for RobotAccountStates.
+type RobotAccountStates int
 
 // RoleDescription defines model for RoleDescription.
 type RoleDescription struct {
@@ -19753,6 +19886,20 @@ type MarketplaceCustomerEstimatedCostPoliciesListParams struct {
 	ScopeUuid *openapi_types.UUID `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
 }
 
+// MarketplaceCustomerServiceAccountsListParams defines parameters for MarketplaceCustomerServiceAccountsList.
+type MarketplaceCustomerServiceAccountsListParams struct {
+	Customer     *string             `form:"customer,omitempty" json:"customer,omitempty"`
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+	Email        *string             `form:"email,omitempty" json:"email,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Username *string   `form:"username,omitempty" json:"username,omitempty"`
+}
+
 // MarketplaceGlobalCategoriesRetrieveParams defines parameters for MarketplaceGlobalCategoriesRetrieve.
 type MarketplaceGlobalCategoriesRetrieveParams struct {
 	// CustomerUuid UUID of the customer to filter resources by.
@@ -20128,6 +20275,20 @@ type MarketplaceProjectEstimatedCostPoliciesListParams struct {
 	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 	Scope       *string             `form:"scope,omitempty" json:"scope,omitempty"`
 	ScopeUuid   *openapi_types.UUID `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
+}
+
+// MarketplaceProjectServiceAccountsListParams defines parameters for MarketplaceProjectServiceAccountsList.
+type MarketplaceProjectServiceAccountsListParams struct {
+	Email *string `form:"email,omitempty" json:"email,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize    *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Project     *string             `form:"project,omitempty" json:"project,omitempty"`
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	Username    *string             `form:"username,omitempty" json:"username,omitempty"`
 }
 
 // MarketplaceProjectUpdateRequestsListParams defines parameters for MarketplaceProjectUpdateRequestsList.
@@ -22993,14 +23154,6 @@ type RancherClustersRetrieveParams struct {
 // RancherClustersRetrieveParamsField defines parameters for RancherClustersRetrieve.
 type RancherClustersRetrieveParamsField string
 
-// RancherClustersKubeconfigFileRetrieveParams defines parameters for RancherClustersKubeconfigFileRetrieve.
-type RancherClustersKubeconfigFileRetrieveParams struct {
-	Field *[]RancherClustersKubeconfigFileRetrieveParamsField `form:"field,omitempty" json:"field,omitempty"`
-}
-
-// RancherClustersKubeconfigFileRetrieveParamsField defines parameters for RancherClustersKubeconfigFileRetrieve.
-type RancherClustersKubeconfigFileRetrieveParamsField string
-
 // RancherHpasListParams defines parameters for RancherHpasList.
 type RancherHpasListParams struct {
 	ClusterUuid   *openapi_types.UUID `form:"cluster_uuid,omitempty" json:"cluster_uuid,omitempty"`
@@ -24386,6 +24539,15 @@ type MarketplaceCustomerEstimatedCostPoliciesPartialUpdateJSONRequestBody = Patc
 // MarketplaceCustomerEstimatedCostPoliciesUpdateJSONRequestBody defines body for MarketplaceCustomerEstimatedCostPoliciesUpdate for application/json ContentType.
 type MarketplaceCustomerEstimatedCostPoliciesUpdateJSONRequestBody = CustomerEstimatedCostPolicyRequest
 
+// MarketplaceCustomerServiceAccountsCreateJSONRequestBody defines body for MarketplaceCustomerServiceAccountsCreate for application/json ContentType.
+type MarketplaceCustomerServiceAccountsCreateJSONRequestBody = CustomerServiceAccountRequest
+
+// MarketplaceCustomerServiceAccountsPartialUpdateJSONRequestBody defines body for MarketplaceCustomerServiceAccountsPartialUpdate for application/json ContentType.
+type MarketplaceCustomerServiceAccountsPartialUpdateJSONRequestBody = PatchedCustomerServiceAccountRequest
+
+// MarketplaceCustomerServiceAccountsUpdateJSONRequestBody defines body for MarketplaceCustomerServiceAccountsUpdate for application/json ContentType.
+type MarketplaceCustomerServiceAccountsUpdateJSONRequestBody = CustomerServiceAccountRequest
+
 // MarketplaceOfferingEstimatedCostPoliciesCreateJSONRequestBody defines body for MarketplaceOfferingEstimatedCostPoliciesCreate for application/json ContentType.
 type MarketplaceOfferingEstimatedCostPoliciesCreateJSONRequestBody = OfferingEstimatedCostPolicyRequest
 
@@ -24460,6 +24622,15 @@ type MarketplaceProjectEstimatedCostPoliciesPartialUpdateJSONRequestBody = Patch
 
 // MarketplaceProjectEstimatedCostPoliciesUpdateJSONRequestBody defines body for MarketplaceProjectEstimatedCostPoliciesUpdate for application/json ContentType.
 type MarketplaceProjectEstimatedCostPoliciesUpdateJSONRequestBody = ProjectEstimatedCostPolicyRequest
+
+// MarketplaceProjectServiceAccountsCreateJSONRequestBody defines body for MarketplaceProjectServiceAccountsCreate for application/json ContentType.
+type MarketplaceProjectServiceAccountsCreateJSONRequestBody = ProjectServiceAccountRequest
+
+// MarketplaceProjectServiceAccountsPartialUpdateJSONRequestBody defines body for MarketplaceProjectServiceAccountsPartialUpdate for application/json ContentType.
+type MarketplaceProjectServiceAccountsPartialUpdateJSONRequestBody = PatchedProjectServiceAccountRequest
+
+// MarketplaceProjectServiceAccountsUpdateJSONRequestBody defines body for MarketplaceProjectServiceAccountsUpdate for application/json ContentType.
+type MarketplaceProjectServiceAccountsUpdateJSONRequestBody = ProjectServiceAccountRequest
 
 // MarketplaceProjectUpdateRequestsApproveJSONRequestBody defines body for MarketplaceProjectUpdateRequestsApprove for application/json ContentType.
 type MarketplaceProjectUpdateRequestsApproveJSONRequestBody = ReviewCommentRequest
@@ -28873,6 +29044,30 @@ type ClientInterface interface {
 
 	MarketplaceCustomerEstimatedCostPoliciesUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceCustomerEstimatedCostPoliciesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceCustomerServiceAccountsList request
+	MarketplaceCustomerServiceAccountsList(ctx context.Context, params *MarketplaceCustomerServiceAccountsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceCustomerServiceAccountsCreateWithBody request with any body
+	MarketplaceCustomerServiceAccountsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceCustomerServiceAccountsCreate(ctx context.Context, body MarketplaceCustomerServiceAccountsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceCustomerServiceAccountsDestroy request
+	MarketplaceCustomerServiceAccountsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceCustomerServiceAccountsRetrieve request
+	MarketplaceCustomerServiceAccountsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceCustomerServiceAccountsPartialUpdateWithBody request with any body
+	MarketplaceCustomerServiceAccountsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceCustomerServiceAccountsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceCustomerServiceAccountsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceCustomerServiceAccountsUpdateWithBody request with any body
+	MarketplaceCustomerServiceAccountsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceCustomerServiceAccountsUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceCustomerServiceAccountsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceGlobalCategoriesRetrieve request
 	MarketplaceGlobalCategoriesRetrieve(ctx context.Context, params *MarketplaceGlobalCategoriesRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -29147,6 +29342,30 @@ type ClientInterface interface {
 	MarketplaceProjectEstimatedCostPoliciesUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	MarketplaceProjectEstimatedCostPoliciesUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProjectEstimatedCostPoliciesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProjectServiceAccountsList request
+	MarketplaceProjectServiceAccountsList(ctx context.Context, params *MarketplaceProjectServiceAccountsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProjectServiceAccountsCreateWithBody request with any body
+	MarketplaceProjectServiceAccountsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceProjectServiceAccountsCreate(ctx context.Context, body MarketplaceProjectServiceAccountsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProjectServiceAccountsDestroy request
+	MarketplaceProjectServiceAccountsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProjectServiceAccountsRetrieve request
+	MarketplaceProjectServiceAccountsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProjectServiceAccountsPartialUpdateWithBody request with any body
+	MarketplaceProjectServiceAccountsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceProjectServiceAccountsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProjectServiceAccountsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProjectServiceAccountsUpdateWithBody request with any body
+	MarketplaceProjectServiceAccountsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceProjectServiceAccountsUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProjectServiceAccountsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceProjectUpdateRequestsList request
 	MarketplaceProjectUpdateRequestsList(ctx context.Context, params *MarketplaceProjectUpdateRequestsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -31021,9 +31240,6 @@ type ClientInterface interface {
 	RancherClustersImportYamlWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	RancherClustersImportYaml(ctx context.Context, uuid openapi_types.UUID, body RancherClustersImportYamlJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// RancherClustersKubeconfigFileRetrieve request
-	RancherClustersKubeconfigFileRetrieve(ctx context.Context, uuid openapi_types.UUID, params *RancherClustersKubeconfigFileRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// RancherClustersPull request
 	RancherClustersPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -37303,6 +37519,114 @@ func (c *Client) MarketplaceCustomerEstimatedCostPoliciesUpdate(ctx context.Cont
 	return c.Client.Do(req)
 }
 
+func (c *Client) MarketplaceCustomerServiceAccountsList(ctx context.Context, params *MarketplaceCustomerServiceAccountsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceCustomerServiceAccountsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceCustomerServiceAccountsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceCustomerServiceAccountsCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceCustomerServiceAccountsCreate(ctx context.Context, body MarketplaceCustomerServiceAccountsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceCustomerServiceAccountsCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceCustomerServiceAccountsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceCustomerServiceAccountsDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceCustomerServiceAccountsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceCustomerServiceAccountsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceCustomerServiceAccountsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceCustomerServiceAccountsPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceCustomerServiceAccountsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceCustomerServiceAccountsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceCustomerServiceAccountsPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceCustomerServiceAccountsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceCustomerServiceAccountsUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceCustomerServiceAccountsUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceCustomerServiceAccountsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceCustomerServiceAccountsUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) MarketplaceGlobalCategoriesRetrieve(ctx context.Context, params *MarketplaceGlobalCategoriesRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceGlobalCategoriesRetrieveRequest(c.Server, params)
 	if err != nil {
@@ -38493,6 +38817,114 @@ func (c *Client) MarketplaceProjectEstimatedCostPoliciesUpdateWithBody(ctx conte
 
 func (c *Client) MarketplaceProjectEstimatedCostPoliciesUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProjectEstimatedCostPoliciesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProjectEstimatedCostPoliciesUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProjectServiceAccountsList(ctx context.Context, params *MarketplaceProjectServiceAccountsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProjectServiceAccountsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProjectServiceAccountsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProjectServiceAccountsCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProjectServiceAccountsCreate(ctx context.Context, body MarketplaceProjectServiceAccountsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProjectServiceAccountsCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProjectServiceAccountsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProjectServiceAccountsDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProjectServiceAccountsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProjectServiceAccountsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProjectServiceAccountsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProjectServiceAccountsPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProjectServiceAccountsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProjectServiceAccountsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProjectServiceAccountsPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProjectServiceAccountsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProjectServiceAccountsUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProjectServiceAccountsUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProjectServiceAccountsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProjectServiceAccountsUpdateRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -46773,18 +47205,6 @@ func (c *Client) RancherClustersImportYamlWithBody(ctx context.Context, uuid ope
 
 func (c *Client) RancherClustersImportYaml(ctx context.Context, uuid openapi_types.UUID, body RancherClustersImportYamlJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewRancherClustersImportYamlRequest(c.Server, uuid, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) RancherClustersKubeconfigFileRetrieve(ctx context.Context, uuid openapi_types.UUID, params *RancherClustersKubeconfigFileRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewRancherClustersKubeconfigFileRetrieveRequest(c.Server, uuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -73765,6 +74185,337 @@ func NewMarketplaceCustomerEstimatedCostPoliciesUpdateRequestWithBody(server str
 	return req, nil
 }
 
+// NewMarketplaceCustomerServiceAccountsListRequest generates requests for MarketplaceCustomerServiceAccountsList
+func NewMarketplaceCustomerServiceAccountsListRequest(server string, params *MarketplaceCustomerServiceAccountsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-customer-service-accounts/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Customer != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer", runtime.ParamLocationQuery, *params.Customer); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer_uuid", runtime.ParamLocationQuery, *params.CustomerUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Email != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "email", runtime.ParamLocationQuery, *params.Email); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Username != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "username", runtime.ParamLocationQuery, *params.Username); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceCustomerServiceAccountsCreateRequest calls the generic MarketplaceCustomerServiceAccountsCreate builder with application/json body
+func NewMarketplaceCustomerServiceAccountsCreateRequest(server string, body MarketplaceCustomerServiceAccountsCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceCustomerServiceAccountsCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewMarketplaceCustomerServiceAccountsCreateRequestWithBody generates requests for MarketplaceCustomerServiceAccountsCreate with any type of body
+func NewMarketplaceCustomerServiceAccountsCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-customer-service-accounts/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceCustomerServiceAccountsDestroyRequest generates requests for MarketplaceCustomerServiceAccountsDestroy
+func NewMarketplaceCustomerServiceAccountsDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-customer-service-accounts/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceCustomerServiceAccountsRetrieveRequest generates requests for MarketplaceCustomerServiceAccountsRetrieve
+func NewMarketplaceCustomerServiceAccountsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-customer-service-accounts/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceCustomerServiceAccountsPartialUpdateRequest calls the generic MarketplaceCustomerServiceAccountsPartialUpdate builder with application/json body
+func NewMarketplaceCustomerServiceAccountsPartialUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceCustomerServiceAccountsPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceCustomerServiceAccountsPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceCustomerServiceAccountsPartialUpdateRequestWithBody generates requests for MarketplaceCustomerServiceAccountsPartialUpdate with any type of body
+func NewMarketplaceCustomerServiceAccountsPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-customer-service-accounts/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceCustomerServiceAccountsUpdateRequest calls the generic MarketplaceCustomerServiceAccountsUpdate builder with application/json body
+func NewMarketplaceCustomerServiceAccountsUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceCustomerServiceAccountsUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceCustomerServiceAccountsUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceCustomerServiceAccountsUpdateRequestWithBody generates requests for MarketplaceCustomerServiceAccountsUpdate with any type of body
+func NewMarketplaceCustomerServiceAccountsUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-customer-service-accounts/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewMarketplaceGlobalCategoriesRetrieveRequest generates requests for MarketplaceGlobalCategoriesRetrieve
 func NewMarketplaceGlobalCategoriesRetrieveRequest(server string, params *MarketplaceGlobalCategoriesRetrieveParams) (*http.Request, error) {
 	var err error
@@ -78700,6 +79451,337 @@ func NewMarketplaceProjectEstimatedCostPoliciesUpdateRequestWithBody(server stri
 	}
 
 	operationPath := fmt.Sprintf("/api/marketplace-project-estimated-cost-policies/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceProjectServiceAccountsListRequest generates requests for MarketplaceProjectServiceAccountsList
+func NewMarketplaceProjectServiceAccountsListRequest(server string, params *MarketplaceProjectServiceAccountsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-project-service-accounts/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Email != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "email", runtime.ParamLocationQuery, *params.Email); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Project != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project", runtime.ParamLocationQuery, *params.Project); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_uuid", runtime.ParamLocationQuery, *params.ProjectUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Username != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "username", runtime.ParamLocationQuery, *params.Username); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceProjectServiceAccountsCreateRequest calls the generic MarketplaceProjectServiceAccountsCreate builder with application/json body
+func NewMarketplaceProjectServiceAccountsCreateRequest(server string, body MarketplaceProjectServiceAccountsCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceProjectServiceAccountsCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewMarketplaceProjectServiceAccountsCreateRequestWithBody generates requests for MarketplaceProjectServiceAccountsCreate with any type of body
+func NewMarketplaceProjectServiceAccountsCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-project-service-accounts/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceProjectServiceAccountsDestroyRequest generates requests for MarketplaceProjectServiceAccountsDestroy
+func NewMarketplaceProjectServiceAccountsDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-project-service-accounts/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceProjectServiceAccountsRetrieveRequest generates requests for MarketplaceProjectServiceAccountsRetrieve
+func NewMarketplaceProjectServiceAccountsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-project-service-accounts/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceProjectServiceAccountsPartialUpdateRequest calls the generic MarketplaceProjectServiceAccountsPartialUpdate builder with application/json body
+func NewMarketplaceProjectServiceAccountsPartialUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceProjectServiceAccountsPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceProjectServiceAccountsPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceProjectServiceAccountsPartialUpdateRequestWithBody generates requests for MarketplaceProjectServiceAccountsPartialUpdate with any type of body
+func NewMarketplaceProjectServiceAccountsPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-project-service-accounts/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceProjectServiceAccountsUpdateRequest calls the generic MarketplaceProjectServiceAccountsUpdate builder with application/json body
+func NewMarketplaceProjectServiceAccountsUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceProjectServiceAccountsUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceProjectServiceAccountsUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceProjectServiceAccountsUpdateRequestWithBody generates requests for MarketplaceProjectServiceAccountsUpdate with any type of body
+func NewMarketplaceProjectServiceAccountsUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-project-service-accounts/%s/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -116109,62 +117191,6 @@ func NewRancherClustersImportYamlRequestWithBody(server string, uuid openapi_typ
 	return req, nil
 }
 
-// NewRancherClustersKubeconfigFileRetrieveRequest generates requests for RancherClustersKubeconfigFileRetrieve
-func NewRancherClustersKubeconfigFileRetrieveRequest(server string, uuid openapi_types.UUID, params *RancherClustersKubeconfigFileRetrieveParams) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/rancher-clusters/%s/kubeconfig_file/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if params.Field != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "field", runtime.ParamLocationQuery, *params.Field); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
 // NewRancherClustersPullRequest generates requests for RancherClustersPull
 func NewRancherClustersPullRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -133070,6 +134096,30 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceCustomerEstimatedCostPoliciesUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceCustomerEstimatedCostPoliciesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceCustomerEstimatedCostPoliciesUpdateResponse, error)
 
+	// MarketplaceCustomerServiceAccountsListWithResponse request
+	MarketplaceCustomerServiceAccountsListWithResponse(ctx context.Context, params *MarketplaceCustomerServiceAccountsListParams, reqEditors ...RequestEditorFn) (*MarketplaceCustomerServiceAccountsListResponse, error)
+
+	// MarketplaceCustomerServiceAccountsCreateWithBodyWithResponse request with any body
+	MarketplaceCustomerServiceAccountsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceCustomerServiceAccountsCreateResponse, error)
+
+	MarketplaceCustomerServiceAccountsCreateWithResponse(ctx context.Context, body MarketplaceCustomerServiceAccountsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceCustomerServiceAccountsCreateResponse, error)
+
+	// MarketplaceCustomerServiceAccountsDestroyWithResponse request
+	MarketplaceCustomerServiceAccountsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceCustomerServiceAccountsDestroyResponse, error)
+
+	// MarketplaceCustomerServiceAccountsRetrieveWithResponse request
+	MarketplaceCustomerServiceAccountsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceCustomerServiceAccountsRetrieveResponse, error)
+
+	// MarketplaceCustomerServiceAccountsPartialUpdateWithBodyWithResponse request with any body
+	MarketplaceCustomerServiceAccountsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceCustomerServiceAccountsPartialUpdateResponse, error)
+
+	MarketplaceCustomerServiceAccountsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceCustomerServiceAccountsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceCustomerServiceAccountsPartialUpdateResponse, error)
+
+	// MarketplaceCustomerServiceAccountsUpdateWithBodyWithResponse request with any body
+	MarketplaceCustomerServiceAccountsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceCustomerServiceAccountsUpdateResponse, error)
+
+	MarketplaceCustomerServiceAccountsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceCustomerServiceAccountsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceCustomerServiceAccountsUpdateResponse, error)
+
 	// MarketplaceGlobalCategoriesRetrieveWithResponse request
 	MarketplaceGlobalCategoriesRetrieveWithResponse(ctx context.Context, params *MarketplaceGlobalCategoriesRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceGlobalCategoriesRetrieveResponse, error)
 
@@ -133344,6 +134394,30 @@ type ClientWithResponsesInterface interface {
 	MarketplaceProjectEstimatedCostPoliciesUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProjectEstimatedCostPoliciesUpdateResponse, error)
 
 	MarketplaceProjectEstimatedCostPoliciesUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProjectEstimatedCostPoliciesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProjectEstimatedCostPoliciesUpdateResponse, error)
+
+	// MarketplaceProjectServiceAccountsListWithResponse request
+	MarketplaceProjectServiceAccountsListWithResponse(ctx context.Context, params *MarketplaceProjectServiceAccountsListParams, reqEditors ...RequestEditorFn) (*MarketplaceProjectServiceAccountsListResponse, error)
+
+	// MarketplaceProjectServiceAccountsCreateWithBodyWithResponse request with any body
+	MarketplaceProjectServiceAccountsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProjectServiceAccountsCreateResponse, error)
+
+	MarketplaceProjectServiceAccountsCreateWithResponse(ctx context.Context, body MarketplaceProjectServiceAccountsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProjectServiceAccountsCreateResponse, error)
+
+	// MarketplaceProjectServiceAccountsDestroyWithResponse request
+	MarketplaceProjectServiceAccountsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProjectServiceAccountsDestroyResponse, error)
+
+	// MarketplaceProjectServiceAccountsRetrieveWithResponse request
+	MarketplaceProjectServiceAccountsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProjectServiceAccountsRetrieveResponse, error)
+
+	// MarketplaceProjectServiceAccountsPartialUpdateWithBodyWithResponse request with any body
+	MarketplaceProjectServiceAccountsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProjectServiceAccountsPartialUpdateResponse, error)
+
+	MarketplaceProjectServiceAccountsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProjectServiceAccountsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProjectServiceAccountsPartialUpdateResponse, error)
+
+	// MarketplaceProjectServiceAccountsUpdateWithBodyWithResponse request with any body
+	MarketplaceProjectServiceAccountsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProjectServiceAccountsUpdateResponse, error)
+
+	MarketplaceProjectServiceAccountsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProjectServiceAccountsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProjectServiceAccountsUpdateResponse, error)
 
 	// MarketplaceProjectUpdateRequestsListWithResponse request
 	MarketplaceProjectUpdateRequestsListWithResponse(ctx context.Context, params *MarketplaceProjectUpdateRequestsListParams, reqEditors ...RequestEditorFn) (*MarketplaceProjectUpdateRequestsListResponse, error)
@@ -135218,9 +136292,6 @@ type ClientWithResponsesInterface interface {
 	RancherClustersImportYamlWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*RancherClustersImportYamlResponse, error)
 
 	RancherClustersImportYamlWithResponse(ctx context.Context, uuid openapi_types.UUID, body RancherClustersImportYamlJSONRequestBody, reqEditors ...RequestEditorFn) (*RancherClustersImportYamlResponse, error)
-
-	// RancherClustersKubeconfigFileRetrieveWithResponse request
-	RancherClustersKubeconfigFileRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *RancherClustersKubeconfigFileRetrieveParams, reqEditors ...RequestEditorFn) (*RancherClustersKubeconfigFileRetrieveResponse, error)
 
 	// RancherClustersPullWithResponse request
 	RancherClustersPullWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*RancherClustersPullResponse, error)
@@ -143431,6 +144502,137 @@ func (r MarketplaceCustomerEstimatedCostPoliciesUpdateResponse) StatusCode() int
 	return 0
 }
 
+type MarketplaceCustomerServiceAccountsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]CustomerServiceAccount
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceCustomerServiceAccountsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceCustomerServiceAccountsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceCustomerServiceAccountsCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *CustomerServiceAccount
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceCustomerServiceAccountsCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceCustomerServiceAccountsCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceCustomerServiceAccountsDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceCustomerServiceAccountsDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceCustomerServiceAccountsDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceCustomerServiceAccountsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CustomerServiceAccount
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceCustomerServiceAccountsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceCustomerServiceAccountsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceCustomerServiceAccountsPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CustomerServiceAccount
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceCustomerServiceAccountsPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceCustomerServiceAccountsPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceCustomerServiceAccountsUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CustomerServiceAccount
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceCustomerServiceAccountsUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceCustomerServiceAccountsUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type MarketplaceGlobalCategoriesRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -145053,6 +146255,137 @@ func (r MarketplaceProjectEstimatedCostPoliciesUpdateResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceProjectEstimatedCostPoliciesUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceProjectServiceAccountsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]ProjectServiceAccount
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProjectServiceAccountsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProjectServiceAccountsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceProjectServiceAccountsCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *ProjectServiceAccount
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProjectServiceAccountsCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProjectServiceAccountsCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceProjectServiceAccountsDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProjectServiceAccountsDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProjectServiceAccountsDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceProjectServiceAccountsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ProjectServiceAccount
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProjectServiceAccountsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProjectServiceAccountsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceProjectServiceAccountsPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ProjectServiceAccount
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProjectServiceAccountsPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProjectServiceAccountsPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceProjectServiceAccountsUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ProjectServiceAccount
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProjectServiceAccountsUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProjectServiceAccountsUpdateResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -155777,28 +157110,6 @@ func (r RancherClustersImportYamlResponse) StatusCode() int {
 	return 0
 }
 
-type RancherClustersKubeconfigFileRetrieveResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *RancherCluster
-}
-
-// Status returns HTTPResponse.Status
-func (r RancherClustersKubeconfigFileRetrieveResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r RancherClustersKubeconfigFileRetrieveResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
 type RancherClustersPullResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -164888,6 +166199,84 @@ func (c *ClientWithResponses) MarketplaceCustomerEstimatedCostPoliciesUpdateWith
 	return ParseMarketplaceCustomerEstimatedCostPoliciesUpdateResponse(rsp)
 }
 
+// MarketplaceCustomerServiceAccountsListWithResponse request returning *MarketplaceCustomerServiceAccountsListResponse
+func (c *ClientWithResponses) MarketplaceCustomerServiceAccountsListWithResponse(ctx context.Context, params *MarketplaceCustomerServiceAccountsListParams, reqEditors ...RequestEditorFn) (*MarketplaceCustomerServiceAccountsListResponse, error) {
+	rsp, err := c.MarketplaceCustomerServiceAccountsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceCustomerServiceAccountsListResponse(rsp)
+}
+
+// MarketplaceCustomerServiceAccountsCreateWithBodyWithResponse request with arbitrary body returning *MarketplaceCustomerServiceAccountsCreateResponse
+func (c *ClientWithResponses) MarketplaceCustomerServiceAccountsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceCustomerServiceAccountsCreateResponse, error) {
+	rsp, err := c.MarketplaceCustomerServiceAccountsCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceCustomerServiceAccountsCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceCustomerServiceAccountsCreateWithResponse(ctx context.Context, body MarketplaceCustomerServiceAccountsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceCustomerServiceAccountsCreateResponse, error) {
+	rsp, err := c.MarketplaceCustomerServiceAccountsCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceCustomerServiceAccountsCreateResponse(rsp)
+}
+
+// MarketplaceCustomerServiceAccountsDestroyWithResponse request returning *MarketplaceCustomerServiceAccountsDestroyResponse
+func (c *ClientWithResponses) MarketplaceCustomerServiceAccountsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceCustomerServiceAccountsDestroyResponse, error) {
+	rsp, err := c.MarketplaceCustomerServiceAccountsDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceCustomerServiceAccountsDestroyResponse(rsp)
+}
+
+// MarketplaceCustomerServiceAccountsRetrieveWithResponse request returning *MarketplaceCustomerServiceAccountsRetrieveResponse
+func (c *ClientWithResponses) MarketplaceCustomerServiceAccountsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceCustomerServiceAccountsRetrieveResponse, error) {
+	rsp, err := c.MarketplaceCustomerServiceAccountsRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceCustomerServiceAccountsRetrieveResponse(rsp)
+}
+
+// MarketplaceCustomerServiceAccountsPartialUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceCustomerServiceAccountsPartialUpdateResponse
+func (c *ClientWithResponses) MarketplaceCustomerServiceAccountsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceCustomerServiceAccountsPartialUpdateResponse, error) {
+	rsp, err := c.MarketplaceCustomerServiceAccountsPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceCustomerServiceAccountsPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceCustomerServiceAccountsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceCustomerServiceAccountsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceCustomerServiceAccountsPartialUpdateResponse, error) {
+	rsp, err := c.MarketplaceCustomerServiceAccountsPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceCustomerServiceAccountsPartialUpdateResponse(rsp)
+}
+
+// MarketplaceCustomerServiceAccountsUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceCustomerServiceAccountsUpdateResponse
+func (c *ClientWithResponses) MarketplaceCustomerServiceAccountsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceCustomerServiceAccountsUpdateResponse, error) {
+	rsp, err := c.MarketplaceCustomerServiceAccountsUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceCustomerServiceAccountsUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceCustomerServiceAccountsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceCustomerServiceAccountsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceCustomerServiceAccountsUpdateResponse, error) {
+	rsp, err := c.MarketplaceCustomerServiceAccountsUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceCustomerServiceAccountsUpdateResponse(rsp)
+}
+
 // MarketplaceGlobalCategoriesRetrieveWithResponse request returning *MarketplaceGlobalCategoriesRetrieveResponse
 func (c *ClientWithResponses) MarketplaceGlobalCategoriesRetrieveWithResponse(ctx context.Context, params *MarketplaceGlobalCategoriesRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceGlobalCategoriesRetrieveResponse, error) {
 	rsp, err := c.MarketplaceGlobalCategoriesRetrieve(ctx, params, reqEditors...)
@@ -165761,6 +167150,84 @@ func (c *ClientWithResponses) MarketplaceProjectEstimatedCostPoliciesUpdateWithR
 		return nil, err
 	}
 	return ParseMarketplaceProjectEstimatedCostPoliciesUpdateResponse(rsp)
+}
+
+// MarketplaceProjectServiceAccountsListWithResponse request returning *MarketplaceProjectServiceAccountsListResponse
+func (c *ClientWithResponses) MarketplaceProjectServiceAccountsListWithResponse(ctx context.Context, params *MarketplaceProjectServiceAccountsListParams, reqEditors ...RequestEditorFn) (*MarketplaceProjectServiceAccountsListResponse, error) {
+	rsp, err := c.MarketplaceProjectServiceAccountsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProjectServiceAccountsListResponse(rsp)
+}
+
+// MarketplaceProjectServiceAccountsCreateWithBodyWithResponse request with arbitrary body returning *MarketplaceProjectServiceAccountsCreateResponse
+func (c *ClientWithResponses) MarketplaceProjectServiceAccountsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProjectServiceAccountsCreateResponse, error) {
+	rsp, err := c.MarketplaceProjectServiceAccountsCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProjectServiceAccountsCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceProjectServiceAccountsCreateWithResponse(ctx context.Context, body MarketplaceProjectServiceAccountsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProjectServiceAccountsCreateResponse, error) {
+	rsp, err := c.MarketplaceProjectServiceAccountsCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProjectServiceAccountsCreateResponse(rsp)
+}
+
+// MarketplaceProjectServiceAccountsDestroyWithResponse request returning *MarketplaceProjectServiceAccountsDestroyResponse
+func (c *ClientWithResponses) MarketplaceProjectServiceAccountsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProjectServiceAccountsDestroyResponse, error) {
+	rsp, err := c.MarketplaceProjectServiceAccountsDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProjectServiceAccountsDestroyResponse(rsp)
+}
+
+// MarketplaceProjectServiceAccountsRetrieveWithResponse request returning *MarketplaceProjectServiceAccountsRetrieveResponse
+func (c *ClientWithResponses) MarketplaceProjectServiceAccountsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProjectServiceAccountsRetrieveResponse, error) {
+	rsp, err := c.MarketplaceProjectServiceAccountsRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProjectServiceAccountsRetrieveResponse(rsp)
+}
+
+// MarketplaceProjectServiceAccountsPartialUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceProjectServiceAccountsPartialUpdateResponse
+func (c *ClientWithResponses) MarketplaceProjectServiceAccountsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProjectServiceAccountsPartialUpdateResponse, error) {
+	rsp, err := c.MarketplaceProjectServiceAccountsPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProjectServiceAccountsPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceProjectServiceAccountsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProjectServiceAccountsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProjectServiceAccountsPartialUpdateResponse, error) {
+	rsp, err := c.MarketplaceProjectServiceAccountsPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProjectServiceAccountsPartialUpdateResponse(rsp)
+}
+
+// MarketplaceProjectServiceAccountsUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceProjectServiceAccountsUpdateResponse
+func (c *ClientWithResponses) MarketplaceProjectServiceAccountsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProjectServiceAccountsUpdateResponse, error) {
+	rsp, err := c.MarketplaceProjectServiceAccountsUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProjectServiceAccountsUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceProjectServiceAccountsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProjectServiceAccountsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProjectServiceAccountsUpdateResponse, error) {
+	rsp, err := c.MarketplaceProjectServiceAccountsUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProjectServiceAccountsUpdateResponse(rsp)
 }
 
 // MarketplaceProjectUpdateRequestsListWithResponse request returning *MarketplaceProjectUpdateRequestsListResponse
@@ -171775,15 +173242,6 @@ func (c *ClientWithResponses) RancherClustersImportYamlWithResponse(ctx context.
 		return nil, err
 	}
 	return ParseRancherClustersImportYamlResponse(rsp)
-}
-
-// RancherClustersKubeconfigFileRetrieveWithResponse request returning *RancherClustersKubeconfigFileRetrieveResponse
-func (c *ClientWithResponses) RancherClustersKubeconfigFileRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *RancherClustersKubeconfigFileRetrieveParams, reqEditors ...RequestEditorFn) (*RancherClustersKubeconfigFileRetrieveResponse, error) {
-	rsp, err := c.RancherClustersKubeconfigFileRetrieve(ctx, uuid, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseRancherClustersKubeconfigFileRetrieveResponse(rsp)
 }
 
 // RancherClustersPullWithResponse request returning *RancherClustersPullResponse
@@ -182465,6 +183923,152 @@ func ParseMarketplaceCustomerEstimatedCostPoliciesUpdateResponse(rsp *http.Respo
 	return response, nil
 }
 
+// ParseMarketplaceCustomerServiceAccountsListResponse parses an HTTP response from a MarketplaceCustomerServiceAccountsListWithResponse call
+func ParseMarketplaceCustomerServiceAccountsListResponse(rsp *http.Response) (*MarketplaceCustomerServiceAccountsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceCustomerServiceAccountsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []CustomerServiceAccount
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceCustomerServiceAccountsCreateResponse parses an HTTP response from a MarketplaceCustomerServiceAccountsCreateWithResponse call
+func ParseMarketplaceCustomerServiceAccountsCreateResponse(rsp *http.Response) (*MarketplaceCustomerServiceAccountsCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceCustomerServiceAccountsCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest CustomerServiceAccount
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceCustomerServiceAccountsDestroyResponse parses an HTTP response from a MarketplaceCustomerServiceAccountsDestroyWithResponse call
+func ParseMarketplaceCustomerServiceAccountsDestroyResponse(rsp *http.Response) (*MarketplaceCustomerServiceAccountsDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceCustomerServiceAccountsDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceCustomerServiceAccountsRetrieveResponse parses an HTTP response from a MarketplaceCustomerServiceAccountsRetrieveWithResponse call
+func ParseMarketplaceCustomerServiceAccountsRetrieveResponse(rsp *http.Response) (*MarketplaceCustomerServiceAccountsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceCustomerServiceAccountsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CustomerServiceAccount
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceCustomerServiceAccountsPartialUpdateResponse parses an HTTP response from a MarketplaceCustomerServiceAccountsPartialUpdateWithResponse call
+func ParseMarketplaceCustomerServiceAccountsPartialUpdateResponse(rsp *http.Response) (*MarketplaceCustomerServiceAccountsPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceCustomerServiceAccountsPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CustomerServiceAccount
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceCustomerServiceAccountsUpdateResponse parses an HTTP response from a MarketplaceCustomerServiceAccountsUpdateWithResponse call
+func ParseMarketplaceCustomerServiceAccountsUpdateResponse(rsp *http.Response) (*MarketplaceCustomerServiceAccountsUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceCustomerServiceAccountsUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CustomerServiceAccount
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseMarketplaceGlobalCategoriesRetrieveResponse parses an HTTP response from a MarketplaceGlobalCategoriesRetrieveWithResponse call
 func ParseMarketplaceGlobalCategoriesRetrieveResponse(rsp *http.Response) (*MarketplaceGlobalCategoriesRetrieveResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -184185,6 +185789,152 @@ func ParseMarketplaceProjectEstimatedCostPoliciesUpdateResponse(rsp *http.Respon
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest ProjectEstimatedCostPolicy
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProjectServiceAccountsListResponse parses an HTTP response from a MarketplaceProjectServiceAccountsListWithResponse call
+func ParseMarketplaceProjectServiceAccountsListResponse(rsp *http.Response) (*MarketplaceProjectServiceAccountsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProjectServiceAccountsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []ProjectServiceAccount
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProjectServiceAccountsCreateResponse parses an HTTP response from a MarketplaceProjectServiceAccountsCreateWithResponse call
+func ParseMarketplaceProjectServiceAccountsCreateResponse(rsp *http.Response) (*MarketplaceProjectServiceAccountsCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProjectServiceAccountsCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest ProjectServiceAccount
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProjectServiceAccountsDestroyResponse parses an HTTP response from a MarketplaceProjectServiceAccountsDestroyWithResponse call
+func ParseMarketplaceProjectServiceAccountsDestroyResponse(rsp *http.Response) (*MarketplaceProjectServiceAccountsDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProjectServiceAccountsDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProjectServiceAccountsRetrieveResponse parses an HTTP response from a MarketplaceProjectServiceAccountsRetrieveWithResponse call
+func ParseMarketplaceProjectServiceAccountsRetrieveResponse(rsp *http.Response) (*MarketplaceProjectServiceAccountsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProjectServiceAccountsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ProjectServiceAccount
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProjectServiceAccountsPartialUpdateResponse parses an HTTP response from a MarketplaceProjectServiceAccountsPartialUpdateWithResponse call
+func ParseMarketplaceProjectServiceAccountsPartialUpdateResponse(rsp *http.Response) (*MarketplaceProjectServiceAccountsPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProjectServiceAccountsPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ProjectServiceAccount
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProjectServiceAccountsUpdateResponse parses an HTTP response from a MarketplaceProjectServiceAccountsUpdateWithResponse call
+func ParseMarketplaceProjectServiceAccountsUpdateResponse(rsp *http.Response) (*MarketplaceProjectServiceAccountsUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProjectServiceAccountsUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ProjectServiceAccount
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -195526,32 +197276,6 @@ func ParseRancherClustersImportYamlResponse(rsp *http.Response) (*RancherCluster
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest RancherImportYaml
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseRancherClustersKubeconfigFileRetrieveResponse parses an HTTP response from a RancherClustersKubeconfigFileRetrieveWithResponse call
-func ParseRancherClustersKubeconfigFileRetrieveResponse(rsp *http.Response) (*RancherClustersKubeconfigFileRetrieveResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &RancherClustersKubeconfigFileRetrieveResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest RancherCluster
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
