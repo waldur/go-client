@@ -5234,6 +5234,7 @@ const (
 // Defines values for OpenstackPortsListParamsField.
 const (
 	OpenstackPortsListParamsFieldAccessUrl                        OpenstackPortsListParamsField = "access_url"
+	OpenstackPortsListParamsFieldAdminStateUp                     OpenstackPortsListParamsField = "admin_state_up"
 	OpenstackPortsListParamsFieldAllowedAddressPairs              OpenstackPortsListParamsField = "allowed_address_pairs"
 	OpenstackPortsListParamsFieldBackendId                        OpenstackPortsListParamsField = "backend_id"
 	OpenstackPortsListParamsFieldCreated                          OpenstackPortsListParamsField = "created"
@@ -5292,6 +5293,7 @@ const (
 // Defines values for OpenstackPortsRetrieveParamsField.
 const (
 	OpenstackPortsRetrieveParamsFieldAccessUrl                        OpenstackPortsRetrieveParamsField = "access_url"
+	OpenstackPortsRetrieveParamsFieldAdminStateUp                     OpenstackPortsRetrieveParamsField = "admin_state_up"
 	OpenstackPortsRetrieveParamsFieldAllowedAddressPairs              OpenstackPortsRetrieveParamsField = "allowed_address_pairs"
 	OpenstackPortsRetrieveParamsFieldBackendId                        OpenstackPortsRetrieveParamsField = "backend_id"
 	OpenstackPortsRetrieveParamsFieldCreated                          OpenstackPortsRetrieveParamsField = "created"
@@ -9917,6 +9919,7 @@ type CustomerServiceAccount struct {
 	Email          *openapi_types.Email `json:"email,omitempty"`
 	ErrorMessage   *string              `json:"error_message,omitempty"`
 	ErrorTraceback *string              `json:"error_traceback,omitempty"`
+	ExpiresAt      *string              `json:"expiresAt"`
 	Modified       *time.Time           `json:"modified,omitempty"`
 	Token          *string              `json:"token"`
 	Url            *string              `json:"url,omitempty"`
@@ -12954,6 +12957,7 @@ type OpenStackNetworkRequest struct {
 // OpenStackPort defines model for OpenStackPort.
 type OpenStackPort struct {
 	AccessUrl                        *string                             `json:"access_url"`
+	AdminStateUp                     *string                             `json:"admin_state_up"`
 	AllowedAddressPairs              *[]OpenStackAllowedAddressPair      `json:"allowed_address_pairs,omitempty"`
 	BackendId                        *string                             `json:"backend_id,omitempty"`
 	Created                          *time.Time                          `json:"created,omitempty"`
@@ -15041,6 +15045,7 @@ type ProjectServiceAccount struct {
 	Email          *openapi_types.Email `json:"email,omitempty"`
 	ErrorMessage   *string              `json:"error_message,omitempty"`
 	ErrorTraceback *string              `json:"error_traceback,omitempty"`
+	ExpiresAt      *string              `json:"expiresAt"`
 	Modified       *time.Time           `json:"modified,omitempty"`
 	Project        openapi_types.UUID   `json:"project"`
 	Token          *string              `json:"token"`
@@ -24944,6 +24949,18 @@ type OpenstackPortsPartialUpdateJSONRequestBody = PatchedOpenStackPortRequest
 // OpenstackPortsUpdateJSONRequestBody defines body for OpenstackPortsUpdate for application/json ContentType.
 type OpenstackPortsUpdateJSONRequestBody = OpenStackPortRequest
 
+// OpenstackPortsDisablePortJSONRequestBody defines body for OpenstackPortsDisablePort for application/json ContentType.
+type OpenstackPortsDisablePortJSONRequestBody = OpenStackPortRequest
+
+// OpenstackPortsDisablePortSecurityJSONRequestBody defines body for OpenstackPortsDisablePortSecurity for application/json ContentType.
+type OpenstackPortsDisablePortSecurityJSONRequestBody = OpenStackPortRequest
+
+// OpenstackPortsEnablePortJSONRequestBody defines body for OpenstackPortsEnablePort for application/json ContentType.
+type OpenstackPortsEnablePortJSONRequestBody = OpenStackPortRequest
+
+// OpenstackPortsEnablePortSecurityJSONRequestBody defines body for OpenstackPortsEnablePortSecurity for application/json ContentType.
+type OpenstackPortsEnablePortSecurityJSONRequestBody = OpenStackPortRequest
+
 // OpenstackRoutersSetRoutesJSONRequestBody defines body for OpenstackRoutersSetRoutes for application/json ContentType.
 type OpenstackRoutersSetRoutesJSONRequestBody = OpenStackRouterSetRoutesRequest
 
@@ -29068,6 +29085,9 @@ type ClientInterface interface {
 
 	MarketplaceCustomerServiceAccountsUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceCustomerServiceAccountsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceCustomerServiceAccountsRotateApiKey request
+	MarketplaceCustomerServiceAccountsRotateApiKey(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceGlobalCategoriesRetrieve request
 	MarketplaceGlobalCategoriesRetrieve(ctx context.Context, params *MarketplaceGlobalCategoriesRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -29366,6 +29386,9 @@ type ClientInterface interface {
 	MarketplaceProjectServiceAccountsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	MarketplaceProjectServiceAccountsUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProjectServiceAccountsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProjectServiceAccountsRotateApiKey request
+	MarketplaceProjectServiceAccountsRotateApiKey(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceProjectUpdateRequestsList request
 	MarketplaceProjectUpdateRequestsList(ctx context.Context, params *MarketplaceProjectUpdateRequestsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -30393,6 +30416,26 @@ type ClientInterface interface {
 	OpenstackPortsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	OpenstackPortsUpdate(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackPortsDisablePortWithBody request with any body
+	OpenstackPortsDisablePortWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackPortsDisablePort(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsDisablePortJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackPortsDisablePortSecurityWithBody request with any body
+	OpenstackPortsDisablePortSecurityWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackPortsDisablePortSecurity(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsDisablePortSecurityJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackPortsEnablePortWithBody request with any body
+	OpenstackPortsEnablePortWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackPortsEnablePort(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsEnablePortJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackPortsEnablePortSecurityWithBody request with any body
+	OpenstackPortsEnablePortSecurityWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackPortsEnablePortSecurity(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsEnablePortSecurityJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenstackPortsPull request
 	OpenstackPortsPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -37627,6 +37670,18 @@ func (c *Client) MarketplaceCustomerServiceAccountsUpdate(ctx context.Context, u
 	return c.Client.Do(req)
 }
 
+func (c *Client) MarketplaceCustomerServiceAccountsRotateApiKey(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceCustomerServiceAccountsRotateApiKeyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) MarketplaceGlobalCategoriesRetrieve(ctx context.Context, params *MarketplaceGlobalCategoriesRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceGlobalCategoriesRetrieveRequest(c.Server, params)
 	if err != nil {
@@ -38925,6 +38980,18 @@ func (c *Client) MarketplaceProjectServiceAccountsUpdateWithBody(ctx context.Con
 
 func (c *Client) MarketplaceProjectServiceAccountsUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProjectServiceAccountsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProjectServiceAccountsUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProjectServiceAccountsRotateApiKey(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProjectServiceAccountsRotateApiKeyRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -43449,6 +43516,102 @@ func (c *Client) OpenstackPortsUpdateWithBody(ctx context.Context, uuid openapi_
 
 func (c *Client) OpenstackPortsUpdate(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenstackPortsUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackPortsDisablePortWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackPortsDisablePortRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackPortsDisablePort(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsDisablePortJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackPortsDisablePortRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackPortsDisablePortSecurityWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackPortsDisablePortSecurityRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackPortsDisablePortSecurity(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsDisablePortSecurityJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackPortsDisablePortSecurityRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackPortsEnablePortWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackPortsEnablePortRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackPortsEnablePort(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsEnablePortJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackPortsEnablePortRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackPortsEnablePortSecurityWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackPortsEnablePortSecurityRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackPortsEnablePortSecurity(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsEnablePortSecurityJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackPortsEnablePortSecurityRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -74516,6 +74679,40 @@ func NewMarketplaceCustomerServiceAccountsUpdateRequestWithBody(server string, u
 	return req, nil
 }
 
+// NewMarketplaceCustomerServiceAccountsRotateApiKeyRequest generates requests for MarketplaceCustomerServiceAccountsRotateApiKey
+func NewMarketplaceCustomerServiceAccountsRotateApiKeyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-customer-service-accounts/%s/rotate_api_key/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewMarketplaceGlobalCategoriesRetrieveRequest generates requests for MarketplaceGlobalCategoriesRetrieve
 func NewMarketplaceGlobalCategoriesRetrieveRequest(server string, params *MarketplaceGlobalCategoriesRetrieveParams) (*http.Request, error) {
 	var err error
@@ -79797,6 +79994,40 @@ func NewMarketplaceProjectServiceAccountsUpdateRequestWithBody(server string, uu
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceProjectServiceAccountsRotateApiKeyRequest generates requests for MarketplaceProjectServiceAccountsRotateApiKey
+func NewMarketplaceProjectServiceAccountsRotateApiKeyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-project-service-accounts/%s/rotate_api_key/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
 
 	return req, nil
 }
@@ -101064,6 +101295,194 @@ func NewOpenstackPortsUpdateRequestWithBody(server string, uuid openapi_types.UU
 	}
 
 	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenstackPortsDisablePortRequest calls the generic OpenstackPortsDisablePort builder with application/json body
+func NewOpenstackPortsDisablePortRequest(server string, uuid openapi_types.UUID, body OpenstackPortsDisablePortJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackPortsDisablePortRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOpenstackPortsDisablePortRequestWithBody generates requests for OpenstackPortsDisablePort with any type of body
+func NewOpenstackPortsDisablePortRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-ports/%s/disable_port/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenstackPortsDisablePortSecurityRequest calls the generic OpenstackPortsDisablePortSecurity builder with application/json body
+func NewOpenstackPortsDisablePortSecurityRequest(server string, uuid openapi_types.UUID, body OpenstackPortsDisablePortSecurityJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackPortsDisablePortSecurityRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOpenstackPortsDisablePortSecurityRequestWithBody generates requests for OpenstackPortsDisablePortSecurity with any type of body
+func NewOpenstackPortsDisablePortSecurityRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-ports/%s/disable_port_security/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenstackPortsEnablePortRequest calls the generic OpenstackPortsEnablePort builder with application/json body
+func NewOpenstackPortsEnablePortRequest(server string, uuid openapi_types.UUID, body OpenstackPortsEnablePortJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackPortsEnablePortRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOpenstackPortsEnablePortRequestWithBody generates requests for OpenstackPortsEnablePort with any type of body
+func NewOpenstackPortsEnablePortRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-ports/%s/enable_port/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenstackPortsEnablePortSecurityRequest calls the generic OpenstackPortsEnablePortSecurity builder with application/json body
+func NewOpenstackPortsEnablePortSecurityRequest(server string, uuid openapi_types.UUID, body OpenstackPortsEnablePortSecurityJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackPortsEnablePortSecurityRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOpenstackPortsEnablePortSecurityRequestWithBody generates requests for OpenstackPortsEnablePortSecurity with any type of body
+func NewOpenstackPortsEnablePortSecurityRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-ports/%s/enable_port_security/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
 	if err != nil {
 		return nil, err
 	}
@@ -134120,6 +134539,9 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceCustomerServiceAccountsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceCustomerServiceAccountsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceCustomerServiceAccountsUpdateResponse, error)
 
+	// MarketplaceCustomerServiceAccountsRotateApiKeyWithResponse request
+	MarketplaceCustomerServiceAccountsRotateApiKeyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceCustomerServiceAccountsRotateApiKeyResponse, error)
+
 	// MarketplaceGlobalCategoriesRetrieveWithResponse request
 	MarketplaceGlobalCategoriesRetrieveWithResponse(ctx context.Context, params *MarketplaceGlobalCategoriesRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceGlobalCategoriesRetrieveResponse, error)
 
@@ -134418,6 +134840,9 @@ type ClientWithResponsesInterface interface {
 	MarketplaceProjectServiceAccountsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProjectServiceAccountsUpdateResponse, error)
 
 	MarketplaceProjectServiceAccountsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProjectServiceAccountsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProjectServiceAccountsUpdateResponse, error)
+
+	// MarketplaceProjectServiceAccountsRotateApiKeyWithResponse request
+	MarketplaceProjectServiceAccountsRotateApiKeyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProjectServiceAccountsRotateApiKeyResponse, error)
 
 	// MarketplaceProjectUpdateRequestsListWithResponse request
 	MarketplaceProjectUpdateRequestsListWithResponse(ctx context.Context, params *MarketplaceProjectUpdateRequestsListParams, reqEditors ...RequestEditorFn) (*MarketplaceProjectUpdateRequestsListResponse, error)
@@ -135445,6 +135870,26 @@ type ClientWithResponsesInterface interface {
 	OpenstackPortsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackPortsUpdateResponse, error)
 
 	OpenstackPortsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackPortsUpdateResponse, error)
+
+	// OpenstackPortsDisablePortWithBodyWithResponse request with any body
+	OpenstackPortsDisablePortWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackPortsDisablePortResponse, error)
+
+	OpenstackPortsDisablePortWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsDisablePortJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackPortsDisablePortResponse, error)
+
+	// OpenstackPortsDisablePortSecurityWithBodyWithResponse request with any body
+	OpenstackPortsDisablePortSecurityWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackPortsDisablePortSecurityResponse, error)
+
+	OpenstackPortsDisablePortSecurityWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsDisablePortSecurityJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackPortsDisablePortSecurityResponse, error)
+
+	// OpenstackPortsEnablePortWithBodyWithResponse request with any body
+	OpenstackPortsEnablePortWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackPortsEnablePortResponse, error)
+
+	OpenstackPortsEnablePortWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsEnablePortJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackPortsEnablePortResponse, error)
+
+	// OpenstackPortsEnablePortSecurityWithBodyWithResponse request with any body
+	OpenstackPortsEnablePortSecurityWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackPortsEnablePortSecurityResponse, error)
+
+	OpenstackPortsEnablePortSecurityWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsEnablePortSecurityJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackPortsEnablePortSecurityResponse, error)
 
 	// OpenstackPortsPullWithResponse request
 	OpenstackPortsPullWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackPortsPullResponse, error)
@@ -144633,6 +145078,28 @@ func (r MarketplaceCustomerServiceAccountsUpdateResponse) StatusCode() int {
 	return 0
 }
 
+type MarketplaceCustomerServiceAccountsRotateApiKeyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CustomerServiceAccount
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceCustomerServiceAccountsRotateApiKeyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceCustomerServiceAccountsRotateApiKeyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type MarketplaceGlobalCategoriesRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -146386,6 +146853,28 @@ func (r MarketplaceProjectServiceAccountsUpdateResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceProjectServiceAccountsUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceProjectServiceAccountsRotateApiKeyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ProjectServiceAccount
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProjectServiceAccountsRotateApiKeyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProjectServiceAccountsRotateApiKeyResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -152310,6 +152799,90 @@ func (r OpenstackPortsUpdateResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r OpenstackPortsUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackPortsDisablePortResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackPortsDisablePortResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackPortsDisablePortResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackPortsDisablePortSecurityResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackPortsDisablePortSecurityResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackPortsDisablePortSecurityResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackPortsEnablePortResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackPortsEnablePortResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackPortsEnablePortResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackPortsEnablePortSecurityResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackPortsEnablePortSecurityResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackPortsEnablePortSecurityResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -166277,6 +166850,15 @@ func (c *ClientWithResponses) MarketplaceCustomerServiceAccountsUpdateWithRespon
 	return ParseMarketplaceCustomerServiceAccountsUpdateResponse(rsp)
 }
 
+// MarketplaceCustomerServiceAccountsRotateApiKeyWithResponse request returning *MarketplaceCustomerServiceAccountsRotateApiKeyResponse
+func (c *ClientWithResponses) MarketplaceCustomerServiceAccountsRotateApiKeyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceCustomerServiceAccountsRotateApiKeyResponse, error) {
+	rsp, err := c.MarketplaceCustomerServiceAccountsRotateApiKey(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceCustomerServiceAccountsRotateApiKeyResponse(rsp)
+}
+
 // MarketplaceGlobalCategoriesRetrieveWithResponse request returning *MarketplaceGlobalCategoriesRetrieveResponse
 func (c *ClientWithResponses) MarketplaceGlobalCategoriesRetrieveWithResponse(ctx context.Context, params *MarketplaceGlobalCategoriesRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceGlobalCategoriesRetrieveResponse, error) {
 	rsp, err := c.MarketplaceGlobalCategoriesRetrieve(ctx, params, reqEditors...)
@@ -167228,6 +167810,15 @@ func (c *ClientWithResponses) MarketplaceProjectServiceAccountsUpdateWithRespons
 		return nil, err
 	}
 	return ParseMarketplaceProjectServiceAccountsUpdateResponse(rsp)
+}
+
+// MarketplaceProjectServiceAccountsRotateApiKeyWithResponse request returning *MarketplaceProjectServiceAccountsRotateApiKeyResponse
+func (c *ClientWithResponses) MarketplaceProjectServiceAccountsRotateApiKeyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProjectServiceAccountsRotateApiKeyResponse, error) {
+	rsp, err := c.MarketplaceProjectServiceAccountsRotateApiKey(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProjectServiceAccountsRotateApiKeyResponse(rsp)
 }
 
 // MarketplaceProjectUpdateRequestsListWithResponse request returning *MarketplaceProjectUpdateRequestsListResponse
@@ -170517,6 +171108,74 @@ func (c *ClientWithResponses) OpenstackPortsUpdateWithResponse(ctx context.Conte
 		return nil, err
 	}
 	return ParseOpenstackPortsUpdateResponse(rsp)
+}
+
+// OpenstackPortsDisablePortWithBodyWithResponse request with arbitrary body returning *OpenstackPortsDisablePortResponse
+func (c *ClientWithResponses) OpenstackPortsDisablePortWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackPortsDisablePortResponse, error) {
+	rsp, err := c.OpenstackPortsDisablePortWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackPortsDisablePortResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackPortsDisablePortWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsDisablePortJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackPortsDisablePortResponse, error) {
+	rsp, err := c.OpenstackPortsDisablePort(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackPortsDisablePortResponse(rsp)
+}
+
+// OpenstackPortsDisablePortSecurityWithBodyWithResponse request with arbitrary body returning *OpenstackPortsDisablePortSecurityResponse
+func (c *ClientWithResponses) OpenstackPortsDisablePortSecurityWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackPortsDisablePortSecurityResponse, error) {
+	rsp, err := c.OpenstackPortsDisablePortSecurityWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackPortsDisablePortSecurityResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackPortsDisablePortSecurityWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsDisablePortSecurityJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackPortsDisablePortSecurityResponse, error) {
+	rsp, err := c.OpenstackPortsDisablePortSecurity(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackPortsDisablePortSecurityResponse(rsp)
+}
+
+// OpenstackPortsEnablePortWithBodyWithResponse request with arbitrary body returning *OpenstackPortsEnablePortResponse
+func (c *ClientWithResponses) OpenstackPortsEnablePortWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackPortsEnablePortResponse, error) {
+	rsp, err := c.OpenstackPortsEnablePortWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackPortsEnablePortResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackPortsEnablePortWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsEnablePortJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackPortsEnablePortResponse, error) {
+	rsp, err := c.OpenstackPortsEnablePort(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackPortsEnablePortResponse(rsp)
+}
+
+// OpenstackPortsEnablePortSecurityWithBodyWithResponse request with arbitrary body returning *OpenstackPortsEnablePortSecurityResponse
+func (c *ClientWithResponses) OpenstackPortsEnablePortSecurityWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackPortsEnablePortSecurityResponse, error) {
+	rsp, err := c.OpenstackPortsEnablePortSecurityWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackPortsEnablePortSecurityResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackPortsEnablePortSecurityWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsEnablePortSecurityJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackPortsEnablePortSecurityResponse, error) {
+	rsp, err := c.OpenstackPortsEnablePortSecurity(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackPortsEnablePortSecurityResponse(rsp)
 }
 
 // OpenstackPortsPullWithResponse request returning *OpenstackPortsPullResponse
@@ -184069,6 +184728,32 @@ func ParseMarketplaceCustomerServiceAccountsUpdateResponse(rsp *http.Response) (
 	return response, nil
 }
 
+// ParseMarketplaceCustomerServiceAccountsRotateApiKeyResponse parses an HTTP response from a MarketplaceCustomerServiceAccountsRotateApiKeyWithResponse call
+func ParseMarketplaceCustomerServiceAccountsRotateApiKeyResponse(rsp *http.Response) (*MarketplaceCustomerServiceAccountsRotateApiKeyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceCustomerServiceAccountsRotateApiKeyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CustomerServiceAccount
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseMarketplaceGlobalCategoriesRetrieveResponse parses an HTTP response from a MarketplaceGlobalCategoriesRetrieveWithResponse call
 func ParseMarketplaceGlobalCategoriesRetrieveResponse(rsp *http.Response) (*MarketplaceGlobalCategoriesRetrieveResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -185928,6 +186613,32 @@ func ParseMarketplaceProjectServiceAccountsUpdateResponse(rsp *http.Response) (*
 	}
 
 	response := &MarketplaceProjectServiceAccountsUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ProjectServiceAccount
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProjectServiceAccountsRotateApiKeyResponse parses an HTTP response from a MarketplaceProjectServiceAccountsRotateApiKeyWithResponse call
+func ParseMarketplaceProjectServiceAccountsRotateApiKeyResponse(rsp *http.Response) (*MarketplaceProjectServiceAccountsRotateApiKeyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProjectServiceAccountsRotateApiKeyResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -192215,6 +192926,70 @@ func ParseOpenstackPortsUpdateResponse(rsp *http.Response) (*OpenstackPortsUpdat
 		}
 		response.JSON200 = &dest
 
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackPortsDisablePortResponse parses an HTTP response from a OpenstackPortsDisablePortWithResponse call
+func ParseOpenstackPortsDisablePortResponse(rsp *http.Response) (*OpenstackPortsDisablePortResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackPortsDisablePortResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackPortsDisablePortSecurityResponse parses an HTTP response from a OpenstackPortsDisablePortSecurityWithResponse call
+func ParseOpenstackPortsDisablePortSecurityResponse(rsp *http.Response) (*OpenstackPortsDisablePortSecurityResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackPortsDisablePortSecurityResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackPortsEnablePortResponse parses an HTTP response from a OpenstackPortsEnablePortWithResponse call
+func ParseOpenstackPortsEnablePortResponse(rsp *http.Response) (*OpenstackPortsEnablePortResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackPortsEnablePortResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackPortsEnablePortSecurityResponse parses an HTTP response from a OpenstackPortsEnablePortSecurityWithResponse call
+func ParseOpenstackPortsEnablePortSecurityResponse(rsp *http.Response) (*OpenstackPortsEnablePortSecurityResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackPortsEnablePortSecurityResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
 	}
 
 	return response, nil
