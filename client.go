@@ -13007,6 +13007,12 @@ type OpenStackPort struct {
 	Uuid                             *openapi_types.UUID                 `json:"uuid,omitempty"`
 }
 
+// OpenStackPortIPUpdateRequest defines model for OpenStackPortIPUpdateRequest.
+type OpenStackPortIPUpdateRequest struct {
+	IpAddress string  `json:"ip_address"`
+	Subnet    *string `json:"subnet,omitempty"`
+}
+
 // OpenStackPortNestedSecurityGroup defines model for OpenStackPortNestedSecurityGroup.
 type OpenStackPortNestedSecurityGroup struct {
 	Name *string             `json:"name,omitempty"`
@@ -24960,6 +24966,9 @@ type OpenstackPortsEnablePortJSONRequestBody = OpenStackPortRequest
 // OpenstackPortsEnablePortSecurityJSONRequestBody defines body for OpenstackPortsEnablePortSecurity for application/json ContentType.
 type OpenstackPortsEnablePortSecurityJSONRequestBody = OpenStackPortRequest
 
+// OpenstackPortsUpdatePortIpJSONRequestBody defines body for OpenstackPortsUpdatePortIp for application/json ContentType.
+type OpenstackPortsUpdatePortIpJSONRequestBody = OpenStackPortIPUpdateRequest
+
 // OpenstackRoutersSetRoutesJSONRequestBody defines body for OpenstackRoutersSetRoutes for application/json ContentType.
 type OpenstackRoutersSetRoutesJSONRequestBody = OpenStackRouterSetRoutesRequest
 
@@ -30441,6 +30450,11 @@ type ClientInterface interface {
 
 	// OpenstackPortsUnlink request
 	OpenstackPortsUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackPortsUpdatePortIpWithBody request with any body
+	OpenstackPortsUpdatePortIpWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackPortsUpdatePortIp(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsUpdatePortIpJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenstackRoutersList request
 	OpenstackRoutersList(ctx context.Context, params *OpenstackRoutersListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -43635,6 +43649,30 @@ func (c *Client) OpenstackPortsPull(ctx context.Context, uuid openapi_types.UUID
 
 func (c *Client) OpenstackPortsUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenstackPortsUnlinkRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackPortsUpdatePortIpWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackPortsUpdatePortIpRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackPortsUpdatePortIp(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsUpdatePortIpJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackPortsUpdatePortIpRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -101559,6 +101597,53 @@ func NewOpenstackPortsUnlinkRequest(server string, uuid openapi_types.UUID) (*ht
 	return req, nil
 }
 
+// NewOpenstackPortsUpdatePortIpRequest calls the generic OpenstackPortsUpdatePortIp builder with application/json body
+func NewOpenstackPortsUpdatePortIpRequest(server string, uuid openapi_types.UUID, body OpenstackPortsUpdatePortIpJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackPortsUpdatePortIpRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOpenstackPortsUpdatePortIpRequestWithBody generates requests for OpenstackPortsUpdatePortIp with any type of body
+func NewOpenstackPortsUpdatePortIpRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-ports/%s/update_port_ip/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewOpenstackRoutersListRequest generates requests for OpenstackRoutersList
 func NewOpenstackRoutersListRequest(server string, params *OpenstackRoutersListParams) (*http.Request, error) {
 	var err error
@@ -135896,6 +135981,11 @@ type ClientWithResponsesInterface interface {
 	// OpenstackPortsUnlinkWithResponse request
 	OpenstackPortsUnlinkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackPortsUnlinkResponse, error)
 
+	// OpenstackPortsUpdatePortIpWithBodyWithResponse request with any body
+	OpenstackPortsUpdatePortIpWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackPortsUpdatePortIpResponse, error)
+
+	OpenstackPortsUpdatePortIpWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsUpdatePortIpJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackPortsUpdatePortIpResponse, error)
+
 	// OpenstackRoutersListWithResponse request
 	OpenstackRoutersListWithResponse(ctx context.Context, params *OpenstackRoutersListParams, reqEditors ...RequestEditorFn) (*OpenstackRoutersListResponse, error)
 
@@ -152924,6 +153014,27 @@ func (r OpenstackPortsUnlinkResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r OpenstackPortsUnlinkResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackPortsUpdatePortIpResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackPortsUpdatePortIpResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackPortsUpdatePortIpResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -171193,6 +171304,23 @@ func (c *ClientWithResponses) OpenstackPortsUnlinkWithResponse(ctx context.Conte
 		return nil, err
 	}
 	return ParseOpenstackPortsUnlinkResponse(rsp)
+}
+
+// OpenstackPortsUpdatePortIpWithBodyWithResponse request with arbitrary body returning *OpenstackPortsUpdatePortIpResponse
+func (c *ClientWithResponses) OpenstackPortsUpdatePortIpWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackPortsUpdatePortIpResponse, error) {
+	rsp, err := c.OpenstackPortsUpdatePortIpWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackPortsUpdatePortIpResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackPortsUpdatePortIpWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsUpdatePortIpJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackPortsUpdatePortIpResponse, error) {
+	rsp, err := c.OpenstackPortsUpdatePortIp(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackPortsUpdatePortIpResponse(rsp)
 }
 
 // OpenstackRoutersListWithResponse request returning *OpenstackRoutersListResponse
@@ -193019,6 +193147,22 @@ func ParseOpenstackPortsUnlinkResponse(rsp *http.Response) (*OpenstackPortsUnlin
 	}
 
 	response := &OpenstackPortsUnlinkResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackPortsUpdatePortIpResponse parses an HTTP response from a OpenstackPortsUpdatePortIpWithResponse call
+func ParseOpenstackPortsUpdatePortIpResponse(rsp *http.Response) (*OpenstackPortsUpdatePortIpResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackPortsUpdatePortIpResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
