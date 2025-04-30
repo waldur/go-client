@@ -16127,7 +16127,6 @@ type RancherNestedNode struct {
 // RancherNestedNodeRequest defines model for RancherNestedNodeRequest.
 type RancherNestedNodeRequest struct {
 	BackendId        *string              `json:"backend_id,omitempty"`
-	ControlplaneRole *bool                `json:"controlplane_role,omitempty"`
 	Cpu              *int                 `json:"cpu,omitempty"`
 	DataVolumes      *[]DataVolumeRequest `json:"data_volumes,omitempty"`
 	ErrorTraceback   *string              `json:"error_traceback,omitempty"`
