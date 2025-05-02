@@ -885,6 +885,12 @@ const (
 	RobotAccountStatesN6 RobotAccountStates = 6
 )
 
+// Defines values for RoleEnum.
+const (
+	RoleEnumAgent  RoleEnum = "agent"
+	RoleEnumServer RoleEnum = "server"
+)
+
 // Defines values for RoleType.
 const (
 	RoleTypeCall            RoleType = "call"
@@ -894,13 +900,6 @@ const (
 	RoleTypeProject         RoleType = "project"
 	RoleTypeProposal        RoleType = "proposal"
 	RoleTypeServiceProvider RoleType = "service_provider"
-)
-
-// Defines values for RolesEnum.
-const (
-	Controlplane RolesEnum = "controlplane"
-	Etcd         RolesEnum = "etcd"
-	Worker       RolesEnum = "worker"
 )
 
 // Defines values for ServiceSettingsStateEnum.
@@ -10907,7 +10906,7 @@ type KeycloakGroup struct {
 	Role      string     `json:"role"`
 
 	// ScopeName Get the name of the cluster or project
-	ScopeName *string `json:"scope_name,omitempty"`
+	ScopeName *string `json:"scope_name"`
 	ScopeType *string `json:"scope_type,omitempty"`
 
 	// ScopeUuid UUID of the cluster or project
@@ -15942,16 +15941,17 @@ type RancherClusterTemplate struct {
 
 // RancherClusterTemplateNode defines model for RancherClusterTemplateNode.
 type RancherClusterTemplateNode struct {
-	MinRam              int          `json:"min_ram"`
-	MinVcpu             int          `json:"min_vcpu"`
-	PreferredVolumeType *string      `json:"preferred_volume_type,omitempty"`
-	Roles               *[]RolesEnum `json:"roles,omitempty"`
-	SystemVolumeSize    int          `json:"system_volume_size"`
+	MinRam              int      `json:"min_ram"`
+	MinVcpu             int      `json:"min_vcpu"`
+	PreferredVolumeType *string  `json:"preferred_volume_type,omitempty"`
+	Role                RoleEnum `json:"role"`
+	SystemVolumeSize    int      `json:"system_volume_size"`
 }
 
 // RancherCreateNode defines model for RancherCreateNode.
 type RancherCreateNode struct {
-	Cluster string `json:"cluster"`
+	Cluster string   `json:"cluster"`
+	Role    RoleEnum `json:"role"`
 }
 
 // RancherCreateNodeRequest defines model for RancherCreateNodeRequest.
@@ -15961,7 +15961,7 @@ type RancherCreateNodeRequest struct {
 	DataVolumes      *[]DataVolumeRequest `json:"data_volumes,omitempty"`
 	Flavor           *string              `json:"flavor"`
 	Memory           *int                 `json:"memory,omitempty"`
-	Roles            *[]RolesEnum         `json:"roles,omitempty"`
+	Role             RoleEnum             `json:"role"`
 	SshPublicKey     *string              `json:"ssh_public_key,omitempty"`
 	Subnet           *string              `json:"subnet"`
 	SystemVolumeSize *int                 `json:"system_volume_size,omitempty"`
@@ -16099,16 +16099,14 @@ type RancherNestedNamespace struct {
 
 // RancherNestedNode defines model for RancherNestedNode.
 type RancherNestedNode struct {
-	Annotations      *interface{} `json:"annotations,omitempty"`
-	BackendId        *string      `json:"backend_id,omitempty"`
-	ControlplaneRole *bool        `json:"controlplane_role,omitempty"`
-	CpuAllocated     *float64     `json:"cpu_allocated"`
-	CpuTotal         *int         `json:"cpu_total"`
-	Created          *time.Time   `json:"created,omitempty"`
-	DockerVersion    *string      `json:"docker_version,omitempty"`
-	ErrorMessage     *string      `json:"error_message,omitempty"`
-	ErrorTraceback   *string      `json:"error_traceback,omitempty"`
-	EtcdRole         *bool        `json:"etcd_role,omitempty"`
+	Annotations    *interface{} `json:"annotations,omitempty"`
+	BackendId      *string      `json:"backend_id,omitempty"`
+	CpuAllocated   *float64     `json:"cpu_allocated"`
+	CpuTotal       *int         `json:"cpu_total"`
+	Created        *time.Time   `json:"created,omitempty"`
+	DockerVersion  *string      `json:"docker_version,omitempty"`
+	ErrorMessage   *string      `json:"error_message,omitempty"`
+	ErrorTraceback *string      `json:"error_traceback,omitempty"`
 
 	// InitialData Initial data for instance creating.
 	InitialData   *interface{} `json:"initial_data,omitempty"`
@@ -16124,10 +16122,10 @@ type RancherNestedNode struct {
 
 	// RamTotal Total RAM in Mi.
 	RamTotal     *int                `json:"ram_total"`
+	Role         *RoleEnum           `json:"role,omitempty"`
 	RuntimeState *string             `json:"runtime_state,omitempty"`
 	Url          *string             `json:"url,omitempty"`
 	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
-	WorkerRole   *bool               `json:"worker_role,omitempty"`
 }
 
 // RancherNestedNodeRequest defines model for RancherNestedNodeRequest.
@@ -16138,7 +16136,7 @@ type RancherNestedNodeRequest struct {
 	ErrorTraceback   *string              `json:"error_traceback,omitempty"`
 	Flavor           *string              `json:"flavor"`
 	Memory           *int                 `json:"memory,omitempty"`
-	Roles            *[]RolesEnum         `json:"roles,omitempty"`
+	Role             RoleEnum             `json:"role"`
 	Subnet           *string              `json:"subnet"`
 	SystemVolumeSize *int                 `json:"system_volume_size,omitempty"`
 	SystemVolumeType *string              `json:"system_volume_type"`
@@ -16163,12 +16161,10 @@ type RancherNode struct {
 	Cluster                 string              `json:"cluster"`
 	ClusterName             *string             `json:"cluster_name,omitempty"`
 	ClusterUuid             *openapi_types.UUID `json:"cluster_uuid,omitempty"`
-	ControlplaneRole        *bool               `json:"controlplane_role,omitempty"`
 	CpuAllocated            *float64            `json:"cpu_allocated"`
 	CpuTotal                *int                `json:"cpu_total"`
 	Created                 *time.Time          `json:"created,omitempty"`
 	DockerVersion           *string             `json:"docker_version,omitempty"`
-	EtcdRole                *bool               `json:"etcd_role,omitempty"`
 	Instance                string              `json:"instance"`
 	InstanceMarketplaceUuid *openapi_types.UUID `json:"instance_marketplace_uuid,omitempty"`
 	InstanceName            *string             `json:"instance_name,omitempty"`
@@ -16187,13 +16183,13 @@ type RancherNode struct {
 	// RamTotal Total RAM in Mi.
 	RamTotal            *int                `json:"ram_total"`
 	ResourceType        *string             `json:"resource_type,omitempty"`
+	Role                RoleEnum            `json:"role"`
 	RuntimeState        *string             `json:"runtime_state,omitempty"`
 	ServiceSettingsName *string             `json:"service_settings_name,omitempty"`
 	ServiceSettingsUuid *openapi_types.UUID `json:"service_settings_uuid,omitempty"`
 	State               *CoreStates         `json:"state,omitempty"`
 	Url                 *string             `json:"url,omitempty"`
 	Uuid                *openapi_types.UUID `json:"uuid,omitempty"`
-	WorkerRole          *bool               `json:"worker_role,omitempty"`
 }
 
 // RancherProject defines model for RancherProject.
@@ -16300,7 +16296,7 @@ type RancherTemplateBaseQuestion struct {
 	Required    *bool                       `json:"required,omitempty"`
 	ShowIf      *string                     `json:"showIf,omitempty"`
 	Type        RancherTemplateQuestionType `json:"type"`
-	Validate    *interface{}                `json:"validate,omitempty"`
+	Validate    *interface{}                `json:"validate_,omitempty"`
 	Variable    string                      `json:"variable"`
 }
 
@@ -16315,7 +16311,7 @@ type RancherTemplateQuestion struct {
 	ShowSubquestionIf *string                        `json:"showSubquestionIf,omitempty"`
 	Subquestions      *[]RancherTemplateBaseQuestion `json:"subquestions,omitempty"`
 	Type              RancherTemplateQuestionType    `json:"type"`
-	Validate          *interface{}                   `json:"validate,omitempty"`
+	Validate          *interface{}                   `json:"validate_,omitempty"`
 	Variable          string                         `json:"variable"`
 }
 
@@ -17035,6 +17031,9 @@ type RoleDetails struct {
 	Uuid          *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
+// RoleEnum defines model for RoleEnum.
+type RoleEnum string
+
 // RoleModifyRequest defines model for RoleModifyRequest.
 type RoleModifyRequest struct {
 	ContentType   string      `json:"content_type"`
@@ -17073,9 +17072,6 @@ type RoleTemplate struct {
 
 // RoleType defines model for RoleType.
 type RoleType string
-
-// RolesEnum defines model for RolesEnum.
-type RolesEnum string
 
 // RoundReviewer defines model for RoundReviewer.
 type RoundReviewer struct {
