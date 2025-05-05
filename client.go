@@ -8788,10 +8788,10 @@ type BookingResource struct {
 	ParentUuid             *openapi_types.UUID `json:"parent_uuid,omitempty"`
 	Paused                 *bool               `json:"paused,omitempty"`
 	Plan                   *string             `json:"plan,omitempty"`
-	PlanDescription        *string             `json:"plan_description,omitempty"`
-	PlanName               *string             `json:"plan_name,omitempty"`
-	PlanUnit               *BillingUnit        `json:"plan_unit,omitempty"`
-	PlanUuid               *openapi_types.UUID `json:"plan_uuid,omitempty"`
+	PlanDescription        *string             `json:"plan_description"`
+	PlanName               *string             `json:"plan_name"`
+	PlanUnit               *BillingUnit        `json:"plan_unit"`
+	PlanUuid               *openapi_types.UUID `json:"plan_uuid"`
 	Project                *string             `json:"project,omitempty"`
 	ProjectDescription     *string             `json:"project_description,omitempty"`
 
@@ -9866,8 +9866,8 @@ type CustomerPermissionReview struct {
 	CustomerName     *string             `json:"customer_name,omitempty"`
 	CustomerUuid     *openapi_types.UUID `json:"customer_uuid,omitempty"`
 	IsPending        *bool               `json:"is_pending,omitempty"`
-	ReviewerFullName *string             `json:"reviewer_full_name,omitempty"`
-	ReviewerUuid     *openapi_types.UUID `json:"reviewer_uuid,omitempty"`
+	ReviewerFullName *string             `json:"reviewer_full_name"`
+	ReviewerUuid     *openapi_types.UUID `json:"reviewer_uuid"`
 	Url              *string             `json:"url,omitempty"`
 	Uuid             *openapi_types.UUID `json:"uuid,omitempty"`
 }
@@ -10310,8 +10310,8 @@ type FirecrestJob struct {
 	User *string `json:"user"`
 
 	// UserUsername Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
-	UserUsername *string             `json:"user_username,omitempty"`
-	UserUuid     *openapi_types.UUID `json:"user_uuid,omitempty"`
+	UserUsername *string             `json:"user_username"`
+	UserUuid     *openapi_types.UUID `json:"user_uuid"`
 	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
@@ -10770,17 +10770,17 @@ type Issue struct {
 	AddAttachmentIsAvailable *bool               `json:"add_attachment_is_available,omitempty"`
 	AddCommentIsAvailable    *bool               `json:"add_comment_is_available,omitempty"`
 	Assignee                 *string             `json:"assignee"`
-	AssigneeName             *string             `json:"assignee_name,omitempty"`
-	AssigneeUuid             *openapi_types.UUID `json:"assignee_uuid,omitempty"`
+	AssigneeName             *string             `json:"assignee_name"`
+	AssigneeUuid             *openapi_types.UUID `json:"assignee_uuid"`
 	BackendId                *string             `json:"backend_id"`
 	BackendName              *string             `json:"backend_name"`
 	Caller                   *string             `json:"caller"`
-	CallerFullName           *string             `json:"caller_full_name,omitempty"`
-	CallerUuid               *openapi_types.UUID `json:"caller_uuid,omitempty"`
+	CallerFullName           *string             `json:"caller_full_name"`
+	CallerUuid               *openapi_types.UUID `json:"caller_uuid"`
 	Created                  *time.Time          `json:"created,omitempty"`
 	Customer                 *string             `json:"customer"`
-	CustomerName             *string             `json:"customer_name,omitempty"`
-	CustomerUuid             *openapi_types.UUID `json:"customer_uuid,omitempty"`
+	CustomerName             *string             `json:"customer_name"`
+	CustomerUuid             *openapi_types.UUID `json:"customer_uuid"`
 	Description              *string             `json:"description,omitempty"`
 	DestroyIsAvailable       *bool               `json:"destroy_is_available,omitempty"`
 	Feedback                 *NestedFeedback     `json:"feedback,omitempty"`
@@ -10792,12 +10792,12 @@ type Issue struct {
 	Modified          *time.Time          `json:"modified,omitempty"`
 	Priority          *string             `json:"priority,omitempty"`
 	Project           *string             `json:"project"`
-	ProjectName       *string             `json:"project_name,omitempty"`
-	ProjectUuid       *openapi_types.UUID `json:"project_uuid,omitempty"`
+	ProjectName       *string             `json:"project_name"`
+	ProjectUuid       *openapi_types.UUID `json:"project_uuid"`
 	RemoteId          *string             `json:"remote_id"`
 	Reporter          *string             `json:"reporter,omitempty"`
-	ReporterName      *string             `json:"reporter_name,omitempty"`
-	ReporterUuid      *openapi_types.UUID `json:"reporter_uuid,omitempty"`
+	ReporterName      *string             `json:"reporter_name"`
+	ReporterUuid      *openapi_types.UUID `json:"reporter_uuid"`
 	Resolution        *string             `json:"resolution,omitempty"`
 	Resolved          *bool               `json:"resolved"`
 	Resource          *string             `json:"resource,omitempty"`
@@ -12808,7 +12808,7 @@ type OpenStackInstanceSecurityGroupsUpdateRequest struct {
 type OpenStackNestedFloatingIP struct {
 	Address           *string             `json:"address"`
 	PortFixedIps      *[]OpenStackFixedIp `json:"port_fixed_ips,omitempty"`
-	PortMacAddress    *string             `json:"port_mac_address,omitempty"`
+	PortMacAddress    *string             `json:"port_mac_address"`
 	Subnet            *string             `json:"subnet,omitempty"`
 	SubnetCidr        *string             `json:"subnet_cidr,omitempty"`
 	SubnetDescription *string             `json:"subnet_description,omitempty"`
@@ -12838,10 +12838,10 @@ type OpenStackNestedPort struct {
 	FixedIps            *[]OpenStackFixedIp            `json:"fixed_ips,omitempty"`
 	MacAddress          *string                        `json:"mac_address,omitempty"`
 	Subnet              *string                        `json:"subnet"`
-	SubnetCidr          *string                        `json:"subnet_cidr,omitempty"`
-	SubnetDescription   *string                        `json:"subnet_description,omitempty"`
-	SubnetName          *string                        `json:"subnet_name,omitempty"`
-	SubnetUuid          *openapi_types.UUID            `json:"subnet_uuid,omitempty"`
+	SubnetCidr          *string                        `json:"subnet_cidr"`
+	SubnetDescription   *string                        `json:"subnet_description"`
+	SubnetName          *string                        `json:"subnet_name"`
+	SubnetUuid          *openapi_types.UUID            `json:"subnet_uuid"`
 }
 
 // OpenStackNestedPortRequest defines model for OpenStackNestedPortRequest.
@@ -13703,10 +13703,10 @@ type OrderCreate struct {
 	OfferingUuid           *openapi_types.UUID `json:"offering_uuid,omitempty"`
 	Output                 *string             `json:"output,omitempty"`
 	Plan                   *string             `json:"plan,omitempty"`
-	PlanDescription        *string             `json:"plan_description,omitempty"`
-	PlanName               *string             `json:"plan_name,omitempty"`
-	PlanUnit               *BillingUnit        `json:"plan_unit,omitempty"`
-	PlanUuid               *openapi_types.UUID `json:"plan_uuid,omitempty"`
+	PlanDescription        *string             `json:"plan_description"`
+	PlanName               *string             `json:"plan_name"`
+	PlanUnit               *BillingUnit        `json:"plan_unit"`
+	PlanUuid               *openapi_types.UUID `json:"plan_uuid"`
 	Project                string              `json:"project"`
 	ProjectDescription     *string             `json:"project_description,omitempty"`
 	ProjectName            *string             `json:"project_name,omitempty"`
@@ -13797,10 +13797,10 @@ type OrderDetails struct {
 	OldPlanUuid            *openapi_types.UUID `json:"old_plan_uuid"`
 	Output                 *string             `json:"output,omitempty"`
 	Plan                   *string             `json:"plan,omitempty"`
-	PlanDescription        *string             `json:"plan_description,omitempty"`
-	PlanName               *string             `json:"plan_name,omitempty"`
-	PlanUnit               *BillingUnit        `json:"plan_unit,omitempty"`
-	PlanUuid               *openapi_types.UUID `json:"plan_uuid,omitempty"`
+	PlanDescription        *string             `json:"plan_description"`
+	PlanName               *string             `json:"plan_name"`
+	PlanUnit               *BillingUnit        `json:"plan_unit"`
+	PlanUuid               *openapi_types.UUID `json:"plan_uuid"`
 	ProjectDescription     *string             `json:"project_description,omitempty"`
 	ProjectName            *string             `json:"project_name,omitempty"`
 	ProjectSlug            *string             `json:"project_slug,omitempty"`
@@ -14904,8 +14904,8 @@ type Project struct {
 	Slug                     *string                  `json:"slug,omitempty"`
 	StartDate                *openapi_types.Date      `json:"start_date"`
 	Type                     *string                  `json:"type"`
-	TypeName                 *string                  `json:"type_name,omitempty"`
-	TypeUuid                 *openapi_types.UUID      `json:"type_uuid,omitempty"`
+	TypeName                 *string                  `json:"type_name"`
+	TypeUuid                 *openapi_types.UUID      `json:"type_uuid"`
 	Url                      *string                  `json:"url,omitempty"`
 	Uuid                     *openapi_types.UUID      `json:"uuid,omitempty"`
 }
@@ -14989,10 +14989,10 @@ type ProjectEstimatedCostPolicyRequest struct {
 type ProjectPermissionLog struct {
 	Created           *time.Time `json:"created,omitempty"`
 	CreatedBy         *string    `json:"created_by"`
-	CreatedByFullName *string    `json:"created_by_full_name,omitempty"`
+	CreatedByFullName *string    `json:"created_by_full_name"`
 
 	// CreatedByUsername Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
-	CreatedByUsername *string              `json:"created_by_username,omitempty"`
+	CreatedByUsername *string              `json:"created_by_username"`
 	CustomerName      *string              `json:"customer_name,omitempty"`
 	CustomerUuid      *openapi_types.UUID  `json:"customer_uuid,omitempty"`
 	ExpirationTime    *time.Time           `json:"expiration_time"`
@@ -16628,10 +16628,10 @@ type Resource struct {
 	ParentUuid             *openapi_types.UUID `json:"parent_uuid,omitempty"`
 	Paused                 *bool               `json:"paused,omitempty"`
 	Plan                   *string             `json:"plan,omitempty"`
-	PlanDescription        *string             `json:"plan_description,omitempty"`
-	PlanName               *string             `json:"plan_name,omitempty"`
-	PlanUnit               *BillingUnit        `json:"plan_unit,omitempty"`
-	PlanUuid               *openapi_types.UUID `json:"plan_uuid,omitempty"`
+	PlanDescription        *string             `json:"plan_description"`
+	PlanName               *string             `json:"plan_name"`
+	PlanUnit               *BillingUnit        `json:"plan_unit"`
+	PlanUuid               *openapi_types.UUID `json:"plan_uuid"`
 	Project                *string             `json:"project,omitempty"`
 	ProjectDescription     *string             `json:"project_description,omitempty"`
 
@@ -17238,7 +17238,7 @@ type ServiceProviderStatistics struct {
 // ServiceSettings defines model for ServiceSettings.
 type ServiceSettings struct {
 	Customer           *string                 `json:"customer"`
-	CustomerName       *string                 `json:"customer_name,omitempty"`
+	CustomerName       *string                 `json:"customer_name"`
 	CustomerNativeName *string                 `json:"customer_native_name,omitempty"`
 	ErrorMessage       *string                 `json:"error_message,omitempty"`
 	Name               *string                 `json:"name,omitempty"`
