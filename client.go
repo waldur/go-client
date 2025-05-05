@@ -11330,13 +11330,19 @@ type MergedSecretOptions struct {
 	// ArgocdK8sNamespace Namespace where ArgoCD is deployed
 	ArgocdK8sNamespace *string `json:"argocd_k8s_namespace,omitempty"`
 	BackendUrl         *string `json:"backend_url,omitempty"`
-	CloudInitTemplate  *string `json:"cloud_init_template,omitempty"`
+
+	// BaseImageName Base image name
+	BaseImageName     *string `json:"base_image_name,omitempty"`
+	CloudInitTemplate *string `json:"cloud_init_template,omitempty"`
 
 	// Create Script for resource creation
 	Create *string `json:"create,omitempty"`
 
 	// CustomerUuid Organization UUID
 	CustomerUuid *string `json:"customer_uuid,omitempty"`
+
+	// DnsNameservers Default value for new subnets DNS name servers. Should be defined as list.
+	DnsNameservers *[]string `json:"dns_nameservers,omitempty"`
 
 	// Environ Script environment variables
 	Environ *interface{} `json:"environ,omitempty"`
@@ -11419,13 +11425,19 @@ type MergedSecretOptionsRequest struct {
 	// ArgocdK8sNamespace Namespace where ArgoCD is deployed
 	ArgocdK8sNamespace *string `json:"argocd_k8s_namespace,omitempty"`
 	BackendUrl         *string `json:"backend_url,omitempty"`
-	CloudInitTemplate  *string `json:"cloud_init_template,omitempty"`
+
+	// BaseImageName Base image name
+	BaseImageName     *string `json:"base_image_name,omitempty"`
+	CloudInitTemplate *string `json:"cloud_init_template,omitempty"`
 
 	// Create Script for resource creation
 	Create *string `json:"create,omitempty"`
 
 	// CustomerUuid Organization UUID
 	CustomerUuid *string `json:"customer_uuid,omitempty"`
+
+	// DnsNameservers Default value for new subnets DNS name servers. Should be defined as list.
+	DnsNameservers *[]string `json:"dns_nameservers,omitempty"`
 
 	// Environ Script environment variables
 	Environ *interface{} `json:"environ,omitempty"`
@@ -23007,6 +23019,7 @@ type ProposalReviewsListParams struct {
 	// PageSize Number of results to return per page.
 	PageSize     *PageSize                         `form:"page_size,omitempty" json:"page_size,omitempty"`
 	Proposal     *string                           `form:"proposal,omitempty" json:"proposal,omitempty"`
+	ProposalName *string                           `form:"proposal_name,omitempty" json:"proposal_name,omitempty"`
 	ProposalUuid *openapi_types.UUID               `form:"proposal_uuid,omitempty" json:"proposal_uuid,omitempty"`
 	ReviewerUuid *openapi_types.UUID               `form:"reviewer_uuid,omitempty" json:"reviewer_uuid,omitempty"`
 	State        *[]ProposalReviewsListParamsState `form:"state,omitempty" json:"state,omitempty"`
@@ -115165,6 +115178,22 @@ func NewProposalReviewsListRequest(server string, params *ProposalReviewsListPar
 		if params.Proposal != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "proposal", runtime.ParamLocationQuery, *params.Proposal); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProposalName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "proposal_name", runtime.ParamLocationQuery, *params.ProposalName); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
