@@ -8095,7 +8095,7 @@ type AwsInstance struct {
 	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
 	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
-	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options"`
 	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
@@ -8197,7 +8197,7 @@ type AwsVolume struct {
 	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
 	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
-	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options"`
 	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
@@ -8287,7 +8287,7 @@ type AzurePublicIP struct {
 	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
 	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
-	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options"`
 	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
@@ -8337,7 +8337,7 @@ type AzureResourceGroup struct {
 	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
 	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
-	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options"`
 	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
@@ -8390,7 +8390,7 @@ type AzureSqlDatabase struct {
 	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
 	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
-	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options"`
 	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
@@ -8458,7 +8458,7 @@ type AzureSqlServer struct {
 	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
 	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
-	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options"`
 	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
@@ -8526,7 +8526,7 @@ type AzureVirtualMachine struct {
 	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
 	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
-	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options"`
 	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
@@ -8865,6 +8865,7 @@ type CallDocument struct {
 	// File Documentation for call for proposals.
 	File     *string             `json:"file"`
 	FileName *string             `json:"file_name,omitempty"`
+	FileSize *int                `json:"file_size,omitempty"`
 	Uuid     *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
@@ -10002,7 +10003,7 @@ type DigitalOceanDroplet struct {
 	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
 	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
-	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options"`
 	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
@@ -10783,7 +10784,7 @@ type Issue struct {
 	CustomerUuid             *openapi_types.UUID `json:"customer_uuid"`
 	Description              *string             `json:"description,omitempty"`
 	DestroyIsAvailable       *bool               `json:"destroy_is_available,omitempty"`
-	Feedback                 *NestedFeedback     `json:"feedback,omitempty"`
+	Feedback                 *NestedFeedback     `json:"feedback"`
 	FirstResponseSla         *time.Time          `json:"first_response_sla"`
 	Key                      *string             `json:"key,omitempty"`
 
@@ -11180,10 +11181,16 @@ type MergedPluginOptions struct {
 	IsResourceTerminationDateRequired *bool `json:"is_resource_termination_date_required,omitempty"`
 
 	// LatestDateForResourceTermination If set, it will be used as a latest date for resource termination
-	LatestDateForResourceTermination         *openapi_types.Date `json:"latest_date_for_resource_termination,omitempty"`
-	ManagedRancherServerFlavorName           *string             `json:"managed_rancher_server_flavor_name,omitempty"`
-	ManagedRancherServerSystemVolumeSizeGb   *int                `json:"managed_rancher_server_system_volume_size_gb,omitempty"`
-	ManagedRancherServerSystemVolumeTypeName *string             `json:"managed_rancher_server_system_volume_type_name,omitempty"`
+	LatestDateForResourceTermination               *openapi_types.Date `json:"latest_date_for_resource_termination,omitempty"`
+	ManagedRancherLoadBalancerCloudInitTemplate    *string             `json:"managed_rancher_load_balancer_cloud_init_template,omitempty"`
+	ManagedRancherLoadBalancerDataVolumeSizeGb     *int                `json:"managed_rancher_load_balancer_data_volume_size_gb,omitempty"`
+	ManagedRancherLoadBalancerDataVolumeTypeName   *string             `json:"managed_rancher_load_balancer_data_volume_type_name,omitempty"`
+	ManagedRancherLoadBalancerFlavorName           *string             `json:"managed_rancher_load_balancer_flavor_name,omitempty"`
+	ManagedRancherLoadBalancerSystemVolumeSizeGb   *int                `json:"managed_rancher_load_balancer_system_volume_size_gb,omitempty"`
+	ManagedRancherLoadBalancerSystemVolumeTypeName *string             `json:"managed_rancher_load_balancer_system_volume_type_name,omitempty"`
+	ManagedRancherServerFlavorName                 *string             `json:"managed_rancher_server_flavor_name,omitempty"`
+	ManagedRancherServerSystemVolumeSizeGb         *int                `json:"managed_rancher_server_system_volume_size_gb,omitempty"`
+	ManagedRancherServerSystemVolumeTypeName       *string             `json:"managed_rancher_server_system_volume_type_name,omitempty"`
 
 	// MaxInstances Default limit for number of instances in OpenStack tenant
 	MaxInstances *int `json:"max_instances,omitempty"`
@@ -11275,10 +11282,16 @@ type MergedPluginOptionsRequest struct {
 	IsResourceTerminationDateRequired *bool `json:"is_resource_termination_date_required,omitempty"`
 
 	// LatestDateForResourceTermination If set, it will be used as a latest date for resource termination
-	LatestDateForResourceTermination         *openapi_types.Date `json:"latest_date_for_resource_termination,omitempty"`
-	ManagedRancherServerFlavorName           *string             `json:"managed_rancher_server_flavor_name,omitempty"`
-	ManagedRancherServerSystemVolumeSizeGb   *int                `json:"managed_rancher_server_system_volume_size_gb,omitempty"`
-	ManagedRancherServerSystemVolumeTypeName *string             `json:"managed_rancher_server_system_volume_type_name,omitempty"`
+	LatestDateForResourceTermination               *openapi_types.Date `json:"latest_date_for_resource_termination,omitempty"`
+	ManagedRancherLoadBalancerCloudInitTemplate    *string             `json:"managed_rancher_load_balancer_cloud_init_template,omitempty"`
+	ManagedRancherLoadBalancerDataVolumeSizeGb     *int                `json:"managed_rancher_load_balancer_data_volume_size_gb,omitempty"`
+	ManagedRancherLoadBalancerDataVolumeTypeName   *string             `json:"managed_rancher_load_balancer_data_volume_type_name,omitempty"`
+	ManagedRancherLoadBalancerFlavorName           *string             `json:"managed_rancher_load_balancer_flavor_name,omitempty"`
+	ManagedRancherLoadBalancerSystemVolumeSizeGb   *int                `json:"managed_rancher_load_balancer_system_volume_size_gb,omitempty"`
+	ManagedRancherLoadBalancerSystemVolumeTypeName *string             `json:"managed_rancher_load_balancer_system_volume_type_name,omitempty"`
+	ManagedRancherServerFlavorName                 *string             `json:"managed_rancher_server_flavor_name,omitempty"`
+	ManagedRancherServerSystemVolumeSizeGb         *int                `json:"managed_rancher_server_system_volume_size_gb,omitempty"`
+	ManagedRancherServerSystemVolumeTypeName       *string             `json:"managed_rancher_server_system_volume_type_name,omitempty"`
 
 	// MaxInstances Default limit for number of instances in OpenStack tenant
 	MaxInstances *int `json:"max_instances,omitempty"`
@@ -12522,7 +12535,7 @@ type OpenStackBackup struct {
 	MarketplaceCategoryName          *string                       `json:"marketplace_category_name,omitempty"`
 	MarketplaceCategoryUuid          *string                       `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                       `json:"marketplace_offering_name,omitempty"`
-	MarketplaceOfferingPluginOptions *map[string]interface{}       `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingPluginOptions *map[string]interface{}       `json:"marketplace_offering_plugin_options"`
 	MarketplaceOfferingUuid          *string                       `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                       `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                       `json:"marketplace_resource_state,omitempty"`
@@ -12641,7 +12654,7 @@ type OpenStackFloatingIP struct {
 	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
 	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
-	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options"`
 	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
@@ -12735,7 +12748,7 @@ type OpenStackInstance struct {
 	MarketplaceCategoryName          *string                      `json:"marketplace_category_name,omitempty"`
 	MarketplaceCategoryUuid          *string                      `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                      `json:"marketplace_offering_name,omitempty"`
-	MarketplaceOfferingPluginOptions *map[string]interface{}      `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingPluginOptions *map[string]interface{}      `json:"marketplace_offering_plugin_options"`
 	MarketplaceOfferingUuid          *string                      `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                      `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                      `json:"marketplace_resource_state,omitempty"`
@@ -12759,7 +12772,7 @@ type OpenStackInstance struct {
 	ResourceType                *string                         `json:"resource_type,omitempty"`
 	RuntimeState                *string                         `json:"runtime_state,omitempty"`
 	SecurityGroups              *[]OpenStackNestedSecurityGroup `json:"security_groups,omitempty"`
-	ServerGroup                 *OpenStackNestedServerGroup     `json:"server_group,omitempty"`
+	ServerGroup                 *OpenStackNestedServerGroup     `json:"server_group"`
 	ServiceName                 *string                         `json:"service_name,omitempty"`
 	ServiceSettings             *string                         `json:"service_settings,omitempty"`
 	ServiceSettingsErrorMessage *string                         `json:"service_settings_error_message,omitempty"`
@@ -12929,7 +12942,7 @@ type OpenStackNetwork struct {
 	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
 	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
-	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options"`
 	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
@@ -12989,7 +13002,7 @@ type OpenStackPort struct {
 	MarketplaceCategoryName          *string                             `json:"marketplace_category_name,omitempty"`
 	MarketplaceCategoryUuid          *string                             `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                             `json:"marketplace_offering_name,omitempty"`
-	MarketplaceOfferingPluginOptions *map[string]interface{}             `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingPluginOptions *map[string]interface{}             `json:"marketplace_offering_plugin_options"`
 	MarketplaceOfferingUuid          *string                             `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                             `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                             `json:"marketplace_resource_state,omitempty"`
@@ -13065,7 +13078,7 @@ type OpenStackRouter struct {
 	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
 	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
-	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options"`
 	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
@@ -13118,7 +13131,7 @@ type OpenStackSecurityGroup struct {
 	MarketplaceCategoryName          *string                             `json:"marketplace_category_name,omitempty"`
 	MarketplaceCategoryUuid          *string                             `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                             `json:"marketplace_offering_name,omitempty"`
-	MarketplaceOfferingPluginOptions *map[string]interface{}             `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingPluginOptions *map[string]interface{}             `json:"marketplace_offering_plugin_options"`
 	MarketplaceOfferingUuid          *string                             `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                             `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                             `json:"marketplace_resource_state,omitempty"`
@@ -13235,7 +13248,7 @@ type OpenStackServerGroup struct {
 	MarketplaceCategoryName          *string                      `json:"marketplace_category_name,omitempty"`
 	MarketplaceCategoryUuid          *string                      `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                      `json:"marketplace_offering_name,omitempty"`
-	MarketplaceOfferingPluginOptions *map[string]interface{}      `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingPluginOptions *map[string]interface{}      `json:"marketplace_offering_plugin_options"`
 	MarketplaceOfferingUuid          *string                      `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                      `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                      `json:"marketplace_resource_state,omitempty"`
@@ -13299,7 +13312,7 @@ type OpenStackSnapshot struct {
 	MarketplaceCategoryName          *string                         `json:"marketplace_category_name,omitempty"`
 	MarketplaceCategoryUuid          *string                         `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                         `json:"marketplace_offering_name,omitempty"`
-	MarketplaceOfferingPluginOptions *map[string]interface{}         `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingPluginOptions *map[string]interface{}         `json:"marketplace_offering_plugin_options"`
 	MarketplaceOfferingUuid          *string                         `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                         `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                         `json:"marketplace_resource_state,omitempty"`
@@ -13407,7 +13420,7 @@ type OpenStackSubNet struct {
 	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
 	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
-	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options"`
 	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
@@ -13479,7 +13492,7 @@ type OpenStackTenant struct {
 	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
 	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
-	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options"`
 	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
@@ -13576,7 +13589,7 @@ type OpenStackVolume struct {
 	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
 	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
-	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options"`
 	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
@@ -15158,6 +15171,7 @@ type ProposalDocumentation struct {
 	// File Upload supporting documentation in PDF format.
 	File     *string `json:"file"`
 	FileName *string `json:"file_name,omitempty"`
+	FileSize *int    `json:"file_size,omitempty"`
 }
 
 // ProposalDocumentationRequest defines model for ProposalDocumentationRequest.
@@ -15746,7 +15760,7 @@ type RancherApplication struct {
 	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
 	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
-	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options"`
 	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
@@ -15895,7 +15909,7 @@ type RancherCluster struct {
 	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
 	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
-	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options"`
 	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
@@ -16049,7 +16063,7 @@ type RancherIngress struct {
 	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
 	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
-	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options"`
 	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
@@ -16238,7 +16252,7 @@ type RancherService struct {
 	MarketplaceCategoryName          *string                  `json:"marketplace_category_name,omitempty"`
 	MarketplaceCategoryUuid          *string                  `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                  `json:"marketplace_offering_name,omitempty"`
-	MarketplaceOfferingPluginOptions *map[string]interface{}  `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingPluginOptions *map[string]interface{}  `json:"marketplace_offering_plugin_options"`
 	MarketplaceOfferingUuid          *string                  `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                  `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                  `json:"marketplace_resource_state,omitempty"`
@@ -17315,7 +17329,7 @@ type SlurmAllocation struct {
 	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
 	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
-	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options"`
 	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
@@ -17751,7 +17765,7 @@ type VmwareDisk struct {
 	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
 	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
-	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options"`
 	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
@@ -17863,7 +17877,7 @@ type VmwarePort struct {
 	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
 	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
-	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options"`
 	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
@@ -17956,7 +17970,7 @@ type VmwareVirtualMachine struct {
 	MarketplaceCategoryName          *string                       `json:"marketplace_category_name,omitempty"`
 	MarketplaceCategoryUuid          *string                       `json:"marketplace_category_uuid,omitempty"`
 	MarketplaceOfferingName          *string                       `json:"marketplace_offering_name,omitempty"`
-	MarketplaceOfferingPluginOptions *map[string]interface{}       `json:"marketplace_offering_plugin_options,omitempty"`
+	MarketplaceOfferingPluginOptions *map[string]interface{}       `json:"marketplace_offering_plugin_options"`
 	MarketplaceOfferingUuid          *string                       `json:"marketplace_offering_uuid,omitempty"`
 	MarketplacePlanUuid              *string                       `json:"marketplace_plan_uuid,omitempty"`
 	MarketplaceResourceState         *string                       `json:"marketplace_resource_state,omitempty"`
@@ -154583,7 +154597,7 @@ func (r OpenstackVolumesRetypeResponse) StatusCode() int {
 type OpenstackVolumesSnapshotResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *OpenStackSnapshot
+	JSON201      *OpenStackSnapshot
 }
 
 // Status returns HTTPResponse.Status
@@ -194769,12 +194783,12 @@ func ParseOpenstackVolumesSnapshotResponse(rsp *http.Response) (*OpenstackVolume
 	}
 
 	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
 		var dest OpenStackSnapshot
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.JSON201 = &dest
 
 	}
 
