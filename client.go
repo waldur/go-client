@@ -673,9 +673,10 @@ const (
 
 // Defines values for MountPointEnum.
 const (
-	Optmedia01   MountPointEnum = "/opt/media01"
-	Varlibdocker MountPointEnum = "/var/lib/docker"
-	Varlibetcd   MountPointEnum = "/var/lib/etcd"
+	Optmedia01     MountPointEnum = "/opt/media01"
+	Optrke2Storage MountPointEnum = "/opt/rke2_storage"
+	Varlibdocker   MountPointEnum = "/var/lib/docker"
+	Varlibetcd     MountPointEnum = "/var/lib/etcd"
 )
 
 // Defines values for NestedAttributeTypeEnum.
@@ -5276,6 +5277,7 @@ const (
 	OpenstackPortsListParamsFieldServiceSettingsState             OpenstackPortsListParamsField = "service_settings_state"
 	OpenstackPortsListParamsFieldServiceSettingsUuid              OpenstackPortsListParamsField = "service_settings_uuid"
 	OpenstackPortsListParamsFieldState                            OpenstackPortsListParamsField = "state"
+	OpenstackPortsListParamsFieldStatus                           OpenstackPortsListParamsField = "status"
 	OpenstackPortsListParamsFieldTenant                           OpenstackPortsListParamsField = "tenant"
 	OpenstackPortsListParamsFieldTenantName                       OpenstackPortsListParamsField = "tenant_name"
 	OpenstackPortsListParamsFieldTenantUuid                       OpenstackPortsListParamsField = "tenant_uuid"
@@ -5335,6 +5337,7 @@ const (
 	OpenstackPortsRetrieveParamsFieldServiceSettingsState             OpenstackPortsRetrieveParamsField = "service_settings_state"
 	OpenstackPortsRetrieveParamsFieldServiceSettingsUuid              OpenstackPortsRetrieveParamsField = "service_settings_uuid"
 	OpenstackPortsRetrieveParamsFieldState                            OpenstackPortsRetrieveParamsField = "state"
+	OpenstackPortsRetrieveParamsFieldStatus                           OpenstackPortsRetrieveParamsField = "status"
 	OpenstackPortsRetrieveParamsFieldTenant                           OpenstackPortsRetrieveParamsField = "tenant"
 	OpenstackPortsRetrieveParamsFieldTenantName                       OpenstackPortsRetrieveParamsField = "tenant_name"
 	OpenstackPortsRetrieveParamsFieldTenantUuid                       OpenstackPortsRetrieveParamsField = "tenant_uuid"
@@ -8086,20 +8089,20 @@ type AwsInstance struct {
 	ExternalIps                      *[]string               `json:"external_ips,omitempty"`
 	ImageName                        *string                 `json:"image_name,omitempty"`
 	InternalIps                      *[]string               `json:"internal_ips,omitempty"`
-	IsLimitBased                     *bool                   `json:"is_limit_based,omitempty"`
-	IsUsageBased                     *bool                   `json:"is_usage_based,omitempty"`
+	IsLimitBased                     *bool                   `json:"is_limit_based"`
+	IsUsageBased                     *bool                   `json:"is_usage_based"`
 	KeyFingerprint                   *string                 `json:"key_fingerprint,omitempty"`
 	KeyName                          *string                 `json:"key_name,omitempty"`
 	Latitude                         *float64                `json:"latitude"`
 	Longitude                        *float64                `json:"longitude"`
 	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
-	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
-	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
+	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid"`
+	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name"`
 	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options"`
-	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
-	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
-	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
-	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid,omitempty"`
+	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid"`
+	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid"`
+	MarketplaceResourceState         *string                 `json:"marketplace_resource_state"`
+	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid"`
 
 	// MinDisk Minimum disk size in MiB
 	MinDisk *int `json:"min_disk,omitempty"`
@@ -8192,16 +8195,16 @@ type AwsVolume struct {
 	ErrorMessage                     *string                 `json:"error_message,omitempty"`
 	ErrorTraceback                   *string                 `json:"error_traceback,omitempty"`
 	Instance                         *string                 `json:"instance"`
-	IsLimitBased                     *bool                   `json:"is_limit_based,omitempty"`
-	IsUsageBased                     *bool                   `json:"is_usage_based,omitempty"`
+	IsLimitBased                     *bool                   `json:"is_limit_based"`
+	IsUsageBased                     *bool                   `json:"is_usage_based"`
 	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
-	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
-	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
+	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid"`
+	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name"`
 	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options"`
-	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
-	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
-	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
-	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid,omitempty"`
+	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid"`
+	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid"`
+	MarketplaceResourceState         *string                 `json:"marketplace_resource_state"`
+	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid"`
 	Modified                         *time.Time              `json:"modified,omitempty"`
 	Name                             *string                 `json:"name,omitempty"`
 	Project                          *string                 `json:"project,omitempty"`
@@ -8281,17 +8284,17 @@ type AzurePublicIP struct {
 	Description                      *string                 `json:"description,omitempty"`
 	ErrorMessage                     *string                 `json:"error_message,omitempty"`
 	ErrorTraceback                   *string                 `json:"error_traceback,omitempty"`
-	IsLimitBased                     *bool                   `json:"is_limit_based,omitempty"`
-	IsUsageBased                     *bool                   `json:"is_usage_based,omitempty"`
+	IsLimitBased                     *bool                   `json:"is_limit_based"`
+	IsUsageBased                     *bool                   `json:"is_usage_based"`
 	Location                         *string                 `json:"location,omitempty"`
 	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
-	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
-	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
+	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid"`
+	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name"`
 	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options"`
-	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
-	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
-	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
-	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid,omitempty"`
+	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid"`
+	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid"`
+	MarketplaceResourceState         *string                 `json:"marketplace_resource_state"`
+	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid"`
 	Modified                         *time.Time              `json:"modified,omitempty"`
 	Name                             *string                 `json:"name,omitempty"`
 	Project                          *string                 `json:"project,omitempty"`
@@ -8331,17 +8334,17 @@ type AzureResourceGroup struct {
 	Description                      *string                 `json:"description,omitempty"`
 	ErrorMessage                     *string                 `json:"error_message,omitempty"`
 	ErrorTraceback                   *string                 `json:"error_traceback,omitempty"`
-	IsLimitBased                     *bool                   `json:"is_limit_based,omitempty"`
-	IsUsageBased                     *bool                   `json:"is_usage_based,omitempty"`
+	IsLimitBased                     *bool                   `json:"is_limit_based"`
+	IsUsageBased                     *bool                   `json:"is_usage_based"`
 	Location                         *string                 `json:"location,omitempty"`
 	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
-	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
-	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
+	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid"`
+	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name"`
 	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options"`
-	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
-	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
-	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
-	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid,omitempty"`
+	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid"`
+	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid"`
+	MarketplaceResourceState         *string                 `json:"marketplace_resource_state"`
+	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid"`
 	Modified                         *time.Time              `json:"modified,omitempty"`
 	Name                             *string                 `json:"name,omitempty"`
 	Project                          *string                 `json:"project,omitempty"`
@@ -8384,17 +8387,17 @@ type AzureSqlDatabase struct {
 	Description                      *string                 `json:"description,omitempty"`
 	ErrorMessage                     *string                 `json:"error_message,omitempty"`
 	ErrorTraceback                   *string                 `json:"error_traceback,omitempty"`
-	IsLimitBased                     *bool                   `json:"is_limit_based,omitempty"`
-	IsUsageBased                     *bool                   `json:"is_usage_based,omitempty"`
+	IsLimitBased                     *bool                   `json:"is_limit_based"`
+	IsUsageBased                     *bool                   `json:"is_usage_based"`
 	LocationName                     *string                 `json:"location_name,omitempty"`
 	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
-	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
-	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
+	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid"`
+	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name"`
 	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options"`
-	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
-	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
-	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
-	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid,omitempty"`
+	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid"`
+	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid"`
+	MarketplaceResourceState         *string                 `json:"marketplace_resource_state"`
+	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid"`
 	Modified                         *time.Time              `json:"modified,omitempty"`
 	Name                             *string                 `json:"name,omitempty"`
 	Project                          *string                 `json:"project,omitempty"`
@@ -8452,17 +8455,17 @@ type AzureSqlServer struct {
 	ErrorMessage                     *string                 `json:"error_message,omitempty"`
 	ErrorTraceback                   *string                 `json:"error_traceback,omitempty"`
 	Fqdn                             *string                 `json:"fqdn"`
-	IsLimitBased                     *bool                   `json:"is_limit_based,omitempty"`
-	IsUsageBased                     *bool                   `json:"is_usage_based,omitempty"`
+	IsLimitBased                     *bool                   `json:"is_limit_based"`
+	IsUsageBased                     *bool                   `json:"is_usage_based"`
 	LocationName                     *string                 `json:"location_name,omitempty"`
 	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
-	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
-	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
+	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid"`
+	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name"`
 	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options"`
-	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
-	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
-	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
-	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid,omitempty"`
+	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid"`
+	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid"`
+	MarketplaceResourceState         *string                 `json:"marketplace_resource_state"`
+	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid"`
 	Modified                         *time.Time              `json:"modified,omitempty"`
 	Name                             *string                 `json:"name,omitempty"`
 	Password                         *string                 `json:"password,omitempty"`
@@ -8516,21 +8519,21 @@ type AzureVirtualMachine struct {
 	Image                            *string                 `json:"image,omitempty"`
 	ImageName                        *string                 `json:"image_name,omitempty"`
 	InternalIps                      *[]string               `json:"internal_ips,omitempty"`
-	IsLimitBased                     *bool                   `json:"is_limit_based,omitempty"`
-	IsUsageBased                     *bool                   `json:"is_usage_based,omitempty"`
+	IsLimitBased                     *bool                   `json:"is_limit_based"`
+	IsUsageBased                     *bool                   `json:"is_usage_based"`
 	KeyFingerprint                   *string                 `json:"key_fingerprint,omitempty"`
 	KeyName                          *string                 `json:"key_name,omitempty"`
 	Latitude                         *float64                `json:"latitude"`
 	LocationName                     *string                 `json:"location_name,omitempty"`
 	Longitude                        *float64                `json:"longitude"`
 	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
-	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
-	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
+	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid"`
+	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name"`
 	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options"`
-	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
-	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
-	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
-	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid,omitempty"`
+	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid"`
+	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid"`
+	MarketplaceResourceState         *string                 `json:"marketplace_resource_state"`
+	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid"`
 
 	// MinDisk Minimum disk size in MiB
 	MinDisk *int `json:"min_disk,omitempty"`
@@ -9954,6 +9957,7 @@ type CustomerUser struct {
 
 // DataVolumeRequest defines model for DataVolumeRequest.
 type DataVolumeRequest struct {
+	Filesystem *string         `json:"filesystem,omitempty"`
 	MountPoint *MountPointEnum `json:"mount_point,omitempty"`
 	Size       int             `json:"size"`
 	VolumeType *string         `json:"volume_type"`
@@ -9994,20 +9998,20 @@ type DigitalOceanDroplet struct {
 	ExternalIps                      *[]string               `json:"external_ips,omitempty"`
 	ImageName                        *string                 `json:"image_name,omitempty"`
 	InternalIps                      *[]string               `json:"internal_ips,omitempty"`
-	IsLimitBased                     *bool                   `json:"is_limit_based,omitempty"`
-	IsUsageBased                     *bool                   `json:"is_usage_based,omitempty"`
+	IsLimitBased                     *bool                   `json:"is_limit_based"`
+	IsUsageBased                     *bool                   `json:"is_usage_based"`
 	KeyFingerprint                   *string                 `json:"key_fingerprint,omitempty"`
 	KeyName                          *string                 `json:"key_name,omitempty"`
 	Latitude                         *float64                `json:"latitude"`
 	Longitude                        *float64                `json:"longitude"`
 	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
-	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
-	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
+	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid"`
+	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name"`
 	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options"`
-	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
-	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
-	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
-	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid,omitempty"`
+	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid"`
+	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid"`
+	MarketplaceResourceState         *string                 `json:"marketplace_resource_state"`
+	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid"`
 
 	// MinDisk Minimum disk size in MiB
 	MinDisk *int `json:"min_disk,omitempty"`
@@ -11188,9 +11192,13 @@ type MergedPluginOptions struct {
 	ManagedRancherLoadBalancerFlavorName           *string             `json:"managed_rancher_load_balancer_flavor_name,omitempty"`
 	ManagedRancherLoadBalancerSystemVolumeSizeGb   *int                `json:"managed_rancher_load_balancer_system_volume_size_gb,omitempty"`
 	ManagedRancherLoadBalancerSystemVolumeTypeName *string             `json:"managed_rancher_load_balancer_system_volume_type_name,omitempty"`
+	ManagedRancherServerDataVolumeSizeGb           *int                `json:"managed_rancher_server_data_volume_size_gb,omitempty"`
+	ManagedRancherServerDataVolumeTypeName         *string             `json:"managed_rancher_server_data_volume_type_name,omitempty"`
 	ManagedRancherServerFlavorName                 *string             `json:"managed_rancher_server_flavor_name,omitempty"`
 	ManagedRancherServerSystemVolumeSizeGb         *int                `json:"managed_rancher_server_system_volume_size_gb,omitempty"`
 	ManagedRancherServerSystemVolumeTypeName       *string             `json:"managed_rancher_server_system_volume_type_name,omitempty"`
+	ManagedRancherWorkerSystemVolumeSizeGb         *int                `json:"managed_rancher_worker_system_volume_size_gb,omitempty"`
+	ManagedRancherWorkerSystemVolumeTypeName       *string             `json:"managed_rancher_worker_system_volume_type_name,omitempty"`
 
 	// MaxInstances Default limit for number of instances in OpenStack tenant
 	MaxInstances *int `json:"max_instances,omitempty"`
@@ -11289,9 +11297,13 @@ type MergedPluginOptionsRequest struct {
 	ManagedRancherLoadBalancerFlavorName           *string             `json:"managed_rancher_load_balancer_flavor_name,omitempty"`
 	ManagedRancherLoadBalancerSystemVolumeSizeGb   *int                `json:"managed_rancher_load_balancer_system_volume_size_gb,omitempty"`
 	ManagedRancherLoadBalancerSystemVolumeTypeName *string             `json:"managed_rancher_load_balancer_system_volume_type_name,omitempty"`
+	ManagedRancherServerDataVolumeSizeGb           *int                `json:"managed_rancher_server_data_volume_size_gb,omitempty"`
+	ManagedRancherServerDataVolumeTypeName         *string             `json:"managed_rancher_server_data_volume_type_name,omitempty"`
 	ManagedRancherServerFlavorName                 *string             `json:"managed_rancher_server_flavor_name,omitempty"`
 	ManagedRancherServerSystemVolumeSizeGb         *int                `json:"managed_rancher_server_system_volume_size_gb,omitempty"`
 	ManagedRancherServerSystemVolumeTypeName       *string             `json:"managed_rancher_server_system_volume_type_name,omitempty"`
+	ManagedRancherWorkerSystemVolumeSizeGb         *int                `json:"managed_rancher_worker_system_volume_size_gb,omitempty"`
+	ManagedRancherWorkerSystemVolumeTypeName       *string             `json:"managed_rancher_worker_system_volume_type_name,omitempty"`
 
 	// MaxInstances Default limit for number of instances in OpenStack tenant
 	MaxInstances *int `json:"max_instances,omitempty"`
@@ -12527,19 +12539,19 @@ type OpenStackBackup struct {
 	InstanceName            *string                         `json:"instance_name,omitempty"`
 	InstancePorts           *[]OpenStackNestedPort          `json:"instance_ports,omitempty"`
 	InstanceSecurityGroups  *[]OpenStackNestedSecurityGroup `json:"instance_security_groups,omitempty"`
-	IsLimitBased            *bool                           `json:"is_limit_based,omitempty"`
-	IsUsageBased            *bool                           `json:"is_usage_based,omitempty"`
+	IsLimitBased            *bool                           `json:"is_limit_based"`
+	IsUsageBased            *bool                           `json:"is_usage_based"`
 
 	// KeptUntil Guaranteed time of backup retention. If null - keep forever.
 	KeptUntil                        *time.Time                    `json:"kept_until"`
 	MarketplaceCategoryName          *string                       `json:"marketplace_category_name,omitempty"`
-	MarketplaceCategoryUuid          *string                       `json:"marketplace_category_uuid,omitempty"`
-	MarketplaceOfferingName          *string                       `json:"marketplace_offering_name,omitempty"`
+	MarketplaceCategoryUuid          *string                       `json:"marketplace_category_uuid"`
+	MarketplaceOfferingName          *string                       `json:"marketplace_offering_name"`
 	MarketplaceOfferingPluginOptions *map[string]interface{}       `json:"marketplace_offering_plugin_options"`
-	MarketplaceOfferingUuid          *string                       `json:"marketplace_offering_uuid,omitempty"`
-	MarketplacePlanUuid              *string                       `json:"marketplace_plan_uuid,omitempty"`
-	MarketplaceResourceState         *string                       `json:"marketplace_resource_state,omitempty"`
-	MarketplaceResourceUuid          *string                       `json:"marketplace_resource_uuid,omitempty"`
+	MarketplaceOfferingUuid          *string                       `json:"marketplace_offering_uuid"`
+	MarketplacePlanUuid              *string                       `json:"marketplace_plan_uuid"`
+	MarketplaceResourceState         *string                       `json:"marketplace_resource_state"`
+	MarketplaceResourceUuid          *string                       `json:"marketplace_resource_uuid"`
 	Metadata                         *interface{}                  `json:"metadata,omitempty"`
 	Modified                         *time.Time                    `json:"modified,omitempty"`
 	Name                             *string                       `json:"name,omitempty"`
@@ -12649,16 +12661,16 @@ type OpenStackFloatingIP struct {
 	InstanceName                     *string                 `json:"instance_name"`
 	InstanceUrl                      *string                 `json:"instance_url"`
 	InstanceUuid                     *string                 `json:"instance_uuid"`
-	IsLimitBased                     *bool                   `json:"is_limit_based,omitempty"`
-	IsUsageBased                     *bool                   `json:"is_usage_based,omitempty"`
+	IsLimitBased                     *bool                   `json:"is_limit_based"`
+	IsUsageBased                     *bool                   `json:"is_usage_based"`
 	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
-	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
-	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
+	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid"`
+	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name"`
 	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options"`
-	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
-	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
-	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
-	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid,omitempty"`
+	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid"`
+	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid"`
+	MarketplaceResourceState         *string                 `json:"marketplace_resource_state"`
+	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid"`
 	Modified                         *time.Time              `json:"modified,omitempty"`
 	Name                             *string                 `json:"name,omitempty"`
 	Port                             *string                 `json:"port,omitempty"`
@@ -12739,20 +12751,20 @@ type OpenStackInstance struct {
 	HypervisorHostname               *string                      `json:"hypervisor_hostname,omitempty"`
 	ImageName                        *string                      `json:"image_name,omitempty"`
 	InternalIps                      *[]string                    `json:"internal_ips,omitempty"`
-	IsLimitBased                     *bool                        `json:"is_limit_based,omitempty"`
-	IsUsageBased                     *bool                        `json:"is_usage_based,omitempty"`
+	IsLimitBased                     *bool                        `json:"is_limit_based"`
+	IsUsageBased                     *bool                        `json:"is_usage_based"`
 	KeyFingerprint                   *string                      `json:"key_fingerprint,omitempty"`
 	KeyName                          *string                      `json:"key_name,omitempty"`
 	Latitude                         *float64                     `json:"latitude"`
 	Longitude                        *float64                     `json:"longitude"`
 	MarketplaceCategoryName          *string                      `json:"marketplace_category_name,omitempty"`
-	MarketplaceCategoryUuid          *string                      `json:"marketplace_category_uuid,omitempty"`
-	MarketplaceOfferingName          *string                      `json:"marketplace_offering_name,omitempty"`
+	MarketplaceCategoryUuid          *string                      `json:"marketplace_category_uuid"`
+	MarketplaceOfferingName          *string                      `json:"marketplace_offering_name"`
 	MarketplaceOfferingPluginOptions *map[string]interface{}      `json:"marketplace_offering_plugin_options"`
-	MarketplaceOfferingUuid          *string                      `json:"marketplace_offering_uuid,omitempty"`
-	MarketplacePlanUuid              *string                      `json:"marketplace_plan_uuid,omitempty"`
-	MarketplaceResourceState         *string                      `json:"marketplace_resource_state,omitempty"`
-	MarketplaceResourceUuid          *string                      `json:"marketplace_resource_uuid,omitempty"`
+	MarketplaceOfferingUuid          *string                      `json:"marketplace_offering_uuid"`
+	MarketplacePlanUuid              *string                      `json:"marketplace_plan_uuid"`
+	MarketplaceResourceState         *string                      `json:"marketplace_resource_state"`
+	MarketplaceResourceUuid          *string                      `json:"marketplace_resource_uuid"`
 
 	// MinDisk Minimum disk size in MiB
 	MinDisk *int `json:"min_disk,omitempty"`
@@ -12937,16 +12949,16 @@ type OpenStackNetwork struct {
 	ErrorMessage                     *string                 `json:"error_message,omitempty"`
 	ErrorTraceback                   *string                 `json:"error_traceback,omitempty"`
 	IsExternal                       *bool                   `json:"is_external,omitempty"`
-	IsLimitBased                     *bool                   `json:"is_limit_based,omitempty"`
-	IsUsageBased                     *bool                   `json:"is_usage_based,omitempty"`
+	IsLimitBased                     *bool                   `json:"is_limit_based"`
+	IsUsageBased                     *bool                   `json:"is_usage_based"`
 	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
-	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
-	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
+	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid"`
+	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name"`
 	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options"`
-	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
-	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
-	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
-	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid,omitempty"`
+	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid"`
+	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid"`
+	MarketplaceResourceState         *string                 `json:"marketplace_resource_state"`
+	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid"`
 	Modified                         *time.Time              `json:"modified,omitempty"`
 
 	// Mtu The maximum transmission unit (MTU) value to address fragmentation.
@@ -12996,17 +13008,17 @@ type OpenStackPort struct {
 	ErrorTraceback                   *string                             `json:"error_traceback,omitempty"`
 	FixedIps                         *[]OpenStackFixedIp                 `json:"fixed_ips,omitempty"`
 	FloatingIps                      *[]string                           `json:"floating_ips,omitempty"`
-	IsLimitBased                     *bool                               `json:"is_limit_based,omitempty"`
-	IsUsageBased                     *bool                               `json:"is_usage_based,omitempty"`
+	IsLimitBased                     *bool                               `json:"is_limit_based"`
+	IsUsageBased                     *bool                               `json:"is_usage_based"`
 	MacAddress                       *string                             `json:"mac_address,omitempty"`
 	MarketplaceCategoryName          *string                             `json:"marketplace_category_name,omitempty"`
-	MarketplaceCategoryUuid          *string                             `json:"marketplace_category_uuid,omitempty"`
-	MarketplaceOfferingName          *string                             `json:"marketplace_offering_name,omitempty"`
+	MarketplaceCategoryUuid          *string                             `json:"marketplace_category_uuid"`
+	MarketplaceOfferingName          *string                             `json:"marketplace_offering_name"`
 	MarketplaceOfferingPluginOptions *map[string]interface{}             `json:"marketplace_offering_plugin_options"`
-	MarketplaceOfferingUuid          *string                             `json:"marketplace_offering_uuid,omitempty"`
-	MarketplacePlanUuid              *string                             `json:"marketplace_plan_uuid,omitempty"`
-	MarketplaceResourceState         *string                             `json:"marketplace_resource_state,omitempty"`
-	MarketplaceResourceUuid          *string                             `json:"marketplace_resource_uuid,omitempty"`
+	MarketplaceOfferingUuid          *string                             `json:"marketplace_offering_uuid"`
+	MarketplacePlanUuid              *string                             `json:"marketplace_plan_uuid"`
+	MarketplaceResourceState         *string                             `json:"marketplace_resource_state"`
+	MarketplaceResourceUuid          *string                             `json:"marketplace_resource_uuid"`
 	Modified                         *time.Time                          `json:"modified,omitempty"`
 	Name                             *string                             `json:"name,omitempty"`
 	Network                          *string                             `json:"network"`
@@ -13024,6 +13036,7 @@ type OpenStackPort struct {
 	ServiceSettingsState             *string                             `json:"service_settings_state,omitempty"`
 	ServiceSettingsUuid              *openapi_types.UUID                 `json:"service_settings_uuid,omitempty"`
 	State                            *CoreStates                         `json:"state,omitempty"`
+	Status                           *string                             `json:"status"`
 	Tenant                           *string                             `json:"tenant,omitempty"`
 	TenantName                       *string                             `json:"tenant_name,omitempty"`
 	TenantUuid                       *openapi_types.UUID                 `json:"tenant_uuid,omitempty"`
@@ -13073,16 +13086,16 @@ type OpenStackRouter struct {
 	ErrorMessage                     *string                 `json:"error_message,omitempty"`
 	ErrorTraceback                   *string                 `json:"error_traceback,omitempty"`
 	FixedIps                         *[]OpenStackFixedIp     `json:"fixed_ips,omitempty"`
-	IsLimitBased                     *bool                   `json:"is_limit_based,omitempty"`
-	IsUsageBased                     *bool                   `json:"is_usage_based,omitempty"`
+	IsLimitBased                     *bool                   `json:"is_limit_based"`
+	IsUsageBased                     *bool                   `json:"is_usage_based"`
 	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
-	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
-	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
+	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid"`
+	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name"`
 	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options"`
-	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
-	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
-	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
-	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid,omitempty"`
+	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid"`
+	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid"`
+	MarketplaceResourceState         *string                 `json:"marketplace_resource_state"`
+	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid"`
 	Modified                         *time.Time              `json:"modified,omitempty"`
 	Name                             *string                 `json:"name,omitempty"`
 	OfferingExternalIps              *[]string               `json:"offering_external_ips"`
@@ -13126,16 +13139,16 @@ type OpenStackSecurityGroup struct {
 	Description                      *string                             `json:"description,omitempty"`
 	ErrorMessage                     *string                             `json:"error_message,omitempty"`
 	ErrorTraceback                   *string                             `json:"error_traceback,omitempty"`
-	IsLimitBased                     *bool                               `json:"is_limit_based,omitempty"`
-	IsUsageBased                     *bool                               `json:"is_usage_based,omitempty"`
+	IsLimitBased                     *bool                               `json:"is_limit_based"`
+	IsUsageBased                     *bool                               `json:"is_usage_based"`
 	MarketplaceCategoryName          *string                             `json:"marketplace_category_name,omitempty"`
-	MarketplaceCategoryUuid          *string                             `json:"marketplace_category_uuid,omitempty"`
-	MarketplaceOfferingName          *string                             `json:"marketplace_offering_name,omitempty"`
+	MarketplaceCategoryUuid          *string                             `json:"marketplace_category_uuid"`
+	MarketplaceOfferingName          *string                             `json:"marketplace_offering_name"`
 	MarketplaceOfferingPluginOptions *map[string]interface{}             `json:"marketplace_offering_plugin_options"`
-	MarketplaceOfferingUuid          *string                             `json:"marketplace_offering_uuid,omitempty"`
-	MarketplacePlanUuid              *string                             `json:"marketplace_plan_uuid,omitempty"`
-	MarketplaceResourceState         *string                             `json:"marketplace_resource_state,omitempty"`
-	MarketplaceResourceUuid          *string                             `json:"marketplace_resource_uuid,omitempty"`
+	MarketplaceOfferingUuid          *string                             `json:"marketplace_offering_uuid"`
+	MarketplacePlanUuid              *string                             `json:"marketplace_plan_uuid"`
+	MarketplaceResourceState         *string                             `json:"marketplace_resource_state"`
+	MarketplaceResourceUuid          *string                             `json:"marketplace_resource_uuid"`
 	Modified                         *time.Time                          `json:"modified,omitempty"`
 	Name                             *string                             `json:"name,omitempty"`
 	Project                          *string                             `json:"project,omitempty"`
@@ -13243,16 +13256,16 @@ type OpenStackServerGroup struct {
 	ErrorMessage                     *string                      `json:"error_message,omitempty"`
 	ErrorTraceback                   *string                      `json:"error_traceback,omitempty"`
 	Instances                        *[]OpenStackNestedInstance   `json:"instances,omitempty"`
-	IsLimitBased                     *bool                        `json:"is_limit_based,omitempty"`
-	IsUsageBased                     *bool                        `json:"is_usage_based,omitempty"`
+	IsLimitBased                     *bool                        `json:"is_limit_based"`
+	IsUsageBased                     *bool                        `json:"is_usage_based"`
 	MarketplaceCategoryName          *string                      `json:"marketplace_category_name,omitempty"`
-	MarketplaceCategoryUuid          *string                      `json:"marketplace_category_uuid,omitempty"`
-	MarketplaceOfferingName          *string                      `json:"marketplace_offering_name,omitempty"`
+	MarketplaceCategoryUuid          *string                      `json:"marketplace_category_uuid"`
+	MarketplaceOfferingName          *string                      `json:"marketplace_offering_name"`
 	MarketplaceOfferingPluginOptions *map[string]interface{}      `json:"marketplace_offering_plugin_options"`
-	MarketplaceOfferingUuid          *string                      `json:"marketplace_offering_uuid,omitempty"`
-	MarketplacePlanUuid              *string                      `json:"marketplace_plan_uuid,omitempty"`
-	MarketplaceResourceState         *string                      `json:"marketplace_resource_state,omitempty"`
-	MarketplaceResourceUuid          *string                      `json:"marketplace_resource_uuid,omitempty"`
+	MarketplaceOfferingUuid          *string                      `json:"marketplace_offering_uuid"`
+	MarketplacePlanUuid              *string                      `json:"marketplace_plan_uuid"`
+	MarketplaceResourceState         *string                      `json:"marketplace_resource_state"`
+	MarketplaceResourceUuid          *string                      `json:"marketplace_resource_uuid"`
 	Modified                         *time.Time                   `json:"modified,omitempty"`
 	Name                             *string                      `json:"name,omitempty"`
 	Policy                           *OpenStackServerGroup_Policy `json:"policy,omitempty"`
@@ -13304,19 +13317,19 @@ type OpenStackSnapshot struct {
 	Description          *string      `json:"description,omitempty"`
 	ErrorMessage         *string      `json:"error_message,omitempty"`
 	ErrorTraceback       *string      `json:"error_traceback,omitempty"`
-	IsLimitBased         *bool        `json:"is_limit_based,omitempty"`
-	IsUsageBased         *bool        `json:"is_usage_based,omitempty"`
+	IsLimitBased         *bool        `json:"is_limit_based"`
+	IsUsageBased         *bool        `json:"is_usage_based"`
 
 	// KeptUntil Guaranteed time of snapshot retention. If null - keep forever.
 	KeptUntil                        *time.Time                      `json:"kept_until"`
 	MarketplaceCategoryName          *string                         `json:"marketplace_category_name,omitempty"`
-	MarketplaceCategoryUuid          *string                         `json:"marketplace_category_uuid,omitempty"`
-	MarketplaceOfferingName          *string                         `json:"marketplace_offering_name,omitempty"`
+	MarketplaceCategoryUuid          *string                         `json:"marketplace_category_uuid"`
+	MarketplaceOfferingName          *string                         `json:"marketplace_offering_name"`
 	MarketplaceOfferingPluginOptions *map[string]interface{}         `json:"marketplace_offering_plugin_options"`
-	MarketplaceOfferingUuid          *string                         `json:"marketplace_offering_uuid,omitempty"`
-	MarketplacePlanUuid              *string                         `json:"marketplace_plan_uuid,omitempty"`
-	MarketplaceResourceState         *string                         `json:"marketplace_resource_state,omitempty"`
-	MarketplaceResourceUuid          *string                         `json:"marketplace_resource_uuid,omitempty"`
+	MarketplaceOfferingUuid          *string                         `json:"marketplace_offering_uuid"`
+	MarketplacePlanUuid              *string                         `json:"marketplace_plan_uuid"`
+	MarketplaceResourceState         *string                         `json:"marketplace_resource_state"`
+	MarketplaceResourceUuid          *string                         `json:"marketplace_resource_uuid"`
 	Metadata                         *interface{}                    `json:"metadata,omitempty"`
 	Modified                         *time.Time                      `json:"modified,omitempty"`
 	Name                             *string                         `json:"name,omitempty"`
@@ -13415,16 +13428,16 @@ type OpenStackSubNet struct {
 
 	// IsConnected Is subnet connected to the default tenant router.
 	IsConnected                      *bool                   `json:"is_connected,omitempty"`
-	IsLimitBased                     *bool                   `json:"is_limit_based,omitempty"`
-	IsUsageBased                     *bool                   `json:"is_usage_based,omitempty"`
+	IsLimitBased                     *bool                   `json:"is_limit_based"`
+	IsUsageBased                     *bool                   `json:"is_usage_based"`
 	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
-	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
-	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
+	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid"`
+	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name"`
 	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options"`
-	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
-	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
-	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
-	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid,omitempty"`
+	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid"`
+	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid"`
+	MarketplaceResourceState         *string                 `json:"marketplace_resource_state"`
+	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid"`
 	Modified                         *time.Time              `json:"modified,omitempty"`
 	Name                             *string                 `json:"name,omitempty"`
 	Network                          *string                 `json:"network,omitempty"`
@@ -13487,16 +13500,16 @@ type OpenStackTenant struct {
 	ErrorTraceback                   *string                 `json:"error_traceback,omitempty"`
 	ExternalNetworkId                *string                 `json:"external_network_id,omitempty"`
 	InternalNetworkId                *string                 `json:"internal_network_id,omitempty"`
-	IsLimitBased                     *bool                   `json:"is_limit_based,omitempty"`
-	IsUsageBased                     *bool                   `json:"is_usage_based,omitempty"`
+	IsLimitBased                     *bool                   `json:"is_limit_based"`
+	IsUsageBased                     *bool                   `json:"is_usage_based"`
 	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
-	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
-	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
+	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid"`
+	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name"`
 	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options"`
-	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
-	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
-	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
-	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid,omitempty"`
+	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid"`
+	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid"`
+	MarketplaceResourceState         *string                 `json:"marketplace_resource_state"`
+	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid"`
 	Modified                         *time.Time              `json:"modified,omitempty"`
 	Name                             *string                 `json:"name,omitempty"`
 	Project                          *string                 `json:"project,omitempty"`
@@ -13584,16 +13597,16 @@ type OpenStackVolume struct {
 	Instance                         *string                 `json:"instance"`
 	InstanceMarketplaceUuid          *openapi_types.UUID     `json:"instance_marketplace_uuid,omitempty"`
 	InstanceName                     *string                 `json:"instance_name,omitempty"`
-	IsLimitBased                     *bool                   `json:"is_limit_based,omitempty"`
-	IsUsageBased                     *bool                   `json:"is_usage_based,omitempty"`
+	IsLimitBased                     *bool                   `json:"is_limit_based"`
+	IsUsageBased                     *bool                   `json:"is_usage_based"`
 	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
-	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
-	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
+	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid"`
+	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name"`
 	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options"`
-	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
-	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
-	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
-	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid,omitempty"`
+	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid"`
+	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid"`
+	MarketplaceResourceState         *string                 `json:"marketplace_resource_state"`
+	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid"`
 	Metadata                         *interface{}            `json:"metadata,omitempty"`
 	Modified                         *time.Time              `json:"modified,omitempty"`
 	Name                             *string                 `json:"name,omitempty"`
@@ -15755,16 +15768,16 @@ type RancherApplication struct {
 	ErrorMessage                     *string                 `json:"error_message,omitempty"`
 	ErrorTraceback                   *string                 `json:"error_traceback,omitempty"`
 	ExternalUrl                      *string                 `json:"external_url"`
-	IsLimitBased                     *bool                   `json:"is_limit_based,omitempty"`
-	IsUsageBased                     *bool                   `json:"is_usage_based,omitempty"`
+	IsLimitBased                     *bool                   `json:"is_limit_based"`
+	IsUsageBased                     *bool                   `json:"is_usage_based"`
 	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
-	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
-	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
+	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid"`
+	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name"`
 	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options"`
-	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
-	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
-	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
-	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid,omitempty"`
+	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid"`
+	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid"`
+	MarketplaceResourceState         *string                 `json:"marketplace_resource_state"`
+	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid"`
 	Modified                         *time.Time              `json:"modified,omitempty"`
 	Name                             *string                 `json:"name,omitempty"`
 	Namespace                        *string                 `json:"namespace,omitempty"`
@@ -15903,17 +15916,17 @@ type RancherCluster struct {
 
 	// InstallLonghorn Longhorn is a distributed block storage deployed on top of Kubernetes cluster
 	InstallLonghorn                  *bool                   `json:"install_longhorn,omitempty"`
-	IsLimitBased                     *bool                   `json:"is_limit_based,omitempty"`
-	IsUsageBased                     *bool                   `json:"is_usage_based,omitempty"`
+	IsLimitBased                     *bool                   `json:"is_limit_based"`
+	IsUsageBased                     *bool                   `json:"is_usage_based"`
 	ManagementSecurityGroup          *string                 `json:"management_security_group,omitempty"`
 	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
-	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
-	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
+	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid"`
+	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name"`
 	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options"`
-	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
-	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
-	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
-	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid,omitempty"`
+	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid"`
+	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid"`
+	MarketplaceResourceState         *string                 `json:"marketplace_resource_state"`
+	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid"`
 	Modified                         *time.Time              `json:"modified,omitempty"`
 	Name                             *string                 `json:"name,omitempty"`
 	Nodes                            *[]RancherNestedNode    `json:"nodes,omitempty"`
@@ -16058,16 +16071,16 @@ type RancherIngress struct {
 	Description                      *string                 `json:"description,omitempty"`
 	ErrorMessage                     *string                 `json:"error_message,omitempty"`
 	ErrorTraceback                   *string                 `json:"error_traceback,omitempty"`
-	IsLimitBased                     *bool                   `json:"is_limit_based,omitempty"`
-	IsUsageBased                     *bool                   `json:"is_usage_based,omitempty"`
+	IsLimitBased                     *bool                   `json:"is_limit_based"`
+	IsUsageBased                     *bool                   `json:"is_usage_based"`
 	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
-	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
-	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
+	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid"`
+	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name"`
 	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options"`
-	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
-	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
-	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
-	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid,omitempty"`
+	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid"`
+	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid"`
+	MarketplaceResourceState         *string                 `json:"marketplace_resource_state"`
+	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid"`
 	Modified                         *time.Time              `json:"modified,omitempty"`
 	Name                             *string                 `json:"name,omitempty"`
 	Namespace                        *string                 `json:"namespace,omitempty"`
@@ -16247,16 +16260,16 @@ type RancherService struct {
 	Description                      *string                  `json:"description,omitempty"`
 	ErrorMessage                     *string                  `json:"error_message,omitempty"`
 	ErrorTraceback                   *string                  `json:"error_traceback,omitempty"`
-	IsLimitBased                     *bool                    `json:"is_limit_based,omitempty"`
-	IsUsageBased                     *bool                    `json:"is_usage_based,omitempty"`
+	IsLimitBased                     *bool                    `json:"is_limit_based"`
+	IsUsageBased                     *bool                    `json:"is_usage_based"`
 	MarketplaceCategoryName          *string                  `json:"marketplace_category_name,omitempty"`
-	MarketplaceCategoryUuid          *string                  `json:"marketplace_category_uuid,omitempty"`
-	MarketplaceOfferingName          *string                  `json:"marketplace_offering_name,omitempty"`
+	MarketplaceCategoryUuid          *string                  `json:"marketplace_category_uuid"`
+	MarketplaceOfferingName          *string                  `json:"marketplace_offering_name"`
 	MarketplaceOfferingPluginOptions *map[string]interface{}  `json:"marketplace_offering_plugin_options"`
-	MarketplaceOfferingUuid          *string                  `json:"marketplace_offering_uuid,omitempty"`
-	MarketplacePlanUuid              *string                  `json:"marketplace_plan_uuid,omitempty"`
-	MarketplaceResourceState         *string                  `json:"marketplace_resource_state,omitempty"`
-	MarketplaceResourceUuid          *string                  `json:"marketplace_resource_uuid,omitempty"`
+	MarketplaceOfferingUuid          *string                  `json:"marketplace_offering_uuid"`
+	MarketplacePlanUuid              *string                  `json:"marketplace_plan_uuid"`
+	MarketplaceResourceState         *string                  `json:"marketplace_resource_state"`
+	MarketplaceResourceUuid          *string                  `json:"marketplace_resource_uuid"`
 	Modified                         *time.Time               `json:"modified,omitempty"`
 	Name                             *string                  `json:"name,omitempty"`
 	Namespace                        *string                  `json:"namespace,omitempty"`
@@ -17324,16 +17337,16 @@ type SlurmAllocation struct {
 	GpuLimit                         *int                    `json:"gpu_limit,omitempty"`
 	GpuUsage                         *int                    `json:"gpu_usage,omitempty"`
 	IsActive                         *bool                   `json:"is_active,omitempty"`
-	IsLimitBased                     *bool                   `json:"is_limit_based,omitempty"`
-	IsUsageBased                     *bool                   `json:"is_usage_based,omitempty"`
+	IsLimitBased                     *bool                   `json:"is_limit_based"`
+	IsUsageBased                     *bool                   `json:"is_usage_based"`
 	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
-	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
-	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
+	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid"`
+	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name"`
 	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options"`
-	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
-	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
-	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
-	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid,omitempty"`
+	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid"`
+	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid"`
+	MarketplaceResourceState         *string                 `json:"marketplace_resource_state"`
+	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid"`
 	Modified                         *time.Time              `json:"modified,omitempty"`
 	Name                             *string                 `json:"name,omitempty"`
 	Project                          *string                 `json:"project,omitempty"`
@@ -17760,16 +17773,16 @@ type VmwareDisk struct {
 	Description                      *string                 `json:"description,omitempty"`
 	ErrorMessage                     *string                 `json:"error_message,omitempty"`
 	ErrorTraceback                   *string                 `json:"error_traceback,omitempty"`
-	IsLimitBased                     *bool                   `json:"is_limit_based,omitempty"`
-	IsUsageBased                     *bool                   `json:"is_usage_based,omitempty"`
+	IsLimitBased                     *bool                   `json:"is_limit_based"`
+	IsUsageBased                     *bool                   `json:"is_usage_based"`
 	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
-	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
-	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
+	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid"`
+	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name"`
 	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options"`
-	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
-	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
-	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
-	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid,omitempty"`
+	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid"`
+	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid"`
+	MarketplaceResourceState         *string                 `json:"marketplace_resource_state"`
+	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid"`
 	Modified                         *time.Time              `json:"modified,omitempty"`
 	Name                             *string                 `json:"name,omitempty"`
 	Project                          *string                 `json:"project,omitempty"`
@@ -17871,17 +17884,17 @@ type VmwarePort struct {
 	Description                      *string                 `json:"description,omitempty"`
 	ErrorMessage                     *string                 `json:"error_message,omitempty"`
 	ErrorTraceback                   *string                 `json:"error_traceback,omitempty"`
-	IsLimitBased                     *bool                   `json:"is_limit_based,omitempty"`
-	IsUsageBased                     *bool                   `json:"is_usage_based,omitempty"`
+	IsLimitBased                     *bool                   `json:"is_limit_based"`
+	IsUsageBased                     *bool                   `json:"is_usage_based"`
 	MacAddress                       *string                 `json:"mac_address,omitempty"`
 	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
-	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid,omitempty"`
-	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name,omitempty"`
+	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid"`
+	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name"`
 	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options"`
-	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid,omitempty"`
-	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid,omitempty"`
-	MarketplaceResourceState         *string                 `json:"marketplace_resource_state,omitempty"`
-	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid,omitempty"`
+	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid"`
+	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid"`
+	MarketplaceResourceState         *string                 `json:"marketplace_resource_state"`
+	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid"`
 	Modified                         *time.Time              `json:"modified,omitempty"`
 	Name                             *string                 `json:"name,omitempty"`
 	Network                          *string                 `json:"network,omitempty"`
@@ -17965,16 +17978,16 @@ type VmwareVirtualMachine struct {
 	GuestOs                          *VmwareVirtualMachine_GuestOs `json:"guest_os"`
 	GuestOsName                      *string                       `json:"guest_os_name,omitempty"`
 	GuestPowerState                  *GuestPowerStateEnum          `json:"guest_power_state,omitempty"`
-	IsLimitBased                     *bool                         `json:"is_limit_based,omitempty"`
-	IsUsageBased                     *bool                         `json:"is_usage_based,omitempty"`
+	IsLimitBased                     *bool                         `json:"is_limit_based"`
+	IsUsageBased                     *bool                         `json:"is_usage_based"`
 	MarketplaceCategoryName          *string                       `json:"marketplace_category_name,omitempty"`
-	MarketplaceCategoryUuid          *string                       `json:"marketplace_category_uuid,omitempty"`
-	MarketplaceOfferingName          *string                       `json:"marketplace_offering_name,omitempty"`
+	MarketplaceCategoryUuid          *string                       `json:"marketplace_category_uuid"`
+	MarketplaceOfferingName          *string                       `json:"marketplace_offering_name"`
 	MarketplaceOfferingPluginOptions *map[string]interface{}       `json:"marketplace_offering_plugin_options"`
-	MarketplaceOfferingUuid          *string                       `json:"marketplace_offering_uuid,omitempty"`
-	MarketplacePlanUuid              *string                       `json:"marketplace_plan_uuid,omitempty"`
-	MarketplaceResourceState         *string                       `json:"marketplace_resource_state,omitempty"`
-	MarketplaceResourceUuid          *string                       `json:"marketplace_resource_uuid,omitempty"`
+	MarketplaceOfferingUuid          *string                       `json:"marketplace_offering_uuid"`
+	MarketplacePlanUuid              *string                       `json:"marketplace_plan_uuid"`
+	MarketplaceResourceState         *string                       `json:"marketplace_resource_state"`
+	MarketplaceResourceUuid          *string                       `json:"marketplace_resource_uuid"`
 	Modified                         *time.Time                    `json:"modified,omitempty"`
 	Name                             *string                       `json:"name,omitempty"`
 	Ports                            *[]VmwareNestedPort           `json:"ports,omitempty"`
