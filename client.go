@@ -24995,18 +24995,6 @@ type OpenstackPortsPartialUpdateJSONRequestBody = PatchedOpenStackPortRequest
 // OpenstackPortsUpdateJSONRequestBody defines body for OpenstackPortsUpdate for application/json ContentType.
 type OpenstackPortsUpdateJSONRequestBody = OpenStackPortRequest
 
-// OpenstackPortsDisablePortJSONRequestBody defines body for OpenstackPortsDisablePort for application/json ContentType.
-type OpenstackPortsDisablePortJSONRequestBody = OpenStackPortRequest
-
-// OpenstackPortsDisablePortSecurityJSONRequestBody defines body for OpenstackPortsDisablePortSecurity for application/json ContentType.
-type OpenstackPortsDisablePortSecurityJSONRequestBody = OpenStackPortRequest
-
-// OpenstackPortsEnablePortJSONRequestBody defines body for OpenstackPortsEnablePort for application/json ContentType.
-type OpenstackPortsEnablePortJSONRequestBody = OpenStackPortRequest
-
-// OpenstackPortsEnablePortSecurityJSONRequestBody defines body for OpenstackPortsEnablePortSecurity for application/json ContentType.
-type OpenstackPortsEnablePortSecurityJSONRequestBody = OpenStackPortRequest
-
 // OpenstackPortsUpdatePortIpJSONRequestBody defines body for OpenstackPortsUpdatePortIp for application/json ContentType.
 type OpenstackPortsUpdatePortIpJSONRequestBody = OpenStackPortIPUpdateRequest
 
@@ -30466,25 +30454,17 @@ type ClientInterface interface {
 
 	OpenstackPortsUpdate(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// OpenstackPortsDisablePortWithBody request with any body
-	OpenstackPortsDisablePortWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// OpenstackPortsDisablePort request
+	OpenstackPortsDisablePort(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	OpenstackPortsDisablePort(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsDisablePortJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// OpenstackPortsDisablePortSecurity request
+	OpenstackPortsDisablePortSecurity(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// OpenstackPortsDisablePortSecurityWithBody request with any body
-	OpenstackPortsDisablePortSecurityWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// OpenstackPortsEnablePort request
+	OpenstackPortsEnablePort(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	OpenstackPortsDisablePortSecurity(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsDisablePortSecurityJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// OpenstackPortsEnablePortWithBody request with any body
-	OpenstackPortsEnablePortWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	OpenstackPortsEnablePort(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsEnablePortJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// OpenstackPortsEnablePortSecurityWithBody request with any body
-	OpenstackPortsEnablePortSecurityWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	OpenstackPortsEnablePortSecurity(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsEnablePortSecurityJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// OpenstackPortsEnablePortSecurity request
+	OpenstackPortsEnablePortSecurity(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenstackPortsPull request
 	OpenstackPortsPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -43580,8 +43560,8 @@ func (c *Client) OpenstackPortsUpdate(ctx context.Context, uuid openapi_types.UU
 	return c.Client.Do(req)
 }
 
-func (c *Client) OpenstackPortsDisablePortWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOpenstackPortsDisablePortRequestWithBody(c.Server, uuid, contentType, body)
+func (c *Client) OpenstackPortsDisablePort(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackPortsDisablePortRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -43592,8 +43572,8 @@ func (c *Client) OpenstackPortsDisablePortWithBody(ctx context.Context, uuid ope
 	return c.Client.Do(req)
 }
 
-func (c *Client) OpenstackPortsDisablePort(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsDisablePortJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOpenstackPortsDisablePortRequest(c.Server, uuid, body)
+func (c *Client) OpenstackPortsDisablePortSecurity(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackPortsDisablePortSecurityRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -43604,8 +43584,8 @@ func (c *Client) OpenstackPortsDisablePort(ctx context.Context, uuid openapi_typ
 	return c.Client.Do(req)
 }
 
-func (c *Client) OpenstackPortsDisablePortSecurityWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOpenstackPortsDisablePortSecurityRequestWithBody(c.Server, uuid, contentType, body)
+func (c *Client) OpenstackPortsEnablePort(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackPortsEnablePortRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -43616,56 +43596,8 @@ func (c *Client) OpenstackPortsDisablePortSecurityWithBody(ctx context.Context, 
 	return c.Client.Do(req)
 }
 
-func (c *Client) OpenstackPortsDisablePortSecurity(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsDisablePortSecurityJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOpenstackPortsDisablePortSecurityRequest(c.Server, uuid, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) OpenstackPortsEnablePortWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOpenstackPortsEnablePortRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) OpenstackPortsEnablePort(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsEnablePortJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOpenstackPortsEnablePortRequest(c.Server, uuid, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) OpenstackPortsEnablePortSecurityWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOpenstackPortsEnablePortSecurityRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) OpenstackPortsEnablePortSecurity(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsEnablePortSecurityJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOpenstackPortsEnablePortSecurityRequest(c.Server, uuid, body)
+func (c *Client) OpenstackPortsEnablePortSecurity(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackPortsEnablePortSecurityRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -101382,19 +101314,8 @@ func NewOpenstackPortsUpdateRequestWithBody(server string, uuid openapi_types.UU
 	return req, nil
 }
 
-// NewOpenstackPortsDisablePortRequest calls the generic OpenstackPortsDisablePort builder with application/json body
-func NewOpenstackPortsDisablePortRequest(server string, uuid openapi_types.UUID, body OpenstackPortsDisablePortJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewOpenstackPortsDisablePortRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewOpenstackPortsDisablePortRequestWithBody generates requests for OpenstackPortsDisablePort with any type of body
-func NewOpenstackPortsDisablePortRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+// NewOpenstackPortsDisablePortRequest generates requests for OpenstackPortsDisablePort
+func NewOpenstackPortsDisablePortRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -101419,29 +101340,16 @@ func NewOpenstackPortsDisablePortRequestWithBody(server string, uuid openapi_typ
 		return nil, err
 	}
 
-	req, err := http.NewRequest("POST", queryURL.String(), body)
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
-
-	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
 
-// NewOpenstackPortsDisablePortSecurityRequest calls the generic OpenstackPortsDisablePortSecurity builder with application/json body
-func NewOpenstackPortsDisablePortSecurityRequest(server string, uuid openapi_types.UUID, body OpenstackPortsDisablePortSecurityJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewOpenstackPortsDisablePortSecurityRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewOpenstackPortsDisablePortSecurityRequestWithBody generates requests for OpenstackPortsDisablePortSecurity with any type of body
-func NewOpenstackPortsDisablePortSecurityRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+// NewOpenstackPortsDisablePortSecurityRequest generates requests for OpenstackPortsDisablePortSecurity
+func NewOpenstackPortsDisablePortSecurityRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -101466,29 +101374,16 @@ func NewOpenstackPortsDisablePortSecurityRequestWithBody(server string, uuid ope
 		return nil, err
 	}
 
-	req, err := http.NewRequest("POST", queryURL.String(), body)
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
-
-	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
 
-// NewOpenstackPortsEnablePortRequest calls the generic OpenstackPortsEnablePort builder with application/json body
-func NewOpenstackPortsEnablePortRequest(server string, uuid openapi_types.UUID, body OpenstackPortsEnablePortJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewOpenstackPortsEnablePortRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewOpenstackPortsEnablePortRequestWithBody generates requests for OpenstackPortsEnablePort with any type of body
-func NewOpenstackPortsEnablePortRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+// NewOpenstackPortsEnablePortRequest generates requests for OpenstackPortsEnablePort
+func NewOpenstackPortsEnablePortRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -101513,29 +101408,16 @@ func NewOpenstackPortsEnablePortRequestWithBody(server string, uuid openapi_type
 		return nil, err
 	}
 
-	req, err := http.NewRequest("POST", queryURL.String(), body)
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
-
-	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
 
-// NewOpenstackPortsEnablePortSecurityRequest calls the generic OpenstackPortsEnablePortSecurity builder with application/json body
-func NewOpenstackPortsEnablePortSecurityRequest(server string, uuid openapi_types.UUID, body OpenstackPortsEnablePortSecurityJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewOpenstackPortsEnablePortSecurityRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewOpenstackPortsEnablePortSecurityRequestWithBody generates requests for OpenstackPortsEnablePortSecurity with any type of body
-func NewOpenstackPortsEnablePortSecurityRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+// NewOpenstackPortsEnablePortSecurityRequest generates requests for OpenstackPortsEnablePortSecurity
+func NewOpenstackPortsEnablePortSecurityRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -101560,12 +101442,10 @@ func NewOpenstackPortsEnablePortSecurityRequestWithBody(server string, uuid open
 		return nil, err
 	}
 
-	req, err := http.NewRequest("POST", queryURL.String(), body)
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
-
-	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -136012,25 +135892,17 @@ type ClientWithResponsesInterface interface {
 
 	OpenstackPortsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackPortsUpdateResponse, error)
 
-	// OpenstackPortsDisablePortWithBodyWithResponse request with any body
-	OpenstackPortsDisablePortWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackPortsDisablePortResponse, error)
+	// OpenstackPortsDisablePortWithResponse request
+	OpenstackPortsDisablePortWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackPortsDisablePortResponse, error)
 
-	OpenstackPortsDisablePortWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsDisablePortJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackPortsDisablePortResponse, error)
+	// OpenstackPortsDisablePortSecurityWithResponse request
+	OpenstackPortsDisablePortSecurityWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackPortsDisablePortSecurityResponse, error)
 
-	// OpenstackPortsDisablePortSecurityWithBodyWithResponse request with any body
-	OpenstackPortsDisablePortSecurityWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackPortsDisablePortSecurityResponse, error)
+	// OpenstackPortsEnablePortWithResponse request
+	OpenstackPortsEnablePortWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackPortsEnablePortResponse, error)
 
-	OpenstackPortsDisablePortSecurityWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsDisablePortSecurityJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackPortsDisablePortSecurityResponse, error)
-
-	// OpenstackPortsEnablePortWithBodyWithResponse request with any body
-	OpenstackPortsEnablePortWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackPortsEnablePortResponse, error)
-
-	OpenstackPortsEnablePortWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsEnablePortJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackPortsEnablePortResponse, error)
-
-	// OpenstackPortsEnablePortSecurityWithBodyWithResponse request with any body
-	OpenstackPortsEnablePortSecurityWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackPortsEnablePortSecurityResponse, error)
-
-	OpenstackPortsEnablePortSecurityWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsEnablePortSecurityJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackPortsEnablePortSecurityResponse, error)
+	// OpenstackPortsEnablePortSecurityWithResponse request
+	OpenstackPortsEnablePortSecurityWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackPortsEnablePortSecurityResponse, error)
 
 	// OpenstackPortsPullWithResponse request
 	OpenstackPortsPullWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackPortsPullResponse, error)
@@ -171277,68 +171149,36 @@ func (c *ClientWithResponses) OpenstackPortsUpdateWithResponse(ctx context.Conte
 	return ParseOpenstackPortsUpdateResponse(rsp)
 }
 
-// OpenstackPortsDisablePortWithBodyWithResponse request with arbitrary body returning *OpenstackPortsDisablePortResponse
-func (c *ClientWithResponses) OpenstackPortsDisablePortWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackPortsDisablePortResponse, error) {
-	rsp, err := c.OpenstackPortsDisablePortWithBody(ctx, uuid, contentType, body, reqEditors...)
+// OpenstackPortsDisablePortWithResponse request returning *OpenstackPortsDisablePortResponse
+func (c *ClientWithResponses) OpenstackPortsDisablePortWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackPortsDisablePortResponse, error) {
+	rsp, err := c.OpenstackPortsDisablePort(ctx, uuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseOpenstackPortsDisablePortResponse(rsp)
 }
 
-func (c *ClientWithResponses) OpenstackPortsDisablePortWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsDisablePortJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackPortsDisablePortResponse, error) {
-	rsp, err := c.OpenstackPortsDisablePort(ctx, uuid, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseOpenstackPortsDisablePortResponse(rsp)
-}
-
-// OpenstackPortsDisablePortSecurityWithBodyWithResponse request with arbitrary body returning *OpenstackPortsDisablePortSecurityResponse
-func (c *ClientWithResponses) OpenstackPortsDisablePortSecurityWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackPortsDisablePortSecurityResponse, error) {
-	rsp, err := c.OpenstackPortsDisablePortSecurityWithBody(ctx, uuid, contentType, body, reqEditors...)
+// OpenstackPortsDisablePortSecurityWithResponse request returning *OpenstackPortsDisablePortSecurityResponse
+func (c *ClientWithResponses) OpenstackPortsDisablePortSecurityWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackPortsDisablePortSecurityResponse, error) {
+	rsp, err := c.OpenstackPortsDisablePortSecurity(ctx, uuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseOpenstackPortsDisablePortSecurityResponse(rsp)
 }
 
-func (c *ClientWithResponses) OpenstackPortsDisablePortSecurityWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsDisablePortSecurityJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackPortsDisablePortSecurityResponse, error) {
-	rsp, err := c.OpenstackPortsDisablePortSecurity(ctx, uuid, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseOpenstackPortsDisablePortSecurityResponse(rsp)
-}
-
-// OpenstackPortsEnablePortWithBodyWithResponse request with arbitrary body returning *OpenstackPortsEnablePortResponse
-func (c *ClientWithResponses) OpenstackPortsEnablePortWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackPortsEnablePortResponse, error) {
-	rsp, err := c.OpenstackPortsEnablePortWithBody(ctx, uuid, contentType, body, reqEditors...)
+// OpenstackPortsEnablePortWithResponse request returning *OpenstackPortsEnablePortResponse
+func (c *ClientWithResponses) OpenstackPortsEnablePortWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackPortsEnablePortResponse, error) {
+	rsp, err := c.OpenstackPortsEnablePort(ctx, uuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseOpenstackPortsEnablePortResponse(rsp)
 }
 
-func (c *ClientWithResponses) OpenstackPortsEnablePortWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsEnablePortJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackPortsEnablePortResponse, error) {
-	rsp, err := c.OpenstackPortsEnablePort(ctx, uuid, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseOpenstackPortsEnablePortResponse(rsp)
-}
-
-// OpenstackPortsEnablePortSecurityWithBodyWithResponse request with arbitrary body returning *OpenstackPortsEnablePortSecurityResponse
-func (c *ClientWithResponses) OpenstackPortsEnablePortSecurityWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackPortsEnablePortSecurityResponse, error) {
-	rsp, err := c.OpenstackPortsEnablePortSecurityWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseOpenstackPortsEnablePortSecurityResponse(rsp)
-}
-
-func (c *ClientWithResponses) OpenstackPortsEnablePortSecurityWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackPortsEnablePortSecurityJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackPortsEnablePortSecurityResponse, error) {
-	rsp, err := c.OpenstackPortsEnablePortSecurity(ctx, uuid, body, reqEditors...)
+// OpenstackPortsEnablePortSecurityWithResponse request returning *OpenstackPortsEnablePortSecurityResponse
+func (c *ClientWithResponses) OpenstackPortsEnablePortSecurityWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackPortsEnablePortSecurityResponse, error) {
+	rsp, err := c.OpenstackPortsEnablePortSecurity(ctx, uuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
