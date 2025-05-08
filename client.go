@@ -6673,6 +6673,7 @@ const (
 	RancherClustersListParamsFieldTenantUuid                       RancherClustersListParamsField = "tenant_uuid"
 	RancherClustersListParamsFieldUrl                              RancherClustersListParamsField = "url"
 	RancherClustersListParamsFieldUuid                             RancherClustersListParamsField = "uuid"
+	RancherClustersListParamsFieldVmProject                        RancherClustersListParamsField = "vm_project"
 )
 
 // Defines values for RancherClustersListParamsState.
@@ -6731,6 +6732,7 @@ const (
 	RancherClustersRetrieveParamsFieldTenantUuid                       RancherClustersRetrieveParamsField = "tenant_uuid"
 	RancherClustersRetrieveParamsFieldUrl                              RancherClustersRetrieveParamsField = "url"
 	RancherClustersRetrieveParamsFieldUuid                             RancherClustersRetrieveParamsField = "uuid"
+	RancherClustersRetrieveParamsFieldVmProject                        RancherClustersRetrieveParamsField = "vm_project"
 )
 
 // Defines values for RancherIngressesListParamsField.
@@ -14513,6 +14515,7 @@ type PatchedRancherClusterRequest struct {
 	InstallLonghorn *bool   `json:"install_longhorn,omitempty"`
 	Name            *string `json:"name,omitempty"`
 	SshPublicKey    *string `json:"ssh_public_key,omitempty"`
+	VmProject       *string `json:"vm_project"`
 }
 
 // PatchedRancherHPARequest defines model for PatchedRancherHPARequest.
@@ -15945,6 +15948,7 @@ type RancherCluster struct {
 	TenantUuid                       *openapi_types.UUID     `json:"tenant_uuid,omitempty"`
 	Url                              *string                 `json:"url,omitempty"`
 	Uuid                             *openapi_types.UUID     `json:"uuid,omitempty"`
+	VmProject                        *string                 `json:"vm_project"`
 }
 
 // RancherClusterReference defines model for RancherClusterReference.
@@ -15966,6 +15970,7 @@ type RancherClusterRequest struct {
 	ServiceSettings string                     `json:"service_settings"`
 	SshPublicKey    *string                    `json:"ssh_public_key,omitempty"`
 	Tenant          string                     `json:"tenant"`
+	VmProject       *string                    `json:"vm_project"`
 }
 
 // RancherClusterTemplate defines model for RancherClusterTemplate.
