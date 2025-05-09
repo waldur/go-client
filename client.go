@@ -22048,6 +22048,7 @@ type OpenstackPortsListParams struct {
 
 	// PageSize Number of results to return per page.
 	PageSize   *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Query      *string             `form:"query,omitempty" json:"query,omitempty"`
 	Tenant     *string             `form:"tenant,omitempty" json:"tenant,omitempty"`
 	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
 }
@@ -101034,6 +101035,22 @@ func NewOpenstackPortsListRequest(server string, params *OpenstackPortsListParam
 		if params.PageSize != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "query", runtime.ParamLocationQuery, *params.Query); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
