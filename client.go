@@ -15969,7 +15969,7 @@ type RancherClusterRequest struct {
 	Project         string                     `json:"project"`
 	ServiceSettings string                     `json:"service_settings"`
 	SshPublicKey    *string                    `json:"ssh_public_key,omitempty"`
-	Tenant          string                     `json:"tenant"`
+	Tenant          *string                    `json:"tenant,omitempty"`
 	VmProject       *string                    `json:"vm_project"`
 }
 
@@ -15994,8 +15994,9 @@ type RancherClusterTemplateNode struct {
 
 // RancherCreateNode defines model for RancherCreateNode.
 type RancherCreateNode struct {
-	Cluster string   `json:"cluster"`
-	Role    RoleEnum `json:"role"`
+	Cluster string              `json:"cluster"`
+	Role    RoleEnum            `json:"role"`
+	Uuid    *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // RancherCreateNodeRequest defines model for RancherCreateNodeRequest.
@@ -16010,6 +16011,7 @@ type RancherCreateNodeRequest struct {
 	Subnet           *string              `json:"subnet"`
 	SystemVolumeSize *int                 `json:"system_volume_size,omitempty"`
 	SystemVolumeType *string              `json:"system_volume_type"`
+	Tenant           *string              `json:"tenant,omitempty"`
 }
 
 // RancherHPA defines model for RancherHPA.
@@ -16184,6 +16186,7 @@ type RancherNestedNodeRequest struct {
 	Subnet           *string              `json:"subnet"`
 	SystemVolumeSize *int                 `json:"system_volume_size,omitempty"`
 	SystemVolumeType *string              `json:"system_volume_type"`
+	Tenant           *string              `json:"tenant,omitempty"`
 }
 
 // RancherNestedWorkload defines model for RancherNestedWorkload.
