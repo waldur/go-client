@@ -11579,6 +11579,8 @@ type MigrationDetails struct {
 	DstResourceName   *string             `json:"dst_resource_name,omitempty"`
 	DstResourceState  *string             `json:"dst_resource_state,omitempty"`
 	DstResourceUuid   *openapi_types.UUID `json:"dst_resource_uuid,omitempty"`
+	ErrorMessage      *string             `json:"error_message,omitempty"`
+	ErrorTraceback    *string             `json:"error_traceback,omitempty"`
 	Mappings          Mapping             `json:"mappings"`
 	Modified          *time.Time          `json:"modified,omitempty"`
 	SrcOfferingName   *string             `json:"src_offering_name,omitempty"`
@@ -11591,7 +11593,9 @@ type MigrationDetails struct {
 
 // MigrationDetailsRequest defines model for MigrationDetailsRequest.
 type MigrationDetailsRequest struct {
-	Mappings MappingRequest `json:"mappings"`
+	ErrorMessage   *string        `json:"error_message,omitempty"`
+	ErrorTraceback *string        `json:"error_traceback,omitempty"`
+	Mappings       MappingRequest `json:"mappings"`
 }
 
 // MinimalConsumptionLogicEnum defines model for MinimalConsumptionLogicEnum.
@@ -14208,7 +14212,9 @@ type PatchedMessageTemplateRequest struct {
 
 // PatchedMigrationDetailsRequest defines model for PatchedMigrationDetailsRequest.
 type PatchedMigrationDetailsRequest struct {
-	Mappings *MappingRequest `json:"mappings,omitempty"`
+	ErrorMessage   *string         `json:"error_message,omitempty"`
+	ErrorTraceback *string         `json:"error_traceback,omitempty"`
+	Mappings       *MappingRequest `json:"mappings,omitempty"`
 }
 
 // PatchedNotificationRequest defines model for PatchedNotificationRequest.
