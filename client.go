@@ -10925,13 +10925,16 @@ type KeycloakUserGroupMembership struct {
 	Created *time.Time `json:"created,omitempty"`
 
 	// Email User's email for notifications
-	Email          openapi_types.Email               `json:"email"`
-	ErrorMessage   *string                           `json:"error_message,omitempty"`
-	ErrorTraceback *string                           `json:"error_traceback,omitempty"`
-	FirstName      *string                           `json:"first_name,omitempty"`
-	Group          *string                           `json:"group,omitempty"`
-	GroupName      *string                           `json:"group_name,omitempty"`
-	GroupRole      *string                           `json:"group_role,omitempty"`
+	Email          openapi_types.Email `json:"email"`
+	ErrorMessage   *string             `json:"error_message,omitempty"`
+	ErrorTraceback *string             `json:"error_traceback,omitempty"`
+	FirstName      *string             `json:"first_name,omitempty"`
+	Group          *string             `json:"group,omitempty"`
+	GroupName      *string             `json:"group_name,omitempty"`
+	GroupRole      *string             `json:"group_role,omitempty"`
+
+	// GroupScopeName Get the name of the cluster or project
+	GroupScopeName *string                           `json:"group_scope_name"`
 	GroupScopeType *string                           `json:"group_scope_type,omitempty"`
 	LastChecked    *time.Time                        `json:"last_checked,omitempty"`
 	LastName       *string                           `json:"last_name,omitempty"`
