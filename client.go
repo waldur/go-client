@@ -21986,27 +21986,33 @@ type OpenstackNetworksListParams struct {
 	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool                               `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	Customer             *openapi_types.UUID                 `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string                             `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string                             `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string                             `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID                 `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string                             `form:"description,omitempty" json:"description,omitempty"`
-	ExternalIp           *string                             `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	Field                *[]OpenstackNetworksListParamsField `form:"field,omitempty" json:"field,omitempty"`
-	IsExternal           *bool                               `form:"is_external,omitempty" json:"is_external,omitempty"`
-	Name                 *string                             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact            *string                             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	CanManage            *bool               `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+	Customer             *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+	CustomerAbbreviation *string             `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+	CustomerName         *string             `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+	CustomerNativeName   *string             `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+	CustomerUuid         *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+	Description          *string             `form:"description,omitempty" json:"description,omitempty"`
+
+	// DirectOnly Direct only
+	DirectOnly *bool                               `form:"direct_only,omitempty" json:"direct_only,omitempty"`
+	ExternalIp *string                             `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+	Field      *[]OpenstackNetworksListParamsField `form:"field,omitempty" json:"field,omitempty"`
+	IsExternal *bool                               `form:"is_external,omitempty" json:"is_external,omitempty"`
+	Name       *string                             `form:"name,omitempty" json:"name,omitempty"`
+	NameExact  *string                             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project             *openapi_types.UUID                 `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName         *string                             `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid         *openapi_types.UUID                 `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	PageSize    *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Project     *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+	ProjectName *string             `form:"project_name,omitempty" json:"project_name,omitempty"`
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// RbacOnly RBAC only
+	RbacOnly            *bool                               `form:"rbac_only,omitempty" json:"rbac_only,omitempty"`
 	ServiceSettingsName *string                             `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
 	ServiceSettingsUuid *openapi_types.UUID                 `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
 	State               *[]OpenstackNetworksListParamsState `form:"state,omitempty" json:"state,omitempty"`
@@ -22258,30 +22264,36 @@ type OpenstackSubnetsListParams struct {
 	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool                              `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	Customer             *openapi_types.UUID                `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string                            `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string                            `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string                            `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID                `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string                            `form:"description,omitempty" json:"description,omitempty"`
-	EnableDhcp           *bool                              `form:"enable_dhcp,omitempty" json:"enable_dhcp,omitempty"`
-	ExternalIp           *string                            `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	Field                *[]OpenstackSubnetsListParamsField `form:"field,omitempty" json:"field,omitempty"`
-	IpVersion            *int                               `form:"ip_version,omitempty" json:"ip_version,omitempty"`
-	Name                 *string                            `form:"name,omitempty" json:"name,omitempty"`
-	NameExact            *string                            `form:"name_exact,omitempty" json:"name_exact,omitempty"`
-	Network              *string                            `form:"network,omitempty" json:"network,omitempty"`
-	NetworkUuid          *openapi_types.UUID                `form:"network_uuid,omitempty" json:"network_uuid,omitempty"`
+	CanManage            *bool               `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+	Customer             *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+	CustomerAbbreviation *string             `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+	CustomerName         *string             `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+	CustomerNativeName   *string             `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+	CustomerUuid         *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+	Description          *string             `form:"description,omitempty" json:"description,omitempty"`
+
+	// DirectOnly Direct only
+	DirectOnly  *bool                              `form:"direct_only,omitempty" json:"direct_only,omitempty"`
+	EnableDhcp  *bool                              `form:"enable_dhcp,omitempty" json:"enable_dhcp,omitempty"`
+	ExternalIp  *string                            `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+	Field       *[]OpenstackSubnetsListParamsField `form:"field,omitempty" json:"field,omitempty"`
+	IpVersion   *int                               `form:"ip_version,omitempty" json:"ip_version,omitempty"`
+	Name        *string                            `form:"name,omitempty" json:"name,omitempty"`
+	NameExact   *string                            `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	Network     *string                            `form:"network,omitempty" json:"network,omitempty"`
+	NetworkUuid *openapi_types.UUID                `form:"network_uuid,omitempty" json:"network_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                          `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project             *openapi_types.UUID                `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName         *string                            `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid         *openapi_types.UUID                `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	PageSize    *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Project     *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+	ProjectName *string             `form:"project_name,omitempty" json:"project_name,omitempty"`
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// RbacOnly RBAC only
+	RbacOnly            *bool                              `form:"rbac_only,omitempty" json:"rbac_only,omitempty"`
 	ServiceSettingsName *string                            `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
 	ServiceSettingsUuid *openapi_types.UUID                `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
 	State               *[]OpenstackSubnetsListParamsState `form:"state,omitempty" json:"state,omitempty"`
@@ -100214,6 +100226,22 @@ func NewOpenstackNetworksListRequest(server string, params *OpenstackNetworksLis
 
 		}
 
+		if params.DirectOnly != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "direct_only", runtime.ParamLocationQuery, *params.DirectOnly); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.ExternalIp != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "external_ip", runtime.ParamLocationQuery, *params.ExternalIp); err != nil {
@@ -100361,6 +100389,22 @@ func NewOpenstackNetworksListRequest(server string, params *OpenstackNetworksLis
 		if params.ProjectUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_uuid", runtime.ParamLocationQuery, *params.ProjectUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.RbacOnly != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "rbac_only", runtime.ParamLocationQuery, *params.RbacOnly); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -104242,6 +104286,22 @@ func NewOpenstackSubnetsListRequest(server string, params *OpenstackSubnetsListP
 
 		}
 
+		if params.DirectOnly != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "direct_only", runtime.ParamLocationQuery, *params.DirectOnly); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.EnableDhcp != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "enable_dhcp", runtime.ParamLocationQuery, *params.EnableDhcp); err != nil {
@@ -104437,6 +104497,22 @@ func NewOpenstackSubnetsListRequest(server string, params *OpenstackSubnetsListP
 		if params.ProjectUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_uuid", runtime.ParamLocationQuery, *params.ProjectUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.RbacOnly != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "rbac_only", runtime.ParamLocationQuery, *params.RbacOnly); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
