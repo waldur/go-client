@@ -9880,6 +9880,8 @@ type CustomerRequest_Country struct {
 type CustomerServiceAccount struct {
 	Created        *time.Time           `json:"created,omitempty"`
 	Customer       openapi_types.UUID   `json:"customer"`
+	CustomerName   *string              `json:"customer_name,omitempty"`
+	CustomerUuid   *openapi_types.UUID  `json:"customer_uuid,omitempty"`
 	Description    *string              `json:"description,omitempty"`
 	Email          *openapi_types.Email `json:"email,omitempty"`
 	ErrorMessage   *string              `json:"error_message,omitempty"`
@@ -15077,18 +15079,23 @@ type ProjectRequest_OecdFos2007Code struct {
 
 // ProjectServiceAccount defines model for ProjectServiceAccount.
 type ProjectServiceAccount struct {
-	Created        *time.Time           `json:"created,omitempty"`
-	Description    *string              `json:"description,omitempty"`
-	Email          *openapi_types.Email `json:"email,omitempty"`
-	ErrorMessage   *string              `json:"error_message,omitempty"`
-	ErrorTraceback *string              `json:"error_traceback,omitempty"`
-	ExpiresAt      *string              `json:"expiresAt"`
-	Modified       *time.Time           `json:"modified,omitempty"`
-	Project        openapi_types.UUID   `json:"project"`
-	Token          *string              `json:"token"`
-	Url            *string              `json:"url,omitempty"`
-	Username       *string              `json:"username,omitempty"`
-	Uuid           *openapi_types.UUID  `json:"uuid,omitempty"`
+	Created              *time.Time           `json:"created,omitempty"`
+	CustomerAbbreviation *string              `json:"customer_abbreviation,omitempty"`
+	CustomerName         *string              `json:"customer_name,omitempty"`
+	CustomerUuid         *openapi_types.UUID  `json:"customer_uuid,omitempty"`
+	Description          *string              `json:"description,omitempty"`
+	Email                *openapi_types.Email `json:"email,omitempty"`
+	ErrorMessage         *string              `json:"error_message,omitempty"`
+	ErrorTraceback       *string              `json:"error_traceback,omitempty"`
+	ExpiresAt            *string              `json:"expiresAt"`
+	Modified             *time.Time           `json:"modified,omitempty"`
+	Project              openapi_types.UUID   `json:"project"`
+	ProjectName          *string              `json:"project_name,omitempty"`
+	ProjectUuid          *openapi_types.UUID  `json:"project_uuid,omitempty"`
+	Token                *string              `json:"token"`
+	Url                  *string              `json:"url,omitempty"`
+	Username             *string              `json:"username,omitempty"`
+	Uuid                 *openapi_types.UUID  `json:"uuid,omitempty"`
 }
 
 // ProjectServiceAccountRequest defines model for ProjectServiceAccountRequest.
