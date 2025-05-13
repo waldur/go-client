@@ -689,6 +689,12 @@ const (
 	NestedAttributeTypeEnumText    NestedAttributeTypeEnum = "text"
 )
 
+// Defines values for NodeDiskDriverEnum.
+const (
+	Sd NodeDiskDriverEnum = "sd"
+	Vd NodeDiskDriverEnum = "vd"
+)
+
 // Defines values for OecdFos2007CodeEnum.
 const (
 	N11  OecdFos2007CodeEnum = "1.1"
@@ -11406,9 +11412,12 @@ type MergedSecretOptions struct {
 	KeycloakUsername *string `json:"keycloak_username,omitempty"`
 
 	// Language Script language: Python or Bash
-	Language                   *string `json:"language,omitempty"`
-	OpenstackApiTlsCertificate *string `json:"openstack_api_tls_certificate,omitempty"`
-	Password                   *string `json:"password,omitempty"`
+	Language *string `json:"language,omitempty"`
+
+	// NodeDiskDriver OpenStack disk driver for Rancher nodes
+	NodeDiskDriver             *NodeDiskDriverEnum `json:"node_disk_driver,omitempty"`
+	OpenstackApiTlsCertificate *string             `json:"openstack_api_tls_certificate,omitempty"`
+	Password                   *string             `json:"password,omitempty"`
 
 	// Pull Script for regular resource pull
 	Pull *string `json:"pull,omitempty"`
@@ -11501,9 +11510,12 @@ type MergedSecretOptionsRequest struct {
 	KeycloakUsername *string `json:"keycloak_username,omitempty"`
 
 	// Language Script language: Python or Bash
-	Language                   *string `json:"language,omitempty"`
-	OpenstackApiTlsCertificate *string `json:"openstack_api_tls_certificate,omitempty"`
-	Password                   *string `json:"password,omitempty"`
+	Language *string `json:"language,omitempty"`
+
+	// NodeDiskDriver OpenStack disk driver for Rancher nodes
+	NodeDiskDriver             *NodeDiskDriverEnum `json:"node_disk_driver,omitempty"`
+	OpenstackApiTlsCertificate *string             `json:"openstack_api_tls_certificate,omitempty"`
+	Password                   *string             `json:"password,omitempty"`
 
 	// Pull Script for regular resource pull
 	Pull *string `json:"pull,omitempty"`
@@ -11871,6 +11883,9 @@ type NetworkRBACPolicyRequest struct {
 	PolicyType   *PolicyTypeEnum `json:"policy_type,omitempty"`
 	TargetTenant string          `json:"target_tenant"`
 }
+
+// NodeDiskDriverEnum defines model for NodeDiskDriverEnum.
+type NodeDiskDriverEnum string
 
 // Notification defines model for Notification.
 type Notification struct {
