@@ -3304,74 +3304,30 @@ const (
 	MarketplaceProviderOfferingsListParamsStatePaused   MarketplaceProviderOfferingsListParamsState = "Paused"
 )
 
-// Defines values for MarketplaceProviderOfferingsGroupsRetrieveParamsField.
+// Defines values for MarketplaceProviderOfferingsGroupsListParamsO.
 const (
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldAccessUrl              MarketplaceProviderOfferingsGroupsRetrieveParamsField = "access_url"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldAttributes             MarketplaceProviderOfferingsGroupsRetrieveParamsField = "attributes"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldBackendId              MarketplaceProviderOfferingsGroupsRetrieveParamsField = "backend_id"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldBackendMetadata        MarketplaceProviderOfferingsGroupsRetrieveParamsField = "backend_metadata"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldBillable               MarketplaceProviderOfferingsGroupsRetrieveParamsField = "billable"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldCategory               MarketplaceProviderOfferingsGroupsRetrieveParamsField = "category"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldCategoryTitle          MarketplaceProviderOfferingsGroupsRetrieveParamsField = "category_title"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldCategoryUuid           MarketplaceProviderOfferingsGroupsRetrieveParamsField = "category_uuid"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldCitationCount          MarketplaceProviderOfferingsGroupsRetrieveParamsField = "citation_count"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldComponents             MarketplaceProviderOfferingsGroupsRetrieveParamsField = "components"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldCountry                MarketplaceProviderOfferingsGroupsRetrieveParamsField = "country"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldCreated                MarketplaceProviderOfferingsGroupsRetrieveParamsField = "created"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldCustomer               MarketplaceProviderOfferingsGroupsRetrieveParamsField = "customer"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldCustomerName           MarketplaceProviderOfferingsGroupsRetrieveParamsField = "customer_name"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldCustomerUuid           MarketplaceProviderOfferingsGroupsRetrieveParamsField = "customer_uuid"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldDataciteDoi            MarketplaceProviderOfferingsGroupsRetrieveParamsField = "datacite_doi"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldDescription            MarketplaceProviderOfferingsGroupsRetrieveParamsField = "description"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldEndpoints              MarketplaceProviderOfferingsGroupsRetrieveParamsField = "endpoints"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldFiles                  MarketplaceProviderOfferingsGroupsRetrieveParamsField = "files"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldFullDescription        MarketplaceProviderOfferingsGroupsRetrieveParamsField = "full_description"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldGettingStarted         MarketplaceProviderOfferingsGroupsRetrieveParamsField = "getting_started"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldGoogleCalendarIsPublic MarketplaceProviderOfferingsGroupsRetrieveParamsField = "google_calendar_is_public"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldGoogleCalendarLink     MarketplaceProviderOfferingsGroupsRetrieveParamsField = "google_calendar_link"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldImage                  MarketplaceProviderOfferingsGroupsRetrieveParamsField = "image"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldIntegrationGuide       MarketplaceProviderOfferingsGroupsRetrieveParamsField = "integration_guide"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldIntegrationStatus      MarketplaceProviderOfferingsGroupsRetrieveParamsField = "integration_status"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldLatitude               MarketplaceProviderOfferingsGroupsRetrieveParamsField = "latitude"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldLongitude              MarketplaceProviderOfferingsGroupsRetrieveParamsField = "longitude"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldName                   MarketplaceProviderOfferingsGroupsRetrieveParamsField = "name"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldOptions                MarketplaceProviderOfferingsGroupsRetrieveParamsField = "options"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldOrderCount             MarketplaceProviderOfferingsGroupsRetrieveParamsField = "order_count"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldOrganizationGroups     MarketplaceProviderOfferingsGroupsRetrieveParamsField = "organization_groups"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldParentDescription      MarketplaceProviderOfferingsGroupsRetrieveParamsField = "parent_description"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldParentName             MarketplaceProviderOfferingsGroupsRetrieveParamsField = "parent_name"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldParentUuid             MarketplaceProviderOfferingsGroupsRetrieveParamsField = "parent_uuid"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldPausedReason           MarketplaceProviderOfferingsGroupsRetrieveParamsField = "paused_reason"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldPlans                  MarketplaceProviderOfferingsGroupsRetrieveParamsField = "plans"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldPluginOptions          MarketplaceProviderOfferingsGroupsRetrieveParamsField = "plugin_options"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldPrivacyPolicyLink      MarketplaceProviderOfferingsGroupsRetrieveParamsField = "privacy_policy_link"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldProject                MarketplaceProviderOfferingsGroupsRetrieveParamsField = "project"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldProjectName            MarketplaceProviderOfferingsGroupsRetrieveParamsField = "project_name"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldProjectUuid            MarketplaceProviderOfferingsGroupsRetrieveParamsField = "project_uuid"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldQuotas                 MarketplaceProviderOfferingsGroupsRetrieveParamsField = "quotas"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldResourceOptions        MarketplaceProviderOfferingsGroupsRetrieveParamsField = "resource_options"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldRoles                  MarketplaceProviderOfferingsGroupsRetrieveParamsField = "roles"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldScope                  MarketplaceProviderOfferingsGroupsRetrieveParamsField = "scope"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldScopeErrorMessage      MarketplaceProviderOfferingsGroupsRetrieveParamsField = "scope_error_message"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldScopeName              MarketplaceProviderOfferingsGroupsRetrieveParamsField = "scope_name"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldScopeState             MarketplaceProviderOfferingsGroupsRetrieveParamsField = "scope_state"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldScopeUuid              MarketplaceProviderOfferingsGroupsRetrieveParamsField = "scope_uuid"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldScreenshots            MarketplaceProviderOfferingsGroupsRetrieveParamsField = "screenshots"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldSecretOptions          MarketplaceProviderOfferingsGroupsRetrieveParamsField = "secret_options"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldServiceAttributes      MarketplaceProviderOfferingsGroupsRetrieveParamsField = "service_attributes"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldShared                 MarketplaceProviderOfferingsGroupsRetrieveParamsField = "shared"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldSlug                   MarketplaceProviderOfferingsGroupsRetrieveParamsField = "slug"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldState                  MarketplaceProviderOfferingsGroupsRetrieveParamsField = "state"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldTermsOfService         MarketplaceProviderOfferingsGroupsRetrieveParamsField = "terms_of_service"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldTermsOfServiceLink     MarketplaceProviderOfferingsGroupsRetrieveParamsField = "terms_of_service_link"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldThumbnail              MarketplaceProviderOfferingsGroupsRetrieveParamsField = "thumbnail"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldTotalCost              MarketplaceProviderOfferingsGroupsRetrieveParamsField = "total_cost"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldTotalCostEstimated     MarketplaceProviderOfferingsGroupsRetrieveParamsField = "total_cost_estimated"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldTotalCustomers         MarketplaceProviderOfferingsGroupsRetrieveParamsField = "total_customers"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldType                   MarketplaceProviderOfferingsGroupsRetrieveParamsField = "type"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldUrl                    MarketplaceProviderOfferingsGroupsRetrieveParamsField = "url"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldUuid                   MarketplaceProviderOfferingsGroupsRetrieveParamsField = "uuid"
-	MarketplaceProviderOfferingsGroupsRetrieveParamsFieldVendorDetails          MarketplaceProviderOfferingsGroupsRetrieveParamsField = "vendor_details"
+	MarketplaceProviderOfferingsGroupsListParamsOCreated                 MarketplaceProviderOfferingsGroupsListParamsO = "created"
+	MarketplaceProviderOfferingsGroupsListParamsOMinusCreated            MarketplaceProviderOfferingsGroupsListParamsO = "-created"
+	MarketplaceProviderOfferingsGroupsListParamsOMinusName               MarketplaceProviderOfferingsGroupsListParamsO = "-name"
+	MarketplaceProviderOfferingsGroupsListParamsOMinusState              MarketplaceProviderOfferingsGroupsListParamsO = "-state"
+	MarketplaceProviderOfferingsGroupsListParamsOMinusTotalCost          MarketplaceProviderOfferingsGroupsListParamsO = "-total_cost"
+	MarketplaceProviderOfferingsGroupsListParamsOMinusTotalCostEstimated MarketplaceProviderOfferingsGroupsListParamsO = "-total_cost_estimated"
+	MarketplaceProviderOfferingsGroupsListParamsOMinusTotalCustomers     MarketplaceProviderOfferingsGroupsListParamsO = "-total_customers"
+	MarketplaceProviderOfferingsGroupsListParamsOMinusType               MarketplaceProviderOfferingsGroupsListParamsO = "-type"
+	MarketplaceProviderOfferingsGroupsListParamsOName                    MarketplaceProviderOfferingsGroupsListParamsO = "name"
+	MarketplaceProviderOfferingsGroupsListParamsOState                   MarketplaceProviderOfferingsGroupsListParamsO = "state"
+	MarketplaceProviderOfferingsGroupsListParamsOTotalCost               MarketplaceProviderOfferingsGroupsListParamsO = "total_cost"
+	MarketplaceProviderOfferingsGroupsListParamsOTotalCostEstimated      MarketplaceProviderOfferingsGroupsListParamsO = "total_cost_estimated"
+	MarketplaceProviderOfferingsGroupsListParamsOTotalCustomers          MarketplaceProviderOfferingsGroupsListParamsO = "total_customers"
+	MarketplaceProviderOfferingsGroupsListParamsOType                    MarketplaceProviderOfferingsGroupsListParamsO = "type"
+)
+
+// Defines values for MarketplaceProviderOfferingsGroupsListParamsState.
+const (
+	MarketplaceProviderOfferingsGroupsListParamsStateActive   MarketplaceProviderOfferingsGroupsListParamsState = "Active"
+	MarketplaceProviderOfferingsGroupsListParamsStateArchived MarketplaceProviderOfferingsGroupsListParamsState = "Archived"
+	MarketplaceProviderOfferingsGroupsListParamsStateDraft    MarketplaceProviderOfferingsGroupsListParamsState = "Draft"
+	MarketplaceProviderOfferingsGroupsListParamsStatePaused   MarketplaceProviderOfferingsGroupsListParamsState = "Paused"
 )
 
 // Defines values for MarketplaceProviderOfferingsRetrieveParamsField.
@@ -12295,6 +12251,13 @@ type OfferingFileRequest struct {
 	Offering string             `json:"offering"`
 }
 
+// OfferingGroups defines model for OfferingGroups.
+type OfferingGroups struct {
+	CustomerName *string              `json:"customer_name,omitempty"`
+	CustomerUuid *string              `json:"customer_uuid,omitempty"`
+	Offerings    *[]OfferingReference `json:"offerings,omitempty"`
+}
+
 // OfferingImageRequest defines model for OfferingImageRequest.
 type OfferingImageRequest struct {
 	Image openapi_types.File `json:"image"`
@@ -12371,6 +12334,12 @@ type OfferingPermission struct {
 	// UserUsername Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
 	UserUsername *string             `json:"user_username,omitempty"`
 	UserUuid     *openapi_types.UUID `json:"user_uuid,omitempty"`
+}
+
+// OfferingReference defines model for OfferingReference.
+type OfferingReference struct {
+	OfferingName *string             `json:"offering_name,omitempty"`
+	OfferingUuid *openapi_types.UUID `json:"offering_uuid,omitempty"`
 }
 
 // OfferingReferral defines model for OfferingReferral.
@@ -20451,13 +20420,68 @@ type MarketplaceProviderOfferingsListParamsO string
 // MarketplaceProviderOfferingsListParamsState defines parameters for MarketplaceProviderOfferingsList.
 type MarketplaceProviderOfferingsListParamsState string
 
-// MarketplaceProviderOfferingsGroupsRetrieveParams defines parameters for MarketplaceProviderOfferingsGroupsRetrieve.
-type MarketplaceProviderOfferingsGroupsRetrieveParams struct {
-	Field *[]MarketplaceProviderOfferingsGroupsRetrieveParamsField `form:"field,omitempty" json:"field,omitempty"`
+// MarketplaceProviderOfferingsGroupsListParams defines parameters for MarketplaceProviderOfferingsGroupsList.
+type MarketplaceProviderOfferingsGroupsListParams struct {
+	// AccessibleViaCalls Accessible via calls
+	AccessibleViaCalls *bool `form:"accessible_via_calls,omitempty" json:"accessible_via_calls,omitempty"`
+
+	// AllowedCustomerUuid Allowed customer UUID
+	AllowedCustomerUuid *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
+	Attributes          *string             `form:"attributes,omitempty" json:"attributes,omitempty"`
+	Billable            *bool               `form:"billable,omitempty" json:"billable,omitempty"`
+	CategoryGroupUuid   *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
+	CategoryUuid        *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
+
+	// Created Created after
+	Created      *time.Time          `form:"created,omitempty" json:"created,omitempty"`
+	Customer     *string             `form:"customer,omitempty" json:"customer,omitempty"`
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+	Description  *string             `form:"description,omitempty" json:"description,omitempty"`
+
+	// Keyword Keyword
+	Keyword *string `form:"keyword,omitempty" json:"keyword,omitempty"`
+
+	// Modified Modified after
+	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+	Name      *string    `form:"name,omitempty" json:"name,omitempty"`
+	NameExact *string    `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// O Ordering
+	//
+	O                     *[]MarketplaceProviderOfferingsGroupsListParamsO `form:"o,omitempty" json:"o,omitempty"`
+	OrganizationGroupUuid *[]openapi_types.UUID                            `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize   *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ParentUuid *openapi_types.UUID `form:"parent_uuid,omitempty" json:"parent_uuid,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ResourceCustomerUuid Resource customer UUID
+	ResourceCustomerUuid *openapi_types.UUID `form:"resource_customer_uuid,omitempty" json:"resource_customer_uuid,omitempty"`
+
+	// ResourceProjectUuid Resource project UUID
+	ResourceProjectUuid *openapi_types.UUID `form:"resource_project_uuid,omitempty" json:"resource_project_uuid,omitempty"`
+
+	// ScopeUuid Scope UUID
+	ScopeUuid *openapi_types.UUID `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
+
+	// ServiceManagerUuid Service manager UUID
+	ServiceManagerUuid *openapi_types.UUID                                  `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
+	Shared             *bool                                                `form:"shared,omitempty" json:"shared,omitempty"`
+	State              *[]MarketplaceProviderOfferingsGroupsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+	Type               *[]string                                            `form:"type,omitempty" json:"type,omitempty"`
 }
 
-// MarketplaceProviderOfferingsGroupsRetrieveParamsField defines parameters for MarketplaceProviderOfferingsGroupsRetrieve.
-type MarketplaceProviderOfferingsGroupsRetrieveParamsField string
+// MarketplaceProviderOfferingsGroupsListParamsO defines parameters for MarketplaceProviderOfferingsGroupsList.
+type MarketplaceProviderOfferingsGroupsListParamsO string
+
+// MarketplaceProviderOfferingsGroupsListParamsState defines parameters for MarketplaceProviderOfferingsGroupsList.
+type MarketplaceProviderOfferingsGroupsListParamsState string
 
 // MarketplaceProviderOfferingsRetrieveParams defines parameters for MarketplaceProviderOfferingsRetrieve.
 type MarketplaceProviderOfferingsRetrieveParams struct {
@@ -29489,8 +29513,8 @@ type ClientInterface interface {
 
 	MarketplaceProviderOfferingsCreate(ctx context.Context, body MarketplaceProviderOfferingsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// MarketplaceProviderOfferingsGroupsRetrieve request
-	MarketplaceProviderOfferingsGroupsRetrieve(ctx context.Context, params *MarketplaceProviderOfferingsGroupsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// MarketplaceProviderOfferingsGroupsList request
+	MarketplaceProviderOfferingsGroupsList(ctx context.Context, params *MarketplaceProviderOfferingsGroupsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceProviderOfferingsDestroy request
 	MarketplaceProviderOfferingsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -39182,8 +39206,8 @@ func (c *Client) MarketplaceProviderOfferingsCreate(ctx context.Context, body Ma
 	return c.Client.Do(req)
 }
 
-func (c *Client) MarketplaceProviderOfferingsGroupsRetrieve(ctx context.Context, params *MarketplaceProviderOfferingsGroupsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceProviderOfferingsGroupsRetrieveRequest(c.Server, params)
+func (c *Client) MarketplaceProviderOfferingsGroupsList(ctx context.Context, params *MarketplaceProviderOfferingsGroupsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsGroupsListRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -80874,8 +80898,8 @@ func NewMarketplaceProviderOfferingsCreateRequestWithBody(server string, content
 	return req, nil
 }
 
-// NewMarketplaceProviderOfferingsGroupsRetrieveRequest generates requests for MarketplaceProviderOfferingsGroupsRetrieve
-func NewMarketplaceProviderOfferingsGroupsRetrieveRequest(server string, params *MarketplaceProviderOfferingsGroupsRetrieveParams) (*http.Request, error) {
+// NewMarketplaceProviderOfferingsGroupsListRequest generates requests for MarketplaceProviderOfferingsGroupsList
+func NewMarketplaceProviderOfferingsGroupsListRequest(server string, params *MarketplaceProviderOfferingsGroupsListParams) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -80896,9 +80920,425 @@ func NewMarketplaceProviderOfferingsGroupsRetrieveRequest(server string, params 
 	if params != nil {
 		queryValues := queryURL.Query()
 
-		if params.Field != nil {
+		if params.AccessibleViaCalls != nil {
 
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "field", runtime.ParamLocationQuery, *params.Field); err != nil {
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "accessible_via_calls", runtime.ParamLocationQuery, *params.AccessibleViaCalls); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.AllowedCustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "allowed_customer_uuid", runtime.ParamLocationQuery, *params.AllowedCustomerUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Attributes != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "attributes", runtime.ParamLocationQuery, *params.Attributes); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Billable != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "billable", runtime.ParamLocationQuery, *params.Billable); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CategoryGroupUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "category_group_uuid", runtime.ParamLocationQuery, *params.CategoryGroupUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CategoryUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "category_uuid", runtime.ParamLocationQuery, *params.CategoryUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Created != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "created", runtime.ParamLocationQuery, *params.Created); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Customer != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer", runtime.ParamLocationQuery, *params.Customer); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer_uuid", runtime.ParamLocationQuery, *params.CustomerUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Description != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "description", runtime.ParamLocationQuery, *params.Description); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Keyword != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "keyword", runtime.ParamLocationQuery, *params.Keyword); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Modified != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "modified", runtime.ParamLocationQuery, *params.Modified); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name", runtime.ParamLocationQuery, *params.Name); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.NameExact != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name_exact", runtime.ParamLocationQuery, *params.NameExact); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OrganizationGroupUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "organization_group_uuid", runtime.ParamLocationQuery, *params.OrganizationGroupUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ParentUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "parent_uuid", runtime.ParamLocationQuery, *params.ParentUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_uuid", runtime.ParamLocationQuery, *params.ProjectUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ResourceCustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "resource_customer_uuid", runtime.ParamLocationQuery, *params.ResourceCustomerUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ResourceProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "resource_project_uuid", runtime.ParamLocationQuery, *params.ResourceProjectUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ScopeUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope_uuid", runtime.ParamLocationQuery, *params.ScopeUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ServiceManagerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "service_manager_uuid", runtime.ParamLocationQuery, *params.ServiceManagerUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Shared != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "shared", runtime.ParamLocationQuery, *params.Shared); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "state", runtime.ParamLocationQuery, *params.State); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Type != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "type", runtime.ParamLocationQuery, *params.Type); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -135007,8 +135447,8 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceProviderOfferingsCreateWithResponse(ctx context.Context, body MarketplaceProviderOfferingsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsCreateResponse, error)
 
-	// MarketplaceProviderOfferingsGroupsRetrieveWithResponse request
-	MarketplaceProviderOfferingsGroupsRetrieveWithResponse(ctx context.Context, params *MarketplaceProviderOfferingsGroupsRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsGroupsRetrieveResponse, error)
+	// MarketplaceProviderOfferingsGroupsListWithResponse request
+	MarketplaceProviderOfferingsGroupsListWithResponse(ctx context.Context, params *MarketplaceProviderOfferingsGroupsListParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsGroupsListResponse, error)
 
 	// MarketplaceProviderOfferingsDestroyWithResponse request
 	MarketplaceProviderOfferingsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsDestroyResponse, error)
@@ -147147,14 +147587,14 @@ func (r MarketplaceProviderOfferingsCreateResponse) StatusCode() int {
 	return 0
 }
 
-type MarketplaceProviderOfferingsGroupsRetrieveResponse struct {
+type MarketplaceProviderOfferingsGroupsListResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *ProviderOfferingDetails
+	JSON200      *[]OfferingGroups
 }
 
 // Status returns HTTPResponse.Status
-func (r MarketplaceProviderOfferingsGroupsRetrieveResponse) Status() string {
+func (r MarketplaceProviderOfferingsGroupsListResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -147162,7 +147602,7 @@ func (r MarketplaceProviderOfferingsGroupsRetrieveResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceProviderOfferingsGroupsRetrieveResponse) StatusCode() int {
+func (r MarketplaceProviderOfferingsGroupsListResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -168056,13 +168496,13 @@ func (c *ClientWithResponses) MarketplaceProviderOfferingsCreateWithResponse(ctx
 	return ParseMarketplaceProviderOfferingsCreateResponse(rsp)
 }
 
-// MarketplaceProviderOfferingsGroupsRetrieveWithResponse request returning *MarketplaceProviderOfferingsGroupsRetrieveResponse
-func (c *ClientWithResponses) MarketplaceProviderOfferingsGroupsRetrieveWithResponse(ctx context.Context, params *MarketplaceProviderOfferingsGroupsRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsGroupsRetrieveResponse, error) {
-	rsp, err := c.MarketplaceProviderOfferingsGroupsRetrieve(ctx, params, reqEditors...)
+// MarketplaceProviderOfferingsGroupsListWithResponse request returning *MarketplaceProviderOfferingsGroupsListResponse
+func (c *ClientWithResponses) MarketplaceProviderOfferingsGroupsListWithResponse(ctx context.Context, params *MarketplaceProviderOfferingsGroupsListParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsGroupsListResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsGroupsList(ctx, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseMarketplaceProviderOfferingsGroupsRetrieveResponse(rsp)
+	return ParseMarketplaceProviderOfferingsGroupsListResponse(rsp)
 }
 
 // MarketplaceProviderOfferingsDestroyWithResponse request returning *MarketplaceProviderOfferingsDestroyResponse
@@ -186934,22 +187374,22 @@ func ParseMarketplaceProviderOfferingsCreateResponse(rsp *http.Response) (*Marke
 	return response, nil
 }
 
-// ParseMarketplaceProviderOfferingsGroupsRetrieveResponse parses an HTTP response from a MarketplaceProviderOfferingsGroupsRetrieveWithResponse call
-func ParseMarketplaceProviderOfferingsGroupsRetrieveResponse(rsp *http.Response) (*MarketplaceProviderOfferingsGroupsRetrieveResponse, error) {
+// ParseMarketplaceProviderOfferingsGroupsListResponse parses an HTTP response from a MarketplaceProviderOfferingsGroupsListWithResponse call
+func ParseMarketplaceProviderOfferingsGroupsListResponse(rsp *http.Response) (*MarketplaceProviderOfferingsGroupsListResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &MarketplaceProviderOfferingsGroupsRetrieveResponse{
+	response := &MarketplaceProviderOfferingsGroupsListResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ProviderOfferingDetails
+		var dest []OfferingGroups
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
