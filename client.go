@@ -10713,7 +10713,8 @@ type InvoiceItemUpdate struct {
 	Quantity *string    `json:"quantity,omitempty"`
 
 	// Start Date and time when item usage has started.
-	Start *time.Time `json:"start,omitempty"`
+	Start     *time.Time `json:"start,omitempty"`
+	UnitPrice *string    `json:"unit_price,omitempty"`
 }
 
 // InvoiceItemUpdateRequest defines model for InvoiceItemUpdateRequest.
@@ -10725,7 +10726,8 @@ type InvoiceItemUpdateRequest struct {
 	Quantity *string    `json:"quantity,omitempty"`
 
 	// Start Date and time when item usage has started.
-	Start *time.Time `json:"start,omitempty"`
+	Start     *time.Time `json:"start,omitempty"`
+	UnitPrice *string    `json:"unit_price,omitempty"`
 }
 
 // InvoiceStateEnum defines model for InvoiceStateEnum.
@@ -14150,7 +14152,8 @@ type PatchedInvoiceItemUpdateRequest struct {
 	Quantity *string    `json:"quantity,omitempty"`
 
 	// Start Date and time when item usage has started.
-	Start *time.Time `json:"start,omitempty"`
+	Start     *time.Time `json:"start,omitempty"`
+	UnitPrice *string    `json:"unit_price,omitempty"`
 }
 
 // PatchedIssueRequest defines model for PatchedIssueRequest.
@@ -18636,6 +18639,9 @@ type BookingResourcesListParams struct {
 	Downscaled   *bool                              `form:"downscaled,omitempty" json:"downscaled,omitempty"`
 	Field        *[]BookingResourcesListParamsField `form:"field,omitempty" json:"field,omitempty"`
 
+	// HasTerminateDate Has termination date
+	HasTerminateDate *bool `form:"has_terminate_date,omitempty" json:"has_terminate_date,omitempty"`
+
 	// LexisLinksSupported LEXIS links supported
 	LexisLinksSupported *bool `form:"lexis_links_supported,omitempty" json:"lexis_links_supported,omitempty"`
 
@@ -20824,6 +20830,9 @@ type MarketplaceProviderResourcesListParams struct {
 	Downscaled   *bool                                          `form:"downscaled,omitempty" json:"downscaled,omitempty"`
 	Field        *[]MarketplaceProviderResourcesListParamsField `form:"field,omitempty" json:"field,omitempty"`
 
+	// HasTerminateDate Has termination date
+	HasTerminateDate *bool `form:"has_terminate_date,omitempty" json:"has_terminate_date,omitempty"`
+
 	// LexisLinksSupported LEXIS links supported
 	LexisLinksSupported *bool `form:"lexis_links_supported,omitempty" json:"lexis_links_supported,omitempty"`
 
@@ -21028,6 +21037,9 @@ type MarketplaceResourcesListParams struct {
 	CustomerUuid *openapi_types.UUID                    `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
 	Downscaled   *bool                                  `form:"downscaled,omitempty" json:"downscaled,omitempty"`
 	Field        *[]MarketplaceResourcesListParamsField `form:"field,omitempty" json:"field,omitempty"`
+
+	// HasTerminateDate Has termination date
+	HasTerminateDate *bool `form:"has_terminate_date,omitempty" json:"has_terminate_date,omitempty"`
 
 	// LexisLinksSupported LEXIS links supported
 	LexisLinksSupported *bool `form:"lexis_links_supported,omitempty" json:"lexis_links_supported,omitempty"`
@@ -58569,6 +58581,22 @@ func NewBookingResourcesListRequest(server string, params *BookingResourcesListP
 
 		}
 
+		if params.HasTerminateDate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_terminate_date", runtime.ParamLocationQuery, *params.HasTerminateDate); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.LexisLinksSupported != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "lexis_links_supported", runtime.ParamLocationQuery, *params.LexisLinksSupported); err != nil {
@@ -85167,6 +85195,22 @@ func NewMarketplaceProviderResourcesListRequest(server string, params *Marketpla
 
 		}
 
+		if params.HasTerminateDate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_terminate_date", runtime.ParamLocationQuery, *params.HasTerminateDate); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.LexisLinksSupported != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "lexis_links_supported", runtime.ParamLocationQuery, *params.LexisLinksSupported); err != nil {
@@ -88082,6 +88126,22 @@ func NewMarketplaceResourcesListRequest(server string, params *MarketplaceResour
 		if params.Field != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "field", runtime.ParamLocationQuery, *params.Field); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.HasTerminateDate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_terminate_date", runtime.ParamLocationQuery, *params.HasTerminateDate); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
