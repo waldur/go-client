@@ -22768,6 +22768,28 @@ type ProjectsListUsersListParamsField string
 // ProjectsListUsersListParamsO defines parameters for ProjectsListUsersList.
 type ProjectsListUsersListParamsO string
 
+// ProjectsOtherUsersListParams defines parameters for ProjectsOtherUsersList.
+type ProjectsOtherUsersListParams struct {
+	CivilNumber  *string `form:"civil_number,omitempty" json:"civil_number,omitempty"`
+	Description  *string `form:"description,omitempty" json:"description,omitempty"`
+	Email        *string `form:"email,omitempty" json:"email,omitempty"`
+	FullName     *string `form:"full_name,omitempty" json:"full_name,omitempty"`
+	IsActive     *string `form:"is_active,omitempty" json:"is_active,omitempty"`
+	JobTitle     *string `form:"job_title,omitempty" json:"job_title,omitempty"`
+	NativeName   *string `form:"native_name,omitempty" json:"native_name,omitempty"`
+	Organization *string `form:"organization,omitempty" json:"organization,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize           *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PhoneNumber        *string   `form:"phone_number,omitempty" json:"phone_number,omitempty"`
+	RegistrationMethod *string   `form:"registration_method,omitempty" json:"registration_method,omitempty"`
+	UserKeyword        *string   `form:"user_keyword,omitempty" json:"user_keyword,omitempty"`
+	Username           *string   `form:"username,omitempty" json:"username,omitempty"`
+}
+
 // ProjectsStatsRetrieveParams defines parameters for ProjectsStatsRetrieve.
 type ProjectsStatsRetrieveParams struct {
 	ForCurrentMonth *bool `form:"for_current_month,omitempty" json:"for_current_month,omitempty"`
@@ -30982,6 +31004,9 @@ type ClientInterface interface {
 	ProjectsMoveProjectWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	ProjectsMoveProject(ctx context.Context, uuid openapi_types.UUID, body ProjectsMoveProjectJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProjectsOtherUsersList request
+	ProjectsOtherUsersList(ctx context.Context, uuid openapi_types.UUID, params *ProjectsOtherUsersListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProjectsStatsRetrieve request
 	ProjectsStatsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *ProjectsStatsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -45647,6 +45672,18 @@ func (c *Client) ProjectsMoveProjectWithBody(ctx context.Context, uuid openapi_t
 
 func (c *Client) ProjectsMoveProject(ctx context.Context, uuid openapi_types.UUID, body ProjectsMoveProjectJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProjectsMoveProjectRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProjectsOtherUsersList(ctx context.Context, uuid openapi_types.UUID, params *ProjectsOtherUsersListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProjectsOtherUsersListRequest(c.Server, uuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -111239,6 +111276,270 @@ func NewProjectsMoveProjectRequestWithBody(server string, uuid openapi_types.UUI
 	return req, nil
 }
 
+// NewProjectsOtherUsersListRequest generates requests for ProjectsOtherUsersList
+func NewProjectsOtherUsersListRequest(server string, uuid openapi_types.UUID, params *ProjectsOtherUsersListParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/projects/%s/other_users/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.CivilNumber != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "civil_number", runtime.ParamLocationQuery, *params.CivilNumber); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Description != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "description", runtime.ParamLocationQuery, *params.Description); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Email != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "email", runtime.ParamLocationQuery, *params.Email); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.FullName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "full_name", runtime.ParamLocationQuery, *params.FullName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsActive != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_active", runtime.ParamLocationQuery, *params.IsActive); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.JobTitle != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "job_title", runtime.ParamLocationQuery, *params.JobTitle); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.NativeName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "native_name", runtime.ParamLocationQuery, *params.NativeName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Organization != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "organization", runtime.ParamLocationQuery, *params.Organization); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PhoneNumber != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "phone_number", runtime.ParamLocationQuery, *params.PhoneNumber); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.RegistrationMethod != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "registration_method", runtime.ParamLocationQuery, *params.RegistrationMethod); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UserKeyword != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_keyword", runtime.ParamLocationQuery, *params.UserKeyword); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Username != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "username", runtime.ParamLocationQuery, *params.Username); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewProjectsStatsRetrieveRequest generates requests for ProjectsStatsRetrieve
 func NewProjectsStatsRetrieveRequest(server string, uuid openapi_types.UUID, params *ProjectsStatsRetrieveParams) (*http.Request, error) {
 	var err error
@@ -136917,6 +137218,9 @@ type ClientWithResponsesInterface interface {
 
 	ProjectsMoveProjectWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProjectsMoveProjectJSONRequestBody, reqEditors ...RequestEditorFn) (*ProjectsMoveProjectResponse, error)
 
+	// ProjectsOtherUsersListWithResponse request
+	ProjectsOtherUsersListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProjectsOtherUsersListParams, reqEditors ...RequestEditorFn) (*ProjectsOtherUsersListResponse, error)
+
 	// ProjectsStatsRetrieveWithResponse request
 	ProjectsStatsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProjectsStatsRetrieveParams, reqEditors ...RequestEditorFn) (*ProjectsStatsRetrieveResponse, error)
 
@@ -156029,6 +156333,28 @@ func (r ProjectsMoveProjectResponse) StatusCode() int {
 	return 0
 }
 
+type ProjectsOtherUsersListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]BasicUser
+}
+
+// Status returns HTTPResponse.Status
+func (r ProjectsOtherUsersListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProjectsOtherUsersListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type ProjectsStatsRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -173186,6 +173512,15 @@ func (c *ClientWithResponses) ProjectsMoveProjectWithResponse(ctx context.Contex
 		return nil, err
 	}
 	return ParseProjectsMoveProjectResponse(rsp)
+}
+
+// ProjectsOtherUsersListWithResponse request returning *ProjectsOtherUsersListResponse
+func (c *ClientWithResponses) ProjectsOtherUsersListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProjectsOtherUsersListParams, reqEditors ...RequestEditorFn) (*ProjectsOtherUsersListResponse, error) {
+	rsp, err := c.ProjectsOtherUsersList(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProjectsOtherUsersListResponse(rsp)
 }
 
 // ProjectsStatsRetrieveWithResponse request returning *ProjectsStatsRetrieveResponse
@@ -196252,6 +196587,32 @@ func ParseProjectsMoveProjectResponse(rsp *http.Response) (*ProjectsMoveProjectR
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest Project
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseProjectsOtherUsersListResponse parses an HTTP response from a ProjectsOtherUsersListWithResponse call
+func ParseProjectsOtherUsersListResponse(rsp *http.Response) (*ProjectsOtherUsersListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProjectsOtherUsersListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []BasicUser
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
