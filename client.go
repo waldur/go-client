@@ -13120,6 +13120,12 @@ type OpenStackRouter struct {
 	Uuid                             *openapi_types.UUID     `json:"uuid,omitempty"`
 }
 
+// OpenStackRouterInterfaceRequest defines model for OpenStackRouterInterfaceRequest.
+type OpenStackRouterInterfaceRequest struct {
+	Port   *string `json:"port,omitempty"`
+	Subnet *string `json:"subnet,omitempty"`
+}
+
 // OpenStackRouterSetRoutes defines model for OpenStackRouterSetRoutes.
 type OpenStackRouterSetRoutes struct {
 	Routes []OpenStackStaticRoute `json:"routes"`
@@ -25116,6 +25122,12 @@ type OpenstackPortsUpdateJSONRequestBody = OpenStackPortRequest
 // OpenstackPortsUpdatePortIpJSONRequestBody defines body for OpenstackPortsUpdatePortIp for application/json ContentType.
 type OpenstackPortsUpdatePortIpJSONRequestBody = OpenStackPortIPUpdateRequest
 
+// OpenstackRoutersAddRouterInterfaceJSONRequestBody defines body for OpenstackRoutersAddRouterInterface for application/json ContentType.
+type OpenstackRoutersAddRouterInterfaceJSONRequestBody = OpenStackRouterInterfaceRequest
+
+// OpenstackRoutersRemoveRouterInterfaceJSONRequestBody defines body for OpenstackRoutersRemoveRouterInterface for application/json ContentType.
+type OpenstackRoutersRemoveRouterInterfaceJSONRequestBody = OpenStackRouterInterfaceRequest
+
 // OpenstackRoutersSetRoutesJSONRequestBody defines body for OpenstackRoutersSetRoutes for application/json ContentType.
 type OpenstackRoutersSetRoutesJSONRequestBody = OpenStackRouterSetRoutesRequest
 
@@ -30600,6 +30612,16 @@ type ClientInterface interface {
 
 	// OpenstackRoutersRetrieve request
 	OpenstackRoutersRetrieve(ctx context.Context, uuid openapi_types.UUID, params *OpenstackRoutersRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackRoutersAddRouterInterfaceWithBody request with any body
+	OpenstackRoutersAddRouterInterfaceWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackRoutersAddRouterInterface(ctx context.Context, uuid openapi_types.UUID, body OpenstackRoutersAddRouterInterfaceJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackRoutersRemoveRouterInterfaceWithBody request with any body
+	OpenstackRoutersRemoveRouterInterfaceWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackRoutersRemoveRouterInterface(ctx context.Context, uuid openapi_types.UUID, body OpenstackRoutersRemoveRouterInterfaceJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenstackRoutersSetRoutesWithBody request with any body
 	OpenstackRoutersSetRoutesWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -43791,6 +43813,54 @@ func (c *Client) OpenstackRoutersList(ctx context.Context, params *OpenstackRout
 
 func (c *Client) OpenstackRoutersRetrieve(ctx context.Context, uuid openapi_types.UUID, params *OpenstackRoutersRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenstackRoutersRetrieveRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackRoutersAddRouterInterfaceWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackRoutersAddRouterInterfaceRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackRoutersAddRouterInterface(ctx context.Context, uuid openapi_types.UUID, body OpenstackRoutersAddRouterInterfaceJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackRoutersAddRouterInterfaceRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackRoutersRemoveRouterInterfaceWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackRoutersRemoveRouterInterfaceRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackRoutersRemoveRouterInterface(ctx context.Context, uuid openapi_types.UUID, body OpenstackRoutersRemoveRouterInterfaceJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackRoutersRemoveRouterInterfaceRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -102411,6 +102481,100 @@ func NewOpenstackRoutersRetrieveRequest(server string, uuid openapi_types.UUID, 
 	return req, nil
 }
 
+// NewOpenstackRoutersAddRouterInterfaceRequest calls the generic OpenstackRoutersAddRouterInterface builder with application/json body
+func NewOpenstackRoutersAddRouterInterfaceRequest(server string, uuid openapi_types.UUID, body OpenstackRoutersAddRouterInterfaceJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackRoutersAddRouterInterfaceRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOpenstackRoutersAddRouterInterfaceRequestWithBody generates requests for OpenstackRoutersAddRouterInterface with any type of body
+func NewOpenstackRoutersAddRouterInterfaceRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-routers/%s/add_router_interface/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenstackRoutersRemoveRouterInterfaceRequest calls the generic OpenstackRoutersRemoveRouterInterface builder with application/json body
+func NewOpenstackRoutersRemoveRouterInterfaceRequest(server string, uuid openapi_types.UUID, body OpenstackRoutersRemoveRouterInterfaceJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackRoutersRemoveRouterInterfaceRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOpenstackRoutersRemoveRouterInterfaceRequestWithBody generates requests for OpenstackRoutersRemoveRouterInterface with any type of body
+func NewOpenstackRoutersRemoveRouterInterfaceRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-routers/%s/remove_router_interface/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewOpenstackRoutersSetRoutesRequest calls the generic OpenstackRoutersSetRoutes builder with application/json body
 func NewOpenstackRoutersSetRoutesRequest(server string, uuid openapi_types.UUID, body OpenstackRoutersSetRoutesJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -136878,6 +137042,16 @@ type ClientWithResponsesInterface interface {
 	// OpenstackRoutersRetrieveWithResponse request
 	OpenstackRoutersRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *OpenstackRoutersRetrieveParams, reqEditors ...RequestEditorFn) (*OpenstackRoutersRetrieveResponse, error)
 
+	// OpenstackRoutersAddRouterInterfaceWithBodyWithResponse request with any body
+	OpenstackRoutersAddRouterInterfaceWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackRoutersAddRouterInterfaceResponse, error)
+
+	OpenstackRoutersAddRouterInterfaceWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackRoutersAddRouterInterfaceJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackRoutersAddRouterInterfaceResponse, error)
+
+	// OpenstackRoutersRemoveRouterInterfaceWithBodyWithResponse request with any body
+	OpenstackRoutersRemoveRouterInterfaceWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackRoutersRemoveRouterInterfaceResponse, error)
+
+	OpenstackRoutersRemoveRouterInterfaceWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackRoutersRemoveRouterInterfaceJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackRoutersRemoveRouterInterfaceResponse, error)
+
 	// OpenstackRoutersSetRoutesWithBodyWithResponse request with any body
 	OpenstackRoutersSetRoutesWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackRoutersSetRoutesResponse, error)
 
@@ -153968,6 +154142,48 @@ func (r OpenstackRoutersRetrieveResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r OpenstackRoutersRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackRoutersAddRouterInterfaceResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackRoutersAddRouterInterfaceResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackRoutersAddRouterInterfaceResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackRoutersRemoveRouterInterfaceResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackRoutersRemoveRouterInterfaceResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackRoutersRemoveRouterInterfaceResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -172218,6 +172434,40 @@ func (c *ClientWithResponses) OpenstackRoutersRetrieveWithResponse(ctx context.C
 		return nil, err
 	}
 	return ParseOpenstackRoutersRetrieveResponse(rsp)
+}
+
+// OpenstackRoutersAddRouterInterfaceWithBodyWithResponse request with arbitrary body returning *OpenstackRoutersAddRouterInterfaceResponse
+func (c *ClientWithResponses) OpenstackRoutersAddRouterInterfaceWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackRoutersAddRouterInterfaceResponse, error) {
+	rsp, err := c.OpenstackRoutersAddRouterInterfaceWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackRoutersAddRouterInterfaceResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackRoutersAddRouterInterfaceWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackRoutersAddRouterInterfaceJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackRoutersAddRouterInterfaceResponse, error) {
+	rsp, err := c.OpenstackRoutersAddRouterInterface(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackRoutersAddRouterInterfaceResponse(rsp)
+}
+
+// OpenstackRoutersRemoveRouterInterfaceWithBodyWithResponse request with arbitrary body returning *OpenstackRoutersRemoveRouterInterfaceResponse
+func (c *ClientWithResponses) OpenstackRoutersRemoveRouterInterfaceWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackRoutersRemoveRouterInterfaceResponse, error) {
+	rsp, err := c.OpenstackRoutersRemoveRouterInterfaceWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackRoutersRemoveRouterInterfaceResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackRoutersRemoveRouterInterfaceWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackRoutersRemoveRouterInterfaceJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackRoutersRemoveRouterInterfaceResponse, error) {
+	rsp, err := c.OpenstackRoutersRemoveRouterInterface(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackRoutersRemoveRouterInterfaceResponse(rsp)
 }
 
 // OpenstackRoutersSetRoutesWithBodyWithResponse request with arbitrary body returning *OpenstackRoutersSetRoutesResponse
@@ -194105,6 +194355,38 @@ func ParseOpenstackRoutersRetrieveResponse(rsp *http.Response) (*OpenstackRouter
 		}
 		response.JSON200 = &dest
 
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackRoutersAddRouterInterfaceResponse parses an HTTP response from a OpenstackRoutersAddRouterInterfaceWithResponse call
+func ParseOpenstackRoutersAddRouterInterfaceResponse(rsp *http.Response) (*OpenstackRoutersAddRouterInterfaceResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackRoutersAddRouterInterfaceResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackRoutersRemoveRouterInterfaceResponse parses an HTTP response from a OpenstackRoutersRemoveRouterInterfaceWithResponse call
+func ParseOpenstackRoutersRemoveRouterInterfaceResponse(rsp *http.Response) (*OpenstackRoutersRemoveRouterInterfaceResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackRoutersRemoveRouterInterfaceResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
 	}
 
 	return response, nil
