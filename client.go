@@ -6851,6 +6851,14 @@ const (
 	RancherNamespacesListParamsOProjectName      RancherNamespacesListParamsO = "project_name"
 )
 
+// Defines values for RancherRoleTemplatesListParamsO.
+const (
+	RancherRoleTemplatesListParamsOMinusName      RancherRoleTemplatesListParamsO = "-name"
+	RancherRoleTemplatesListParamsOMinusScopeType RancherRoleTemplatesListParamsO = "-scope_type"
+	RancherRoleTemplatesListParamsOName           RancherRoleTemplatesListParamsO = "name"
+	RancherRoleTemplatesListParamsOScopeType      RancherRoleTemplatesListParamsO = "scope_type"
+)
+
 // Defines values for RancherServicesListParamsField.
 const (
 	RancherServicesListParamsFieldAccessUrl                        RancherServicesListParamsField = "access_url"
@@ -23428,6 +23436,10 @@ type RancherProjectsListParams struct {
 type RancherRoleTemplatesListParams struct {
 	Name *string `form:"name,omitempty" json:"name,omitempty"`
 
+	// O Ordering
+	//
+	O *[]RancherRoleTemplatesListParamsO `form:"o,omitempty" json:"o,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
@@ -23436,6 +23448,9 @@ type RancherRoleTemplatesListParams struct {
 	ScopeType    *string             `form:"scope_type,omitempty" json:"scope_type,omitempty"`
 	SettingsUuid *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
 }
+
+// RancherRoleTemplatesListParamsO defines parameters for RancherRoleTemplatesList.
+type RancherRoleTemplatesListParamsO string
 
 // RancherServicesListParams defines parameters for RancherServicesList.
 type RancherServicesListParams struct {
@@ -120798,6 +120813,22 @@ func NewRancherRoleTemplatesListRequest(server string, params *RancherRoleTempla
 		if params.Name != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name", runtime.ParamLocationQuery, *params.Name); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
