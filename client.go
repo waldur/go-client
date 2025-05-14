@@ -22123,9 +22123,12 @@ type OpenstackNetworksRetrieveParamsField string
 
 // OpenstackPortsListParams defines parameters for OpenstackPortsList.
 type OpenstackPortsListParams struct {
-	Field     *[]OpenstackPortsListParamsField `form:"field,omitempty" json:"field,omitempty"`
-	Name      *string                          `form:"name,omitempty" json:"name,omitempty"`
-	NameExact *string                          `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	AdminStateUp *string                          `form:"admin_state_up,omitempty" json:"admin_state_up,omitempty"`
+	BackendId    *string                          `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	Field        *[]OpenstackPortsListParamsField `form:"field,omitempty" json:"field,omitempty"`
+	MacAddress   *string                          `form:"mac_address,omitempty" json:"mac_address,omitempty"`
+	Name         *string                          `form:"name,omitempty" json:"name,omitempty"`
+	NameExact    *string                          `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// O Ordering
 	//
@@ -22137,6 +22140,7 @@ type OpenstackPortsListParams struct {
 	// PageSize Number of results to return per page.
 	PageSize   *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
 	Query      *string             `form:"query,omitempty" json:"query,omitempty"`
+	Status     *string             `form:"status,omitempty" json:"status,omitempty"`
 	Tenant     *string             `form:"tenant,omitempty" json:"tenant,omitempty"`
 	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
 }
@@ -101650,9 +101654,57 @@ func NewOpenstackPortsListRequest(server string, params *OpenstackPortsListParam
 	if params != nil {
 		queryValues := queryURL.Query()
 
+		if params.AdminStateUp != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "admin_state_up", runtime.ParamLocationQuery, *params.AdminStateUp); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.BackendId != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "backend_id", runtime.ParamLocationQuery, *params.BackendId); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Field != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "field", runtime.ParamLocationQuery, *params.Field); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.MacAddress != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "mac_address", runtime.ParamLocationQuery, *params.MacAddress); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -101749,6 +101801,22 @@ func NewOpenstackPortsListRequest(server string, params *OpenstackPortsListParam
 		if params.Query != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "query", runtime.ParamLocationQuery, *params.Query); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Status != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "status", runtime.ParamLocationQuery, *params.Status); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
