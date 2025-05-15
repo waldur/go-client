@@ -9149,6 +9149,14 @@ type ChecklistQuestion struct {
 	Uuid     *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
+// ClusterSecurityGroup defines model for ClusterSecurityGroup.
+type ClusterSecurityGroup struct {
+	Description *string                            `json:"description,omitempty"`
+	Name        string                             `json:"name"`
+	Rules       *[]RancherClusterSecurityGroupRule `json:"rules,omitempty"`
+	Uuid        *openapi_types.UUID                `json:"uuid,omitempty"`
+}
+
 // Comment defines model for Comment.
 type Comment struct {
 	AuthorEmail        *openapi_types.Email `json:"author_email,omitempty"`
@@ -12887,6 +12895,7 @@ type OpenStackNestedPort struct {
 // OpenStackNestedPortRequest defines model for OpenStackNestedPortRequest.
 type OpenStackNestedPortRequest struct {
 	FixedIps *[]OpenStackFixedIpRequest `json:"fixed_ips,omitempty"`
+	Port     *string                    `json:"port,omitempty"`
 	Subnet   *string                    `json:"subnet"`
 }
 
@@ -12996,7 +13005,7 @@ type OpenStackNetworkRequest struct {
 // OpenStackPort defines model for OpenStackPort.
 type OpenStackPort struct {
 	AccessUrl                        *string                             `json:"access_url"`
-	AdminStateUp                     *string                             `json:"admin_state_up"`
+	AdminStateUp                     *bool                               `json:"admin_state_up"`
 	AllowedAddressPairs              *[]OpenStackAllowedAddressPair      `json:"allowed_address_pairs,omitempty"`
 	BackendId                        *string                             `json:"backend_id,omitempty"`
 	Created                          *time.Time                          `json:"created,omitempty"`
@@ -15986,6 +15995,22 @@ type RancherClusterRequest struct {
 	SshPublicKey    *string                    `json:"ssh_public_key,omitempty"`
 	Tenant          *string                    `json:"tenant,omitempty"`
 	VmProject       *string                    `json:"vm_project"`
+}
+
+// RancherClusterSecurityGroupRule defines model for RancherClusterSecurityGroupRule.
+type RancherClusterSecurityGroupRule struct {
+	Cidr        *string                                   `json:"cidr"`
+	Description *string                                   `json:"description,omitempty"`
+	Direction   *DirectionEnum                            `json:"direction,omitempty"`
+	Ethertype   *EthertypeEnum                            `json:"ethertype,omitempty"`
+	FromPort    *int                                      `json:"from_port"`
+	Protocol    *RancherClusterSecurityGroupRule_Protocol `json:"protocol,omitempty"`
+	ToPort      *int                                      `json:"to_port"`
+}
+
+// RancherClusterSecurityGroupRule_Protocol defines model for RancherClusterSecurityGroupRule.Protocol.
+type RancherClusterSecurityGroupRule_Protocol struct {
+	union json.RawMessage
 }
 
 // RancherClusterTemplate defines model for RancherClusterTemplate.
@@ -22123,12 +22148,17 @@ type OpenstackNetworksRetrieveParamsField string
 
 // OpenstackPortsListParams defines parameters for OpenstackPortsList.
 type OpenstackPortsListParams struct {
-	AdminStateUp *string                          `form:"admin_state_up,omitempty" json:"admin_state_up,omitempty"`
+	AdminStateUp *bool                            `form:"admin_state_up,omitempty" json:"admin_state_up,omitempty"`
 	BackendId    *string                          `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	DeviceId     *string                          `form:"device_id,omitempty" json:"device_id,omitempty"`
+	DeviceOwner  *string                          `form:"device_owner,omitempty" json:"device_owner,omitempty"`
 	Field        *[]OpenstackPortsListParamsField `form:"field,omitempty" json:"field,omitempty"`
-	MacAddress   *string                          `form:"mac_address,omitempty" json:"mac_address,omitempty"`
-	Name         *string                          `form:"name,omitempty" json:"name,omitempty"`
-	NameExact    *string                          `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// HasDeviceOwner Has device owner
+	HasDeviceOwner *bool   `form:"has_device_owner,omitempty" json:"has_device_owner,omitempty"`
+	MacAddress     *string `form:"mac_address,omitempty" json:"mac_address,omitempty"`
+	Name           *string `form:"name,omitempty" json:"name,omitempty"`
+	NameExact      *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// O Ordering
 	//
@@ -22138,7 +22168,9 @@ type OpenstackPortsListParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize   *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Query Query
 	Query      *string             `form:"query,omitempty" json:"query,omitempty"`
 	Status     *string             `form:"status,omitempty" json:"status,omitempty"`
 	Tenant     *string             `form:"tenant,omitempty" json:"tenant,omitempty"`
@@ -23317,6 +23349,18 @@ type RancherClustersListParamsField string
 
 // RancherClustersListParamsState defines parameters for RancherClustersList.
 type RancherClustersListParamsState string
+
+// RancherClustersSecurityGroupsListParams defines parameters for RancherClustersSecurityGroupsList.
+type RancherClustersSecurityGroupsListParams struct {
+	Name      *string `form:"name,omitempty" json:"name,omitempty"`
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
 
 // RancherClustersRetrieveParams defines parameters for RancherClustersRetrieve.
 type RancherClustersRetrieveParams struct {
@@ -27793,6 +27837,68 @@ func (t *PublicOfferingDetails_Country) UnmarshalJSON(b []byte) error {
 	return err
 }
 
+// AsProtocolEnum returns the union data inside the RancherClusterSecurityGroupRule_Protocol as a ProtocolEnum
+func (t RancherClusterSecurityGroupRule_Protocol) AsProtocolEnum() (ProtocolEnum, error) {
+	var body ProtocolEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromProtocolEnum overwrites any union data inside the RancherClusterSecurityGroupRule_Protocol as the provided ProtocolEnum
+func (t *RancherClusterSecurityGroupRule_Protocol) FromProtocolEnum(v ProtocolEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeProtocolEnum performs a merge with any union data inside the RancherClusterSecurityGroupRule_Protocol, using the provided ProtocolEnum
+func (t *RancherClusterSecurityGroupRule_Protocol) MergeProtocolEnum(v ProtocolEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsBlankEnum returns the union data inside the RancherClusterSecurityGroupRule_Protocol as a BlankEnum
+func (t RancherClusterSecurityGroupRule_Protocol) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the RancherClusterSecurityGroupRule_Protocol as the provided BlankEnum
+func (t *RancherClusterSecurityGroupRule_Protocol) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the RancherClusterSecurityGroupRule_Protocol, using the provided BlankEnum
+func (t *RancherClusterSecurityGroupRule_Protocol) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t RancherClusterSecurityGroupRule_Protocol) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *RancherClusterSecurityGroupRule_Protocol) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsGuestOsEnum returns the union data inside the VmwareVirtualMachine_GuestOs as a GuestOsEnum
 func (t VmwareVirtualMachine_GuestOs) AsGuestOsEnum() (GuestOsEnum, error) {
 	var body GuestOsEnum
@@ -31438,6 +31544,12 @@ type ClientInterface interface {
 	RancherClustersCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	RancherClustersCreate(ctx context.Context, body RancherClustersCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// RancherClustersSecurityGroupsList request
+	RancherClustersSecurityGroupsList(ctx context.Context, clusterUuid openapi_types.UUID, params *RancherClustersSecurityGroupsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// RancherClustersSecurityGroupsRetrieve request
+	RancherClustersSecurityGroupsRetrieve(ctx context.Context, clusterUuid openapi_types.UUID, id int, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// RancherClustersDestroy request
 	RancherClustersDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -47465,6 +47577,30 @@ func (c *Client) RancherClustersCreateWithBody(ctx context.Context, contentType 
 
 func (c *Client) RancherClustersCreate(ctx context.Context, body RancherClustersCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewRancherClustersCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) RancherClustersSecurityGroupsList(ctx context.Context, clusterUuid openapi_types.UUID, params *RancherClustersSecurityGroupsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewRancherClustersSecurityGroupsListRequest(c.Server, clusterUuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) RancherClustersSecurityGroupsRetrieve(ctx context.Context, clusterUuid openapi_types.UUID, id int, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewRancherClustersSecurityGroupsRetrieveRequest(c.Server, clusterUuid, id)
 	if err != nil {
 		return nil, err
 	}
@@ -101686,9 +101822,57 @@ func NewOpenstackPortsListRequest(server string, params *OpenstackPortsListParam
 
 		}
 
+		if params.DeviceId != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "device_id", runtime.ParamLocationQuery, *params.DeviceId); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.DeviceOwner != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "device_owner", runtime.ParamLocationQuery, *params.DeviceOwner); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Field != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "field", runtime.ParamLocationQuery, *params.Field); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.HasDeviceOwner != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_device_owner", runtime.ParamLocationQuery, *params.HasDeviceOwner); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -118522,6 +118706,151 @@ func NewRancherClustersCreateRequestWithBody(server string, contentType string, 
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewRancherClustersSecurityGroupsListRequest generates requests for RancherClustersSecurityGroupsList
+func NewRancherClustersSecurityGroupsListRequest(server string, clusterUuid openapi_types.UUID, params *RancherClustersSecurityGroupsListParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "cluster_uuid", runtime.ParamLocationPath, clusterUuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/rancher-clusters/%s/security-groups/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name", runtime.ParamLocationQuery, *params.Name); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.NameExact != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name_exact", runtime.ParamLocationQuery, *params.NameExact); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewRancherClustersSecurityGroupsRetrieveRequest generates requests for RancherClustersSecurityGroupsRetrieve
+func NewRancherClustersSecurityGroupsRetrieveRequest(server string, clusterUuid openapi_types.UUID, id int) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "cluster_uuid", runtime.ParamLocationPath, clusterUuid)
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/rancher-clusters/%s/security-groups/%s/", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
 
 	return req, nil
 }
@@ -137931,6 +138260,12 @@ type ClientWithResponsesInterface interface {
 	RancherClustersCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*RancherClustersCreateResponse, error)
 
 	RancherClustersCreateWithResponse(ctx context.Context, body RancherClustersCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*RancherClustersCreateResponse, error)
+
+	// RancherClustersSecurityGroupsListWithResponse request
+	RancherClustersSecurityGroupsListWithResponse(ctx context.Context, clusterUuid openapi_types.UUID, params *RancherClustersSecurityGroupsListParams, reqEditors ...RequestEditorFn) (*RancherClustersSecurityGroupsListResponse, error)
+
+	// RancherClustersSecurityGroupsRetrieveWithResponse request
+	RancherClustersSecurityGroupsRetrieveWithResponse(ctx context.Context, clusterUuid openapi_types.UUID, id int, reqEditors ...RequestEditorFn) (*RancherClustersSecurityGroupsRetrieveResponse, error)
 
 	// RancherClustersDestroyWithResponse request
 	RancherClustersDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*RancherClustersDestroyResponse, error)
@@ -158857,6 +159192,50 @@ func (r RancherClustersCreateResponse) StatusCode() int {
 	return 0
 }
 
+type RancherClustersSecurityGroupsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]ClusterSecurityGroup
+}
+
+// Status returns HTTPResponse.Status
+func (r RancherClustersSecurityGroupsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r RancherClustersSecurityGroupsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type RancherClustersSecurityGroupsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ClusterSecurityGroup
+}
+
+// Status returns HTTPResponse.Status
+func (r RancherClustersSecurityGroupsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r RancherClustersSecurityGroupsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type RancherClustersDestroyResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -175148,6 +175527,24 @@ func (c *ClientWithResponses) RancherClustersCreateWithResponse(ctx context.Cont
 		return nil, err
 	}
 	return ParseRancherClustersCreateResponse(rsp)
+}
+
+// RancherClustersSecurityGroupsListWithResponse request returning *RancherClustersSecurityGroupsListResponse
+func (c *ClientWithResponses) RancherClustersSecurityGroupsListWithResponse(ctx context.Context, clusterUuid openapi_types.UUID, params *RancherClustersSecurityGroupsListParams, reqEditors ...RequestEditorFn) (*RancherClustersSecurityGroupsListResponse, error) {
+	rsp, err := c.RancherClustersSecurityGroupsList(ctx, clusterUuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseRancherClustersSecurityGroupsListResponse(rsp)
+}
+
+// RancherClustersSecurityGroupsRetrieveWithResponse request returning *RancherClustersSecurityGroupsRetrieveResponse
+func (c *ClientWithResponses) RancherClustersSecurityGroupsRetrieveWithResponse(ctx context.Context, clusterUuid openapi_types.UUID, id int, reqEditors ...RequestEditorFn) (*RancherClustersSecurityGroupsRetrieveResponse, error) {
+	rsp, err := c.RancherClustersSecurityGroupsRetrieve(ctx, clusterUuid, id, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseRancherClustersSecurityGroupsRetrieveResponse(rsp)
 }
 
 // RancherClustersDestroyWithResponse request returning *RancherClustersDestroyResponse
@@ -199316,6 +199713,58 @@ func ParseRancherClustersCreateResponse(rsp *http.Response) (*RancherClustersCre
 			return nil, err
 		}
 		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseRancherClustersSecurityGroupsListResponse parses an HTTP response from a RancherClustersSecurityGroupsListWithResponse call
+func ParseRancherClustersSecurityGroupsListResponse(rsp *http.Response) (*RancherClustersSecurityGroupsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &RancherClustersSecurityGroupsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []ClusterSecurityGroup
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseRancherClustersSecurityGroupsRetrieveResponse parses an HTTP response from a RancherClustersSecurityGroupsRetrieveWithResponse call
+func ParseRancherClustersSecurityGroupsRetrieveResponse(rsp *http.Response) (*RancherClustersSecurityGroupsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &RancherClustersSecurityGroupsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ClusterSecurityGroup
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
 
 	}
 
