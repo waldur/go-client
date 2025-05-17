@@ -671,14 +671,6 @@ const (
 	MinimalConsumptionLogicEnumLinear MinimalConsumptionLogicEnum = "linear"
 )
 
-// Defines values for MountPointEnum.
-const (
-	Optmedia01     MountPointEnum = "/opt/media01"
-	Optrke2Storage MountPointEnum = "/opt/rke2_storage"
-	Varlibdocker   MountPointEnum = "/var/lib/docker"
-	Varlibetcd     MountPointEnum = "/var/lib/etcd"
-)
-
 // Defines values for NestedAttributeTypeEnum.
 const (
 	NestedAttributeTypeEnumBoolean NestedAttributeTypeEnum = "boolean"
@@ -9942,10 +9934,10 @@ type CustomerUser struct {
 
 // DataVolumeRequest defines model for DataVolumeRequest.
 type DataVolumeRequest struct {
-	Filesystem *string         `json:"filesystem,omitempty"`
-	MountPoint *MountPointEnum `json:"mount_point,omitempty"`
-	Size       int             `json:"size"`
-	VolumeType *string         `json:"volume_type"`
+	Filesystem *string `json:"filesystem,omitempty"`
+	MountPoint string  `json:"mount_point"`
+	Size       int     `json:"size"`
+	VolumeType *string `json:"volume_type"`
 }
 
 // DecidingEntityEnum defines model for DecidingEntityEnum.
@@ -11593,9 +11585,6 @@ type MigrationDetailsRequest struct {
 
 // MinimalConsumptionLogicEnum defines model for MinimalConsumptionLogicEnum.
 type MinimalConsumptionLogicEnum string
-
-// MountPointEnum defines model for MountPointEnum.
-type MountPointEnum string
 
 // MoveProjectRequest defines model for MoveProjectRequest.
 type MoveProjectRequest struct {
