@@ -2856,6 +2856,16 @@ const (
 	MarketplaceComponentUserUsagesListParamsFieldUuid           MarketplaceComponentUserUsagesListParamsField = "uuid"
 )
 
+// Defines values for MarketplaceComponentUserUsagesListParamsO.
+const (
+	MarketplaceComponentUserUsagesListParamsOComponentUsageBillingPeriod      MarketplaceComponentUserUsagesListParamsO = "component_usage__billing_period"
+	MarketplaceComponentUserUsagesListParamsOMinusComponentUsageBillingPeriod MarketplaceComponentUserUsagesListParamsO = "-component_usage__billing_period"
+	MarketplaceComponentUserUsagesListParamsOMinusUsage                       MarketplaceComponentUserUsagesListParamsO = "-usage"
+	MarketplaceComponentUserUsagesListParamsOMinusUsername                    MarketplaceComponentUserUsagesListParamsO = "-username"
+	MarketplaceComponentUserUsagesListParamsOUsage                            MarketplaceComponentUserUsagesListParamsO = "usage"
+	MarketplaceComponentUserUsagesListParamsOUsername                         MarketplaceComponentUserUsagesListParamsO = "username"
+)
+
 // Defines values for MarketplaceComponentUserUsagesRetrieveParamsField.
 const (
 	MarketplaceComponentUserUsagesRetrieveParamsFieldBackendId      MarketplaceComponentUserUsagesRetrieveParamsField = "backend_id"
@@ -19953,12 +19963,18 @@ type MarketplaceComponentUsagesRetrieveParamsField string
 
 // MarketplaceComponentUserUsagesListParams defines parameters for MarketplaceComponentUserUsagesList.
 type MarketplaceComponentUserUsagesListParams struct {
+	BillingPeriodMonth          *float32                                         `form:"billing_period_month,omitempty" json:"billing_period_month,omitempty"`
+	BillingPeriodYear           *float32                                         `form:"billing_period_year,omitempty" json:"billing_period_year,omitempty"`
 	ComponentUsageBillingPeriod *openapi_types.Date                              `form:"component_usage__billing_period,omitempty" json:"component_usage__billing_period,omitempty"`
 	CustomerUuid                *openapi_types.UUID                              `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
 	DateAfter                   *openapi_types.Date                              `form:"date_after,omitempty" json:"date_after,omitempty"`
 	DateBefore                  *openapi_types.Date                              `form:"date_before,omitempty" json:"date_before,omitempty"`
 	Field                       *[]MarketplaceComponentUserUsagesListParamsField `form:"field,omitempty" json:"field,omitempty"`
-	OfferingUuid                *openapi_types.UUID                              `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// O Ordering
+	//
+	O            *[]MarketplaceComponentUserUsagesListParamsO `form:"o,omitempty" json:"o,omitempty"`
+	OfferingUuid *openapi_types.UUID                          `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -19971,10 +19987,14 @@ type MarketplaceComponentUserUsagesListParams struct {
 	Resource     *string             `form:"resource,omitempty" json:"resource,omitempty"`
 	ResourceUuid *openapi_types.UUID `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
 	Type         *string             `form:"type,omitempty" json:"type,omitempty"`
+	Username     *string             `form:"username,omitempty" json:"username,omitempty"`
 }
 
 // MarketplaceComponentUserUsagesListParamsField defines parameters for MarketplaceComponentUserUsagesList.
 type MarketplaceComponentUserUsagesListParamsField string
+
+// MarketplaceComponentUserUsagesListParamsO defines parameters for MarketplaceComponentUserUsagesList.
+type MarketplaceComponentUserUsagesListParamsO string
 
 // MarketplaceComponentUserUsagesRetrieveParams defines parameters for MarketplaceComponentUserUsagesRetrieve.
 type MarketplaceComponentUserUsagesRetrieveParams struct {
@@ -74242,6 +74262,38 @@ func NewMarketplaceComponentUserUsagesListRequest(server string, params *Marketp
 	if params != nil {
 		queryValues := queryURL.Query()
 
+		if params.BillingPeriodMonth != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "billing_period_month", runtime.ParamLocationQuery, *params.BillingPeriodMonth); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.BillingPeriodYear != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "billing_period_year", runtime.ParamLocationQuery, *params.BillingPeriodYear); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.ComponentUsageBillingPeriod != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "component_usage__billing_period", runtime.ParamLocationQuery, *params.ComponentUsageBillingPeriod); err != nil {
@@ -74309,6 +74361,22 @@ func NewMarketplaceComponentUserUsagesListRequest(server string, params *Marketp
 		if params.Field != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "field", runtime.ParamLocationQuery, *params.Field); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -74421,6 +74489,22 @@ func NewMarketplaceComponentUserUsagesListRequest(server string, params *Marketp
 		if params.Type != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "type", runtime.ParamLocationQuery, *params.Type); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Username != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "username", runtime.ParamLocationQuery, *params.Username); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
