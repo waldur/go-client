@@ -5335,6 +5335,7 @@ const (
 	OpenstackRoutersListParamsFieldModified                         OpenstackRoutersListParamsField = "modified"
 	OpenstackRoutersListParamsFieldName                             OpenstackRoutersListParamsField = "name"
 	OpenstackRoutersListParamsFieldOfferingExternalIps              OpenstackRoutersListParamsField = "offering_external_ips"
+	OpenstackRoutersListParamsFieldPorts                            OpenstackRoutersListParamsField = "ports"
 	OpenstackRoutersListParamsFieldProject                          OpenstackRoutersListParamsField = "project"
 	OpenstackRoutersListParamsFieldProjectName                      OpenstackRoutersListParamsField = "project_name"
 	OpenstackRoutersListParamsFieldProjectUuid                      OpenstackRoutersListParamsField = "project_uuid"
@@ -5379,6 +5380,7 @@ const (
 	OpenstackRoutersRetrieveParamsFieldModified                         OpenstackRoutersRetrieveParamsField = "modified"
 	OpenstackRoutersRetrieveParamsFieldName                             OpenstackRoutersRetrieveParamsField = "name"
 	OpenstackRoutersRetrieveParamsFieldOfferingExternalIps              OpenstackRoutersRetrieveParamsField = "offering_external_ips"
+	OpenstackRoutersRetrieveParamsFieldPorts                            OpenstackRoutersRetrieveParamsField = "ports"
 	OpenstackRoutersRetrieveParamsFieldProject                          OpenstackRoutersRetrieveParamsField = "project"
 	OpenstackRoutersRetrieveParamsFieldProjectName                      OpenstackRoutersRetrieveParamsField = "project_name"
 	OpenstackRoutersRetrieveParamsFieldProjectUuid                      OpenstackRoutersRetrieveParamsField = "project_uuid"
@@ -12918,6 +12920,7 @@ type OpenStackNestedPort struct {
 	SubnetDescription   *string                        `json:"subnet_description"`
 	SubnetName          *string                        `json:"subnet_name"`
 	SubnetUuid          *openapi_types.UUID            `json:"subnet_uuid"`
+	Url                 *string                        `json:"url,omitempty"`
 }
 
 // OpenStackNestedPortRequest defines model for OpenStackNestedPortRequest.
@@ -13139,6 +13142,7 @@ type OpenStackRouter struct {
 	Modified                         *time.Time              `json:"modified,omitempty"`
 	Name                             *string                 `json:"name,omitempty"`
 	OfferingExternalIps              *[]string               `json:"offering_external_ips"`
+	Ports                            *[]OpenStackNestedPort  `json:"ports,omitempty"`
 	Project                          *string                 `json:"project,omitempty"`
 	ProjectName                      *string                 `json:"project_name,omitempty"`
 	ProjectUuid                      *openapi_types.UUID     `json:"project_uuid,omitempty"`
