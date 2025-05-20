@@ -11373,6 +11373,9 @@ type MergedSecretOptions struct {
 	// Ipv4ExternalIpMapping OpenStack IPv4 external IP mapping
 	Ipv4ExternalIpMapping *[]IPMapping `json:"ipv4_external_ip_mapping,omitempty"`
 
+	// K8sVersion Kubernetes version
+	K8sVersion *string `json:"k8s_version,omitempty"`
+
 	// KeycloakPassword Password of the Keycloak integration user
 	KeycloakPassword *string `json:"keycloak_password,omitempty"`
 
@@ -11401,6 +11404,15 @@ type MergedSecretOptions struct {
 	NodeDiskDriver             *NodeDiskDriverEnum `json:"node_disk_driver,omitempty"`
 	OpenstackApiTlsCertificate *string             `json:"openstack_api_tls_certificate,omitempty"`
 	Password                   *string             `json:"password,omitempty"`
+
+	// PrivateRegistryPassword Password for accessing a private registry
+	PrivateRegistryPassword *string `json:"private_registry_password,omitempty"`
+
+	// PrivateRegistryUrl URL of a private registry for a cluster
+	PrivateRegistryUrl *string `json:"private_registry_url,omitempty"`
+
+	// PrivateRegistryUser Username for accessing a private registry
+	PrivateRegistryUser *string `json:"private_registry_user,omitempty"`
 
 	// Pull Script for regular resource pull
 	Pull *string `json:"pull,omitempty"`
@@ -11471,6 +11483,9 @@ type MergedSecretOptionsRequest struct {
 	// Ipv4ExternalIpMapping OpenStack IPv4 external IP mapping
 	Ipv4ExternalIpMapping *[]IPMappingRequest `json:"ipv4_external_ip_mapping,omitempty"`
 
+	// K8sVersion Kubernetes version
+	K8sVersion *string `json:"k8s_version,omitempty"`
+
 	// KeycloakPassword Password of the Keycloak integration user
 	KeycloakPassword *string `json:"keycloak_password,omitempty"`
 
@@ -11499,6 +11514,15 @@ type MergedSecretOptionsRequest struct {
 	NodeDiskDriver             *NodeDiskDriverEnum `json:"node_disk_driver,omitempty"`
 	OpenstackApiTlsCertificate *string             `json:"openstack_api_tls_certificate,omitempty"`
 	Password                   *string             `json:"password,omitempty"`
+
+	// PrivateRegistryPassword Password for accessing a private registry
+	PrivateRegistryPassword *string `json:"private_registry_password,omitempty"`
+
+	// PrivateRegistryUrl URL of a private registry for a cluster
+	PrivateRegistryUrl *string `json:"private_registry_url,omitempty"`
+
+	// PrivateRegistryUser Username for accessing a private registry
+	PrivateRegistryUser *string `json:"private_registry_user,omitempty"`
 
 	// Pull Script for regular resource pull
 	Pull *string `json:"pull,omitempty"`
