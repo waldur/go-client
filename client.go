@@ -9824,6 +9824,19 @@ type CreateFeedbackRequest struct {
 	Token      *string `json:"token,omitempty"`
 }
 
+// CreateRouter defines model for CreateRouter.
+type CreateRouter struct {
+	Project         *string `json:"project,omitempty"`
+	ServiceSettings *string `json:"service_settings,omitempty"`
+	Tenant          string  `json:"tenant"`
+}
+
+// CreateRouterRequest defines model for CreateRouterRequest.
+type CreateRouterRequest struct {
+	Name   *string `json:"name,omitempty"`
+	Tenant string  `json:"tenant"`
+}
+
 // Customer defines model for Customer.
 type Customer struct {
 	Abbreviation *string `json:"abbreviation,omitempty"`
@@ -25410,6 +25423,9 @@ type OpenstackPortsUpdateJSONRequestBody = OpenStackPortRequest
 // OpenstackPortsUpdatePortIpJSONRequestBody defines body for OpenstackPortsUpdatePortIp for application/json ContentType.
 type OpenstackPortsUpdatePortIpJSONRequestBody = OpenStackPortIPUpdateRequest
 
+// OpenstackRoutersCreateJSONRequestBody defines body for OpenstackRoutersCreate for application/json ContentType.
+type OpenstackRoutersCreateJSONRequestBody = CreateRouterRequest
+
 // OpenstackRoutersAddRouterInterfaceJSONRequestBody defines body for OpenstackRoutersAddRouterInterface for application/json ContentType.
 type OpenstackRoutersAddRouterInterfaceJSONRequestBody = OpenStackRouterInterfaceRequest
 
@@ -31033,6 +31049,14 @@ type ClientInterface interface {
 
 	// OpenstackRoutersList request
 	OpenstackRoutersList(ctx context.Context, params *OpenstackRoutersListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackRoutersCreateWithBody request with any body
+	OpenstackRoutersCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackRoutersCreate(ctx context.Context, body OpenstackRoutersCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackRoutersDestroy request
+	OpenstackRoutersDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenstackRoutersRetrieve request
 	OpenstackRoutersRetrieve(ctx context.Context, uuid openapi_types.UUID, params *OpenstackRoutersRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -44265,6 +44289,42 @@ func (c *Client) OpenstackPortsUpdatePortIp(ctx context.Context, uuid openapi_ty
 
 func (c *Client) OpenstackRoutersList(ctx context.Context, params *OpenstackRoutersListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenstackRoutersListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackRoutersCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackRoutersCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackRoutersCreate(ctx context.Context, body OpenstackRoutersCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackRoutersCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackRoutersDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackRoutersDestroyRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -103281,6 +103341,80 @@ func NewOpenstackRoutersListRequest(server string, params *OpenstackRoutersListP
 	return req, nil
 }
 
+// NewOpenstackRoutersCreateRequest calls the generic OpenstackRoutersCreate builder with application/json body
+func NewOpenstackRoutersCreateRequest(server string, body OpenstackRoutersCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackRoutersCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewOpenstackRoutersCreateRequestWithBody generates requests for OpenstackRoutersCreate with any type of body
+func NewOpenstackRoutersCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-routers/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenstackRoutersDestroyRequest generates requests for OpenstackRoutersDestroy
+func NewOpenstackRoutersDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-routers/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewOpenstackRoutersRetrieveRequest generates requests for OpenstackRoutersRetrieve
 func NewOpenstackRoutersRetrieveRequest(server string, uuid openapi_types.UUID, params *OpenstackRoutersRetrieveParams) (*http.Request, error) {
 	var err error
@@ -138126,6 +138260,14 @@ type ClientWithResponsesInterface interface {
 	// OpenstackRoutersListWithResponse request
 	OpenstackRoutersListWithResponse(ctx context.Context, params *OpenstackRoutersListParams, reqEditors ...RequestEditorFn) (*OpenstackRoutersListResponse, error)
 
+	// OpenstackRoutersCreateWithBodyWithResponse request with any body
+	OpenstackRoutersCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackRoutersCreateResponse, error)
+
+	OpenstackRoutersCreateWithResponse(ctx context.Context, body OpenstackRoutersCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackRoutersCreateResponse, error)
+
+	// OpenstackRoutersDestroyWithResponse request
+	OpenstackRoutersDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackRoutersDestroyResponse, error)
+
 	// OpenstackRoutersRetrieveWithResponse request
 	OpenstackRoutersRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *OpenstackRoutersRetrieveParams, reqEditors ...RequestEditorFn) (*OpenstackRoutersRetrieveResponse, error)
 
@@ -155267,6 +155409,49 @@ func (r OpenstackRoutersListResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r OpenstackRoutersListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackRoutersCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *CreateRouter
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackRoutersCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackRoutersCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackRoutersDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackRoutersDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackRoutersDestroyResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -173678,6 +173863,32 @@ func (c *ClientWithResponses) OpenstackRoutersListWithResponse(ctx context.Conte
 		return nil, err
 	}
 	return ParseOpenstackRoutersListResponse(rsp)
+}
+
+// OpenstackRoutersCreateWithBodyWithResponse request with arbitrary body returning *OpenstackRoutersCreateResponse
+func (c *ClientWithResponses) OpenstackRoutersCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackRoutersCreateResponse, error) {
+	rsp, err := c.OpenstackRoutersCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackRoutersCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackRoutersCreateWithResponse(ctx context.Context, body OpenstackRoutersCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackRoutersCreateResponse, error) {
+	rsp, err := c.OpenstackRoutersCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackRoutersCreateResponse(rsp)
+}
+
+// OpenstackRoutersDestroyWithResponse request returning *OpenstackRoutersDestroyResponse
+func (c *ClientWithResponses) OpenstackRoutersDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackRoutersDestroyResponse, error) {
+	rsp, err := c.OpenstackRoutersDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackRoutersDestroyResponse(rsp)
 }
 
 // OpenstackRoutersRetrieveWithResponse request returning *OpenstackRoutersRetrieveResponse
@@ -195686,6 +195897,48 @@ func ParseOpenstackRoutersListResponse(rsp *http.Response) (*OpenstackRoutersLis
 		}
 		response.JSON200 = &dest
 
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackRoutersCreateResponse parses an HTTP response from a OpenstackRoutersCreateWithResponse call
+func ParseOpenstackRoutersCreateResponse(rsp *http.Response) (*OpenstackRoutersCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackRoutersCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest CreateRouter
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackRoutersDestroyResponse parses an HTTP response from a OpenstackRoutersDestroyWithResponse call
+func ParseOpenstackRoutersDestroyResponse(rsp *http.Response) (*OpenstackRoutersDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackRoutersDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
 	}
 
 	return response, nil
