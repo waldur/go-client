@@ -9826,15 +9826,18 @@ type CreateFeedbackRequest struct {
 
 // CreateRouter defines model for CreateRouter.
 type CreateRouter struct {
-	Project         *string `json:"project,omitempty"`
-	ServiceSettings *string `json:"service_settings,omitempty"`
-	Tenant          string  `json:"tenant"`
+	Name            string              `json:"name"`
+	Project         *string             `json:"project,omitempty"`
+	ServiceSettings *string             `json:"service_settings,omitempty"`
+	Tenant          string              `json:"tenant"`
+	Url             *string             `json:"url,omitempty"`
+	Uuid            *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // CreateRouterRequest defines model for CreateRouterRequest.
 type CreateRouterRequest struct {
-	Name   *string `json:"name,omitempty"`
-	Tenant string  `json:"tenant"`
+	Name   string `json:"name"`
+	Tenant string `json:"tenant"`
 }
 
 // Customer defines model for Customer.
