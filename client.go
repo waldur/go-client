@@ -6773,6 +6773,7 @@ const (
 	RancherClustersListParamsFieldProject                          RancherClustersListParamsField = "project"
 	RancherClustersListParamsFieldProjectName                      RancherClustersListParamsField = "project_name"
 	RancherClustersListParamsFieldProjectUuid                      RancherClustersListParamsField = "project_uuid"
+	RancherClustersListParamsFieldPublicIps                        RancherClustersListParamsField = "public_ips"
 	RancherClustersListParamsFieldResourceType                     RancherClustersListParamsField = "resource_type"
 	RancherClustersListParamsFieldRuntimeState                     RancherClustersListParamsField = "runtime_state"
 	RancherClustersListParamsFieldSecurityGroups                   RancherClustersListParamsField = "security_groups"
@@ -6832,6 +6833,7 @@ const (
 	RancherClustersRetrieveParamsFieldProject                          RancherClustersRetrieveParamsField = "project"
 	RancherClustersRetrieveParamsFieldProjectName                      RancherClustersRetrieveParamsField = "project_name"
 	RancherClustersRetrieveParamsFieldProjectUuid                      RancherClustersRetrieveParamsField = "project_uuid"
+	RancherClustersRetrieveParamsFieldPublicIps                        RancherClustersRetrieveParamsField = "public_ips"
 	RancherClustersRetrieveParamsFieldResourceType                     RancherClustersRetrieveParamsField = "resource_type"
 	RancherClustersRetrieveParamsFieldRuntimeState                     RancherClustersRetrieveParamsField = "runtime_state"
 	RancherClustersRetrieveParamsFieldSecurityGroups                   RancherClustersRetrieveParamsField = "security_groups"
@@ -16145,37 +16147,38 @@ type RancherCluster struct {
 	ErrorTraceback       *string    `json:"error_traceback,omitempty"`
 
 	// InstallLonghorn Longhorn is a distributed block storage deployed on top of Kubernetes cluster
-	InstallLonghorn                  *bool                   `json:"install_longhorn,omitempty"`
-	IsLimitBased                     *bool                   `json:"is_limit_based"`
-	IsUsageBased                     *bool                   `json:"is_usage_based"`
-	ManagementSecurityGroup          *string                 `json:"management_security_group,omitempty"`
-	MarketplaceCategoryName          *string                 `json:"marketplace_category_name,omitempty"`
-	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid"`
-	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name"`
-	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options"`
-	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid"`
-	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid"`
-	MarketplaceResourceState         *string                 `json:"marketplace_resource_state"`
-	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid"`
-	Modified                         *time.Time              `json:"modified,omitempty"`
-	Name                             *string                 `json:"name,omitempty"`
-	Nodes                            *[]RancherNestedNode    `json:"nodes,omitempty"`
-	Project                          *string                 `json:"project,omitempty"`
-	ProjectName                      *string                 `json:"project_name,omitempty"`
-	ProjectUuid                      *openapi_types.UUID     `json:"project_uuid,omitempty"`
-	ResourceType                     *string                 `json:"resource_type,omitempty"`
-	RuntimeState                     *string                 `json:"runtime_state,omitempty"`
-	ServiceName                      *string                 `json:"service_name,omitempty"`
-	ServiceSettings                  *string                 `json:"service_settings,omitempty"`
-	ServiceSettingsErrorMessage      *string                 `json:"service_settings_error_message,omitempty"`
-	ServiceSettingsState             *string                 `json:"service_settings_state,omitempty"`
-	ServiceSettingsUuid              *openapi_types.UUID     `json:"service_settings_uuid,omitempty"`
-	State                            *CoreStates             `json:"state,omitempty"`
-	Tenant                           *string                 `json:"tenant,omitempty"`
-	TenantUuid                       *openapi_types.UUID     `json:"tenant_uuid,omitempty"`
-	Url                              *string                 `json:"url,omitempty"`
-	Uuid                             *openapi_types.UUID     `json:"uuid,omitempty"`
-	VmProject                        *string                 `json:"vm_project"`
+	InstallLonghorn                  *bool                    `json:"install_longhorn,omitempty"`
+	IsLimitBased                     *bool                    `json:"is_limit_based"`
+	IsUsageBased                     *bool                    `json:"is_usage_based"`
+	ManagementSecurityGroup          *string                  `json:"management_security_group,omitempty"`
+	MarketplaceCategoryName          *string                  `json:"marketplace_category_name,omitempty"`
+	MarketplaceCategoryUuid          *string                  `json:"marketplace_category_uuid"`
+	MarketplaceOfferingName          *string                  `json:"marketplace_offering_name"`
+	MarketplaceOfferingPluginOptions *map[string]interface{}  `json:"marketplace_offering_plugin_options"`
+	MarketplaceOfferingUuid          *string                  `json:"marketplace_offering_uuid"`
+	MarketplacePlanUuid              *string                  `json:"marketplace_plan_uuid"`
+	MarketplaceResourceState         *string                  `json:"marketplace_resource_state"`
+	MarketplaceResourceUuid          *string                  `json:"marketplace_resource_uuid"`
+	Modified                         *time.Time               `json:"modified,omitempty"`
+	Name                             *string                  `json:"name,omitempty"`
+	Nodes                            *[]RancherNestedNode     `json:"nodes,omitempty"`
+	Project                          *string                  `json:"project,omitempty"`
+	ProjectName                      *string                  `json:"project_name,omitempty"`
+	ProjectUuid                      *openapi_types.UUID      `json:"project_uuid,omitempty"`
+	PublicIps                        *[]RancherNestedPublicIP `json:"public_ips,omitempty"`
+	ResourceType                     *string                  `json:"resource_type,omitempty"`
+	RuntimeState                     *string                  `json:"runtime_state,omitempty"`
+	ServiceName                      *string                  `json:"service_name,omitempty"`
+	ServiceSettings                  *string                  `json:"service_settings,omitempty"`
+	ServiceSettingsErrorMessage      *string                  `json:"service_settings_error_message,omitempty"`
+	ServiceSettingsState             *string                  `json:"service_settings_state,omitempty"`
+	ServiceSettingsUuid              *openapi_types.UUID      `json:"service_settings_uuid,omitempty"`
+	State                            *CoreStates              `json:"state,omitempty"`
+	Tenant                           *string                  `json:"tenant,omitempty"`
+	TenantUuid                       *openapi_types.UUID      `json:"tenant_uuid,omitempty"`
+	Url                              *string                  `json:"url,omitempty"`
+	Uuid                             *openapi_types.UUID      `json:"uuid,omitempty"`
+	VmProject                        *string                  `json:"vm_project"`
 }
 
 // RancherClusterReference defines model for RancherClusterReference.
@@ -16447,6 +16450,13 @@ type RancherNestedNodeRequest struct {
 	SystemVolumeSize *int                 `json:"system_volume_size,omitempty"`
 	SystemVolumeType *string              `json:"system_volume_type"`
 	Tenant           *string              `json:"tenant,omitempty"`
+}
+
+// RancherNestedPublicIP defines model for RancherNestedPublicIP.
+type RancherNestedPublicIP struct {
+	Cluster    *string `json:"cluster,omitempty"`
+	FloatingIp *string `json:"floating_ip"`
+	IpAddress  *string `json:"ip_address,omitempty"`
 }
 
 // RancherNestedWorkload defines model for RancherNestedWorkload.
