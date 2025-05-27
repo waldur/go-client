@@ -179,21 +179,22 @@ const (
 
 // Defines values for EventGroupsEnum.
 const (
-	EventGroupsEnumAccessSubnets EventGroupsEnum = "access_subnets"
-	EventGroupsEnumAuth          EventGroupsEnum = "auth"
-	EventGroupsEnumCall          EventGroupsEnum = "call"
-	EventGroupsEnumCredits       EventGroupsEnum = "credits"
-	EventGroupsEnumCustomers     EventGroupsEnum = "customers"
-	EventGroupsEnumInvoices      EventGroupsEnum = "invoices"
-	EventGroupsEnumPermissions   EventGroupsEnum = "permissions"
-	EventGroupsEnumProjects      EventGroupsEnum = "projects"
-	EventGroupsEnumProposal      EventGroupsEnum = "proposal"
-	EventGroupsEnumProviders     EventGroupsEnum = "providers"
-	EventGroupsEnumResources     EventGroupsEnum = "resources"
-	EventGroupsEnumReview        EventGroupsEnum = "review"
-	EventGroupsEnumSsh           EventGroupsEnum = "ssh"
-	EventGroupsEnumSupport       EventGroupsEnum = "support"
-	EventGroupsEnumUsers         EventGroupsEnum = "users"
+	EventGroupsEnumAccessSubnets      EventGroupsEnum = "access_subnets"
+	EventGroupsEnumAuth               EventGroupsEnum = "auth"
+	EventGroupsEnumCall               EventGroupsEnum = "call"
+	EventGroupsEnumCredits            EventGroupsEnum = "credits"
+	EventGroupsEnumCustomers          EventGroupsEnum = "customers"
+	EventGroupsEnumInvoices           EventGroupsEnum = "invoices"
+	EventGroupsEnumOfferingAccounting EventGroupsEnum = "offering_accounting"
+	EventGroupsEnumPermissions        EventGroupsEnum = "permissions"
+	EventGroupsEnumProjects           EventGroupsEnum = "projects"
+	EventGroupsEnumProposal           EventGroupsEnum = "proposal"
+	EventGroupsEnumProviders          EventGroupsEnum = "providers"
+	EventGroupsEnumResources          EventGroupsEnum = "resources"
+	EventGroupsEnumReview             EventGroupsEnum = "review"
+	EventGroupsEnumSsh                EventGroupsEnum = "ssh"
+	EventGroupsEnumSupport            EventGroupsEnum = "support"
+	EventGroupsEnumUsers              EventGroupsEnum = "users"
 )
 
 // Defines values for EventTypesEnum.
