@@ -6106,6 +6106,7 @@ const (
 	OpenstackVolumesListParamsFieldDevice                           OpenstackVolumesListParamsField = "device"
 	OpenstackVolumesListParamsFieldErrorMessage                     OpenstackVolumesListParamsField = "error_message"
 	OpenstackVolumesListParamsFieldErrorTraceback                   OpenstackVolumesListParamsField = "error_traceback"
+	OpenstackVolumesListParamsFieldExtendEnabled                    OpenstackVolumesListParamsField = "extend_enabled"
 	OpenstackVolumesListParamsFieldImage                            OpenstackVolumesListParamsField = "image"
 	OpenstackVolumesListParamsFieldImageMetadata                    OpenstackVolumesListParamsField = "image_metadata"
 	OpenstackVolumesListParamsFieldImageName                        OpenstackVolumesListParamsField = "image_name"
@@ -6176,6 +6177,7 @@ const (
 	OpenstackVolumesRetrieveParamsFieldDevice                           OpenstackVolumesRetrieveParamsField = "device"
 	OpenstackVolumesRetrieveParamsFieldErrorMessage                     OpenstackVolumesRetrieveParamsField = "error_message"
 	OpenstackVolumesRetrieveParamsFieldErrorTraceback                   OpenstackVolumesRetrieveParamsField = "error_traceback"
+	OpenstackVolumesRetrieveParamsFieldExtendEnabled                    OpenstackVolumesRetrieveParamsField = "extend_enabled"
 	OpenstackVolumesRetrieveParamsFieldImage                            OpenstackVolumesRetrieveParamsField = "image"
 	OpenstackVolumesRetrieveParamsFieldImageMetadata                    OpenstackVolumesRetrieveParamsField = "image_metadata"
 	OpenstackVolumesRetrieveParamsFieldImageName                        OpenstackVolumesRetrieveParamsField = "image_name"
@@ -10072,29 +10074,31 @@ type CustomerRequest_Country struct {
 
 // CustomerServiceAccount defines model for CustomerServiceAccount.
 type CustomerServiceAccount struct {
-	Created        *time.Time           `json:"created,omitempty"`
-	Customer       openapi_types.UUID   `json:"customer"`
-	CustomerName   *string              `json:"customer_name,omitempty"`
-	CustomerUuid   *openapi_types.UUID  `json:"customer_uuid,omitempty"`
-	Description    *string              `json:"description,omitempty"`
-	Email          *openapi_types.Email `json:"email,omitempty"`
-	ErrorMessage   *string              `json:"error_message,omitempty"`
-	ErrorTraceback *string              `json:"error_traceback,omitempty"`
-	ExpiresAt      *string              `json:"expiresAt"`
-	Modified       *time.Time           `json:"modified,omitempty"`
-	Token          *string              `json:"token"`
-	Url            *string              `json:"url,omitempty"`
-	Username       *string              `json:"username,omitempty"`
-	Uuid           *openapi_types.UUID  `json:"uuid,omitempty"`
+	Created             *time.Time           `json:"created,omitempty"`
+	Customer            openapi_types.UUID   `json:"customer"`
+	CustomerName        *string              `json:"customer_name,omitempty"`
+	CustomerUuid        *openapi_types.UUID  `json:"customer_uuid,omitempty"`
+	Description         *string              `json:"description,omitempty"`
+	Email               *openapi_types.Email `json:"email,omitempty"`
+	ErrorMessage        *string              `json:"error_message,omitempty"`
+	ErrorTraceback      *string              `json:"error_traceback,omitempty"`
+	ExpiresAt           *string              `json:"expires_at"`
+	Modified            *time.Time           `json:"modified,omitempty"`
+	PreferredIdentifier *string              `json:"preferred_identifier,omitempty"`
+	Token               *string              `json:"token"`
+	Url                 *string              `json:"url,omitempty"`
+	Username            *string              `json:"username,omitempty"`
+	Uuid                *openapi_types.UUID  `json:"uuid,omitempty"`
 }
 
 // CustomerServiceAccountRequest defines model for CustomerServiceAccountRequest.
 type CustomerServiceAccountRequest struct {
-	Customer       openapi_types.UUID   `json:"customer"`
-	Description    *string              `json:"description,omitempty"`
-	Email          *openapi_types.Email `json:"email,omitempty"`
-	ErrorTraceback *string              `json:"error_traceback,omitempty"`
-	Username       *string              `json:"username,omitempty"`
+	Customer            openapi_types.UUID   `json:"customer"`
+	Description         *string              `json:"description,omitempty"`
+	Email               *openapi_types.Email `json:"email,omitempty"`
+	ErrorTraceback      *string              `json:"error_traceback,omitempty"`
+	PreferredIdentifier *string              `json:"preferred_identifier,omitempty"`
+	Username            *string              `json:"username,omitempty"`
 }
 
 // CustomerUser defines model for CustomerUser.
@@ -13810,6 +13814,7 @@ type OpenStackVolume struct {
 	Device                           *string                 `json:"device,omitempty"`
 	ErrorMessage                     *string                 `json:"error_message,omitempty"`
 	ErrorTraceback                   *string                 `json:"error_traceback,omitempty"`
+	ExtendEnabled                    *bool                   `json:"extend_enabled,omitempty"`
 	Image                            *string                 `json:"image"`
 	ImageMetadata                    *string                 `json:"image_metadata,omitempty"`
 	ImageName                        *string                 `json:"image_name,omitempty"`
@@ -14315,11 +14320,12 @@ type PatchedCustomerRequest_Country struct {
 
 // PatchedCustomerServiceAccountRequest defines model for PatchedCustomerServiceAccountRequest.
 type PatchedCustomerServiceAccountRequest struct {
-	Customer       *openapi_types.UUID  `json:"customer,omitempty"`
-	Description    *string              `json:"description,omitempty"`
-	Email          *openapi_types.Email `json:"email,omitempty"`
-	ErrorTraceback *string              `json:"error_traceback,omitempty"`
-	Username       *string              `json:"username,omitempty"`
+	Customer            *openapi_types.UUID  `json:"customer,omitempty"`
+	Description         *string              `json:"description,omitempty"`
+	Email               *openapi_types.Email `json:"email,omitempty"`
+	ErrorTraceback      *string              `json:"error_traceback,omitempty"`
+	PreferredIdentifier *string              `json:"preferred_identifier,omitempty"`
+	Username            *string              `json:"username,omitempty"`
 }
 
 // PatchedDigitalOceanDropletRequest defines model for PatchedDigitalOceanDropletRequest.
@@ -14643,11 +14649,12 @@ type PatchedProjectRequest_OecdFos2007Code struct {
 
 // PatchedProjectServiceAccountRequest defines model for PatchedProjectServiceAccountRequest.
 type PatchedProjectServiceAccountRequest struct {
-	Description    *string              `json:"description,omitempty"`
-	Email          *openapi_types.Email `json:"email,omitempty"`
-	ErrorTraceback *string              `json:"error_traceback,omitempty"`
-	Project        *openapi_types.UUID  `json:"project,omitempty"`
-	Username       *string              `json:"username,omitempty"`
+	Description         *string              `json:"description,omitempty"`
+	Email               *openapi_types.Email `json:"email,omitempty"`
+	ErrorTraceback      *string              `json:"error_traceback,omitempty"`
+	PreferredIdentifier *string              `json:"preferred_identifier,omitempty"`
+	Project             *openapi_types.UUID  `json:"project,omitempty"`
+	Username            *string              `json:"username,omitempty"`
 }
 
 // PatchedProposalReviewRequest defines model for PatchedProposalReviewRequest.
@@ -15319,8 +15326,9 @@ type ProjectServiceAccount struct {
 	Email                *openapi_types.Email `json:"email,omitempty"`
 	ErrorMessage         *string              `json:"error_message,omitempty"`
 	ErrorTraceback       *string              `json:"error_traceback,omitempty"`
-	ExpiresAt            *string              `json:"expiresAt"`
+	ExpiresAt            *string              `json:"expires_at"`
 	Modified             *time.Time           `json:"modified,omitempty"`
+	PreferredIdentifier  *string              `json:"preferred_identifier,omitempty"`
 	Project              openapi_types.UUID   `json:"project"`
 	ProjectName          *string              `json:"project_name,omitempty"`
 	ProjectUuid          *openapi_types.UUID  `json:"project_uuid,omitempty"`
@@ -15332,11 +15340,12 @@ type ProjectServiceAccount struct {
 
 // ProjectServiceAccountRequest defines model for ProjectServiceAccountRequest.
 type ProjectServiceAccountRequest struct {
-	Description    *string              `json:"description,omitempty"`
-	Email          *openapi_types.Email `json:"email,omitempty"`
-	ErrorTraceback *string              `json:"error_traceback,omitempty"`
-	Project        openapi_types.UUID   `json:"project"`
-	Username       *string              `json:"username,omitempty"`
+	Description         *string              `json:"description,omitempty"`
+	Email               *openapi_types.Email `json:"email,omitempty"`
+	ErrorTraceback      *string              `json:"error_traceback,omitempty"`
+	PreferredIdentifier *string              `json:"preferred_identifier,omitempty"`
+	Project             openapi_types.UUID   `json:"project"`
+	Username            *string              `json:"username,omitempty"`
 }
 
 // ProjectStatsItem defines model for ProjectStatsItem.
