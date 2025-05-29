@@ -1942,6 +1942,7 @@ const (
 	BookingResourcesListParamsFieldResourceUuid               BookingResourcesListParamsField = "resource_uuid"
 	BookingResourcesListParamsFieldRestrictMemberAccess       BookingResourcesListParamsField = "restrict_member_access"
 	BookingResourcesListParamsFieldScope                      BookingResourcesListParamsField = "scope"
+	BookingResourcesListParamsFieldServiceSettingsUuid        BookingResourcesListParamsField = "service_settings_uuid"
 	BookingResourcesListParamsFieldSlots                      BookingResourcesListParamsField = "slots"
 	BookingResourcesListParamsFieldSlug                       BookingResourcesListParamsField = "slug"
 	BookingResourcesListParamsFieldState                      BookingResourcesListParamsField = "state"
@@ -2045,6 +2046,7 @@ const (
 	BookingResourcesRetrieveParamsFieldResourceUuid               BookingResourcesRetrieveParamsField = "resource_uuid"
 	BookingResourcesRetrieveParamsFieldRestrictMemberAccess       BookingResourcesRetrieveParamsField = "restrict_member_access"
 	BookingResourcesRetrieveParamsFieldScope                      BookingResourcesRetrieveParamsField = "scope"
+	BookingResourcesRetrieveParamsFieldServiceSettingsUuid        BookingResourcesRetrieveParamsField = "service_settings_uuid"
 	BookingResourcesRetrieveParamsFieldSlots                      BookingResourcesRetrieveParamsField = "slots"
 	BookingResourcesRetrieveParamsFieldSlug                       BookingResourcesRetrieveParamsField = "slug"
 	BookingResourcesRetrieveParamsFieldState                      BookingResourcesRetrieveParamsField = "state"
@@ -3863,6 +3865,7 @@ const (
 	MarketplaceProviderResourcesListParamsFieldResourceUuid              MarketplaceProviderResourcesListParamsField = "resource_uuid"
 	MarketplaceProviderResourcesListParamsFieldRestrictMemberAccess      MarketplaceProviderResourcesListParamsField = "restrict_member_access"
 	MarketplaceProviderResourcesListParamsFieldScope                     MarketplaceProviderResourcesListParamsField = "scope"
+	MarketplaceProviderResourcesListParamsFieldServiceSettingsUuid       MarketplaceProviderResourcesListParamsField = "service_settings_uuid"
 	MarketplaceProviderResourcesListParamsFieldSlug                      MarketplaceProviderResourcesListParamsField = "slug"
 	MarketplaceProviderResourcesListParamsFieldState                     MarketplaceProviderResourcesListParamsField = "state"
 	MarketplaceProviderResourcesListParamsFieldUrl                       MarketplaceProviderResourcesListParamsField = "url"
@@ -3959,6 +3962,7 @@ const (
 	MarketplaceProviderResourcesRetrieveParamsFieldResourceUuid              MarketplaceProviderResourcesRetrieveParamsField = "resource_uuid"
 	MarketplaceProviderResourcesRetrieveParamsFieldRestrictMemberAccess      MarketplaceProviderResourcesRetrieveParamsField = "restrict_member_access"
 	MarketplaceProviderResourcesRetrieveParamsFieldScope                     MarketplaceProviderResourcesRetrieveParamsField = "scope"
+	MarketplaceProviderResourcesRetrieveParamsFieldServiceSettingsUuid       MarketplaceProviderResourcesRetrieveParamsField = "service_settings_uuid"
 	MarketplaceProviderResourcesRetrieveParamsFieldSlug                      MarketplaceProviderResourcesRetrieveParamsField = "slug"
 	MarketplaceProviderResourcesRetrieveParamsFieldState                     MarketplaceProviderResourcesRetrieveParamsField = "state"
 	MarketplaceProviderResourcesRetrieveParamsFieldUrl                       MarketplaceProviderResourcesRetrieveParamsField = "url"
@@ -4033,6 +4037,7 @@ const (
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldResourceUuid              MarketplaceProviderResourcesDetailsRetrieveParamsField = "resource_uuid"
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldRestrictMemberAccess      MarketplaceProviderResourcesDetailsRetrieveParamsField = "restrict_member_access"
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldScope                     MarketplaceProviderResourcesDetailsRetrieveParamsField = "scope"
+	MarketplaceProviderResourcesDetailsRetrieveParamsFieldServiceSettingsUuid       MarketplaceProviderResourcesDetailsRetrieveParamsField = "service_settings_uuid"
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldSlug                      MarketplaceProviderResourcesDetailsRetrieveParamsField = "slug"
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldState                     MarketplaceProviderResourcesDetailsRetrieveParamsField = "state"
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldUrl                       MarketplaceProviderResourcesDetailsRetrieveParamsField = "url"
@@ -4269,6 +4274,7 @@ const (
 	MarketplaceResourcesListParamsFieldResourceUuid              MarketplaceResourcesListParamsField = "resource_uuid"
 	MarketplaceResourcesListParamsFieldRestrictMemberAccess      MarketplaceResourcesListParamsField = "restrict_member_access"
 	MarketplaceResourcesListParamsFieldScope                     MarketplaceResourcesListParamsField = "scope"
+	MarketplaceResourcesListParamsFieldServiceSettingsUuid       MarketplaceResourcesListParamsField = "service_settings_uuid"
 	MarketplaceResourcesListParamsFieldSlug                      MarketplaceResourcesListParamsField = "slug"
 	MarketplaceResourcesListParamsFieldState                     MarketplaceResourcesListParamsField = "state"
 	MarketplaceResourcesListParamsFieldUrl                       MarketplaceResourcesListParamsField = "url"
@@ -4365,6 +4371,7 @@ const (
 	MarketplaceResourcesRetrieveParamsFieldResourceUuid              MarketplaceResourcesRetrieveParamsField = "resource_uuid"
 	MarketplaceResourcesRetrieveParamsFieldRestrictMemberAccess      MarketplaceResourcesRetrieveParamsField = "restrict_member_access"
 	MarketplaceResourcesRetrieveParamsFieldScope                     MarketplaceResourcesRetrieveParamsField = "scope"
+	MarketplaceResourcesRetrieveParamsFieldServiceSettingsUuid       MarketplaceResourcesRetrieveParamsField = "service_settings_uuid"
 	MarketplaceResourcesRetrieveParamsFieldSlug                      MarketplaceResourcesRetrieveParamsField = "slug"
 	MarketplaceResourcesRetrieveParamsFieldState                     MarketplaceResourcesRetrieveParamsField = "state"
 	MarketplaceResourcesRetrieveParamsFieldUrl                       MarketplaceResourcesRetrieveParamsField = "url"
@@ -4439,6 +4446,7 @@ const (
 	MarketplaceResourcesDetailsRetrieveParamsFieldResourceUuid              MarketplaceResourcesDetailsRetrieveParamsField = "resource_uuid"
 	MarketplaceResourcesDetailsRetrieveParamsFieldRestrictMemberAccess      MarketplaceResourcesDetailsRetrieveParamsField = "restrict_member_access"
 	MarketplaceResourcesDetailsRetrieveParamsFieldScope                     MarketplaceResourcesDetailsRetrieveParamsField = "scope"
+	MarketplaceResourcesDetailsRetrieveParamsFieldServiceSettingsUuid       MarketplaceResourcesDetailsRetrieveParamsField = "service_settings_uuid"
 	MarketplaceResourcesDetailsRetrieveParamsFieldSlug                      MarketplaceResourcesDetailsRetrieveParamsField = "slug"
 	MarketplaceResourcesDetailsRetrieveParamsFieldState                     MarketplaceResourcesDetailsRetrieveParamsField = "state"
 	MarketplaceResourcesDetailsRetrieveParamsFieldUrl                       MarketplaceResourcesDetailsRetrieveParamsField = "url"
@@ -8890,7 +8898,7 @@ type BookingResource struct {
 	IsLimitBased       *bool               `json:"is_limit_based,omitempty"`
 	IsUsageBased       *bool               `json:"is_usage_based,omitempty"`
 	LastSync           *time.Time          `json:"last_sync,omitempty"`
-	LimitUsage         *float64            `json:"limit_usage"`
+	LimitUsage         *map[string]float64 `json:"limit_usage,omitempty"`
 	Limits             *map[string]int     `json:"limits,omitempty"`
 	Modified           *time.Time          `json:"modified,omitempty"`
 	Name               *string             `json:"name,omitempty"`
@@ -8939,6 +8947,7 @@ type BookingResource struct {
 	ResourceUuid              *openapi_types.UUID `json:"resource_uuid"`
 	RestrictMemberAccess      *bool               `json:"restrict_member_access,omitempty"`
 	Scope                     *string             `json:"scope,omitempty"`
+	ServiceSettingsUuid       *openapi_types.UUID `json:"service_settings_uuid,omitempty"`
 	Slots                     *[]BookingSlot      `json:"slots,omitempty"`
 	Slug                      *string             `json:"slug,omitempty"`
 	State                     *ResourceState      `json:"state,omitempty"`
@@ -16925,7 +16934,7 @@ type Resource struct {
 	IsLimitBased       *bool               `json:"is_limit_based,omitempty"`
 	IsUsageBased       *bool               `json:"is_usage_based,omitempty"`
 	LastSync           *time.Time          `json:"last_sync,omitempty"`
-	LimitUsage         *float64            `json:"limit_usage"`
+	LimitUsage         *map[string]float64 `json:"limit_usage,omitempty"`
 	Limits             *map[string]int     `json:"limits,omitempty"`
 	Modified           *time.Time          `json:"modified,omitempty"`
 	Name               *string             `json:"name,omitempty"`
@@ -16974,6 +16983,7 @@ type Resource struct {
 	ResourceUuid              *openapi_types.UUID `json:"resource_uuid"`
 	RestrictMemberAccess      *bool               `json:"restrict_member_access,omitempty"`
 	Scope                     *string             `json:"scope,omitempty"`
+	ServiceSettingsUuid       *openapi_types.UUID `json:"service_settings_uuid,omitempty"`
 	Slug                      *string             `json:"slug,omitempty"`
 	State                     *ResourceState      `json:"state,omitempty"`
 	Url                       *string             `json:"url,omitempty"`
