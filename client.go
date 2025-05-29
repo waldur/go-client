@@ -2156,6 +2156,18 @@ const (
 	CustomerCreditsListParamsOValue                    CustomerCreditsListParamsO = "value"
 )
 
+// Defines values for CustomerCreditsConsumptionsListParamsO.
+const (
+	CustomerCreditsConsumptionsListParamsOCustomerName             CustomerCreditsConsumptionsListParamsO = "customer_name"
+	CustomerCreditsConsumptionsListParamsOEndDate                  CustomerCreditsConsumptionsListParamsO = "end_date"
+	CustomerCreditsConsumptionsListParamsOExpectedConsumption      CustomerCreditsConsumptionsListParamsO = "expected_consumption"
+	CustomerCreditsConsumptionsListParamsOMinusCustomerName        CustomerCreditsConsumptionsListParamsO = "-customer_name"
+	CustomerCreditsConsumptionsListParamsOMinusEndDate             CustomerCreditsConsumptionsListParamsO = "-end_date"
+	CustomerCreditsConsumptionsListParamsOMinusExpectedConsumption CustomerCreditsConsumptionsListParamsO = "-expected_consumption"
+	CustomerCreditsConsumptionsListParamsOMinusValue               CustomerCreditsConsumptionsListParamsO = "-value"
+	CustomerCreditsConsumptionsListParamsOValue                    CustomerCreditsConsumptionsListParamsO = "value"
+)
+
 // Defines values for CustomerPermissionsReviewsListParamsO.
 const (
 	CustomerPermissionsReviewsListParamsOClosed       CustomerPermissionsReviewsListParamsO = "closed"
@@ -9545,6 +9557,7 @@ type ConstanceSettings struct {
 	ATLASSIANVERIFYSSL                             *bool                `json:"ATLASSIAN_VERIFY_SSL,omitempty"`
 	AUTOAPPROVEUSERTOS                             *bool                `json:"AUTO_APPROVE_USER_TOS,omitempty"`
 	BRANDCOLOR                                     *string              `json:"BRAND_COLOR,omitempty"`
+	CALLMANAGEMENTHEROIMAGE                        *string              `json:"CALL_MANAGEMENT_HERO_IMAGE"`
 	COMMONFOOTERHTML                               *string              `json:"COMMON_FOOTER_HTML,omitempty"`
 	COMMONFOOTERTEXT                               *string              `json:"COMMON_FOOTER_TEXT,omitempty"`
 	COUNTRIES                                      *[]string            `json:"COUNTRIES,omitempty"`
@@ -9583,6 +9596,7 @@ type ConstanceSettings struct {
 	KEYCLOAKICON                                   *string              `json:"KEYCLOAK_ICON"`
 	LANGUAGECHOICES                                *string              `json:"LANGUAGE_CHOICES,omitempty"`
 	LOGINLOGO                                      *string              `json:"LOGIN_LOGO"`
+	MARKETPLACEHEROIMAGE                           *string              `json:"MARKETPLACE_HERO_IMAGE"`
 	MARKETPLACELANDINGPAGE                         *string              `json:"MARKETPLACE_LANDING_PAGE,omitempty"`
 	NOTIFYABOUTRESOURCECHANGE                      *bool                `json:"NOTIFY_ABOUT_RESOURCE_CHANGE,omitempty"`
 	NOTIFYSTAFFABOUTAPPROVALS                      *bool                `json:"NOTIFY_STAFF_ABOUT_APPROVALS,omitempty"`
@@ -9669,6 +9683,7 @@ type ConstanceSettingsRequest struct {
 	ATLASSIANVERIFYSSL                             *bool                `json:"ATLASSIAN_VERIFY_SSL,omitempty"`
 	AUTOAPPROVEUSERTOS                             *bool                `json:"AUTO_APPROVE_USER_TOS,omitempty"`
 	BRANDCOLOR                                     *string              `json:"BRAND_COLOR,omitempty"`
+	CALLMANAGEMENTHEROIMAGE                        *openapi_types.File  `json:"CALL_MANAGEMENT_HERO_IMAGE"`
 	COMMONFOOTERHTML                               *string              `json:"COMMON_FOOTER_HTML,omitempty"`
 	COMMONFOOTERTEXT                               *string              `json:"COMMON_FOOTER_TEXT,omitempty"`
 	COUNTRIES                                      *[]string            `json:"COUNTRIES,omitempty"`
@@ -9707,6 +9722,7 @@ type ConstanceSettingsRequest struct {
 	KEYCLOAKICON                                   *openapi_types.File  `json:"KEYCLOAK_ICON"`
 	LANGUAGECHOICES                                *string              `json:"LANGUAGE_CHOICES,omitempty"`
 	LOGINLOGO                                      *openapi_types.File  `json:"LOGIN_LOGO"`
+	MARKETPLACEHEROIMAGE                           *openapi_types.File  `json:"MARKETPLACE_HERO_IMAGE"`
 	MARKETPLACELANDINGPAGE                         *string              `json:"MARKETPLACE_LANDING_PAGE,omitempty"`
 	NOTIFYABOUTRESOURCECHANGE                      *bool                `json:"NOTIFY_ABOUT_RESOURCE_CHANGE,omitempty"`
 	NOTIFYSTAFFABOUTAPPROVALS                      *bool                `json:"NOTIFY_STAFF_ABOUT_APPROVALS,omitempty"`
@@ -9940,6 +9956,12 @@ type CustomerCredit struct {
 	Url                       *string                      `json:"url,omitempty"`
 	Uuid                      *openapi_types.UUID          `json:"uuid,omitempty"`
 	Value                     *string                      `json:"value,omitempty"`
+}
+
+// CustomerCreditConsumption defines model for CustomerCreditConsumption.
+type CustomerCreditConsumption struct {
+	Date  *openapi_types.Date `json:"date,omitempty"`
+	Price *string             `json:"price,omitempty"`
 }
 
 // CustomerCreditRequest defines model for CustomerCreditRequest.
@@ -19157,6 +19179,26 @@ type CustomerCreditsListParams struct {
 
 // CustomerCreditsListParamsO defines parameters for CustomerCreditsList.
 type CustomerCreditsListParamsO string
+
+// CustomerCreditsConsumptionsListParams defines parameters for CustomerCreditsConsumptionsList.
+type CustomerCreditsConsumptionsListParams struct {
+	CustomerName *string             `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+	CustomerSlug *string             `form:"customer_slug,omitempty" json:"customer_slug,omitempty"`
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// O Ordering
+	//
+	O *[]CustomerCreditsConsumptionsListParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// CustomerCreditsConsumptionsListParamsO defines parameters for CustomerCreditsConsumptionsList.
+type CustomerCreditsConsumptionsListParamsO string
 
 // CustomerPermissionsReviewsListParams defines parameters for CustomerPermissionsReviewsList.
 type CustomerPermissionsReviewsListParams struct {
@@ -29029,6 +29071,9 @@ type ClientInterface interface {
 
 	CustomerCreditsClearCompensations(ctx context.Context, uuid openapi_types.UUID, body CustomerCreditsClearCompensationsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// CustomerCreditsConsumptionsList request
+	CustomerCreditsConsumptionsList(ctx context.Context, uuid openapi_types.UUID, params *CustomerCreditsConsumptionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// CustomerPermissionsReviewsList request
 	CustomerPermissionsReviewsList(ctx context.Context, params *CustomerPermissionsReviewsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -29364,6 +29409,9 @@ type ClientInterface interface {
 	InvoiceItemsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	InvoiceItemsUpdate(ctx context.Context, uuid openapi_types.UUID, body InvoiceItemsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// InvoiceItemsConsumptionsRetrieve request
+	InvoiceItemsConsumptionsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// InvoiceItemsCreateCompensationWithBody request with any body
 	InvoiceItemsCreateCompensationWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -35321,6 +35369,18 @@ func (c *Client) CustomerCreditsClearCompensations(ctx context.Context, uuid ope
 	return c.Client.Do(req)
 }
 
+func (c *Client) CustomerCreditsConsumptionsList(ctx context.Context, uuid openapi_types.UUID, params *CustomerCreditsConsumptionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCustomerCreditsConsumptionsListRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) CustomerPermissionsReviewsList(ctx context.Context, params *CustomerPermissionsReviewsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCustomerPermissionsReviewsListRequest(c.Server, params)
 	if err != nil {
@@ -36763,6 +36823,18 @@ func (c *Client) InvoiceItemsUpdateWithBody(ctx context.Context, uuid openapi_ty
 
 func (c *Client) InvoiceItemsUpdate(ctx context.Context, uuid openapi_types.UUID, body InvoiceItemsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewInvoiceItemsUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) InvoiceItemsConsumptionsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewInvoiceItemsConsumptionsRetrieveRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -62254,6 +62326,142 @@ func NewCustomerCreditsClearCompensationsRequestWithBody(server string, uuid ope
 	return req, nil
 }
 
+// NewCustomerCreditsConsumptionsListRequest generates requests for CustomerCreditsConsumptionsList
+func NewCustomerCreditsConsumptionsListRequest(server string, uuid openapi_types.UUID, params *CustomerCreditsConsumptionsListParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/customer-credits/%s/consumptions/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.CustomerName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer_name", runtime.ParamLocationQuery, *params.CustomerName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerSlug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer_slug", runtime.ParamLocationQuery, *params.CustomerSlug); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer_uuid", runtime.ParamLocationQuery, *params.CustomerUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewCustomerPermissionsReviewsListRequest generates requests for CustomerPermissionsReviewsList
 func NewCustomerPermissionsReviewsListRequest(server string, params *CustomerPermissionsReviewsListParams) (*http.Request, error) {
 	var err error
@@ -69352,6 +69560,40 @@ func NewInvoiceItemsUpdateRequestWithBody(server string, uuid openapi_types.UUID
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewInvoiceItemsConsumptionsRetrieveRequest generates requests for InvoiceItemsConsumptionsRetrieve
+func NewInvoiceItemsConsumptionsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/invoice-items/%s/consumptions/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
 
 	return req, nil
 }
@@ -136255,6 +136497,9 @@ type ClientWithResponsesInterface interface {
 
 	CustomerCreditsClearCompensationsWithResponse(ctx context.Context, uuid openapi_types.UUID, body CustomerCreditsClearCompensationsJSONRequestBody, reqEditors ...RequestEditorFn) (*CustomerCreditsClearCompensationsResponse, error)
 
+	// CustomerCreditsConsumptionsListWithResponse request
+	CustomerCreditsConsumptionsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *CustomerCreditsConsumptionsListParams, reqEditors ...RequestEditorFn) (*CustomerCreditsConsumptionsListResponse, error)
+
 	// CustomerPermissionsReviewsListWithResponse request
 	CustomerPermissionsReviewsListWithResponse(ctx context.Context, params *CustomerPermissionsReviewsListParams, reqEditors ...RequestEditorFn) (*CustomerPermissionsReviewsListResponse, error)
 
@@ -136590,6 +136835,9 @@ type ClientWithResponsesInterface interface {
 	InvoiceItemsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*InvoiceItemsUpdateResponse, error)
 
 	InvoiceItemsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body InvoiceItemsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*InvoiceItemsUpdateResponse, error)
+
+	// InvoiceItemsConsumptionsRetrieveWithResponse request
+	InvoiceItemsConsumptionsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*InvoiceItemsConsumptionsRetrieveResponse, error)
 
 	// InvoiceItemsCreateCompensationWithBodyWithResponse request with any body
 	InvoiceItemsCreateCompensationWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*InvoiceItemsCreateCompensationResponse, error)
@@ -143445,6 +143693,28 @@ func (r CustomerCreditsClearCompensationsResponse) StatusCode() int {
 	return 0
 }
 
+type CustomerCreditsConsumptionsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]CustomerCreditConsumption
+}
+
+// Status returns HTTPResponse.Status
+func (r CustomerCreditsConsumptionsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r CustomerCreditsConsumptionsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type CustomerPermissionsReviewsListResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -145489,6 +145759,28 @@ func (r InvoiceItemsUpdateResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r InvoiceItemsUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type InvoiceItemsConsumptionsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *InvoiceItemDetail
+}
+
+// Status returns HTTPResponse.Status
+func (r InvoiceItemsConsumptionsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r InvoiceItemsConsumptionsRetrieveResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -167354,6 +167646,15 @@ func (c *ClientWithResponses) CustomerCreditsClearCompensationsWithResponse(ctx 
 	return ParseCustomerCreditsClearCompensationsResponse(rsp)
 }
 
+// CustomerCreditsConsumptionsListWithResponse request returning *CustomerCreditsConsumptionsListResponse
+func (c *ClientWithResponses) CustomerCreditsConsumptionsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *CustomerCreditsConsumptionsListParams, reqEditors ...RequestEditorFn) (*CustomerCreditsConsumptionsListResponse, error) {
+	rsp, err := c.CustomerCreditsConsumptionsList(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCustomerCreditsConsumptionsListResponse(rsp)
+}
+
 // CustomerPermissionsReviewsListWithResponse request returning *CustomerPermissionsReviewsListResponse
 func (c *ClientWithResponses) CustomerPermissionsReviewsListWithResponse(ctx context.Context, params *CustomerPermissionsReviewsListParams, reqEditors ...RequestEditorFn) (*CustomerPermissionsReviewsListResponse, error) {
 	rsp, err := c.CustomerPermissionsReviewsList(ctx, params, reqEditors...)
@@ -168414,6 +168715,15 @@ func (c *ClientWithResponses) InvoiceItemsUpdateWithResponse(ctx context.Context
 		return nil, err
 	}
 	return ParseInvoiceItemsUpdateResponse(rsp)
+}
+
+// InvoiceItemsConsumptionsRetrieveWithResponse request returning *InvoiceItemsConsumptionsRetrieveResponse
+func (c *ClientWithResponses) InvoiceItemsConsumptionsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*InvoiceItemsConsumptionsRetrieveResponse, error) {
+	rsp, err := c.InvoiceItemsConsumptionsRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseInvoiceItemsConsumptionsRetrieveResponse(rsp)
 }
 
 // InvoiceItemsCreateCompensationWithBodyWithResponse request with arbitrary body returning *InvoiceItemsCreateCompensationResponse
@@ -183037,6 +183347,32 @@ func ParseCustomerCreditsClearCompensationsResponse(rsp *http.Response) (*Custom
 	return response, nil
 }
 
+// ParseCustomerCreditsConsumptionsListResponse parses an HTTP response from a CustomerCreditsConsumptionsListWithResponse call
+func ParseCustomerCreditsConsumptionsListResponse(rsp *http.Response) (*CustomerCreditsConsumptionsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &CustomerCreditsConsumptionsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []CustomerCreditConsumption
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseCustomerPermissionsReviewsListResponse parses an HTTP response from a CustomerPermissionsReviewsListWithResponse call
 func ParseCustomerPermissionsReviewsListResponse(rsp *http.Response) (*CustomerPermissionsReviewsListResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -185291,6 +185627,32 @@ func ParseInvoiceItemsUpdateResponse(rsp *http.Response) (*InvoiceItemsUpdateRes
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest InvoiceItemUpdate
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseInvoiceItemsConsumptionsRetrieveResponse parses an HTTP response from a InvoiceItemsConsumptionsRetrieveWithResponse call
+func ParseInvoiceItemsConsumptionsRetrieveResponse(rsp *http.Response) (*InvoiceItemsConsumptionsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &InvoiceItemsConsumptionsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest InvoiceItemDetail
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
