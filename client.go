@@ -11826,6 +11826,12 @@ type MigrationDetailsRequest struct {
 // MinimalConsumptionLogicEnum defines model for MinimalConsumptionLogicEnum.
 type MinimalConsumptionLogicEnum string
 
+// MoveOfferingRequest defines model for MoveOfferingRequest.
+type MoveOfferingRequest struct {
+	Customer            string `json:"customer"`
+	PreservePermissions bool   `json:"preserve_permissions"`
+}
+
 // MoveProjectRequest defines model for MoveProjectRequest.
 type MoveProjectRequest struct {
 	Customer            string `json:"customer"`
@@ -25211,6 +25217,9 @@ type MarketplaceProviderOfferingsDeleteUserJSONRequestBody = UserRoleDeleteReque
 // MarketplaceProviderOfferingsImportResourceJSONRequestBody defines body for MarketplaceProviderOfferingsImportResource for application/json ContentType.
 type MarketplaceProviderOfferingsImportResourceJSONRequestBody = ImportResourceRequest
 
+// MarketplaceProviderOfferingsMoveOfferingJSONRequestBody defines body for MarketplaceProviderOfferingsMoveOffering for application/json ContentType.
+type MarketplaceProviderOfferingsMoveOfferingJSONRequestBody = MoveOfferingRequest
+
 // MarketplaceProviderOfferingsPauseJSONRequestBody defines body for MarketplaceProviderOfferingsPause for application/json ContentType.
 type MarketplaceProviderOfferingsPauseJSONRequestBody = OfferingPauseRequest
 
@@ -30183,6 +30192,11 @@ type ClientInterface interface {
 
 	// MarketplaceProviderOfferingsListUsersList request
 	MarketplaceProviderOfferingsListUsersList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListUsersListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProviderOfferingsMoveOfferingWithBody request with any body
+	MarketplaceProviderOfferingsMoveOfferingWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceProviderOfferingsMoveOffering(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsMoveOfferingJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceProviderOfferingsOrdersList request
 	MarketplaceProviderOfferingsOrdersList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsOrdersListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -40219,6 +40233,30 @@ func (c *Client) MarketplaceProviderOfferingsListProjectServiceAccountsRetrieve(
 
 func (c *Client) MarketplaceProviderOfferingsListUsersList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListUsersListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProviderOfferingsListUsersListRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderOfferingsMoveOfferingWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsMoveOfferingRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderOfferingsMoveOffering(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsMoveOfferingJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsMoveOfferingRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -85134,6 +85172,53 @@ func NewMarketplaceProviderOfferingsListUsersListRequest(server string, uuid ope
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewMarketplaceProviderOfferingsMoveOfferingRequest calls the generic MarketplaceProviderOfferingsMoveOffering builder with application/json body
+func NewMarketplaceProviderOfferingsMoveOfferingRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderOfferingsMoveOfferingJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceProviderOfferingsMoveOfferingRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceProviderOfferingsMoveOfferingRequestWithBody generates requests for MarketplaceProviderOfferingsMoveOffering with any type of body
+func NewMarketplaceProviderOfferingsMoveOfferingRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-offerings/%s/move_offering/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -137610,6 +137695,11 @@ type ClientWithResponsesInterface interface {
 	// MarketplaceProviderOfferingsListUsersListWithResponse request
 	MarketplaceProviderOfferingsListUsersListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListUsersListParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsListUsersListResponse, error)
 
+	// MarketplaceProviderOfferingsMoveOfferingWithBodyWithResponse request with any body
+	MarketplaceProviderOfferingsMoveOfferingWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsMoveOfferingResponse, error)
+
+	MarketplaceProviderOfferingsMoveOfferingWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsMoveOfferingJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsMoveOfferingResponse, error)
+
 	// MarketplaceProviderOfferingsOrdersListWithResponse request
 	MarketplaceProviderOfferingsOrdersListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsOrdersListParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsOrdersListResponse, error)
 
@@ -150286,6 +150376,28 @@ func (r MarketplaceProviderOfferingsListUsersListResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceProviderOfferingsListUsersListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceProviderOfferingsMoveOfferingResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *PublicOfferingDetails
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderOfferingsMoveOfferingResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderOfferingsMoveOfferingResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -171189,6 +171301,23 @@ func (c *ClientWithResponses) MarketplaceProviderOfferingsListUsersListWithRespo
 	return ParseMarketplaceProviderOfferingsListUsersListResponse(rsp)
 }
 
+// MarketplaceProviderOfferingsMoveOfferingWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderOfferingsMoveOfferingResponse
+func (c *ClientWithResponses) MarketplaceProviderOfferingsMoveOfferingWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsMoveOfferingResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsMoveOfferingWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsMoveOfferingResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceProviderOfferingsMoveOfferingWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsMoveOfferingJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsMoveOfferingResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsMoveOffering(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsMoveOfferingResponse(rsp)
+}
+
 // MarketplaceProviderOfferingsOrdersListWithResponse request returning *MarketplaceProviderOfferingsOrdersListResponse
 func (c *ClientWithResponses) MarketplaceProviderOfferingsOrdersListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsOrdersListParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsOrdersListResponse, error) {
 	rsp, err := c.MarketplaceProviderOfferingsOrdersList(ctx, uuid, params, reqEditors...)
@@ -190545,6 +190674,32 @@ func ParseMarketplaceProviderOfferingsListUsersListResponse(rsp *http.Response) 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest []UserRoleDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProviderOfferingsMoveOfferingResponse parses an HTTP response from a MarketplaceProviderOfferingsMoveOfferingWithResponse call
+func ParseMarketplaceProviderOfferingsMoveOfferingResponse(rsp *http.Response) (*MarketplaceProviderOfferingsMoveOfferingResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderOfferingsMoveOfferingResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest PublicOfferingDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
