@@ -7634,6 +7634,7 @@ const (
 	UsersListParamsFieldJobTitle                      UsersListParamsField = "job_title"
 	UsersListParamsFieldLastName                      UsersListParamsField = "last_name"
 	UsersListParamsFieldNativeName                    UsersListParamsField = "native_name"
+	UsersListParamsFieldNotificationsEnabled          UsersListParamsField = "notifications_enabled"
 	UsersListParamsFieldOrganization                  UsersListParamsField = "organization"
 	UsersListParamsFieldPermissions                   UsersListParamsField = "permissions"
 	UsersListParamsFieldPhoneNumber                   UsersListParamsField = "phone_number"
@@ -7700,6 +7701,7 @@ const (
 	UsersMeRetrieveParamsFieldJobTitle                      UsersMeRetrieveParamsField = "job_title"
 	UsersMeRetrieveParamsFieldLastName                      UsersMeRetrieveParamsField = "last_name"
 	UsersMeRetrieveParamsFieldNativeName                    UsersMeRetrieveParamsField = "native_name"
+	UsersMeRetrieveParamsFieldNotificationsEnabled          UsersMeRetrieveParamsField = "notifications_enabled"
 	UsersMeRetrieveParamsFieldOrganization                  UsersMeRetrieveParamsField = "organization"
 	UsersMeRetrieveParamsFieldPermissions                   UsersMeRetrieveParamsField = "permissions"
 	UsersMeRetrieveParamsFieldPhoneNumber                   UsersMeRetrieveParamsField = "phone_number"
@@ -7738,6 +7740,7 @@ const (
 	UsersRetrieveParamsFieldJobTitle                      UsersRetrieveParamsField = "job_title"
 	UsersRetrieveParamsFieldLastName                      UsersRetrieveParamsField = "last_name"
 	UsersRetrieveParamsFieldNativeName                    UsersRetrieveParamsField = "native_name"
+	UsersRetrieveParamsFieldNotificationsEnabled          UsersRetrieveParamsField = "notifications_enabled"
 	UsersRetrieveParamsFieldOrganization                  UsersRetrieveParamsField = "organization"
 	UsersRetrieveParamsFieldPermissions                   UsersRetrieveParamsField = "permissions"
 	UsersRetrieveParamsFieldPhoneNumber                   UsersRetrieveParamsField = "phone_number"
@@ -14964,13 +14967,16 @@ type PatchedUserRequest struct {
 	IsStaff *bool `json:"is_staff,omitempty"`
 
 	// IsSupport Designates whether the user is a global support user.
-	IsSupport         *bool   `json:"is_support,omitempty"`
-	JobTitle          *string `json:"job_title,omitempty"`
-	LastName          *string `json:"last_name,omitempty"`
-	NativeName        *string `json:"native_name,omitempty"`
-	Organization      *string `json:"organization,omitempty"`
-	PhoneNumber       *string `json:"phone_number,omitempty"`
-	PreferredLanguage *string `json:"preferred_language,omitempty"`
+	IsSupport  *bool   `json:"is_support,omitempty"`
+	JobTitle   *string `json:"job_title,omitempty"`
+	LastName   *string `json:"last_name,omitempty"`
+	NativeName *string `json:"native_name,omitempty"`
+
+	// NotificationsEnabled Designates whether the user is allowed to receive email notifications.
+	NotificationsEnabled *bool   `json:"notifications_enabled,omitempty"`
+	Organization         *string `json:"organization,omitempty"`
+	PhoneNumber          *string `json:"phone_number,omitempty"`
+	PreferredLanguage    *string `json:"preferred_language,omitempty"`
 
 	// TokenLifetime Token lifetime in seconds.
 	TokenLifetime *int `json:"token_lifetime"`
@@ -17894,14 +17900,17 @@ type User struct {
 	IsStaff *bool `json:"is_staff,omitempty"`
 
 	// IsSupport Designates whether the user is a global support user.
-	IsSupport         *bool         `json:"is_support,omitempty"`
-	JobTitle          *string       `json:"job_title,omitempty"`
-	LastName          *string       `json:"last_name,omitempty"`
-	NativeName        *string       `json:"native_name,omitempty"`
-	Organization      *string       `json:"organization,omitempty"`
-	Permissions       *[]Permission `json:"permissions,omitempty"`
-	PhoneNumber       *string       `json:"phone_number,omitempty"`
-	PreferredLanguage *string       `json:"preferred_language,omitempty"`
+	IsSupport  *bool   `json:"is_support,omitempty"`
+	JobTitle   *string `json:"job_title,omitempty"`
+	LastName   *string `json:"last_name,omitempty"`
+	NativeName *string `json:"native_name,omitempty"`
+
+	// NotificationsEnabled Designates whether the user is allowed to receive email notifications.
+	NotificationsEnabled *bool         `json:"notifications_enabled,omitempty"`
+	Organization         *string       `json:"organization,omitempty"`
+	Permissions          *[]Permission `json:"permissions,omitempty"`
+	PhoneNumber          *string       `json:"phone_number,omitempty"`
+	PreferredLanguage    *string       `json:"preferred_language,omitempty"`
 
 	// RegistrationMethod Indicates what registration method was used.
 	RegistrationMethod *string `json:"registration_method,omitempty"`
@@ -17972,13 +17981,16 @@ type UserRequest struct {
 	IsStaff *bool `json:"is_staff,omitempty"`
 
 	// IsSupport Designates whether the user is a global support user.
-	IsSupport         *bool   `json:"is_support,omitempty"`
-	JobTitle          *string `json:"job_title,omitempty"`
-	LastName          *string `json:"last_name,omitempty"`
-	NativeName        *string `json:"native_name,omitempty"`
-	Organization      *string `json:"organization,omitempty"`
-	PhoneNumber       *string `json:"phone_number,omitempty"`
-	PreferredLanguage *string `json:"preferred_language,omitempty"`
+	IsSupport  *bool   `json:"is_support,omitempty"`
+	JobTitle   *string `json:"job_title,omitempty"`
+	LastName   *string `json:"last_name,omitempty"`
+	NativeName *string `json:"native_name,omitempty"`
+
+	// NotificationsEnabled Designates whether the user is allowed to receive email notifications.
+	NotificationsEnabled *bool   `json:"notifications_enabled,omitempty"`
+	Organization         *string `json:"organization,omitempty"`
+	PhoneNumber          *string `json:"phone_number,omitempty"`
+	PreferredLanguage    *string `json:"preferred_language,omitempty"`
 
 	// TokenLifetime Token lifetime in seconds.
 	TokenLifetime *int `json:"token_lifetime"`
