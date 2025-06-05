@@ -9575,6 +9575,7 @@ type ConstanceSettings struct {
 	DOCKERSCRIPTDIR                                *string              `json:"DOCKER_SCRIPT_DIR,omitempty"`
 	DOCKERVOLUMENAME                               *string              `json:"DOCKER_VOLUME_NAME,omitempty"`
 	DOCSURL                                        *string              `json:"DOCS_URL,omitempty"`
+	ENABLEMOCKSERVICEACCOUNTBACKEND                *bool                `json:"ENABLE_MOCK_SERVICE_ACCOUNT_BACKEND,omitempty"`
 	ENABLESTALERESOURCENOTIFICATIONS               *bool                `json:"ENABLE_STALE_RESOURCE_NOTIFICATIONS,omitempty"`
 	ENABLESTRICTCHECKACCEPTINGINVITATION           *bool                `json:"ENABLE_STRICT_CHECK_ACCEPTING_INVITATION,omitempty"`
 	FAVICON                                        *string              `json:"FAVICON"`
@@ -9701,6 +9702,7 @@ type ConstanceSettingsRequest struct {
 	DOCKERSCRIPTDIR                                *string              `json:"DOCKER_SCRIPT_DIR,omitempty"`
 	DOCKERVOLUMENAME                               *string              `json:"DOCKER_VOLUME_NAME,omitempty"`
 	DOCSURL                                        *string              `json:"DOCS_URL,omitempty"`
+	ENABLEMOCKSERVICEACCOUNTBACKEND                *bool                `json:"ENABLE_MOCK_SERVICE_ACCOUNT_BACKEND,omitempty"`
 	ENABLESTALERESOURCENOTIFICATIONS               *bool                `json:"ENABLE_STALE_RESOURCE_NOTIFICATIONS,omitempty"`
 	ENABLESTRICTCHECKACCEPTINGINVITATION           *bool                `json:"ENABLE_STRICT_CHECK_ACCEPTING_INVITATION,omitempty"`
 	FAVICON                                        *openapi_types.File  `json:"FAVICON"`
