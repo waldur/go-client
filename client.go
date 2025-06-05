@@ -2205,6 +2205,7 @@ const (
 	CustomersListParamsFieldIsServiceProvider            CustomersListParamsField = "is_service_provider"
 	CustomersListParamsFieldLatitude                     CustomersListParamsField = "latitude"
 	CustomersListParamsFieldLongitude                    CustomersListParamsField = "longitude"
+	CustomersListParamsFieldMaxServiceAccounts           CustomersListParamsField = "max_service_accounts"
 	CustomersListParamsFieldName                         CustomersListParamsField = "name"
 	CustomersListParamsFieldNativeName                   CustomersListParamsField = "native_name"
 	CustomersListParamsFieldOrganizationGroups           CustomersListParamsField = "organization_groups"
@@ -2253,6 +2254,7 @@ const (
 	CustomersRetrieveParamsFieldIsServiceProvider            CustomersRetrieveParamsField = "is_service_provider"
 	CustomersRetrieveParamsFieldLatitude                     CustomersRetrieveParamsField = "latitude"
 	CustomersRetrieveParamsFieldLongitude                    CustomersRetrieveParamsField = "longitude"
+	CustomersRetrieveParamsFieldMaxServiceAccounts           CustomersRetrieveParamsField = "max_service_accounts"
 	CustomersRetrieveParamsFieldName                         CustomersRetrieveParamsField = "name"
 	CustomersRetrieveParamsFieldNativeName                   CustomersRetrieveParamsField = "native_name"
 	CustomersRetrieveParamsFieldOrganizationGroups           CustomersRetrieveParamsField = "organization_groups"
@@ -4679,6 +4681,7 @@ const (
 	MarketplaceServiceProvidersProjectsListParamsFieldImage                    MarketplaceServiceProvidersProjectsListParamsField = "image"
 	MarketplaceServiceProvidersProjectsListParamsFieldIsIndustry               MarketplaceServiceProvidersProjectsListParamsField = "is_industry"
 	MarketplaceServiceProvidersProjectsListParamsFieldMarketplaceResourceCount MarketplaceServiceProvidersProjectsListParamsField = "marketplace_resource_count"
+	MarketplaceServiceProvidersProjectsListParamsFieldMaxServiceAccounts       MarketplaceServiceProvidersProjectsListParamsField = "max_service_accounts"
 	MarketplaceServiceProvidersProjectsListParamsFieldName                     MarketplaceServiceProvidersProjectsListParamsField = "name"
 	MarketplaceServiceProvidersProjectsListParamsFieldOecdFos2007Code          MarketplaceServiceProvidersProjectsListParamsField = "oecd_fos_2007_code"
 	MarketplaceServiceProvidersProjectsListParamsFieldOecdFos2007Label         MarketplaceServiceProvidersProjectsListParamsField = "oecd_fos_2007_label"
@@ -6284,6 +6287,7 @@ const (
 	ProjectsListParamsFieldImage                    ProjectsListParamsField = "image"
 	ProjectsListParamsFieldIsIndustry               ProjectsListParamsField = "is_industry"
 	ProjectsListParamsFieldMarketplaceResourceCount ProjectsListParamsField = "marketplace_resource_count"
+	ProjectsListParamsFieldMaxServiceAccounts       ProjectsListParamsField = "max_service_accounts"
 	ProjectsListParamsFieldName                     ProjectsListParamsField = "name"
 	ProjectsListParamsFieldOecdFos2007Code          ProjectsListParamsField = "oecd_fos_2007_code"
 	ProjectsListParamsFieldOecdFos2007Label         ProjectsListParamsField = "oecd_fos_2007_label"
@@ -6335,6 +6339,7 @@ const (
 	ProjectsRetrieveParamsFieldImage                    ProjectsRetrieveParamsField = "image"
 	ProjectsRetrieveParamsFieldIsIndustry               ProjectsRetrieveParamsField = "is_industry"
 	ProjectsRetrieveParamsFieldMarketplaceResourceCount ProjectsRetrieveParamsField = "marketplace_resource_count"
+	ProjectsRetrieveParamsFieldMaxServiceAccounts       ProjectsRetrieveParamsField = "max_service_accounts"
 	ProjectsRetrieveParamsFieldName                     ProjectsRetrieveParamsField = "name"
 	ProjectsRetrieveParamsFieldOecdFos2007Code          ProjectsRetrieveParamsField = "oecd_fos_2007_code"
 	ProjectsRetrieveParamsFieldOecdFos2007Label         ProjectsRetrieveParamsField = "oecd_fos_2007_label"
@@ -9908,18 +9913,21 @@ type Customer struct {
 	IsServiceProvider            *bool                `json:"is_service_provider,omitempty"`
 	Latitude                     *float64             `json:"latitude"`
 	Longitude                    *float64             `json:"longitude"`
-	Name                         *string              `json:"name,omitempty"`
-	NativeName                   *string              `json:"native_name,omitempty"`
-	OrganizationGroups           *[]OrganizationGroup `json:"organization_groups,omitempty"`
-	PaymentProfiles              *[]PaymentProfile    `json:"payment_profiles,omitempty"`
-	PhoneNumber                  *string              `json:"phone_number,omitempty"`
-	Postal                       *string              `json:"postal,omitempty"`
-	Projects                     *[]PermissionProject `json:"projects,omitempty"`
-	ProjectsCount                *int                 `json:"projects_count,omitempty"`
-	RegistrationCode             *string              `json:"registration_code,omitempty"`
-	ServiceProvider              *string              `json:"service_provider"`
-	ServiceProviderUuid          *openapi_types.UUID  `json:"service_provider_uuid"`
-	Slug                         *string              `json:"slug,omitempty"`
+
+	// MaxServiceAccounts Maximum number of service accounts allowed
+	MaxServiceAccounts  *int                 `json:"max_service_accounts"`
+	Name                *string              `json:"name,omitempty"`
+	NativeName          *string              `json:"native_name,omitempty"`
+	OrganizationGroups  *[]OrganizationGroup `json:"organization_groups,omitempty"`
+	PaymentProfiles     *[]PaymentProfile    `json:"payment_profiles,omitempty"`
+	PhoneNumber         *string              `json:"phone_number,omitempty"`
+	Postal              *string              `json:"postal,omitempty"`
+	Projects            *[]PermissionProject `json:"projects,omitempty"`
+	ProjectsCount       *int                 `json:"projects_count,omitempty"`
+	RegistrationCode    *string              `json:"registration_code,omitempty"`
+	ServiceProvider     *string              `json:"service_provider"`
+	ServiceProviderUuid *openapi_types.UUID  `json:"service_provider_uuid"`
+	Slug                *string              `json:"slug,omitempty"`
 
 	// SponsorNumber External ID of the sponsor covering the costs
 	SponsorNumber *int                `json:"sponsor_number"`
@@ -15209,23 +15217,26 @@ type Project struct {
 	Description          *string              `json:"description,omitempty"`
 
 	// EndDate The date is inclusive. Once reached, all project resource will be scheduled for termination.
-	EndDate                  *openapi_types.Date      `json:"end_date"`
-	EndDateRequestedBy       *string                  `json:"end_date_requested_by"`
-	Image                    *string                  `json:"image"`
-	IsIndustry               *bool                    `json:"is_industry,omitempty"`
-	MarketplaceResourceCount *map[string]int          `json:"marketplace_resource_count,omitempty"`
-	Name                     *string                  `json:"name,omitempty"`
-	OecdFos2007Code          *Project_OecdFos2007Code `json:"oecd_fos_2007_code"`
-	OecdFos2007Label         *string                  `json:"oecd_fos_2007_label,omitempty"`
-	ProjectCredit            *float64                 `json:"project_credit"`
-	ResourcesCount           *int                     `json:"resources_count,omitempty"`
-	Slug                     *string                  `json:"slug,omitempty"`
-	StartDate                *openapi_types.Date      `json:"start_date"`
-	Type                     *string                  `json:"type"`
-	TypeName                 *string                  `json:"type_name"`
-	TypeUuid                 *openapi_types.UUID      `json:"type_uuid"`
-	Url                      *string                  `json:"url,omitempty"`
-	Uuid                     *openapi_types.UUID      `json:"uuid,omitempty"`
+	EndDate                  *openapi_types.Date `json:"end_date"`
+	EndDateRequestedBy       *string             `json:"end_date_requested_by"`
+	Image                    *string             `json:"image"`
+	IsIndustry               *bool               `json:"is_industry,omitempty"`
+	MarketplaceResourceCount *map[string]int     `json:"marketplace_resource_count,omitempty"`
+
+	// MaxServiceAccounts Maximum number of service accounts allowed
+	MaxServiceAccounts *int                     `json:"max_service_accounts"`
+	Name               *string                  `json:"name,omitempty"`
+	OecdFos2007Code    *Project_OecdFos2007Code `json:"oecd_fos_2007_code"`
+	OecdFos2007Label   *string                  `json:"oecd_fos_2007_label,omitempty"`
+	ProjectCredit      *float64                 `json:"project_credit"`
+	ResourcesCount     *int                     `json:"resources_count,omitempty"`
+	Slug               *string                  `json:"slug,omitempty"`
+	StartDate          *openapi_types.Date      `json:"start_date"`
+	Type               *string                  `json:"type"`
+	TypeName           *string                  `json:"type_name"`
+	TypeUuid           *openapi_types.UUID      `json:"type_uuid"`
+	Url                *string                  `json:"url,omitempty"`
+	Uuid               *openapi_types.UUID      `json:"uuid,omitempty"`
 }
 
 // Project_OecdFos2007Code defines model for Project.OecdFos2007Code.
