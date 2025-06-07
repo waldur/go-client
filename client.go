@@ -9501,13 +9501,6 @@ type ComponentUserUsage struct {
 	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
-// ComponentUserUsageCreate defines model for ComponentUserUsageCreate.
-type ComponentUserUsageCreate struct {
-	Usage    *string `json:"usage,omitempty"`
-	User     *string `json:"user,omitempty"`
-	Username string  `json:"username"`
-}
-
 // ComponentUserUsageCreateRequest defines model for ComponentUserUsageCreateRequest.
 type ComponentUserUsageCreateRequest struct {
 	Usage    *string `json:"usage,omitempty"`
@@ -148201,7 +148194,6 @@ func (r MarketplaceComponentUsagesRetrieveResponse) StatusCode() int {
 type MarketplaceComponentUsagesSetUserUsageResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *ComponentUserUsageCreate
 }
 
 // Status returns HTTPResponse.Status
@@ -188543,16 +188535,6 @@ func ParseMarketplaceComponentUsagesSetUserUsageResponse(rsp *http.Response) (*M
 	response := &MarketplaceComponentUsagesSetUserUsageResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ComponentUserUsageCreate
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
 	}
 
 	return response, nil
