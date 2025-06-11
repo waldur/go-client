@@ -7656,6 +7656,7 @@ const (
 	UsersListParamsFieldRequestedEmail                UsersListParamsField = "requested_email"
 	UsersListParamsFieldSlug                          UsersListParamsField = "slug"
 	UsersListParamsFieldToken                         UsersListParamsField = "token"
+	UsersListParamsFieldTokenExpiresAt                UsersListParamsField = "token_expires_at"
 	UsersListParamsFieldTokenLifetime                 UsersListParamsField = "token_lifetime"
 	UsersListParamsFieldUrl                           UsersListParamsField = "url"
 	UsersListParamsFieldUsername                      UsersListParamsField = "username"
@@ -7723,6 +7724,7 @@ const (
 	UsersMeRetrieveParamsFieldRequestedEmail                UsersMeRetrieveParamsField = "requested_email"
 	UsersMeRetrieveParamsFieldSlug                          UsersMeRetrieveParamsField = "slug"
 	UsersMeRetrieveParamsFieldToken                         UsersMeRetrieveParamsField = "token"
+	UsersMeRetrieveParamsFieldTokenExpiresAt                UsersMeRetrieveParamsField = "token_expires_at"
 	UsersMeRetrieveParamsFieldTokenLifetime                 UsersMeRetrieveParamsField = "token_lifetime"
 	UsersMeRetrieveParamsFieldUrl                           UsersMeRetrieveParamsField = "url"
 	UsersMeRetrieveParamsFieldUsername                      UsersMeRetrieveParamsField = "username"
@@ -7762,6 +7764,7 @@ const (
 	UsersRetrieveParamsFieldRequestedEmail                UsersRetrieveParamsField = "requested_email"
 	UsersRetrieveParamsFieldSlug                          UsersRetrieveParamsField = "slug"
 	UsersRetrieveParamsFieldToken                         UsersRetrieveParamsField = "token"
+	UsersRetrieveParamsFieldTokenExpiresAt                UsersRetrieveParamsField = "token_expires_at"
 	UsersRetrieveParamsFieldTokenLifetime                 UsersRetrieveParamsField = "token_lifetime"
 	UsersRetrieveParamsFieldUrl                           UsersRetrieveParamsField = "url"
 	UsersRetrieveParamsFieldUsername                      UsersRetrieveParamsField = "username"
@@ -17953,10 +17956,11 @@ type User struct {
 	PreferredLanguage    *string       `json:"preferred_language,omitempty"`
 
 	// RegistrationMethod Indicates what registration method was used.
-	RegistrationMethod *string `json:"registration_method,omitempty"`
-	RequestedEmail     *string `json:"requested_email"`
-	Slug               *string `json:"slug,omitempty"`
-	Token              *string `json:"token,omitempty"`
+	RegistrationMethod *string    `json:"registration_method,omitempty"`
+	RequestedEmail     *string    `json:"requested_email"`
+	Slug               *string    `json:"slug,omitempty"`
+	Token              *string    `json:"token,omitempty"`
+	TokenExpiresAt     *time.Time `json:"token_expires_at"`
 
 	// TokenLifetime Token lifetime in seconds.
 	TokenLifetime *int    `json:"token_lifetime"`
