@@ -13466,8 +13466,9 @@ type OpenStackSecurityGroup struct {
 
 // OpenStackSecurityGroupRequest defines model for OpenStackSecurityGroupRequest.
 type OpenStackSecurityGroupRequest struct {
-	Description *string `json:"description,omitempty"`
-	Name        string  `json:"name"`
+	Description *string                                   `json:"description,omitempty"`
+	Name        string                                    `json:"name"`
+	Rules       []OpenStackSecurityGroupRuleCreateRequest `json:"rules"`
 }
 
 // OpenStackSecurityGroupRuleCreate defines model for OpenStackSecurityGroupRuleCreate.
@@ -13487,6 +13488,23 @@ type OpenStackSecurityGroupRuleCreate struct {
 
 // OpenStackSecurityGroupRuleCreate_Protocol defines model for OpenStackSecurityGroupRuleCreate.Protocol.
 type OpenStackSecurityGroupRuleCreate_Protocol struct {
+	union json.RawMessage
+}
+
+// OpenStackSecurityGroupRuleCreateRequest defines model for OpenStackSecurityGroupRuleCreateRequest.
+type OpenStackSecurityGroupRuleCreateRequest struct {
+	Cidr        *string                                           `json:"cidr"`
+	Description *string                                           `json:"description,omitempty"`
+	Direction   *DirectionEnum                                    `json:"direction,omitempty"`
+	Ethertype   *EthertypeEnum                                    `json:"ethertype,omitempty"`
+	FromPort    *int                                              `json:"from_port"`
+	Protocol    *OpenStackSecurityGroupRuleCreateRequest_Protocol `json:"protocol,omitempty"`
+	RemoteGroup *string                                           `json:"remote_group"`
+	ToPort      *int                                              `json:"to_port"`
+}
+
+// OpenStackSecurityGroupRuleCreateRequest_Protocol defines model for OpenStackSecurityGroupRuleCreateRequest.Protocol.
+type OpenStackSecurityGroupRuleCreateRequest_Protocol struct {
 	union json.RawMessage
 }
 
@@ -27083,6 +27101,68 @@ func (t OpenStackSecurityGroupRuleCreate_Protocol) MarshalJSON() ([]byte, error)
 }
 
 func (t *OpenStackSecurityGroupRuleCreate_Protocol) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsProtocolEnum returns the union data inside the OpenStackSecurityGroupRuleCreateRequest_Protocol as a ProtocolEnum
+func (t OpenStackSecurityGroupRuleCreateRequest_Protocol) AsProtocolEnum() (ProtocolEnum, error) {
+	var body ProtocolEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromProtocolEnum overwrites any union data inside the OpenStackSecurityGroupRuleCreateRequest_Protocol as the provided ProtocolEnum
+func (t *OpenStackSecurityGroupRuleCreateRequest_Protocol) FromProtocolEnum(v ProtocolEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeProtocolEnum performs a merge with any union data inside the OpenStackSecurityGroupRuleCreateRequest_Protocol, using the provided ProtocolEnum
+func (t *OpenStackSecurityGroupRuleCreateRequest_Protocol) MergeProtocolEnum(v ProtocolEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsBlankEnum returns the union data inside the OpenStackSecurityGroupRuleCreateRequest_Protocol as a BlankEnum
+func (t OpenStackSecurityGroupRuleCreateRequest_Protocol) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the OpenStackSecurityGroupRuleCreateRequest_Protocol as the provided BlankEnum
+func (t *OpenStackSecurityGroupRuleCreateRequest_Protocol) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the OpenStackSecurityGroupRuleCreateRequest_Protocol, using the provided BlankEnum
+func (t *OpenStackSecurityGroupRuleCreateRequest_Protocol) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t OpenStackSecurityGroupRuleCreateRequest_Protocol) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *OpenStackSecurityGroupRuleCreateRequest_Protocol) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
