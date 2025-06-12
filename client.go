@@ -6449,30 +6449,32 @@ const (
 
 // Defines values for ProposalProtectedCallsListParamsField.
 const (
-	ProposalProtectedCallsListParamsFieldBackendId                     ProposalProtectedCallsListParamsField = "backend_id"
-	ProposalProtectedCallsListParamsFieldCreated                       ProposalProtectedCallsListParamsField = "created"
-	ProposalProtectedCallsListParamsFieldCreatedBy                     ProposalProtectedCallsListParamsField = "created_by"
-	ProposalProtectedCallsListParamsFieldCustomerName                  ProposalProtectedCallsListParamsField = "customer_name"
-	ProposalProtectedCallsListParamsFieldCustomerUuid                  ProposalProtectedCallsListParamsField = "customer_uuid"
-	ProposalProtectedCallsListParamsFieldDefaultProjectRole            ProposalProtectedCallsListParamsField = "default_project_role"
-	ProposalProtectedCallsListParamsFieldDefaultProjectRoleDescription ProposalProtectedCallsListParamsField = "default_project_role_description"
-	ProposalProtectedCallsListParamsFieldDefaultProjectRoleName        ProposalProtectedCallsListParamsField = "default_project_role_name"
-	ProposalProtectedCallsListParamsFieldDescription                   ProposalProtectedCallsListParamsField = "description"
-	ProposalProtectedCallsListParamsFieldDocuments                     ProposalProtectedCallsListParamsField = "documents"
-	ProposalProtectedCallsListParamsFieldEndDate                       ProposalProtectedCallsListParamsField = "end_date"
-	ProposalProtectedCallsListParamsFieldExternalUrl                   ProposalProtectedCallsListParamsField = "external_url"
-	ProposalProtectedCallsListParamsFieldFixedDurationInDays           ProposalProtectedCallsListParamsField = "fixed_duration_in_days"
-	ProposalProtectedCallsListParamsFieldManager                       ProposalProtectedCallsListParamsField = "manager"
-	ProposalProtectedCallsListParamsFieldName                          ProposalProtectedCallsListParamsField = "name"
-	ProposalProtectedCallsListParamsFieldOfferings                     ProposalProtectedCallsListParamsField = "offerings"
-	ProposalProtectedCallsListParamsFieldReferenceCode                 ProposalProtectedCallsListParamsField = "reference_code"
-	ProposalProtectedCallsListParamsFieldResourceTemplates             ProposalProtectedCallsListParamsField = "resource_templates"
-	ProposalProtectedCallsListParamsFieldRounds                        ProposalProtectedCallsListParamsField = "rounds"
-	ProposalProtectedCallsListParamsFieldSlug                          ProposalProtectedCallsListParamsField = "slug"
-	ProposalProtectedCallsListParamsFieldStartDate                     ProposalProtectedCallsListParamsField = "start_date"
-	ProposalProtectedCallsListParamsFieldState                         ProposalProtectedCallsListParamsField = "state"
-	ProposalProtectedCallsListParamsFieldUrl                           ProposalProtectedCallsListParamsField = "url"
-	ProposalProtectedCallsListParamsFieldUuid                          ProposalProtectedCallsListParamsField = "uuid"
+	ProposalProtectedCallsListParamsFieldBackendId                           ProposalProtectedCallsListParamsField = "backend_id"
+	ProposalProtectedCallsListParamsFieldCreated                             ProposalProtectedCallsListParamsField = "created"
+	ProposalProtectedCallsListParamsFieldCreatedBy                           ProposalProtectedCallsListParamsField = "created_by"
+	ProposalProtectedCallsListParamsFieldCustomerName                        ProposalProtectedCallsListParamsField = "customer_name"
+	ProposalProtectedCallsListParamsFieldCustomerUuid                        ProposalProtectedCallsListParamsField = "customer_uuid"
+	ProposalProtectedCallsListParamsFieldDefaultProjectRole                  ProposalProtectedCallsListParamsField = "default_project_role"
+	ProposalProtectedCallsListParamsFieldDefaultProjectRoleDescription       ProposalProtectedCallsListParamsField = "default_project_role_description"
+	ProposalProtectedCallsListParamsFieldDefaultProjectRoleName              ProposalProtectedCallsListParamsField = "default_project_role_name"
+	ProposalProtectedCallsListParamsFieldDescription                         ProposalProtectedCallsListParamsField = "description"
+	ProposalProtectedCallsListParamsFieldDocuments                           ProposalProtectedCallsListParamsField = "documents"
+	ProposalProtectedCallsListParamsFieldEndDate                             ProposalProtectedCallsListParamsField = "end_date"
+	ProposalProtectedCallsListParamsFieldExternalUrl                         ProposalProtectedCallsListParamsField = "external_url"
+	ProposalProtectedCallsListParamsFieldFixedDurationInDays                 ProposalProtectedCallsListParamsField = "fixed_duration_in_days"
+	ProposalProtectedCallsListParamsFieldManager                             ProposalProtectedCallsListParamsField = "manager"
+	ProposalProtectedCallsListParamsFieldName                                ProposalProtectedCallsListParamsField = "name"
+	ProposalProtectedCallsListParamsFieldOfferings                           ProposalProtectedCallsListParamsField = "offerings"
+	ProposalProtectedCallsListParamsFieldReferenceCode                       ProposalProtectedCallsListParamsField = "reference_code"
+	ProposalProtectedCallsListParamsFieldResourceTemplates                   ProposalProtectedCallsListParamsField = "resource_templates"
+	ProposalProtectedCallsListParamsFieldReviewerIdentityVisibleToSubmitters ProposalProtectedCallsListParamsField = "reviewer_identity_visible_to_submitters"
+	ProposalProtectedCallsListParamsFieldReviewsVisibleToSubmitters          ProposalProtectedCallsListParamsField = "reviews_visible_to_submitters"
+	ProposalProtectedCallsListParamsFieldRounds                              ProposalProtectedCallsListParamsField = "rounds"
+	ProposalProtectedCallsListParamsFieldSlug                                ProposalProtectedCallsListParamsField = "slug"
+	ProposalProtectedCallsListParamsFieldStartDate                           ProposalProtectedCallsListParamsField = "start_date"
+	ProposalProtectedCallsListParamsFieldState                               ProposalProtectedCallsListParamsField = "state"
+	ProposalProtectedCallsListParamsFieldUrl                                 ProposalProtectedCallsListParamsField = "url"
+	ProposalProtectedCallsListParamsFieldUuid                                ProposalProtectedCallsListParamsField = "uuid"
 )
 
 // Defines values for ProposalProtectedCallsListParamsO.
@@ -6494,30 +6496,32 @@ const (
 
 // Defines values for ProposalProtectedCallsRetrieveParamsField.
 const (
-	ProposalProtectedCallsRetrieveParamsFieldBackendId                     ProposalProtectedCallsRetrieveParamsField = "backend_id"
-	ProposalProtectedCallsRetrieveParamsFieldCreated                       ProposalProtectedCallsRetrieveParamsField = "created"
-	ProposalProtectedCallsRetrieveParamsFieldCreatedBy                     ProposalProtectedCallsRetrieveParamsField = "created_by"
-	ProposalProtectedCallsRetrieveParamsFieldCustomerName                  ProposalProtectedCallsRetrieveParamsField = "customer_name"
-	ProposalProtectedCallsRetrieveParamsFieldCustomerUuid                  ProposalProtectedCallsRetrieveParamsField = "customer_uuid"
-	ProposalProtectedCallsRetrieveParamsFieldDefaultProjectRole            ProposalProtectedCallsRetrieveParamsField = "default_project_role"
-	ProposalProtectedCallsRetrieveParamsFieldDefaultProjectRoleDescription ProposalProtectedCallsRetrieveParamsField = "default_project_role_description"
-	ProposalProtectedCallsRetrieveParamsFieldDefaultProjectRoleName        ProposalProtectedCallsRetrieveParamsField = "default_project_role_name"
-	ProposalProtectedCallsRetrieveParamsFieldDescription                   ProposalProtectedCallsRetrieveParamsField = "description"
-	ProposalProtectedCallsRetrieveParamsFieldDocuments                     ProposalProtectedCallsRetrieveParamsField = "documents"
-	ProposalProtectedCallsRetrieveParamsFieldEndDate                       ProposalProtectedCallsRetrieveParamsField = "end_date"
-	ProposalProtectedCallsRetrieveParamsFieldExternalUrl                   ProposalProtectedCallsRetrieveParamsField = "external_url"
-	ProposalProtectedCallsRetrieveParamsFieldFixedDurationInDays           ProposalProtectedCallsRetrieveParamsField = "fixed_duration_in_days"
-	ProposalProtectedCallsRetrieveParamsFieldManager                       ProposalProtectedCallsRetrieveParamsField = "manager"
-	ProposalProtectedCallsRetrieveParamsFieldName                          ProposalProtectedCallsRetrieveParamsField = "name"
-	ProposalProtectedCallsRetrieveParamsFieldOfferings                     ProposalProtectedCallsRetrieveParamsField = "offerings"
-	ProposalProtectedCallsRetrieveParamsFieldReferenceCode                 ProposalProtectedCallsRetrieveParamsField = "reference_code"
-	ProposalProtectedCallsRetrieveParamsFieldResourceTemplates             ProposalProtectedCallsRetrieveParamsField = "resource_templates"
-	ProposalProtectedCallsRetrieveParamsFieldRounds                        ProposalProtectedCallsRetrieveParamsField = "rounds"
-	ProposalProtectedCallsRetrieveParamsFieldSlug                          ProposalProtectedCallsRetrieveParamsField = "slug"
-	ProposalProtectedCallsRetrieveParamsFieldStartDate                     ProposalProtectedCallsRetrieveParamsField = "start_date"
-	ProposalProtectedCallsRetrieveParamsFieldState                         ProposalProtectedCallsRetrieveParamsField = "state"
-	ProposalProtectedCallsRetrieveParamsFieldUrl                           ProposalProtectedCallsRetrieveParamsField = "url"
-	ProposalProtectedCallsRetrieveParamsFieldUuid                          ProposalProtectedCallsRetrieveParamsField = "uuid"
+	ProposalProtectedCallsRetrieveParamsFieldBackendId                           ProposalProtectedCallsRetrieveParamsField = "backend_id"
+	ProposalProtectedCallsRetrieveParamsFieldCreated                             ProposalProtectedCallsRetrieveParamsField = "created"
+	ProposalProtectedCallsRetrieveParamsFieldCreatedBy                           ProposalProtectedCallsRetrieveParamsField = "created_by"
+	ProposalProtectedCallsRetrieveParamsFieldCustomerName                        ProposalProtectedCallsRetrieveParamsField = "customer_name"
+	ProposalProtectedCallsRetrieveParamsFieldCustomerUuid                        ProposalProtectedCallsRetrieveParamsField = "customer_uuid"
+	ProposalProtectedCallsRetrieveParamsFieldDefaultProjectRole                  ProposalProtectedCallsRetrieveParamsField = "default_project_role"
+	ProposalProtectedCallsRetrieveParamsFieldDefaultProjectRoleDescription       ProposalProtectedCallsRetrieveParamsField = "default_project_role_description"
+	ProposalProtectedCallsRetrieveParamsFieldDefaultProjectRoleName              ProposalProtectedCallsRetrieveParamsField = "default_project_role_name"
+	ProposalProtectedCallsRetrieveParamsFieldDescription                         ProposalProtectedCallsRetrieveParamsField = "description"
+	ProposalProtectedCallsRetrieveParamsFieldDocuments                           ProposalProtectedCallsRetrieveParamsField = "documents"
+	ProposalProtectedCallsRetrieveParamsFieldEndDate                             ProposalProtectedCallsRetrieveParamsField = "end_date"
+	ProposalProtectedCallsRetrieveParamsFieldExternalUrl                         ProposalProtectedCallsRetrieveParamsField = "external_url"
+	ProposalProtectedCallsRetrieveParamsFieldFixedDurationInDays                 ProposalProtectedCallsRetrieveParamsField = "fixed_duration_in_days"
+	ProposalProtectedCallsRetrieveParamsFieldManager                             ProposalProtectedCallsRetrieveParamsField = "manager"
+	ProposalProtectedCallsRetrieveParamsFieldName                                ProposalProtectedCallsRetrieveParamsField = "name"
+	ProposalProtectedCallsRetrieveParamsFieldOfferings                           ProposalProtectedCallsRetrieveParamsField = "offerings"
+	ProposalProtectedCallsRetrieveParamsFieldReferenceCode                       ProposalProtectedCallsRetrieveParamsField = "reference_code"
+	ProposalProtectedCallsRetrieveParamsFieldResourceTemplates                   ProposalProtectedCallsRetrieveParamsField = "resource_templates"
+	ProposalProtectedCallsRetrieveParamsFieldReviewerIdentityVisibleToSubmitters ProposalProtectedCallsRetrieveParamsField = "reviewer_identity_visible_to_submitters"
+	ProposalProtectedCallsRetrieveParamsFieldReviewsVisibleToSubmitters          ProposalProtectedCallsRetrieveParamsField = "reviews_visible_to_submitters"
+	ProposalProtectedCallsRetrieveParamsFieldRounds                              ProposalProtectedCallsRetrieveParamsField = "rounds"
+	ProposalProtectedCallsRetrieveParamsFieldSlug                                ProposalProtectedCallsRetrieveParamsField = "slug"
+	ProposalProtectedCallsRetrieveParamsFieldStartDate                           ProposalProtectedCallsRetrieveParamsField = "start_date"
+	ProposalProtectedCallsRetrieveParamsFieldState                               ProposalProtectedCallsRetrieveParamsField = "state"
+	ProposalProtectedCallsRetrieveParamsFieldUrl                                 ProposalProtectedCallsRetrieveParamsField = "url"
+	ProposalProtectedCallsRetrieveParamsFieldUuid                                ProposalProtectedCallsRetrieveParamsField = "uuid"
 )
 
 // Defines values for ProposalProtectedCallsListUsersListParamsField.
@@ -6549,25 +6553,27 @@ const (
 
 // Defines values for ProposalPublicCallsListParamsField.
 const (
-	ProposalPublicCallsListParamsFieldBackendId           ProposalPublicCallsListParamsField = "backend_id"
-	ProposalPublicCallsListParamsFieldCreated             ProposalPublicCallsListParamsField = "created"
-	ProposalPublicCallsListParamsFieldCustomerName        ProposalPublicCallsListParamsField = "customer_name"
-	ProposalPublicCallsListParamsFieldCustomerUuid        ProposalPublicCallsListParamsField = "customer_uuid"
-	ProposalPublicCallsListParamsFieldDescription         ProposalPublicCallsListParamsField = "description"
-	ProposalPublicCallsListParamsFieldDocuments           ProposalPublicCallsListParamsField = "documents"
-	ProposalPublicCallsListParamsFieldEndDate             ProposalPublicCallsListParamsField = "end_date"
-	ProposalPublicCallsListParamsFieldExternalUrl         ProposalPublicCallsListParamsField = "external_url"
-	ProposalPublicCallsListParamsFieldFixedDurationInDays ProposalPublicCallsListParamsField = "fixed_duration_in_days"
-	ProposalPublicCallsListParamsFieldManager             ProposalPublicCallsListParamsField = "manager"
-	ProposalPublicCallsListParamsFieldName                ProposalPublicCallsListParamsField = "name"
-	ProposalPublicCallsListParamsFieldOfferings           ProposalPublicCallsListParamsField = "offerings"
-	ProposalPublicCallsListParamsFieldResourceTemplates   ProposalPublicCallsListParamsField = "resource_templates"
-	ProposalPublicCallsListParamsFieldRounds              ProposalPublicCallsListParamsField = "rounds"
-	ProposalPublicCallsListParamsFieldSlug                ProposalPublicCallsListParamsField = "slug"
-	ProposalPublicCallsListParamsFieldStartDate           ProposalPublicCallsListParamsField = "start_date"
-	ProposalPublicCallsListParamsFieldState               ProposalPublicCallsListParamsField = "state"
-	ProposalPublicCallsListParamsFieldUrl                 ProposalPublicCallsListParamsField = "url"
-	ProposalPublicCallsListParamsFieldUuid                ProposalPublicCallsListParamsField = "uuid"
+	ProposalPublicCallsListParamsFieldBackendId                           ProposalPublicCallsListParamsField = "backend_id"
+	ProposalPublicCallsListParamsFieldCreated                             ProposalPublicCallsListParamsField = "created"
+	ProposalPublicCallsListParamsFieldCustomerName                        ProposalPublicCallsListParamsField = "customer_name"
+	ProposalPublicCallsListParamsFieldCustomerUuid                        ProposalPublicCallsListParamsField = "customer_uuid"
+	ProposalPublicCallsListParamsFieldDescription                         ProposalPublicCallsListParamsField = "description"
+	ProposalPublicCallsListParamsFieldDocuments                           ProposalPublicCallsListParamsField = "documents"
+	ProposalPublicCallsListParamsFieldEndDate                             ProposalPublicCallsListParamsField = "end_date"
+	ProposalPublicCallsListParamsFieldExternalUrl                         ProposalPublicCallsListParamsField = "external_url"
+	ProposalPublicCallsListParamsFieldFixedDurationInDays                 ProposalPublicCallsListParamsField = "fixed_duration_in_days"
+	ProposalPublicCallsListParamsFieldManager                             ProposalPublicCallsListParamsField = "manager"
+	ProposalPublicCallsListParamsFieldName                                ProposalPublicCallsListParamsField = "name"
+	ProposalPublicCallsListParamsFieldOfferings                           ProposalPublicCallsListParamsField = "offerings"
+	ProposalPublicCallsListParamsFieldResourceTemplates                   ProposalPublicCallsListParamsField = "resource_templates"
+	ProposalPublicCallsListParamsFieldReviewerIdentityVisibleToSubmitters ProposalPublicCallsListParamsField = "reviewer_identity_visible_to_submitters"
+	ProposalPublicCallsListParamsFieldReviewsVisibleToSubmitters          ProposalPublicCallsListParamsField = "reviews_visible_to_submitters"
+	ProposalPublicCallsListParamsFieldRounds                              ProposalPublicCallsListParamsField = "rounds"
+	ProposalPublicCallsListParamsFieldSlug                                ProposalPublicCallsListParamsField = "slug"
+	ProposalPublicCallsListParamsFieldStartDate                           ProposalPublicCallsListParamsField = "start_date"
+	ProposalPublicCallsListParamsFieldState                               ProposalPublicCallsListParamsField = "state"
+	ProposalPublicCallsListParamsFieldUrl                                 ProposalPublicCallsListParamsField = "url"
+	ProposalPublicCallsListParamsFieldUuid                                ProposalPublicCallsListParamsField = "uuid"
 )
 
 // Defines values for ProposalPublicCallsListParamsO.
@@ -6589,25 +6595,27 @@ const (
 
 // Defines values for ProposalPublicCallsRetrieveParamsField.
 const (
-	ProposalPublicCallsRetrieveParamsFieldBackendId           ProposalPublicCallsRetrieveParamsField = "backend_id"
-	ProposalPublicCallsRetrieveParamsFieldCreated             ProposalPublicCallsRetrieveParamsField = "created"
-	ProposalPublicCallsRetrieveParamsFieldCustomerName        ProposalPublicCallsRetrieveParamsField = "customer_name"
-	ProposalPublicCallsRetrieveParamsFieldCustomerUuid        ProposalPublicCallsRetrieveParamsField = "customer_uuid"
-	ProposalPublicCallsRetrieveParamsFieldDescription         ProposalPublicCallsRetrieveParamsField = "description"
-	ProposalPublicCallsRetrieveParamsFieldDocuments           ProposalPublicCallsRetrieveParamsField = "documents"
-	ProposalPublicCallsRetrieveParamsFieldEndDate             ProposalPublicCallsRetrieveParamsField = "end_date"
-	ProposalPublicCallsRetrieveParamsFieldExternalUrl         ProposalPublicCallsRetrieveParamsField = "external_url"
-	ProposalPublicCallsRetrieveParamsFieldFixedDurationInDays ProposalPublicCallsRetrieveParamsField = "fixed_duration_in_days"
-	ProposalPublicCallsRetrieveParamsFieldManager             ProposalPublicCallsRetrieveParamsField = "manager"
-	ProposalPublicCallsRetrieveParamsFieldName                ProposalPublicCallsRetrieveParamsField = "name"
-	ProposalPublicCallsRetrieveParamsFieldOfferings           ProposalPublicCallsRetrieveParamsField = "offerings"
-	ProposalPublicCallsRetrieveParamsFieldResourceTemplates   ProposalPublicCallsRetrieveParamsField = "resource_templates"
-	ProposalPublicCallsRetrieveParamsFieldRounds              ProposalPublicCallsRetrieveParamsField = "rounds"
-	ProposalPublicCallsRetrieveParamsFieldSlug                ProposalPublicCallsRetrieveParamsField = "slug"
-	ProposalPublicCallsRetrieveParamsFieldStartDate           ProposalPublicCallsRetrieveParamsField = "start_date"
-	ProposalPublicCallsRetrieveParamsFieldState               ProposalPublicCallsRetrieveParamsField = "state"
-	ProposalPublicCallsRetrieveParamsFieldUrl                 ProposalPublicCallsRetrieveParamsField = "url"
-	ProposalPublicCallsRetrieveParamsFieldUuid                ProposalPublicCallsRetrieveParamsField = "uuid"
+	ProposalPublicCallsRetrieveParamsFieldBackendId                           ProposalPublicCallsRetrieveParamsField = "backend_id"
+	ProposalPublicCallsRetrieveParamsFieldCreated                             ProposalPublicCallsRetrieveParamsField = "created"
+	ProposalPublicCallsRetrieveParamsFieldCustomerName                        ProposalPublicCallsRetrieveParamsField = "customer_name"
+	ProposalPublicCallsRetrieveParamsFieldCustomerUuid                        ProposalPublicCallsRetrieveParamsField = "customer_uuid"
+	ProposalPublicCallsRetrieveParamsFieldDescription                         ProposalPublicCallsRetrieveParamsField = "description"
+	ProposalPublicCallsRetrieveParamsFieldDocuments                           ProposalPublicCallsRetrieveParamsField = "documents"
+	ProposalPublicCallsRetrieveParamsFieldEndDate                             ProposalPublicCallsRetrieveParamsField = "end_date"
+	ProposalPublicCallsRetrieveParamsFieldExternalUrl                         ProposalPublicCallsRetrieveParamsField = "external_url"
+	ProposalPublicCallsRetrieveParamsFieldFixedDurationInDays                 ProposalPublicCallsRetrieveParamsField = "fixed_duration_in_days"
+	ProposalPublicCallsRetrieveParamsFieldManager                             ProposalPublicCallsRetrieveParamsField = "manager"
+	ProposalPublicCallsRetrieveParamsFieldName                                ProposalPublicCallsRetrieveParamsField = "name"
+	ProposalPublicCallsRetrieveParamsFieldOfferings                           ProposalPublicCallsRetrieveParamsField = "offerings"
+	ProposalPublicCallsRetrieveParamsFieldResourceTemplates                   ProposalPublicCallsRetrieveParamsField = "resource_templates"
+	ProposalPublicCallsRetrieveParamsFieldReviewerIdentityVisibleToSubmitters ProposalPublicCallsRetrieveParamsField = "reviewer_identity_visible_to_submitters"
+	ProposalPublicCallsRetrieveParamsFieldReviewsVisibleToSubmitters          ProposalPublicCallsRetrieveParamsField = "reviews_visible_to_submitters"
+	ProposalPublicCallsRetrieveParamsFieldRounds                              ProposalPublicCallsRetrieveParamsField = "rounds"
+	ProposalPublicCallsRetrieveParamsFieldSlug                                ProposalPublicCallsRetrieveParamsField = "slug"
+	ProposalPublicCallsRetrieveParamsFieldStartDate                           ProposalPublicCallsRetrieveParamsField = "start_date"
+	ProposalPublicCallsRetrieveParamsFieldState                               ProposalPublicCallsRetrieveParamsField = "state"
+	ProposalPublicCallsRetrieveParamsFieldUrl                                 ProposalPublicCallsRetrieveParamsField = "url"
+	ProposalPublicCallsRetrieveParamsFieldUuid                                ProposalPublicCallsRetrieveParamsField = "uuid"
 )
 
 // Defines values for ProposalRequestedOfferingsListParamsO.
@@ -14767,6 +14775,12 @@ type PatchedProtectedCallRequest struct {
 	FixedDurationInDays *int                `json:"fixed_duration_in_days"`
 	Name                *string             `json:"name,omitempty"`
 	ReferenceCode       *string             `json:"reference_code,omitempty"`
+
+	// ReviewerIdentityVisibleToSubmitters Whether proposal submitters can see reviewer identities
+	ReviewerIdentityVisibleToSubmitters *bool `json:"reviewer_identity_visible_to_submitters,omitempty"`
+
+	// ReviewsVisibleToSubmitters Whether proposal submitters can see review comments and scores
+	ReviewsVisibleToSubmitters *bool `json:"reviews_visible_to_submitters,omitempty"`
 }
 
 // PatchedProtectedRoundRequest defines model for PatchedProtectedRoundRequest.
@@ -15548,6 +15562,9 @@ type ProposalRequest_OecdFos2007Code struct {
 
 // ProposalReview defines model for ProposalReview.
 type ProposalReview struct {
+	// AnonymousReviewerName Generate an anonymous reviewer identifier like 'Reviewer 1', 'Reviewer 2'.
+	// Returns None if the review is not associated with a proposal.
+	AnonymousReviewerName                 *string                  `json:"anonymous_reviewer_name,omitempty"`
 	CallName                              *string                  `json:"call_name,omitempty"`
 	CallUuid                              *openapi_types.UUID      `json:"call_uuid,omitempty"`
 	CommentProjectDescription             *string                  `json:"comment_project_description"`
@@ -15640,12 +15657,18 @@ type ProtectedCall struct {
 	Offerings                     *[]NestedRequestedOffering `json:"offerings,omitempty"`
 	ReferenceCode                 *string                    `json:"reference_code,omitempty"`
 	ResourceTemplates             *[]CallResourceTemplate    `json:"resource_templates,omitempty"`
-	Rounds                        *[]NestedRound             `json:"rounds,omitempty"`
-	Slug                          *string                    `json:"slug,omitempty"`
-	StartDate                     *time.Time                 `json:"start_date,omitempty"`
-	State                         *CallStates                `json:"state,omitempty"`
-	Url                           *string                    `json:"url,omitempty"`
-	Uuid                          *openapi_types.UUID        `json:"uuid,omitempty"`
+
+	// ReviewerIdentityVisibleToSubmitters Whether proposal submitters can see reviewer identities
+	ReviewerIdentityVisibleToSubmitters *bool `json:"reviewer_identity_visible_to_submitters,omitempty"`
+
+	// ReviewsVisibleToSubmitters Whether proposal submitters can see review comments and scores
+	ReviewsVisibleToSubmitters *bool               `json:"reviews_visible_to_submitters,omitempty"`
+	Rounds                     *[]NestedRound      `json:"rounds,omitempty"`
+	Slug                       *string             `json:"slug,omitempty"`
+	StartDate                  *time.Time          `json:"start_date,omitempty"`
+	State                      *CallStates         `json:"state,omitempty"`
+	Url                        *string             `json:"url,omitempty"`
+	Uuid                       *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // ProtectedCallRequest defines model for ProtectedCallRequest.
@@ -15659,17 +15682,27 @@ type ProtectedCallRequest struct {
 	Manager             string              `json:"manager"`
 	Name                string              `json:"name"`
 	ReferenceCode       *string             `json:"reference_code,omitempty"`
+
+	// ReviewerIdentityVisibleToSubmitters Whether proposal submitters can see reviewer identities
+	ReviewerIdentityVisibleToSubmitters *bool `json:"reviewer_identity_visible_to_submitters,omitempty"`
+
+	// ReviewsVisibleToSubmitters Whether proposal submitters can see review comments and scores
+	ReviewsVisibleToSubmitters *bool `json:"reviews_visible_to_submitters,omitempty"`
 }
 
 // ProtectedProposalList defines model for ProtectedProposalList.
 type ProtectedProposalList struct {
-	ApprovedByName *string             `json:"approved_by_name,omitempty"`
-	Created        *time.Time          `json:"created,omitempty"`
-	CreatedByName  *string             `json:"created_by_name,omitempty"`
-	Name           string              `json:"name"`
-	Reviews        *[]ProposalReview   `json:"reviews,omitempty"`
-	State          *ProposalStates     `json:"state,omitempty"`
-	Uuid           *openapi_types.UUID `json:"uuid,omitempty"`
+	ApprovedByName *string    `json:"approved_by_name,omitempty"`
+	Created        *time.Time `json:"created,omitempty"`
+	CreatedByName  *string    `json:"created_by_name,omitempty"`
+	Name           string     `json:"name"`
+
+	// Reviews Return serialized reviews based on user permissions and visibility settings.
+	// - Staff, call managers, and reviewers see all reviews.
+	// - Submitters see submitted reviews if visibility is enabled.
+	Reviews *[]interface{}      `json:"reviews,omitempty"`
+	State   *ProposalStates     `json:"state,omitempty"`
+	Uuid    *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // ProtectedRound defines model for ProtectedRound.
@@ -15986,12 +16019,18 @@ type PublicCall struct {
 	Name                *string                    `json:"name,omitempty"`
 	Offerings           *[]NestedRequestedOffering `json:"offerings,omitempty"`
 	ResourceTemplates   *[]CallResourceTemplate    `json:"resource_templates,omitempty"`
-	Rounds              *[]NestedRound             `json:"rounds,omitempty"`
-	Slug                *string                    `json:"slug,omitempty"`
-	StartDate           *time.Time                 `json:"start_date,omitempty"`
-	State               *CallStates                `json:"state,omitempty"`
-	Url                 *string                    `json:"url,omitempty"`
-	Uuid                *openapi_types.UUID        `json:"uuid,omitempty"`
+
+	// ReviewerIdentityVisibleToSubmitters Whether proposal submitters can see reviewer identities. If False, reviewers appear as 'Reviewer 1', 'Reviewer 2', etc.
+	ReviewerIdentityVisibleToSubmitters *bool `json:"reviewer_identity_visible_to_submitters,omitempty"`
+
+	// ReviewsVisibleToSubmitters Whether proposal submitters can see review comments and scores. If False, submitters only see final approval/rejection status.
+	ReviewsVisibleToSubmitters *bool               `json:"reviews_visible_to_submitters,omitempty"`
+	Rounds                     *[]NestedRound      `json:"rounds,omitempty"`
+	Slug                       *string             `json:"slug,omitempty"`
+	StartDate                  *time.Time          `json:"start_date,omitempty"`
+	State                      *CallStates         `json:"state,omitempty"`
+	Url                        *string             `json:"url,omitempty"`
+	Uuid                       *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // PublicOfferingDetails defines model for PublicOfferingDetails.
