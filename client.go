@@ -15564,7 +15564,7 @@ type ProposalRequest_OecdFos2007Code struct {
 type ProposalReview struct {
 	// AnonymousReviewerName Generate an anonymous reviewer identifier like 'Reviewer 1', 'Reviewer 2'.
 	// Returns None if the review is not associated with a proposal.
-	AnonymousReviewerName                 *string                  `json:"anonymous_reviewer_name,omitempty"`
+	AnonymousReviewerName                 *string                  `json:"anonymous_reviewer_name"`
 	CallName                              *string                  `json:"call_name,omitempty"`
 	CallUuid                              *openapi_types.UUID      `json:"call_uuid,omitempty"`
 	CommentProjectDescription             *string                  `json:"comment_project_description"`
