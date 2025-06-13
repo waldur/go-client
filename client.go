@@ -1889,6 +1889,7 @@ const (
 	BookingResourcesListParamsFieldCreationOrder              BookingResourcesListParamsField = "creation_order"
 	BookingResourcesListParamsFieldCurrentUsages              BookingResourcesListParamsField = "current_usages"
 	BookingResourcesListParamsFieldCustomerName               BookingResourcesListParamsField = "customer_name"
+	BookingResourcesListParamsFieldCustomerSlug               BookingResourcesListParamsField = "customer_slug"
 	BookingResourcesListParamsFieldCustomerUuid               BookingResourcesListParamsField = "customer_uuid"
 	BookingResourcesListParamsFieldDescription                BookingResourcesListParamsField = "description"
 	BookingResourcesListParamsFieldDownscaled                 BookingResourcesListParamsField = "downscaled"
@@ -1934,6 +1935,7 @@ const (
 	BookingResourcesListParamsFieldProjectEndDate             BookingResourcesListParamsField = "project_end_date"
 	BookingResourcesListParamsFieldProjectEndDateRequestedBy  BookingResourcesListParamsField = "project_end_date_requested_by"
 	BookingResourcesListParamsFieldProjectName                BookingResourcesListParamsField = "project_name"
+	BookingResourcesListParamsFieldProjectSlug                BookingResourcesListParamsField = "project_slug"
 	BookingResourcesListParamsFieldProjectUuid                BookingResourcesListParamsField = "project_uuid"
 	BookingResourcesListParamsFieldProviderName               BookingResourcesListParamsField = "provider_name"
 	BookingResourcesListParamsFieldProviderUuid               BookingResourcesListParamsField = "provider_uuid"
@@ -1993,6 +1995,7 @@ const (
 	BookingResourcesRetrieveParamsFieldCreationOrder              BookingResourcesRetrieveParamsField = "creation_order"
 	BookingResourcesRetrieveParamsFieldCurrentUsages              BookingResourcesRetrieveParamsField = "current_usages"
 	BookingResourcesRetrieveParamsFieldCustomerName               BookingResourcesRetrieveParamsField = "customer_name"
+	BookingResourcesRetrieveParamsFieldCustomerSlug               BookingResourcesRetrieveParamsField = "customer_slug"
 	BookingResourcesRetrieveParamsFieldCustomerUuid               BookingResourcesRetrieveParamsField = "customer_uuid"
 	BookingResourcesRetrieveParamsFieldDescription                BookingResourcesRetrieveParamsField = "description"
 	BookingResourcesRetrieveParamsFieldDownscaled                 BookingResourcesRetrieveParamsField = "downscaled"
@@ -2038,6 +2041,7 @@ const (
 	BookingResourcesRetrieveParamsFieldProjectEndDate             BookingResourcesRetrieveParamsField = "project_end_date"
 	BookingResourcesRetrieveParamsFieldProjectEndDateRequestedBy  BookingResourcesRetrieveParamsField = "project_end_date_requested_by"
 	BookingResourcesRetrieveParamsFieldProjectName                BookingResourcesRetrieveParamsField = "project_name"
+	BookingResourcesRetrieveParamsFieldProjectSlug                BookingResourcesRetrieveParamsField = "project_slug"
 	BookingResourcesRetrieveParamsFieldProjectUuid                BookingResourcesRetrieveParamsField = "project_uuid"
 	BookingResourcesRetrieveParamsFieldProviderName               BookingResourcesRetrieveParamsField = "provider_name"
 	BookingResourcesRetrieveParamsFieldProviderUuid               BookingResourcesRetrieveParamsField = "provider_uuid"
@@ -3826,6 +3830,7 @@ const (
 	MarketplaceProviderResourcesListParamsFieldCreationOrder             MarketplaceProviderResourcesListParamsField = "creation_order"
 	MarketplaceProviderResourcesListParamsFieldCurrentUsages             MarketplaceProviderResourcesListParamsField = "current_usages"
 	MarketplaceProviderResourcesListParamsFieldCustomerName              MarketplaceProviderResourcesListParamsField = "customer_name"
+	MarketplaceProviderResourcesListParamsFieldCustomerSlug              MarketplaceProviderResourcesListParamsField = "customer_slug"
 	MarketplaceProviderResourcesListParamsFieldCustomerUuid              MarketplaceProviderResourcesListParamsField = "customer_uuid"
 	MarketplaceProviderResourcesListParamsFieldDescription               MarketplaceProviderResourcesListParamsField = "description"
 	MarketplaceProviderResourcesListParamsFieldDownscaled                MarketplaceProviderResourcesListParamsField = "downscaled"
@@ -3871,6 +3876,7 @@ const (
 	MarketplaceProviderResourcesListParamsFieldProjectEndDate            MarketplaceProviderResourcesListParamsField = "project_end_date"
 	MarketplaceProviderResourcesListParamsFieldProjectEndDateRequestedBy MarketplaceProviderResourcesListParamsField = "project_end_date_requested_by"
 	MarketplaceProviderResourcesListParamsFieldProjectName               MarketplaceProviderResourcesListParamsField = "project_name"
+	MarketplaceProviderResourcesListParamsFieldProjectSlug               MarketplaceProviderResourcesListParamsField = "project_slug"
 	MarketplaceProviderResourcesListParamsFieldProjectUuid               MarketplaceProviderResourcesListParamsField = "project_uuid"
 	MarketplaceProviderResourcesListParamsFieldProviderName              MarketplaceProviderResourcesListParamsField = "provider_name"
 	MarketplaceProviderResourcesListParamsFieldProviderUuid              MarketplaceProviderResourcesListParamsField = "provider_uuid"
@@ -3923,6 +3929,7 @@ const (
 	MarketplaceProviderResourcesRetrieveParamsFieldCreationOrder             MarketplaceProviderResourcesRetrieveParamsField = "creation_order"
 	MarketplaceProviderResourcesRetrieveParamsFieldCurrentUsages             MarketplaceProviderResourcesRetrieveParamsField = "current_usages"
 	MarketplaceProviderResourcesRetrieveParamsFieldCustomerName              MarketplaceProviderResourcesRetrieveParamsField = "customer_name"
+	MarketplaceProviderResourcesRetrieveParamsFieldCustomerSlug              MarketplaceProviderResourcesRetrieveParamsField = "customer_slug"
 	MarketplaceProviderResourcesRetrieveParamsFieldCustomerUuid              MarketplaceProviderResourcesRetrieveParamsField = "customer_uuid"
 	MarketplaceProviderResourcesRetrieveParamsFieldDescription               MarketplaceProviderResourcesRetrieveParamsField = "description"
 	MarketplaceProviderResourcesRetrieveParamsFieldDownscaled                MarketplaceProviderResourcesRetrieveParamsField = "downscaled"
@@ -3968,6 +3975,7 @@ const (
 	MarketplaceProviderResourcesRetrieveParamsFieldProjectEndDate            MarketplaceProviderResourcesRetrieveParamsField = "project_end_date"
 	MarketplaceProviderResourcesRetrieveParamsFieldProjectEndDateRequestedBy MarketplaceProviderResourcesRetrieveParamsField = "project_end_date_requested_by"
 	MarketplaceProviderResourcesRetrieveParamsFieldProjectName               MarketplaceProviderResourcesRetrieveParamsField = "project_name"
+	MarketplaceProviderResourcesRetrieveParamsFieldProjectSlug               MarketplaceProviderResourcesRetrieveParamsField = "project_slug"
 	MarketplaceProviderResourcesRetrieveParamsFieldProjectUuid               MarketplaceProviderResourcesRetrieveParamsField = "project_uuid"
 	MarketplaceProviderResourcesRetrieveParamsFieldProviderName              MarketplaceProviderResourcesRetrieveParamsField = "provider_name"
 	MarketplaceProviderResourcesRetrieveParamsFieldProviderUuid              MarketplaceProviderResourcesRetrieveParamsField = "provider_uuid"
@@ -3998,6 +4006,7 @@ const (
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldCreationOrder             MarketplaceProviderResourcesDetailsRetrieveParamsField = "creation_order"
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldCurrentUsages             MarketplaceProviderResourcesDetailsRetrieveParamsField = "current_usages"
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldCustomerName              MarketplaceProviderResourcesDetailsRetrieveParamsField = "customer_name"
+	MarketplaceProviderResourcesDetailsRetrieveParamsFieldCustomerSlug              MarketplaceProviderResourcesDetailsRetrieveParamsField = "customer_slug"
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldCustomerUuid              MarketplaceProviderResourcesDetailsRetrieveParamsField = "customer_uuid"
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldDescription               MarketplaceProviderResourcesDetailsRetrieveParamsField = "description"
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldDownscaled                MarketplaceProviderResourcesDetailsRetrieveParamsField = "downscaled"
@@ -4043,6 +4052,7 @@ const (
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldProjectEndDate            MarketplaceProviderResourcesDetailsRetrieveParamsField = "project_end_date"
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldProjectEndDateRequestedBy MarketplaceProviderResourcesDetailsRetrieveParamsField = "project_end_date_requested_by"
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldProjectName               MarketplaceProviderResourcesDetailsRetrieveParamsField = "project_name"
+	MarketplaceProviderResourcesDetailsRetrieveParamsFieldProjectSlug               MarketplaceProviderResourcesDetailsRetrieveParamsField = "project_slug"
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldProjectUuid               MarketplaceProviderResourcesDetailsRetrieveParamsField = "project_uuid"
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldProviderName              MarketplaceProviderResourcesDetailsRetrieveParamsField = "provider_name"
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldProviderUuid              MarketplaceProviderResourcesDetailsRetrieveParamsField = "provider_uuid"
@@ -4235,6 +4245,7 @@ const (
 	MarketplaceResourcesListParamsFieldCreationOrder             MarketplaceResourcesListParamsField = "creation_order"
 	MarketplaceResourcesListParamsFieldCurrentUsages             MarketplaceResourcesListParamsField = "current_usages"
 	MarketplaceResourcesListParamsFieldCustomerName              MarketplaceResourcesListParamsField = "customer_name"
+	MarketplaceResourcesListParamsFieldCustomerSlug              MarketplaceResourcesListParamsField = "customer_slug"
 	MarketplaceResourcesListParamsFieldCustomerUuid              MarketplaceResourcesListParamsField = "customer_uuid"
 	MarketplaceResourcesListParamsFieldDescription               MarketplaceResourcesListParamsField = "description"
 	MarketplaceResourcesListParamsFieldDownscaled                MarketplaceResourcesListParamsField = "downscaled"
@@ -4280,6 +4291,7 @@ const (
 	MarketplaceResourcesListParamsFieldProjectEndDate            MarketplaceResourcesListParamsField = "project_end_date"
 	MarketplaceResourcesListParamsFieldProjectEndDateRequestedBy MarketplaceResourcesListParamsField = "project_end_date_requested_by"
 	MarketplaceResourcesListParamsFieldProjectName               MarketplaceResourcesListParamsField = "project_name"
+	MarketplaceResourcesListParamsFieldProjectSlug               MarketplaceResourcesListParamsField = "project_slug"
 	MarketplaceResourcesListParamsFieldProjectUuid               MarketplaceResourcesListParamsField = "project_uuid"
 	MarketplaceResourcesListParamsFieldProviderName              MarketplaceResourcesListParamsField = "provider_name"
 	MarketplaceResourcesListParamsFieldProviderUuid              MarketplaceResourcesListParamsField = "provider_uuid"
@@ -4332,6 +4344,7 @@ const (
 	MarketplaceResourcesRetrieveParamsFieldCreationOrder             MarketplaceResourcesRetrieveParamsField = "creation_order"
 	MarketplaceResourcesRetrieveParamsFieldCurrentUsages             MarketplaceResourcesRetrieveParamsField = "current_usages"
 	MarketplaceResourcesRetrieveParamsFieldCustomerName              MarketplaceResourcesRetrieveParamsField = "customer_name"
+	MarketplaceResourcesRetrieveParamsFieldCustomerSlug              MarketplaceResourcesRetrieveParamsField = "customer_slug"
 	MarketplaceResourcesRetrieveParamsFieldCustomerUuid              MarketplaceResourcesRetrieveParamsField = "customer_uuid"
 	MarketplaceResourcesRetrieveParamsFieldDescription               MarketplaceResourcesRetrieveParamsField = "description"
 	MarketplaceResourcesRetrieveParamsFieldDownscaled                MarketplaceResourcesRetrieveParamsField = "downscaled"
@@ -4377,6 +4390,7 @@ const (
 	MarketplaceResourcesRetrieveParamsFieldProjectEndDate            MarketplaceResourcesRetrieveParamsField = "project_end_date"
 	MarketplaceResourcesRetrieveParamsFieldProjectEndDateRequestedBy MarketplaceResourcesRetrieveParamsField = "project_end_date_requested_by"
 	MarketplaceResourcesRetrieveParamsFieldProjectName               MarketplaceResourcesRetrieveParamsField = "project_name"
+	MarketplaceResourcesRetrieveParamsFieldProjectSlug               MarketplaceResourcesRetrieveParamsField = "project_slug"
 	MarketplaceResourcesRetrieveParamsFieldProjectUuid               MarketplaceResourcesRetrieveParamsField = "project_uuid"
 	MarketplaceResourcesRetrieveParamsFieldProviderName              MarketplaceResourcesRetrieveParamsField = "provider_name"
 	MarketplaceResourcesRetrieveParamsFieldProviderUuid              MarketplaceResourcesRetrieveParamsField = "provider_uuid"
@@ -4407,6 +4421,7 @@ const (
 	MarketplaceResourcesDetailsRetrieveParamsFieldCreationOrder             MarketplaceResourcesDetailsRetrieveParamsField = "creation_order"
 	MarketplaceResourcesDetailsRetrieveParamsFieldCurrentUsages             MarketplaceResourcesDetailsRetrieveParamsField = "current_usages"
 	MarketplaceResourcesDetailsRetrieveParamsFieldCustomerName              MarketplaceResourcesDetailsRetrieveParamsField = "customer_name"
+	MarketplaceResourcesDetailsRetrieveParamsFieldCustomerSlug              MarketplaceResourcesDetailsRetrieveParamsField = "customer_slug"
 	MarketplaceResourcesDetailsRetrieveParamsFieldCustomerUuid              MarketplaceResourcesDetailsRetrieveParamsField = "customer_uuid"
 	MarketplaceResourcesDetailsRetrieveParamsFieldDescription               MarketplaceResourcesDetailsRetrieveParamsField = "description"
 	MarketplaceResourcesDetailsRetrieveParamsFieldDownscaled                MarketplaceResourcesDetailsRetrieveParamsField = "downscaled"
@@ -4452,6 +4467,7 @@ const (
 	MarketplaceResourcesDetailsRetrieveParamsFieldProjectEndDate            MarketplaceResourcesDetailsRetrieveParamsField = "project_end_date"
 	MarketplaceResourcesDetailsRetrieveParamsFieldProjectEndDateRequestedBy MarketplaceResourcesDetailsRetrieveParamsField = "project_end_date_requested_by"
 	MarketplaceResourcesDetailsRetrieveParamsFieldProjectName               MarketplaceResourcesDetailsRetrieveParamsField = "project_name"
+	MarketplaceResourcesDetailsRetrieveParamsFieldProjectSlug               MarketplaceResourcesDetailsRetrieveParamsField = "project_slug"
 	MarketplaceResourcesDetailsRetrieveParamsFieldProjectUuid               MarketplaceResourcesDetailsRetrieveParamsField = "project_uuid"
 	MarketplaceResourcesDetailsRetrieveParamsFieldProviderName              MarketplaceResourcesDetailsRetrieveParamsField = "provider_name"
 	MarketplaceResourcesDetailsRetrieveParamsFieldProviderUuid              MarketplaceResourcesDetailsRetrieveParamsField = "provider_uuid"
@@ -8923,6 +8939,7 @@ type BookingResource struct {
 	CreationOrder     *OrderDetails       `json:"creation_order"`
 	CurrentUsages     *map[string]int     `json:"current_usages,omitempty"`
 	CustomerName      *string             `json:"customer_name,omitempty"`
+	CustomerSlug      *string             `json:"customer_slug,omitempty"`
 	CustomerUuid      *openapi_types.UUID `json:"customer_uuid,omitempty"`
 	Description       *string             `json:"description,omitempty"`
 	Downscaled        *bool               `json:"downscaled,omitempty"`
@@ -8978,6 +8995,7 @@ type BookingResource struct {
 	ProjectEndDate            *openapi_types.Date `json:"project_end_date"`
 	ProjectEndDateRequestedBy *string             `json:"project_end_date_requested_by,omitempty"`
 	ProjectName               *string             `json:"project_name,omitempty"`
+	ProjectSlug               *string             `json:"project_slug,omitempty"`
 	ProjectUuid               *openapi_types.UUID `json:"project_uuid,omitempty"`
 	ProviderName              *string             `json:"provider_name,omitempty"`
 	ProviderUuid              *openapi_types.UUID `json:"provider_uuid,omitempty"`
@@ -17054,6 +17072,7 @@ type Resource struct {
 	CreationOrder    *OrderDetails           `json:"creation_order"`
 	CurrentUsages    *map[string]int         `json:"current_usages,omitempty"`
 	CustomerName     *string                 `json:"customer_name,omitempty"`
+	CustomerSlug     *string                 `json:"customer_slug,omitempty"`
 	CustomerUuid     *openapi_types.UUID     `json:"customer_uuid,omitempty"`
 	Description      *string                 `json:"description,omitempty"`
 	Downscaled       *bool                   `json:"downscaled,omitempty"`
@@ -17109,6 +17128,7 @@ type Resource struct {
 	ProjectEndDate            *openapi_types.Date `json:"project_end_date"`
 	ProjectEndDateRequestedBy *string             `json:"project_end_date_requested_by,omitempty"`
 	ProjectName               *string             `json:"project_name,omitempty"`
+	ProjectSlug               *string             `json:"project_slug,omitempty"`
 	ProjectUuid               *openapi_types.UUID `json:"project_uuid,omitempty"`
 	ProviderName              *string             `json:"provider_name,omitempty"`
 	ProviderUuid              *openapi_types.UUID `json:"provider_uuid,omitempty"`
@@ -17194,18 +17214,6 @@ type ResourceReport struct {
 // ResourceReportRequest defines model for ResourceReportRequest.
 type ResourceReportRequest struct {
 	Report []ReportSectionRequest `json:"report"`
-}
-
-// ResourceRequest defines model for ResourceRequest.
-type ResourceRequest struct {
-	Downscaled *bool `json:"downscaled,omitempty"`
-
-	// EndDate The date is inclusive. Once reached, a resource will be scheduled for termination.
-	EndDate  *openapi_types.Date `json:"end_date"`
-	Name     string              `json:"name"`
-	Offering string              `json:"offering"`
-	Paused   *bool               `json:"paused,omitempty"`
-	Plan     *string             `json:"plan,omitempty"`
 }
 
 // ResourceSetLimits defines model for ResourceSetLimits.
@@ -25396,14 +25404,8 @@ type MarketplaceProviderResourcesPartialUpdateJSONRequestBody = PatchedResourceU
 // MarketplaceProviderResourcesUpdateJSONRequestBody defines body for MarketplaceProviderResourcesUpdate for application/json ContentType.
 type MarketplaceProviderResourcesUpdateJSONRequestBody = ResourceUpdateRequest
 
-// MarketplaceProviderResourcesRefreshLastSyncJSONRequestBody defines body for MarketplaceProviderResourcesRefreshLastSync for application/json ContentType.
-type MarketplaceProviderResourcesRefreshLastSyncJSONRequestBody = ResourceRequest
-
 // MarketplaceProviderResourcesSetAsErredJSONRequestBody defines body for MarketplaceProviderResourcesSetAsErred for application/json ContentType.
 type MarketplaceProviderResourcesSetAsErredJSONRequestBody = ResourceSetStateErredRequest
-
-// MarketplaceProviderResourcesSetAsOkJSONRequestBody defines body for MarketplaceProviderResourcesSetAsOk for application/json ContentType.
-type MarketplaceProviderResourcesSetAsOkJSONRequestBody = ResourceRequest
 
 // MarketplaceProviderResourcesSetBackendIdJSONRequestBody defines body for MarketplaceProviderResourcesSetBackendId for application/json ContentType.
 type MarketplaceProviderResourcesSetBackendIdJSONRequestBody = ResourceBackendIDRequest
@@ -30464,20 +30466,16 @@ type ClientInterface interface {
 	// MarketplaceProviderResourcesPlanPeriodsList request
 	MarketplaceProviderResourcesPlanPeriodsList(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// MarketplaceProviderResourcesRefreshLastSyncWithBody request with any body
-	MarketplaceProviderResourcesRefreshLastSyncWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	MarketplaceProviderResourcesRefreshLastSync(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesRefreshLastSyncJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// MarketplaceProviderResourcesRefreshLastSync request
+	MarketplaceProviderResourcesRefreshLastSync(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceProviderResourcesSetAsErredWithBody request with any body
 	MarketplaceProviderResourcesSetAsErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	MarketplaceProviderResourcesSetAsErred(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetAsErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// MarketplaceProviderResourcesSetAsOkWithBody request with any body
-	MarketplaceProviderResourcesSetAsOkWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	MarketplaceProviderResourcesSetAsOk(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetAsOkJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// MarketplaceProviderResourcesSetAsOk request
+	MarketplaceProviderResourcesSetAsOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceProviderResourcesSetBackendIdWithBody request with any body
 	MarketplaceProviderResourcesSetBackendIdWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -31177,9 +31175,6 @@ type ClientInterface interface {
 	OpenstackMigrationsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	OpenstackMigrationsUpdate(ctx context.Context, uuid openapi_types.UUID, body OpenstackMigrationsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// OpenstackMigrationsRun request
-	OpenstackMigrationsRun(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenstackNetworkRbacPoliciesList request
 	OpenstackNetworkRbacPoliciesList(ctx context.Context, params *OpenstackNetworkRbacPoliciesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -41030,20 +41025,8 @@ func (c *Client) MarketplaceProviderResourcesPlanPeriodsList(ctx context.Context
 	return c.Client.Do(req)
 }
 
-func (c *Client) MarketplaceProviderResourcesRefreshLastSyncWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceProviderResourcesRefreshLastSyncRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceProviderResourcesRefreshLastSync(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesRefreshLastSyncJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceProviderResourcesRefreshLastSyncRequest(c.Server, uuid, body)
+func (c *Client) MarketplaceProviderResourcesRefreshLastSync(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderResourcesRefreshLastSyncRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -41078,20 +41061,8 @@ func (c *Client) MarketplaceProviderResourcesSetAsErred(ctx context.Context, uui
 	return c.Client.Do(req)
 }
 
-func (c *Client) MarketplaceProviderResourcesSetAsOkWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceProviderResourcesSetAsOkRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceProviderResourcesSetAsOk(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetAsOkJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceProviderResourcesSetAsOkRequest(c.Server, uuid, body)
+func (c *Client) MarketplaceProviderResourcesSetAsOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderResourcesSetAsOkRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -44152,18 +44123,6 @@ func (c *Client) OpenstackMigrationsUpdateWithBody(ctx context.Context, uuid ope
 
 func (c *Client) OpenstackMigrationsUpdate(ctx context.Context, uuid openapi_types.UUID, body OpenstackMigrationsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenstackMigrationsUpdateRequest(c.Server, uuid, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) OpenstackMigrationsRun(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOpenstackMigrationsRunRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -87480,19 +87439,8 @@ func NewMarketplaceProviderResourcesPlanPeriodsListRequest(server string, uuid o
 	return req, nil
 }
 
-// NewMarketplaceProviderResourcesRefreshLastSyncRequest calls the generic MarketplaceProviderResourcesRefreshLastSync builder with application/json body
-func NewMarketplaceProviderResourcesRefreshLastSyncRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderResourcesRefreshLastSyncJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewMarketplaceProviderResourcesRefreshLastSyncRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewMarketplaceProviderResourcesRefreshLastSyncRequestWithBody generates requests for MarketplaceProviderResourcesRefreshLastSync with any type of body
-func NewMarketplaceProviderResourcesRefreshLastSyncRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+// NewMarketplaceProviderResourcesRefreshLastSyncRequest generates requests for MarketplaceProviderResourcesRefreshLastSync
+func NewMarketplaceProviderResourcesRefreshLastSyncRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -87517,12 +87465,10 @@ func NewMarketplaceProviderResourcesRefreshLastSyncRequestWithBody(server string
 		return nil, err
 	}
 
-	req, err := http.NewRequest("POST", queryURL.String(), body)
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
-
-	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -87574,19 +87520,8 @@ func NewMarketplaceProviderResourcesSetAsErredRequestWithBody(server string, uui
 	return req, nil
 }
 
-// NewMarketplaceProviderResourcesSetAsOkRequest calls the generic MarketplaceProviderResourcesSetAsOk builder with application/json body
-func NewMarketplaceProviderResourcesSetAsOkRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetAsOkJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewMarketplaceProviderResourcesSetAsOkRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewMarketplaceProviderResourcesSetAsOkRequestWithBody generates requests for MarketplaceProviderResourcesSetAsOk with any type of body
-func NewMarketplaceProviderResourcesSetAsOkRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+// NewMarketplaceProviderResourcesSetAsOkRequest generates requests for MarketplaceProviderResourcesSetAsOk
+func NewMarketplaceProviderResourcesSetAsOkRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -87611,12 +87546,10 @@ func NewMarketplaceProviderResourcesSetAsOkRequestWithBody(server string, uuid o
 		return nil, err
 	}
 
-	req, err := http.NewRequest("POST", queryURL.String(), body)
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
-
-	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -101956,40 +101889,6 @@ func NewOpenstackMigrationsUpdateRequestWithBody(server string, uuid openapi_typ
 	}
 
 	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewOpenstackMigrationsRunRequest generates requests for OpenstackMigrationsRun
-func NewOpenstackMigrationsRunRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/openstack-migrations/%s/run/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("POST", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
 
 	return req, nil
 }
@@ -138483,20 +138382,16 @@ type ClientWithResponsesInterface interface {
 	// MarketplaceProviderResourcesPlanPeriodsListWithResponse request
 	MarketplaceProviderResourcesPlanPeriodsListWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesPlanPeriodsListResponse, error)
 
-	// MarketplaceProviderResourcesRefreshLastSyncWithBodyWithResponse request with any body
-	MarketplaceProviderResourcesRefreshLastSyncWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesRefreshLastSyncResponse, error)
-
-	MarketplaceProviderResourcesRefreshLastSyncWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesRefreshLastSyncJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesRefreshLastSyncResponse, error)
+	// MarketplaceProviderResourcesRefreshLastSyncWithResponse request
+	MarketplaceProviderResourcesRefreshLastSyncWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesRefreshLastSyncResponse, error)
 
 	// MarketplaceProviderResourcesSetAsErredWithBodyWithResponse request with any body
 	MarketplaceProviderResourcesSetAsErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetAsErredResponse, error)
 
 	MarketplaceProviderResourcesSetAsErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetAsErredJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetAsErredResponse, error)
 
-	// MarketplaceProviderResourcesSetAsOkWithBodyWithResponse request with any body
-	MarketplaceProviderResourcesSetAsOkWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetAsOkResponse, error)
-
-	MarketplaceProviderResourcesSetAsOkWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetAsOkJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetAsOkResponse, error)
+	// MarketplaceProviderResourcesSetAsOkWithResponse request
+	MarketplaceProviderResourcesSetAsOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetAsOkResponse, error)
 
 	// MarketplaceProviderResourcesSetBackendIdWithBodyWithResponse request with any body
 	MarketplaceProviderResourcesSetBackendIdWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetBackendIdResponse, error)
@@ -139196,9 +139091,6 @@ type ClientWithResponsesInterface interface {
 	OpenstackMigrationsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackMigrationsUpdateResponse, error)
 
 	OpenstackMigrationsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackMigrationsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackMigrationsUpdateResponse, error)
-
-	// OpenstackMigrationsRunWithResponse request
-	OpenstackMigrationsRunWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackMigrationsRunResponse, error)
 
 	// OpenstackNetworkRbacPoliciesListWithResponse request
 	OpenstackNetworkRbacPoliciesListWithResponse(ctx context.Context, params *OpenstackNetworkRbacPoliciesListParams, reqEditors ...RequestEditorFn) (*OpenstackNetworkRbacPoliciesListResponse, error)
@@ -151775,7 +151667,6 @@ func (r MarketplaceProviderResourcesPlanPeriodsListResponse) StatusCode() int {
 type MarketplaceProviderResourcesRefreshLastSyncResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Resource
 }
 
 // Status returns HTTPResponse.Status
@@ -151819,7 +151710,6 @@ func (r MarketplaceProviderResourcesSetAsErredResponse) StatusCode() int {
 type MarketplaceProviderResourcesSetAsOkResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Resource
 }
 
 // Status returns HTTPResponse.Status
@@ -155938,27 +155828,6 @@ func (r OpenstackMigrationsUpdateResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r OpenstackMigrationsUpdateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type OpenstackMigrationsRunResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// Status returns HTTPResponse.Status
-func (r OpenstackMigrationsRunResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r OpenstackMigrationsRunResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -172580,17 +172449,9 @@ func (c *ClientWithResponses) MarketplaceProviderResourcesPlanPeriodsListWithRes
 	return ParseMarketplaceProviderResourcesPlanPeriodsListResponse(rsp)
 }
 
-// MarketplaceProviderResourcesRefreshLastSyncWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderResourcesRefreshLastSyncResponse
-func (c *ClientWithResponses) MarketplaceProviderResourcesRefreshLastSyncWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesRefreshLastSyncResponse, error) {
-	rsp, err := c.MarketplaceProviderResourcesRefreshLastSyncWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceProviderResourcesRefreshLastSyncResponse(rsp)
-}
-
-func (c *ClientWithResponses) MarketplaceProviderResourcesRefreshLastSyncWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesRefreshLastSyncJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesRefreshLastSyncResponse, error) {
-	rsp, err := c.MarketplaceProviderResourcesRefreshLastSync(ctx, uuid, body, reqEditors...)
+// MarketplaceProviderResourcesRefreshLastSyncWithResponse request returning *MarketplaceProviderResourcesRefreshLastSyncResponse
+func (c *ClientWithResponses) MarketplaceProviderResourcesRefreshLastSyncWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesRefreshLastSyncResponse, error) {
+	rsp, err := c.MarketplaceProviderResourcesRefreshLastSync(ctx, uuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -172614,17 +172475,9 @@ func (c *ClientWithResponses) MarketplaceProviderResourcesSetAsErredWithResponse
 	return ParseMarketplaceProviderResourcesSetAsErredResponse(rsp)
 }
 
-// MarketplaceProviderResourcesSetAsOkWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderResourcesSetAsOkResponse
-func (c *ClientWithResponses) MarketplaceProviderResourcesSetAsOkWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetAsOkResponse, error) {
-	rsp, err := c.MarketplaceProviderResourcesSetAsOkWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceProviderResourcesSetAsOkResponse(rsp)
-}
-
-func (c *ClientWithResponses) MarketplaceProviderResourcesSetAsOkWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetAsOkJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetAsOkResponse, error) {
-	rsp, err := c.MarketplaceProviderResourcesSetAsOk(ctx, uuid, body, reqEditors...)
+// MarketplaceProviderResourcesSetAsOkWithResponse request returning *MarketplaceProviderResourcesSetAsOkResponse
+func (c *ClientWithResponses) MarketplaceProviderResourcesSetAsOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetAsOkResponse, error) {
+	rsp, err := c.MarketplaceProviderResourcesSetAsOk(ctx, uuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -174858,15 +174711,6 @@ func (c *ClientWithResponses) OpenstackMigrationsUpdateWithResponse(ctx context.
 		return nil, err
 	}
 	return ParseOpenstackMigrationsUpdateResponse(rsp)
-}
-
-// OpenstackMigrationsRunWithResponse request returning *OpenstackMigrationsRunResponse
-func (c *ClientWithResponses) OpenstackMigrationsRunWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackMigrationsRunResponse, error) {
-	rsp, err := c.OpenstackMigrationsRun(ctx, uuid, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseOpenstackMigrationsRunResponse(rsp)
 }
 
 // OpenstackNetworkRbacPoliciesListWithResponse request returning *OpenstackNetworkRbacPoliciesListResponse
@@ -192320,16 +192164,6 @@ func ParseMarketplaceProviderResourcesRefreshLastSyncResponse(rsp *http.Response
 		HTTPResponse: rsp,
 	}
 
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Resource
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
 	return response, nil
 }
 
@@ -192370,16 +192204,6 @@ func ParseMarketplaceProviderResourcesSetAsOkResponse(rsp *http.Response) (*Mark
 	response := &MarketplaceProviderResourcesSetAsOkResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Resource
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
 	}
 
 	return response, nil
@@ -196771,22 +196595,6 @@ func ParseOpenstackMigrationsUpdateResponse(rsp *http.Response) (*OpenstackMigra
 		}
 		response.JSON200 = &dest
 
-	}
-
-	return response, nil
-}
-
-// ParseOpenstackMigrationsRunResponse parses an HTTP response from a OpenstackMigrationsRunWithResponse call
-func ParseOpenstackMigrationsRunResponse(rsp *http.Response) (*OpenstackMigrationsRunResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &OpenstackMigrationsRunResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
 	}
 
 	return response, nil
