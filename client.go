@@ -7593,12 +7593,14 @@ const (
 
 // Defines values for UserInvitationsListParamsO.
 const (
-	UserInvitationsListParamsOCreated      UserInvitationsListParamsO = "created"
-	UserInvitationsListParamsOEmail        UserInvitationsListParamsO = "email"
-	UserInvitationsListParamsOMinusCreated UserInvitationsListParamsO = "-created"
-	UserInvitationsListParamsOMinusEmail   UserInvitationsListParamsO = "-email"
-	UserInvitationsListParamsOMinusState   UserInvitationsListParamsO = "-state"
-	UserInvitationsListParamsOState        UserInvitationsListParamsO = "state"
+	UserInvitationsListParamsOCreated        UserInvitationsListParamsO = "created"
+	UserInvitationsListParamsOCreatedBy      UserInvitationsListParamsO = "created_by"
+	UserInvitationsListParamsOEmail          UserInvitationsListParamsO = "email"
+	UserInvitationsListParamsOMinusCreated   UserInvitationsListParamsO = "-created"
+	UserInvitationsListParamsOMinusCreatedBy UserInvitationsListParamsO = "-created_by"
+	UserInvitationsListParamsOMinusEmail     UserInvitationsListParamsO = "-email"
+	UserInvitationsListParamsOMinusState     UserInvitationsListParamsO = "-state"
+	UserInvitationsListParamsOState          UserInvitationsListParamsO = "state"
 )
 
 // Defines values for UserInvitationsListParamsState.
