@@ -19,7 +19,8 @@ import (
 )
 
 const (
-	TokenAuthScopes = "tokenAuth.Scopes"
+	TokenAuthScopes      = "tokenAuth.Scopes"
+	WaldurOIDCAuthScopes = "waldurOIDCAuth.Scopes"
 )
 
 // Defines values for AdminAnnouncementTypeEnum.
@@ -6807,6 +6808,7 @@ const (
 const (
 	RancherClustersListParamsFieldAccessUrl                        RancherClustersListParamsField = "access_url"
 	RancherClustersListParamsFieldBackendId                        RancherClustersListParamsField = "backend_id"
+	RancherClustersListParamsFieldCapacity                         RancherClustersListParamsField = "capacity"
 	RancherClustersListParamsFieldCreated                          RancherClustersListParamsField = "created"
 	RancherClustersListParamsFieldCustomer                         RancherClustersListParamsField = "customer"
 	RancherClustersListParamsFieldCustomerAbbreviation             RancherClustersListParamsField = "customer_abbreviation"
@@ -6818,6 +6820,7 @@ const (
 	RancherClustersListParamsFieldInstallLonghorn                  RancherClustersListParamsField = "install_longhorn"
 	RancherClustersListParamsFieldIsLimitBased                     RancherClustersListParamsField = "is_limit_based"
 	RancherClustersListParamsFieldIsUsageBased                     RancherClustersListParamsField = "is_usage_based"
+	RancherClustersListParamsFieldKubernetesVersion                RancherClustersListParamsField = "kubernetes_version"
 	RancherClustersListParamsFieldManagementSecurityGroup          RancherClustersListParamsField = "management_security_group"
 	RancherClustersListParamsFieldMarketplaceCategoryName          RancherClustersListParamsField = "marketplace_category_name"
 	RancherClustersListParamsFieldMarketplaceCategoryUuid          RancherClustersListParamsField = "marketplace_category_uuid"
@@ -6834,6 +6837,7 @@ const (
 	RancherClustersListParamsFieldProjectName                      RancherClustersListParamsField = "project_name"
 	RancherClustersListParamsFieldProjectUuid                      RancherClustersListParamsField = "project_uuid"
 	RancherClustersListParamsFieldPublicIps                        RancherClustersListParamsField = "public_ips"
+	RancherClustersListParamsFieldRequested                        RancherClustersListParamsField = "requested"
 	RancherClustersListParamsFieldResourceType                     RancherClustersListParamsField = "resource_type"
 	RancherClustersListParamsFieldRuntimeState                     RancherClustersListParamsField = "runtime_state"
 	RancherClustersListParamsFieldSecurityGroups                   RancherClustersListParamsField = "security_groups"
@@ -6867,6 +6871,7 @@ const (
 const (
 	RancherClustersRetrieveParamsFieldAccessUrl                        RancherClustersRetrieveParamsField = "access_url"
 	RancherClustersRetrieveParamsFieldBackendId                        RancherClustersRetrieveParamsField = "backend_id"
+	RancherClustersRetrieveParamsFieldCapacity                         RancherClustersRetrieveParamsField = "capacity"
 	RancherClustersRetrieveParamsFieldCreated                          RancherClustersRetrieveParamsField = "created"
 	RancherClustersRetrieveParamsFieldCustomer                         RancherClustersRetrieveParamsField = "customer"
 	RancherClustersRetrieveParamsFieldCustomerAbbreviation             RancherClustersRetrieveParamsField = "customer_abbreviation"
@@ -6878,6 +6883,7 @@ const (
 	RancherClustersRetrieveParamsFieldInstallLonghorn                  RancherClustersRetrieveParamsField = "install_longhorn"
 	RancherClustersRetrieveParamsFieldIsLimitBased                     RancherClustersRetrieveParamsField = "is_limit_based"
 	RancherClustersRetrieveParamsFieldIsUsageBased                     RancherClustersRetrieveParamsField = "is_usage_based"
+	RancherClustersRetrieveParamsFieldKubernetesVersion                RancherClustersRetrieveParamsField = "kubernetes_version"
 	RancherClustersRetrieveParamsFieldManagementSecurityGroup          RancherClustersRetrieveParamsField = "management_security_group"
 	RancherClustersRetrieveParamsFieldMarketplaceCategoryName          RancherClustersRetrieveParamsField = "marketplace_category_name"
 	RancherClustersRetrieveParamsFieldMarketplaceCategoryUuid          RancherClustersRetrieveParamsField = "marketplace_category_uuid"
@@ -6894,6 +6900,7 @@ const (
 	RancherClustersRetrieveParamsFieldProjectName                      RancherClustersRetrieveParamsField = "project_name"
 	RancherClustersRetrieveParamsFieldProjectUuid                      RancherClustersRetrieveParamsField = "project_uuid"
 	RancherClustersRetrieveParamsFieldPublicIps                        RancherClustersRetrieveParamsField = "public_ips"
+	RancherClustersRetrieveParamsFieldRequested                        RancherClustersRetrieveParamsField = "requested"
 	RancherClustersRetrieveParamsFieldResourceType                     RancherClustersRetrieveParamsField = "resource_type"
 	RancherClustersRetrieveParamsFieldRuntimeState                     RancherClustersRetrieveParamsField = "runtime_state"
 	RancherClustersRetrieveParamsFieldSecurityGroups                   RancherClustersRetrieveParamsField = "security_groups"
@@ -9658,6 +9665,11 @@ type ConstanceSettings struct {
 	NOTIFYABOUTRESOURCECHANGE                      *bool                `json:"NOTIFY_ABOUT_RESOURCE_CHANGE,omitempty"`
 	NOTIFYSTAFFABOUTAPPROVALS                      *bool                `json:"NOTIFY_STAFF_ABOUT_APPROVALS,omitempty"`
 	OFFERINGLOGOPLACEHOLDER                        *string              `json:"OFFERING_LOGO_PLACEHOLDER"`
+	OIDCCACHETIMEOUT                               *int                 `json:"OIDC_CACHE_TIMEOUT,omitempty"`
+	OIDCCLIENTID                                   *string              `json:"OIDC_CLIENT_ID,omitempty"`
+	OIDCCLIENTSECRET                               *string              `json:"OIDC_CLIENT_SECRET,omitempty"`
+	OIDCINTROSPECTIONURL                           *string              `json:"OIDC_INTROSPECTION_URL,omitempty"`
+	OIDCUSERFIELD                                  *string              `json:"OIDC_USER_FIELD,omitempty"`
 	POWEREDBYLOGO                                  *string              `json:"POWERED_BY_LOGO"`
 	PROPOSALREVIEWDURATION                         *int                 `json:"PROPOSAL_REVIEW_DURATION,omitempty"`
 	RANCHERUSERNAMEINPUTLABEL                      *string              `json:"RANCHER_USERNAME_INPUT_LABEL,omitempty"`
@@ -9785,6 +9797,11 @@ type ConstanceSettingsRequest struct {
 	NOTIFYABOUTRESOURCECHANGE                      *bool                `json:"NOTIFY_ABOUT_RESOURCE_CHANGE,omitempty"`
 	NOTIFYSTAFFABOUTAPPROVALS                      *bool                `json:"NOTIFY_STAFF_ABOUT_APPROVALS,omitempty"`
 	OFFERINGLOGOPLACEHOLDER                        *openapi_types.File  `json:"OFFERING_LOGO_PLACEHOLDER"`
+	OIDCCACHETIMEOUT                               *int                 `json:"OIDC_CACHE_TIMEOUT,omitempty"`
+	OIDCCLIENTID                                   *string              `json:"OIDC_CLIENT_ID,omitempty"`
+	OIDCCLIENTSECRET                               *string              `json:"OIDC_CLIENT_SECRET,omitempty"`
+	OIDCINTROSPECTIONURL                           *string              `json:"OIDC_INTROSPECTION_URL,omitempty"`
+	OIDCUSERFIELD                                  *string              `json:"OIDC_USER_FIELD,omitempty"`
 	POWEREDBYLOGO                                  *openapi_types.File  `json:"POWERED_BY_LOGO"`
 	PROPOSALREVIEWDURATION                         *int                 `json:"PROPOSAL_REVIEW_DURATION,omitempty"`
 	RANCHERUSERNAMEINPUTLABEL                      *string              `json:"RANCHER_USERNAME_INPUT_LABEL,omitempty"`
@@ -16305,21 +16322,27 @@ type RancherCatalogUpdateRequest struct {
 
 // RancherCluster defines model for RancherCluster.
 type RancherCluster struct {
-	AccessUrl            *string    `json:"access_url"`
-	BackendId            *string    `json:"backend_id,omitempty"`
-	Created              *time.Time `json:"created,omitempty"`
-	Customer             *string    `json:"customer,omitempty"`
-	CustomerAbbreviation *string    `json:"customer_abbreviation,omitempty"`
-	CustomerName         *string    `json:"customer_name,omitempty"`
-	CustomerNativeName   *string    `json:"customer_native_name,omitempty"`
-	Description          *string    `json:"description,omitempty"`
-	ErrorMessage         *string    `json:"error_message,omitempty"`
-	ErrorTraceback       *string    `json:"error_traceback,omitempty"`
+	AccessUrl *string `json:"access_url"`
+	BackendId *string `json:"backend_id,omitempty"`
+
+	// Capacity Cluster capacity in the format {'cpu': '10', 'ram': '49125240Ki', 'pods': '330'}
+	Capacity             *interface{} `json:"capacity,omitempty"`
+	Created              *time.Time   `json:"created,omitempty"`
+	Customer             *string      `json:"customer,omitempty"`
+	CustomerAbbreviation *string      `json:"customer_abbreviation,omitempty"`
+	CustomerName         *string      `json:"customer_name,omitempty"`
+	CustomerNativeName   *string      `json:"customer_native_name,omitempty"`
+	Description          *string      `json:"description,omitempty"`
+	ErrorMessage         *string      `json:"error_message,omitempty"`
+	ErrorTraceback       *string      `json:"error_traceback,omitempty"`
 
 	// InstallLonghorn Longhorn is a distributed block storage deployed on top of Kubernetes cluster
-	InstallLonghorn                  *bool                    `json:"install_longhorn,omitempty"`
-	IsLimitBased                     *bool                    `json:"is_limit_based"`
-	IsUsageBased                     *bool                    `json:"is_usage_based"`
+	InstallLonghorn *bool `json:"install_longhorn,omitempty"`
+	IsLimitBased    *bool `json:"is_limit_based"`
+	IsUsageBased    *bool `json:"is_usage_based"`
+
+	// KubernetesVersion Kubernetes version used in the cluster.
+	KubernetesVersion                *string                  `json:"kubernetes_version,omitempty"`
 	ManagementSecurityGroup          *string                  `json:"management_security_group,omitempty"`
 	MarketplaceCategoryName          *string                  `json:"marketplace_category_name"`
 	MarketplaceCategoryUuid          *string                  `json:"marketplace_category_uuid"`
@@ -16336,19 +16359,22 @@ type RancherCluster struct {
 	ProjectName                      *string                  `json:"project_name,omitempty"`
 	ProjectUuid                      *openapi_types.UUID      `json:"project_uuid,omitempty"`
 	PublicIps                        *[]RancherNestedPublicIP `json:"public_ips,omitempty"`
-	ResourceType                     *string                  `json:"resource_type,omitempty"`
-	RuntimeState                     *string                  `json:"runtime_state,omitempty"`
-	ServiceName                      *string                  `json:"service_name,omitempty"`
-	ServiceSettings                  *string                  `json:"service_settings,omitempty"`
-	ServiceSettingsErrorMessage      *string                  `json:"service_settings_error_message,omitempty"`
-	ServiceSettingsState             *string                  `json:"service_settings_state,omitempty"`
-	ServiceSettingsUuid              *openapi_types.UUID      `json:"service_settings_uuid,omitempty"`
-	State                            *CoreStates              `json:"state,omitempty"`
-	Tenant                           *string                  `json:"tenant,omitempty"`
-	TenantUuid                       *openapi_types.UUID      `json:"tenant_uuid,omitempty"`
-	Url                              *string                  `json:"url,omitempty"`
-	Uuid                             *openapi_types.UUID      `json:"uuid,omitempty"`
-	VmProject                        *string                  `json:"vm_project"`
+
+	// Requested Cluster requested resources in the format {'cpu': '1450m', 'memory': '884Mi', 'pods': '13'}
+	Requested                   *interface{}        `json:"requested,omitempty"`
+	ResourceType                *string             `json:"resource_type,omitempty"`
+	RuntimeState                *string             `json:"runtime_state,omitempty"`
+	ServiceName                 *string             `json:"service_name,omitempty"`
+	ServiceSettings             *string             `json:"service_settings,omitempty"`
+	ServiceSettingsErrorMessage *string             `json:"service_settings_error_message,omitempty"`
+	ServiceSettingsState        *string             `json:"service_settings_state,omitempty"`
+	ServiceSettingsUuid         *openapi_types.UUID `json:"service_settings_uuid,omitempty"`
+	State                       *CoreStates         `json:"state,omitempty"`
+	Tenant                      *string             `json:"tenant,omitempty"`
+	TenantUuid                  *openapi_types.UUID `json:"tenant_uuid,omitempty"`
+	Url                         *string             `json:"url,omitempty"`
+	Uuid                        *openapi_types.UUID `json:"uuid,omitempty"`
+	VmProject                   *string             `json:"vm_project"`
 }
 
 // RancherClusterReference defines model for RancherClusterReference.
@@ -22465,6 +22491,7 @@ type OpenstackInstancesListParams struct {
 	Project             *openapi_types.UUID                  `form:"project,omitempty" json:"project,omitempty"`
 	ProjectName         *string                              `form:"project_name,omitempty" json:"project_name,omitempty"`
 	ProjectUuid         *openapi_types.UUID                  `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	Query               *string                              `form:"query,omitempty" json:"query,omitempty"`
 	RuntimeState        *string                              `form:"runtime_state,omitempty" json:"runtime_state,omitempty"`
 	ServiceSettingsName *string                              `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
 	ServiceSettingsUuid *openapi_types.UUID                  `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
@@ -100624,6 +100651,22 @@ func NewOpenstackInstancesListRequest(server string, params *OpenstackInstancesL
 		if params.ProjectUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_uuid", runtime.ParamLocationQuery, *params.ProjectUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "query", runtime.ParamLocationQuery, *params.Query); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
