@@ -11462,7 +11462,6 @@ type MergedPluginOptions struct {
 
 	// LatestDateForResourceTermination If set, it will be used as a latest date for resource termination
 	LatestDateForResourceTermination               *openapi_types.Date `json:"latest_date_for_resource_termination,omitempty"`
-	ManagedRancherLoadBalancerCloudInitTemplate    *string             `json:"managed_rancher_load_balancer_cloud_init_template,omitempty"`
 	ManagedRancherLoadBalancerDataVolumeSizeGb     *int                `json:"managed_rancher_load_balancer_data_volume_size_gb,omitempty"`
 	ManagedRancherLoadBalancerDataVolumeTypeName   *string             `json:"managed_rancher_load_balancer_data_volume_type_name,omitempty"`
 	ManagedRancherLoadBalancerFlavorName           *string             `json:"managed_rancher_load_balancer_flavor_name,omitempty"`
@@ -11567,7 +11566,6 @@ type MergedPluginOptionsRequest struct {
 
 	// LatestDateForResourceTermination If set, it will be used as a latest date for resource termination
 	LatestDateForResourceTermination               *openapi_types.Date `json:"latest_date_for_resource_termination,omitempty"`
-	ManagedRancherLoadBalancerCloudInitTemplate    *string             `json:"managed_rancher_load_balancer_cloud_init_template,omitempty"`
 	ManagedRancherLoadBalancerDataVolumeSizeGb     *int                `json:"managed_rancher_load_balancer_data_volume_size_gb,omitempty"`
 	ManagedRancherLoadBalancerDataVolumeTypeName   *string             `json:"managed_rancher_load_balancer_data_volume_type_name,omitempty"`
 	ManagedRancherLoadBalancerFlavorName           *string             `json:"managed_rancher_load_balancer_flavor_name,omitempty"`
@@ -11682,7 +11680,8 @@ type MergedSecretOptions struct {
 	KeycloakUsername *string `json:"keycloak_username,omitempty"`
 
 	// Language Script language: Python or Bash
-	Language *string `json:"language,omitempty"`
+	Language                                    *string `json:"language,omitempty"`
+	ManagedRancherLoadBalancerCloudInitTemplate *string `json:"managed_rancher_load_balancer_cloud_init_template,omitempty"`
 
 	// NodeDiskDriver OpenStack disk driver for Rancher nodes
 	NodeDiskDriver             *NodeDiskDriverEnum `json:"node_disk_driver,omitempty"`
@@ -11792,7 +11791,8 @@ type MergedSecretOptionsRequest struct {
 	KeycloakUsername *string `json:"keycloak_username,omitempty"`
 
 	// Language Script language: Python or Bash
-	Language *string `json:"language,omitempty"`
+	Language                                    *string `json:"language,omitempty"`
+	ManagedRancherLoadBalancerCloudInitTemplate *string `json:"managed_rancher_load_balancer_cloud_init_template,omitempty"`
 
 	// NodeDiskDriver OpenStack disk driver for Rancher nodes
 	NodeDiskDriver             *NodeDiskDriverEnum `json:"node_disk_driver,omitempty"`
@@ -14108,7 +14108,6 @@ type OrderCreateRequest struct {
 	CallbackUrl             *string         `json:"callback_url"`
 	Limits                  *map[string]int `json:"limits,omitempty"`
 	Offering                string          `json:"offering"`
-	Output                  *string         `json:"output,omitempty"`
 	Plan                    *string         `json:"plan,omitempty"`
 	Project                 string          `json:"project"`
 	Type                    *RequestTypes   `json:"type,omitempty"`
