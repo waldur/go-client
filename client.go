@@ -10727,6 +10727,8 @@ type GoogleCredentials struct {
 
 // GroupInvitation defines model for GroupInvitation.
 type GroupInvitation struct {
+	// AutoCreateProject Create project and grant project permissions instead of customer permissions
+	AutoCreateProject *bool               `json:"auto_create_project,omitempty"`
 	Created           *time.Time          `json:"created,omitempty"`
 	CreatedByFullName *string             `json:"created_by_full_name,omitempty"`
 	CreatedByUsername *string             `json:"created_by_username,omitempty"`
@@ -10734,20 +10736,30 @@ type GroupInvitation struct {
 	CustomerUuid      *openapi_types.UUID `json:"customer_uuid,omitempty"`
 	Expires           *time.Time          `json:"expires,omitempty"`
 	IsActive          *bool               `json:"is_active,omitempty"`
-	Role              openapi_types.UUID  `json:"role"`
-	RoleDescription   *string             `json:"role_description,omitempty"`
-	RoleName          *string             `json:"role_name,omitempty"`
-	ScopeName         *string             `json:"scope_name,omitempty"`
-	ScopeType         *string             `json:"scope_type,omitempty"`
-	ScopeUuid         *openapi_types.UUID `json:"scope_uuid,omitempty"`
-	Url               *string             `json:"url,omitempty"`
-	Uuid              *openapi_types.UUID `json:"uuid,omitempty"`
+
+	// ProjectNameTemplate Template for project name. Supports {username}, {email}, {full_name} variables
+	ProjectNameTemplate *string             `json:"project_name_template,omitempty"`
+	ProjectRole         *openapi_types.UUID `json:"project_role"`
+	Role                openapi_types.UUID  `json:"role"`
+	RoleDescription     *string             `json:"role_description,omitempty"`
+	RoleName            *string             `json:"role_name,omitempty"`
+	ScopeName           *string             `json:"scope_name,omitempty"`
+	ScopeType           *string             `json:"scope_type,omitempty"`
+	ScopeUuid           *openapi_types.UUID `json:"scope_uuid,omitempty"`
+	Url                 *string             `json:"url,omitempty"`
+	Uuid                *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // GroupInvitationRequest defines model for GroupInvitationRequest.
 type GroupInvitationRequest struct {
-	Role  openapi_types.UUID `json:"role"`
-	Scope *string            `json:"scope,omitempty"`
+	// AutoCreateProject Create project and grant project permissions instead of customer permissions
+	AutoCreateProject *bool `json:"auto_create_project,omitempty"`
+
+	// ProjectNameTemplate Template for project name. Supports {username}, {email}, {full_name} variables
+	ProjectNameTemplate *string             `json:"project_name_template,omitempty"`
+	ProjectRole         *openapi_types.UUID `json:"project_role"`
+	Role                openapi_types.UUID  `json:"role"`
+	Scope               *string             `json:"scope,omitempty"`
 }
 
 // GuestOsEnum defines model for GuestOsEnum.
