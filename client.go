@@ -83,6 +83,15 @@ const (
 	CallStatesDraft    CallStates = "draft"
 )
 
+// Defines values for ContainerFormatEnum.
+const (
+	ContainerFormatEnumAki  ContainerFormatEnum = "aki"
+	ContainerFormatEnumAmi  ContainerFormatEnum = "ami"
+	ContainerFormatEnumAri  ContainerFormatEnum = "ari"
+	ContainerFormatEnumBare ContainerFormatEnum = "bare"
+	ContainerFormatEnumOvf  ContainerFormatEnum = "ovf"
+)
+
 // Defines values for CoreStates.
 const (
 	CoreStatesCREATING          CoreStates = "CREATING"
@@ -154,6 +163,19 @@ const (
 const (
 	Discount     DiscountTypeEnum = "discount"
 	SpecialPrice DiscountTypeEnum = "special_price"
+)
+
+// Defines values for DiskFormatEnum.
+const (
+	DiskFormatEnumAki   DiskFormatEnum = "aki"
+	DiskFormatEnumAmi   DiskFormatEnum = "ami"
+	DiskFormatEnumAri   DiskFormatEnum = "ari"
+	DiskFormatEnumIso   DiskFormatEnum = "iso"
+	DiskFormatEnumQcow2 DiskFormatEnum = "qcow2"
+	DiskFormatEnumRaw   DiskFormatEnum = "raw"
+	DiskFormatEnumVdi   DiskFormatEnum = "vdi"
+	DiskFormatEnumVhd   DiskFormatEnum = "vhd"
+	DiskFormatEnumVmdk  DiskFormatEnum = "vmdk"
 )
 
 // Defines values for DryRunStateEnum.
@@ -936,6 +958,12 @@ const (
 	UsernameGenerationPolicyEnumIdentityClaim   UsernameGenerationPolicyEnum = "identity_claim"
 	UsernameGenerationPolicyEnumServiceProvider UsernameGenerationPolicyEnum = "service_provider"
 	UsernameGenerationPolicyEnumWaldurUsername  UsernameGenerationPolicyEnum = "waldur_username"
+)
+
+// Defines values for VisibilityEnum.
+const (
+	Private VisibilityEnum = "private"
+	Public  VisibilityEnum = "public"
 )
 
 // Defines values for VolumeTypeEnum.
@@ -5274,6 +5302,18 @@ const (
 	OpenstackInstancesRetrieveParamsFieldVolumes                          OpenstackInstancesRetrieveParamsField = "volumes"
 )
 
+// Defines values for OpenstackMarketplaceTenantsListParamsState.
+const (
+	OpenstackMarketplaceTenantsListParamsStateCREATING          OpenstackMarketplaceTenantsListParamsState = "CREATING"
+	OpenstackMarketplaceTenantsListParamsStateCREATIONSCHEDULED OpenstackMarketplaceTenantsListParamsState = "CREATION_SCHEDULED"
+	OpenstackMarketplaceTenantsListParamsStateDELETING          OpenstackMarketplaceTenantsListParamsState = "DELETING"
+	OpenstackMarketplaceTenantsListParamsStateDELETIONSCHEDULED OpenstackMarketplaceTenantsListParamsState = "DELETION_SCHEDULED"
+	OpenstackMarketplaceTenantsListParamsStateERRED             OpenstackMarketplaceTenantsListParamsState = "ERRED"
+	OpenstackMarketplaceTenantsListParamsStateOK                OpenstackMarketplaceTenantsListParamsState = "OK"
+	OpenstackMarketplaceTenantsListParamsStateUPDATESCHEDULED   OpenstackMarketplaceTenantsListParamsState = "UPDATE_SCHEDULED"
+	OpenstackMarketplaceTenantsListParamsStateUPDATING          OpenstackMarketplaceTenantsListParamsState = "UPDATING"
+)
+
 // Defines values for OpenstackNetworkRbacPoliciesListParamsPolicyType.
 const (
 	OpenstackNetworkRbacPoliciesListParamsPolicyTypeAccessAsExternal OpenstackNetworkRbacPoliciesListParamsPolicyType = "access_as_external"
@@ -8063,14 +8103,14 @@ const (
 
 // Defines values for VmwareVirtualMachineListParamsState.
 const (
-	VmwareVirtualMachineListParamsStateCREATING          VmwareVirtualMachineListParamsState = "CREATING"
-	VmwareVirtualMachineListParamsStateCREATIONSCHEDULED VmwareVirtualMachineListParamsState = "CREATION_SCHEDULED"
-	VmwareVirtualMachineListParamsStateDELETING          VmwareVirtualMachineListParamsState = "DELETING"
-	VmwareVirtualMachineListParamsStateDELETIONSCHEDULED VmwareVirtualMachineListParamsState = "DELETION_SCHEDULED"
-	VmwareVirtualMachineListParamsStateERRED             VmwareVirtualMachineListParamsState = "ERRED"
-	VmwareVirtualMachineListParamsStateOK                VmwareVirtualMachineListParamsState = "OK"
-	VmwareVirtualMachineListParamsStateUPDATESCHEDULED   VmwareVirtualMachineListParamsState = "UPDATE_SCHEDULED"
-	VmwareVirtualMachineListParamsStateUPDATING          VmwareVirtualMachineListParamsState = "UPDATING"
+	CREATING          VmwareVirtualMachineListParamsState = "CREATING"
+	CREATIONSCHEDULED VmwareVirtualMachineListParamsState = "CREATION_SCHEDULED"
+	DELETING          VmwareVirtualMachineListParamsState = "DELETING"
+	DELETIONSCHEDULED VmwareVirtualMachineListParamsState = "DELETION_SCHEDULED"
+	ERRED             VmwareVirtualMachineListParamsState = "ERRED"
+	OK                VmwareVirtualMachineListParamsState = "OK"
+	UPDATESCHEDULED   VmwareVirtualMachineListParamsState = "UPDATE_SCHEDULED"
+	UPDATING          VmwareVirtualMachineListParamsState = "UPDATING"
 )
 
 // Defines values for VmwareVirtualMachineRetrieveParamsField.
@@ -9877,6 +9917,9 @@ type ConstanceSettingsRequest struct {
 	ZAMMADTOKEN                                    *string              `json:"ZAMMAD_TOKEN,omitempty"`
 }
 
+// ContainerFormatEnum defines model for ContainerFormatEnum.
+type ContainerFormatEnum string
+
 // CoreAuthToken defines model for CoreAuthToken.
 type CoreAuthToken struct {
 	Token *string `json:"token,omitempty"`
@@ -10458,6 +10501,9 @@ type DirectionEnum string
 // DiscountTypeEnum defines model for DiscountTypeEnum.
 type DiscountTypeEnum string
 
+// DiskFormatEnum defines model for DiskFormatEnum.
+type DiskFormatEnum string
+
 // DryRun defines model for DryRun.
 type DryRun struct {
 	Created         *time.Time          `json:"created,omitempty"`
@@ -10838,6 +10884,30 @@ type IdentityProviderRequest struct {
 	ProtectedFields *interface{} `json:"protected_fields,omitempty"`
 	Provider        string       `json:"provider"`
 	VerifySsl       *bool        `json:"verify_ssl,omitempty"`
+}
+
+// ImageCreateRequest defines model for ImageCreateRequest.
+type ImageCreateRequest struct {
+	ContainerFormat *ContainerFormatEnum `json:"container_format,omitempty"`
+	DiskFormat      *DiskFormatEnum      `json:"disk_format,omitempty"`
+	MinDisk         *int                 `json:"min_disk,omitempty"`
+	MinRam          *int                 `json:"min_ram,omitempty"`
+	Name            string               `json:"name"`
+	Visibility      *VisibilityEnum      `json:"visibility,omitempty"`
+}
+
+// ImageCreateResponse defines model for ImageCreateResponse.
+type ImageCreateResponse struct {
+	ImageId   openapi_types.UUID `json:"image_id"`
+	Name      string             `json:"name"`
+	Status    string             `json:"status"`
+	UploadUrl string             `json:"upload_url"`
+}
+
+// ImageUploadResponse defines model for ImageUploadResponse.
+type ImageUploadResponse struct {
+	Message string `json:"message"`
+	Status  string `json:"status"`
 }
 
 // ImportResourceRequest defines model for ImportResourceRequest.
@@ -12872,9 +12942,11 @@ type OfferingUser struct {
 
 // OfferingUserRequest defines model for OfferingUserRequest.
 type OfferingUserRequest struct {
-	Offering string  `json:"offering"`
-	User     string  `json:"user"`
-	Username *string `json:"username"`
+	Offering     *string             `json:"offering,omitempty"`
+	OfferingUuid *openapi_types.UUID `json:"offering_uuid,omitempty"`
+	User         *string             `json:"user,omitempty"`
+	UserUuid     *openapi_types.UUID `json:"user_uuid,omitempty"`
+	Username     *string             `json:"username"`
 }
 
 // OfferingUserRole defines model for OfferingUserRole.
@@ -14696,9 +14768,11 @@ type PatchedOfferingUsagePolicyRequest struct {
 
 // PatchedOfferingUserRequest defines model for PatchedOfferingUserRequest.
 type PatchedOfferingUserRequest struct {
-	Offering *string `json:"offering,omitempty"`
-	User     *string `json:"user,omitempty"`
-	Username *string `json:"username"`
+	Offering     *string             `json:"offering,omitempty"`
+	OfferingUuid *openapi_types.UUID `json:"offering_uuid,omitempty"`
+	User         *string             `json:"user,omitempty"`
+	UserUuid     *openapi_types.UUID `json:"user_uuid,omitempty"`
+	Username     *string             `json:"username"`
 }
 
 // PatchedOfferingUserRoleRequest defines model for PatchedOfferingUserRoleRequest.
@@ -18113,6 +18187,13 @@ type TemplateVersion struct {
 	Readme    *string                    `json:"readme,omitempty"`
 }
 
+// Tenant defines model for Tenant.
+type Tenant struct {
+	Name string              `json:"name"`
+	Url  *string             `json:"url,omitempty"`
+	Uuid *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
 // TokenRequest defines model for TokenRequest.
 type TokenRequest struct {
 	Token string `json:"token"`
@@ -18314,6 +18395,9 @@ type Version struct {
 	// Version Current installed version of the application
 	Version string `json:"version"`
 }
+
+// VisibilityEnum defines model for VisibilityEnum.
+type VisibilityEnum string
 
 // VisibleInvitationDetails defines model for VisibleInvitationDetails.
 type VisibleInvitationDetails struct {
@@ -22737,6 +22821,42 @@ type OpenstackInstancesPortsListParams struct {
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 }
 
+// OpenstackMarketplaceTenantsListParams defines parameters for OpenstackMarketplaceTenantsList.
+type OpenstackMarketplaceTenantsListParams struct {
+	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+
+	// CanManage Can manage
+	CanManage            *bool               `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+	Customer             *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+	CustomerAbbreviation *string             `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+	CustomerName         *string             `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+	CustomerNativeName   *string             `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+	CustomerUuid         *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+	Description          *string             `form:"description,omitempty" json:"description,omitempty"`
+	ExternalIp           *string             `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+	Name                 *string             `form:"name,omitempty" json:"name,omitempty"`
+	NameExact            *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize            *PageSize                                     `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Project             *openapi_types.UUID                           `form:"project,omitempty" json:"project,omitempty"`
+	ProjectName         *string                                       `form:"project_name,omitempty" json:"project_name,omitempty"`
+	ProjectUuid         *openapi_types.UUID                           `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	ServiceSettingsName *string                                       `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+	ServiceSettingsUuid *openapi_types.UUID                           `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+	State               *[]OpenstackMarketplaceTenantsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+	Uuid                *openapi_types.UUID                           `form:"uuid,omitempty" json:"uuid,omitempty"`
+}
+
+// OpenstackMarketplaceTenantsListParamsState defines parameters for OpenstackMarketplaceTenantsList.
+type OpenstackMarketplaceTenantsListParamsState string
+
+// OpenstackMarketplaceTenantsUploadImageDataJSONBody defines parameters for OpenstackMarketplaceTenantsUploadImageData.
+type OpenstackMarketplaceTenantsUploadImageDataJSONBody = openapi_types.File
+
 // OpenstackMigrationsListParams defines parameters for OpenstackMigrationsList.
 type OpenstackMigrationsListParams struct {
 	DstResourceUuid *openapi_types.UUID `form:"dst_resource_uuid,omitempty" json:"dst_resource_uuid,omitempty"`
@@ -25823,6 +25943,12 @@ type OpenstackInstancesUpdatePortsJSONRequestBody = OpenStackInstancePortsUpdate
 
 // OpenstackInstancesUpdateSecurityGroupsJSONRequestBody defines body for OpenstackInstancesUpdateSecurityGroups for application/json ContentType.
 type OpenstackInstancesUpdateSecurityGroupsJSONRequestBody = OpenStackInstanceSecurityGroupsUpdateRequest
+
+// OpenstackMarketplaceTenantsCreateImageJSONRequestBody defines body for OpenstackMarketplaceTenantsCreateImage for application/json ContentType.
+type OpenstackMarketplaceTenantsCreateImageJSONRequestBody = ImageCreateRequest
+
+// OpenstackMarketplaceTenantsUploadImageDataJSONRequestBody defines body for OpenstackMarketplaceTenantsUploadImageData for application/json ContentType.
+type OpenstackMarketplaceTenantsUploadImageDataJSONRequestBody = OpenstackMarketplaceTenantsUploadImageDataJSONBody
 
 // OpenstackMigrationsCreateJSONRequestBody defines body for OpenstackMigrationsCreate for application/json ContentType.
 type OpenstackMigrationsCreateJSONRequestBody = MigrationCreateRequest
@@ -31379,6 +31505,22 @@ type ClientInterface interface {
 	OpenstackInstancesUpdateSecurityGroupsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	OpenstackInstancesUpdateSecurityGroups(ctx context.Context, uuid openapi_types.UUID, body OpenstackInstancesUpdateSecurityGroupsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackMarketplaceTenantsList request
+	OpenstackMarketplaceTenantsList(ctx context.Context, params *OpenstackMarketplaceTenantsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackMarketplaceTenantsRetrieve request
+	OpenstackMarketplaceTenantsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackMarketplaceTenantsCreateImageWithBody request with any body
+	OpenstackMarketplaceTenantsCreateImageWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackMarketplaceTenantsCreateImage(ctx context.Context, uuid openapi_types.UUID, body OpenstackMarketplaceTenantsCreateImageJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackMarketplaceTenantsUploadImageDataWithBody request with any body
+	OpenstackMarketplaceTenantsUploadImageDataWithBody(ctx context.Context, uuid openapi_types.UUID, imageId openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackMarketplaceTenantsUploadImageData(ctx context.Context, uuid openapi_types.UUID, imageId openapi_types.UUID, body OpenstackMarketplaceTenantsUploadImageDataJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenstackMigrationsList request
 	OpenstackMigrationsList(ctx context.Context, params *OpenstackMigrationsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -44243,6 +44385,78 @@ func (c *Client) OpenstackInstancesUpdateSecurityGroupsWithBody(ctx context.Cont
 
 func (c *Client) OpenstackInstancesUpdateSecurityGroups(ctx context.Context, uuid openapi_types.UUID, body OpenstackInstancesUpdateSecurityGroupsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenstackInstancesUpdateSecurityGroupsRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackMarketplaceTenantsList(ctx context.Context, params *OpenstackMarketplaceTenantsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackMarketplaceTenantsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackMarketplaceTenantsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackMarketplaceTenantsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackMarketplaceTenantsCreateImageWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackMarketplaceTenantsCreateImageRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackMarketplaceTenantsCreateImage(ctx context.Context, uuid openapi_types.UUID, body OpenstackMarketplaceTenantsCreateImageJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackMarketplaceTenantsCreateImageRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackMarketplaceTenantsUploadImageDataWithBody(ctx context.Context, uuid openapi_types.UUID, imageId openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackMarketplaceTenantsUploadImageDataRequestWithBody(c.Server, uuid, imageId, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackMarketplaceTenantsUploadImageData(ctx context.Context, uuid openapi_types.UUID, imageId openapi_types.UUID, body OpenstackMarketplaceTenantsUploadImageDataJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackMarketplaceTenantsUploadImageDataRequest(c.Server, uuid, imageId, body)
 	if err != nil {
 		return nil, err
 	}
@@ -102180,6 +102394,494 @@ func NewOpenstackInstancesUpdateSecurityGroupsRequestWithBody(server string, uui
 	return req, nil
 }
 
+// NewOpenstackMarketplaceTenantsListRequest generates requests for OpenstackMarketplaceTenantsList
+func NewOpenstackMarketplaceTenantsListRequest(server string, params *OpenstackMarketplaceTenantsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-marketplace-tenants/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.BackendId != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "backend_id", runtime.ParamLocationQuery, *params.BackendId); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CanManage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "can_manage", runtime.ParamLocationQuery, *params.CanManage); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Customer != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer", runtime.ParamLocationQuery, *params.Customer); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerAbbreviation != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer_abbreviation", runtime.ParamLocationQuery, *params.CustomerAbbreviation); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer_name", runtime.ParamLocationQuery, *params.CustomerName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerNativeName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer_native_name", runtime.ParamLocationQuery, *params.CustomerNativeName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer_uuid", runtime.ParamLocationQuery, *params.CustomerUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Description != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "description", runtime.ParamLocationQuery, *params.Description); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ExternalIp != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "external_ip", runtime.ParamLocationQuery, *params.ExternalIp); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name", runtime.ParamLocationQuery, *params.Name); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.NameExact != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name_exact", runtime.ParamLocationQuery, *params.NameExact); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Project != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project", runtime.ParamLocationQuery, *params.Project); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_name", runtime.ParamLocationQuery, *params.ProjectName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_uuid", runtime.ParamLocationQuery, *params.ProjectUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ServiceSettingsName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "service_settings_name", runtime.ParamLocationQuery, *params.ServiceSettingsName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ServiceSettingsUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "service_settings_uuid", runtime.ParamLocationQuery, *params.ServiceSettingsUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "state", runtime.ParamLocationQuery, *params.State); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Uuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "uuid", runtime.ParamLocationQuery, *params.Uuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenstackMarketplaceTenantsRetrieveRequest generates requests for OpenstackMarketplaceTenantsRetrieve
+func NewOpenstackMarketplaceTenantsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-marketplace-tenants/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenstackMarketplaceTenantsCreateImageRequest calls the generic OpenstackMarketplaceTenantsCreateImage builder with application/json body
+func NewOpenstackMarketplaceTenantsCreateImageRequest(server string, uuid openapi_types.UUID, body OpenstackMarketplaceTenantsCreateImageJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackMarketplaceTenantsCreateImageRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOpenstackMarketplaceTenantsCreateImageRequestWithBody generates requests for OpenstackMarketplaceTenantsCreateImage with any type of body
+func NewOpenstackMarketplaceTenantsCreateImageRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-marketplace-tenants/%s/create_image/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenstackMarketplaceTenantsUploadImageDataRequest calls the generic OpenstackMarketplaceTenantsUploadImageData builder with application/json body
+func NewOpenstackMarketplaceTenantsUploadImageDataRequest(server string, uuid openapi_types.UUID, imageId openapi_types.UUID, body OpenstackMarketplaceTenantsUploadImageDataJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackMarketplaceTenantsUploadImageDataRequestWithBody(server, uuid, imageId, "application/json", bodyReader)
+}
+
+// NewOpenstackMarketplaceTenantsUploadImageDataRequestWithBody generates requests for OpenstackMarketplaceTenantsUploadImageData with any type of body
+func NewOpenstackMarketplaceTenantsUploadImageDataRequestWithBody(server string, uuid openapi_types.UUID, imageId openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithLocation("simple", false, "image_id", runtime.ParamLocationPath, imageId)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-marketplace-tenants/%s/upload_image_data/%s/", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewOpenstackMigrationsListRequest generates requests for OpenstackMigrationsList
 func NewOpenstackMigrationsListRequest(server string, params *OpenstackMigrationsListParams) (*http.Request, error) {
 	var err error
@@ -139654,6 +140356,22 @@ type ClientWithResponsesInterface interface {
 
 	OpenstackInstancesUpdateSecurityGroupsWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackInstancesUpdateSecurityGroupsJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackInstancesUpdateSecurityGroupsResponse, error)
 
+	// OpenstackMarketplaceTenantsListWithResponse request
+	OpenstackMarketplaceTenantsListWithResponse(ctx context.Context, params *OpenstackMarketplaceTenantsListParams, reqEditors ...RequestEditorFn) (*OpenstackMarketplaceTenantsListResponse, error)
+
+	// OpenstackMarketplaceTenantsRetrieveWithResponse request
+	OpenstackMarketplaceTenantsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackMarketplaceTenantsRetrieveResponse, error)
+
+	// OpenstackMarketplaceTenantsCreateImageWithBodyWithResponse request with any body
+	OpenstackMarketplaceTenantsCreateImageWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackMarketplaceTenantsCreateImageResponse, error)
+
+	OpenstackMarketplaceTenantsCreateImageWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackMarketplaceTenantsCreateImageJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackMarketplaceTenantsCreateImageResponse, error)
+
+	// OpenstackMarketplaceTenantsUploadImageDataWithBodyWithResponse request with any body
+	OpenstackMarketplaceTenantsUploadImageDataWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, imageId openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackMarketplaceTenantsUploadImageDataResponse, error)
+
+	OpenstackMarketplaceTenantsUploadImageDataWithResponse(ctx context.Context, uuid openapi_types.UUID, imageId openapi_types.UUID, body OpenstackMarketplaceTenantsUploadImageDataJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackMarketplaceTenantsUploadImageDataResponse, error)
+
 	// OpenstackMigrationsListWithResponse request
 	OpenstackMigrationsListWithResponse(ctx context.Context, params *OpenstackMigrationsListParams, reqEditors ...RequestEditorFn) (*OpenstackMigrationsListResponse, error)
 
@@ -156302,6 +157020,94 @@ func (r OpenstackInstancesUpdateSecurityGroupsResponse) StatusCode() int {
 	return 0
 }
 
+type OpenstackMarketplaceTenantsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]Tenant
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackMarketplaceTenantsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackMarketplaceTenantsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackMarketplaceTenantsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *Tenant
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackMarketplaceTenantsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackMarketplaceTenantsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackMarketplaceTenantsCreateImageResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *ImageCreateResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackMarketplaceTenantsCreateImageResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackMarketplaceTenantsCreateImageResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackMarketplaceTenantsUploadImageDataResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ImageUploadResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackMarketplaceTenantsUploadImageDataResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackMarketplaceTenantsUploadImageDataResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type OpenstackMigrationsListResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -158141,7 +158947,7 @@ func (r OpenstackTenantsCreateNetworkResponse) StatusCode() int {
 type OpenstackTenantsCreateSecurityGroupResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *OpenStackSecurityGroup
+	JSON201      *OpenStackSecurityGroup
 }
 
 // Status returns HTTPResponse.Status
@@ -175232,6 +176038,58 @@ func (c *ClientWithResponses) OpenstackInstancesUpdateSecurityGroupsWithResponse
 		return nil, err
 	}
 	return ParseOpenstackInstancesUpdateSecurityGroupsResponse(rsp)
+}
+
+// OpenstackMarketplaceTenantsListWithResponse request returning *OpenstackMarketplaceTenantsListResponse
+func (c *ClientWithResponses) OpenstackMarketplaceTenantsListWithResponse(ctx context.Context, params *OpenstackMarketplaceTenantsListParams, reqEditors ...RequestEditorFn) (*OpenstackMarketplaceTenantsListResponse, error) {
+	rsp, err := c.OpenstackMarketplaceTenantsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackMarketplaceTenantsListResponse(rsp)
+}
+
+// OpenstackMarketplaceTenantsRetrieveWithResponse request returning *OpenstackMarketplaceTenantsRetrieveResponse
+func (c *ClientWithResponses) OpenstackMarketplaceTenantsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackMarketplaceTenantsRetrieveResponse, error) {
+	rsp, err := c.OpenstackMarketplaceTenantsRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackMarketplaceTenantsRetrieveResponse(rsp)
+}
+
+// OpenstackMarketplaceTenantsCreateImageWithBodyWithResponse request with arbitrary body returning *OpenstackMarketplaceTenantsCreateImageResponse
+func (c *ClientWithResponses) OpenstackMarketplaceTenantsCreateImageWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackMarketplaceTenantsCreateImageResponse, error) {
+	rsp, err := c.OpenstackMarketplaceTenantsCreateImageWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackMarketplaceTenantsCreateImageResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackMarketplaceTenantsCreateImageWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackMarketplaceTenantsCreateImageJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackMarketplaceTenantsCreateImageResponse, error) {
+	rsp, err := c.OpenstackMarketplaceTenantsCreateImage(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackMarketplaceTenantsCreateImageResponse(rsp)
+}
+
+// OpenstackMarketplaceTenantsUploadImageDataWithBodyWithResponse request with arbitrary body returning *OpenstackMarketplaceTenantsUploadImageDataResponse
+func (c *ClientWithResponses) OpenstackMarketplaceTenantsUploadImageDataWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, imageId openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackMarketplaceTenantsUploadImageDataResponse, error) {
+	rsp, err := c.OpenstackMarketplaceTenantsUploadImageDataWithBody(ctx, uuid, imageId, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackMarketplaceTenantsUploadImageDataResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackMarketplaceTenantsUploadImageDataWithResponse(ctx context.Context, uuid openapi_types.UUID, imageId openapi_types.UUID, body OpenstackMarketplaceTenantsUploadImageDataJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackMarketplaceTenantsUploadImageDataResponse, error) {
+	rsp, err := c.OpenstackMarketplaceTenantsUploadImageData(ctx, uuid, imageId, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackMarketplaceTenantsUploadImageDataResponse(rsp)
 }
 
 // OpenstackMigrationsListWithResponse request returning *OpenstackMigrationsListResponse
@@ -197183,6 +198041,110 @@ func ParseOpenstackInstancesUpdateSecurityGroupsResponse(rsp *http.Response) (*O
 	return response, nil
 }
 
+// ParseOpenstackMarketplaceTenantsListResponse parses an HTTP response from a OpenstackMarketplaceTenantsListWithResponse call
+func ParseOpenstackMarketplaceTenantsListResponse(rsp *http.Response) (*OpenstackMarketplaceTenantsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackMarketplaceTenantsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []Tenant
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackMarketplaceTenantsRetrieveResponse parses an HTTP response from a OpenstackMarketplaceTenantsRetrieveWithResponse call
+func ParseOpenstackMarketplaceTenantsRetrieveResponse(rsp *http.Response) (*OpenstackMarketplaceTenantsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackMarketplaceTenantsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest Tenant
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackMarketplaceTenantsCreateImageResponse parses an HTTP response from a OpenstackMarketplaceTenantsCreateImageWithResponse call
+func ParseOpenstackMarketplaceTenantsCreateImageResponse(rsp *http.Response) (*OpenstackMarketplaceTenantsCreateImageResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackMarketplaceTenantsCreateImageResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest ImageCreateResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackMarketplaceTenantsUploadImageDataResponse parses an HTTP response from a OpenstackMarketplaceTenantsUploadImageDataWithResponse call
+func ParseOpenstackMarketplaceTenantsUploadImageDataResponse(rsp *http.Response) (*OpenstackMarketplaceTenantsUploadImageDataResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackMarketplaceTenantsUploadImageDataResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ImageUploadResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseOpenstackMigrationsListResponse parses an HTTP response from a OpenstackMigrationsListWithResponse call
 func ParseOpenstackMigrationsListResponse(rsp *http.Response) (*OpenstackMigrationsListResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -199067,12 +200029,12 @@ func ParseOpenstackTenantsCreateSecurityGroupResponse(rsp *http.Response) (*Open
 	}
 
 	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
 		var dest OpenStackSecurityGroup
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.JSON201 = &dest
 
 	}
 
