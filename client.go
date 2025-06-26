@@ -10832,6 +10832,9 @@ type IPMappingRequest struct {
 
 // IdentityProvider defines model for IdentityProvider.
 type IdentityProvider struct {
+	// AttributeMapping A JSON object mapping Waldur User model fields to OIDC claims. Example: {"first_name": "given_name", "last_name": "family_name", "email": "email"}
+	AttributeMapping *interface{} `json:"attribute_mapping,omitempty"`
+
 	// AuthUrl The endpoint for authorization request flow.
 	AuthUrl *string `json:"auth_url,omitempty"`
 
@@ -10842,7 +10845,10 @@ type IdentityProvider struct {
 	DiscoveryUrl             string `json:"discovery_url"`
 	EnablePkce               *bool  `json:"enable_pkce,omitempty"`
 	EnablePostLogoutRedirect *bool  `json:"enable_post_logout_redirect,omitempty"`
-	IsActive                 *bool  `json:"is_active,omitempty"`
+
+	// ExtraFields Space-separated list of extra fields to persist.
+	ExtraFields *string `json:"extra_fields"`
+	IsActive    *bool   `json:"is_active,omitempty"`
 
 	// Label Human-readable identity provider is label.
 	Label string `json:"label"`
@@ -10861,6 +10867,12 @@ type IdentityProvider struct {
 	// TokenUrl The endpoint for obtaining auth token.
 	TokenUrl *string `json:"token_url,omitempty"`
 
+	// UserClaim The OIDC claim from the userinfo endpoint to be used as the value for the lookup field.
+	UserClaim *string `json:"user_claim,omitempty"`
+
+	// UserField The field in Waldur User model to be used for looking up the user
+	UserField *string `json:"user_field,omitempty"`
+
 	// UserinfoUrl The endpoint for fetching user info.
 	UserinfoUrl *string `json:"userinfo_url,omitempty"`
 	VerifySsl   *bool   `json:"verify_ssl,omitempty"`
@@ -10868,6 +10880,9 @@ type IdentityProvider struct {
 
 // IdentityProviderRequest defines model for IdentityProviderRequest.
 type IdentityProviderRequest struct {
+	// AttributeMapping A JSON object mapping Waldur User model fields to OIDC claims. Example: {"first_name": "given_name", "last_name": "family_name", "email": "email"}
+	AttributeMapping *interface{} `json:"attribute_mapping,omitempty"`
+
 	// ClientId ID of application used for OAuth authentication.
 	ClientId string `json:"client_id"`
 
@@ -10875,7 +10890,10 @@ type IdentityProviderRequest struct {
 	DiscoveryUrl             string `json:"discovery_url"`
 	EnablePkce               *bool  `json:"enable_pkce,omitempty"`
 	EnablePostLogoutRedirect *bool  `json:"enable_post_logout_redirect,omitempty"`
-	IsActive                 *bool  `json:"is_active,omitempty"`
+
+	// ExtraFields Space-separated list of extra fields to persist.
+	ExtraFields *string `json:"extra_fields"`
+	IsActive    *bool   `json:"is_active,omitempty"`
 
 	// Label Human-readable identity provider is label.
 	Label string `json:"label"`
@@ -10886,7 +10904,13 @@ type IdentityProviderRequest struct {
 	Provider        string       `json:"provider"`
 
 	// Scope Space-separated list of scopes to request during authentication.
-	Scope     *string `json:"scope"`
+	Scope *string `json:"scope"`
+
+	// UserClaim The OIDC claim from the userinfo endpoint to be used as the value for the lookup field.
+	UserClaim *string `json:"user_claim,omitempty"`
+
+	// UserField The field in Waldur User model to be used for looking up the user
+	UserField *string `json:"user_field,omitempty"`
 	VerifySsl *bool   `json:"verify_ssl,omitempty"`
 }
 
@@ -14642,6 +14666,9 @@ type PatchedFirecrestJobRequest struct {
 
 // PatchedIdentityProviderRequest defines model for PatchedIdentityProviderRequest.
 type PatchedIdentityProviderRequest struct {
+	// AttributeMapping A JSON object mapping Waldur User model fields to OIDC claims. Example: {"first_name": "given_name", "last_name": "family_name", "email": "email"}
+	AttributeMapping *interface{} `json:"attribute_mapping,omitempty"`
+
 	// ClientId ID of application used for OAuth authentication.
 	ClientId *string `json:"client_id,omitempty"`
 
@@ -14649,7 +14676,10 @@ type PatchedIdentityProviderRequest struct {
 	DiscoveryUrl             *string `json:"discovery_url,omitempty"`
 	EnablePkce               *bool   `json:"enable_pkce,omitempty"`
 	EnablePostLogoutRedirect *bool   `json:"enable_post_logout_redirect,omitempty"`
-	IsActive                 *bool   `json:"is_active,omitempty"`
+
+	// ExtraFields Space-separated list of extra fields to persist.
+	ExtraFields *string `json:"extra_fields"`
+	IsActive    *bool   `json:"is_active,omitempty"`
 
 	// Label Human-readable identity provider is label.
 	Label *string `json:"label,omitempty"`
@@ -14660,7 +14690,13 @@ type PatchedIdentityProviderRequest struct {
 	Provider        *string      `json:"provider,omitempty"`
 
 	// Scope Space-separated list of scopes to request during authentication.
-	Scope     *string `json:"scope"`
+	Scope *string `json:"scope"`
+
+	// UserClaim The OIDC claim from the userinfo endpoint to be used as the value for the lookup field.
+	UserClaim *string `json:"user_claim,omitempty"`
+
+	// UserField The field in Waldur User model to be used for looking up the user
+	UserField *string `json:"user_field,omitempty"`
 	VerifySsl *bool   `json:"verify_ssl,omitempty"`
 }
 
