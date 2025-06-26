@@ -2341,7 +2341,6 @@ const (
 	CustomersUsersListParamsFieldFullName       CustomersUsersListParamsField = "full_name"
 	CustomersUsersListParamsFieldImage          CustomersUsersListParamsField = "image"
 	CustomersUsersListParamsFieldProjects       CustomersUsersListParamsField = "projects"
-	CustomersUsersListParamsFieldRole           CustomersUsersListParamsField = "role"
 	CustomersUsersListParamsFieldRoleName       CustomersUsersListParamsField = "role_name"
 	CustomersUsersListParamsFieldUrl            CustomersUsersListParamsField = "url"
 	CustomersUsersListParamsFieldUsername       CustomersUsersListParamsField = "username"
@@ -10325,12 +10324,11 @@ type CustomerServiceAccountRequest struct {
 // CustomerUser defines model for CustomerUser.
 type CustomerUser struct {
 	Email          *openapi_types.Email       `json:"email,omitempty"`
-	ExpirationTime *time.Time                 `json:"expiration_time,omitempty"`
+	ExpirationTime *time.Time                 `json:"expiration_time"`
 	FullName       *string                    `json:"full_name,omitempty"`
 	Image          *string                    `json:"image"`
 	Projects       *[]NestedProjectPermission `json:"projects,omitempty"`
-	Role           *string                    `json:"role,omitempty"`
-	RoleName       *string                    `json:"role_name,omitempty"`
+	RoleName       *string                    `json:"role_name"`
 	Url            *string                    `json:"url,omitempty"`
 
 	// Username Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
@@ -10857,6 +10855,9 @@ type IdentityProvider struct {
 	ProtectedFields *interface{} `json:"protected_fields,omitempty"`
 	Provider        string       `json:"provider"`
 
+	// Scope Space-separated list of scopes to request during authentication.
+	Scope *string `json:"scope"`
+
 	// TokenUrl The endpoint for obtaining auth token.
 	TokenUrl *string `json:"token_url,omitempty"`
 
@@ -10883,7 +10884,10 @@ type IdentityProviderRequest struct {
 	ManagementUrl   *string      `json:"management_url,omitempty"`
 	ProtectedFields *interface{} `json:"protected_fields,omitempty"`
 	Provider        string       `json:"provider"`
-	VerifySsl       *bool        `json:"verify_ssl,omitempty"`
+
+	// Scope Space-separated list of scopes to request during authentication.
+	Scope     *string `json:"scope"`
+	VerifySsl *bool   `json:"verify_ssl,omitempty"`
 }
 
 // ImageCreateRequest defines model for ImageCreateRequest.
@@ -12818,7 +12822,7 @@ type OfferingPermission struct {
 	OfferingSlug   *string              `json:"offering_slug,omitempty"`
 	OfferingUuid   *openapi_types.UUID  `json:"offering_uuid,omitempty"`
 	Pk             *int                 `json:"pk,omitempty"`
-	Role           *string              `json:"role,omitempty"`
+	Role           string               `json:"role"`
 	RoleName       *string              `json:"role_name,omitempty"`
 	Url            *string              `json:"url,omitempty"`
 	User           *string              `json:"user,omitempty"`
@@ -14654,7 +14658,10 @@ type PatchedIdentityProviderRequest struct {
 	ManagementUrl   *string      `json:"management_url,omitempty"`
 	ProtectedFields *interface{} `json:"protected_fields,omitempty"`
 	Provider        *string      `json:"provider,omitempty"`
-	VerifySsl       *bool        `json:"verify_ssl,omitempty"`
+
+	// Scope Space-separated list of scopes to request during authentication.
+	Scope     *string `json:"scope"`
+	VerifySsl *bool   `json:"verify_ssl,omitempty"`
 }
 
 // PatchedInvoiceItemUpdateRequest defines model for PatchedInvoiceItemUpdateRequest.
@@ -32108,6 +32115,9 @@ type ClientInterface interface {
 	// ProjectsStatsRetrieve request
 	ProjectsStatsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *ProjectsStatsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// ProjectsSyncUserRoles request
+	ProjectsSyncUserRoles(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// ProjectsUpdateUserWithBody request with any body
 	ProjectsUpdateUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -47049,6 +47059,18 @@ func (c *Client) ProjectsOtherUsersList(ctx context.Context, uuid openapi_types.
 
 func (c *Client) ProjectsStatsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *ProjectsStatsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProjectsStatsRetrieveRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProjectsSyncUserRoles(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProjectsSyncUserRolesRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -114715,6 +114737,40 @@ func NewProjectsStatsRetrieveRequest(server string, uuid openapi_types.UUID, par
 	return req, nil
 }
 
+// NewProjectsSyncUserRolesRequest generates requests for ProjectsSyncUserRoles
+func NewProjectsSyncUserRolesRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/projects/%s/sync_user_roles/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewProjectsUpdateUserRequest calls the generic ProjectsUpdateUser builder with application/json body
 func NewProjectsUpdateUserRequest(server string, uuid openapi_types.UUID, body ProjectsUpdateUserJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -140958,6 +141014,9 @@ type ClientWithResponsesInterface interface {
 	// ProjectsStatsRetrieveWithResponse request
 	ProjectsStatsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProjectsStatsRetrieveParams, reqEditors ...RequestEditorFn) (*ProjectsStatsRetrieveResponse, error)
 
+	// ProjectsSyncUserRolesWithResponse request
+	ProjectsSyncUserRolesWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProjectsSyncUserRolesResponse, error)
+
 	// ProjectsUpdateUserWithBodyWithResponse request with any body
 	ProjectsUpdateUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProjectsUpdateUserResponse, error)
 
@@ -160443,6 +160502,27 @@ func (r ProjectsStatsRetrieveResponse) StatusCode() int {
 	return 0
 }
 
+type ProjectsSyncUserRolesResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r ProjectsSyncUserRolesResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProjectsSyncUserRolesResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type ProjectsUpdateUserResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -177972,6 +178052,15 @@ func (c *ClientWithResponses) ProjectsStatsRetrieveWithResponse(ctx context.Cont
 		return nil, err
 	}
 	return ParseProjectsStatsRetrieveResponse(rsp)
+}
+
+// ProjectsSyncUserRolesWithResponse request returning *ProjectsSyncUserRolesResponse
+func (c *ClientWithResponses) ProjectsSyncUserRolesWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProjectsSyncUserRolesResponse, error) {
+	rsp, err := c.ProjectsSyncUserRoles(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProjectsSyncUserRolesResponse(rsp)
 }
 
 // ProjectsUpdateUserWithBodyWithResponse request with arbitrary body returning *ProjectsUpdateUserResponse
@@ -201614,6 +201703,22 @@ func ParseProjectsStatsRetrieveResponse(rsp *http.Response) (*ProjectsStatsRetri
 		}
 		response.JSON200 = &dest
 
+	}
+
+	return response, nil
+}
+
+// ParseProjectsSyncUserRolesResponse parses an HTTP response from a ProjectsSyncUserRolesWithResponse call
+func ParseProjectsSyncUserRolesResponse(rsp *http.Response) (*ProjectsSyncUserRolesResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProjectsSyncUserRolesResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
 	}
 
 	return response, nil
