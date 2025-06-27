@@ -10832,9 +10832,6 @@ type IPMappingRequest struct {
 
 // IdentityProvider defines model for IdentityProvider.
 type IdentityProvider struct {
-	// AttributeMapping A JSON object mapping Waldur User model fields to OIDC claims. Example: {"first_name": "given_name", "last_name": "family_name", "email": "email"}
-	AttributeMapping *interface{} `json:"attribute_mapping,omitempty"`
-
 	// AuthUrl The endpoint for authorization request flow.
 	AuthUrl *string `json:"auth_url,omitempty"`
 
@@ -10846,9 +10843,9 @@ type IdentityProvider struct {
 	EnablePkce               *bool  `json:"enable_pkce,omitempty"`
 	EnablePostLogoutRedirect *bool  `json:"enable_post_logout_redirect,omitempty"`
 
-	// ExtraFields Space-separated list of extra fields to persist.
-	ExtraFields *string `json:"extra_fields"`
-	IsActive    *bool   `json:"is_active,omitempty"`
+	// ExtraScope Space-separated list of scopes to request during authentication.
+	ExtraScope *string `json:"extra_scope"`
+	IsActive   *bool   `json:"is_active,omitempty"`
 
 	// Label Human-readable identity provider is label.
 	Label string `json:"label"`
@@ -10861,17 +10858,8 @@ type IdentityProvider struct {
 	ProtectedFields *interface{} `json:"protected_fields,omitempty"`
 	Provider        string       `json:"provider"`
 
-	// Scope Space-separated list of scopes to request during authentication.
-	Scope *string `json:"scope"`
-
 	// TokenUrl The endpoint for obtaining auth token.
 	TokenUrl *string `json:"token_url,omitempty"`
-
-	// UserClaim The OIDC claim from the userinfo endpoint to be used as the value for the lookup field.
-	UserClaim *string `json:"user_claim,omitempty"`
-
-	// UserField The field in Waldur User model to be used for looking up the user
-	UserField *string `json:"user_field,omitempty"`
 
 	// UserinfoUrl The endpoint for fetching user info.
 	UserinfoUrl *string `json:"userinfo_url,omitempty"`
@@ -10880,9 +10868,6 @@ type IdentityProvider struct {
 
 // IdentityProviderRequest defines model for IdentityProviderRequest.
 type IdentityProviderRequest struct {
-	// AttributeMapping A JSON object mapping Waldur User model fields to OIDC claims. Example: {"first_name": "given_name", "last_name": "family_name", "email": "email"}
-	AttributeMapping *interface{} `json:"attribute_mapping,omitempty"`
-
 	// ClientId ID of application used for OAuth authentication.
 	ClientId string `json:"client_id"`
 
@@ -10891,9 +10876,9 @@ type IdentityProviderRequest struct {
 	EnablePkce               *bool  `json:"enable_pkce,omitempty"`
 	EnablePostLogoutRedirect *bool  `json:"enable_post_logout_redirect,omitempty"`
 
-	// ExtraFields Space-separated list of extra fields to persist.
-	ExtraFields *string `json:"extra_fields"`
-	IsActive    *bool   `json:"is_active,omitempty"`
+	// ExtraScope Space-separated list of scopes to request during authentication.
+	ExtraScope *string `json:"extra_scope"`
+	IsActive   *bool   `json:"is_active,omitempty"`
 
 	// Label Human-readable identity provider is label.
 	Label string `json:"label"`
@@ -10902,16 +10887,7 @@ type IdentityProviderRequest struct {
 	ManagementUrl   *string      `json:"management_url,omitempty"`
 	ProtectedFields *interface{} `json:"protected_fields,omitempty"`
 	Provider        string       `json:"provider"`
-
-	// Scope Space-separated list of scopes to request during authentication.
-	Scope *string `json:"scope"`
-
-	// UserClaim The OIDC claim from the userinfo endpoint to be used as the value for the lookup field.
-	UserClaim *string `json:"user_claim,omitempty"`
-
-	// UserField The field in Waldur User model to be used for looking up the user
-	UserField *string `json:"user_field,omitempty"`
-	VerifySsl *bool   `json:"verify_ssl,omitempty"`
+	VerifySsl       *bool        `json:"verify_ssl,omitempty"`
 }
 
 // ImageCreateRequest defines model for ImageCreateRequest.
@@ -11651,8 +11627,17 @@ type MergedPluginOptions struct {
 	ManagedRancherServerFlavorName                 *string             `json:"managed_rancher_server_flavor_name,omitempty"`
 	ManagedRancherServerSystemVolumeSizeGb         *int                `json:"managed_rancher_server_system_volume_size_gb,omitempty"`
 	ManagedRancherServerSystemVolumeTypeName       *string             `json:"managed_rancher_server_system_volume_type_name,omitempty"`
-	ManagedRancherWorkerSystemVolumeSizeGb         *int                `json:"managed_rancher_worker_system_volume_size_gb,omitempty"`
-	ManagedRancherWorkerSystemVolumeTypeName       *string             `json:"managed_rancher_worker_system_volume_type_name,omitempty"`
+
+	// ManagedRancherTenantMaxCpu Max number of vCPUs for tenants
+	ManagedRancherTenantMaxCpu *int `json:"managed_rancher_tenant_max_cpu,omitempty"`
+
+	// ManagedRancherTenantMaxDisk Max size of disk space for tenants (GB)
+	ManagedRancherTenantMaxDisk *int `json:"managed_rancher_tenant_max_disk,omitempty"`
+
+	// ManagedRancherTenantMaxRam Max number of RAM for tenants
+	ManagedRancherTenantMaxRam               *int    `json:"managed_rancher_tenant_max_ram,omitempty"`
+	ManagedRancherWorkerSystemVolumeSizeGb   *int    `json:"managed_rancher_worker_system_volume_size_gb,omitempty"`
+	ManagedRancherWorkerSystemVolumeTypeName *string `json:"managed_rancher_worker_system_volume_type_name,omitempty"`
 
 	// MaxInstances Default limit for number of instances in OpenStack tenant
 	MaxInstances *int `json:"max_instances,omitempty"`
@@ -11755,8 +11740,17 @@ type MergedPluginOptionsRequest struct {
 	ManagedRancherServerFlavorName                 *string             `json:"managed_rancher_server_flavor_name,omitempty"`
 	ManagedRancherServerSystemVolumeSizeGb         *int                `json:"managed_rancher_server_system_volume_size_gb,omitempty"`
 	ManagedRancherServerSystemVolumeTypeName       *string             `json:"managed_rancher_server_system_volume_type_name,omitempty"`
-	ManagedRancherWorkerSystemVolumeSizeGb         *int                `json:"managed_rancher_worker_system_volume_size_gb,omitempty"`
-	ManagedRancherWorkerSystemVolumeTypeName       *string             `json:"managed_rancher_worker_system_volume_type_name,omitempty"`
+
+	// ManagedRancherTenantMaxCpu Max number of vCPUs for tenants
+	ManagedRancherTenantMaxCpu *int `json:"managed_rancher_tenant_max_cpu,omitempty"`
+
+	// ManagedRancherTenantMaxDisk Max size of disk space for tenants (GB)
+	ManagedRancherTenantMaxDisk *int `json:"managed_rancher_tenant_max_disk,omitempty"`
+
+	// ManagedRancherTenantMaxRam Max number of RAM for tenants
+	ManagedRancherTenantMaxRam               *int    `json:"managed_rancher_tenant_max_ram,omitempty"`
+	ManagedRancherWorkerSystemVolumeSizeGb   *int    `json:"managed_rancher_worker_system_volume_size_gb,omitempty"`
+	ManagedRancherWorkerSystemVolumeTypeName *string `json:"managed_rancher_worker_system_volume_type_name,omitempty"`
 
 	// MaxInstances Default limit for number of instances in OpenStack tenant
 	MaxInstances *int `json:"max_instances,omitempty"`
@@ -14666,9 +14660,6 @@ type PatchedFirecrestJobRequest struct {
 
 // PatchedIdentityProviderRequest defines model for PatchedIdentityProviderRequest.
 type PatchedIdentityProviderRequest struct {
-	// AttributeMapping A JSON object mapping Waldur User model fields to OIDC claims. Example: {"first_name": "given_name", "last_name": "family_name", "email": "email"}
-	AttributeMapping *interface{} `json:"attribute_mapping,omitempty"`
-
 	// ClientId ID of application used for OAuth authentication.
 	ClientId *string `json:"client_id,omitempty"`
 
@@ -14677,9 +14668,9 @@ type PatchedIdentityProviderRequest struct {
 	EnablePkce               *bool   `json:"enable_pkce,omitempty"`
 	EnablePostLogoutRedirect *bool   `json:"enable_post_logout_redirect,omitempty"`
 
-	// ExtraFields Space-separated list of extra fields to persist.
-	ExtraFields *string `json:"extra_fields"`
-	IsActive    *bool   `json:"is_active,omitempty"`
+	// ExtraScope Space-separated list of scopes to request during authentication.
+	ExtraScope *string `json:"extra_scope"`
+	IsActive   *bool   `json:"is_active,omitempty"`
 
 	// Label Human-readable identity provider is label.
 	Label *string `json:"label,omitempty"`
@@ -14688,16 +14679,7 @@ type PatchedIdentityProviderRequest struct {
 	ManagementUrl   *string      `json:"management_url,omitempty"`
 	ProtectedFields *interface{} `json:"protected_fields,omitempty"`
 	Provider        *string      `json:"provider,omitempty"`
-
-	// Scope Space-separated list of scopes to request during authentication.
-	Scope *string `json:"scope"`
-
-	// UserClaim The OIDC claim from the userinfo endpoint to be used as the value for the lookup field.
-	UserClaim *string `json:"user_claim,omitempty"`
-
-	// UserField The field in Waldur User model to be used for looking up the user
-	UserField *string `json:"user_field,omitempty"`
-	VerifySsl *bool   `json:"verify_ssl,omitempty"`
+	VerifySsl       *bool        `json:"verify_ssl,omitempty"`
 }
 
 // PatchedInvoiceItemUpdateRequest defines model for PatchedInvoiceItemUpdateRequest.
