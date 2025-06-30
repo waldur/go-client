@@ -15193,6 +15193,22 @@ type PatchedRoleDetailsRequest struct {
 	Name          *string `json:"name,omitempty"`
 }
 
+// PatchedRulePlansRequest defines model for PatchedRulePlansRequest.
+type PatchedRulePlansRequest struct {
+	Attributes *map[string]interface{} `json:"attributes,omitempty"`
+	Limits     *map[string]interface{} `json:"limits,omitempty"`
+	Plan       *string                 `json:"plan,omitempty"`
+	Rule       *string                 `json:"rule,omitempty"`
+}
+
+// PatchedRuleRequest defines model for PatchedRuleRequest.
+type PatchedRuleRequest struct {
+	Customer          *string   `json:"customer,omitempty"`
+	ProjectRole       *string   `json:"project_role"`
+	UserAffiliations  *[]string `json:"user_affiliations,omitempty"`
+	UserEmailPatterns *[]string `json:"user_email_patterns,omitempty"`
+}
+
 // PatchedScreenshotRequest defines model for PatchedScreenshotRequest.
 type PatchedScreenshotRequest struct {
 	Description *string `json:"description,omitempty"`
@@ -17806,6 +17822,43 @@ type RoundReviewer struct {
 	RejectedProposals int                 `json:"rejected_proposals"`
 }
 
+// Rule defines model for Rule.
+type Rule struct {
+	Customer          string              `json:"customer"`
+	Plans             *[]string           `json:"plans,omitempty"`
+	ProjectRole       *string             `json:"project_role"`
+	Url               *string             `json:"url,omitempty"`
+	UserAffiliations  *[]string           `json:"user_affiliations,omitempty"`
+	UserEmailPatterns *[]string           `json:"user_email_patterns,omitempty"`
+	Uuid              *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// RulePlans defines model for RulePlans.
+type RulePlans struct {
+	Attributes *map[string]interface{} `json:"attributes,omitempty"`
+	Limits     *map[string]interface{} `json:"limits,omitempty"`
+	Plan       string                  `json:"plan"`
+	Rule       string                  `json:"rule"`
+	Url        *string                 `json:"url,omitempty"`
+	Uuid       *openapi_types.UUID     `json:"uuid,omitempty"`
+}
+
+// RulePlansRequest defines model for RulePlansRequest.
+type RulePlansRequest struct {
+	Attributes *map[string]interface{} `json:"attributes,omitempty"`
+	Limits     *map[string]interface{} `json:"limits,omitempty"`
+	Plan       string                  `json:"plan"`
+	Rule       string                  `json:"rule"`
+}
+
+// RuleRequest defines model for RuleRequest.
+type RuleRequest struct {
+	Customer          string    `json:"customer"`
+	ProjectRole       *string   `json:"project_role"`
+	UserAffiliations  *[]string `json:"user_affiliations,omitempty"`
+	UserEmailPatterns *[]string `json:"user_email_patterns,omitempty"`
+}
+
 // RuntimeStates defines model for RuntimeStates.
 type RuntimeStates struct {
 	Label *string `json:"label,omitempty"`
@@ -18907,6 +18960,24 @@ type AdminAnnouncementsRetrieveParamsField string
 
 // AuthTokensListParams defines parameters for AuthTokensList.
 type AuthTokensListParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// AutoprovisioningRulePlansListParams defines parameters for AutoprovisioningRulePlansList.
+type AutoprovisioningRulePlansListParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// AutoprovisioningRulesListParams defines parameters for AutoprovisioningRulesList.
+type AutoprovisioningRulesListParams struct {
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
@@ -21152,6 +21223,9 @@ type MarketplaceProviderOfferingsListParams struct {
 	Shared             *bool                                          `form:"shared,omitempty" json:"shared,omitempty"`
 	State              *[]MarketplaceProviderOfferingsListParamsState `form:"state,omitempty" json:"state,omitempty"`
 	Type               *[]string                                      `form:"type,omitempty" json:"type,omitempty"`
+
+	// UuidList Comma-separated offering UUIDs
+	UuidList *string `form:"uuid_list,omitempty" json:"uuid_list,omitempty"`
 }
 
 // MarketplaceProviderOfferingsListParamsField defines parameters for MarketplaceProviderOfferingsList.
@@ -21218,6 +21292,9 @@ type MarketplaceProviderOfferingsGroupsListParams struct {
 	Shared             *bool                                                `form:"shared,omitempty" json:"shared,omitempty"`
 	State              *[]MarketplaceProviderOfferingsGroupsListParamsState `form:"state,omitempty" json:"state,omitempty"`
 	Type               *[]string                                            `form:"type,omitempty" json:"type,omitempty"`
+
+	// UuidList Comma-separated offering UUIDs
+	UuidList *string `form:"uuid_list,omitempty" json:"uuid_list,omitempty"`
 }
 
 // MarketplaceProviderOfferingsGroupsListParamsO defines parameters for MarketplaceProviderOfferingsGroupsList.
@@ -21295,6 +21372,9 @@ type MarketplaceProviderOfferingsComponentStatsListParams struct {
 	Start *string                                                      `form:"start,omitempty" json:"start,omitempty"`
 	State *[]MarketplaceProviderOfferingsComponentStatsListParamsState `form:"state,omitempty" json:"state,omitempty"`
 	Type  *[]string                                                    `form:"type,omitempty" json:"type,omitempty"`
+
+	// UuidList Comma-separated offering UUIDs
+	UuidList *string `form:"uuid_list,omitempty" json:"uuid_list,omitempty"`
 }
 
 // MarketplaceProviderOfferingsComponentStatsListParamsO defines parameters for MarketplaceProviderOfferingsComponentStatsList.
@@ -21365,6 +21445,9 @@ type MarketplaceProviderOfferingsCostsListParams struct {
 	Start *string                                             `form:"start,omitempty" json:"start,omitempty"`
 	State *[]MarketplaceProviderOfferingsCostsListParamsState `form:"state,omitempty" json:"state,omitempty"`
 	Type  *[]string                                           `form:"type,omitempty" json:"type,omitempty"`
+
+	// UuidList Comma-separated offering UUIDs
+	UuidList *string `form:"uuid_list,omitempty" json:"uuid_list,omitempty"`
 }
 
 // MarketplaceProviderOfferingsCostsListParamsO defines parameters for MarketplaceProviderOfferingsCostsList.
@@ -21428,6 +21511,9 @@ type MarketplaceProviderOfferingsCustomersListParams struct {
 	Shared             *bool                                                   `form:"shared,omitempty" json:"shared,omitempty"`
 	State              *[]MarketplaceProviderOfferingsCustomersListParamsState `form:"state,omitempty" json:"state,omitempty"`
 	Type               *[]string                                               `form:"type,omitempty" json:"type,omitempty"`
+
+	// UuidList Comma-separated offering UUIDs
+	UuidList *string `form:"uuid_list,omitempty" json:"uuid_list,omitempty"`
 }
 
 // MarketplaceProviderOfferingsCustomersListParamsO defines parameters for MarketplaceProviderOfferingsCustomersList.
@@ -21697,6 +21783,9 @@ type MarketplacePublicOfferingsListParams struct {
 	Shared             *bool                                        `form:"shared,omitempty" json:"shared,omitempty"`
 	State              *[]MarketplacePublicOfferingsListParamsState `form:"state,omitempty" json:"state,omitempty"`
 	Type               *[]string                                    `form:"type,omitempty" json:"type,omitempty"`
+
+	// UuidList Comma-separated offering UUIDs
+	UuidList *string `form:"uuid_list,omitempty" json:"uuid_list,omitempty"`
 }
 
 // MarketplacePublicOfferingsListParamsField defines parameters for MarketplacePublicOfferingsList.
@@ -22112,6 +22201,9 @@ type MarketplaceServiceProvidersOfferingsListParams struct {
 	Shared             *bool                                                  `form:"shared,omitempty" json:"shared,omitempty"`
 	State              *[]MarketplaceServiceProvidersOfferingsListParamsState `form:"state,omitempty" json:"state,omitempty"`
 	Type               *[]string                                              `form:"type,omitempty" json:"type,omitempty"`
+
+	// UuidList Comma-separated offering UUIDs
+	UuidList *string `form:"uuid_list,omitempty" json:"uuid_list,omitempty"`
 }
 
 // MarketplaceServiceProvidersOfferingsListParamsField defines parameters for MarketplaceServiceProvidersOfferingsList.
@@ -22304,6 +22396,9 @@ type MarketplaceServiceProvidersUsersListParams struct {
 	// UserKeyword User keyword
 	UserKeyword *string `form:"user_keyword,omitempty" json:"user_keyword,omitempty"`
 	Username    *string `form:"username,omitempty" json:"username,omitempty"`
+
+	// UsernameList Comma-separated usernames
+	UsernameList *string `form:"username_list,omitempty" json:"username_list,omitempty"`
 }
 
 // MarketplaceServiceProvidersUsersListParamsField defines parameters for MarketplaceServiceProvidersUsersList.
@@ -25011,6 +25106,9 @@ type UsersListParams struct {
 	// UserKeyword User keyword
 	UserKeyword *string `form:"user_keyword,omitempty" json:"user_keyword,omitempty"`
 	Username    *string `form:"username,omitempty" json:"username,omitempty"`
+
+	// UsernameList Comma-separated usernames
+	UsernameList *string `form:"username_list,omitempty" json:"username_list,omitempty"`
 }
 
 // UsersListParamsField defines parameters for UsersList.
@@ -25293,6 +25391,24 @@ type AuthValimoCreateJSONRequestBody = AuthResultRequest
 
 // AuthValimoResultJSONRequestBody defines body for AuthValimoResult for application/json ContentType.
 type AuthValimoResultJSONRequestBody = AuthResultUUIDRequest
+
+// AutoprovisioningRulePlansCreateJSONRequestBody defines body for AutoprovisioningRulePlansCreate for application/json ContentType.
+type AutoprovisioningRulePlansCreateJSONRequestBody = RulePlansRequest
+
+// AutoprovisioningRulePlansPartialUpdateJSONRequestBody defines body for AutoprovisioningRulePlansPartialUpdate for application/json ContentType.
+type AutoprovisioningRulePlansPartialUpdateJSONRequestBody = PatchedRulePlansRequest
+
+// AutoprovisioningRulePlansUpdateJSONRequestBody defines body for AutoprovisioningRulePlansUpdate for application/json ContentType.
+type AutoprovisioningRulePlansUpdateJSONRequestBody = RulePlansRequest
+
+// AutoprovisioningRulesCreateJSONRequestBody defines body for AutoprovisioningRulesCreate for application/json ContentType.
+type AutoprovisioningRulesCreateJSONRequestBody = RuleRequest
+
+// AutoprovisioningRulesPartialUpdateJSONRequestBody defines body for AutoprovisioningRulesPartialUpdate for application/json ContentType.
+type AutoprovisioningRulesPartialUpdateJSONRequestBody = PatchedRuleRequest
+
+// AutoprovisioningRulesUpdateJSONRequestBody defines body for AutoprovisioningRulesUpdate for application/json ContentType.
+type AutoprovisioningRulesUpdateJSONRequestBody = RuleRequest
 
 // AwsInstancesCreateJSONRequestBody defines body for AwsInstancesCreate for application/json ContentType.
 type AwsInstancesCreateJSONRequestBody = AwsInstanceRequest
@@ -29136,6 +29252,54 @@ type ClientInterface interface {
 	AuthValimoResultWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	AuthValimoResult(ctx context.Context, body AuthValimoResultJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AutoprovisioningRulePlansList request
+	AutoprovisioningRulePlansList(ctx context.Context, params *AutoprovisioningRulePlansListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AutoprovisioningRulePlansCreateWithBody request with any body
+	AutoprovisioningRulePlansCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	AutoprovisioningRulePlansCreate(ctx context.Context, body AutoprovisioningRulePlansCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AutoprovisioningRulePlansDestroy request
+	AutoprovisioningRulePlansDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AutoprovisioningRulePlansRetrieve request
+	AutoprovisioningRulePlansRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AutoprovisioningRulePlansPartialUpdateWithBody request with any body
+	AutoprovisioningRulePlansPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	AutoprovisioningRulePlansPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body AutoprovisioningRulePlansPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AutoprovisioningRulePlansUpdateWithBody request with any body
+	AutoprovisioningRulePlansUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	AutoprovisioningRulePlansUpdate(ctx context.Context, uuid openapi_types.UUID, body AutoprovisioningRulePlansUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AutoprovisioningRulesList request
+	AutoprovisioningRulesList(ctx context.Context, params *AutoprovisioningRulesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AutoprovisioningRulesCreateWithBody request with any body
+	AutoprovisioningRulesCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	AutoprovisioningRulesCreate(ctx context.Context, body AutoprovisioningRulesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AutoprovisioningRulesDestroy request
+	AutoprovisioningRulesDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AutoprovisioningRulesRetrieve request
+	AutoprovisioningRulesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AutoprovisioningRulesPartialUpdateWithBody request with any body
+	AutoprovisioningRulesPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	AutoprovisioningRulesPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body AutoprovisioningRulesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AutoprovisioningRulesUpdateWithBody request with any body
+	AutoprovisioningRulesUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	AutoprovisioningRulesUpdate(ctx context.Context, uuid openapi_types.UUID, body AutoprovisioningRulesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// AwsImagesList request
 	AwsImagesList(ctx context.Context, params *AwsImagesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -33937,6 +34101,222 @@ func (c *Client) AuthValimoResultWithBody(ctx context.Context, contentType strin
 
 func (c *Client) AuthValimoResult(ctx context.Context, body AuthValimoResultJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewAuthValimoResultRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AutoprovisioningRulePlansList(ctx context.Context, params *AutoprovisioningRulePlansListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAutoprovisioningRulePlansListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AutoprovisioningRulePlansCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAutoprovisioningRulePlansCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AutoprovisioningRulePlansCreate(ctx context.Context, body AutoprovisioningRulePlansCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAutoprovisioningRulePlansCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AutoprovisioningRulePlansDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAutoprovisioningRulePlansDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AutoprovisioningRulePlansRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAutoprovisioningRulePlansRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AutoprovisioningRulePlansPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAutoprovisioningRulePlansPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AutoprovisioningRulePlansPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body AutoprovisioningRulePlansPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAutoprovisioningRulePlansPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AutoprovisioningRulePlansUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAutoprovisioningRulePlansUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AutoprovisioningRulePlansUpdate(ctx context.Context, uuid openapi_types.UUID, body AutoprovisioningRulePlansUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAutoprovisioningRulePlansUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AutoprovisioningRulesList(ctx context.Context, params *AutoprovisioningRulesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAutoprovisioningRulesListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AutoprovisioningRulesCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAutoprovisioningRulesCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AutoprovisioningRulesCreate(ctx context.Context, body AutoprovisioningRulesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAutoprovisioningRulesCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AutoprovisioningRulesDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAutoprovisioningRulesDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AutoprovisioningRulesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAutoprovisioningRulesRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AutoprovisioningRulesPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAutoprovisioningRulesPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AutoprovisioningRulesPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body AutoprovisioningRulesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAutoprovisioningRulesPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AutoprovisioningRulesUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAutoprovisioningRulesUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AutoprovisioningRulesUpdate(ctx context.Context, uuid openapi_types.UUID, body AutoprovisioningRulesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAutoprovisioningRulesUpdateRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -54265,6 +54645,540 @@ func NewAuthValimoResultRequestWithBody(server string, contentType string, body 
 	}
 
 	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewAutoprovisioningRulePlansListRequest generates requests for AutoprovisioningRulePlansList
+func NewAutoprovisioningRulePlansListRequest(server string, params *AutoprovisioningRulePlansListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/autoprovisioning-rule-plans/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAutoprovisioningRulePlansCreateRequest calls the generic AutoprovisioningRulePlansCreate builder with application/json body
+func NewAutoprovisioningRulePlansCreateRequest(server string, body AutoprovisioningRulePlansCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewAutoprovisioningRulePlansCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewAutoprovisioningRulePlansCreateRequestWithBody generates requests for AutoprovisioningRulePlansCreate with any type of body
+func NewAutoprovisioningRulePlansCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/autoprovisioning-rule-plans/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewAutoprovisioningRulePlansDestroyRequest generates requests for AutoprovisioningRulePlansDestroy
+func NewAutoprovisioningRulePlansDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/autoprovisioning-rule-plans/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAutoprovisioningRulePlansRetrieveRequest generates requests for AutoprovisioningRulePlansRetrieve
+func NewAutoprovisioningRulePlansRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/autoprovisioning-rule-plans/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAutoprovisioningRulePlansPartialUpdateRequest calls the generic AutoprovisioningRulePlansPartialUpdate builder with application/json body
+func NewAutoprovisioningRulePlansPartialUpdateRequest(server string, uuid openapi_types.UUID, body AutoprovisioningRulePlansPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewAutoprovisioningRulePlansPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewAutoprovisioningRulePlansPartialUpdateRequestWithBody generates requests for AutoprovisioningRulePlansPartialUpdate with any type of body
+func NewAutoprovisioningRulePlansPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/autoprovisioning-rule-plans/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewAutoprovisioningRulePlansUpdateRequest calls the generic AutoprovisioningRulePlansUpdate builder with application/json body
+func NewAutoprovisioningRulePlansUpdateRequest(server string, uuid openapi_types.UUID, body AutoprovisioningRulePlansUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewAutoprovisioningRulePlansUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewAutoprovisioningRulePlansUpdateRequestWithBody generates requests for AutoprovisioningRulePlansUpdate with any type of body
+func NewAutoprovisioningRulePlansUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/autoprovisioning-rule-plans/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewAutoprovisioningRulesListRequest generates requests for AutoprovisioningRulesList
+func NewAutoprovisioningRulesListRequest(server string, params *AutoprovisioningRulesListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/autoprovisioning-rules/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAutoprovisioningRulesCreateRequest calls the generic AutoprovisioningRulesCreate builder with application/json body
+func NewAutoprovisioningRulesCreateRequest(server string, body AutoprovisioningRulesCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewAutoprovisioningRulesCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewAutoprovisioningRulesCreateRequestWithBody generates requests for AutoprovisioningRulesCreate with any type of body
+func NewAutoprovisioningRulesCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/autoprovisioning-rules/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewAutoprovisioningRulesDestroyRequest generates requests for AutoprovisioningRulesDestroy
+func NewAutoprovisioningRulesDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/autoprovisioning-rules/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAutoprovisioningRulesRetrieveRequest generates requests for AutoprovisioningRulesRetrieve
+func NewAutoprovisioningRulesRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/autoprovisioning-rules/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAutoprovisioningRulesPartialUpdateRequest calls the generic AutoprovisioningRulesPartialUpdate builder with application/json body
+func NewAutoprovisioningRulesPartialUpdateRequest(server string, uuid openapi_types.UUID, body AutoprovisioningRulesPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewAutoprovisioningRulesPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewAutoprovisioningRulesPartialUpdateRequestWithBody generates requests for AutoprovisioningRulesPartialUpdate with any type of body
+func NewAutoprovisioningRulesPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/autoprovisioning-rules/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewAutoprovisioningRulesUpdateRequest calls the generic AutoprovisioningRulesUpdate builder with application/json body
+func NewAutoprovisioningRulesUpdateRequest(server string, uuid openapi_types.UUID, body AutoprovisioningRulesUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewAutoprovisioningRulesUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewAutoprovisioningRulesUpdateRequestWithBody generates requests for AutoprovisioningRulesUpdate with any type of body
+func NewAutoprovisioningRulesUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/autoprovisioning-rules/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
 	if err != nil {
 		return nil, err
 	}
@@ -82730,6 +83644,22 @@ func NewMarketplaceProviderOfferingsListRequest(server string, params *Marketpla
 
 		}
 
+		if params.UuidList != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "uuid_list", runtime.ParamLocationQuery, *params.UuidList); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		queryURL.RawQuery = queryValues.Encode()
 	}
 
@@ -83222,6 +84152,22 @@ func NewMarketplaceProviderOfferingsGroupsListRequest(server string, params *Mar
 		if params.Type != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "type", runtime.ParamLocationQuery, *params.Type); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UuidList != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "uuid_list", runtime.ParamLocationQuery, *params.UuidList); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -83991,6 +84937,22 @@ func NewMarketplaceProviderOfferingsComponentStatsListRequest(server string, uui
 
 		}
 
+		if params.UuidList != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "uuid_list", runtime.ParamLocationQuery, *params.UuidList); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		queryURL.RawQuery = queryValues.Encode()
 	}
 
@@ -84511,6 +85473,22 @@ func NewMarketplaceProviderOfferingsCostsListRequest(server string, uuid openapi
 
 		}
 
+		if params.UuidList != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "uuid_list", runtime.ParamLocationQuery, *params.UuidList); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		queryURL.RawQuery = queryValues.Encode()
 	}
 
@@ -85017,6 +85995,22 @@ func NewMarketplaceProviderOfferingsCustomersListRequest(server string, uuid ope
 		if params.Type != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "type", runtime.ParamLocationQuery, *params.Type); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UuidList != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "uuid_list", runtime.ParamLocationQuery, *params.UuidList); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -89017,6 +90011,22 @@ func NewMarketplacePublicOfferingsListRequest(server string, params *Marketplace
 		if params.Type != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "type", runtime.ParamLocationQuery, *params.Type); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UuidList != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "uuid_list", runtime.ParamLocationQuery, *params.UuidList); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -94269,6 +95279,22 @@ func NewMarketplaceServiceProvidersOfferingsListRequest(server string, servicePr
 
 		}
 
+		if params.UuidList != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "uuid_list", runtime.ParamLocationQuery, *params.UuidList); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		queryURL.RawQuery = queryValues.Encode()
 	}
 
@@ -95676,6 +96702,22 @@ func NewMarketplaceServiceProvidersUsersListRequest(server string, serviceProvid
 		if params.Username != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "username", runtime.ParamLocationQuery, *params.Username); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UsernameList != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "username_list", runtime.ParamLocationQuery, *params.UsernameList); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -134092,6 +135134,22 @@ func NewUsersListRequest(server string, params *UsersListParams) (*http.Request,
 
 		}
 
+		if params.UsernameList != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "username_list", runtime.ParamLocationQuery, *params.UsernameList); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		queryURL.RawQuery = queryValues.Encode()
 	}
 
@@ -138035,6 +139093,54 @@ type ClientWithResponsesInterface interface {
 	AuthValimoResultWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AuthValimoResultResponse, error)
 
 	AuthValimoResultWithResponse(ctx context.Context, body AuthValimoResultJSONRequestBody, reqEditors ...RequestEditorFn) (*AuthValimoResultResponse, error)
+
+	// AutoprovisioningRulePlansListWithResponse request
+	AutoprovisioningRulePlansListWithResponse(ctx context.Context, params *AutoprovisioningRulePlansListParams, reqEditors ...RequestEditorFn) (*AutoprovisioningRulePlansListResponse, error)
+
+	// AutoprovisioningRulePlansCreateWithBodyWithResponse request with any body
+	AutoprovisioningRulePlansCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AutoprovisioningRulePlansCreateResponse, error)
+
+	AutoprovisioningRulePlansCreateWithResponse(ctx context.Context, body AutoprovisioningRulePlansCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*AutoprovisioningRulePlansCreateResponse, error)
+
+	// AutoprovisioningRulePlansDestroyWithResponse request
+	AutoprovisioningRulePlansDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AutoprovisioningRulePlansDestroyResponse, error)
+
+	// AutoprovisioningRulePlansRetrieveWithResponse request
+	AutoprovisioningRulePlansRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AutoprovisioningRulePlansRetrieveResponse, error)
+
+	// AutoprovisioningRulePlansPartialUpdateWithBodyWithResponse request with any body
+	AutoprovisioningRulePlansPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AutoprovisioningRulePlansPartialUpdateResponse, error)
+
+	AutoprovisioningRulePlansPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body AutoprovisioningRulePlansPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*AutoprovisioningRulePlansPartialUpdateResponse, error)
+
+	// AutoprovisioningRulePlansUpdateWithBodyWithResponse request with any body
+	AutoprovisioningRulePlansUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AutoprovisioningRulePlansUpdateResponse, error)
+
+	AutoprovisioningRulePlansUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body AutoprovisioningRulePlansUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*AutoprovisioningRulePlansUpdateResponse, error)
+
+	// AutoprovisioningRulesListWithResponse request
+	AutoprovisioningRulesListWithResponse(ctx context.Context, params *AutoprovisioningRulesListParams, reqEditors ...RequestEditorFn) (*AutoprovisioningRulesListResponse, error)
+
+	// AutoprovisioningRulesCreateWithBodyWithResponse request with any body
+	AutoprovisioningRulesCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AutoprovisioningRulesCreateResponse, error)
+
+	AutoprovisioningRulesCreateWithResponse(ctx context.Context, body AutoprovisioningRulesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*AutoprovisioningRulesCreateResponse, error)
+
+	// AutoprovisioningRulesDestroyWithResponse request
+	AutoprovisioningRulesDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AutoprovisioningRulesDestroyResponse, error)
+
+	// AutoprovisioningRulesRetrieveWithResponse request
+	AutoprovisioningRulesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AutoprovisioningRulesRetrieveResponse, error)
+
+	// AutoprovisioningRulesPartialUpdateWithBodyWithResponse request with any body
+	AutoprovisioningRulesPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AutoprovisioningRulesPartialUpdateResponse, error)
+
+	AutoprovisioningRulesPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body AutoprovisioningRulesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*AutoprovisioningRulesPartialUpdateResponse, error)
+
+	// AutoprovisioningRulesUpdateWithBodyWithResponse request with any body
+	AutoprovisioningRulesUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AutoprovisioningRulesUpdateResponse, error)
+
+	AutoprovisioningRulesUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body AutoprovisioningRulesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*AutoprovisioningRulesUpdateResponse, error)
 
 	// AwsImagesListWithResponse request
 	AwsImagesListWithResponse(ctx context.Context, params *AwsImagesListParams, reqEditors ...RequestEditorFn) (*AwsImagesListResponse, error)
@@ -142996,6 +144102,268 @@ func (r AuthValimoResultResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r AuthValimoResultResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AutoprovisioningRulePlansListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]RulePlans
+}
+
+// Status returns HTTPResponse.Status
+func (r AutoprovisioningRulePlansListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AutoprovisioningRulePlansListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AutoprovisioningRulePlansCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *RulePlans
+}
+
+// Status returns HTTPResponse.Status
+func (r AutoprovisioningRulePlansCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AutoprovisioningRulePlansCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AutoprovisioningRulePlansDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r AutoprovisioningRulePlansDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AutoprovisioningRulePlansDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AutoprovisioningRulePlansRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *RulePlans
+}
+
+// Status returns HTTPResponse.Status
+func (r AutoprovisioningRulePlansRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AutoprovisioningRulePlansRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AutoprovisioningRulePlansPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *RulePlans
+}
+
+// Status returns HTTPResponse.Status
+func (r AutoprovisioningRulePlansPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AutoprovisioningRulePlansPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AutoprovisioningRulePlansUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *RulePlans
+}
+
+// Status returns HTTPResponse.Status
+func (r AutoprovisioningRulePlansUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AutoprovisioningRulePlansUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AutoprovisioningRulesListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]Rule
+}
+
+// Status returns HTTPResponse.Status
+func (r AutoprovisioningRulesListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AutoprovisioningRulesListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AutoprovisioningRulesCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *Rule
+}
+
+// Status returns HTTPResponse.Status
+func (r AutoprovisioningRulesCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AutoprovisioningRulesCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AutoprovisioningRulesDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r AutoprovisioningRulesDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AutoprovisioningRulesDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AutoprovisioningRulesRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *Rule
+}
+
+// Status returns HTTPResponse.Status
+func (r AutoprovisioningRulesRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AutoprovisioningRulesRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AutoprovisioningRulesPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *Rule
+}
+
+// Status returns HTTPResponse.Status
+func (r AutoprovisioningRulesPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AutoprovisioningRulesPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AutoprovisioningRulesUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *Rule
+}
+
+// Status returns HTTPResponse.Status
+func (r AutoprovisioningRulesUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AutoprovisioningRulesUpdateResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -168506,6 +169874,162 @@ func (c *ClientWithResponses) AuthValimoResultWithResponse(ctx context.Context, 
 	return ParseAuthValimoResultResponse(rsp)
 }
 
+// AutoprovisioningRulePlansListWithResponse request returning *AutoprovisioningRulePlansListResponse
+func (c *ClientWithResponses) AutoprovisioningRulePlansListWithResponse(ctx context.Context, params *AutoprovisioningRulePlansListParams, reqEditors ...RequestEditorFn) (*AutoprovisioningRulePlansListResponse, error) {
+	rsp, err := c.AutoprovisioningRulePlansList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAutoprovisioningRulePlansListResponse(rsp)
+}
+
+// AutoprovisioningRulePlansCreateWithBodyWithResponse request with arbitrary body returning *AutoprovisioningRulePlansCreateResponse
+func (c *ClientWithResponses) AutoprovisioningRulePlansCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AutoprovisioningRulePlansCreateResponse, error) {
+	rsp, err := c.AutoprovisioningRulePlansCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAutoprovisioningRulePlansCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) AutoprovisioningRulePlansCreateWithResponse(ctx context.Context, body AutoprovisioningRulePlansCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*AutoprovisioningRulePlansCreateResponse, error) {
+	rsp, err := c.AutoprovisioningRulePlansCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAutoprovisioningRulePlansCreateResponse(rsp)
+}
+
+// AutoprovisioningRulePlansDestroyWithResponse request returning *AutoprovisioningRulePlansDestroyResponse
+func (c *ClientWithResponses) AutoprovisioningRulePlansDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AutoprovisioningRulePlansDestroyResponse, error) {
+	rsp, err := c.AutoprovisioningRulePlansDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAutoprovisioningRulePlansDestroyResponse(rsp)
+}
+
+// AutoprovisioningRulePlansRetrieveWithResponse request returning *AutoprovisioningRulePlansRetrieveResponse
+func (c *ClientWithResponses) AutoprovisioningRulePlansRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AutoprovisioningRulePlansRetrieveResponse, error) {
+	rsp, err := c.AutoprovisioningRulePlansRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAutoprovisioningRulePlansRetrieveResponse(rsp)
+}
+
+// AutoprovisioningRulePlansPartialUpdateWithBodyWithResponse request with arbitrary body returning *AutoprovisioningRulePlansPartialUpdateResponse
+func (c *ClientWithResponses) AutoprovisioningRulePlansPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AutoprovisioningRulePlansPartialUpdateResponse, error) {
+	rsp, err := c.AutoprovisioningRulePlansPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAutoprovisioningRulePlansPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) AutoprovisioningRulePlansPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body AutoprovisioningRulePlansPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*AutoprovisioningRulePlansPartialUpdateResponse, error) {
+	rsp, err := c.AutoprovisioningRulePlansPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAutoprovisioningRulePlansPartialUpdateResponse(rsp)
+}
+
+// AutoprovisioningRulePlansUpdateWithBodyWithResponse request with arbitrary body returning *AutoprovisioningRulePlansUpdateResponse
+func (c *ClientWithResponses) AutoprovisioningRulePlansUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AutoprovisioningRulePlansUpdateResponse, error) {
+	rsp, err := c.AutoprovisioningRulePlansUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAutoprovisioningRulePlansUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) AutoprovisioningRulePlansUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body AutoprovisioningRulePlansUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*AutoprovisioningRulePlansUpdateResponse, error) {
+	rsp, err := c.AutoprovisioningRulePlansUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAutoprovisioningRulePlansUpdateResponse(rsp)
+}
+
+// AutoprovisioningRulesListWithResponse request returning *AutoprovisioningRulesListResponse
+func (c *ClientWithResponses) AutoprovisioningRulesListWithResponse(ctx context.Context, params *AutoprovisioningRulesListParams, reqEditors ...RequestEditorFn) (*AutoprovisioningRulesListResponse, error) {
+	rsp, err := c.AutoprovisioningRulesList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAutoprovisioningRulesListResponse(rsp)
+}
+
+// AutoprovisioningRulesCreateWithBodyWithResponse request with arbitrary body returning *AutoprovisioningRulesCreateResponse
+func (c *ClientWithResponses) AutoprovisioningRulesCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AutoprovisioningRulesCreateResponse, error) {
+	rsp, err := c.AutoprovisioningRulesCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAutoprovisioningRulesCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) AutoprovisioningRulesCreateWithResponse(ctx context.Context, body AutoprovisioningRulesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*AutoprovisioningRulesCreateResponse, error) {
+	rsp, err := c.AutoprovisioningRulesCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAutoprovisioningRulesCreateResponse(rsp)
+}
+
+// AutoprovisioningRulesDestroyWithResponse request returning *AutoprovisioningRulesDestroyResponse
+func (c *ClientWithResponses) AutoprovisioningRulesDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AutoprovisioningRulesDestroyResponse, error) {
+	rsp, err := c.AutoprovisioningRulesDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAutoprovisioningRulesDestroyResponse(rsp)
+}
+
+// AutoprovisioningRulesRetrieveWithResponse request returning *AutoprovisioningRulesRetrieveResponse
+func (c *ClientWithResponses) AutoprovisioningRulesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AutoprovisioningRulesRetrieveResponse, error) {
+	rsp, err := c.AutoprovisioningRulesRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAutoprovisioningRulesRetrieveResponse(rsp)
+}
+
+// AutoprovisioningRulesPartialUpdateWithBodyWithResponse request with arbitrary body returning *AutoprovisioningRulesPartialUpdateResponse
+func (c *ClientWithResponses) AutoprovisioningRulesPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AutoprovisioningRulesPartialUpdateResponse, error) {
+	rsp, err := c.AutoprovisioningRulesPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAutoprovisioningRulesPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) AutoprovisioningRulesPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body AutoprovisioningRulesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*AutoprovisioningRulesPartialUpdateResponse, error) {
+	rsp, err := c.AutoprovisioningRulesPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAutoprovisioningRulesPartialUpdateResponse(rsp)
+}
+
+// AutoprovisioningRulesUpdateWithBodyWithResponse request with arbitrary body returning *AutoprovisioningRulesUpdateResponse
+func (c *ClientWithResponses) AutoprovisioningRulesUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AutoprovisioningRulesUpdateResponse, error) {
+	rsp, err := c.AutoprovisioningRulesUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAutoprovisioningRulesUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) AutoprovisioningRulesUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body AutoprovisioningRulesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*AutoprovisioningRulesUpdateResponse, error) {
+	rsp, err := c.AutoprovisioningRulesUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAutoprovisioningRulesUpdateResponse(rsp)
+}
+
 // AwsImagesListWithResponse request returning *AwsImagesListResponse
 func (c *ClientWithResponses) AwsImagesListWithResponse(ctx context.Context, params *AwsImagesListParams, reqEditors ...RequestEditorFn) (*AwsImagesListResponse, error) {
 	rsp, err := c.AwsImagesList(ctx, params, reqEditors...)
@@ -182903,6 +184427,298 @@ func ParseAuthValimoResultResponse(rsp *http.Response) (*AuthValimoResultRespons
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest AuthResult
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAutoprovisioningRulePlansListResponse parses an HTTP response from a AutoprovisioningRulePlansListWithResponse call
+func ParseAutoprovisioningRulePlansListResponse(rsp *http.Response) (*AutoprovisioningRulePlansListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AutoprovisioningRulePlansListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []RulePlans
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAutoprovisioningRulePlansCreateResponse parses an HTTP response from a AutoprovisioningRulePlansCreateWithResponse call
+func ParseAutoprovisioningRulePlansCreateResponse(rsp *http.Response) (*AutoprovisioningRulePlansCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AutoprovisioningRulePlansCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest RulePlans
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAutoprovisioningRulePlansDestroyResponse parses an HTTP response from a AutoprovisioningRulePlansDestroyWithResponse call
+func ParseAutoprovisioningRulePlansDestroyResponse(rsp *http.Response) (*AutoprovisioningRulePlansDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AutoprovisioningRulePlansDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseAutoprovisioningRulePlansRetrieveResponse parses an HTTP response from a AutoprovisioningRulePlansRetrieveWithResponse call
+func ParseAutoprovisioningRulePlansRetrieveResponse(rsp *http.Response) (*AutoprovisioningRulePlansRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AutoprovisioningRulePlansRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest RulePlans
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAutoprovisioningRulePlansPartialUpdateResponse parses an HTTP response from a AutoprovisioningRulePlansPartialUpdateWithResponse call
+func ParseAutoprovisioningRulePlansPartialUpdateResponse(rsp *http.Response) (*AutoprovisioningRulePlansPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AutoprovisioningRulePlansPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest RulePlans
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAutoprovisioningRulePlansUpdateResponse parses an HTTP response from a AutoprovisioningRulePlansUpdateWithResponse call
+func ParseAutoprovisioningRulePlansUpdateResponse(rsp *http.Response) (*AutoprovisioningRulePlansUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AutoprovisioningRulePlansUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest RulePlans
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAutoprovisioningRulesListResponse parses an HTTP response from a AutoprovisioningRulesListWithResponse call
+func ParseAutoprovisioningRulesListResponse(rsp *http.Response) (*AutoprovisioningRulesListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AutoprovisioningRulesListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []Rule
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAutoprovisioningRulesCreateResponse parses an HTTP response from a AutoprovisioningRulesCreateWithResponse call
+func ParseAutoprovisioningRulesCreateResponse(rsp *http.Response) (*AutoprovisioningRulesCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AutoprovisioningRulesCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest Rule
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAutoprovisioningRulesDestroyResponse parses an HTTP response from a AutoprovisioningRulesDestroyWithResponse call
+func ParseAutoprovisioningRulesDestroyResponse(rsp *http.Response) (*AutoprovisioningRulesDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AutoprovisioningRulesDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseAutoprovisioningRulesRetrieveResponse parses an HTTP response from a AutoprovisioningRulesRetrieveWithResponse call
+func ParseAutoprovisioningRulesRetrieveResponse(rsp *http.Response) (*AutoprovisioningRulesRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AutoprovisioningRulesRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest Rule
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAutoprovisioningRulesPartialUpdateResponse parses an HTTP response from a AutoprovisioningRulesPartialUpdateWithResponse call
+func ParseAutoprovisioningRulesPartialUpdateResponse(rsp *http.Response) (*AutoprovisioningRulesPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AutoprovisioningRulesPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest Rule
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAutoprovisioningRulesUpdateResponse parses an HTTP response from a AutoprovisioningRulesUpdateWithResponse call
+func ParseAutoprovisioningRulesUpdateResponse(rsp *http.Response) (*AutoprovisioningRulesUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AutoprovisioningRulesUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest Rule
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
