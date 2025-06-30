@@ -6878,6 +6878,7 @@ const (
 	RancherClustersListParamsFieldPublicIps                        RancherClustersListParamsField = "public_ips"
 	RancherClustersListParamsFieldRequested                        RancherClustersListParamsField = "requested"
 	RancherClustersListParamsFieldResourceType                     RancherClustersListParamsField = "resource_type"
+	RancherClustersListParamsFieldRouterIps                        RancherClustersListParamsField = "router_ips"
 	RancherClustersListParamsFieldRuntimeState                     RancherClustersListParamsField = "runtime_state"
 	RancherClustersListParamsFieldSecurityGroups                   RancherClustersListParamsField = "security_groups"
 	RancherClustersListParamsFieldServiceName                      RancherClustersListParamsField = "service_name"
@@ -6941,6 +6942,7 @@ const (
 	RancherClustersRetrieveParamsFieldPublicIps                        RancherClustersRetrieveParamsField = "public_ips"
 	RancherClustersRetrieveParamsFieldRequested                        RancherClustersRetrieveParamsField = "requested"
 	RancherClustersRetrieveParamsFieldResourceType                     RancherClustersRetrieveParamsField = "resource_type"
+	RancherClustersRetrieveParamsFieldRouterIps                        RancherClustersRetrieveParamsField = "router_ips"
 	RancherClustersRetrieveParamsFieldRuntimeState                     RancherClustersRetrieveParamsField = "runtime_state"
 	RancherClustersRetrieveParamsFieldSecurityGroups                   RancherClustersRetrieveParamsField = "security_groups"
 	RancherClustersRetrieveParamsFieldServiceName                      RancherClustersRetrieveParamsField = "service_name"
@@ -16584,6 +16586,7 @@ type RancherCluster struct {
 	// Requested Cluster requested resources in the format {'cpu': '1450m', 'memory': '884Mi', 'pods': '13'}
 	Requested                   *interface{}        `json:"requested,omitempty"`
 	ResourceType                *string             `json:"resource_type,omitempty"`
+	RouterIps                   *[]interface{}      `json:"router_ips,omitempty"`
 	RuntimeState                *string             `json:"runtime_state,omitempty"`
 	ServiceName                 *string             `json:"service_name,omitempty"`
 	ServiceSettings             *string             `json:"service_settings,omitempty"`
