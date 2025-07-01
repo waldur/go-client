@@ -9737,6 +9737,7 @@ type ConstanceSettings struct {
 	NOTIFYABOUTRESOURCECHANGE                      *bool                `json:"NOTIFY_ABOUT_RESOURCE_CHANGE,omitempty"`
 	NOTIFYSTAFFABOUTAPPROVALS                      *bool                `json:"NOTIFY_STAFF_ABOUT_APPROVALS,omitempty"`
 	OFFERINGLOGOPLACEHOLDER                        *string              `json:"OFFERING_LOGO_PLACEHOLDER"`
+	OIDCAUTHURL                                    *string              `json:"OIDC_AUTH_URL,omitempty"`
 	OIDCCACHETIMEOUT                               *int                 `json:"OIDC_CACHE_TIMEOUT,omitempty"`
 	OIDCCLIENTID                                   *string              `json:"OIDC_CLIENT_ID,omitempty"`
 	OIDCCLIENTSECRET                               *string              `json:"OIDC_CLIENT_SECRET,omitempty"`
@@ -9869,6 +9870,7 @@ type ConstanceSettingsRequest struct {
 	NOTIFYABOUTRESOURCECHANGE                      *bool                `json:"NOTIFY_ABOUT_RESOURCE_CHANGE,omitempty"`
 	NOTIFYSTAFFABOUTAPPROVALS                      *bool                `json:"NOTIFY_STAFF_ABOUT_APPROVALS,omitempty"`
 	OFFERINGLOGOPLACEHOLDER                        *openapi_types.File  `json:"OFFERING_LOGO_PLACEHOLDER"`
+	OIDCAUTHURL                                    *string              `json:"OIDC_AUTH_URL,omitempty"`
 	OIDCCACHETIMEOUT                               *int                 `json:"OIDC_CACHE_TIMEOUT,omitempty"`
 	OIDCCLIENTID                                   *string              `json:"OIDC_CLIENT_ID,omitempty"`
 	OIDCCLIENTSECRET                               *string              `json:"OIDC_CLIENT_SECRET,omitempty"`
