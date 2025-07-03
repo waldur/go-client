@@ -2245,7 +2245,6 @@ const (
 	CustomersListParamsFieldPaymentProfiles              CustomersListParamsField = "payment_profiles"
 	CustomersListParamsFieldPhoneNumber                  CustomersListParamsField = "phone_number"
 	CustomersListParamsFieldPostal                       CustomersListParamsField = "postal"
-	CustomersListParamsFieldProjects                     CustomersListParamsField = "projects"
 	CustomersListParamsFieldProjectsCount                CustomersListParamsField = "projects_count"
 	CustomersListParamsFieldRegistrationCode             CustomersListParamsField = "registration_code"
 	CustomersListParamsFieldServiceProvider              CustomersListParamsField = "service_provider"
@@ -2294,7 +2293,6 @@ const (
 	CustomersRetrieveParamsFieldPaymentProfiles              CustomersRetrieveParamsField = "payment_profiles"
 	CustomersRetrieveParamsFieldPhoneNumber                  CustomersRetrieveParamsField = "phone_number"
 	CustomersRetrieveParamsFieldPostal                       CustomersRetrieveParamsField = "postal"
-	CustomersRetrieveParamsFieldProjects                     CustomersRetrieveParamsField = "projects"
 	CustomersRetrieveParamsFieldProjectsCount                CustomersRetrieveParamsField = "projects_count"
 	CustomersRetrieveParamsFieldRegistrationCode             CustomersRetrieveParamsField = "registration_code"
 	CustomersRetrieveParamsFieldServiceProvider              CustomersRetrieveParamsField = "service_provider"
@@ -10102,7 +10100,6 @@ type Customer struct {
 	PaymentProfiles     *[]PaymentProfile    `json:"payment_profiles,omitempty"`
 	PhoneNumber         *string              `json:"phone_number,omitempty"`
 	Postal              *string              `json:"postal,omitempty"`
-	Projects            *[]PermissionProject `json:"projects,omitempty"`
 	ProjectsCount       *int                 `json:"projects_count,omitempty"`
 	RegistrationCode    *string              `json:"registration_code,omitempty"`
 	ServiceProvider     *string              `json:"service_provider"`
@@ -12844,7 +12841,7 @@ type OfferingPermission struct {
 	OfferingSlug   *string              `json:"offering_slug,omitempty"`
 	OfferingUuid   *openapi_types.UUID  `json:"offering_uuid,omitempty"`
 	Pk             *int                 `json:"pk,omitempty"`
-	Role           string               `json:"role"`
+	Role           *string              `json:"role,omitempty"`
 	RoleName       *string              `json:"role_name,omitempty"`
 	Url            *string              `json:"url,omitempty"`
 	User           *string              `json:"user,omitempty"`
@@ -15396,17 +15393,6 @@ type Permission struct {
 	UserName          *string             `json:"user_name,omitempty"`
 	UserSlug          *string             `json:"user_slug,omitempty"`
 	UserUuid          *openapi_types.UUID `json:"user_uuid,omitempty"`
-}
-
-// PermissionProject defines model for PermissionProject.
-type PermissionProject struct {
-	// EndDate The date is inclusive. Once reached, all project resource will be scheduled for termination.
-	EndDate       *openapi_types.Date `json:"end_date"`
-	Image         *string             `json:"image"`
-	Name          *string             `json:"name,omitempty"`
-	ResourceCount *int                `json:"resource_count,omitempty"`
-	Url           *string             `json:"url,omitempty"`
-	Uuid          *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // PermissionRequest defines model for PermissionRequest.
