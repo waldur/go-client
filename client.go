@@ -460,6 +460,7 @@ const (
 	UserActivated                                    EventTypesEnum = "user_activated"
 	UserCreationSucceeded                            EventTypesEnum = "user_creation_succeeded"
 	UserDeactivated                                  EventTypesEnum = "user_deactivated"
+	UserDeactivatedNoRoles                           EventTypesEnum = "user_deactivated_no_roles"
 	UserDeletionSucceeded                            EventTypesEnum = "user_deletion_succeeded"
 	UserDetailsUpdateSucceeded                       EventTypesEnum = "user_details_update_succeeded"
 	UserHasBeenCreatedByStaff                        EventTypesEnum = "user_has_been_created_by_staff"
@@ -9695,6 +9696,7 @@ type ConstanceSettings struct {
 	COMMONFOOTERTEXT                               *string              `json:"COMMON_FOOTER_TEXT,omitempty"`
 	COUNTRIES                                      *[]string            `json:"COUNTRIES,omitempty"`
 	CURRENCYNAME                                   *string              `json:"CURRENCY_NAME,omitempty"`
+	DEACTIVATEUSERIFNOROLES                        *bool                `json:"DEACTIVATE_USER_IF_NO_ROLES,omitempty"`
 	DEFAULTIDP                                     *string              `json:"DEFAULT_IDP,omitempty"`
 	DISABLEDARKTHEME                               *bool                `json:"DISABLE_DARK_THEME,omitempty"`
 	DISABLESENDINGNOTIFICATIONSABOUTRESOURCEUPDATE *bool                `json:"DISABLE_SENDING_NOTIFICATIONS_ABOUT_RESOURCE_UPDATE,omitempty"`
@@ -9828,6 +9830,7 @@ type ConstanceSettingsRequest struct {
 	COMMONFOOTERTEXT                               *string              `json:"COMMON_FOOTER_TEXT,omitempty"`
 	COUNTRIES                                      *[]string            `json:"COUNTRIES,omitempty"`
 	CURRENCYNAME                                   *string              `json:"CURRENCY_NAME,omitempty"`
+	DEACTIVATEUSERIFNOROLES                        *bool                `json:"DEACTIVATE_USER_IF_NO_ROLES,omitempty"`
 	DEFAULTIDP                                     *string              `json:"DEFAULT_IDP,omitempty"`
 	DISABLEDARKTHEME                               *bool                `json:"DISABLE_DARK_THEME,omitempty"`
 	DISABLESENDINGNOTIFICATIONSABOUTRESOURCEUPDATE *bool                `json:"DISABLE_SENDING_NOTIFICATIONS_ABOUT_RESOURCE_UPDATE,omitempty"`
