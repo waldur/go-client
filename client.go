@@ -12263,6 +12263,7 @@ type NestedRequestedOffering struct {
 	CategoryName             *string                  `json:"category_name,omitempty"`
 	CategoryUuid             *openapi_types.UUID      `json:"category_uuid,omitempty"`
 	Components               *[]OfferingComponent     `json:"components,omitempty"`
+	Created                  *time.Time               `json:"created,omitempty"`
 	Offering                 *string                  `json:"offering,omitempty"`
 	OfferingName             *string                  `json:"offering_name,omitempty"`
 	OfferingUuid             *openapi_types.UUID      `json:"offering_uuid,omitempty"`
@@ -16212,6 +16213,7 @@ type ProviderRequestedOffering struct {
 	CategoryName             *string                  `json:"category_name,omitempty"`
 	CategoryUuid             *openapi_types.UUID      `json:"category_uuid,omitempty"`
 	Components               *[]OfferingComponent     `json:"components,omitempty"`
+	Created                  *time.Time               `json:"created,omitempty"`
 	CreatedByEmail           *openapi_types.Email     `json:"created_by_email,omitempty"`
 	CreatedByName            *string                  `json:"created_by_name,omitempty"`
 	Description              *string                  `json:"description,omitempty"`
@@ -17251,6 +17253,7 @@ type RequestedOffering struct {
 	CategoryName             *string                  `json:"category_name,omitempty"`
 	CategoryUuid             *openapi_types.UUID      `json:"category_uuid,omitempty"`
 	Components               *[]OfferingComponent     `json:"components,omitempty"`
+	Created                  *time.Time               `json:"created,omitempty"`
 	CreatedBy                *string                  `json:"created_by"`
 	CreatedByName            *string                  `json:"created_by_name,omitempty"`
 	Description              *string                  `json:"description,omitempty"`
