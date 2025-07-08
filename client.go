@@ -17392,11 +17392,6 @@ type Resource struct {
 	Uuid                      *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
-// ResourceBackendID defines model for ResourceBackendID.
-type ResourceBackendID struct {
-	BackendId *string `json:"backend_id,omitempty"`
-}
-
 // ResourceBackendIDRequest defines model for ResourceBackendIDRequest.
 type ResourceBackendIDRequest struct {
 	BackendId *string `json:"backend_id,omitempty"`
@@ -17405,11 +17400,6 @@ type ResourceBackendIDRequest struct {
 // ResourceBackendMetadataRequest defines model for ResourceBackendMetadataRequest.
 type ResourceBackendMetadataRequest struct {
 	BackendMetadata interface{} `json:"backend_metadata"`
-}
-
-// ResourceBackendMetadataResponse defines model for ResourceBackendMetadataResponse.
-type ResourceBackendMetadataResponse struct {
-	Status *string `json:"status,omitempty"`
 }
 
 // ResourceEndDateByProviderRequest defines model for ResourceEndDateByProviderRequest.
@@ -17433,11 +17423,6 @@ type ResourceOffering struct {
 	Uuid *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
-// ResourceOptions defines model for ResourceOptions.
-type ResourceOptions struct {
-	Options *interface{} `json:"options"`
-}
-
 // ResourceOptionsRequest defines model for ResourceOptionsRequest.
 type ResourceOptionsRequest struct {
 	Options *interface{} `json:"options"`
@@ -17453,30 +17438,19 @@ type ResourcePlanPeriod struct {
 	Uuid       *openapi_types.UUID  `json:"uuid,omitempty"`
 }
 
-// ResourceReport defines model for ResourceReport.
-type ResourceReport struct {
-	Report []ReportSection `json:"report"`
-}
-
 // ResourceReportRequest defines model for ResourceReportRequest.
 type ResourceReportRequest struct {
 	Report []ReportSectionRequest `json:"report"`
 }
 
-// ResourceSetLimits defines model for ResourceSetLimits.
-type ResourceSetLimits struct {
-	Limits interface{} `json:"limits"`
+// ResourceResponseStatus defines model for ResourceResponseStatus.
+type ResourceResponseStatus struct {
+	Status *string `json:"status,omitempty"`
 }
 
 // ResourceSetLimitsRequest defines model for ResourceSetLimitsRequest.
 type ResourceSetLimitsRequest struct {
 	Limits interface{} `json:"limits"`
-}
-
-// ResourceSetStateErred defines model for ResourceSetStateErred.
-type ResourceSetStateErred struct {
-	ErrorMessage   *string `json:"error_message,omitempty"`
-	ErrorTraceback *string `json:"error_traceback,omitempty"`
 }
 
 // ResourceSetStateErredRequest defines model for ResourceSetStateErredRequest.
@@ -20870,7 +20844,7 @@ type MarketplaceOfferingPermissionsLogListParams struct {
 	ScopeType *string `form:"scope_type,omitempty" json:"scope_type,omitempty"`
 
 	// ScopeUuid Scope UUID
-	ScopeUuid *openapi_types.UUID `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
+	ScopeUuid *string             `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
 	User      *openapi_types.UUID `form:"user,omitempty" json:"user,omitempty"`
 
 	// UserSlug User slug contains
@@ -20919,7 +20893,7 @@ type MarketplaceOfferingPermissionsListParams struct {
 	ScopeType *string `form:"scope_type,omitempty" json:"scope_type,omitempty"`
 
 	// ScopeUuid Scope UUID
-	ScopeUuid *openapi_types.UUID `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
+	ScopeUuid *string             `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
 	User      *openapi_types.UUID `form:"user,omitempty" json:"user,omitempty"`
 
 	// UserSlug User slug contains
@@ -21213,7 +21187,7 @@ type MarketplaceProviderOfferingsListParams struct {
 	ResourceProjectUuid *openapi_types.UUID `form:"resource_project_uuid,omitempty" json:"resource_project_uuid,omitempty"`
 
 	// ScopeUuid Scope UUID
-	ScopeUuid *openapi_types.UUID `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
+	ScopeUuid *string `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
 
 	// ServiceManagerUuid Service manager UUID
 	ServiceManagerUuid *openapi_types.UUID                            `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
@@ -21282,7 +21256,7 @@ type MarketplaceProviderOfferingsGroupsListParams struct {
 	ResourceProjectUuid *openapi_types.UUID `form:"resource_project_uuid,omitempty" json:"resource_project_uuid,omitempty"`
 
 	// ScopeUuid Scope UUID
-	ScopeUuid *openapi_types.UUID `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
+	ScopeUuid *string `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
 
 	// ServiceManagerUuid Service manager UUID
 	ServiceManagerUuid *openapi_types.UUID                                  `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
@@ -21359,7 +21333,7 @@ type MarketplaceProviderOfferingsComponentStatsListParams struct {
 	ResourceProjectUuid *openapi_types.UUID `form:"resource_project_uuid,omitempty" json:"resource_project_uuid,omitempty"`
 
 	// ScopeUuid Scope UUID
-	ScopeUuid *openapi_types.UUID `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
+	ScopeUuid *string `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
 
 	// ServiceManagerUuid Service manager UUID
 	ServiceManagerUuid *openapi_types.UUID `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
@@ -21432,7 +21406,7 @@ type MarketplaceProviderOfferingsCostsListParams struct {
 	ResourceProjectUuid *openapi_types.UUID `form:"resource_project_uuid,omitempty" json:"resource_project_uuid,omitempty"`
 
 	// ScopeUuid Scope UUID
-	ScopeUuid *openapi_types.UUID `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
+	ScopeUuid *string `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
 
 	// ServiceManagerUuid Service manager UUID
 	ServiceManagerUuid *openapi_types.UUID `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
@@ -21501,7 +21475,7 @@ type MarketplaceProviderOfferingsCustomersListParams struct {
 	ResourceProjectUuid *openapi_types.UUID `form:"resource_project_uuid,omitempty" json:"resource_project_uuid,omitempty"`
 
 	// ScopeUuid Scope UUID
-	ScopeUuid *openapi_types.UUID `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
+	ScopeUuid *string `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
 
 	// ServiceManagerUuid Service manager UUID
 	ServiceManagerUuid *openapi_types.UUID                                     `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
@@ -21773,7 +21747,7 @@ type MarketplacePublicOfferingsListParams struct {
 	ResourceProjectUuid *openapi_types.UUID `form:"resource_project_uuid,omitempty" json:"resource_project_uuid,omitempty"`
 
 	// ScopeUuid Scope UUID
-	ScopeUuid *openapi_types.UUID `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
+	ScopeUuid *string `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
 
 	// ServiceManagerUuid Service manager UUID
 	ServiceManagerUuid *openapi_types.UUID                          `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
@@ -22191,7 +22165,7 @@ type MarketplaceServiceProvidersOfferingsListParams struct {
 	ResourceProjectUuid *openapi_types.UUID `form:"resource_project_uuid,omitempty" json:"resource_project_uuid,omitempty"`
 
 	// ScopeUuid Scope UUID
-	ScopeUuid *openapi_types.UUID `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
+	ScopeUuid *string `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
 
 	// ServiceManagerUuid Service manager UUID
 	ServiceManagerUuid *openapi_types.UUID                                    `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
@@ -22249,7 +22223,7 @@ type MarketplaceServiceProvidersProjectPermissionsListParams struct {
 	ScopeType *string `form:"scope_type,omitempty" json:"scope_type,omitempty"`
 
 	// ScopeUuid Scope UUID
-	ScopeUuid *openapi_types.UUID `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
+	ScopeUuid *string             `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
 	User      *openapi_types.UUID `form:"user,omitempty" json:"user,omitempty"`
 
 	// UserSlug User slug contains
@@ -24646,7 +24620,7 @@ type ServiceSettingsListParams struct {
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 
 	// ScopeUuid Scope UUID
-	ScopeUuid *openapi_types.UUID               `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
+	ScopeUuid *string                           `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
 	Shared    *bool                             `form:"shared,omitempty" json:"shared,omitempty"`
 	State     *[]ServiceSettingsListParamsState `form:"state,omitempty" json:"state,omitempty"`
 	Type      *string                           `form:"type,omitempty" json:"type,omitempty"`
@@ -25046,7 +25020,7 @@ type UserPermissionsListParams struct {
 	ScopeType *string `form:"scope_type,omitempty" json:"scope_type,omitempty"`
 
 	// ScopeUuid Scope UUID
-	ScopeUuid *openapi_types.UUID `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
+	ScopeUuid *string             `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
 	User      *openapi_types.UUID `form:"user,omitempty" json:"user,omitempty"`
 
 	// UserSlug User slug contains
@@ -153840,7 +153814,7 @@ func (r MarketplaceProviderOfferingsPauseResponse) StatusCode() int {
 type MarketplaceProviderOfferingsRefreshOfferingUsernamesResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *ProviderOfferingDetails
+	JSON200      *ResourceResponseStatus
 }
 
 // Status returns HTTPResponse.Status
@@ -154485,7 +154459,6 @@ func (r MarketplaceProviderResourcesRefreshLastSyncResponse) StatusCode() int {
 type MarketplaceProviderResourcesSetAsErredResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *ResourceSetStateErred
 }
 
 // Status returns HTTPResponse.Status
@@ -154528,7 +154501,7 @@ func (r MarketplaceProviderResourcesSetAsOkResponse) StatusCode() int {
 type MarketplaceProviderResourcesSetBackendIdResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *ResourceBackendID
+	JSON200      *ResourceResponseStatus
 }
 
 // Status returns HTTPResponse.Status
@@ -154550,7 +154523,7 @@ func (r MarketplaceProviderResourcesSetBackendIdResponse) StatusCode() int {
 type MarketplaceProviderResourcesSetBackendMetadataResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *ResourceBackendMetadataResponse
+	JSON200      *ResourceResponseStatus
 }
 
 // Status returns HTTPResponse.Status
@@ -154615,7 +154588,7 @@ func (r MarketplaceProviderResourcesSetEndDateByStaffResponse) StatusCode() int 
 type MarketplaceProviderResourcesSetLimitsResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *ResourceSetLimits
+	JSON200      *ResourceResponseStatus
 }
 
 // Status returns HTTPResponse.Status
@@ -154658,7 +154631,7 @@ func (r MarketplaceProviderResourcesSetSlugResponse) StatusCode() int {
 type MarketplaceProviderResourcesSubmitReportResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *ResourceReport
+	JSON200      *ResourceResponseStatus
 }
 
 // Status returns HTTPResponse.Status
@@ -155553,7 +155526,7 @@ func (r MarketplaceResourcesUpdateLimitsResponse) StatusCode() int {
 type MarketplaceResourcesUpdateOptionsResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *ResourceOptions
+	JSON200      *ResourceResponseStatus
 }
 
 // Status returns HTTPResponse.Status
@@ -194980,7 +194953,7 @@ func ParseMarketplaceProviderOfferingsRefreshOfferingUsernamesResponse(rsp *http
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ProviderOfferingDetails
+		var dest ResourceResponseStatus
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -195608,16 +195581,6 @@ func ParseMarketplaceProviderResourcesSetAsErredResponse(rsp *http.Response) (*M
 		HTTPResponse: rsp,
 	}
 
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ResourceSetStateErred
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
 	return response, nil
 }
 
@@ -195652,7 +195615,7 @@ func ParseMarketplaceProviderResourcesSetBackendIdResponse(rsp *http.Response) (
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ResourceBackendID
+		var dest ResourceResponseStatus
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -195678,7 +195641,7 @@ func ParseMarketplaceProviderResourcesSetBackendMetadataResponse(rsp *http.Respo
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ResourceBackendMetadataResponse
+		var dest ResourceResponseStatus
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -195746,7 +195709,7 @@ func ParseMarketplaceProviderResourcesSetLimitsResponse(rsp *http.Response) (*Ma
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ResourceSetLimits
+		var dest ResourceResponseStatus
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -195788,7 +195751,7 @@ func ParseMarketplaceProviderResourcesSubmitReportResponse(rsp *http.Response) (
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ResourceReport
+		var dest ResourceResponseStatus
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -196784,7 +196747,7 @@ func ParseMarketplaceResourcesUpdateOptionsResponse(rsp *http.Response) (*Market
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ResourceOptions
+		var dest ResourceResponseStatus
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
