@@ -17402,14 +17402,14 @@ type ResourceBackendIDRequest struct {
 	BackendId *string `json:"backend_id,omitempty"`
 }
 
-// ResourceBackendMetadata defines model for ResourceBackendMetadata.
-type ResourceBackendMetadata struct {
-	BackendMetadata interface{} `json:"backend_metadata"`
-}
-
 // ResourceBackendMetadataRequest defines model for ResourceBackendMetadataRequest.
 type ResourceBackendMetadataRequest struct {
 	BackendMetadata interface{} `json:"backend_metadata"`
+}
+
+// ResourceBackendMetadataResponse defines model for ResourceBackendMetadataResponse.
+type ResourceBackendMetadataResponse struct {
+	Status *string `json:"status,omitempty"`
 }
 
 // ResourceEndDateByProviderRequest defines model for ResourceEndDateByProviderRequest.
@@ -22744,7 +22744,8 @@ type OpenstackFlavorsListParams struct {
 
 	// O Ordering
 	//
-	O *[]OpenstackFlavorsListParamsO `form:"o,omitempty" json:"o,omitempty"`
+	O            *[]OpenstackFlavorsListParamsO `form:"o,omitempty" json:"o,omitempty"`
+	OfferingUuid *openapi_types.UUID            `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -22834,8 +22835,9 @@ type OpenstackFloatingIpsRetrieveParamsField string
 
 // OpenstackImagesListParams defines parameters for OpenstackImagesList.
 type OpenstackImagesListParams struct {
-	Name      *string `form:"name,omitempty" json:"name,omitempty"`
-	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	Name         *string             `form:"name,omitempty" json:"name,omitempty"`
+	NameExact    *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -23486,8 +23488,9 @@ type OpenstackVolumeAvailabilityZonesListParams struct {
 
 // OpenstackVolumeTypesListParams defines parameters for OpenstackVolumeTypesList.
 type OpenstackVolumeTypesListParams struct {
-	Name      *string `form:"name,omitempty" json:"name,omitempty"`
-	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	Name         *string             `form:"name,omitempty" json:"name,omitempty"`
+	NameExact    *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -100760,6 +100763,22 @@ func NewOpenstackFlavorsListRequest(server string, params *OpenstackFlavorsListP
 
 		}
 
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Page != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
@@ -101796,6 +101815,22 @@ func NewOpenstackImagesListRequest(server string, params *OpenstackImagesListPar
 		if params.NameExact != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name_exact", runtime.ParamLocationQuery, *params.NameExact); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -111681,6 +111716,22 @@ func NewOpenstackVolumeTypesListRequest(server string, params *OpenstackVolumeTy
 		if params.NameExact != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name_exact", runtime.ParamLocationQuery, *params.NameExact); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -154499,7 +154550,7 @@ func (r MarketplaceProviderResourcesSetBackendIdResponse) StatusCode() int {
 type MarketplaceProviderResourcesSetBackendMetadataResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *ResourceBackendMetadata
+	JSON200      *ResourceBackendMetadataResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -195627,7 +195678,7 @@ func ParseMarketplaceProviderResourcesSetBackendMetadataResponse(rsp *http.Respo
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ResourceBackendMetadata
+		var dest ResourceBackendMetadataResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
