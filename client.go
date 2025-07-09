@@ -51,6 +51,14 @@ const (
 	AuthResultStateEnumScheduled  AuthResultStateEnum = "Scheduled"
 )
 
+// Defines values for BackendResourceReqStateEnum.
+const (
+	BackendResourceReqStateEnumDone       BackendResourceReqStateEnum = "Done"
+	BackendResourceReqStateEnumErred      BackendResourceReqStateEnum = "Erred"
+	BackendResourceReqStateEnumProcessing BackendResourceReqStateEnum = "Processing"
+	BackendResourceReqStateEnumSent       BackendResourceReqStateEnum = "Sent"
+)
+
 // Defines values for BillingTypeEnum.
 const (
 	BillingTypeEnumFew   BillingTypeEnum = "few"
@@ -325,11 +333,15 @@ const (
 	OpenstackPortPulled                              EventTypesEnum = "openstack_port_pulled"
 	OpenstackPortUpdated                             EventTypesEnum = "openstack_port_updated"
 	OpenstackRouterUpdated                           EventTypesEnum = "openstack_router_updated"
+	OpenstackSecurityGroupAddedLocally               EventTypesEnum = "openstack_security_group_added_locally"
+	OpenstackSecurityGroupAddedRemotely              EventTypesEnum = "openstack_security_group_added_remotely"
 	OpenstackSecurityGroupCleaned                    EventTypesEnum = "openstack_security_group_cleaned"
 	OpenstackSecurityGroupCreated                    EventTypesEnum = "openstack_security_group_created"
 	OpenstackSecurityGroupDeleted                    EventTypesEnum = "openstack_security_group_deleted"
 	OpenstackSecurityGroupImported                   EventTypesEnum = "openstack_security_group_imported"
 	OpenstackSecurityGroupPulled                     EventTypesEnum = "openstack_security_group_pulled"
+	OpenstackSecurityGroupRemovedLocally             EventTypesEnum = "openstack_security_group_removed_locally"
+	OpenstackSecurityGroupRemovedRemotely            EventTypesEnum = "openstack_security_group_removed_remotely"
 	OpenstackSecurityGroupRuleCleaned                EventTypesEnum = "openstack_security_group_rule_cleaned"
 	OpenstackSecurityGroupRuleCreated                EventTypesEnum = "openstack_security_group_rule_created"
 	OpenstackSecurityGroupRuleDeleted                EventTypesEnum = "openstack_security_group_rule_deleted"
@@ -1765,6 +1777,26 @@ const (
 	AzureVirtualmachinesRetrieveParamsFieldUserData                         AzureVirtualmachinesRetrieveParamsField = "user_data"
 	AzureVirtualmachinesRetrieveParamsFieldUsername                         AzureVirtualmachinesRetrieveParamsField = "username"
 	AzureVirtualmachinesRetrieveParamsFieldUuid                             AzureVirtualmachinesRetrieveParamsField = "uuid"
+)
+
+// Defines values for BackendResourceRequestsListParamsO.
+const (
+	BackendResourceRequestsListParamsOCreated      BackendResourceRequestsListParamsO = "created"
+	BackendResourceRequestsListParamsOMinusCreated BackendResourceRequestsListParamsO = "-created"
+)
+
+// Defines values for BackendResourceRequestsListParamsState.
+const (
+	BackendResourceRequestsListParamsStateDone       BackendResourceRequestsListParamsState = "Done"
+	BackendResourceRequestsListParamsStateErred      BackendResourceRequestsListParamsState = "Erred"
+	BackendResourceRequestsListParamsStateProcessing BackendResourceRequestsListParamsState = "Processing"
+	BackendResourceRequestsListParamsStateSent       BackendResourceRequestsListParamsState = "Sent"
+)
+
+// Defines values for BackendResourcesListParamsO.
+const (
+	BackendResourcesListParamsOCreated      BackendResourcesListParamsO = "created"
+	BackendResourcesListParamsOMinusCreated BackendResourcesListParamsO = "-created"
 )
 
 // Defines values for BookingOfferingsListParamsField.
@@ -8841,6 +8873,68 @@ type BackendMetadata struct {
 	State        *string `json:"state,omitempty"`
 }
 
+// BackendResource defines model for BackendResource.
+type BackendResource struct {
+	BackendId       *string             `json:"backend_id,omitempty"`
+	BackendMetadata *interface{}        `json:"backend_metadata,omitempty"`
+	Created         *time.Time          `json:"created,omitempty"`
+	Modified        *time.Time          `json:"modified,omitempty"`
+	Name            string              `json:"name"`
+	Offering        openapi_types.UUID  `json:"offering"`
+	OfferingName    *string             `json:"offering_name,omitempty"`
+	OfferingUrl     *string             `json:"offering_url,omitempty"`
+	Project         openapi_types.UUID  `json:"project"`
+	ProjectName     *string             `json:"project_name,omitempty"`
+	ProjectUrl      *string             `json:"project_url,omitempty"`
+	Url             *string             `json:"url,omitempty"`
+	Uuid            *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// BackendResourceImportRequest defines model for BackendResourceImportRequest.
+type BackendResourceImportRequest struct {
+	Plan *openapi_types.UUID `json:"plan,omitempty"`
+}
+
+// BackendResourceReq defines model for BackendResourceReq.
+type BackendResourceReq struct {
+	Created *time.Time `json:"created,omitempty"`
+
+	// Finished Time when request processing finished
+	Finished     *time.Time         `json:"finished"`
+	Modified     *time.Time         `json:"modified,omitempty"`
+	Offering     openapi_types.UUID `json:"offering"`
+	OfferingName *string            `json:"offering_name,omitempty"`
+	OfferingUrl  *string            `json:"offering_url,omitempty"`
+
+	// Started Time when request processing started
+	Started *time.Time                   `json:"started"`
+	State   *BackendResourceReqStateEnum `json:"state,omitempty"`
+	Url     *string                      `json:"url,omitempty"`
+}
+
+// BackendResourceReqRequest defines model for BackendResourceReqRequest.
+type BackendResourceReqRequest struct {
+	Offering openapi_types.UUID `json:"offering"`
+}
+
+// BackendResourceReqStateEnum defines model for BackendResourceReqStateEnum.
+type BackendResourceReqStateEnum string
+
+// BackendResourceRequest defines model for BackendResourceRequest.
+type BackendResourceRequest struct {
+	BackendId       *string            `json:"backend_id,omitempty"`
+	BackendMetadata *interface{}       `json:"backend_metadata,omitempty"`
+	Name            string             `json:"name"`
+	Offering        openapi_types.UUID `json:"offering"`
+	Project         openapi_types.UUID `json:"project"`
+}
+
+// BackendResourceRequestSetErredRequest defines model for BackendResourceRequestSetErredRequest.
+type BackendResourceRequestSetErredRequest struct {
+	ErrorMessage   *string `json:"error_message,omitempty"`
+	ErrorTraceback *string `json:"error_traceback,omitempty"`
+}
+
 // BaseComponentUsage defines model for BaseComponentUsage.
 type BaseComponentUsage struct {
 	Created     *time.Time `json:"created,omitempty"`
@@ -11652,8 +11746,14 @@ type MergedPluginOptions struct {
 	// MaxVolumes Default limit for number of volumes in OpenStack tenant
 	MaxVolumes *int `json:"max_volumes,omitempty"`
 
+	// MinimalTeamCountForProvisioning Minimal team count required for provisioning of resources
+	MinimalTeamCountForProvisioning *int `json:"minimal_team_count_for_provisioning,omitempty"`
+
 	// OpenstackOfferingUuidList List of UUID of OpenStack offerings where tenant can be created
 	OpenstackOfferingUuidList *[]string `json:"openstack_offering_uuid_list,omitempty"`
+
+	// RequiredTeamRoleForProvisioning Required user role in a project for provisioning of resources
+	RequiredTeamRoleForProvisioning *string `json:"required_team_role_for_provisioning,omitempty"`
 
 	// ServiceProviderCanCreateOfferingUser Service provider can create offering user
 	ServiceProviderCanCreateOfferingUser *bool `json:"service_provider_can_create_offering_user,omitempty"`
@@ -11765,8 +11865,14 @@ type MergedPluginOptionsRequest struct {
 	// MaxVolumes Default limit for number of volumes in OpenStack tenant
 	MaxVolumes *int `json:"max_volumes,omitempty"`
 
+	// MinimalTeamCountForProvisioning Minimal team count required for provisioning of resources
+	MinimalTeamCountForProvisioning *int `json:"minimal_team_count_for_provisioning,omitempty"`
+
 	// OpenstackOfferingUuidList List of UUID of OpenStack offerings where tenant can be created
 	OpenstackOfferingUuidList *[]string `json:"openstack_offering_uuid_list,omitempty"`
+
+	// RequiredTeamRoleForProvisioning Required user role in a project for provisioning of resources
+	RequiredTeamRoleForProvisioning *string `json:"required_team_role_for_provisioning,omitempty"`
 
 	// ServiceProviderCanCreateOfferingUser Service provider can create offering user
 	ServiceProviderCanCreateOfferingUser *bool `json:"service_provider_can_create_offering_user,omitempty"`
@@ -14301,18 +14407,16 @@ type OrderCreateRequest struct {
 
 // OrderDetails defines model for OrderDetails.
 type OrderDetails struct {
-	ActivationPrice *float64 `json:"activation_price,omitempty"`
-
-	// Attributes Get attributes excluding secret attributes, such as username and password.
-	Attributes         *map[string]interface{} `json:"attributes,omitempty"`
-	BackendId          *string                 `json:"backend_id,omitempty"`
-	CallbackUrl        *string                 `json:"callback_url"`
-	CanTerminate       *bool                   `json:"can_terminate,omitempty"`
-	CategoryIcon       *string                 `json:"category_icon,omitempty"`
-	CategoryTitle      *string                 `json:"category_title,omitempty"`
-	CategoryUuid       *openapi_types.UUID     `json:"category_uuid,omitempty"`
-	CompletedAt        *time.Time              `json:"completed_at"`
-	ConsumerReviewedAt *time.Time              `json:"consumer_reviewed_at"`
+	ActivationPrice    *float64            `json:"activation_price,omitempty"`
+	Attributes         *interface{}        `json:"attributes,omitempty"`
+	BackendId          *string             `json:"backend_id,omitempty"`
+	CallbackUrl        *string             `json:"callback_url"`
+	CanTerminate       *bool               `json:"can_terminate,omitempty"`
+	CategoryIcon       *string             `json:"category_icon,omitempty"`
+	CategoryTitle      *string             `json:"category_title,omitempty"`
+	CategoryUuid       *openapi_types.UUID `json:"category_uuid,omitempty"`
+	CompletedAt        *time.Time          `json:"completed_at"`
+	ConsumerReviewedAt *time.Time          `json:"consumer_reviewed_at"`
 
 	// ConsumerReviewedBy Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
 	ConsumerReviewedBy         *string `json:"consumer_reviewed_by"`
@@ -18315,7 +18419,7 @@ type User struct {
 // UserAgreement defines model for UserAgreement.
 type UserAgreement struct {
 	AgreementType AgreementTypeEnum   `json:"agreement_type"`
-	Content       *string             `json:"content,omitempty"`
+	Content       string              `json:"content"`
 	Created       *time.Time          `json:"created,omitempty"`
 	Modified      *time.Time          `json:"modified,omitempty"`
 	Url           *string             `json:"url,omitempty"`
@@ -18325,7 +18429,7 @@ type UserAgreement struct {
 // UserAgreementRequest defines model for UserAgreementRequest.
 type UserAgreementRequest struct {
 	AgreementType AgreementTypeEnum `json:"agreement_type"`
-	Content       *string           `json:"content,omitempty"`
+	Content       string            `json:"content"`
 }
 
 // UserAuthToken defines model for UserAuthToken.
@@ -19320,6 +19424,68 @@ type AzureVirtualmachinesRetrieveParams struct {
 
 // AzureVirtualmachinesRetrieveParamsField defines parameters for AzureVirtualmachinesRetrieve.
 type AzureVirtualmachinesRetrieveParamsField string
+
+// BackendResourceRequestsListParams defines parameters for BackendResourceRequestsList.
+type BackendResourceRequestsListParams struct {
+	// Created Created after
+	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
+
+	// Finished Modified after
+	Finished *time.Time `form:"finished,omitempty" json:"finished,omitempty"`
+
+	// Modified Modified after
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// O Ordering
+	//
+	O            *[]BackendResourceRequestsListParamsO `form:"o,omitempty" json:"o,omitempty"`
+	OfferingUuid *openapi_types.UUID                   `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Started Created after
+	Started *time.Time                                `form:"started,omitempty" json:"started,omitempty"`
+	State   *[]BackendResourceRequestsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+}
+
+// BackendResourceRequestsListParamsO defines parameters for BackendResourceRequestsList.
+type BackendResourceRequestsListParamsO string
+
+// BackendResourceRequestsListParamsState defines parameters for BackendResourceRequestsList.
+type BackendResourceRequestsListParamsState string
+
+// BackendResourcesListParams defines parameters for BackendResourcesList.
+type BackendResourcesListParams struct {
+	// BackendId Backend ID
+	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+
+	// Created Created after
+	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
+
+	// Modified Modified after
+	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+	Name      *string    `form:"name,omitempty" json:"name,omitempty"`
+	NameExact *string    `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// O Ordering
+	//
+	O            *[]BackendResourcesListParamsO `form:"o,omitempty" json:"o,omitempty"`
+	OfferingUuid *openapi_types.UUID            `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize    *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+}
+
+// BackendResourcesListParamsO defines parameters for BackendResourcesList.
+type BackendResourcesListParamsO string
 
 // BillingTotalCostRetrieveParams defines parameters for BillingTotalCostRetrieve.
 type BillingTotalCostRetrieveParams struct {
@@ -22043,6 +22209,7 @@ type MarketplaceServiceProvidersCustomerProjectsListParams struct {
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 	Query    *string   `form:"query,omitempty" json:"query,omitempty"`
+	Slug     *string   `form:"slug,omitempty" json:"slug,omitempty"`
 }
 
 // MarketplaceServiceProvidersCustomerProjectsListParamsField defines parameters for MarketplaceServiceProvidersCustomerProjectsList.
@@ -22277,6 +22444,7 @@ type MarketplaceServiceProvidersProjectsListParams struct {
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 	Query    *string   `form:"query,omitempty" json:"query,omitempty"`
+	Slug     *string   `form:"slug,omitempty" json:"slug,omitempty"`
 }
 
 // MarketplaceServiceProvidersProjectsListParamsField defines parameters for MarketplaceServiceProvidersProjectsList.
@@ -23666,6 +23834,7 @@ type ProjectsListParams struct {
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 	Query    *string   `form:"query,omitempty" json:"query,omitempty"`
+	Slug     *string   `form:"slug,omitempty" json:"slug,omitempty"`
 }
 
 // ProjectsListParamsField defines parameters for ProjectsList.
@@ -25443,6 +25612,18 @@ type AzureVirtualmachinesPartialUpdateJSONRequestBody = PatchedAzureVirtualMachi
 
 // AzureVirtualmachinesUpdateJSONRequestBody defines body for AzureVirtualmachinesUpdate for application/json ContentType.
 type AzureVirtualmachinesUpdateJSONRequestBody = AzureVirtualMachineRequest
+
+// BackendResourceRequestsCreateJSONRequestBody defines body for BackendResourceRequestsCreate for application/json ContentType.
+type BackendResourceRequestsCreateJSONRequestBody = BackendResourceReqRequest
+
+// BackendResourceRequestsSetErredJSONRequestBody defines body for BackendResourceRequestsSetErred for application/json ContentType.
+type BackendResourceRequestsSetErredJSONRequestBody = BackendResourceRequestSetErredRequest
+
+// BackendResourcesCreateJSONRequestBody defines body for BackendResourcesCreate for application/json ContentType.
+type BackendResourcesCreateJSONRequestBody = BackendResourceRequest
+
+// BackendResourcesImportResourceJSONRequestBody defines body for BackendResourcesImportResource for application/json ContentType.
+type BackendResourcesImportResourceJSONRequestBody = BackendResourceImportRequest
 
 // BroadcastMessageTemplatesCreateJSONRequestBody defines body for BroadcastMessageTemplatesCreate for application/json ContentType.
 type BroadcastMessageTemplatesCreateJSONRequestBody = MessageTemplateRequest
@@ -29530,6 +29711,47 @@ type ClientInterface interface {
 
 	// AzureVirtualmachinesUnlink request
 	AzureVirtualmachinesUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// BackendResourceRequestsList request
+	BackendResourceRequestsList(ctx context.Context, params *BackendResourceRequestsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// BackendResourceRequestsCreateWithBody request with any body
+	BackendResourceRequestsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	BackendResourceRequestsCreate(ctx context.Context, body BackendResourceRequestsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// BackendResourceRequestsRetrieve request
+	BackendResourceRequestsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// BackendResourceRequestsSetDone request
+	BackendResourceRequestsSetDone(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// BackendResourceRequestsSetErredWithBody request with any body
+	BackendResourceRequestsSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	BackendResourceRequestsSetErred(ctx context.Context, uuid openapi_types.UUID, body BackendResourceRequestsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// BackendResourceRequestsStartProcessing request
+	BackendResourceRequestsStartProcessing(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// BackendResourcesList request
+	BackendResourcesList(ctx context.Context, params *BackendResourcesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// BackendResourcesCreateWithBody request with any body
+	BackendResourcesCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	BackendResourcesCreate(ctx context.Context, body BackendResourcesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// BackendResourcesDestroy request
+	BackendResourcesDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// BackendResourcesRetrieve request
+	BackendResourcesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// BackendResourcesImportResourceWithBody request with any body
+	BackendResourcesImportResourceWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	BackendResourcesImportResource(ctx context.Context, uuid openapi_types.UUID, body BackendResourcesImportResourceJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// BillingTotalCostRetrieve request
 	BillingTotalCostRetrieve(ctx context.Context, params *BillingTotalCostRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -35395,6 +35617,186 @@ func (c *Client) AzureVirtualmachinesStop(ctx context.Context, uuid openapi_type
 
 func (c *Client) AzureVirtualmachinesUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewAzureVirtualmachinesUnlinkRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) BackendResourceRequestsList(ctx context.Context, params *BackendResourceRequestsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewBackendResourceRequestsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) BackendResourceRequestsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewBackendResourceRequestsCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) BackendResourceRequestsCreate(ctx context.Context, body BackendResourceRequestsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewBackendResourceRequestsCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) BackendResourceRequestsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewBackendResourceRequestsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) BackendResourceRequestsSetDone(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewBackendResourceRequestsSetDoneRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) BackendResourceRequestsSetErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewBackendResourceRequestsSetErredRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) BackendResourceRequestsSetErred(ctx context.Context, uuid openapi_types.UUID, body BackendResourceRequestsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewBackendResourceRequestsSetErredRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) BackendResourceRequestsStartProcessing(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewBackendResourceRequestsStartProcessingRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) BackendResourcesList(ctx context.Context, params *BackendResourcesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewBackendResourcesListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) BackendResourcesCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewBackendResourcesCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) BackendResourcesCreate(ctx context.Context, body BackendResourcesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewBackendResourcesCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) BackendResourcesDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewBackendResourcesDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) BackendResourcesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewBackendResourcesRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) BackendResourcesImportResourceWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewBackendResourcesImportResourceRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) BackendResourcesImportResource(ctx context.Context, uuid openapi_types.UUID, body BackendResourcesImportResourceJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewBackendResourcesImportResourceRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -60509,6 +60911,720 @@ func NewAzureVirtualmachinesUnlinkRequest(server string, uuid openapi_types.UUID
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewBackendResourceRequestsListRequest generates requests for BackendResourceRequestsList
+func NewBackendResourceRequestsListRequest(server string, params *BackendResourceRequestsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/backend-resource-requests/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Created != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "created", runtime.ParamLocationQuery, *params.Created); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Finished != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "finished", runtime.ParamLocationQuery, *params.Finished); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Modified != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "modified", runtime.ParamLocationQuery, *params.Modified); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Started != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "started", runtime.ParamLocationQuery, *params.Started); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "state", runtime.ParamLocationQuery, *params.State); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewBackendResourceRequestsCreateRequest calls the generic BackendResourceRequestsCreate builder with application/json body
+func NewBackendResourceRequestsCreateRequest(server string, body BackendResourceRequestsCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewBackendResourceRequestsCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewBackendResourceRequestsCreateRequestWithBody generates requests for BackendResourceRequestsCreate with any type of body
+func NewBackendResourceRequestsCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/backend-resource-requests/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewBackendResourceRequestsRetrieveRequest generates requests for BackendResourceRequestsRetrieve
+func NewBackendResourceRequestsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/backend-resource-requests/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewBackendResourceRequestsSetDoneRequest generates requests for BackendResourceRequestsSetDone
+func NewBackendResourceRequestsSetDoneRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/backend-resource-requests/%s/set_done/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewBackendResourceRequestsSetErredRequest calls the generic BackendResourceRequestsSetErred builder with application/json body
+func NewBackendResourceRequestsSetErredRequest(server string, uuid openapi_types.UUID, body BackendResourceRequestsSetErredJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewBackendResourceRequestsSetErredRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewBackendResourceRequestsSetErredRequestWithBody generates requests for BackendResourceRequestsSetErred with any type of body
+func NewBackendResourceRequestsSetErredRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/backend-resource-requests/%s/set_erred/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewBackendResourceRequestsStartProcessingRequest generates requests for BackendResourceRequestsStartProcessing
+func NewBackendResourceRequestsStartProcessingRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/backend-resource-requests/%s/start_processing/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewBackendResourcesListRequest generates requests for BackendResourcesList
+func NewBackendResourcesListRequest(server string, params *BackendResourcesListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/backend-resources/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.BackendId != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "backend_id", runtime.ParamLocationQuery, *params.BackendId); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Created != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "created", runtime.ParamLocationQuery, *params.Created); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Modified != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "modified", runtime.ParamLocationQuery, *params.Modified); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name", runtime.ParamLocationQuery, *params.Name); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.NameExact != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name_exact", runtime.ParamLocationQuery, *params.NameExact); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_uuid", runtime.ParamLocationQuery, *params.ProjectUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewBackendResourcesCreateRequest calls the generic BackendResourcesCreate builder with application/json body
+func NewBackendResourcesCreateRequest(server string, body BackendResourcesCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewBackendResourcesCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewBackendResourcesCreateRequestWithBody generates requests for BackendResourcesCreate with any type of body
+func NewBackendResourcesCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/backend-resources/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewBackendResourcesDestroyRequest generates requests for BackendResourcesDestroy
+func NewBackendResourcesDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/backend-resources/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewBackendResourcesRetrieveRequest generates requests for BackendResourcesRetrieve
+func NewBackendResourcesRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/backend-resources/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewBackendResourcesImportResourceRequest calls the generic BackendResourcesImportResource builder with application/json body
+func NewBackendResourcesImportResourceRequest(server string, uuid openapi_types.UUID, body BackendResourcesImportResourceJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewBackendResourcesImportResourceRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewBackendResourcesImportResourceRequestWithBody generates requests for BackendResourcesImportResource with any type of body
+func NewBackendResourcesImportResourceRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/backend-resources/%s/import_resource/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -94205,6 +95321,22 @@ func NewMarketplaceServiceProvidersCustomerProjectsListRequest(server string, se
 
 		}
 
+		if params.Slug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "slug", runtime.ParamLocationQuery, *params.Slug); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		queryURL.RawQuery = queryValues.Encode()
 	}
 
@@ -95912,6 +97044,22 @@ func NewMarketplaceServiceProvidersProjectsListRequest(server string, servicePro
 		if params.Query != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "query", runtime.ParamLocationQuery, *params.Query); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Slug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "slug", runtime.ParamLocationQuery, *params.Slug); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -114844,6 +115992,22 @@ func NewProjectsListRequest(server string, params *ProjectsListParams) (*http.Re
 		if params.Query != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "query", runtime.ParamLocationQuery, *params.Query); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Slug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "slug", runtime.ParamLocationQuery, *params.Slug); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -139420,6 +140584,47 @@ type ClientWithResponsesInterface interface {
 	// AzureVirtualmachinesUnlinkWithResponse request
 	AzureVirtualmachinesUnlinkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AzureVirtualmachinesUnlinkResponse, error)
 
+	// BackendResourceRequestsListWithResponse request
+	BackendResourceRequestsListWithResponse(ctx context.Context, params *BackendResourceRequestsListParams, reqEditors ...RequestEditorFn) (*BackendResourceRequestsListResponse, error)
+
+	// BackendResourceRequestsCreateWithBodyWithResponse request with any body
+	BackendResourceRequestsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*BackendResourceRequestsCreateResponse, error)
+
+	BackendResourceRequestsCreateWithResponse(ctx context.Context, body BackendResourceRequestsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*BackendResourceRequestsCreateResponse, error)
+
+	// BackendResourceRequestsRetrieveWithResponse request
+	BackendResourceRequestsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*BackendResourceRequestsRetrieveResponse, error)
+
+	// BackendResourceRequestsSetDoneWithResponse request
+	BackendResourceRequestsSetDoneWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*BackendResourceRequestsSetDoneResponse, error)
+
+	// BackendResourceRequestsSetErredWithBodyWithResponse request with any body
+	BackendResourceRequestsSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*BackendResourceRequestsSetErredResponse, error)
+
+	BackendResourceRequestsSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body BackendResourceRequestsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*BackendResourceRequestsSetErredResponse, error)
+
+	// BackendResourceRequestsStartProcessingWithResponse request
+	BackendResourceRequestsStartProcessingWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*BackendResourceRequestsStartProcessingResponse, error)
+
+	// BackendResourcesListWithResponse request
+	BackendResourcesListWithResponse(ctx context.Context, params *BackendResourcesListParams, reqEditors ...RequestEditorFn) (*BackendResourcesListResponse, error)
+
+	// BackendResourcesCreateWithBodyWithResponse request with any body
+	BackendResourcesCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*BackendResourcesCreateResponse, error)
+
+	BackendResourcesCreateWithResponse(ctx context.Context, body BackendResourcesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*BackendResourcesCreateResponse, error)
+
+	// BackendResourcesDestroyWithResponse request
+	BackendResourcesDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*BackendResourcesDestroyResponse, error)
+
+	// BackendResourcesRetrieveWithResponse request
+	BackendResourcesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*BackendResourcesRetrieveResponse, error)
+
+	// BackendResourcesImportResourceWithBodyWithResponse request with any body
+	BackendResourcesImportResourceWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*BackendResourcesImportResourceResponse, error)
+
+	BackendResourcesImportResourceWithResponse(ctx context.Context, uuid openapi_types.UUID, body BackendResourcesImportResourceJSONRequestBody, reqEditors ...RequestEditorFn) (*BackendResourcesImportResourceResponse, error)
+
 	// BillingTotalCostRetrieveWithResponse request
 	BillingTotalCostRetrieveWithResponse(ctx context.Context, params *BillingTotalCostRetrieveParams, reqEditors ...RequestEditorFn) (*BillingTotalCostRetrieveResponse, error)
 
@@ -145945,6 +147150,247 @@ func (r AzureVirtualmachinesUnlinkResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r AzureVirtualmachinesUnlinkResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type BackendResourceRequestsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]BackendResourceReq
+}
+
+// Status returns HTTPResponse.Status
+func (r BackendResourceRequestsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r BackendResourceRequestsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type BackendResourceRequestsCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *BackendResourceReq
+}
+
+// Status returns HTTPResponse.Status
+func (r BackendResourceRequestsCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r BackendResourceRequestsCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type BackendResourceRequestsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *BackendResourceReq
+}
+
+// Status returns HTTPResponse.Status
+func (r BackendResourceRequestsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r BackendResourceRequestsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type BackendResourceRequestsSetDoneResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *map[string]interface{}
+}
+
+// Status returns HTTPResponse.Status
+func (r BackendResourceRequestsSetDoneResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r BackendResourceRequestsSetDoneResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type BackendResourceRequestsSetErredResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *map[string]interface{}
+}
+
+// Status returns HTTPResponse.Status
+func (r BackendResourceRequestsSetErredResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r BackendResourceRequestsSetErredResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type BackendResourceRequestsStartProcessingResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *map[string]interface{}
+}
+
+// Status returns HTTPResponse.Status
+func (r BackendResourceRequestsStartProcessingResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r BackendResourceRequestsStartProcessingResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type BackendResourcesListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]BackendResource
+}
+
+// Status returns HTTPResponse.Status
+func (r BackendResourcesListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r BackendResourcesListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type BackendResourcesCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *BackendResource
+}
+
+// Status returns HTTPResponse.Status
+func (r BackendResourcesCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r BackendResourcesCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type BackendResourcesDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r BackendResourcesDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r BackendResourcesDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type BackendResourcesRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *BackendResource
+}
+
+// Status returns HTTPResponse.Status
+func (r BackendResourcesRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r BackendResourcesRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type BackendResourcesImportResourceResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *Resource
+}
+
+// Status returns HTTPResponse.Status
+func (r BackendResourcesImportResourceResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r BackendResourcesImportResourceResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -170859,6 +172305,137 @@ func (c *ClientWithResponses) AzureVirtualmachinesUnlinkWithResponse(ctx context
 	return ParseAzureVirtualmachinesUnlinkResponse(rsp)
 }
 
+// BackendResourceRequestsListWithResponse request returning *BackendResourceRequestsListResponse
+func (c *ClientWithResponses) BackendResourceRequestsListWithResponse(ctx context.Context, params *BackendResourceRequestsListParams, reqEditors ...RequestEditorFn) (*BackendResourceRequestsListResponse, error) {
+	rsp, err := c.BackendResourceRequestsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseBackendResourceRequestsListResponse(rsp)
+}
+
+// BackendResourceRequestsCreateWithBodyWithResponse request with arbitrary body returning *BackendResourceRequestsCreateResponse
+func (c *ClientWithResponses) BackendResourceRequestsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*BackendResourceRequestsCreateResponse, error) {
+	rsp, err := c.BackendResourceRequestsCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseBackendResourceRequestsCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) BackendResourceRequestsCreateWithResponse(ctx context.Context, body BackendResourceRequestsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*BackendResourceRequestsCreateResponse, error) {
+	rsp, err := c.BackendResourceRequestsCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseBackendResourceRequestsCreateResponse(rsp)
+}
+
+// BackendResourceRequestsRetrieveWithResponse request returning *BackendResourceRequestsRetrieveResponse
+func (c *ClientWithResponses) BackendResourceRequestsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*BackendResourceRequestsRetrieveResponse, error) {
+	rsp, err := c.BackendResourceRequestsRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseBackendResourceRequestsRetrieveResponse(rsp)
+}
+
+// BackendResourceRequestsSetDoneWithResponse request returning *BackendResourceRequestsSetDoneResponse
+func (c *ClientWithResponses) BackendResourceRequestsSetDoneWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*BackendResourceRequestsSetDoneResponse, error) {
+	rsp, err := c.BackendResourceRequestsSetDone(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseBackendResourceRequestsSetDoneResponse(rsp)
+}
+
+// BackendResourceRequestsSetErredWithBodyWithResponse request with arbitrary body returning *BackendResourceRequestsSetErredResponse
+func (c *ClientWithResponses) BackendResourceRequestsSetErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*BackendResourceRequestsSetErredResponse, error) {
+	rsp, err := c.BackendResourceRequestsSetErredWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseBackendResourceRequestsSetErredResponse(rsp)
+}
+
+func (c *ClientWithResponses) BackendResourceRequestsSetErredWithResponse(ctx context.Context, uuid openapi_types.UUID, body BackendResourceRequestsSetErredJSONRequestBody, reqEditors ...RequestEditorFn) (*BackendResourceRequestsSetErredResponse, error) {
+	rsp, err := c.BackendResourceRequestsSetErred(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseBackendResourceRequestsSetErredResponse(rsp)
+}
+
+// BackendResourceRequestsStartProcessingWithResponse request returning *BackendResourceRequestsStartProcessingResponse
+func (c *ClientWithResponses) BackendResourceRequestsStartProcessingWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*BackendResourceRequestsStartProcessingResponse, error) {
+	rsp, err := c.BackendResourceRequestsStartProcessing(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseBackendResourceRequestsStartProcessingResponse(rsp)
+}
+
+// BackendResourcesListWithResponse request returning *BackendResourcesListResponse
+func (c *ClientWithResponses) BackendResourcesListWithResponse(ctx context.Context, params *BackendResourcesListParams, reqEditors ...RequestEditorFn) (*BackendResourcesListResponse, error) {
+	rsp, err := c.BackendResourcesList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseBackendResourcesListResponse(rsp)
+}
+
+// BackendResourcesCreateWithBodyWithResponse request with arbitrary body returning *BackendResourcesCreateResponse
+func (c *ClientWithResponses) BackendResourcesCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*BackendResourcesCreateResponse, error) {
+	rsp, err := c.BackendResourcesCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseBackendResourcesCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) BackendResourcesCreateWithResponse(ctx context.Context, body BackendResourcesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*BackendResourcesCreateResponse, error) {
+	rsp, err := c.BackendResourcesCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseBackendResourcesCreateResponse(rsp)
+}
+
+// BackendResourcesDestroyWithResponse request returning *BackendResourcesDestroyResponse
+func (c *ClientWithResponses) BackendResourcesDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*BackendResourcesDestroyResponse, error) {
+	rsp, err := c.BackendResourcesDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseBackendResourcesDestroyResponse(rsp)
+}
+
+// BackendResourcesRetrieveWithResponse request returning *BackendResourcesRetrieveResponse
+func (c *ClientWithResponses) BackendResourcesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*BackendResourcesRetrieveResponse, error) {
+	rsp, err := c.BackendResourcesRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseBackendResourcesRetrieveResponse(rsp)
+}
+
+// BackendResourcesImportResourceWithBodyWithResponse request with arbitrary body returning *BackendResourcesImportResourceResponse
+func (c *ClientWithResponses) BackendResourcesImportResourceWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*BackendResourcesImportResourceResponse, error) {
+	rsp, err := c.BackendResourcesImportResourceWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseBackendResourcesImportResourceResponse(rsp)
+}
+
+func (c *ClientWithResponses) BackendResourcesImportResourceWithResponse(ctx context.Context, uuid openapi_types.UUID, body BackendResourcesImportResourceJSONRequestBody, reqEditors ...RequestEditorFn) (*BackendResourcesImportResourceResponse, error) {
+	rsp, err := c.BackendResourcesImportResource(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseBackendResourcesImportResourceResponse(rsp)
+}
+
 // BillingTotalCostRetrieveWithResponse request returning *BillingTotalCostRetrieveResponse
 func (c *ClientWithResponses) BillingTotalCostRetrieveWithResponse(ctx context.Context, params *BillingTotalCostRetrieveParams, reqEditors ...RequestEditorFn) (*BillingTotalCostRetrieveResponse, error) {
 	rsp, err := c.BillingTotalCostRetrieve(ctx, params, reqEditors...)
@@ -186367,6 +187944,282 @@ func ParseAzureVirtualmachinesUnlinkResponse(rsp *http.Response) (*AzureVirtualm
 	response := &AzureVirtualmachinesUnlinkResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseBackendResourceRequestsListResponse parses an HTTP response from a BackendResourceRequestsListWithResponse call
+func ParseBackendResourceRequestsListResponse(rsp *http.Response) (*BackendResourceRequestsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &BackendResourceRequestsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []BackendResourceReq
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseBackendResourceRequestsCreateResponse parses an HTTP response from a BackendResourceRequestsCreateWithResponse call
+func ParseBackendResourceRequestsCreateResponse(rsp *http.Response) (*BackendResourceRequestsCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &BackendResourceRequestsCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest BackendResourceReq
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseBackendResourceRequestsRetrieveResponse parses an HTTP response from a BackendResourceRequestsRetrieveWithResponse call
+func ParseBackendResourceRequestsRetrieveResponse(rsp *http.Response) (*BackendResourceRequestsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &BackendResourceRequestsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest BackendResourceReq
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseBackendResourceRequestsSetDoneResponse parses an HTTP response from a BackendResourceRequestsSetDoneWithResponse call
+func ParseBackendResourceRequestsSetDoneResponse(rsp *http.Response) (*BackendResourceRequestsSetDoneResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &BackendResourceRequestsSetDoneResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest map[string]interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseBackendResourceRequestsSetErredResponse parses an HTTP response from a BackendResourceRequestsSetErredWithResponse call
+func ParseBackendResourceRequestsSetErredResponse(rsp *http.Response) (*BackendResourceRequestsSetErredResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &BackendResourceRequestsSetErredResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest map[string]interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseBackendResourceRequestsStartProcessingResponse parses an HTTP response from a BackendResourceRequestsStartProcessingWithResponse call
+func ParseBackendResourceRequestsStartProcessingResponse(rsp *http.Response) (*BackendResourceRequestsStartProcessingResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &BackendResourceRequestsStartProcessingResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest map[string]interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseBackendResourcesListResponse parses an HTTP response from a BackendResourcesListWithResponse call
+func ParseBackendResourcesListResponse(rsp *http.Response) (*BackendResourcesListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &BackendResourcesListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []BackendResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseBackendResourcesCreateResponse parses an HTTP response from a BackendResourcesCreateWithResponse call
+func ParseBackendResourcesCreateResponse(rsp *http.Response) (*BackendResourcesCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &BackendResourcesCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest BackendResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseBackendResourcesDestroyResponse parses an HTTP response from a BackendResourcesDestroyWithResponse call
+func ParseBackendResourcesDestroyResponse(rsp *http.Response) (*BackendResourcesDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &BackendResourcesDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseBackendResourcesRetrieveResponse parses an HTTP response from a BackendResourcesRetrieveWithResponse call
+func ParseBackendResourcesRetrieveResponse(rsp *http.Response) (*BackendResourcesRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &BackendResourcesRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest BackendResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseBackendResourcesImportResourceResponse parses an HTTP response from a BackendResourcesImportResourceWithResponse call
+func ParseBackendResourcesImportResourceResponse(rsp *http.Response) (*BackendResourcesImportResourceResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &BackendResourcesImportResourceResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest Resource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
