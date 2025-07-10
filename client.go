@@ -651,6 +651,14 @@ const (
 	UNAVAILABLE  GuestPowerStateEnum = "UNAVAILABLE"
 )
 
+// Defines values for ImpactLevelEnum.
+const (
+	ImpactLevelEnumN1 ImpactLevelEnum = 1
+	ImpactLevelEnumN2 ImpactLevelEnum = 2
+	ImpactLevelEnumN3 ImpactLevelEnum = 3
+	ImpactLevelEnumN4 ImpactLevelEnum = 4
+)
+
 // Defines values for InvitationState.
 const (
 	InvitationStateAccepted  InvitationState = "accepted"
@@ -700,6 +708,24 @@ const (
 	LimitPeriodEnumAnnual LimitPeriodEnum = "annual"
 	LimitPeriodEnumMonth  LimitPeriodEnum = "month"
 	LimitPeriodEnumTotal  LimitPeriodEnum = "total"
+)
+
+// Defines values for MaintenanceAnnouncementStateEnum.
+const (
+	MaintenanceAnnouncementStateEnumN1 MaintenanceAnnouncementStateEnum = 1
+	MaintenanceAnnouncementStateEnumN2 MaintenanceAnnouncementStateEnum = 2
+	MaintenanceAnnouncementStateEnumN3 MaintenanceAnnouncementStateEnum = 3
+	MaintenanceAnnouncementStateEnumN4 MaintenanceAnnouncementStateEnum = 4
+	MaintenanceAnnouncementStateEnumN5 MaintenanceAnnouncementStateEnum = 5
+)
+
+// Defines values for MaintenanceTypeEnum.
+const (
+	MaintenanceTypeEnumN1 MaintenanceTypeEnum = 1
+	MaintenanceTypeEnumN2 MaintenanceTypeEnum = 2
+	MaintenanceTypeEnumN3 MaintenanceTypeEnum = 3
+	MaintenanceTypeEnumN4 MaintenanceTypeEnum = 4
+	MaintenanceTypeEnumN5 MaintenanceTypeEnum = 5
 )
 
 // Defines values for MinimalConsumptionLogicEnum.
@@ -4545,12 +4571,12 @@ const (
 
 // Defines values for MarketplaceRobotAccountsListParamsState.
 const (
-	MarketplaceRobotAccountsListParamsStateN1 MarketplaceRobotAccountsListParamsState = 1
-	MarketplaceRobotAccountsListParamsStateN2 MarketplaceRobotAccountsListParamsState = 2
-	MarketplaceRobotAccountsListParamsStateN3 MarketplaceRobotAccountsListParamsState = 3
-	MarketplaceRobotAccountsListParamsStateN4 MarketplaceRobotAccountsListParamsState = 4
-	MarketplaceRobotAccountsListParamsStateN5 MarketplaceRobotAccountsListParamsState = 5
-	MarketplaceRobotAccountsListParamsStateN6 MarketplaceRobotAccountsListParamsState = 6
+	N1 MarketplaceRobotAccountsListParamsState = 1
+	N2 MarketplaceRobotAccountsListParamsState = 2
+	N3 MarketplaceRobotAccountsListParamsState = 3
+	N4 MarketplaceRobotAccountsListParamsState = 4
+	N5 MarketplaceRobotAccountsListParamsState = 5
+	N6 MarketplaceRobotAccountsListParamsState = 6
 )
 
 // Defines values for MarketplaceScreenshotsListParamsO.
@@ -9826,6 +9852,8 @@ type ConstanceSettings struct {
 	KEYCLOAKICON                                   *string              `json:"KEYCLOAK_ICON"`
 	LANGUAGECHOICES                                *string              `json:"LANGUAGE_CHOICES,omitempty"`
 	LOGINLOGO                                      *string              `json:"LOGIN_LOGO"`
+	MAINTENANCEANNOUNCEMENTNOTIFYBEFOREMINUTES     *int                 `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_BEFORE_MINUTES,omitempty"`
+	MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM            *[]string            `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_SYSTEM,omitempty"`
 	MARKETPLACEHEROIMAGE                           *string              `json:"MARKETPLACE_HERO_IMAGE"`
 	MARKETPLACELANDINGPAGE                         *string              `json:"MARKETPLACE_LANDING_PAGE,omitempty"`
 	NOTIFYABOUTRESOURCECHANGE                      *bool                `json:"NOTIFY_ABOUT_RESOURCE_CHANGE,omitempty"`
@@ -9960,6 +9988,8 @@ type ConstanceSettingsRequest struct {
 	KEYCLOAKICON                                   *openapi_types.File  `json:"KEYCLOAK_ICON"`
 	LANGUAGECHOICES                                *string              `json:"LANGUAGE_CHOICES,omitempty"`
 	LOGINLOGO                                      *openapi_types.File  `json:"LOGIN_LOGO"`
+	MAINTENANCEANNOUNCEMENTNOTIFYBEFOREMINUTES     *int                 `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_BEFORE_MINUTES,omitempty"`
+	MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM            *[]string            `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_SYSTEM,omitempty"`
 	MARKETPLACEHEROIMAGE                           *openapi_types.File  `json:"MARKETPLACE_HERO_IMAGE"`
 	MARKETPLACELANDINGPAGE                         *string              `json:"MARKETPLACE_LANDING_PAGE,omitempty"`
 	NOTIFYABOUTRESOURCECHANGE                      *bool                `json:"NOTIFY_ABOUT_RESOURCE_CHANGE,omitempty"`
@@ -11012,6 +11042,9 @@ type ImageUploadResponse struct {
 	Status  string `json:"status"`
 }
 
+// ImpactLevelEnum defines model for ImpactLevelEnum.
+type ImpactLevelEnum int
+
 // ImportResourceRequest defines model for ImportResourceRequest.
 type ImportResourceRequest struct {
 	BackendId string              `json:"backend_id"`
@@ -11543,6 +11576,131 @@ type LinkToInvoiceRequest struct {
 type Logout struct {
 	LogoutUrl *string `json:"logout_url,omitempty"`
 }
+
+// MaintenanceAnnouncement defines model for MaintenanceAnnouncement.
+type MaintenanceAnnouncement struct {
+	// ActualEnd When the maintenance actually completed
+	ActualEnd *time.Time `json:"actual_end"`
+
+	// ActualStart When the maintenance actually began
+	ActualStart       *time.Time                         `json:"actual_start"`
+	AffectedOfferings *[]MaintenanceAnnouncementOffering `json:"affected_offerings,omitempty"`
+	CreatedBy         *string                            `json:"created_by"`
+
+	// MaintenanceType Type of maintenance being performed
+	MaintenanceType *MaintenanceTypeEnum `json:"maintenance_type,omitempty"`
+	Message         *string              `json:"message,omitempty"`
+	Name            string               `json:"name"`
+
+	// ScheduledEnd When the maintenance is scheduled to complete
+	ScheduledEnd time.Time `json:"scheduled_end"`
+
+	// ScheduledStart When the maintenance is scheduled to begin
+	ScheduledStart time.Time `json:"scheduled_start"`
+
+	// ServiceProvider Service provider announcing the maintenance
+	ServiceProvider string                            `json:"service_provider"`
+	State           *MaintenanceAnnouncementStateEnum `json:"state,omitempty"`
+	Url             *string                           `json:"url,omitempty"`
+	Uuid            *openapi_types.UUID               `json:"uuid,omitempty"`
+}
+
+// MaintenanceAnnouncementOffering defines model for MaintenanceAnnouncementOffering.
+type MaintenanceAnnouncementOffering struct {
+	// ImpactDescription Specific description of how this offering will be affected
+	ImpactDescription *string `json:"impact_description,omitempty"`
+
+	// ImpactLevel Expected impact on this offering
+	ImpactLevel *ImpactLevelEnum    `json:"impact_level,omitempty"`
+	Maintenance string              `json:"maintenance"`
+	Offering    string              `json:"offering"`
+	Url         *string             `json:"url,omitempty"`
+	Uuid        *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// MaintenanceAnnouncementOfferingRequest defines model for MaintenanceAnnouncementOfferingRequest.
+type MaintenanceAnnouncementOfferingRequest struct {
+	// ImpactDescription Specific description of how this offering will be affected
+	ImpactDescription *string `json:"impact_description,omitempty"`
+
+	// ImpactLevel Expected impact on this offering
+	ImpactLevel *ImpactLevelEnum `json:"impact_level,omitempty"`
+	Maintenance string           `json:"maintenance"`
+	Offering    string           `json:"offering"`
+}
+
+// MaintenanceAnnouncementOfferingTemplate defines model for MaintenanceAnnouncementOfferingTemplate.
+type MaintenanceAnnouncementOfferingTemplate struct {
+	// ImpactDescription Specific description of how this offering will be affected
+	ImpactDescription *string `json:"impact_description,omitempty"`
+
+	// ImpactLevel Expected impact on this offering
+	ImpactLevel         *ImpactLevelEnum    `json:"impact_level,omitempty"`
+	MaintenanceTemplate string              `json:"maintenance_template"`
+	Offering            string              `json:"offering"`
+	Url                 *string             `json:"url,omitempty"`
+	Uuid                *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// MaintenanceAnnouncementOfferingTemplateRequest defines model for MaintenanceAnnouncementOfferingTemplateRequest.
+type MaintenanceAnnouncementOfferingTemplateRequest struct {
+	// ImpactDescription Specific description of how this offering will be affected
+	ImpactDescription *string `json:"impact_description,omitempty"`
+
+	// ImpactLevel Expected impact on this offering
+	ImpactLevel         *ImpactLevelEnum `json:"impact_level,omitempty"`
+	MaintenanceTemplate string           `json:"maintenance_template"`
+	Offering            string           `json:"offering"`
+}
+
+// MaintenanceAnnouncementRequest defines model for MaintenanceAnnouncementRequest.
+type MaintenanceAnnouncementRequest struct {
+	// MaintenanceType Type of maintenance being performed
+	MaintenanceType *MaintenanceTypeEnum `json:"maintenance_type,omitempty"`
+	Message         *string              `json:"message,omitempty"`
+	Name            string               `json:"name"`
+
+	// ScheduledEnd When the maintenance is scheduled to complete
+	ScheduledEnd time.Time `json:"scheduled_end"`
+
+	// ScheduledStart When the maintenance is scheduled to begin
+	ScheduledStart time.Time `json:"scheduled_start"`
+
+	// ServiceProvider Service provider announcing the maintenance
+	ServiceProvider string `json:"service_provider"`
+}
+
+// MaintenanceAnnouncementStateEnum defines model for MaintenanceAnnouncementStateEnum.
+type MaintenanceAnnouncementStateEnum int
+
+// MaintenanceAnnouncementTemplate defines model for MaintenanceAnnouncementTemplate.
+type MaintenanceAnnouncementTemplate struct {
+	AffectedOfferings *[]MaintenanceAnnouncementOffering `json:"affected_offerings,omitempty"`
+
+	// MaintenanceType Type of maintenance being performed
+	MaintenanceType *MaintenanceTypeEnum `json:"maintenance_type,omitempty"`
+	Message         *string              `json:"message,omitempty"`
+	Name            string               `json:"name"`
+
+	// ServiceProvider Service provider announcing the maintenance
+	ServiceProvider string              `json:"service_provider"`
+	Url             *string             `json:"url,omitempty"`
+	Uuid            *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// MaintenanceAnnouncementTemplateRequest defines model for MaintenanceAnnouncementTemplateRequest.
+type MaintenanceAnnouncementTemplateRequest struct {
+	// MaintenanceType Type of maintenance being performed
+	MaintenanceType *MaintenanceTypeEnum `json:"maintenance_type,omitempty"`
+	Message         *string              `json:"message,omitempty"`
+	Name            string               `json:"name"`
+
+	// ServiceProvider Service provider announcing the maintenance
+	ServiceProvider string `json:"service_provider"`
+}
+
+// MaintenanceTypeEnum defines model for MaintenanceTypeEnum.
+type MaintenanceTypeEnum int
 
 // Mapping defines model for Mapping.
 type Mapping struct {
@@ -12611,7 +12769,7 @@ type OfferingComponent struct {
 	BillingType       *BillingTypeEnum               `json:"billing_type,omitempty"`
 	DefaultLimit      *int                           `json:"default_limit"`
 	Description       *string                        `json:"description,omitempty"`
-	Factor            *int                           `json:"factor,omitempty"`
+	Factor            *int                           `json:"factor"`
 	IsBoolean         *bool                          `json:"is_boolean,omitempty"`
 	IsBuiltin         *bool                          `json:"is_builtin,omitempty"`
 	LimitAmount       *int                           `json:"limit_amount"`
@@ -14830,6 +14988,56 @@ type PatchedKeycloakUserGroupMembershipRequest struct {
 // PatchedLexisLinkRequest defines model for PatchedLexisLinkRequest.
 type PatchedLexisLinkRequest struct {
 	HeappeProjectId *int `json:"heappe_project_id"`
+}
+
+// PatchedMaintenanceAnnouncementOfferingRequest defines model for PatchedMaintenanceAnnouncementOfferingRequest.
+type PatchedMaintenanceAnnouncementOfferingRequest struct {
+	// ImpactDescription Specific description of how this offering will be affected
+	ImpactDescription *string `json:"impact_description,omitempty"`
+
+	// ImpactLevel Expected impact on this offering
+	ImpactLevel *ImpactLevelEnum `json:"impact_level,omitempty"`
+	Maintenance *string          `json:"maintenance,omitempty"`
+	Offering    *string          `json:"offering,omitempty"`
+}
+
+// PatchedMaintenanceAnnouncementOfferingTemplateRequest defines model for PatchedMaintenanceAnnouncementOfferingTemplateRequest.
+type PatchedMaintenanceAnnouncementOfferingTemplateRequest struct {
+	// ImpactDescription Specific description of how this offering will be affected
+	ImpactDescription *string `json:"impact_description,omitempty"`
+
+	// ImpactLevel Expected impact on this offering
+	ImpactLevel         *ImpactLevelEnum `json:"impact_level,omitempty"`
+	MaintenanceTemplate *string          `json:"maintenance_template,omitempty"`
+	Offering            *string          `json:"offering,omitempty"`
+}
+
+// PatchedMaintenanceAnnouncementRequest defines model for PatchedMaintenanceAnnouncementRequest.
+type PatchedMaintenanceAnnouncementRequest struct {
+	// MaintenanceType Type of maintenance being performed
+	MaintenanceType *MaintenanceTypeEnum `json:"maintenance_type,omitempty"`
+	Message         *string              `json:"message,omitempty"`
+	Name            *string              `json:"name,omitempty"`
+
+	// ScheduledEnd When the maintenance is scheduled to complete
+	ScheduledEnd *time.Time `json:"scheduled_end,omitempty"`
+
+	// ScheduledStart When the maintenance is scheduled to begin
+	ScheduledStart *time.Time `json:"scheduled_start,omitempty"`
+
+	// ServiceProvider Service provider announcing the maintenance
+	ServiceProvider *string `json:"service_provider,omitempty"`
+}
+
+// PatchedMaintenanceAnnouncementTemplateRequest defines model for PatchedMaintenanceAnnouncementTemplateRequest.
+type PatchedMaintenanceAnnouncementTemplateRequest struct {
+	// MaintenanceType Type of maintenance being performed
+	MaintenanceType *MaintenanceTypeEnum `json:"maintenance_type,omitempty"`
+	Message         *string              `json:"message,omitempty"`
+	Name            *string              `json:"name,omitempty"`
+
+	// ServiceProvider Service provider announcing the maintenance
+	ServiceProvider *string `json:"service_provider,omitempty"`
 }
 
 // PatchedMarketplaceCategoryRequest defines model for PatchedMarketplaceCategoryRequest.
@@ -18358,6 +18566,38 @@ type TotalCustomerCost struct {
 	Total *float64 `json:"total,omitempty"`
 }
 
+// UpdateOfferingComponentRequest defines model for UpdateOfferingComponentRequest.
+type UpdateOfferingComponentRequest struct {
+	ArticleCode       *string                                     `json:"article_code,omitempty"`
+	BillingType       BillingTypeEnum                             `json:"billing_type"`
+	DefaultLimit      *int                                        `json:"default_limit"`
+	Description       *string                                     `json:"description,omitempty"`
+	IsBoolean         *bool                                       `json:"is_boolean,omitempty"`
+	LimitAmount       *int                                        `json:"limit_amount"`
+	LimitPeriod       *UpdateOfferingComponentRequest_LimitPeriod `json:"limit_period"`
+	MaxAvailableLimit *int                                        `json:"max_available_limit"`
+	MaxValue          *int                                        `json:"max_value"`
+
+	// MeasuredUnit Unit of measurement, for example, GB.
+	MeasuredUnit *string `json:"measured_unit,omitempty"`
+	MinValue     *int    `json:"min_value"`
+
+	// Name Display name for the measured unit, for example, Floating IP.
+	Name string `json:"name"`
+
+	// Type Unique internal name of the measured unit, for example floating_ip.
+	Type string `json:"type"`
+
+	// UnitFactor The conversion factor from backend units to measured_unit
+	UnitFactor *int               `json:"unit_factor,omitempty"`
+	Uuid       openapi_types.UUID `json:"uuid"`
+}
+
+// UpdateOfferingComponentRequest_LimitPeriod defines model for UpdateOfferingComponentRequest.LimitPeriod.
+type UpdateOfferingComponentRequest_LimitPeriod struct {
+	union json.RawMessage
+}
+
 // User defines model for User.
 type User struct {
 	// Affiliations Person's affiliation within organization such as student, faculty, staff.
@@ -20929,6 +21169,42 @@ type MarketplaceIntegrationStatusesListParamsO string
 
 // MarketplaceIntegrationStatusesListParamsStatus defines parameters for MarketplaceIntegrationStatusesList.
 type MarketplaceIntegrationStatusesListParamsStatus string
+
+// MarketplaceMaintenanceAnnouncementOfferingsListParams defines parameters for MarketplaceMaintenanceAnnouncementOfferingsList.
+type MarketplaceMaintenanceAnnouncementOfferingsListParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// MarketplaceMaintenanceAnnouncementTemplateOfferingsListParams defines parameters for MarketplaceMaintenanceAnnouncementTemplateOfferingsList.
+type MarketplaceMaintenanceAnnouncementTemplateOfferingsListParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// MarketplaceMaintenanceAnnouncementsTemplateListParams defines parameters for MarketplaceMaintenanceAnnouncementsTemplateList.
+type MarketplaceMaintenanceAnnouncementsTemplateListParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// MarketplaceMaintenanceAnnouncementsListParams defines parameters for MarketplaceMaintenanceAnnouncementsList.
+type MarketplaceMaintenanceAnnouncementsListParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
 
 // MarketplaceOfferingEstimatedCostPoliciesListParams defines parameters for MarketplaceOfferingEstimatedCostPoliciesList.
 type MarketplaceOfferingEstimatedCostPoliciesListParams struct {
@@ -25880,6 +26156,42 @@ type MarketplaceCustomerServiceAccountsPartialUpdateJSONRequestBody = PatchedCus
 // MarketplaceCustomerServiceAccountsUpdateJSONRequestBody defines body for MarketplaceCustomerServiceAccountsUpdate for application/json ContentType.
 type MarketplaceCustomerServiceAccountsUpdateJSONRequestBody = CustomerServiceAccountRequest
 
+// MarketplaceMaintenanceAnnouncementOfferingsCreateJSONRequestBody defines body for MarketplaceMaintenanceAnnouncementOfferingsCreate for application/json ContentType.
+type MarketplaceMaintenanceAnnouncementOfferingsCreateJSONRequestBody = MaintenanceAnnouncementOfferingRequest
+
+// MarketplaceMaintenanceAnnouncementOfferingsPartialUpdateJSONRequestBody defines body for MarketplaceMaintenanceAnnouncementOfferingsPartialUpdate for application/json ContentType.
+type MarketplaceMaintenanceAnnouncementOfferingsPartialUpdateJSONRequestBody = PatchedMaintenanceAnnouncementOfferingRequest
+
+// MarketplaceMaintenanceAnnouncementOfferingsUpdateJSONRequestBody defines body for MarketplaceMaintenanceAnnouncementOfferingsUpdate for application/json ContentType.
+type MarketplaceMaintenanceAnnouncementOfferingsUpdateJSONRequestBody = MaintenanceAnnouncementOfferingRequest
+
+// MarketplaceMaintenanceAnnouncementTemplateOfferingsCreateJSONRequestBody defines body for MarketplaceMaintenanceAnnouncementTemplateOfferingsCreate for application/json ContentType.
+type MarketplaceMaintenanceAnnouncementTemplateOfferingsCreateJSONRequestBody = MaintenanceAnnouncementOfferingTemplateRequest
+
+// MarketplaceMaintenanceAnnouncementTemplateOfferingsPartialUpdateJSONRequestBody defines body for MarketplaceMaintenanceAnnouncementTemplateOfferingsPartialUpdate for application/json ContentType.
+type MarketplaceMaintenanceAnnouncementTemplateOfferingsPartialUpdateJSONRequestBody = PatchedMaintenanceAnnouncementOfferingTemplateRequest
+
+// MarketplaceMaintenanceAnnouncementTemplateOfferingsUpdateJSONRequestBody defines body for MarketplaceMaintenanceAnnouncementTemplateOfferingsUpdate for application/json ContentType.
+type MarketplaceMaintenanceAnnouncementTemplateOfferingsUpdateJSONRequestBody = MaintenanceAnnouncementOfferingTemplateRequest
+
+// MarketplaceMaintenanceAnnouncementsTemplateCreateJSONRequestBody defines body for MarketplaceMaintenanceAnnouncementsTemplateCreate for application/json ContentType.
+type MarketplaceMaintenanceAnnouncementsTemplateCreateJSONRequestBody = MaintenanceAnnouncementTemplateRequest
+
+// MarketplaceMaintenanceAnnouncementsTemplatePartialUpdateJSONRequestBody defines body for MarketplaceMaintenanceAnnouncementsTemplatePartialUpdate for application/json ContentType.
+type MarketplaceMaintenanceAnnouncementsTemplatePartialUpdateJSONRequestBody = PatchedMaintenanceAnnouncementTemplateRequest
+
+// MarketplaceMaintenanceAnnouncementsTemplateUpdateJSONRequestBody defines body for MarketplaceMaintenanceAnnouncementsTemplateUpdate for application/json ContentType.
+type MarketplaceMaintenanceAnnouncementsTemplateUpdateJSONRequestBody = MaintenanceAnnouncementTemplateRequest
+
+// MarketplaceMaintenanceAnnouncementsCreateJSONRequestBody defines body for MarketplaceMaintenanceAnnouncementsCreate for application/json ContentType.
+type MarketplaceMaintenanceAnnouncementsCreateJSONRequestBody = MaintenanceAnnouncementRequest
+
+// MarketplaceMaintenanceAnnouncementsPartialUpdateJSONRequestBody defines body for MarketplaceMaintenanceAnnouncementsPartialUpdate for application/json ContentType.
+type MarketplaceMaintenanceAnnouncementsPartialUpdateJSONRequestBody = PatchedMaintenanceAnnouncementRequest
+
+// MarketplaceMaintenanceAnnouncementsUpdateJSONRequestBody defines body for MarketplaceMaintenanceAnnouncementsUpdate for application/json ContentType.
+type MarketplaceMaintenanceAnnouncementsUpdateJSONRequestBody = MaintenanceAnnouncementRequest
+
 // MarketplaceOfferingEstimatedCostPoliciesCreateJSONRequestBody defines body for MarketplaceOfferingEstimatedCostPoliciesCreate for application/json ContentType.
 type MarketplaceOfferingEstimatedCostPoliciesCreateJSONRequestBody = OfferingEstimatedCostPolicyRequest
 
@@ -26022,7 +26334,7 @@ type MarketplaceProviderOfferingsUpdateIntegrationJSONRequestBody = OfferingInte
 type MarketplaceProviderOfferingsUpdateLocationJSONRequestBody = OfferingLocationUpdateRequest
 
 // MarketplaceProviderOfferingsUpdateOfferingComponentJSONRequestBody defines body for MarketplaceProviderOfferingsUpdateOfferingComponent for application/json ContentType.
-type MarketplaceProviderOfferingsUpdateOfferingComponentJSONRequestBody = OfferingComponentRequest
+type MarketplaceProviderOfferingsUpdateOfferingComponentJSONRequestBody = UpdateOfferingComponentRequest
 
 // MarketplaceProviderOfferingsUpdateOptionsJSONRequestBody defines body for MarketplaceProviderOfferingsUpdateOptions for application/json ContentType.
 type MarketplaceProviderOfferingsUpdateOptionsJSONRequestBody = OfferingOptionsUpdateRequest
@@ -29094,6 +29406,94 @@ func (t *RancherClusterSecurityGroupRuleRequest_Protocol) UnmarshalJSON(b []byte
 	return err
 }
 
+// AsLimitPeriodEnum returns the union data inside the UpdateOfferingComponentRequest_LimitPeriod as a LimitPeriodEnum
+func (t UpdateOfferingComponentRequest_LimitPeriod) AsLimitPeriodEnum() (LimitPeriodEnum, error) {
+	var body LimitPeriodEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromLimitPeriodEnum overwrites any union data inside the UpdateOfferingComponentRequest_LimitPeriod as the provided LimitPeriodEnum
+func (t *UpdateOfferingComponentRequest_LimitPeriod) FromLimitPeriodEnum(v LimitPeriodEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeLimitPeriodEnum performs a merge with any union data inside the UpdateOfferingComponentRequest_LimitPeriod, using the provided LimitPeriodEnum
+func (t *UpdateOfferingComponentRequest_LimitPeriod) MergeLimitPeriodEnum(v LimitPeriodEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsBlankEnum returns the union data inside the UpdateOfferingComponentRequest_LimitPeriod as a BlankEnum
+func (t UpdateOfferingComponentRequest_LimitPeriod) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the UpdateOfferingComponentRequest_LimitPeriod as the provided BlankEnum
+func (t *UpdateOfferingComponentRequest_LimitPeriod) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the UpdateOfferingComponentRequest_LimitPeriod, using the provided BlankEnum
+func (t *UpdateOfferingComponentRequest_LimitPeriod) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the UpdateOfferingComponentRequest_LimitPeriod as a NullEnum
+func (t UpdateOfferingComponentRequest_LimitPeriod) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the UpdateOfferingComponentRequest_LimitPeriod as the provided NullEnum
+func (t *UpdateOfferingComponentRequest_LimitPeriod) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the UpdateOfferingComponentRequest_LimitPeriod, using the provided NullEnum
+func (t *UpdateOfferingComponentRequest_LimitPeriod) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t UpdateOfferingComponentRequest_LimitPeriod) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *UpdateOfferingComponentRequest_LimitPeriod) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsGuestOsEnum returns the union data inside the VmwareVirtualMachine_GuestOs as a GuestOsEnum
 func (t VmwareVirtualMachine_GuestOs) AsGuestOsEnum() (GuestOsEnum, error) {
 	var body GuestOsEnum
@@ -30663,6 +31063,102 @@ type ClientInterface interface {
 
 	// MarketplaceIntegrationStatusesRetrieve request
 	MarketplaceIntegrationStatusesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceMaintenanceAnnouncementOfferingsList request
+	MarketplaceMaintenanceAnnouncementOfferingsList(ctx context.Context, params *MarketplaceMaintenanceAnnouncementOfferingsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceMaintenanceAnnouncementOfferingsCreateWithBody request with any body
+	MarketplaceMaintenanceAnnouncementOfferingsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceMaintenanceAnnouncementOfferingsCreate(ctx context.Context, body MarketplaceMaintenanceAnnouncementOfferingsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceMaintenanceAnnouncementOfferingsDestroy request
+	MarketplaceMaintenanceAnnouncementOfferingsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceMaintenanceAnnouncementOfferingsRetrieve request
+	MarketplaceMaintenanceAnnouncementOfferingsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceMaintenanceAnnouncementOfferingsPartialUpdateWithBody request with any body
+	MarketplaceMaintenanceAnnouncementOfferingsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceMaintenanceAnnouncementOfferingsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceMaintenanceAnnouncementOfferingsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceMaintenanceAnnouncementOfferingsUpdateWithBody request with any body
+	MarketplaceMaintenanceAnnouncementOfferingsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceMaintenanceAnnouncementOfferingsUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceMaintenanceAnnouncementOfferingsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceMaintenanceAnnouncementTemplateOfferingsList request
+	MarketplaceMaintenanceAnnouncementTemplateOfferingsList(ctx context.Context, params *MarketplaceMaintenanceAnnouncementTemplateOfferingsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceMaintenanceAnnouncementTemplateOfferingsCreateWithBody request with any body
+	MarketplaceMaintenanceAnnouncementTemplateOfferingsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceMaintenanceAnnouncementTemplateOfferingsCreate(ctx context.Context, body MarketplaceMaintenanceAnnouncementTemplateOfferingsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceMaintenanceAnnouncementTemplateOfferingsDestroy request
+	MarketplaceMaintenanceAnnouncementTemplateOfferingsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceMaintenanceAnnouncementTemplateOfferingsRetrieve request
+	MarketplaceMaintenanceAnnouncementTemplateOfferingsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceMaintenanceAnnouncementTemplateOfferingsPartialUpdateWithBody request with any body
+	MarketplaceMaintenanceAnnouncementTemplateOfferingsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceMaintenanceAnnouncementTemplateOfferingsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceMaintenanceAnnouncementTemplateOfferingsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceMaintenanceAnnouncementTemplateOfferingsUpdateWithBody request with any body
+	MarketplaceMaintenanceAnnouncementTemplateOfferingsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceMaintenanceAnnouncementTemplateOfferingsUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceMaintenanceAnnouncementTemplateOfferingsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceMaintenanceAnnouncementsTemplateList request
+	MarketplaceMaintenanceAnnouncementsTemplateList(ctx context.Context, params *MarketplaceMaintenanceAnnouncementsTemplateListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceMaintenanceAnnouncementsTemplateCreateWithBody request with any body
+	MarketplaceMaintenanceAnnouncementsTemplateCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceMaintenanceAnnouncementsTemplateCreate(ctx context.Context, body MarketplaceMaintenanceAnnouncementsTemplateCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceMaintenanceAnnouncementsTemplateDestroy request
+	MarketplaceMaintenanceAnnouncementsTemplateDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceMaintenanceAnnouncementsTemplateRetrieve request
+	MarketplaceMaintenanceAnnouncementsTemplateRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceMaintenanceAnnouncementsTemplatePartialUpdateWithBody request with any body
+	MarketplaceMaintenanceAnnouncementsTemplatePartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceMaintenanceAnnouncementsTemplatePartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceMaintenanceAnnouncementsTemplatePartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceMaintenanceAnnouncementsTemplateUpdateWithBody request with any body
+	MarketplaceMaintenanceAnnouncementsTemplateUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceMaintenanceAnnouncementsTemplateUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceMaintenanceAnnouncementsTemplateUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceMaintenanceAnnouncementsList request
+	MarketplaceMaintenanceAnnouncementsList(ctx context.Context, params *MarketplaceMaintenanceAnnouncementsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceMaintenanceAnnouncementsCreateWithBody request with any body
+	MarketplaceMaintenanceAnnouncementsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceMaintenanceAnnouncementsCreate(ctx context.Context, body MarketplaceMaintenanceAnnouncementsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceMaintenanceAnnouncementsDestroy request
+	MarketplaceMaintenanceAnnouncementsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceMaintenanceAnnouncementsRetrieve request
+	MarketplaceMaintenanceAnnouncementsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceMaintenanceAnnouncementsPartialUpdateWithBody request with any body
+	MarketplaceMaintenanceAnnouncementsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceMaintenanceAnnouncementsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceMaintenanceAnnouncementsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceMaintenanceAnnouncementsUpdateWithBody request with any body
+	MarketplaceMaintenanceAnnouncementsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceMaintenanceAnnouncementsUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceMaintenanceAnnouncementsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceOfferingEstimatedCostPoliciesList request
 	MarketplaceOfferingEstimatedCostPoliciesList(ctx context.Context, params *MarketplaceOfferingEstimatedCostPoliciesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -39781,6 +40277,438 @@ func (c *Client) MarketplaceIntegrationStatusesList(ctx context.Context, params 
 
 func (c *Client) MarketplaceIntegrationStatusesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceIntegrationStatusesRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceMaintenanceAnnouncementOfferingsList(ctx context.Context, params *MarketplaceMaintenanceAnnouncementOfferingsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceMaintenanceAnnouncementOfferingsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceMaintenanceAnnouncementOfferingsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceMaintenanceAnnouncementOfferingsCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceMaintenanceAnnouncementOfferingsCreate(ctx context.Context, body MarketplaceMaintenanceAnnouncementOfferingsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceMaintenanceAnnouncementOfferingsCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceMaintenanceAnnouncementOfferingsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceMaintenanceAnnouncementOfferingsDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceMaintenanceAnnouncementOfferingsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceMaintenanceAnnouncementOfferingsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceMaintenanceAnnouncementOfferingsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceMaintenanceAnnouncementOfferingsPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceMaintenanceAnnouncementOfferingsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceMaintenanceAnnouncementOfferingsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceMaintenanceAnnouncementOfferingsPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceMaintenanceAnnouncementOfferingsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceMaintenanceAnnouncementOfferingsUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceMaintenanceAnnouncementOfferingsUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceMaintenanceAnnouncementOfferingsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceMaintenanceAnnouncementOfferingsUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceMaintenanceAnnouncementTemplateOfferingsList(ctx context.Context, params *MarketplaceMaintenanceAnnouncementTemplateOfferingsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceMaintenanceAnnouncementTemplateOfferingsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceMaintenanceAnnouncementTemplateOfferingsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceMaintenanceAnnouncementTemplateOfferingsCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceMaintenanceAnnouncementTemplateOfferingsCreate(ctx context.Context, body MarketplaceMaintenanceAnnouncementTemplateOfferingsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceMaintenanceAnnouncementTemplateOfferingsCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceMaintenanceAnnouncementTemplateOfferingsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceMaintenanceAnnouncementTemplateOfferingsDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceMaintenanceAnnouncementTemplateOfferingsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceMaintenanceAnnouncementTemplateOfferingsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceMaintenanceAnnouncementTemplateOfferingsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceMaintenanceAnnouncementTemplateOfferingsPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceMaintenanceAnnouncementTemplateOfferingsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceMaintenanceAnnouncementTemplateOfferingsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceMaintenanceAnnouncementTemplateOfferingsPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceMaintenanceAnnouncementTemplateOfferingsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceMaintenanceAnnouncementTemplateOfferingsUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceMaintenanceAnnouncementTemplateOfferingsUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceMaintenanceAnnouncementTemplateOfferingsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceMaintenanceAnnouncementTemplateOfferingsUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceMaintenanceAnnouncementsTemplateList(ctx context.Context, params *MarketplaceMaintenanceAnnouncementsTemplateListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceMaintenanceAnnouncementsTemplateListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceMaintenanceAnnouncementsTemplateCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceMaintenanceAnnouncementsTemplateCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceMaintenanceAnnouncementsTemplateCreate(ctx context.Context, body MarketplaceMaintenanceAnnouncementsTemplateCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceMaintenanceAnnouncementsTemplateCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceMaintenanceAnnouncementsTemplateDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceMaintenanceAnnouncementsTemplateDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceMaintenanceAnnouncementsTemplateRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceMaintenanceAnnouncementsTemplateRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceMaintenanceAnnouncementsTemplatePartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceMaintenanceAnnouncementsTemplatePartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceMaintenanceAnnouncementsTemplatePartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceMaintenanceAnnouncementsTemplatePartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceMaintenanceAnnouncementsTemplatePartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceMaintenanceAnnouncementsTemplateUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceMaintenanceAnnouncementsTemplateUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceMaintenanceAnnouncementsTemplateUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceMaintenanceAnnouncementsTemplateUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceMaintenanceAnnouncementsTemplateUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceMaintenanceAnnouncementsList(ctx context.Context, params *MarketplaceMaintenanceAnnouncementsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceMaintenanceAnnouncementsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceMaintenanceAnnouncementsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceMaintenanceAnnouncementsCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceMaintenanceAnnouncementsCreate(ctx context.Context, body MarketplaceMaintenanceAnnouncementsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceMaintenanceAnnouncementsCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceMaintenanceAnnouncementsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceMaintenanceAnnouncementsDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceMaintenanceAnnouncementsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceMaintenanceAnnouncementsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceMaintenanceAnnouncementsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceMaintenanceAnnouncementsPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceMaintenanceAnnouncementsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceMaintenanceAnnouncementsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceMaintenanceAnnouncementsPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceMaintenanceAnnouncementsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceMaintenanceAnnouncementsUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceMaintenanceAnnouncementsUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceMaintenanceAnnouncementsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceMaintenanceAnnouncementsUpdateRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -78944,6 +79872,1074 @@ func NewMarketplaceIntegrationStatusesRetrieveRequest(server string, uuid openap
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewMarketplaceMaintenanceAnnouncementOfferingsListRequest generates requests for MarketplaceMaintenanceAnnouncementOfferingsList
+func NewMarketplaceMaintenanceAnnouncementOfferingsListRequest(server string, params *MarketplaceMaintenanceAnnouncementOfferingsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-maintenance-announcement-offerings/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceMaintenanceAnnouncementOfferingsCreateRequest calls the generic MarketplaceMaintenanceAnnouncementOfferingsCreate builder with application/json body
+func NewMarketplaceMaintenanceAnnouncementOfferingsCreateRequest(server string, body MarketplaceMaintenanceAnnouncementOfferingsCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceMaintenanceAnnouncementOfferingsCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewMarketplaceMaintenanceAnnouncementOfferingsCreateRequestWithBody generates requests for MarketplaceMaintenanceAnnouncementOfferingsCreate with any type of body
+func NewMarketplaceMaintenanceAnnouncementOfferingsCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-maintenance-announcement-offerings/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceMaintenanceAnnouncementOfferingsDestroyRequest generates requests for MarketplaceMaintenanceAnnouncementOfferingsDestroy
+func NewMarketplaceMaintenanceAnnouncementOfferingsDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-maintenance-announcement-offerings/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceMaintenanceAnnouncementOfferingsRetrieveRequest generates requests for MarketplaceMaintenanceAnnouncementOfferingsRetrieve
+func NewMarketplaceMaintenanceAnnouncementOfferingsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-maintenance-announcement-offerings/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceMaintenanceAnnouncementOfferingsPartialUpdateRequest calls the generic MarketplaceMaintenanceAnnouncementOfferingsPartialUpdate builder with application/json body
+func NewMarketplaceMaintenanceAnnouncementOfferingsPartialUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceMaintenanceAnnouncementOfferingsPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceMaintenanceAnnouncementOfferingsPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceMaintenanceAnnouncementOfferingsPartialUpdateRequestWithBody generates requests for MarketplaceMaintenanceAnnouncementOfferingsPartialUpdate with any type of body
+func NewMarketplaceMaintenanceAnnouncementOfferingsPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-maintenance-announcement-offerings/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceMaintenanceAnnouncementOfferingsUpdateRequest calls the generic MarketplaceMaintenanceAnnouncementOfferingsUpdate builder with application/json body
+func NewMarketplaceMaintenanceAnnouncementOfferingsUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceMaintenanceAnnouncementOfferingsUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceMaintenanceAnnouncementOfferingsUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceMaintenanceAnnouncementOfferingsUpdateRequestWithBody generates requests for MarketplaceMaintenanceAnnouncementOfferingsUpdate with any type of body
+func NewMarketplaceMaintenanceAnnouncementOfferingsUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-maintenance-announcement-offerings/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceMaintenanceAnnouncementTemplateOfferingsListRequest generates requests for MarketplaceMaintenanceAnnouncementTemplateOfferingsList
+func NewMarketplaceMaintenanceAnnouncementTemplateOfferingsListRequest(server string, params *MarketplaceMaintenanceAnnouncementTemplateOfferingsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-maintenance-announcement-template-offerings/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceMaintenanceAnnouncementTemplateOfferingsCreateRequest calls the generic MarketplaceMaintenanceAnnouncementTemplateOfferingsCreate builder with application/json body
+func NewMarketplaceMaintenanceAnnouncementTemplateOfferingsCreateRequest(server string, body MarketplaceMaintenanceAnnouncementTemplateOfferingsCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceMaintenanceAnnouncementTemplateOfferingsCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewMarketplaceMaintenanceAnnouncementTemplateOfferingsCreateRequestWithBody generates requests for MarketplaceMaintenanceAnnouncementTemplateOfferingsCreate with any type of body
+func NewMarketplaceMaintenanceAnnouncementTemplateOfferingsCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-maintenance-announcement-template-offerings/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceMaintenanceAnnouncementTemplateOfferingsDestroyRequest generates requests for MarketplaceMaintenanceAnnouncementTemplateOfferingsDestroy
+func NewMarketplaceMaintenanceAnnouncementTemplateOfferingsDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-maintenance-announcement-template-offerings/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceMaintenanceAnnouncementTemplateOfferingsRetrieveRequest generates requests for MarketplaceMaintenanceAnnouncementTemplateOfferingsRetrieve
+func NewMarketplaceMaintenanceAnnouncementTemplateOfferingsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-maintenance-announcement-template-offerings/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceMaintenanceAnnouncementTemplateOfferingsPartialUpdateRequest calls the generic MarketplaceMaintenanceAnnouncementTemplateOfferingsPartialUpdate builder with application/json body
+func NewMarketplaceMaintenanceAnnouncementTemplateOfferingsPartialUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceMaintenanceAnnouncementTemplateOfferingsPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceMaintenanceAnnouncementTemplateOfferingsPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceMaintenanceAnnouncementTemplateOfferingsPartialUpdateRequestWithBody generates requests for MarketplaceMaintenanceAnnouncementTemplateOfferingsPartialUpdate with any type of body
+func NewMarketplaceMaintenanceAnnouncementTemplateOfferingsPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-maintenance-announcement-template-offerings/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceMaintenanceAnnouncementTemplateOfferingsUpdateRequest calls the generic MarketplaceMaintenanceAnnouncementTemplateOfferingsUpdate builder with application/json body
+func NewMarketplaceMaintenanceAnnouncementTemplateOfferingsUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceMaintenanceAnnouncementTemplateOfferingsUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceMaintenanceAnnouncementTemplateOfferingsUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceMaintenanceAnnouncementTemplateOfferingsUpdateRequestWithBody generates requests for MarketplaceMaintenanceAnnouncementTemplateOfferingsUpdate with any type of body
+func NewMarketplaceMaintenanceAnnouncementTemplateOfferingsUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-maintenance-announcement-template-offerings/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceMaintenanceAnnouncementsTemplateListRequest generates requests for MarketplaceMaintenanceAnnouncementsTemplateList
+func NewMarketplaceMaintenanceAnnouncementsTemplateListRequest(server string, params *MarketplaceMaintenanceAnnouncementsTemplateListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-maintenance-announcements-template/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceMaintenanceAnnouncementsTemplateCreateRequest calls the generic MarketplaceMaintenanceAnnouncementsTemplateCreate builder with application/json body
+func NewMarketplaceMaintenanceAnnouncementsTemplateCreateRequest(server string, body MarketplaceMaintenanceAnnouncementsTemplateCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceMaintenanceAnnouncementsTemplateCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewMarketplaceMaintenanceAnnouncementsTemplateCreateRequestWithBody generates requests for MarketplaceMaintenanceAnnouncementsTemplateCreate with any type of body
+func NewMarketplaceMaintenanceAnnouncementsTemplateCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-maintenance-announcements-template/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceMaintenanceAnnouncementsTemplateDestroyRequest generates requests for MarketplaceMaintenanceAnnouncementsTemplateDestroy
+func NewMarketplaceMaintenanceAnnouncementsTemplateDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-maintenance-announcements-template/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceMaintenanceAnnouncementsTemplateRetrieveRequest generates requests for MarketplaceMaintenanceAnnouncementsTemplateRetrieve
+func NewMarketplaceMaintenanceAnnouncementsTemplateRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-maintenance-announcements-template/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceMaintenanceAnnouncementsTemplatePartialUpdateRequest calls the generic MarketplaceMaintenanceAnnouncementsTemplatePartialUpdate builder with application/json body
+func NewMarketplaceMaintenanceAnnouncementsTemplatePartialUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceMaintenanceAnnouncementsTemplatePartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceMaintenanceAnnouncementsTemplatePartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceMaintenanceAnnouncementsTemplatePartialUpdateRequestWithBody generates requests for MarketplaceMaintenanceAnnouncementsTemplatePartialUpdate with any type of body
+func NewMarketplaceMaintenanceAnnouncementsTemplatePartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-maintenance-announcements-template/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceMaintenanceAnnouncementsTemplateUpdateRequest calls the generic MarketplaceMaintenanceAnnouncementsTemplateUpdate builder with application/json body
+func NewMarketplaceMaintenanceAnnouncementsTemplateUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceMaintenanceAnnouncementsTemplateUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceMaintenanceAnnouncementsTemplateUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceMaintenanceAnnouncementsTemplateUpdateRequestWithBody generates requests for MarketplaceMaintenanceAnnouncementsTemplateUpdate with any type of body
+func NewMarketplaceMaintenanceAnnouncementsTemplateUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-maintenance-announcements-template/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceMaintenanceAnnouncementsListRequest generates requests for MarketplaceMaintenanceAnnouncementsList
+func NewMarketplaceMaintenanceAnnouncementsListRequest(server string, params *MarketplaceMaintenanceAnnouncementsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-maintenance-announcements/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceMaintenanceAnnouncementsCreateRequest calls the generic MarketplaceMaintenanceAnnouncementsCreate builder with application/json body
+func NewMarketplaceMaintenanceAnnouncementsCreateRequest(server string, body MarketplaceMaintenanceAnnouncementsCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceMaintenanceAnnouncementsCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewMarketplaceMaintenanceAnnouncementsCreateRequestWithBody generates requests for MarketplaceMaintenanceAnnouncementsCreate with any type of body
+func NewMarketplaceMaintenanceAnnouncementsCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-maintenance-announcements/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceMaintenanceAnnouncementsDestroyRequest generates requests for MarketplaceMaintenanceAnnouncementsDestroy
+func NewMarketplaceMaintenanceAnnouncementsDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-maintenance-announcements/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceMaintenanceAnnouncementsRetrieveRequest generates requests for MarketplaceMaintenanceAnnouncementsRetrieve
+func NewMarketplaceMaintenanceAnnouncementsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-maintenance-announcements/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceMaintenanceAnnouncementsPartialUpdateRequest calls the generic MarketplaceMaintenanceAnnouncementsPartialUpdate builder with application/json body
+func NewMarketplaceMaintenanceAnnouncementsPartialUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceMaintenanceAnnouncementsPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceMaintenanceAnnouncementsPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceMaintenanceAnnouncementsPartialUpdateRequestWithBody generates requests for MarketplaceMaintenanceAnnouncementsPartialUpdate with any type of body
+func NewMarketplaceMaintenanceAnnouncementsPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-maintenance-announcements/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceMaintenanceAnnouncementsUpdateRequest calls the generic MarketplaceMaintenanceAnnouncementsUpdate builder with application/json body
+func NewMarketplaceMaintenanceAnnouncementsUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceMaintenanceAnnouncementsUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceMaintenanceAnnouncementsUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceMaintenanceAnnouncementsUpdateRequestWithBody generates requests for MarketplaceMaintenanceAnnouncementsUpdate with any type of body
+func NewMarketplaceMaintenanceAnnouncementsUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-maintenance-announcements/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -141536,6 +143532,102 @@ type ClientWithResponsesInterface interface {
 	// MarketplaceIntegrationStatusesRetrieveWithResponse request
 	MarketplaceIntegrationStatusesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceIntegrationStatusesRetrieveResponse, error)
 
+	// MarketplaceMaintenanceAnnouncementOfferingsListWithResponse request
+	MarketplaceMaintenanceAnnouncementOfferingsListWithResponse(ctx context.Context, params *MarketplaceMaintenanceAnnouncementOfferingsListParams, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementOfferingsListResponse, error)
+
+	// MarketplaceMaintenanceAnnouncementOfferingsCreateWithBodyWithResponse request with any body
+	MarketplaceMaintenanceAnnouncementOfferingsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementOfferingsCreateResponse, error)
+
+	MarketplaceMaintenanceAnnouncementOfferingsCreateWithResponse(ctx context.Context, body MarketplaceMaintenanceAnnouncementOfferingsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementOfferingsCreateResponse, error)
+
+	// MarketplaceMaintenanceAnnouncementOfferingsDestroyWithResponse request
+	MarketplaceMaintenanceAnnouncementOfferingsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementOfferingsDestroyResponse, error)
+
+	// MarketplaceMaintenanceAnnouncementOfferingsRetrieveWithResponse request
+	MarketplaceMaintenanceAnnouncementOfferingsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementOfferingsRetrieveResponse, error)
+
+	// MarketplaceMaintenanceAnnouncementOfferingsPartialUpdateWithBodyWithResponse request with any body
+	MarketplaceMaintenanceAnnouncementOfferingsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementOfferingsPartialUpdateResponse, error)
+
+	MarketplaceMaintenanceAnnouncementOfferingsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceMaintenanceAnnouncementOfferingsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementOfferingsPartialUpdateResponse, error)
+
+	// MarketplaceMaintenanceAnnouncementOfferingsUpdateWithBodyWithResponse request with any body
+	MarketplaceMaintenanceAnnouncementOfferingsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementOfferingsUpdateResponse, error)
+
+	MarketplaceMaintenanceAnnouncementOfferingsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceMaintenanceAnnouncementOfferingsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementOfferingsUpdateResponse, error)
+
+	// MarketplaceMaintenanceAnnouncementTemplateOfferingsListWithResponse request
+	MarketplaceMaintenanceAnnouncementTemplateOfferingsListWithResponse(ctx context.Context, params *MarketplaceMaintenanceAnnouncementTemplateOfferingsListParams, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementTemplateOfferingsListResponse, error)
+
+	// MarketplaceMaintenanceAnnouncementTemplateOfferingsCreateWithBodyWithResponse request with any body
+	MarketplaceMaintenanceAnnouncementTemplateOfferingsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementTemplateOfferingsCreateResponse, error)
+
+	MarketplaceMaintenanceAnnouncementTemplateOfferingsCreateWithResponse(ctx context.Context, body MarketplaceMaintenanceAnnouncementTemplateOfferingsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementTemplateOfferingsCreateResponse, error)
+
+	// MarketplaceMaintenanceAnnouncementTemplateOfferingsDestroyWithResponse request
+	MarketplaceMaintenanceAnnouncementTemplateOfferingsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementTemplateOfferingsDestroyResponse, error)
+
+	// MarketplaceMaintenanceAnnouncementTemplateOfferingsRetrieveWithResponse request
+	MarketplaceMaintenanceAnnouncementTemplateOfferingsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementTemplateOfferingsRetrieveResponse, error)
+
+	// MarketplaceMaintenanceAnnouncementTemplateOfferingsPartialUpdateWithBodyWithResponse request with any body
+	MarketplaceMaintenanceAnnouncementTemplateOfferingsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementTemplateOfferingsPartialUpdateResponse, error)
+
+	MarketplaceMaintenanceAnnouncementTemplateOfferingsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceMaintenanceAnnouncementTemplateOfferingsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementTemplateOfferingsPartialUpdateResponse, error)
+
+	// MarketplaceMaintenanceAnnouncementTemplateOfferingsUpdateWithBodyWithResponse request with any body
+	MarketplaceMaintenanceAnnouncementTemplateOfferingsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementTemplateOfferingsUpdateResponse, error)
+
+	MarketplaceMaintenanceAnnouncementTemplateOfferingsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceMaintenanceAnnouncementTemplateOfferingsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementTemplateOfferingsUpdateResponse, error)
+
+	// MarketplaceMaintenanceAnnouncementsTemplateListWithResponse request
+	MarketplaceMaintenanceAnnouncementsTemplateListWithResponse(ctx context.Context, params *MarketplaceMaintenanceAnnouncementsTemplateListParams, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementsTemplateListResponse, error)
+
+	// MarketplaceMaintenanceAnnouncementsTemplateCreateWithBodyWithResponse request with any body
+	MarketplaceMaintenanceAnnouncementsTemplateCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementsTemplateCreateResponse, error)
+
+	MarketplaceMaintenanceAnnouncementsTemplateCreateWithResponse(ctx context.Context, body MarketplaceMaintenanceAnnouncementsTemplateCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementsTemplateCreateResponse, error)
+
+	// MarketplaceMaintenanceAnnouncementsTemplateDestroyWithResponse request
+	MarketplaceMaintenanceAnnouncementsTemplateDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementsTemplateDestroyResponse, error)
+
+	// MarketplaceMaintenanceAnnouncementsTemplateRetrieveWithResponse request
+	MarketplaceMaintenanceAnnouncementsTemplateRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementsTemplateRetrieveResponse, error)
+
+	// MarketplaceMaintenanceAnnouncementsTemplatePartialUpdateWithBodyWithResponse request with any body
+	MarketplaceMaintenanceAnnouncementsTemplatePartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementsTemplatePartialUpdateResponse, error)
+
+	MarketplaceMaintenanceAnnouncementsTemplatePartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceMaintenanceAnnouncementsTemplatePartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementsTemplatePartialUpdateResponse, error)
+
+	// MarketplaceMaintenanceAnnouncementsTemplateUpdateWithBodyWithResponse request with any body
+	MarketplaceMaintenanceAnnouncementsTemplateUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementsTemplateUpdateResponse, error)
+
+	MarketplaceMaintenanceAnnouncementsTemplateUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceMaintenanceAnnouncementsTemplateUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementsTemplateUpdateResponse, error)
+
+	// MarketplaceMaintenanceAnnouncementsListWithResponse request
+	MarketplaceMaintenanceAnnouncementsListWithResponse(ctx context.Context, params *MarketplaceMaintenanceAnnouncementsListParams, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementsListResponse, error)
+
+	// MarketplaceMaintenanceAnnouncementsCreateWithBodyWithResponse request with any body
+	MarketplaceMaintenanceAnnouncementsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementsCreateResponse, error)
+
+	MarketplaceMaintenanceAnnouncementsCreateWithResponse(ctx context.Context, body MarketplaceMaintenanceAnnouncementsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementsCreateResponse, error)
+
+	// MarketplaceMaintenanceAnnouncementsDestroyWithResponse request
+	MarketplaceMaintenanceAnnouncementsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementsDestroyResponse, error)
+
+	// MarketplaceMaintenanceAnnouncementsRetrieveWithResponse request
+	MarketplaceMaintenanceAnnouncementsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementsRetrieveResponse, error)
+
+	// MarketplaceMaintenanceAnnouncementsPartialUpdateWithBodyWithResponse request with any body
+	MarketplaceMaintenanceAnnouncementsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementsPartialUpdateResponse, error)
+
+	MarketplaceMaintenanceAnnouncementsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceMaintenanceAnnouncementsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementsPartialUpdateResponse, error)
+
+	// MarketplaceMaintenanceAnnouncementsUpdateWithBodyWithResponse request with any body
+	MarketplaceMaintenanceAnnouncementsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementsUpdateResponse, error)
+
+	MarketplaceMaintenanceAnnouncementsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceMaintenanceAnnouncementsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementsUpdateResponse, error)
+
 	// MarketplaceOfferingEstimatedCostPoliciesListWithResponse request
 	MarketplaceOfferingEstimatedCostPoliciesListWithResponse(ctx context.Context, params *MarketplaceOfferingEstimatedCostPoliciesListParams, reqEditors ...RequestEditorFn) (*MarketplaceOfferingEstimatedCostPoliciesListResponse, error)
 
@@ -152776,6 +154868,530 @@ func (r MarketplaceIntegrationStatusesRetrieveResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceIntegrationStatusesRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceMaintenanceAnnouncementOfferingsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]MaintenanceAnnouncementOffering
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceMaintenanceAnnouncementOfferingsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceMaintenanceAnnouncementOfferingsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceMaintenanceAnnouncementOfferingsCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *MaintenanceAnnouncementOffering
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceMaintenanceAnnouncementOfferingsCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceMaintenanceAnnouncementOfferingsCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceMaintenanceAnnouncementOfferingsDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceMaintenanceAnnouncementOfferingsDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceMaintenanceAnnouncementOfferingsDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceMaintenanceAnnouncementOfferingsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *MaintenanceAnnouncementOffering
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceMaintenanceAnnouncementOfferingsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceMaintenanceAnnouncementOfferingsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceMaintenanceAnnouncementOfferingsPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *MaintenanceAnnouncementOffering
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceMaintenanceAnnouncementOfferingsPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceMaintenanceAnnouncementOfferingsPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceMaintenanceAnnouncementOfferingsUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *MaintenanceAnnouncementOffering
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceMaintenanceAnnouncementOfferingsUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceMaintenanceAnnouncementOfferingsUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceMaintenanceAnnouncementTemplateOfferingsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]MaintenanceAnnouncementOfferingTemplate
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceMaintenanceAnnouncementTemplateOfferingsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceMaintenanceAnnouncementTemplateOfferingsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceMaintenanceAnnouncementTemplateOfferingsCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *MaintenanceAnnouncementOfferingTemplate
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceMaintenanceAnnouncementTemplateOfferingsCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceMaintenanceAnnouncementTemplateOfferingsCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceMaintenanceAnnouncementTemplateOfferingsDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceMaintenanceAnnouncementTemplateOfferingsDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceMaintenanceAnnouncementTemplateOfferingsDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceMaintenanceAnnouncementTemplateOfferingsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *MaintenanceAnnouncementOfferingTemplate
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceMaintenanceAnnouncementTemplateOfferingsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceMaintenanceAnnouncementTemplateOfferingsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceMaintenanceAnnouncementTemplateOfferingsPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *MaintenanceAnnouncementOfferingTemplate
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceMaintenanceAnnouncementTemplateOfferingsPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceMaintenanceAnnouncementTemplateOfferingsPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceMaintenanceAnnouncementTemplateOfferingsUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *MaintenanceAnnouncementOfferingTemplate
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceMaintenanceAnnouncementTemplateOfferingsUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceMaintenanceAnnouncementTemplateOfferingsUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceMaintenanceAnnouncementsTemplateListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]MaintenanceAnnouncementTemplate
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceMaintenanceAnnouncementsTemplateListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceMaintenanceAnnouncementsTemplateListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceMaintenanceAnnouncementsTemplateCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *MaintenanceAnnouncementTemplate
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceMaintenanceAnnouncementsTemplateCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceMaintenanceAnnouncementsTemplateCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceMaintenanceAnnouncementsTemplateDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceMaintenanceAnnouncementsTemplateDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceMaintenanceAnnouncementsTemplateDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceMaintenanceAnnouncementsTemplateRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *MaintenanceAnnouncementTemplate
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceMaintenanceAnnouncementsTemplateRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceMaintenanceAnnouncementsTemplateRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceMaintenanceAnnouncementsTemplatePartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *MaintenanceAnnouncementTemplate
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceMaintenanceAnnouncementsTemplatePartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceMaintenanceAnnouncementsTemplatePartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceMaintenanceAnnouncementsTemplateUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *MaintenanceAnnouncementTemplate
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceMaintenanceAnnouncementsTemplateUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceMaintenanceAnnouncementsTemplateUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceMaintenanceAnnouncementsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]MaintenanceAnnouncement
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceMaintenanceAnnouncementsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceMaintenanceAnnouncementsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceMaintenanceAnnouncementsCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *MaintenanceAnnouncement
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceMaintenanceAnnouncementsCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceMaintenanceAnnouncementsCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceMaintenanceAnnouncementsDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceMaintenanceAnnouncementsDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceMaintenanceAnnouncementsDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceMaintenanceAnnouncementsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *MaintenanceAnnouncement
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceMaintenanceAnnouncementsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceMaintenanceAnnouncementsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceMaintenanceAnnouncementsPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *MaintenanceAnnouncement
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceMaintenanceAnnouncementsPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceMaintenanceAnnouncementsPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceMaintenanceAnnouncementsUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *MaintenanceAnnouncement
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceMaintenanceAnnouncementsUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceMaintenanceAnnouncementsUpdateResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -175339,6 +177955,318 @@ func (c *ClientWithResponses) MarketplaceIntegrationStatusesRetrieveWithResponse
 	return ParseMarketplaceIntegrationStatusesRetrieveResponse(rsp)
 }
 
+// MarketplaceMaintenanceAnnouncementOfferingsListWithResponse request returning *MarketplaceMaintenanceAnnouncementOfferingsListResponse
+func (c *ClientWithResponses) MarketplaceMaintenanceAnnouncementOfferingsListWithResponse(ctx context.Context, params *MarketplaceMaintenanceAnnouncementOfferingsListParams, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementOfferingsListResponse, error) {
+	rsp, err := c.MarketplaceMaintenanceAnnouncementOfferingsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceMaintenanceAnnouncementOfferingsListResponse(rsp)
+}
+
+// MarketplaceMaintenanceAnnouncementOfferingsCreateWithBodyWithResponse request with arbitrary body returning *MarketplaceMaintenanceAnnouncementOfferingsCreateResponse
+func (c *ClientWithResponses) MarketplaceMaintenanceAnnouncementOfferingsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementOfferingsCreateResponse, error) {
+	rsp, err := c.MarketplaceMaintenanceAnnouncementOfferingsCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceMaintenanceAnnouncementOfferingsCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceMaintenanceAnnouncementOfferingsCreateWithResponse(ctx context.Context, body MarketplaceMaintenanceAnnouncementOfferingsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementOfferingsCreateResponse, error) {
+	rsp, err := c.MarketplaceMaintenanceAnnouncementOfferingsCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceMaintenanceAnnouncementOfferingsCreateResponse(rsp)
+}
+
+// MarketplaceMaintenanceAnnouncementOfferingsDestroyWithResponse request returning *MarketplaceMaintenanceAnnouncementOfferingsDestroyResponse
+func (c *ClientWithResponses) MarketplaceMaintenanceAnnouncementOfferingsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementOfferingsDestroyResponse, error) {
+	rsp, err := c.MarketplaceMaintenanceAnnouncementOfferingsDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceMaintenanceAnnouncementOfferingsDestroyResponse(rsp)
+}
+
+// MarketplaceMaintenanceAnnouncementOfferingsRetrieveWithResponse request returning *MarketplaceMaintenanceAnnouncementOfferingsRetrieveResponse
+func (c *ClientWithResponses) MarketplaceMaintenanceAnnouncementOfferingsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementOfferingsRetrieveResponse, error) {
+	rsp, err := c.MarketplaceMaintenanceAnnouncementOfferingsRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceMaintenanceAnnouncementOfferingsRetrieveResponse(rsp)
+}
+
+// MarketplaceMaintenanceAnnouncementOfferingsPartialUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceMaintenanceAnnouncementOfferingsPartialUpdateResponse
+func (c *ClientWithResponses) MarketplaceMaintenanceAnnouncementOfferingsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementOfferingsPartialUpdateResponse, error) {
+	rsp, err := c.MarketplaceMaintenanceAnnouncementOfferingsPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceMaintenanceAnnouncementOfferingsPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceMaintenanceAnnouncementOfferingsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceMaintenanceAnnouncementOfferingsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementOfferingsPartialUpdateResponse, error) {
+	rsp, err := c.MarketplaceMaintenanceAnnouncementOfferingsPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceMaintenanceAnnouncementOfferingsPartialUpdateResponse(rsp)
+}
+
+// MarketplaceMaintenanceAnnouncementOfferingsUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceMaintenanceAnnouncementOfferingsUpdateResponse
+func (c *ClientWithResponses) MarketplaceMaintenanceAnnouncementOfferingsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementOfferingsUpdateResponse, error) {
+	rsp, err := c.MarketplaceMaintenanceAnnouncementOfferingsUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceMaintenanceAnnouncementOfferingsUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceMaintenanceAnnouncementOfferingsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceMaintenanceAnnouncementOfferingsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementOfferingsUpdateResponse, error) {
+	rsp, err := c.MarketplaceMaintenanceAnnouncementOfferingsUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceMaintenanceAnnouncementOfferingsUpdateResponse(rsp)
+}
+
+// MarketplaceMaintenanceAnnouncementTemplateOfferingsListWithResponse request returning *MarketplaceMaintenanceAnnouncementTemplateOfferingsListResponse
+func (c *ClientWithResponses) MarketplaceMaintenanceAnnouncementTemplateOfferingsListWithResponse(ctx context.Context, params *MarketplaceMaintenanceAnnouncementTemplateOfferingsListParams, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementTemplateOfferingsListResponse, error) {
+	rsp, err := c.MarketplaceMaintenanceAnnouncementTemplateOfferingsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceMaintenanceAnnouncementTemplateOfferingsListResponse(rsp)
+}
+
+// MarketplaceMaintenanceAnnouncementTemplateOfferingsCreateWithBodyWithResponse request with arbitrary body returning *MarketplaceMaintenanceAnnouncementTemplateOfferingsCreateResponse
+func (c *ClientWithResponses) MarketplaceMaintenanceAnnouncementTemplateOfferingsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementTemplateOfferingsCreateResponse, error) {
+	rsp, err := c.MarketplaceMaintenanceAnnouncementTemplateOfferingsCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceMaintenanceAnnouncementTemplateOfferingsCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceMaintenanceAnnouncementTemplateOfferingsCreateWithResponse(ctx context.Context, body MarketplaceMaintenanceAnnouncementTemplateOfferingsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementTemplateOfferingsCreateResponse, error) {
+	rsp, err := c.MarketplaceMaintenanceAnnouncementTemplateOfferingsCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceMaintenanceAnnouncementTemplateOfferingsCreateResponse(rsp)
+}
+
+// MarketplaceMaintenanceAnnouncementTemplateOfferingsDestroyWithResponse request returning *MarketplaceMaintenanceAnnouncementTemplateOfferingsDestroyResponse
+func (c *ClientWithResponses) MarketplaceMaintenanceAnnouncementTemplateOfferingsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementTemplateOfferingsDestroyResponse, error) {
+	rsp, err := c.MarketplaceMaintenanceAnnouncementTemplateOfferingsDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceMaintenanceAnnouncementTemplateOfferingsDestroyResponse(rsp)
+}
+
+// MarketplaceMaintenanceAnnouncementTemplateOfferingsRetrieveWithResponse request returning *MarketplaceMaintenanceAnnouncementTemplateOfferingsRetrieveResponse
+func (c *ClientWithResponses) MarketplaceMaintenanceAnnouncementTemplateOfferingsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementTemplateOfferingsRetrieveResponse, error) {
+	rsp, err := c.MarketplaceMaintenanceAnnouncementTemplateOfferingsRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceMaintenanceAnnouncementTemplateOfferingsRetrieveResponse(rsp)
+}
+
+// MarketplaceMaintenanceAnnouncementTemplateOfferingsPartialUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceMaintenanceAnnouncementTemplateOfferingsPartialUpdateResponse
+func (c *ClientWithResponses) MarketplaceMaintenanceAnnouncementTemplateOfferingsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementTemplateOfferingsPartialUpdateResponse, error) {
+	rsp, err := c.MarketplaceMaintenanceAnnouncementTemplateOfferingsPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceMaintenanceAnnouncementTemplateOfferingsPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceMaintenanceAnnouncementTemplateOfferingsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceMaintenanceAnnouncementTemplateOfferingsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementTemplateOfferingsPartialUpdateResponse, error) {
+	rsp, err := c.MarketplaceMaintenanceAnnouncementTemplateOfferingsPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceMaintenanceAnnouncementTemplateOfferingsPartialUpdateResponse(rsp)
+}
+
+// MarketplaceMaintenanceAnnouncementTemplateOfferingsUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceMaintenanceAnnouncementTemplateOfferingsUpdateResponse
+func (c *ClientWithResponses) MarketplaceMaintenanceAnnouncementTemplateOfferingsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementTemplateOfferingsUpdateResponse, error) {
+	rsp, err := c.MarketplaceMaintenanceAnnouncementTemplateOfferingsUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceMaintenanceAnnouncementTemplateOfferingsUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceMaintenanceAnnouncementTemplateOfferingsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceMaintenanceAnnouncementTemplateOfferingsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementTemplateOfferingsUpdateResponse, error) {
+	rsp, err := c.MarketplaceMaintenanceAnnouncementTemplateOfferingsUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceMaintenanceAnnouncementTemplateOfferingsUpdateResponse(rsp)
+}
+
+// MarketplaceMaintenanceAnnouncementsTemplateListWithResponse request returning *MarketplaceMaintenanceAnnouncementsTemplateListResponse
+func (c *ClientWithResponses) MarketplaceMaintenanceAnnouncementsTemplateListWithResponse(ctx context.Context, params *MarketplaceMaintenanceAnnouncementsTemplateListParams, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementsTemplateListResponse, error) {
+	rsp, err := c.MarketplaceMaintenanceAnnouncementsTemplateList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceMaintenanceAnnouncementsTemplateListResponse(rsp)
+}
+
+// MarketplaceMaintenanceAnnouncementsTemplateCreateWithBodyWithResponse request with arbitrary body returning *MarketplaceMaintenanceAnnouncementsTemplateCreateResponse
+func (c *ClientWithResponses) MarketplaceMaintenanceAnnouncementsTemplateCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementsTemplateCreateResponse, error) {
+	rsp, err := c.MarketplaceMaintenanceAnnouncementsTemplateCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceMaintenanceAnnouncementsTemplateCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceMaintenanceAnnouncementsTemplateCreateWithResponse(ctx context.Context, body MarketplaceMaintenanceAnnouncementsTemplateCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementsTemplateCreateResponse, error) {
+	rsp, err := c.MarketplaceMaintenanceAnnouncementsTemplateCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceMaintenanceAnnouncementsTemplateCreateResponse(rsp)
+}
+
+// MarketplaceMaintenanceAnnouncementsTemplateDestroyWithResponse request returning *MarketplaceMaintenanceAnnouncementsTemplateDestroyResponse
+func (c *ClientWithResponses) MarketplaceMaintenanceAnnouncementsTemplateDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementsTemplateDestroyResponse, error) {
+	rsp, err := c.MarketplaceMaintenanceAnnouncementsTemplateDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceMaintenanceAnnouncementsTemplateDestroyResponse(rsp)
+}
+
+// MarketplaceMaintenanceAnnouncementsTemplateRetrieveWithResponse request returning *MarketplaceMaintenanceAnnouncementsTemplateRetrieveResponse
+func (c *ClientWithResponses) MarketplaceMaintenanceAnnouncementsTemplateRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementsTemplateRetrieveResponse, error) {
+	rsp, err := c.MarketplaceMaintenanceAnnouncementsTemplateRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceMaintenanceAnnouncementsTemplateRetrieveResponse(rsp)
+}
+
+// MarketplaceMaintenanceAnnouncementsTemplatePartialUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceMaintenanceAnnouncementsTemplatePartialUpdateResponse
+func (c *ClientWithResponses) MarketplaceMaintenanceAnnouncementsTemplatePartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementsTemplatePartialUpdateResponse, error) {
+	rsp, err := c.MarketplaceMaintenanceAnnouncementsTemplatePartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceMaintenanceAnnouncementsTemplatePartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceMaintenanceAnnouncementsTemplatePartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceMaintenanceAnnouncementsTemplatePartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementsTemplatePartialUpdateResponse, error) {
+	rsp, err := c.MarketplaceMaintenanceAnnouncementsTemplatePartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceMaintenanceAnnouncementsTemplatePartialUpdateResponse(rsp)
+}
+
+// MarketplaceMaintenanceAnnouncementsTemplateUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceMaintenanceAnnouncementsTemplateUpdateResponse
+func (c *ClientWithResponses) MarketplaceMaintenanceAnnouncementsTemplateUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementsTemplateUpdateResponse, error) {
+	rsp, err := c.MarketplaceMaintenanceAnnouncementsTemplateUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceMaintenanceAnnouncementsTemplateUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceMaintenanceAnnouncementsTemplateUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceMaintenanceAnnouncementsTemplateUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementsTemplateUpdateResponse, error) {
+	rsp, err := c.MarketplaceMaintenanceAnnouncementsTemplateUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceMaintenanceAnnouncementsTemplateUpdateResponse(rsp)
+}
+
+// MarketplaceMaintenanceAnnouncementsListWithResponse request returning *MarketplaceMaintenanceAnnouncementsListResponse
+func (c *ClientWithResponses) MarketplaceMaintenanceAnnouncementsListWithResponse(ctx context.Context, params *MarketplaceMaintenanceAnnouncementsListParams, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementsListResponse, error) {
+	rsp, err := c.MarketplaceMaintenanceAnnouncementsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceMaintenanceAnnouncementsListResponse(rsp)
+}
+
+// MarketplaceMaintenanceAnnouncementsCreateWithBodyWithResponse request with arbitrary body returning *MarketplaceMaintenanceAnnouncementsCreateResponse
+func (c *ClientWithResponses) MarketplaceMaintenanceAnnouncementsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementsCreateResponse, error) {
+	rsp, err := c.MarketplaceMaintenanceAnnouncementsCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceMaintenanceAnnouncementsCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceMaintenanceAnnouncementsCreateWithResponse(ctx context.Context, body MarketplaceMaintenanceAnnouncementsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementsCreateResponse, error) {
+	rsp, err := c.MarketplaceMaintenanceAnnouncementsCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceMaintenanceAnnouncementsCreateResponse(rsp)
+}
+
+// MarketplaceMaintenanceAnnouncementsDestroyWithResponse request returning *MarketplaceMaintenanceAnnouncementsDestroyResponse
+func (c *ClientWithResponses) MarketplaceMaintenanceAnnouncementsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementsDestroyResponse, error) {
+	rsp, err := c.MarketplaceMaintenanceAnnouncementsDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceMaintenanceAnnouncementsDestroyResponse(rsp)
+}
+
+// MarketplaceMaintenanceAnnouncementsRetrieveWithResponse request returning *MarketplaceMaintenanceAnnouncementsRetrieveResponse
+func (c *ClientWithResponses) MarketplaceMaintenanceAnnouncementsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementsRetrieveResponse, error) {
+	rsp, err := c.MarketplaceMaintenanceAnnouncementsRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceMaintenanceAnnouncementsRetrieveResponse(rsp)
+}
+
+// MarketplaceMaintenanceAnnouncementsPartialUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceMaintenanceAnnouncementsPartialUpdateResponse
+func (c *ClientWithResponses) MarketplaceMaintenanceAnnouncementsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementsPartialUpdateResponse, error) {
+	rsp, err := c.MarketplaceMaintenanceAnnouncementsPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceMaintenanceAnnouncementsPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceMaintenanceAnnouncementsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceMaintenanceAnnouncementsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementsPartialUpdateResponse, error) {
+	rsp, err := c.MarketplaceMaintenanceAnnouncementsPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceMaintenanceAnnouncementsPartialUpdateResponse(rsp)
+}
+
+// MarketplaceMaintenanceAnnouncementsUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceMaintenanceAnnouncementsUpdateResponse
+func (c *ClientWithResponses) MarketplaceMaintenanceAnnouncementsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementsUpdateResponse, error) {
+	rsp, err := c.MarketplaceMaintenanceAnnouncementsUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceMaintenanceAnnouncementsUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceMaintenanceAnnouncementsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceMaintenanceAnnouncementsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceMaintenanceAnnouncementsUpdateResponse, error) {
+	rsp, err := c.MarketplaceMaintenanceAnnouncementsUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceMaintenanceAnnouncementsUpdateResponse(rsp)
+}
+
 // MarketplaceOfferingEstimatedCostPoliciesListWithResponse request returning *MarketplaceOfferingEstimatedCostPoliciesListResponse
 func (c *ClientWithResponses) MarketplaceOfferingEstimatedCostPoliciesListWithResponse(ctx context.Context, params *MarketplaceOfferingEstimatedCostPoliciesListParams, reqEditors ...RequestEditorFn) (*MarketplaceOfferingEstimatedCostPoliciesListResponse, error) {
 	rsp, err := c.MarketplaceOfferingEstimatedCostPoliciesList(ctx, params, reqEditors...)
@@ -194147,6 +197075,590 @@ func ParseMarketplaceIntegrationStatusesRetrieveResponse(rsp *http.Response) (*M
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest IntegrationStatusDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceMaintenanceAnnouncementOfferingsListResponse parses an HTTP response from a MarketplaceMaintenanceAnnouncementOfferingsListWithResponse call
+func ParseMarketplaceMaintenanceAnnouncementOfferingsListResponse(rsp *http.Response) (*MarketplaceMaintenanceAnnouncementOfferingsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceMaintenanceAnnouncementOfferingsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []MaintenanceAnnouncementOffering
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceMaintenanceAnnouncementOfferingsCreateResponse parses an HTTP response from a MarketplaceMaintenanceAnnouncementOfferingsCreateWithResponse call
+func ParseMarketplaceMaintenanceAnnouncementOfferingsCreateResponse(rsp *http.Response) (*MarketplaceMaintenanceAnnouncementOfferingsCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceMaintenanceAnnouncementOfferingsCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest MaintenanceAnnouncementOffering
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceMaintenanceAnnouncementOfferingsDestroyResponse parses an HTTP response from a MarketplaceMaintenanceAnnouncementOfferingsDestroyWithResponse call
+func ParseMarketplaceMaintenanceAnnouncementOfferingsDestroyResponse(rsp *http.Response) (*MarketplaceMaintenanceAnnouncementOfferingsDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceMaintenanceAnnouncementOfferingsDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceMaintenanceAnnouncementOfferingsRetrieveResponse parses an HTTP response from a MarketplaceMaintenanceAnnouncementOfferingsRetrieveWithResponse call
+func ParseMarketplaceMaintenanceAnnouncementOfferingsRetrieveResponse(rsp *http.Response) (*MarketplaceMaintenanceAnnouncementOfferingsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceMaintenanceAnnouncementOfferingsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest MaintenanceAnnouncementOffering
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceMaintenanceAnnouncementOfferingsPartialUpdateResponse parses an HTTP response from a MarketplaceMaintenanceAnnouncementOfferingsPartialUpdateWithResponse call
+func ParseMarketplaceMaintenanceAnnouncementOfferingsPartialUpdateResponse(rsp *http.Response) (*MarketplaceMaintenanceAnnouncementOfferingsPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceMaintenanceAnnouncementOfferingsPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest MaintenanceAnnouncementOffering
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceMaintenanceAnnouncementOfferingsUpdateResponse parses an HTTP response from a MarketplaceMaintenanceAnnouncementOfferingsUpdateWithResponse call
+func ParseMarketplaceMaintenanceAnnouncementOfferingsUpdateResponse(rsp *http.Response) (*MarketplaceMaintenanceAnnouncementOfferingsUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceMaintenanceAnnouncementOfferingsUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest MaintenanceAnnouncementOffering
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceMaintenanceAnnouncementTemplateOfferingsListResponse parses an HTTP response from a MarketplaceMaintenanceAnnouncementTemplateOfferingsListWithResponse call
+func ParseMarketplaceMaintenanceAnnouncementTemplateOfferingsListResponse(rsp *http.Response) (*MarketplaceMaintenanceAnnouncementTemplateOfferingsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceMaintenanceAnnouncementTemplateOfferingsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []MaintenanceAnnouncementOfferingTemplate
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceMaintenanceAnnouncementTemplateOfferingsCreateResponse parses an HTTP response from a MarketplaceMaintenanceAnnouncementTemplateOfferingsCreateWithResponse call
+func ParseMarketplaceMaintenanceAnnouncementTemplateOfferingsCreateResponse(rsp *http.Response) (*MarketplaceMaintenanceAnnouncementTemplateOfferingsCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceMaintenanceAnnouncementTemplateOfferingsCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest MaintenanceAnnouncementOfferingTemplate
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceMaintenanceAnnouncementTemplateOfferingsDestroyResponse parses an HTTP response from a MarketplaceMaintenanceAnnouncementTemplateOfferingsDestroyWithResponse call
+func ParseMarketplaceMaintenanceAnnouncementTemplateOfferingsDestroyResponse(rsp *http.Response) (*MarketplaceMaintenanceAnnouncementTemplateOfferingsDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceMaintenanceAnnouncementTemplateOfferingsDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceMaintenanceAnnouncementTemplateOfferingsRetrieveResponse parses an HTTP response from a MarketplaceMaintenanceAnnouncementTemplateOfferingsRetrieveWithResponse call
+func ParseMarketplaceMaintenanceAnnouncementTemplateOfferingsRetrieveResponse(rsp *http.Response) (*MarketplaceMaintenanceAnnouncementTemplateOfferingsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceMaintenanceAnnouncementTemplateOfferingsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest MaintenanceAnnouncementOfferingTemplate
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceMaintenanceAnnouncementTemplateOfferingsPartialUpdateResponse parses an HTTP response from a MarketplaceMaintenanceAnnouncementTemplateOfferingsPartialUpdateWithResponse call
+func ParseMarketplaceMaintenanceAnnouncementTemplateOfferingsPartialUpdateResponse(rsp *http.Response) (*MarketplaceMaintenanceAnnouncementTemplateOfferingsPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceMaintenanceAnnouncementTemplateOfferingsPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest MaintenanceAnnouncementOfferingTemplate
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceMaintenanceAnnouncementTemplateOfferingsUpdateResponse parses an HTTP response from a MarketplaceMaintenanceAnnouncementTemplateOfferingsUpdateWithResponse call
+func ParseMarketplaceMaintenanceAnnouncementTemplateOfferingsUpdateResponse(rsp *http.Response) (*MarketplaceMaintenanceAnnouncementTemplateOfferingsUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceMaintenanceAnnouncementTemplateOfferingsUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest MaintenanceAnnouncementOfferingTemplate
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceMaintenanceAnnouncementsTemplateListResponse parses an HTTP response from a MarketplaceMaintenanceAnnouncementsTemplateListWithResponse call
+func ParseMarketplaceMaintenanceAnnouncementsTemplateListResponse(rsp *http.Response) (*MarketplaceMaintenanceAnnouncementsTemplateListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceMaintenanceAnnouncementsTemplateListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []MaintenanceAnnouncementTemplate
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceMaintenanceAnnouncementsTemplateCreateResponse parses an HTTP response from a MarketplaceMaintenanceAnnouncementsTemplateCreateWithResponse call
+func ParseMarketplaceMaintenanceAnnouncementsTemplateCreateResponse(rsp *http.Response) (*MarketplaceMaintenanceAnnouncementsTemplateCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceMaintenanceAnnouncementsTemplateCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest MaintenanceAnnouncementTemplate
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceMaintenanceAnnouncementsTemplateDestroyResponse parses an HTTP response from a MarketplaceMaintenanceAnnouncementsTemplateDestroyWithResponse call
+func ParseMarketplaceMaintenanceAnnouncementsTemplateDestroyResponse(rsp *http.Response) (*MarketplaceMaintenanceAnnouncementsTemplateDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceMaintenanceAnnouncementsTemplateDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceMaintenanceAnnouncementsTemplateRetrieveResponse parses an HTTP response from a MarketplaceMaintenanceAnnouncementsTemplateRetrieveWithResponse call
+func ParseMarketplaceMaintenanceAnnouncementsTemplateRetrieveResponse(rsp *http.Response) (*MarketplaceMaintenanceAnnouncementsTemplateRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceMaintenanceAnnouncementsTemplateRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest MaintenanceAnnouncementTemplate
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceMaintenanceAnnouncementsTemplatePartialUpdateResponse parses an HTTP response from a MarketplaceMaintenanceAnnouncementsTemplatePartialUpdateWithResponse call
+func ParseMarketplaceMaintenanceAnnouncementsTemplatePartialUpdateResponse(rsp *http.Response) (*MarketplaceMaintenanceAnnouncementsTemplatePartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceMaintenanceAnnouncementsTemplatePartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest MaintenanceAnnouncementTemplate
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceMaintenanceAnnouncementsTemplateUpdateResponse parses an HTTP response from a MarketplaceMaintenanceAnnouncementsTemplateUpdateWithResponse call
+func ParseMarketplaceMaintenanceAnnouncementsTemplateUpdateResponse(rsp *http.Response) (*MarketplaceMaintenanceAnnouncementsTemplateUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceMaintenanceAnnouncementsTemplateUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest MaintenanceAnnouncementTemplate
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceMaintenanceAnnouncementsListResponse parses an HTTP response from a MarketplaceMaintenanceAnnouncementsListWithResponse call
+func ParseMarketplaceMaintenanceAnnouncementsListResponse(rsp *http.Response) (*MarketplaceMaintenanceAnnouncementsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceMaintenanceAnnouncementsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []MaintenanceAnnouncement
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceMaintenanceAnnouncementsCreateResponse parses an HTTP response from a MarketplaceMaintenanceAnnouncementsCreateWithResponse call
+func ParseMarketplaceMaintenanceAnnouncementsCreateResponse(rsp *http.Response) (*MarketplaceMaintenanceAnnouncementsCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceMaintenanceAnnouncementsCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest MaintenanceAnnouncement
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceMaintenanceAnnouncementsDestroyResponse parses an HTTP response from a MarketplaceMaintenanceAnnouncementsDestroyWithResponse call
+func ParseMarketplaceMaintenanceAnnouncementsDestroyResponse(rsp *http.Response) (*MarketplaceMaintenanceAnnouncementsDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceMaintenanceAnnouncementsDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceMaintenanceAnnouncementsRetrieveResponse parses an HTTP response from a MarketplaceMaintenanceAnnouncementsRetrieveWithResponse call
+func ParseMarketplaceMaintenanceAnnouncementsRetrieveResponse(rsp *http.Response) (*MarketplaceMaintenanceAnnouncementsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceMaintenanceAnnouncementsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest MaintenanceAnnouncement
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceMaintenanceAnnouncementsPartialUpdateResponse parses an HTTP response from a MarketplaceMaintenanceAnnouncementsPartialUpdateWithResponse call
+func ParseMarketplaceMaintenanceAnnouncementsPartialUpdateResponse(rsp *http.Response) (*MarketplaceMaintenanceAnnouncementsPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceMaintenanceAnnouncementsPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest MaintenanceAnnouncement
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceMaintenanceAnnouncementsUpdateResponse parses an HTTP response from a MarketplaceMaintenanceAnnouncementsUpdateWithResponse call
+func ParseMarketplaceMaintenanceAnnouncementsUpdateResponse(rsp *http.Response) (*MarketplaceMaintenanceAnnouncementsUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceMaintenanceAnnouncementsUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest MaintenanceAnnouncement
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
