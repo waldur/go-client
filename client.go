@@ -11890,7 +11890,7 @@ type MergedPluginOptions struct {
 	// ManagedRancherTenantMaxDisk Max size of disk space for tenants (GB)
 	ManagedRancherTenantMaxDisk *int `json:"managed_rancher_tenant_max_disk,omitempty"`
 
-	// ManagedRancherTenantMaxRam Max number of RAM for tenants
+	// ManagedRancherTenantMaxRam Max number of RAM for tenants (GB)
 	ManagedRancherTenantMaxRam               *int    `json:"managed_rancher_tenant_max_ram,omitempty"`
 	ManagedRancherWorkerSystemVolumeSizeGb   *int    `json:"managed_rancher_worker_system_volume_size_gb,omitempty"`
 	ManagedRancherWorkerSystemVolumeTypeName *string `json:"managed_rancher_worker_system_volume_type_name,omitempty"`
@@ -12009,7 +12009,7 @@ type MergedPluginOptionsRequest struct {
 	// ManagedRancherTenantMaxDisk Max size of disk space for tenants (GB)
 	ManagedRancherTenantMaxDisk *int `json:"managed_rancher_tenant_max_disk,omitempty"`
 
-	// ManagedRancherTenantMaxRam Max number of RAM for tenants
+	// ManagedRancherTenantMaxRam Max number of RAM for tenants (GB)
 	ManagedRancherTenantMaxRam               *int    `json:"managed_rancher_tenant_max_ram,omitempty"`
 	ManagedRancherWorkerSystemVolumeSizeGb   *int    `json:"managed_rancher_worker_system_volume_size_gb,omitempty"`
 	ManagedRancherWorkerSystemVolumeTypeName *string `json:"managed_rancher_worker_system_volume_type_name,omitempty"`
@@ -20659,13 +20659,7 @@ type InvoicesListParams struct {
 	CustomerUuid *openapi_types.UUID        `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
 	EndDate      *openapi_types.Date        `form:"end_date,omitempty" json:"end_date,omitempty"`
 	Field        *[]InvoicesListParamsField `form:"field,omitempty" json:"field,omitempty"`
-
-	// MaxSum Max sum
-	MaxSum *float32 `form:"max_sum,omitempty" json:"max_sum,omitempty"`
-
-	// MinSum Min sum
-	MinSum *float32 `form:"min_sum,omitempty" json:"min_sum,omitempty"`
-	Month  *int     `form:"month,omitempty" json:"month,omitempty"`
+	Month        *int                       `form:"month,omitempty" json:"month,omitempty"`
 
 	// O Ordering
 	//
@@ -20721,13 +20715,7 @@ type InvoicesStatsListParams struct {
 	Customer     *string             `form:"customer,omitempty" json:"customer,omitempty"`
 	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
 	EndDate      *openapi_types.Date `form:"end_date,omitempty" json:"end_date,omitempty"`
-
-	// MaxSum Max sum
-	MaxSum *float32 `form:"max_sum,omitempty" json:"max_sum,omitempty"`
-
-	// MinSum Min sum
-	MinSum *float32 `form:"min_sum,omitempty" json:"min_sum,omitempty"`
-	Month  *int     `form:"month,omitempty" json:"month,omitempty"`
+	Month        *int                `form:"month,omitempty" json:"month,omitempty"`
 
 	// O Ordering
 	//
@@ -73555,38 +73543,6 @@ func NewInvoicesListRequest(server string, params *InvoicesListParams) (*http.Re
 
 		}
 
-		if params.MaxSum != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "max_sum", runtime.ParamLocationQuery, *params.MaxSum); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.MinSum != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "min_sum", runtime.ParamLocationQuery, *params.MinSum); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
 		if params.Month != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "month", runtime.ParamLocationQuery, *params.Month); err != nil {
@@ -74269,38 +74225,6 @@ func NewInvoicesStatsListRequest(server string, uuid openapi_types.UUID, params 
 		if params.EndDate != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "end_date", runtime.ParamLocationQuery, *params.EndDate); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.MaxSum != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "max_sum", runtime.ParamLocationQuery, *params.MaxSum); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.MinSum != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "min_sum", runtime.ParamLocationQuery, *params.MinSum); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
