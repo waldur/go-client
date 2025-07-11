@@ -32766,6 +32766,9 @@ type ClientInterface interface {
 	// OpenstackVolumeTypesList request
 	OpenstackVolumeTypesList(ctx context.Context, params *OpenstackVolumeTypesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// OpenstackVolumeTypesNamesRetrieve request
+	OpenstackVolumeTypesNamesRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// OpenstackVolumeTypesRetrieve request
 	OpenstackVolumeTypesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -47765,6 +47768,18 @@ func (c *Client) OpenstackVolumeAvailabilityZonesRetrieve(ctx context.Context, u
 
 func (c *Client) OpenstackVolumeTypesList(ctx context.Context, params *OpenstackVolumeTypesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenstackVolumeTypesListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackVolumeTypesNamesRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackVolumeTypesNamesRetrieveRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -114970,6 +114985,33 @@ func NewOpenstackVolumeTypesListRequest(server string, params *OpenstackVolumeTy
 	return req, nil
 }
 
+// NewOpenstackVolumeTypesNamesRetrieveRequest generates requests for OpenstackVolumeTypesNamesRetrieve
+func NewOpenstackVolumeTypesNamesRetrieveRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-volume-types/names/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewOpenstackVolumeTypesRetrieveRequest generates requests for OpenstackVolumeTypesRetrieve
 func NewOpenstackVolumeTypesRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -145234,6 +145276,9 @@ type ClientWithResponsesInterface interface {
 	// OpenstackVolumeTypesListWithResponse request
 	OpenstackVolumeTypesListWithResponse(ctx context.Context, params *OpenstackVolumeTypesListParams, reqEditors ...RequestEditorFn) (*OpenstackVolumeTypesListResponse, error)
 
+	// OpenstackVolumeTypesNamesRetrieveWithResponse request
+	OpenstackVolumeTypesNamesRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*OpenstackVolumeTypesNamesRetrieveResponse, error)
+
 	// OpenstackVolumeTypesRetrieveWithResponse request
 	OpenstackVolumeTypesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackVolumeTypesRetrieveResponse, error)
 
@@ -164732,6 +164777,28 @@ func (r OpenstackVolumeTypesListResponse) StatusCode() int {
 	return 0
 }
 
+type OpenstackVolumeTypesNamesRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OpenStackVolumeType
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackVolumeTypesNamesRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackVolumeTypesNamesRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type OpenstackVolumeTypesRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -183399,6 +183466,15 @@ func (c *ClientWithResponses) OpenstackVolumeTypesListWithResponse(ctx context.C
 		return nil, err
 	}
 	return ParseOpenstackVolumeTypesListResponse(rsp)
+}
+
+// OpenstackVolumeTypesNamesRetrieveWithResponse request returning *OpenstackVolumeTypesNamesRetrieveResponse
+func (c *ClientWithResponses) OpenstackVolumeTypesNamesRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*OpenstackVolumeTypesNamesRetrieveResponse, error) {
+	rsp, err := c.OpenstackVolumeTypesNamesRetrieve(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackVolumeTypesNamesRetrieveResponse(rsp)
 }
 
 // OpenstackVolumeTypesRetrieveWithResponse request returning *OpenstackVolumeTypesRetrieveResponse
@@ -207576,6 +207652,32 @@ func ParseOpenstackVolumeTypesListResponse(rsp *http.Response) (*OpenstackVolume
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest []OpenStackVolumeType
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackVolumeTypesNamesRetrieveResponse parses an HTTP response from a OpenstackVolumeTypesNamesRetrieveWithResponse call
+func ParseOpenstackVolumeTypesNamesRetrieveResponse(rsp *http.Response) (*OpenstackVolumeTypesNamesRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackVolumeTypesNamesRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OpenStackVolumeType
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
