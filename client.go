@@ -164704,7 +164704,7 @@ func (r OpenstackVolumeTypesListResponse) StatusCode() int {
 type OpenstackVolumeTypesNamesRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *OpenStackVolumeType
+	JSON200      *[]string
 }
 
 // Status returns HTTPResponse.Status
@@ -207601,7 +207601,7 @@ func ParseOpenstackVolumeTypesNamesRetrieveResponse(rsp *http.Response) (*Openst
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest OpenStackVolumeType
+		var dest []string
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
