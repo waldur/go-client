@@ -16372,37 +16372,39 @@ type ProviderOfferingDetails struct {
 	FullDescription        *string                          `json:"full_description,omitempty"`
 	GettingStarted         *string                          `json:"getting_started,omitempty"`
 	GoogleCalendarIsPublic *bool                            `json:"google_calendar_is_public"`
-	GoogleCalendarLink     *string                          `json:"google_calendar_link"`
-	Image                  *string                          `json:"image"`
-	IntegrationGuide       *string                          `json:"integration_guide,omitempty"`
-	IntegrationStatus      *[]IntegrationStatus             `json:"integration_status"`
-	Latitude               *float64                         `json:"latitude"`
-	Longitude              *float64                         `json:"longitude"`
-	Name                   *string                          `json:"name,omitempty"`
-	Options                *OfferingOptions                 `json:"options,omitempty"`
-	OrderCount             *int                             `json:"order_count,omitempty"`
-	OrganizationGroups     *[]OrganizationGroup             `json:"organization_groups,omitempty"`
-	ParentDescription      *string                          `json:"parent_description"`
-	ParentName             *string                          `json:"parent_name"`
-	ParentUuid             *openapi_types.UUID              `json:"parent_uuid"`
-	PausedReason           *string                          `json:"paused_reason,omitempty"`
-	Plans                  *[]BaseProviderPlan              `json:"plans,omitempty"`
-	PluginOptions          *MergedPluginOptions             `json:"plugin_options,omitempty"`
-	PrivacyPolicyLink      *string                          `json:"privacy_policy_link,omitempty"`
-	Project                *string                          `json:"project"`
-	ProjectName            *string                          `json:"project_name"`
-	ProjectUuid            *openapi_types.UUID              `json:"project_uuid"`
-	Quotas                 *[]Quota                         `json:"quotas,omitempty"`
-	ResourceOptions        *OfferingOptions                 `json:"resource_options,omitempty"`
-	Roles                  *[]NestedRole                    `json:"roles,omitempty"`
-	Scope                  *string                          `json:"scope,omitempty"`
-	ScopeErrorMessage      *string                          `json:"scope_error_message"`
-	ScopeName              *openapi_types.UUID              `json:"scope_name"`
-	ScopeState             *CoreStates                      `json:"scope_state"`
-	ScopeUuid              *openapi_types.UUID              `json:"scope_uuid"`
-	Screenshots            *[]NestedScreenshot              `json:"screenshots,omitempty"`
-	SecretOptions          *MergedSecretOptions             `json:"secret_options,omitempty"`
-	ServiceAttributes      *map[string]interface{}          `json:"service_attributes,omitempty"`
+
+	// GoogleCalendarLink Get the Google Calendar link for an offering.
+	GoogleCalendarLink *string                 `json:"google_calendar_link"`
+	Image              *string                 `json:"image"`
+	IntegrationGuide   *string                 `json:"integration_guide,omitempty"`
+	IntegrationStatus  *[]IntegrationStatus    `json:"integration_status"`
+	Latitude           *float64                `json:"latitude"`
+	Longitude          *float64                `json:"longitude"`
+	Name               *string                 `json:"name,omitempty"`
+	Options            *OfferingOptions        `json:"options,omitempty"`
+	OrderCount         *int                    `json:"order_count,omitempty"`
+	OrganizationGroups *[]OrganizationGroup    `json:"organization_groups,omitempty"`
+	ParentDescription  *string                 `json:"parent_description"`
+	ParentName         *string                 `json:"parent_name"`
+	ParentUuid         *openapi_types.UUID     `json:"parent_uuid"`
+	PausedReason       *string                 `json:"paused_reason,omitempty"`
+	Plans              *[]BaseProviderPlan     `json:"plans,omitempty"`
+	PluginOptions      *MergedPluginOptions    `json:"plugin_options,omitempty"`
+	PrivacyPolicyLink  *string                 `json:"privacy_policy_link,omitempty"`
+	Project            *string                 `json:"project"`
+	ProjectName        *string                 `json:"project_name"`
+	ProjectUuid        *openapi_types.UUID     `json:"project_uuid"`
+	Quotas             *[]Quota                `json:"quotas,omitempty"`
+	ResourceOptions    *OfferingOptions        `json:"resource_options,omitempty"`
+	Roles              *[]NestedRole           `json:"roles,omitempty"`
+	Scope              *string                 `json:"scope,omitempty"`
+	ScopeErrorMessage  *string                 `json:"scope_error_message"`
+	ScopeName          *openapi_types.UUID     `json:"scope_name"`
+	ScopeState         *CoreStates             `json:"scope_state"`
+	ScopeUuid          *openapi_types.UUID     `json:"scope_uuid"`
+	Screenshots        *[]NestedScreenshot     `json:"screenshots,omitempty"`
+	SecretOptions      *MergedSecretOptions    `json:"secret_options,omitempty"`
+	ServiceAttributes  *map[string]interface{} `json:"service_attributes,omitempty"`
 
 	// Shared Accessible to all customers.
 	Shared             *bool               `json:"shared,omitempty"`
@@ -16627,35 +16629,37 @@ type PublicOfferingDetails struct {
 	FullDescription        *string                        `json:"full_description,omitempty"`
 	GettingStarted         *string                        `json:"getting_started,omitempty"`
 	GoogleCalendarIsPublic *bool                          `json:"google_calendar_is_public"`
-	GoogleCalendarLink     *string                        `json:"google_calendar_link"`
-	Image                  *string                        `json:"image"`
-	IntegrationGuide       *string                        `json:"integration_guide,omitempty"`
-	Latitude               *float64                       `json:"latitude"`
-	Longitude              *float64                       `json:"longitude"`
-	Name                   *string                        `json:"name,omitempty"`
-	Options                *OfferingOptions               `json:"options,omitempty"`
-	OrderCount             *int                           `json:"order_count,omitempty"`
-	OrganizationGroups     *[]OrganizationGroup           `json:"organization_groups,omitempty"`
-	ParentDescription      *string                        `json:"parent_description"`
-	ParentName             *string                        `json:"parent_name"`
-	ParentUuid             *openapi_types.UUID            `json:"parent_uuid"`
-	PausedReason           *string                        `json:"paused_reason,omitempty"`
-	Plans                  *[]BasePublicPlan              `json:"plans,omitempty"`
-	PluginOptions          *MergedPluginOptions           `json:"plugin_options,omitempty"`
-	PrivacyPolicyLink      *string                        `json:"privacy_policy_link,omitempty"`
-	Project                *string                        `json:"project"`
-	ProjectName            *string                        `json:"project_name"`
-	ProjectUuid            *openapi_types.UUID            `json:"project_uuid"`
-	PromotionCampaigns     *[]NestedCampaign              `json:"promotion_campaigns,omitempty"`
-	Quotas                 *[]Quota                       `json:"quotas,omitempty"`
-	ResourceOptions        *OfferingOptions               `json:"resource_options,omitempty"`
-	Roles                  *[]NestedRole                  `json:"roles,omitempty"`
-	Scope                  *string                        `json:"scope,omitempty"`
-	ScopeErrorMessage      *string                        `json:"scope_error_message"`
-	ScopeName              *openapi_types.UUID            `json:"scope_name"`
-	ScopeState             *CoreStates                    `json:"scope_state"`
-	ScopeUuid              *openapi_types.UUID            `json:"scope_uuid"`
-	Screenshots            *[]NestedScreenshot            `json:"screenshots,omitempty"`
+
+	// GoogleCalendarLink Get the Google Calendar link for an offering.
+	GoogleCalendarLink *string              `json:"google_calendar_link"`
+	Image              *string              `json:"image"`
+	IntegrationGuide   *string              `json:"integration_guide,omitempty"`
+	Latitude           *float64             `json:"latitude"`
+	Longitude          *float64             `json:"longitude"`
+	Name               *string              `json:"name,omitempty"`
+	Options            *OfferingOptions     `json:"options,omitempty"`
+	OrderCount         *int                 `json:"order_count,omitempty"`
+	OrganizationGroups *[]OrganizationGroup `json:"organization_groups,omitempty"`
+	ParentDescription  *string              `json:"parent_description"`
+	ParentName         *string              `json:"parent_name"`
+	ParentUuid         *openapi_types.UUID  `json:"parent_uuid"`
+	PausedReason       *string              `json:"paused_reason,omitempty"`
+	Plans              *[]BasePublicPlan    `json:"plans,omitempty"`
+	PluginOptions      *MergedPluginOptions `json:"plugin_options,omitempty"`
+	PrivacyPolicyLink  *string              `json:"privacy_policy_link,omitempty"`
+	Project            *string              `json:"project"`
+	ProjectName        *string              `json:"project_name"`
+	ProjectUuid        *openapi_types.UUID  `json:"project_uuid"`
+	PromotionCampaigns *[]NestedCampaign    `json:"promotion_campaigns,omitempty"`
+	Quotas             *[]Quota             `json:"quotas,omitempty"`
+	ResourceOptions    *OfferingOptions     `json:"resource_options,omitempty"`
+	Roles              *[]NestedRole        `json:"roles,omitempty"`
+	Scope              *string              `json:"scope,omitempty"`
+	ScopeErrorMessage  *string              `json:"scope_error_message"`
+	ScopeName          *openapi_types.UUID  `json:"scope_name"`
+	ScopeState         *CoreStates          `json:"scope_state"`
+	ScopeUuid          *openapi_types.UUID  `json:"scope_uuid"`
+	Screenshots        *[]NestedScreenshot  `json:"screenshots,omitempty"`
 
 	// Shared Accessible to all customers.
 	Shared             *bool               `json:"shared,omitempty"`
