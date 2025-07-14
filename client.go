@@ -15521,7 +15521,9 @@ type PatchedRulePlansRequest struct {
 // PatchedRuleRequest defines model for PatchedRuleRequest.
 type PatchedRuleRequest struct {
 	Customer          *string   `json:"customer,omitempty"`
+	Name              *string   `json:"name,omitempty"`
 	ProjectRole       *string   `json:"project_role"`
+	ProjectRoleName   *string   `json:"project_role_name"`
 	UserAffiliations  *[]string `json:"user_affiliations,omitempty"`
 	UserEmailPatterns *[]string `json:"user_email_patterns,omitempty"`
 }
@@ -18111,13 +18113,18 @@ type RoundReviewer struct {
 
 // Rule defines model for Rule.
 type Rule struct {
-	Customer          string              `json:"customer"`
-	Plans             *[]string           `json:"plans,omitempty"`
-	ProjectRole       *string             `json:"project_role"`
-	Url               *string             `json:"url,omitempty"`
-	UserAffiliations  *[]string           `json:"user_affiliations,omitempty"`
-	UserEmailPatterns *[]string           `json:"user_email_patterns,omitempty"`
-	Uuid              *openapi_types.UUID `json:"uuid,omitempty"`
+	Customer               string              `json:"customer"`
+	CustomerName           *string             `json:"customer_name,omitempty"`
+	CustomerUuid           *string             `json:"customer_uuid,omitempty"`
+	Name                   string              `json:"name"`
+	Plans                  *[]string           `json:"plans,omitempty"`
+	ProjectRole            *string             `json:"project_role"`
+	ProjectRoleDescription *string             `json:"project_role_description,omitempty"`
+	ProjectRoleName        *string             `json:"project_role_name"`
+	Url                    *string             `json:"url,omitempty"`
+	UserAffiliations       *[]string           `json:"user_affiliations,omitempty"`
+	UserEmailPatterns      *[]string           `json:"user_email_patterns,omitempty"`
+	Uuid                   *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // RulePlans defines model for RulePlans.
@@ -18141,7 +18148,9 @@ type RulePlansRequest struct {
 // RuleRequest defines model for RuleRequest.
 type RuleRequest struct {
 	Customer          string    `json:"customer"`
+	Name              string    `json:"name"`
 	ProjectRole       *string   `json:"project_role"`
+	ProjectRoleName   *string   `json:"project_role_name"`
 	UserAffiliations  *[]string `json:"user_affiliations,omitempty"`
 	UserEmailPatterns *[]string `json:"user_email_patterns,omitempty"`
 }
