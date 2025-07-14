@@ -6567,9 +6567,6 @@ const (
 	ProposalProtectedCallsListParamsFieldCreatedBy                           ProposalProtectedCallsListParamsField = "created_by"
 	ProposalProtectedCallsListParamsFieldCustomerName                        ProposalProtectedCallsListParamsField = "customer_name"
 	ProposalProtectedCallsListParamsFieldCustomerUuid                        ProposalProtectedCallsListParamsField = "customer_uuid"
-	ProposalProtectedCallsListParamsFieldDefaultProjectRole                  ProposalProtectedCallsListParamsField = "default_project_role"
-	ProposalProtectedCallsListParamsFieldDefaultProjectRoleDescription       ProposalProtectedCallsListParamsField = "default_project_role_description"
-	ProposalProtectedCallsListParamsFieldDefaultProjectRoleName              ProposalProtectedCallsListParamsField = "default_project_role_name"
 	ProposalProtectedCallsListParamsFieldDescription                         ProposalProtectedCallsListParamsField = "description"
 	ProposalProtectedCallsListParamsFieldDocuments                           ProposalProtectedCallsListParamsField = "documents"
 	ProposalProtectedCallsListParamsFieldEndDate                             ProposalProtectedCallsListParamsField = "end_date"
@@ -6614,9 +6611,6 @@ const (
 	ProposalProtectedCallsRetrieveParamsFieldCreatedBy                           ProposalProtectedCallsRetrieveParamsField = "created_by"
 	ProposalProtectedCallsRetrieveParamsFieldCustomerName                        ProposalProtectedCallsRetrieveParamsField = "customer_name"
 	ProposalProtectedCallsRetrieveParamsFieldCustomerUuid                        ProposalProtectedCallsRetrieveParamsField = "customer_uuid"
-	ProposalProtectedCallsRetrieveParamsFieldDefaultProjectRole                  ProposalProtectedCallsRetrieveParamsField = "default_project_role"
-	ProposalProtectedCallsRetrieveParamsFieldDefaultProjectRoleDescription       ProposalProtectedCallsRetrieveParamsField = "default_project_role_description"
-	ProposalProtectedCallsRetrieveParamsFieldDefaultProjectRoleName              ProposalProtectedCallsRetrieveParamsField = "default_project_role_name"
 	ProposalProtectedCallsRetrieveParamsFieldDescription                         ProposalProtectedCallsRetrieveParamsField = "description"
 	ProposalProtectedCallsRetrieveParamsFieldDocuments                           ProposalProtectedCallsRetrieveParamsField = "documents"
 	ProposalProtectedCallsRetrieveParamsFieldEndDate                             ProposalProtectedCallsRetrieveParamsField = "end_date"
@@ -15288,6 +15282,13 @@ type PatchedProjectServiceAccountRequest struct {
 	Username            *string              `json:"username,omitempty"`
 }
 
+// PatchedProposalProjectRoleMappingRequest defines model for PatchedProposalProjectRoleMappingRequest.
+type PatchedProposalProjectRoleMappingRequest struct {
+	Call         *string `json:"call,omitempty"`
+	ProjectRole  *string `json:"project_role"`
+	ProposalRole *string `json:"proposal_role,omitempty"`
+}
+
 // PatchedProposalReviewRequest defines model for PatchedProposalReviewRequest.
 type PatchedProposalReviewRequest struct {
 	CommentProjectDescription             *string `json:"comment_project_description"`
@@ -15306,14 +15307,13 @@ type PatchedProposalReviewRequest struct {
 
 // PatchedProtectedCallRequest defines model for PatchedProtectedCallRequest.
 type PatchedProtectedCallRequest struct {
-	BackendId           *string             `json:"backend_id,omitempty"`
-	CreatedBy           *string             `json:"created_by"`
-	DefaultProjectRole  *openapi_types.UUID `json:"default_project_role,omitempty"`
-	Description         *string             `json:"description,omitempty"`
-	ExternalUrl         *string             `json:"external_url"`
-	FixedDurationInDays *int                `json:"fixed_duration_in_days"`
-	Name                *string             `json:"name,omitempty"`
-	ReferenceCode       *string             `json:"reference_code,omitempty"`
+	BackendId           *string `json:"backend_id,omitempty"`
+	CreatedBy           *string `json:"created_by"`
+	Description         *string `json:"description,omitempty"`
+	ExternalUrl         *string `json:"external_url"`
+	FixedDurationInDays *int    `json:"fixed_duration_in_days"`
+	Name                *string `json:"name,omitempty"`
+	ReferenceCode       *string `json:"reference_code,omitempty"`
 
 	// ReviewerIdentityVisibleToSubmitters Whether proposal submitters can see reviewer identities
 	ReviewerIdentityVisibleToSubmitters *bool `json:"reviewer_identity_visible_to_submitters,omitempty"`
@@ -16107,6 +16107,24 @@ type ProposalDocumentationRequest struct {
 	File *openapi_types.File `json:"file"`
 }
 
+// ProposalProjectRoleMapping defines model for ProposalProjectRoleMapping.
+type ProposalProjectRoleMapping struct {
+	Call         string              `json:"call"`
+	CallName     *string             `json:"call_name,omitempty"`
+	CallUuid     *openapi_types.UUID `json:"call_uuid,omitempty"`
+	ProjectRole  *string             `json:"project_role"`
+	ProposalRole string              `json:"proposal_role"`
+	Url          *string             `json:"url,omitempty"`
+	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// ProposalProjectRoleMappingRequest defines model for ProposalProjectRoleMappingRequest.
+type ProposalProjectRoleMappingRequest struct {
+	Call         string  `json:"call"`
+	ProjectRole  *string `json:"project_role"`
+	ProposalRole string  `json:"proposal_role"`
+}
+
 // ProposalRequest defines model for ProposalRequest.
 type ProposalRequest struct {
 	Description *string `json:"description,omitempty"`
@@ -16205,24 +16223,21 @@ type ProposalUpdateProjectDetailsRequest_OecdFos2007Code struct {
 
 // ProtectedCall defines model for ProtectedCall.
 type ProtectedCall struct {
-	BackendId                     *string                    `json:"backend_id,omitempty"`
-	Created                       *time.Time                 `json:"created,omitempty"`
-	CreatedBy                     *string                    `json:"created_by"`
-	CustomerName                  *string                    `json:"customer_name,omitempty"`
-	CustomerUuid                  *openapi_types.UUID        `json:"customer_uuid,omitempty"`
-	DefaultProjectRole            *openapi_types.UUID        `json:"default_project_role,omitempty"`
-	DefaultProjectRoleDescription *string                    `json:"default_project_role_description,omitempty"`
-	DefaultProjectRoleName        *string                    `json:"default_project_role_name,omitempty"`
-	Description                   *string                    `json:"description,omitempty"`
-	Documents                     *[]CallDocument            `json:"documents,omitempty"`
-	EndDate                       *time.Time                 `json:"end_date,omitempty"`
-	ExternalUrl                   *string                    `json:"external_url"`
-	FixedDurationInDays           *int                       `json:"fixed_duration_in_days"`
-	Manager                       *string                    `json:"manager,omitempty"`
-	Name                          *string                    `json:"name,omitempty"`
-	Offerings                     *[]NestedRequestedOffering `json:"offerings,omitempty"`
-	ReferenceCode                 *string                    `json:"reference_code,omitempty"`
-	ResourceTemplates             *[]CallResourceTemplate    `json:"resource_templates,omitempty"`
+	BackendId           *string                    `json:"backend_id,omitempty"`
+	Created             *time.Time                 `json:"created,omitempty"`
+	CreatedBy           *string                    `json:"created_by"`
+	CustomerName        *string                    `json:"customer_name,omitempty"`
+	CustomerUuid        *openapi_types.UUID        `json:"customer_uuid,omitempty"`
+	Description         *string                    `json:"description,omitempty"`
+	Documents           *[]CallDocument            `json:"documents,omitempty"`
+	EndDate             *time.Time                 `json:"end_date,omitempty"`
+	ExternalUrl         *string                    `json:"external_url"`
+	FixedDurationInDays *int                       `json:"fixed_duration_in_days"`
+	Manager             *string                    `json:"manager,omitempty"`
+	Name                *string                    `json:"name,omitempty"`
+	Offerings           *[]NestedRequestedOffering `json:"offerings,omitempty"`
+	ReferenceCode       *string                    `json:"reference_code,omitempty"`
+	ResourceTemplates   *[]CallResourceTemplate    `json:"resource_templates,omitempty"`
 
 	// ReviewerIdentityVisibleToSubmitters Whether proposal submitters can see reviewer identities
 	ReviewerIdentityVisibleToSubmitters *bool `json:"reviewer_identity_visible_to_submitters,omitempty"`
@@ -16239,15 +16254,14 @@ type ProtectedCall struct {
 
 // ProtectedCallRequest defines model for ProtectedCallRequest.
 type ProtectedCallRequest struct {
-	BackendId           *string             `json:"backend_id,omitempty"`
-	CreatedBy           *string             `json:"created_by"`
-	DefaultProjectRole  *openapi_types.UUID `json:"default_project_role,omitempty"`
-	Description         *string             `json:"description,omitempty"`
-	ExternalUrl         *string             `json:"external_url"`
-	FixedDurationInDays *int                `json:"fixed_duration_in_days"`
-	Manager             string              `json:"manager"`
-	Name                string              `json:"name"`
-	ReferenceCode       *string             `json:"reference_code,omitempty"`
+	BackendId           *string `json:"backend_id,omitempty"`
+	CreatedBy           *string `json:"created_by"`
+	Description         *string `json:"description,omitempty"`
+	ExternalUrl         *string `json:"external_url"`
+	FixedDurationInDays *int    `json:"fixed_duration_in_days"`
+	Manager             string  `json:"manager"`
+	Name                string  `json:"name"`
+	ReferenceCode       *string `json:"reference_code,omitempty"`
 
 	// ReviewerIdentityVisibleToSubmitters Whether proposal submitters can see reviewer identities
 	ReviewerIdentityVisibleToSubmitters *bool `json:"reviewer_identity_visible_to_submitters,omitempty"`
@@ -19967,6 +19981,17 @@ type CallManagingOrganisationsListUsersListParamsField string
 
 // CallManagingOrganisationsListUsersListParamsO defines parameters for CallManagingOrganisationsListUsersList.
 type CallManagingOrganisationsListUsersListParamsO string
+
+// CallProposalProjectRoleMappingsListParams defines parameters for CallProposalProjectRoleMappingsList.
+type CallProposalProjectRoleMappingsListParams struct {
+	CallUuid *openapi_types.UUID `form:"call_uuid,omitempty" json:"call_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
 
 // CallRoundsListParams defines parameters for CallRoundsList.
 type CallRoundsListParams struct {
@@ -25938,6 +25963,15 @@ type CallManagingOrganisationsDeleteUserJSONRequestBody = UserRoleDeleteRequest
 // CallManagingOrganisationsUpdateUserJSONRequestBody defines body for CallManagingOrganisationsUpdateUser for application/json ContentType.
 type CallManagingOrganisationsUpdateUserJSONRequestBody = UserRoleUpdateRequest
 
+// CallProposalProjectRoleMappingsCreateJSONRequestBody defines body for CallProposalProjectRoleMappingsCreate for application/json ContentType.
+type CallProposalProjectRoleMappingsCreateJSONRequestBody = ProposalProjectRoleMappingRequest
+
+// CallProposalProjectRoleMappingsPartialUpdateJSONRequestBody defines body for CallProposalProjectRoleMappingsPartialUpdate for application/json ContentType.
+type CallProposalProjectRoleMappingsPartialUpdateJSONRequestBody = PatchedProposalProjectRoleMappingRequest
+
+// CallProposalProjectRoleMappingsUpdateJSONRequestBody defines body for CallProposalProjectRoleMappingsUpdate for application/json ContentType.
+type CallProposalProjectRoleMappingsUpdateJSONRequestBody = ProposalProjectRoleMappingRequest
+
 // ComponentUserUsageLimitsCreateJSONRequestBody defines body for ComponentUserUsageLimitsCreate for application/json ContentType.
 type ComponentUserUsageLimitsCreateJSONRequestBody = ComponentUserUsageLimitRequest
 
@@ -30282,6 +30316,27 @@ type ClientInterface interface {
 	CallManagingOrganisationsUpdateUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	CallManagingOrganisationsUpdateUser(ctx context.Context, uuid openapi_types.UUID, body CallManagingOrganisationsUpdateUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// CallProposalProjectRoleMappingsList request
+	CallProposalProjectRoleMappingsList(ctx context.Context, params *CallProposalProjectRoleMappingsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// CallProposalProjectRoleMappingsCreateWithBody request with any body
+	CallProposalProjectRoleMappingsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	CallProposalProjectRoleMappingsCreate(ctx context.Context, body CallProposalProjectRoleMappingsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// CallProposalProjectRoleMappingsRetrieve request
+	CallProposalProjectRoleMappingsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// CallProposalProjectRoleMappingsPartialUpdateWithBody request with any body
+	CallProposalProjectRoleMappingsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	CallProposalProjectRoleMappingsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body CallProposalProjectRoleMappingsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// CallProposalProjectRoleMappingsUpdateWithBody request with any body
+	CallProposalProjectRoleMappingsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	CallProposalProjectRoleMappingsUpdate(ctx context.Context, uuid openapi_types.UUID, body CallProposalProjectRoleMappingsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// CallRoundsList request
 	CallRoundsList(ctx context.Context, params *CallRoundsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -36861,6 +36916,102 @@ func (c *Client) CallManagingOrganisationsUpdateUserWithBody(ctx context.Context
 
 func (c *Client) CallManagingOrganisationsUpdateUser(ctx context.Context, uuid openapi_types.UUID, body CallManagingOrganisationsUpdateUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCallManagingOrganisationsUpdateUserRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CallProposalProjectRoleMappingsList(ctx context.Context, params *CallProposalProjectRoleMappingsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCallProposalProjectRoleMappingsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CallProposalProjectRoleMappingsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCallProposalProjectRoleMappingsCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CallProposalProjectRoleMappingsCreate(ctx context.Context, body CallProposalProjectRoleMappingsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCallProposalProjectRoleMappingsCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CallProposalProjectRoleMappingsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCallProposalProjectRoleMappingsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CallProposalProjectRoleMappingsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCallProposalProjectRoleMappingsPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CallProposalProjectRoleMappingsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body CallProposalProjectRoleMappingsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCallProposalProjectRoleMappingsPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CallProposalProjectRoleMappingsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCallProposalProjectRoleMappingsUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CallProposalProjectRoleMappingsUpdate(ctx context.Context, uuid openapi_types.UUID, body CallProposalProjectRoleMappingsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCallProposalProjectRoleMappingsUpdateRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -65042,6 +65193,255 @@ func NewCallManagingOrganisationsUpdateUserRequestWithBody(server string, uuid o
 	}
 
 	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewCallProposalProjectRoleMappingsListRequest generates requests for CallProposalProjectRoleMappingsList
+func NewCallProposalProjectRoleMappingsListRequest(server string, params *CallProposalProjectRoleMappingsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/call-proposal-project-role-mappings/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.CallUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "call_uuid", runtime.ParamLocationQuery, *params.CallUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewCallProposalProjectRoleMappingsCreateRequest calls the generic CallProposalProjectRoleMappingsCreate builder with application/json body
+func NewCallProposalProjectRoleMappingsCreateRequest(server string, body CallProposalProjectRoleMappingsCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewCallProposalProjectRoleMappingsCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewCallProposalProjectRoleMappingsCreateRequestWithBody generates requests for CallProposalProjectRoleMappingsCreate with any type of body
+func NewCallProposalProjectRoleMappingsCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/call-proposal-project-role-mappings/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewCallProposalProjectRoleMappingsRetrieveRequest generates requests for CallProposalProjectRoleMappingsRetrieve
+func NewCallProposalProjectRoleMappingsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/call-proposal-project-role-mappings/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewCallProposalProjectRoleMappingsPartialUpdateRequest calls the generic CallProposalProjectRoleMappingsPartialUpdate builder with application/json body
+func NewCallProposalProjectRoleMappingsPartialUpdateRequest(server string, uuid openapi_types.UUID, body CallProposalProjectRoleMappingsPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewCallProposalProjectRoleMappingsPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewCallProposalProjectRoleMappingsPartialUpdateRequestWithBody generates requests for CallProposalProjectRoleMappingsPartialUpdate with any type of body
+func NewCallProposalProjectRoleMappingsPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/call-proposal-project-role-mappings/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewCallProposalProjectRoleMappingsUpdateRequest calls the generic CallProposalProjectRoleMappingsUpdate builder with application/json body
+func NewCallProposalProjectRoleMappingsUpdateRequest(server string, uuid openapi_types.UUID, body CallProposalProjectRoleMappingsUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewCallProposalProjectRoleMappingsUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewCallProposalProjectRoleMappingsUpdateRequestWithBody generates requests for CallProposalProjectRoleMappingsUpdate with any type of body
+func NewCallProposalProjectRoleMappingsUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/call-proposal-project-role-mappings/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
 	if err != nil {
 		return nil, err
 	}
@@ -142729,6 +143129,27 @@ type ClientWithResponsesInterface interface {
 
 	CallManagingOrganisationsUpdateUserWithResponse(ctx context.Context, uuid openapi_types.UUID, body CallManagingOrganisationsUpdateUserJSONRequestBody, reqEditors ...RequestEditorFn) (*CallManagingOrganisationsUpdateUserResponse, error)
 
+	// CallProposalProjectRoleMappingsListWithResponse request
+	CallProposalProjectRoleMappingsListWithResponse(ctx context.Context, params *CallProposalProjectRoleMappingsListParams, reqEditors ...RequestEditorFn) (*CallProposalProjectRoleMappingsListResponse, error)
+
+	// CallProposalProjectRoleMappingsCreateWithBodyWithResponse request with any body
+	CallProposalProjectRoleMappingsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CallProposalProjectRoleMappingsCreateResponse, error)
+
+	CallProposalProjectRoleMappingsCreateWithResponse(ctx context.Context, body CallProposalProjectRoleMappingsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*CallProposalProjectRoleMappingsCreateResponse, error)
+
+	// CallProposalProjectRoleMappingsRetrieveWithResponse request
+	CallProposalProjectRoleMappingsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*CallProposalProjectRoleMappingsRetrieveResponse, error)
+
+	// CallProposalProjectRoleMappingsPartialUpdateWithBodyWithResponse request with any body
+	CallProposalProjectRoleMappingsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CallProposalProjectRoleMappingsPartialUpdateResponse, error)
+
+	CallProposalProjectRoleMappingsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body CallProposalProjectRoleMappingsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*CallProposalProjectRoleMappingsPartialUpdateResponse, error)
+
+	// CallProposalProjectRoleMappingsUpdateWithBodyWithResponse request with any body
+	CallProposalProjectRoleMappingsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CallProposalProjectRoleMappingsUpdateResponse, error)
+
+	CallProposalProjectRoleMappingsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body CallProposalProjectRoleMappingsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*CallProposalProjectRoleMappingsUpdateResponse, error)
+
 	// CallRoundsListWithResponse request
 	CallRoundsListWithResponse(ctx context.Context, params *CallRoundsListParams, reqEditors ...RequestEditorFn) (*CallRoundsListResponse, error)
 
@@ -150225,6 +150646,116 @@ func (r CallManagingOrganisationsUpdateUserResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r CallManagingOrganisationsUpdateUserResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type CallProposalProjectRoleMappingsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]ProposalProjectRoleMapping
+}
+
+// Status returns HTTPResponse.Status
+func (r CallProposalProjectRoleMappingsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r CallProposalProjectRoleMappingsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type CallProposalProjectRoleMappingsCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *ProposalProjectRoleMapping
+}
+
+// Status returns HTTPResponse.Status
+func (r CallProposalProjectRoleMappingsCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r CallProposalProjectRoleMappingsCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type CallProposalProjectRoleMappingsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ProposalProjectRoleMapping
+}
+
+// Status returns HTTPResponse.Status
+func (r CallProposalProjectRoleMappingsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r CallProposalProjectRoleMappingsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type CallProposalProjectRoleMappingsPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ProposalProjectRoleMapping
+}
+
+// Status returns HTTPResponse.Status
+func (r CallProposalProjectRoleMappingsPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r CallProposalProjectRoleMappingsPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type CallProposalProjectRoleMappingsUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ProposalProjectRoleMapping
+}
+
+// Status returns HTTPResponse.Status
+func (r CallProposalProjectRoleMappingsUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r CallProposalProjectRoleMappingsUpdateResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -175467,6 +175998,75 @@ func (c *ClientWithResponses) CallManagingOrganisationsUpdateUserWithResponse(ct
 	return ParseCallManagingOrganisationsUpdateUserResponse(rsp)
 }
 
+// CallProposalProjectRoleMappingsListWithResponse request returning *CallProposalProjectRoleMappingsListResponse
+func (c *ClientWithResponses) CallProposalProjectRoleMappingsListWithResponse(ctx context.Context, params *CallProposalProjectRoleMappingsListParams, reqEditors ...RequestEditorFn) (*CallProposalProjectRoleMappingsListResponse, error) {
+	rsp, err := c.CallProposalProjectRoleMappingsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCallProposalProjectRoleMappingsListResponse(rsp)
+}
+
+// CallProposalProjectRoleMappingsCreateWithBodyWithResponse request with arbitrary body returning *CallProposalProjectRoleMappingsCreateResponse
+func (c *ClientWithResponses) CallProposalProjectRoleMappingsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CallProposalProjectRoleMappingsCreateResponse, error) {
+	rsp, err := c.CallProposalProjectRoleMappingsCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCallProposalProjectRoleMappingsCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) CallProposalProjectRoleMappingsCreateWithResponse(ctx context.Context, body CallProposalProjectRoleMappingsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*CallProposalProjectRoleMappingsCreateResponse, error) {
+	rsp, err := c.CallProposalProjectRoleMappingsCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCallProposalProjectRoleMappingsCreateResponse(rsp)
+}
+
+// CallProposalProjectRoleMappingsRetrieveWithResponse request returning *CallProposalProjectRoleMappingsRetrieveResponse
+func (c *ClientWithResponses) CallProposalProjectRoleMappingsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*CallProposalProjectRoleMappingsRetrieveResponse, error) {
+	rsp, err := c.CallProposalProjectRoleMappingsRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCallProposalProjectRoleMappingsRetrieveResponse(rsp)
+}
+
+// CallProposalProjectRoleMappingsPartialUpdateWithBodyWithResponse request with arbitrary body returning *CallProposalProjectRoleMappingsPartialUpdateResponse
+func (c *ClientWithResponses) CallProposalProjectRoleMappingsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CallProposalProjectRoleMappingsPartialUpdateResponse, error) {
+	rsp, err := c.CallProposalProjectRoleMappingsPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCallProposalProjectRoleMappingsPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) CallProposalProjectRoleMappingsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body CallProposalProjectRoleMappingsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*CallProposalProjectRoleMappingsPartialUpdateResponse, error) {
+	rsp, err := c.CallProposalProjectRoleMappingsPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCallProposalProjectRoleMappingsPartialUpdateResponse(rsp)
+}
+
+// CallProposalProjectRoleMappingsUpdateWithBodyWithResponse request with arbitrary body returning *CallProposalProjectRoleMappingsUpdateResponse
+func (c *ClientWithResponses) CallProposalProjectRoleMappingsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CallProposalProjectRoleMappingsUpdateResponse, error) {
+	rsp, err := c.CallProposalProjectRoleMappingsUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCallProposalProjectRoleMappingsUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) CallProposalProjectRoleMappingsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body CallProposalProjectRoleMappingsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*CallProposalProjectRoleMappingsUpdateResponse, error) {
+	rsp, err := c.CallProposalProjectRoleMappingsUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCallProposalProjectRoleMappingsUpdateResponse(rsp)
+}
+
 // CallRoundsListWithResponse request returning *CallRoundsListResponse
 func (c *ClientWithResponses) CallRoundsListWithResponse(ctx context.Context, params *CallRoundsListParams, reqEditors ...RequestEditorFn) (*CallRoundsListResponse, error) {
 	rsp, err := c.CallRoundsList(ctx, params, reqEditors...)
@@ -191966,6 +192566,136 @@ func ParseCallManagingOrganisationsUpdateUserResponse(rsp *http.Response) (*Call
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest UserRoleExpirationTime
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseCallProposalProjectRoleMappingsListResponse parses an HTTP response from a CallProposalProjectRoleMappingsListWithResponse call
+func ParseCallProposalProjectRoleMappingsListResponse(rsp *http.Response) (*CallProposalProjectRoleMappingsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &CallProposalProjectRoleMappingsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []ProposalProjectRoleMapping
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseCallProposalProjectRoleMappingsCreateResponse parses an HTTP response from a CallProposalProjectRoleMappingsCreateWithResponse call
+func ParseCallProposalProjectRoleMappingsCreateResponse(rsp *http.Response) (*CallProposalProjectRoleMappingsCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &CallProposalProjectRoleMappingsCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest ProposalProjectRoleMapping
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseCallProposalProjectRoleMappingsRetrieveResponse parses an HTTP response from a CallProposalProjectRoleMappingsRetrieveWithResponse call
+func ParseCallProposalProjectRoleMappingsRetrieveResponse(rsp *http.Response) (*CallProposalProjectRoleMappingsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &CallProposalProjectRoleMappingsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ProposalProjectRoleMapping
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseCallProposalProjectRoleMappingsPartialUpdateResponse parses an HTTP response from a CallProposalProjectRoleMappingsPartialUpdateWithResponse call
+func ParseCallProposalProjectRoleMappingsPartialUpdateResponse(rsp *http.Response) (*CallProposalProjectRoleMappingsPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &CallProposalProjectRoleMappingsPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ProposalProjectRoleMapping
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseCallProposalProjectRoleMappingsUpdateResponse parses an HTTP response from a CallProposalProjectRoleMappingsUpdateWithResponse call
+func ParseCallProposalProjectRoleMappingsUpdateResponse(rsp *http.Response) (*CallProposalProjectRoleMappingsUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &CallProposalProjectRoleMappingsUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ProposalProjectRoleMapping
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
