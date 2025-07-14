@@ -30269,6 +30269,9 @@ type ClientInterface interface {
 
 	BroadcastMessagesUpdate(ctx context.Context, uuid openapi_types.UUID, body BroadcastMessagesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// BroadcastMessagesSchedule request
+	BroadcastMessagesSchedule(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// BroadcastMessagesSend request
 	BroadcastMessagesSend(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -30324,6 +30327,9 @@ type ClientInterface interface {
 	CallProposalProjectRoleMappingsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	CallProposalProjectRoleMappingsCreate(ctx context.Context, body CallProposalProjectRoleMappingsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// CallProposalProjectRoleMappingsDestroy request
+	CallProposalProjectRoleMappingsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// CallProposalProjectRoleMappingsRetrieve request
 	CallProposalProjectRoleMappingsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -36710,6 +36716,18 @@ func (c *Client) BroadcastMessagesUpdate(ctx context.Context, uuid openapi_types
 	return c.Client.Do(req)
 }
 
+func (c *Client) BroadcastMessagesSchedule(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewBroadcastMessagesScheduleRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) BroadcastMessagesSend(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewBroadcastMessagesSendRequest(c.Server, uuid)
 	if err != nil {
@@ -36952,6 +36970,18 @@ func (c *Client) CallProposalProjectRoleMappingsCreateWithBody(ctx context.Conte
 
 func (c *Client) CallProposalProjectRoleMappingsCreate(ctx context.Context, body CallProposalProjectRoleMappingsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCallProposalProjectRoleMappingsCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CallProposalProjectRoleMappingsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCallProposalProjectRoleMappingsDestroyRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -64430,6 +64460,40 @@ func NewBroadcastMessagesUpdateRequestWithBody(server string, uuid openapi_types
 	return req, nil
 }
 
+// NewBroadcastMessagesScheduleRequest generates requests for BroadcastMessagesSchedule
+func NewBroadcastMessagesScheduleRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/broadcast-messages/%s/schedule/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewBroadcastMessagesSendRequest generates requests for BroadcastMessagesSend
 func NewBroadcastMessagesSendRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -65319,6 +65383,40 @@ func NewCallProposalProjectRoleMappingsCreateRequestWithBody(server string, cont
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewCallProposalProjectRoleMappingsDestroyRequest generates requests for CallProposalProjectRoleMappingsDestroy
+func NewCallProposalProjectRoleMappingsDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/call-proposal-project-role-mappings/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
 
 	return req, nil
 }
@@ -143081,6 +143179,9 @@ type ClientWithResponsesInterface interface {
 
 	BroadcastMessagesUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body BroadcastMessagesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*BroadcastMessagesUpdateResponse, error)
 
+	// BroadcastMessagesScheduleWithResponse request
+	BroadcastMessagesScheduleWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*BroadcastMessagesScheduleResponse, error)
+
 	// BroadcastMessagesSendWithResponse request
 	BroadcastMessagesSendWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*BroadcastMessagesSendResponse, error)
 
@@ -143136,6 +143237,9 @@ type ClientWithResponsesInterface interface {
 	CallProposalProjectRoleMappingsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CallProposalProjectRoleMappingsCreateResponse, error)
 
 	CallProposalProjectRoleMappingsCreateWithResponse(ctx context.Context, body CallProposalProjectRoleMappingsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*CallProposalProjectRoleMappingsCreateResponse, error)
+
+	// CallProposalProjectRoleMappingsDestroyWithResponse request
+	CallProposalProjectRoleMappingsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*CallProposalProjectRoleMappingsDestroyResponse, error)
 
 	// CallProposalProjectRoleMappingsRetrieveWithResponse request
 	CallProposalProjectRoleMappingsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*CallProposalProjectRoleMappingsRetrieveResponse, error)
@@ -150391,6 +150495,27 @@ func (r BroadcastMessagesUpdateResponse) StatusCode() int {
 	return 0
 }
 
+type BroadcastMessagesScheduleResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r BroadcastMessagesScheduleResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r BroadcastMessagesScheduleResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type BroadcastMessagesSendResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -150690,6 +150815,27 @@ func (r CallProposalProjectRoleMappingsCreateResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r CallProposalProjectRoleMappingsCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type CallProposalProjectRoleMappingsDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r CallProposalProjectRoleMappingsDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r CallProposalProjectRoleMappingsDestroyResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -175842,6 +175988,15 @@ func (c *ClientWithResponses) BroadcastMessagesUpdateWithResponse(ctx context.Co
 	return ParseBroadcastMessagesUpdateResponse(rsp)
 }
 
+// BroadcastMessagesScheduleWithResponse request returning *BroadcastMessagesScheduleResponse
+func (c *ClientWithResponses) BroadcastMessagesScheduleWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*BroadcastMessagesScheduleResponse, error) {
+	rsp, err := c.BroadcastMessagesSchedule(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseBroadcastMessagesScheduleResponse(rsp)
+}
+
 // BroadcastMessagesSendWithResponse request returning *BroadcastMessagesSendResponse
 func (c *ClientWithResponses) BroadcastMessagesSendWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*BroadcastMessagesSendResponse, error) {
 	rsp, err := c.BroadcastMessagesSend(ctx, uuid, reqEditors...)
@@ -176022,6 +176177,15 @@ func (c *ClientWithResponses) CallProposalProjectRoleMappingsCreateWithResponse(
 		return nil, err
 	}
 	return ParseCallProposalProjectRoleMappingsCreateResponse(rsp)
+}
+
+// CallProposalProjectRoleMappingsDestroyWithResponse request returning *CallProposalProjectRoleMappingsDestroyResponse
+func (c *ClientWithResponses) CallProposalProjectRoleMappingsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*CallProposalProjectRoleMappingsDestroyResponse, error) {
+	rsp, err := c.CallProposalProjectRoleMappingsDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCallProposalProjectRoleMappingsDestroyResponse(rsp)
 }
 
 // CallProposalProjectRoleMappingsRetrieveWithResponse request returning *CallProposalProjectRoleMappingsRetrieveResponse
@@ -192294,6 +192458,22 @@ func ParseBroadcastMessagesUpdateResponse(rsp *http.Response) (*BroadcastMessage
 	return response, nil
 }
 
+// ParseBroadcastMessagesScheduleResponse parses an HTTP response from a BroadcastMessagesScheduleWithResponse call
+func ParseBroadcastMessagesScheduleResponse(rsp *http.Response) (*BroadcastMessagesScheduleResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &BroadcastMessagesScheduleResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
 // ParseBroadcastMessagesSendResponse parses an HTTP response from a BroadcastMessagesSendWithResponse call
 func ParseBroadcastMessagesSendResponse(rsp *http.Response) (*BroadcastMessagesSendResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -192623,6 +192803,22 @@ func ParseCallProposalProjectRoleMappingsCreateResponse(rsp *http.Response) (*Ca
 		}
 		response.JSON201 = &dest
 
+	}
+
+	return response, nil
+}
+
+// ParseCallProposalProjectRoleMappingsDestroyResponse parses an HTTP response from a CallProposalProjectRoleMappingsDestroyWithResponse call
+func ParseCallProposalProjectRoleMappingsDestroyResponse(rsp *http.Response) (*CallProposalProjectRoleMappingsDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &CallProposalProjectRoleMappingsDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
 	}
 
 	return response, nil
