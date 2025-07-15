@@ -290,6 +290,7 @@ const (
 	MarketplacePlanComponentFuturePriceUpdated       EventTypesEnum = "marketplace_plan_component_future_price_updated"
 	MarketplacePlanComponentQuotaUpdated             EventTypesEnum = "marketplace_plan_component_quota_updated"
 	MarketplacePlanCreated                           EventTypesEnum = "marketplace_plan_created"
+	MarketplacePlanDeleted                           EventTypesEnum = "marketplace_plan_deleted"
 	MarketplacePlanUpdated                           EventTypesEnum = "marketplace_plan_updated"
 	MarketplaceResourceCreateCanceled                EventTypesEnum = "marketplace_resource_create_canceled"
 	MarketplaceResourceCreateFailed                  EventTypesEnum = "marketplace_resource_create_failed"
@@ -31424,6 +31425,9 @@ type ClientInterface interface {
 	// MarketplacePlansUsageStatsList request
 	MarketplacePlansUsageStatsList(ctx context.Context, params *MarketplacePlansUsageStatsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplacePlansDestroy request
+	MarketplacePlansDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplacePlansRetrieve request
 	MarketplacePlansRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -41770,6 +41774,18 @@ func (c *Client) MarketplacePlansCreate(ctx context.Context, body MarketplacePla
 
 func (c *Client) MarketplacePlansUsageStatsList(ctx context.Context, params *MarketplacePlansUsageStatsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplacePlansUsageStatsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplacePlansDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplacePlansDestroyRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -85311,6 +85327,40 @@ func NewMarketplacePlansUsageStatsListRequest(server string, params *Marketplace
 	}
 
 	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplacePlansDestroyRequest generates requests for MarketplacePlansDestroy
+func NewMarketplacePlansDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-plans/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
@@ -144334,6 +144384,9 @@ type ClientWithResponsesInterface interface {
 	// MarketplacePlansUsageStatsListWithResponse request
 	MarketplacePlansUsageStatsListWithResponse(ctx context.Context, params *MarketplacePlansUsageStatsListParams, reqEditors ...RequestEditorFn) (*MarketplacePlansUsageStatsListResponse, error)
 
+	// MarketplacePlansDestroyWithResponse request
+	MarketplacePlansDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplacePlansDestroyResponse, error)
+
 	// MarketplacePlansRetrieveWithResponse request
 	MarketplacePlansRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplacePlansRetrieveResponse, error)
 
@@ -157267,6 +157320,27 @@ func (r MarketplacePlansUsageStatsListResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplacePlansUsageStatsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplacePlansDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplacePlansDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplacePlansDestroyResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -179675,6 +179749,15 @@ func (c *ClientWithResponses) MarketplacePlansUsageStatsListWithResponse(ctx con
 	return ParseMarketplacePlansUsageStatsListResponse(rsp)
 }
 
+// MarketplacePlansDestroyWithResponse request returning *MarketplacePlansDestroyResponse
+func (c *ClientWithResponses) MarketplacePlansDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplacePlansDestroyResponse, error) {
+	rsp, err := c.MarketplacePlansDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplacePlansDestroyResponse(rsp)
+}
+
 // MarketplacePlansRetrieveWithResponse request returning *MarketplacePlansRetrieveResponse
 func (c *ClientWithResponses) MarketplacePlansRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplacePlansRetrieveResponse, error) {
 	rsp, err := c.MarketplacePlansRetrieve(ctx, uuid, reqEditors...)
@@ -199899,6 +199982,22 @@ func ParseMarketplacePlansUsageStatsListResponse(rsp *http.Response) (*Marketpla
 		}
 		response.JSON200 = &dest
 
+	}
+
+	return response, nil
+}
+
+// ParseMarketplacePlansDestroyResponse parses an HTTP response from a MarketplacePlansDestroyWithResponse call
+func ParseMarketplacePlansDestroyResponse(rsp *http.Response) (*MarketplacePlansDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplacePlansDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
 	}
 
 	return response, nil
