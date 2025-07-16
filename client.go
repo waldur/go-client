@@ -18126,16 +18126,21 @@ type RoundReviewer struct {
 
 // Rule defines model for Rule.
 type Rule struct {
+	CategoryTitle          *string                 `json:"category_title,omitempty"`
+	CategoryUrl            *string                 `json:"category_url,omitempty"`
 	Customer               string                  `json:"customer"`
 	CustomerName           *string                 `json:"customer_name,omitempty"`
 	CustomerUuid           *string                 `json:"customer_uuid,omitempty"`
 	Name                   string                  `json:"name"`
+	OfferingName           *string                 `json:"offering_name,omitempty"`
+	OfferingUuid           *openapi_types.UUID     `json:"offering_uuid,omitempty"`
 	Plan                   *string                 `json:"plan"`
 	PlanAttributes         *map[string]interface{} `json:"plan_attributes,omitempty"`
 	PlanLimits             *map[string]interface{} `json:"plan_limits,omitempty"`
+	PlanName               *string                 `json:"plan_name,omitempty"`
 	ProjectRole            *string                 `json:"project_role"`
 	ProjectRoleDescription *string                 `json:"project_role_description,omitempty"`
-	ProjectRoleDispayName  *string                 `json:"project_role_dispay_name,omitempty"`
+	ProjectRoleDisplayName *string                 `json:"project_role_display_name,omitempty"`
 	Url                    *string                 `json:"url,omitempty"`
 	UserAffiliations       *[]string               `json:"user_affiliations,omitempty"`
 	UserEmailPatterns      *[]string               `json:"user_email_patterns,omitempty"`
