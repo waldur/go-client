@@ -5112,6 +5112,7 @@ const (
 	OpenstackFloatingIpsListParamsFieldModified                         OpenstackFloatingIpsListParamsField = "modified"
 	OpenstackFloatingIpsListParamsFieldName                             OpenstackFloatingIpsListParamsField = "name"
 	OpenstackFloatingIpsListParamsFieldPort                             OpenstackFloatingIpsListParamsField = "port"
+	OpenstackFloatingIpsListParamsFieldPortFixedIps                     OpenstackFloatingIpsListParamsField = "port_fixed_ips"
 	OpenstackFloatingIpsListParamsFieldProject                          OpenstackFloatingIpsListParamsField = "project"
 	OpenstackFloatingIpsListParamsFieldProjectName                      OpenstackFloatingIpsListParamsField = "project_name"
 	OpenstackFloatingIpsListParamsFieldProjectUuid                      OpenstackFloatingIpsListParamsField = "project_uuid"
@@ -5173,6 +5174,7 @@ const (
 	OpenstackFloatingIpsRetrieveParamsFieldModified                         OpenstackFloatingIpsRetrieveParamsField = "modified"
 	OpenstackFloatingIpsRetrieveParamsFieldName                             OpenstackFloatingIpsRetrieveParamsField = "name"
 	OpenstackFloatingIpsRetrieveParamsFieldPort                             OpenstackFloatingIpsRetrieveParamsField = "port"
+	OpenstackFloatingIpsRetrieveParamsFieldPortFixedIps                     OpenstackFloatingIpsRetrieveParamsField = "port_fixed_ips"
 	OpenstackFloatingIpsRetrieveParamsFieldProject                          OpenstackFloatingIpsRetrieveParamsField = "project"
 	OpenstackFloatingIpsRetrieveParamsFieldProjectName                      OpenstackFloatingIpsRetrieveParamsField = "project_name"
 	OpenstackFloatingIpsRetrieveParamsFieldProjectUuid                      OpenstackFloatingIpsRetrieveParamsField = "project_uuid"
@@ -13448,6 +13450,7 @@ type OpenStackFloatingIP struct {
 	Modified                         *time.Time              `json:"modified,omitempty"`
 	Name                             *string                 `json:"name,omitempty"`
 	Port                             *string                 `json:"port,omitempty"`
+	PortFixedIps                     *[]OpenStackFixedIp     `json:"port_fixed_ips,omitempty"`
 	Project                          *string                 `json:"project,omitempty"`
 	ProjectName                      *string                 `json:"project_name,omitempty"`
 	ProjectUuid                      *openapi_types.UUID     `json:"project_uuid,omitempty"`
