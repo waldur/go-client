@@ -10907,7 +10907,7 @@ type GroupInvitation struct {
 	IsActive          *bool               `json:"is_active,omitempty"`
 
 	// ProjectNameTemplate Template for project name. Supports {username}, {email}, {full_name} variables
-	ProjectNameTemplate *string             `json:"project_name_template,omitempty"`
+	ProjectNameTemplate *string             `json:"project_name_template"`
 	ProjectRole         *openapi_types.UUID `json:"project_role"`
 	Role                openapi_types.UUID  `json:"role"`
 	RoleDescription     *string             `json:"role_description,omitempty"`
@@ -10925,7 +10925,7 @@ type GroupInvitationRequest struct {
 	AutoCreateProject *bool `json:"auto_create_project,omitempty"`
 
 	// ProjectNameTemplate Template for project name. Supports {username}, {email}, {full_name} variables
-	ProjectNameTemplate *string             `json:"project_name_template,omitempty"`
+	ProjectNameTemplate *string             `json:"project_name_template"`
 	ProjectRole         *openapi_types.UUID `json:"project_role"`
 	Role                openapi_types.UUID  `json:"role"`
 	Scope               *string             `json:"scope,omitempty"`
