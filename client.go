@@ -2003,6 +2003,7 @@ const (
 	BookingResourcesListParamsFieldOfferingName               BookingResourcesListParamsField = "offering_name"
 	BookingResourcesListParamsFieldOfferingPluginOptions      BookingResourcesListParamsField = "offering_plugin_options"
 	BookingResourcesListParamsFieldOfferingShared             BookingResourcesListParamsField = "offering_shared"
+	BookingResourcesListParamsFieldOfferingSlug               BookingResourcesListParamsField = "offering_slug"
 	BookingResourcesListParamsFieldOfferingTermsOfService     BookingResourcesListParamsField = "offering_terms_of_service"
 	BookingResourcesListParamsFieldOfferingThumbnail          BookingResourcesListParamsField = "offering_thumbnail"
 	BookingResourcesListParamsFieldOfferingType               BookingResourcesListParamsField = "offering_type"
@@ -2011,6 +2012,7 @@ const (
 	BookingResourcesListParamsFieldOrderInProgress            BookingResourcesListParamsField = "order_in_progress"
 	BookingResourcesListParamsFieldParentName                 BookingResourcesListParamsField = "parent_name"
 	BookingResourcesListParamsFieldParentOfferingName         BookingResourcesListParamsField = "parent_offering_name"
+	BookingResourcesListParamsFieldParentOfferingSlug         BookingResourcesListParamsField = "parent_offering_slug"
 	BookingResourcesListParamsFieldParentOfferingUuid         BookingResourcesListParamsField = "parent_offering_uuid"
 	BookingResourcesListParamsFieldParentUuid                 BookingResourcesListParamsField = "parent_uuid"
 	BookingResourcesListParamsFieldPaused                     BookingResourcesListParamsField = "paused"
@@ -2109,6 +2111,7 @@ const (
 	BookingResourcesRetrieveParamsFieldOfferingName               BookingResourcesRetrieveParamsField = "offering_name"
 	BookingResourcesRetrieveParamsFieldOfferingPluginOptions      BookingResourcesRetrieveParamsField = "offering_plugin_options"
 	BookingResourcesRetrieveParamsFieldOfferingShared             BookingResourcesRetrieveParamsField = "offering_shared"
+	BookingResourcesRetrieveParamsFieldOfferingSlug               BookingResourcesRetrieveParamsField = "offering_slug"
 	BookingResourcesRetrieveParamsFieldOfferingTermsOfService     BookingResourcesRetrieveParamsField = "offering_terms_of_service"
 	BookingResourcesRetrieveParamsFieldOfferingThumbnail          BookingResourcesRetrieveParamsField = "offering_thumbnail"
 	BookingResourcesRetrieveParamsFieldOfferingType               BookingResourcesRetrieveParamsField = "offering_type"
@@ -2117,6 +2120,7 @@ const (
 	BookingResourcesRetrieveParamsFieldOrderInProgress            BookingResourcesRetrieveParamsField = "order_in_progress"
 	BookingResourcesRetrieveParamsFieldParentName                 BookingResourcesRetrieveParamsField = "parent_name"
 	BookingResourcesRetrieveParamsFieldParentOfferingName         BookingResourcesRetrieveParamsField = "parent_offering_name"
+	BookingResourcesRetrieveParamsFieldParentOfferingSlug         BookingResourcesRetrieveParamsField = "parent_offering_slug"
 	BookingResourcesRetrieveParamsFieldParentOfferingUuid         BookingResourcesRetrieveParamsField = "parent_offering_uuid"
 	BookingResourcesRetrieveParamsFieldParentUuid                 BookingResourcesRetrieveParamsField = "parent_uuid"
 	BookingResourcesRetrieveParamsFieldPaused                     BookingResourcesRetrieveParamsField = "paused"
@@ -3941,6 +3945,7 @@ const (
 	MarketplaceProviderResourcesListParamsFieldOfferingName              MarketplaceProviderResourcesListParamsField = "offering_name"
 	MarketplaceProviderResourcesListParamsFieldOfferingPluginOptions     MarketplaceProviderResourcesListParamsField = "offering_plugin_options"
 	MarketplaceProviderResourcesListParamsFieldOfferingShared            MarketplaceProviderResourcesListParamsField = "offering_shared"
+	MarketplaceProviderResourcesListParamsFieldOfferingSlug              MarketplaceProviderResourcesListParamsField = "offering_slug"
 	MarketplaceProviderResourcesListParamsFieldOfferingTermsOfService    MarketplaceProviderResourcesListParamsField = "offering_terms_of_service"
 	MarketplaceProviderResourcesListParamsFieldOfferingThumbnail         MarketplaceProviderResourcesListParamsField = "offering_thumbnail"
 	MarketplaceProviderResourcesListParamsFieldOfferingType              MarketplaceProviderResourcesListParamsField = "offering_type"
@@ -3949,6 +3954,7 @@ const (
 	MarketplaceProviderResourcesListParamsFieldOrderInProgress           MarketplaceProviderResourcesListParamsField = "order_in_progress"
 	MarketplaceProviderResourcesListParamsFieldParentName                MarketplaceProviderResourcesListParamsField = "parent_name"
 	MarketplaceProviderResourcesListParamsFieldParentOfferingName        MarketplaceProviderResourcesListParamsField = "parent_offering_name"
+	MarketplaceProviderResourcesListParamsFieldParentOfferingSlug        MarketplaceProviderResourcesListParamsField = "parent_offering_slug"
 	MarketplaceProviderResourcesListParamsFieldParentOfferingUuid        MarketplaceProviderResourcesListParamsField = "parent_offering_uuid"
 	MarketplaceProviderResourcesListParamsFieldParentUuid                MarketplaceProviderResourcesListParamsField = "parent_uuid"
 	MarketplaceProviderResourcesListParamsFieldPaused                    MarketplaceProviderResourcesListParamsField = "paused"
@@ -4040,6 +4046,7 @@ const (
 	MarketplaceProviderResourcesRetrieveParamsFieldOfferingName              MarketplaceProviderResourcesRetrieveParamsField = "offering_name"
 	MarketplaceProviderResourcesRetrieveParamsFieldOfferingPluginOptions     MarketplaceProviderResourcesRetrieveParamsField = "offering_plugin_options"
 	MarketplaceProviderResourcesRetrieveParamsFieldOfferingShared            MarketplaceProviderResourcesRetrieveParamsField = "offering_shared"
+	MarketplaceProviderResourcesRetrieveParamsFieldOfferingSlug              MarketplaceProviderResourcesRetrieveParamsField = "offering_slug"
 	MarketplaceProviderResourcesRetrieveParamsFieldOfferingTermsOfService    MarketplaceProviderResourcesRetrieveParamsField = "offering_terms_of_service"
 	MarketplaceProviderResourcesRetrieveParamsFieldOfferingThumbnail         MarketplaceProviderResourcesRetrieveParamsField = "offering_thumbnail"
 	MarketplaceProviderResourcesRetrieveParamsFieldOfferingType              MarketplaceProviderResourcesRetrieveParamsField = "offering_type"
@@ -4048,6 +4055,7 @@ const (
 	MarketplaceProviderResourcesRetrieveParamsFieldOrderInProgress           MarketplaceProviderResourcesRetrieveParamsField = "order_in_progress"
 	MarketplaceProviderResourcesRetrieveParamsFieldParentName                MarketplaceProviderResourcesRetrieveParamsField = "parent_name"
 	MarketplaceProviderResourcesRetrieveParamsFieldParentOfferingName        MarketplaceProviderResourcesRetrieveParamsField = "parent_offering_name"
+	MarketplaceProviderResourcesRetrieveParamsFieldParentOfferingSlug        MarketplaceProviderResourcesRetrieveParamsField = "parent_offering_slug"
 	MarketplaceProviderResourcesRetrieveParamsFieldParentOfferingUuid        MarketplaceProviderResourcesRetrieveParamsField = "parent_offering_uuid"
 	MarketplaceProviderResourcesRetrieveParamsFieldParentUuid                MarketplaceProviderResourcesRetrieveParamsField = "parent_uuid"
 	MarketplaceProviderResourcesRetrieveParamsFieldPaused                    MarketplaceProviderResourcesRetrieveParamsField = "paused"
@@ -4117,6 +4125,7 @@ const (
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldOfferingName              MarketplaceProviderResourcesDetailsRetrieveParamsField = "offering_name"
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldOfferingPluginOptions     MarketplaceProviderResourcesDetailsRetrieveParamsField = "offering_plugin_options"
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldOfferingShared            MarketplaceProviderResourcesDetailsRetrieveParamsField = "offering_shared"
+	MarketplaceProviderResourcesDetailsRetrieveParamsFieldOfferingSlug              MarketplaceProviderResourcesDetailsRetrieveParamsField = "offering_slug"
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldOfferingTermsOfService    MarketplaceProviderResourcesDetailsRetrieveParamsField = "offering_terms_of_service"
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldOfferingThumbnail         MarketplaceProviderResourcesDetailsRetrieveParamsField = "offering_thumbnail"
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldOfferingType              MarketplaceProviderResourcesDetailsRetrieveParamsField = "offering_type"
@@ -4125,6 +4134,7 @@ const (
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldOrderInProgress           MarketplaceProviderResourcesDetailsRetrieveParamsField = "order_in_progress"
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldParentName                MarketplaceProviderResourcesDetailsRetrieveParamsField = "parent_name"
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldParentOfferingName        MarketplaceProviderResourcesDetailsRetrieveParamsField = "parent_offering_name"
+	MarketplaceProviderResourcesDetailsRetrieveParamsFieldParentOfferingSlug        MarketplaceProviderResourcesDetailsRetrieveParamsField = "parent_offering_slug"
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldParentOfferingUuid        MarketplaceProviderResourcesDetailsRetrieveParamsField = "parent_offering_uuid"
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldParentUuid                MarketplaceProviderResourcesDetailsRetrieveParamsField = "parent_uuid"
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldPaused                    MarketplaceProviderResourcesDetailsRetrieveParamsField = "paused"
@@ -4356,6 +4366,7 @@ const (
 	MarketplaceResourcesListParamsFieldOfferingName              MarketplaceResourcesListParamsField = "offering_name"
 	MarketplaceResourcesListParamsFieldOfferingPluginOptions     MarketplaceResourcesListParamsField = "offering_plugin_options"
 	MarketplaceResourcesListParamsFieldOfferingShared            MarketplaceResourcesListParamsField = "offering_shared"
+	MarketplaceResourcesListParamsFieldOfferingSlug              MarketplaceResourcesListParamsField = "offering_slug"
 	MarketplaceResourcesListParamsFieldOfferingTermsOfService    MarketplaceResourcesListParamsField = "offering_terms_of_service"
 	MarketplaceResourcesListParamsFieldOfferingThumbnail         MarketplaceResourcesListParamsField = "offering_thumbnail"
 	MarketplaceResourcesListParamsFieldOfferingType              MarketplaceResourcesListParamsField = "offering_type"
@@ -4364,6 +4375,7 @@ const (
 	MarketplaceResourcesListParamsFieldOrderInProgress           MarketplaceResourcesListParamsField = "order_in_progress"
 	MarketplaceResourcesListParamsFieldParentName                MarketplaceResourcesListParamsField = "parent_name"
 	MarketplaceResourcesListParamsFieldParentOfferingName        MarketplaceResourcesListParamsField = "parent_offering_name"
+	MarketplaceResourcesListParamsFieldParentOfferingSlug        MarketplaceResourcesListParamsField = "parent_offering_slug"
 	MarketplaceResourcesListParamsFieldParentOfferingUuid        MarketplaceResourcesListParamsField = "parent_offering_uuid"
 	MarketplaceResourcesListParamsFieldParentUuid                MarketplaceResourcesListParamsField = "parent_uuid"
 	MarketplaceResourcesListParamsFieldPaused                    MarketplaceResourcesListParamsField = "paused"
@@ -4455,6 +4467,7 @@ const (
 	MarketplaceResourcesRetrieveParamsFieldOfferingName              MarketplaceResourcesRetrieveParamsField = "offering_name"
 	MarketplaceResourcesRetrieveParamsFieldOfferingPluginOptions     MarketplaceResourcesRetrieveParamsField = "offering_plugin_options"
 	MarketplaceResourcesRetrieveParamsFieldOfferingShared            MarketplaceResourcesRetrieveParamsField = "offering_shared"
+	MarketplaceResourcesRetrieveParamsFieldOfferingSlug              MarketplaceResourcesRetrieveParamsField = "offering_slug"
 	MarketplaceResourcesRetrieveParamsFieldOfferingTermsOfService    MarketplaceResourcesRetrieveParamsField = "offering_terms_of_service"
 	MarketplaceResourcesRetrieveParamsFieldOfferingThumbnail         MarketplaceResourcesRetrieveParamsField = "offering_thumbnail"
 	MarketplaceResourcesRetrieveParamsFieldOfferingType              MarketplaceResourcesRetrieveParamsField = "offering_type"
@@ -4463,6 +4476,7 @@ const (
 	MarketplaceResourcesRetrieveParamsFieldOrderInProgress           MarketplaceResourcesRetrieveParamsField = "order_in_progress"
 	MarketplaceResourcesRetrieveParamsFieldParentName                MarketplaceResourcesRetrieveParamsField = "parent_name"
 	MarketplaceResourcesRetrieveParamsFieldParentOfferingName        MarketplaceResourcesRetrieveParamsField = "parent_offering_name"
+	MarketplaceResourcesRetrieveParamsFieldParentOfferingSlug        MarketplaceResourcesRetrieveParamsField = "parent_offering_slug"
 	MarketplaceResourcesRetrieveParamsFieldParentOfferingUuid        MarketplaceResourcesRetrieveParamsField = "parent_offering_uuid"
 	MarketplaceResourcesRetrieveParamsFieldParentUuid                MarketplaceResourcesRetrieveParamsField = "parent_uuid"
 	MarketplaceResourcesRetrieveParamsFieldPaused                    MarketplaceResourcesRetrieveParamsField = "paused"
@@ -4532,6 +4546,7 @@ const (
 	MarketplaceResourcesDetailsRetrieveParamsFieldOfferingName              MarketplaceResourcesDetailsRetrieveParamsField = "offering_name"
 	MarketplaceResourcesDetailsRetrieveParamsFieldOfferingPluginOptions     MarketplaceResourcesDetailsRetrieveParamsField = "offering_plugin_options"
 	MarketplaceResourcesDetailsRetrieveParamsFieldOfferingShared            MarketplaceResourcesDetailsRetrieveParamsField = "offering_shared"
+	MarketplaceResourcesDetailsRetrieveParamsFieldOfferingSlug              MarketplaceResourcesDetailsRetrieveParamsField = "offering_slug"
 	MarketplaceResourcesDetailsRetrieveParamsFieldOfferingTermsOfService    MarketplaceResourcesDetailsRetrieveParamsField = "offering_terms_of_service"
 	MarketplaceResourcesDetailsRetrieveParamsFieldOfferingThumbnail         MarketplaceResourcesDetailsRetrieveParamsField = "offering_thumbnail"
 	MarketplaceResourcesDetailsRetrieveParamsFieldOfferingType              MarketplaceResourcesDetailsRetrieveParamsField = "offering_type"
@@ -4540,6 +4555,7 @@ const (
 	MarketplaceResourcesDetailsRetrieveParamsFieldOrderInProgress           MarketplaceResourcesDetailsRetrieveParamsField = "order_in_progress"
 	MarketplaceResourcesDetailsRetrieveParamsFieldParentName                MarketplaceResourcesDetailsRetrieveParamsField = "parent_name"
 	MarketplaceResourcesDetailsRetrieveParamsFieldParentOfferingName        MarketplaceResourcesDetailsRetrieveParamsField = "parent_offering_name"
+	MarketplaceResourcesDetailsRetrieveParamsFieldParentOfferingSlug        MarketplaceResourcesDetailsRetrieveParamsField = "parent_offering_slug"
 	MarketplaceResourcesDetailsRetrieveParamsFieldParentOfferingUuid        MarketplaceResourcesDetailsRetrieveParamsField = "parent_offering_uuid"
 	MarketplaceResourcesDetailsRetrieveParamsFieldParentUuid                MarketplaceResourcesDetailsRetrieveParamsField = "parent_uuid"
 	MarketplaceResourcesDetailsRetrieveParamsFieldPaused                    MarketplaceResourcesDetailsRetrieveParamsField = "paused"
@@ -9140,6 +9156,7 @@ type BookingResource struct {
 
 	// OfferingShared Accessible to all customers.
 	OfferingShared         *bool               `json:"offering_shared,omitempty"`
+	OfferingSlug           *string             `json:"offering_slug,omitempty"`
 	OfferingTermsOfService *string             `json:"offering_terms_of_service,omitempty"`
 	OfferingThumbnail      *string             `json:"offering_thumbnail,omitempty"`
 	OfferingType           *string             `json:"offering_type,omitempty"`
@@ -9148,6 +9165,7 @@ type BookingResource struct {
 	OrderInProgress        *OrderDetails       `json:"order_in_progress"`
 	ParentName             *string             `json:"parent_name,omitempty"`
 	ParentOfferingName     *string             `json:"parent_offering_name,omitempty"`
+	ParentOfferingSlug     *string             `json:"parent_offering_slug,omitempty"`
 	ParentOfferingUuid     *openapi_types.UUID `json:"parent_offering_uuid,omitempty"`
 	ParentUuid             *openapi_types.UUID `json:"parent_uuid,omitempty"`
 	Paused                 *bool               `json:"paused,omitempty"`
@@ -17683,6 +17701,7 @@ type Resource struct {
 
 	// OfferingShared Accessible to all customers.
 	OfferingShared         *bool               `json:"offering_shared,omitempty"`
+	OfferingSlug           *string             `json:"offering_slug,omitempty"`
 	OfferingTermsOfService *string             `json:"offering_terms_of_service,omitempty"`
 	OfferingThumbnail      *string             `json:"offering_thumbnail,omitempty"`
 	OfferingType           *string             `json:"offering_type,omitempty"`
@@ -17691,6 +17710,7 @@ type Resource struct {
 	OrderInProgress        *OrderDetails       `json:"order_in_progress"`
 	ParentName             *string             `json:"parent_name,omitempty"`
 	ParentOfferingName     *string             `json:"parent_offering_name,omitempty"`
+	ParentOfferingSlug     *string             `json:"parent_offering_slug,omitempty"`
 	ParentOfferingUuid     *openapi_types.UUID `json:"parent_offering_uuid,omitempty"`
 	ParentUuid             *openapi_types.UUID `json:"parent_uuid,omitempty"`
 	Paused                 *bool               `json:"paused,omitempty"`
