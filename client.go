@@ -13793,7 +13793,7 @@ type OpenStackPort struct {
 	AccessUrl                        *string                             `json:"access_url"`
 	AdminStateUp                     *bool                               `json:"admin_state_up"`
 	AllowedAddressPairs              *[]OpenStackAllowedAddressPair      `json:"allowed_address_pairs,omitempty"`
-	BackendId                        *string                             `json:"backend_id,omitempty"`
+	BackendId                        *string                             `json:"backend_id"`
 	Created                          *time.Time                          `json:"created,omitempty"`
 	Customer                         *string                             `json:"customer,omitempty"`
 	CustomerAbbreviation             *string                             `json:"customer_abbreviation,omitempty"`
@@ -13875,7 +13875,7 @@ type OpenStackPortRequest struct {
 // OpenStackRouter defines model for OpenStackRouter.
 type OpenStackRouter struct {
 	AccessUrl                        *string                 `json:"access_url"`
-	BackendId                        *string                 `json:"backend_id,omitempty"`
+	BackendId                        *string                 `json:"backend_id"`
 	Created                          *time.Time              `json:"created,omitempty"`
 	Customer                         *string                 `json:"customer,omitempty"`
 	CustomerAbbreviation             *string                 `json:"customer_abbreviation,omitempty"`
