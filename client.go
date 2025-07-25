@@ -660,6 +660,14 @@ const (
 	UNAVAILABLE  GuestPowerStateEnum = "UNAVAILABLE"
 )
 
+// Defines values for ImpactLevelDisplayEnum.
+const (
+	DegradedPerformance ImpactLevelDisplayEnum = "Degraded performance"
+	FullOutage          ImpactLevelDisplayEnum = "Full outage"
+	NoImpact            ImpactLevelDisplayEnum = "No impact"
+	PartialOutage       ImpactLevelDisplayEnum = "Partial outage"
+)
+
 // Defines values for ImpactLevelEnum.
 const (
 	ImpactLevelEnumN1 ImpactLevelEnum = 1
@@ -721,11 +729,11 @@ const (
 
 // Defines values for MaintenanceAnnouncementStateEnum.
 const (
-	MaintenanceAnnouncementStateEnumN1 MaintenanceAnnouncementStateEnum = 1
-	MaintenanceAnnouncementStateEnumN2 MaintenanceAnnouncementStateEnum = 2
-	MaintenanceAnnouncementStateEnumN3 MaintenanceAnnouncementStateEnum = 3
-	MaintenanceAnnouncementStateEnumN4 MaintenanceAnnouncementStateEnum = 4
-	MaintenanceAnnouncementStateEnumN5 MaintenanceAnnouncementStateEnum = 5
+	MaintenanceAnnouncementStateEnumCancelled  MaintenanceAnnouncementStateEnum = "Cancelled"
+	MaintenanceAnnouncementStateEnumCompleted  MaintenanceAnnouncementStateEnum = "Completed"
+	MaintenanceAnnouncementStateEnumDraft      MaintenanceAnnouncementStateEnum = "Draft"
+	MaintenanceAnnouncementStateEnumInProgress MaintenanceAnnouncementStateEnum = "In progress"
+	MaintenanceAnnouncementStateEnumScheduled  MaintenanceAnnouncementStateEnum = "Scheduled"
 )
 
 // Defines values for MaintenanceTypeEnum.
@@ -4647,12 +4655,12 @@ const (
 
 // Defines values for MarketplaceRobotAccountsListParamsState.
 const (
-	N1 MarketplaceRobotAccountsListParamsState = 1
-	N2 MarketplaceRobotAccountsListParamsState = 2
-	N3 MarketplaceRobotAccountsListParamsState = 3
-	N4 MarketplaceRobotAccountsListParamsState = 4
-	N5 MarketplaceRobotAccountsListParamsState = 5
-	N6 MarketplaceRobotAccountsListParamsState = 6
+	MarketplaceRobotAccountsListParamsStateN1 MarketplaceRobotAccountsListParamsState = 1
+	MarketplaceRobotAccountsListParamsStateN2 MarketplaceRobotAccountsListParamsState = 2
+	MarketplaceRobotAccountsListParamsStateN3 MarketplaceRobotAccountsListParamsState = 3
+	MarketplaceRobotAccountsListParamsStateN4 MarketplaceRobotAccountsListParamsState = 4
+	MarketplaceRobotAccountsListParamsStateN5 MarketplaceRobotAccountsListParamsState = 5
+	MarketplaceRobotAccountsListParamsStateN6 MarketplaceRobotAccountsListParamsState = 6
 )
 
 // Defines values for MarketplaceScreenshotsListParamsO.
@@ -11018,9 +11026,11 @@ type GroupInvitation struct {
 	RoleDescription     *string             `json:"role_description,omitempty"`
 	RoleName            *string             `json:"role_name,omitempty"`
 	ScopeName           *string             `json:"scope_name,omitempty"`
-	ScopeType           *string             `json:"scope_type,omitempty"`
+	ScopeType           *string             `json:"scope_type"`
 	ScopeUuid           *openapi_types.UUID `json:"scope_uuid,omitempty"`
 	Url                 *string             `json:"url,omitempty"`
+	UserAffiliations    interface{}         `json:"user_affiliations,omitempty"`
+	UserEmailPatterns   interface{}         `json:"user_email_patterns,omitempty"`
 	Uuid                *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
@@ -11034,6 +11044,8 @@ type GroupInvitationRequest struct {
 	ProjectRole         *openapi_types.UUID `json:"project_role"`
 	Role                openapi_types.UUID  `json:"role"`
 	Scope               *string             `json:"scope,omitempty"`
+	UserAffiliations    interface{}         `json:"user_affiliations,omitempty"`
+	UserEmailPatterns   interface{}         `json:"user_email_patterns,omitempty"`
 }
 
 // GuestOsEnum defines model for GuestOsEnum.
@@ -11144,6 +11156,9 @@ type ImageUploadResponse struct {
 	Status  string `json:"status"`
 }
 
+// ImpactLevelDisplayEnum defines model for ImpactLevelDisplayEnum.
+type ImpactLevelDisplayEnum string
+
 // ImpactLevelEnum defines model for ImpactLevelEnum.
 type ImpactLevelEnum int
 
@@ -11207,7 +11222,7 @@ type Invitation struct {
 	RoleDescription     *string              `json:"role_description,omitempty"`
 	RoleName            *string              `json:"role_name,omitempty"`
 	ScopeName           *string              `json:"scope_name,omitempty"`
-	ScopeType           *string              `json:"scope_type,omitempty"`
+	ScopeType           *string              `json:"scope_type"`
 	ScopeUuid           *openapi_types.UUID  `json:"scope_uuid,omitempty"`
 	State               *InvitationStateEnum `json:"state,omitempty"`
 	Url                 *string              `json:"url,omitempty"`
@@ -11701,10 +11716,11 @@ type MaintenanceAnnouncement struct {
 	ScheduledStart time.Time `json:"scheduled_start"`
 
 	// ServiceProvider Service provider announcing the maintenance
-	ServiceProvider string                            `json:"service_provider"`
-	State           *MaintenanceAnnouncementStateEnum `json:"state,omitempty"`
-	Url             *string                           `json:"url,omitempty"`
-	Uuid            *openapi_types.UUID               `json:"uuid,omitempty"`
+	ServiceProvider     string                            `json:"service_provider"`
+	ServiceProviderName *string                           `json:"service_provider_name,omitempty"`
+	State               *MaintenanceAnnouncementStateEnum `json:"state,omitempty"`
+	Url                 *string                           `json:"url,omitempty"`
+	Uuid                *openapi_types.UUID               `json:"uuid,omitempty"`
 }
 
 // MaintenanceAnnouncementOffering defines model for MaintenanceAnnouncementOffering.
@@ -11713,11 +11729,13 @@ type MaintenanceAnnouncementOffering struct {
 	ImpactDescription *string `json:"impact_description,omitempty"`
 
 	// ImpactLevel Expected impact on this offering
-	ImpactLevel *ImpactLevelEnum    `json:"impact_level,omitempty"`
-	Maintenance string              `json:"maintenance"`
-	Offering    string              `json:"offering"`
-	Url         *string             `json:"url,omitempty"`
-	Uuid        *openapi_types.UUID `json:"uuid,omitempty"`
+	ImpactLevel        *ImpactLevelEnum        `json:"impact_level,omitempty"`
+	ImpactLevelDisplay *ImpactLevelDisplayEnum `json:"impact_level_display,omitempty"`
+	Maintenance        string                  `json:"maintenance"`
+	Offering           string                  `json:"offering"`
+	OfferingName       *string                 `json:"offering_name,omitempty"`
+	Url                *string                 `json:"url,omitempty"`
+	Uuid               *openapi_types.UUID     `json:"uuid,omitempty"`
 }
 
 // MaintenanceAnnouncementOfferingRequest defines model for MaintenanceAnnouncementOfferingRequest.
@@ -11773,7 +11791,7 @@ type MaintenanceAnnouncementRequest struct {
 }
 
 // MaintenanceAnnouncementStateEnum defines model for MaintenanceAnnouncementStateEnum.
-type MaintenanceAnnouncementStateEnum int
+type MaintenanceAnnouncementStateEnum string
 
 // MaintenanceAnnouncementTemplate defines model for MaintenanceAnnouncementTemplate.
 type MaintenanceAnnouncementTemplate struct {
@@ -19117,7 +19135,7 @@ type VisibleInvitationDetails struct {
 	RoleDescription *string             `json:"role_description,omitempty"`
 	RoleName        *string             `json:"role_name,omitempty"`
 	ScopeName       *string             `json:"scope_name,omitempty"`
-	ScopeType       *string             `json:"scope_type,omitempty"`
+	ScopeType       *string             `json:"scope_type"`
 	ScopeUuid       *openapi_types.UUID `json:"scope_uuid,omitempty"`
 	State           *InvitationState    `json:"state,omitempty"`
 }
