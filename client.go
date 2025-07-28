@@ -15897,7 +15897,7 @@ type Permission struct {
 	RoleName          *string             `json:"role_name,omitempty"`
 	RoleUuid          *openapi_types.UUID `json:"role_uuid,omitempty"`
 	ScopeName         *string             `json:"scope_name,omitempty"`
-	ScopeType         *string             `json:"scope_type,omitempty"`
+	ScopeType         *string             `json:"scope_type"`
 	ScopeUuid         *openapi_types.UUID `json:"scope_uuid,omitempty"`
 	UserName          *string             `json:"user_name,omitempty"`
 	UserSlug          *string             `json:"user_slug,omitempty"`
