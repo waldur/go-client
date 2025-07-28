@@ -3161,6 +3161,7 @@ const (
 	MarketplaceOfferingUsersListParamsFieldState                  MarketplaceOfferingUsersListParamsField = "state"
 	MarketplaceOfferingUsersListParamsFieldUrl                    MarketplaceOfferingUsersListParamsField = "url"
 	MarketplaceOfferingUsersListParamsFieldUser                   MarketplaceOfferingUsersListParamsField = "user"
+	MarketplaceOfferingUsersListParamsFieldUserEmail              MarketplaceOfferingUsersListParamsField = "user_email"
 	MarketplaceOfferingUsersListParamsFieldUserFullName           MarketplaceOfferingUsersListParamsField = "user_full_name"
 	MarketplaceOfferingUsersListParamsFieldUserUsername           MarketplaceOfferingUsersListParamsField = "user_username"
 	MarketplaceOfferingUsersListParamsFieldUserUuid               MarketplaceOfferingUsersListParamsField = "user_uuid"
@@ -3205,6 +3206,7 @@ const (
 	MarketplaceOfferingUsersRetrieveParamsFieldState                  MarketplaceOfferingUsersRetrieveParamsField = "state"
 	MarketplaceOfferingUsersRetrieveParamsFieldUrl                    MarketplaceOfferingUsersRetrieveParamsField = "url"
 	MarketplaceOfferingUsersRetrieveParamsFieldUser                   MarketplaceOfferingUsersRetrieveParamsField = "user"
+	MarketplaceOfferingUsersRetrieveParamsFieldUserEmail              MarketplaceOfferingUsersRetrieveParamsField = "user_email"
 	MarketplaceOfferingUsersRetrieveParamsFieldUserFullName           MarketplaceOfferingUsersRetrieveParamsField = "user_full_name"
 	MarketplaceOfferingUsersRetrieveParamsFieldUserUsername           MarketplaceOfferingUsersRetrieveParamsField = "user_username"
 	MarketplaceOfferingUsersRetrieveParamsFieldUserUuid               MarketplaceOfferingUsersRetrieveParamsField = "user_uuid"
@@ -9017,6 +9019,7 @@ type BackendResourceReq struct {
 	Started *time.Time                   `json:"started"`
 	State   *BackendResourceReqStateEnum `json:"state,omitempty"`
 	Url     *string                      `json:"url,omitempty"`
+	Uuid    *openapi_types.UUID          `json:"uuid,omitempty"`
 }
 
 // BackendResourceReqRequest defines model for BackendResourceReqRequest.
@@ -13346,6 +13349,7 @@ type OfferingUser struct {
 	State                  *OfferingUserStateEnum `json:"state,omitempty"`
 	Url                    *string                `json:"url,omitempty"`
 	User                   *string                `json:"user,omitempty"`
+	UserEmail              *openapi_types.Email   `json:"user_email,omitempty"`
 	UserFullName           *string                `json:"user_full_name,omitempty"`
 
 	// UserUsername Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
@@ -26647,9 +26651,6 @@ type MarketplaceOfferingUsersSetPendingAccountLinkingJSONRequestBody = OfferingU
 // MarketplaceOfferingUsersSetPendingAdditionalValidationJSONRequestBody defines body for MarketplaceOfferingUsersSetPendingAdditionalValidation for application/json ContentType.
 type MarketplaceOfferingUsersSetPendingAdditionalValidationJSONRequestBody = OfferingUserStateTransitionRequest
 
-// MarketplaceOfferingUsersSetValidationCompleteJSONRequestBody defines body for MarketplaceOfferingUsersSetValidationComplete for application/json ContentType.
-type MarketplaceOfferingUsersSetValidationCompleteJSONRequestBody = OfferingUserRequest
-
 // MarketplaceOfferingUsersUpdateRestrictedJSONRequestBody defines body for MarketplaceOfferingUsersUpdateRestricted for application/json ContentType.
 type MarketplaceOfferingUsersUpdateRestrictedJSONRequestBody = OfferingUserUpdateRestrictionRequest
 
@@ -32001,6 +32002,12 @@ type ClientInterface interface {
 
 	MarketplaceOfferingUsersUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingUsersUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceOfferingUsersBeginCreating request
+	MarketplaceOfferingUsersBeginCreating(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOfferingUsersSetOk request
+	MarketplaceOfferingUsersSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceOfferingUsersSetPendingAccountLinkingWithBody request with any body
 	MarketplaceOfferingUsersSetPendingAccountLinkingWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -32011,10 +32018,8 @@ type ClientInterface interface {
 
 	MarketplaceOfferingUsersSetPendingAdditionalValidation(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingUsersSetPendingAdditionalValidationJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// MarketplaceOfferingUsersSetValidationCompleteWithBody request with any body
-	MarketplaceOfferingUsersSetValidationCompleteWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	MarketplaceOfferingUsersSetValidationComplete(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingUsersSetValidationCompleteJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// MarketplaceOfferingUsersSetValidationComplete request
+	MarketplaceOfferingUsersSetValidationComplete(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceOfferingUsersUpdateRestrictedWithBody request with any body
 	MarketplaceOfferingUsersUpdateRestrictedWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -42491,6 +42496,30 @@ func (c *Client) MarketplaceOfferingUsersUpdate(ctx context.Context, uuid openap
 	return c.Client.Do(req)
 }
 
+func (c *Client) MarketplaceOfferingUsersBeginCreating(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingUsersBeginCreatingRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOfferingUsersSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingUsersSetOkRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) MarketplaceOfferingUsersSetPendingAccountLinkingWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceOfferingUsersSetPendingAccountLinkingRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
@@ -42539,20 +42568,8 @@ func (c *Client) MarketplaceOfferingUsersSetPendingAdditionalValidation(ctx cont
 	return c.Client.Do(req)
 }
 
-func (c *Client) MarketplaceOfferingUsersSetValidationCompleteWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceOfferingUsersSetValidationCompleteRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceOfferingUsersSetValidationComplete(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingUsersSetValidationCompleteJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceOfferingUsersSetValidationCompleteRequest(c.Server, uuid, body)
+func (c *Client) MarketplaceOfferingUsersSetValidationComplete(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingUsersSetValidationCompleteRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -85978,6 +85995,74 @@ func NewMarketplaceOfferingUsersUpdateRequestWithBody(server string, uuid openap
 	return req, nil
 }
 
+// NewMarketplaceOfferingUsersBeginCreatingRequest generates requests for MarketplaceOfferingUsersBeginCreating
+func NewMarketplaceOfferingUsersBeginCreatingRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-users/%s/begin_creating/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceOfferingUsersSetOkRequest generates requests for MarketplaceOfferingUsersSetOk
+func NewMarketplaceOfferingUsersSetOkRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-users/%s/set_ok/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewMarketplaceOfferingUsersSetPendingAccountLinkingRequest calls the generic MarketplaceOfferingUsersSetPendingAccountLinking builder with application/json body
 func NewMarketplaceOfferingUsersSetPendingAccountLinkingRequest(server string, uuid openapi_types.UUID, body MarketplaceOfferingUsersSetPendingAccountLinkingJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -86072,19 +86157,8 @@ func NewMarketplaceOfferingUsersSetPendingAdditionalValidationRequestWithBody(se
 	return req, nil
 }
 
-// NewMarketplaceOfferingUsersSetValidationCompleteRequest calls the generic MarketplaceOfferingUsersSetValidationComplete builder with application/json body
-func NewMarketplaceOfferingUsersSetValidationCompleteRequest(server string, uuid openapi_types.UUID, body MarketplaceOfferingUsersSetValidationCompleteJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewMarketplaceOfferingUsersSetValidationCompleteRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewMarketplaceOfferingUsersSetValidationCompleteRequestWithBody generates requests for MarketplaceOfferingUsersSetValidationComplete with any type of body
-func NewMarketplaceOfferingUsersSetValidationCompleteRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+// NewMarketplaceOfferingUsersSetValidationCompleteRequest generates requests for MarketplaceOfferingUsersSetValidationComplete
+func NewMarketplaceOfferingUsersSetValidationCompleteRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -86109,12 +86183,10 @@ func NewMarketplaceOfferingUsersSetValidationCompleteRequestWithBody(server stri
 		return nil, err
 	}
 
-	req, err := http.NewRequest("POST", queryURL.String(), body)
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
-
-	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -146552,6 +146624,12 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceOfferingUsersUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingUsersUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersUpdateResponse, error)
 
+	// MarketplaceOfferingUsersBeginCreatingWithResponse request
+	MarketplaceOfferingUsersBeginCreatingWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersBeginCreatingResponse, error)
+
+	// MarketplaceOfferingUsersSetOkWithResponse request
+	MarketplaceOfferingUsersSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersSetOkResponse, error)
+
 	// MarketplaceOfferingUsersSetPendingAccountLinkingWithBodyWithResponse request with any body
 	MarketplaceOfferingUsersSetPendingAccountLinkingWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersSetPendingAccountLinkingResponse, error)
 
@@ -146562,10 +146640,8 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceOfferingUsersSetPendingAdditionalValidationWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingUsersSetPendingAdditionalValidationJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersSetPendingAdditionalValidationResponse, error)
 
-	// MarketplaceOfferingUsersSetValidationCompleteWithBodyWithResponse request with any body
-	MarketplaceOfferingUsersSetValidationCompleteWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersSetValidationCompleteResponse, error)
-
-	MarketplaceOfferingUsersSetValidationCompleteWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingUsersSetValidationCompleteJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersSetValidationCompleteResponse, error)
+	// MarketplaceOfferingUsersSetValidationCompleteWithResponse request
+	MarketplaceOfferingUsersSetValidationCompleteWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersSetValidationCompleteResponse, error)
 
 	// MarketplaceOfferingUsersUpdateRestrictedWithBodyWithResponse request with any body
 	MarketplaceOfferingUsersUpdateRestrictedWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersUpdateRestrictedResponse, error)
@@ -159557,6 +159633,48 @@ func (r MarketplaceOfferingUsersUpdateResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceOfferingUsersUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceOfferingUsersBeginCreatingResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingUsersBeginCreatingResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingUsersBeginCreatingResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceOfferingUsersSetOkResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingUsersSetOkResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingUsersSetOkResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -182509,6 +182627,24 @@ func (c *ClientWithResponses) MarketplaceOfferingUsersUpdateWithResponse(ctx con
 	return ParseMarketplaceOfferingUsersUpdateResponse(rsp)
 }
 
+// MarketplaceOfferingUsersBeginCreatingWithResponse request returning *MarketplaceOfferingUsersBeginCreatingResponse
+func (c *ClientWithResponses) MarketplaceOfferingUsersBeginCreatingWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersBeginCreatingResponse, error) {
+	rsp, err := c.MarketplaceOfferingUsersBeginCreating(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingUsersBeginCreatingResponse(rsp)
+}
+
+// MarketplaceOfferingUsersSetOkWithResponse request returning *MarketplaceOfferingUsersSetOkResponse
+func (c *ClientWithResponses) MarketplaceOfferingUsersSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersSetOkResponse, error) {
+	rsp, err := c.MarketplaceOfferingUsersSetOk(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingUsersSetOkResponse(rsp)
+}
+
 // MarketplaceOfferingUsersSetPendingAccountLinkingWithBodyWithResponse request with arbitrary body returning *MarketplaceOfferingUsersSetPendingAccountLinkingResponse
 func (c *ClientWithResponses) MarketplaceOfferingUsersSetPendingAccountLinkingWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersSetPendingAccountLinkingResponse, error) {
 	rsp, err := c.MarketplaceOfferingUsersSetPendingAccountLinkingWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -182543,17 +182679,9 @@ func (c *ClientWithResponses) MarketplaceOfferingUsersSetPendingAdditionalValida
 	return ParseMarketplaceOfferingUsersSetPendingAdditionalValidationResponse(rsp)
 }
 
-// MarketplaceOfferingUsersSetValidationCompleteWithBodyWithResponse request with arbitrary body returning *MarketplaceOfferingUsersSetValidationCompleteResponse
-func (c *ClientWithResponses) MarketplaceOfferingUsersSetValidationCompleteWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersSetValidationCompleteResponse, error) {
-	rsp, err := c.MarketplaceOfferingUsersSetValidationCompleteWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceOfferingUsersSetValidationCompleteResponse(rsp)
-}
-
-func (c *ClientWithResponses) MarketplaceOfferingUsersSetValidationCompleteWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingUsersSetValidationCompleteJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersSetValidationCompleteResponse, error) {
-	rsp, err := c.MarketplaceOfferingUsersSetValidationComplete(ctx, uuid, body, reqEditors...)
+// MarketplaceOfferingUsersSetValidationCompleteWithResponse request returning *MarketplaceOfferingUsersSetValidationCompleteResponse
+func (c *ClientWithResponses) MarketplaceOfferingUsersSetValidationCompleteWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersSetValidationCompleteResponse, error) {
+	rsp, err := c.MarketplaceOfferingUsersSetValidationComplete(ctx, uuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -203059,6 +203187,38 @@ func ParseMarketplaceOfferingUsersUpdateResponse(rsp *http.Response) (*Marketpla
 		}
 		response.JSON200 = &dest
 
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOfferingUsersBeginCreatingResponse parses an HTTP response from a MarketplaceOfferingUsersBeginCreatingWithResponse call
+func ParseMarketplaceOfferingUsersBeginCreatingResponse(rsp *http.Response) (*MarketplaceOfferingUsersBeginCreatingResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingUsersBeginCreatingResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOfferingUsersSetOkResponse parses an HTTP response from a MarketplaceOfferingUsersSetOkWithResponse call
+func ParseMarketplaceOfferingUsersSetOkResponse(rsp *http.Response) (*MarketplaceOfferingUsersSetOkResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingUsersSetOkResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
 	}
 
 	return response, nil
