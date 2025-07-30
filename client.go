@@ -7447,6 +7447,7 @@ const (
 	ProposalProtectedCallsListParamsFieldExternalUrl                         ProposalProtectedCallsListParamsField = "external_url"
 	ProposalProtectedCallsListParamsFieldFixedDurationInDays                 ProposalProtectedCallsListParamsField = "fixed_duration_in_days"
 	ProposalProtectedCallsListParamsFieldManager                             ProposalProtectedCallsListParamsField = "manager"
+	ProposalProtectedCallsListParamsFieldManagerUuid                         ProposalProtectedCallsListParamsField = "manager_uuid"
 	ProposalProtectedCallsListParamsFieldName                                ProposalProtectedCallsListParamsField = "name"
 	ProposalProtectedCallsListParamsFieldOfferings                           ProposalProtectedCallsListParamsField = "offerings"
 	ProposalProtectedCallsListParamsFieldReferenceCode                       ProposalProtectedCallsListParamsField = "reference_code"
@@ -7508,6 +7509,7 @@ const (
 	ProposalProtectedCallsRetrieveParamsFieldExternalUrl                         ProposalProtectedCallsRetrieveParamsField = "external_url"
 	ProposalProtectedCallsRetrieveParamsFieldFixedDurationInDays                 ProposalProtectedCallsRetrieveParamsField = "fixed_duration_in_days"
 	ProposalProtectedCallsRetrieveParamsFieldManager                             ProposalProtectedCallsRetrieveParamsField = "manager"
+	ProposalProtectedCallsRetrieveParamsFieldManagerUuid                         ProposalProtectedCallsRetrieveParamsField = "manager_uuid"
 	ProposalProtectedCallsRetrieveParamsFieldName                                ProposalProtectedCallsRetrieveParamsField = "name"
 	ProposalProtectedCallsRetrieveParamsFieldOfferings                           ProposalProtectedCallsRetrieveParamsField = "offerings"
 	ProposalProtectedCallsRetrieveParamsFieldReferenceCode                       ProposalProtectedCallsRetrieveParamsField = "reference_code"
@@ -7561,6 +7563,7 @@ const (
 	ProposalPublicCallsListParamsFieldExternalUrl                         ProposalPublicCallsListParamsField = "external_url"
 	ProposalPublicCallsListParamsFieldFixedDurationInDays                 ProposalPublicCallsListParamsField = "fixed_duration_in_days"
 	ProposalPublicCallsListParamsFieldManager                             ProposalPublicCallsListParamsField = "manager"
+	ProposalPublicCallsListParamsFieldManagerUuid                         ProposalPublicCallsListParamsField = "manager_uuid"
 	ProposalPublicCallsListParamsFieldName                                ProposalPublicCallsListParamsField = "name"
 	ProposalPublicCallsListParamsFieldOfferings                           ProposalPublicCallsListParamsField = "offerings"
 	ProposalPublicCallsListParamsFieldResourceTemplates                   ProposalPublicCallsListParamsField = "resource_templates"
@@ -7620,6 +7623,7 @@ const (
 	ProposalPublicCallsRetrieveParamsFieldExternalUrl                         ProposalPublicCallsRetrieveParamsField = "external_url"
 	ProposalPublicCallsRetrieveParamsFieldFixedDurationInDays                 ProposalPublicCallsRetrieveParamsField = "fixed_duration_in_days"
 	ProposalPublicCallsRetrieveParamsFieldManager                             ProposalPublicCallsRetrieveParamsField = "manager"
+	ProposalPublicCallsRetrieveParamsFieldManagerUuid                         ProposalPublicCallsRetrieveParamsField = "manager_uuid"
 	ProposalPublicCallsRetrieveParamsFieldName                                ProposalPublicCallsRetrieveParamsField = "name"
 	ProposalPublicCallsRetrieveParamsFieldOfferings                           ProposalPublicCallsRetrieveParamsField = "offerings"
 	ProposalPublicCallsRetrieveParamsFieldResourceTemplates                   ProposalPublicCallsRetrieveParamsField = "resource_templates"
@@ -17588,6 +17592,7 @@ type ProtectedCall struct {
 	ExternalUrl         *string                    `json:"external_url"`
 	FixedDurationInDays *int                       `json:"fixed_duration_in_days"`
 	Manager             *string                    `json:"manager,omitempty"`
+	ManagerUuid         *openapi_types.UUID        `json:"manager_uuid,omitempty"`
 	Name                *string                    `json:"name,omitempty"`
 	Offerings           *[]NestedRequestedOffering `json:"offerings,omitempty"`
 	ReferenceCode       *string                    `json:"reference_code,omitempty"`
@@ -17953,6 +17958,7 @@ type PublicCall struct {
 	// FixedDurationInDays Fixed duration in days that applies to all proposals in this call
 	FixedDurationInDays *int                       `json:"fixed_duration_in_days"`
 	Manager             *string                    `json:"manager,omitempty"`
+	ManagerUuid         *openapi_types.UUID        `json:"manager_uuid,omitempty"`
 	Name                *string                    `json:"name,omitempty"`
 	Offerings           *[]NestedRequestedOffering `json:"offerings,omitempty"`
 	ResourceTemplates   *[]CallResourceTemplate    `json:"resource_templates,omitempty"`
