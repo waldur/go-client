@@ -10194,7 +10194,9 @@ type BackendResourceImportRequest struct {
 
 // BackendResourceReq defines model for BackendResourceReq.
 type BackendResourceReq struct {
-	Created *time.Time `json:"created,omitempty"`
+	Created        *time.Time `json:"created,omitempty"`
+	ErrorMessage   *string    `json:"error_message,omitempty"`
+	ErrorTraceback *string    `json:"error_traceback,omitempty"`
 
 	// Finished Time when request processing finished
 	Finished     *time.Time         `json:"finished"`
@@ -12065,6 +12067,26 @@ type EventTypesEnum string
 
 // ExecutionStateEnum defines model for ExecutionStateEnum.
 type ExecutionStateEnum string
+
+// ExternalLink defines model for ExternalLink.
+type ExternalLink struct {
+	Created     *time.Time          `json:"created,omitempty"`
+	Description *string             `json:"description,omitempty"`
+	Image       *string             `json:"image"`
+	Link        string              `json:"link"`
+	Modified    *time.Time          `json:"modified,omitempty"`
+	Name        string              `json:"name"`
+	Url         *string             `json:"url,omitempty"`
+	Uuid        *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// ExternalLinkRequest defines model for ExternalLinkRequest.
+type ExternalLinkRequest struct {
+	Description *string             `json:"description,omitempty"`
+	Image       *openapi_types.File `json:"image"`
+	Link        string              `json:"link"`
+	Name        string              `json:"name"`
+}
 
 // Feedback defines model for Feedback.
 type Feedback struct {
@@ -16265,6 +16287,14 @@ type PatchedEmailHookRequest struct {
 	EventGroups *[]EventGroupsEnum   `json:"event_groups,omitempty"`
 	EventTypes  *[]EventTypesEnum    `json:"event_types,omitempty"`
 	IsActive    *bool                `json:"is_active,omitempty"`
+}
+
+// PatchedExternalLinkRequest defines model for PatchedExternalLinkRequest.
+type PatchedExternalLinkRequest struct {
+	Description *string             `json:"description,omitempty"`
+	Image       *openapi_types.File `json:"image"`
+	Link        *string             `json:"link,omitempty"`
+	Name        *string             `json:"name,omitempty"`
 }
 
 // PatchedFirecrestJobRequest defines model for PatchedFirecrestJobRequest.
@@ -22890,6 +22920,32 @@ type EventsRetrieveParams struct {
 
 // EventsRetrieveParamsField defines parameters for EventsRetrieve.
 type EventsRetrieveParamsField string
+
+// ExternalLinksListParams defines parameters for ExternalLinksList.
+type ExternalLinksListParams struct {
+	// O Which field to use when ordering the results.
+	O *string `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Query    *string   `form:"query,omitempty" json:"query,omitempty"`
+}
+
+// ExternalLinksHeadParams defines parameters for ExternalLinksHead.
+type ExternalLinksHeadParams struct {
+	// O Which field to use when ordering the results.
+	O *string `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Query    *string   `form:"query,omitempty" json:"query,omitempty"`
+}
 
 // FeatureValuesJSONBody defines parameters for FeatureValues.
 type FeatureValuesJSONBody map[string]interface{}
@@ -32009,6 +32065,15 @@ type DigitaloceanDropletsResizeJSONRequestBody = DigitalOceanDropletResizeReques
 // EventSubscriptionsCreateJSONRequestBody defines body for EventSubscriptionsCreate for application/json ContentType.
 type EventSubscriptionsCreateJSONRequestBody = EventSubscriptionRequest
 
+// ExternalLinksCreateJSONRequestBody defines body for ExternalLinksCreate for application/json ContentType.
+type ExternalLinksCreateJSONRequestBody = ExternalLinkRequest
+
+// ExternalLinksPartialUpdateJSONRequestBody defines body for ExternalLinksPartialUpdate for application/json ContentType.
+type ExternalLinksPartialUpdateJSONRequestBody = PatchedExternalLinkRequest
+
+// ExternalLinksUpdateJSONRequestBody defines body for ExternalLinksUpdate for application/json ContentType.
+type ExternalLinksUpdateJSONRequestBody = ExternalLinkRequest
+
 // FeatureValuesJSONRequestBody defines body for FeatureValues for application/json ContentType.
 type FeatureValuesJSONRequestBody FeatureValuesJSONBody
 
@@ -36920,6 +36985,33 @@ type ClientInterface interface {
 
 	// EventsRetrieve request
 	EventsRetrieve(ctx context.Context, id int, params *EventsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ExternalLinksList request
+	ExternalLinksList(ctx context.Context, params *ExternalLinksListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ExternalLinksHead request
+	ExternalLinksHead(ctx context.Context, params *ExternalLinksHeadParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ExternalLinksCreateWithBody request with any body
+	ExternalLinksCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ExternalLinksCreate(ctx context.Context, body ExternalLinksCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ExternalLinksDestroy request
+	ExternalLinksDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ExternalLinksRetrieve request
+	ExternalLinksRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ExternalLinksPartialUpdateWithBody request with any body
+	ExternalLinksPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ExternalLinksPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body ExternalLinksPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ExternalLinksUpdateWithBody request with any body
+	ExternalLinksUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ExternalLinksUpdate(ctx context.Context, uuid openapi_types.UUID, body ExternalLinksUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// FeatureValuesWithBody request with any body
 	FeatureValuesWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -45574,6 +45666,126 @@ func (c *Client) EventsScopeTypesHead(ctx context.Context, reqEditors ...Request
 
 func (c *Client) EventsRetrieve(ctx context.Context, id int, params *EventsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewEventsRetrieveRequest(c.Server, id, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ExternalLinksList(ctx context.Context, params *ExternalLinksListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewExternalLinksListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ExternalLinksHead(ctx context.Context, params *ExternalLinksHeadParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewExternalLinksHeadRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ExternalLinksCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewExternalLinksCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ExternalLinksCreate(ctx context.Context, body ExternalLinksCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewExternalLinksCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ExternalLinksDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewExternalLinksDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ExternalLinksRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewExternalLinksRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ExternalLinksPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewExternalLinksPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ExternalLinksPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body ExternalLinksPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewExternalLinksPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ExternalLinksUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewExternalLinksUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ExternalLinksUpdate(ctx context.Context, uuid openapi_types.UUID, body ExternalLinksUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewExternalLinksUpdateRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -87917,6 +88129,402 @@ func NewEventsRetrieveRequest(server string, id int, params *EventsRetrieveParam
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewExternalLinksListRequest generates requests for ExternalLinksList
+func NewExternalLinksListRequest(server string, params *ExternalLinksListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/external-links/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "query", runtime.ParamLocationQuery, *params.Query); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewExternalLinksHeadRequest generates requests for ExternalLinksHead
+func NewExternalLinksHeadRequest(server string, params *ExternalLinksHeadParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/external-links/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "query", runtime.ParamLocationQuery, *params.Query); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewExternalLinksCreateRequest calls the generic ExternalLinksCreate builder with application/json body
+func NewExternalLinksCreateRequest(server string, body ExternalLinksCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewExternalLinksCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewExternalLinksCreateRequestWithBody generates requests for ExternalLinksCreate with any type of body
+func NewExternalLinksCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/external-links/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewExternalLinksDestroyRequest generates requests for ExternalLinksDestroy
+func NewExternalLinksDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/external-links/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewExternalLinksRetrieveRequest generates requests for ExternalLinksRetrieve
+func NewExternalLinksRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/external-links/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewExternalLinksPartialUpdateRequest calls the generic ExternalLinksPartialUpdate builder with application/json body
+func NewExternalLinksPartialUpdateRequest(server string, uuid openapi_types.UUID, body ExternalLinksPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewExternalLinksPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewExternalLinksPartialUpdateRequestWithBody generates requests for ExternalLinksPartialUpdate with any type of body
+func NewExternalLinksPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/external-links/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewExternalLinksUpdateRequest calls the generic ExternalLinksUpdate builder with application/json body
+func NewExternalLinksUpdateRequest(server string, uuid openapi_types.UUID, body ExternalLinksUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewExternalLinksUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewExternalLinksUpdateRequestWithBody generates requests for ExternalLinksUpdate with any type of body
+func NewExternalLinksUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/external-links/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -192376,6 +192984,33 @@ type ClientWithResponsesInterface interface {
 	// EventsRetrieveWithResponse request
 	EventsRetrieveWithResponse(ctx context.Context, id int, params *EventsRetrieveParams, reqEditors ...RequestEditorFn) (*EventsRetrieveResponse, error)
 
+	// ExternalLinksListWithResponse request
+	ExternalLinksListWithResponse(ctx context.Context, params *ExternalLinksListParams, reqEditors ...RequestEditorFn) (*ExternalLinksListResponse, error)
+
+	// ExternalLinksHeadWithResponse request
+	ExternalLinksHeadWithResponse(ctx context.Context, params *ExternalLinksHeadParams, reqEditors ...RequestEditorFn) (*ExternalLinksHeadResponse, error)
+
+	// ExternalLinksCreateWithBodyWithResponse request with any body
+	ExternalLinksCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ExternalLinksCreateResponse, error)
+
+	ExternalLinksCreateWithResponse(ctx context.Context, body ExternalLinksCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ExternalLinksCreateResponse, error)
+
+	// ExternalLinksDestroyWithResponse request
+	ExternalLinksDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ExternalLinksDestroyResponse, error)
+
+	// ExternalLinksRetrieveWithResponse request
+	ExternalLinksRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ExternalLinksRetrieveResponse, error)
+
+	// ExternalLinksPartialUpdateWithBodyWithResponse request with any body
+	ExternalLinksPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ExternalLinksPartialUpdateResponse, error)
+
+	ExternalLinksPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ExternalLinksPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ExternalLinksPartialUpdateResponse, error)
+
+	// ExternalLinksUpdateWithBodyWithResponse request with any body
+	ExternalLinksUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ExternalLinksUpdateResponse, error)
+
+	ExternalLinksUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ExternalLinksUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ExternalLinksUpdateResponse, error)
+
 	// FeatureValuesWithBodyWithResponse request with any body
 	FeatureValuesWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*FeatureValuesResponse, error)
 
@@ -202816,6 +203451,158 @@ func (r EventsRetrieveResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r EventsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ExternalLinksListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]ExternalLink
+}
+
+// Status returns HTTPResponse.Status
+func (r ExternalLinksListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ExternalLinksListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ExternalLinksHeadResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r ExternalLinksHeadResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ExternalLinksHeadResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ExternalLinksCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *ExternalLink
+}
+
+// Status returns HTTPResponse.Status
+func (r ExternalLinksCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ExternalLinksCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ExternalLinksDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r ExternalLinksDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ExternalLinksDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ExternalLinksRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ExternalLink
+}
+
+// Status returns HTTPResponse.Status
+func (r ExternalLinksRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ExternalLinksRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ExternalLinksPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ExternalLink
+}
+
+// Status returns HTTPResponse.Status
+func (r ExternalLinksPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ExternalLinksPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ExternalLinksUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ExternalLink
+}
+
+// Status returns HTTPResponse.Status
+func (r ExternalLinksUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ExternalLinksUpdateResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -232177,6 +232964,93 @@ func (c *ClientWithResponses) EventsRetrieveWithResponse(ctx context.Context, id
 	return ParseEventsRetrieveResponse(rsp)
 }
 
+// ExternalLinksListWithResponse request returning *ExternalLinksListResponse
+func (c *ClientWithResponses) ExternalLinksListWithResponse(ctx context.Context, params *ExternalLinksListParams, reqEditors ...RequestEditorFn) (*ExternalLinksListResponse, error) {
+	rsp, err := c.ExternalLinksList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseExternalLinksListResponse(rsp)
+}
+
+// ExternalLinksHeadWithResponse request returning *ExternalLinksHeadResponse
+func (c *ClientWithResponses) ExternalLinksHeadWithResponse(ctx context.Context, params *ExternalLinksHeadParams, reqEditors ...RequestEditorFn) (*ExternalLinksHeadResponse, error) {
+	rsp, err := c.ExternalLinksHead(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseExternalLinksHeadResponse(rsp)
+}
+
+// ExternalLinksCreateWithBodyWithResponse request with arbitrary body returning *ExternalLinksCreateResponse
+func (c *ClientWithResponses) ExternalLinksCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ExternalLinksCreateResponse, error) {
+	rsp, err := c.ExternalLinksCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseExternalLinksCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ExternalLinksCreateWithResponse(ctx context.Context, body ExternalLinksCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ExternalLinksCreateResponse, error) {
+	rsp, err := c.ExternalLinksCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseExternalLinksCreateResponse(rsp)
+}
+
+// ExternalLinksDestroyWithResponse request returning *ExternalLinksDestroyResponse
+func (c *ClientWithResponses) ExternalLinksDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ExternalLinksDestroyResponse, error) {
+	rsp, err := c.ExternalLinksDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseExternalLinksDestroyResponse(rsp)
+}
+
+// ExternalLinksRetrieveWithResponse request returning *ExternalLinksRetrieveResponse
+func (c *ClientWithResponses) ExternalLinksRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ExternalLinksRetrieveResponse, error) {
+	rsp, err := c.ExternalLinksRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseExternalLinksRetrieveResponse(rsp)
+}
+
+// ExternalLinksPartialUpdateWithBodyWithResponse request with arbitrary body returning *ExternalLinksPartialUpdateResponse
+func (c *ClientWithResponses) ExternalLinksPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ExternalLinksPartialUpdateResponse, error) {
+	rsp, err := c.ExternalLinksPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseExternalLinksPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ExternalLinksPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ExternalLinksPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ExternalLinksPartialUpdateResponse, error) {
+	rsp, err := c.ExternalLinksPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseExternalLinksPartialUpdateResponse(rsp)
+}
+
+// ExternalLinksUpdateWithBodyWithResponse request with arbitrary body returning *ExternalLinksUpdateResponse
+func (c *ClientWithResponses) ExternalLinksUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ExternalLinksUpdateResponse, error) {
+	rsp, err := c.ExternalLinksUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseExternalLinksUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ExternalLinksUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ExternalLinksUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ExternalLinksUpdateResponse, error) {
+	rsp, err := c.ExternalLinksUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseExternalLinksUpdateResponse(rsp)
+}
+
 // FeatureValuesWithBodyWithResponse request with arbitrary body returning *FeatureValuesResponse
 func (c *ClientWithResponses) FeatureValuesWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*FeatureValuesResponse, error) {
 	rsp, err := c.FeatureValuesWithBody(ctx, contentType, body, reqEditors...)
@@ -252365,6 +253239,168 @@ func ParseEventsRetrieveResponse(rsp *http.Response) (*EventsRetrieveResponse, e
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest Event
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseExternalLinksListResponse parses an HTTP response from a ExternalLinksListWithResponse call
+func ParseExternalLinksListResponse(rsp *http.Response) (*ExternalLinksListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ExternalLinksListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []ExternalLink
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseExternalLinksHeadResponse parses an HTTP response from a ExternalLinksHeadWithResponse call
+func ParseExternalLinksHeadResponse(rsp *http.Response) (*ExternalLinksHeadResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ExternalLinksHeadResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseExternalLinksCreateResponse parses an HTTP response from a ExternalLinksCreateWithResponse call
+func ParseExternalLinksCreateResponse(rsp *http.Response) (*ExternalLinksCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ExternalLinksCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest ExternalLink
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseExternalLinksDestroyResponse parses an HTTP response from a ExternalLinksDestroyWithResponse call
+func ParseExternalLinksDestroyResponse(rsp *http.Response) (*ExternalLinksDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ExternalLinksDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseExternalLinksRetrieveResponse parses an HTTP response from a ExternalLinksRetrieveWithResponse call
+func ParseExternalLinksRetrieveResponse(rsp *http.Response) (*ExternalLinksRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ExternalLinksRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ExternalLink
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseExternalLinksPartialUpdateResponse parses an HTTP response from a ExternalLinksPartialUpdateWithResponse call
+func ParseExternalLinksPartialUpdateResponse(rsp *http.Response) (*ExternalLinksPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ExternalLinksPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ExternalLink
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseExternalLinksUpdateResponse parses an HTTP response from a ExternalLinksUpdateWithResponse call
+func ParseExternalLinksUpdateResponse(rsp *http.Response) (*ExternalLinksUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ExternalLinksUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ExternalLink
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
