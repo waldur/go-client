@@ -7437,6 +7437,8 @@ const (
 // Defines values for ProposalProtectedCallsListParamsField.
 const (
 	ProposalProtectedCallsListParamsFieldBackendId                           ProposalProtectedCallsListParamsField = "backend_id"
+	ProposalProtectedCallsListParamsFieldComplianceChecklist                 ProposalProtectedCallsListParamsField = "compliance_checklist"
+	ProposalProtectedCallsListParamsFieldComplianceChecklistName             ProposalProtectedCallsListParamsField = "compliance_checklist_name"
 	ProposalProtectedCallsListParamsFieldCreated                             ProposalProtectedCallsListParamsField = "created"
 	ProposalProtectedCallsListParamsFieldCreatedBy                           ProposalProtectedCallsListParamsField = "created_by"
 	ProposalProtectedCallsListParamsFieldCustomerName                        ProposalProtectedCallsListParamsField = "customer_name"
@@ -7499,6 +7501,8 @@ const (
 // Defines values for ProposalProtectedCallsRetrieveParamsField.
 const (
 	ProposalProtectedCallsRetrieveParamsFieldBackendId                           ProposalProtectedCallsRetrieveParamsField = "backend_id"
+	ProposalProtectedCallsRetrieveParamsFieldComplianceChecklist                 ProposalProtectedCallsRetrieveParamsField = "compliance_checklist"
+	ProposalProtectedCallsRetrieveParamsFieldComplianceChecklistName             ProposalProtectedCallsRetrieveParamsField = "compliance_checklist_name"
 	ProposalProtectedCallsRetrieveParamsFieldCreated                             ProposalProtectedCallsRetrieveParamsField = "created"
 	ProposalProtectedCallsRetrieveParamsFieldCreatedBy                           ProposalProtectedCallsRetrieveParamsField = "created_by"
 	ProposalProtectedCallsRetrieveParamsFieldCustomerName                        ProposalProtectedCallsRetrieveParamsField = "customer_name"
@@ -7549,6 +7553,23 @@ const (
 	ProposalProtectedCallsListUsersListParamsONativeName     ProposalProtectedCallsListUsersListParamsO = "native_name"
 	ProposalProtectedCallsListUsersListParamsORole           ProposalProtectedCallsListUsersListParamsO = "role"
 	ProposalProtectedCallsListUsersListParamsOUsername       ProposalProtectedCallsListUsersListParamsO = "username"
+)
+
+// Defines values for ProposalProtectedCallsProposalsComplianceAnswersListParamsO.
+const (
+	ProposalProtectedCallsProposalsComplianceAnswersListParamsOCreated                  ProposalProtectedCallsProposalsComplianceAnswersListParamsO = "created"
+	ProposalProtectedCallsProposalsComplianceAnswersListParamsOManagerCustomerName      ProposalProtectedCallsProposalsComplianceAnswersListParamsO = "manager__customer__name"
+	ProposalProtectedCallsProposalsComplianceAnswersListParamsOMinusCreated             ProposalProtectedCallsProposalsComplianceAnswersListParamsO = "-created"
+	ProposalProtectedCallsProposalsComplianceAnswersListParamsOMinusManagerCustomerName ProposalProtectedCallsProposalsComplianceAnswersListParamsO = "-manager__customer__name"
+	ProposalProtectedCallsProposalsComplianceAnswersListParamsOMinusName                ProposalProtectedCallsProposalsComplianceAnswersListParamsO = "-name"
+	ProposalProtectedCallsProposalsComplianceAnswersListParamsOName                     ProposalProtectedCallsProposalsComplianceAnswersListParamsO = "name"
+)
+
+// Defines values for ProposalProtectedCallsProposalsComplianceAnswersListParamsState.
+const (
+	ProposalProtectedCallsProposalsComplianceAnswersListParamsStateActive   ProposalProtectedCallsProposalsComplianceAnswersListParamsState = "active"
+	ProposalProtectedCallsProposalsComplianceAnswersListParamsStateArchived ProposalProtectedCallsProposalsComplianceAnswersListParamsState = "archived"
+	ProposalProtectedCallsProposalsComplianceAnswersListParamsStateDraft    ProposalProtectedCallsProposalsComplianceAnswersListParamsState = "draft"
 )
 
 // Defines values for ProposalPublicCallsListParamsField.
@@ -8898,11 +8919,11 @@ const (
 
 // Defines values for UserPermissionRequestsHeadParamsState.
 const (
-	Approved UserPermissionRequestsHeadParamsState = "approved"
-	Canceled UserPermissionRequestsHeadParamsState = "canceled"
-	Draft    UserPermissionRequestsHeadParamsState = "draft"
-	Pending  UserPermissionRequestsHeadParamsState = "pending"
-	Rejected UserPermissionRequestsHeadParamsState = "rejected"
+	UserPermissionRequestsHeadParamsStateApproved UserPermissionRequestsHeadParamsState = "approved"
+	UserPermissionRequestsHeadParamsStateCanceled UserPermissionRequestsHeadParamsState = "canceled"
+	UserPermissionRequestsHeadParamsStateDraft    UserPermissionRequestsHeadParamsState = "draft"
+	UserPermissionRequestsHeadParamsStatePending  UserPermissionRequestsHeadParamsState = "pending"
+	UserPermissionRequestsHeadParamsStateRejected UserPermissionRequestsHeadParamsState = "rejected"
 )
 
 // Defines values for UserPermissionsListParamsO.
@@ -10472,6 +10493,18 @@ type BroadcastMessageStateEnum string
 type CallAttachDocumentsRequest struct {
 	Description *string              `json:"description,omitempty"`
 	Documents   []openapi_types.File `json:"documents"`
+}
+
+// CallComplianceOverview defines model for CallComplianceOverview.
+type CallComplianceOverview struct {
+	Checklist *map[string]interface{} `json:"checklist"`
+	Proposals *[]interface{}          `json:"proposals,omitempty"`
+}
+
+// CallComplianceReviewRequest defines model for CallComplianceReviewRequest.
+type CallComplianceReviewRequest struct {
+	ProposalUuid openapi_types.UUID `json:"proposal_uuid"`
+	ReviewNotes  *string            `json:"review_notes,omitempty"`
 }
 
 // CallDetachDocumentsRequest defines model for CallDetachDocumentsRequest.
@@ -12334,9 +12367,10 @@ type ImpactLevelEnum int
 
 // ImportResourceRequest defines model for ImportResourceRequest.
 type ImportResourceRequest struct {
-	BackendId string              `json:"backend_id"`
-	Plan      *openapi_types.UUID `json:"plan,omitempty"`
-	Project   openapi_types.UUID  `json:"project"`
+	AdditionalDetails interface{}         `json:"additional_details"`
+	BackendId         string              `json:"backend_id"`
+	Plan              *openapi_types.UUID `json:"plan,omitempty"`
+	Project           openapi_types.UUID  `json:"project"`
 }
 
 // ImportableResource defines model for ImportableResource.
@@ -16628,13 +16662,16 @@ type PatchedProposalReviewRequest struct {
 
 // PatchedProtectedCallRequest defines model for PatchedProtectedCallRequest.
 type PatchedProtectedCallRequest struct {
-	BackendId           *string `json:"backend_id,omitempty"`
-	CreatedBy           *string `json:"created_by"`
-	Description         *string `json:"description,omitempty"`
-	ExternalUrl         *string `json:"external_url"`
-	FixedDurationInDays *int    `json:"fixed_duration_in_days"`
-	Name                *string `json:"name,omitempty"`
-	ReferenceCode       *string `json:"reference_code,omitempty"`
+	BackendId *string `json:"backend_id,omitempty"`
+
+	// ComplianceChecklist Compliance checklist that proposals must complete before submission
+	ComplianceChecklist *openapi_types.UUID `json:"compliance_checklist"`
+	CreatedBy           *string             `json:"created_by"`
+	Description         *string             `json:"description,omitempty"`
+	ExternalUrl         *string             `json:"external_url"`
+	FixedDurationInDays *int                `json:"fixed_duration_in_days"`
+	Name                *string             `json:"name,omitempty"`
+	ReferenceCode       *string             `json:"reference_code,omitempty"`
 
 	// ReviewerIdentityVisibleToSubmitters Whether proposal submitters can see reviewer identities
 	ReviewerIdentityVisibleToSubmitters *bool `json:"reviewer_identity_visible_to_submitters,omitempty"`
@@ -17412,15 +17449,17 @@ type ProjectsUsagesGroupedByOecd struct {
 
 // Proposal defines model for Proposal.
 type Proposal struct {
-	AllocationComment *string             `json:"allocation_comment"`
-	ApprovedBy        *string             `json:"approved_by"`
-	CallName          *string             `json:"call_name,omitempty"`
-	CallUuid          *openapi_types.UUID `json:"call_uuid,omitempty"`
-	Created           *time.Time          `json:"created,omitempty"`
-	CreatedBy         *string             `json:"created_by"`
-	CreatedByName     *string             `json:"created_by_name,omitempty"`
-	CreatedByUuid     *openapi_types.UUID `json:"created_by_uuid,omitempty"`
-	Description       *string             `json:"description,omitempty"`
+	AllocationComment *string                 `json:"allocation_comment"`
+	ApprovedBy        *string                 `json:"approved_by"`
+	CallName          *string                 `json:"call_name,omitempty"`
+	CallUuid          *openapi_types.UUID     `json:"call_uuid,omitempty"`
+	CanSubmit         *map[string]interface{} `json:"can_submit,omitempty"`
+	ComplianceStatus  *map[string]interface{} `json:"compliance_status"`
+	Created           *time.Time              `json:"created,omitempty"`
+	CreatedBy         *string                 `json:"created_by"`
+	CreatedByName     *string                 `json:"created_by_name,omitempty"`
+	CreatedByUuid     *openapi_types.UUID     `json:"created_by_uuid,omitempty"`
+	Description       *string                 `json:"description,omitempty"`
 
 	// DurationInDays Duration in days after provisioning of resources.
 	DurationInDays            *int                      `json:"duration_in_days"`
@@ -17447,6 +17486,85 @@ type Proposal_OecdFos2007Code struct {
 // ProposalApproveRequest defines model for ProposalApproveRequest.
 type ProposalApproveRequest struct {
 	AllocationComment *string `json:"allocation_comment,omitempty"`
+}
+
+// ProposalChecklistAnswer defines model for ProposalChecklistAnswer.
+type ProposalChecklistAnswer struct {
+	// AnswerData Flexible answer storage for different question types
+	AnswerData          interface{} `json:"answer_data,omitempty"`
+	Created             *time.Time  `json:"created,omitempty"`
+	Modified            *time.Time  `json:"modified,omitempty"`
+	QuestionDescription *string     `json:"question_description,omitempty"`
+	QuestionRequired    *bool       `json:"question_required,omitempty"`
+	QuestionSolution    *string     `json:"question_solution,omitempty"`
+	QuestionType        *string     `json:"question_type,omitempty"`
+
+	// RequiresReview Internal flag - this answer requires additional review
+	RequiresReview *bool               `json:"requires_review,omitempty"`
+	User           *int                `json:"user,omitempty"`
+	UserName       *string             `json:"user_name,omitempty"`
+	Uuid           *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// ProposalChecklistAnswerSubmitRequest defines model for ProposalChecklistAnswerSubmitRequest.
+type ProposalChecklistAnswerSubmitRequest struct {
+	AnswerData   interface{}        `json:"answer_data"`
+	QuestionUuid openapi_types.UUID `json:"question_uuid"`
+}
+
+// ProposalChecklistAnswerSubmitResponse defines model for ProposalChecklistAnswerSubmitResponse.
+type ProposalChecklistAnswerSubmitResponse struct {
+	Completion ProposalChecklistCompletion `json:"completion"`
+	Detail     string                      `json:"detail"`
+}
+
+// ProposalChecklistCompletion defines model for ProposalChecklistCompletion.
+type ProposalChecklistCompletion struct {
+	ChecklistDescription *string    `json:"checklist_description,omitempty"`
+	ChecklistName        *string    `json:"checklist_name,omitempty"`
+	CompletionPercentage *float64   `json:"completion_percentage,omitempty"`
+	Created              *time.Time `json:"created,omitempty"`
+
+	// IsCompleted Whether all required questions have been answered
+	IsCompleted *bool      `json:"is_completed,omitempty"`
+	Modified    *time.Time `json:"modified,omitempty"`
+
+	// RequiresReview Whether any answers triggered review requirements
+	RequiresReview *bool `json:"requires_review,omitempty"`
+
+	// ReviewNotes Notes from the reviewer
+	ReviewNotes          *string        `json:"review_notes,omitempty"`
+	ReviewTriggerSummary *[]interface{} `json:"review_trigger_summary,omitempty"`
+	ReviewedAt           *time.Time     `json:"reviewed_at"`
+
+	// ReviewedBy User who reviewed the checklist completion
+	ReviewedBy                  *int                `json:"reviewed_by"`
+	ReviewedByName              *string             `json:"reviewed_by_name,omitempty"`
+	UnansweredRequiredQuestions *[]interface{}      `json:"unanswered_required_questions,omitempty"`
+	Uuid                        *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// ProposalChecklistQuestion defines model for ProposalChecklistQuestion.
+type ProposalChecklistQuestion struct {
+	Description     *string                 `json:"description,omitempty"`
+	ExistingAnswer  *map[string]interface{} `json:"existing_answer"`
+	Order           *int                    `json:"order,omitempty"`
+	QuestionOptions *[]interface{}          `json:"question_options"`
+
+	// QuestionType Type of question and expected answer format
+	QuestionType *QuestionTypeEnum `json:"question_type,omitempty"`
+	Required     *bool             `json:"required,omitempty"`
+
+	// Solution Guidance shown when answer needs clarification
+	Solution *string             `json:"solution"`
+	Uuid     *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// ProposalComplianceChecklistResponse defines model for ProposalComplianceChecklistResponse.
+type ProposalComplianceChecklistResponse struct {
+	Checklist  *map[string]interface{}     `json:"checklist,omitempty"`
+	Completion ProposalChecklistCompletion `json:"completion"`
+	Questions  []ProposalChecklistQuestion `json:"questions"`
 }
 
 // ProposalDocumentation defines model for ProposalDocumentation.
@@ -17581,22 +17699,26 @@ type ProposalUpdateProjectDetailsRequest_OecdFos2007Code struct {
 
 // ProtectedCall defines model for ProtectedCall.
 type ProtectedCall struct {
-	BackendId           *string                    `json:"backend_id,omitempty"`
-	Created             *time.Time                 `json:"created,omitempty"`
-	CreatedBy           *string                    `json:"created_by"`
-	CustomerName        *string                    `json:"customer_name,omitempty"`
-	CustomerUuid        *openapi_types.UUID        `json:"customer_uuid,omitempty"`
-	Description         *string                    `json:"description,omitempty"`
-	Documents           *[]CallDocument            `json:"documents,omitempty"`
-	EndDate             *time.Time                 `json:"end_date,omitempty"`
-	ExternalUrl         *string                    `json:"external_url"`
-	FixedDurationInDays *int                       `json:"fixed_duration_in_days"`
-	Manager             *string                    `json:"manager,omitempty"`
-	ManagerUuid         *openapi_types.UUID        `json:"manager_uuid,omitempty"`
-	Name                *string                    `json:"name,omitempty"`
-	Offerings           *[]NestedRequestedOffering `json:"offerings,omitempty"`
-	ReferenceCode       *string                    `json:"reference_code,omitempty"`
-	ResourceTemplates   *[]CallResourceTemplate    `json:"resource_templates,omitempty"`
+	BackendId *string `json:"backend_id,omitempty"`
+
+	// ComplianceChecklist Compliance checklist that proposals must complete before submission
+	ComplianceChecklist     *openapi_types.UUID        `json:"compliance_checklist"`
+	ComplianceChecklistName *string                    `json:"compliance_checklist_name,omitempty"`
+	Created                 *time.Time                 `json:"created,omitempty"`
+	CreatedBy               *string                    `json:"created_by"`
+	CustomerName            *string                    `json:"customer_name,omitempty"`
+	CustomerUuid            *openapi_types.UUID        `json:"customer_uuid,omitempty"`
+	Description             *string                    `json:"description,omitempty"`
+	Documents               *[]CallDocument            `json:"documents,omitempty"`
+	EndDate                 *time.Time                 `json:"end_date,omitempty"`
+	ExternalUrl             *string                    `json:"external_url"`
+	FixedDurationInDays     *int                       `json:"fixed_duration_in_days"`
+	Manager                 *string                    `json:"manager,omitempty"`
+	ManagerUuid             *openapi_types.UUID        `json:"manager_uuid,omitempty"`
+	Name                    *string                    `json:"name,omitempty"`
+	Offerings               *[]NestedRequestedOffering `json:"offerings,omitempty"`
+	ReferenceCode           *string                    `json:"reference_code,omitempty"`
+	ResourceTemplates       *[]CallResourceTemplate    `json:"resource_templates,omitempty"`
 
 	// ReviewerIdentityVisibleToSubmitters Whether proposal submitters can see reviewer identities
 	ReviewerIdentityVisibleToSubmitters *bool `json:"reviewer_identity_visible_to_submitters,omitempty"`
@@ -17613,14 +17735,17 @@ type ProtectedCall struct {
 
 // ProtectedCallRequest defines model for ProtectedCallRequest.
 type ProtectedCallRequest struct {
-	BackendId           *string `json:"backend_id,omitempty"`
-	CreatedBy           *string `json:"created_by"`
-	Description         *string `json:"description,omitempty"`
-	ExternalUrl         *string `json:"external_url"`
-	FixedDurationInDays *int    `json:"fixed_duration_in_days"`
-	Manager             string  `json:"manager"`
-	Name                string  `json:"name"`
-	ReferenceCode       *string `json:"reference_code,omitempty"`
+	BackendId *string `json:"backend_id,omitempty"`
+
+	// ComplianceChecklist Compliance checklist that proposals must complete before submission
+	ComplianceChecklist *openapi_types.UUID `json:"compliance_checklist"`
+	CreatedBy           *string             `json:"created_by"`
+	Description         *string             `json:"description,omitempty"`
+	ExternalUrl         *string             `json:"external_url"`
+	FixedDurationInDays *int                `json:"fixed_duration_in_days"`
+	Manager             string              `json:"manager"`
+	Name                string              `json:"name"`
+	ReferenceCode       *string             `json:"reference_code,omitempty"`
 
 	// ReviewerIdentityVisibleToSubmitters Whether proposal submitters can see reviewer identities
 	ReviewerIdentityVisibleToSubmitters *bool `json:"reviewer_identity_visible_to_submitters,omitempty"`
@@ -29059,6 +29184,9 @@ type ProposalProposalsResourcesListParams struct {
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 }
 
+// ProposalProposalsSubmitComplianceAnswersJSONBody defines parameters for ProposalProposalsSubmitComplianceAnswers.
+type ProposalProposalsSubmitComplianceAnswersJSONBody = []ProposalChecklistAnswerSubmitRequest
+
 // ProposalProtectedCallsListParams defines parameters for ProposalProtectedCallsList.
 type ProposalProtectedCallsListParams struct {
 	Customer        *string                                  `form:"customer,omitempty" json:"customer,omitempty"`
@@ -29180,6 +29308,34 @@ type ProposalProtectedCallsOfferingsListParams struct {
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 }
+
+// ProposalProtectedCallsProposalsComplianceAnswersListParams defines parameters for ProposalProtectedCallsProposalsComplianceAnswersList.
+type ProposalProtectedCallsProposalsComplianceAnswersListParams struct {
+	Customer        *string             `form:"customer,omitempty" json:"customer,omitempty"`
+	CustomerKeyword *string             `form:"customer_keyword,omitempty" json:"customer_keyword,omitempty"`
+	CustomerUuid    *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+	HasActiveRound  *bool               `form:"has_active_round,omitempty" json:"has_active_round,omitempty"`
+	Name            *string             `form:"name,omitempty" json:"name,omitempty"`
+
+	// O Ordering
+	//
+	O                     *[]ProposalProtectedCallsProposalsComplianceAnswersListParamsO `form:"o,omitempty" json:"o,omitempty"`
+	OfferingUuid          *openapi_types.UUID                                            `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	OfferingsProviderUuid *openapi_types.UUID                                            `form:"offerings_provider_uuid,omitempty" json:"offerings_provider_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize                                                          `form:"page_size,omitempty" json:"page_size,omitempty"`
+	State    *[]ProposalProtectedCallsProposalsComplianceAnswersListParamsState `form:"state,omitempty" json:"state,omitempty"`
+}
+
+// ProposalProtectedCallsProposalsComplianceAnswersListParamsO defines parameters for ProposalProtectedCallsProposalsComplianceAnswersList.
+type ProposalProtectedCallsProposalsComplianceAnswersListParamsO string
+
+// ProposalProtectedCallsProposalsComplianceAnswersListParamsState defines parameters for ProposalProtectedCallsProposalsComplianceAnswersList.
+type ProposalProtectedCallsProposalsComplianceAnswersListParamsState string
 
 // ProposalProtectedCallsResourceTemplatesListParams defines parameters for ProposalProtectedCallsResourceTemplatesList.
 type ProposalProtectedCallsResourceTemplatesListParams struct {
@@ -32675,6 +32831,9 @@ type ProposalProposalsResourcesPartialUpdateJSONRequestBody = PatchedRequestedRe
 // ProposalProposalsResourcesUpdateJSONRequestBody defines body for ProposalProposalsResourcesUpdate for application/json ContentType.
 type ProposalProposalsResourcesUpdateJSONRequestBody = RequestedResourceRequest
 
+// ProposalProposalsSubmitComplianceAnswersJSONRequestBody defines body for ProposalProposalsSubmitComplianceAnswers for application/json ContentType.
+type ProposalProposalsSubmitComplianceAnswersJSONRequestBody = ProposalProposalsSubmitComplianceAnswersJSONBody
+
 // ProposalProposalsUpdateProjectDetailsJSONRequestBody defines body for ProposalProposalsUpdateProjectDetails for application/json ContentType.
 type ProposalProposalsUpdateProjectDetailsJSONRequestBody = ProposalUpdateProjectDetailsRequest
 
@@ -32719,6 +32878,9 @@ type ProposalProtectedCallsResourceTemplatesPartialUpdateJSONRequestBody = Patch
 
 // ProposalProtectedCallsResourceTemplatesUpdateJSONRequestBody defines body for ProposalProtectedCallsResourceTemplatesUpdate for application/json ContentType.
 type ProposalProtectedCallsResourceTemplatesUpdateJSONRequestBody = CallResourceTemplateRequest
+
+// ProposalProtectedCallsReviewProposalComplianceJSONRequestBody defines body for ProposalProtectedCallsReviewProposalCompliance for application/json ContentType.
+type ProposalProtectedCallsReviewProposalComplianceJSONRequestBody = CallComplianceReviewRequest
 
 // ProposalProtectedCallsRoundsSetJSONRequestBody defines body for ProposalProtectedCallsRoundsSet for application/json ContentType.
 type ProposalProtectedCallsRoundsSetJSONRequestBody = ProtectedRoundRequest
@@ -39775,6 +39937,12 @@ type ClientInterface interface {
 
 	ProposalProposalsAttachDocument(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsAttachDocumentJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// ProposalProposalsComplianceChecklistRetrieve request
+	ProposalProposalsComplianceChecklistRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProposalProposalsComplianceStatusRetrieve request
+	ProposalProposalsComplianceStatusRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// ProposalProposalsDeleteUserWithBody request with any body
 	ProposalProposalsDeleteUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -39814,6 +39982,11 @@ type ClientInterface interface {
 
 	// ProposalProposalsSubmit request
 	ProposalProposalsSubmit(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProposalProposalsSubmitComplianceAnswersWithBody request with any body
+	ProposalProposalsSubmitComplianceAnswersWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ProposalProposalsSubmitComplianceAnswers(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsSubmitComplianceAnswersJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProposalProposalsUpdateProjectDetailsWithBody request with any body
 	ProposalProposalsUpdateProjectDetailsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -39868,6 +40041,9 @@ type ClientInterface interface {
 
 	ProposalProtectedCallsAttachDocuments(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsAttachDocumentsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// ProposalProtectedCallsComplianceOverviewRetrieve request
+	ProposalProtectedCallsComplianceOverviewRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// ProposalProtectedCallsDeleteUserWithBody request with any body
 	ProposalProtectedCallsDeleteUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -39905,6 +40081,9 @@ type ClientInterface interface {
 
 	ProposalProtectedCallsOfferingsUpdate(ctx context.Context, uuid string, objUuid string, body ProposalProtectedCallsOfferingsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// ProposalProtectedCallsProposalsComplianceAnswersList request
+	ProposalProtectedCallsProposalsComplianceAnswersList(ctx context.Context, uuid openapi_types.UUID, proposalUuid string, params *ProposalProtectedCallsProposalsComplianceAnswersListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// ProposalProtectedCallsResourceTemplatesList request
 	ProposalProtectedCallsResourceTemplatesList(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsResourceTemplatesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -39928,6 +40107,11 @@ type ClientInterface interface {
 	ProposalProtectedCallsResourceTemplatesUpdateWithBody(ctx context.Context, uuid string, objUuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	ProposalProtectedCallsResourceTemplatesUpdate(ctx context.Context, uuid string, objUuid string, body ProposalProtectedCallsResourceTemplatesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProposalProtectedCallsReviewProposalComplianceWithBody request with any body
+	ProposalProtectedCallsReviewProposalComplianceWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ProposalProtectedCallsReviewProposalCompliance(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsReviewProposalComplianceJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProposalProtectedCallsRoundsList request
 	ProposalProtectedCallsRoundsList(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsRoundsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -58540,6 +58724,30 @@ func (c *Client) ProposalProposalsAttachDocument(ctx context.Context, uuid opena
 	return c.Client.Do(req)
 }
 
+func (c *Client) ProposalProposalsComplianceChecklistRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProposalsComplianceChecklistRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProposalProposalsComplianceStatusRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProposalsComplianceStatusRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) ProposalProposalsDeleteUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProposalProposalsDeleteUserRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
@@ -58710,6 +58918,30 @@ func (c *Client) ProposalProposalsResourcesUpdate(ctx context.Context, uuid stri
 
 func (c *Client) ProposalProposalsSubmit(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProposalProposalsSubmitRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProposalProposalsSubmitComplianceAnswersWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProposalsSubmitComplianceAnswersRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProposalProposalsSubmitComplianceAnswers(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsSubmitComplianceAnswersJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProposalsSubmitComplianceAnswersRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -58960,6 +59192,18 @@ func (c *Client) ProposalProtectedCallsAttachDocuments(ctx context.Context, uuid
 	return c.Client.Do(req)
 }
 
+func (c *Client) ProposalProtectedCallsComplianceOverviewRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProtectedCallsComplianceOverviewRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) ProposalProtectedCallsDeleteUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProposalProtectedCallsDeleteUserRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
@@ -59128,6 +59372,18 @@ func (c *Client) ProposalProtectedCallsOfferingsUpdate(ctx context.Context, uuid
 	return c.Client.Do(req)
 }
 
+func (c *Client) ProposalProtectedCallsProposalsComplianceAnswersList(ctx context.Context, uuid openapi_types.UUID, proposalUuid string, params *ProposalProtectedCallsProposalsComplianceAnswersListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProtectedCallsProposalsComplianceAnswersListRequest(c.Server, uuid, proposalUuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) ProposalProtectedCallsResourceTemplatesList(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsResourceTemplatesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProposalProtectedCallsResourceTemplatesListRequest(c.Server, uuid, params)
 	if err != nil {
@@ -59226,6 +59482,30 @@ func (c *Client) ProposalProtectedCallsResourceTemplatesUpdateWithBody(ctx conte
 
 func (c *Client) ProposalProtectedCallsResourceTemplatesUpdate(ctx context.Context, uuid string, objUuid string, body ProposalProtectedCallsResourceTemplatesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProposalProtectedCallsResourceTemplatesUpdateRequest(c.Server, uuid, objUuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProposalProtectedCallsReviewProposalComplianceWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProtectedCallsReviewProposalComplianceRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProposalProtectedCallsReviewProposalCompliance(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsReviewProposalComplianceJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProtectedCallsReviewProposalComplianceRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -158902,6 +159182,74 @@ func NewProposalProposalsAttachDocumentRequestWithBody(server string, uuid opena
 	return req, nil
 }
 
+// NewProposalProposalsComplianceChecklistRetrieveRequest generates requests for ProposalProposalsComplianceChecklistRetrieve
+func NewProposalProposalsComplianceChecklistRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/proposal-proposals/%s/compliance_checklist/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewProposalProposalsComplianceStatusRetrieveRequest generates requests for ProposalProposalsComplianceStatusRetrieve
+func NewProposalProposalsComplianceStatusRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/proposal-proposals/%s/compliance_status/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewProposalProposalsDeleteUserRequest calls the generic ProposalProposalsDeleteUser builder with application/json body
 func NewProposalProposalsDeleteUserRequest(server string, uuid openapi_types.UUID, body ProposalProposalsDeleteUserJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -159567,6 +159915,53 @@ func NewProposalProposalsSubmitRequest(server string, uuid openapi_types.UUID) (
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewProposalProposalsSubmitComplianceAnswersRequest calls the generic ProposalProposalsSubmitComplianceAnswers builder with application/json body
+func NewProposalProposalsSubmitComplianceAnswersRequest(server string, uuid openapi_types.UUID, body ProposalProposalsSubmitComplianceAnswersJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewProposalProposalsSubmitComplianceAnswersRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewProposalProposalsSubmitComplianceAnswersRequestWithBody generates requests for ProposalProposalsSubmitComplianceAnswers with any type of body
+func NewProposalProposalsSubmitComplianceAnswersRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/proposal-proposals/%s/submit_compliance_answers/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -160485,6 +160880,40 @@ func NewProposalProtectedCallsAttachDocumentsRequestWithBody(server string, uuid
 	return req, nil
 }
 
+// NewProposalProtectedCallsComplianceOverviewRetrieveRequest generates requests for ProposalProtectedCallsComplianceOverviewRetrieve
+func NewProposalProtectedCallsComplianceOverviewRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/proposal-protected-calls/%s/compliance_overview/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewProposalProtectedCallsDeleteUserRequest calls the generic ProposalProtectedCallsDeleteUser builder with application/json body
 func NewProposalProtectedCallsDeleteUserRequest(server string, uuid openapi_types.UUID, body ProposalProtectedCallsDeleteUserJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -161120,6 +161549,229 @@ func NewProposalProtectedCallsOfferingsUpdateRequestWithBody(server string, uuid
 	return req, nil
 }
 
+// NewProposalProtectedCallsProposalsComplianceAnswersListRequest generates requests for ProposalProtectedCallsProposalsComplianceAnswersList
+func NewProposalProtectedCallsProposalsComplianceAnswersListRequest(server string, uuid openapi_types.UUID, proposalUuid string, params *ProposalProtectedCallsProposalsComplianceAnswersListParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithLocation("simple", false, "proposal_uuid", runtime.ParamLocationPath, proposalUuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/proposal-protected-calls/%s/proposals/%s/compliance-answers/", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Customer != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer", runtime.ParamLocationQuery, *params.Customer); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerKeyword != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer_keyword", runtime.ParamLocationQuery, *params.CustomerKeyword); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer_uuid", runtime.ParamLocationQuery, *params.CustomerUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.HasActiveRound != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_active_round", runtime.ParamLocationQuery, *params.HasActiveRound); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name", runtime.ParamLocationQuery, *params.Name); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OfferingsProviderUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offerings_provider_uuid", runtime.ParamLocationQuery, *params.OfferingsProviderUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "state", runtime.ParamLocationQuery, *params.State); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewProposalProtectedCallsResourceTemplatesListRequest generates requests for ProposalProtectedCallsResourceTemplatesList
 func NewProposalProtectedCallsResourceTemplatesListRequest(server string, uuid openapi_types.UUID, params *ProposalProtectedCallsResourceTemplatesListParams) (*http.Request, error) {
 	var err error
@@ -161420,6 +162072,53 @@ func NewProposalProtectedCallsResourceTemplatesUpdateRequestWithBody(server stri
 	}
 
 	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewProposalProtectedCallsReviewProposalComplianceRequest calls the generic ProposalProtectedCallsReviewProposalCompliance builder with application/json body
+func NewProposalProtectedCallsReviewProposalComplianceRequest(server string, uuid openapi_types.UUID, body ProposalProtectedCallsReviewProposalComplianceJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewProposalProtectedCallsReviewProposalComplianceRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewProposalProtectedCallsReviewProposalComplianceRequestWithBody generates requests for ProposalProtectedCallsReviewProposalCompliance with any type of body
+func NewProposalProtectedCallsReviewProposalComplianceRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/proposal-protected-calls/%s/review_proposal_compliance/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
 	if err != nil {
 		return nil, err
 	}
@@ -194693,6 +195392,12 @@ type ClientWithResponsesInterface interface {
 
 	ProposalProposalsAttachDocumentWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsAttachDocumentJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProposalsAttachDocumentResponse, error)
 
+	// ProposalProposalsComplianceChecklistRetrieveWithResponse request
+	ProposalProposalsComplianceChecklistRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProposalsComplianceChecklistRetrieveResponse, error)
+
+	// ProposalProposalsComplianceStatusRetrieveWithResponse request
+	ProposalProposalsComplianceStatusRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProposalsComplianceStatusRetrieveResponse, error)
+
 	// ProposalProposalsDeleteUserWithBodyWithResponse request with any body
 	ProposalProposalsDeleteUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProposalsDeleteUserResponse, error)
 
@@ -194732,6 +195437,11 @@ type ClientWithResponsesInterface interface {
 
 	// ProposalProposalsSubmitWithResponse request
 	ProposalProposalsSubmitWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProposalsSubmitResponse, error)
+
+	// ProposalProposalsSubmitComplianceAnswersWithBodyWithResponse request with any body
+	ProposalProposalsSubmitComplianceAnswersWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProposalsSubmitComplianceAnswersResponse, error)
+
+	ProposalProposalsSubmitComplianceAnswersWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsSubmitComplianceAnswersJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProposalsSubmitComplianceAnswersResponse, error)
 
 	// ProposalProposalsUpdateProjectDetailsWithBodyWithResponse request with any body
 	ProposalProposalsUpdateProjectDetailsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProposalsUpdateProjectDetailsResponse, error)
@@ -194786,6 +195496,9 @@ type ClientWithResponsesInterface interface {
 
 	ProposalProtectedCallsAttachDocumentsWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsAttachDocumentsJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsAttachDocumentsResponse, error)
 
+	// ProposalProtectedCallsComplianceOverviewRetrieveWithResponse request
+	ProposalProtectedCallsComplianceOverviewRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsComplianceOverviewRetrieveResponse, error)
+
 	// ProposalProtectedCallsDeleteUserWithBodyWithResponse request with any body
 	ProposalProtectedCallsDeleteUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsDeleteUserResponse, error)
 
@@ -194823,6 +195536,9 @@ type ClientWithResponsesInterface interface {
 
 	ProposalProtectedCallsOfferingsUpdateWithResponse(ctx context.Context, uuid string, objUuid string, body ProposalProtectedCallsOfferingsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsOfferingsUpdateResponse, error)
 
+	// ProposalProtectedCallsProposalsComplianceAnswersListWithResponse request
+	ProposalProtectedCallsProposalsComplianceAnswersListWithResponse(ctx context.Context, uuid openapi_types.UUID, proposalUuid string, params *ProposalProtectedCallsProposalsComplianceAnswersListParams, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsProposalsComplianceAnswersListResponse, error)
+
 	// ProposalProtectedCallsResourceTemplatesListWithResponse request
 	ProposalProtectedCallsResourceTemplatesListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsResourceTemplatesListParams, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsResourceTemplatesListResponse, error)
 
@@ -194846,6 +195562,11 @@ type ClientWithResponsesInterface interface {
 	ProposalProtectedCallsResourceTemplatesUpdateWithBodyWithResponse(ctx context.Context, uuid string, objUuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsResourceTemplatesUpdateResponse, error)
 
 	ProposalProtectedCallsResourceTemplatesUpdateWithResponse(ctx context.Context, uuid string, objUuid string, body ProposalProtectedCallsResourceTemplatesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsResourceTemplatesUpdateResponse, error)
+
+	// ProposalProtectedCallsReviewProposalComplianceWithBodyWithResponse request with any body
+	ProposalProtectedCallsReviewProposalComplianceWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsReviewProposalComplianceResponse, error)
+
+	ProposalProtectedCallsReviewProposalComplianceWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsReviewProposalComplianceJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsReviewProposalComplianceResponse, error)
 
 	// ProposalProtectedCallsRoundsListWithResponse request
 	ProposalProtectedCallsRoundsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsRoundsListParams, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsRoundsListResponse, error)
@@ -219960,6 +220681,50 @@ func (r ProposalProposalsAttachDocumentResponse) StatusCode() int {
 	return 0
 }
 
+type ProposalProposalsComplianceChecklistRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ProposalComplianceChecklistResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r ProposalProposalsComplianceChecklistRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProposalProposalsComplianceChecklistRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ProposalProposalsComplianceStatusRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ProposalChecklistCompletion
+}
+
+// Status returns HTTPResponse.Status
+func (r ProposalProposalsComplianceStatusRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProposalProposalsComplianceStatusRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type ProposalProposalsDeleteUserResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -220176,6 +220941,28 @@ func (r ProposalProposalsSubmitResponse) StatusCode() int {
 	return 0
 }
 
+type ProposalProposalsSubmitComplianceAnswersResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ProposalChecklistAnswerSubmitResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r ProposalProposalsSubmitComplianceAnswersResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProposalProposalsSubmitComplianceAnswersResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type ProposalProposalsUpdateProjectDetailsResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -220374,6 +221161,7 @@ func (r ProposalProtectedCallsUpdateResponse) StatusCode() int {
 type ProposalProtectedCallsActivateResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *ProtectedCall
 }
 
 // Status returns HTTPResponse.Status
@@ -220417,6 +221205,7 @@ func (r ProposalProtectedCallsAddUserResponse) StatusCode() int {
 type ProposalProtectedCallsArchiveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *ProtectedCall
 }
 
 // Status returns HTTPResponse.Status
@@ -220450,6 +221239,28 @@ func (r ProposalProtectedCallsAttachDocumentsResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r ProposalProtectedCallsAttachDocumentsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ProposalProtectedCallsComplianceOverviewRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CallComplianceOverview
+}
+
+// Status returns HTTPResponse.Status
+func (r ProposalProtectedCallsComplianceOverviewRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProposalProtectedCallsComplianceOverviewRetrieveResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -220651,6 +221462,28 @@ func (r ProposalProtectedCallsOfferingsUpdateResponse) StatusCode() int {
 	return 0
 }
 
+type ProposalProtectedCallsProposalsComplianceAnswersListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]ProposalChecklistAnswer
+}
+
+// Status returns HTTPResponse.Status
+func (r ProposalProtectedCallsProposalsComplianceAnswersListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProposalProtectedCallsProposalsComplianceAnswersListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type ProposalProtectedCallsResourceTemplatesListResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -220776,6 +221609,28 @@ func (r ProposalProtectedCallsResourceTemplatesUpdateResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r ProposalProtectedCallsResourceTemplatesUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ProposalProtectedCallsReviewProposalComplianceResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *map[string]string
+}
+
+// Status returns HTTPResponse.Status
+func (r ProposalProtectedCallsReviewProposalComplianceResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProposalProtectedCallsReviewProposalComplianceResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -240908,6 +241763,24 @@ func (c *ClientWithResponses) ProposalProposalsAttachDocumentWithResponse(ctx co
 	return ParseProposalProposalsAttachDocumentResponse(rsp)
 }
 
+// ProposalProposalsComplianceChecklistRetrieveWithResponse request returning *ProposalProposalsComplianceChecklistRetrieveResponse
+func (c *ClientWithResponses) ProposalProposalsComplianceChecklistRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProposalsComplianceChecklistRetrieveResponse, error) {
+	rsp, err := c.ProposalProposalsComplianceChecklistRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProposalsComplianceChecklistRetrieveResponse(rsp)
+}
+
+// ProposalProposalsComplianceStatusRetrieveWithResponse request returning *ProposalProposalsComplianceStatusRetrieveResponse
+func (c *ClientWithResponses) ProposalProposalsComplianceStatusRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProposalsComplianceStatusRetrieveResponse, error) {
+	rsp, err := c.ProposalProposalsComplianceStatusRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProposalsComplianceStatusRetrieveResponse(rsp)
+}
+
 // ProposalProposalsDeleteUserWithBodyWithResponse request with arbitrary body returning *ProposalProposalsDeleteUserResponse
 func (c *ClientWithResponses) ProposalProposalsDeleteUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProposalsDeleteUserResponse, error) {
 	rsp, err := c.ProposalProposalsDeleteUserWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -241036,6 +241909,23 @@ func (c *ClientWithResponses) ProposalProposalsSubmitWithResponse(ctx context.Co
 		return nil, err
 	}
 	return ParseProposalProposalsSubmitResponse(rsp)
+}
+
+// ProposalProposalsSubmitComplianceAnswersWithBodyWithResponse request with arbitrary body returning *ProposalProposalsSubmitComplianceAnswersResponse
+func (c *ClientWithResponses) ProposalProposalsSubmitComplianceAnswersWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProposalsSubmitComplianceAnswersResponse, error) {
+	rsp, err := c.ProposalProposalsSubmitComplianceAnswersWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProposalsSubmitComplianceAnswersResponse(rsp)
+}
+
+func (c *ClientWithResponses) ProposalProposalsSubmitComplianceAnswersWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsSubmitComplianceAnswersJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProposalsSubmitComplianceAnswersResponse, error) {
+	rsp, err := c.ProposalProposalsSubmitComplianceAnswers(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProposalsSubmitComplianceAnswersResponse(rsp)
 }
 
 // ProposalProposalsUpdateProjectDetailsWithBodyWithResponse request with arbitrary body returning *ProposalProposalsUpdateProjectDetailsResponse
@@ -241211,6 +242101,15 @@ func (c *ClientWithResponses) ProposalProtectedCallsAttachDocumentsWithResponse(
 	return ParseProposalProtectedCallsAttachDocumentsResponse(rsp)
 }
 
+// ProposalProtectedCallsComplianceOverviewRetrieveWithResponse request returning *ProposalProtectedCallsComplianceOverviewRetrieveResponse
+func (c *ClientWithResponses) ProposalProtectedCallsComplianceOverviewRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsComplianceOverviewRetrieveResponse, error) {
+	rsp, err := c.ProposalProtectedCallsComplianceOverviewRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProtectedCallsComplianceOverviewRetrieveResponse(rsp)
+}
+
 // ProposalProtectedCallsDeleteUserWithBodyWithResponse request with arbitrary body returning *ProposalProtectedCallsDeleteUserResponse
 func (c *ClientWithResponses) ProposalProtectedCallsDeleteUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsDeleteUserResponse, error) {
 	rsp, err := c.ProposalProtectedCallsDeleteUserWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -241332,6 +242231,15 @@ func (c *ClientWithResponses) ProposalProtectedCallsOfferingsUpdateWithResponse(
 	return ParseProposalProtectedCallsOfferingsUpdateResponse(rsp)
 }
 
+// ProposalProtectedCallsProposalsComplianceAnswersListWithResponse request returning *ProposalProtectedCallsProposalsComplianceAnswersListResponse
+func (c *ClientWithResponses) ProposalProtectedCallsProposalsComplianceAnswersListWithResponse(ctx context.Context, uuid openapi_types.UUID, proposalUuid string, params *ProposalProtectedCallsProposalsComplianceAnswersListParams, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsProposalsComplianceAnswersListResponse, error) {
+	rsp, err := c.ProposalProtectedCallsProposalsComplianceAnswersList(ctx, uuid, proposalUuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProtectedCallsProposalsComplianceAnswersListResponse(rsp)
+}
+
 // ProposalProtectedCallsResourceTemplatesListWithResponse request returning *ProposalProtectedCallsResourceTemplatesListResponse
 func (c *ClientWithResponses) ProposalProtectedCallsResourceTemplatesListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsResourceTemplatesListParams, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsResourceTemplatesListResponse, error) {
 	rsp, err := c.ProposalProtectedCallsResourceTemplatesList(ctx, uuid, params, reqEditors...)
@@ -241408,6 +242316,23 @@ func (c *ClientWithResponses) ProposalProtectedCallsResourceTemplatesUpdateWithR
 		return nil, err
 	}
 	return ParseProposalProtectedCallsResourceTemplatesUpdateResponse(rsp)
+}
+
+// ProposalProtectedCallsReviewProposalComplianceWithBodyWithResponse request with arbitrary body returning *ProposalProtectedCallsReviewProposalComplianceResponse
+func (c *ClientWithResponses) ProposalProtectedCallsReviewProposalComplianceWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsReviewProposalComplianceResponse, error) {
+	rsp, err := c.ProposalProtectedCallsReviewProposalComplianceWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProtectedCallsReviewProposalComplianceResponse(rsp)
+}
+
+func (c *ClientWithResponses) ProposalProtectedCallsReviewProposalComplianceWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsReviewProposalComplianceJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsReviewProposalComplianceResponse, error) {
+	rsp, err := c.ProposalProtectedCallsReviewProposalCompliance(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProtectedCallsReviewProposalComplianceResponse(rsp)
 }
 
 // ProposalProtectedCallsRoundsListWithResponse request returning *ProposalProtectedCallsRoundsListResponse
@@ -269793,6 +270718,58 @@ func ParseProposalProposalsAttachDocumentResponse(rsp *http.Response) (*Proposal
 	return response, nil
 }
 
+// ParseProposalProposalsComplianceChecklistRetrieveResponse parses an HTTP response from a ProposalProposalsComplianceChecklistRetrieveWithResponse call
+func ParseProposalProposalsComplianceChecklistRetrieveResponse(rsp *http.Response) (*ProposalProposalsComplianceChecklistRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProposalProposalsComplianceChecklistRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ProposalComplianceChecklistResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseProposalProposalsComplianceStatusRetrieveResponse parses an HTTP response from a ProposalProposalsComplianceStatusRetrieveWithResponse call
+func ParseProposalProposalsComplianceStatusRetrieveResponse(rsp *http.Response) (*ProposalProposalsComplianceStatusRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProposalProposalsComplianceStatusRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ProposalChecklistCompletion
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseProposalProposalsDeleteUserResponse parses an HTTP response from a ProposalProposalsDeleteUserWithResponse call
 func ParseProposalProposalsDeleteUserResponse(rsp *http.Response) (*ProposalProposalsDeleteUserResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -270008,6 +270985,32 @@ func ParseProposalProposalsSubmitResponse(rsp *http.Response) (*ProposalProposal
 	response := &ProposalProposalsSubmitResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseProposalProposalsSubmitComplianceAnswersResponse parses an HTTP response from a ProposalProposalsSubmitComplianceAnswersWithResponse call
+func ParseProposalProposalsSubmitComplianceAnswersResponse(rsp *http.Response) (*ProposalProposalsSubmitComplianceAnswersResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProposalProposalsSubmitComplianceAnswersResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ProposalChecklistAnswerSubmitResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
@@ -270230,6 +271233,16 @@ func ParseProposalProtectedCallsActivateResponse(rsp *http.Response) (*ProposalP
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ProtectedCall
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -270272,6 +271285,16 @@ func ParseProposalProtectedCallsArchiveResponse(rsp *http.Response) (*ProposalPr
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ProtectedCall
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -270286,6 +271309,32 @@ func ParseProposalProtectedCallsAttachDocumentsResponse(rsp *http.Response) (*Pr
 	response := &ProposalProtectedCallsAttachDocumentsResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseProposalProtectedCallsComplianceOverviewRetrieveResponse parses an HTTP response from a ProposalProtectedCallsComplianceOverviewRetrieveWithResponse call
+func ParseProposalProtectedCallsComplianceOverviewRetrieveResponse(rsp *http.Response) (*ProposalProtectedCallsComplianceOverviewRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProposalProtectedCallsComplianceOverviewRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CallComplianceOverview
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
@@ -270495,6 +271544,32 @@ func ParseProposalProtectedCallsOfferingsUpdateResponse(rsp *http.Response) (*Pr
 	return response, nil
 }
 
+// ParseProposalProtectedCallsProposalsComplianceAnswersListResponse parses an HTTP response from a ProposalProtectedCallsProposalsComplianceAnswersListWithResponse call
+func ParseProposalProtectedCallsProposalsComplianceAnswersListResponse(rsp *http.Response) (*ProposalProtectedCallsProposalsComplianceAnswersListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProposalProtectedCallsProposalsComplianceAnswersListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []ProposalChecklistAnswer
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseProposalProtectedCallsResourceTemplatesListResponse parses an HTTP response from a ProposalProtectedCallsResourceTemplatesListWithResponse call
 func ParseProposalProtectedCallsResourceTemplatesListResponse(rsp *http.Response) (*ProposalProtectedCallsResourceTemplatesListResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -270631,6 +271706,32 @@ func ParseProposalProtectedCallsResourceTemplatesUpdateResponse(rsp *http.Respon
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest CallResourceTemplate
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseProposalProtectedCallsReviewProposalComplianceResponse parses an HTTP response from a ProposalProtectedCallsReviewProposalComplianceWithResponse call
+func ParseProposalProtectedCallsReviewProposalComplianceResponse(rsp *http.Response) (*ProposalProtectedCallsReviewProposalComplianceResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProposalProtectedCallsReviewProposalComplianceResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest map[string]string
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
