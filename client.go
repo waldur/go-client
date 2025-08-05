@@ -3354,6 +3354,34 @@ const (
 	MarketplaceIntegrationStatusesHeadParamsStatusUnknown      MarketplaceIntegrationStatusesHeadParamsStatus = "Unknown"
 )
 
+// Defines values for MarketplaceMaintenanceAnnouncementTemplateOfferingsListParamsO.
+const (
+	MarketplaceMaintenanceAnnouncementTemplateOfferingsListParamsOCreated      MarketplaceMaintenanceAnnouncementTemplateOfferingsListParamsO = "created"
+	MarketplaceMaintenanceAnnouncementTemplateOfferingsListParamsOMinusCreated MarketplaceMaintenanceAnnouncementTemplateOfferingsListParamsO = "-created"
+)
+
+// Defines values for MarketplaceMaintenanceAnnouncementTemplateOfferingsHeadParamsO.
+const (
+	MarketplaceMaintenanceAnnouncementTemplateOfferingsHeadParamsOCreated      MarketplaceMaintenanceAnnouncementTemplateOfferingsHeadParamsO = "created"
+	MarketplaceMaintenanceAnnouncementTemplateOfferingsHeadParamsOMinusCreated MarketplaceMaintenanceAnnouncementTemplateOfferingsHeadParamsO = "-created"
+)
+
+// Defines values for MarketplaceMaintenanceAnnouncementsTemplateListParamsO.
+const (
+	MarketplaceMaintenanceAnnouncementsTemplateListParamsOCreated      MarketplaceMaintenanceAnnouncementsTemplateListParamsO = "created"
+	MarketplaceMaintenanceAnnouncementsTemplateListParamsOMinusCreated MarketplaceMaintenanceAnnouncementsTemplateListParamsO = "-created"
+	MarketplaceMaintenanceAnnouncementsTemplateListParamsOMinusName    MarketplaceMaintenanceAnnouncementsTemplateListParamsO = "-name"
+	MarketplaceMaintenanceAnnouncementsTemplateListParamsOName         MarketplaceMaintenanceAnnouncementsTemplateListParamsO = "name"
+)
+
+// Defines values for MarketplaceMaintenanceAnnouncementsTemplateHeadParamsO.
+const (
+	MarketplaceMaintenanceAnnouncementsTemplateHeadParamsOCreated      MarketplaceMaintenanceAnnouncementsTemplateHeadParamsO = "created"
+	MarketplaceMaintenanceAnnouncementsTemplateHeadParamsOMinusCreated MarketplaceMaintenanceAnnouncementsTemplateHeadParamsO = "-created"
+	MarketplaceMaintenanceAnnouncementsTemplateHeadParamsOMinusName    MarketplaceMaintenanceAnnouncementsTemplateHeadParamsO = "-name"
+	MarketplaceMaintenanceAnnouncementsTemplateHeadParamsOName         MarketplaceMaintenanceAnnouncementsTemplateHeadParamsO = "name"
+)
+
 // Defines values for MarketplaceOfferingFilesListParamsField.
 const (
 	MarketplaceOfferingFilesListParamsFieldCreated  MarketplaceOfferingFilesListParamsField = "created"
@@ -12930,6 +12958,9 @@ type MaintenanceAnnouncement struct {
 	AffectedOfferings *[]MaintenanceAnnouncementOffering `json:"affected_offerings,omitempty"`
 	CreatedBy         *string                            `json:"created_by"`
 
+	// ExternalReferenceUrl Optional reference to an external maintenance tracker
+	ExternalReferenceUrl *string `json:"external_reference_url,omitempty"`
+
 	// MaintenanceType Type of maintenance being performed
 	MaintenanceType *MaintenanceTypeEnum `json:"maintenance_type,omitempty"`
 	Message         *string              `json:"message,omitempty"`
@@ -13001,6 +13032,9 @@ type MaintenanceAnnouncementOfferingTemplateRequest struct {
 
 // MaintenanceAnnouncementRequest defines model for MaintenanceAnnouncementRequest.
 type MaintenanceAnnouncementRequest struct {
+	// ExternalReferenceUrl Optional reference to an external maintenance tracker
+	ExternalReferenceUrl *string `json:"external_reference_url,omitempty"`
+
 	// MaintenanceType Type of maintenance being performed
 	MaintenanceType *MaintenanceTypeEnum `json:"maintenance_type,omitempty"`
 	Message         *string              `json:"message,omitempty"`
@@ -16393,6 +16427,9 @@ type PatchedMaintenanceAnnouncementOfferingTemplateRequest struct {
 
 // PatchedMaintenanceAnnouncementRequest defines model for PatchedMaintenanceAnnouncementRequest.
 type PatchedMaintenanceAnnouncementRequest struct {
+	// ExternalReferenceUrl Optional reference to an external maintenance tracker
+	ExternalReferenceUrl *string `json:"external_reference_url,omitempty"`
+
 	// MaintenanceType Type of maintenance being performed
 	MaintenanceType *MaintenanceTypeEnum `json:"maintenance_type,omitempty"`
 	Message         *string              `json:"message,omitempty"`
@@ -16754,9 +16791,6 @@ type PatchedQuestionAdminRequest struct {
 
 	// ReviewAnswerValue Answer value that trigger review.
 	ReviewAnswerValue interface{} `json:"review_answer_value"`
-
-	// Solution Guidance shown when answer needs clarification
-	Solution *string `json:"solution"`
 }
 
 // PatchedQuestionAdminRequest_Operator defines model for PatchedQuestionAdminRequest.Operator.
@@ -17378,14 +17412,13 @@ type ProjectRequest struct {
 	Description *string `json:"description,omitempty"`
 
 	// EndDate The date is inclusive. Once reached, all project resource will be scheduled for termination.
-	EndDate            *openapi_types.Date             `json:"end_date"`
-	EndDateRequestedBy *string                         `json:"end_date_requested_by"`
-	Image              *openapi_types.File             `json:"image"`
-	IsIndustry         *bool                           `json:"is_industry,omitempty"`
-	Name               string                          `json:"name"`
-	OecdFos2007Code    *ProjectRequest_OecdFos2007Code `json:"oecd_fos_2007_code"`
-	StartDate          *openapi_types.Date             `json:"start_date"`
-	Type               *string                         `json:"type"`
+	EndDate         *openapi_types.Date             `json:"end_date"`
+	Image           *openapi_types.File             `json:"image"`
+	IsIndustry      *bool                           `json:"is_industry,omitempty"`
+	Name            string                          `json:"name"`
+	OecdFos2007Code *ProjectRequest_OecdFos2007Code `json:"oecd_fos_2007_code"`
+	StartDate       *openapi_types.Date             `json:"start_date"`
+	Type            *string                         `json:"type"`
 }
 
 // ProjectRequest_OecdFos2007Code defines model for ProjectRequest.OecdFos2007Code.
@@ -17526,7 +17559,6 @@ type ProposalChecklistAnswer struct {
 	Modified            *time.Time  `json:"modified,omitempty"`
 	QuestionDescription *string     `json:"question_description,omitempty"`
 	QuestionRequired    *bool       `json:"question_required,omitempty"`
-	QuestionSolution    *string     `json:"question_solution,omitempty"`
 	QuestionType        *string     `json:"question_type,omitempty"`
 
 	// RequiresReview Internal flag - this answer requires additional review
@@ -17582,12 +17614,9 @@ type ProposalChecklistQuestion struct {
 	QuestionOptions *[]interface{}          `json:"question_options"`
 
 	// QuestionType Type of question and expected answer format
-	QuestionType *QuestionTypeEnum `json:"question_type,omitempty"`
-	Required     *bool             `json:"required,omitempty"`
-
-	// Solution Guidance shown when answer needs clarification
-	Solution *string             `json:"solution"`
-	Uuid     *openapi_types.UUID `json:"uuid,omitempty"`
+	QuestionType *QuestionTypeEnum   `json:"question_type,omitempty"`
+	Required     *bool               `json:"required,omitempty"`
+	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // ProposalComplianceChecklistResponse defines model for ProposalComplianceChecklistResponse.
@@ -18225,21 +18254,16 @@ type QueryRequest struct {
 
 // Question defines model for Question.
 type Question struct {
-	CategoryUuid    *openapi_types.UUID `json:"category_uuid,omitempty"`
 	Description     *string             `json:"description,omitempty"`
 	Image           *string             `json:"image"`
 	QuestionOptions *[]QuestionOptions  `json:"question_options,omitempty"`
-
-	// Solution Guidance shown when answer needs clarification
-	Solution *string             `json:"solution"`
-	Uuid     *openapi_types.UUID `json:"uuid,omitempty"`
+	Uuid            *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // QuestionAdmin defines model for QuestionAdmin.
 type QuestionAdmin struct {
 	// AlwaysRequiresReview This question always requires review regardless of answer
 	AlwaysRequiresReview *bool                   `json:"always_requires_review,omitempty"`
-	CategoryUuid         *openapi_types.UUID     `json:"category_uuid,omitempty"`
 	Checklist            string                  `json:"checklist"`
 	ChecklistName        *openapi_types.UUID     `json:"checklist_name,omitempty"`
 	ChecklistUuid        *openapi_types.UUID     `json:"checklist_uuid,omitempty"`
@@ -18254,12 +18278,9 @@ type QuestionAdmin struct {
 	Required     *bool             `json:"required,omitempty"`
 
 	// ReviewAnswerValue Answer value that trigger review.
-	ReviewAnswerValue interface{} `json:"review_answer_value"`
-
-	// Solution Guidance shown when answer needs clarification
-	Solution *string             `json:"solution"`
-	Url      *string             `json:"url,omitempty"`
-	Uuid     *openapi_types.UUID `json:"uuid,omitempty"`
+	ReviewAnswerValue interface{}         `json:"review_answer_value"`
+	Url               *string             `json:"url,omitempty"`
+	Uuid              *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // QuestionAdmin_Operator defines model for QuestionAdmin.Operator.
@@ -18283,9 +18304,6 @@ type QuestionAdminRequest struct {
 
 	// ReviewAnswerValue Answer value that trigger review.
 	ReviewAnswerValue interface{} `json:"review_answer_value"`
-
-	// Solution Guidance shown when answer needs clarification
-	Solution *string `json:"solution"`
 }
 
 // QuestionAdminRequest_Operator defines model for QuestionAdminRequest.Operator.
@@ -24291,39 +24309,83 @@ type MarketplaceMaintenanceAnnouncementOfferingsHeadParams struct {
 
 // MarketplaceMaintenanceAnnouncementTemplateOfferingsListParams defines parameters for MarketplaceMaintenanceAnnouncementTemplateOfferingsList.
 type MarketplaceMaintenanceAnnouncementTemplateOfferingsListParams struct {
+	ImpactLevel             *int                `form:"impact_level,omitempty" json:"impact_level,omitempty"`
+	MaintenanceTemplateUuid *openapi_types.UUID `form:"maintenance_template_uuid,omitempty" json:"maintenance_template_uuid,omitempty"`
+
+	// O Ordering
+	//
+	O            *[]MarketplaceMaintenanceAnnouncementTemplateOfferingsListParamsO `form:"o,omitempty" json:"o,omitempty"`
+	OfferingUuid *openapi_types.UUID                                               `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize            *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ServiceProviderUuid *openapi_types.UUID `form:"service_provider_uuid,omitempty" json:"service_provider_uuid,omitempty"`
 }
+
+// MarketplaceMaintenanceAnnouncementTemplateOfferingsListParamsO defines parameters for MarketplaceMaintenanceAnnouncementTemplateOfferingsList.
+type MarketplaceMaintenanceAnnouncementTemplateOfferingsListParamsO string
 
 // MarketplaceMaintenanceAnnouncementTemplateOfferingsHeadParams defines parameters for MarketplaceMaintenanceAnnouncementTemplateOfferingsHead.
 type MarketplaceMaintenanceAnnouncementTemplateOfferingsHeadParams struct {
+	ImpactLevel             *int                `form:"impact_level,omitempty" json:"impact_level,omitempty"`
+	MaintenanceTemplateUuid *openapi_types.UUID `form:"maintenance_template_uuid,omitempty" json:"maintenance_template_uuid,omitempty"`
+
+	// O Ordering
+	//
+	O            *[]MarketplaceMaintenanceAnnouncementTemplateOfferingsHeadParamsO `form:"o,omitempty" json:"o,omitempty"`
+	OfferingUuid *openapi_types.UUID                                               `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize            *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ServiceProviderUuid *openapi_types.UUID `form:"service_provider_uuid,omitempty" json:"service_provider_uuid,omitempty"`
 }
+
+// MarketplaceMaintenanceAnnouncementTemplateOfferingsHeadParamsO defines parameters for MarketplaceMaintenanceAnnouncementTemplateOfferingsHead.
+type MarketplaceMaintenanceAnnouncementTemplateOfferingsHeadParamsO string
 
 // MarketplaceMaintenanceAnnouncementsTemplateListParams defines parameters for MarketplaceMaintenanceAnnouncementsTemplateList.
 type MarketplaceMaintenanceAnnouncementsTemplateListParams struct {
+	MaintenanceType *int `form:"maintenance_type,omitempty" json:"maintenance_type,omitempty"`
+
+	// O Ordering
+	//
+	O *[]MarketplaceMaintenanceAnnouncementsTemplateListParamsO `form:"o,omitempty" json:"o,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize            *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ServiceProviderUuid *openapi_types.UUID `form:"service_provider_uuid,omitempty" json:"service_provider_uuid,omitempty"`
 }
+
+// MarketplaceMaintenanceAnnouncementsTemplateListParamsO defines parameters for MarketplaceMaintenanceAnnouncementsTemplateList.
+type MarketplaceMaintenanceAnnouncementsTemplateListParamsO string
 
 // MarketplaceMaintenanceAnnouncementsTemplateHeadParams defines parameters for MarketplaceMaintenanceAnnouncementsTemplateHead.
 type MarketplaceMaintenanceAnnouncementsTemplateHeadParams struct {
+	MaintenanceType *int `form:"maintenance_type,omitempty" json:"maintenance_type,omitempty"`
+
+	// O Ordering
+	//
+	O *[]MarketplaceMaintenanceAnnouncementsTemplateHeadParamsO `form:"o,omitempty" json:"o,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize            *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ServiceProviderUuid *openapi_types.UUID `form:"service_provider_uuid,omitempty" json:"service_provider_uuid,omitempty"`
 }
+
+// MarketplaceMaintenanceAnnouncementsTemplateHeadParamsO defines parameters for MarketplaceMaintenanceAnnouncementsTemplateHead.
+type MarketplaceMaintenanceAnnouncementsTemplateHeadParamsO string
 
 // MarketplaceMaintenanceAnnouncementsListParams defines parameters for MarketplaceMaintenanceAnnouncementsList.
 type MarketplaceMaintenanceAnnouncementsListParams struct {
@@ -104039,6 +104101,70 @@ func NewMarketplaceMaintenanceAnnouncementTemplateOfferingsListRequest(server st
 	if params != nil {
 		queryValues := queryURL.Query()
 
+		if params.ImpactLevel != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "impact_level", runtime.ParamLocationQuery, *params.ImpactLevel); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.MaintenanceTemplateUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "maintenance_template_uuid", runtime.ParamLocationQuery, *params.MaintenanceTemplateUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Page != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
@@ -104058,6 +104184,22 @@ func NewMarketplaceMaintenanceAnnouncementTemplateOfferingsListRequest(server st
 		if params.PageSize != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ServiceProviderUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "service_provider_uuid", runtime.ParamLocationQuery, *params.ServiceProviderUuid); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -104104,6 +104246,70 @@ func NewMarketplaceMaintenanceAnnouncementTemplateOfferingsHeadRequest(server st
 	if params != nil {
 		queryValues := queryURL.Query()
 
+		if params.ImpactLevel != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "impact_level", runtime.ParamLocationQuery, *params.ImpactLevel); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.MaintenanceTemplateUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "maintenance_template_uuid", runtime.ParamLocationQuery, *params.MaintenanceTemplateUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Page != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
@@ -104123,6 +104329,22 @@ func NewMarketplaceMaintenanceAnnouncementTemplateOfferingsHeadRequest(server st
 		if params.PageSize != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ServiceProviderUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "service_provider_uuid", runtime.ParamLocationQuery, *params.ServiceProviderUuid); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -104371,6 +104593,38 @@ func NewMarketplaceMaintenanceAnnouncementsTemplateListRequest(server string, pa
 	if params != nil {
 		queryValues := queryURL.Query()
 
+		if params.MaintenanceType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "maintenance_type", runtime.ParamLocationQuery, *params.MaintenanceType); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Page != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
@@ -104390,6 +104644,22 @@ func NewMarketplaceMaintenanceAnnouncementsTemplateListRequest(server string, pa
 		if params.PageSize != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ServiceProviderUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "service_provider_uuid", runtime.ParamLocationQuery, *params.ServiceProviderUuid); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -104436,6 +104706,38 @@ func NewMarketplaceMaintenanceAnnouncementsTemplateHeadRequest(server string, pa
 	if params != nil {
 		queryValues := queryURL.Query()
 
+		if params.MaintenanceType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "maintenance_type", runtime.ParamLocationQuery, *params.MaintenanceType); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Page != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
@@ -104455,6 +104757,22 @@ func NewMarketplaceMaintenanceAnnouncementsTemplateHeadRequest(server string, pa
 		if params.PageSize != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ServiceProviderUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "service_provider_uuid", runtime.ParamLocationQuery, *params.ServiceProviderUuid); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
