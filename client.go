@@ -75,6 +75,7 @@ const (
 	BillingUnitHour      BillingUnit = "hour"
 	BillingUnitMonth     BillingUnit = "month"
 	BillingUnitQuantity  BillingUnit = "quantity"
+	BillingUnitQuarter   BillingUnit = "quarter"
 )
 
 // Defines values for BroadcastMessageStateEnum.
@@ -722,9 +723,10 @@ const (
 
 // Defines values for LimitPeriodEnum.
 const (
-	LimitPeriodEnumAnnual LimitPeriodEnum = "annual"
-	LimitPeriodEnumMonth  LimitPeriodEnum = "month"
-	LimitPeriodEnumTotal  LimitPeriodEnum = "total"
+	LimitPeriodEnumAnnual    LimitPeriodEnum = "annual"
+	LimitPeriodEnumMonth     LimitPeriodEnum = "month"
+	LimitPeriodEnumQuarterly LimitPeriodEnum = "quarterly"
+	LimitPeriodEnumTotal     LimitPeriodEnum = "total"
 )
 
 // Defines values for MaintenanceAnnouncementStateEnum.
