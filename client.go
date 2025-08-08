@@ -96,6 +96,7 @@ const (
 const (
 	OfferingCompliance ChecklistTypeEnum = "offering_compliance"
 	ProjectCompliance  ChecklistTypeEnum = "project_compliance"
+	ProjectMetadata    ChecklistTypeEnum = "project_metadata"
 	ProposalCompliance ChecklistTypeEnum = "proposal_compliance"
 )
 
@@ -9576,23 +9577,33 @@ type AgreementTypeEnum string
 // AllocationTimeEnum defines model for AllocationTimeEnum.
 type AllocationTimeEnum string
 
-// AnswerList defines model for AnswerList.
-type AnswerList struct {
+// Answer defines model for Answer.
+type Answer struct {
 	// AnswerData Flexible answer storage for different question types
-	AnswerData   interface{}         `json:"answer_data,omitempty"`
-	QuestionUuid *openapi_types.UUID `json:"question_uuid,omitempty"`
-}
+	AnswerData          interface{} `json:"answer_data,omitempty"`
+	Created             *time.Time  `json:"created,omitempty"`
+	Modified            *time.Time  `json:"modified,omitempty"`
+	QuestionDescription *string     `json:"question_description,omitempty"`
+	QuestionRequired    *bool       `json:"question_required,omitempty"`
+	QuestionType        *string     `json:"question_type,omitempty"`
 
-// AnswerSubmit defines model for AnswerSubmit.
-type AnswerSubmit struct {
-	AnswerData   interface{}        `json:"answer_data"`
-	QuestionUuid openapi_types.UUID `json:"question_uuid"`
+	// RequiresReview Internal flag - this answer requires additional review
+	RequiresReview *bool               `json:"requires_review,omitempty"`
+	User           *int                `json:"user,omitempty"`
+	UserName       *string             `json:"user_name,omitempty"`
+	Uuid           *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // AnswerSubmitRequest defines model for AnswerSubmitRequest.
 type AnswerSubmitRequest struct {
 	AnswerData   interface{}        `json:"answer_data"`
 	QuestionUuid openapi_types.UUID `json:"question_uuid"`
+}
+
+// AnswerSubmitResponse defines model for AnswerSubmitResponse.
+type AnswerSubmitResponse struct {
+	Completion ChecklistCompletion `json:"completion"`
+	Detail     string              `json:"detail"`
 }
 
 // Attachment defines model for Attachment.
@@ -10851,18 +10862,6 @@ type CategorySerializerForForNestedFieldsRequest struct {
 	Title string `json:"title"`
 }
 
-// Checklist defines model for Checklist.
-type Checklist struct {
-	CategoryName   *string             `json:"category_name,omitempty"`
-	CategoryUuid   *openapi_types.UUID `json:"category_uuid,omitempty"`
-	Description    *string             `json:"description,omitempty"`
-	Name           string              `json:"name"`
-	QuestionsCount *int                `json:"questions_count,omitempty"`
-	Roles          *[]string           `json:"roles,omitempty"`
-	Url            *string             `json:"url,omitempty"`
-	Uuid           *openapi_types.UUID `json:"uuid,omitempty"`
-}
-
 // ChecklistAdmin defines model for ChecklistAdmin.
 type ChecklistAdmin struct {
 	CategoryName   *string             `json:"category_name,omitempty"`
@@ -10871,7 +10870,6 @@ type ChecklistAdmin struct {
 	Description    *string             `json:"description,omitempty"`
 	Name           string              `json:"name"`
 	QuestionsCount *int                `json:"questions_count,omitempty"`
-	Roles          *[]string           `json:"roles,omitempty"`
 	Url            *string             `json:"url,omitempty"`
 	Uuid           *openapi_types.UUID `json:"uuid,omitempty"`
 }
@@ -10886,13 +10884,58 @@ type ChecklistCategory struct {
 	Uuid            *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
-// ChecklistCustomerStats defines model for ChecklistCustomerStats.
-type ChecklistCustomerStats struct {
-	Latitude  *float64            `json:"latitude,omitempty"`
-	Longitude *float64            `json:"longitude,omitempty"`
-	Name      *string             `json:"name,omitempty"`
-	Score     *float64            `json:"score,omitempty"`
-	Uuid      *openapi_types.UUID `json:"uuid,omitempty"`
+// ChecklistCompletion defines model for ChecklistCompletion.
+type ChecklistCompletion struct {
+	ChecklistDescription *string    `json:"checklist_description,omitempty"`
+	ChecklistName        *string    `json:"checklist_name,omitempty"`
+	CompletionPercentage *float64   `json:"completion_percentage,omitempty"`
+	Created              *time.Time `json:"created,omitempty"`
+
+	// IsCompleted Whether all required questions have been answered
+	IsCompleted                 *bool               `json:"is_completed,omitempty"`
+	Modified                    *time.Time          `json:"modified,omitempty"`
+	UnansweredRequiredQuestions *[]interface{}      `json:"unanswered_required_questions,omitempty"`
+	Uuid                        *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// ChecklistCompletionReviewer defines model for ChecklistCompletionReviewer.
+type ChecklistCompletionReviewer struct {
+	ChecklistDescription *string    `json:"checklist_description,omitempty"`
+	ChecklistName        *string    `json:"checklist_name,omitempty"`
+	CompletionPercentage *float64   `json:"completion_percentage,omitempty"`
+	Created              *time.Time `json:"created,omitempty"`
+
+	// IsCompleted Whether all required questions have been answered
+	IsCompleted *bool      `json:"is_completed,omitempty"`
+	Modified    *time.Time `json:"modified,omitempty"`
+
+	// RequiresReview Whether any answers triggered review requirements
+	RequiresReview *bool `json:"requires_review,omitempty"`
+
+	// ReviewNotes Notes from the reviewer
+	ReviewNotes          *string        `json:"review_notes,omitempty"`
+	ReviewTriggerSummary *[]interface{} `json:"review_trigger_summary,omitempty"`
+	ReviewedAt           *time.Time     `json:"reviewed_at"`
+
+	// ReviewedBy User who reviewed the checklist completion
+	ReviewedBy                  *int                `json:"reviewed_by"`
+	ReviewedByName              *string             `json:"reviewed_by_name,omitempty"`
+	UnansweredRequiredQuestions *[]interface{}      `json:"unanswered_required_questions,omitempty"`
+	Uuid                        *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// ChecklistResponse defines model for ChecklistResponse.
+type ChecklistResponse struct {
+	Checklist  *map[string]interface{} `json:"checklist,omitempty"`
+	Completion ChecklistCompletion     `json:"completion"`
+	Questions  []QuestionWithAnswer    `json:"questions"`
+}
+
+// ChecklistReviewerResponse defines model for ChecklistReviewerResponse.
+type ChecklistReviewerResponse struct {
+	Checklist  *map[string]interface{}      `json:"checklist,omitempty"`
+	Completion ChecklistCompletionReviewer  `json:"completion"`
+	Questions  []QuestionWithAnswerReviewer `json:"questions"`
 }
 
 // ChecklistTypeEnum defines model for ChecklistTypeEnum.
@@ -11454,7 +11497,6 @@ type CreateChecklist struct {
 	Description    *string             `json:"description,omitempty"`
 	Name           string              `json:"name"`
 	QuestionsCount *int                `json:"questions_count,omitempty"`
-	Roles          *[]string           `json:"roles,omitempty"`
 	Url            *string             `json:"url,omitempty"`
 	Uuid           *openapi_types.UUID `json:"uuid,omitempty"`
 }
@@ -11464,7 +11506,6 @@ type CreateChecklistRequest struct {
 	ChecklistType ChecklistTypeEnum `json:"checklist_type"`
 	Description   *string           `json:"description,omitempty"`
 	Name          string            `json:"name"`
-	Roles         *[]string         `json:"roles,omitempty"`
 }
 
 // CreateCustomerCredit defines model for CreateCustomerCredit.
@@ -11591,13 +11632,6 @@ type Customer struct {
 // Customer_Country defines model for Customer.Country.
 type Customer_Country struct {
 	union json.RawMessage
-}
-
-// CustomerChecklistStat defines model for CustomerChecklistStat.
-type CustomerChecklistStat struct {
-	Name  *string  `json:"name,omitempty"`
-	Score *float64 `json:"score,omitempty"`
-	Uuid  *string  `json:"uuid,omitempty"`
 }
 
 // CustomerCredit defines model for CustomerCredit.
@@ -16244,7 +16278,6 @@ type PatchedCreateChecklistRequest struct {
 	ChecklistType *ChecklistTypeEnum `json:"checklist_type,omitempty"`
 	Description   *string            `json:"description,omitempty"`
 	Name          *string            `json:"name,omitempty"`
-	Roles         *[]string          `json:"roles,omitempty"`
 }
 
 // PatchedCreateCustomerCreditRequest defines model for PatchedCreateCustomerCreditRequest.
@@ -17460,16 +17493,6 @@ type ProjectServiceAccountRequest struct {
 	Username            *string              `json:"username,omitempty"`
 }
 
-// ProjectStatsItem defines model for ProjectStatsItem.
-type ProjectStatsItem struct {
-	Name          *string             `json:"name,omitempty"`
-	NegativeCount *int                `json:"negative_count,omitempty"`
-	PositiveCount *int                `json:"positive_count,omitempty"`
-	Score         *float64            `json:"score,omitempty"`
-	UnknownCount  *int                `json:"unknown_count,omitempty"`
-	Uuid          *openapi_types.UUID `json:"uuid,omitempty"`
-}
-
 // ProjectType defines model for ProjectType.
 type ProjectType struct {
 	Description *string             `json:"description,omitempty"`
@@ -17551,81 +17574,6 @@ type Proposal_OecdFos2007Code struct {
 // ProposalApproveRequest defines model for ProposalApproveRequest.
 type ProposalApproveRequest struct {
 	AllocationComment *string `json:"allocation_comment,omitempty"`
-}
-
-// ProposalChecklistAnswer defines model for ProposalChecklistAnswer.
-type ProposalChecklistAnswer struct {
-	// AnswerData Flexible answer storage for different question types
-	AnswerData          interface{} `json:"answer_data,omitempty"`
-	Created             *time.Time  `json:"created,omitempty"`
-	Modified            *time.Time  `json:"modified,omitempty"`
-	QuestionDescription *string     `json:"question_description,omitempty"`
-	QuestionRequired    *bool       `json:"question_required,omitempty"`
-	QuestionType        *string     `json:"question_type,omitempty"`
-
-	// RequiresReview Internal flag - this answer requires additional review
-	RequiresReview *bool               `json:"requires_review,omitempty"`
-	User           *int                `json:"user,omitempty"`
-	UserName       *string             `json:"user_name,omitempty"`
-	Uuid           *openapi_types.UUID `json:"uuid,omitempty"`
-}
-
-// ProposalChecklistAnswerSubmitRequest defines model for ProposalChecklistAnswerSubmitRequest.
-type ProposalChecklistAnswerSubmitRequest struct {
-	AnswerData   interface{}        `json:"answer_data"`
-	QuestionUuid openapi_types.UUID `json:"question_uuid"`
-}
-
-// ProposalChecklistAnswerSubmitResponse defines model for ProposalChecklistAnswerSubmitResponse.
-type ProposalChecklistAnswerSubmitResponse struct {
-	Completion ProposalChecklistCompletion `json:"completion"`
-	Detail     string                      `json:"detail"`
-}
-
-// ProposalChecklistCompletion defines model for ProposalChecklistCompletion.
-type ProposalChecklistCompletion struct {
-	ChecklistDescription *string    `json:"checklist_description,omitempty"`
-	ChecklistName        *string    `json:"checklist_name,omitempty"`
-	CompletionPercentage *float64   `json:"completion_percentage,omitempty"`
-	Created              *time.Time `json:"created,omitempty"`
-
-	// IsCompleted Whether all required questions have been answered
-	IsCompleted *bool      `json:"is_completed,omitempty"`
-	Modified    *time.Time `json:"modified,omitempty"`
-
-	// RequiresReview Whether any answers triggered review requirements
-	RequiresReview *bool `json:"requires_review,omitempty"`
-
-	// ReviewNotes Notes from the reviewer
-	ReviewNotes          *string        `json:"review_notes,omitempty"`
-	ReviewTriggerSummary *[]interface{} `json:"review_trigger_summary,omitempty"`
-	ReviewedAt           *time.Time     `json:"reviewed_at"`
-
-	// ReviewedBy User who reviewed the checklist completion
-	ReviewedBy                  *int                `json:"reviewed_by"`
-	ReviewedByName              *string             `json:"reviewed_by_name,omitempty"`
-	UnansweredRequiredQuestions *[]interface{}      `json:"unanswered_required_questions,omitempty"`
-	Uuid                        *openapi_types.UUID `json:"uuid,omitempty"`
-}
-
-// ProposalChecklistQuestion defines model for ProposalChecklistQuestion.
-type ProposalChecklistQuestion struct {
-	Description     *string                 `json:"description,omitempty"`
-	ExistingAnswer  *map[string]interface{} `json:"existing_answer"`
-	Order           *int                    `json:"order,omitempty"`
-	QuestionOptions *[]interface{}          `json:"question_options"`
-
-	// QuestionType Type of question and expected answer format
-	QuestionType *QuestionTypeEnum   `json:"question_type,omitempty"`
-	Required     *bool               `json:"required,omitempty"`
-	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
-}
-
-// ProposalComplianceChecklistResponse defines model for ProposalComplianceChecklistResponse.
-type ProposalComplianceChecklistResponse struct {
-	Checklist  *map[string]interface{}     `json:"checklist,omitempty"`
-	Completion ProposalChecklistCompletion `json:"completion"`
-	Questions  []ProposalChecklistQuestion `json:"questions"`
 }
 
 // ProposalDocumentation defines model for ProposalDocumentation.
@@ -18254,14 +18202,6 @@ type QueryRequest struct {
 	Query string `json:"query"`
 }
 
-// Question defines model for Question.
-type Question struct {
-	Description     *string             `json:"description,omitempty"`
-	Image           *string             `json:"image"`
-	QuestionOptions *[]QuestionOptions  `json:"question_options,omitempty"`
-	Uuid            *openapi_types.UUID `json:"uuid,omitempty"`
-}
-
 // QuestionAdmin defines model for QuestionAdmin.
 type QuestionAdmin struct {
 	// AlwaysRequiresReview This question always requires review regardless of answer
@@ -18337,13 +18277,6 @@ type QuestionDependencyRequest struct {
 	RequiredAnswerValue interface{} `json:"required_answer_value"`
 }
 
-// QuestionOptions defines model for QuestionOptions.
-type QuestionOptions struct {
-	Label string              `json:"label"`
-	Order *int                `json:"order,omitempty"`
-	Uuid  *openapi_types.UUID `json:"uuid,omitempty"`
-}
-
 // QuestionOptionsAdmin defines model for QuestionOptionsAdmin.
 type QuestionOptionsAdmin struct {
 	Label        string              `json:"label"`
@@ -18363,6 +18296,43 @@ type QuestionOptionsAdminRequest struct {
 
 // QuestionTypeEnum defines model for QuestionTypeEnum.
 type QuestionTypeEnum string
+
+// QuestionWithAnswer defines model for QuestionWithAnswer.
+type QuestionWithAnswer struct {
+	Description     *string                 `json:"description,omitempty"`
+	ExistingAnswer  *map[string]interface{} `json:"existing_answer"`
+	Order           *int                    `json:"order,omitempty"`
+	QuestionOptions *[]interface{}          `json:"question_options"`
+
+	// QuestionType Type of question and expected answer format
+	QuestionType *QuestionTypeEnum   `json:"question_type,omitempty"`
+	Required     *bool               `json:"required,omitempty"`
+	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// QuestionWithAnswerReviewer defines model for QuestionWithAnswerReviewer.
+type QuestionWithAnswerReviewer struct {
+	// AlwaysRequiresReview This question always requires review regardless of answer
+	AlwaysRequiresReview *bool                                `json:"always_requires_review,omitempty"`
+	Description          *string                              `json:"description,omitempty"`
+	ExistingAnswer       *map[string]interface{}              `json:"existing_answer"`
+	Operator             *QuestionWithAnswerReviewer_Operator `json:"operator,omitempty"`
+	Order                *int                                 `json:"order,omitempty"`
+	QuestionOptions      *[]interface{}                       `json:"question_options"`
+
+	// QuestionType Type of question and expected answer format
+	QuestionType *QuestionTypeEnum `json:"question_type,omitempty"`
+	Required     *bool             `json:"required,omitempty"`
+
+	// ReviewAnswerValue Answer value that trigger review.
+	ReviewAnswerValue interface{}         `json:"review_answer_value"`
+	Uuid              *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// QuestionWithAnswerReviewer_Operator defines model for QuestionWithAnswerReviewer.Operator.
+type QuestionWithAnswerReviewer_Operator struct {
+	union json.RawMessage
+}
 
 // Quota defines model for Quota.
 type Quota struct {
@@ -20449,11 +20419,6 @@ type UserRoleUpdateRequest struct {
 	User           openapi_types.UUID `json:"user"`
 }
 
-// UserStats defines model for UserStats.
-type UserStats struct {
-	Score *float64 `json:"score,omitempty"`
-}
-
 // UsernameGenerationPolicyEnum defines model for UsernameGenerationPolicyEnum.
 type UsernameGenerationPolicyEnum string
 
@@ -22472,9 +22437,6 @@ type CustomersCountriesHeadParams struct {
 	RegistrationCode *string   `form:"registration_code,omitempty" json:"registration_code,omitempty"`
 }
 
-// MarketplaceChecklistsCustomerUpdateJSONBody defines parameters for MarketplaceChecklistsCustomerUpdate.
-type MarketplaceChecklistsCustomerUpdateJSONBody = []openapi_types.UUID
-
 // CustomersRetrieveParams defines parameters for CustomersRetrieve.
 type CustomersRetrieveParams struct {
 	Field *[]CustomersRetrieveParamsField `form:"field,omitempty" json:"field,omitempty"`
@@ -23960,75 +23922,6 @@ type MarketplaceChecklistsAdminChecklistQuestionsParams struct {
 
 // MarketplaceChecklistsCategoriesListParams defines parameters for MarketplaceChecklistsCategoriesList.
 type MarketplaceChecklistsCategoriesListParams struct {
-	// Page A page number within the paginated result set.
-	Page *Page `form:"page,omitempty" json:"page,omitempty"`
-
-	// PageSize Number of results to return per page.
-	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-}
-
-// MarketplaceChecklistsCategoriesChecklistsListParams defines parameters for MarketplaceChecklistsCategoriesChecklistsList.
-type MarketplaceChecklistsCategoriesChecklistsListParams struct {
-	// Page A page number within the paginated result set.
-	Page *Page `form:"page,omitempty" json:"page,omitempty"`
-
-	// PageSize Number of results to return per page.
-	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-}
-
-// MarketplaceChecklistsListParams defines parameters for MarketplaceChecklistsList.
-type MarketplaceChecklistsListParams struct {
-	// Page A page number within the paginated result set.
-	Page *Page `form:"page,omitempty" json:"page,omitempty"`
-
-	// PageSize Number of results to return per page.
-	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-}
-
-// MarketplaceChecklistsHeadParams defines parameters for MarketplaceChecklistsHead.
-type MarketplaceChecklistsHeadParams struct {
-	// Page A page number within the paginated result set.
-	Page *Page `form:"page,omitempty" json:"page,omitempty"`
-
-	// PageSize Number of results to return per page.
-	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-}
-
-// MarketplaceChecklistsAnswersListParams defines parameters for MarketplaceChecklistsAnswersList.
-type MarketplaceChecklistsAnswersListParams struct {
-	// Page A page number within the paginated result set.
-	Page *Page `form:"page,omitempty" json:"page,omitempty"`
-
-	// PageSize Number of results to return per page.
-	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-}
-
-// MarketplaceChecklistsAnswersSubmitCreateJSONBody defines parameters for MarketplaceChecklistsAnswersSubmitCreate.
-type MarketplaceChecklistsAnswersSubmitCreateJSONBody = []AnswerSubmitRequest
-
-// MarketplaceChecklistsAnswersSubmitCreateParams defines parameters for MarketplaceChecklistsAnswersSubmitCreate.
-type MarketplaceChecklistsAnswersSubmitCreateParams struct {
-	// OnBehalfUserUuid User UUID to submit answer on behalf of. Required staff permission.
-	OnBehalfUserUuid *openapi_types.UUID `form:"on_behalf_user_uuid,omitempty" json:"on_behalf_user_uuid,omitempty"`
-
-	// Page A page number within the paginated result set.
-	Page *Page `form:"page,omitempty" json:"page,omitempty"`
-
-	// PageSize Number of results to return per page.
-	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-}
-
-// MarketplaceChecklistsUserAnswersListParams defines parameters for MarketplaceChecklistsUserAnswersList.
-type MarketplaceChecklistsUserAnswersListParams struct {
-	// Page A page number within the paginated result set.
-	Page *Page `form:"page,omitempty" json:"page,omitempty"`
-
-	// PageSize Number of results to return per page.
-	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-}
-
-// MarketplaceChecklistsQuestionsListParams defines parameters for MarketplaceChecklistsQuestionsList.
-type MarketplaceChecklistsQuestionsListParams struct {
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
@@ -29304,8 +29197,8 @@ type ProposalProposalsResourcesListParams struct {
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 }
 
-// ProposalProposalsSubmitComplianceAnswersJSONBody defines parameters for ProposalProposalsSubmitComplianceAnswers.
-type ProposalProposalsSubmitComplianceAnswersJSONBody = []ProposalChecklistAnswerSubmitRequest
+// ProposalProposalsSubmitAnswersJSONBody defines parameters for ProposalProposalsSubmitAnswers.
+type ProposalProposalsSubmitAnswersJSONBody = []AnswerSubmitRequest
 
 // ProposalProtectedCallsListParams defines parameters for ProposalProtectedCallsList.
 type ProposalProtectedCallsListParams struct {
@@ -32093,9 +31986,6 @@ type CustomerCreditsClearCompensationsJSONRequestBody = CustomerCreditRequest
 // CustomersCreateJSONRequestBody defines body for CustomersCreate for application/json ContentType.
 type CustomersCreateJSONRequestBody = CustomerRequest
 
-// MarketplaceChecklistsCustomerUpdateJSONRequestBody defines body for MarketplaceChecklistsCustomerUpdate for application/json ContentType.
-type MarketplaceChecklistsCustomerUpdateJSONRequestBody = MarketplaceChecklistsCustomerUpdateJSONBody
-
 // CustomersPartialUpdateJSONRequestBody defines body for CustomersPartialUpdate for application/json ContentType.
 type CustomersPartialUpdateJSONRequestBody = PatchedCustomerRequest
 
@@ -32302,9 +32192,6 @@ type MarketplaceChecklistsAdminPartialUpdateJSONRequestBody = PatchedCreateCheck
 
 // MarketplaceChecklistsAdminUpdateJSONRequestBody defines body for MarketplaceChecklistsAdminUpdate for application/json ContentType.
 type MarketplaceChecklistsAdminUpdateJSONRequestBody = CreateChecklistRequest
-
-// MarketplaceChecklistsAnswersSubmitCreateJSONRequestBody defines body for MarketplaceChecklistsAnswersSubmitCreate for application/json ContentType.
-type MarketplaceChecklistsAnswersSubmitCreateJSONRequestBody = MarketplaceChecklistsAnswersSubmitCreateJSONBody
 
 // MarketplaceComponentUsagesSetUsageJSONRequestBody defines body for MarketplaceComponentUsagesSetUsage for application/json ContentType.
 type MarketplaceComponentUsagesSetUsageJSONRequestBody = ComponentUsageCreateRequest
@@ -32960,8 +32847,8 @@ type ProposalProposalsResourcesPartialUpdateJSONRequestBody = PatchedRequestedRe
 // ProposalProposalsResourcesUpdateJSONRequestBody defines body for ProposalProposalsResourcesUpdate for application/json ContentType.
 type ProposalProposalsResourcesUpdateJSONRequestBody = RequestedResourceRequest
 
-// ProposalProposalsSubmitComplianceAnswersJSONRequestBody defines body for ProposalProposalsSubmitComplianceAnswers for application/json ContentType.
-type ProposalProposalsSubmitComplianceAnswersJSONRequestBody = ProposalProposalsSubmitComplianceAnswersJSONBody
+// ProposalProposalsSubmitAnswersJSONRequestBody defines body for ProposalProposalsSubmitAnswers for application/json ContentType.
+type ProposalProposalsSubmitAnswersJSONRequestBody = ProposalProposalsSubmitAnswersJSONBody
 
 // ProposalProposalsUpdateProjectDetailsJSONRequestBody defines body for ProposalProposalsUpdateProjectDetails for application/json ContentType.
 type ProposalProposalsUpdateProjectDetailsJSONRequestBody = ProposalUpdateProjectDetailsRequest
@@ -35654,6 +35541,68 @@ func (t *QuestionAdminRequest_Operator) UnmarshalJSON(b []byte) error {
 	return err
 }
 
+// AsOperatorEnum returns the union data inside the QuestionWithAnswerReviewer_Operator as a OperatorEnum
+func (t QuestionWithAnswerReviewer_Operator) AsOperatorEnum() (OperatorEnum, error) {
+	var body OperatorEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOperatorEnum overwrites any union data inside the QuestionWithAnswerReviewer_Operator as the provided OperatorEnum
+func (t *QuestionWithAnswerReviewer_Operator) FromOperatorEnum(v OperatorEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOperatorEnum performs a merge with any union data inside the QuestionWithAnswerReviewer_Operator, using the provided OperatorEnum
+func (t *QuestionWithAnswerReviewer_Operator) MergeOperatorEnum(v OperatorEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsBlankEnum returns the union data inside the QuestionWithAnswerReviewer_Operator as a BlankEnum
+func (t QuestionWithAnswerReviewer_Operator) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the QuestionWithAnswerReviewer_Operator as the provided BlankEnum
+func (t *QuestionWithAnswerReviewer_Operator) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the QuestionWithAnswerReviewer_Operator, using the provided BlankEnum
+func (t *QuestionWithAnswerReviewer_Operator) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t QuestionWithAnswerReviewer_Operator) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *QuestionWithAnswerReviewer_Operator) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsProtocolEnum returns the union data inside the RancherClusterSecurityGroupRule_Protocol as a ProtocolEnum
 func (t RancherClusterSecurityGroupRule_Protocol) AsProtocolEnum() (ProtocolEnum, error) {
 	var body ProtocolEnum
@@ -36855,17 +36804,6 @@ type ClientInterface interface {
 	// CustomersCountriesHead request
 	CustomersCountriesHead(ctx context.Context, params *CustomersCountriesHeadParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// MarketplaceChecklistsCustomerRetrieve request
-	MarketplaceChecklistsCustomerRetrieve(ctx context.Context, customerUuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceChecklistsCustomerUpdateWithBody request with any body
-	MarketplaceChecklistsCustomerUpdateWithBody(ctx context.Context, customerUuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	MarketplaceChecklistsCustomerUpdate(ctx context.Context, customerUuid string, body MarketplaceChecklistsCustomerUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceChecklistsCustomerStats request
-	MarketplaceChecklistsCustomerStats(ctx context.Context, customerUuid string, checklistUuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
-
 	// CustomersDestroy request
 	CustomersDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -37670,37 +37608,8 @@ type ClientInterface interface {
 	// MarketplaceChecklistsCategoriesList request
 	MarketplaceChecklistsCategoriesList(ctx context.Context, params *MarketplaceChecklistsCategoriesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// MarketplaceChecklistsCategoriesChecklistsList request
-	MarketplaceChecklistsCategoriesChecklistsList(ctx context.Context, categoryUuid string, params *MarketplaceChecklistsCategoriesChecklistsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
 	// MarketplaceChecklistsCategoriesRetrieve request
 	MarketplaceChecklistsCategoriesRetrieve(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceChecklistsList request
-	MarketplaceChecklistsList(ctx context.Context, params *MarketplaceChecklistsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceChecklistsHead request
-	MarketplaceChecklistsHead(ctx context.Context, params *MarketplaceChecklistsHeadParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceChecklistsAnswersList request
-	MarketplaceChecklistsAnswersList(ctx context.Context, checklistUuid string, params *MarketplaceChecklistsAnswersListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceChecklistsAnswersSubmitCreateWithBody request with any body
-	MarketplaceChecklistsAnswersSubmitCreateWithBody(ctx context.Context, checklistUuid string, params *MarketplaceChecklistsAnswersSubmitCreateParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	MarketplaceChecklistsAnswersSubmitCreate(ctx context.Context, checklistUuid string, params *MarketplaceChecklistsAnswersSubmitCreateParams, body MarketplaceChecklistsAnswersSubmitCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceChecklistsStatsList request
-	MarketplaceChecklistsStatsList(ctx context.Context, checklistUuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceChecklistsUserAnswersList request
-	MarketplaceChecklistsUserAnswersList(ctx context.Context, checklistUuid string, userUuid string, params *MarketplaceChecklistsUserAnswersListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceChecklistsRetrieve request
-	MarketplaceChecklistsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceChecklistsQuestionsList request
-	MarketplaceChecklistsQuestionsList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceChecklistsQuestionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceComponentUsagesList request
 	MarketplaceComponentUsagesList(ctx context.Context, params *MarketplaceComponentUsagesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -38539,6 +38448,9 @@ type ClientInterface interface {
 	// MarketplaceProviderResourcesPlanPeriodsList request
 	MarketplaceProviderResourcesPlanPeriodsList(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceProviderResourcesPull request
+	MarketplaceProviderResourcesPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceProviderResourcesRefreshLastSync request
 	MarketplaceProviderResourcesRefreshLastSync(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -38715,6 +38627,9 @@ type ClientInterface interface {
 
 	// MarketplaceResourcesPlanPeriodsList request
 	MarketplaceResourcesPlanPeriodsList(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceResourcesPull request
+	MarketplaceResourcesPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceResourcesSetEndDateByStaffWithBody request with any body
 	MarketplaceResourcesSetEndDateByStaffWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -39976,9 +39891,6 @@ type ClientInterface interface {
 
 	ProjectsCreate(ctx context.Context, body ProjectsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// ProjectsMarketplaceChecklistsList request
-	ProjectsMarketplaceChecklistsList(ctx context.Context, projectUuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
-
 	// ProjectsDestroy request
 	ProjectsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -40093,11 +40005,17 @@ type ClientInterface interface {
 
 	ProposalProposalsAttachDocument(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsAttachDocumentJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// ProposalProposalsComplianceChecklistRetrieve request
-	ProposalProposalsComplianceChecklistRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// ProposalProposalsChecklistRetrieve request
+	ProposalProposalsChecklistRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// ProposalProposalsComplianceStatusRetrieve request
-	ProposalProposalsComplianceStatusRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// ProposalProposalsChecklistReviewRetrieve request
+	ProposalProposalsChecklistReviewRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProposalProposalsCompletionReviewStatusRetrieve request
+	ProposalProposalsCompletionReviewStatusRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProposalProposalsCompletionStatusRetrieve request
+	ProposalProposalsCompletionStatusRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProposalProposalsDeleteUserWithBody request with any body
 	ProposalProposalsDeleteUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -40139,10 +40057,10 @@ type ClientInterface interface {
 	// ProposalProposalsSubmit request
 	ProposalProposalsSubmit(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// ProposalProposalsSubmitComplianceAnswersWithBody request with any body
-	ProposalProposalsSubmitComplianceAnswersWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// ProposalProposalsSubmitAnswersWithBody request with any body
+	ProposalProposalsSubmitAnswersWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	ProposalProposalsSubmitComplianceAnswers(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsSubmitComplianceAnswersJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ProposalProposalsSubmitAnswers(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsSubmitAnswersJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProposalProposalsUpdateProjectDetailsWithBody request with any body
 	ProposalProposalsUpdateProjectDetailsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -41290,9 +41208,6 @@ type ClientInterface interface {
 
 	// UsersMeHead request
 	UsersMeHead(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// UsersMarketplaceChecklistStatsRetrieve request
-	UsersMarketplaceChecklistStatsRetrieve(ctx context.Context, userUuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UsersDestroy request
 	UsersDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -44912,54 +44827,6 @@ func (c *Client) CustomersCountriesHead(ctx context.Context, params *CustomersCo
 	return c.Client.Do(req)
 }
 
-func (c *Client) MarketplaceChecklistsCustomerRetrieve(ctx context.Context, customerUuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsCustomerRetrieveRequest(c.Server, customerUuid)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceChecklistsCustomerUpdateWithBody(ctx context.Context, customerUuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsCustomerUpdateRequestWithBody(c.Server, customerUuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceChecklistsCustomerUpdate(ctx context.Context, customerUuid string, body MarketplaceChecklistsCustomerUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsCustomerUpdateRequest(c.Server, customerUuid, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceChecklistsCustomerStats(ctx context.Context, customerUuid string, checklistUuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsCustomerStatsRequest(c.Server, customerUuid, checklistUuid)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
 func (c *Client) CustomersDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCustomersDestroyRequest(c.Server, uuid)
 	if err != nil {
@@ -48452,128 +48319,8 @@ func (c *Client) MarketplaceChecklistsCategoriesList(ctx context.Context, params
 	return c.Client.Do(req)
 }
 
-func (c *Client) MarketplaceChecklistsCategoriesChecklistsList(ctx context.Context, categoryUuid string, params *MarketplaceChecklistsCategoriesChecklistsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsCategoriesChecklistsListRequest(c.Server, categoryUuid, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
 func (c *Client) MarketplaceChecklistsCategoriesRetrieve(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceChecklistsCategoriesRetrieveRequest(c.Server, uuid)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceChecklistsList(ctx context.Context, params *MarketplaceChecklistsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsListRequest(c.Server, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceChecklistsHead(ctx context.Context, params *MarketplaceChecklistsHeadParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsHeadRequest(c.Server, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceChecklistsAnswersList(ctx context.Context, checklistUuid string, params *MarketplaceChecklistsAnswersListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsAnswersListRequest(c.Server, checklistUuid, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceChecklistsAnswersSubmitCreateWithBody(ctx context.Context, checklistUuid string, params *MarketplaceChecklistsAnswersSubmitCreateParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsAnswersSubmitCreateRequestWithBody(c.Server, checklistUuid, params, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceChecklistsAnswersSubmitCreate(ctx context.Context, checklistUuid string, params *MarketplaceChecklistsAnswersSubmitCreateParams, body MarketplaceChecklistsAnswersSubmitCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsAnswersSubmitCreateRequest(c.Server, checklistUuid, params, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceChecklistsStatsList(ctx context.Context, checklistUuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsStatsListRequest(c.Server, checklistUuid)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceChecklistsUserAnswersList(ctx context.Context, checklistUuid string, userUuid string, params *MarketplaceChecklistsUserAnswersListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsUserAnswersListRequest(c.Server, checklistUuid, userUuid, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceChecklistsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsRetrieveRequest(c.Server, uuid)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceChecklistsQuestionsList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceChecklistsQuestionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsQuestionsListRequest(c.Server, uuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -52244,6 +51991,18 @@ func (c *Client) MarketplaceProviderResourcesPlanPeriodsList(ctx context.Context
 	return c.Client.Do(req)
 }
 
+func (c *Client) MarketplaceProviderResourcesPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderResourcesPullRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) MarketplaceProviderResourcesRefreshLastSync(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProviderResourcesRefreshLastSyncRequest(c.Server, uuid)
 	if err != nil {
@@ -53014,6 +52773,18 @@ func (c *Client) MarketplaceResourcesOfferingForSubresourcesList(ctx context.Con
 
 func (c *Client) MarketplaceResourcesPlanPeriodsList(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceResourcesPlanPeriodsListRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceResourcesPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourcesPullRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -58484,18 +58255,6 @@ func (c *Client) ProjectsCreate(ctx context.Context, body ProjectsCreateJSONRequ
 	return c.Client.Do(req)
 }
 
-func (c *Client) ProjectsMarketplaceChecklistsList(ctx context.Context, projectUuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewProjectsMarketplaceChecklistsListRequest(c.Server, projectUuid)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
 func (c *Client) ProjectsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProjectsDestroyRequest(c.Server, uuid)
 	if err != nil {
@@ -59000,8 +58759,8 @@ func (c *Client) ProposalProposalsAttachDocument(ctx context.Context, uuid opena
 	return c.Client.Do(req)
 }
 
-func (c *Client) ProposalProposalsComplianceChecklistRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewProposalProposalsComplianceChecklistRetrieveRequest(c.Server, uuid)
+func (c *Client) ProposalProposalsChecklistRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProposalsChecklistRetrieveRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -59012,8 +58771,32 @@ func (c *Client) ProposalProposalsComplianceChecklistRetrieve(ctx context.Contex
 	return c.Client.Do(req)
 }
 
-func (c *Client) ProposalProposalsComplianceStatusRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewProposalProposalsComplianceStatusRetrieveRequest(c.Server, uuid)
+func (c *Client) ProposalProposalsChecklistReviewRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProposalsChecklistReviewRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProposalProposalsCompletionReviewStatusRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProposalsCompletionReviewStatusRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProposalProposalsCompletionStatusRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProposalsCompletionStatusRetrieveRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -59204,8 +58987,8 @@ func (c *Client) ProposalProposalsSubmit(ctx context.Context, uuid openapi_types
 	return c.Client.Do(req)
 }
 
-func (c *Client) ProposalProposalsSubmitComplianceAnswersWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewProposalProposalsSubmitComplianceAnswersRequestWithBody(c.Server, uuid, contentType, body)
+func (c *Client) ProposalProposalsSubmitAnswersWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProposalsSubmitAnswersRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -59216,8 +58999,8 @@ func (c *Client) ProposalProposalsSubmitComplianceAnswersWithBody(ctx context.Co
 	return c.Client.Do(req)
 }
 
-func (c *Client) ProposalProposalsSubmitComplianceAnswers(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsSubmitComplianceAnswersJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewProposalProposalsSubmitComplianceAnswersRequest(c.Server, uuid, body)
+func (c *Client) ProposalProposalsSubmitAnswers(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsSubmitAnswersJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProposalsSubmitAnswersRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -64210,18 +63993,6 @@ func (c *Client) UsersMeRetrieve(ctx context.Context, params *UsersMeRetrievePar
 
 func (c *Client) UsersMeHead(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewUsersMeHeadRequest(c.Server)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) UsersMarketplaceChecklistStatsRetrieve(ctx context.Context, userUuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUsersMarketplaceChecklistStatsRetrieveRequest(c.Server, userUuid)
 	if err != nil {
 		return nil, err
 	}
@@ -83482,128 +83253,6 @@ func NewCustomersCountriesHeadRequest(server string, params *CustomersCountriesH
 	return req, nil
 }
 
-// NewMarketplaceChecklistsCustomerRetrieveRequest generates requests for MarketplaceChecklistsCustomerRetrieve
-func NewMarketplaceChecklistsCustomerRetrieveRequest(server string, customerUuid string) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "customer_uuid", runtime.ParamLocationPath, customerUuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/customers/%s/marketplace-checklists/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewMarketplaceChecklistsCustomerUpdateRequest calls the generic MarketplaceChecklistsCustomerUpdate builder with application/json body
-func NewMarketplaceChecklistsCustomerUpdateRequest(server string, customerUuid string, body MarketplaceChecklistsCustomerUpdateJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewMarketplaceChecklistsCustomerUpdateRequestWithBody(server, customerUuid, "application/json", bodyReader)
-}
-
-// NewMarketplaceChecklistsCustomerUpdateRequestWithBody generates requests for MarketplaceChecklistsCustomerUpdate with any type of body
-func NewMarketplaceChecklistsCustomerUpdateRequestWithBody(server string, customerUuid string, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "customer_uuid", runtime.ParamLocationPath, customerUuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/customers/%s/marketplace-checklists/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("POST", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewMarketplaceChecklistsCustomerStatsRequest generates requests for MarketplaceChecklistsCustomerStats
-func NewMarketplaceChecklistsCustomerStatsRequest(server string, customerUuid string, checklistUuid string) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "customer_uuid", runtime.ParamLocationPath, customerUuid)
-	if err != nil {
-		return nil, err
-	}
-
-	var pathParam1 string
-
-	pathParam1, err = runtime.StyleParamWithLocation("simple", false, "checklist_uuid", runtime.ParamLocationPath, checklistUuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/customers/%s/marketplace-checklists/%s/", pathParam0, pathParam1)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
 // NewCustomersDestroyRequest generates requests for CustomersDestroy
 func NewCustomersDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -100433,78 +100082,6 @@ func NewMarketplaceChecklistsCategoriesListRequest(server string, params *Market
 	return req, nil
 }
 
-// NewMarketplaceChecklistsCategoriesChecklistsListRequest generates requests for MarketplaceChecklistsCategoriesChecklistsList
-func NewMarketplaceChecklistsCategoriesChecklistsListRequest(server string, categoryUuid string, params *MarketplaceChecklistsCategoriesChecklistsListParams) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "category_uuid", runtime.ParamLocationPath, categoryUuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-checklists-categories/%s/checklists/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if params.Page != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.PageSize != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
 // NewMarketplaceChecklistsCategoriesRetrieveRequest generates requests for MarketplaceChecklistsCategoriesRetrieve
 func NewMarketplaceChecklistsCategoriesRetrieveRequest(server string, uuid string) (*http.Request, error) {
 	var err error
@@ -100529,528 +100106,6 @@ func NewMarketplaceChecklistsCategoriesRetrieveRequest(server string, uuid strin
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewMarketplaceChecklistsListRequest generates requests for MarketplaceChecklistsList
-func NewMarketplaceChecklistsListRequest(server string, params *MarketplaceChecklistsListParams) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-checklists/")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if params.Page != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.PageSize != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewMarketplaceChecklistsHeadRequest generates requests for MarketplaceChecklistsHead
-func NewMarketplaceChecklistsHeadRequest(server string, params *MarketplaceChecklistsHeadParams) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-checklists/")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if params.Page != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.PageSize != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
-	}
-
-	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewMarketplaceChecklistsAnswersListRequest generates requests for MarketplaceChecklistsAnswersList
-func NewMarketplaceChecklistsAnswersListRequest(server string, checklistUuid string, params *MarketplaceChecklistsAnswersListParams) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "checklist_uuid", runtime.ParamLocationPath, checklistUuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-checklists/%s/answers/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if params.Page != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.PageSize != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewMarketplaceChecklistsAnswersSubmitCreateRequest calls the generic MarketplaceChecklistsAnswersSubmitCreate builder with application/json body
-func NewMarketplaceChecklistsAnswersSubmitCreateRequest(server string, checklistUuid string, params *MarketplaceChecklistsAnswersSubmitCreateParams, body MarketplaceChecklistsAnswersSubmitCreateJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewMarketplaceChecklistsAnswersSubmitCreateRequestWithBody(server, checklistUuid, params, "application/json", bodyReader)
-}
-
-// NewMarketplaceChecklistsAnswersSubmitCreateRequestWithBody generates requests for MarketplaceChecklistsAnswersSubmitCreate with any type of body
-func NewMarketplaceChecklistsAnswersSubmitCreateRequestWithBody(server string, checklistUuid string, params *MarketplaceChecklistsAnswersSubmitCreateParams, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "checklist_uuid", runtime.ParamLocationPath, checklistUuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-checklists/%s/answers/submit/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if params.OnBehalfUserUuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "on_behalf_user_uuid", runtime.ParamLocationQuery, *params.OnBehalfUserUuid); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Page != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.PageSize != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
-	}
-
-	req, err := http.NewRequest("POST", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewMarketplaceChecklistsStatsListRequest generates requests for MarketplaceChecklistsStatsList
-func NewMarketplaceChecklistsStatsListRequest(server string, checklistUuid string) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "checklist_uuid", runtime.ParamLocationPath, checklistUuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-checklists/%s/stats/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewMarketplaceChecklistsUserAnswersListRequest generates requests for MarketplaceChecklistsUserAnswersList
-func NewMarketplaceChecklistsUserAnswersListRequest(server string, checklistUuid string, userUuid string, params *MarketplaceChecklistsUserAnswersListParams) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "checklist_uuid", runtime.ParamLocationPath, checklistUuid)
-	if err != nil {
-		return nil, err
-	}
-
-	var pathParam1 string
-
-	pathParam1, err = runtime.StyleParamWithLocation("simple", false, "user_uuid", runtime.ParamLocationPath, userUuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-checklists/%s/user/%s/answers/", pathParam0, pathParam1)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if params.Page != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.PageSize != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewMarketplaceChecklistsRetrieveRequest generates requests for MarketplaceChecklistsRetrieve
-func NewMarketplaceChecklistsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-checklists/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewMarketplaceChecklistsQuestionsListRequest generates requests for MarketplaceChecklistsQuestionsList
-func NewMarketplaceChecklistsQuestionsListRequest(server string, uuid openapi_types.UUID, params *MarketplaceChecklistsQuestionsListParams) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-checklists/%s/questions/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if params.Page != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.PageSize != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
 	}
 
 	req, err := http.NewRequest("GET", queryURL.String(), nil)
@@ -120799,6 +119854,40 @@ func NewMarketplaceProviderResourcesPlanPeriodsListRequest(server string, uuid o
 	return req, nil
 }
 
+// NewMarketplaceProviderResourcesPullRequest generates requests for MarketplaceProviderResourcesPull
+func NewMarketplaceProviderResourcesPullRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-resources/%s/pull/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewMarketplaceProviderResourcesRefreshLastSyncRequest generates requests for MarketplaceProviderResourcesRefreshLastSync
 func NewMarketplaceProviderResourcesRefreshLastSyncRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -124970,6 +124059,40 @@ func NewMarketplaceResourcesPlanPeriodsListRequest(server string, uuid openapi_t
 	}
 
 	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceResourcesPullRequest generates requests for MarketplaceResourcesPull
+func NewMarketplaceResourcesPullRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-resources/%s/pull/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
@@ -157762,40 +156885,6 @@ func NewProjectsCreateRequestWithBody(server string, contentType string, body io
 	return req, nil
 }
 
-// NewProjectsMarketplaceChecklistsListRequest generates requests for ProjectsMarketplaceChecklistsList
-func NewProjectsMarketplaceChecklistsListRequest(server string, projectUuid string) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "project_uuid", runtime.ParamLocationPath, projectUuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/projects/%s/marketplace-checklists/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
 // NewProjectsDestroyRequest generates requests for ProjectsDestroy
 func NewProjectsDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -160110,8 +159199,8 @@ func NewProposalProposalsAttachDocumentRequestWithBody(server string, uuid opena
 	return req, nil
 }
 
-// NewProposalProposalsComplianceChecklistRetrieveRequest generates requests for ProposalProposalsComplianceChecklistRetrieve
-func NewProposalProposalsComplianceChecklistRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+// NewProposalProposalsChecklistRetrieveRequest generates requests for ProposalProposalsChecklistRetrieve
+func NewProposalProposalsChecklistRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -160126,7 +159215,7 @@ func NewProposalProposalsComplianceChecklistRetrieveRequest(server string, uuid 
 		return nil, err
 	}
 
-	operationPath := fmt.Sprintf("/api/proposal-proposals/%s/compliance_checklist/", pathParam0)
+	operationPath := fmt.Sprintf("/api/proposal-proposals/%s/checklist/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -160144,8 +159233,8 @@ func NewProposalProposalsComplianceChecklistRetrieveRequest(server string, uuid 
 	return req, nil
 }
 
-// NewProposalProposalsComplianceStatusRetrieveRequest generates requests for ProposalProposalsComplianceStatusRetrieve
-func NewProposalProposalsComplianceStatusRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+// NewProposalProposalsChecklistReviewRetrieveRequest generates requests for ProposalProposalsChecklistReviewRetrieve
+func NewProposalProposalsChecklistReviewRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -160160,7 +159249,75 @@ func NewProposalProposalsComplianceStatusRetrieveRequest(server string, uuid ope
 		return nil, err
 	}
 
-	operationPath := fmt.Sprintf("/api/proposal-proposals/%s/compliance_status/", pathParam0)
+	operationPath := fmt.Sprintf("/api/proposal-proposals/%s/checklist_review/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewProposalProposalsCompletionReviewStatusRetrieveRequest generates requests for ProposalProposalsCompletionReviewStatusRetrieve
+func NewProposalProposalsCompletionReviewStatusRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/proposal-proposals/%s/completion_review_status/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewProposalProposalsCompletionStatusRetrieveRequest generates requests for ProposalProposalsCompletionStatusRetrieve
+func NewProposalProposalsCompletionStatusRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/proposal-proposals/%s/completion_status/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -160847,19 +160004,19 @@ func NewProposalProposalsSubmitRequest(server string, uuid openapi_types.UUID) (
 	return req, nil
 }
 
-// NewProposalProposalsSubmitComplianceAnswersRequest calls the generic ProposalProposalsSubmitComplianceAnswers builder with application/json body
-func NewProposalProposalsSubmitComplianceAnswersRequest(server string, uuid openapi_types.UUID, body ProposalProposalsSubmitComplianceAnswersJSONRequestBody) (*http.Request, error) {
+// NewProposalProposalsSubmitAnswersRequest calls the generic ProposalProposalsSubmitAnswers builder with application/json body
+func NewProposalProposalsSubmitAnswersRequest(server string, uuid openapi_types.UUID, body ProposalProposalsSubmitAnswersJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewProposalProposalsSubmitComplianceAnswersRequestWithBody(server, uuid, "application/json", bodyReader)
+	return NewProposalProposalsSubmitAnswersRequestWithBody(server, uuid, "application/json", bodyReader)
 }
 
-// NewProposalProposalsSubmitComplianceAnswersRequestWithBody generates requests for ProposalProposalsSubmitComplianceAnswers with any type of body
-func NewProposalProposalsSubmitComplianceAnswersRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+// NewProposalProposalsSubmitAnswersRequestWithBody generates requests for ProposalProposalsSubmitAnswers with any type of body
+func NewProposalProposalsSubmitAnswersRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -160874,7 +160031,7 @@ func NewProposalProposalsSubmitComplianceAnswersRequestWithBody(server string, u
 		return nil, err
 	}
 
-	operationPath := fmt.Sprintf("/api/proposal-proposals/%s/submit_compliance_answers/", pathParam0)
+	operationPath := fmt.Sprintf("/api/proposal-proposals/%s/submit_answers/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -186734,40 +185891,6 @@ func NewUsersMeHeadRequest(server string) (*http.Request, error) {
 	return req, nil
 }
 
-// NewUsersMarketplaceChecklistStatsRetrieveRequest generates requests for UsersMarketplaceChecklistStatsRetrieve
-func NewUsersMarketplaceChecklistStatsRetrieveRequest(server string, userUuid string) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "user_uuid", runtime.ParamLocationPath, userUuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/users/%s/marketplace-checklist-stats/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
 // NewUsersDestroyRequest generates requests for UsersDestroy
 func NewUsersDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -193109,17 +192232,6 @@ type ClientWithResponsesInterface interface {
 	// CustomersCountriesHeadWithResponse request
 	CustomersCountriesHeadWithResponse(ctx context.Context, params *CustomersCountriesHeadParams, reqEditors ...RequestEditorFn) (*CustomersCountriesHeadResponse, error)
 
-	// MarketplaceChecklistsCustomerRetrieveWithResponse request
-	MarketplaceChecklistsCustomerRetrieveWithResponse(ctx context.Context, customerUuid string, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsCustomerRetrieveResponse, error)
-
-	// MarketplaceChecklistsCustomerUpdateWithBodyWithResponse request with any body
-	MarketplaceChecklistsCustomerUpdateWithBodyWithResponse(ctx context.Context, customerUuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsCustomerUpdateResponse, error)
-
-	MarketplaceChecklistsCustomerUpdateWithResponse(ctx context.Context, customerUuid string, body MarketplaceChecklistsCustomerUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsCustomerUpdateResponse, error)
-
-	// MarketplaceChecklistsCustomerStatsWithResponse request
-	MarketplaceChecklistsCustomerStatsWithResponse(ctx context.Context, customerUuid string, checklistUuid string, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsCustomerStatsResponse, error)
-
 	// CustomersDestroyWithResponse request
 	CustomersDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*CustomersDestroyResponse, error)
 
@@ -193924,37 +193036,8 @@ type ClientWithResponsesInterface interface {
 	// MarketplaceChecklistsCategoriesListWithResponse request
 	MarketplaceChecklistsCategoriesListWithResponse(ctx context.Context, params *MarketplaceChecklistsCategoriesListParams, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsCategoriesListResponse, error)
 
-	// MarketplaceChecklistsCategoriesChecklistsListWithResponse request
-	MarketplaceChecklistsCategoriesChecklistsListWithResponse(ctx context.Context, categoryUuid string, params *MarketplaceChecklistsCategoriesChecklistsListParams, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsCategoriesChecklistsListResponse, error)
-
 	// MarketplaceChecklistsCategoriesRetrieveWithResponse request
 	MarketplaceChecklistsCategoriesRetrieveWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsCategoriesRetrieveResponse, error)
-
-	// MarketplaceChecklistsListWithResponse request
-	MarketplaceChecklistsListWithResponse(ctx context.Context, params *MarketplaceChecklistsListParams, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsListResponse, error)
-
-	// MarketplaceChecklistsHeadWithResponse request
-	MarketplaceChecklistsHeadWithResponse(ctx context.Context, params *MarketplaceChecklistsHeadParams, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsHeadResponse, error)
-
-	// MarketplaceChecklistsAnswersListWithResponse request
-	MarketplaceChecklistsAnswersListWithResponse(ctx context.Context, checklistUuid string, params *MarketplaceChecklistsAnswersListParams, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAnswersListResponse, error)
-
-	// MarketplaceChecklistsAnswersSubmitCreateWithBodyWithResponse request with any body
-	MarketplaceChecklistsAnswersSubmitCreateWithBodyWithResponse(ctx context.Context, checklistUuid string, params *MarketplaceChecklistsAnswersSubmitCreateParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAnswersSubmitCreateResponse, error)
-
-	MarketplaceChecklistsAnswersSubmitCreateWithResponse(ctx context.Context, checklistUuid string, params *MarketplaceChecklistsAnswersSubmitCreateParams, body MarketplaceChecklistsAnswersSubmitCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAnswersSubmitCreateResponse, error)
-
-	// MarketplaceChecklistsStatsListWithResponse request
-	MarketplaceChecklistsStatsListWithResponse(ctx context.Context, checklistUuid string, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsStatsListResponse, error)
-
-	// MarketplaceChecklistsUserAnswersListWithResponse request
-	MarketplaceChecklistsUserAnswersListWithResponse(ctx context.Context, checklistUuid string, userUuid string, params *MarketplaceChecklistsUserAnswersListParams, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsUserAnswersListResponse, error)
-
-	// MarketplaceChecklistsRetrieveWithResponse request
-	MarketplaceChecklistsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsRetrieveResponse, error)
-
-	// MarketplaceChecklistsQuestionsListWithResponse request
-	MarketplaceChecklistsQuestionsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceChecklistsQuestionsListParams, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsQuestionsListResponse, error)
 
 	// MarketplaceComponentUsagesListWithResponse request
 	MarketplaceComponentUsagesListWithResponse(ctx context.Context, params *MarketplaceComponentUsagesListParams, reqEditors ...RequestEditorFn) (*MarketplaceComponentUsagesListResponse, error)
@@ -194793,6 +193876,9 @@ type ClientWithResponsesInterface interface {
 	// MarketplaceProviderResourcesPlanPeriodsListWithResponse request
 	MarketplaceProviderResourcesPlanPeriodsListWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesPlanPeriodsListResponse, error)
 
+	// MarketplaceProviderResourcesPullWithResponse request
+	MarketplaceProviderResourcesPullWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesPullResponse, error)
+
 	// MarketplaceProviderResourcesRefreshLastSyncWithResponse request
 	MarketplaceProviderResourcesRefreshLastSyncWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesRefreshLastSyncResponse, error)
 
@@ -194969,6 +194055,9 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceResourcesPlanPeriodsListWithResponse request
 	MarketplaceResourcesPlanPeriodsListWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceResourcesPlanPeriodsListResponse, error)
+
+	// MarketplaceResourcesPullWithResponse request
+	MarketplaceResourcesPullWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceResourcesPullResponse, error)
 
 	// MarketplaceResourcesSetEndDateByStaffWithBodyWithResponse request with any body
 	MarketplaceResourcesSetEndDateByStaffWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourcesSetEndDateByStaffResponse, error)
@@ -196230,9 +195319,6 @@ type ClientWithResponsesInterface interface {
 
 	ProjectsCreateWithResponse(ctx context.Context, body ProjectsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ProjectsCreateResponse, error)
 
-	// ProjectsMarketplaceChecklistsListWithResponse request
-	ProjectsMarketplaceChecklistsListWithResponse(ctx context.Context, projectUuid string, reqEditors ...RequestEditorFn) (*ProjectsMarketplaceChecklistsListResponse, error)
-
 	// ProjectsDestroyWithResponse request
 	ProjectsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProjectsDestroyResponse, error)
 
@@ -196347,11 +195433,17 @@ type ClientWithResponsesInterface interface {
 
 	ProposalProposalsAttachDocumentWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsAttachDocumentJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProposalsAttachDocumentResponse, error)
 
-	// ProposalProposalsComplianceChecklistRetrieveWithResponse request
-	ProposalProposalsComplianceChecklistRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProposalsComplianceChecklistRetrieveResponse, error)
+	// ProposalProposalsChecklistRetrieveWithResponse request
+	ProposalProposalsChecklistRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProposalsChecklistRetrieveResponse, error)
 
-	// ProposalProposalsComplianceStatusRetrieveWithResponse request
-	ProposalProposalsComplianceStatusRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProposalsComplianceStatusRetrieveResponse, error)
+	// ProposalProposalsChecklistReviewRetrieveWithResponse request
+	ProposalProposalsChecklistReviewRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProposalsChecklistReviewRetrieveResponse, error)
+
+	// ProposalProposalsCompletionReviewStatusRetrieveWithResponse request
+	ProposalProposalsCompletionReviewStatusRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProposalsCompletionReviewStatusRetrieveResponse, error)
+
+	// ProposalProposalsCompletionStatusRetrieveWithResponse request
+	ProposalProposalsCompletionStatusRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProposalsCompletionStatusRetrieveResponse, error)
 
 	// ProposalProposalsDeleteUserWithBodyWithResponse request with any body
 	ProposalProposalsDeleteUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProposalsDeleteUserResponse, error)
@@ -196393,10 +195485,10 @@ type ClientWithResponsesInterface interface {
 	// ProposalProposalsSubmitWithResponse request
 	ProposalProposalsSubmitWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProposalsSubmitResponse, error)
 
-	// ProposalProposalsSubmitComplianceAnswersWithBodyWithResponse request with any body
-	ProposalProposalsSubmitComplianceAnswersWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProposalsSubmitComplianceAnswersResponse, error)
+	// ProposalProposalsSubmitAnswersWithBodyWithResponse request with any body
+	ProposalProposalsSubmitAnswersWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProposalsSubmitAnswersResponse, error)
 
-	ProposalProposalsSubmitComplianceAnswersWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsSubmitComplianceAnswersJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProposalsSubmitComplianceAnswersResponse, error)
+	ProposalProposalsSubmitAnswersWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsSubmitAnswersJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProposalsSubmitAnswersResponse, error)
 
 	// ProposalProposalsUpdateProjectDetailsWithBodyWithResponse request with any body
 	ProposalProposalsUpdateProjectDetailsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProposalsUpdateProjectDetailsResponse, error)
@@ -197544,9 +196636,6 @@ type ClientWithResponsesInterface interface {
 
 	// UsersMeHeadWithResponse request
 	UsersMeHeadWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*UsersMeHeadResponse, error)
-
-	// UsersMarketplaceChecklistStatsRetrieveWithResponse request
-	UsersMarketplaceChecklistStatsRetrieveWithResponse(ctx context.Context, userUuid string, reqEditors ...RequestEditorFn) (*UsersMarketplaceChecklistStatsRetrieveResponse, error)
 
 	// UsersDestroyWithResponse request
 	UsersDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*UsersDestroyResponse, error)
@@ -202544,72 +201633,6 @@ func (r CustomersCountriesHeadResponse) StatusCode() int {
 	return 0
 }
 
-type MarketplaceChecklistsCustomerRetrieveResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *[]openapi_types.UUID
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceChecklistsCustomerRetrieveResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceChecklistsCustomerRetrieveResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type MarketplaceChecklistsCustomerUpdateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *[]openapi_types.UUID
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceChecklistsCustomerUpdateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceChecklistsCustomerUpdateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type MarketplaceChecklistsCustomerStatsResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *[]CustomerChecklistStat
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceChecklistsCustomerStatsResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceChecklistsCustomerStatsResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
 type CustomersDestroyResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -207417,28 +206440,6 @@ func (r MarketplaceChecklistsCategoriesListResponse) StatusCode() int {
 	return 0
 }
 
-type MarketplaceChecklistsCategoriesChecklistsListResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *[]Checklist
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceChecklistsCategoriesChecklistsListResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceChecklistsCategoriesChecklistsListResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
 type MarketplaceChecklistsCategoriesRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -207455,181 +206456,6 @@ func (r MarketplaceChecklistsCategoriesRetrieveResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceChecklistsCategoriesRetrieveResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type MarketplaceChecklistsListResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *[]Checklist
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceChecklistsListResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceChecklistsListResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type MarketplaceChecklistsHeadResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceChecklistsHeadResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceChecklistsHeadResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type MarketplaceChecklistsAnswersListResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *[]AnswerList
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceChecklistsAnswersListResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceChecklistsAnswersListResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type MarketplaceChecklistsAnswersSubmitCreateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON201      *[]AnswerSubmit
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceChecklistsAnswersSubmitCreateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceChecklistsAnswersSubmitCreateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type MarketplaceChecklistsStatsListResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *[]ChecklistCustomerStats
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceChecklistsStatsListResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceChecklistsStatsListResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type MarketplaceChecklistsUserAnswersListResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *[]AnswerList
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceChecklistsUserAnswersListResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceChecklistsUserAnswersListResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type MarketplaceChecklistsRetrieveResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *Checklist
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceChecklistsRetrieveResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceChecklistsRetrieveResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type MarketplaceChecklistsQuestionsListResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *[]Question
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceChecklistsQuestionsListResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceChecklistsQuestionsListResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -212538,6 +211364,28 @@ func (r MarketplaceProviderResourcesPlanPeriodsListResponse) StatusCode() int {
 	return 0
 }
 
+type MarketplaceProviderResourcesPullResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *map[string]string
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderResourcesPullResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderResourcesPullResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type MarketplaceProviderResourcesRefreshLastSyncResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -213553,6 +212401,28 @@ func (r MarketplaceResourcesPlanPeriodsListResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceResourcesPlanPeriodsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceResourcesPullResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *map[string]string
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceResourcesPullResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceResourcesPullResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -221117,28 +219987,6 @@ func (r ProjectsCreateResponse) StatusCode() int {
 	return 0
 }
 
-type ProjectsMarketplaceChecklistsListResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *[]ProjectStatsItem
-}
-
-// Status returns HTTPResponse.Status
-func (r ProjectsMarketplaceChecklistsListResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r ProjectsMarketplaceChecklistsListResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
 type ProjectsDestroyResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -221788,14 +220636,16 @@ func (r ProposalProposalsAttachDocumentResponse) StatusCode() int {
 	return 0
 }
 
-type ProposalProposalsComplianceChecklistRetrieveResponse struct {
+type ProposalProposalsChecklistRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *ProposalComplianceChecklistResponse
+	JSON200      *ChecklistResponse
+	JSON400      *interface{}
+	JSON404      *interface{}
 }
 
 // Status returns HTTPResponse.Status
-func (r ProposalProposalsComplianceChecklistRetrieveResponse) Status() string {
+func (r ProposalProposalsChecklistRetrieveResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -221803,21 +220653,23 @@ func (r ProposalProposalsComplianceChecklistRetrieveResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r ProposalProposalsComplianceChecklistRetrieveResponse) StatusCode() int {
+func (r ProposalProposalsChecklistRetrieveResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
 }
 
-type ProposalProposalsComplianceStatusRetrieveResponse struct {
+type ProposalProposalsChecklistReviewRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *ProposalChecklistCompletion
+	JSON200      *ChecklistReviewerResponse
+	JSON400      *interface{}
+	JSON404      *interface{}
 }
 
 // Status returns HTTPResponse.Status
-func (r ProposalProposalsComplianceStatusRetrieveResponse) Status() string {
+func (r ProposalProposalsChecklistReviewRetrieveResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -221825,7 +220677,55 @@ func (r ProposalProposalsComplianceStatusRetrieveResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r ProposalProposalsComplianceStatusRetrieveResponse) StatusCode() int {
+func (r ProposalProposalsChecklistReviewRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ProposalProposalsCompletionReviewStatusRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ChecklistCompletionReviewer
+	JSON400      *interface{}
+	JSON404      *interface{}
+}
+
+// Status returns HTTPResponse.Status
+func (r ProposalProposalsCompletionReviewStatusRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProposalProposalsCompletionReviewStatusRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ProposalProposalsCompletionStatusRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ChecklistCompletion
+	JSON400      *interface{}
+	JSON404      *interface{}
+}
+
+// Status returns HTTPResponse.Status
+func (r ProposalProposalsCompletionStatusRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProposalProposalsCompletionStatusRetrieveResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -222048,14 +220948,16 @@ func (r ProposalProposalsSubmitResponse) StatusCode() int {
 	return 0
 }
 
-type ProposalProposalsSubmitComplianceAnswersResponse struct {
+type ProposalProposalsSubmitAnswersResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *ProposalChecklistAnswerSubmitResponse
+	JSON200      *AnswerSubmitResponse
+	JSON400      *interface{}
+	JSON404      *interface{}
 }
 
 // Status returns HTTPResponse.Status
-func (r ProposalProposalsSubmitComplianceAnswersResponse) Status() string {
+func (r ProposalProposalsSubmitAnswersResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -222063,7 +220965,7 @@ func (r ProposalProposalsSubmitComplianceAnswersResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r ProposalProposalsSubmitComplianceAnswersResponse) StatusCode() int {
+func (r ProposalProposalsSubmitAnswersResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -222572,7 +221474,7 @@ func (r ProposalProtectedCallsOfferingsUpdateResponse) StatusCode() int {
 type ProposalProtectedCallsProposalsComplianceAnswersListResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *[]ProposalChecklistAnswer
+	JSON200      *[]Answer
 }
 
 // Status returns HTTPResponse.Status
@@ -228881,28 +227783,6 @@ func (r UsersMeHeadResponse) StatusCode() int {
 	return 0
 }
 
-type UsersMarketplaceChecklistStatsRetrieveResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *UserStats
-}
-
-// Status returns HTTPResponse.Status
-func (r UsersMarketplaceChecklistStatsRetrieveResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r UsersMarketplaceChecklistStatsRetrieveResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
 type UsersDestroyResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -232675,41 +231555,6 @@ func (c *ClientWithResponses) CustomersCountriesHeadWithResponse(ctx context.Con
 	return ParseCustomersCountriesHeadResponse(rsp)
 }
 
-// MarketplaceChecklistsCustomerRetrieveWithResponse request returning *MarketplaceChecklistsCustomerRetrieveResponse
-func (c *ClientWithResponses) MarketplaceChecklistsCustomerRetrieveWithResponse(ctx context.Context, customerUuid string, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsCustomerRetrieveResponse, error) {
-	rsp, err := c.MarketplaceChecklistsCustomerRetrieve(ctx, customerUuid, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsCustomerRetrieveResponse(rsp)
-}
-
-// MarketplaceChecklistsCustomerUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceChecklistsCustomerUpdateResponse
-func (c *ClientWithResponses) MarketplaceChecklistsCustomerUpdateWithBodyWithResponse(ctx context.Context, customerUuid string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsCustomerUpdateResponse, error) {
-	rsp, err := c.MarketplaceChecklistsCustomerUpdateWithBody(ctx, customerUuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsCustomerUpdateResponse(rsp)
-}
-
-func (c *ClientWithResponses) MarketplaceChecklistsCustomerUpdateWithResponse(ctx context.Context, customerUuid string, body MarketplaceChecklistsCustomerUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsCustomerUpdateResponse, error) {
-	rsp, err := c.MarketplaceChecklistsCustomerUpdate(ctx, customerUuid, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsCustomerUpdateResponse(rsp)
-}
-
-// MarketplaceChecklistsCustomerStatsWithResponse request returning *MarketplaceChecklistsCustomerStatsResponse
-func (c *ClientWithResponses) MarketplaceChecklistsCustomerStatsWithResponse(ctx context.Context, customerUuid string, checklistUuid string, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsCustomerStatsResponse, error) {
-	rsp, err := c.MarketplaceChecklistsCustomerStats(ctx, customerUuid, checklistUuid, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsCustomerStatsResponse(rsp)
-}
-
 // CustomersDestroyWithResponse request returning *CustomersDestroyResponse
 func (c *ClientWithResponses) CustomersDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*CustomersDestroyResponse, error) {
 	rsp, err := c.CustomersDestroy(ctx, uuid, reqEditors...)
@@ -235260,15 +234105,6 @@ func (c *ClientWithResponses) MarketplaceChecklistsCategoriesListWithResponse(ct
 	return ParseMarketplaceChecklistsCategoriesListResponse(rsp)
 }
 
-// MarketplaceChecklistsCategoriesChecklistsListWithResponse request returning *MarketplaceChecklistsCategoriesChecklistsListResponse
-func (c *ClientWithResponses) MarketplaceChecklistsCategoriesChecklistsListWithResponse(ctx context.Context, categoryUuid string, params *MarketplaceChecklistsCategoriesChecklistsListParams, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsCategoriesChecklistsListResponse, error) {
-	rsp, err := c.MarketplaceChecklistsCategoriesChecklistsList(ctx, categoryUuid, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsCategoriesChecklistsListResponse(rsp)
-}
-
 // MarketplaceChecklistsCategoriesRetrieveWithResponse request returning *MarketplaceChecklistsCategoriesRetrieveResponse
 func (c *ClientWithResponses) MarketplaceChecklistsCategoriesRetrieveWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsCategoriesRetrieveResponse, error) {
 	rsp, err := c.MarketplaceChecklistsCategoriesRetrieve(ctx, uuid, reqEditors...)
@@ -235276,86 +234112,6 @@ func (c *ClientWithResponses) MarketplaceChecklistsCategoriesRetrieveWithRespons
 		return nil, err
 	}
 	return ParseMarketplaceChecklistsCategoriesRetrieveResponse(rsp)
-}
-
-// MarketplaceChecklistsListWithResponse request returning *MarketplaceChecklistsListResponse
-func (c *ClientWithResponses) MarketplaceChecklistsListWithResponse(ctx context.Context, params *MarketplaceChecklistsListParams, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsListResponse, error) {
-	rsp, err := c.MarketplaceChecklistsList(ctx, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsListResponse(rsp)
-}
-
-// MarketplaceChecklistsHeadWithResponse request returning *MarketplaceChecklistsHeadResponse
-func (c *ClientWithResponses) MarketplaceChecklistsHeadWithResponse(ctx context.Context, params *MarketplaceChecklistsHeadParams, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsHeadResponse, error) {
-	rsp, err := c.MarketplaceChecklistsHead(ctx, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsHeadResponse(rsp)
-}
-
-// MarketplaceChecklistsAnswersListWithResponse request returning *MarketplaceChecklistsAnswersListResponse
-func (c *ClientWithResponses) MarketplaceChecklistsAnswersListWithResponse(ctx context.Context, checklistUuid string, params *MarketplaceChecklistsAnswersListParams, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAnswersListResponse, error) {
-	rsp, err := c.MarketplaceChecklistsAnswersList(ctx, checklistUuid, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsAnswersListResponse(rsp)
-}
-
-// MarketplaceChecklistsAnswersSubmitCreateWithBodyWithResponse request with arbitrary body returning *MarketplaceChecklistsAnswersSubmitCreateResponse
-func (c *ClientWithResponses) MarketplaceChecklistsAnswersSubmitCreateWithBodyWithResponse(ctx context.Context, checklistUuid string, params *MarketplaceChecklistsAnswersSubmitCreateParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAnswersSubmitCreateResponse, error) {
-	rsp, err := c.MarketplaceChecklistsAnswersSubmitCreateWithBody(ctx, checklistUuid, params, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsAnswersSubmitCreateResponse(rsp)
-}
-
-func (c *ClientWithResponses) MarketplaceChecklistsAnswersSubmitCreateWithResponse(ctx context.Context, checklistUuid string, params *MarketplaceChecklistsAnswersSubmitCreateParams, body MarketplaceChecklistsAnswersSubmitCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAnswersSubmitCreateResponse, error) {
-	rsp, err := c.MarketplaceChecklistsAnswersSubmitCreate(ctx, checklistUuid, params, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsAnswersSubmitCreateResponse(rsp)
-}
-
-// MarketplaceChecklistsStatsListWithResponse request returning *MarketplaceChecklistsStatsListResponse
-func (c *ClientWithResponses) MarketplaceChecklistsStatsListWithResponse(ctx context.Context, checklistUuid string, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsStatsListResponse, error) {
-	rsp, err := c.MarketplaceChecklistsStatsList(ctx, checklistUuid, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsStatsListResponse(rsp)
-}
-
-// MarketplaceChecklistsUserAnswersListWithResponse request returning *MarketplaceChecklistsUserAnswersListResponse
-func (c *ClientWithResponses) MarketplaceChecklistsUserAnswersListWithResponse(ctx context.Context, checklistUuid string, userUuid string, params *MarketplaceChecklistsUserAnswersListParams, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsUserAnswersListResponse, error) {
-	rsp, err := c.MarketplaceChecklistsUserAnswersList(ctx, checklistUuid, userUuid, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsUserAnswersListResponse(rsp)
-}
-
-// MarketplaceChecklistsRetrieveWithResponse request returning *MarketplaceChecklistsRetrieveResponse
-func (c *ClientWithResponses) MarketplaceChecklistsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsRetrieveResponse, error) {
-	rsp, err := c.MarketplaceChecklistsRetrieve(ctx, uuid, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsRetrieveResponse(rsp)
-}
-
-// MarketplaceChecklistsQuestionsListWithResponse request returning *MarketplaceChecklistsQuestionsListResponse
-func (c *ClientWithResponses) MarketplaceChecklistsQuestionsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceChecklistsQuestionsListParams, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsQuestionsListResponse, error) {
-	rsp, err := c.MarketplaceChecklistsQuestionsList(ctx, uuid, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsQuestionsListResponse(rsp)
 }
 
 // MarketplaceComponentUsagesListWithResponse request returning *MarketplaceComponentUsagesListResponse
@@ -238025,6 +236781,15 @@ func (c *ClientWithResponses) MarketplaceProviderResourcesPlanPeriodsListWithRes
 	return ParseMarketplaceProviderResourcesPlanPeriodsListResponse(rsp)
 }
 
+// MarketplaceProviderResourcesPullWithResponse request returning *MarketplaceProviderResourcesPullResponse
+func (c *ClientWithResponses) MarketplaceProviderResourcesPullWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesPullResponse, error) {
+	rsp, err := c.MarketplaceProviderResourcesPull(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderResourcesPullResponse(rsp)
+}
+
 // MarketplaceProviderResourcesRefreshLastSyncWithResponse request returning *MarketplaceProviderResourcesRefreshLastSyncResponse
 func (c *ClientWithResponses) MarketplaceProviderResourcesRefreshLastSyncWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesRefreshLastSyncResponse, error) {
 	rsp, err := c.MarketplaceProviderResourcesRefreshLastSync(ctx, uuid, reqEditors...)
@@ -238590,6 +237355,15 @@ func (c *ClientWithResponses) MarketplaceResourcesPlanPeriodsListWithResponse(ct
 		return nil, err
 	}
 	return ParseMarketplaceResourcesPlanPeriodsListResponse(rsp)
+}
+
+// MarketplaceResourcesPullWithResponse request returning *MarketplaceResourcesPullResponse
+func (c *ClientWithResponses) MarketplaceResourcesPullWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceResourcesPullResponse, error) {
+	rsp, err := c.MarketplaceResourcesPull(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourcesPullResponse(rsp)
 }
 
 // MarketplaceResourcesSetEndDateByStaffWithBodyWithResponse request with arbitrary body returning *MarketplaceResourcesSetEndDateByStaffResponse
@@ -242582,15 +241356,6 @@ func (c *ClientWithResponses) ProjectsCreateWithResponse(ctx context.Context, bo
 	return ParseProjectsCreateResponse(rsp)
 }
 
-// ProjectsMarketplaceChecklistsListWithResponse request returning *ProjectsMarketplaceChecklistsListResponse
-func (c *ClientWithResponses) ProjectsMarketplaceChecklistsListWithResponse(ctx context.Context, projectUuid string, reqEditors ...RequestEditorFn) (*ProjectsMarketplaceChecklistsListResponse, error) {
-	rsp, err := c.ProjectsMarketplaceChecklistsList(ctx, projectUuid, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseProjectsMarketplaceChecklistsListResponse(rsp)
-}
-
 // ProjectsDestroyWithResponse request returning *ProjectsDestroyResponse
 func (c *ClientWithResponses) ProjectsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProjectsDestroyResponse, error) {
 	rsp, err := c.ProjectsDestroy(ctx, uuid, reqEditors...)
@@ -242957,22 +241722,40 @@ func (c *ClientWithResponses) ProposalProposalsAttachDocumentWithResponse(ctx co
 	return ParseProposalProposalsAttachDocumentResponse(rsp)
 }
 
-// ProposalProposalsComplianceChecklistRetrieveWithResponse request returning *ProposalProposalsComplianceChecklistRetrieveResponse
-func (c *ClientWithResponses) ProposalProposalsComplianceChecklistRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProposalsComplianceChecklistRetrieveResponse, error) {
-	rsp, err := c.ProposalProposalsComplianceChecklistRetrieve(ctx, uuid, reqEditors...)
+// ProposalProposalsChecklistRetrieveWithResponse request returning *ProposalProposalsChecklistRetrieveResponse
+func (c *ClientWithResponses) ProposalProposalsChecklistRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProposalsChecklistRetrieveResponse, error) {
+	rsp, err := c.ProposalProposalsChecklistRetrieve(ctx, uuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseProposalProposalsComplianceChecklistRetrieveResponse(rsp)
+	return ParseProposalProposalsChecklistRetrieveResponse(rsp)
 }
 
-// ProposalProposalsComplianceStatusRetrieveWithResponse request returning *ProposalProposalsComplianceStatusRetrieveResponse
-func (c *ClientWithResponses) ProposalProposalsComplianceStatusRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProposalsComplianceStatusRetrieveResponse, error) {
-	rsp, err := c.ProposalProposalsComplianceStatusRetrieve(ctx, uuid, reqEditors...)
+// ProposalProposalsChecklistReviewRetrieveWithResponse request returning *ProposalProposalsChecklistReviewRetrieveResponse
+func (c *ClientWithResponses) ProposalProposalsChecklistReviewRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProposalsChecklistReviewRetrieveResponse, error) {
+	rsp, err := c.ProposalProposalsChecklistReviewRetrieve(ctx, uuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseProposalProposalsComplianceStatusRetrieveResponse(rsp)
+	return ParseProposalProposalsChecklistReviewRetrieveResponse(rsp)
+}
+
+// ProposalProposalsCompletionReviewStatusRetrieveWithResponse request returning *ProposalProposalsCompletionReviewStatusRetrieveResponse
+func (c *ClientWithResponses) ProposalProposalsCompletionReviewStatusRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProposalsCompletionReviewStatusRetrieveResponse, error) {
+	rsp, err := c.ProposalProposalsCompletionReviewStatusRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProposalsCompletionReviewStatusRetrieveResponse(rsp)
+}
+
+// ProposalProposalsCompletionStatusRetrieveWithResponse request returning *ProposalProposalsCompletionStatusRetrieveResponse
+func (c *ClientWithResponses) ProposalProposalsCompletionStatusRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProposalsCompletionStatusRetrieveResponse, error) {
+	rsp, err := c.ProposalProposalsCompletionStatusRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProposalsCompletionStatusRetrieveResponse(rsp)
 }
 
 // ProposalProposalsDeleteUserWithBodyWithResponse request with arbitrary body returning *ProposalProposalsDeleteUserResponse
@@ -243105,21 +241888,21 @@ func (c *ClientWithResponses) ProposalProposalsSubmitWithResponse(ctx context.Co
 	return ParseProposalProposalsSubmitResponse(rsp)
 }
 
-// ProposalProposalsSubmitComplianceAnswersWithBodyWithResponse request with arbitrary body returning *ProposalProposalsSubmitComplianceAnswersResponse
-func (c *ClientWithResponses) ProposalProposalsSubmitComplianceAnswersWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProposalsSubmitComplianceAnswersResponse, error) {
-	rsp, err := c.ProposalProposalsSubmitComplianceAnswersWithBody(ctx, uuid, contentType, body, reqEditors...)
+// ProposalProposalsSubmitAnswersWithBodyWithResponse request with arbitrary body returning *ProposalProposalsSubmitAnswersResponse
+func (c *ClientWithResponses) ProposalProposalsSubmitAnswersWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProposalsSubmitAnswersResponse, error) {
+	rsp, err := c.ProposalProposalsSubmitAnswersWithBody(ctx, uuid, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseProposalProposalsSubmitComplianceAnswersResponse(rsp)
+	return ParseProposalProposalsSubmitAnswersResponse(rsp)
 }
 
-func (c *ClientWithResponses) ProposalProposalsSubmitComplianceAnswersWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsSubmitComplianceAnswersJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProposalsSubmitComplianceAnswersResponse, error) {
-	rsp, err := c.ProposalProposalsSubmitComplianceAnswers(ctx, uuid, body, reqEditors...)
+func (c *ClientWithResponses) ProposalProposalsSubmitAnswersWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsSubmitAnswersJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProposalsSubmitAnswersResponse, error) {
+	rsp, err := c.ProposalProposalsSubmitAnswers(ctx, uuid, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseProposalProposalsSubmitComplianceAnswersResponse(rsp)
+	return ParseProposalProposalsSubmitAnswersResponse(rsp)
 }
 
 // ProposalProposalsUpdateProjectDetailsWithBodyWithResponse request with arbitrary body returning *ProposalProposalsUpdateProjectDetailsResponse
@@ -246763,15 +245546,6 @@ func (c *ClientWithResponses) UsersMeHeadWithResponse(ctx context.Context, reqEd
 		return nil, err
 	}
 	return ParseUsersMeHeadResponse(rsp)
-}
-
-// UsersMarketplaceChecklistStatsRetrieveWithResponse request returning *UsersMarketplaceChecklistStatsRetrieveResponse
-func (c *ClientWithResponses) UsersMarketplaceChecklistStatsRetrieveWithResponse(ctx context.Context, userUuid string, reqEditors ...RequestEditorFn) (*UsersMarketplaceChecklistStatsRetrieveResponse, error) {
-	rsp, err := c.UsersMarketplaceChecklistStatsRetrieve(ctx, userUuid, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseUsersMarketplaceChecklistStatsRetrieveResponse(rsp)
 }
 
 // UsersDestroyWithResponse request returning *UsersDestroyResponse
@@ -252297,84 +251071,6 @@ func ParseCustomersCountriesHeadResponse(rsp *http.Response) (*CustomersCountrie
 	return response, nil
 }
 
-// ParseMarketplaceChecklistsCustomerRetrieveResponse parses an HTTP response from a MarketplaceChecklistsCustomerRetrieveWithResponse call
-func ParseMarketplaceChecklistsCustomerRetrieveResponse(rsp *http.Response) (*MarketplaceChecklistsCustomerRetrieveResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceChecklistsCustomerRetrieveResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []openapi_types.UUID
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceChecklistsCustomerUpdateResponse parses an HTTP response from a MarketplaceChecklistsCustomerUpdateWithResponse call
-func ParseMarketplaceChecklistsCustomerUpdateResponse(rsp *http.Response) (*MarketplaceChecklistsCustomerUpdateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceChecklistsCustomerUpdateResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []openapi_types.UUID
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceChecklistsCustomerStatsResponse parses an HTTP response from a MarketplaceChecklistsCustomerStatsWithResponse call
-func ParseMarketplaceChecklistsCustomerStatsResponse(rsp *http.Response) (*MarketplaceChecklistsCustomerStatsResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceChecklistsCustomerStatsResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []CustomerChecklistStat
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
 // ParseCustomersDestroyResponse parses an HTTP response from a CustomersDestroyWithResponse call
 func ParseCustomersDestroyResponse(rsp *http.Response) (*CustomersDestroyResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -257377,32 +256073,6 @@ func ParseMarketplaceChecklistsCategoriesListResponse(rsp *http.Response) (*Mark
 	return response, nil
 }
 
-// ParseMarketplaceChecklistsCategoriesChecklistsListResponse parses an HTTP response from a MarketplaceChecklistsCategoriesChecklistsListWithResponse call
-func ParseMarketplaceChecklistsCategoriesChecklistsListResponse(rsp *http.Response) (*MarketplaceChecklistsCategoriesChecklistsListResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceChecklistsCategoriesChecklistsListResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []Checklist
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
 // ParseMarketplaceChecklistsCategoriesRetrieveResponse parses an HTTP response from a MarketplaceChecklistsCategoriesRetrieveWithResponse call
 func ParseMarketplaceChecklistsCategoriesRetrieveResponse(rsp *http.Response) (*MarketplaceChecklistsCategoriesRetrieveResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -257419,204 +256089,6 @@ func ParseMarketplaceChecklistsCategoriesRetrieveResponse(rsp *http.Response) (*
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest ChecklistCategory
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceChecklistsListResponse parses an HTTP response from a MarketplaceChecklistsListWithResponse call
-func ParseMarketplaceChecklistsListResponse(rsp *http.Response) (*MarketplaceChecklistsListResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceChecklistsListResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []Checklist
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceChecklistsHeadResponse parses an HTTP response from a MarketplaceChecklistsHeadWithResponse call
-func ParseMarketplaceChecklistsHeadResponse(rsp *http.Response) (*MarketplaceChecklistsHeadResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceChecklistsHeadResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceChecklistsAnswersListResponse parses an HTTP response from a MarketplaceChecklistsAnswersListWithResponse call
-func ParseMarketplaceChecklistsAnswersListResponse(rsp *http.Response) (*MarketplaceChecklistsAnswersListResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceChecklistsAnswersListResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []AnswerList
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceChecklistsAnswersSubmitCreateResponse parses an HTTP response from a MarketplaceChecklistsAnswersSubmitCreateWithResponse call
-func ParseMarketplaceChecklistsAnswersSubmitCreateResponse(rsp *http.Response) (*MarketplaceChecklistsAnswersSubmitCreateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceChecklistsAnswersSubmitCreateResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest []AnswerSubmit
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON201 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceChecklistsStatsListResponse parses an HTTP response from a MarketplaceChecklistsStatsListWithResponse call
-func ParseMarketplaceChecklistsStatsListResponse(rsp *http.Response) (*MarketplaceChecklistsStatsListResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceChecklistsStatsListResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []ChecklistCustomerStats
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceChecklistsUserAnswersListResponse parses an HTTP response from a MarketplaceChecklistsUserAnswersListWithResponse call
-func ParseMarketplaceChecklistsUserAnswersListResponse(rsp *http.Response) (*MarketplaceChecklistsUserAnswersListResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceChecklistsUserAnswersListResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []AnswerList
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceChecklistsRetrieveResponse parses an HTTP response from a MarketplaceChecklistsRetrieveWithResponse call
-func ParseMarketplaceChecklistsRetrieveResponse(rsp *http.Response) (*MarketplaceChecklistsRetrieveResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceChecklistsRetrieveResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Checklist
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceChecklistsQuestionsListResponse parses an HTTP response from a MarketplaceChecklistsQuestionsListWithResponse call
-func ParseMarketplaceChecklistsQuestionsListResponse(rsp *http.Response) (*MarketplaceChecklistsQuestionsListResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceChecklistsQuestionsListResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []Question
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -262609,6 +261081,32 @@ func ParseMarketplaceProviderResourcesPlanPeriodsListResponse(rsp *http.Response
 	return response, nil
 }
 
+// ParseMarketplaceProviderResourcesPullResponse parses an HTTP response from a MarketplaceProviderResourcesPullWithResponse call
+func ParseMarketplaceProviderResourcesPullResponse(rsp *http.Response) (*MarketplaceProviderResourcesPullResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderResourcesPullResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest map[string]string
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseMarketplaceProviderResourcesRefreshLastSyncResponse parses an HTTP response from a MarketplaceProviderResourcesRefreshLastSyncWithResponse call
 func ParseMarketplaceProviderResourcesRefreshLastSyncResponse(rsp *http.Response) (*MarketplaceProviderResourcesRefreshLastSyncResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -263691,6 +262189,32 @@ func ParseMarketplaceResourcesPlanPeriodsListResponse(rsp *http.Response) (*Mark
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest []ResourcePlanPeriod
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceResourcesPullResponse parses an HTTP response from a MarketplaceResourcesPullWithResponse call
+func ParseMarketplaceResourcesPullResponse(rsp *http.Response) (*MarketplaceResourcesPullResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceResourcesPullResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest map[string]string
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -271378,32 +269902,6 @@ func ParseProjectsCreateResponse(rsp *http.Response) (*ProjectsCreateResponse, e
 	return response, nil
 }
 
-// ParseProjectsMarketplaceChecklistsListResponse parses an HTTP response from a ProjectsMarketplaceChecklistsListWithResponse call
-func ParseProjectsMarketplaceChecklistsListResponse(rsp *http.Response) (*ProjectsMarketplaceChecklistsListResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &ProjectsMarketplaceChecklistsListResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []ProjectStatsItem
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
 // ParseProjectsDestroyResponse parses an HTTP response from a ProjectsDestroyWithResponse call
 func ParseProjectsDestroyResponse(rsp *http.Response) (*ProjectsDestroyResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -272074,52 +270572,160 @@ func ParseProposalProposalsAttachDocumentResponse(rsp *http.Response) (*Proposal
 	return response, nil
 }
 
-// ParseProposalProposalsComplianceChecklistRetrieveResponse parses an HTTP response from a ProposalProposalsComplianceChecklistRetrieveWithResponse call
-func ParseProposalProposalsComplianceChecklistRetrieveResponse(rsp *http.Response) (*ProposalProposalsComplianceChecklistRetrieveResponse, error) {
+// ParseProposalProposalsChecklistRetrieveResponse parses an HTTP response from a ProposalProposalsChecklistRetrieveWithResponse call
+func ParseProposalProposalsChecklistRetrieveResponse(rsp *http.Response) (*ProposalProposalsChecklistRetrieveResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &ProposalProposalsComplianceChecklistRetrieveResponse{
+	response := &ProposalProposalsChecklistRetrieveResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ProposalComplianceChecklistResponse
+		var dest ChecklistResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
 
 	}
 
 	return response, nil
 }
 
-// ParseProposalProposalsComplianceStatusRetrieveResponse parses an HTTP response from a ProposalProposalsComplianceStatusRetrieveWithResponse call
-func ParseProposalProposalsComplianceStatusRetrieveResponse(rsp *http.Response) (*ProposalProposalsComplianceStatusRetrieveResponse, error) {
+// ParseProposalProposalsChecklistReviewRetrieveResponse parses an HTTP response from a ProposalProposalsChecklistReviewRetrieveWithResponse call
+func ParseProposalProposalsChecklistReviewRetrieveResponse(rsp *http.Response) (*ProposalProposalsChecklistReviewRetrieveResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &ProposalProposalsComplianceStatusRetrieveResponse{
+	response := &ProposalProposalsChecklistReviewRetrieveResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ProposalChecklistCompletion
+		var dest ChecklistReviewerResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseProposalProposalsCompletionReviewStatusRetrieveResponse parses an HTTP response from a ProposalProposalsCompletionReviewStatusRetrieveWithResponse call
+func ParseProposalProposalsCompletionReviewStatusRetrieveResponse(rsp *http.Response) (*ProposalProposalsCompletionReviewStatusRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProposalProposalsCompletionReviewStatusRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ChecklistCompletionReviewer
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseProposalProposalsCompletionStatusRetrieveResponse parses an HTTP response from a ProposalProposalsCompletionStatusRetrieveWithResponse call
+func ParseProposalProposalsCompletionStatusRetrieveResponse(rsp *http.Response) (*ProposalProposalsCompletionStatusRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProposalProposalsCompletionStatusRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ChecklistCompletion
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
 
 	}
 
@@ -272346,26 +270952,40 @@ func ParseProposalProposalsSubmitResponse(rsp *http.Response) (*ProposalProposal
 	return response, nil
 }
 
-// ParseProposalProposalsSubmitComplianceAnswersResponse parses an HTTP response from a ProposalProposalsSubmitComplianceAnswersWithResponse call
-func ParseProposalProposalsSubmitComplianceAnswersResponse(rsp *http.Response) (*ProposalProposalsSubmitComplianceAnswersResponse, error) {
+// ParseProposalProposalsSubmitAnswersResponse parses an HTTP response from a ProposalProposalsSubmitAnswersWithResponse call
+func ParseProposalProposalsSubmitAnswersResponse(rsp *http.Response) (*ProposalProposalsSubmitAnswersResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &ProposalProposalsSubmitComplianceAnswersResponse{
+	response := &ProposalProposalsSubmitAnswersResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ProposalChecklistAnswerSubmitResponse
+		var dest AnswerSubmitResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
 
 	}
 
@@ -272915,7 +271535,7 @@ func ParseProposalProtectedCallsProposalsComplianceAnswersListResponse(rsp *http
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []ProposalChecklistAnswer
+		var dest []Answer
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -279367,32 +277987,6 @@ func ParseUsersMeHeadResponse(rsp *http.Response) (*UsersMeHeadResponse, error) 
 	response := &UsersMeHeadResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
-	}
-
-	return response, nil
-}
-
-// ParseUsersMarketplaceChecklistStatsRetrieveResponse parses an HTTP response from a UsersMarketplaceChecklistStatsRetrieveWithResponse call
-func ParseUsersMarketplaceChecklistStatsRetrieveResponse(rsp *http.Response) (*UsersMarketplaceChecklistStatsRetrieveResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &UsersMarketplaceChecklistStatsRetrieveResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest UserStats
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
 	}
 
 	return response, nil
