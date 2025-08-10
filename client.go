@@ -830,7 +830,8 @@ const (
 	OfferingUserStateEnumCreating                    OfferingUserStateEnum = "Creating"
 	OfferingUserStateEnumDeleted                     OfferingUserStateEnum = "Deleted"
 	OfferingUserStateEnumDeleting                    OfferingUserStateEnum = "Deleting"
-	OfferingUserStateEnumError                       OfferingUserStateEnum = "Error"
+	OfferingUserStateEnumErrorCreating               OfferingUserStateEnum = "Error creating"
+	OfferingUserStateEnumErrorDeleting               OfferingUserStateEnum = "Error deleting"
 	OfferingUserStateEnumOK                          OfferingUserStateEnum = "OK"
 	OfferingUserStateEnumPendingAccountLinking       OfferingUserStateEnum = "Pending account linking"
 	OfferingUserStateEnumPendingAdditionalValidation OfferingUserStateEnum = "Pending additional validation"
@@ -3557,24 +3558,25 @@ const (
 
 // Defines values for MarketplaceOfferingUsersListParamsField.
 const (
-	MarketplaceOfferingUsersListParamsFieldCreated                MarketplaceOfferingUsersListParamsField = "created"
-	MarketplaceOfferingUsersListParamsFieldCustomerName           MarketplaceOfferingUsersListParamsField = "customer_name"
-	MarketplaceOfferingUsersListParamsFieldCustomerUuid           MarketplaceOfferingUsersListParamsField = "customer_uuid"
-	MarketplaceOfferingUsersListParamsFieldIsRestricted           MarketplaceOfferingUsersListParamsField = "is_restricted"
-	MarketplaceOfferingUsersListParamsFieldModified               MarketplaceOfferingUsersListParamsField = "modified"
-	MarketplaceOfferingUsersListParamsFieldOffering               MarketplaceOfferingUsersListParamsField = "offering"
-	MarketplaceOfferingUsersListParamsFieldOfferingName           MarketplaceOfferingUsersListParamsField = "offering_name"
-	MarketplaceOfferingUsersListParamsFieldOfferingUuid           MarketplaceOfferingUsersListParamsField = "offering_uuid"
-	MarketplaceOfferingUsersListParamsFieldServiceProviderComment MarketplaceOfferingUsersListParamsField = "service_provider_comment"
-	MarketplaceOfferingUsersListParamsFieldState                  MarketplaceOfferingUsersListParamsField = "state"
-	MarketplaceOfferingUsersListParamsFieldUrl                    MarketplaceOfferingUsersListParamsField = "url"
-	MarketplaceOfferingUsersListParamsFieldUser                   MarketplaceOfferingUsersListParamsField = "user"
-	MarketplaceOfferingUsersListParamsFieldUserEmail              MarketplaceOfferingUsersListParamsField = "user_email"
-	MarketplaceOfferingUsersListParamsFieldUserFullName           MarketplaceOfferingUsersListParamsField = "user_full_name"
-	MarketplaceOfferingUsersListParamsFieldUserUsername           MarketplaceOfferingUsersListParamsField = "user_username"
-	MarketplaceOfferingUsersListParamsFieldUserUuid               MarketplaceOfferingUsersListParamsField = "user_uuid"
-	MarketplaceOfferingUsersListParamsFieldUsername               MarketplaceOfferingUsersListParamsField = "username"
-	MarketplaceOfferingUsersListParamsFieldUuid                   MarketplaceOfferingUsersListParamsField = "uuid"
+	MarketplaceOfferingUsersListParamsFieldCreated                   MarketplaceOfferingUsersListParamsField = "created"
+	MarketplaceOfferingUsersListParamsFieldCustomerName              MarketplaceOfferingUsersListParamsField = "customer_name"
+	MarketplaceOfferingUsersListParamsFieldCustomerUuid              MarketplaceOfferingUsersListParamsField = "customer_uuid"
+	MarketplaceOfferingUsersListParamsFieldIsRestricted              MarketplaceOfferingUsersListParamsField = "is_restricted"
+	MarketplaceOfferingUsersListParamsFieldModified                  MarketplaceOfferingUsersListParamsField = "modified"
+	MarketplaceOfferingUsersListParamsFieldOffering                  MarketplaceOfferingUsersListParamsField = "offering"
+	MarketplaceOfferingUsersListParamsFieldOfferingName              MarketplaceOfferingUsersListParamsField = "offering_name"
+	MarketplaceOfferingUsersListParamsFieldOfferingUuid              MarketplaceOfferingUsersListParamsField = "offering_uuid"
+	MarketplaceOfferingUsersListParamsFieldServiceProviderComment    MarketplaceOfferingUsersListParamsField = "service_provider_comment"
+	MarketplaceOfferingUsersListParamsFieldServiceProviderCommentUrl MarketplaceOfferingUsersListParamsField = "service_provider_comment_url"
+	MarketplaceOfferingUsersListParamsFieldState                     MarketplaceOfferingUsersListParamsField = "state"
+	MarketplaceOfferingUsersListParamsFieldUrl                       MarketplaceOfferingUsersListParamsField = "url"
+	MarketplaceOfferingUsersListParamsFieldUser                      MarketplaceOfferingUsersListParamsField = "user"
+	MarketplaceOfferingUsersListParamsFieldUserEmail                 MarketplaceOfferingUsersListParamsField = "user_email"
+	MarketplaceOfferingUsersListParamsFieldUserFullName              MarketplaceOfferingUsersListParamsField = "user_full_name"
+	MarketplaceOfferingUsersListParamsFieldUserUsername              MarketplaceOfferingUsersListParamsField = "user_username"
+	MarketplaceOfferingUsersListParamsFieldUserUuid                  MarketplaceOfferingUsersListParamsField = "user_uuid"
+	MarketplaceOfferingUsersListParamsFieldUsername                  MarketplaceOfferingUsersListParamsField = "username"
+	MarketplaceOfferingUsersListParamsFieldUuid                      MarketplaceOfferingUsersListParamsField = "uuid"
 )
 
 // Defines values for MarketplaceOfferingUsersListParamsO.
@@ -3592,7 +3594,8 @@ const (
 	MarketplaceOfferingUsersListParamsStateCreating                    MarketplaceOfferingUsersListParamsState = "Creating"
 	MarketplaceOfferingUsersListParamsStateDeleted                     MarketplaceOfferingUsersListParamsState = "Deleted"
 	MarketplaceOfferingUsersListParamsStateDeleting                    MarketplaceOfferingUsersListParamsState = "Deleting"
-	MarketplaceOfferingUsersListParamsStateError                       MarketplaceOfferingUsersListParamsState = "Error"
+	MarketplaceOfferingUsersListParamsStateErrorCreating               MarketplaceOfferingUsersListParamsState = "Error creating"
+	MarketplaceOfferingUsersListParamsStateErrorDeleting               MarketplaceOfferingUsersListParamsState = "Error deleting"
 	MarketplaceOfferingUsersListParamsStateOK                          MarketplaceOfferingUsersListParamsState = "OK"
 	MarketplaceOfferingUsersListParamsStatePendingAccountLinking       MarketplaceOfferingUsersListParamsState = "Pending account linking"
 	MarketplaceOfferingUsersListParamsStatePendingAdditionalValidation MarketplaceOfferingUsersListParamsState = "Pending additional validation"
@@ -3615,7 +3618,8 @@ const (
 	MarketplaceOfferingUsersHeadParamsStateCreating                    MarketplaceOfferingUsersHeadParamsState = "Creating"
 	MarketplaceOfferingUsersHeadParamsStateDeleted                     MarketplaceOfferingUsersHeadParamsState = "Deleted"
 	MarketplaceOfferingUsersHeadParamsStateDeleting                    MarketplaceOfferingUsersHeadParamsState = "Deleting"
-	MarketplaceOfferingUsersHeadParamsStateError                       MarketplaceOfferingUsersHeadParamsState = "Error"
+	MarketplaceOfferingUsersHeadParamsStateErrorCreating               MarketplaceOfferingUsersHeadParamsState = "Error creating"
+	MarketplaceOfferingUsersHeadParamsStateErrorDeleting               MarketplaceOfferingUsersHeadParamsState = "Error deleting"
 	MarketplaceOfferingUsersHeadParamsStateOK                          MarketplaceOfferingUsersHeadParamsState = "OK"
 	MarketplaceOfferingUsersHeadParamsStatePendingAccountLinking       MarketplaceOfferingUsersHeadParamsState = "Pending account linking"
 	MarketplaceOfferingUsersHeadParamsStatePendingAdditionalValidation MarketplaceOfferingUsersHeadParamsState = "Pending additional validation"
@@ -3625,24 +3629,25 @@ const (
 
 // Defines values for MarketplaceOfferingUsersRetrieveParamsField.
 const (
-	MarketplaceOfferingUsersRetrieveParamsFieldCreated                MarketplaceOfferingUsersRetrieveParamsField = "created"
-	MarketplaceOfferingUsersRetrieveParamsFieldCustomerName           MarketplaceOfferingUsersRetrieveParamsField = "customer_name"
-	MarketplaceOfferingUsersRetrieveParamsFieldCustomerUuid           MarketplaceOfferingUsersRetrieveParamsField = "customer_uuid"
-	MarketplaceOfferingUsersRetrieveParamsFieldIsRestricted           MarketplaceOfferingUsersRetrieveParamsField = "is_restricted"
-	MarketplaceOfferingUsersRetrieveParamsFieldModified               MarketplaceOfferingUsersRetrieveParamsField = "modified"
-	MarketplaceOfferingUsersRetrieveParamsFieldOffering               MarketplaceOfferingUsersRetrieveParamsField = "offering"
-	MarketplaceOfferingUsersRetrieveParamsFieldOfferingName           MarketplaceOfferingUsersRetrieveParamsField = "offering_name"
-	MarketplaceOfferingUsersRetrieveParamsFieldOfferingUuid           MarketplaceOfferingUsersRetrieveParamsField = "offering_uuid"
-	MarketplaceOfferingUsersRetrieveParamsFieldServiceProviderComment MarketplaceOfferingUsersRetrieveParamsField = "service_provider_comment"
-	MarketplaceOfferingUsersRetrieveParamsFieldState                  MarketplaceOfferingUsersRetrieveParamsField = "state"
-	MarketplaceOfferingUsersRetrieveParamsFieldUrl                    MarketplaceOfferingUsersRetrieveParamsField = "url"
-	MarketplaceOfferingUsersRetrieveParamsFieldUser                   MarketplaceOfferingUsersRetrieveParamsField = "user"
-	MarketplaceOfferingUsersRetrieveParamsFieldUserEmail              MarketplaceOfferingUsersRetrieveParamsField = "user_email"
-	MarketplaceOfferingUsersRetrieveParamsFieldUserFullName           MarketplaceOfferingUsersRetrieveParamsField = "user_full_name"
-	MarketplaceOfferingUsersRetrieveParamsFieldUserUsername           MarketplaceOfferingUsersRetrieveParamsField = "user_username"
-	MarketplaceOfferingUsersRetrieveParamsFieldUserUuid               MarketplaceOfferingUsersRetrieveParamsField = "user_uuid"
-	MarketplaceOfferingUsersRetrieveParamsFieldUsername               MarketplaceOfferingUsersRetrieveParamsField = "username"
-	MarketplaceOfferingUsersRetrieveParamsFieldUuid                   MarketplaceOfferingUsersRetrieveParamsField = "uuid"
+	MarketplaceOfferingUsersRetrieveParamsFieldCreated                   MarketplaceOfferingUsersRetrieveParamsField = "created"
+	MarketplaceOfferingUsersRetrieveParamsFieldCustomerName              MarketplaceOfferingUsersRetrieveParamsField = "customer_name"
+	MarketplaceOfferingUsersRetrieveParamsFieldCustomerUuid              MarketplaceOfferingUsersRetrieveParamsField = "customer_uuid"
+	MarketplaceOfferingUsersRetrieveParamsFieldIsRestricted              MarketplaceOfferingUsersRetrieveParamsField = "is_restricted"
+	MarketplaceOfferingUsersRetrieveParamsFieldModified                  MarketplaceOfferingUsersRetrieveParamsField = "modified"
+	MarketplaceOfferingUsersRetrieveParamsFieldOffering                  MarketplaceOfferingUsersRetrieveParamsField = "offering"
+	MarketplaceOfferingUsersRetrieveParamsFieldOfferingName              MarketplaceOfferingUsersRetrieveParamsField = "offering_name"
+	MarketplaceOfferingUsersRetrieveParamsFieldOfferingUuid              MarketplaceOfferingUsersRetrieveParamsField = "offering_uuid"
+	MarketplaceOfferingUsersRetrieveParamsFieldServiceProviderComment    MarketplaceOfferingUsersRetrieveParamsField = "service_provider_comment"
+	MarketplaceOfferingUsersRetrieveParamsFieldServiceProviderCommentUrl MarketplaceOfferingUsersRetrieveParamsField = "service_provider_comment_url"
+	MarketplaceOfferingUsersRetrieveParamsFieldState                     MarketplaceOfferingUsersRetrieveParamsField = "state"
+	MarketplaceOfferingUsersRetrieveParamsFieldUrl                       MarketplaceOfferingUsersRetrieveParamsField = "url"
+	MarketplaceOfferingUsersRetrieveParamsFieldUser                      MarketplaceOfferingUsersRetrieveParamsField = "user"
+	MarketplaceOfferingUsersRetrieveParamsFieldUserEmail                 MarketplaceOfferingUsersRetrieveParamsField = "user_email"
+	MarketplaceOfferingUsersRetrieveParamsFieldUserFullName              MarketplaceOfferingUsersRetrieveParamsField = "user_full_name"
+	MarketplaceOfferingUsersRetrieveParamsFieldUserUsername              MarketplaceOfferingUsersRetrieveParamsField = "user_username"
+	MarketplaceOfferingUsersRetrieveParamsFieldUserUuid                  MarketplaceOfferingUsersRetrieveParamsField = "user_uuid"
+	MarketplaceOfferingUsersRetrieveParamsFieldUsername                  MarketplaceOfferingUsersRetrieveParamsField = "username"
+	MarketplaceOfferingUsersRetrieveParamsFieldUuid                      MarketplaceOfferingUsersRetrieveParamsField = "uuid"
 )
 
 // Defines values for MarketplaceOrdersListParamsField.
@@ -14682,12 +14687,15 @@ type OfferingUser struct {
 	OfferingUuid *openapi_types.UUID `json:"offering_uuid,omitempty"`
 
 	// ServiceProviderComment Additional comment for pending states like validation or account linking
-	ServiceProviderComment *string                `json:"service_provider_comment,omitempty"`
-	State                  *OfferingUserStateEnum `json:"state,omitempty"`
-	Url                    *string                `json:"url,omitempty"`
-	User                   *string                `json:"user,omitempty"`
-	UserEmail              *openapi_types.Email   `json:"user_email,omitempty"`
-	UserFullName           *string                `json:"user_full_name,omitempty"`
+	ServiceProviderComment *string `json:"service_provider_comment,omitempty"`
+
+	// ServiceProviderCommentUrl URL link for additional information or actions related to service provider comment
+	ServiceProviderCommentUrl *string                `json:"service_provider_comment_url,omitempty"`
+	State                     *OfferingUserStateEnum `json:"state,omitempty"`
+	Url                       *string                `json:"url,omitempty"`
+	User                      *string                `json:"user,omitempty"`
+	UserEmail                 *openapi_types.Email   `json:"user_email,omitempty"`
+	UserFullName              *string                `json:"user_full_name,omitempty"`
 
 	// UserUsername Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
 	UserUsername *string             `json:"user_username,omitempty"`
@@ -14720,12 +14728,21 @@ type OfferingUserRoleRequest struct {
 	Offering string `json:"offering"`
 }
 
+// OfferingUserServiceProviderComment defines model for OfferingUserServiceProviderComment.
+type OfferingUserServiceProviderComment struct {
+	ServiceProviderComment *string `json:"service_provider_comment,omitempty"`
+
+	// ServiceProviderCommentUrl URL link for additional information or actions related to service provider comment
+	ServiceProviderCommentUrl *string `json:"service_provider_comment_url,omitempty"`
+}
+
 // OfferingUserStateEnum defines model for OfferingUserStateEnum.
 type OfferingUserStateEnum string
 
 // OfferingUserStateTransitionRequest defines model for OfferingUserStateTransitionRequest.
 type OfferingUserStateTransitionRequest struct {
-	Comment *string `json:"comment,omitempty"`
+	Comment    *string `json:"comment,omitempty"`
+	CommentUrl *string `json:"comment_url,omitempty"`
 }
 
 // OfferingUserUpdateRestrictionRequest defines model for OfferingUserUpdateRestrictionRequest.
@@ -16616,6 +16633,14 @@ type PatchedOfferingUserRequest struct {
 type PatchedOfferingUserRoleRequest struct {
 	Name     *string `json:"name,omitempty"`
 	Offering *string `json:"offering,omitempty"`
+}
+
+// PatchedOfferingUserServiceProviderCommentRequest defines model for PatchedOfferingUserServiceProviderCommentRequest.
+type PatchedOfferingUserServiceProviderCommentRequest struct {
+	ServiceProviderComment *string `json:"service_provider_comment,omitempty"`
+
+	// ServiceProviderCommentUrl URL link for additional information or actions related to service provider comment
+	ServiceProviderCommentUrl *string `json:"service_provider_comment_url,omitempty"`
 }
 
 // PatchedOpenStackBackupRequest defines model for PatchedOpenStackBackupRequest.
@@ -32378,6 +32403,9 @@ type MarketplaceOfferingUsersSetPendingAccountLinkingJSONRequestBody = OfferingU
 // MarketplaceOfferingUsersSetPendingAdditionalValidationJSONRequestBody defines body for MarketplaceOfferingUsersSetPendingAdditionalValidation for application/json ContentType.
 type MarketplaceOfferingUsersSetPendingAdditionalValidationJSONRequestBody = OfferingUserStateTransitionRequest
 
+// MarketplaceOfferingUsersUpdateCommentsPartialUpdateJSONRequestBody defines body for MarketplaceOfferingUsersUpdateCommentsPartialUpdate for application/json ContentType.
+type MarketplaceOfferingUsersUpdateCommentsPartialUpdateJSONRequestBody = PatchedOfferingUserServiceProviderCommentRequest
+
 // MarketplaceOfferingUsersUpdateRestrictedJSONRequestBody defines body for MarketplaceOfferingUsersUpdateRestricted for application/json ContentType.
 type MarketplaceOfferingUsersUpdateRestrictedJSONRequestBody = OfferingUserUpdateRestrictionRequest
 
@@ -38069,6 +38097,21 @@ type ClientInterface interface {
 	// MarketplaceOfferingUsersBeginCreating request
 	MarketplaceOfferingUsersBeginCreating(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceOfferingUsersRequestDeletion request
+	MarketplaceOfferingUsersRequestDeletion(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOfferingUsersSetDeleted request
+	MarketplaceOfferingUsersSetDeleted(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOfferingUsersSetDeleting request
+	MarketplaceOfferingUsersSetDeleting(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOfferingUsersSetErrorCreating request
+	MarketplaceOfferingUsersSetErrorCreating(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOfferingUsersSetErrorDeleting request
+	MarketplaceOfferingUsersSetErrorDeleting(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceOfferingUsersSetOk request
 	MarketplaceOfferingUsersSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -38084,6 +38127,11 @@ type ClientInterface interface {
 
 	// MarketplaceOfferingUsersSetValidationComplete request
 	MarketplaceOfferingUsersSetValidationComplete(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOfferingUsersUpdateCommentsPartialUpdateWithBody request with any body
+	MarketplaceOfferingUsersUpdateCommentsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceOfferingUsersUpdateCommentsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingUsersUpdateCommentsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceOfferingUsersUpdateRestrictedWithBody request with any body
 	MarketplaceOfferingUsersUpdateRestrictedWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -50055,6 +50103,66 @@ func (c *Client) MarketplaceOfferingUsersBeginCreating(ctx context.Context, uuid
 	return c.Client.Do(req)
 }
 
+func (c *Client) MarketplaceOfferingUsersRequestDeletion(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingUsersRequestDeletionRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOfferingUsersSetDeleted(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingUsersSetDeletedRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOfferingUsersSetDeleting(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingUsersSetDeletingRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOfferingUsersSetErrorCreating(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingUsersSetErrorCreatingRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOfferingUsersSetErrorDeleting(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingUsersSetErrorDeletingRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) MarketplaceOfferingUsersSetOk(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceOfferingUsersSetOkRequest(c.Server, uuid)
 	if err != nil {
@@ -50117,6 +50225,30 @@ func (c *Client) MarketplaceOfferingUsersSetPendingAdditionalValidation(ctx cont
 
 func (c *Client) MarketplaceOfferingUsersSetValidationComplete(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceOfferingUsersSetValidationCompleteRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOfferingUsersUpdateCommentsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingUsersUpdateCommentsPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOfferingUsersUpdateCommentsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingUsersUpdateCommentsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingUsersUpdateCommentsPartialUpdateRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -108792,6 +108924,176 @@ func NewMarketplaceOfferingUsersBeginCreatingRequest(server string, uuid openapi
 	return req, nil
 }
 
+// NewMarketplaceOfferingUsersRequestDeletionRequest generates requests for MarketplaceOfferingUsersRequestDeletion
+func NewMarketplaceOfferingUsersRequestDeletionRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-users/%s/request_deletion/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceOfferingUsersSetDeletedRequest generates requests for MarketplaceOfferingUsersSetDeleted
+func NewMarketplaceOfferingUsersSetDeletedRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-users/%s/set_deleted/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceOfferingUsersSetDeletingRequest generates requests for MarketplaceOfferingUsersSetDeleting
+func NewMarketplaceOfferingUsersSetDeletingRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-users/%s/set_deleting/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceOfferingUsersSetErrorCreatingRequest generates requests for MarketplaceOfferingUsersSetErrorCreating
+func NewMarketplaceOfferingUsersSetErrorCreatingRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-users/%s/set_error_creating/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceOfferingUsersSetErrorDeletingRequest generates requests for MarketplaceOfferingUsersSetErrorDeleting
+func NewMarketplaceOfferingUsersSetErrorDeletingRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-users/%s/set_error_deleting/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewMarketplaceOfferingUsersSetOkRequest generates requests for MarketplaceOfferingUsersSetOk
 func NewMarketplaceOfferingUsersSetOkRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -108950,6 +109252,53 @@ func NewMarketplaceOfferingUsersSetValidationCompleteRequest(server string, uuid
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewMarketplaceOfferingUsersUpdateCommentsPartialUpdateRequest calls the generic MarketplaceOfferingUsersUpdateCommentsPartialUpdate builder with application/json body
+func NewMarketplaceOfferingUsersUpdateCommentsPartialUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceOfferingUsersUpdateCommentsPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceOfferingUsersUpdateCommentsPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceOfferingUsersUpdateCommentsPartialUpdateRequestWithBody generates requests for MarketplaceOfferingUsersUpdateCommentsPartialUpdate with any type of body
+func NewMarketplaceOfferingUsersUpdateCommentsPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-users/%s/update_comments/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -193753,6 +194102,21 @@ type ClientWithResponsesInterface interface {
 	// MarketplaceOfferingUsersBeginCreatingWithResponse request
 	MarketplaceOfferingUsersBeginCreatingWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersBeginCreatingResponse, error)
 
+	// MarketplaceOfferingUsersRequestDeletionWithResponse request
+	MarketplaceOfferingUsersRequestDeletionWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersRequestDeletionResponse, error)
+
+	// MarketplaceOfferingUsersSetDeletedWithResponse request
+	MarketplaceOfferingUsersSetDeletedWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersSetDeletedResponse, error)
+
+	// MarketplaceOfferingUsersSetDeletingWithResponse request
+	MarketplaceOfferingUsersSetDeletingWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersSetDeletingResponse, error)
+
+	// MarketplaceOfferingUsersSetErrorCreatingWithResponse request
+	MarketplaceOfferingUsersSetErrorCreatingWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersSetErrorCreatingResponse, error)
+
+	// MarketplaceOfferingUsersSetErrorDeletingWithResponse request
+	MarketplaceOfferingUsersSetErrorDeletingWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersSetErrorDeletingResponse, error)
+
 	// MarketplaceOfferingUsersSetOkWithResponse request
 	MarketplaceOfferingUsersSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersSetOkResponse, error)
 
@@ -193768,6 +194132,11 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceOfferingUsersSetValidationCompleteWithResponse request
 	MarketplaceOfferingUsersSetValidationCompleteWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersSetValidationCompleteResponse, error)
+
+	// MarketplaceOfferingUsersUpdateCommentsPartialUpdateWithBodyWithResponse request with any body
+	MarketplaceOfferingUsersUpdateCommentsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersUpdateCommentsPartialUpdateResponse, error)
+
+	MarketplaceOfferingUsersUpdateCommentsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingUsersUpdateCommentsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersUpdateCommentsPartialUpdateResponse, error)
 
 	// MarketplaceOfferingUsersUpdateRestrictedWithBodyWithResponse request with any body
 	MarketplaceOfferingUsersUpdateRestrictedWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersUpdateRestrictedResponse, error)
@@ -209052,6 +209421,111 @@ func (r MarketplaceOfferingUsersBeginCreatingResponse) StatusCode() int {
 	return 0
 }
 
+type MarketplaceOfferingUsersRequestDeletionResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingUsersRequestDeletionResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingUsersRequestDeletionResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceOfferingUsersSetDeletedResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingUsersSetDeletedResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingUsersSetDeletedResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceOfferingUsersSetDeletingResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingUsersSetDeletingResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingUsersSetDeletingResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceOfferingUsersSetErrorCreatingResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingUsersSetErrorCreatingResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingUsersSetErrorCreatingResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceOfferingUsersSetErrorDeletingResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingUsersSetErrorDeletingResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingUsersSetErrorDeletingResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type MarketplaceOfferingUsersSetOkResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -209130,6 +209604,28 @@ func (r MarketplaceOfferingUsersSetValidationCompleteResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceOfferingUsersSetValidationCompleteResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceOfferingUsersUpdateCommentsPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OfferingUserServiceProviderComment
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingUsersUpdateCommentsPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingUsersUpdateCommentsPartialUpdateResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -235650,6 +236146,51 @@ func (c *ClientWithResponses) MarketplaceOfferingUsersBeginCreatingWithResponse(
 	return ParseMarketplaceOfferingUsersBeginCreatingResponse(rsp)
 }
 
+// MarketplaceOfferingUsersRequestDeletionWithResponse request returning *MarketplaceOfferingUsersRequestDeletionResponse
+func (c *ClientWithResponses) MarketplaceOfferingUsersRequestDeletionWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersRequestDeletionResponse, error) {
+	rsp, err := c.MarketplaceOfferingUsersRequestDeletion(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingUsersRequestDeletionResponse(rsp)
+}
+
+// MarketplaceOfferingUsersSetDeletedWithResponse request returning *MarketplaceOfferingUsersSetDeletedResponse
+func (c *ClientWithResponses) MarketplaceOfferingUsersSetDeletedWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersSetDeletedResponse, error) {
+	rsp, err := c.MarketplaceOfferingUsersSetDeleted(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingUsersSetDeletedResponse(rsp)
+}
+
+// MarketplaceOfferingUsersSetDeletingWithResponse request returning *MarketplaceOfferingUsersSetDeletingResponse
+func (c *ClientWithResponses) MarketplaceOfferingUsersSetDeletingWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersSetDeletingResponse, error) {
+	rsp, err := c.MarketplaceOfferingUsersSetDeleting(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingUsersSetDeletingResponse(rsp)
+}
+
+// MarketplaceOfferingUsersSetErrorCreatingWithResponse request returning *MarketplaceOfferingUsersSetErrorCreatingResponse
+func (c *ClientWithResponses) MarketplaceOfferingUsersSetErrorCreatingWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersSetErrorCreatingResponse, error) {
+	rsp, err := c.MarketplaceOfferingUsersSetErrorCreating(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingUsersSetErrorCreatingResponse(rsp)
+}
+
+// MarketplaceOfferingUsersSetErrorDeletingWithResponse request returning *MarketplaceOfferingUsersSetErrorDeletingResponse
+func (c *ClientWithResponses) MarketplaceOfferingUsersSetErrorDeletingWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersSetErrorDeletingResponse, error) {
+	rsp, err := c.MarketplaceOfferingUsersSetErrorDeleting(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingUsersSetErrorDeletingResponse(rsp)
+}
+
 // MarketplaceOfferingUsersSetOkWithResponse request returning *MarketplaceOfferingUsersSetOkResponse
 func (c *ClientWithResponses) MarketplaceOfferingUsersSetOkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersSetOkResponse, error) {
 	rsp, err := c.MarketplaceOfferingUsersSetOk(ctx, uuid, reqEditors...)
@@ -235700,6 +236241,23 @@ func (c *ClientWithResponses) MarketplaceOfferingUsersSetValidationCompleteWithR
 		return nil, err
 	}
 	return ParseMarketplaceOfferingUsersSetValidationCompleteResponse(rsp)
+}
+
+// MarketplaceOfferingUsersUpdateCommentsPartialUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceOfferingUsersUpdateCommentsPartialUpdateResponse
+func (c *ClientWithResponses) MarketplaceOfferingUsersUpdateCommentsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersUpdateCommentsPartialUpdateResponse, error) {
+	rsp, err := c.MarketplaceOfferingUsersUpdateCommentsPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingUsersUpdateCommentsPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceOfferingUsersUpdateCommentsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingUsersUpdateCommentsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersUpdateCommentsPartialUpdateResponse, error) {
+	rsp, err := c.MarketplaceOfferingUsersUpdateCommentsPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingUsersUpdateCommentsPartialUpdateResponse(rsp)
 }
 
 // MarketplaceOfferingUsersUpdateRestrictedWithBodyWithResponse request with arbitrary body returning *MarketplaceOfferingUsersUpdateRestrictedResponse
@@ -258799,6 +259357,86 @@ func ParseMarketplaceOfferingUsersBeginCreatingResponse(rsp *http.Response) (*Ma
 	return response, nil
 }
 
+// ParseMarketplaceOfferingUsersRequestDeletionResponse parses an HTTP response from a MarketplaceOfferingUsersRequestDeletionWithResponse call
+func ParseMarketplaceOfferingUsersRequestDeletionResponse(rsp *http.Response) (*MarketplaceOfferingUsersRequestDeletionResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingUsersRequestDeletionResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOfferingUsersSetDeletedResponse parses an HTTP response from a MarketplaceOfferingUsersSetDeletedWithResponse call
+func ParseMarketplaceOfferingUsersSetDeletedResponse(rsp *http.Response) (*MarketplaceOfferingUsersSetDeletedResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingUsersSetDeletedResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOfferingUsersSetDeletingResponse parses an HTTP response from a MarketplaceOfferingUsersSetDeletingWithResponse call
+func ParseMarketplaceOfferingUsersSetDeletingResponse(rsp *http.Response) (*MarketplaceOfferingUsersSetDeletingResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingUsersSetDeletingResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOfferingUsersSetErrorCreatingResponse parses an HTTP response from a MarketplaceOfferingUsersSetErrorCreatingWithResponse call
+func ParseMarketplaceOfferingUsersSetErrorCreatingResponse(rsp *http.Response) (*MarketplaceOfferingUsersSetErrorCreatingResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingUsersSetErrorCreatingResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOfferingUsersSetErrorDeletingResponse parses an HTTP response from a MarketplaceOfferingUsersSetErrorDeletingWithResponse call
+func ParseMarketplaceOfferingUsersSetErrorDeletingResponse(rsp *http.Response) (*MarketplaceOfferingUsersSetErrorDeletingResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingUsersSetErrorDeletingResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
 // ParseMarketplaceOfferingUsersSetOkResponse parses an HTTP response from a MarketplaceOfferingUsersSetOkWithResponse call
 func ParseMarketplaceOfferingUsersSetOkResponse(rsp *http.Response) (*MarketplaceOfferingUsersSetOkResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -258858,6 +259496,32 @@ func ParseMarketplaceOfferingUsersSetValidationCompleteResponse(rsp *http.Respon
 	response := &MarketplaceOfferingUsersSetValidationCompleteResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOfferingUsersUpdateCommentsPartialUpdateResponse parses an HTTP response from a MarketplaceOfferingUsersUpdateCommentsPartialUpdateWithResponse call
+func ParseMarketplaceOfferingUsersUpdateCommentsPartialUpdateResponse(rsp *http.Response) (*MarketplaceOfferingUsersUpdateCommentsPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingUsersUpdateCommentsPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OfferingUserServiceProviderComment
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
