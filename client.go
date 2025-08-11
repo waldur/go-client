@@ -92,6 +92,15 @@ const (
 	CallStatesDraft    CallStates = "draft"
 )
 
+// Defines values for ChecklistOperators.
+const (
+	Contains  ChecklistOperators = "contains"
+	Equals    ChecklistOperators = "equals"
+	In        ChecklistOperators = "in"
+	NotEquals ChecklistOperators = "not_equals"
+	NotIn     ChecklistOperators = "not_in"
+)
+
 // Defines values for ChecklistTypeEnum.
 const (
 	OfferingCompliance ChecklistTypeEnum = "offering_compliance"
@@ -837,15 +846,6 @@ const (
 	OfferingUserStateEnumPendingAdditionalValidation OfferingUserStateEnum = "Pending additional validation"
 	OfferingUserStateEnumRequested                   OfferingUserStateEnum = "Requested"
 	OfferingUserStateEnumRequestedDeletion           OfferingUserStateEnum = "Requested deletion"
-)
-
-// Defines values for OperatorEnum.
-const (
-	Contains  OperatorEnum = "contains"
-	Equals    OperatorEnum = "equals"
-	In        OperatorEnum = "in"
-	NotEquals OperatorEnum = "not_equals"
-	NotIn     OperatorEnum = "not_in"
 )
 
 // Defines values for OptionFieldTypeEnum.
@@ -10909,11 +10909,15 @@ type CategorySerializerForForNestedFieldsRequest struct {
 	Title string `json:"title"`
 }
 
-// ChecklistAdmin defines model for ChecklistAdmin.
-type ChecklistAdmin struct {
-	CategoryName   *string             `json:"category_name,omitempty"`
-	CategoryUuid   *openapi_types.UUID `json:"category_uuid,omitempty"`
-	ChecklistType  *string             `json:"checklist_type,omitempty"`
+// Checklist defines model for Checklist.
+type Checklist struct {
+	// Category Category of the checklist
+	Category     *openapi_types.UUID `json:"category"`
+	CategoryName *string             `json:"category_name,omitempty"`
+	CategoryUuid *openapi_types.UUID `json:"category_uuid,omitempty"`
+
+	// ChecklistType Type of compliance this checklist addresses
+	ChecklistType  *ChecklistTypeEnum  `json:"checklist_type,omitempty"`
 	Description    *string             `json:"description,omitempty"`
 	Name           string              `json:"name"`
 	QuestionsCount *int                `json:"questions_count,omitempty"`
@@ -10929,6 +10933,13 @@ type ChecklistCategory struct {
 	Name            string              `json:"name"`
 	Url             *string             `json:"url,omitempty"`
 	Uuid            *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// ChecklistCategoryRequest defines model for ChecklistCategoryRequest.
+type ChecklistCategoryRequest struct {
+	Description *string             `json:"description,omitempty"`
+	Icon        *openapi_types.File `json:"icon"`
+	Name        string              `json:"name"`
 }
 
 // ChecklistCompletion defines model for ChecklistCompletion.
@@ -10969,6 +10980,20 @@ type ChecklistCompletionReviewer struct {
 	ReviewedByName              *string             `json:"reviewed_by_name,omitempty"`
 	UnansweredRequiredQuestions *[]interface{}      `json:"unanswered_required_questions,omitempty"`
 	Uuid                        *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// ChecklistOperators defines model for ChecklistOperators.
+type ChecklistOperators string
+
+// ChecklistRequest defines model for ChecklistRequest.
+type ChecklistRequest struct {
+	// Category Category of the checklist
+	Category *openapi_types.UUID `json:"category"`
+
+	// ChecklistType Type of compliance this checklist addresses
+	ChecklistType *ChecklistTypeEnum `json:"checklist_type,omitempty"`
+	Description   *string            `json:"description,omitempty"`
+	Name          string             `json:"name"`
 }
 
 // ChecklistResponse defines model for ChecklistResponse.
@@ -11534,25 +11559,6 @@ type CountryEnum string
 // CreateAttachmentsRequest defines model for CreateAttachmentsRequest.
 type CreateAttachmentsRequest struct {
 	Attachments []openapi_types.File `json:"attachments"`
-}
-
-// CreateChecklist defines model for CreateChecklist.
-type CreateChecklist struct {
-	CategoryName   *string             `json:"category_name,omitempty"`
-	CategoryUuid   *openapi_types.UUID `json:"category_uuid,omitempty"`
-	ChecklistType  ChecklistTypeEnum   `json:"checklist_type"`
-	Description    *string             `json:"description,omitempty"`
-	Name           string              `json:"name"`
-	QuestionsCount *int                `json:"questions_count,omitempty"`
-	Url            *string             `json:"url,omitempty"`
-	Uuid           *openapi_types.UUID `json:"uuid,omitempty"`
-}
-
-// CreateChecklistRequest defines model for CreateChecklistRequest.
-type CreateChecklistRequest struct {
-	ChecklistType ChecklistTypeEnum `json:"checklist_type"`
-	Description   *string           `json:"description,omitempty"`
-	Name          string            `json:"name"`
 }
 
 // CreateCustomerCredit defines model for CreateCustomerCredit.
@@ -15950,9 +15956,6 @@ type OpenStackVolumeType struct {
 	Uuid        *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
-// OperatorEnum defines model for OperatorEnum.
-type OperatorEnum string
-
 // OptionField defines model for OptionField.
 type OptionField struct {
 	Choices  *[]string           `json:"choices,omitempty"`
@@ -16315,6 +16318,24 @@ type PatchedCategoryHelpArticlesRequest struct {
 	Url        *string                                        `json:"url,omitempty"`
 }
 
+// PatchedChecklistCategoryRequest defines model for PatchedChecklistCategoryRequest.
+type PatchedChecklistCategoryRequest struct {
+	Description *string             `json:"description,omitempty"`
+	Icon        *openapi_types.File `json:"icon"`
+	Name        *string             `json:"name,omitempty"`
+}
+
+// PatchedChecklistRequest defines model for PatchedChecklistRequest.
+type PatchedChecklistRequest struct {
+	// Category Category of the checklist
+	Category *openapi_types.UUID `json:"category"`
+
+	// ChecklistType Type of compliance this checklist addresses
+	ChecklistType *ChecklistTypeEnum `json:"checklist_type,omitempty"`
+	Description   *string            `json:"description,omitempty"`
+	Name          *string            `json:"name,omitempty"`
+}
+
 // PatchedClusterSecurityGroupRequest defines model for PatchedClusterSecurityGroupRequest.
 type PatchedClusterSecurityGroupRequest struct {
 	Rules *[]RancherClusterSecurityGroupRuleRequest `json:"rules,omitempty"`
@@ -16332,13 +16353,6 @@ type PatchedComponentUserUsageLimitRequest struct {
 	Limit     *string             `json:"limit,omitempty"`
 	Resource  *string             `json:"resource,omitempty"`
 	User      *string             `json:"user,omitempty"`
-}
-
-// PatchedCreateChecklistRequest defines model for PatchedCreateChecklistRequest.
-type PatchedCreateChecklistRequest struct {
-	ChecklistType *ChecklistTypeEnum `json:"checklist_type,omitempty"`
-	Description   *string            `json:"description,omitempty"`
-	Name          *string            `json:"name,omitempty"`
 }
 
 // PatchedCreateCustomerCreditRequest defines model for PatchedCreateCustomerCreditRequest.
@@ -16882,12 +16896,26 @@ type PatchedProviderPlanDetailsRequest struct {
 // PatchedQuestionAdminRequest defines model for PatchedQuestionAdminRequest.
 type PatchedQuestionAdminRequest struct {
 	// AlwaysRequiresReview This question always requires review regardless of answer
-	AlwaysRequiresReview *bool                                 `json:"always_requires_review,omitempty"`
-	Checklist            *string                               `json:"checklist,omitempty"`
-	Description          *string                               `json:"description,omitempty"`
-	Image                *openapi_types.File                   `json:"image"`
-	Operator             *PatchedQuestionAdminRequest_Operator `json:"operator,omitempty"`
-	Order                *int                                  `json:"order,omitempty"`
+	AlwaysRequiresReview *bool `json:"always_requires_review,omitempty"`
+
+	// AlwaysShowGuidance Show user guidance always, regardless of answer. If False, guidance is conditional on answer matching guidance_answer_value with guidance_operator
+	AlwaysShowGuidance *bool   `json:"always_show_guidance,omitempty"`
+	Checklist          *string `json:"checklist,omitempty"`
+	Description        *string `json:"description,omitempty"`
+
+	// GuidanceAnswerValue Answer value that triggers display of user guidance.
+	GuidanceAnswerValue interface{} `json:"guidance_answer_value"`
+
+	// GuidanceOperator Operator to use when comparing answer with guidance_answer_value
+	GuidanceOperator *PatchedQuestionAdminRequest_GuidanceOperator `json:"guidance_operator,omitempty"`
+
+	// MaxValue Maximum value allowed for NUMBER type questions
+	MaxValue *string `json:"max_value"`
+
+	// MinValue Minimum value allowed for NUMBER type questions
+	MinValue *string                               `json:"min_value"`
+	Operator *PatchedQuestionAdminRequest_Operator `json:"operator,omitempty"`
+	Order    *int                                  `json:"order,omitempty"`
 
 	// QuestionType Type of question and expected answer format
 	QuestionType *QuestionTypeEnum `json:"question_type,omitempty"`
@@ -16895,6 +16923,14 @@ type PatchedQuestionAdminRequest struct {
 
 	// ReviewAnswerValue Answer value that trigger review.
 	ReviewAnswerValue interface{} `json:"review_answer_value"`
+
+	// UserGuidance Additional guidance text visible to users when answering and reviewing
+	UserGuidance *string `json:"user_guidance,omitempty"`
+}
+
+// PatchedQuestionAdminRequest_GuidanceOperator Operator to use when comparing answer with guidance_answer_value
+type PatchedQuestionAdminRequest_GuidanceOperator struct {
+	union json.RawMessage
 }
 
 // PatchedQuestionAdminRequest_Operator defines model for PatchedQuestionAdminRequest.Operator.
@@ -16904,9 +16940,9 @@ type PatchedQuestionAdminRequest_Operator struct {
 
 // PatchedQuestionDependencyRequest defines model for PatchedQuestionDependencyRequest.
 type PatchedQuestionDependencyRequest struct {
-	DependsOnQuestion *string       `json:"depends_on_question,omitempty"`
-	Operator          *OperatorEnum `json:"operator,omitempty"`
-	Question          *string       `json:"question,omitempty"`
+	DependsOnQuestion *string             `json:"depends_on_question,omitempty"`
+	Operator          *ChecklistOperators `json:"operator,omitempty"`
+	Question          *string             `json:"question,omitempty"`
 
 	// RequiredAnswerValue The answer value(s) that make this question visible
 	RequiredAnswerValue interface{} `json:"required_answer_value,omitempty"`
@@ -18274,24 +18310,46 @@ type QueryRequest struct {
 // QuestionAdmin defines model for QuestionAdmin.
 type QuestionAdmin struct {
 	// AlwaysRequiresReview This question always requires review regardless of answer
-	AlwaysRequiresReview *bool                   `json:"always_requires_review,omitempty"`
-	Checklist            string                  `json:"checklist"`
-	ChecklistName        *openapi_types.UUID     `json:"checklist_name,omitempty"`
-	ChecklistUuid        *openapi_types.UUID     `json:"checklist_uuid,omitempty"`
-	Description          *string                 `json:"description,omitempty"`
-	Image                *string                 `json:"image"`
-	Operator             *QuestionAdmin_Operator `json:"operator,omitempty"`
-	Order                *int                    `json:"order,omitempty"`
-	QuestionOptions      *[]QuestionOptionsAdmin `json:"question_options,omitempty"`
+	AlwaysRequiresReview *bool `json:"always_requires_review,omitempty"`
+
+	// AlwaysShowGuidance Show user guidance always, regardless of answer. If False, guidance is conditional on answer matching guidance_answer_value with guidance_operator
+	AlwaysShowGuidance *bool               `json:"always_show_guidance,omitempty"`
+	Checklist          string              `json:"checklist"`
+	ChecklistName      *string             `json:"checklist_name,omitempty"`
+	ChecklistUuid      *openapi_types.UUID `json:"checklist_uuid,omitempty"`
+	Description        *string             `json:"description,omitempty"`
+
+	// GuidanceAnswerValue Answer value that triggers display of user guidance.
+	GuidanceAnswerValue interface{} `json:"guidance_answer_value"`
+
+	// GuidanceOperator Operator to use when comparing answer with guidance_answer_value
+	GuidanceOperator *QuestionAdmin_GuidanceOperator `json:"guidance_operator,omitempty"`
+
+	// MaxValue Maximum value allowed for NUMBER type questions
+	MaxValue *string `json:"max_value"`
+
+	// MinValue Minimum value allowed for NUMBER type questions
+	MinValue        *string                 `json:"min_value"`
+	Operator        *QuestionAdmin_Operator `json:"operator,omitempty"`
+	Order           *int                    `json:"order,omitempty"`
+	QuestionOptions *[]QuestionOptionsAdmin `json:"question_options,omitempty"`
 
 	// QuestionType Type of question and expected answer format
 	QuestionType *QuestionTypeEnum `json:"question_type,omitempty"`
 	Required     *bool             `json:"required,omitempty"`
 
 	// ReviewAnswerValue Answer value that trigger review.
-	ReviewAnswerValue interface{}         `json:"review_answer_value"`
-	Url               *string             `json:"url,omitempty"`
-	Uuid              *openapi_types.UUID `json:"uuid,omitempty"`
+	ReviewAnswerValue interface{} `json:"review_answer_value"`
+	Url               *string     `json:"url,omitempty"`
+
+	// UserGuidance Additional guidance text visible to users when answering and reviewing
+	UserGuidance *string             `json:"user_guidance,omitempty"`
+	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// QuestionAdmin_GuidanceOperator Operator to use when comparing answer with guidance_answer_value
+type QuestionAdmin_GuidanceOperator struct {
+	union json.RawMessage
 }
 
 // QuestionAdmin_Operator defines model for QuestionAdmin.Operator.
@@ -18302,12 +18360,26 @@ type QuestionAdmin_Operator struct {
 // QuestionAdminRequest defines model for QuestionAdminRequest.
 type QuestionAdminRequest struct {
 	// AlwaysRequiresReview This question always requires review regardless of answer
-	AlwaysRequiresReview *bool                          `json:"always_requires_review,omitempty"`
-	Checklist            string                         `json:"checklist"`
-	Description          *string                        `json:"description,omitempty"`
-	Image                *openapi_types.File            `json:"image"`
-	Operator             *QuestionAdminRequest_Operator `json:"operator,omitempty"`
-	Order                *int                           `json:"order,omitempty"`
+	AlwaysRequiresReview *bool `json:"always_requires_review,omitempty"`
+
+	// AlwaysShowGuidance Show user guidance always, regardless of answer. If False, guidance is conditional on answer matching guidance_answer_value with guidance_operator
+	AlwaysShowGuidance *bool   `json:"always_show_guidance,omitempty"`
+	Checklist          string  `json:"checklist"`
+	Description        *string `json:"description,omitempty"`
+
+	// GuidanceAnswerValue Answer value that triggers display of user guidance.
+	GuidanceAnswerValue interface{} `json:"guidance_answer_value"`
+
+	// GuidanceOperator Operator to use when comparing answer with guidance_answer_value
+	GuidanceOperator *QuestionAdminRequest_GuidanceOperator `json:"guidance_operator,omitempty"`
+
+	// MaxValue Maximum value allowed for NUMBER type questions
+	MaxValue *string `json:"max_value"`
+
+	// MinValue Minimum value allowed for NUMBER type questions
+	MinValue *string                        `json:"min_value"`
+	Operator *QuestionAdminRequest_Operator `json:"operator,omitempty"`
+	Order    *int                           `json:"order,omitempty"`
 
 	// QuestionType Type of question and expected answer format
 	QuestionType *QuestionTypeEnum `json:"question_type,omitempty"`
@@ -18315,6 +18387,14 @@ type QuestionAdminRequest struct {
 
 	// ReviewAnswerValue Answer value that trigger review.
 	ReviewAnswerValue interface{} `json:"review_answer_value"`
+
+	// UserGuidance Additional guidance text visible to users when answering and reviewing
+	UserGuidance *string `json:"user_guidance,omitempty"`
+}
+
+// QuestionAdminRequest_GuidanceOperator Operator to use when comparing answer with guidance_answer_value
+type QuestionAdminRequest_GuidanceOperator struct {
+	union json.RawMessage
 }
 
 // QuestionAdminRequest_Operator defines model for QuestionAdminRequest.Operator.
@@ -18324,11 +18404,11 @@ type QuestionAdminRequest_Operator struct {
 
 // QuestionDependency defines model for QuestionDependency.
 type QuestionDependency struct {
-	DependsOnQuestion     string        `json:"depends_on_question"`
-	DependsOnQuestionName *string       `json:"depends_on_question_name,omitempty"`
-	Operator              *OperatorEnum `json:"operator,omitempty"`
-	Question              string        `json:"question"`
-	QuestionName          *string       `json:"question_name,omitempty"`
+	DependsOnQuestion     string              `json:"depends_on_question"`
+	DependsOnQuestionName *string             `json:"depends_on_question_name,omitempty"`
+	Operator              *ChecklistOperators `json:"operator,omitempty"`
+	Question              string              `json:"question"`
+	QuestionName          *string             `json:"question_name,omitempty"`
 
 	// RequiredAnswerValue The answer value(s) that make this question visible
 	RequiredAnswerValue interface{}         `json:"required_answer_value"`
@@ -18338,9 +18418,9 @@ type QuestionDependency struct {
 
 // QuestionDependencyRequest defines model for QuestionDependencyRequest.
 type QuestionDependencyRequest struct {
-	DependsOnQuestion string        `json:"depends_on_question"`
-	Operator          *OperatorEnum `json:"operator,omitempty"`
-	Question          string        `json:"question"`
+	DependsOnQuestion string              `json:"depends_on_question"`
+	Operator          *ChecklistOperators `json:"operator,omitempty"`
+	Question          string              `json:"question"`
 
 	// RequiredAnswerValue The answer value(s) that make this question visible
 	RequiredAnswerValue interface{} `json:"required_answer_value"`
@@ -18368,26 +18448,39 @@ type QuestionTypeEnum string
 
 // QuestionWithAnswer defines model for QuestionWithAnswer.
 type QuestionWithAnswer struct {
-	Description     *string                 `json:"description,omitempty"`
-	ExistingAnswer  *map[string]interface{} `json:"existing_answer"`
-	Order           *int                    `json:"order,omitempty"`
-	QuestionOptions *[]interface{}          `json:"question_options"`
+	Description    *string                 `json:"description,omitempty"`
+	ExistingAnswer *map[string]interface{} `json:"existing_answer"`
+
+	// MaxValue Maximum value allowed for NUMBER type questions
+	MaxValue *string `json:"max_value"`
+
+	// MinValue Minimum value allowed for NUMBER type questions
+	MinValue        *string        `json:"min_value"`
+	Order           *int           `json:"order,omitempty"`
+	QuestionOptions *[]interface{} `json:"question_options"`
 
 	// QuestionType Type of question and expected answer format
 	QuestionType *QuestionTypeEnum   `json:"question_type,omitempty"`
 	Required     *bool               `json:"required,omitempty"`
+	UserGuidance *string             `json:"user_guidance"`
 	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // QuestionWithAnswerReviewer defines model for QuestionWithAnswerReviewer.
 type QuestionWithAnswerReviewer struct {
 	// AlwaysRequiresReview This question always requires review regardless of answer
-	AlwaysRequiresReview *bool                                `json:"always_requires_review,omitempty"`
-	Description          *string                              `json:"description,omitempty"`
-	ExistingAnswer       *map[string]interface{}              `json:"existing_answer"`
-	Operator             *QuestionWithAnswerReviewer_Operator `json:"operator,omitempty"`
-	Order                *int                                 `json:"order,omitempty"`
-	QuestionOptions      *[]interface{}                       `json:"question_options"`
+	AlwaysRequiresReview *bool                   `json:"always_requires_review,omitempty"`
+	Description          *string                 `json:"description,omitempty"`
+	ExistingAnswer       *map[string]interface{} `json:"existing_answer"`
+
+	// MaxValue Maximum value allowed for NUMBER type questions
+	MaxValue *string `json:"max_value"`
+
+	// MinValue Minimum value allowed for NUMBER type questions
+	MinValue        *string                              `json:"min_value"`
+	Operator        *QuestionWithAnswerReviewer_Operator `json:"operator,omitempty"`
+	Order           *int                                 `json:"order,omitempty"`
+	QuestionOptions *[]interface{}                       `json:"question_options"`
 
 	// QuestionType Type of question and expected answer format
 	QuestionType *QuestionTypeEnum `json:"question_type,omitempty"`
@@ -18395,6 +18488,7 @@ type QuestionWithAnswerReviewer struct {
 
 	// ReviewAnswerValue Answer value that trigger review.
 	ReviewAnswerValue interface{}         `json:"review_answer_value"`
+	UserGuidance      *string             `json:"user_guidance"`
 	Uuid              *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
@@ -22230,6 +22324,117 @@ type CallRoundsReviewersListParams struct {
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 }
 
+// ChecklistsAdminCategoriesListParams defines parameters for ChecklistsAdminCategoriesList.
+type ChecklistsAdminCategoriesListParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// ChecklistsAdminCategoriesCountParams defines parameters for ChecklistsAdminCategoriesCount.
+type ChecklistsAdminCategoriesCountParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// ChecklistsAdminQuestionDependenciesListParams defines parameters for ChecklistsAdminQuestionDependenciesList.
+type ChecklistsAdminQuestionDependenciesListParams struct {
+	DependsOnQuestionUuid *openapi_types.UUID `form:"depends_on_question_uuid,omitempty" json:"depends_on_question_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	QuestionUuid *openapi_types.UUID `form:"question_uuid,omitempty" json:"question_uuid,omitempty"`
+}
+
+// ChecklistsAdminQuestionDependenciesCountParams defines parameters for ChecklistsAdminQuestionDependenciesCount.
+type ChecklistsAdminQuestionDependenciesCountParams struct {
+	DependsOnQuestionUuid *openapi_types.UUID `form:"depends_on_question_uuid,omitempty" json:"depends_on_question_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	QuestionUuid *openapi_types.UUID `form:"question_uuid,omitempty" json:"question_uuid,omitempty"`
+}
+
+// ChecklistsAdminQuestionOptionsListParams defines parameters for ChecklistsAdminQuestionOptionsList.
+type ChecklistsAdminQuestionOptionsListParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	QuestionUuid *openapi_types.UUID `form:"question_uuid,omitempty" json:"question_uuid,omitempty"`
+}
+
+// ChecklistsAdminQuestionOptionsCountParams defines parameters for ChecklistsAdminQuestionOptionsCount.
+type ChecklistsAdminQuestionOptionsCountParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	QuestionUuid *openapi_types.UUID `form:"question_uuid,omitempty" json:"question_uuid,omitempty"`
+}
+
+// ChecklistsAdminQuestionsListParams defines parameters for ChecklistsAdminQuestionsList.
+type ChecklistsAdminQuestionsListParams struct {
+	ChecklistUuid *openapi_types.UUID `form:"checklist_uuid,omitempty" json:"checklist_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// ChecklistsAdminQuestionsCountParams defines parameters for ChecklistsAdminQuestionsCount.
+type ChecklistsAdminQuestionsCountParams struct {
+	ChecklistUuid *openapi_types.UUID `form:"checklist_uuid,omitempty" json:"checklist_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// ChecklistsAdminListParams defines parameters for ChecklistsAdminList.
+type ChecklistsAdminListParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// ChecklistsAdminCountParams defines parameters for ChecklistsAdminCount.
+type ChecklistsAdminCountParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// ChecklistsAdminChecklistQuestionsParams defines parameters for ChecklistsAdminChecklistQuestions.
+type ChecklistsAdminChecklistQuestionsParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
 // ComponentUserUsageLimitsListParams defines parameters for ComponentUserUsageLimitsList.
 type ComponentUserUsageLimitsListParams struct {
 	ComponentType *string             `form:"component_type,omitempty" json:"component_type,omitempty"`
@@ -24041,108 +24246,6 @@ type MarketplaceCategoryHelpArticlesListParams struct {
 
 // MarketplaceCategoryHelpArticlesCountParams defines parameters for MarketplaceCategoryHelpArticlesCount.
 type MarketplaceCategoryHelpArticlesCountParams struct {
-	// Page A page number within the paginated result set.
-	Page *Page `form:"page,omitempty" json:"page,omitempty"`
-
-	// PageSize Number of results to return per page.
-	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-}
-
-// MarketplaceChecklistsAdminQuestionDependenciesListParams defines parameters for MarketplaceChecklistsAdminQuestionDependenciesList.
-type MarketplaceChecklistsAdminQuestionDependenciesListParams struct {
-	DependsOnQuestionUuid *openapi_types.UUID `form:"depends_on_question_uuid,omitempty" json:"depends_on_question_uuid,omitempty"`
-
-	// Page A page number within the paginated result set.
-	Page *Page `form:"page,omitempty" json:"page,omitempty"`
-
-	// PageSize Number of results to return per page.
-	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	QuestionUuid *openapi_types.UUID `form:"question_uuid,omitempty" json:"question_uuid,omitempty"`
-}
-
-// MarketplaceChecklistsAdminQuestionDependenciesCountParams defines parameters for MarketplaceChecklistsAdminQuestionDependenciesCount.
-type MarketplaceChecklistsAdminQuestionDependenciesCountParams struct {
-	DependsOnQuestionUuid *openapi_types.UUID `form:"depends_on_question_uuid,omitempty" json:"depends_on_question_uuid,omitempty"`
-
-	// Page A page number within the paginated result set.
-	Page *Page `form:"page,omitempty" json:"page,omitempty"`
-
-	// PageSize Number of results to return per page.
-	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	QuestionUuid *openapi_types.UUID `form:"question_uuid,omitempty" json:"question_uuid,omitempty"`
-}
-
-// MarketplaceChecklistsAdminQuestionOptionsListParams defines parameters for MarketplaceChecklistsAdminQuestionOptionsList.
-type MarketplaceChecklistsAdminQuestionOptionsListParams struct {
-	// Page A page number within the paginated result set.
-	Page *Page `form:"page,omitempty" json:"page,omitempty"`
-
-	// PageSize Number of results to return per page.
-	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	QuestionUuid *openapi_types.UUID `form:"question_uuid,omitempty" json:"question_uuid,omitempty"`
-}
-
-// MarketplaceChecklistsAdminQuestionOptionsCountParams defines parameters for MarketplaceChecklistsAdminQuestionOptionsCount.
-type MarketplaceChecklistsAdminQuestionOptionsCountParams struct {
-	// Page A page number within the paginated result set.
-	Page *Page `form:"page,omitempty" json:"page,omitempty"`
-
-	// PageSize Number of results to return per page.
-	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	QuestionUuid *openapi_types.UUID `form:"question_uuid,omitempty" json:"question_uuid,omitempty"`
-}
-
-// MarketplaceChecklistsAdminQuestionsListParams defines parameters for MarketplaceChecklistsAdminQuestionsList.
-type MarketplaceChecklistsAdminQuestionsListParams struct {
-	ChecklistUuid *openapi_types.UUID `form:"checklist_uuid,omitempty" json:"checklist_uuid,omitempty"`
-
-	// Page A page number within the paginated result set.
-	Page *Page `form:"page,omitempty" json:"page,omitempty"`
-
-	// PageSize Number of results to return per page.
-	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-}
-
-// MarketplaceChecklistsAdminQuestionsCountParams defines parameters for MarketplaceChecklistsAdminQuestionsCount.
-type MarketplaceChecklistsAdminQuestionsCountParams struct {
-	ChecklistUuid *openapi_types.UUID `form:"checklist_uuid,omitempty" json:"checklist_uuid,omitempty"`
-
-	// Page A page number within the paginated result set.
-	Page *Page `form:"page,omitempty" json:"page,omitempty"`
-
-	// PageSize Number of results to return per page.
-	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-}
-
-// MarketplaceChecklistsAdminListParams defines parameters for MarketplaceChecklistsAdminList.
-type MarketplaceChecklistsAdminListParams struct {
-	// Page A page number within the paginated result set.
-	Page *Page `form:"page,omitempty" json:"page,omitempty"`
-
-	// PageSize Number of results to return per page.
-	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-}
-
-// MarketplaceChecklistsAdminCountParams defines parameters for MarketplaceChecklistsAdminCount.
-type MarketplaceChecklistsAdminCountParams struct {
-	// Page A page number within the paginated result set.
-	Page *Page `form:"page,omitempty" json:"page,omitempty"`
-
-	// PageSize Number of results to return per page.
-	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-}
-
-// MarketplaceChecklistsAdminChecklistQuestionsParams defines parameters for MarketplaceChecklistsAdminChecklistQuestions.
-type MarketplaceChecklistsAdminChecklistQuestionsParams struct {
-	// Page A page number within the paginated result set.
-	Page *Page `form:"page,omitempty" json:"page,omitempty"`
-
-	// PageSize Number of results to return per page.
-	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-}
-
-// MarketplaceChecklistsCategoriesListParams defines parameters for MarketplaceChecklistsCategoriesList.
-type MarketplaceChecklistsCategoriesListParams struct {
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
@@ -32064,6 +32167,51 @@ type CallProposalProjectRoleMappingsPartialUpdateJSONRequestBody = PatchedPropos
 // CallProposalProjectRoleMappingsUpdateJSONRequestBody defines body for CallProposalProjectRoleMappingsUpdate for application/json ContentType.
 type CallProposalProjectRoleMappingsUpdateJSONRequestBody = ProposalProjectRoleMappingRequest
 
+// ChecklistsAdminCategoriesCreateJSONRequestBody defines body for ChecklistsAdminCategoriesCreate for application/json ContentType.
+type ChecklistsAdminCategoriesCreateJSONRequestBody = ChecklistCategoryRequest
+
+// ChecklistsAdminCategoriesPartialUpdateJSONRequestBody defines body for ChecklistsAdminCategoriesPartialUpdate for application/json ContentType.
+type ChecklistsAdminCategoriesPartialUpdateJSONRequestBody = PatchedChecklistCategoryRequest
+
+// ChecklistsAdminCategoriesUpdateJSONRequestBody defines body for ChecklistsAdminCategoriesUpdate for application/json ContentType.
+type ChecklistsAdminCategoriesUpdateJSONRequestBody = ChecklistCategoryRequest
+
+// ChecklistsAdminQuestionDependenciesCreateJSONRequestBody defines body for ChecklistsAdminQuestionDependenciesCreate for application/json ContentType.
+type ChecklistsAdminQuestionDependenciesCreateJSONRequestBody = QuestionDependencyRequest
+
+// ChecklistsAdminQuestionDependenciesPartialUpdateJSONRequestBody defines body for ChecklistsAdminQuestionDependenciesPartialUpdate for application/json ContentType.
+type ChecklistsAdminQuestionDependenciesPartialUpdateJSONRequestBody = PatchedQuestionDependencyRequest
+
+// ChecklistsAdminQuestionDependenciesUpdateJSONRequestBody defines body for ChecklistsAdminQuestionDependenciesUpdate for application/json ContentType.
+type ChecklistsAdminQuestionDependenciesUpdateJSONRequestBody = QuestionDependencyRequest
+
+// ChecklistsAdminQuestionOptionsCreateJSONRequestBody defines body for ChecklistsAdminQuestionOptionsCreate for application/json ContentType.
+type ChecklistsAdminQuestionOptionsCreateJSONRequestBody = QuestionOptionsAdminRequest
+
+// ChecklistsAdminQuestionOptionsPartialUpdateJSONRequestBody defines body for ChecklistsAdminQuestionOptionsPartialUpdate for application/json ContentType.
+type ChecklistsAdminQuestionOptionsPartialUpdateJSONRequestBody = PatchedQuestionOptionsAdminRequest
+
+// ChecklistsAdminQuestionOptionsUpdateJSONRequestBody defines body for ChecklistsAdminQuestionOptionsUpdate for application/json ContentType.
+type ChecklistsAdminQuestionOptionsUpdateJSONRequestBody = QuestionOptionsAdminRequest
+
+// ChecklistsAdminQuestionsCreateJSONRequestBody defines body for ChecklistsAdminQuestionsCreate for application/json ContentType.
+type ChecklistsAdminQuestionsCreateJSONRequestBody = QuestionAdminRequest
+
+// ChecklistsAdminQuestionsPartialUpdateJSONRequestBody defines body for ChecklistsAdminQuestionsPartialUpdate for application/json ContentType.
+type ChecklistsAdminQuestionsPartialUpdateJSONRequestBody = PatchedQuestionAdminRequest
+
+// ChecklistsAdminQuestionsUpdateJSONRequestBody defines body for ChecklistsAdminQuestionsUpdate for application/json ContentType.
+type ChecklistsAdminQuestionsUpdateJSONRequestBody = QuestionAdminRequest
+
+// ChecklistsAdminCreateJSONRequestBody defines body for ChecklistsAdminCreate for application/json ContentType.
+type ChecklistsAdminCreateJSONRequestBody = ChecklistRequest
+
+// ChecklistsAdminPartialUpdateJSONRequestBody defines body for ChecklistsAdminPartialUpdate for application/json ContentType.
+type ChecklistsAdminPartialUpdateJSONRequestBody = PatchedChecklistRequest
+
+// ChecklistsAdminUpdateJSONRequestBody defines body for ChecklistsAdminUpdate for application/json ContentType.
+type ChecklistsAdminUpdateJSONRequestBody = ChecklistRequest
+
 // ComponentUserUsageLimitsCreateJSONRequestBody defines body for ComponentUserUsageLimitsCreate for application/json ContentType.
 type ComponentUserUsageLimitsCreateJSONRequestBody = ComponentUserUsageLimitRequest
 
@@ -32297,42 +32445,6 @@ type MarketplaceCategoryHelpArticlesPartialUpdateJSONRequestBody = PatchedCatego
 
 // MarketplaceCategoryHelpArticlesUpdateJSONRequestBody defines body for MarketplaceCategoryHelpArticlesUpdate for application/json ContentType.
 type MarketplaceCategoryHelpArticlesUpdateJSONRequestBody = CategoryHelpArticlesRequest
-
-// MarketplaceChecklistsAdminQuestionDependenciesCreateJSONRequestBody defines body for MarketplaceChecklistsAdminQuestionDependenciesCreate for application/json ContentType.
-type MarketplaceChecklistsAdminQuestionDependenciesCreateJSONRequestBody = QuestionDependencyRequest
-
-// MarketplaceChecklistsAdminQuestionDependenciesPartialUpdateJSONRequestBody defines body for MarketplaceChecklistsAdminQuestionDependenciesPartialUpdate for application/json ContentType.
-type MarketplaceChecklistsAdminQuestionDependenciesPartialUpdateJSONRequestBody = PatchedQuestionDependencyRequest
-
-// MarketplaceChecklistsAdminQuestionDependenciesUpdateJSONRequestBody defines body for MarketplaceChecklistsAdminQuestionDependenciesUpdate for application/json ContentType.
-type MarketplaceChecklistsAdminQuestionDependenciesUpdateJSONRequestBody = QuestionDependencyRequest
-
-// MarketplaceChecklistsAdminQuestionOptionsCreateJSONRequestBody defines body for MarketplaceChecklistsAdminQuestionOptionsCreate for application/json ContentType.
-type MarketplaceChecklistsAdminQuestionOptionsCreateJSONRequestBody = QuestionOptionsAdminRequest
-
-// MarketplaceChecklistsAdminQuestionOptionsPartialUpdateJSONRequestBody defines body for MarketplaceChecklistsAdminQuestionOptionsPartialUpdate for application/json ContentType.
-type MarketplaceChecklistsAdminQuestionOptionsPartialUpdateJSONRequestBody = PatchedQuestionOptionsAdminRequest
-
-// MarketplaceChecklistsAdminQuestionOptionsUpdateJSONRequestBody defines body for MarketplaceChecklistsAdminQuestionOptionsUpdate for application/json ContentType.
-type MarketplaceChecklistsAdminQuestionOptionsUpdateJSONRequestBody = QuestionOptionsAdminRequest
-
-// MarketplaceChecklistsAdminQuestionsCreateJSONRequestBody defines body for MarketplaceChecklistsAdminQuestionsCreate for application/json ContentType.
-type MarketplaceChecklistsAdminQuestionsCreateJSONRequestBody = QuestionAdminRequest
-
-// MarketplaceChecklistsAdminQuestionsPartialUpdateJSONRequestBody defines body for MarketplaceChecklistsAdminQuestionsPartialUpdate for application/json ContentType.
-type MarketplaceChecklistsAdminQuestionsPartialUpdateJSONRequestBody = PatchedQuestionAdminRequest
-
-// MarketplaceChecklistsAdminQuestionsUpdateJSONRequestBody defines body for MarketplaceChecklistsAdminQuestionsUpdate for application/json ContentType.
-type MarketplaceChecklistsAdminQuestionsUpdateJSONRequestBody = QuestionAdminRequest
-
-// MarketplaceChecklistsAdminCreateJSONRequestBody defines body for MarketplaceChecklistsAdminCreate for application/json ContentType.
-type MarketplaceChecklistsAdminCreateJSONRequestBody = CreateChecklistRequest
-
-// MarketplaceChecklistsAdminPartialUpdateJSONRequestBody defines body for MarketplaceChecklistsAdminPartialUpdate for application/json ContentType.
-type MarketplaceChecklistsAdminPartialUpdateJSONRequestBody = PatchedCreateChecklistRequest
-
-// MarketplaceChecklistsAdminUpdateJSONRequestBody defines body for MarketplaceChecklistsAdminUpdate for application/json ContentType.
-type MarketplaceChecklistsAdminUpdateJSONRequestBody = CreateChecklistRequest
 
 // MarketplaceComponentUsagesSetUsageJSONRequestBody defines body for MarketplaceComponentUsagesSetUsage for application/json ContentType.
 type MarketplaceComponentUsagesSetUsageJSONRequestBody = ComponentUsageCreateRequest
@@ -34837,22 +34949,84 @@ func (t *PatchedProjectRequest_OecdFos2007Code) UnmarshalJSON(b []byte) error {
 	return err
 }
 
-// AsOperatorEnum returns the union data inside the PatchedQuestionAdminRequest_Operator as a OperatorEnum
-func (t PatchedQuestionAdminRequest_Operator) AsOperatorEnum() (OperatorEnum, error) {
-	var body OperatorEnum
+// AsChecklistOperators returns the union data inside the PatchedQuestionAdminRequest_GuidanceOperator as a ChecklistOperators
+func (t PatchedQuestionAdminRequest_GuidanceOperator) AsChecklistOperators() (ChecklistOperators, error) {
+	var body ChecklistOperators
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromOperatorEnum overwrites any union data inside the PatchedQuestionAdminRequest_Operator as the provided OperatorEnum
-func (t *PatchedQuestionAdminRequest_Operator) FromOperatorEnum(v OperatorEnum) error {
+// FromChecklistOperators overwrites any union data inside the PatchedQuestionAdminRequest_GuidanceOperator as the provided ChecklistOperators
+func (t *PatchedQuestionAdminRequest_GuidanceOperator) FromChecklistOperators(v ChecklistOperators) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergeOperatorEnum performs a merge with any union data inside the PatchedQuestionAdminRequest_Operator, using the provided OperatorEnum
-func (t *PatchedQuestionAdminRequest_Operator) MergeOperatorEnum(v OperatorEnum) error {
+// MergeChecklistOperators performs a merge with any union data inside the PatchedQuestionAdminRequest_GuidanceOperator, using the provided ChecklistOperators
+func (t *PatchedQuestionAdminRequest_GuidanceOperator) MergeChecklistOperators(v ChecklistOperators) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsBlankEnum returns the union data inside the PatchedQuestionAdminRequest_GuidanceOperator as a BlankEnum
+func (t PatchedQuestionAdminRequest_GuidanceOperator) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the PatchedQuestionAdminRequest_GuidanceOperator as the provided BlankEnum
+func (t *PatchedQuestionAdminRequest_GuidanceOperator) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the PatchedQuestionAdminRequest_GuidanceOperator, using the provided BlankEnum
+func (t *PatchedQuestionAdminRequest_GuidanceOperator) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t PatchedQuestionAdminRequest_GuidanceOperator) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *PatchedQuestionAdminRequest_GuidanceOperator) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsChecklistOperators returns the union data inside the PatchedQuestionAdminRequest_Operator as a ChecklistOperators
+func (t PatchedQuestionAdminRequest_Operator) AsChecklistOperators() (ChecklistOperators, error) {
+	var body ChecklistOperators
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromChecklistOperators overwrites any union data inside the PatchedQuestionAdminRequest_Operator as the provided ChecklistOperators
+func (t *PatchedQuestionAdminRequest_Operator) FromChecklistOperators(v ChecklistOperators) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeChecklistOperators performs a merge with any union data inside the PatchedQuestionAdminRequest_Operator, using the provided ChecklistOperators
+func (t *PatchedQuestionAdminRequest_Operator) MergeChecklistOperators(v ChecklistOperators) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -35525,22 +35699,84 @@ func (t *PublicOfferingDetails_Country) UnmarshalJSON(b []byte) error {
 	return err
 }
 
-// AsOperatorEnum returns the union data inside the QuestionAdmin_Operator as a OperatorEnum
-func (t QuestionAdmin_Operator) AsOperatorEnum() (OperatorEnum, error) {
-	var body OperatorEnum
+// AsChecklistOperators returns the union data inside the QuestionAdmin_GuidanceOperator as a ChecklistOperators
+func (t QuestionAdmin_GuidanceOperator) AsChecklistOperators() (ChecklistOperators, error) {
+	var body ChecklistOperators
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromOperatorEnum overwrites any union data inside the QuestionAdmin_Operator as the provided OperatorEnum
-func (t *QuestionAdmin_Operator) FromOperatorEnum(v OperatorEnum) error {
+// FromChecklistOperators overwrites any union data inside the QuestionAdmin_GuidanceOperator as the provided ChecklistOperators
+func (t *QuestionAdmin_GuidanceOperator) FromChecklistOperators(v ChecklistOperators) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergeOperatorEnum performs a merge with any union data inside the QuestionAdmin_Operator, using the provided OperatorEnum
-func (t *QuestionAdmin_Operator) MergeOperatorEnum(v OperatorEnum) error {
+// MergeChecklistOperators performs a merge with any union data inside the QuestionAdmin_GuidanceOperator, using the provided ChecklistOperators
+func (t *QuestionAdmin_GuidanceOperator) MergeChecklistOperators(v ChecklistOperators) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsBlankEnum returns the union data inside the QuestionAdmin_GuidanceOperator as a BlankEnum
+func (t QuestionAdmin_GuidanceOperator) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the QuestionAdmin_GuidanceOperator as the provided BlankEnum
+func (t *QuestionAdmin_GuidanceOperator) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the QuestionAdmin_GuidanceOperator, using the provided BlankEnum
+func (t *QuestionAdmin_GuidanceOperator) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t QuestionAdmin_GuidanceOperator) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *QuestionAdmin_GuidanceOperator) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsChecklistOperators returns the union data inside the QuestionAdmin_Operator as a ChecklistOperators
+func (t QuestionAdmin_Operator) AsChecklistOperators() (ChecklistOperators, error) {
+	var body ChecklistOperators
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromChecklistOperators overwrites any union data inside the QuestionAdmin_Operator as the provided ChecklistOperators
+func (t *QuestionAdmin_Operator) FromChecklistOperators(v ChecklistOperators) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeChecklistOperators performs a merge with any union data inside the QuestionAdmin_Operator, using the provided ChecklistOperators
+func (t *QuestionAdmin_Operator) MergeChecklistOperators(v ChecklistOperators) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -35587,22 +35823,84 @@ func (t *QuestionAdmin_Operator) UnmarshalJSON(b []byte) error {
 	return err
 }
 
-// AsOperatorEnum returns the union data inside the QuestionAdminRequest_Operator as a OperatorEnum
-func (t QuestionAdminRequest_Operator) AsOperatorEnum() (OperatorEnum, error) {
-	var body OperatorEnum
+// AsChecklistOperators returns the union data inside the QuestionAdminRequest_GuidanceOperator as a ChecklistOperators
+func (t QuestionAdminRequest_GuidanceOperator) AsChecklistOperators() (ChecklistOperators, error) {
+	var body ChecklistOperators
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromOperatorEnum overwrites any union data inside the QuestionAdminRequest_Operator as the provided OperatorEnum
-func (t *QuestionAdminRequest_Operator) FromOperatorEnum(v OperatorEnum) error {
+// FromChecklistOperators overwrites any union data inside the QuestionAdminRequest_GuidanceOperator as the provided ChecklistOperators
+func (t *QuestionAdminRequest_GuidanceOperator) FromChecklistOperators(v ChecklistOperators) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergeOperatorEnum performs a merge with any union data inside the QuestionAdminRequest_Operator, using the provided OperatorEnum
-func (t *QuestionAdminRequest_Operator) MergeOperatorEnum(v OperatorEnum) error {
+// MergeChecklistOperators performs a merge with any union data inside the QuestionAdminRequest_GuidanceOperator, using the provided ChecklistOperators
+func (t *QuestionAdminRequest_GuidanceOperator) MergeChecklistOperators(v ChecklistOperators) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsBlankEnum returns the union data inside the QuestionAdminRequest_GuidanceOperator as a BlankEnum
+func (t QuestionAdminRequest_GuidanceOperator) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the QuestionAdminRequest_GuidanceOperator as the provided BlankEnum
+func (t *QuestionAdminRequest_GuidanceOperator) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the QuestionAdminRequest_GuidanceOperator, using the provided BlankEnum
+func (t *QuestionAdminRequest_GuidanceOperator) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t QuestionAdminRequest_GuidanceOperator) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *QuestionAdminRequest_GuidanceOperator) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsChecklistOperators returns the union data inside the QuestionAdminRequest_Operator as a ChecklistOperators
+func (t QuestionAdminRequest_Operator) AsChecklistOperators() (ChecklistOperators, error) {
+	var body ChecklistOperators
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromChecklistOperators overwrites any union data inside the QuestionAdminRequest_Operator as the provided ChecklistOperators
+func (t *QuestionAdminRequest_Operator) FromChecklistOperators(v ChecklistOperators) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeChecklistOperators performs a merge with any union data inside the QuestionAdminRequest_Operator, using the provided ChecklistOperators
+func (t *QuestionAdminRequest_Operator) MergeChecklistOperators(v ChecklistOperators) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -35649,22 +35947,22 @@ func (t *QuestionAdminRequest_Operator) UnmarshalJSON(b []byte) error {
 	return err
 }
 
-// AsOperatorEnum returns the union data inside the QuestionWithAnswerReviewer_Operator as a OperatorEnum
-func (t QuestionWithAnswerReviewer_Operator) AsOperatorEnum() (OperatorEnum, error) {
-	var body OperatorEnum
+// AsChecklistOperators returns the union data inside the QuestionWithAnswerReviewer_Operator as a ChecklistOperators
+func (t QuestionWithAnswerReviewer_Operator) AsChecklistOperators() (ChecklistOperators, error) {
+	var body ChecklistOperators
 	err := json.Unmarshal(t.union, &body)
 	return body, err
 }
 
-// FromOperatorEnum overwrites any union data inside the QuestionWithAnswerReviewer_Operator as the provided OperatorEnum
-func (t *QuestionWithAnswerReviewer_Operator) FromOperatorEnum(v OperatorEnum) error {
+// FromChecklistOperators overwrites any union data inside the QuestionWithAnswerReviewer_Operator as the provided ChecklistOperators
+func (t *QuestionWithAnswerReviewer_Operator) FromChecklistOperators(v ChecklistOperators) error {
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
 }
 
-// MergeOperatorEnum performs a merge with any union data inside the QuestionWithAnswerReviewer_Operator, using the provided OperatorEnum
-func (t *QuestionWithAnswerReviewer_Operator) MergeOperatorEnum(v OperatorEnum) error {
+// MergeChecklistOperators performs a merge with any union data inside the QuestionWithAnswerReviewer_Operator, using the provided ChecklistOperators
+func (t *QuestionWithAnswerReviewer_Operator) MergeChecklistOperators(v ChecklistOperators) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -36807,6 +37105,144 @@ type ClientInterface interface {
 	// CeleryStatsRetrieve request
 	CeleryStatsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// ChecklistsAdminCategoriesList request
+	ChecklistsAdminCategoriesList(ctx context.Context, params *ChecklistsAdminCategoriesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChecklistsAdminCategoriesCount request
+	ChecklistsAdminCategoriesCount(ctx context.Context, params *ChecklistsAdminCategoriesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChecklistsAdminCategoriesCreateWithBody request with any body
+	ChecklistsAdminCategoriesCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ChecklistsAdminCategoriesCreate(ctx context.Context, body ChecklistsAdminCategoriesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChecklistsAdminCategoriesDestroy request
+	ChecklistsAdminCategoriesDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChecklistsAdminCategoriesRetrieve request
+	ChecklistsAdminCategoriesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChecklistsAdminCategoriesPartialUpdateWithBody request with any body
+	ChecklistsAdminCategoriesPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ChecklistsAdminCategoriesPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body ChecklistsAdminCategoriesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChecklistsAdminCategoriesUpdateWithBody request with any body
+	ChecklistsAdminCategoriesUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ChecklistsAdminCategoriesUpdate(ctx context.Context, uuid openapi_types.UUID, body ChecklistsAdminCategoriesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChecklistsAdminQuestionDependenciesList request
+	ChecklistsAdminQuestionDependenciesList(ctx context.Context, params *ChecklistsAdminQuestionDependenciesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChecklistsAdminQuestionDependenciesCount request
+	ChecklistsAdminQuestionDependenciesCount(ctx context.Context, params *ChecklistsAdminQuestionDependenciesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChecklistsAdminQuestionDependenciesCreateWithBody request with any body
+	ChecklistsAdminQuestionDependenciesCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ChecklistsAdminQuestionDependenciesCreate(ctx context.Context, body ChecklistsAdminQuestionDependenciesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChecklistsAdminQuestionDependenciesDestroy request
+	ChecklistsAdminQuestionDependenciesDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChecklistsAdminQuestionDependenciesRetrieve request
+	ChecklistsAdminQuestionDependenciesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChecklistsAdminQuestionDependenciesPartialUpdateWithBody request with any body
+	ChecklistsAdminQuestionDependenciesPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ChecklistsAdminQuestionDependenciesPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body ChecklistsAdminQuestionDependenciesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChecklistsAdminQuestionDependenciesUpdateWithBody request with any body
+	ChecklistsAdminQuestionDependenciesUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ChecklistsAdminQuestionDependenciesUpdate(ctx context.Context, uuid openapi_types.UUID, body ChecklistsAdminQuestionDependenciesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChecklistsAdminQuestionOptionsList request
+	ChecklistsAdminQuestionOptionsList(ctx context.Context, params *ChecklistsAdminQuestionOptionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChecklistsAdminQuestionOptionsCount request
+	ChecklistsAdminQuestionOptionsCount(ctx context.Context, params *ChecklistsAdminQuestionOptionsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChecklistsAdminQuestionOptionsCreateWithBody request with any body
+	ChecklistsAdminQuestionOptionsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ChecklistsAdminQuestionOptionsCreate(ctx context.Context, body ChecklistsAdminQuestionOptionsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChecklistsAdminQuestionOptionsDestroy request
+	ChecklistsAdminQuestionOptionsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChecklistsAdminQuestionOptionsRetrieve request
+	ChecklistsAdminQuestionOptionsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChecklistsAdminQuestionOptionsPartialUpdateWithBody request with any body
+	ChecklistsAdminQuestionOptionsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ChecklistsAdminQuestionOptionsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body ChecklistsAdminQuestionOptionsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChecklistsAdminQuestionOptionsUpdateWithBody request with any body
+	ChecklistsAdminQuestionOptionsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ChecklistsAdminQuestionOptionsUpdate(ctx context.Context, uuid openapi_types.UUID, body ChecklistsAdminQuestionOptionsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChecklistsAdminQuestionsList request
+	ChecklistsAdminQuestionsList(ctx context.Context, params *ChecklistsAdminQuestionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChecklistsAdminQuestionsCount request
+	ChecklistsAdminQuestionsCount(ctx context.Context, params *ChecklistsAdminQuestionsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChecklistsAdminQuestionsCreateWithBody request with any body
+	ChecklistsAdminQuestionsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ChecklistsAdminQuestionsCreate(ctx context.Context, body ChecklistsAdminQuestionsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChecklistsAdminQuestionsDestroy request
+	ChecklistsAdminQuestionsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChecklistsAdminQuestionsRetrieve request
+	ChecklistsAdminQuestionsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChecklistsAdminQuestionsPartialUpdateWithBody request with any body
+	ChecklistsAdminQuestionsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ChecklistsAdminQuestionsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body ChecklistsAdminQuestionsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChecklistsAdminQuestionsUpdateWithBody request with any body
+	ChecklistsAdminQuestionsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ChecklistsAdminQuestionsUpdate(ctx context.Context, uuid openapi_types.UUID, body ChecklistsAdminQuestionsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChecklistsAdminList request
+	ChecklistsAdminList(ctx context.Context, params *ChecklistsAdminListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChecklistsAdminCount request
+	ChecklistsAdminCount(ctx context.Context, params *ChecklistsAdminCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChecklistsAdminCreateWithBody request with any body
+	ChecklistsAdminCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ChecklistsAdminCreate(ctx context.Context, body ChecklistsAdminCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChecklistsAdminDestroy request
+	ChecklistsAdminDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChecklistsAdminRetrieve request
+	ChecklistsAdminRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChecklistsAdminPartialUpdateWithBody request with any body
+	ChecklistsAdminPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ChecklistsAdminPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body ChecklistsAdminPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChecklistsAdminUpdateWithBody request with any body
+	ChecklistsAdminUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ChecklistsAdminUpdate(ctx context.Context, uuid openapi_types.UUID, body ChecklistsAdminUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChecklistsAdminChecklistQuestions request
+	ChecklistsAdminChecklistQuestions(ctx context.Context, uuid openapi_types.UUID, params *ChecklistsAdminChecklistQuestionsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// ComponentUserUsageLimitsList request
 	ComponentUserUsageLimitsList(ctx context.Context, params *ComponentUserUsageLimitsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -37709,123 +38145,6 @@ type ClientInterface interface {
 	MarketplaceCategoryHelpArticlesUpdateWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	MarketplaceCategoryHelpArticlesUpdate(ctx context.Context, id int, body MarketplaceCategoryHelpArticlesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceChecklistsAdminQuestionDependenciesList request
-	MarketplaceChecklistsAdminQuestionDependenciesList(ctx context.Context, params *MarketplaceChecklistsAdminQuestionDependenciesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceChecklistsAdminQuestionDependenciesCount request
-	MarketplaceChecklistsAdminQuestionDependenciesCount(ctx context.Context, params *MarketplaceChecklistsAdminQuestionDependenciesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceChecklistsAdminQuestionDependenciesCreateWithBody request with any body
-	MarketplaceChecklistsAdminQuestionDependenciesCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	MarketplaceChecklistsAdminQuestionDependenciesCreate(ctx context.Context, body MarketplaceChecklistsAdminQuestionDependenciesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceChecklistsAdminQuestionDependenciesDestroy request
-	MarketplaceChecklistsAdminQuestionDependenciesDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceChecklistsAdminQuestionDependenciesRetrieve request
-	MarketplaceChecklistsAdminQuestionDependenciesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceChecklistsAdminQuestionDependenciesPartialUpdateWithBody request with any body
-	MarketplaceChecklistsAdminQuestionDependenciesPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	MarketplaceChecklistsAdminQuestionDependenciesPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceChecklistsAdminQuestionDependenciesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceChecklistsAdminQuestionDependenciesUpdateWithBody request with any body
-	MarketplaceChecklistsAdminQuestionDependenciesUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	MarketplaceChecklistsAdminQuestionDependenciesUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceChecklistsAdminQuestionDependenciesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceChecklistsAdminQuestionOptionsList request
-	MarketplaceChecklistsAdminQuestionOptionsList(ctx context.Context, params *MarketplaceChecklistsAdminQuestionOptionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceChecklistsAdminQuestionOptionsCount request
-	MarketplaceChecklistsAdminQuestionOptionsCount(ctx context.Context, params *MarketplaceChecklistsAdminQuestionOptionsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceChecklistsAdminQuestionOptionsCreateWithBody request with any body
-	MarketplaceChecklistsAdminQuestionOptionsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	MarketplaceChecklistsAdminQuestionOptionsCreate(ctx context.Context, body MarketplaceChecklistsAdminQuestionOptionsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceChecklistsAdminQuestionOptionsDestroy request
-	MarketplaceChecklistsAdminQuestionOptionsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceChecklistsAdminQuestionOptionsRetrieve request
-	MarketplaceChecklistsAdminQuestionOptionsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceChecklistsAdminQuestionOptionsPartialUpdateWithBody request with any body
-	MarketplaceChecklistsAdminQuestionOptionsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	MarketplaceChecklistsAdminQuestionOptionsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceChecklistsAdminQuestionOptionsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceChecklistsAdminQuestionOptionsUpdateWithBody request with any body
-	MarketplaceChecklistsAdminQuestionOptionsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	MarketplaceChecklistsAdminQuestionOptionsUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceChecklistsAdminQuestionOptionsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceChecklistsAdminQuestionsList request
-	MarketplaceChecklistsAdminQuestionsList(ctx context.Context, params *MarketplaceChecklistsAdminQuestionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceChecklistsAdminQuestionsCount request
-	MarketplaceChecklistsAdminQuestionsCount(ctx context.Context, params *MarketplaceChecklistsAdminQuestionsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceChecklistsAdminQuestionsCreateWithBody request with any body
-	MarketplaceChecklistsAdminQuestionsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	MarketplaceChecklistsAdminQuestionsCreate(ctx context.Context, body MarketplaceChecklistsAdminQuestionsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceChecklistsAdminQuestionsDestroy request
-	MarketplaceChecklistsAdminQuestionsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceChecklistsAdminQuestionsRetrieve request
-	MarketplaceChecklistsAdminQuestionsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceChecklistsAdminQuestionsPartialUpdateWithBody request with any body
-	MarketplaceChecklistsAdminQuestionsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	MarketplaceChecklistsAdminQuestionsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceChecklistsAdminQuestionsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceChecklistsAdminQuestionsUpdateWithBody request with any body
-	MarketplaceChecklistsAdminQuestionsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	MarketplaceChecklistsAdminQuestionsUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceChecklistsAdminQuestionsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceChecklistsAdminList request
-	MarketplaceChecklistsAdminList(ctx context.Context, params *MarketplaceChecklistsAdminListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceChecklistsAdminCount request
-	MarketplaceChecklistsAdminCount(ctx context.Context, params *MarketplaceChecklistsAdminCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceChecklistsAdminCreateWithBody request with any body
-	MarketplaceChecklistsAdminCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	MarketplaceChecklistsAdminCreate(ctx context.Context, body MarketplaceChecklistsAdminCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceChecklistsAdminDestroy request
-	MarketplaceChecklistsAdminDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceChecklistsAdminRetrieve request
-	MarketplaceChecklistsAdminRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceChecklistsAdminPartialUpdateWithBody request with any body
-	MarketplaceChecklistsAdminPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	MarketplaceChecklistsAdminPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceChecklistsAdminPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceChecklistsAdminUpdateWithBody request with any body
-	MarketplaceChecklistsAdminUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	MarketplaceChecklistsAdminUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceChecklistsAdminUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceChecklistsAdminChecklistQuestions request
-	MarketplaceChecklistsAdminChecklistQuestions(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceChecklistsAdminChecklistQuestionsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceChecklistsCategoriesList request
-	MarketplaceChecklistsCategoriesList(ctx context.Context, params *MarketplaceChecklistsCategoriesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceChecklistsCategoriesRetrieve request
-	MarketplaceChecklistsCategoriesRetrieve(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceComponentUsagesList request
 	MarketplaceComponentUsagesList(ctx context.Context, params *MarketplaceComponentUsagesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -44499,6 +44818,618 @@ func (c *Client) CeleryStatsRetrieve(ctx context.Context, reqEditors ...RequestE
 	return c.Client.Do(req)
 }
 
+func (c *Client) ChecklistsAdminCategoriesList(ctx context.Context, params *ChecklistsAdminCategoriesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChecklistsAdminCategoriesListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChecklistsAdminCategoriesCount(ctx context.Context, params *ChecklistsAdminCategoriesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChecklistsAdminCategoriesCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChecklistsAdminCategoriesCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChecklistsAdminCategoriesCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChecklistsAdminCategoriesCreate(ctx context.Context, body ChecklistsAdminCategoriesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChecklistsAdminCategoriesCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChecklistsAdminCategoriesDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChecklistsAdminCategoriesDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChecklistsAdminCategoriesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChecklistsAdminCategoriesRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChecklistsAdminCategoriesPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChecklistsAdminCategoriesPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChecklistsAdminCategoriesPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body ChecklistsAdminCategoriesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChecklistsAdminCategoriesPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChecklistsAdminCategoriesUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChecklistsAdminCategoriesUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChecklistsAdminCategoriesUpdate(ctx context.Context, uuid openapi_types.UUID, body ChecklistsAdminCategoriesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChecklistsAdminCategoriesUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChecklistsAdminQuestionDependenciesList(ctx context.Context, params *ChecklistsAdminQuestionDependenciesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChecklistsAdminQuestionDependenciesListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChecklistsAdminQuestionDependenciesCount(ctx context.Context, params *ChecklistsAdminQuestionDependenciesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChecklistsAdminQuestionDependenciesCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChecklistsAdminQuestionDependenciesCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChecklistsAdminQuestionDependenciesCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChecklistsAdminQuestionDependenciesCreate(ctx context.Context, body ChecklistsAdminQuestionDependenciesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChecklistsAdminQuestionDependenciesCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChecklistsAdminQuestionDependenciesDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChecklistsAdminQuestionDependenciesDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChecklistsAdminQuestionDependenciesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChecklistsAdminQuestionDependenciesRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChecklistsAdminQuestionDependenciesPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChecklistsAdminQuestionDependenciesPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChecklistsAdminQuestionDependenciesPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body ChecklistsAdminQuestionDependenciesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChecklistsAdminQuestionDependenciesPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChecklistsAdminQuestionDependenciesUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChecklistsAdminQuestionDependenciesUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChecklistsAdminQuestionDependenciesUpdate(ctx context.Context, uuid openapi_types.UUID, body ChecklistsAdminQuestionDependenciesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChecklistsAdminQuestionDependenciesUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChecklistsAdminQuestionOptionsList(ctx context.Context, params *ChecklistsAdminQuestionOptionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChecklistsAdminQuestionOptionsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChecklistsAdminQuestionOptionsCount(ctx context.Context, params *ChecklistsAdminQuestionOptionsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChecklistsAdminQuestionOptionsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChecklistsAdminQuestionOptionsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChecklistsAdminQuestionOptionsCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChecklistsAdminQuestionOptionsCreate(ctx context.Context, body ChecklistsAdminQuestionOptionsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChecklistsAdminQuestionOptionsCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChecklistsAdminQuestionOptionsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChecklistsAdminQuestionOptionsDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChecklistsAdminQuestionOptionsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChecklistsAdminQuestionOptionsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChecklistsAdminQuestionOptionsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChecklistsAdminQuestionOptionsPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChecklistsAdminQuestionOptionsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body ChecklistsAdminQuestionOptionsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChecklistsAdminQuestionOptionsPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChecklistsAdminQuestionOptionsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChecklistsAdminQuestionOptionsUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChecklistsAdminQuestionOptionsUpdate(ctx context.Context, uuid openapi_types.UUID, body ChecklistsAdminQuestionOptionsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChecklistsAdminQuestionOptionsUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChecklistsAdminQuestionsList(ctx context.Context, params *ChecklistsAdminQuestionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChecklistsAdminQuestionsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChecklistsAdminQuestionsCount(ctx context.Context, params *ChecklistsAdminQuestionsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChecklistsAdminQuestionsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChecklistsAdminQuestionsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChecklistsAdminQuestionsCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChecklistsAdminQuestionsCreate(ctx context.Context, body ChecklistsAdminQuestionsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChecklistsAdminQuestionsCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChecklistsAdminQuestionsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChecklistsAdminQuestionsDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChecklistsAdminQuestionsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChecklistsAdminQuestionsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChecklistsAdminQuestionsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChecklistsAdminQuestionsPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChecklistsAdminQuestionsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body ChecklistsAdminQuestionsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChecklistsAdminQuestionsPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChecklistsAdminQuestionsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChecklistsAdminQuestionsUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChecklistsAdminQuestionsUpdate(ctx context.Context, uuid openapi_types.UUID, body ChecklistsAdminQuestionsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChecklistsAdminQuestionsUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChecklistsAdminList(ctx context.Context, params *ChecklistsAdminListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChecklistsAdminListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChecklistsAdminCount(ctx context.Context, params *ChecklistsAdminCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChecklistsAdminCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChecklistsAdminCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChecklistsAdminCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChecklistsAdminCreate(ctx context.Context, body ChecklistsAdminCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChecklistsAdminCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChecklistsAdminDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChecklistsAdminDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChecklistsAdminRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChecklistsAdminRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChecklistsAdminPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChecklistsAdminPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChecklistsAdminPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body ChecklistsAdminPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChecklistsAdminPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChecklistsAdminUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChecklistsAdminUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChecklistsAdminUpdate(ctx context.Context, uuid openapi_types.UUID, body ChecklistsAdminUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChecklistsAdminUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChecklistsAdminChecklistQuestions(ctx context.Context, uuid openapi_types.UUID, params *ChecklistsAdminChecklistQuestionsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChecklistsAdminChecklistQuestionsRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) ComponentUserUsageLimitsList(ctx context.Context, params *ComponentUserUsageLimitsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewComponentUserUsageLimitsListRequest(c.Server, params)
 	if err != nil {
@@ -48413,522 +49344,6 @@ func (c *Client) MarketplaceCategoryHelpArticlesUpdateWithBody(ctx context.Conte
 
 func (c *Client) MarketplaceCategoryHelpArticlesUpdate(ctx context.Context, id int, body MarketplaceCategoryHelpArticlesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceCategoryHelpArticlesUpdateRequest(c.Server, id, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceChecklistsAdminQuestionDependenciesList(ctx context.Context, params *MarketplaceChecklistsAdminQuestionDependenciesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsAdminQuestionDependenciesListRequest(c.Server, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceChecklistsAdminQuestionDependenciesCount(ctx context.Context, params *MarketplaceChecklistsAdminQuestionDependenciesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsAdminQuestionDependenciesCountRequest(c.Server, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceChecklistsAdminQuestionDependenciesCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsAdminQuestionDependenciesCreateRequestWithBody(c.Server, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceChecklistsAdminQuestionDependenciesCreate(ctx context.Context, body MarketplaceChecklistsAdminQuestionDependenciesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsAdminQuestionDependenciesCreateRequest(c.Server, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceChecklistsAdminQuestionDependenciesDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsAdminQuestionDependenciesDestroyRequest(c.Server, uuid)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceChecklistsAdminQuestionDependenciesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsAdminQuestionDependenciesRetrieveRequest(c.Server, uuid)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceChecklistsAdminQuestionDependenciesPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsAdminQuestionDependenciesPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceChecklistsAdminQuestionDependenciesPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceChecklistsAdminQuestionDependenciesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsAdminQuestionDependenciesPartialUpdateRequest(c.Server, uuid, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceChecklistsAdminQuestionDependenciesUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsAdminQuestionDependenciesUpdateRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceChecklistsAdminQuestionDependenciesUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceChecklistsAdminQuestionDependenciesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsAdminQuestionDependenciesUpdateRequest(c.Server, uuid, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceChecklistsAdminQuestionOptionsList(ctx context.Context, params *MarketplaceChecklistsAdminQuestionOptionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsAdminQuestionOptionsListRequest(c.Server, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceChecklistsAdminQuestionOptionsCount(ctx context.Context, params *MarketplaceChecklistsAdminQuestionOptionsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsAdminQuestionOptionsCountRequest(c.Server, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceChecklistsAdminQuestionOptionsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsAdminQuestionOptionsCreateRequestWithBody(c.Server, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceChecklistsAdminQuestionOptionsCreate(ctx context.Context, body MarketplaceChecklistsAdminQuestionOptionsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsAdminQuestionOptionsCreateRequest(c.Server, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceChecklistsAdminQuestionOptionsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsAdminQuestionOptionsDestroyRequest(c.Server, uuid)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceChecklistsAdminQuestionOptionsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsAdminQuestionOptionsRetrieveRequest(c.Server, uuid)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceChecklistsAdminQuestionOptionsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsAdminQuestionOptionsPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceChecklistsAdminQuestionOptionsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceChecklistsAdminQuestionOptionsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsAdminQuestionOptionsPartialUpdateRequest(c.Server, uuid, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceChecklistsAdminQuestionOptionsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsAdminQuestionOptionsUpdateRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceChecklistsAdminQuestionOptionsUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceChecklistsAdminQuestionOptionsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsAdminQuestionOptionsUpdateRequest(c.Server, uuid, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceChecklistsAdminQuestionsList(ctx context.Context, params *MarketplaceChecklistsAdminQuestionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsAdminQuestionsListRequest(c.Server, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceChecklistsAdminQuestionsCount(ctx context.Context, params *MarketplaceChecklistsAdminQuestionsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsAdminQuestionsCountRequest(c.Server, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceChecklistsAdminQuestionsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsAdminQuestionsCreateRequestWithBody(c.Server, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceChecklistsAdminQuestionsCreate(ctx context.Context, body MarketplaceChecklistsAdminQuestionsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsAdminQuestionsCreateRequest(c.Server, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceChecklistsAdminQuestionsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsAdminQuestionsDestroyRequest(c.Server, uuid)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceChecklistsAdminQuestionsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsAdminQuestionsRetrieveRequest(c.Server, uuid)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceChecklistsAdminQuestionsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsAdminQuestionsPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceChecklistsAdminQuestionsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceChecklistsAdminQuestionsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsAdminQuestionsPartialUpdateRequest(c.Server, uuid, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceChecklistsAdminQuestionsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsAdminQuestionsUpdateRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceChecklistsAdminQuestionsUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceChecklistsAdminQuestionsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsAdminQuestionsUpdateRequest(c.Server, uuid, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceChecklistsAdminList(ctx context.Context, params *MarketplaceChecklistsAdminListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsAdminListRequest(c.Server, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceChecklistsAdminCount(ctx context.Context, params *MarketplaceChecklistsAdminCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsAdminCountRequest(c.Server, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceChecklistsAdminCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsAdminCreateRequestWithBody(c.Server, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceChecklistsAdminCreate(ctx context.Context, body MarketplaceChecklistsAdminCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsAdminCreateRequest(c.Server, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceChecklistsAdminDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsAdminDestroyRequest(c.Server, uuid)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceChecklistsAdminRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsAdminRetrieveRequest(c.Server, uuid)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceChecklistsAdminPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsAdminPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceChecklistsAdminPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceChecklistsAdminPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsAdminPartialUpdateRequest(c.Server, uuid, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceChecklistsAdminUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsAdminUpdateRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceChecklistsAdminUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceChecklistsAdminUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsAdminUpdateRequest(c.Server, uuid, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceChecklistsAdminChecklistQuestions(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceChecklistsAdminChecklistQuestionsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsAdminChecklistQuestionsRequest(c.Server, uuid, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceChecklistsCategoriesList(ctx context.Context, params *MarketplaceChecklistsCategoriesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsCategoriesListRequest(c.Server, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceChecklistsCategoriesRetrieve(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceChecklistsCategoriesRetrieveRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -80588,6 +81003,1866 @@ func NewCeleryStatsRetrieveRequest(server string) (*http.Request, error) {
 	return req, nil
 }
 
+// NewChecklistsAdminCategoriesListRequest generates requests for ChecklistsAdminCategoriesList
+func NewChecklistsAdminCategoriesListRequest(server string, params *ChecklistsAdminCategoriesListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/checklists-admin-categories/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewChecklistsAdminCategoriesCountRequest generates requests for ChecklistsAdminCategoriesCount
+func NewChecklistsAdminCategoriesCountRequest(server string, params *ChecklistsAdminCategoriesCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/checklists-admin-categories/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewChecklistsAdminCategoriesCreateRequest calls the generic ChecklistsAdminCategoriesCreate builder with application/json body
+func NewChecklistsAdminCategoriesCreateRequest(server string, body ChecklistsAdminCategoriesCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewChecklistsAdminCategoriesCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewChecklistsAdminCategoriesCreateRequestWithBody generates requests for ChecklistsAdminCategoriesCreate with any type of body
+func NewChecklistsAdminCategoriesCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/checklists-admin-categories/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewChecklistsAdminCategoriesDestroyRequest generates requests for ChecklistsAdminCategoriesDestroy
+func NewChecklistsAdminCategoriesDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/checklists-admin-categories/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewChecklistsAdminCategoriesRetrieveRequest generates requests for ChecklistsAdminCategoriesRetrieve
+func NewChecklistsAdminCategoriesRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/checklists-admin-categories/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewChecklistsAdminCategoriesPartialUpdateRequest calls the generic ChecklistsAdminCategoriesPartialUpdate builder with application/json body
+func NewChecklistsAdminCategoriesPartialUpdateRequest(server string, uuid openapi_types.UUID, body ChecklistsAdminCategoriesPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewChecklistsAdminCategoriesPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewChecklistsAdminCategoriesPartialUpdateRequestWithBody generates requests for ChecklistsAdminCategoriesPartialUpdate with any type of body
+func NewChecklistsAdminCategoriesPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/checklists-admin-categories/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewChecklistsAdminCategoriesUpdateRequest calls the generic ChecklistsAdminCategoriesUpdate builder with application/json body
+func NewChecklistsAdminCategoriesUpdateRequest(server string, uuid openapi_types.UUID, body ChecklistsAdminCategoriesUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewChecklistsAdminCategoriesUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewChecklistsAdminCategoriesUpdateRequestWithBody generates requests for ChecklistsAdminCategoriesUpdate with any type of body
+func NewChecklistsAdminCategoriesUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/checklists-admin-categories/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewChecklistsAdminQuestionDependenciesListRequest generates requests for ChecklistsAdminQuestionDependenciesList
+func NewChecklistsAdminQuestionDependenciesListRequest(server string, params *ChecklistsAdminQuestionDependenciesListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/checklists-admin-question-dependencies/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.DependsOnQuestionUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "depends_on_question_uuid", runtime.ParamLocationQuery, *params.DependsOnQuestionUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.QuestionUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "question_uuid", runtime.ParamLocationQuery, *params.QuestionUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewChecklistsAdminQuestionDependenciesCountRequest generates requests for ChecklistsAdminQuestionDependenciesCount
+func NewChecklistsAdminQuestionDependenciesCountRequest(server string, params *ChecklistsAdminQuestionDependenciesCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/checklists-admin-question-dependencies/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.DependsOnQuestionUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "depends_on_question_uuid", runtime.ParamLocationQuery, *params.DependsOnQuestionUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.QuestionUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "question_uuid", runtime.ParamLocationQuery, *params.QuestionUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewChecklistsAdminQuestionDependenciesCreateRequest calls the generic ChecklistsAdminQuestionDependenciesCreate builder with application/json body
+func NewChecklistsAdminQuestionDependenciesCreateRequest(server string, body ChecklistsAdminQuestionDependenciesCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewChecklistsAdminQuestionDependenciesCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewChecklistsAdminQuestionDependenciesCreateRequestWithBody generates requests for ChecklistsAdminQuestionDependenciesCreate with any type of body
+func NewChecklistsAdminQuestionDependenciesCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/checklists-admin-question-dependencies/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewChecklistsAdminQuestionDependenciesDestroyRequest generates requests for ChecklistsAdminQuestionDependenciesDestroy
+func NewChecklistsAdminQuestionDependenciesDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/checklists-admin-question-dependencies/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewChecklistsAdminQuestionDependenciesRetrieveRequest generates requests for ChecklistsAdminQuestionDependenciesRetrieve
+func NewChecklistsAdminQuestionDependenciesRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/checklists-admin-question-dependencies/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewChecklistsAdminQuestionDependenciesPartialUpdateRequest calls the generic ChecklistsAdminQuestionDependenciesPartialUpdate builder with application/json body
+func NewChecklistsAdminQuestionDependenciesPartialUpdateRequest(server string, uuid openapi_types.UUID, body ChecklistsAdminQuestionDependenciesPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewChecklistsAdminQuestionDependenciesPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewChecklistsAdminQuestionDependenciesPartialUpdateRequestWithBody generates requests for ChecklistsAdminQuestionDependenciesPartialUpdate with any type of body
+func NewChecklistsAdminQuestionDependenciesPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/checklists-admin-question-dependencies/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewChecklistsAdminQuestionDependenciesUpdateRequest calls the generic ChecklistsAdminQuestionDependenciesUpdate builder with application/json body
+func NewChecklistsAdminQuestionDependenciesUpdateRequest(server string, uuid openapi_types.UUID, body ChecklistsAdminQuestionDependenciesUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewChecklistsAdminQuestionDependenciesUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewChecklistsAdminQuestionDependenciesUpdateRequestWithBody generates requests for ChecklistsAdminQuestionDependenciesUpdate with any type of body
+func NewChecklistsAdminQuestionDependenciesUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/checklists-admin-question-dependencies/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewChecklistsAdminQuestionOptionsListRequest generates requests for ChecklistsAdminQuestionOptionsList
+func NewChecklistsAdminQuestionOptionsListRequest(server string, params *ChecklistsAdminQuestionOptionsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/checklists-admin-question-options/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.QuestionUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "question_uuid", runtime.ParamLocationQuery, *params.QuestionUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewChecklistsAdminQuestionOptionsCountRequest generates requests for ChecklistsAdminQuestionOptionsCount
+func NewChecklistsAdminQuestionOptionsCountRequest(server string, params *ChecklistsAdminQuestionOptionsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/checklists-admin-question-options/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.QuestionUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "question_uuid", runtime.ParamLocationQuery, *params.QuestionUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewChecklistsAdminQuestionOptionsCreateRequest calls the generic ChecklistsAdminQuestionOptionsCreate builder with application/json body
+func NewChecklistsAdminQuestionOptionsCreateRequest(server string, body ChecklistsAdminQuestionOptionsCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewChecklistsAdminQuestionOptionsCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewChecklistsAdminQuestionOptionsCreateRequestWithBody generates requests for ChecklistsAdminQuestionOptionsCreate with any type of body
+func NewChecklistsAdminQuestionOptionsCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/checklists-admin-question-options/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewChecklistsAdminQuestionOptionsDestroyRequest generates requests for ChecklistsAdminQuestionOptionsDestroy
+func NewChecklistsAdminQuestionOptionsDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/checklists-admin-question-options/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewChecklistsAdminQuestionOptionsRetrieveRequest generates requests for ChecklistsAdminQuestionOptionsRetrieve
+func NewChecklistsAdminQuestionOptionsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/checklists-admin-question-options/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewChecklistsAdminQuestionOptionsPartialUpdateRequest calls the generic ChecklistsAdminQuestionOptionsPartialUpdate builder with application/json body
+func NewChecklistsAdminQuestionOptionsPartialUpdateRequest(server string, uuid openapi_types.UUID, body ChecklistsAdminQuestionOptionsPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewChecklistsAdminQuestionOptionsPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewChecklistsAdminQuestionOptionsPartialUpdateRequestWithBody generates requests for ChecklistsAdminQuestionOptionsPartialUpdate with any type of body
+func NewChecklistsAdminQuestionOptionsPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/checklists-admin-question-options/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewChecklistsAdminQuestionOptionsUpdateRequest calls the generic ChecklistsAdminQuestionOptionsUpdate builder with application/json body
+func NewChecklistsAdminQuestionOptionsUpdateRequest(server string, uuid openapi_types.UUID, body ChecklistsAdminQuestionOptionsUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewChecklistsAdminQuestionOptionsUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewChecklistsAdminQuestionOptionsUpdateRequestWithBody generates requests for ChecklistsAdminQuestionOptionsUpdate with any type of body
+func NewChecklistsAdminQuestionOptionsUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/checklists-admin-question-options/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewChecklistsAdminQuestionsListRequest generates requests for ChecklistsAdminQuestionsList
+func NewChecklistsAdminQuestionsListRequest(server string, params *ChecklistsAdminQuestionsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/checklists-admin-questions/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.ChecklistUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "checklist_uuid", runtime.ParamLocationQuery, *params.ChecklistUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewChecklistsAdminQuestionsCountRequest generates requests for ChecklistsAdminQuestionsCount
+func NewChecklistsAdminQuestionsCountRequest(server string, params *ChecklistsAdminQuestionsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/checklists-admin-questions/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.ChecklistUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "checklist_uuid", runtime.ParamLocationQuery, *params.ChecklistUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewChecklistsAdminQuestionsCreateRequest calls the generic ChecklistsAdminQuestionsCreate builder with application/json body
+func NewChecklistsAdminQuestionsCreateRequest(server string, body ChecklistsAdminQuestionsCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewChecklistsAdminQuestionsCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewChecklistsAdminQuestionsCreateRequestWithBody generates requests for ChecklistsAdminQuestionsCreate with any type of body
+func NewChecklistsAdminQuestionsCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/checklists-admin-questions/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewChecklistsAdminQuestionsDestroyRequest generates requests for ChecklistsAdminQuestionsDestroy
+func NewChecklistsAdminQuestionsDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/checklists-admin-questions/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewChecklistsAdminQuestionsRetrieveRequest generates requests for ChecklistsAdminQuestionsRetrieve
+func NewChecklistsAdminQuestionsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/checklists-admin-questions/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewChecklistsAdminQuestionsPartialUpdateRequest calls the generic ChecklistsAdminQuestionsPartialUpdate builder with application/json body
+func NewChecklistsAdminQuestionsPartialUpdateRequest(server string, uuid openapi_types.UUID, body ChecklistsAdminQuestionsPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewChecklistsAdminQuestionsPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewChecklistsAdminQuestionsPartialUpdateRequestWithBody generates requests for ChecklistsAdminQuestionsPartialUpdate with any type of body
+func NewChecklistsAdminQuestionsPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/checklists-admin-questions/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewChecklistsAdminQuestionsUpdateRequest calls the generic ChecklistsAdminQuestionsUpdate builder with application/json body
+func NewChecklistsAdminQuestionsUpdateRequest(server string, uuid openapi_types.UUID, body ChecklistsAdminQuestionsUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewChecklistsAdminQuestionsUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewChecklistsAdminQuestionsUpdateRequestWithBody generates requests for ChecklistsAdminQuestionsUpdate with any type of body
+func NewChecklistsAdminQuestionsUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/checklists-admin-questions/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewChecklistsAdminListRequest generates requests for ChecklistsAdminList
+func NewChecklistsAdminListRequest(server string, params *ChecklistsAdminListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/checklists-admin/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewChecklistsAdminCountRequest generates requests for ChecklistsAdminCount
+func NewChecklistsAdminCountRequest(server string, params *ChecklistsAdminCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/checklists-admin/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewChecklistsAdminCreateRequest calls the generic ChecklistsAdminCreate builder with application/json body
+func NewChecklistsAdminCreateRequest(server string, body ChecklistsAdminCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewChecklistsAdminCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewChecklistsAdminCreateRequestWithBody generates requests for ChecklistsAdminCreate with any type of body
+func NewChecklistsAdminCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/checklists-admin/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewChecklistsAdminDestroyRequest generates requests for ChecklistsAdminDestroy
+func NewChecklistsAdminDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/checklists-admin/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewChecklistsAdminRetrieveRequest generates requests for ChecklistsAdminRetrieve
+func NewChecklistsAdminRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/checklists-admin/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewChecklistsAdminPartialUpdateRequest calls the generic ChecklistsAdminPartialUpdate builder with application/json body
+func NewChecklistsAdminPartialUpdateRequest(server string, uuid openapi_types.UUID, body ChecklistsAdminPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewChecklistsAdminPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewChecklistsAdminPartialUpdateRequestWithBody generates requests for ChecklistsAdminPartialUpdate with any type of body
+func NewChecklistsAdminPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/checklists-admin/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewChecklistsAdminUpdateRequest calls the generic ChecklistsAdminUpdate builder with application/json body
+func NewChecklistsAdminUpdateRequest(server string, uuid openapi_types.UUID, body ChecklistsAdminUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewChecklistsAdminUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewChecklistsAdminUpdateRequestWithBody generates requests for ChecklistsAdminUpdate with any type of body
+func NewChecklistsAdminUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/checklists-admin/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewChecklistsAdminChecklistQuestionsRequest generates requests for ChecklistsAdminChecklistQuestions
+func NewChecklistsAdminChecklistQuestionsRequest(server string, uuid openapi_types.UUID, params *ChecklistsAdminChecklistQuestionsParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/checklists-admin/%s/questions/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewComponentUserUsageLimitsListRequest generates requests for ComponentUserUsageLimitsList
 func NewComponentUserUsageLimitsListRequest(server string, params *ComponentUserUsageLimitsListParams) (*http.Request, error) {
 	var err error
@@ -100537,1633 +102812,6 @@ func NewMarketplaceCategoryHelpArticlesUpdateRequestWithBody(server string, id i
 	}
 
 	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewMarketplaceChecklistsAdminQuestionDependenciesListRequest generates requests for MarketplaceChecklistsAdminQuestionDependenciesList
-func NewMarketplaceChecklistsAdminQuestionDependenciesListRequest(server string, params *MarketplaceChecklistsAdminQuestionDependenciesListParams) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-checklists-admin-question-dependencies/")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if params.DependsOnQuestionUuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "depends_on_question_uuid", runtime.ParamLocationQuery, *params.DependsOnQuestionUuid); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Page != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.PageSize != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.QuestionUuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "question_uuid", runtime.ParamLocationQuery, *params.QuestionUuid); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewMarketplaceChecklistsAdminQuestionDependenciesCountRequest generates requests for MarketplaceChecklistsAdminQuestionDependenciesCount
-func NewMarketplaceChecklistsAdminQuestionDependenciesCountRequest(server string, params *MarketplaceChecklistsAdminQuestionDependenciesCountParams) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-checklists-admin-question-dependencies/")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if params.DependsOnQuestionUuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "depends_on_question_uuid", runtime.ParamLocationQuery, *params.DependsOnQuestionUuid); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Page != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.PageSize != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.QuestionUuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "question_uuid", runtime.ParamLocationQuery, *params.QuestionUuid); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
-	}
-
-	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewMarketplaceChecklistsAdminQuestionDependenciesCreateRequest calls the generic MarketplaceChecklistsAdminQuestionDependenciesCreate builder with application/json body
-func NewMarketplaceChecklistsAdminQuestionDependenciesCreateRequest(server string, body MarketplaceChecklistsAdminQuestionDependenciesCreateJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewMarketplaceChecklistsAdminQuestionDependenciesCreateRequestWithBody(server, "application/json", bodyReader)
-}
-
-// NewMarketplaceChecklistsAdminQuestionDependenciesCreateRequestWithBody generates requests for MarketplaceChecklistsAdminQuestionDependenciesCreate with any type of body
-func NewMarketplaceChecklistsAdminQuestionDependenciesCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-checklists-admin-question-dependencies/")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("POST", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewMarketplaceChecklistsAdminQuestionDependenciesDestroyRequest generates requests for MarketplaceChecklistsAdminQuestionDependenciesDestroy
-func NewMarketplaceChecklistsAdminQuestionDependenciesDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-checklists-admin-question-dependencies/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewMarketplaceChecklistsAdminQuestionDependenciesRetrieveRequest generates requests for MarketplaceChecklistsAdminQuestionDependenciesRetrieve
-func NewMarketplaceChecklistsAdminQuestionDependenciesRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-checklists-admin-question-dependencies/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewMarketplaceChecklistsAdminQuestionDependenciesPartialUpdateRequest calls the generic MarketplaceChecklistsAdminQuestionDependenciesPartialUpdate builder with application/json body
-func NewMarketplaceChecklistsAdminQuestionDependenciesPartialUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceChecklistsAdminQuestionDependenciesPartialUpdateJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewMarketplaceChecklistsAdminQuestionDependenciesPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewMarketplaceChecklistsAdminQuestionDependenciesPartialUpdateRequestWithBody generates requests for MarketplaceChecklistsAdminQuestionDependenciesPartialUpdate with any type of body
-func NewMarketplaceChecklistsAdminQuestionDependenciesPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-checklists-admin-question-dependencies/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("PATCH", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewMarketplaceChecklistsAdminQuestionDependenciesUpdateRequest calls the generic MarketplaceChecklistsAdminQuestionDependenciesUpdate builder with application/json body
-func NewMarketplaceChecklistsAdminQuestionDependenciesUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceChecklistsAdminQuestionDependenciesUpdateJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewMarketplaceChecklistsAdminQuestionDependenciesUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewMarketplaceChecklistsAdminQuestionDependenciesUpdateRequestWithBody generates requests for MarketplaceChecklistsAdminQuestionDependenciesUpdate with any type of body
-func NewMarketplaceChecklistsAdminQuestionDependenciesUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-checklists-admin-question-dependencies/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("PUT", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewMarketplaceChecklistsAdminQuestionOptionsListRequest generates requests for MarketplaceChecklistsAdminQuestionOptionsList
-func NewMarketplaceChecklistsAdminQuestionOptionsListRequest(server string, params *MarketplaceChecklistsAdminQuestionOptionsListParams) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-checklists-admin-question-options/")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if params.Page != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.PageSize != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.QuestionUuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "question_uuid", runtime.ParamLocationQuery, *params.QuestionUuid); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewMarketplaceChecklistsAdminQuestionOptionsCountRequest generates requests for MarketplaceChecklistsAdminQuestionOptionsCount
-func NewMarketplaceChecklistsAdminQuestionOptionsCountRequest(server string, params *MarketplaceChecklistsAdminQuestionOptionsCountParams) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-checklists-admin-question-options/")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if params.Page != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.PageSize != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.QuestionUuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "question_uuid", runtime.ParamLocationQuery, *params.QuestionUuid); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
-	}
-
-	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewMarketplaceChecklistsAdminQuestionOptionsCreateRequest calls the generic MarketplaceChecklistsAdminQuestionOptionsCreate builder with application/json body
-func NewMarketplaceChecklistsAdminQuestionOptionsCreateRequest(server string, body MarketplaceChecklistsAdminQuestionOptionsCreateJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewMarketplaceChecklistsAdminQuestionOptionsCreateRequestWithBody(server, "application/json", bodyReader)
-}
-
-// NewMarketplaceChecklistsAdminQuestionOptionsCreateRequestWithBody generates requests for MarketplaceChecklistsAdminQuestionOptionsCreate with any type of body
-func NewMarketplaceChecklistsAdminQuestionOptionsCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-checklists-admin-question-options/")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("POST", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewMarketplaceChecklistsAdminQuestionOptionsDestroyRequest generates requests for MarketplaceChecklistsAdminQuestionOptionsDestroy
-func NewMarketplaceChecklistsAdminQuestionOptionsDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-checklists-admin-question-options/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewMarketplaceChecklistsAdminQuestionOptionsRetrieveRequest generates requests for MarketplaceChecklistsAdminQuestionOptionsRetrieve
-func NewMarketplaceChecklistsAdminQuestionOptionsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-checklists-admin-question-options/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewMarketplaceChecklistsAdminQuestionOptionsPartialUpdateRequest calls the generic MarketplaceChecklistsAdminQuestionOptionsPartialUpdate builder with application/json body
-func NewMarketplaceChecklistsAdminQuestionOptionsPartialUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceChecklistsAdminQuestionOptionsPartialUpdateJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewMarketplaceChecklistsAdminQuestionOptionsPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewMarketplaceChecklistsAdminQuestionOptionsPartialUpdateRequestWithBody generates requests for MarketplaceChecklistsAdminQuestionOptionsPartialUpdate with any type of body
-func NewMarketplaceChecklistsAdminQuestionOptionsPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-checklists-admin-question-options/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("PATCH", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewMarketplaceChecklistsAdminQuestionOptionsUpdateRequest calls the generic MarketplaceChecklistsAdminQuestionOptionsUpdate builder with application/json body
-func NewMarketplaceChecklistsAdminQuestionOptionsUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceChecklistsAdminQuestionOptionsUpdateJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewMarketplaceChecklistsAdminQuestionOptionsUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewMarketplaceChecklistsAdminQuestionOptionsUpdateRequestWithBody generates requests for MarketplaceChecklistsAdminQuestionOptionsUpdate with any type of body
-func NewMarketplaceChecklistsAdminQuestionOptionsUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-checklists-admin-question-options/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("PUT", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewMarketplaceChecklistsAdminQuestionsListRequest generates requests for MarketplaceChecklistsAdminQuestionsList
-func NewMarketplaceChecklistsAdminQuestionsListRequest(server string, params *MarketplaceChecklistsAdminQuestionsListParams) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-checklists-admin-questions/")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if params.ChecklistUuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "checklist_uuid", runtime.ParamLocationQuery, *params.ChecklistUuid); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Page != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.PageSize != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewMarketplaceChecklistsAdminQuestionsCountRequest generates requests for MarketplaceChecklistsAdminQuestionsCount
-func NewMarketplaceChecklistsAdminQuestionsCountRequest(server string, params *MarketplaceChecklistsAdminQuestionsCountParams) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-checklists-admin-questions/")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if params.ChecklistUuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "checklist_uuid", runtime.ParamLocationQuery, *params.ChecklistUuid); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Page != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.PageSize != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
-	}
-
-	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewMarketplaceChecklistsAdminQuestionsCreateRequest calls the generic MarketplaceChecklistsAdminQuestionsCreate builder with application/json body
-func NewMarketplaceChecklistsAdminQuestionsCreateRequest(server string, body MarketplaceChecklistsAdminQuestionsCreateJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewMarketplaceChecklistsAdminQuestionsCreateRequestWithBody(server, "application/json", bodyReader)
-}
-
-// NewMarketplaceChecklistsAdminQuestionsCreateRequestWithBody generates requests for MarketplaceChecklistsAdminQuestionsCreate with any type of body
-func NewMarketplaceChecklistsAdminQuestionsCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-checklists-admin-questions/")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("POST", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewMarketplaceChecklistsAdminQuestionsDestroyRequest generates requests for MarketplaceChecklistsAdminQuestionsDestroy
-func NewMarketplaceChecklistsAdminQuestionsDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-checklists-admin-questions/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewMarketplaceChecklistsAdminQuestionsRetrieveRequest generates requests for MarketplaceChecklistsAdminQuestionsRetrieve
-func NewMarketplaceChecklistsAdminQuestionsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-checklists-admin-questions/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewMarketplaceChecklistsAdminQuestionsPartialUpdateRequest calls the generic MarketplaceChecklistsAdminQuestionsPartialUpdate builder with application/json body
-func NewMarketplaceChecklistsAdminQuestionsPartialUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceChecklistsAdminQuestionsPartialUpdateJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewMarketplaceChecklistsAdminQuestionsPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewMarketplaceChecklistsAdminQuestionsPartialUpdateRequestWithBody generates requests for MarketplaceChecklistsAdminQuestionsPartialUpdate with any type of body
-func NewMarketplaceChecklistsAdminQuestionsPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-checklists-admin-questions/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("PATCH", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewMarketplaceChecklistsAdminQuestionsUpdateRequest calls the generic MarketplaceChecklistsAdminQuestionsUpdate builder with application/json body
-func NewMarketplaceChecklistsAdminQuestionsUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceChecklistsAdminQuestionsUpdateJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewMarketplaceChecklistsAdminQuestionsUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewMarketplaceChecklistsAdminQuestionsUpdateRequestWithBody generates requests for MarketplaceChecklistsAdminQuestionsUpdate with any type of body
-func NewMarketplaceChecklistsAdminQuestionsUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-checklists-admin-questions/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("PUT", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewMarketplaceChecklistsAdminListRequest generates requests for MarketplaceChecklistsAdminList
-func NewMarketplaceChecklistsAdminListRequest(server string, params *MarketplaceChecklistsAdminListParams) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-checklists-admin/")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if params.Page != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.PageSize != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewMarketplaceChecklistsAdminCountRequest generates requests for MarketplaceChecklistsAdminCount
-func NewMarketplaceChecklistsAdminCountRequest(server string, params *MarketplaceChecklistsAdminCountParams) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-checklists-admin/")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if params.Page != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.PageSize != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
-	}
-
-	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewMarketplaceChecklistsAdminCreateRequest calls the generic MarketplaceChecklistsAdminCreate builder with application/json body
-func NewMarketplaceChecklistsAdminCreateRequest(server string, body MarketplaceChecklistsAdminCreateJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewMarketplaceChecklistsAdminCreateRequestWithBody(server, "application/json", bodyReader)
-}
-
-// NewMarketplaceChecklistsAdminCreateRequestWithBody generates requests for MarketplaceChecklistsAdminCreate with any type of body
-func NewMarketplaceChecklistsAdminCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-checklists-admin/")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("POST", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewMarketplaceChecklistsAdminDestroyRequest generates requests for MarketplaceChecklistsAdminDestroy
-func NewMarketplaceChecklistsAdminDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-checklists-admin/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewMarketplaceChecklistsAdminRetrieveRequest generates requests for MarketplaceChecklistsAdminRetrieve
-func NewMarketplaceChecklistsAdminRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-checklists-admin/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewMarketplaceChecklistsAdminPartialUpdateRequest calls the generic MarketplaceChecklistsAdminPartialUpdate builder with application/json body
-func NewMarketplaceChecklistsAdminPartialUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceChecklistsAdminPartialUpdateJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewMarketplaceChecklistsAdminPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewMarketplaceChecklistsAdminPartialUpdateRequestWithBody generates requests for MarketplaceChecklistsAdminPartialUpdate with any type of body
-func NewMarketplaceChecklistsAdminPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-checklists-admin/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("PATCH", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewMarketplaceChecklistsAdminUpdateRequest calls the generic MarketplaceChecklistsAdminUpdate builder with application/json body
-func NewMarketplaceChecklistsAdminUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceChecklistsAdminUpdateJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewMarketplaceChecklistsAdminUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewMarketplaceChecklistsAdminUpdateRequestWithBody generates requests for MarketplaceChecklistsAdminUpdate with any type of body
-func NewMarketplaceChecklistsAdminUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-checklists-admin/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("PUT", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewMarketplaceChecklistsAdminChecklistQuestionsRequest generates requests for MarketplaceChecklistsAdminChecklistQuestions
-func NewMarketplaceChecklistsAdminChecklistQuestionsRequest(server string, uuid openapi_types.UUID, params *MarketplaceChecklistsAdminChecklistQuestionsParams) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-checklists-admin/%s/questions/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if params.Page != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.PageSize != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewMarketplaceChecklistsCategoriesListRequest generates requests for MarketplaceChecklistsCategoriesList
-func NewMarketplaceChecklistsCategoriesListRequest(server string, params *MarketplaceChecklistsCategoriesListParams) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-checklists-categories/")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if params.Page != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.PageSize != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewMarketplaceChecklistsCategoriesRetrieveRequest generates requests for MarketplaceChecklistsCategoriesRetrieve
-func NewMarketplaceChecklistsCategoriesRetrieveRequest(server string, uuid string) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-checklists-categories/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
 
 	return req, nil
 }
@@ -192812,6 +193460,144 @@ type ClientWithResponsesInterface interface {
 	// CeleryStatsRetrieveWithResponse request
 	CeleryStatsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*CeleryStatsRetrieveResponse, error)
 
+	// ChecklistsAdminCategoriesListWithResponse request
+	ChecklistsAdminCategoriesListWithResponse(ctx context.Context, params *ChecklistsAdminCategoriesListParams, reqEditors ...RequestEditorFn) (*ChecklistsAdminCategoriesListResponse, error)
+
+	// ChecklistsAdminCategoriesCountWithResponse request
+	ChecklistsAdminCategoriesCountWithResponse(ctx context.Context, params *ChecklistsAdminCategoriesCountParams, reqEditors ...RequestEditorFn) (*ChecklistsAdminCategoriesCountResponse, error)
+
+	// ChecklistsAdminCategoriesCreateWithBodyWithResponse request with any body
+	ChecklistsAdminCategoriesCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChecklistsAdminCategoriesCreateResponse, error)
+
+	ChecklistsAdminCategoriesCreateWithResponse(ctx context.Context, body ChecklistsAdminCategoriesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChecklistsAdminCategoriesCreateResponse, error)
+
+	// ChecklistsAdminCategoriesDestroyWithResponse request
+	ChecklistsAdminCategoriesDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ChecklistsAdminCategoriesDestroyResponse, error)
+
+	// ChecklistsAdminCategoriesRetrieveWithResponse request
+	ChecklistsAdminCategoriesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ChecklistsAdminCategoriesRetrieveResponse, error)
+
+	// ChecklistsAdminCategoriesPartialUpdateWithBodyWithResponse request with any body
+	ChecklistsAdminCategoriesPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChecklistsAdminCategoriesPartialUpdateResponse, error)
+
+	ChecklistsAdminCategoriesPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChecklistsAdminCategoriesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChecklistsAdminCategoriesPartialUpdateResponse, error)
+
+	// ChecklistsAdminCategoriesUpdateWithBodyWithResponse request with any body
+	ChecklistsAdminCategoriesUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChecklistsAdminCategoriesUpdateResponse, error)
+
+	ChecklistsAdminCategoriesUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChecklistsAdminCategoriesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChecklistsAdminCategoriesUpdateResponse, error)
+
+	// ChecklistsAdminQuestionDependenciesListWithResponse request
+	ChecklistsAdminQuestionDependenciesListWithResponse(ctx context.Context, params *ChecklistsAdminQuestionDependenciesListParams, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionDependenciesListResponse, error)
+
+	// ChecklistsAdminQuestionDependenciesCountWithResponse request
+	ChecklistsAdminQuestionDependenciesCountWithResponse(ctx context.Context, params *ChecklistsAdminQuestionDependenciesCountParams, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionDependenciesCountResponse, error)
+
+	// ChecklistsAdminQuestionDependenciesCreateWithBodyWithResponse request with any body
+	ChecklistsAdminQuestionDependenciesCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionDependenciesCreateResponse, error)
+
+	ChecklistsAdminQuestionDependenciesCreateWithResponse(ctx context.Context, body ChecklistsAdminQuestionDependenciesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionDependenciesCreateResponse, error)
+
+	// ChecklistsAdminQuestionDependenciesDestroyWithResponse request
+	ChecklistsAdminQuestionDependenciesDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionDependenciesDestroyResponse, error)
+
+	// ChecklistsAdminQuestionDependenciesRetrieveWithResponse request
+	ChecklistsAdminQuestionDependenciesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionDependenciesRetrieveResponse, error)
+
+	// ChecklistsAdminQuestionDependenciesPartialUpdateWithBodyWithResponse request with any body
+	ChecklistsAdminQuestionDependenciesPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionDependenciesPartialUpdateResponse, error)
+
+	ChecklistsAdminQuestionDependenciesPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChecklistsAdminQuestionDependenciesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionDependenciesPartialUpdateResponse, error)
+
+	// ChecklistsAdminQuestionDependenciesUpdateWithBodyWithResponse request with any body
+	ChecklistsAdminQuestionDependenciesUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionDependenciesUpdateResponse, error)
+
+	ChecklistsAdminQuestionDependenciesUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChecklistsAdminQuestionDependenciesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionDependenciesUpdateResponse, error)
+
+	// ChecklistsAdminQuestionOptionsListWithResponse request
+	ChecklistsAdminQuestionOptionsListWithResponse(ctx context.Context, params *ChecklistsAdminQuestionOptionsListParams, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionOptionsListResponse, error)
+
+	// ChecklistsAdminQuestionOptionsCountWithResponse request
+	ChecklistsAdminQuestionOptionsCountWithResponse(ctx context.Context, params *ChecklistsAdminQuestionOptionsCountParams, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionOptionsCountResponse, error)
+
+	// ChecklistsAdminQuestionOptionsCreateWithBodyWithResponse request with any body
+	ChecklistsAdminQuestionOptionsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionOptionsCreateResponse, error)
+
+	ChecklistsAdminQuestionOptionsCreateWithResponse(ctx context.Context, body ChecklistsAdminQuestionOptionsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionOptionsCreateResponse, error)
+
+	// ChecklistsAdminQuestionOptionsDestroyWithResponse request
+	ChecklistsAdminQuestionOptionsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionOptionsDestroyResponse, error)
+
+	// ChecklistsAdminQuestionOptionsRetrieveWithResponse request
+	ChecklistsAdminQuestionOptionsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionOptionsRetrieveResponse, error)
+
+	// ChecklistsAdminQuestionOptionsPartialUpdateWithBodyWithResponse request with any body
+	ChecklistsAdminQuestionOptionsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionOptionsPartialUpdateResponse, error)
+
+	ChecklistsAdminQuestionOptionsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChecklistsAdminQuestionOptionsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionOptionsPartialUpdateResponse, error)
+
+	// ChecklistsAdminQuestionOptionsUpdateWithBodyWithResponse request with any body
+	ChecklistsAdminQuestionOptionsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionOptionsUpdateResponse, error)
+
+	ChecklistsAdminQuestionOptionsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChecklistsAdminQuestionOptionsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionOptionsUpdateResponse, error)
+
+	// ChecklistsAdminQuestionsListWithResponse request
+	ChecklistsAdminQuestionsListWithResponse(ctx context.Context, params *ChecklistsAdminQuestionsListParams, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionsListResponse, error)
+
+	// ChecklistsAdminQuestionsCountWithResponse request
+	ChecklistsAdminQuestionsCountWithResponse(ctx context.Context, params *ChecklistsAdminQuestionsCountParams, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionsCountResponse, error)
+
+	// ChecklistsAdminQuestionsCreateWithBodyWithResponse request with any body
+	ChecklistsAdminQuestionsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionsCreateResponse, error)
+
+	ChecklistsAdminQuestionsCreateWithResponse(ctx context.Context, body ChecklistsAdminQuestionsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionsCreateResponse, error)
+
+	// ChecklistsAdminQuestionsDestroyWithResponse request
+	ChecklistsAdminQuestionsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionsDestroyResponse, error)
+
+	// ChecklistsAdminQuestionsRetrieveWithResponse request
+	ChecklistsAdminQuestionsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionsRetrieveResponse, error)
+
+	// ChecklistsAdminQuestionsPartialUpdateWithBodyWithResponse request with any body
+	ChecklistsAdminQuestionsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionsPartialUpdateResponse, error)
+
+	ChecklistsAdminQuestionsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChecklistsAdminQuestionsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionsPartialUpdateResponse, error)
+
+	// ChecklistsAdminQuestionsUpdateWithBodyWithResponse request with any body
+	ChecklistsAdminQuestionsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionsUpdateResponse, error)
+
+	ChecklistsAdminQuestionsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChecklistsAdminQuestionsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionsUpdateResponse, error)
+
+	// ChecklistsAdminListWithResponse request
+	ChecklistsAdminListWithResponse(ctx context.Context, params *ChecklistsAdminListParams, reqEditors ...RequestEditorFn) (*ChecklistsAdminListResponse, error)
+
+	// ChecklistsAdminCountWithResponse request
+	ChecklistsAdminCountWithResponse(ctx context.Context, params *ChecklistsAdminCountParams, reqEditors ...RequestEditorFn) (*ChecklistsAdminCountResponse, error)
+
+	// ChecklistsAdminCreateWithBodyWithResponse request with any body
+	ChecklistsAdminCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChecklistsAdminCreateResponse, error)
+
+	ChecklistsAdminCreateWithResponse(ctx context.Context, body ChecklistsAdminCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChecklistsAdminCreateResponse, error)
+
+	// ChecklistsAdminDestroyWithResponse request
+	ChecklistsAdminDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ChecklistsAdminDestroyResponse, error)
+
+	// ChecklistsAdminRetrieveWithResponse request
+	ChecklistsAdminRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ChecklistsAdminRetrieveResponse, error)
+
+	// ChecklistsAdminPartialUpdateWithBodyWithResponse request with any body
+	ChecklistsAdminPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChecklistsAdminPartialUpdateResponse, error)
+
+	ChecklistsAdminPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChecklistsAdminPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChecklistsAdminPartialUpdateResponse, error)
+
+	// ChecklistsAdminUpdateWithBodyWithResponse request with any body
+	ChecklistsAdminUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChecklistsAdminUpdateResponse, error)
+
+	ChecklistsAdminUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChecklistsAdminUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChecklistsAdminUpdateResponse, error)
+
+	// ChecklistsAdminChecklistQuestionsWithResponse request
+	ChecklistsAdminChecklistQuestionsWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ChecklistsAdminChecklistQuestionsParams, reqEditors ...RequestEditorFn) (*ChecklistsAdminChecklistQuestionsResponse, error)
+
 	// ComponentUserUsageLimitsListWithResponse request
 	ComponentUserUsageLimitsListWithResponse(ctx context.Context, params *ComponentUserUsageLimitsListParams, reqEditors ...RequestEditorFn) (*ComponentUserUsageLimitsListResponse, error)
 
@@ -193714,123 +194500,6 @@ type ClientWithResponsesInterface interface {
 	MarketplaceCategoryHelpArticlesUpdateWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceCategoryHelpArticlesUpdateResponse, error)
 
 	MarketplaceCategoryHelpArticlesUpdateWithResponse(ctx context.Context, id int, body MarketplaceCategoryHelpArticlesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceCategoryHelpArticlesUpdateResponse, error)
-
-	// MarketplaceChecklistsAdminQuestionDependenciesListWithResponse request
-	MarketplaceChecklistsAdminQuestionDependenciesListWithResponse(ctx context.Context, params *MarketplaceChecklistsAdminQuestionDependenciesListParams, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionDependenciesListResponse, error)
-
-	// MarketplaceChecklistsAdminQuestionDependenciesCountWithResponse request
-	MarketplaceChecklistsAdminQuestionDependenciesCountWithResponse(ctx context.Context, params *MarketplaceChecklistsAdminQuestionDependenciesCountParams, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionDependenciesCountResponse, error)
-
-	// MarketplaceChecklistsAdminQuestionDependenciesCreateWithBodyWithResponse request with any body
-	MarketplaceChecklistsAdminQuestionDependenciesCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionDependenciesCreateResponse, error)
-
-	MarketplaceChecklistsAdminQuestionDependenciesCreateWithResponse(ctx context.Context, body MarketplaceChecklistsAdminQuestionDependenciesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionDependenciesCreateResponse, error)
-
-	// MarketplaceChecklistsAdminQuestionDependenciesDestroyWithResponse request
-	MarketplaceChecklistsAdminQuestionDependenciesDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionDependenciesDestroyResponse, error)
-
-	// MarketplaceChecklistsAdminQuestionDependenciesRetrieveWithResponse request
-	MarketplaceChecklistsAdminQuestionDependenciesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionDependenciesRetrieveResponse, error)
-
-	// MarketplaceChecklistsAdminQuestionDependenciesPartialUpdateWithBodyWithResponse request with any body
-	MarketplaceChecklistsAdminQuestionDependenciesPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionDependenciesPartialUpdateResponse, error)
-
-	MarketplaceChecklistsAdminQuestionDependenciesPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceChecklistsAdminQuestionDependenciesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionDependenciesPartialUpdateResponse, error)
-
-	// MarketplaceChecklistsAdminQuestionDependenciesUpdateWithBodyWithResponse request with any body
-	MarketplaceChecklistsAdminQuestionDependenciesUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionDependenciesUpdateResponse, error)
-
-	MarketplaceChecklistsAdminQuestionDependenciesUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceChecklistsAdminQuestionDependenciesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionDependenciesUpdateResponse, error)
-
-	// MarketplaceChecklistsAdminQuestionOptionsListWithResponse request
-	MarketplaceChecklistsAdminQuestionOptionsListWithResponse(ctx context.Context, params *MarketplaceChecklistsAdminQuestionOptionsListParams, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionOptionsListResponse, error)
-
-	// MarketplaceChecklistsAdminQuestionOptionsCountWithResponse request
-	MarketplaceChecklistsAdminQuestionOptionsCountWithResponse(ctx context.Context, params *MarketplaceChecklistsAdminQuestionOptionsCountParams, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionOptionsCountResponse, error)
-
-	// MarketplaceChecklistsAdminQuestionOptionsCreateWithBodyWithResponse request with any body
-	MarketplaceChecklistsAdminQuestionOptionsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionOptionsCreateResponse, error)
-
-	MarketplaceChecklistsAdminQuestionOptionsCreateWithResponse(ctx context.Context, body MarketplaceChecklistsAdminQuestionOptionsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionOptionsCreateResponse, error)
-
-	// MarketplaceChecklistsAdminQuestionOptionsDestroyWithResponse request
-	MarketplaceChecklistsAdminQuestionOptionsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionOptionsDestroyResponse, error)
-
-	// MarketplaceChecklistsAdminQuestionOptionsRetrieveWithResponse request
-	MarketplaceChecklistsAdminQuestionOptionsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionOptionsRetrieveResponse, error)
-
-	// MarketplaceChecklistsAdminQuestionOptionsPartialUpdateWithBodyWithResponse request with any body
-	MarketplaceChecklistsAdminQuestionOptionsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionOptionsPartialUpdateResponse, error)
-
-	MarketplaceChecklistsAdminQuestionOptionsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceChecklistsAdminQuestionOptionsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionOptionsPartialUpdateResponse, error)
-
-	// MarketplaceChecklistsAdminQuestionOptionsUpdateWithBodyWithResponse request with any body
-	MarketplaceChecklistsAdminQuestionOptionsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionOptionsUpdateResponse, error)
-
-	MarketplaceChecklistsAdminQuestionOptionsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceChecklistsAdminQuestionOptionsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionOptionsUpdateResponse, error)
-
-	// MarketplaceChecklistsAdminQuestionsListWithResponse request
-	MarketplaceChecklistsAdminQuestionsListWithResponse(ctx context.Context, params *MarketplaceChecklistsAdminQuestionsListParams, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionsListResponse, error)
-
-	// MarketplaceChecklistsAdminQuestionsCountWithResponse request
-	MarketplaceChecklistsAdminQuestionsCountWithResponse(ctx context.Context, params *MarketplaceChecklistsAdminQuestionsCountParams, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionsCountResponse, error)
-
-	// MarketplaceChecklistsAdminQuestionsCreateWithBodyWithResponse request with any body
-	MarketplaceChecklistsAdminQuestionsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionsCreateResponse, error)
-
-	MarketplaceChecklistsAdminQuestionsCreateWithResponse(ctx context.Context, body MarketplaceChecklistsAdminQuestionsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionsCreateResponse, error)
-
-	// MarketplaceChecklistsAdminQuestionsDestroyWithResponse request
-	MarketplaceChecklistsAdminQuestionsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionsDestroyResponse, error)
-
-	// MarketplaceChecklistsAdminQuestionsRetrieveWithResponse request
-	MarketplaceChecklistsAdminQuestionsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionsRetrieveResponse, error)
-
-	// MarketplaceChecklistsAdminQuestionsPartialUpdateWithBodyWithResponse request with any body
-	MarketplaceChecklistsAdminQuestionsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionsPartialUpdateResponse, error)
-
-	MarketplaceChecklistsAdminQuestionsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceChecklistsAdminQuestionsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionsPartialUpdateResponse, error)
-
-	// MarketplaceChecklistsAdminQuestionsUpdateWithBodyWithResponse request with any body
-	MarketplaceChecklistsAdminQuestionsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionsUpdateResponse, error)
-
-	MarketplaceChecklistsAdminQuestionsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceChecklistsAdminQuestionsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionsUpdateResponse, error)
-
-	// MarketplaceChecklistsAdminListWithResponse request
-	MarketplaceChecklistsAdminListWithResponse(ctx context.Context, params *MarketplaceChecklistsAdminListParams, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminListResponse, error)
-
-	// MarketplaceChecklistsAdminCountWithResponse request
-	MarketplaceChecklistsAdminCountWithResponse(ctx context.Context, params *MarketplaceChecklistsAdminCountParams, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminCountResponse, error)
-
-	// MarketplaceChecklistsAdminCreateWithBodyWithResponse request with any body
-	MarketplaceChecklistsAdminCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminCreateResponse, error)
-
-	MarketplaceChecklistsAdminCreateWithResponse(ctx context.Context, body MarketplaceChecklistsAdminCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminCreateResponse, error)
-
-	// MarketplaceChecklistsAdminDestroyWithResponse request
-	MarketplaceChecklistsAdminDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminDestroyResponse, error)
-
-	// MarketplaceChecklistsAdminRetrieveWithResponse request
-	MarketplaceChecklistsAdminRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminRetrieveResponse, error)
-
-	// MarketplaceChecklistsAdminPartialUpdateWithBodyWithResponse request with any body
-	MarketplaceChecklistsAdminPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminPartialUpdateResponse, error)
-
-	MarketplaceChecklistsAdminPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceChecklistsAdminPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminPartialUpdateResponse, error)
-
-	// MarketplaceChecklistsAdminUpdateWithBodyWithResponse request with any body
-	MarketplaceChecklistsAdminUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminUpdateResponse, error)
-
-	MarketplaceChecklistsAdminUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceChecklistsAdminUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminUpdateResponse, error)
-
-	// MarketplaceChecklistsAdminChecklistQuestionsWithResponse request
-	MarketplaceChecklistsAdminChecklistQuestionsWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceChecklistsAdminChecklistQuestionsParams, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminChecklistQuestionsResponse, error)
-
-	// MarketplaceChecklistsCategoriesListWithResponse request
-	MarketplaceChecklistsCategoriesListWithResponse(ctx context.Context, params *MarketplaceChecklistsCategoriesListParams, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsCategoriesListResponse, error)
-
-	// MarketplaceChecklistsCategoriesRetrieveWithResponse request
-	MarketplaceChecklistsCategoriesRetrieveWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsCategoriesRetrieveResponse, error)
 
 	// MarketplaceComponentUsagesListWithResponse request
 	MarketplaceComponentUsagesListWithResponse(ctx context.Context, params *MarketplaceComponentUsagesListParams, reqEditors ...RequestEditorFn) (*MarketplaceComponentUsagesListResponse, error)
@@ -201709,6 +202378,788 @@ func (r CeleryStatsRetrieveResponse) StatusCode() int {
 	return 0
 }
 
+type ChecklistsAdminCategoriesListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]ChecklistCategory
+}
+
+// Status returns HTTPResponse.Status
+func (r ChecklistsAdminCategoriesListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChecklistsAdminCategoriesListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChecklistsAdminCategoriesCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r ChecklistsAdminCategoriesCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChecklistsAdminCategoriesCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChecklistsAdminCategoriesCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *ChecklistCategory
+}
+
+// Status returns HTTPResponse.Status
+func (r ChecklistsAdminCategoriesCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChecklistsAdminCategoriesCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChecklistsAdminCategoriesDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r ChecklistsAdminCategoriesDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChecklistsAdminCategoriesDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChecklistsAdminCategoriesRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ChecklistCategory
+}
+
+// Status returns HTTPResponse.Status
+func (r ChecklistsAdminCategoriesRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChecklistsAdminCategoriesRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChecklistsAdminCategoriesPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ChecklistCategory
+}
+
+// Status returns HTTPResponse.Status
+func (r ChecklistsAdminCategoriesPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChecklistsAdminCategoriesPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChecklistsAdminCategoriesUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ChecklistCategory
+}
+
+// Status returns HTTPResponse.Status
+func (r ChecklistsAdminCategoriesUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChecklistsAdminCategoriesUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChecklistsAdminQuestionDependenciesListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]QuestionDependency
+}
+
+// Status returns HTTPResponse.Status
+func (r ChecklistsAdminQuestionDependenciesListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChecklistsAdminQuestionDependenciesListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChecklistsAdminQuestionDependenciesCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r ChecklistsAdminQuestionDependenciesCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChecklistsAdminQuestionDependenciesCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChecklistsAdminQuestionDependenciesCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *QuestionDependency
+}
+
+// Status returns HTTPResponse.Status
+func (r ChecklistsAdminQuestionDependenciesCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChecklistsAdminQuestionDependenciesCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChecklistsAdminQuestionDependenciesDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r ChecklistsAdminQuestionDependenciesDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChecklistsAdminQuestionDependenciesDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChecklistsAdminQuestionDependenciesRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *QuestionDependency
+}
+
+// Status returns HTTPResponse.Status
+func (r ChecklistsAdminQuestionDependenciesRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChecklistsAdminQuestionDependenciesRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChecklistsAdminQuestionDependenciesPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *QuestionDependency
+}
+
+// Status returns HTTPResponse.Status
+func (r ChecklistsAdminQuestionDependenciesPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChecklistsAdminQuestionDependenciesPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChecklistsAdminQuestionDependenciesUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *QuestionDependency
+}
+
+// Status returns HTTPResponse.Status
+func (r ChecklistsAdminQuestionDependenciesUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChecklistsAdminQuestionDependenciesUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChecklistsAdminQuestionOptionsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]QuestionOptionsAdmin
+}
+
+// Status returns HTTPResponse.Status
+func (r ChecklistsAdminQuestionOptionsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChecklistsAdminQuestionOptionsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChecklistsAdminQuestionOptionsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r ChecklistsAdminQuestionOptionsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChecklistsAdminQuestionOptionsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChecklistsAdminQuestionOptionsCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *QuestionOptionsAdmin
+}
+
+// Status returns HTTPResponse.Status
+func (r ChecklistsAdminQuestionOptionsCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChecklistsAdminQuestionOptionsCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChecklistsAdminQuestionOptionsDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r ChecklistsAdminQuestionOptionsDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChecklistsAdminQuestionOptionsDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChecklistsAdminQuestionOptionsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *QuestionOptionsAdmin
+}
+
+// Status returns HTTPResponse.Status
+func (r ChecklistsAdminQuestionOptionsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChecklistsAdminQuestionOptionsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChecklistsAdminQuestionOptionsPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *QuestionOptionsAdmin
+}
+
+// Status returns HTTPResponse.Status
+func (r ChecklistsAdminQuestionOptionsPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChecklistsAdminQuestionOptionsPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChecklistsAdminQuestionOptionsUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *QuestionOptionsAdmin
+}
+
+// Status returns HTTPResponse.Status
+func (r ChecklistsAdminQuestionOptionsUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChecklistsAdminQuestionOptionsUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChecklistsAdminQuestionsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]QuestionAdmin
+}
+
+// Status returns HTTPResponse.Status
+func (r ChecklistsAdminQuestionsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChecklistsAdminQuestionsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChecklistsAdminQuestionsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r ChecklistsAdminQuestionsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChecklistsAdminQuestionsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChecklistsAdminQuestionsCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *QuestionAdmin
+}
+
+// Status returns HTTPResponse.Status
+func (r ChecklistsAdminQuestionsCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChecklistsAdminQuestionsCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChecklistsAdminQuestionsDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r ChecklistsAdminQuestionsDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChecklistsAdminQuestionsDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChecklistsAdminQuestionsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *QuestionAdmin
+}
+
+// Status returns HTTPResponse.Status
+func (r ChecklistsAdminQuestionsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChecklistsAdminQuestionsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChecklistsAdminQuestionsPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *QuestionAdmin
+}
+
+// Status returns HTTPResponse.Status
+func (r ChecklistsAdminQuestionsPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChecklistsAdminQuestionsPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChecklistsAdminQuestionsUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *QuestionAdmin
+}
+
+// Status returns HTTPResponse.Status
+func (r ChecklistsAdminQuestionsUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChecklistsAdminQuestionsUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChecklistsAdminListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]Checklist
+}
+
+// Status returns HTTPResponse.Status
+func (r ChecklistsAdminListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChecklistsAdminListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChecklistsAdminCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r ChecklistsAdminCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChecklistsAdminCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChecklistsAdminCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *Checklist
+}
+
+// Status returns HTTPResponse.Status
+func (r ChecklistsAdminCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChecklistsAdminCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChecklistsAdminDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r ChecklistsAdminDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChecklistsAdminDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChecklistsAdminRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *Checklist
+}
+
+// Status returns HTTPResponse.Status
+func (r ChecklistsAdminRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChecklistsAdminRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChecklistsAdminPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *Checklist
+}
+
+// Status returns HTTPResponse.Status
+func (r ChecklistsAdminPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChecklistsAdminPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChecklistsAdminUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *Checklist
+}
+
+// Status returns HTTPResponse.Status
+func (r ChecklistsAdminUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChecklistsAdminUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChecklistsAdminChecklistQuestionsResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]QuestionAdmin
+}
+
+// Status returns HTTPResponse.Status
+func (r ChecklistsAdminChecklistQuestionsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChecklistsAdminChecklistQuestionsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type ComponentUserUsageLimitsListResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -207095,680 +208546,6 @@ func (r MarketplaceCategoryHelpArticlesUpdateResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceCategoryHelpArticlesUpdateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type MarketplaceChecklistsAdminQuestionDependenciesListResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *[]QuestionDependency
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceChecklistsAdminQuestionDependenciesListResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceChecklistsAdminQuestionDependenciesListResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type MarketplaceChecklistsAdminQuestionDependenciesCountResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceChecklistsAdminQuestionDependenciesCountResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceChecklistsAdminQuestionDependenciesCountResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type MarketplaceChecklistsAdminQuestionDependenciesCreateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON201      *QuestionDependency
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceChecklistsAdminQuestionDependenciesCreateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceChecklistsAdminQuestionDependenciesCreateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type MarketplaceChecklistsAdminQuestionDependenciesDestroyResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceChecklistsAdminQuestionDependenciesDestroyResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceChecklistsAdminQuestionDependenciesDestroyResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type MarketplaceChecklistsAdminQuestionDependenciesRetrieveResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *QuestionDependency
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceChecklistsAdminQuestionDependenciesRetrieveResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceChecklistsAdminQuestionDependenciesRetrieveResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type MarketplaceChecklistsAdminQuestionDependenciesPartialUpdateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *QuestionDependency
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceChecklistsAdminQuestionDependenciesPartialUpdateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceChecklistsAdminQuestionDependenciesPartialUpdateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type MarketplaceChecklistsAdminQuestionDependenciesUpdateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *QuestionDependency
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceChecklistsAdminQuestionDependenciesUpdateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceChecklistsAdminQuestionDependenciesUpdateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type MarketplaceChecklistsAdminQuestionOptionsListResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *[]QuestionOptionsAdmin
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceChecklistsAdminQuestionOptionsListResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceChecklistsAdminQuestionOptionsListResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type MarketplaceChecklistsAdminQuestionOptionsCountResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceChecklistsAdminQuestionOptionsCountResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceChecklistsAdminQuestionOptionsCountResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type MarketplaceChecklistsAdminQuestionOptionsCreateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON201      *QuestionOptionsAdmin
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceChecklistsAdminQuestionOptionsCreateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceChecklistsAdminQuestionOptionsCreateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type MarketplaceChecklistsAdminQuestionOptionsDestroyResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceChecklistsAdminQuestionOptionsDestroyResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceChecklistsAdminQuestionOptionsDestroyResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type MarketplaceChecklistsAdminQuestionOptionsRetrieveResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *QuestionOptionsAdmin
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceChecklistsAdminQuestionOptionsRetrieveResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceChecklistsAdminQuestionOptionsRetrieveResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type MarketplaceChecklistsAdminQuestionOptionsPartialUpdateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *QuestionOptionsAdmin
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceChecklistsAdminQuestionOptionsPartialUpdateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceChecklistsAdminQuestionOptionsPartialUpdateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type MarketplaceChecklistsAdminQuestionOptionsUpdateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *QuestionOptionsAdmin
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceChecklistsAdminQuestionOptionsUpdateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceChecklistsAdminQuestionOptionsUpdateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type MarketplaceChecklistsAdminQuestionsListResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *[]QuestionAdmin
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceChecklistsAdminQuestionsListResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceChecklistsAdminQuestionsListResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type MarketplaceChecklistsAdminQuestionsCountResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceChecklistsAdminQuestionsCountResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceChecklistsAdminQuestionsCountResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type MarketplaceChecklistsAdminQuestionsCreateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON201      *QuestionAdmin
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceChecklistsAdminQuestionsCreateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceChecklistsAdminQuestionsCreateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type MarketplaceChecklistsAdminQuestionsDestroyResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceChecklistsAdminQuestionsDestroyResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceChecklistsAdminQuestionsDestroyResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type MarketplaceChecklistsAdminQuestionsRetrieveResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *QuestionAdmin
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceChecklistsAdminQuestionsRetrieveResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceChecklistsAdminQuestionsRetrieveResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type MarketplaceChecklistsAdminQuestionsPartialUpdateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *QuestionAdmin
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceChecklistsAdminQuestionsPartialUpdateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceChecklistsAdminQuestionsPartialUpdateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type MarketplaceChecklistsAdminQuestionsUpdateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *QuestionAdmin
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceChecklistsAdminQuestionsUpdateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceChecklistsAdminQuestionsUpdateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type MarketplaceChecklistsAdminListResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *[]ChecklistAdmin
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceChecklistsAdminListResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceChecklistsAdminListResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type MarketplaceChecklistsAdminCountResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceChecklistsAdminCountResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceChecklistsAdminCountResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type MarketplaceChecklistsAdminCreateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON201      *CreateChecklist
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceChecklistsAdminCreateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceChecklistsAdminCreateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type MarketplaceChecklistsAdminDestroyResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceChecklistsAdminDestroyResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceChecklistsAdminDestroyResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type MarketplaceChecklistsAdminRetrieveResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *ChecklistAdmin
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceChecklistsAdminRetrieveResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceChecklistsAdminRetrieveResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type MarketplaceChecklistsAdminPartialUpdateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *CreateChecklist
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceChecklistsAdminPartialUpdateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceChecklistsAdminPartialUpdateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type MarketplaceChecklistsAdminUpdateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *CreateChecklist
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceChecklistsAdminUpdateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceChecklistsAdminUpdateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type MarketplaceChecklistsAdminChecklistQuestionsResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *[]QuestionAdmin
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceChecklistsAdminChecklistQuestionsResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceChecklistsAdminChecklistQuestionsResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type MarketplaceChecklistsCategoriesListResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *[]ChecklistCategory
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceChecklistsCategoriesListResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceChecklistsCategoriesListResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type MarketplaceChecklistsCategoriesRetrieveResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *ChecklistCategory
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceChecklistsCategoriesRetrieveResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceChecklistsCategoriesRetrieveResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -232054,6 +232831,450 @@ func (c *ClientWithResponses) CeleryStatsRetrieveWithResponse(ctx context.Contex
 	return ParseCeleryStatsRetrieveResponse(rsp)
 }
 
+// ChecklistsAdminCategoriesListWithResponse request returning *ChecklistsAdminCategoriesListResponse
+func (c *ClientWithResponses) ChecklistsAdminCategoriesListWithResponse(ctx context.Context, params *ChecklistsAdminCategoriesListParams, reqEditors ...RequestEditorFn) (*ChecklistsAdminCategoriesListResponse, error) {
+	rsp, err := c.ChecklistsAdminCategoriesList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChecklistsAdminCategoriesListResponse(rsp)
+}
+
+// ChecklistsAdminCategoriesCountWithResponse request returning *ChecklistsAdminCategoriesCountResponse
+func (c *ClientWithResponses) ChecklistsAdminCategoriesCountWithResponse(ctx context.Context, params *ChecklistsAdminCategoriesCountParams, reqEditors ...RequestEditorFn) (*ChecklistsAdminCategoriesCountResponse, error) {
+	rsp, err := c.ChecklistsAdminCategoriesCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChecklistsAdminCategoriesCountResponse(rsp)
+}
+
+// ChecklistsAdminCategoriesCreateWithBodyWithResponse request with arbitrary body returning *ChecklistsAdminCategoriesCreateResponse
+func (c *ClientWithResponses) ChecklistsAdminCategoriesCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChecklistsAdminCategoriesCreateResponse, error) {
+	rsp, err := c.ChecklistsAdminCategoriesCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChecklistsAdminCategoriesCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ChecklistsAdminCategoriesCreateWithResponse(ctx context.Context, body ChecklistsAdminCategoriesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChecklistsAdminCategoriesCreateResponse, error) {
+	rsp, err := c.ChecklistsAdminCategoriesCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChecklistsAdminCategoriesCreateResponse(rsp)
+}
+
+// ChecklistsAdminCategoriesDestroyWithResponse request returning *ChecklistsAdminCategoriesDestroyResponse
+func (c *ClientWithResponses) ChecklistsAdminCategoriesDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ChecklistsAdminCategoriesDestroyResponse, error) {
+	rsp, err := c.ChecklistsAdminCategoriesDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChecklistsAdminCategoriesDestroyResponse(rsp)
+}
+
+// ChecklistsAdminCategoriesRetrieveWithResponse request returning *ChecklistsAdminCategoriesRetrieveResponse
+func (c *ClientWithResponses) ChecklistsAdminCategoriesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ChecklistsAdminCategoriesRetrieveResponse, error) {
+	rsp, err := c.ChecklistsAdminCategoriesRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChecklistsAdminCategoriesRetrieveResponse(rsp)
+}
+
+// ChecklistsAdminCategoriesPartialUpdateWithBodyWithResponse request with arbitrary body returning *ChecklistsAdminCategoriesPartialUpdateResponse
+func (c *ClientWithResponses) ChecklistsAdminCategoriesPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChecklistsAdminCategoriesPartialUpdateResponse, error) {
+	rsp, err := c.ChecklistsAdminCategoriesPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChecklistsAdminCategoriesPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ChecklistsAdminCategoriesPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChecklistsAdminCategoriesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChecklistsAdminCategoriesPartialUpdateResponse, error) {
+	rsp, err := c.ChecklistsAdminCategoriesPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChecklistsAdminCategoriesPartialUpdateResponse(rsp)
+}
+
+// ChecklistsAdminCategoriesUpdateWithBodyWithResponse request with arbitrary body returning *ChecklistsAdminCategoriesUpdateResponse
+func (c *ClientWithResponses) ChecklistsAdminCategoriesUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChecklistsAdminCategoriesUpdateResponse, error) {
+	rsp, err := c.ChecklistsAdminCategoriesUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChecklistsAdminCategoriesUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ChecklistsAdminCategoriesUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChecklistsAdminCategoriesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChecklistsAdminCategoriesUpdateResponse, error) {
+	rsp, err := c.ChecklistsAdminCategoriesUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChecklistsAdminCategoriesUpdateResponse(rsp)
+}
+
+// ChecklistsAdminQuestionDependenciesListWithResponse request returning *ChecklistsAdminQuestionDependenciesListResponse
+func (c *ClientWithResponses) ChecklistsAdminQuestionDependenciesListWithResponse(ctx context.Context, params *ChecklistsAdminQuestionDependenciesListParams, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionDependenciesListResponse, error) {
+	rsp, err := c.ChecklistsAdminQuestionDependenciesList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChecklistsAdminQuestionDependenciesListResponse(rsp)
+}
+
+// ChecklistsAdminQuestionDependenciesCountWithResponse request returning *ChecklistsAdminQuestionDependenciesCountResponse
+func (c *ClientWithResponses) ChecklistsAdminQuestionDependenciesCountWithResponse(ctx context.Context, params *ChecklistsAdminQuestionDependenciesCountParams, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionDependenciesCountResponse, error) {
+	rsp, err := c.ChecklistsAdminQuestionDependenciesCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChecklistsAdminQuestionDependenciesCountResponse(rsp)
+}
+
+// ChecklistsAdminQuestionDependenciesCreateWithBodyWithResponse request with arbitrary body returning *ChecklistsAdminQuestionDependenciesCreateResponse
+func (c *ClientWithResponses) ChecklistsAdminQuestionDependenciesCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionDependenciesCreateResponse, error) {
+	rsp, err := c.ChecklistsAdminQuestionDependenciesCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChecklistsAdminQuestionDependenciesCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ChecklistsAdminQuestionDependenciesCreateWithResponse(ctx context.Context, body ChecklistsAdminQuestionDependenciesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionDependenciesCreateResponse, error) {
+	rsp, err := c.ChecklistsAdminQuestionDependenciesCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChecklistsAdminQuestionDependenciesCreateResponse(rsp)
+}
+
+// ChecklistsAdminQuestionDependenciesDestroyWithResponse request returning *ChecklistsAdminQuestionDependenciesDestroyResponse
+func (c *ClientWithResponses) ChecklistsAdminQuestionDependenciesDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionDependenciesDestroyResponse, error) {
+	rsp, err := c.ChecklistsAdminQuestionDependenciesDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChecklistsAdminQuestionDependenciesDestroyResponse(rsp)
+}
+
+// ChecklistsAdminQuestionDependenciesRetrieveWithResponse request returning *ChecklistsAdminQuestionDependenciesRetrieveResponse
+func (c *ClientWithResponses) ChecklistsAdminQuestionDependenciesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionDependenciesRetrieveResponse, error) {
+	rsp, err := c.ChecklistsAdminQuestionDependenciesRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChecklistsAdminQuestionDependenciesRetrieveResponse(rsp)
+}
+
+// ChecklistsAdminQuestionDependenciesPartialUpdateWithBodyWithResponse request with arbitrary body returning *ChecklistsAdminQuestionDependenciesPartialUpdateResponse
+func (c *ClientWithResponses) ChecklistsAdminQuestionDependenciesPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionDependenciesPartialUpdateResponse, error) {
+	rsp, err := c.ChecklistsAdminQuestionDependenciesPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChecklistsAdminQuestionDependenciesPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ChecklistsAdminQuestionDependenciesPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChecklistsAdminQuestionDependenciesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionDependenciesPartialUpdateResponse, error) {
+	rsp, err := c.ChecklistsAdminQuestionDependenciesPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChecklistsAdminQuestionDependenciesPartialUpdateResponse(rsp)
+}
+
+// ChecklistsAdminQuestionDependenciesUpdateWithBodyWithResponse request with arbitrary body returning *ChecklistsAdminQuestionDependenciesUpdateResponse
+func (c *ClientWithResponses) ChecklistsAdminQuestionDependenciesUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionDependenciesUpdateResponse, error) {
+	rsp, err := c.ChecklistsAdminQuestionDependenciesUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChecklistsAdminQuestionDependenciesUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ChecklistsAdminQuestionDependenciesUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChecklistsAdminQuestionDependenciesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionDependenciesUpdateResponse, error) {
+	rsp, err := c.ChecklistsAdminQuestionDependenciesUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChecklistsAdminQuestionDependenciesUpdateResponse(rsp)
+}
+
+// ChecklistsAdminQuestionOptionsListWithResponse request returning *ChecklistsAdminQuestionOptionsListResponse
+func (c *ClientWithResponses) ChecklistsAdminQuestionOptionsListWithResponse(ctx context.Context, params *ChecklistsAdminQuestionOptionsListParams, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionOptionsListResponse, error) {
+	rsp, err := c.ChecklistsAdminQuestionOptionsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChecklistsAdminQuestionOptionsListResponse(rsp)
+}
+
+// ChecklistsAdminQuestionOptionsCountWithResponse request returning *ChecklistsAdminQuestionOptionsCountResponse
+func (c *ClientWithResponses) ChecklistsAdminQuestionOptionsCountWithResponse(ctx context.Context, params *ChecklistsAdminQuestionOptionsCountParams, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionOptionsCountResponse, error) {
+	rsp, err := c.ChecklistsAdminQuestionOptionsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChecklistsAdminQuestionOptionsCountResponse(rsp)
+}
+
+// ChecklistsAdminQuestionOptionsCreateWithBodyWithResponse request with arbitrary body returning *ChecklistsAdminQuestionOptionsCreateResponse
+func (c *ClientWithResponses) ChecklistsAdminQuestionOptionsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionOptionsCreateResponse, error) {
+	rsp, err := c.ChecklistsAdminQuestionOptionsCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChecklistsAdminQuestionOptionsCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ChecklistsAdminQuestionOptionsCreateWithResponse(ctx context.Context, body ChecklistsAdminQuestionOptionsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionOptionsCreateResponse, error) {
+	rsp, err := c.ChecklistsAdminQuestionOptionsCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChecklistsAdminQuestionOptionsCreateResponse(rsp)
+}
+
+// ChecklistsAdminQuestionOptionsDestroyWithResponse request returning *ChecklistsAdminQuestionOptionsDestroyResponse
+func (c *ClientWithResponses) ChecklistsAdminQuestionOptionsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionOptionsDestroyResponse, error) {
+	rsp, err := c.ChecklistsAdminQuestionOptionsDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChecklistsAdminQuestionOptionsDestroyResponse(rsp)
+}
+
+// ChecklistsAdminQuestionOptionsRetrieveWithResponse request returning *ChecklistsAdminQuestionOptionsRetrieveResponse
+func (c *ClientWithResponses) ChecklistsAdminQuestionOptionsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionOptionsRetrieveResponse, error) {
+	rsp, err := c.ChecklistsAdminQuestionOptionsRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChecklistsAdminQuestionOptionsRetrieveResponse(rsp)
+}
+
+// ChecklistsAdminQuestionOptionsPartialUpdateWithBodyWithResponse request with arbitrary body returning *ChecklistsAdminQuestionOptionsPartialUpdateResponse
+func (c *ClientWithResponses) ChecklistsAdminQuestionOptionsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionOptionsPartialUpdateResponse, error) {
+	rsp, err := c.ChecklistsAdminQuestionOptionsPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChecklistsAdminQuestionOptionsPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ChecklistsAdminQuestionOptionsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChecklistsAdminQuestionOptionsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionOptionsPartialUpdateResponse, error) {
+	rsp, err := c.ChecklistsAdminQuestionOptionsPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChecklistsAdminQuestionOptionsPartialUpdateResponse(rsp)
+}
+
+// ChecklistsAdminQuestionOptionsUpdateWithBodyWithResponse request with arbitrary body returning *ChecklistsAdminQuestionOptionsUpdateResponse
+func (c *ClientWithResponses) ChecklistsAdminQuestionOptionsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionOptionsUpdateResponse, error) {
+	rsp, err := c.ChecklistsAdminQuestionOptionsUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChecklistsAdminQuestionOptionsUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ChecklistsAdminQuestionOptionsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChecklistsAdminQuestionOptionsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionOptionsUpdateResponse, error) {
+	rsp, err := c.ChecklistsAdminQuestionOptionsUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChecklistsAdminQuestionOptionsUpdateResponse(rsp)
+}
+
+// ChecklistsAdminQuestionsListWithResponse request returning *ChecklistsAdminQuestionsListResponse
+func (c *ClientWithResponses) ChecklistsAdminQuestionsListWithResponse(ctx context.Context, params *ChecklistsAdminQuestionsListParams, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionsListResponse, error) {
+	rsp, err := c.ChecklistsAdminQuestionsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChecklistsAdminQuestionsListResponse(rsp)
+}
+
+// ChecklistsAdminQuestionsCountWithResponse request returning *ChecklistsAdminQuestionsCountResponse
+func (c *ClientWithResponses) ChecklistsAdminQuestionsCountWithResponse(ctx context.Context, params *ChecklistsAdminQuestionsCountParams, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionsCountResponse, error) {
+	rsp, err := c.ChecklistsAdminQuestionsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChecklistsAdminQuestionsCountResponse(rsp)
+}
+
+// ChecklistsAdminQuestionsCreateWithBodyWithResponse request with arbitrary body returning *ChecklistsAdminQuestionsCreateResponse
+func (c *ClientWithResponses) ChecklistsAdminQuestionsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionsCreateResponse, error) {
+	rsp, err := c.ChecklistsAdminQuestionsCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChecklistsAdminQuestionsCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ChecklistsAdminQuestionsCreateWithResponse(ctx context.Context, body ChecklistsAdminQuestionsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionsCreateResponse, error) {
+	rsp, err := c.ChecklistsAdminQuestionsCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChecklistsAdminQuestionsCreateResponse(rsp)
+}
+
+// ChecklistsAdminQuestionsDestroyWithResponse request returning *ChecklistsAdminQuestionsDestroyResponse
+func (c *ClientWithResponses) ChecklistsAdminQuestionsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionsDestroyResponse, error) {
+	rsp, err := c.ChecklistsAdminQuestionsDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChecklistsAdminQuestionsDestroyResponse(rsp)
+}
+
+// ChecklistsAdminQuestionsRetrieveWithResponse request returning *ChecklistsAdminQuestionsRetrieveResponse
+func (c *ClientWithResponses) ChecklistsAdminQuestionsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionsRetrieveResponse, error) {
+	rsp, err := c.ChecklistsAdminQuestionsRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChecklistsAdminQuestionsRetrieveResponse(rsp)
+}
+
+// ChecklistsAdminQuestionsPartialUpdateWithBodyWithResponse request with arbitrary body returning *ChecklistsAdminQuestionsPartialUpdateResponse
+func (c *ClientWithResponses) ChecklistsAdminQuestionsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionsPartialUpdateResponse, error) {
+	rsp, err := c.ChecklistsAdminQuestionsPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChecklistsAdminQuestionsPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ChecklistsAdminQuestionsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChecklistsAdminQuestionsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionsPartialUpdateResponse, error) {
+	rsp, err := c.ChecklistsAdminQuestionsPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChecklistsAdminQuestionsPartialUpdateResponse(rsp)
+}
+
+// ChecklistsAdminQuestionsUpdateWithBodyWithResponse request with arbitrary body returning *ChecklistsAdminQuestionsUpdateResponse
+func (c *ClientWithResponses) ChecklistsAdminQuestionsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionsUpdateResponse, error) {
+	rsp, err := c.ChecklistsAdminQuestionsUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChecklistsAdminQuestionsUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ChecklistsAdminQuestionsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChecklistsAdminQuestionsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionsUpdateResponse, error) {
+	rsp, err := c.ChecklistsAdminQuestionsUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChecklistsAdminQuestionsUpdateResponse(rsp)
+}
+
+// ChecklistsAdminListWithResponse request returning *ChecklistsAdminListResponse
+func (c *ClientWithResponses) ChecklistsAdminListWithResponse(ctx context.Context, params *ChecklistsAdminListParams, reqEditors ...RequestEditorFn) (*ChecklistsAdminListResponse, error) {
+	rsp, err := c.ChecklistsAdminList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChecklistsAdminListResponse(rsp)
+}
+
+// ChecklistsAdminCountWithResponse request returning *ChecklistsAdminCountResponse
+func (c *ClientWithResponses) ChecklistsAdminCountWithResponse(ctx context.Context, params *ChecklistsAdminCountParams, reqEditors ...RequestEditorFn) (*ChecklistsAdminCountResponse, error) {
+	rsp, err := c.ChecklistsAdminCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChecklistsAdminCountResponse(rsp)
+}
+
+// ChecklistsAdminCreateWithBodyWithResponse request with arbitrary body returning *ChecklistsAdminCreateResponse
+func (c *ClientWithResponses) ChecklistsAdminCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChecklistsAdminCreateResponse, error) {
+	rsp, err := c.ChecklistsAdminCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChecklistsAdminCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ChecklistsAdminCreateWithResponse(ctx context.Context, body ChecklistsAdminCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChecklistsAdminCreateResponse, error) {
+	rsp, err := c.ChecklistsAdminCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChecklistsAdminCreateResponse(rsp)
+}
+
+// ChecklistsAdminDestroyWithResponse request returning *ChecklistsAdminDestroyResponse
+func (c *ClientWithResponses) ChecklistsAdminDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ChecklistsAdminDestroyResponse, error) {
+	rsp, err := c.ChecklistsAdminDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChecklistsAdminDestroyResponse(rsp)
+}
+
+// ChecklistsAdminRetrieveWithResponse request returning *ChecklistsAdminRetrieveResponse
+func (c *ClientWithResponses) ChecklistsAdminRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ChecklistsAdminRetrieveResponse, error) {
+	rsp, err := c.ChecklistsAdminRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChecklistsAdminRetrieveResponse(rsp)
+}
+
+// ChecklistsAdminPartialUpdateWithBodyWithResponse request with arbitrary body returning *ChecklistsAdminPartialUpdateResponse
+func (c *ClientWithResponses) ChecklistsAdminPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChecklistsAdminPartialUpdateResponse, error) {
+	rsp, err := c.ChecklistsAdminPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChecklistsAdminPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ChecklistsAdminPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChecklistsAdminPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChecklistsAdminPartialUpdateResponse, error) {
+	rsp, err := c.ChecklistsAdminPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChecklistsAdminPartialUpdateResponse(rsp)
+}
+
+// ChecklistsAdminUpdateWithBodyWithResponse request with arbitrary body returning *ChecklistsAdminUpdateResponse
+func (c *ClientWithResponses) ChecklistsAdminUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChecklistsAdminUpdateResponse, error) {
+	rsp, err := c.ChecklistsAdminUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChecklistsAdminUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ChecklistsAdminUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChecklistsAdminUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChecklistsAdminUpdateResponse, error) {
+	rsp, err := c.ChecklistsAdminUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChecklistsAdminUpdateResponse(rsp)
+}
+
+// ChecklistsAdminChecklistQuestionsWithResponse request returning *ChecklistsAdminChecklistQuestionsResponse
+func (c *ClientWithResponses) ChecklistsAdminChecklistQuestionsWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ChecklistsAdminChecklistQuestionsParams, reqEditors ...RequestEditorFn) (*ChecklistsAdminChecklistQuestionsResponse, error) {
+	rsp, err := c.ChecklistsAdminChecklistQuestions(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChecklistsAdminChecklistQuestionsResponse(rsp)
+}
+
 // ComponentUserUsageLimitsListWithResponse request returning *ComponentUserUsageLimitsListResponse
 func (c *ClientWithResponses) ComponentUserUsageLimitsListWithResponse(ctx context.Context, params *ComponentUserUsageLimitsListParams, reqEditors ...RequestEditorFn) (*ComponentUserUsageLimitsListResponse, error) {
 	rsp, err := c.ComponentUserUsageLimitsList(ctx, params, reqEditors...)
@@ -234917,381 +236138,6 @@ func (c *ClientWithResponses) MarketplaceCategoryHelpArticlesUpdateWithResponse(
 		return nil, err
 	}
 	return ParseMarketplaceCategoryHelpArticlesUpdateResponse(rsp)
-}
-
-// MarketplaceChecklistsAdminQuestionDependenciesListWithResponse request returning *MarketplaceChecklistsAdminQuestionDependenciesListResponse
-func (c *ClientWithResponses) MarketplaceChecklistsAdminQuestionDependenciesListWithResponse(ctx context.Context, params *MarketplaceChecklistsAdminQuestionDependenciesListParams, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionDependenciesListResponse, error) {
-	rsp, err := c.MarketplaceChecklistsAdminQuestionDependenciesList(ctx, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsAdminQuestionDependenciesListResponse(rsp)
-}
-
-// MarketplaceChecklistsAdminQuestionDependenciesCountWithResponse request returning *MarketplaceChecklistsAdminQuestionDependenciesCountResponse
-func (c *ClientWithResponses) MarketplaceChecklistsAdminQuestionDependenciesCountWithResponse(ctx context.Context, params *MarketplaceChecklistsAdminQuestionDependenciesCountParams, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionDependenciesCountResponse, error) {
-	rsp, err := c.MarketplaceChecklistsAdminQuestionDependenciesCount(ctx, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsAdminQuestionDependenciesCountResponse(rsp)
-}
-
-// MarketplaceChecklistsAdminQuestionDependenciesCreateWithBodyWithResponse request with arbitrary body returning *MarketplaceChecklistsAdminQuestionDependenciesCreateResponse
-func (c *ClientWithResponses) MarketplaceChecklistsAdminQuestionDependenciesCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionDependenciesCreateResponse, error) {
-	rsp, err := c.MarketplaceChecklistsAdminQuestionDependenciesCreateWithBody(ctx, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsAdminQuestionDependenciesCreateResponse(rsp)
-}
-
-func (c *ClientWithResponses) MarketplaceChecklistsAdminQuestionDependenciesCreateWithResponse(ctx context.Context, body MarketplaceChecklistsAdminQuestionDependenciesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionDependenciesCreateResponse, error) {
-	rsp, err := c.MarketplaceChecklistsAdminQuestionDependenciesCreate(ctx, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsAdminQuestionDependenciesCreateResponse(rsp)
-}
-
-// MarketplaceChecklistsAdminQuestionDependenciesDestroyWithResponse request returning *MarketplaceChecklistsAdminQuestionDependenciesDestroyResponse
-func (c *ClientWithResponses) MarketplaceChecklistsAdminQuestionDependenciesDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionDependenciesDestroyResponse, error) {
-	rsp, err := c.MarketplaceChecklistsAdminQuestionDependenciesDestroy(ctx, uuid, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsAdminQuestionDependenciesDestroyResponse(rsp)
-}
-
-// MarketplaceChecklistsAdminQuestionDependenciesRetrieveWithResponse request returning *MarketplaceChecklistsAdminQuestionDependenciesRetrieveResponse
-func (c *ClientWithResponses) MarketplaceChecklistsAdminQuestionDependenciesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionDependenciesRetrieveResponse, error) {
-	rsp, err := c.MarketplaceChecklistsAdminQuestionDependenciesRetrieve(ctx, uuid, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsAdminQuestionDependenciesRetrieveResponse(rsp)
-}
-
-// MarketplaceChecklistsAdminQuestionDependenciesPartialUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceChecklistsAdminQuestionDependenciesPartialUpdateResponse
-func (c *ClientWithResponses) MarketplaceChecklistsAdminQuestionDependenciesPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionDependenciesPartialUpdateResponse, error) {
-	rsp, err := c.MarketplaceChecklistsAdminQuestionDependenciesPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsAdminQuestionDependenciesPartialUpdateResponse(rsp)
-}
-
-func (c *ClientWithResponses) MarketplaceChecklistsAdminQuestionDependenciesPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceChecklistsAdminQuestionDependenciesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionDependenciesPartialUpdateResponse, error) {
-	rsp, err := c.MarketplaceChecklistsAdminQuestionDependenciesPartialUpdate(ctx, uuid, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsAdminQuestionDependenciesPartialUpdateResponse(rsp)
-}
-
-// MarketplaceChecklistsAdminQuestionDependenciesUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceChecklistsAdminQuestionDependenciesUpdateResponse
-func (c *ClientWithResponses) MarketplaceChecklistsAdminQuestionDependenciesUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionDependenciesUpdateResponse, error) {
-	rsp, err := c.MarketplaceChecklistsAdminQuestionDependenciesUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsAdminQuestionDependenciesUpdateResponse(rsp)
-}
-
-func (c *ClientWithResponses) MarketplaceChecklistsAdminQuestionDependenciesUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceChecklistsAdminQuestionDependenciesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionDependenciesUpdateResponse, error) {
-	rsp, err := c.MarketplaceChecklistsAdminQuestionDependenciesUpdate(ctx, uuid, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsAdminQuestionDependenciesUpdateResponse(rsp)
-}
-
-// MarketplaceChecklistsAdminQuestionOptionsListWithResponse request returning *MarketplaceChecklistsAdminQuestionOptionsListResponse
-func (c *ClientWithResponses) MarketplaceChecklistsAdminQuestionOptionsListWithResponse(ctx context.Context, params *MarketplaceChecklistsAdminQuestionOptionsListParams, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionOptionsListResponse, error) {
-	rsp, err := c.MarketplaceChecklistsAdminQuestionOptionsList(ctx, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsAdminQuestionOptionsListResponse(rsp)
-}
-
-// MarketplaceChecklistsAdminQuestionOptionsCountWithResponse request returning *MarketplaceChecklistsAdminQuestionOptionsCountResponse
-func (c *ClientWithResponses) MarketplaceChecklistsAdminQuestionOptionsCountWithResponse(ctx context.Context, params *MarketplaceChecklistsAdminQuestionOptionsCountParams, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionOptionsCountResponse, error) {
-	rsp, err := c.MarketplaceChecklistsAdminQuestionOptionsCount(ctx, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsAdminQuestionOptionsCountResponse(rsp)
-}
-
-// MarketplaceChecklistsAdminQuestionOptionsCreateWithBodyWithResponse request with arbitrary body returning *MarketplaceChecklistsAdminQuestionOptionsCreateResponse
-func (c *ClientWithResponses) MarketplaceChecklistsAdminQuestionOptionsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionOptionsCreateResponse, error) {
-	rsp, err := c.MarketplaceChecklistsAdminQuestionOptionsCreateWithBody(ctx, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsAdminQuestionOptionsCreateResponse(rsp)
-}
-
-func (c *ClientWithResponses) MarketplaceChecklistsAdminQuestionOptionsCreateWithResponse(ctx context.Context, body MarketplaceChecklistsAdminQuestionOptionsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionOptionsCreateResponse, error) {
-	rsp, err := c.MarketplaceChecklistsAdminQuestionOptionsCreate(ctx, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsAdminQuestionOptionsCreateResponse(rsp)
-}
-
-// MarketplaceChecklistsAdminQuestionOptionsDestroyWithResponse request returning *MarketplaceChecklistsAdminQuestionOptionsDestroyResponse
-func (c *ClientWithResponses) MarketplaceChecklistsAdminQuestionOptionsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionOptionsDestroyResponse, error) {
-	rsp, err := c.MarketplaceChecklistsAdminQuestionOptionsDestroy(ctx, uuid, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsAdminQuestionOptionsDestroyResponse(rsp)
-}
-
-// MarketplaceChecklistsAdminQuestionOptionsRetrieveWithResponse request returning *MarketplaceChecklistsAdminQuestionOptionsRetrieveResponse
-func (c *ClientWithResponses) MarketplaceChecklistsAdminQuestionOptionsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionOptionsRetrieveResponse, error) {
-	rsp, err := c.MarketplaceChecklistsAdminQuestionOptionsRetrieve(ctx, uuid, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsAdminQuestionOptionsRetrieveResponse(rsp)
-}
-
-// MarketplaceChecklistsAdminQuestionOptionsPartialUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceChecklistsAdminQuestionOptionsPartialUpdateResponse
-func (c *ClientWithResponses) MarketplaceChecklistsAdminQuestionOptionsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionOptionsPartialUpdateResponse, error) {
-	rsp, err := c.MarketplaceChecklistsAdminQuestionOptionsPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsAdminQuestionOptionsPartialUpdateResponse(rsp)
-}
-
-func (c *ClientWithResponses) MarketplaceChecklistsAdminQuestionOptionsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceChecklistsAdminQuestionOptionsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionOptionsPartialUpdateResponse, error) {
-	rsp, err := c.MarketplaceChecklistsAdminQuestionOptionsPartialUpdate(ctx, uuid, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsAdminQuestionOptionsPartialUpdateResponse(rsp)
-}
-
-// MarketplaceChecklistsAdminQuestionOptionsUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceChecklistsAdminQuestionOptionsUpdateResponse
-func (c *ClientWithResponses) MarketplaceChecklistsAdminQuestionOptionsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionOptionsUpdateResponse, error) {
-	rsp, err := c.MarketplaceChecklistsAdminQuestionOptionsUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsAdminQuestionOptionsUpdateResponse(rsp)
-}
-
-func (c *ClientWithResponses) MarketplaceChecklistsAdminQuestionOptionsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceChecklistsAdminQuestionOptionsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionOptionsUpdateResponse, error) {
-	rsp, err := c.MarketplaceChecklistsAdminQuestionOptionsUpdate(ctx, uuid, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsAdminQuestionOptionsUpdateResponse(rsp)
-}
-
-// MarketplaceChecklistsAdminQuestionsListWithResponse request returning *MarketplaceChecklistsAdminQuestionsListResponse
-func (c *ClientWithResponses) MarketplaceChecklistsAdminQuestionsListWithResponse(ctx context.Context, params *MarketplaceChecklistsAdminQuestionsListParams, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionsListResponse, error) {
-	rsp, err := c.MarketplaceChecklistsAdminQuestionsList(ctx, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsAdminQuestionsListResponse(rsp)
-}
-
-// MarketplaceChecklistsAdminQuestionsCountWithResponse request returning *MarketplaceChecklistsAdminQuestionsCountResponse
-func (c *ClientWithResponses) MarketplaceChecklistsAdminQuestionsCountWithResponse(ctx context.Context, params *MarketplaceChecklistsAdminQuestionsCountParams, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionsCountResponse, error) {
-	rsp, err := c.MarketplaceChecklistsAdminQuestionsCount(ctx, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsAdminQuestionsCountResponse(rsp)
-}
-
-// MarketplaceChecklistsAdminQuestionsCreateWithBodyWithResponse request with arbitrary body returning *MarketplaceChecklistsAdminQuestionsCreateResponse
-func (c *ClientWithResponses) MarketplaceChecklistsAdminQuestionsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionsCreateResponse, error) {
-	rsp, err := c.MarketplaceChecklistsAdminQuestionsCreateWithBody(ctx, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsAdminQuestionsCreateResponse(rsp)
-}
-
-func (c *ClientWithResponses) MarketplaceChecklistsAdminQuestionsCreateWithResponse(ctx context.Context, body MarketplaceChecklistsAdminQuestionsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionsCreateResponse, error) {
-	rsp, err := c.MarketplaceChecklistsAdminQuestionsCreate(ctx, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsAdminQuestionsCreateResponse(rsp)
-}
-
-// MarketplaceChecklistsAdminQuestionsDestroyWithResponse request returning *MarketplaceChecklistsAdminQuestionsDestroyResponse
-func (c *ClientWithResponses) MarketplaceChecklistsAdminQuestionsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionsDestroyResponse, error) {
-	rsp, err := c.MarketplaceChecklistsAdminQuestionsDestroy(ctx, uuid, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsAdminQuestionsDestroyResponse(rsp)
-}
-
-// MarketplaceChecklistsAdminQuestionsRetrieveWithResponse request returning *MarketplaceChecklistsAdminQuestionsRetrieveResponse
-func (c *ClientWithResponses) MarketplaceChecklistsAdminQuestionsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionsRetrieveResponse, error) {
-	rsp, err := c.MarketplaceChecklistsAdminQuestionsRetrieve(ctx, uuid, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsAdminQuestionsRetrieveResponse(rsp)
-}
-
-// MarketplaceChecklistsAdminQuestionsPartialUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceChecklistsAdminQuestionsPartialUpdateResponse
-func (c *ClientWithResponses) MarketplaceChecklistsAdminQuestionsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionsPartialUpdateResponse, error) {
-	rsp, err := c.MarketplaceChecklistsAdminQuestionsPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsAdminQuestionsPartialUpdateResponse(rsp)
-}
-
-func (c *ClientWithResponses) MarketplaceChecklistsAdminQuestionsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceChecklistsAdminQuestionsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionsPartialUpdateResponse, error) {
-	rsp, err := c.MarketplaceChecklistsAdminQuestionsPartialUpdate(ctx, uuid, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsAdminQuestionsPartialUpdateResponse(rsp)
-}
-
-// MarketplaceChecklistsAdminQuestionsUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceChecklistsAdminQuestionsUpdateResponse
-func (c *ClientWithResponses) MarketplaceChecklistsAdminQuestionsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionsUpdateResponse, error) {
-	rsp, err := c.MarketplaceChecklistsAdminQuestionsUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsAdminQuestionsUpdateResponse(rsp)
-}
-
-func (c *ClientWithResponses) MarketplaceChecklistsAdminQuestionsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceChecklistsAdminQuestionsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminQuestionsUpdateResponse, error) {
-	rsp, err := c.MarketplaceChecklistsAdminQuestionsUpdate(ctx, uuid, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsAdminQuestionsUpdateResponse(rsp)
-}
-
-// MarketplaceChecklistsAdminListWithResponse request returning *MarketplaceChecklistsAdminListResponse
-func (c *ClientWithResponses) MarketplaceChecklistsAdminListWithResponse(ctx context.Context, params *MarketplaceChecklistsAdminListParams, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminListResponse, error) {
-	rsp, err := c.MarketplaceChecklistsAdminList(ctx, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsAdminListResponse(rsp)
-}
-
-// MarketplaceChecklistsAdminCountWithResponse request returning *MarketplaceChecklistsAdminCountResponse
-func (c *ClientWithResponses) MarketplaceChecklistsAdminCountWithResponse(ctx context.Context, params *MarketplaceChecklistsAdminCountParams, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminCountResponse, error) {
-	rsp, err := c.MarketplaceChecklistsAdminCount(ctx, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsAdminCountResponse(rsp)
-}
-
-// MarketplaceChecklistsAdminCreateWithBodyWithResponse request with arbitrary body returning *MarketplaceChecklistsAdminCreateResponse
-func (c *ClientWithResponses) MarketplaceChecklistsAdminCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminCreateResponse, error) {
-	rsp, err := c.MarketplaceChecklistsAdminCreateWithBody(ctx, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsAdminCreateResponse(rsp)
-}
-
-func (c *ClientWithResponses) MarketplaceChecklistsAdminCreateWithResponse(ctx context.Context, body MarketplaceChecklistsAdminCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminCreateResponse, error) {
-	rsp, err := c.MarketplaceChecklistsAdminCreate(ctx, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsAdminCreateResponse(rsp)
-}
-
-// MarketplaceChecklistsAdminDestroyWithResponse request returning *MarketplaceChecklistsAdminDestroyResponse
-func (c *ClientWithResponses) MarketplaceChecklistsAdminDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminDestroyResponse, error) {
-	rsp, err := c.MarketplaceChecklistsAdminDestroy(ctx, uuid, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsAdminDestroyResponse(rsp)
-}
-
-// MarketplaceChecklistsAdminRetrieveWithResponse request returning *MarketplaceChecklistsAdminRetrieveResponse
-func (c *ClientWithResponses) MarketplaceChecklistsAdminRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminRetrieveResponse, error) {
-	rsp, err := c.MarketplaceChecklistsAdminRetrieve(ctx, uuid, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsAdminRetrieveResponse(rsp)
-}
-
-// MarketplaceChecklistsAdminPartialUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceChecklistsAdminPartialUpdateResponse
-func (c *ClientWithResponses) MarketplaceChecklistsAdminPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminPartialUpdateResponse, error) {
-	rsp, err := c.MarketplaceChecklistsAdminPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsAdminPartialUpdateResponse(rsp)
-}
-
-func (c *ClientWithResponses) MarketplaceChecklistsAdminPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceChecklistsAdminPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminPartialUpdateResponse, error) {
-	rsp, err := c.MarketplaceChecklistsAdminPartialUpdate(ctx, uuid, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsAdminPartialUpdateResponse(rsp)
-}
-
-// MarketplaceChecklistsAdminUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceChecklistsAdminUpdateResponse
-func (c *ClientWithResponses) MarketplaceChecklistsAdminUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminUpdateResponse, error) {
-	rsp, err := c.MarketplaceChecklistsAdminUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsAdminUpdateResponse(rsp)
-}
-
-func (c *ClientWithResponses) MarketplaceChecklistsAdminUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceChecklistsAdminUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminUpdateResponse, error) {
-	rsp, err := c.MarketplaceChecklistsAdminUpdate(ctx, uuid, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsAdminUpdateResponse(rsp)
-}
-
-// MarketplaceChecklistsAdminChecklistQuestionsWithResponse request returning *MarketplaceChecklistsAdminChecklistQuestionsResponse
-func (c *ClientWithResponses) MarketplaceChecklistsAdminChecklistQuestionsWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceChecklistsAdminChecklistQuestionsParams, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsAdminChecklistQuestionsResponse, error) {
-	rsp, err := c.MarketplaceChecklistsAdminChecklistQuestions(ctx, uuid, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsAdminChecklistQuestionsResponse(rsp)
-}
-
-// MarketplaceChecklistsCategoriesListWithResponse request returning *MarketplaceChecklistsCategoriesListResponse
-func (c *ClientWithResponses) MarketplaceChecklistsCategoriesListWithResponse(ctx context.Context, params *MarketplaceChecklistsCategoriesListParams, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsCategoriesListResponse, error) {
-	rsp, err := c.MarketplaceChecklistsCategoriesList(ctx, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsCategoriesListResponse(rsp)
-}
-
-// MarketplaceChecklistsCategoriesRetrieveWithResponse request returning *MarketplaceChecklistsCategoriesRetrieveResponse
-func (c *ClientWithResponses) MarketplaceChecklistsCategoriesRetrieveWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*MarketplaceChecklistsCategoriesRetrieveResponse, error) {
-	rsp, err := c.MarketplaceChecklistsCategoriesRetrieve(ctx, uuid, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceChecklistsCategoriesRetrieveResponse(rsp)
 }
 
 // MarketplaceComponentUsagesListWithResponse request returning *MarketplaceComponentUsagesListResponse
@@ -251301,6 +252147,842 @@ func ParseCeleryStatsRetrieveResponse(rsp *http.Response) (*CeleryStatsRetrieveR
 	return response, nil
 }
 
+// ParseChecklistsAdminCategoriesListResponse parses an HTTP response from a ChecklistsAdminCategoriesListWithResponse call
+func ParseChecklistsAdminCategoriesListResponse(rsp *http.Response) (*ChecklistsAdminCategoriesListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChecklistsAdminCategoriesListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []ChecklistCategory
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseChecklistsAdminCategoriesCountResponse parses an HTTP response from a ChecklistsAdminCategoriesCountWithResponse call
+func ParseChecklistsAdminCategoriesCountResponse(rsp *http.Response) (*ChecklistsAdminCategoriesCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChecklistsAdminCategoriesCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseChecklistsAdminCategoriesCreateResponse parses an HTTP response from a ChecklistsAdminCategoriesCreateWithResponse call
+func ParseChecklistsAdminCategoriesCreateResponse(rsp *http.Response) (*ChecklistsAdminCategoriesCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChecklistsAdminCategoriesCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest ChecklistCategory
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseChecklistsAdminCategoriesDestroyResponse parses an HTTP response from a ChecklistsAdminCategoriesDestroyWithResponse call
+func ParseChecklistsAdminCategoriesDestroyResponse(rsp *http.Response) (*ChecklistsAdminCategoriesDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChecklistsAdminCategoriesDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseChecklistsAdminCategoriesRetrieveResponse parses an HTTP response from a ChecklistsAdminCategoriesRetrieveWithResponse call
+func ParseChecklistsAdminCategoriesRetrieveResponse(rsp *http.Response) (*ChecklistsAdminCategoriesRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChecklistsAdminCategoriesRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ChecklistCategory
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseChecklistsAdminCategoriesPartialUpdateResponse parses an HTTP response from a ChecklistsAdminCategoriesPartialUpdateWithResponse call
+func ParseChecklistsAdminCategoriesPartialUpdateResponse(rsp *http.Response) (*ChecklistsAdminCategoriesPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChecklistsAdminCategoriesPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ChecklistCategory
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseChecklistsAdminCategoriesUpdateResponse parses an HTTP response from a ChecklistsAdminCategoriesUpdateWithResponse call
+func ParseChecklistsAdminCategoriesUpdateResponse(rsp *http.Response) (*ChecklistsAdminCategoriesUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChecklistsAdminCategoriesUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ChecklistCategory
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseChecklistsAdminQuestionDependenciesListResponse parses an HTTP response from a ChecklistsAdminQuestionDependenciesListWithResponse call
+func ParseChecklistsAdminQuestionDependenciesListResponse(rsp *http.Response) (*ChecklistsAdminQuestionDependenciesListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChecklistsAdminQuestionDependenciesListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []QuestionDependency
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseChecklistsAdminQuestionDependenciesCountResponse parses an HTTP response from a ChecklistsAdminQuestionDependenciesCountWithResponse call
+func ParseChecklistsAdminQuestionDependenciesCountResponse(rsp *http.Response) (*ChecklistsAdminQuestionDependenciesCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChecklistsAdminQuestionDependenciesCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseChecklistsAdminQuestionDependenciesCreateResponse parses an HTTP response from a ChecklistsAdminQuestionDependenciesCreateWithResponse call
+func ParseChecklistsAdminQuestionDependenciesCreateResponse(rsp *http.Response) (*ChecklistsAdminQuestionDependenciesCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChecklistsAdminQuestionDependenciesCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest QuestionDependency
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseChecklistsAdminQuestionDependenciesDestroyResponse parses an HTTP response from a ChecklistsAdminQuestionDependenciesDestroyWithResponse call
+func ParseChecklistsAdminQuestionDependenciesDestroyResponse(rsp *http.Response) (*ChecklistsAdminQuestionDependenciesDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChecklistsAdminQuestionDependenciesDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseChecklistsAdminQuestionDependenciesRetrieveResponse parses an HTTP response from a ChecklistsAdminQuestionDependenciesRetrieveWithResponse call
+func ParseChecklistsAdminQuestionDependenciesRetrieveResponse(rsp *http.Response) (*ChecklistsAdminQuestionDependenciesRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChecklistsAdminQuestionDependenciesRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest QuestionDependency
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseChecklistsAdminQuestionDependenciesPartialUpdateResponse parses an HTTP response from a ChecklistsAdminQuestionDependenciesPartialUpdateWithResponse call
+func ParseChecklistsAdminQuestionDependenciesPartialUpdateResponse(rsp *http.Response) (*ChecklistsAdminQuestionDependenciesPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChecklistsAdminQuestionDependenciesPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest QuestionDependency
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseChecklistsAdminQuestionDependenciesUpdateResponse parses an HTTP response from a ChecklistsAdminQuestionDependenciesUpdateWithResponse call
+func ParseChecklistsAdminQuestionDependenciesUpdateResponse(rsp *http.Response) (*ChecklistsAdminQuestionDependenciesUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChecklistsAdminQuestionDependenciesUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest QuestionDependency
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseChecklistsAdminQuestionOptionsListResponse parses an HTTP response from a ChecklistsAdminQuestionOptionsListWithResponse call
+func ParseChecklistsAdminQuestionOptionsListResponse(rsp *http.Response) (*ChecklistsAdminQuestionOptionsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChecklistsAdminQuestionOptionsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []QuestionOptionsAdmin
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseChecklistsAdminQuestionOptionsCountResponse parses an HTTP response from a ChecklistsAdminQuestionOptionsCountWithResponse call
+func ParseChecklistsAdminQuestionOptionsCountResponse(rsp *http.Response) (*ChecklistsAdminQuestionOptionsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChecklistsAdminQuestionOptionsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseChecklistsAdminQuestionOptionsCreateResponse parses an HTTP response from a ChecklistsAdminQuestionOptionsCreateWithResponse call
+func ParseChecklistsAdminQuestionOptionsCreateResponse(rsp *http.Response) (*ChecklistsAdminQuestionOptionsCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChecklistsAdminQuestionOptionsCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest QuestionOptionsAdmin
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseChecklistsAdminQuestionOptionsDestroyResponse parses an HTTP response from a ChecklistsAdminQuestionOptionsDestroyWithResponse call
+func ParseChecklistsAdminQuestionOptionsDestroyResponse(rsp *http.Response) (*ChecklistsAdminQuestionOptionsDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChecklistsAdminQuestionOptionsDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseChecklistsAdminQuestionOptionsRetrieveResponse parses an HTTP response from a ChecklistsAdminQuestionOptionsRetrieveWithResponse call
+func ParseChecklistsAdminQuestionOptionsRetrieveResponse(rsp *http.Response) (*ChecklistsAdminQuestionOptionsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChecklistsAdminQuestionOptionsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest QuestionOptionsAdmin
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseChecklistsAdminQuestionOptionsPartialUpdateResponse parses an HTTP response from a ChecklistsAdminQuestionOptionsPartialUpdateWithResponse call
+func ParseChecklistsAdminQuestionOptionsPartialUpdateResponse(rsp *http.Response) (*ChecklistsAdminQuestionOptionsPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChecklistsAdminQuestionOptionsPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest QuestionOptionsAdmin
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseChecklistsAdminQuestionOptionsUpdateResponse parses an HTTP response from a ChecklistsAdminQuestionOptionsUpdateWithResponse call
+func ParseChecklistsAdminQuestionOptionsUpdateResponse(rsp *http.Response) (*ChecklistsAdminQuestionOptionsUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChecklistsAdminQuestionOptionsUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest QuestionOptionsAdmin
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseChecklistsAdminQuestionsListResponse parses an HTTP response from a ChecklistsAdminQuestionsListWithResponse call
+func ParseChecklistsAdminQuestionsListResponse(rsp *http.Response) (*ChecklistsAdminQuestionsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChecklistsAdminQuestionsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []QuestionAdmin
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseChecklistsAdminQuestionsCountResponse parses an HTTP response from a ChecklistsAdminQuestionsCountWithResponse call
+func ParseChecklistsAdminQuestionsCountResponse(rsp *http.Response) (*ChecklistsAdminQuestionsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChecklistsAdminQuestionsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseChecklistsAdminQuestionsCreateResponse parses an HTTP response from a ChecklistsAdminQuestionsCreateWithResponse call
+func ParseChecklistsAdminQuestionsCreateResponse(rsp *http.Response) (*ChecklistsAdminQuestionsCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChecklistsAdminQuestionsCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest QuestionAdmin
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseChecklistsAdminQuestionsDestroyResponse parses an HTTP response from a ChecklistsAdminQuestionsDestroyWithResponse call
+func ParseChecklistsAdminQuestionsDestroyResponse(rsp *http.Response) (*ChecklistsAdminQuestionsDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChecklistsAdminQuestionsDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseChecklistsAdminQuestionsRetrieveResponse parses an HTTP response from a ChecklistsAdminQuestionsRetrieveWithResponse call
+func ParseChecklistsAdminQuestionsRetrieveResponse(rsp *http.Response) (*ChecklistsAdminQuestionsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChecklistsAdminQuestionsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest QuestionAdmin
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseChecklistsAdminQuestionsPartialUpdateResponse parses an HTTP response from a ChecklistsAdminQuestionsPartialUpdateWithResponse call
+func ParseChecklistsAdminQuestionsPartialUpdateResponse(rsp *http.Response) (*ChecklistsAdminQuestionsPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChecklistsAdminQuestionsPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest QuestionAdmin
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseChecklistsAdminQuestionsUpdateResponse parses an HTTP response from a ChecklistsAdminQuestionsUpdateWithResponse call
+func ParseChecklistsAdminQuestionsUpdateResponse(rsp *http.Response) (*ChecklistsAdminQuestionsUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChecklistsAdminQuestionsUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest QuestionAdmin
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseChecklistsAdminListResponse parses an HTTP response from a ChecklistsAdminListWithResponse call
+func ParseChecklistsAdminListResponse(rsp *http.Response) (*ChecklistsAdminListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChecklistsAdminListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []Checklist
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseChecklistsAdminCountResponse parses an HTTP response from a ChecklistsAdminCountWithResponse call
+func ParseChecklistsAdminCountResponse(rsp *http.Response) (*ChecklistsAdminCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChecklistsAdminCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseChecklistsAdminCreateResponse parses an HTTP response from a ChecklistsAdminCreateWithResponse call
+func ParseChecklistsAdminCreateResponse(rsp *http.Response) (*ChecklistsAdminCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChecklistsAdminCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest Checklist
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseChecklistsAdminDestroyResponse parses an HTTP response from a ChecklistsAdminDestroyWithResponse call
+func ParseChecklistsAdminDestroyResponse(rsp *http.Response) (*ChecklistsAdminDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChecklistsAdminDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseChecklistsAdminRetrieveResponse parses an HTTP response from a ChecklistsAdminRetrieveWithResponse call
+func ParseChecklistsAdminRetrieveResponse(rsp *http.Response) (*ChecklistsAdminRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChecklistsAdminRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest Checklist
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseChecklistsAdminPartialUpdateResponse parses an HTTP response from a ChecklistsAdminPartialUpdateWithResponse call
+func ParseChecklistsAdminPartialUpdateResponse(rsp *http.Response) (*ChecklistsAdminPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChecklistsAdminPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest Checklist
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseChecklistsAdminUpdateResponse parses an HTTP response from a ChecklistsAdminUpdateWithResponse call
+func ParseChecklistsAdminUpdateResponse(rsp *http.Response) (*ChecklistsAdminUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChecklistsAdminUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest Checklist
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseChecklistsAdminChecklistQuestionsResponse parses an HTTP response from a ChecklistsAdminChecklistQuestionsWithResponse call
+func ParseChecklistsAdminChecklistQuestionsResponse(rsp *http.Response) (*ChecklistsAdminChecklistQuestionsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChecklistsAdminChecklistQuestionsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []QuestionAdmin
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseComponentUserUsageLimitsListResponse parses an HTTP response from a ComponentUserUsageLimitsListWithResponse call
 func ParseComponentUserUsageLimitsListResponse(rsp *http.Response) (*ComponentUserUsageLimitsListResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -256905,732 +258587,6 @@ func ParseMarketplaceCategoryHelpArticlesUpdateResponse(rsp *http.Response) (*Ma
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest CategoryHelpArticles
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceChecklistsAdminQuestionDependenciesListResponse parses an HTTP response from a MarketplaceChecklistsAdminQuestionDependenciesListWithResponse call
-func ParseMarketplaceChecklistsAdminQuestionDependenciesListResponse(rsp *http.Response) (*MarketplaceChecklistsAdminQuestionDependenciesListResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceChecklistsAdminQuestionDependenciesListResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []QuestionDependency
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceChecklistsAdminQuestionDependenciesCountResponse parses an HTTP response from a MarketplaceChecklistsAdminQuestionDependenciesCountWithResponse call
-func ParseMarketplaceChecklistsAdminQuestionDependenciesCountResponse(rsp *http.Response) (*MarketplaceChecklistsAdminQuestionDependenciesCountResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceChecklistsAdminQuestionDependenciesCountResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceChecklistsAdminQuestionDependenciesCreateResponse parses an HTTP response from a MarketplaceChecklistsAdminQuestionDependenciesCreateWithResponse call
-func ParseMarketplaceChecklistsAdminQuestionDependenciesCreateResponse(rsp *http.Response) (*MarketplaceChecklistsAdminQuestionDependenciesCreateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceChecklistsAdminQuestionDependenciesCreateResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest QuestionDependency
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON201 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceChecklistsAdminQuestionDependenciesDestroyResponse parses an HTTP response from a MarketplaceChecklistsAdminQuestionDependenciesDestroyWithResponse call
-func ParseMarketplaceChecklistsAdminQuestionDependenciesDestroyResponse(rsp *http.Response) (*MarketplaceChecklistsAdminQuestionDependenciesDestroyResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceChecklistsAdminQuestionDependenciesDestroyResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceChecklistsAdminQuestionDependenciesRetrieveResponse parses an HTTP response from a MarketplaceChecklistsAdminQuestionDependenciesRetrieveWithResponse call
-func ParseMarketplaceChecklistsAdminQuestionDependenciesRetrieveResponse(rsp *http.Response) (*MarketplaceChecklistsAdminQuestionDependenciesRetrieveResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceChecklistsAdminQuestionDependenciesRetrieveResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest QuestionDependency
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceChecklistsAdminQuestionDependenciesPartialUpdateResponse parses an HTTP response from a MarketplaceChecklistsAdminQuestionDependenciesPartialUpdateWithResponse call
-func ParseMarketplaceChecklistsAdminQuestionDependenciesPartialUpdateResponse(rsp *http.Response) (*MarketplaceChecklistsAdminQuestionDependenciesPartialUpdateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceChecklistsAdminQuestionDependenciesPartialUpdateResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest QuestionDependency
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceChecklistsAdminQuestionDependenciesUpdateResponse parses an HTTP response from a MarketplaceChecklistsAdminQuestionDependenciesUpdateWithResponse call
-func ParseMarketplaceChecklistsAdminQuestionDependenciesUpdateResponse(rsp *http.Response) (*MarketplaceChecklistsAdminQuestionDependenciesUpdateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceChecklistsAdminQuestionDependenciesUpdateResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest QuestionDependency
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceChecklistsAdminQuestionOptionsListResponse parses an HTTP response from a MarketplaceChecklistsAdminQuestionOptionsListWithResponse call
-func ParseMarketplaceChecklistsAdminQuestionOptionsListResponse(rsp *http.Response) (*MarketplaceChecklistsAdminQuestionOptionsListResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceChecklistsAdminQuestionOptionsListResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []QuestionOptionsAdmin
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceChecklistsAdminQuestionOptionsCountResponse parses an HTTP response from a MarketplaceChecklistsAdminQuestionOptionsCountWithResponse call
-func ParseMarketplaceChecklistsAdminQuestionOptionsCountResponse(rsp *http.Response) (*MarketplaceChecklistsAdminQuestionOptionsCountResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceChecklistsAdminQuestionOptionsCountResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceChecklistsAdminQuestionOptionsCreateResponse parses an HTTP response from a MarketplaceChecklistsAdminQuestionOptionsCreateWithResponse call
-func ParseMarketplaceChecklistsAdminQuestionOptionsCreateResponse(rsp *http.Response) (*MarketplaceChecklistsAdminQuestionOptionsCreateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceChecklistsAdminQuestionOptionsCreateResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest QuestionOptionsAdmin
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON201 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceChecklistsAdminQuestionOptionsDestroyResponse parses an HTTP response from a MarketplaceChecklistsAdminQuestionOptionsDestroyWithResponse call
-func ParseMarketplaceChecklistsAdminQuestionOptionsDestroyResponse(rsp *http.Response) (*MarketplaceChecklistsAdminQuestionOptionsDestroyResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceChecklistsAdminQuestionOptionsDestroyResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceChecklistsAdminQuestionOptionsRetrieveResponse parses an HTTP response from a MarketplaceChecklistsAdminQuestionOptionsRetrieveWithResponse call
-func ParseMarketplaceChecklistsAdminQuestionOptionsRetrieveResponse(rsp *http.Response) (*MarketplaceChecklistsAdminQuestionOptionsRetrieveResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceChecklistsAdminQuestionOptionsRetrieveResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest QuestionOptionsAdmin
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceChecklistsAdminQuestionOptionsPartialUpdateResponse parses an HTTP response from a MarketplaceChecklistsAdminQuestionOptionsPartialUpdateWithResponse call
-func ParseMarketplaceChecklistsAdminQuestionOptionsPartialUpdateResponse(rsp *http.Response) (*MarketplaceChecklistsAdminQuestionOptionsPartialUpdateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceChecklistsAdminQuestionOptionsPartialUpdateResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest QuestionOptionsAdmin
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceChecklistsAdminQuestionOptionsUpdateResponse parses an HTTP response from a MarketplaceChecklistsAdminQuestionOptionsUpdateWithResponse call
-func ParseMarketplaceChecklistsAdminQuestionOptionsUpdateResponse(rsp *http.Response) (*MarketplaceChecklistsAdminQuestionOptionsUpdateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceChecklistsAdminQuestionOptionsUpdateResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest QuestionOptionsAdmin
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceChecklistsAdminQuestionsListResponse parses an HTTP response from a MarketplaceChecklistsAdminQuestionsListWithResponse call
-func ParseMarketplaceChecklistsAdminQuestionsListResponse(rsp *http.Response) (*MarketplaceChecklistsAdminQuestionsListResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceChecklistsAdminQuestionsListResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []QuestionAdmin
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceChecklistsAdminQuestionsCountResponse parses an HTTP response from a MarketplaceChecklistsAdminQuestionsCountWithResponse call
-func ParseMarketplaceChecklistsAdminQuestionsCountResponse(rsp *http.Response) (*MarketplaceChecklistsAdminQuestionsCountResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceChecklistsAdminQuestionsCountResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceChecklistsAdminQuestionsCreateResponse parses an HTTP response from a MarketplaceChecklistsAdminQuestionsCreateWithResponse call
-func ParseMarketplaceChecklistsAdminQuestionsCreateResponse(rsp *http.Response) (*MarketplaceChecklistsAdminQuestionsCreateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceChecklistsAdminQuestionsCreateResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest QuestionAdmin
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON201 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceChecklistsAdminQuestionsDestroyResponse parses an HTTP response from a MarketplaceChecklistsAdminQuestionsDestroyWithResponse call
-func ParseMarketplaceChecklistsAdminQuestionsDestroyResponse(rsp *http.Response) (*MarketplaceChecklistsAdminQuestionsDestroyResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceChecklistsAdminQuestionsDestroyResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceChecklistsAdminQuestionsRetrieveResponse parses an HTTP response from a MarketplaceChecklistsAdminQuestionsRetrieveWithResponse call
-func ParseMarketplaceChecklistsAdminQuestionsRetrieveResponse(rsp *http.Response) (*MarketplaceChecklistsAdminQuestionsRetrieveResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceChecklistsAdminQuestionsRetrieveResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest QuestionAdmin
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceChecklistsAdminQuestionsPartialUpdateResponse parses an HTTP response from a MarketplaceChecklistsAdminQuestionsPartialUpdateWithResponse call
-func ParseMarketplaceChecklistsAdminQuestionsPartialUpdateResponse(rsp *http.Response) (*MarketplaceChecklistsAdminQuestionsPartialUpdateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceChecklistsAdminQuestionsPartialUpdateResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest QuestionAdmin
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceChecklistsAdminQuestionsUpdateResponse parses an HTTP response from a MarketplaceChecklistsAdminQuestionsUpdateWithResponse call
-func ParseMarketplaceChecklistsAdminQuestionsUpdateResponse(rsp *http.Response) (*MarketplaceChecklistsAdminQuestionsUpdateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceChecklistsAdminQuestionsUpdateResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest QuestionAdmin
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceChecklistsAdminListResponse parses an HTTP response from a MarketplaceChecklistsAdminListWithResponse call
-func ParseMarketplaceChecklistsAdminListResponse(rsp *http.Response) (*MarketplaceChecklistsAdminListResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceChecklistsAdminListResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []ChecklistAdmin
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceChecklistsAdminCountResponse parses an HTTP response from a MarketplaceChecklistsAdminCountWithResponse call
-func ParseMarketplaceChecklistsAdminCountResponse(rsp *http.Response) (*MarketplaceChecklistsAdminCountResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceChecklistsAdminCountResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceChecklistsAdminCreateResponse parses an HTTP response from a MarketplaceChecklistsAdminCreateWithResponse call
-func ParseMarketplaceChecklistsAdminCreateResponse(rsp *http.Response) (*MarketplaceChecklistsAdminCreateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceChecklistsAdminCreateResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest CreateChecklist
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON201 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceChecklistsAdminDestroyResponse parses an HTTP response from a MarketplaceChecklistsAdminDestroyWithResponse call
-func ParseMarketplaceChecklistsAdminDestroyResponse(rsp *http.Response) (*MarketplaceChecklistsAdminDestroyResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceChecklistsAdminDestroyResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceChecklistsAdminRetrieveResponse parses an HTTP response from a MarketplaceChecklistsAdminRetrieveWithResponse call
-func ParseMarketplaceChecklistsAdminRetrieveResponse(rsp *http.Response) (*MarketplaceChecklistsAdminRetrieveResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceChecklistsAdminRetrieveResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ChecklistAdmin
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceChecklistsAdminPartialUpdateResponse parses an HTTP response from a MarketplaceChecklistsAdminPartialUpdateWithResponse call
-func ParseMarketplaceChecklistsAdminPartialUpdateResponse(rsp *http.Response) (*MarketplaceChecklistsAdminPartialUpdateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceChecklistsAdminPartialUpdateResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest CreateChecklist
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceChecklistsAdminUpdateResponse parses an HTTP response from a MarketplaceChecklistsAdminUpdateWithResponse call
-func ParseMarketplaceChecklistsAdminUpdateResponse(rsp *http.Response) (*MarketplaceChecklistsAdminUpdateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceChecklistsAdminUpdateResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest CreateChecklist
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceChecklistsAdminChecklistQuestionsResponse parses an HTTP response from a MarketplaceChecklistsAdminChecklistQuestionsWithResponse call
-func ParseMarketplaceChecklistsAdminChecklistQuestionsResponse(rsp *http.Response) (*MarketplaceChecklistsAdminChecklistQuestionsResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceChecklistsAdminChecklistQuestionsResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []QuestionAdmin
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceChecklistsCategoriesListResponse parses an HTTP response from a MarketplaceChecklistsCategoriesListWithResponse call
-func ParseMarketplaceChecklistsCategoriesListResponse(rsp *http.Response) (*MarketplaceChecklistsCategoriesListResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceChecklistsCategoriesListResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []ChecklistCategory
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceChecklistsCategoriesRetrieveResponse parses an HTTP response from a MarketplaceChecklistsCategoriesRetrieveWithResponse call
-func ParseMarketplaceChecklistsCategoriesRetrieveResponse(rsp *http.Response) (*MarketplaceChecklistsCategoriesRetrieveResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceChecklistsCategoriesRetrieveResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ChecklistCategory
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
