@@ -22006,7 +22006,7 @@ type BookingResourcesListParams struct {
 	ProjectUuid        *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 	ProviderUuid       *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
 
-	// Query Query
+	// Query Search by resource UUID, name, backend ID, effective ID, IPs or hypervisor
 	Query                *string `form:"query,omitempty" json:"query,omitempty"`
 	RestrictMemberAccess *bool   `form:"restrict_member_access,omitempty" json:"restrict_member_access,omitempty"`
 
@@ -22076,7 +22076,7 @@ type BookingResourcesCountParams struct {
 	ProjectUuid        *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 	ProviderUuid       *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
 
-	// Query Query
+	// Query Search by resource UUID, name, backend ID, effective ID, IPs or hypervisor
 	Query                *string `form:"query,omitempty" json:"query,omitempty"`
 	RestrictMemberAccess *bool   `form:"restrict_member_access,omitempty" json:"restrict_member_access,omitempty"`
 
@@ -22613,9 +22613,11 @@ type CustomersListParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize         *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Query            *string   `form:"query,omitempty" json:"query,omitempty"`
-	RegistrationCode *string   `form:"registration_code,omitempty" json:"registration_code,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Query Filter by name, native name, abbreviation, domain, UUID, registration code or agreement number
+	Query            *string `form:"query,omitempty" json:"query,omitempty"`
+	RegistrationCode *string `form:"registration_code,omitempty" json:"registration_code,omitempty"`
 }
 
 // CustomersListParamsField defines parameters for CustomersList.
@@ -22646,9 +22648,11 @@ type CustomersCountParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize         *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Query            *string   `form:"query,omitempty" json:"query,omitempty"`
-	RegistrationCode *string   `form:"registration_code,omitempty" json:"registration_code,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Query Filter by name, native name, abbreviation, domain, UUID, registration code or agreement number
+	Query            *string `form:"query,omitempty" json:"query,omitempty"`
+	RegistrationCode *string `form:"registration_code,omitempty" json:"registration_code,omitempty"`
 }
 
 // CustomersCountriesListParams defines parameters for CustomersCountriesList.
@@ -22676,9 +22680,11 @@ type CustomersCountriesListParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize         *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Query            *string   `form:"query,omitempty" json:"query,omitempty"`
-	RegistrationCode *string   `form:"registration_code,omitempty" json:"registration_code,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Query Filter by name, native name, abbreviation, domain, UUID, registration code or agreement number
+	Query            *string `form:"query,omitempty" json:"query,omitempty"`
+	RegistrationCode *string `form:"registration_code,omitempty" json:"registration_code,omitempty"`
 }
 
 // CustomersCountriesCountParams defines parameters for CustomersCountriesCount.
@@ -22706,9 +22712,11 @@ type CustomersCountriesCountParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize         *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Query            *string   `form:"query,omitempty" json:"query,omitempty"`
-	RegistrationCode *string   `form:"registration_code,omitempty" json:"registration_code,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Query Filter by name, native name, abbreviation, domain, UUID, registration code or agreement number
+	Query            *string `form:"query,omitempty" json:"query,omitempty"`
+	RegistrationCode *string `form:"registration_code,omitempty" json:"registration_code,omitempty"`
 }
 
 // CustomersRetrieveParams defines parameters for CustomersRetrieve.
@@ -23187,7 +23195,9 @@ type ExternalLinksListParams struct {
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Query    *string   `form:"query,omitempty" json:"query,omitempty"`
+
+	// Query Filter by name, link or description
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
 }
 
 // ExternalLinksCountParams defines parameters for ExternalLinksCount.
@@ -23200,7 +23210,9 @@ type ExternalLinksCountParams struct {
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Query    *string   `form:"query,omitempty" json:"query,omitempty"`
+
+	// Query Filter by name, link or description
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
 }
 
 // FeatureValuesJSONBody defines parameters for FeatureValues.
@@ -23231,9 +23243,11 @@ type FinancialReportsListParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize         *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Query            *string   `form:"query,omitempty" json:"query,omitempty"`
-	RegistrationCode *string   `form:"registration_code,omitempty" json:"registration_code,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Query Filter by name, native name, abbreviation, domain, UUID, registration code or agreement number
+	Query            *string `form:"query,omitempty" json:"query,omitempty"`
+	RegistrationCode *string `form:"registration_code,omitempty" json:"registration_code,omitempty"`
 }
 
 // FinancialReportsCountParams defines parameters for FinancialReportsCount.
@@ -23261,9 +23275,11 @@ type FinancialReportsCountParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize         *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Query            *string   `form:"query,omitempty" json:"query,omitempty"`
-	RegistrationCode *string   `form:"registration_code,omitempty" json:"registration_code,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Query Filter by name, native name, abbreviation, domain, UUID, registration code or agreement number
+	Query            *string `form:"query,omitempty" json:"query,omitempty"`
+	RegistrationCode *string `form:"registration_code,omitempty" json:"registration_code,omitempty"`
 }
 
 // FreeipaProfilesListParams defines parameters for FreeipaProfilesList.
@@ -23272,9 +23288,11 @@ type FreeipaProfilesListParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Query    *string             `form:"query,omitempty" json:"query,omitempty"`
-	User     *openapi_types.UUID `form:"user,omitempty" json:"user,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Query Filter by username, user UUID, first name or last name
+	Query *string             `form:"query,omitempty" json:"query,omitempty"`
+	User  *openapi_types.UUID `form:"user,omitempty" json:"user,omitempty"`
 }
 
 // FreeipaProfilesCountParams defines parameters for FreeipaProfilesCount.
@@ -23283,9 +23301,11 @@ type FreeipaProfilesCountParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Query    *string             `form:"query,omitempty" json:"query,omitempty"`
-	User     *openapi_types.UUID `form:"user,omitempty" json:"user,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Query Filter by username, user UUID, first name or last name
+	Query *string             `form:"query,omitempty" json:"query,omitempty"`
+	User  *openapi_types.UUID `form:"user,omitempty" json:"user,omitempty"`
 }
 
 // GoogleAuthListParams defines parameters for GoogleAuthList.
@@ -23368,7 +23388,9 @@ type HooksEmailListParams struct {
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Query    *string   `form:"query,omitempty" json:"query,omitempty"`
+
+	// Query Filter by author name, username and email
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
 }
 
 // HooksEmailCountParams defines parameters for HooksEmailCount.
@@ -23388,7 +23410,9 @@ type HooksEmailCountParams struct {
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Query    *string   `form:"query,omitempty" json:"query,omitempty"`
+
+	// Query Filter by author name, username and email
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
 }
 
 // HooksWebListParams defines parameters for HooksWebList.
@@ -23409,7 +23433,9 @@ type HooksWebListParams struct {
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Query    *string   `form:"query,omitempty" json:"query,omitempty"`
+
+	// Query Filter by author name, username and email
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
 }
 
 // HooksWebListParamsContentType defines parameters for HooksWebList.
@@ -23433,7 +23459,9 @@ type HooksWebCountParams struct {
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Query    *string   `form:"query,omitempty" json:"query,omitempty"`
+
+	// Query Filter by author name, username and email
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
 }
 
 // HooksWebCountParamsContentType defines parameters for HooksWebCount.
@@ -23884,8 +23912,10 @@ type LexisLinksListParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	ProjectUuid  *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	PageSize    *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// Query Filter by robot account username or type
 	Query        *string             `form:"query,omitempty" json:"query,omitempty"`
 	ResourceUuid *openapi_types.UUID `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
 	Uuid         *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
@@ -23899,8 +23929,10 @@ type LexisLinksCountParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	ProjectUuid  *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	PageSize    *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// Query Filter by robot account username or type
 	Query        *string             `form:"query,omitempty" json:"query,omitempty"`
 	ResourceUuid *openapi_types.UUID `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
 	Uuid         *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
@@ -24877,13 +24909,15 @@ type MarketplaceOfferingUsersListParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize           *PageSize                                  `form:"page_size,omitempty" json:"page_size,omitempty"`
-	ParentOfferingUuid *openapi_types.UUID                        `form:"parent_offering_uuid,omitempty" json:"parent_offering_uuid,omitempty"`
-	ProviderUuid       *openapi_types.UUID                        `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
-	Query              *string                                    `form:"query,omitempty" json:"query,omitempty"`
-	State              *[]MarketplaceOfferingUsersListParamsState `form:"state,omitempty" json:"state,omitempty"`
-	UserUsername       *string                                    `form:"user_username,omitempty" json:"user_username,omitempty"`
-	UserUuid           *openapi_types.UUID                        `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
+	PageSize           *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ParentOfferingUuid *openapi_types.UUID `form:"parent_offering_uuid,omitempty" json:"parent_offering_uuid,omitempty"`
+	ProviderUuid       *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
+
+	// Query Search by offering name, username or user name
+	Query        *string                                    `form:"query,omitempty" json:"query,omitempty"`
+	State        *[]MarketplaceOfferingUsersListParamsState `form:"state,omitempty" json:"state,omitempty"`
+	UserUsername *string                                    `form:"user_username,omitempty" json:"user_username,omitempty"`
+	UserUuid     *openapi_types.UUID                        `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
 }
 
 // MarketplaceOfferingUsersListParamsField defines parameters for MarketplaceOfferingUsersList.
@@ -24914,13 +24948,15 @@ type MarketplaceOfferingUsersCountParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize           *PageSize                                   `form:"page_size,omitempty" json:"page_size,omitempty"`
-	ParentOfferingUuid *openapi_types.UUID                         `form:"parent_offering_uuid,omitempty" json:"parent_offering_uuid,omitempty"`
-	ProviderUuid       *openapi_types.UUID                         `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
-	Query              *string                                     `form:"query,omitempty" json:"query,omitempty"`
-	State              *[]MarketplaceOfferingUsersCountParamsState `form:"state,omitempty" json:"state,omitempty"`
-	UserUsername       *string                                     `form:"user_username,omitempty" json:"user_username,omitempty"`
-	UserUuid           *openapi_types.UUID                         `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
+	PageSize           *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ParentOfferingUuid *openapi_types.UUID `form:"parent_offering_uuid,omitempty" json:"parent_offering_uuid,omitempty"`
+	ProviderUuid       *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
+
+	// Query Search by offering name, username or user name
+	Query        *string                                     `form:"query,omitempty" json:"query,omitempty"`
+	State        *[]MarketplaceOfferingUsersCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+	UserUsername *string                                     `form:"user_username,omitempty" json:"user_username,omitempty"`
+	UserUuid     *openapi_types.UUID                         `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
 }
 
 // MarketplaceOfferingUsersCountParamsO defines parameters for MarketplaceOfferingUsersCount.
@@ -24962,10 +24998,12 @@ type MarketplaceOrdersListParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize           *PageSize                           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	ParentOfferingUuid *openapi_types.UUID                 `form:"parent_offering_uuid,omitempty" json:"parent_offering_uuid,omitempty"`
-	ProjectUuid        *openapi_types.UUID                 `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	ProviderUuid       *openapi_types.UUID                 `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
+	PageSize           *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ParentOfferingUuid *openapi_types.UUID `form:"parent_offering_uuid,omitempty" json:"parent_offering_uuid,omitempty"`
+	ProjectUuid        *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	ProviderUuid       *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
+
+	// Query Search by order UUID, project name or resource name
 	Query              *string                             `form:"query,omitempty" json:"query,omitempty"`
 	Resource           *string                             `form:"resource,omitempty" json:"resource,omitempty"`
 	ResourceUuid       *openapi_types.UUID                 `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
@@ -25010,10 +25048,12 @@ type MarketplaceOrdersCountParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize           *PageSize                            `form:"page_size,omitempty" json:"page_size,omitempty"`
-	ParentOfferingUuid *openapi_types.UUID                  `form:"parent_offering_uuid,omitempty" json:"parent_offering_uuid,omitempty"`
-	ProjectUuid        *openapi_types.UUID                  `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	ProviderUuid       *openapi_types.UUID                  `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
+	PageSize           *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ParentOfferingUuid *openapi_types.UUID `form:"parent_offering_uuid,omitempty" json:"parent_offering_uuid,omitempty"`
+	ProjectUuid        *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	ProviderUuid       *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
+
+	// Query Search by order UUID, project name or resource name
 	Query              *string                              `form:"query,omitempty" json:"query,omitempty"`
 	Resource           *string                              `form:"resource,omitempty" json:"resource,omitempty"`
 	ResourceUuid       *openapi_types.UUID                  `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
@@ -25879,7 +25919,7 @@ type MarketplaceProviderResourcesListParams struct {
 	ProjectUuid        *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 	ProviderUuid       *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
 
-	// Query Query
+	// Query Search by resource UUID, name, backend ID, effective ID, IPs or hypervisor
 	Query                *string `form:"query,omitempty" json:"query,omitempty"`
 	RestrictMemberAccess *bool   `form:"restrict_member_access,omitempty" json:"restrict_member_access,omitempty"`
 
@@ -25948,7 +25988,7 @@ type MarketplaceProviderResourcesCountParams struct {
 	ProjectUuid        *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 	ProviderUuid       *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
 
-	// Query Query
+	// Query Search by resource UUID, name, backend ID, effective ID, IPs or hypervisor
 	Query                *string `form:"query,omitempty" json:"query,omitempty"`
 	RestrictMemberAccess *bool   `form:"restrict_member_access,omitempty" json:"restrict_member_access,omitempty"`
 
@@ -26245,7 +26285,7 @@ type MarketplaceResourcesListParams struct {
 	ProjectUuid        *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 	ProviderUuid       *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
 
-	// Query Query
+	// Query Search by resource UUID, name, backend ID, effective ID, IPs or hypervisor
 	Query                *string `form:"query,omitempty" json:"query,omitempty"`
 	RestrictMemberAccess *bool   `form:"restrict_member_access,omitempty" json:"restrict_member_access,omitempty"`
 
@@ -26314,7 +26354,7 @@ type MarketplaceResourcesCountParams struct {
 	ProjectUuid        *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 	ProviderUuid       *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
 
-	// Query Query
+	// Query Search by resource UUID, name, backend ID, effective ID, IPs or hypervisor
 	Query                *string `form:"query,omitempty" json:"query,omitempty"`
 	RestrictMemberAccess *bool   `form:"restrict_member_access,omitempty" json:"restrict_member_access,omitempty"`
 
@@ -26566,8 +26606,10 @@ type MarketplaceServiceProvidersCustomerProjectsListParams struct {
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Query    *string   `form:"query,omitempty" json:"query,omitempty"`
-	Slug     *string   `form:"slug,omitempty" json:"slug,omitempty"`
+
+	// Query Filter by name, UUID, backend ID or resource effective ID
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
+	Slug  *string `form:"slug,omitempty" json:"slug,omitempty"`
 }
 
 // MarketplaceServiceProvidersCustomerProjectsListParamsField defines parameters for MarketplaceServiceProvidersCustomerProjectsList.
@@ -26599,9 +26641,11 @@ type MarketplaceServiceProvidersCustomersListParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize         *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Query            *string   `form:"query,omitempty" json:"query,omitempty"`
-	RegistrationCode *string   `form:"registration_code,omitempty" json:"registration_code,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Query Filter by name, native name, abbreviation, domain, UUID, registration code or agreement number
+	Query            *string `form:"query,omitempty" json:"query,omitempty"`
+	RegistrationCode *string `form:"registration_code,omitempty" json:"registration_code,omitempty"`
 }
 
 // MarketplaceServiceProvidersCustomersListParamsField defines parameters for MarketplaceServiceProvidersCustomersList.
@@ -26801,8 +26845,10 @@ type MarketplaceServiceProvidersProjectsListParams struct {
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Query    *string   `form:"query,omitempty" json:"query,omitempty"`
-	Slug     *string   `form:"slug,omitempty" json:"slug,omitempty"`
+
+	// Query Filter by name, UUID, backend ID or resource effective ID
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
+	Slug  *string `form:"slug,omitempty" json:"slug,omitempty"`
 }
 
 // MarketplaceServiceProvidersProjectsListParamsField defines parameters for MarketplaceServiceProvidersProjectsList.
@@ -26834,9 +26880,11 @@ type MarketplaceServiceProvidersUserCustomersListParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize         *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Query            *string   `form:"query,omitempty" json:"query,omitempty"`
-	RegistrationCode *string   `form:"registration_code,omitempty" json:"registration_code,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Query Filter by name, native name, abbreviation, domain, UUID, registration code or agreement number
+	Query            *string `form:"query,omitempty" json:"query,omitempty"`
+	RegistrationCode *string `form:"registration_code,omitempty" json:"registration_code,omitempty"`
 
 	// UserUuid UUID of user to get related customers for
 	UserUuid openapi_types.UUID `form:"user_uuid" json:"user_uuid"`
@@ -26885,10 +26933,12 @@ type MarketplaceServiceProvidersUsersListParams struct {
 	PhoneNumber *string   `form:"phone_number,omitempty" json:"phone_number,omitempty"`
 
 	// ProjectRoles Project roles
-	ProjectRoles       *string             `form:"project_roles,omitempty" json:"project_roles,omitempty"`
-	ProjectUuid        *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	Query              *string             `form:"query,omitempty" json:"query,omitempty"`
-	RegistrationMethod *string             `form:"registration_method,omitempty" json:"registration_method,omitempty"`
+	ProjectRoles *string             `form:"project_roles,omitempty" json:"project_roles,omitempty"`
+	ProjectUuid  *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// Query Filter by first name, last name, civil number, username or email
+	Query              *string `form:"query,omitempty" json:"query,omitempty"`
+	RegistrationMethod *string `form:"registration_method,omitempty" json:"registration_method,omitempty"`
 
 	// UserKeyword User keyword
 	UserKeyword *string `form:"user_keyword,omitempty" json:"user_keyword,omitempty"`
@@ -27354,7 +27404,9 @@ type NotificationMessagesListParams struct {
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Query    *string   `form:"query,omitempty" json:"query,omitempty"`
+
+	// Query Filter by key or description
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
 }
 
 // NotificationMessagesCountParams defines parameters for NotificationMessagesCount.
@@ -27370,7 +27422,9 @@ type NotificationMessagesCountParams struct {
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Query    *string   `form:"query,omitempty" json:"query,omitempty"`
+
+	// Query Filter by key or description
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
 }
 
 // OpenstackBackupsListParams defines parameters for OpenstackBackupsList.
@@ -27724,10 +27778,12 @@ type OpenstackInstancesListParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                            `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project             *openapi_types.UUID                  `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName         *string                              `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid         *openapi_types.UUID                  `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	PageSize    *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Project     *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+	ProjectName *string             `form:"project_name,omitempty" json:"project_name,omitempty"`
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// Query Search by name, internal IP, or external IP
 	Query               *string                              `form:"query,omitempty" json:"query,omitempty"`
 	RuntimeState        *string                              `form:"runtime_state,omitempty" json:"runtime_state,omitempty"`
 	ServiceSettingsName *string                              `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
@@ -27766,10 +27822,12 @@ type OpenstackInstancesCountParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                             `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project             *openapi_types.UUID                   `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName         *string                               `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid         *openapi_types.UUID                   `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	PageSize    *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Project     *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+	ProjectName *string             `form:"project_name,omitempty" json:"project_name,omitempty"`
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// Query Search by name, internal IP, or external IP
 	Query               *string                               `form:"query,omitempty" json:"query,omitempty"`
 	RuntimeState        *string                               `form:"runtime_state,omitempty" json:"runtime_state,omitempty"`
 	ServiceSettingsName *string                               `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
@@ -28076,7 +28134,7 @@ type OpenstackPortsListParams struct {
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 
-	// Query Query
+	// Query Search by name, MAC address or backend ID
 	Query      *string             `form:"query,omitempty" json:"query,omitempty"`
 	Status     *string             `form:"status,omitempty" json:"status,omitempty"`
 	Tenant     *string             `form:"tenant,omitempty" json:"tenant,omitempty"`
@@ -28115,7 +28173,7 @@ type OpenstackPortsCountParams struct {
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 
-	// Query Query
+	// Query Search by name, MAC address or backend ID
 	Query      *string             `form:"query,omitempty" json:"query,omitempty"`
 	Status     *string             `form:"status,omitempty" json:"status,omitempty"`
 	Tenant     *string             `form:"tenant,omitempty" json:"tenant,omitempty"`
@@ -28194,10 +28252,12 @@ type OpenstackSecurityGroupsListParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                                 `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project             *openapi_types.UUID                       `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName         *string                                   `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid         *openapi_types.UUID                       `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	PageSize    *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Project     *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+	ProjectName *string             `form:"project_name,omitempty" json:"project_name,omitempty"`
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// Query Search by name or description
 	Query               *string                                   `form:"query,omitempty" json:"query,omitempty"`
 	ServiceSettingsName *string                                   `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
 	ServiceSettingsUuid *openapi_types.UUID                       `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
@@ -28233,10 +28293,12 @@ type OpenstackSecurityGroupsCountParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                                  `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project             *openapi_types.UUID                        `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName         *string                                    `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid         *openapi_types.UUID                        `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	PageSize    *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Project     *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+	ProjectName *string             `form:"project_name,omitempty" json:"project_name,omitempty"`
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// Query Search by name or description
 	Query               *string                                    `form:"query,omitempty" json:"query,omitempty"`
 	ServiceSettingsName *string                                    `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
 	ServiceSettingsUuid *openapi_types.UUID                        `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
@@ -29089,8 +29151,10 @@ type ProjectsListParams struct {
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Query    *string   `form:"query,omitempty" json:"query,omitempty"`
-	Slug     *string   `form:"slug,omitempty" json:"slug,omitempty"`
+
+	// Query Filter by name, UUID, backend ID or resource effective ID
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
+	Slug  *string `form:"slug,omitempty" json:"slug,omitempty"`
 }
 
 // ProjectsListParamsField defines parameters for ProjectsList.
@@ -29136,8 +29200,10 @@ type ProjectsCountParams struct {
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Query    *string   `form:"query,omitempty" json:"query,omitempty"`
-	Slug     *string   `form:"slug,omitempty" json:"slug,omitempty"`
+
+	// Query Filter by name, UUID, backend ID or resource effective ID
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
+	Slug  *string `form:"slug,omitempty" json:"slug,omitempty"`
 }
 
 // ProjectsCountParamsO defines parameters for ProjectsCount.
@@ -29240,7 +29306,9 @@ type PromotionsCampaignsListParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                             `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Query Search by name or coupon code
 	Query               *string                               `form:"query,omitempty" json:"query,omitempty"`
 	ServiceProviderUuid *openapi_types.UUID                   `form:"service_provider_uuid,omitempty" json:"service_provider_uuid,omitempty"`
 	StartDate           *openapi_types.Date                   `form:"start_date,omitempty" json:"start_date,omitempty"`
@@ -29270,7 +29338,9 @@ type PromotionsCampaignsCountParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                              `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Query Search by name or coupon code
 	Query               *string                                `form:"query,omitempty" json:"query,omitempty"`
 	ServiceProviderUuid *openapi_types.UUID                    `form:"service_provider_uuid,omitempty" json:"service_provider_uuid,omitempty"`
 	StartDate           *openapi_types.Date                    `form:"start_date,omitempty" json:"start_date,omitempty"`
@@ -31505,10 +31575,12 @@ type UsersListParams struct {
 	PhoneNumber *string   `form:"phone_number,omitempty" json:"phone_number,omitempty"`
 
 	// ProjectRoles Project roles
-	ProjectRoles       *string             `form:"project_roles,omitempty" json:"project_roles,omitempty"`
-	ProjectUuid        *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	Query              *string             `form:"query,omitempty" json:"query,omitempty"`
-	RegistrationMethod *string             `form:"registration_method,omitempty" json:"registration_method,omitempty"`
+	ProjectRoles *string             `form:"project_roles,omitempty" json:"project_roles,omitempty"`
+	ProjectUuid  *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// Query Filter by first name, last name, civil number, username or email
+	Query              *string `form:"query,omitempty" json:"query,omitempty"`
+	RegistrationMethod *string `form:"registration_method,omitempty" json:"registration_method,omitempty"`
 
 	// UserKeyword User keyword
 	UserKeyword *string `form:"user_keyword,omitempty" json:"user_keyword,omitempty"`
@@ -31563,10 +31635,12 @@ type UsersCountParams struct {
 	PhoneNumber *string   `form:"phone_number,omitempty" json:"phone_number,omitempty"`
 
 	// ProjectRoles Project roles
-	ProjectRoles       *string             `form:"project_roles,omitempty" json:"project_roles,omitempty"`
-	ProjectUuid        *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	Query              *string             `form:"query,omitempty" json:"query,omitempty"`
-	RegistrationMethod *string             `form:"registration_method,omitempty" json:"registration_method,omitempty"`
+	ProjectRoles *string             `form:"project_roles,omitempty" json:"project_roles,omitempty"`
+	ProjectUuid  *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// Query Filter by first name, last name, civil number, username or email
+	Query              *string `form:"query,omitempty" json:"query,omitempty"`
+	RegistrationMethod *string `form:"registration_method,omitempty" json:"registration_method,omitempty"`
 
 	// UserKeyword User keyword
 	UserKeyword *string `form:"user_keyword,omitempty" json:"user_keyword,omitempty"`
