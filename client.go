@@ -13037,6 +13037,12 @@ type Logout struct {
 	LogoutUrl *string `json:"logout_url,omitempty"`
 }
 
+// MaintenanceActionResponse defines model for MaintenanceActionResponse.
+type MaintenanceActionResponse struct {
+	// Detail Response message describing the action result
+	Detail string `json:"detail"`
+}
+
 // MaintenanceAnnouncement defines model for MaintenanceAnnouncement.
 type MaintenanceAnnouncement struct {
 	// ActualEnd When the maintenance actually completed
@@ -29289,6 +29295,9 @@ type ProjectsStatsRetrieveParams struct {
 	ForCurrentMonth *bool `form:"for_current_month,omitempty" json:"for_current_month,omitempty"`
 }
 
+// ProjectsSubmitAnswersJSONBody defines parameters for ProjectsSubmitAnswers.
+type ProjectsSubmitAnswersJSONBody = []AnswerSubmitRequest
+
 // PromotionsCampaignsListParams defines parameters for PromotionsCampaignsList.
 type PromotionsCampaignsListParams struct {
 	DiscountType *string             `form:"discount_type,omitempty" json:"discount_type,omitempty"`
@@ -33104,6 +33113,9 @@ type ProjectsDeleteUserJSONRequestBody = UserRoleDeleteRequest
 
 // ProjectsMoveProjectJSONRequestBody defines body for ProjectsMoveProject for application/json ContentType.
 type ProjectsMoveProjectJSONRequestBody = MoveProjectRequest
+
+// ProjectsSubmitAnswersJSONRequestBody defines body for ProjectsSubmitAnswers for application/json ContentType.
+type ProjectsSubmitAnswersJSONRequestBody = ProjectsSubmitAnswersJSONBody
 
 // ProjectsUpdateUserJSONRequestBody defines body for ProjectsUpdateUser for application/json ContentType.
 type ProjectsUpdateUserJSONRequestBody = UserRoleUpdateRequest
@@ -38073,6 +38085,21 @@ type ClientInterface interface {
 
 	MaintenanceAnnouncementsUpdate(ctx context.Context, uuid openapi_types.UUID, body MaintenanceAnnouncementsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MaintenanceAnnouncementsCancelMaintenance request
+	MaintenanceAnnouncementsCancelMaintenance(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MaintenanceAnnouncementsCompleteMaintenance request
+	MaintenanceAnnouncementsCompleteMaintenance(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MaintenanceAnnouncementsSchedule request
+	MaintenanceAnnouncementsSchedule(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MaintenanceAnnouncementsStartMaintenance request
+	MaintenanceAnnouncementsStartMaintenance(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MaintenanceAnnouncementsUnschedule request
+	MaintenanceAnnouncementsUnschedule(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceBookingsList request
 	MarketplaceBookingsList(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -40433,6 +40460,12 @@ type ClientInterface interface {
 
 	ProjectsAddUser(ctx context.Context, uuid openapi_types.UUID, body ProjectsAddUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// ProjectsChecklistRetrieve request
+	ProjectsChecklistRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProjectsCompletionStatusRetrieve request
+	ProjectsCompletionStatusRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// ProjectsDeleteUserWithBody request with any body
 	ProjectsDeleteUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -40451,6 +40484,11 @@ type ClientInterface interface {
 
 	// ProjectsStatsRetrieve request
 	ProjectsStatsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *ProjectsStatsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProjectsSubmitAnswersWithBody request with any body
+	ProjectsSubmitAnswersWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ProjectsSubmitAnswers(ctx context.Context, uuid openapi_types.UUID, body ProjectsSubmitAnswersJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProjectsSyncUserRoles request
 	ProjectsSyncUserRoles(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -48770,6 +48808,66 @@ func (c *Client) MaintenanceAnnouncementsUpdateWithBody(ctx context.Context, uui
 
 func (c *Client) MaintenanceAnnouncementsUpdate(ctx context.Context, uuid openapi_types.UUID, body MaintenanceAnnouncementsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMaintenanceAnnouncementsUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MaintenanceAnnouncementsCancelMaintenance(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMaintenanceAnnouncementsCancelMaintenanceRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MaintenanceAnnouncementsCompleteMaintenance(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMaintenanceAnnouncementsCompleteMaintenanceRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MaintenanceAnnouncementsSchedule(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMaintenanceAnnouncementsScheduleRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MaintenanceAnnouncementsStartMaintenance(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMaintenanceAnnouncementsStartMaintenanceRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MaintenanceAnnouncementsUnschedule(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMaintenanceAnnouncementsUnscheduleRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -59052,6 +59150,30 @@ func (c *Client) ProjectsAddUser(ctx context.Context, uuid openapi_types.UUID, b
 	return c.Client.Do(req)
 }
 
+func (c *Client) ProjectsChecklistRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProjectsChecklistRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProjectsCompletionStatusRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProjectsCompletionStatusRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) ProjectsDeleteUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProjectsDeleteUserRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
@@ -59126,6 +59248,30 @@ func (c *Client) ProjectsOtherUsersList(ctx context.Context, uuid openapi_types.
 
 func (c *Client) ProjectsStatsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *ProjectsStatsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProjectsStatsRetrieveRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProjectsSubmitAnswersWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProjectsSubmitAnswersRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProjectsSubmitAnswers(ctx context.Context, uuid openapi_types.UUID, body ProjectsSubmitAnswersJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProjectsSubmitAnswersRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -100498,6 +100644,176 @@ func NewMaintenanceAnnouncementsUpdateRequestWithBody(server string, uuid openap
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMaintenanceAnnouncementsCancelMaintenanceRequest generates requests for MaintenanceAnnouncementsCancelMaintenance
+func NewMaintenanceAnnouncementsCancelMaintenanceRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/maintenance-announcements/%s/cancel_maintenance/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMaintenanceAnnouncementsCompleteMaintenanceRequest generates requests for MaintenanceAnnouncementsCompleteMaintenance
+func NewMaintenanceAnnouncementsCompleteMaintenanceRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/maintenance-announcements/%s/complete_maintenance/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMaintenanceAnnouncementsScheduleRequest generates requests for MaintenanceAnnouncementsSchedule
+func NewMaintenanceAnnouncementsScheduleRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/maintenance-announcements/%s/schedule/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMaintenanceAnnouncementsStartMaintenanceRequest generates requests for MaintenanceAnnouncementsStartMaintenance
+func NewMaintenanceAnnouncementsStartMaintenanceRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/maintenance-announcements/%s/start_maintenance/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMaintenanceAnnouncementsUnscheduleRequest generates requests for MaintenanceAnnouncementsUnschedule
+func NewMaintenanceAnnouncementsUnscheduleRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/maintenance-announcements/%s/unschedule/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
 
 	return req, nil
 }
@@ -158523,6 +158839,74 @@ func NewProjectsAddUserRequestWithBody(server string, uuid openapi_types.UUID, c
 	return req, nil
 }
 
+// NewProjectsChecklistRetrieveRequest generates requests for ProjectsChecklistRetrieve
+func NewProjectsChecklistRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/projects/%s/checklist/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewProjectsCompletionStatusRetrieveRequest generates requests for ProjectsCompletionStatusRetrieve
+func NewProjectsCompletionStatusRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/projects/%s/completion_status/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewProjectsDeleteUserRequest calls the generic ProjectsDeleteUser builder with application/json body
 func NewProjectsDeleteUserRequest(server string, uuid openapi_types.UUID, body ProjectsDeleteUserJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -159165,6 +159549,53 @@ func NewProjectsStatsRetrieveRequest(server string, uuid openapi_types.UUID, par
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewProjectsSubmitAnswersRequest calls the generic ProjectsSubmitAnswers builder with application/json body
+func NewProjectsSubmitAnswersRequest(server string, uuid openapi_types.UUID, body ProjectsSubmitAnswersJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewProjectsSubmitAnswersRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewProjectsSubmitAnswersRequestWithBody generates requests for ProjectsSubmitAnswers with any type of body
+func NewProjectsSubmitAnswersRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/projects/%s/submit_answers/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -194428,6 +194859,21 @@ type ClientWithResponsesInterface interface {
 
 	MaintenanceAnnouncementsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MaintenanceAnnouncementsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MaintenanceAnnouncementsUpdateResponse, error)
 
+	// MaintenanceAnnouncementsCancelMaintenanceWithResponse request
+	MaintenanceAnnouncementsCancelMaintenanceWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MaintenanceAnnouncementsCancelMaintenanceResponse, error)
+
+	// MaintenanceAnnouncementsCompleteMaintenanceWithResponse request
+	MaintenanceAnnouncementsCompleteMaintenanceWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MaintenanceAnnouncementsCompleteMaintenanceResponse, error)
+
+	// MaintenanceAnnouncementsScheduleWithResponse request
+	MaintenanceAnnouncementsScheduleWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MaintenanceAnnouncementsScheduleResponse, error)
+
+	// MaintenanceAnnouncementsStartMaintenanceWithResponse request
+	MaintenanceAnnouncementsStartMaintenanceWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MaintenanceAnnouncementsStartMaintenanceResponse, error)
+
+	// MaintenanceAnnouncementsUnscheduleWithResponse request
+	MaintenanceAnnouncementsUnscheduleWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MaintenanceAnnouncementsUnscheduleResponse, error)
+
 	// MarketplaceBookingsListWithResponse request
 	MarketplaceBookingsListWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*MarketplaceBookingsListResponse, error)
 
@@ -196788,6 +197234,12 @@ type ClientWithResponsesInterface interface {
 
 	ProjectsAddUserWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProjectsAddUserJSONRequestBody, reqEditors ...RequestEditorFn) (*ProjectsAddUserResponse, error)
 
+	// ProjectsChecklistRetrieveWithResponse request
+	ProjectsChecklistRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProjectsChecklistRetrieveResponse, error)
+
+	// ProjectsCompletionStatusRetrieveWithResponse request
+	ProjectsCompletionStatusRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProjectsCompletionStatusRetrieveResponse, error)
+
 	// ProjectsDeleteUserWithBodyWithResponse request with any body
 	ProjectsDeleteUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProjectsDeleteUserResponse, error)
 
@@ -196806,6 +197258,11 @@ type ClientWithResponsesInterface interface {
 
 	// ProjectsStatsRetrieveWithResponse request
 	ProjectsStatsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProjectsStatsRetrieveParams, reqEditors ...RequestEditorFn) (*ProjectsStatsRetrieveResponse, error)
+
+	// ProjectsSubmitAnswersWithBodyWithResponse request with any body
+	ProjectsSubmitAnswersWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProjectsSubmitAnswersResponse, error)
+
+	ProjectsSubmitAnswersWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProjectsSubmitAnswersJSONRequestBody, reqEditors ...RequestEditorFn) (*ProjectsSubmitAnswersResponse, error)
 
 	// ProjectsSyncUserRolesWithResponse request
 	ProjectsSyncUserRolesWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProjectsSyncUserRolesResponse, error)
@@ -207773,6 +208230,116 @@ func (r MaintenanceAnnouncementsUpdateResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MaintenanceAnnouncementsUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MaintenanceAnnouncementsCancelMaintenanceResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *MaintenanceActionResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r MaintenanceAnnouncementsCancelMaintenanceResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MaintenanceAnnouncementsCancelMaintenanceResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MaintenanceAnnouncementsCompleteMaintenanceResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *MaintenanceActionResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r MaintenanceAnnouncementsCompleteMaintenanceResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MaintenanceAnnouncementsCompleteMaintenanceResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MaintenanceAnnouncementsScheduleResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *MaintenanceActionResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r MaintenanceAnnouncementsScheduleResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MaintenanceAnnouncementsScheduleResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MaintenanceAnnouncementsStartMaintenanceResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *MaintenanceActionResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r MaintenanceAnnouncementsStartMaintenanceResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MaintenanceAnnouncementsStartMaintenanceResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MaintenanceAnnouncementsUnscheduleResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *MaintenanceActionResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r MaintenanceAnnouncementsUnscheduleResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MaintenanceAnnouncementsUnscheduleResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -221779,6 +222346,54 @@ func (r ProjectsAddUserResponse) StatusCode() int {
 	return 0
 }
 
+type ProjectsChecklistRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ChecklistResponse
+	JSON400      *interface{}
+	JSON404      *interface{}
+}
+
+// Status returns HTTPResponse.Status
+func (r ProjectsChecklistRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProjectsChecklistRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ProjectsCompletionStatusRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ChecklistCompletion
+	JSON400      *interface{}
+	JSON404      *interface{}
+}
+
+// Status returns HTTPResponse.Status
+func (r ProjectsCompletionStatusRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProjectsCompletionStatusRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type ProjectsDeleteUserResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -221882,6 +222497,30 @@ func (r ProjectsStatsRetrieveResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r ProjectsStatsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ProjectsSubmitAnswersResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *AnswerSubmitResponse
+	JSON400      *interface{}
+	JSON404      *interface{}
+}
+
+// Status returns HTTPResponse.Status
+func (r ProjectsSubmitAnswersResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProjectsSubmitAnswersResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -235743,6 +236382,51 @@ func (c *ClientWithResponses) MaintenanceAnnouncementsUpdateWithResponse(ctx con
 	return ParseMaintenanceAnnouncementsUpdateResponse(rsp)
 }
 
+// MaintenanceAnnouncementsCancelMaintenanceWithResponse request returning *MaintenanceAnnouncementsCancelMaintenanceResponse
+func (c *ClientWithResponses) MaintenanceAnnouncementsCancelMaintenanceWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MaintenanceAnnouncementsCancelMaintenanceResponse, error) {
+	rsp, err := c.MaintenanceAnnouncementsCancelMaintenance(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMaintenanceAnnouncementsCancelMaintenanceResponse(rsp)
+}
+
+// MaintenanceAnnouncementsCompleteMaintenanceWithResponse request returning *MaintenanceAnnouncementsCompleteMaintenanceResponse
+func (c *ClientWithResponses) MaintenanceAnnouncementsCompleteMaintenanceWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MaintenanceAnnouncementsCompleteMaintenanceResponse, error) {
+	rsp, err := c.MaintenanceAnnouncementsCompleteMaintenance(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMaintenanceAnnouncementsCompleteMaintenanceResponse(rsp)
+}
+
+// MaintenanceAnnouncementsScheduleWithResponse request returning *MaintenanceAnnouncementsScheduleResponse
+func (c *ClientWithResponses) MaintenanceAnnouncementsScheduleWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MaintenanceAnnouncementsScheduleResponse, error) {
+	rsp, err := c.MaintenanceAnnouncementsSchedule(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMaintenanceAnnouncementsScheduleResponse(rsp)
+}
+
+// MaintenanceAnnouncementsStartMaintenanceWithResponse request returning *MaintenanceAnnouncementsStartMaintenanceResponse
+func (c *ClientWithResponses) MaintenanceAnnouncementsStartMaintenanceWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MaintenanceAnnouncementsStartMaintenanceResponse, error) {
+	rsp, err := c.MaintenanceAnnouncementsStartMaintenance(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMaintenanceAnnouncementsStartMaintenanceResponse(rsp)
+}
+
+// MaintenanceAnnouncementsUnscheduleWithResponse request returning *MaintenanceAnnouncementsUnscheduleResponse
+func (c *ClientWithResponses) MaintenanceAnnouncementsUnscheduleWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MaintenanceAnnouncementsUnscheduleResponse, error) {
+	rsp, err := c.MaintenanceAnnouncementsUnschedule(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMaintenanceAnnouncementsUnscheduleResponse(rsp)
+}
+
 // MarketplaceBookingsListWithResponse request returning *MarketplaceBookingsListResponse
 func (c *ClientWithResponses) MarketplaceBookingsListWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*MarketplaceBookingsListResponse, error) {
 	rsp, err := c.MarketplaceBookingsList(ctx, uuid, reqEditors...)
@@ -243239,6 +243923,24 @@ func (c *ClientWithResponses) ProjectsAddUserWithResponse(ctx context.Context, u
 	return ParseProjectsAddUserResponse(rsp)
 }
 
+// ProjectsChecklistRetrieveWithResponse request returning *ProjectsChecklistRetrieveResponse
+func (c *ClientWithResponses) ProjectsChecklistRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProjectsChecklistRetrieveResponse, error) {
+	rsp, err := c.ProjectsChecklistRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProjectsChecklistRetrieveResponse(rsp)
+}
+
+// ProjectsCompletionStatusRetrieveWithResponse request returning *ProjectsCompletionStatusRetrieveResponse
+func (c *ClientWithResponses) ProjectsCompletionStatusRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProjectsCompletionStatusRetrieveResponse, error) {
+	rsp, err := c.ProjectsCompletionStatusRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProjectsCompletionStatusRetrieveResponse(rsp)
+}
+
 // ProjectsDeleteUserWithBodyWithResponse request with arbitrary body returning *ProjectsDeleteUserResponse
 func (c *ClientWithResponses) ProjectsDeleteUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProjectsDeleteUserResponse, error) {
 	rsp, err := c.ProjectsDeleteUserWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -243298,6 +244000,23 @@ func (c *ClientWithResponses) ProjectsStatsRetrieveWithResponse(ctx context.Cont
 		return nil, err
 	}
 	return ParseProjectsStatsRetrieveResponse(rsp)
+}
+
+// ProjectsSubmitAnswersWithBodyWithResponse request with arbitrary body returning *ProjectsSubmitAnswersResponse
+func (c *ClientWithResponses) ProjectsSubmitAnswersWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProjectsSubmitAnswersResponse, error) {
+	rsp, err := c.ProjectsSubmitAnswersWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProjectsSubmitAnswersResponse(rsp)
+}
+
+func (c *ClientWithResponses) ProjectsSubmitAnswersWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProjectsSubmitAnswersJSONRequestBody, reqEditors ...RequestEditorFn) (*ProjectsSubmitAnswersResponse, error) {
+	rsp, err := c.ProjectsSubmitAnswers(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProjectsSubmitAnswersResponse(rsp)
 }
 
 // ProjectsSyncUserRolesWithResponse request returning *ProjectsSyncUserRolesResponse
@@ -257767,6 +258486,136 @@ func ParseMaintenanceAnnouncementsUpdateResponse(rsp *http.Response) (*Maintenan
 	return response, nil
 }
 
+// ParseMaintenanceAnnouncementsCancelMaintenanceResponse parses an HTTP response from a MaintenanceAnnouncementsCancelMaintenanceWithResponse call
+func ParseMaintenanceAnnouncementsCancelMaintenanceResponse(rsp *http.Response) (*MaintenanceAnnouncementsCancelMaintenanceResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MaintenanceAnnouncementsCancelMaintenanceResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest MaintenanceActionResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMaintenanceAnnouncementsCompleteMaintenanceResponse parses an HTTP response from a MaintenanceAnnouncementsCompleteMaintenanceWithResponse call
+func ParseMaintenanceAnnouncementsCompleteMaintenanceResponse(rsp *http.Response) (*MaintenanceAnnouncementsCompleteMaintenanceResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MaintenanceAnnouncementsCompleteMaintenanceResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest MaintenanceActionResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMaintenanceAnnouncementsScheduleResponse parses an HTTP response from a MaintenanceAnnouncementsScheduleWithResponse call
+func ParseMaintenanceAnnouncementsScheduleResponse(rsp *http.Response) (*MaintenanceAnnouncementsScheduleResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MaintenanceAnnouncementsScheduleResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest MaintenanceActionResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMaintenanceAnnouncementsStartMaintenanceResponse parses an HTTP response from a MaintenanceAnnouncementsStartMaintenanceWithResponse call
+func ParseMaintenanceAnnouncementsStartMaintenanceResponse(rsp *http.Response) (*MaintenanceAnnouncementsStartMaintenanceResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MaintenanceAnnouncementsStartMaintenanceResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest MaintenanceActionResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMaintenanceAnnouncementsUnscheduleResponse parses an HTTP response from a MaintenanceAnnouncementsUnscheduleWithResponse call
+func ParseMaintenanceAnnouncementsUnscheduleResponse(rsp *http.Response) (*MaintenanceAnnouncementsUnscheduleResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MaintenanceAnnouncementsUnscheduleResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest MaintenanceActionResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseMarketplaceBookingsListResponse parses an HTTP response from a MarketplaceBookingsListWithResponse call
 func ParseMarketplaceBookingsListResponse(rsp *http.Response) (*MarketplaceBookingsListResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -272052,6 +272901,86 @@ func ParseProjectsAddUserResponse(rsp *http.Response) (*ProjectsAddUserResponse,
 	return response, nil
 }
 
+// ParseProjectsChecklistRetrieveResponse parses an HTTP response from a ProjectsChecklistRetrieveWithResponse call
+func ParseProjectsChecklistRetrieveResponse(rsp *http.Response) (*ProjectsChecklistRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProjectsChecklistRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ChecklistResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseProjectsCompletionStatusRetrieveResponse parses an HTTP response from a ProjectsCompletionStatusRetrieveWithResponse call
+func ParseProjectsCompletionStatusRetrieveResponse(rsp *http.Response) (*ProjectsCompletionStatusRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProjectsCompletionStatusRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ChecklistCompletion
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseProjectsDeleteUserResponse parses an HTTP response from a ProjectsDeleteUserWithResponse call
 func ParseProjectsDeleteUserResponse(rsp *http.Response) (*ProjectsDeleteUserResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -272166,6 +273095,46 @@ func ParseProjectsStatsRetrieveResponse(rsp *http.Response) (*ProjectsStatsRetri
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseProjectsSubmitAnswersResponse parses an HTTP response from a ProjectsSubmitAnswersWithResponse call
+func ParseProjectsSubmitAnswersResponse(rsp *http.Response) (*ProjectsSubmitAnswersResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProjectsSubmitAnswersResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest AnswerSubmitResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
 
 	}
 
