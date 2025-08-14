@@ -5253,6 +5253,35 @@ const (
 	MarketplaceResourcesDetailsRetrieveParamsFieldUuid                      MarketplaceResourcesDetailsRetrieveParamsField = "uuid"
 )
 
+// Defines values for MarketplaceRobotAccountsListParamsField.
+const (
+	MarketplaceRobotAccountsListParamsFieldBackendId             MarketplaceRobotAccountsListParamsField = "backend_id"
+	MarketplaceRobotAccountsListParamsFieldCreated               MarketplaceRobotAccountsListParamsField = "created"
+	MarketplaceRobotAccountsListParamsFieldCustomerName          MarketplaceRobotAccountsListParamsField = "customer_name"
+	MarketplaceRobotAccountsListParamsFieldCustomerUuid          MarketplaceRobotAccountsListParamsField = "customer_uuid"
+	MarketplaceRobotAccountsListParamsFieldDescription           MarketplaceRobotAccountsListParamsField = "description"
+	MarketplaceRobotAccountsListParamsFieldErrorMessage          MarketplaceRobotAccountsListParamsField = "error_message"
+	MarketplaceRobotAccountsListParamsFieldErrorTraceback        MarketplaceRobotAccountsListParamsField = "error_traceback"
+	MarketplaceRobotAccountsListParamsFieldFingerprints          MarketplaceRobotAccountsListParamsField = "fingerprints"
+	MarketplaceRobotAccountsListParamsFieldKeys                  MarketplaceRobotAccountsListParamsField = "keys"
+	MarketplaceRobotAccountsListParamsFieldModified              MarketplaceRobotAccountsListParamsField = "modified"
+	MarketplaceRobotAccountsListParamsFieldOfferingCustomerUuid  MarketplaceRobotAccountsListParamsField = "offering_customer_uuid"
+	MarketplaceRobotAccountsListParamsFieldOfferingPluginOptions MarketplaceRobotAccountsListParamsField = "offering_plugin_options"
+	MarketplaceRobotAccountsListParamsFieldProjectName           MarketplaceRobotAccountsListParamsField = "project_name"
+	MarketplaceRobotAccountsListParamsFieldProjectUuid           MarketplaceRobotAccountsListParamsField = "project_uuid"
+	MarketplaceRobotAccountsListParamsFieldResource              MarketplaceRobotAccountsListParamsField = "resource"
+	MarketplaceRobotAccountsListParamsFieldResourceName          MarketplaceRobotAccountsListParamsField = "resource_name"
+	MarketplaceRobotAccountsListParamsFieldResourceUuid          MarketplaceRobotAccountsListParamsField = "resource_uuid"
+	MarketplaceRobotAccountsListParamsFieldResponsibleUser       MarketplaceRobotAccountsListParamsField = "responsible_user"
+	MarketplaceRobotAccountsListParamsFieldState                 MarketplaceRobotAccountsListParamsField = "state"
+	MarketplaceRobotAccountsListParamsFieldType                  MarketplaceRobotAccountsListParamsField = "type"
+	MarketplaceRobotAccountsListParamsFieldUrl                   MarketplaceRobotAccountsListParamsField = "url"
+	MarketplaceRobotAccountsListParamsFieldUserKeys              MarketplaceRobotAccountsListParamsField = "user_keys"
+	MarketplaceRobotAccountsListParamsFieldUsername              MarketplaceRobotAccountsListParamsField = "username"
+	MarketplaceRobotAccountsListParamsFieldUsers                 MarketplaceRobotAccountsListParamsField = "users"
+	MarketplaceRobotAccountsListParamsFieldUuid                  MarketplaceRobotAccountsListParamsField = "uuid"
+)
+
 // Defines values for MarketplaceRobotAccountsListParamsState.
 const (
 	MarketplaceRobotAccountsListParamsStateN1 MarketplaceRobotAccountsListParamsState = 1
@@ -5271,6 +5300,35 @@ const (
 	N4 MarketplaceRobotAccountsCountParamsState = 4
 	N5 MarketplaceRobotAccountsCountParamsState = 5
 	N6 MarketplaceRobotAccountsCountParamsState = 6
+)
+
+// Defines values for MarketplaceRobotAccountsRetrieveParamsField.
+const (
+	MarketplaceRobotAccountsRetrieveParamsFieldBackendId             MarketplaceRobotAccountsRetrieveParamsField = "backend_id"
+	MarketplaceRobotAccountsRetrieveParamsFieldCreated               MarketplaceRobotAccountsRetrieveParamsField = "created"
+	MarketplaceRobotAccountsRetrieveParamsFieldCustomerName          MarketplaceRobotAccountsRetrieveParamsField = "customer_name"
+	MarketplaceRobotAccountsRetrieveParamsFieldCustomerUuid          MarketplaceRobotAccountsRetrieveParamsField = "customer_uuid"
+	MarketplaceRobotAccountsRetrieveParamsFieldDescription           MarketplaceRobotAccountsRetrieveParamsField = "description"
+	MarketplaceRobotAccountsRetrieveParamsFieldErrorMessage          MarketplaceRobotAccountsRetrieveParamsField = "error_message"
+	MarketplaceRobotAccountsRetrieveParamsFieldErrorTraceback        MarketplaceRobotAccountsRetrieveParamsField = "error_traceback"
+	MarketplaceRobotAccountsRetrieveParamsFieldFingerprints          MarketplaceRobotAccountsRetrieveParamsField = "fingerprints"
+	MarketplaceRobotAccountsRetrieveParamsFieldKeys                  MarketplaceRobotAccountsRetrieveParamsField = "keys"
+	MarketplaceRobotAccountsRetrieveParamsFieldModified              MarketplaceRobotAccountsRetrieveParamsField = "modified"
+	MarketplaceRobotAccountsRetrieveParamsFieldOfferingCustomerUuid  MarketplaceRobotAccountsRetrieveParamsField = "offering_customer_uuid"
+	MarketplaceRobotAccountsRetrieveParamsFieldOfferingPluginOptions MarketplaceRobotAccountsRetrieveParamsField = "offering_plugin_options"
+	MarketplaceRobotAccountsRetrieveParamsFieldProjectName           MarketplaceRobotAccountsRetrieveParamsField = "project_name"
+	MarketplaceRobotAccountsRetrieveParamsFieldProjectUuid           MarketplaceRobotAccountsRetrieveParamsField = "project_uuid"
+	MarketplaceRobotAccountsRetrieveParamsFieldResource              MarketplaceRobotAccountsRetrieveParamsField = "resource"
+	MarketplaceRobotAccountsRetrieveParamsFieldResourceName          MarketplaceRobotAccountsRetrieveParamsField = "resource_name"
+	MarketplaceRobotAccountsRetrieveParamsFieldResourceUuid          MarketplaceRobotAccountsRetrieveParamsField = "resource_uuid"
+	MarketplaceRobotAccountsRetrieveParamsFieldResponsibleUser       MarketplaceRobotAccountsRetrieveParamsField = "responsible_user"
+	MarketplaceRobotAccountsRetrieveParamsFieldState                 MarketplaceRobotAccountsRetrieveParamsField = "state"
+	MarketplaceRobotAccountsRetrieveParamsFieldType                  MarketplaceRobotAccountsRetrieveParamsField = "type"
+	MarketplaceRobotAccountsRetrieveParamsFieldUrl                   MarketplaceRobotAccountsRetrieveParamsField = "url"
+	MarketplaceRobotAccountsRetrieveParamsFieldUserKeys              MarketplaceRobotAccountsRetrieveParamsField = "user_keys"
+	MarketplaceRobotAccountsRetrieveParamsFieldUsername              MarketplaceRobotAccountsRetrieveParamsField = "username"
+	MarketplaceRobotAccountsRetrieveParamsFieldUsers                 MarketplaceRobotAccountsRetrieveParamsField = "users"
+	MarketplaceRobotAccountsRetrieveParamsFieldUuid                  MarketplaceRobotAccountsRetrieveParamsField = "uuid"
 )
 
 // Defines values for MarketplaceScreenshotsListParamsO.
@@ -10428,7 +10486,7 @@ type BasicUser struct {
 	Url        *string              `json:"url,omitempty"`
 
 	// Username Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
-	Username string              `json:"username"`
+	Username *string             `json:"username,omitempty"`
 	Uuid     *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
@@ -19768,14 +19826,14 @@ type RobotAccountDetails struct {
 	OfferingPluginOptions *MergedPluginOptions `json:"offering_plugin_options,omitempty"`
 	ProjectName           *string              `json:"project_name,omitempty"`
 	ProjectUuid           *openapi_types.UUID  `json:"project_uuid,omitempty"`
-	Resource              string               `json:"resource"`
+	Resource              *string              `json:"resource,omitempty"`
 	ResourceName          *string              `json:"resource_name,omitempty"`
 	ResourceUuid          *openapi_types.UUID  `json:"resource_uuid,omitempty"`
 	ResponsibleUser       *BasicUser           `json:"responsible_user"`
 	State                 *RobotAccountStates  `json:"state,omitempty"`
 
 	// Type Type of the robot account.
-	Type     string              `json:"type"`
+	Type     *string             `json:"type,omitempty"`
 	Url      *string             `json:"url,omitempty"`
 	UserKeys *[]SshKey           `json:"user_keys,omitempty"`
 	Username *string             `json:"username,omitempty"`
@@ -26400,8 +26458,9 @@ type MarketplaceResourcesDetailsRetrieveParamsField string
 // MarketplaceRobotAccountsListParams defines parameters for MarketplaceRobotAccountsList.
 type MarketplaceRobotAccountsListParams struct {
 	// Created Created after
-	Created      *time.Time          `form:"created,omitempty" json:"created,omitempty"`
-	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+	Created      *time.Time                                 `form:"created,omitempty" json:"created,omitempty"`
+	CustomerUuid *openapi_types.UUID                        `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+	Field        *[]MarketplaceRobotAccountsListParamsField `form:"field,omitempty" json:"field,omitempty"`
 
 	// Modified Modified after
 	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
@@ -26418,6 +26477,9 @@ type MarketplaceRobotAccountsListParams struct {
 	State        *MarketplaceRobotAccountsListParamsState `form:"state,omitempty" json:"state,omitempty"`
 	Type         *string                                  `form:"type,omitempty" json:"type,omitempty"`
 }
+
+// MarketplaceRobotAccountsListParamsField defines parameters for MarketplaceRobotAccountsList.
+type MarketplaceRobotAccountsListParamsField string
 
 // MarketplaceRobotAccountsListParamsState defines parameters for MarketplaceRobotAccountsList.
 type MarketplaceRobotAccountsListParamsState int
@@ -26446,6 +26508,14 @@ type MarketplaceRobotAccountsCountParams struct {
 
 // MarketplaceRobotAccountsCountParamsState defines parameters for MarketplaceRobotAccountsCount.
 type MarketplaceRobotAccountsCountParamsState int
+
+// MarketplaceRobotAccountsRetrieveParams defines parameters for MarketplaceRobotAccountsRetrieve.
+type MarketplaceRobotAccountsRetrieveParams struct {
+	Field *[]MarketplaceRobotAccountsRetrieveParamsField `form:"field,omitempty" json:"field,omitempty"`
+}
+
+// MarketplaceRobotAccountsRetrieveParamsField defines parameters for MarketplaceRobotAccountsRetrieve.
+type MarketplaceRobotAccountsRetrieveParamsField string
 
 // MarketplaceRuntimeStatesListParams defines parameters for MarketplaceRuntimeStatesList.
 type MarketplaceRuntimeStatesListParams struct {
@@ -39230,7 +39300,7 @@ type ClientInterface interface {
 	MarketplaceRobotAccountsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceRobotAccountsRetrieve request
-	MarketplaceRobotAccountsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+	MarketplaceRobotAccountsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceRobotAccountsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceRobotAccountsPartialUpdateWithBody request with any body
 	MarketplaceRobotAccountsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -53822,8 +53892,8 @@ func (c *Client) MarketplaceRobotAccountsDestroy(ctx context.Context, uuid opena
 	return c.Client.Do(req)
 }
 
-func (c *Client) MarketplaceRobotAccountsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceRobotAccountsRetrieveRequest(c.Server, uuid)
+func (c *Client) MarketplaceRobotAccountsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceRobotAccountsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceRobotAccountsRetrieveRequest(c.Server, uuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -126227,6 +126297,22 @@ func NewMarketplaceRobotAccountsListRequest(server string, params *MarketplaceRo
 
 		}
 
+		if params.Field != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "field", runtime.ParamLocationQuery, *params.Field); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Modified != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "modified", runtime.ParamLocationQuery, *params.Modified); err != nil {
@@ -126666,7 +126752,7 @@ func NewMarketplaceRobotAccountsDestroyRequest(server string, uuid openapi_types
 }
 
 // NewMarketplaceRobotAccountsRetrieveRequest generates requests for MarketplaceRobotAccountsRetrieve
-func NewMarketplaceRobotAccountsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+func NewMarketplaceRobotAccountsRetrieveRequest(server string, uuid openapi_types.UUID, params *MarketplaceRobotAccountsRetrieveParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -126689,6 +126775,28 @@ func NewMarketplaceRobotAccountsRetrieveRequest(server string, uuid openapi_type
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Field != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "field", runtime.ParamLocationQuery, *params.Field); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
 	}
 
 	req, err := http.NewRequest("GET", queryURL.String(), nil)
@@ -196004,7 +196112,7 @@ type ClientWithResponsesInterface interface {
 	MarketplaceRobotAccountsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceRobotAccountsDestroyResponse, error)
 
 	// MarketplaceRobotAccountsRetrieveWithResponse request
-	MarketplaceRobotAccountsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceRobotAccountsRetrieveResponse, error)
+	MarketplaceRobotAccountsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceRobotAccountsRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceRobotAccountsRetrieveResponse, error)
 
 	// MarketplaceRobotAccountsPartialUpdateWithBodyWithResponse request with any body
 	MarketplaceRobotAccountsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceRobotAccountsPartialUpdateResponse, error)
@@ -240029,8 +240137,8 @@ func (c *ClientWithResponses) MarketplaceRobotAccountsDestroyWithResponse(ctx co
 }
 
 // MarketplaceRobotAccountsRetrieveWithResponse request returning *MarketplaceRobotAccountsRetrieveResponse
-func (c *ClientWithResponses) MarketplaceRobotAccountsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceRobotAccountsRetrieveResponse, error) {
-	rsp, err := c.MarketplaceRobotAccountsRetrieve(ctx, uuid, reqEditors...)
+func (c *ClientWithResponses) MarketplaceRobotAccountsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceRobotAccountsRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceRobotAccountsRetrieveResponse, error) {
+	rsp, err := c.MarketplaceRobotAccountsRetrieve(ctx, uuid, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
