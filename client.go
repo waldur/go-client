@@ -929,6 +929,13 @@ const (
 	Udp  ProtocolEnum = "udp"
 )
 
+// Defines values for PublicMaintenanceAnnouncementStateEnum.
+const (
+	PublicMaintenanceAnnouncementStateEnumCompleted  PublicMaintenanceAnnouncementStateEnum = "Completed"
+	PublicMaintenanceAnnouncementStateEnumInProgress PublicMaintenanceAnnouncementStateEnum = "In progress"
+	PublicMaintenanceAnnouncementStateEnumScheduled  PublicMaintenanceAnnouncementStateEnum = "Scheduled"
+)
+
 // Defines values for QuestionTypeEnum.
 const (
 	QuestionTypeEnumBoolean      QuestionTypeEnum = "boolean"
@@ -8077,6 +8084,48 @@ const (
 	ProviderInvoiceItemsCountParamsOUnitPrice                 ProviderInvoiceItemsCountParamsO = "unit_price"
 )
 
+// Defines values for PublicMaintenanceAnnouncementsListParamsO.
+const (
+	PublicMaintenanceAnnouncementsListParamsOCreated             PublicMaintenanceAnnouncementsListParamsO = "created"
+	PublicMaintenanceAnnouncementsListParamsOMinusCreated        PublicMaintenanceAnnouncementsListParamsO = "-created"
+	PublicMaintenanceAnnouncementsListParamsOMinusName           PublicMaintenanceAnnouncementsListParamsO = "-name"
+	PublicMaintenanceAnnouncementsListParamsOMinusScheduledEnd   PublicMaintenanceAnnouncementsListParamsO = "-scheduled_end"
+	PublicMaintenanceAnnouncementsListParamsOMinusScheduledStart PublicMaintenanceAnnouncementsListParamsO = "-scheduled_start"
+	PublicMaintenanceAnnouncementsListParamsOName                PublicMaintenanceAnnouncementsListParamsO = "name"
+	PublicMaintenanceAnnouncementsListParamsOScheduledEnd        PublicMaintenanceAnnouncementsListParamsO = "scheduled_end"
+	PublicMaintenanceAnnouncementsListParamsOScheduledStart      PublicMaintenanceAnnouncementsListParamsO = "scheduled_start"
+)
+
+// Defines values for PublicMaintenanceAnnouncementsListParamsState.
+const (
+	PublicMaintenanceAnnouncementsListParamsStateCancelled  PublicMaintenanceAnnouncementsListParamsState = "Cancelled"
+	PublicMaintenanceAnnouncementsListParamsStateCompleted  PublicMaintenanceAnnouncementsListParamsState = "Completed"
+	PublicMaintenanceAnnouncementsListParamsStateDraft      PublicMaintenanceAnnouncementsListParamsState = "Draft"
+	PublicMaintenanceAnnouncementsListParamsStateInProgress PublicMaintenanceAnnouncementsListParamsState = "In progress"
+	PublicMaintenanceAnnouncementsListParamsStateScheduled  PublicMaintenanceAnnouncementsListParamsState = "Scheduled"
+)
+
+// Defines values for PublicMaintenanceAnnouncementsCountParamsO.
+const (
+	PublicMaintenanceAnnouncementsCountParamsOCreated             PublicMaintenanceAnnouncementsCountParamsO = "created"
+	PublicMaintenanceAnnouncementsCountParamsOMinusCreated        PublicMaintenanceAnnouncementsCountParamsO = "-created"
+	PublicMaintenanceAnnouncementsCountParamsOMinusName           PublicMaintenanceAnnouncementsCountParamsO = "-name"
+	PublicMaintenanceAnnouncementsCountParamsOMinusScheduledEnd   PublicMaintenanceAnnouncementsCountParamsO = "-scheduled_end"
+	PublicMaintenanceAnnouncementsCountParamsOMinusScheduledStart PublicMaintenanceAnnouncementsCountParamsO = "-scheduled_start"
+	PublicMaintenanceAnnouncementsCountParamsOName                PublicMaintenanceAnnouncementsCountParamsO = "name"
+	PublicMaintenanceAnnouncementsCountParamsOScheduledEnd        PublicMaintenanceAnnouncementsCountParamsO = "scheduled_end"
+	PublicMaintenanceAnnouncementsCountParamsOScheduledStart      PublicMaintenanceAnnouncementsCountParamsO = "scheduled_start"
+)
+
+// Defines values for PublicMaintenanceAnnouncementsCountParamsState.
+const (
+	PublicMaintenanceAnnouncementsCountParamsStateCancelled  PublicMaintenanceAnnouncementsCountParamsState = "Cancelled"
+	PublicMaintenanceAnnouncementsCountParamsStateCompleted  PublicMaintenanceAnnouncementsCountParamsState = "Completed"
+	PublicMaintenanceAnnouncementsCountParamsStateDraft      PublicMaintenanceAnnouncementsCountParamsState = "Draft"
+	PublicMaintenanceAnnouncementsCountParamsStateInProgress PublicMaintenanceAnnouncementsCountParamsState = "In progress"
+	PublicMaintenanceAnnouncementsCountParamsStateScheduled  PublicMaintenanceAnnouncementsCountParamsState = "Scheduled"
+)
+
 // Defines values for RancherAppsListParamsField.
 const (
 	RancherAppsListParamsFieldAccessUrl                        RancherAppsListParamsField = "access_url"
@@ -14348,25 +14397,6 @@ type NestedSection struct {
 	Title        *string `json:"title,omitempty"`
 }
 
-// NestedSecurityGroupRule defines model for NestedSecurityGroupRule.
-type NestedSecurityGroupRule struct {
-	Cidr            *string                           `json:"cidr"`
-	Description     *string                           `json:"description,omitempty"`
-	Direction       *DirectionEnum                    `json:"direction,omitempty"`
-	Ethertype       *EthertypeEnum                    `json:"ethertype,omitempty"`
-	FromPort        *int                              `json:"from_port"`
-	Id              *int                              `json:"id,omitempty"`
-	Protocol        *NestedSecurityGroupRule_Protocol `json:"protocol,omitempty"`
-	RemoteGroupName *string                           `json:"remote_group_name,omitempty"`
-	RemoteGroupUuid *openapi_types.UUID               `json:"remote_group_uuid,omitempty"`
-	ToPort          *int                              `json:"to_port"`
-}
-
-// NestedSecurityGroupRule_Protocol defines model for NestedSecurityGroupRule.Protocol.
-type NestedSecurityGroupRule_Protocol struct {
-	union json.RawMessage
-}
-
 // NetworkRBACPolicy defines model for NetworkRBACPolicy.
 type NetworkRBACPolicy struct {
 	BackendId        *string             `json:"backend_id,omitempty"`
@@ -15170,8 +15200,9 @@ type OpenStackBackupRestorationRequest struct {
 	FloatingIps *[]OpenStackNestedFloatingIPRequest `json:"floating_ips,omitempty"`
 
 	// Name New instance name. Leave blank to use source instance name.
-	Name  *string                       `json:"name,omitempty"`
-	Ports *[]OpenStackNestedPortRequest `json:"ports,omitempty"`
+	Name           *string                                `json:"name,omitempty"`
+	Ports          *[]OpenStackNestedPortRequest          `json:"ports,omitempty"`
+	SecurityGroups *[]OpenStackNestedSecurityGroupRequest `json:"security_groups,omitempty"`
 }
 
 // OpenStackDataVolumeRequest defines model for OpenStackDataVolumeRequest.
@@ -15391,19 +15422,20 @@ type OpenStackInstanceAvailabilityZone struct {
 // OpenStackInstanceCreateOrderAttributes This mixin allows to specify list of fields to be rendered by serializer.
 // It expects that request is available in serializer's context.
 type OpenStackInstanceCreateOrderAttributes struct {
-	AvailabilityZone                 *string                             `json:"availability_zone"`
-	ConnectDirectlyToExternalNetwork *bool                               `json:"connect_directly_to_external_network,omitempty"`
-	DataVolumeSize                   *int                                `json:"data_volume_size,omitempty"`
-	DataVolumeType                   *string                             `json:"data_volume_type"`
-	Description                      *string                             `json:"description,omitempty"`
-	Flavor                           *string                             `json:"flavor,omitempty"`
-	FloatingIps                      *[]OpenStackNestedFloatingIPRequest `json:"floating_ips,omitempty"`
-	Image                            *string                             `json:"image,omitempty"`
-	Name                             string                              `json:"name"`
-	Ports                            []OpenStackNestedPortRequest        `json:"ports"`
-	SshPublicKey                     *string                             `json:"ssh_public_key,omitempty"`
-	SystemVolumeSize                 *int                                `json:"system_volume_size,omitempty"`
-	SystemVolumeType                 *string                             `json:"system_volume_type"`
+	AvailabilityZone                 *string                                `json:"availability_zone"`
+	ConnectDirectlyToExternalNetwork *bool                                  `json:"connect_directly_to_external_network,omitempty"`
+	DataVolumeSize                   *int                                   `json:"data_volume_size,omitempty"`
+	DataVolumeType                   *string                                `json:"data_volume_type"`
+	Description                      *string                                `json:"description,omitempty"`
+	Flavor                           *string                                `json:"flavor,omitempty"`
+	FloatingIps                      *[]OpenStackNestedFloatingIPRequest    `json:"floating_ips,omitempty"`
+	Image                            *string                                `json:"image,omitempty"`
+	Name                             string                                 `json:"name"`
+	Ports                            []OpenStackNestedPortRequest           `json:"ports"`
+	SecurityGroups                   *[]OpenStackNestedSecurityGroupRequest `json:"security_groups,omitempty"`
+	SshPublicKey                     *string                                `json:"ssh_public_key,omitempty"`
+	SystemVolumeSize                 *int                                   `json:"system_volume_size,omitempty"`
+	SystemVolumeType                 *string                                `json:"system_volume_type"`
 
 	// UserData Additional data that will be added to instance on provisioning
 	UserData *string `json:"user_data,omitempty"`
@@ -15483,12 +15515,13 @@ type OpenStackNestedPortRequest struct {
 }
 
 // OpenStackNestedSecurityGroup defines model for OpenStackNestedSecurityGroup.
-type OpenStackNestedSecurityGroup struct {
-	Description *string                    `json:"description,omitempty"`
-	Name        *string                    `json:"name,omitempty"`
-	Rules       *[]NestedSecurityGroupRule `json:"rules,omitempty"`
-	State       *string                    `json:"state,omitempty"`
-	Url         *string                    `json:"url,omitempty"`
+type OpenStackNestedSecurityGroup = []struct {
+	Url *string `json:"url,omitempty"`
+}
+
+// OpenStackNestedSecurityGroupRequest defines model for OpenStackNestedSecurityGroupRequest.
+type OpenStackNestedSecurityGroupRequest = []struct {
+	Url *string `json:"url,omitempty"`
 }
 
 // OpenStackNestedServerGroup defines model for OpenStackNestedServerGroup.
@@ -18562,6 +18595,38 @@ type PublicCall struct {
 	Url                        *string             `json:"url,omitempty"`
 	Uuid                       *openapi_types.UUID `json:"uuid,omitempty"`
 }
+
+// PublicMaintenanceAnnouncement defines model for PublicMaintenanceAnnouncement.
+type PublicMaintenanceAnnouncement struct {
+	// ActualEnd When the maintenance actually completed
+	ActualEnd *time.Time `json:"actual_end"`
+
+	// ActualStart When the maintenance actually began
+	ActualStart       *time.Time                         `json:"actual_start"`
+	AffectedOfferings *[]MaintenanceAnnouncementOffering `json:"affected_offerings,omitempty"`
+
+	// ExternalReferenceUrl Optional reference to an external maintenance tracker
+	ExternalReferenceUrl *string `json:"external_reference_url,omitempty"`
+
+	// MaintenanceType Type of maintenance being performed
+	MaintenanceType        *MaintenanceTypeEnum `json:"maintenance_type,omitempty"`
+	MaintenanceTypeDisplay *string              `json:"maintenance_type_display,omitempty"`
+	Message                *string              `json:"message,omitempty"`
+	Name                   *string              `json:"name,omitempty"`
+
+	// ScheduledEnd When the maintenance is scheduled to complete
+	ScheduledEnd *time.Time `json:"scheduled_end,omitempty"`
+
+	// ScheduledStart When the maintenance is scheduled to begin
+	ScheduledStart      *time.Time                              `json:"scheduled_start,omitempty"`
+	ServiceProviderName *string                                 `json:"service_provider_name,omitempty"`
+	State               *PublicMaintenanceAnnouncementStateEnum `json:"state,omitempty"`
+	Url                 *string                                 `json:"url,omitempty"`
+	Uuid                *openapi_types.UUID                     `json:"uuid,omitempty"`
+}
+
+// PublicMaintenanceAnnouncementStateEnum defines model for PublicMaintenanceAnnouncementStateEnum.
+type PublicMaintenanceAnnouncementStateEnum string
 
 // PublicOfferingDetails defines model for PublicOfferingDetails.
 type PublicOfferingDetails struct {
@@ -30323,6 +30388,60 @@ type ProviderInvoiceItemsCountParams struct {
 // ProviderInvoiceItemsCountParamsO defines parameters for ProviderInvoiceItemsCount.
 type ProviderInvoiceItemsCountParamsO string
 
+// PublicMaintenanceAnnouncementsListParams defines parameters for PublicMaintenanceAnnouncementsList.
+type PublicMaintenanceAnnouncementsListParams struct {
+	MaintenanceType *int `form:"maintenance_type,omitempty" json:"maintenance_type,omitempty"`
+
+	// O Ordering
+	//
+	O *[]PublicMaintenanceAnnouncementsListParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize             *PageSize                                        `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ScheduledEndAfter    *time.Time                                       `form:"scheduled_end_after,omitempty" json:"scheduled_end_after,omitempty"`
+	ScheduledEndBefore   *time.Time                                       `form:"scheduled_end_before,omitempty" json:"scheduled_end_before,omitempty"`
+	ScheduledStartAfter  *time.Time                                       `form:"scheduled_start_after,omitempty" json:"scheduled_start_after,omitempty"`
+	ScheduledStartBefore *time.Time                                       `form:"scheduled_start_before,omitempty" json:"scheduled_start_before,omitempty"`
+	ServiceProviderUuid  *openapi_types.UUID                              `form:"service_provider_uuid,omitempty" json:"service_provider_uuid,omitempty"`
+	State                *[]PublicMaintenanceAnnouncementsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+}
+
+// PublicMaintenanceAnnouncementsListParamsO defines parameters for PublicMaintenanceAnnouncementsList.
+type PublicMaintenanceAnnouncementsListParamsO string
+
+// PublicMaintenanceAnnouncementsListParamsState defines parameters for PublicMaintenanceAnnouncementsList.
+type PublicMaintenanceAnnouncementsListParamsState string
+
+// PublicMaintenanceAnnouncementsCountParams defines parameters for PublicMaintenanceAnnouncementsCount.
+type PublicMaintenanceAnnouncementsCountParams struct {
+	MaintenanceType *int `form:"maintenance_type,omitempty" json:"maintenance_type,omitempty"`
+
+	// O Ordering
+	//
+	O *[]PublicMaintenanceAnnouncementsCountParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize             *PageSize                                         `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ScheduledEndAfter    *time.Time                                        `form:"scheduled_end_after,omitempty" json:"scheduled_end_after,omitempty"`
+	ScheduledEndBefore   *time.Time                                        `form:"scheduled_end_before,omitempty" json:"scheduled_end_before,omitempty"`
+	ScheduledStartAfter  *time.Time                                        `form:"scheduled_start_after,omitempty" json:"scheduled_start_after,omitempty"`
+	ScheduledStartBefore *time.Time                                        `form:"scheduled_start_before,omitempty" json:"scheduled_start_before,omitempty"`
+	ServiceProviderUuid  *openapi_types.UUID                               `form:"service_provider_uuid,omitempty" json:"service_provider_uuid,omitempty"`
+	State                *[]PublicMaintenanceAnnouncementsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+}
+
+// PublicMaintenanceAnnouncementsCountParamsO defines parameters for PublicMaintenanceAnnouncementsCount.
+type PublicMaintenanceAnnouncementsCountParamsO string
+
+// PublicMaintenanceAnnouncementsCountParamsState defines parameters for PublicMaintenanceAnnouncementsCount.
+type PublicMaintenanceAnnouncementsCountParamsState string
+
 // RabbitmqUserStatsListParams defines parameters for RabbitmqUserStatsList.
 type RabbitmqUserStatsListParams struct {
 	// Page A page number within the paginated result set.
@@ -34375,68 +34494,6 @@ func (t NestedColumn_Widget) MarshalJSON() ([]byte, error) {
 }
 
 func (t *NestedColumn_Widget) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsProtocolEnum returns the union data inside the NestedSecurityGroupRule_Protocol as a ProtocolEnum
-func (t NestedSecurityGroupRule_Protocol) AsProtocolEnum() (ProtocolEnum, error) {
-	var body ProtocolEnum
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromProtocolEnum overwrites any union data inside the NestedSecurityGroupRule_Protocol as the provided ProtocolEnum
-func (t *NestedSecurityGroupRule_Protocol) FromProtocolEnum(v ProtocolEnum) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeProtocolEnum performs a merge with any union data inside the NestedSecurityGroupRule_Protocol, using the provided ProtocolEnum
-func (t *NestedSecurityGroupRule_Protocol) MergeProtocolEnum(v ProtocolEnum) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsBlankEnum returns the union data inside the NestedSecurityGroupRule_Protocol as a BlankEnum
-func (t NestedSecurityGroupRule_Protocol) AsBlankEnum() (BlankEnum, error) {
-	var body BlankEnum
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromBlankEnum overwrites any union data inside the NestedSecurityGroupRule_Protocol as the provided BlankEnum
-func (t *NestedSecurityGroupRule_Protocol) FromBlankEnum(v BlankEnum) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeBlankEnum performs a merge with any union data inside the NestedSecurityGroupRule_Protocol, using the provided BlankEnum
-func (t *NestedSecurityGroupRule_Protocol) MergeBlankEnum(v BlankEnum) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t NestedSecurityGroupRule_Protocol) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *NestedSecurityGroupRule_Protocol) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -41481,6 +41538,15 @@ type ClientInterface interface {
 
 	// ProviderInvoiceItemsRetrieve request
 	ProviderInvoiceItemsRetrieve(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PublicMaintenanceAnnouncementsList request
+	PublicMaintenanceAnnouncementsList(ctx context.Context, params *PublicMaintenanceAnnouncementsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PublicMaintenanceAnnouncementsCount request
+	PublicMaintenanceAnnouncementsCount(ctx context.Context, params *PublicMaintenanceAnnouncementsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PublicMaintenanceAnnouncementsRetrieve request
+	PublicMaintenanceAnnouncementsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// QueryWithBody request with any body
 	QueryWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -61526,6 +61592,42 @@ func (c *Client) ProviderInvoiceItemsCount(ctx context.Context, params *Provider
 
 func (c *Client) ProviderInvoiceItemsRetrieve(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProviderInvoiceItemsRetrieveRequest(c.Server, id)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PublicMaintenanceAnnouncementsList(ctx context.Context, params *PublicMaintenanceAnnouncementsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPublicMaintenanceAnnouncementsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PublicMaintenanceAnnouncementsCount(ctx context.Context, params *PublicMaintenanceAnnouncementsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPublicMaintenanceAnnouncementsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PublicMaintenanceAnnouncementsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPublicMaintenanceAnnouncementsRetrieveRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -167578,6 +167680,426 @@ func NewProviderInvoiceItemsRetrieveRequest(server string, id int) (*http.Reques
 	return req, nil
 }
 
+// NewPublicMaintenanceAnnouncementsListRequest generates requests for PublicMaintenanceAnnouncementsList
+func NewPublicMaintenanceAnnouncementsListRequest(server string, params *PublicMaintenanceAnnouncementsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/public-maintenance-announcements/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.MaintenanceType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "maintenance_type", runtime.ParamLocationQuery, *params.MaintenanceType); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ScheduledEndAfter != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scheduled_end_after", runtime.ParamLocationQuery, *params.ScheduledEndAfter); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ScheduledEndBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scheduled_end_before", runtime.ParamLocationQuery, *params.ScheduledEndBefore); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ScheduledStartAfter != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scheduled_start_after", runtime.ParamLocationQuery, *params.ScheduledStartAfter); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ScheduledStartBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scheduled_start_before", runtime.ParamLocationQuery, *params.ScheduledStartBefore); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ServiceProviderUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "service_provider_uuid", runtime.ParamLocationQuery, *params.ServiceProviderUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "state", runtime.ParamLocationQuery, *params.State); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewPublicMaintenanceAnnouncementsCountRequest generates requests for PublicMaintenanceAnnouncementsCount
+func NewPublicMaintenanceAnnouncementsCountRequest(server string, params *PublicMaintenanceAnnouncementsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/public-maintenance-announcements/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.MaintenanceType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "maintenance_type", runtime.ParamLocationQuery, *params.MaintenanceType); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ScheduledEndAfter != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scheduled_end_after", runtime.ParamLocationQuery, *params.ScheduledEndAfter); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ScheduledEndBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scheduled_end_before", runtime.ParamLocationQuery, *params.ScheduledEndBefore); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ScheduledStartAfter != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scheduled_start_after", runtime.ParamLocationQuery, *params.ScheduledStartAfter); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ScheduledStartBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scheduled_start_before", runtime.ParamLocationQuery, *params.ScheduledStartBefore); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ServiceProviderUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "service_provider_uuid", runtime.ParamLocationQuery, *params.ServiceProviderUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "state", runtime.ParamLocationQuery, *params.State); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewPublicMaintenanceAnnouncementsRetrieveRequest generates requests for PublicMaintenanceAnnouncementsRetrieve
+func NewPublicMaintenanceAnnouncementsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/public-maintenance-announcements/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewQueryRequest calls the generic Query builder with application/json body
 func NewQueryRequest(server string, body QueryJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -198294,6 +198816,15 @@ type ClientWithResponsesInterface interface {
 	// ProviderInvoiceItemsRetrieveWithResponse request
 	ProviderInvoiceItemsRetrieveWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*ProviderInvoiceItemsRetrieveResponse, error)
 
+	// PublicMaintenanceAnnouncementsListWithResponse request
+	PublicMaintenanceAnnouncementsListWithResponse(ctx context.Context, params *PublicMaintenanceAnnouncementsListParams, reqEditors ...RequestEditorFn) (*PublicMaintenanceAnnouncementsListResponse, error)
+
+	// PublicMaintenanceAnnouncementsCountWithResponse request
+	PublicMaintenanceAnnouncementsCountWithResponse(ctx context.Context, params *PublicMaintenanceAnnouncementsCountParams, reqEditors ...RequestEditorFn) (*PublicMaintenanceAnnouncementsCountResponse, error)
+
+	// PublicMaintenanceAnnouncementsRetrieveWithResponse request
+	PublicMaintenanceAnnouncementsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*PublicMaintenanceAnnouncementsRetrieveResponse, error)
+
 	// QueryWithBodyWithResponse request with any body
 	QueryWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*QueryResponse, error)
 
@@ -225320,6 +225851,71 @@ func (r ProviderInvoiceItemsRetrieveResponse) StatusCode() int {
 	return 0
 }
 
+type PublicMaintenanceAnnouncementsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]PublicMaintenanceAnnouncement
+}
+
+// Status returns HTTPResponse.Status
+func (r PublicMaintenanceAnnouncementsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PublicMaintenanceAnnouncementsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type PublicMaintenanceAnnouncementsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r PublicMaintenanceAnnouncementsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PublicMaintenanceAnnouncementsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type PublicMaintenanceAnnouncementsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *PublicMaintenanceAnnouncement
+}
+
+// Status returns HTTPResponse.Status
+func (r PublicMaintenanceAnnouncementsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PublicMaintenanceAnnouncementsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type QueryResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -245863,6 +246459,33 @@ func (c *ClientWithResponses) ProviderInvoiceItemsRetrieveWithResponse(ctx conte
 		return nil, err
 	}
 	return ParseProviderInvoiceItemsRetrieveResponse(rsp)
+}
+
+// PublicMaintenanceAnnouncementsListWithResponse request returning *PublicMaintenanceAnnouncementsListResponse
+func (c *ClientWithResponses) PublicMaintenanceAnnouncementsListWithResponse(ctx context.Context, params *PublicMaintenanceAnnouncementsListParams, reqEditors ...RequestEditorFn) (*PublicMaintenanceAnnouncementsListResponse, error) {
+	rsp, err := c.PublicMaintenanceAnnouncementsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePublicMaintenanceAnnouncementsListResponse(rsp)
+}
+
+// PublicMaintenanceAnnouncementsCountWithResponse request returning *PublicMaintenanceAnnouncementsCountResponse
+func (c *ClientWithResponses) PublicMaintenanceAnnouncementsCountWithResponse(ctx context.Context, params *PublicMaintenanceAnnouncementsCountParams, reqEditors ...RequestEditorFn) (*PublicMaintenanceAnnouncementsCountResponse, error) {
+	rsp, err := c.PublicMaintenanceAnnouncementsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePublicMaintenanceAnnouncementsCountResponse(rsp)
+}
+
+// PublicMaintenanceAnnouncementsRetrieveWithResponse request returning *PublicMaintenanceAnnouncementsRetrieveResponse
+func (c *ClientWithResponses) PublicMaintenanceAnnouncementsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*PublicMaintenanceAnnouncementsRetrieveResponse, error) {
+	rsp, err := c.PublicMaintenanceAnnouncementsRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePublicMaintenanceAnnouncementsRetrieveResponse(rsp)
 }
 
 // QueryWithBodyWithResponse request with arbitrary body returning *QueryResponse
@@ -276079,6 +276702,74 @@ func ParseProviderInvoiceItemsRetrieveResponse(rsp *http.Response) (*ProviderInv
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest InvoiceItem
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParsePublicMaintenanceAnnouncementsListResponse parses an HTTP response from a PublicMaintenanceAnnouncementsListWithResponse call
+func ParsePublicMaintenanceAnnouncementsListResponse(rsp *http.Response) (*PublicMaintenanceAnnouncementsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PublicMaintenanceAnnouncementsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []PublicMaintenanceAnnouncement
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParsePublicMaintenanceAnnouncementsCountResponse parses an HTTP response from a PublicMaintenanceAnnouncementsCountWithResponse call
+func ParsePublicMaintenanceAnnouncementsCountResponse(rsp *http.Response) (*PublicMaintenanceAnnouncementsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PublicMaintenanceAnnouncementsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParsePublicMaintenanceAnnouncementsRetrieveResponse parses an HTTP response from a PublicMaintenanceAnnouncementsRetrieveWithResponse call
+func ParsePublicMaintenanceAnnouncementsRetrieveResponse(rsp *http.Response) (*PublicMaintenanceAnnouncementsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PublicMaintenanceAnnouncementsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest PublicMaintenanceAnnouncement
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
