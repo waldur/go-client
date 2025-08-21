@@ -27256,6 +27256,20 @@ type MarketplaceServiceProvidersProjectPermissionsListParamsField string
 // MarketplaceServiceProvidersProjectPermissionsListParamsO defines parameters for MarketplaceServiceProvidersProjectPermissionsList.
 type MarketplaceServiceProvidersProjectPermissionsListParamsO string
 
+// MarketplaceServiceProvidersProjectServiceAccountsListParams defines parameters for MarketplaceServiceProvidersProjectServiceAccountsList.
+type MarketplaceServiceProvidersProjectServiceAccountsListParams struct {
+	Email *string `form:"email,omitempty" json:"email,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize    *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Project     *string             `form:"project,omitempty" json:"project,omitempty"`
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	Username    *string             `form:"username,omitempty" json:"username,omitempty"`
+}
+
 // MarketplaceServiceProvidersProjectsListParams defines parameters for MarketplaceServiceProvidersProjectsList.
 type MarketplaceServiceProvidersProjectsListParams struct {
 	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
@@ -40044,6 +40058,9 @@ type ClientInterface interface {
 
 	// MarketplaceServiceProvidersProjectPermissionsList request
 	MarketplaceServiceProvidersProjectPermissionsList(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersProjectPermissionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceServiceProvidersProjectServiceAccountsList request
+	MarketplaceServiceProvidersProjectServiceAccountsList(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersProjectServiceAccountsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceServiceProvidersProjectsList request
 	MarketplaceServiceProvidersProjectsList(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersProjectsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -55100,6 +55117,18 @@ func (c *Client) MarketplaceServiceProvidersOfferingsList(ctx context.Context, s
 
 func (c *Client) MarketplaceServiceProvidersProjectPermissionsList(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersProjectPermissionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceServiceProvidersProjectPermissionsListRequest(c.Server, serviceProviderUuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceServiceProvidersProjectServiceAccountsList(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersProjectServiceAccountsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceServiceProvidersProjectServiceAccountsListRequest(c.Server, serviceProviderUuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -130943,6 +130972,142 @@ func NewMarketplaceServiceProvidersProjectPermissionsListRequest(server string, 
 	return req, nil
 }
 
+// NewMarketplaceServiceProvidersProjectServiceAccountsListRequest generates requests for MarketplaceServiceProvidersProjectServiceAccountsList
+func NewMarketplaceServiceProvidersProjectServiceAccountsListRequest(server string, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersProjectServiceAccountsListParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "service_provider_uuid", runtime.ParamLocationPath, serviceProviderUuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-service-providers/%s/project_service_accounts/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Email != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "email", runtime.ParamLocationQuery, *params.Email); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Project != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project", runtime.ParamLocationQuery, *params.Project); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_uuid", runtime.ParamLocationQuery, *params.ProjectUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Username != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "username", runtime.ParamLocationQuery, *params.Username); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewMarketplaceServiceProvidersProjectsListRequest generates requests for MarketplaceServiceProvidersProjectsList
 func NewMarketplaceServiceProvidersProjectsListRequest(server string, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersProjectsListParams) (*http.Request, error) {
 	var err error
@@ -197322,6 +197487,9 @@ type ClientWithResponsesInterface interface {
 	// MarketplaceServiceProvidersProjectPermissionsListWithResponse request
 	MarketplaceServiceProvidersProjectPermissionsListWithResponse(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersProjectPermissionsListParams, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersProjectPermissionsListResponse, error)
 
+	// MarketplaceServiceProvidersProjectServiceAccountsListWithResponse request
+	MarketplaceServiceProvidersProjectServiceAccountsListWithResponse(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersProjectServiceAccountsListParams, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersProjectServiceAccountsListResponse, error)
+
 	// MarketplaceServiceProvidersProjectsListWithResponse request
 	MarketplaceServiceProvidersProjectsListWithResponse(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersProjectsListParams, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersProjectsListResponse, error)
 
@@ -216931,6 +217099,28 @@ func (r MarketplaceServiceProvidersProjectPermissionsListResponse) Status() stri
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceServiceProvidersProjectPermissionsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceServiceProvidersProjectServiceAccountsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]ProjectServiceAccount
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceServiceProvidersProjectServiceAccountsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceServiceProvidersProjectServiceAccountsListResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -241719,6 +241909,15 @@ func (c *ClientWithResponses) MarketplaceServiceProvidersProjectPermissionsListW
 		return nil, err
 	}
 	return ParseMarketplaceServiceProvidersProjectPermissionsListResponse(rsp)
+}
+
+// MarketplaceServiceProvidersProjectServiceAccountsListWithResponse request returning *MarketplaceServiceProvidersProjectServiceAccountsListResponse
+func (c *ClientWithResponses) MarketplaceServiceProvidersProjectServiceAccountsListWithResponse(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersProjectServiceAccountsListParams, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersProjectServiceAccountsListResponse, error) {
+	rsp, err := c.MarketplaceServiceProvidersProjectServiceAccountsList(ctx, serviceProviderUuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceServiceProvidersProjectServiceAccountsListResponse(rsp)
 }
 
 // MarketplaceServiceProvidersProjectsListWithResponse request returning *MarketplaceServiceProvidersProjectsListResponse
@@ -267538,6 +267737,32 @@ func ParseMarketplaceServiceProvidersProjectPermissionsListResponse(rsp *http.Re
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest []ProjectPermissionLog
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceServiceProvidersProjectServiceAccountsListResponse parses an HTTP response from a MarketplaceServiceProvidersProjectServiceAccountsListWithResponse call
+func ParseMarketplaceServiceProvidersProjectServiceAccountsListResponse(rsp *http.Response) (*MarketplaceServiceProvidersProjectServiceAccountsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceServiceProvidersProjectServiceAccountsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []ProjectServiceAccount
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
