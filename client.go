@@ -15515,12 +15515,12 @@ type OpenStackNestedPortRequest struct {
 }
 
 // OpenStackNestedSecurityGroup defines model for OpenStackNestedSecurityGroup.
-type OpenStackNestedSecurityGroup = []struct {
+type OpenStackNestedSecurityGroup struct {
 	Url *string `json:"url,omitempty"`
 }
 
 // OpenStackNestedSecurityGroupRequest defines model for OpenStackNestedSecurityGroupRequest.
-type OpenStackNestedSecurityGroupRequest = []struct {
+type OpenStackNestedSecurityGroupRequest struct {
 	Url *string `json:"url,omitempty"`
 }
 
