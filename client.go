@@ -11914,17 +11914,21 @@ type CreateFeedbackRequest struct {
 
 // CreateRouter defines model for CreateRouter.
 type CreateRouter struct {
-	Name            string              `json:"name"`
-	Project         *string             `json:"project,omitempty"`
-	ServiceSettings *string             `json:"service_settings,omitempty"`
-	Tenant          string              `json:"tenant"`
-	Url             *string             `json:"url,omitempty"`
-	Uuid            *openapi_types.UUID `json:"uuid,omitempty"`
+	Name            string  `json:"name"`
+	Project         *string `json:"project,omitempty"`
+	ServiceSettings *string `json:"service_settings,omitempty"`
+
+	// Tenant OpenStack tenant this router belongs to
+	Tenant string              `json:"tenant"`
+	Url    *string             `json:"url,omitempty"`
+	Uuid   *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // CreateRouterRequest defines model for CreateRouterRequest.
 type CreateRouterRequest struct {
-	Name   string `json:"name"`
+	Name string `json:"name"`
+
+	// Tenant OpenStack tenant this router belongs to
 	Tenant string `json:"tenant"`
 }
 
@@ -12824,6 +12828,7 @@ type ImportableResource struct {
 
 // InstanceFlavorChangeRequest defines model for InstanceFlavorChangeRequest.
 type InstanceFlavorChangeRequest struct {
+	// Flavor The new flavor to use for the instance. Flavor change can only be done when instance is stopped.
 	Flavor string `json:"flavor"`
 }
 
@@ -14399,10 +14404,12 @@ type NestedSection struct {
 
 // NetworkRBACPolicy defines model for NetworkRBACPolicy.
 type NetworkRBACPolicy struct {
-	BackendId        *string             `json:"backend_id,omitempty"`
-	Created          *time.Time          `json:"created,omitempty"`
-	Network          *string             `json:"network,omitempty"`
-	NetworkName      *string             `json:"network_name,omitempty"`
+	BackendId   *string    `json:"backend_id,omitempty"`
+	Created     *time.Time `json:"created,omitempty"`
+	Network     *string    `json:"network,omitempty"`
+	NetworkName *string    `json:"network_name,omitempty"`
+
+	// PolicyType Type of access granted - either shared access or external network access
 	PolicyType       *PolicyTypeEnum     `json:"policy_type,omitempty"`
 	TargetTenant     *string             `json:"target_tenant,omitempty"`
 	TargetTenantName *string             `json:"target_tenant_name,omitempty"`
@@ -14412,6 +14419,7 @@ type NetworkRBACPolicy struct {
 
 // NetworkRBACPolicyRequest defines model for NetworkRBACPolicyRequest.
 type NetworkRBACPolicyRequest struct {
+	// PolicyType Type of access granted - either shared access or external network access
 	PolicyType   *PolicyTypeEnum `json:"policy_type,omitempty"`
 	TargetTenant string          `json:"target_tenant"`
 }
@@ -15094,9 +15102,13 @@ type OpenStackAllowedAddressPairRequest struct {
 
 // OpenStackBackendInstance defines model for OpenStackBackendInstance.
 type OpenStackBackendInstance struct {
-	AvailabilityZone   *string    `json:"availability_zone,omitempty"`
-	BackendId          *string    `json:"backend_id"`
-	Created            *time.Time `json:"created,omitempty"`
+	AvailabilityZone *string `json:"availability_zone,omitempty"`
+
+	// BackendId Instance ID in the OpenStack backend
+	BackendId *string    `json:"backend_id"`
+	Created   *time.Time `json:"created,omitempty"`
+
+	// HypervisorHostname Name of the hypervisor hosting this instance
 	HypervisorHostname *string    `json:"hypervisor_hostname,omitempty"`
 	KeyName            *string    `json:"key_name,omitempty"`
 	Name               string     `json:"name"`
@@ -15108,12 +15120,18 @@ type OpenStackBackendInstance struct {
 // OpenStackBackendVolumes defines model for OpenStackBackendVolumes.
 type OpenStackBackendVolumes struct {
 	AvailabilityZone *string `json:"availability_zone,omitempty"`
-	BackendId        *string `json:"backend_id"`
-	Bootable         *bool   `json:"bootable,omitempty"`
-	Description      *string `json:"description,omitempty"`
-	Metadata         *string `json:"metadata,omitempty"`
-	Name             string  `json:"name"`
-	RuntimeState     *string `json:"runtime_state,omitempty"`
+
+	// BackendId Volume ID in the OpenStack backend
+	BackendId *string `json:"backend_id"`
+
+	// Bootable Indicates if this volume can be used to boot an instance
+	Bootable    *bool   `json:"bootable,omitempty"`
+	Description *string `json:"description,omitempty"`
+
+	// Metadata Arbitrary key-value pairs associated with the volume
+	Metadata     *string `json:"metadata,omitempty"`
+	Name         string  `json:"name"`
+	RuntimeState *string `json:"runtime_state,omitempty"`
 
 	// Size Size in MiB
 	Size  int     `json:"size"`
@@ -15123,16 +15141,18 @@ type OpenStackBackendVolumes struct {
 
 // OpenStackBackup defines model for OpenStackBackup.
 type OpenStackBackup struct {
-	AccessUrl               *string                         `json:"access_url"`
-	BackendId               *string                         `json:"backend_id,omitempty"`
-	Created                 *time.Time                      `json:"created,omitempty"`
-	Customer                *string                         `json:"customer,omitempty"`
-	CustomerAbbreviation    *string                         `json:"customer_abbreviation,omitempty"`
-	CustomerName            *string                         `json:"customer_name,omitempty"`
-	CustomerNativeName      *string                         `json:"customer_native_name,omitempty"`
-	Description             *string                         `json:"description,omitempty"`
-	ErrorMessage            *string                         `json:"error_message,omitempty"`
-	ErrorTraceback          *string                         `json:"error_traceback,omitempty"`
+	AccessUrl            *string    `json:"access_url"`
+	BackendId            *string    `json:"backend_id,omitempty"`
+	Created              *time.Time `json:"created,omitempty"`
+	Customer             *string    `json:"customer,omitempty"`
+	CustomerAbbreviation *string    `json:"customer_abbreviation,omitempty"`
+	CustomerName         *string    `json:"customer_name,omitempty"`
+	CustomerNativeName   *string    `json:"customer_native_name,omitempty"`
+	Description          *string    `json:"description,omitempty"`
+	ErrorMessage         *string    `json:"error_message,omitempty"`
+	ErrorTraceback       *string    `json:"error_traceback,omitempty"`
+
+	// Instance Instance that this backup is created from
 	Instance                *string                         `json:"instance,omitempty"`
 	InstanceFloatingIps     *[]OpenStackNestedFloatingIP    `json:"instance_floating_ips,omitempty"`
 	InstanceMarketplaceUuid *openapi_types.UUID             `json:"instance_marketplace_uuid,omitempty"`
@@ -15182,26 +15202,43 @@ type OpenStackBackupRequest struct {
 
 // OpenStackBackupRestoration defines model for OpenStackBackupRestoration.
 type OpenStackBackupRestoration struct {
-	Created     *time.Time                   `json:"created,omitempty"`
-	Flavor      *string                      `json:"flavor,omitempty"`
+	Created *time.Time `json:"created,omitempty"`
+
+	// Flavor Flavor to be used for the restored instance. If not specified, original instance flavor will be used
+	Flavor *string `json:"flavor,omitempty"`
+
+	// FloatingIps Floating IPs that will be assigned to the restored instance
 	FloatingIps *[]OpenStackNestedFloatingIP `json:"floating_ips,omitempty"`
-	Instance    *string                      `json:"instance,omitempty"`
+
+	// Instance Instance that is being restored from the backup
+	Instance *string `json:"instance,omitempty"`
 
 	// Name New instance name. Leave blank to use source instance name.
-	Name           *string                         `json:"name,omitempty"`
-	Ports          *[]OpenStackNestedPort          `json:"ports,omitempty"`
+	Name *string `json:"name,omitempty"`
+
+	// Ports Network ports that will be attached to the restored instance
+	Ports *[]OpenStackNestedPort `json:"ports,omitempty"`
+
+	// SecurityGroups Security groups that will be assigned to the restored instance
 	SecurityGroups *[]OpenStackNestedSecurityGroup `json:"security_groups,omitempty"`
 	Uuid           *openapi_types.UUID             `json:"uuid,omitempty"`
 }
 
 // OpenStackBackupRestorationRequest defines model for OpenStackBackupRestorationRequest.
 type OpenStackBackupRestorationRequest struct {
-	Flavor      string                              `json:"flavor"`
+	// Flavor Flavor to be used for the restored instance. If not specified, original instance flavor will be used
+	Flavor string `json:"flavor"`
+
+	// FloatingIps Floating IPs that will be assigned to the restored instance
 	FloatingIps *[]OpenStackNestedFloatingIPRequest `json:"floating_ips,omitempty"`
 
 	// Name New instance name. Leave blank to use source instance name.
-	Name           *string                                `json:"name,omitempty"`
-	Ports          *[]OpenStackNestedPortRequest          `json:"ports,omitempty"`
+	Name *string `json:"name,omitempty"`
+
+	// Ports Network ports that will be attached to the restored instance
+	Ports *[]OpenStackNestedPortRequest `json:"ports,omitempty"`
+
+	// SecurityGroups Security groups that will be assigned to the restored instance
 	SecurityGroups *[]OpenStackNestedSecurityGroupRequest `json:"security_groups,omitempty"`
 }
 
@@ -15213,14 +15250,20 @@ type OpenStackDataVolumeRequest struct {
 
 // OpenStackFixedIp defines model for OpenStackFixedIp.
 type OpenStackFixedIp struct {
+	// IpAddress IP address to assign to the port
 	IpAddress *string `json:"ip_address,omitempty"`
-	SubnetId  *string `json:"subnet_id,omitempty"`
+
+	// SubnetId ID of the subnet in which to assign the IP address
+	SubnetId *string `json:"subnet_id,omitempty"`
 }
 
 // OpenStackFixedIpRequest defines model for OpenStackFixedIpRequest.
 type OpenStackFixedIpRequest struct {
+	// IpAddress IP address to assign to the port
 	IpAddress string `json:"ip_address"`
-	SubnetId  string `json:"subnet_id"`
+
+	// SubnetId ID of the subnet in which to assign the IP address
+	SubnetId string `json:"subnet_id"`
 }
 
 // OpenStackFlavor defines model for OpenStackFlavor.
@@ -15244,9 +15287,13 @@ type OpenStackFlavor struct {
 
 // OpenStackFloatingIP defines model for OpenStackFloatingIP.
 type OpenStackFloatingIP struct {
-	AccessUrl            *string    `json:"access_url"`
-	Address              *string    `json:"address"`
-	BackendId            *string    `json:"backend_id,omitempty"`
+	AccessUrl *string `json:"access_url"`
+
+	// Address The public IPv4 address of the floating IP
+	Address   *string `json:"address"`
+	BackendId *string `json:"backend_id,omitempty"`
+
+	// BackendNetworkId ID of network in OpenStack where this floating IP is allocated
 	BackendNetworkId     *string    `json:"backend_network_id,omitempty"`
 	Created              *time.Time `json:"created,omitempty"`
 	Customer             *string    `json:"customer,omitempty"`
@@ -15257,7 +15304,7 @@ type OpenStackFloatingIP struct {
 	ErrorMessage         *string    `json:"error_message,omitempty"`
 	ErrorTraceback       *string    `json:"error_traceback,omitempty"`
 
-	// ExternalAddress An optional address that maps to floating IP's address
+	// ExternalAddress Optional address that maps to floating IP's address in external networks
 	ExternalAddress                  *string                 `json:"external_address"`
 	InstanceName                     *string                 `json:"instance_name"`
 	InstanceUrl                      *string                 `json:"instance_url"`
@@ -15287,11 +15334,13 @@ type OpenStackFloatingIP struct {
 	ServiceSettingsState             *string                 `json:"service_settings_state,omitempty"`
 	ServiceSettingsUuid              *openapi_types.UUID     `json:"service_settings_uuid,omitempty"`
 	State                            *CoreStates             `json:"state,omitempty"`
-	Tenant                           *string                 `json:"tenant,omitempty"`
-	TenantName                       *string                 `json:"tenant_name,omitempty"`
-	TenantUuid                       *openapi_types.UUID     `json:"tenant_uuid,omitempty"`
-	Url                              *string                 `json:"url,omitempty"`
-	Uuid                             *openapi_types.UUID     `json:"uuid,omitempty"`
+
+	// Tenant OpenStack tenant this floating IP belongs to
+	Tenant     *string             `json:"tenant,omitempty"`
+	TenantName *string             `json:"tenant_name,omitempty"`
+	TenantUuid *openapi_types.UUID `json:"tenant_uuid,omitempty"`
+	Url        *string             `json:"url,omitempty"`
+	Uuid       *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // OpenStackFloatingIPAttachRequest defines model for OpenStackFloatingIPAttachRequest.
@@ -15322,13 +15371,23 @@ type OpenStackImage struct {
 
 // OpenStackInstance defines model for OpenStackInstance.
 type OpenStackInstance struct {
-	AccessUrl                        *string     `json:"access_url"`
-	Action                           *string     `json:"action,omitempty"`
-	ActionDetails                    interface{} `json:"action_details,omitempty"`
-	AvailabilityZone                 *string     `json:"availability_zone"`
-	AvailabilityZoneName             *string     `json:"availability_zone_name,omitempty"`
-	BackendId                        *string     `json:"backend_id"`
-	ConnectDirectlyToExternalNetwork *bool       `json:"connect_directly_to_external_network,omitempty"`
+	AccessUrl *string `json:"access_url"`
+	Action    *string `json:"action,omitempty"`
+
+	// ActionDetails Details about ongoing or completed actions
+	ActionDetails interface{} `json:"action_details,omitempty"`
+
+	// AvailabilityZone Availability zone where this instance is located
+	AvailabilityZone *string `json:"availability_zone"`
+
+	// AvailabilityZoneName Name of the availability zone where instance is located
+	AvailabilityZoneName *string `json:"availability_zone_name,omitempty"`
+
+	// BackendId Instance ID in the OpenStack backend
+	BackendId *string `json:"backend_id"`
+
+	// ConnectDirectlyToExternalNetwork If True, instance will be connected directly to external network
+	ConnectDirectlyToExternalNetwork *bool `json:"connect_directly_to_external_network,omitempty"`
 
 	// Cores Number of cores in a VM
 	Cores                *int       `json:"cores,omitempty"`
@@ -15347,71 +15406,95 @@ type OpenStackInstance struct {
 	ExternalIps     *[]string `json:"external_ips,omitempty"`
 
 	// FlavorDisk Flavor disk size in MiB
-	FlavorDisk                       *int                         `json:"flavor_disk,omitempty"`
-	FlavorName                       *string                      `json:"flavor_name,omitempty"`
-	FloatingIps                      *[]OpenStackNestedFloatingIP `json:"floating_ips,omitempty"`
-	HypervisorHostname               *string                      `json:"hypervisor_hostname,omitempty"`
-	ImageName                        *string                      `json:"image_name,omitempty"`
-	InternalIps                      *[]string                    `json:"internal_ips,omitempty"`
-	IsLimitBased                     *bool                        `json:"is_limit_based"`
-	IsUsageBased                     *bool                        `json:"is_usage_based"`
-	KeyFingerprint                   *string                      `json:"key_fingerprint,omitempty"`
-	KeyName                          *string                      `json:"key_name,omitempty"`
-	Latitude                         *float64                     `json:"latitude"`
-	Longitude                        *float64                     `json:"longitude"`
-	MarketplaceCategoryName          *string                      `json:"marketplace_category_name"`
-	MarketplaceCategoryUuid          *string                      `json:"marketplace_category_uuid"`
-	MarketplaceOfferingName          *string                      `json:"marketplace_offering_name"`
-	MarketplaceOfferingPluginOptions *map[string]interface{}      `json:"marketplace_offering_plugin_options"`
-	MarketplaceOfferingUuid          *string                      `json:"marketplace_offering_uuid"`
-	MarketplacePlanUuid              *string                      `json:"marketplace_plan_uuid"`
-	MarketplaceResourceState         *string                      `json:"marketplace_resource_state"`
-	MarketplaceResourceUuid          *string                      `json:"marketplace_resource_uuid"`
+	FlavorDisk *int `json:"flavor_disk,omitempty"`
+
+	// FlavorName Name of the flavor used by this instance
+	FlavorName *string `json:"flavor_name,omitempty"`
+
+	// FloatingIps Floating IPs to assign to the instance
+	FloatingIps *[]OpenStackNestedFloatingIP `json:"floating_ips,omitempty"`
+
+	// HypervisorHostname Name of the hypervisor hosting this instance
+	HypervisorHostname               *string                 `json:"hypervisor_hostname,omitempty"`
+	ImageName                        *string                 `json:"image_name,omitempty"`
+	InternalIps                      *[]string               `json:"internal_ips,omitempty"`
+	IsLimitBased                     *bool                   `json:"is_limit_based"`
+	IsUsageBased                     *bool                   `json:"is_usage_based"`
+	KeyFingerprint                   *string                 `json:"key_fingerprint,omitempty"`
+	KeyName                          *string                 `json:"key_name,omitempty"`
+	Latitude                         *float64                `json:"latitude"`
+	Longitude                        *float64                `json:"longitude"`
+	MarketplaceCategoryName          *string                 `json:"marketplace_category_name"`
+	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid"`
+	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name"`
+	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options"`
+	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid"`
+	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid"`
+	MarketplaceResourceState         *string                 `json:"marketplace_resource_state"`
+	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid"`
 
 	// MinDisk Minimum disk size in MiB
 	MinDisk *int `json:"min_disk,omitempty"`
 
 	// MinRam Minimum memory size in MiB
-	MinRam      *int                   `json:"min_ram,omitempty"`
-	Modified    *time.Time             `json:"modified,omitempty"`
-	Name        *string                `json:"name,omitempty"`
+	MinRam   *int       `json:"min_ram,omitempty"`
+	Modified *time.Time `json:"modified,omitempty"`
+	Name     *string    `json:"name,omitempty"`
+
+	// Ports Network ports to attach to the instance
 	Ports       *[]OpenStackNestedPort `json:"ports,omitempty"`
 	Project     *string                `json:"project,omitempty"`
 	ProjectName *string                `json:"project_name,omitempty"`
 	ProjectUuid *openapi_types.UUID    `json:"project_uuid,omitempty"`
 
 	// Ram Memory size in MiB
-	Ram                         *int                            `json:"ram,omitempty"`
-	RancherCluster              *RancherClusterReference        `json:"rancher_cluster"`
-	ResourceType                *string                         `json:"resource_type,omitempty"`
-	RuntimeState                *string                         `json:"runtime_state,omitempty"`
-	SecurityGroups              *[]OpenStackNestedSecurityGroup `json:"security_groups,omitempty"`
-	ServerGroup                 *OpenStackNestedServerGroup     `json:"server_group"`
-	ServiceName                 *string                         `json:"service_name,omitempty"`
-	ServiceSettings             *string                         `json:"service_settings,omitempty"`
-	ServiceSettingsErrorMessage *string                         `json:"service_settings_error_message,omitempty"`
-	ServiceSettingsState        *string                         `json:"service_settings_state,omitempty"`
-	ServiceSettingsUuid         *openapi_types.UUID             `json:"service_settings_uuid,omitempty"`
-	StartTime                   *time.Time                      `json:"start_time"`
-	State                       *CoreStates                     `json:"state,omitempty"`
-	Tenant                      *string                         `json:"tenant,omitempty"`
-	TenantUuid                  *openapi_types.UUID             `json:"tenant_uuid,omitempty"`
-	Url                         *string                         `json:"url,omitempty"`
+	Ram            *int                     `json:"ram,omitempty"`
+	RancherCluster *RancherClusterReference `json:"rancher_cluster"`
+	ResourceType   *string                  `json:"resource_type,omitempty"`
+	RuntimeState   *string                  `json:"runtime_state,omitempty"`
+
+	// SecurityGroups List of security groups to apply to the instance
+	SecurityGroups *[]OpenStackNestedSecurityGroup `json:"security_groups,omitempty"`
+
+	// ServerGroup Server group for instance scheduling policy
+	ServerGroup *OpenStackNestedServerGroup `json:"server_group"`
+	ServiceName *string                     `json:"service_name,omitempty"`
+
+	// ServiceSettings OpenStack provider settings
+	ServiceSettings             *string             `json:"service_settings,omitempty"`
+	ServiceSettingsErrorMessage *string             `json:"service_settings_error_message,omitempty"`
+	ServiceSettingsState        *string             `json:"service_settings_state,omitempty"`
+	ServiceSettingsUuid         *openapi_types.UUID `json:"service_settings_uuid,omitempty"`
+	StartTime                   *time.Time          `json:"start_time"`
+	State                       *CoreStates         `json:"state,omitempty"`
+
+	// Tenant The OpenStack tenant to create the instance in
+	Tenant *string `json:"tenant,omitempty"`
+
+	// TenantUuid UUID of the OpenStack tenant
+	TenantUuid *openapi_types.UUID `json:"tenant_uuid,omitempty"`
+	Url        *string             `json:"url,omitempty"`
 
 	// UserData Additional data that will be added to instance on provisioning
-	UserData *string                  `json:"user_data,omitempty"`
-	Uuid     *openapi_types.UUID      `json:"uuid,omitempty"`
-	Volumes  *[]OpenStackNestedVolume `json:"volumes,omitempty"`
+	UserData *string             `json:"user_data,omitempty"`
+	Uuid     *openapi_types.UUID `json:"uuid,omitempty"`
+
+	// Volumes List of volumes attached to the instance
+	Volumes *[]OpenStackNestedVolume `json:"volumes,omitempty"`
 }
 
 // OpenStackInstanceAllowedAddressPairsUpdateRequest defines model for OpenStackInstanceAllowedAddressPairsUpdateRequest.
 type OpenStackInstanceAllowedAddressPairsUpdateRequest struct {
+	// AllowedAddressPairs List of allowed address pairs to set on the port. Each pair should contain 'ip_address' and optional 'mac_address'.
 	AllowedAddressPairs []OpenStackAllowedAddressPairRequest `json:"allowed_address_pairs"`
-	Subnet              *string                              `json:"subnet,omitempty"`
+
+	// Subnet The subnet to update allowed address pairs for.
+	Subnet *string `json:"subnet,omitempty"`
 }
 
 // OpenStackInstanceAvailabilityZone defines model for OpenStackInstanceAvailabilityZone.
 type OpenStackInstanceAvailabilityZone struct {
+	// Available Indicates whether this availability zone is available for instance provisioning
 	Available *bool               `json:"available,omitempty"`
 	Name      string              `json:"name"`
 	Settings  *string             `json:"settings"`
@@ -15422,20 +15505,41 @@ type OpenStackInstanceAvailabilityZone struct {
 // OpenStackInstanceCreateOrderAttributes This mixin allows to specify list of fields to be rendered by serializer.
 // It expects that request is available in serializer's context.
 type OpenStackInstanceCreateOrderAttributes struct {
-	AvailabilityZone                 *string                                `json:"availability_zone"`
-	ConnectDirectlyToExternalNetwork *bool                                  `json:"connect_directly_to_external_network,omitempty"`
-	DataVolumeSize                   *int                                   `json:"data_volume_size,omitempty"`
-	DataVolumeType                   *string                                `json:"data_volume_type"`
-	Description                      *string                                `json:"description,omitempty"`
-	Flavor                           *string                                `json:"flavor,omitempty"`
-	FloatingIps                      *[]OpenStackNestedFloatingIPRequest    `json:"floating_ips,omitempty"`
-	Image                            *string                                `json:"image,omitempty"`
-	Name                             string                                 `json:"name"`
-	Ports                            []OpenStackNestedPortRequest           `json:"ports"`
-	SecurityGroups                   *[]OpenStackNestedSecurityGroupRequest `json:"security_groups,omitempty"`
-	SshPublicKey                     *string                                `json:"ssh_public_key,omitempty"`
-	SystemVolumeSize                 *int                                   `json:"system_volume_size,omitempty"`
-	SystemVolumeType                 *string                                `json:"system_volume_type"`
+	// AvailabilityZone Availability zone where this instance is located
+	AvailabilityZone *string `json:"availability_zone"`
+
+	// ConnectDirectlyToExternalNetwork If True, instance will be connected directly to external network
+	ConnectDirectlyToExternalNetwork *bool `json:"connect_directly_to_external_network,omitempty"`
+
+	// DataVolumeSize Size of the data volume in MiB. Minimum size is 1024 MiB (1 GiB)
+	DataVolumeSize *int `json:"data_volume_size,omitempty"`
+
+	// DataVolumeType Volume type for the data volume
+	DataVolumeType *string `json:"data_volume_type"`
+	Description    *string `json:"description,omitempty"`
+
+	// Flavor The flavor to use for the instance
+	Flavor *string `json:"flavor,omitempty"`
+
+	// FloatingIps Floating IPs to assign to the instance
+	FloatingIps *[]OpenStackNestedFloatingIPRequest `json:"floating_ips,omitempty"`
+
+	// Image The OS image to use for the instance
+	Image *string `json:"image,omitempty"`
+	Name  string  `json:"name"`
+
+	// Ports Network ports to attach to the instance
+	Ports []OpenStackNestedPortRequest `json:"ports"`
+
+	// SecurityGroups List of security groups to apply to the instance
+	SecurityGroups *[]OpenStackNestedSecurityGroupRequest `json:"security_groups,omitempty"`
+	SshPublicKey   *string                                `json:"ssh_public_key,omitempty"`
+
+	// SystemVolumeSize Size of the system volume in MiB. Minimum size is 1024 MiB (1 GiB)
+	SystemVolumeSize *int `json:"system_volume_size,omitempty"`
+
+	// SystemVolumeType Volume type for the system volume
+	SystemVolumeType *string `json:"system_volume_type"`
 
 	// UserData Additional data that will be added to instance on provisioning
 	UserData *string `json:"user_data,omitempty"`
@@ -15453,24 +15557,35 @@ type OpenStackInstancePortsUpdateRequest struct {
 
 // OpenStackInstanceRequest defines model for OpenStackInstanceRequest.
 type OpenStackInstanceRequest struct {
-	DataVolumeType   *string                       `json:"data_volume_type"`
-	DataVolumes      *[]OpenStackDataVolumeRequest `json:"data_volumes,omitempty"`
-	Description      *string                       `json:"description,omitempty"`
-	Name             string                        `json:"name"`
-	SystemVolumeType *string                       `json:"system_volume_type"`
+	// DataVolumeType Volume type for the data volume
+	DataVolumeType *string `json:"data_volume_type"`
+
+	// DataVolumes Additional data volumes to attach to the instance
+	DataVolumes *[]OpenStackDataVolumeRequest `json:"data_volumes,omitempty"`
+	Description *string                       `json:"description,omitempty"`
+	Name        string                        `json:"name"`
+
+	// SystemVolumeType Volume type for the system volume
+	SystemVolumeType *string `json:"system_volume_type"`
 }
 
 // OpenStackInstanceSecurityGroupsUpdateRequest defines model for OpenStackInstanceSecurityGroupsUpdateRequest.
 type OpenStackInstanceSecurityGroupsUpdateRequest struct {
+	// SecurityGroups List of security groups to be assigned to the instance.
 	SecurityGroups []string `json:"security_groups"`
 }
 
 // OpenStackNestedFloatingIP defines model for OpenStackNestedFloatingIP.
 type OpenStackNestedFloatingIP struct {
-	Address           *string             `json:"address"`
-	PortFixedIps      *[]OpenStackFixedIp `json:"port_fixed_ips,omitempty"`
-	PortMacAddress    *string             `json:"port_mac_address"`
-	Subnet            *string             `json:"subnet,omitempty"`
+	// Address The public IPv4 address of the floating IP
+	Address      *string             `json:"address"`
+	PortFixedIps *[]OpenStackFixedIp `json:"port_fixed_ips,omitempty"`
+
+	// PortMacAddress MAC address of the port
+	PortMacAddress *string `json:"port_mac_address"`
+	Subnet         *string `json:"subnet,omitempty"`
+
+	// SubnetCidr IPv4 network address in CIDR format (e.g. 192.168.0.0/24)
 	SubnetCidr        *string             `json:"subnet_cidr,omitempty"`
 	SubnetDescription *string             `json:"subnet_description,omitempty"`
 	SubnetName        *string             `json:"subnet_name,omitempty"`
@@ -15486,6 +15601,7 @@ type OpenStackNestedFloatingIPRequest struct {
 
 // OpenStackNestedInstance defines model for OpenStackNestedInstance.
 type OpenStackNestedInstance struct {
+	// BackendId Instance ID in the OpenStack backend
 	BackendId *string             `json:"backend_id"`
 	Name      *string             `json:"name,omitempty"`
 	Uuid      *openapi_types.UUID `json:"uuid,omitempty"`
@@ -15494,24 +15610,36 @@ type OpenStackNestedInstance struct {
 // OpenStackNestedPort defines model for OpenStackNestedPort.
 type OpenStackNestedPort struct {
 	AllowedAddressPairs *[]OpenStackAllowedAddressPair `json:"allowed_address_pairs,omitempty"`
-	DeviceId            *string                        `json:"device_id"`
-	DeviceOwner         *string                        `json:"device_owner"`
-	FixedIps            *[]OpenStackFixedIp            `json:"fixed_ips,omitempty"`
-	MacAddress          *string                        `json:"mac_address,omitempty"`
-	SecurityGroups      *[]OpenStackSecurityGroup      `json:"security_groups,omitempty"`
-	Subnet              *string                        `json:"subnet"`
-	SubnetCidr          *string                        `json:"subnet_cidr"`
-	SubnetDescription   *string                        `json:"subnet_description"`
-	SubnetName          *string                        `json:"subnet_name"`
-	SubnetUuid          *openapi_types.UUID            `json:"subnet_uuid"`
-	Url                 *string                        `json:"url,omitempty"`
+
+	// DeviceId ID of device (instance, router etc) to which this port is connected
+	DeviceId *string `json:"device_id"`
+
+	// DeviceOwner Entity that uses this port (e.g. network:router_interface)
+	DeviceOwner *string             `json:"device_owner"`
+	FixedIps    *[]OpenStackFixedIp `json:"fixed_ips,omitempty"`
+
+	// MacAddress MAC address of the port
+	MacAddress     *string                   `json:"mac_address,omitempty"`
+	SecurityGroups *[]OpenStackSecurityGroup `json:"security_groups,omitempty"`
+
+	// Subnet Subnet to which this port belongs
+	Subnet *string `json:"subnet"`
+
+	// SubnetCidr IPv4 network address in CIDR format (e.g. 192.168.0.0/24)
+	SubnetCidr        *string             `json:"subnet_cidr"`
+	SubnetDescription *string             `json:"subnet_description"`
+	SubnetName        *string             `json:"subnet_name"`
+	SubnetUuid        *openapi_types.UUID `json:"subnet_uuid"`
+	Url               *string             `json:"url,omitempty"`
 }
 
 // OpenStackNestedPortRequest defines model for OpenStackNestedPortRequest.
 type OpenStackNestedPortRequest struct {
 	FixedIps *[]OpenStackFixedIpRequest `json:"fixed_ips,omitempty"`
 	Port     *string                    `json:"port,omitempty"`
-	Subnet   *string                    `json:"subnet"`
+
+	// Subnet Subnet to which this port belongs
+	Subnet *string `json:"subnet"`
 }
 
 // OpenStackNestedSecurityGroup defines model for OpenStackNestedSecurityGroup.
@@ -15526,7 +15654,9 @@ type OpenStackNestedSecurityGroupRequest struct {
 
 // OpenStackNestedServerGroup defines model for OpenStackNestedServerGroup.
 type OpenStackNestedServerGroup struct {
-	Name   *string     `json:"name,omitempty"`
+	Name *string `json:"name,omitempty"`
+
+	// Policy Server group policy determining the rules for scheduling servers in this group
 	Policy *PolicyEnum `json:"policy,omitempty"`
 	State  *string     `json:"state,omitempty"`
 	Url    *string     `json:"url,omitempty"`
@@ -15535,29 +15665,42 @@ type OpenStackNestedServerGroup struct {
 // OpenStackNestedSubNet defines model for OpenStackNestedSubNet.
 type OpenStackNestedSubNet struct {
 	AllocationPools *[]OpenStackSubNetAllocationPool `json:"allocation_pools,omitempty"`
-	Cidr            *string                          `json:"cidr,omitempty"`
-	Description     *string                          `json:"description,omitempty"`
-	EnableDhcp      *bool                            `json:"enable_dhcp,omitempty"`
-	GatewayIp       *string                          `json:"gateway_ip"`
-	IpVersion       *int                             `json:"ip_version,omitempty"`
-	Name            *string                          `json:"name,omitempty"`
-	Uuid            *openapi_types.UUID              `json:"uuid,omitempty"`
+
+	// Cidr IPv4 network address in CIDR format (e.g. 192.168.0.0/24)
+	Cidr        *string `json:"cidr,omitempty"`
+	Description *string `json:"description,omitempty"`
+
+	// EnableDhcp If True, DHCP service will be enabled on this subnet
+	EnableDhcp *bool `json:"enable_dhcp,omitempty"`
+
+	// GatewayIp IP address of the gateway for this subnet
+	GatewayIp *string `json:"gateway_ip"`
+
+	// IpVersion IP protocol version (4 or 6)
+	IpVersion *int                `json:"ip_version,omitempty"`
+	Name      *string             `json:"name,omitempty"`
+	Uuid      *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // OpenStackNestedVolume defines model for OpenStackNestedVolume.
 type OpenStackNestedVolume struct {
+	// Bootable Indicates if this volume can be used to boot an instance
 	Bootable *bool `json:"bootable,omitempty"`
 
 	// Device Name of volume as instance device e.g. /dev/vdb.
-	Device                  *string `json:"device,omitempty"`
+	Device *string `json:"device,omitempty"`
+
+	// ImageName Name of the image this volume was created from
 	ImageName               *string `json:"image_name,omitempty"`
 	MarketplaceResourceUuid *string `json:"marketplace_resource_uuid"`
 	Name                    *string `json:"name,omitempty"`
 	ResourceType            *string `json:"resource_type,omitempty"`
 
 	// Size Size in MiB
-	Size     *int                `json:"size,omitempty"`
-	State    *string             `json:"state,omitempty"`
+	Size  *int    `json:"size,omitempty"`
+	State *string `json:"state,omitempty"`
+
+	// Type Type of the volume (e.g. SSD, HDD)
 	Type     *string             `json:"type"`
 	TypeName *string             `json:"type_name,omitempty"`
 	Url      *string             `json:"url,omitempty"`
@@ -15566,16 +15709,18 @@ type OpenStackNestedVolume struct {
 
 // OpenStackNetwork defines model for OpenStackNetwork.
 type OpenStackNetwork struct {
-	AccessUrl                        *string                 `json:"access_url"`
-	BackendId                        *string                 `json:"backend_id,omitempty"`
-	Created                          *time.Time              `json:"created,omitempty"`
-	Customer                         *string                 `json:"customer,omitempty"`
-	CustomerAbbreviation             *string                 `json:"customer_abbreviation,omitempty"`
-	CustomerName                     *string                 `json:"customer_name,omitempty"`
-	CustomerNativeName               *string                 `json:"customer_native_name,omitempty"`
-	Description                      *string                 `json:"description,omitempty"`
-	ErrorMessage                     *string                 `json:"error_message,omitempty"`
-	ErrorTraceback                   *string                 `json:"error_traceback,omitempty"`
+	AccessUrl            *string    `json:"access_url"`
+	BackendId            *string    `json:"backend_id,omitempty"`
+	Created              *time.Time `json:"created,omitempty"`
+	Customer             *string    `json:"customer,omitempty"`
+	CustomerAbbreviation *string    `json:"customer_abbreviation,omitempty"`
+	CustomerName         *string    `json:"customer_name,omitempty"`
+	CustomerNativeName   *string    `json:"customer_native_name,omitempty"`
+	Description          *string    `json:"description,omitempty"`
+	ErrorMessage         *string    `json:"error_message,omitempty"`
+	ErrorTraceback       *string    `json:"error_traceback,omitempty"`
+
+	// IsExternal Defines whether this network is external (public) or internal (private)
 	IsExternal                       *bool                   `json:"is_external,omitempty"`
 	IsLimitBased                     *bool                   `json:"is_limit_based"`
 	IsUsageBased                     *bool                   `json:"is_usage_based"`
@@ -15604,12 +15749,16 @@ type OpenStackNetwork struct {
 	ServiceSettingsUuid         *openapi_types.UUID      `json:"service_settings_uuid,omitempty"`
 	State                       *CoreStates              `json:"state,omitempty"`
 	Subnets                     *[]OpenStackNestedSubNet `json:"subnets,omitempty"`
-	Tenant                      *string                  `json:"tenant,omitempty"`
-	TenantName                  *string                  `json:"tenant_name,omitempty"`
-	TenantUuid                  *openapi_types.UUID      `json:"tenant_uuid,omitempty"`
-	Type                        *string                  `json:"type,omitempty"`
-	Url                         *string                  `json:"url,omitempty"`
-	Uuid                        *openapi_types.UUID      `json:"uuid,omitempty"`
+
+	// Tenant OpenStack tenant this network belongs to
+	Tenant     *string             `json:"tenant,omitempty"`
+	TenantName *string             `json:"tenant_name,omitempty"`
+	TenantUuid *openapi_types.UUID `json:"tenant_uuid,omitempty"`
+
+	// Type Network type, such as local, flat, vlan, vxlan, or gre
+	Type *string             `json:"type,omitempty"`
+	Url  *string             `json:"url,omitempty"`
+	Uuid *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // OpenStackNetworkRequest defines model for OpenStackNetworkRequest.
@@ -15620,62 +15769,83 @@ type OpenStackNetworkRequest struct {
 
 // OpenStackPort defines model for OpenStackPort.
 type OpenStackPort struct {
-	AccessUrl                        *string                             `json:"access_url"`
-	AdminStateUp                     *bool                               `json:"admin_state_up"`
-	AllowedAddressPairs              *[]OpenStackAllowedAddressPair      `json:"allowed_address_pairs,omitempty"`
-	BackendId                        *string                             `json:"backend_id"`
-	Created                          *time.Time                          `json:"created,omitempty"`
-	Customer                         *string                             `json:"customer,omitempty"`
-	CustomerAbbreviation             *string                             `json:"customer_abbreviation,omitempty"`
-	CustomerName                     *string                             `json:"customer_name,omitempty"`
-	CustomerNativeName               *string                             `json:"customer_native_name,omitempty"`
-	Description                      *string                             `json:"description,omitempty"`
-	DeviceId                         *string                             `json:"device_id"`
-	DeviceOwner                      *string                             `json:"device_owner"`
-	ErrorMessage                     *string                             `json:"error_message,omitempty"`
-	ErrorTraceback                   *string                             `json:"error_traceback,omitempty"`
-	FixedIps                         *[]OpenStackFixedIp                 `json:"fixed_ips,omitempty"`
-	FloatingIps                      *[]string                           `json:"floating_ips,omitempty"`
-	IsLimitBased                     *bool                               `json:"is_limit_based"`
-	IsUsageBased                     *bool                               `json:"is_usage_based"`
-	MacAddress                       *string                             `json:"mac_address,omitempty"`
-	MarketplaceCategoryName          *string                             `json:"marketplace_category_name"`
-	MarketplaceCategoryUuid          *string                             `json:"marketplace_category_uuid"`
-	MarketplaceOfferingName          *string                             `json:"marketplace_offering_name"`
-	MarketplaceOfferingPluginOptions *map[string]interface{}             `json:"marketplace_offering_plugin_options"`
-	MarketplaceOfferingUuid          *string                             `json:"marketplace_offering_uuid"`
-	MarketplacePlanUuid              *string                             `json:"marketplace_plan_uuid"`
-	MarketplaceResourceState         *string                             `json:"marketplace_resource_state"`
-	MarketplaceResourceUuid          *string                             `json:"marketplace_resource_uuid"`
-	Modified                         *time.Time                          `json:"modified,omitempty"`
-	Name                             *string                             `json:"name,omitempty"`
-	Network                          *string                             `json:"network"`
-	NetworkName                      *string                             `json:"network_name,omitempty"`
-	NetworkUuid                      *openapi_types.UUID                 `json:"network_uuid,omitempty"`
-	PortSecurityEnabled              *bool                               `json:"port_security_enabled,omitempty"`
-	Project                          *string                             `json:"project,omitempty"`
-	ProjectName                      *string                             `json:"project_name,omitempty"`
-	ProjectUuid                      *openapi_types.UUID                 `json:"project_uuid,omitempty"`
-	ResourceType                     *string                             `json:"resource_type,omitempty"`
-	SecurityGroups                   *[]OpenStackPortNestedSecurityGroup `json:"security_groups,omitempty"`
-	ServiceName                      *string                             `json:"service_name,omitempty"`
-	ServiceSettings                  *string                             `json:"service_settings,omitempty"`
-	ServiceSettingsErrorMessage      *string                             `json:"service_settings_error_message,omitempty"`
-	ServiceSettingsState             *string                             `json:"service_settings_state,omitempty"`
-	ServiceSettingsUuid              *openapi_types.UUID                 `json:"service_settings_uuid,omitempty"`
-	State                            *CoreStates                         `json:"state,omitempty"`
-	Status                           *string                             `json:"status"`
-	Tenant                           *string                             `json:"tenant,omitempty"`
-	TenantName                       *string                             `json:"tenant_name,omitempty"`
-	TenantUuid                       *openapi_types.UUID                 `json:"tenant_uuid,omitempty"`
-	Url                              *string                             `json:"url,omitempty"`
-	Uuid                             *openapi_types.UUID                 `json:"uuid,omitempty"`
+	AccessUrl *string `json:"access_url"`
+
+	// AdminStateUp Administrative state of the port. If down, port does not forward packets
+	AdminStateUp        *bool                          `json:"admin_state_up"`
+	AllowedAddressPairs *[]OpenStackAllowedAddressPair `json:"allowed_address_pairs,omitempty"`
+
+	// BackendId Port ID in OpenStack
+	BackendId            *string    `json:"backend_id"`
+	Created              *time.Time `json:"created,omitempty"`
+	Customer             *string    `json:"customer,omitempty"`
+	CustomerAbbreviation *string    `json:"customer_abbreviation,omitempty"`
+	CustomerName         *string    `json:"customer_name,omitempty"`
+	CustomerNativeName   *string    `json:"customer_native_name,omitempty"`
+	Description          *string    `json:"description,omitempty"`
+
+	// DeviceId ID of device (instance, router etc) to which this port is connected
+	DeviceId *string `json:"device_id"`
+
+	// DeviceOwner Entity that uses this port (e.g. network:router_interface)
+	DeviceOwner    *string             `json:"device_owner"`
+	ErrorMessage   *string             `json:"error_message,omitempty"`
+	ErrorTraceback *string             `json:"error_traceback,omitempty"`
+	FixedIps       *[]OpenStackFixedIp `json:"fixed_ips,omitempty"`
+	FloatingIps    *[]string           `json:"floating_ips,omitempty"`
+	IsLimitBased   *bool               `json:"is_limit_based"`
+	IsUsageBased   *bool               `json:"is_usage_based"`
+
+	// MacAddress MAC address of the port
+	MacAddress                       *string                 `json:"mac_address,omitempty"`
+	MarketplaceCategoryName          *string                 `json:"marketplace_category_name"`
+	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid"`
+	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name"`
+	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options"`
+	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid"`
+	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid"`
+	MarketplaceResourceState         *string                 `json:"marketplace_resource_state"`
+	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid"`
+	Modified                         *time.Time              `json:"modified,omitempty"`
+	Name                             *string                 `json:"name,omitempty"`
+
+	// Network Network to which this port belongs
+	Network     *string             `json:"network"`
+	NetworkName *string             `json:"network_name,omitempty"`
+	NetworkUuid *openapi_types.UUID `json:"network_uuid,omitempty"`
+
+	// PortSecurityEnabled If True, security groups and rules will be applied to this port
+	PortSecurityEnabled         *bool                               `json:"port_security_enabled,omitempty"`
+	Project                     *string                             `json:"project,omitempty"`
+	ProjectName                 *string                             `json:"project_name,omitempty"`
+	ProjectUuid                 *openapi_types.UUID                 `json:"project_uuid,omitempty"`
+	ResourceType                *string                             `json:"resource_type,omitempty"`
+	SecurityGroups              *[]OpenStackPortNestedSecurityGroup `json:"security_groups,omitempty"`
+	ServiceName                 *string                             `json:"service_name,omitempty"`
+	ServiceSettings             *string                             `json:"service_settings,omitempty"`
+	ServiceSettingsErrorMessage *string                             `json:"service_settings_error_message,omitempty"`
+	ServiceSettingsState        *string                             `json:"service_settings_state,omitempty"`
+	ServiceSettingsUuid         *openapi_types.UUID                 `json:"service_settings_uuid,omitempty"`
+	State                       *CoreStates                         `json:"state,omitempty"`
+
+	// Status Port status in OpenStack (e.g. ACTIVE, DOWN)
+	Status *string `json:"status"`
+
+	// Tenant OpenStack tenant this port belongs to
+	Tenant     *string             `json:"tenant,omitempty"`
+	TenantName *string             `json:"tenant_name,omitempty"`
+	TenantUuid *openapi_types.UUID `json:"tenant_uuid,omitempty"`
+	Url        *string             `json:"url,omitempty"`
+	Uuid       *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // OpenStackPortIPUpdateRequest defines model for OpenStackPortIPUpdateRequest.
 type OpenStackPortIPUpdateRequest struct {
-	IpAddress string  `json:"ip_address"`
-	Subnet    *string `json:"subnet,omitempty"`
+	// IpAddress The IP address to assign within the subnet
+	IpAddress string `json:"ip_address"`
+
+	// Subnet The subnet where the new IP address will be allocated
+	Subnet *string `json:"subnet,omitempty"`
 }
 
 // OpenStackPortNestedSecurityGroup defines model for OpenStackPortNestedSecurityGroup.
@@ -15692,19 +15862,27 @@ type OpenStackPortNestedSecurityGroupRequest struct {
 
 // OpenStackPortRequest defines model for OpenStackPortRequest.
 type OpenStackPortRequest struct {
-	AllowedAddressPairs *[]OpenStackAllowedAddressPairRequest      `json:"allowed_address_pairs,omitempty"`
-	Description         *string                                    `json:"description,omitempty"`
-	FixedIps            *[]OpenStackFixedIpRequest                 `json:"fixed_ips,omitempty"`
-	MacAddress          *string                                    `json:"mac_address,omitempty"`
-	Name                string                                     `json:"name"`
-	Network             *string                                    `json:"network"`
+	AllowedAddressPairs *[]OpenStackAllowedAddressPairRequest `json:"allowed_address_pairs,omitempty"`
+	Description         *string                               `json:"description,omitempty"`
+	FixedIps            *[]OpenStackFixedIpRequest            `json:"fixed_ips,omitempty"`
+
+	// MacAddress MAC address of the port
+	MacAddress *string `json:"mac_address,omitempty"`
+	Name       string  `json:"name"`
+
+	// Network Network to which this port belongs
+	Network *string `json:"network"`
+
+	// PortSecurityEnabled If True, security groups and rules will be applied to this port
 	PortSecurityEnabled *bool                                      `json:"port_security_enabled,omitempty"`
 	SecurityGroups      *[]OpenStackPortNestedSecurityGroupRequest `json:"security_groups,omitempty"`
 }
 
 // OpenStackRouter defines model for OpenStackRouter.
 type OpenStackRouter struct {
-	AccessUrl                        *string                 `json:"access_url"`
+	AccessUrl *string `json:"access_url"`
+
+	// BackendId Router ID in OpenStack
 	BackendId                        *string                 `json:"backend_id"`
 	Created                          *time.Time              `json:"created,omitempty"`
 	Customer                         *string                 `json:"customer,omitempty"`
@@ -15740,16 +15918,21 @@ type OpenStackRouter struct {
 	ServiceSettingsState             *string                 `json:"service_settings_state,omitempty"`
 	ServiceSettingsUuid              *openapi_types.UUID     `json:"service_settings_uuid,omitempty"`
 	State                            *CoreStates             `json:"state,omitempty"`
-	Tenant                           *string                 `json:"tenant,omitempty"`
-	TenantName                       *string                 `json:"tenant_name,omitempty"`
-	TenantUuid                       *openapi_types.UUID     `json:"tenant_uuid,omitempty"`
-	Url                              *string                 `json:"url,omitempty"`
-	Uuid                             *openapi_types.UUID     `json:"uuid,omitempty"`
+
+	// Tenant OpenStack tenant this router belongs to
+	Tenant     *string             `json:"tenant,omitempty"`
+	TenantName *string             `json:"tenant_name,omitempty"`
+	TenantUuid *openapi_types.UUID `json:"tenant_uuid,omitempty"`
+	Url        *string             `json:"url,omitempty"`
+	Uuid       *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // OpenStackRouterInterfaceRequest defines model for OpenStackRouterInterfaceRequest.
 type OpenStackRouterInterfaceRequest struct {
-	Port   *string `json:"port,omitempty"`
+	// Port The port to connect to the router. Either subnet or port must be specified, but not both.
+	Port *string `json:"port,omitempty"`
+
+	// Subnet The subnet to connect to the router. Either subnet or port must be specified, but not both.
 	Subnet *string `json:"subnet,omitempty"`
 }
 
@@ -15814,54 +15997,93 @@ type OpenStackSecurityGroupRequest struct {
 
 // OpenStackSecurityGroupRuleCreate defines model for OpenStackSecurityGroupRuleCreate.
 type OpenStackSecurityGroupRuleCreate struct {
-	Cidr            *string                                    `json:"cidr"`
-	Description     *string                                    `json:"description,omitempty"`
-	Direction       *DirectionEnum                             `json:"direction,omitempty"`
-	Ethertype       *EthertypeEnum                             `json:"ethertype,omitempty"`
-	FromPort        *int                                       `json:"from_port"`
-	Id              *int                                       `json:"id,omitempty"`
-	Protocol        *OpenStackSecurityGroupRuleCreate_Protocol `json:"protocol,omitempty"`
-	RemoteGroup     *string                                    `json:"remote_group"`
-	RemoteGroupName *string                                    `json:"remote_group_name,omitempty"`
-	RemoteGroupUuid *openapi_types.UUID                        `json:"remote_group_uuid,omitempty"`
-	ToPort          *int                                       `json:"to_port"`
+	// Cidr CIDR notation for the source/destination network address range
+	Cidr        *string `json:"cidr"`
+	Description *string `json:"description,omitempty"`
+
+	// Direction Traffic direction - either 'ingress' (incoming) or 'egress' (outgoing)
+	Direction *DirectionEnum `json:"direction,omitempty"`
+
+	// Ethertype IP protocol version - either 'IPv4' or 'IPv6'
+	Ethertype *EthertypeEnum `json:"ethertype,omitempty"`
+
+	// FromPort Starting port number in the range (1-65535)
+	FromPort *int `json:"from_port"`
+	Id       *int `json:"id,omitempty"`
+
+	// Protocol The network protocol (TCP, UDP, ICMP, or empty for any protocol)
+	Protocol *OpenStackSecurityGroupRuleCreate_Protocol `json:"protocol,omitempty"`
+
+	// RemoteGroup Remote security group that this rule references, if any
+	RemoteGroup     *string             `json:"remote_group"`
+	RemoteGroupName *string             `json:"remote_group_name,omitempty"`
+	RemoteGroupUuid *openapi_types.UUID `json:"remote_group_uuid,omitempty"`
+
+	// ToPort Ending port number in the range (1-65535)
+	ToPort *int `json:"to_port"`
 }
 
-// OpenStackSecurityGroupRuleCreate_Protocol defines model for OpenStackSecurityGroupRuleCreate.Protocol.
+// OpenStackSecurityGroupRuleCreate_Protocol The network protocol (TCP, UDP, ICMP, or empty for any protocol)
 type OpenStackSecurityGroupRuleCreate_Protocol struct {
 	union json.RawMessage
 }
 
 // OpenStackSecurityGroupRuleCreateRequest defines model for OpenStackSecurityGroupRuleCreateRequest.
 type OpenStackSecurityGroupRuleCreateRequest struct {
-	Cidr        *string                                           `json:"cidr"`
-	Description *string                                           `json:"description,omitempty"`
-	Direction   *DirectionEnum                                    `json:"direction,omitempty"`
-	Ethertype   *EthertypeEnum                                    `json:"ethertype,omitempty"`
-	FromPort    *int                                              `json:"from_port"`
-	Protocol    *OpenStackSecurityGroupRuleCreateRequest_Protocol `json:"protocol,omitempty"`
-	RemoteGroup *string                                           `json:"remote_group"`
-	ToPort      *int                                              `json:"to_port"`
+	// Cidr CIDR notation for the source/destination network address range
+	Cidr        *string `json:"cidr"`
+	Description *string `json:"description,omitempty"`
+
+	// Direction Traffic direction - either 'ingress' (incoming) or 'egress' (outgoing)
+	Direction *DirectionEnum `json:"direction,omitempty"`
+
+	// Ethertype IP protocol version - either 'IPv4' or 'IPv6'
+	Ethertype *EthertypeEnum `json:"ethertype,omitempty"`
+
+	// FromPort Starting port number in the range (1-65535)
+	FromPort *int `json:"from_port"`
+
+	// Protocol The network protocol (TCP, UDP, ICMP, or empty for any protocol)
+	Protocol *OpenStackSecurityGroupRuleCreateRequest_Protocol `json:"protocol,omitempty"`
+
+	// RemoteGroup Remote security group that this rule references, if any
+	RemoteGroup *string `json:"remote_group"`
+
+	// ToPort Ending port number in the range (1-65535)
+	ToPort *int `json:"to_port"`
 }
 
-// OpenStackSecurityGroupRuleCreateRequest_Protocol defines model for OpenStackSecurityGroupRuleCreateRequest.Protocol.
+// OpenStackSecurityGroupRuleCreateRequest_Protocol The network protocol (TCP, UDP, ICMP, or empty for any protocol)
 type OpenStackSecurityGroupRuleCreateRequest_Protocol struct {
 	union json.RawMessage
 }
 
 // OpenStackSecurityGroupRuleUpdateRequest defines model for OpenStackSecurityGroupRuleUpdateRequest.
 type OpenStackSecurityGroupRuleUpdateRequest struct {
-	Cidr        *string                                           `json:"cidr"`
-	Description *string                                           `json:"description,omitempty"`
-	Direction   *DirectionEnum                                    `json:"direction,omitempty"`
-	Ethertype   *EthertypeEnum                                    `json:"ethertype,omitempty"`
-	FromPort    *int                                              `json:"from_port"`
-	Protocol    *OpenStackSecurityGroupRuleUpdateRequest_Protocol `json:"protocol,omitempty"`
-	RemoteGroup *string                                           `json:"remote_group"`
-	ToPort      *int                                              `json:"to_port"`
+	// Cidr CIDR notation for the source/destination network address range
+	Cidr        *string `json:"cidr"`
+	Description *string `json:"description,omitempty"`
+
+	// Direction Traffic direction - either 'ingress' (incoming) or 'egress' (outgoing)
+	Direction *DirectionEnum `json:"direction,omitempty"`
+
+	// Ethertype IP protocol version - either 'IPv4' or 'IPv6'
+	Ethertype *EthertypeEnum `json:"ethertype,omitempty"`
+
+	// FromPort Starting port number in the range (1-65535)
+	FromPort *int `json:"from_port"`
+
+	// Protocol The network protocol (TCP, UDP, ICMP, or empty for any protocol)
+	Protocol *OpenStackSecurityGroupRuleUpdateRequest_Protocol `json:"protocol,omitempty"`
+
+	// RemoteGroup Remote security group that this rule references, if any
+	RemoteGroup *string `json:"remote_group"`
+
+	// ToPort Ending port number in the range (1-65535)
+	ToPort *int `json:"to_port"`
 }
 
-// OpenStackSecurityGroupRuleUpdateRequest_Protocol defines model for OpenStackSecurityGroupRuleUpdateRequest.Protocol.
+// OpenStackSecurityGroupRuleUpdateRequest_Protocol The network protocol (TCP, UDP, ICMP, or empty for any protocol)
 type OpenStackSecurityGroupRuleUpdateRequest_Protocol struct {
 	union json.RawMessage
 }
@@ -15880,81 +16102,87 @@ type OpenStackSecurityGroupUpdateRequest struct {
 
 // OpenStackServerGroup defines model for OpenStackServerGroup.
 type OpenStackServerGroup struct {
-	AccessUrl                        *string                      `json:"access_url"`
-	BackendId                        *string                      `json:"backend_id,omitempty"`
-	Created                          *time.Time                   `json:"created,omitempty"`
-	Customer                         *string                      `json:"customer,omitempty"`
-	CustomerAbbreviation             *string                      `json:"customer_abbreviation,omitempty"`
-	CustomerName                     *string                      `json:"customer_name,omitempty"`
-	CustomerNativeName               *string                      `json:"customer_native_name,omitempty"`
-	Description                      *string                      `json:"description,omitempty"`
-	DisplayName                      *string                      `json:"display_name,omitempty"`
-	ErrorMessage                     *string                      `json:"error_message,omitempty"`
-	ErrorTraceback                   *string                      `json:"error_traceback,omitempty"`
-	Instances                        *[]OpenStackNestedInstance   `json:"instances,omitempty"`
-	IsLimitBased                     *bool                        `json:"is_limit_based"`
-	IsUsageBased                     *bool                        `json:"is_usage_based"`
-	MarketplaceCategoryName          *string                      `json:"marketplace_category_name"`
-	MarketplaceCategoryUuid          *string                      `json:"marketplace_category_uuid"`
-	MarketplaceOfferingName          *string                      `json:"marketplace_offering_name"`
-	MarketplaceOfferingPluginOptions *map[string]interface{}      `json:"marketplace_offering_plugin_options"`
-	MarketplaceOfferingUuid          *string                      `json:"marketplace_offering_uuid"`
-	MarketplacePlanUuid              *string                      `json:"marketplace_plan_uuid"`
-	MarketplaceResourceState         *string                      `json:"marketplace_resource_state"`
-	MarketplaceResourceUuid          *string                      `json:"marketplace_resource_uuid"`
-	Modified                         *time.Time                   `json:"modified,omitempty"`
-	Name                             *string                      `json:"name,omitempty"`
-	Policy                           *OpenStackServerGroup_Policy `json:"policy,omitempty"`
-	Project                          *string                      `json:"project,omitempty"`
-	ProjectName                      *string                      `json:"project_name,omitempty"`
-	ProjectUuid                      *openapi_types.UUID          `json:"project_uuid,omitempty"`
-	ResourceType                     *string                      `json:"resource_type,omitempty"`
-	ServiceName                      *string                      `json:"service_name,omitempty"`
-	ServiceSettings                  *string                      `json:"service_settings,omitempty"`
-	ServiceSettingsErrorMessage      *string                      `json:"service_settings_error_message,omitempty"`
-	ServiceSettingsState             *string                      `json:"service_settings_state,omitempty"`
-	ServiceSettingsUuid              *openapi_types.UUID          `json:"service_settings_uuid,omitempty"`
-	State                            *CoreStates                  `json:"state,omitempty"`
-	Tenant                           *string                      `json:"tenant,omitempty"`
-	TenantName                       *string                      `json:"tenant_name,omitempty"`
-	TenantUuid                       *openapi_types.UUID          `json:"tenant_uuid,omitempty"`
-	Url                              *string                      `json:"url,omitempty"`
-	Uuid                             *openapi_types.UUID          `json:"uuid,omitempty"`
+	AccessUrl                        *string                    `json:"access_url"`
+	BackendId                        *string                    `json:"backend_id,omitempty"`
+	Created                          *time.Time                 `json:"created,omitempty"`
+	Customer                         *string                    `json:"customer,omitempty"`
+	CustomerAbbreviation             *string                    `json:"customer_abbreviation,omitempty"`
+	CustomerName                     *string                    `json:"customer_name,omitempty"`
+	CustomerNativeName               *string                    `json:"customer_native_name,omitempty"`
+	Description                      *string                    `json:"description,omitempty"`
+	DisplayName                      *string                    `json:"display_name,omitempty"`
+	ErrorMessage                     *string                    `json:"error_message,omitempty"`
+	ErrorTraceback                   *string                    `json:"error_traceback,omitempty"`
+	Instances                        *[]OpenStackNestedInstance `json:"instances,omitempty"`
+	IsLimitBased                     *bool                      `json:"is_limit_based"`
+	IsUsageBased                     *bool                      `json:"is_usage_based"`
+	MarketplaceCategoryName          *string                    `json:"marketplace_category_name"`
+	MarketplaceCategoryUuid          *string                    `json:"marketplace_category_uuid"`
+	MarketplaceOfferingName          *string                    `json:"marketplace_offering_name"`
+	MarketplaceOfferingPluginOptions *map[string]interface{}    `json:"marketplace_offering_plugin_options"`
+	MarketplaceOfferingUuid          *string                    `json:"marketplace_offering_uuid"`
+	MarketplacePlanUuid              *string                    `json:"marketplace_plan_uuid"`
+	MarketplaceResourceState         *string                    `json:"marketplace_resource_state"`
+	MarketplaceResourceUuid          *string                    `json:"marketplace_resource_uuid"`
+	Modified                         *time.Time                 `json:"modified,omitempty"`
+	Name                             *string                    `json:"name,omitempty"`
+
+	// Policy Server group policy determining the rules for scheduling servers in this group
+	Policy                      *OpenStackServerGroup_Policy `json:"policy,omitempty"`
+	Project                     *string                      `json:"project,omitempty"`
+	ProjectName                 *string                      `json:"project_name,omitempty"`
+	ProjectUuid                 *openapi_types.UUID          `json:"project_uuid,omitempty"`
+	ResourceType                *string                      `json:"resource_type,omitempty"`
+	ServiceName                 *string                      `json:"service_name,omitempty"`
+	ServiceSettings             *string                      `json:"service_settings,omitempty"`
+	ServiceSettingsErrorMessage *string                      `json:"service_settings_error_message,omitempty"`
+	ServiceSettingsState        *string                      `json:"service_settings_state,omitempty"`
+	ServiceSettingsUuid         *openapi_types.UUID          `json:"service_settings_uuid,omitempty"`
+	State                       *CoreStates                  `json:"state,omitempty"`
+	Tenant                      *string                      `json:"tenant,omitempty"`
+	TenantName                  *string                      `json:"tenant_name,omitempty"`
+	TenantUuid                  *openapi_types.UUID          `json:"tenant_uuid,omitempty"`
+	Url                         *string                      `json:"url,omitempty"`
+	Uuid                        *openapi_types.UUID          `json:"uuid,omitempty"`
 }
 
-// OpenStackServerGroup_Policy defines model for OpenStackServerGroup.Policy.
+// OpenStackServerGroup_Policy Server group policy determining the rules for scheduling servers in this group
 type OpenStackServerGroup_Policy struct {
 	union json.RawMessage
 }
 
 // OpenStackServerGroupRequest defines model for OpenStackServerGroupRequest.
 type OpenStackServerGroupRequest struct {
-	Description *string                             `json:"description,omitempty"`
-	Name        string                              `json:"name"`
-	Policy      *OpenStackServerGroupRequest_Policy `json:"policy,omitempty"`
+	Description *string `json:"description,omitempty"`
+	Name        string  `json:"name"`
+
+	// Policy Server group policy determining the rules for scheduling servers in this group
+	Policy *OpenStackServerGroupRequest_Policy `json:"policy,omitempty"`
 }
 
-// OpenStackServerGroupRequest_Policy defines model for OpenStackServerGroupRequest.Policy.
+// OpenStackServerGroupRequest_Policy Server group policy determining the rules for scheduling servers in this group
 type OpenStackServerGroupRequest_Policy struct {
 	union json.RawMessage
 }
 
 // OpenStackSnapshot defines model for OpenStackSnapshot.
 type OpenStackSnapshot struct {
-	AccessUrl            *string     `json:"access_url"`
-	Action               *string     `json:"action,omitempty"`
-	ActionDetails        interface{} `json:"action_details,omitempty"`
-	BackendId            *string     `json:"backend_id"`
-	Created              *time.Time  `json:"created,omitempty"`
-	Customer             *string     `json:"customer,omitempty"`
-	CustomerAbbreviation *string     `json:"customer_abbreviation,omitempty"`
-	CustomerName         *string     `json:"customer_name,omitempty"`
-	CustomerNativeName   *string     `json:"customer_native_name,omitempty"`
-	Description          *string     `json:"description,omitempty"`
-	ErrorMessage         *string     `json:"error_message,omitempty"`
-	ErrorTraceback       *string     `json:"error_traceback,omitempty"`
-	IsLimitBased         *bool       `json:"is_limit_based"`
-	IsUsageBased         *bool       `json:"is_usage_based"`
+	AccessUrl     *string     `json:"access_url"`
+	Action        *string     `json:"action,omitempty"`
+	ActionDetails interface{} `json:"action_details,omitempty"`
+
+	// BackendId Snapshot ID in the OpenStack backend
+	BackendId            *string    `json:"backend_id"`
+	Created              *time.Time `json:"created,omitempty"`
+	Customer             *string    `json:"customer,omitempty"`
+	CustomerAbbreviation *string    `json:"customer_abbreviation,omitempty"`
+	CustomerName         *string    `json:"customer_name,omitempty"`
+	CustomerNativeName   *string    `json:"customer_native_name,omitempty"`
+	Description          *string    `json:"description,omitempty"`
+	ErrorMessage         *string    `json:"error_message,omitempty"`
+	ErrorTraceback       *string    `json:"error_traceback,omitempty"`
+	IsLimitBased         *bool      `json:"is_limit_based"`
+	IsUsageBased         *bool      `json:"is_usage_based"`
 
 	// KeptUntil Guaranteed time of snapshot retention. If null - keep forever.
 	KeptUntil                        *time.Time                      `json:"kept_until"`
@@ -15982,7 +16210,9 @@ type OpenStackSnapshot struct {
 	ServiceSettingsUuid              *openapi_types.UUID             `json:"service_settings_uuid,omitempty"`
 
 	// Size Size in MiB
-	Size                        *int                `json:"size,omitempty"`
+	Size *int `json:"size,omitempty"`
+
+	// SourceVolume Volume from which this snapshot was created
 	SourceVolume                *string             `json:"source_volume"`
 	SourceVolumeMarketplaceUuid *openapi_types.UUID `json:"source_volume_marketplace_uuid,omitempty"`
 	SourceVolumeName            *string             `json:"source_volume_name,omitempty"`
@@ -16008,7 +16238,9 @@ type OpenStackSnapshotRestoration struct {
 	// Description New volume description.
 	Description *string             `json:"description,omitempty"`
 	Uuid        *openapi_types.UUID `json:"uuid,omitempty"`
-	Volume      *string             `json:"volume,omitempty"`
+
+	// Volume Volume that is being restored from the snapshot
+	Volume *string `json:"volume,omitempty"`
 
 	// VolumeDevice Name of volume as instance device e.g. /dev/vdb.
 	VolumeDevice       *string `json:"volume_device,omitempty"`
@@ -16053,14 +16285,22 @@ type OpenStackSubNet struct {
 	CustomerName         *string                          `json:"customer_name,omitempty"`
 	CustomerNativeName   *string                          `json:"customer_native_name,omitempty"`
 	Description          *string                          `json:"description,omitempty"`
-	DisableGateway       *bool                            `json:"disable_gateway,omitempty"`
-	DnsNameservers       *[]string                        `json:"dns_nameservers,omitempty"`
-	EnableDhcp           *bool                            `json:"enable_dhcp,omitempty"`
-	ErrorMessage         *string                          `json:"error_message,omitempty"`
-	ErrorTraceback       *string                          `json:"error_traceback,omitempty"`
-	GatewayIp            *string                          `json:"gateway_ip"`
-	HostRoutes           *[]OpenStackStaticRoute          `json:"host_routes,omitempty"`
-	IpVersion            *int                             `json:"ip_version,omitempty"`
+
+	// DisableGateway If True, no gateway IP address will be allocated
+	DisableGateway *bool     `json:"disable_gateway,omitempty"`
+	DnsNameservers *[]string `json:"dns_nameservers,omitempty"`
+
+	// EnableDhcp If True, DHCP service will be enabled on this subnet
+	EnableDhcp     *bool   `json:"enable_dhcp,omitempty"`
+	ErrorMessage   *string `json:"error_message,omitempty"`
+	ErrorTraceback *string `json:"error_traceback,omitempty"`
+
+	// GatewayIp IP address of the gateway for this subnet
+	GatewayIp  *string                 `json:"gateway_ip"`
+	HostRoutes *[]OpenStackStaticRoute `json:"host_routes,omitempty"`
+
+	// IpVersion IP protocol version (4 or 6)
+	IpVersion *int `json:"ip_version,omitempty"`
 
 	// IsConnected Is subnet connected to the default tenant router.
 	IsConnected                      *bool                   `json:"is_connected,omitempty"`
@@ -16076,22 +16316,24 @@ type OpenStackSubNet struct {
 	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid"`
 	Modified                         *time.Time              `json:"modified,omitempty"`
 	Name                             *string                 `json:"name,omitempty"`
-	Network                          *string                 `json:"network,omitempty"`
-	NetworkName                      *string                 `json:"network_name,omitempty"`
-	Project                          *string                 `json:"project,omitempty"`
-	ProjectName                      *string                 `json:"project_name,omitempty"`
-	ProjectUuid                      *openapi_types.UUID     `json:"project_uuid,omitempty"`
-	ResourceType                     *string                 `json:"resource_type,omitempty"`
-	ServiceName                      *string                 `json:"service_name,omitempty"`
-	ServiceSettings                  *string                 `json:"service_settings,omitempty"`
-	ServiceSettingsErrorMessage      *string                 `json:"service_settings_error_message,omitempty"`
-	ServiceSettingsState             *string                 `json:"service_settings_state,omitempty"`
-	ServiceSettingsUuid              *openapi_types.UUID     `json:"service_settings_uuid,omitempty"`
-	State                            *CoreStates             `json:"state,omitempty"`
-	Tenant                           *string                 `json:"tenant,omitempty"`
-	TenantName                       *string                 `json:"tenant_name,omitempty"`
-	Url                              *string                 `json:"url,omitempty"`
-	Uuid                             *openapi_types.UUID     `json:"uuid,omitempty"`
+
+	// Network Network to which this subnet belongs
+	Network                     *string             `json:"network,omitempty"`
+	NetworkName                 *string             `json:"network_name,omitempty"`
+	Project                     *string             `json:"project,omitempty"`
+	ProjectName                 *string             `json:"project_name,omitempty"`
+	ProjectUuid                 *openapi_types.UUID `json:"project_uuid,omitempty"`
+	ResourceType                *string             `json:"resource_type,omitempty"`
+	ServiceName                 *string             `json:"service_name,omitempty"`
+	ServiceSettings             *string             `json:"service_settings,omitempty"`
+	ServiceSettingsErrorMessage *string             `json:"service_settings_error_message,omitempty"`
+	ServiceSettingsState        *string             `json:"service_settings_state,omitempty"`
+	ServiceSettingsUuid         *openapi_types.UUID `json:"service_settings_uuid,omitempty"`
+	State                       *CoreStates         `json:"state,omitempty"`
+	Tenant                      *string             `json:"tenant,omitempty"`
+	TenantName                  *string             `json:"tenant_name,omitempty"`
+	Url                         *string             `json:"url,omitempty"`
+	Uuid                        *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // OpenStackSubNetAllocationPool defines model for OpenStackSubNetAllocationPool.
@@ -16111,17 +16353,23 @@ type OpenStackSubNetRequest struct {
 	AllocationPools *[]OpenStackSubNetAllocationPoolRequest `json:"allocation_pools,omitempty"`
 	Cidr            *string                                 `json:"cidr,omitempty"`
 	Description     *string                                 `json:"description,omitempty"`
-	DisableGateway  *bool                                   `json:"disable_gateway,omitempty"`
-	DnsNameservers  *[]string                               `json:"dns_nameservers,omitempty"`
-	GatewayIp       *string                                 `json:"gateway_ip"`
-	HostRoutes      *[]OpenStackStaticRouteRequest          `json:"host_routes,omitempty"`
-	Name            string                                  `json:"name"`
+
+	// DisableGateway If True, no gateway IP address will be allocated
+	DisableGateway *bool     `json:"disable_gateway,omitempty"`
+	DnsNameservers *[]string `json:"dns_nameservers,omitempty"`
+
+	// GatewayIp IP address of the gateway for this subnet
+	GatewayIp  *string                        `json:"gateway_ip"`
+	HostRoutes *[]OpenStackStaticRouteRequest `json:"host_routes,omitempty"`
+	Name       string                         `json:"name"`
 }
 
 // OpenStackTenant defines model for OpenStackTenant.
 type OpenStackTenant struct {
 	// AvailabilityZone Optional availability group. Will be used for all instances provisioned in this tenant
-	AvailabilityZone     *string    `json:"availability_zone,omitempty"`
+	AvailabilityZone *string `json:"availability_zone,omitempty"`
+
+	// BackendId ID of tenant in the OpenStack backend
 	BackendId            *string    `json:"backend_id"`
 	Created              *time.Time `json:"created,omitempty"`
 	Customer             *string    `json:"customer,omitempty"`
@@ -16130,11 +16378,15 @@ type OpenStackTenant struct {
 	CustomerNativeName   *string    `json:"customer_native_name,omitempty"`
 
 	// DefaultVolumeTypeName Volume type name to use when creating volumes.
-	DefaultVolumeTypeName            *string                 `json:"default_volume_type_name,omitempty"`
-	Description                      *string                 `json:"description,omitempty"`
-	ErrorMessage                     *string                 `json:"error_message,omitempty"`
-	ErrorTraceback                   *string                 `json:"error_traceback,omitempty"`
-	ExternalNetworkId                *string                 `json:"external_network_id,omitempty"`
+	DefaultVolumeTypeName *string `json:"default_volume_type_name,omitempty"`
+	Description           *string `json:"description,omitempty"`
+	ErrorMessage          *string `json:"error_message,omitempty"`
+	ErrorTraceback        *string `json:"error_traceback,omitempty"`
+
+	// ExternalNetworkId ID of external network connected to OpenStack tenant
+	ExternalNetworkId *string `json:"external_network_id,omitempty"`
+
+	// InternalNetworkId ID of internal network in OpenStack tenant
 	InternalNetworkId                *string                 `json:"internal_network_id,omitempty"`
 	IsLimitBased                     *bool                   `json:"is_limit_based"`
 	IsUsageBased                     *bool                   `json:"is_usage_based"`
@@ -16221,28 +16473,42 @@ type OpenStackTenantRequest struct {
 
 // OpenStackVolume defines model for OpenStackVolume.
 type OpenStackVolume struct {
-	AccessUrl            *string     `json:"access_url"`
-	Action               *string     `json:"action,omitempty"`
-	ActionDetails        interface{} `json:"action_details,omitempty"`
-	AvailabilityZone     *string     `json:"availability_zone"`
-	AvailabilityZoneName *string     `json:"availability_zone_name,omitempty"`
-	BackendId            *string     `json:"backend_id"`
-	Bootable             *bool       `json:"bootable,omitempty"`
-	Created              *time.Time  `json:"created,omitempty"`
-	Customer             *string     `json:"customer,omitempty"`
-	CustomerAbbreviation *string     `json:"customer_abbreviation,omitempty"`
-	CustomerName         *string     `json:"customer_name,omitempty"`
-	CustomerNativeName   *string     `json:"customer_native_name,omitempty"`
-	Description          *string     `json:"description,omitempty"`
+	AccessUrl     *string     `json:"access_url"`
+	Action        *string     `json:"action,omitempty"`
+	ActionDetails interface{} `json:"action_details,omitempty"`
+
+	// AvailabilityZone Availability zone where this volume is located
+	AvailabilityZone     *string `json:"availability_zone"`
+	AvailabilityZoneName *string `json:"availability_zone_name,omitempty"`
+
+	// BackendId Volume ID in the OpenStack backend
+	BackendId *string `json:"backend_id"`
+
+	// Bootable Indicates if this volume can be used to boot an instance
+	Bootable             *bool      `json:"bootable,omitempty"`
+	Created              *time.Time `json:"created,omitempty"`
+	Customer             *string    `json:"customer,omitempty"`
+	CustomerAbbreviation *string    `json:"customer_abbreviation,omitempty"`
+	CustomerName         *string    `json:"customer_name,omitempty"`
+	CustomerNativeName   *string    `json:"customer_native_name,omitempty"`
+	Description          *string    `json:"description,omitempty"`
 
 	// Device Name of volume as instance device e.g. /dev/vdb.
-	Device                           *string                 `json:"device,omitempty"`
-	ErrorMessage                     *string                 `json:"error_message,omitempty"`
-	ErrorTraceback                   *string                 `json:"error_traceback,omitempty"`
-	ExtendEnabled                    *bool                   `json:"extend_enabled,omitempty"`
-	Image                            *string                 `json:"image"`
-	ImageMetadata                    *string                 `json:"image_metadata,omitempty"`
-	ImageName                        *string                 `json:"image_name,omitempty"`
+	Device         *string `json:"device,omitempty"`
+	ErrorMessage   *string `json:"error_message,omitempty"`
+	ErrorTraceback *string `json:"error_traceback,omitempty"`
+	ExtendEnabled  *bool   `json:"extend_enabled,omitempty"`
+
+	// Image Image that this volume was created from, if any
+	Image *string `json:"image"`
+
+	// ImageMetadata Metadata of the image this volume was created from
+	ImageMetadata *string `json:"image_metadata,omitempty"`
+
+	// ImageName Name of the image this volume was created from
+	ImageName *string `json:"image_name,omitempty"`
+
+	// Instance Instance that this volume is attached to, if any
 	Instance                         *string                 `json:"instance"`
 	InstanceMarketplaceUuid          *openapi_types.UUID     `json:"instance_marketplace_uuid,omitempty"`
 	InstanceName                     *string                 `json:"instance_name,omitempty"`
@@ -16271,15 +16537,19 @@ type OpenStackVolume struct {
 	ServiceSettingsUuid              *openapi_types.UUID     `json:"service_settings_uuid,omitempty"`
 
 	// Size Size in MiB
-	Size           *int                `json:"size"`
+	Size *int `json:"size"`
+
+	// SourceSnapshot Snapshot that this volume was created from, if any
 	SourceSnapshot *string             `json:"source_snapshot"`
 	State          *CoreStates         `json:"state,omitempty"`
 	Tenant         *string             `json:"tenant,omitempty"`
 	TenantUuid     *openapi_types.UUID `json:"tenant_uuid,omitempty"`
-	Type           *string             `json:"type"`
-	TypeName       *string             `json:"type_name,omitempty"`
-	Url            *string             `json:"url,omitempty"`
-	Uuid           *openapi_types.UUID `json:"uuid,omitempty"`
+
+	// Type Type of the volume (e.g. SSD, HDD)
+	Type     *string             `json:"type"`
+	TypeName *string             `json:"type_name,omitempty"`
+	Url      *string             `json:"url,omitempty"`
+	Uuid     *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // OpenStackVolumeAvailabilityZone defines model for OpenStackVolumeAvailabilityZone.
@@ -16294,13 +16564,18 @@ type OpenStackVolumeAvailabilityZone struct {
 // OpenStackVolumeCreateOrderAttributes This mixin allows to specify list of fields to be rendered by serializer.
 // It expects that request is available in serializer's context.
 type OpenStackVolumeCreateOrderAttributes struct {
+	// AvailabilityZone Availability zone where this volume is located
 	AvailabilityZone *string `json:"availability_zone"`
 	Description      *string `json:"description,omitempty"`
-	Image            *string `json:"image"`
-	Name             string  `json:"name"`
+
+	// Image Image that this volume was created from, if any
+	Image *string `json:"image"`
+	Name  string  `json:"name"`
 
 	// Size Size in MiB
-	Size *int    `json:"size"`
+	Size *int `json:"size"`
+
+	// Type Type of the volume (e.g. SSD, HDD)
 	Type *string `json:"type"`
 }
 
@@ -16311,6 +16586,7 @@ type OpenStackVolumeExtendRequest struct {
 
 // OpenStackVolumeRequest defines model for OpenStackVolumeRequest.
 type OpenStackVolumeRequest struct {
+	// Bootable Indicates if this volume can be used to boot an instance
 	Bootable    *bool   `json:"bootable,omitempty"`
 	Description *string `json:"description,omitempty"`
 	Name        string  `json:"name"`
@@ -17049,11 +17325,16 @@ type PatchedOpenStackBackupRequest struct {
 
 // PatchedOpenStackInstanceRequest defines model for PatchedOpenStackInstanceRequest.
 type PatchedOpenStackInstanceRequest struct {
-	DataVolumeType   *string                       `json:"data_volume_type"`
-	DataVolumes      *[]OpenStackDataVolumeRequest `json:"data_volumes,omitempty"`
-	Description      *string                       `json:"description,omitempty"`
-	Name             *string                       `json:"name,omitempty"`
-	SystemVolumeType *string                       `json:"system_volume_type"`
+	// DataVolumeType Volume type for the data volume
+	DataVolumeType *string `json:"data_volume_type"`
+
+	// DataVolumes Additional data volumes to attach to the instance
+	DataVolumes *[]OpenStackDataVolumeRequest `json:"data_volumes,omitempty"`
+	Description *string                       `json:"description,omitempty"`
+	Name        *string                       `json:"name,omitempty"`
+
+	// SystemVolumeType Volume type for the system volume
+	SystemVolumeType *string `json:"system_volume_type"`
 }
 
 // PatchedOpenStackNetworkRequest defines model for PatchedOpenStackNetworkRequest.
@@ -17077,12 +17358,14 @@ type PatchedOpenStackSecurityGroupUpdateRequest struct {
 
 // PatchedOpenStackServerGroupRequest defines model for PatchedOpenStackServerGroupRequest.
 type PatchedOpenStackServerGroupRequest struct {
-	Description *string                                    `json:"description,omitempty"`
-	Name        *string                                    `json:"name,omitempty"`
-	Policy      *PatchedOpenStackServerGroupRequest_Policy `json:"policy,omitempty"`
+	Description *string `json:"description,omitempty"`
+	Name        *string `json:"name,omitempty"`
+
+	// Policy Server group policy determining the rules for scheduling servers in this group
+	Policy *PatchedOpenStackServerGroupRequest_Policy `json:"policy,omitempty"`
 }
 
-// PatchedOpenStackServerGroupRequest_Policy defines model for PatchedOpenStackServerGroupRequest.Policy.
+// PatchedOpenStackServerGroupRequest_Policy Server group policy determining the rules for scheduling servers in this group
 type PatchedOpenStackServerGroupRequest_Policy struct {
 	union json.RawMessage
 }
@@ -17102,11 +17385,15 @@ type PatchedOpenStackSubNetRequest struct {
 	AllocationPools *[]OpenStackSubNetAllocationPoolRequest `json:"allocation_pools,omitempty"`
 	Cidr            *string                                 `json:"cidr,omitempty"`
 	Description     *string                                 `json:"description,omitempty"`
-	DisableGateway  *bool                                   `json:"disable_gateway,omitempty"`
-	DnsNameservers  *[]string                               `json:"dns_nameservers,omitempty"`
-	GatewayIp       *string                                 `json:"gateway_ip"`
-	HostRoutes      *[]OpenStackStaticRouteRequest          `json:"host_routes,omitempty"`
-	Name            *string                                 `json:"name,omitempty"`
+
+	// DisableGateway If True, no gateway IP address will be allocated
+	DisableGateway *bool     `json:"disable_gateway,omitempty"`
+	DnsNameservers *[]string `json:"dns_nameservers,omitempty"`
+
+	// GatewayIp IP address of the gateway for this subnet
+	GatewayIp  *string                        `json:"gateway_ip"`
+	HostRoutes *[]OpenStackStaticRouteRequest `json:"host_routes,omitempty"`
+	Name       *string                        `json:"name,omitempty"`
 }
 
 // PatchedOpenStackTenantRequest defines model for PatchedOpenStackTenantRequest.
@@ -17122,6 +17409,7 @@ type PatchedOpenStackTenantRequest struct {
 
 // PatchedOpenStackVolumeRequest defines model for PatchedOpenStackVolumeRequest.
 type PatchedOpenStackVolumeRequest struct {
+	// Bootable Indicates if this volume can be used to boot an instance
 	Bootable    *bool   `json:"bootable,omitempty"`
 	Description *string `json:"description,omitempty"`
 	Name        *string `json:"name,omitempty"`
@@ -17695,13 +17983,17 @@ type Permission struct {
 
 // PermissionRequest defines model for PermissionRequest.
 type PermissionRequest struct {
-	Created            *time.Time          `json:"created,omitempty"`
-	CreatedByFullName  *string             `json:"created_by_full_name,omitempty"`
-	CreatedByUsername  *string             `json:"created_by_username,omitempty"`
-	CustomerName       *string             `json:"customer_name,omitempty"`
-	CustomerUuid       *openapi_types.UUID `json:"customer_uuid,omitempty"`
-	Invitation         string              `json:"invitation"`
-	ReviewComment      *string             `json:"review_comment"`
+	Created           *time.Time          `json:"created,omitempty"`
+	CreatedByFullName *string             `json:"created_by_full_name,omitempty"`
+	CreatedByUsername *string             `json:"created_by_username,omitempty"`
+	CustomerName      *string             `json:"customer_name,omitempty"`
+	CustomerUuid      *openapi_types.UUID `json:"customer_uuid,omitempty"`
+	Invitation        string              `json:"invitation"`
+
+	// ReviewComment Optional comment provided during review
+	ReviewComment *string `json:"review_comment"`
+
+	// ReviewedAt Timestamp when the review was completed
 	ReviewedAt         *time.Time          `json:"reviewed_at"`
 	ReviewedByFullName *string             `json:"reviewed_by_full_name,omitempty"`
 	ReviewedByUsername *string             `json:"reviewed_by_username,omitempty"`
@@ -19152,33 +19444,55 @@ type RancherClusterRequest struct {
 
 // RancherClusterSecurityGroupRule defines model for RancherClusterSecurityGroupRule.
 type RancherClusterSecurityGroupRule struct {
-	Cidr        *string                                   `json:"cidr"`
-	Description *string                                   `json:"description,omitempty"`
-	Direction   *DirectionEnum                            `json:"direction,omitempty"`
-	Ethertype   *EthertypeEnum                            `json:"ethertype,omitempty"`
-	FromPort    *int                                      `json:"from_port"`
-	Protocol    *RancherClusterSecurityGroupRule_Protocol `json:"protocol,omitempty"`
-	ToPort      *int                                      `json:"to_port"`
-	Uuid        *openapi_types.UUID                       `json:"uuid,omitempty"`
+	// Cidr CIDR notation for the source/destination network address range
+	Cidr        *string `json:"cidr"`
+	Description *string `json:"description,omitempty"`
+
+	// Direction Traffic direction - either 'ingress' (incoming) or 'egress' (outgoing)
+	Direction *DirectionEnum `json:"direction,omitempty"`
+
+	// Ethertype IP protocol version - either 'IPv4' or 'IPv6'
+	Ethertype *EthertypeEnum `json:"ethertype,omitempty"`
+
+	// FromPort Starting port number in the range (1-65535)
+	FromPort *int `json:"from_port"`
+
+	// Protocol The network protocol (TCP, UDP, ICMP, or empty for any protocol)
+	Protocol *RancherClusterSecurityGroupRule_Protocol `json:"protocol,omitempty"`
+
+	// ToPort Ending port number in the range (1-65535)
+	ToPort *int                `json:"to_port"`
+	Uuid   *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
-// RancherClusterSecurityGroupRule_Protocol defines model for RancherClusterSecurityGroupRule.Protocol.
+// RancherClusterSecurityGroupRule_Protocol The network protocol (TCP, UDP, ICMP, or empty for any protocol)
 type RancherClusterSecurityGroupRule_Protocol struct {
 	union json.RawMessage
 }
 
 // RancherClusterSecurityGroupRuleRequest defines model for RancherClusterSecurityGroupRuleRequest.
 type RancherClusterSecurityGroupRuleRequest struct {
-	Cidr        *string                                          `json:"cidr"`
-	Description *string                                          `json:"description,omitempty"`
-	Direction   *DirectionEnum                                   `json:"direction,omitempty"`
-	Ethertype   *EthertypeEnum                                   `json:"ethertype,omitempty"`
-	FromPort    *int                                             `json:"from_port"`
-	Protocol    *RancherClusterSecurityGroupRuleRequest_Protocol `json:"protocol,omitempty"`
-	ToPort      *int                                             `json:"to_port"`
+	// Cidr CIDR notation for the source/destination network address range
+	Cidr        *string `json:"cidr"`
+	Description *string `json:"description,omitempty"`
+
+	// Direction Traffic direction - either 'ingress' (incoming) or 'egress' (outgoing)
+	Direction *DirectionEnum `json:"direction,omitempty"`
+
+	// Ethertype IP protocol version - either 'IPv4' or 'IPv6'
+	Ethertype *EthertypeEnum `json:"ethertype,omitempty"`
+
+	// FromPort Starting port number in the range (1-65535)
+	FromPort *int `json:"from_port"`
+
+	// Protocol The network protocol (TCP, UDP, ICMP, or empty for any protocol)
+	Protocol *RancherClusterSecurityGroupRuleRequest_Protocol `json:"protocol,omitempty"`
+
+	// ToPort Ending port number in the range (1-65535)
+	ToPort *int `json:"to_port"`
 }
 
-// RancherClusterSecurityGroupRuleRequest_Protocol defines model for RancherClusterSecurityGroupRuleRequest.Protocol.
+// RancherClusterSecurityGroupRuleRequest_Protocol The network protocol (TCP, UDP, ICMP, or empty for any protocol)
 type RancherClusterSecurityGroupRuleRequest_Protocol struct {
 	union json.RawMessage
 }
@@ -19719,12 +20033,16 @@ type RemoteProjectUpdateRequest struct {
 	OldName             *string             `json:"old_name,omitempty"`
 	OldOecdFos2007Code  *string             `json:"old_oecd_fos_2007_code"`
 	OldOecdFos2007Label *string             `json:"old_oecd_fos_2007_label,omitempty"`
-	ReviewComment       *string             `json:"review_comment"`
-	ReviewedAt          *time.Time          `json:"reviewed_at"`
-	ReviewedByFullName  *string             `json:"reviewed_by_full_name,omitempty"`
-	ReviewedByUuid      *openapi_types.UUID `json:"reviewed_by_uuid,omitempty"`
-	State               *string             `json:"state,omitempty"`
-	Uuid                *openapi_types.UUID `json:"uuid,omitempty"`
+
+	// ReviewComment Optional comment provided during review
+	ReviewComment *string `json:"review_comment"`
+
+	// ReviewedAt Timestamp when the review was completed
+	ReviewedAt         *time.Time          `json:"reviewed_at"`
+	ReviewedByFullName *string             `json:"reviewed_by_full_name,omitempty"`
+	ReviewedByUuid     *openapi_types.UUID `json:"reviewed_by_uuid,omitempty"`
+	State              *string             `json:"state,omitempty"`
+	Uuid               *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // RemoteSynchronisation defines model for RemoteSynchronisation.
@@ -21359,6 +21677,7 @@ type VmwareVirtualMachineRequest_GuestOs struct {
 
 // VolumeAttachRequest defines model for VolumeAttachRequest.
 type VolumeAttachRequest struct {
+	// Instance Instance that this volume is attached to, if any
 	Instance string `json:"instance"`
 }
 
@@ -28437,7 +28756,10 @@ type OpenstackNetworkRbacPoliciesListParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize         *PageSize                                         `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// PolicyType Type of access granted - either shared access or external network access
+	//
 	PolicyType       *OpenstackNetworkRbacPoliciesListParamsPolicyType `form:"policy_type,omitempty" json:"policy_type,omitempty"`
 	TargetTenant     *string                                           `form:"target_tenant,omitempty" json:"target_tenant,omitempty"`
 	TargetTenantUuid *openapi_types.UUID                               `form:"target_tenant_uuid,omitempty" json:"target_tenant_uuid,omitempty"`
@@ -28455,7 +28777,10 @@ type OpenstackNetworkRbacPoliciesCountParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize         *PageSize                                          `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// PolicyType Type of access granted - either shared access or external network access
+	//
 	PolicyType       *OpenstackNetworkRbacPoliciesCountParamsPolicyType `form:"policy_type,omitempty" json:"policy_type,omitempty"`
 	TargetTenant     *string                                            `form:"target_tenant,omitempty" json:"target_tenant,omitempty"`
 	TargetTenantUuid *openapi_types.UUID                                `form:"target_tenant_uuid,omitempty" json:"target_tenant_uuid,omitempty"`
