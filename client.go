@@ -1026,6 +1026,20 @@ const (
 	RoleTypeServiceProvider RoleType = "service_provider"
 )
 
+// Defines values for ServiceProviderOfferingUserComplianceStateEnum.
+const (
+	ServiceProviderOfferingUserComplianceStateEnumN1  ServiceProviderOfferingUserComplianceStateEnum = 1
+	ServiceProviderOfferingUserComplianceStateEnumN10 ServiceProviderOfferingUserComplianceStateEnum = 10
+	ServiceProviderOfferingUserComplianceStateEnumN2  ServiceProviderOfferingUserComplianceStateEnum = 2
+	ServiceProviderOfferingUserComplianceStateEnumN3  ServiceProviderOfferingUserComplianceStateEnum = 3
+	ServiceProviderOfferingUserComplianceStateEnumN4  ServiceProviderOfferingUserComplianceStateEnum = 4
+	ServiceProviderOfferingUserComplianceStateEnumN5  ServiceProviderOfferingUserComplianceStateEnum = 5
+	ServiceProviderOfferingUserComplianceStateEnumN6  ServiceProviderOfferingUserComplianceStateEnum = 6
+	ServiceProviderOfferingUserComplianceStateEnumN7  ServiceProviderOfferingUserComplianceStateEnum = 7
+	ServiceProviderOfferingUserComplianceStateEnumN8  ServiceProviderOfferingUserComplianceStateEnum = 8
+	ServiceProviderOfferingUserComplianceStateEnumN9  ServiceProviderOfferingUserComplianceStateEnum = 9
+)
+
 // Defines values for ServiceSettingsStateEnum.
 const (
 	ServiceSettingsStateEnumCREATING          ServiceSettingsStateEnum = "CREATING"
@@ -2159,134 +2173,136 @@ const (
 
 // Defines values for BookingOfferingsListParamsField.
 const (
-	BookingOfferingsListParamsFieldAccessUrl          BookingOfferingsListParamsField = "access_url"
-	BookingOfferingsListParamsFieldAttributes         BookingOfferingsListParamsField = "attributes"
-	BookingOfferingsListParamsFieldBackendId          BookingOfferingsListParamsField = "backend_id"
-	BookingOfferingsListParamsFieldBackendMetadata    BookingOfferingsListParamsField = "backend_metadata"
-	BookingOfferingsListParamsFieldBillable           BookingOfferingsListParamsField = "billable"
-	BookingOfferingsListParamsFieldCategory           BookingOfferingsListParamsField = "category"
-	BookingOfferingsListParamsFieldCategoryTitle      BookingOfferingsListParamsField = "category_title"
-	BookingOfferingsListParamsFieldCategoryUuid       BookingOfferingsListParamsField = "category_uuid"
-	BookingOfferingsListParamsFieldCitationCount      BookingOfferingsListParamsField = "citation_count"
-	BookingOfferingsListParamsFieldComponents         BookingOfferingsListParamsField = "components"
-	BookingOfferingsListParamsFieldCountry            BookingOfferingsListParamsField = "country"
-	BookingOfferingsListParamsFieldCreated            BookingOfferingsListParamsField = "created"
-	BookingOfferingsListParamsFieldCustomer           BookingOfferingsListParamsField = "customer"
-	BookingOfferingsListParamsFieldCustomerName       BookingOfferingsListParamsField = "customer_name"
-	BookingOfferingsListParamsFieldCustomerUuid       BookingOfferingsListParamsField = "customer_uuid"
-	BookingOfferingsListParamsFieldDataciteDoi        BookingOfferingsListParamsField = "datacite_doi"
-	BookingOfferingsListParamsFieldDescription        BookingOfferingsListParamsField = "description"
-	BookingOfferingsListParamsFieldEndpoints          BookingOfferingsListParamsField = "endpoints"
-	BookingOfferingsListParamsFieldFiles              BookingOfferingsListParamsField = "files"
-	BookingOfferingsListParamsFieldFullDescription    BookingOfferingsListParamsField = "full_description"
-	BookingOfferingsListParamsFieldGettingStarted     BookingOfferingsListParamsField = "getting_started"
-	BookingOfferingsListParamsFieldGooglecalendar     BookingOfferingsListParamsField = "googlecalendar"
-	BookingOfferingsListParamsFieldImage              BookingOfferingsListParamsField = "image"
-	BookingOfferingsListParamsFieldIntegrationGuide   BookingOfferingsListParamsField = "integration_guide"
-	BookingOfferingsListParamsFieldLatitude           BookingOfferingsListParamsField = "latitude"
-	BookingOfferingsListParamsFieldLongitude          BookingOfferingsListParamsField = "longitude"
-	BookingOfferingsListParamsFieldName               BookingOfferingsListParamsField = "name"
-	BookingOfferingsListParamsFieldOptions            BookingOfferingsListParamsField = "options"
-	BookingOfferingsListParamsFieldOrderCount         BookingOfferingsListParamsField = "order_count"
-	BookingOfferingsListParamsFieldOrganizationGroups BookingOfferingsListParamsField = "organization_groups"
-	BookingOfferingsListParamsFieldParentDescription  BookingOfferingsListParamsField = "parent_description"
-	BookingOfferingsListParamsFieldParentName         BookingOfferingsListParamsField = "parent_name"
-	BookingOfferingsListParamsFieldParentUuid         BookingOfferingsListParamsField = "parent_uuid"
-	BookingOfferingsListParamsFieldPausedReason       BookingOfferingsListParamsField = "paused_reason"
-	BookingOfferingsListParamsFieldPlans              BookingOfferingsListParamsField = "plans"
-	BookingOfferingsListParamsFieldPluginOptions      BookingOfferingsListParamsField = "plugin_options"
-	BookingOfferingsListParamsFieldPrivacyPolicyLink  BookingOfferingsListParamsField = "privacy_policy_link"
-	BookingOfferingsListParamsFieldProject            BookingOfferingsListParamsField = "project"
-	BookingOfferingsListParamsFieldProjectName        BookingOfferingsListParamsField = "project_name"
-	BookingOfferingsListParamsFieldProjectUuid        BookingOfferingsListParamsField = "project_uuid"
-	BookingOfferingsListParamsFieldQuotas             BookingOfferingsListParamsField = "quotas"
-	BookingOfferingsListParamsFieldResourceOptions    BookingOfferingsListParamsField = "resource_options"
-	BookingOfferingsListParamsFieldRoles              BookingOfferingsListParamsField = "roles"
-	BookingOfferingsListParamsFieldScope              BookingOfferingsListParamsField = "scope"
-	BookingOfferingsListParamsFieldScopeErrorMessage  BookingOfferingsListParamsField = "scope_error_message"
-	BookingOfferingsListParamsFieldScopeName          BookingOfferingsListParamsField = "scope_name"
-	BookingOfferingsListParamsFieldScopeState         BookingOfferingsListParamsField = "scope_state"
-	BookingOfferingsListParamsFieldScopeUuid          BookingOfferingsListParamsField = "scope_uuid"
-	BookingOfferingsListParamsFieldScreenshots        BookingOfferingsListParamsField = "screenshots"
-	BookingOfferingsListParamsFieldShared             BookingOfferingsListParamsField = "shared"
-	BookingOfferingsListParamsFieldSlug               BookingOfferingsListParamsField = "slug"
-	BookingOfferingsListParamsFieldState              BookingOfferingsListParamsField = "state"
-	BookingOfferingsListParamsFieldTermsOfService     BookingOfferingsListParamsField = "terms_of_service"
-	BookingOfferingsListParamsFieldTermsOfServiceLink BookingOfferingsListParamsField = "terms_of_service_link"
-	BookingOfferingsListParamsFieldThumbnail          BookingOfferingsListParamsField = "thumbnail"
-	BookingOfferingsListParamsFieldTotalCost          BookingOfferingsListParamsField = "total_cost"
-	BookingOfferingsListParamsFieldTotalCostEstimated BookingOfferingsListParamsField = "total_cost_estimated"
-	BookingOfferingsListParamsFieldTotalCustomers     BookingOfferingsListParamsField = "total_customers"
-	BookingOfferingsListParamsFieldType               BookingOfferingsListParamsField = "type"
-	BookingOfferingsListParamsFieldUrl                BookingOfferingsListParamsField = "url"
-	BookingOfferingsListParamsFieldUuid               BookingOfferingsListParamsField = "uuid"
-	BookingOfferingsListParamsFieldVendorDetails      BookingOfferingsListParamsField = "vendor_details"
+	BookingOfferingsListParamsFieldAccessUrl                 BookingOfferingsListParamsField = "access_url"
+	BookingOfferingsListParamsFieldAttributes                BookingOfferingsListParamsField = "attributes"
+	BookingOfferingsListParamsFieldBackendId                 BookingOfferingsListParamsField = "backend_id"
+	BookingOfferingsListParamsFieldBackendMetadata           BookingOfferingsListParamsField = "backend_metadata"
+	BookingOfferingsListParamsFieldBillable                  BookingOfferingsListParamsField = "billable"
+	BookingOfferingsListParamsFieldCategory                  BookingOfferingsListParamsField = "category"
+	BookingOfferingsListParamsFieldCategoryTitle             BookingOfferingsListParamsField = "category_title"
+	BookingOfferingsListParamsFieldCategoryUuid              BookingOfferingsListParamsField = "category_uuid"
+	BookingOfferingsListParamsFieldCitationCount             BookingOfferingsListParamsField = "citation_count"
+	BookingOfferingsListParamsFieldComponents                BookingOfferingsListParamsField = "components"
+	BookingOfferingsListParamsFieldCountry                   BookingOfferingsListParamsField = "country"
+	BookingOfferingsListParamsFieldCreated                   BookingOfferingsListParamsField = "created"
+	BookingOfferingsListParamsFieldCustomer                  BookingOfferingsListParamsField = "customer"
+	BookingOfferingsListParamsFieldCustomerName              BookingOfferingsListParamsField = "customer_name"
+	BookingOfferingsListParamsFieldCustomerUuid              BookingOfferingsListParamsField = "customer_uuid"
+	BookingOfferingsListParamsFieldDataciteDoi               BookingOfferingsListParamsField = "datacite_doi"
+	BookingOfferingsListParamsFieldDescription               BookingOfferingsListParamsField = "description"
+	BookingOfferingsListParamsFieldEndpoints                 BookingOfferingsListParamsField = "endpoints"
+	BookingOfferingsListParamsFieldFiles                     BookingOfferingsListParamsField = "files"
+	BookingOfferingsListParamsFieldFullDescription           BookingOfferingsListParamsField = "full_description"
+	BookingOfferingsListParamsFieldGettingStarted            BookingOfferingsListParamsField = "getting_started"
+	BookingOfferingsListParamsFieldGooglecalendar            BookingOfferingsListParamsField = "googlecalendar"
+	BookingOfferingsListParamsFieldHasComplianceRequirements BookingOfferingsListParamsField = "has_compliance_requirements"
+	BookingOfferingsListParamsFieldImage                     BookingOfferingsListParamsField = "image"
+	BookingOfferingsListParamsFieldIntegrationGuide          BookingOfferingsListParamsField = "integration_guide"
+	BookingOfferingsListParamsFieldLatitude                  BookingOfferingsListParamsField = "latitude"
+	BookingOfferingsListParamsFieldLongitude                 BookingOfferingsListParamsField = "longitude"
+	BookingOfferingsListParamsFieldName                      BookingOfferingsListParamsField = "name"
+	BookingOfferingsListParamsFieldOptions                   BookingOfferingsListParamsField = "options"
+	BookingOfferingsListParamsFieldOrderCount                BookingOfferingsListParamsField = "order_count"
+	BookingOfferingsListParamsFieldOrganizationGroups        BookingOfferingsListParamsField = "organization_groups"
+	BookingOfferingsListParamsFieldParentDescription         BookingOfferingsListParamsField = "parent_description"
+	BookingOfferingsListParamsFieldParentName                BookingOfferingsListParamsField = "parent_name"
+	BookingOfferingsListParamsFieldParentUuid                BookingOfferingsListParamsField = "parent_uuid"
+	BookingOfferingsListParamsFieldPausedReason              BookingOfferingsListParamsField = "paused_reason"
+	BookingOfferingsListParamsFieldPlans                     BookingOfferingsListParamsField = "plans"
+	BookingOfferingsListParamsFieldPluginOptions             BookingOfferingsListParamsField = "plugin_options"
+	BookingOfferingsListParamsFieldPrivacyPolicyLink         BookingOfferingsListParamsField = "privacy_policy_link"
+	BookingOfferingsListParamsFieldProject                   BookingOfferingsListParamsField = "project"
+	BookingOfferingsListParamsFieldProjectName               BookingOfferingsListParamsField = "project_name"
+	BookingOfferingsListParamsFieldProjectUuid               BookingOfferingsListParamsField = "project_uuid"
+	BookingOfferingsListParamsFieldQuotas                    BookingOfferingsListParamsField = "quotas"
+	BookingOfferingsListParamsFieldResourceOptions           BookingOfferingsListParamsField = "resource_options"
+	BookingOfferingsListParamsFieldRoles                     BookingOfferingsListParamsField = "roles"
+	BookingOfferingsListParamsFieldScope                     BookingOfferingsListParamsField = "scope"
+	BookingOfferingsListParamsFieldScopeErrorMessage         BookingOfferingsListParamsField = "scope_error_message"
+	BookingOfferingsListParamsFieldScopeName                 BookingOfferingsListParamsField = "scope_name"
+	BookingOfferingsListParamsFieldScopeState                BookingOfferingsListParamsField = "scope_state"
+	BookingOfferingsListParamsFieldScopeUuid                 BookingOfferingsListParamsField = "scope_uuid"
+	BookingOfferingsListParamsFieldScreenshots               BookingOfferingsListParamsField = "screenshots"
+	BookingOfferingsListParamsFieldShared                    BookingOfferingsListParamsField = "shared"
+	BookingOfferingsListParamsFieldSlug                      BookingOfferingsListParamsField = "slug"
+	BookingOfferingsListParamsFieldState                     BookingOfferingsListParamsField = "state"
+	BookingOfferingsListParamsFieldTermsOfService            BookingOfferingsListParamsField = "terms_of_service"
+	BookingOfferingsListParamsFieldTermsOfServiceLink        BookingOfferingsListParamsField = "terms_of_service_link"
+	BookingOfferingsListParamsFieldThumbnail                 BookingOfferingsListParamsField = "thumbnail"
+	BookingOfferingsListParamsFieldTotalCost                 BookingOfferingsListParamsField = "total_cost"
+	BookingOfferingsListParamsFieldTotalCostEstimated        BookingOfferingsListParamsField = "total_cost_estimated"
+	BookingOfferingsListParamsFieldTotalCustomers            BookingOfferingsListParamsField = "total_customers"
+	BookingOfferingsListParamsFieldType                      BookingOfferingsListParamsField = "type"
+	BookingOfferingsListParamsFieldUrl                       BookingOfferingsListParamsField = "url"
+	BookingOfferingsListParamsFieldUuid                      BookingOfferingsListParamsField = "uuid"
+	BookingOfferingsListParamsFieldVendorDetails             BookingOfferingsListParamsField = "vendor_details"
 )
 
 // Defines values for BookingOfferingsRetrieveParamsField.
 const (
-	BookingOfferingsRetrieveParamsFieldAccessUrl          BookingOfferingsRetrieveParamsField = "access_url"
-	BookingOfferingsRetrieveParamsFieldAttributes         BookingOfferingsRetrieveParamsField = "attributes"
-	BookingOfferingsRetrieveParamsFieldBackendId          BookingOfferingsRetrieveParamsField = "backend_id"
-	BookingOfferingsRetrieveParamsFieldBackendMetadata    BookingOfferingsRetrieveParamsField = "backend_metadata"
-	BookingOfferingsRetrieveParamsFieldBillable           BookingOfferingsRetrieveParamsField = "billable"
-	BookingOfferingsRetrieveParamsFieldCategory           BookingOfferingsRetrieveParamsField = "category"
-	BookingOfferingsRetrieveParamsFieldCategoryTitle      BookingOfferingsRetrieveParamsField = "category_title"
-	BookingOfferingsRetrieveParamsFieldCategoryUuid       BookingOfferingsRetrieveParamsField = "category_uuid"
-	BookingOfferingsRetrieveParamsFieldCitationCount      BookingOfferingsRetrieveParamsField = "citation_count"
-	BookingOfferingsRetrieveParamsFieldComponents         BookingOfferingsRetrieveParamsField = "components"
-	BookingOfferingsRetrieveParamsFieldCountry            BookingOfferingsRetrieveParamsField = "country"
-	BookingOfferingsRetrieveParamsFieldCreated            BookingOfferingsRetrieveParamsField = "created"
-	BookingOfferingsRetrieveParamsFieldCustomer           BookingOfferingsRetrieveParamsField = "customer"
-	BookingOfferingsRetrieveParamsFieldCustomerName       BookingOfferingsRetrieveParamsField = "customer_name"
-	BookingOfferingsRetrieveParamsFieldCustomerUuid       BookingOfferingsRetrieveParamsField = "customer_uuid"
-	BookingOfferingsRetrieveParamsFieldDataciteDoi        BookingOfferingsRetrieveParamsField = "datacite_doi"
-	BookingOfferingsRetrieveParamsFieldDescription        BookingOfferingsRetrieveParamsField = "description"
-	BookingOfferingsRetrieveParamsFieldEndpoints          BookingOfferingsRetrieveParamsField = "endpoints"
-	BookingOfferingsRetrieveParamsFieldFiles              BookingOfferingsRetrieveParamsField = "files"
-	BookingOfferingsRetrieveParamsFieldFullDescription    BookingOfferingsRetrieveParamsField = "full_description"
-	BookingOfferingsRetrieveParamsFieldGettingStarted     BookingOfferingsRetrieveParamsField = "getting_started"
-	BookingOfferingsRetrieveParamsFieldGooglecalendar     BookingOfferingsRetrieveParamsField = "googlecalendar"
-	BookingOfferingsRetrieveParamsFieldImage              BookingOfferingsRetrieveParamsField = "image"
-	BookingOfferingsRetrieveParamsFieldIntegrationGuide   BookingOfferingsRetrieveParamsField = "integration_guide"
-	BookingOfferingsRetrieveParamsFieldLatitude           BookingOfferingsRetrieveParamsField = "latitude"
-	BookingOfferingsRetrieveParamsFieldLongitude          BookingOfferingsRetrieveParamsField = "longitude"
-	BookingOfferingsRetrieveParamsFieldName               BookingOfferingsRetrieveParamsField = "name"
-	BookingOfferingsRetrieveParamsFieldOptions            BookingOfferingsRetrieveParamsField = "options"
-	BookingOfferingsRetrieveParamsFieldOrderCount         BookingOfferingsRetrieveParamsField = "order_count"
-	BookingOfferingsRetrieveParamsFieldOrganizationGroups BookingOfferingsRetrieveParamsField = "organization_groups"
-	BookingOfferingsRetrieveParamsFieldParentDescription  BookingOfferingsRetrieveParamsField = "parent_description"
-	BookingOfferingsRetrieveParamsFieldParentName         BookingOfferingsRetrieveParamsField = "parent_name"
-	BookingOfferingsRetrieveParamsFieldParentUuid         BookingOfferingsRetrieveParamsField = "parent_uuid"
-	BookingOfferingsRetrieveParamsFieldPausedReason       BookingOfferingsRetrieveParamsField = "paused_reason"
-	BookingOfferingsRetrieveParamsFieldPlans              BookingOfferingsRetrieveParamsField = "plans"
-	BookingOfferingsRetrieveParamsFieldPluginOptions      BookingOfferingsRetrieveParamsField = "plugin_options"
-	BookingOfferingsRetrieveParamsFieldPrivacyPolicyLink  BookingOfferingsRetrieveParamsField = "privacy_policy_link"
-	BookingOfferingsRetrieveParamsFieldProject            BookingOfferingsRetrieveParamsField = "project"
-	BookingOfferingsRetrieveParamsFieldProjectName        BookingOfferingsRetrieveParamsField = "project_name"
-	BookingOfferingsRetrieveParamsFieldProjectUuid        BookingOfferingsRetrieveParamsField = "project_uuid"
-	BookingOfferingsRetrieveParamsFieldQuotas             BookingOfferingsRetrieveParamsField = "quotas"
-	BookingOfferingsRetrieveParamsFieldResourceOptions    BookingOfferingsRetrieveParamsField = "resource_options"
-	BookingOfferingsRetrieveParamsFieldRoles              BookingOfferingsRetrieveParamsField = "roles"
-	BookingOfferingsRetrieveParamsFieldScope              BookingOfferingsRetrieveParamsField = "scope"
-	BookingOfferingsRetrieveParamsFieldScopeErrorMessage  BookingOfferingsRetrieveParamsField = "scope_error_message"
-	BookingOfferingsRetrieveParamsFieldScopeName          BookingOfferingsRetrieveParamsField = "scope_name"
-	BookingOfferingsRetrieveParamsFieldScopeState         BookingOfferingsRetrieveParamsField = "scope_state"
-	BookingOfferingsRetrieveParamsFieldScopeUuid          BookingOfferingsRetrieveParamsField = "scope_uuid"
-	BookingOfferingsRetrieveParamsFieldScreenshots        BookingOfferingsRetrieveParamsField = "screenshots"
-	BookingOfferingsRetrieveParamsFieldShared             BookingOfferingsRetrieveParamsField = "shared"
-	BookingOfferingsRetrieveParamsFieldSlug               BookingOfferingsRetrieveParamsField = "slug"
-	BookingOfferingsRetrieveParamsFieldState              BookingOfferingsRetrieveParamsField = "state"
-	BookingOfferingsRetrieveParamsFieldTermsOfService     BookingOfferingsRetrieveParamsField = "terms_of_service"
-	BookingOfferingsRetrieveParamsFieldTermsOfServiceLink BookingOfferingsRetrieveParamsField = "terms_of_service_link"
-	BookingOfferingsRetrieveParamsFieldThumbnail          BookingOfferingsRetrieveParamsField = "thumbnail"
-	BookingOfferingsRetrieveParamsFieldTotalCost          BookingOfferingsRetrieveParamsField = "total_cost"
-	BookingOfferingsRetrieveParamsFieldTotalCostEstimated BookingOfferingsRetrieveParamsField = "total_cost_estimated"
-	BookingOfferingsRetrieveParamsFieldTotalCustomers     BookingOfferingsRetrieveParamsField = "total_customers"
-	BookingOfferingsRetrieveParamsFieldType               BookingOfferingsRetrieveParamsField = "type"
-	BookingOfferingsRetrieveParamsFieldUrl                BookingOfferingsRetrieveParamsField = "url"
-	BookingOfferingsRetrieveParamsFieldUuid               BookingOfferingsRetrieveParamsField = "uuid"
-	BookingOfferingsRetrieveParamsFieldVendorDetails      BookingOfferingsRetrieveParamsField = "vendor_details"
+	BookingOfferingsRetrieveParamsFieldAccessUrl                 BookingOfferingsRetrieveParamsField = "access_url"
+	BookingOfferingsRetrieveParamsFieldAttributes                BookingOfferingsRetrieveParamsField = "attributes"
+	BookingOfferingsRetrieveParamsFieldBackendId                 BookingOfferingsRetrieveParamsField = "backend_id"
+	BookingOfferingsRetrieveParamsFieldBackendMetadata           BookingOfferingsRetrieveParamsField = "backend_metadata"
+	BookingOfferingsRetrieveParamsFieldBillable                  BookingOfferingsRetrieveParamsField = "billable"
+	BookingOfferingsRetrieveParamsFieldCategory                  BookingOfferingsRetrieveParamsField = "category"
+	BookingOfferingsRetrieveParamsFieldCategoryTitle             BookingOfferingsRetrieveParamsField = "category_title"
+	BookingOfferingsRetrieveParamsFieldCategoryUuid              BookingOfferingsRetrieveParamsField = "category_uuid"
+	BookingOfferingsRetrieveParamsFieldCitationCount             BookingOfferingsRetrieveParamsField = "citation_count"
+	BookingOfferingsRetrieveParamsFieldComponents                BookingOfferingsRetrieveParamsField = "components"
+	BookingOfferingsRetrieveParamsFieldCountry                   BookingOfferingsRetrieveParamsField = "country"
+	BookingOfferingsRetrieveParamsFieldCreated                   BookingOfferingsRetrieveParamsField = "created"
+	BookingOfferingsRetrieveParamsFieldCustomer                  BookingOfferingsRetrieveParamsField = "customer"
+	BookingOfferingsRetrieveParamsFieldCustomerName              BookingOfferingsRetrieveParamsField = "customer_name"
+	BookingOfferingsRetrieveParamsFieldCustomerUuid              BookingOfferingsRetrieveParamsField = "customer_uuid"
+	BookingOfferingsRetrieveParamsFieldDataciteDoi               BookingOfferingsRetrieveParamsField = "datacite_doi"
+	BookingOfferingsRetrieveParamsFieldDescription               BookingOfferingsRetrieveParamsField = "description"
+	BookingOfferingsRetrieveParamsFieldEndpoints                 BookingOfferingsRetrieveParamsField = "endpoints"
+	BookingOfferingsRetrieveParamsFieldFiles                     BookingOfferingsRetrieveParamsField = "files"
+	BookingOfferingsRetrieveParamsFieldFullDescription           BookingOfferingsRetrieveParamsField = "full_description"
+	BookingOfferingsRetrieveParamsFieldGettingStarted            BookingOfferingsRetrieveParamsField = "getting_started"
+	BookingOfferingsRetrieveParamsFieldGooglecalendar            BookingOfferingsRetrieveParamsField = "googlecalendar"
+	BookingOfferingsRetrieveParamsFieldHasComplianceRequirements BookingOfferingsRetrieveParamsField = "has_compliance_requirements"
+	BookingOfferingsRetrieveParamsFieldImage                     BookingOfferingsRetrieveParamsField = "image"
+	BookingOfferingsRetrieveParamsFieldIntegrationGuide          BookingOfferingsRetrieveParamsField = "integration_guide"
+	BookingOfferingsRetrieveParamsFieldLatitude                  BookingOfferingsRetrieveParamsField = "latitude"
+	BookingOfferingsRetrieveParamsFieldLongitude                 BookingOfferingsRetrieveParamsField = "longitude"
+	BookingOfferingsRetrieveParamsFieldName                      BookingOfferingsRetrieveParamsField = "name"
+	BookingOfferingsRetrieveParamsFieldOptions                   BookingOfferingsRetrieveParamsField = "options"
+	BookingOfferingsRetrieveParamsFieldOrderCount                BookingOfferingsRetrieveParamsField = "order_count"
+	BookingOfferingsRetrieveParamsFieldOrganizationGroups        BookingOfferingsRetrieveParamsField = "organization_groups"
+	BookingOfferingsRetrieveParamsFieldParentDescription         BookingOfferingsRetrieveParamsField = "parent_description"
+	BookingOfferingsRetrieveParamsFieldParentName                BookingOfferingsRetrieveParamsField = "parent_name"
+	BookingOfferingsRetrieveParamsFieldParentUuid                BookingOfferingsRetrieveParamsField = "parent_uuid"
+	BookingOfferingsRetrieveParamsFieldPausedReason              BookingOfferingsRetrieveParamsField = "paused_reason"
+	BookingOfferingsRetrieveParamsFieldPlans                     BookingOfferingsRetrieveParamsField = "plans"
+	BookingOfferingsRetrieveParamsFieldPluginOptions             BookingOfferingsRetrieveParamsField = "plugin_options"
+	BookingOfferingsRetrieveParamsFieldPrivacyPolicyLink         BookingOfferingsRetrieveParamsField = "privacy_policy_link"
+	BookingOfferingsRetrieveParamsFieldProject                   BookingOfferingsRetrieveParamsField = "project"
+	BookingOfferingsRetrieveParamsFieldProjectName               BookingOfferingsRetrieveParamsField = "project_name"
+	BookingOfferingsRetrieveParamsFieldProjectUuid               BookingOfferingsRetrieveParamsField = "project_uuid"
+	BookingOfferingsRetrieveParamsFieldQuotas                    BookingOfferingsRetrieveParamsField = "quotas"
+	BookingOfferingsRetrieveParamsFieldResourceOptions           BookingOfferingsRetrieveParamsField = "resource_options"
+	BookingOfferingsRetrieveParamsFieldRoles                     BookingOfferingsRetrieveParamsField = "roles"
+	BookingOfferingsRetrieveParamsFieldScope                     BookingOfferingsRetrieveParamsField = "scope"
+	BookingOfferingsRetrieveParamsFieldScopeErrorMessage         BookingOfferingsRetrieveParamsField = "scope_error_message"
+	BookingOfferingsRetrieveParamsFieldScopeName                 BookingOfferingsRetrieveParamsField = "scope_name"
+	BookingOfferingsRetrieveParamsFieldScopeState                BookingOfferingsRetrieveParamsField = "scope_state"
+	BookingOfferingsRetrieveParamsFieldScopeUuid                 BookingOfferingsRetrieveParamsField = "scope_uuid"
+	BookingOfferingsRetrieveParamsFieldScreenshots               BookingOfferingsRetrieveParamsField = "screenshots"
+	BookingOfferingsRetrieveParamsFieldShared                    BookingOfferingsRetrieveParamsField = "shared"
+	BookingOfferingsRetrieveParamsFieldSlug                      BookingOfferingsRetrieveParamsField = "slug"
+	BookingOfferingsRetrieveParamsFieldState                     BookingOfferingsRetrieveParamsField = "state"
+	BookingOfferingsRetrieveParamsFieldTermsOfService            BookingOfferingsRetrieveParamsField = "terms_of_service"
+	BookingOfferingsRetrieveParamsFieldTermsOfServiceLink        BookingOfferingsRetrieveParamsField = "terms_of_service_link"
+	BookingOfferingsRetrieveParamsFieldThumbnail                 BookingOfferingsRetrieveParamsField = "thumbnail"
+	BookingOfferingsRetrieveParamsFieldTotalCost                 BookingOfferingsRetrieveParamsField = "total_cost"
+	BookingOfferingsRetrieveParamsFieldTotalCostEstimated        BookingOfferingsRetrieveParamsField = "total_cost_estimated"
+	BookingOfferingsRetrieveParamsFieldTotalCustomers            BookingOfferingsRetrieveParamsField = "total_customers"
+	BookingOfferingsRetrieveParamsFieldType                      BookingOfferingsRetrieveParamsField = "type"
+	BookingOfferingsRetrieveParamsFieldUrl                       BookingOfferingsRetrieveParamsField = "url"
+	BookingOfferingsRetrieveParamsFieldUuid                      BookingOfferingsRetrieveParamsField = "uuid"
+	BookingOfferingsRetrieveParamsFieldVendorDetails             BookingOfferingsRetrieveParamsField = "vendor_details"
 )
 
 // Defines values for BookingResourcesListParamsField.
@@ -4048,72 +4064,73 @@ const (
 
 // Defines values for MarketplaceProviderOfferingsListParamsField.
 const (
-	MarketplaceProviderOfferingsListParamsFieldAccessUrl              MarketplaceProviderOfferingsListParamsField = "access_url"
-	MarketplaceProviderOfferingsListParamsFieldAttributes             MarketplaceProviderOfferingsListParamsField = "attributes"
-	MarketplaceProviderOfferingsListParamsFieldBackendId              MarketplaceProviderOfferingsListParamsField = "backend_id"
-	MarketplaceProviderOfferingsListParamsFieldBackendMetadata        MarketplaceProviderOfferingsListParamsField = "backend_metadata"
-	MarketplaceProviderOfferingsListParamsFieldBillable               MarketplaceProviderOfferingsListParamsField = "billable"
-	MarketplaceProviderOfferingsListParamsFieldCategory               MarketplaceProviderOfferingsListParamsField = "category"
-	MarketplaceProviderOfferingsListParamsFieldCategoryTitle          MarketplaceProviderOfferingsListParamsField = "category_title"
-	MarketplaceProviderOfferingsListParamsFieldCategoryUuid           MarketplaceProviderOfferingsListParamsField = "category_uuid"
-	MarketplaceProviderOfferingsListParamsFieldCitationCount          MarketplaceProviderOfferingsListParamsField = "citation_count"
-	MarketplaceProviderOfferingsListParamsFieldComponents             MarketplaceProviderOfferingsListParamsField = "components"
-	MarketplaceProviderOfferingsListParamsFieldCountry                MarketplaceProviderOfferingsListParamsField = "country"
-	MarketplaceProviderOfferingsListParamsFieldCreated                MarketplaceProviderOfferingsListParamsField = "created"
-	MarketplaceProviderOfferingsListParamsFieldCustomer               MarketplaceProviderOfferingsListParamsField = "customer"
-	MarketplaceProviderOfferingsListParamsFieldCustomerName           MarketplaceProviderOfferingsListParamsField = "customer_name"
-	MarketplaceProviderOfferingsListParamsFieldCustomerUuid           MarketplaceProviderOfferingsListParamsField = "customer_uuid"
-	MarketplaceProviderOfferingsListParamsFieldDataciteDoi            MarketplaceProviderOfferingsListParamsField = "datacite_doi"
-	MarketplaceProviderOfferingsListParamsFieldDescription            MarketplaceProviderOfferingsListParamsField = "description"
-	MarketplaceProviderOfferingsListParamsFieldEndpoints              MarketplaceProviderOfferingsListParamsField = "endpoints"
-	MarketplaceProviderOfferingsListParamsFieldFiles                  MarketplaceProviderOfferingsListParamsField = "files"
-	MarketplaceProviderOfferingsListParamsFieldFullDescription        MarketplaceProviderOfferingsListParamsField = "full_description"
-	MarketplaceProviderOfferingsListParamsFieldGettingStarted         MarketplaceProviderOfferingsListParamsField = "getting_started"
-	MarketplaceProviderOfferingsListParamsFieldGoogleCalendarIsPublic MarketplaceProviderOfferingsListParamsField = "google_calendar_is_public"
-	MarketplaceProviderOfferingsListParamsFieldGoogleCalendarLink     MarketplaceProviderOfferingsListParamsField = "google_calendar_link"
-	MarketplaceProviderOfferingsListParamsFieldImage                  MarketplaceProviderOfferingsListParamsField = "image"
-	MarketplaceProviderOfferingsListParamsFieldIntegrationGuide       MarketplaceProviderOfferingsListParamsField = "integration_guide"
-	MarketplaceProviderOfferingsListParamsFieldIntegrationStatus      MarketplaceProviderOfferingsListParamsField = "integration_status"
-	MarketplaceProviderOfferingsListParamsFieldLatitude               MarketplaceProviderOfferingsListParamsField = "latitude"
-	MarketplaceProviderOfferingsListParamsFieldLongitude              MarketplaceProviderOfferingsListParamsField = "longitude"
-	MarketplaceProviderOfferingsListParamsFieldName                   MarketplaceProviderOfferingsListParamsField = "name"
-	MarketplaceProviderOfferingsListParamsFieldOptions                MarketplaceProviderOfferingsListParamsField = "options"
-	MarketplaceProviderOfferingsListParamsFieldOrderCount             MarketplaceProviderOfferingsListParamsField = "order_count"
-	MarketplaceProviderOfferingsListParamsFieldOrganizationGroups     MarketplaceProviderOfferingsListParamsField = "organization_groups"
-	MarketplaceProviderOfferingsListParamsFieldParentDescription      MarketplaceProviderOfferingsListParamsField = "parent_description"
-	MarketplaceProviderOfferingsListParamsFieldParentName             MarketplaceProviderOfferingsListParamsField = "parent_name"
-	MarketplaceProviderOfferingsListParamsFieldParentUuid             MarketplaceProviderOfferingsListParamsField = "parent_uuid"
-	MarketplaceProviderOfferingsListParamsFieldPausedReason           MarketplaceProviderOfferingsListParamsField = "paused_reason"
-	MarketplaceProviderOfferingsListParamsFieldPlans                  MarketplaceProviderOfferingsListParamsField = "plans"
-	MarketplaceProviderOfferingsListParamsFieldPluginOptions          MarketplaceProviderOfferingsListParamsField = "plugin_options"
-	MarketplaceProviderOfferingsListParamsFieldPrivacyPolicyLink      MarketplaceProviderOfferingsListParamsField = "privacy_policy_link"
-	MarketplaceProviderOfferingsListParamsFieldProject                MarketplaceProviderOfferingsListParamsField = "project"
-	MarketplaceProviderOfferingsListParamsFieldProjectName            MarketplaceProviderOfferingsListParamsField = "project_name"
-	MarketplaceProviderOfferingsListParamsFieldProjectUuid            MarketplaceProviderOfferingsListParamsField = "project_uuid"
-	MarketplaceProviderOfferingsListParamsFieldQuotas                 MarketplaceProviderOfferingsListParamsField = "quotas"
-	MarketplaceProviderOfferingsListParamsFieldResourceOptions        MarketplaceProviderOfferingsListParamsField = "resource_options"
-	MarketplaceProviderOfferingsListParamsFieldRoles                  MarketplaceProviderOfferingsListParamsField = "roles"
-	MarketplaceProviderOfferingsListParamsFieldScope                  MarketplaceProviderOfferingsListParamsField = "scope"
-	MarketplaceProviderOfferingsListParamsFieldScopeErrorMessage      MarketplaceProviderOfferingsListParamsField = "scope_error_message"
-	MarketplaceProviderOfferingsListParamsFieldScopeName              MarketplaceProviderOfferingsListParamsField = "scope_name"
-	MarketplaceProviderOfferingsListParamsFieldScopeState             MarketplaceProviderOfferingsListParamsField = "scope_state"
-	MarketplaceProviderOfferingsListParamsFieldScopeUuid              MarketplaceProviderOfferingsListParamsField = "scope_uuid"
-	MarketplaceProviderOfferingsListParamsFieldScreenshots            MarketplaceProviderOfferingsListParamsField = "screenshots"
-	MarketplaceProviderOfferingsListParamsFieldSecretOptions          MarketplaceProviderOfferingsListParamsField = "secret_options"
-	MarketplaceProviderOfferingsListParamsFieldServiceAttributes      MarketplaceProviderOfferingsListParamsField = "service_attributes"
-	MarketplaceProviderOfferingsListParamsFieldShared                 MarketplaceProviderOfferingsListParamsField = "shared"
-	MarketplaceProviderOfferingsListParamsFieldSlug                   MarketplaceProviderOfferingsListParamsField = "slug"
-	MarketplaceProviderOfferingsListParamsFieldState                  MarketplaceProviderOfferingsListParamsField = "state"
-	MarketplaceProviderOfferingsListParamsFieldTermsOfService         MarketplaceProviderOfferingsListParamsField = "terms_of_service"
-	MarketplaceProviderOfferingsListParamsFieldTermsOfServiceLink     MarketplaceProviderOfferingsListParamsField = "terms_of_service_link"
-	MarketplaceProviderOfferingsListParamsFieldThumbnail              MarketplaceProviderOfferingsListParamsField = "thumbnail"
-	MarketplaceProviderOfferingsListParamsFieldTotalCost              MarketplaceProviderOfferingsListParamsField = "total_cost"
-	MarketplaceProviderOfferingsListParamsFieldTotalCostEstimated     MarketplaceProviderOfferingsListParamsField = "total_cost_estimated"
-	MarketplaceProviderOfferingsListParamsFieldTotalCustomers         MarketplaceProviderOfferingsListParamsField = "total_customers"
-	MarketplaceProviderOfferingsListParamsFieldType                   MarketplaceProviderOfferingsListParamsField = "type"
-	MarketplaceProviderOfferingsListParamsFieldUrl                    MarketplaceProviderOfferingsListParamsField = "url"
-	MarketplaceProviderOfferingsListParamsFieldUuid                   MarketplaceProviderOfferingsListParamsField = "uuid"
-	MarketplaceProviderOfferingsListParamsFieldVendorDetails          MarketplaceProviderOfferingsListParamsField = "vendor_details"
+	MarketplaceProviderOfferingsListParamsFieldAccessUrl                 MarketplaceProviderOfferingsListParamsField = "access_url"
+	MarketplaceProviderOfferingsListParamsFieldAttributes                MarketplaceProviderOfferingsListParamsField = "attributes"
+	MarketplaceProviderOfferingsListParamsFieldBackendId                 MarketplaceProviderOfferingsListParamsField = "backend_id"
+	MarketplaceProviderOfferingsListParamsFieldBackendMetadata           MarketplaceProviderOfferingsListParamsField = "backend_metadata"
+	MarketplaceProviderOfferingsListParamsFieldBillable                  MarketplaceProviderOfferingsListParamsField = "billable"
+	MarketplaceProviderOfferingsListParamsFieldCategory                  MarketplaceProviderOfferingsListParamsField = "category"
+	MarketplaceProviderOfferingsListParamsFieldCategoryTitle             MarketplaceProviderOfferingsListParamsField = "category_title"
+	MarketplaceProviderOfferingsListParamsFieldCategoryUuid              MarketplaceProviderOfferingsListParamsField = "category_uuid"
+	MarketplaceProviderOfferingsListParamsFieldCitationCount             MarketplaceProviderOfferingsListParamsField = "citation_count"
+	MarketplaceProviderOfferingsListParamsFieldComponents                MarketplaceProviderOfferingsListParamsField = "components"
+	MarketplaceProviderOfferingsListParamsFieldCountry                   MarketplaceProviderOfferingsListParamsField = "country"
+	MarketplaceProviderOfferingsListParamsFieldCreated                   MarketplaceProviderOfferingsListParamsField = "created"
+	MarketplaceProviderOfferingsListParamsFieldCustomer                  MarketplaceProviderOfferingsListParamsField = "customer"
+	MarketplaceProviderOfferingsListParamsFieldCustomerName              MarketplaceProviderOfferingsListParamsField = "customer_name"
+	MarketplaceProviderOfferingsListParamsFieldCustomerUuid              MarketplaceProviderOfferingsListParamsField = "customer_uuid"
+	MarketplaceProviderOfferingsListParamsFieldDataciteDoi               MarketplaceProviderOfferingsListParamsField = "datacite_doi"
+	MarketplaceProviderOfferingsListParamsFieldDescription               MarketplaceProviderOfferingsListParamsField = "description"
+	MarketplaceProviderOfferingsListParamsFieldEndpoints                 MarketplaceProviderOfferingsListParamsField = "endpoints"
+	MarketplaceProviderOfferingsListParamsFieldFiles                     MarketplaceProviderOfferingsListParamsField = "files"
+	MarketplaceProviderOfferingsListParamsFieldFullDescription           MarketplaceProviderOfferingsListParamsField = "full_description"
+	MarketplaceProviderOfferingsListParamsFieldGettingStarted            MarketplaceProviderOfferingsListParamsField = "getting_started"
+	MarketplaceProviderOfferingsListParamsFieldGoogleCalendarIsPublic    MarketplaceProviderOfferingsListParamsField = "google_calendar_is_public"
+	MarketplaceProviderOfferingsListParamsFieldGoogleCalendarLink        MarketplaceProviderOfferingsListParamsField = "google_calendar_link"
+	MarketplaceProviderOfferingsListParamsFieldHasComplianceRequirements MarketplaceProviderOfferingsListParamsField = "has_compliance_requirements"
+	MarketplaceProviderOfferingsListParamsFieldImage                     MarketplaceProviderOfferingsListParamsField = "image"
+	MarketplaceProviderOfferingsListParamsFieldIntegrationGuide          MarketplaceProviderOfferingsListParamsField = "integration_guide"
+	MarketplaceProviderOfferingsListParamsFieldIntegrationStatus         MarketplaceProviderOfferingsListParamsField = "integration_status"
+	MarketplaceProviderOfferingsListParamsFieldLatitude                  MarketplaceProviderOfferingsListParamsField = "latitude"
+	MarketplaceProviderOfferingsListParamsFieldLongitude                 MarketplaceProviderOfferingsListParamsField = "longitude"
+	MarketplaceProviderOfferingsListParamsFieldName                      MarketplaceProviderOfferingsListParamsField = "name"
+	MarketplaceProviderOfferingsListParamsFieldOptions                   MarketplaceProviderOfferingsListParamsField = "options"
+	MarketplaceProviderOfferingsListParamsFieldOrderCount                MarketplaceProviderOfferingsListParamsField = "order_count"
+	MarketplaceProviderOfferingsListParamsFieldOrganizationGroups        MarketplaceProviderOfferingsListParamsField = "organization_groups"
+	MarketplaceProviderOfferingsListParamsFieldParentDescription         MarketplaceProviderOfferingsListParamsField = "parent_description"
+	MarketplaceProviderOfferingsListParamsFieldParentName                MarketplaceProviderOfferingsListParamsField = "parent_name"
+	MarketplaceProviderOfferingsListParamsFieldParentUuid                MarketplaceProviderOfferingsListParamsField = "parent_uuid"
+	MarketplaceProviderOfferingsListParamsFieldPausedReason              MarketplaceProviderOfferingsListParamsField = "paused_reason"
+	MarketplaceProviderOfferingsListParamsFieldPlans                     MarketplaceProviderOfferingsListParamsField = "plans"
+	MarketplaceProviderOfferingsListParamsFieldPluginOptions             MarketplaceProviderOfferingsListParamsField = "plugin_options"
+	MarketplaceProviderOfferingsListParamsFieldPrivacyPolicyLink         MarketplaceProviderOfferingsListParamsField = "privacy_policy_link"
+	MarketplaceProviderOfferingsListParamsFieldProject                   MarketplaceProviderOfferingsListParamsField = "project"
+	MarketplaceProviderOfferingsListParamsFieldProjectName               MarketplaceProviderOfferingsListParamsField = "project_name"
+	MarketplaceProviderOfferingsListParamsFieldProjectUuid               MarketplaceProviderOfferingsListParamsField = "project_uuid"
+	MarketplaceProviderOfferingsListParamsFieldQuotas                    MarketplaceProviderOfferingsListParamsField = "quotas"
+	MarketplaceProviderOfferingsListParamsFieldResourceOptions           MarketplaceProviderOfferingsListParamsField = "resource_options"
+	MarketplaceProviderOfferingsListParamsFieldRoles                     MarketplaceProviderOfferingsListParamsField = "roles"
+	MarketplaceProviderOfferingsListParamsFieldScope                     MarketplaceProviderOfferingsListParamsField = "scope"
+	MarketplaceProviderOfferingsListParamsFieldScopeErrorMessage         MarketplaceProviderOfferingsListParamsField = "scope_error_message"
+	MarketplaceProviderOfferingsListParamsFieldScopeName                 MarketplaceProviderOfferingsListParamsField = "scope_name"
+	MarketplaceProviderOfferingsListParamsFieldScopeState                MarketplaceProviderOfferingsListParamsField = "scope_state"
+	MarketplaceProviderOfferingsListParamsFieldScopeUuid                 MarketplaceProviderOfferingsListParamsField = "scope_uuid"
+	MarketplaceProviderOfferingsListParamsFieldScreenshots               MarketplaceProviderOfferingsListParamsField = "screenshots"
+	MarketplaceProviderOfferingsListParamsFieldSecretOptions             MarketplaceProviderOfferingsListParamsField = "secret_options"
+	MarketplaceProviderOfferingsListParamsFieldServiceAttributes         MarketplaceProviderOfferingsListParamsField = "service_attributes"
+	MarketplaceProviderOfferingsListParamsFieldShared                    MarketplaceProviderOfferingsListParamsField = "shared"
+	MarketplaceProviderOfferingsListParamsFieldSlug                      MarketplaceProviderOfferingsListParamsField = "slug"
+	MarketplaceProviderOfferingsListParamsFieldState                     MarketplaceProviderOfferingsListParamsField = "state"
+	MarketplaceProviderOfferingsListParamsFieldTermsOfService            MarketplaceProviderOfferingsListParamsField = "terms_of_service"
+	MarketplaceProviderOfferingsListParamsFieldTermsOfServiceLink        MarketplaceProviderOfferingsListParamsField = "terms_of_service_link"
+	MarketplaceProviderOfferingsListParamsFieldThumbnail                 MarketplaceProviderOfferingsListParamsField = "thumbnail"
+	MarketplaceProviderOfferingsListParamsFieldTotalCost                 MarketplaceProviderOfferingsListParamsField = "total_cost"
+	MarketplaceProviderOfferingsListParamsFieldTotalCostEstimated        MarketplaceProviderOfferingsListParamsField = "total_cost_estimated"
+	MarketplaceProviderOfferingsListParamsFieldTotalCustomers            MarketplaceProviderOfferingsListParamsField = "total_customers"
+	MarketplaceProviderOfferingsListParamsFieldType                      MarketplaceProviderOfferingsListParamsField = "type"
+	MarketplaceProviderOfferingsListParamsFieldUrl                       MarketplaceProviderOfferingsListParamsField = "url"
+	MarketplaceProviderOfferingsListParamsFieldUuid                      MarketplaceProviderOfferingsListParamsField = "uuid"
+	MarketplaceProviderOfferingsListParamsFieldVendorDetails             MarketplaceProviderOfferingsListParamsField = "vendor_details"
 )
 
 // Defines values for MarketplaceProviderOfferingsListParamsO.
@@ -4222,72 +4239,73 @@ const (
 
 // Defines values for MarketplaceProviderOfferingsRetrieveParamsField.
 const (
-	MarketplaceProviderOfferingsRetrieveParamsFieldAccessUrl              MarketplaceProviderOfferingsRetrieveParamsField = "access_url"
-	MarketplaceProviderOfferingsRetrieveParamsFieldAttributes             MarketplaceProviderOfferingsRetrieveParamsField = "attributes"
-	MarketplaceProviderOfferingsRetrieveParamsFieldBackendId              MarketplaceProviderOfferingsRetrieveParamsField = "backend_id"
-	MarketplaceProviderOfferingsRetrieveParamsFieldBackendMetadata        MarketplaceProviderOfferingsRetrieveParamsField = "backend_metadata"
-	MarketplaceProviderOfferingsRetrieveParamsFieldBillable               MarketplaceProviderOfferingsRetrieveParamsField = "billable"
-	MarketplaceProviderOfferingsRetrieveParamsFieldCategory               MarketplaceProviderOfferingsRetrieveParamsField = "category"
-	MarketplaceProviderOfferingsRetrieveParamsFieldCategoryTitle          MarketplaceProviderOfferingsRetrieveParamsField = "category_title"
-	MarketplaceProviderOfferingsRetrieveParamsFieldCategoryUuid           MarketplaceProviderOfferingsRetrieveParamsField = "category_uuid"
-	MarketplaceProviderOfferingsRetrieveParamsFieldCitationCount          MarketplaceProviderOfferingsRetrieveParamsField = "citation_count"
-	MarketplaceProviderOfferingsRetrieveParamsFieldComponents             MarketplaceProviderOfferingsRetrieveParamsField = "components"
-	MarketplaceProviderOfferingsRetrieveParamsFieldCountry                MarketplaceProviderOfferingsRetrieveParamsField = "country"
-	MarketplaceProviderOfferingsRetrieveParamsFieldCreated                MarketplaceProviderOfferingsRetrieveParamsField = "created"
-	MarketplaceProviderOfferingsRetrieveParamsFieldCustomer               MarketplaceProviderOfferingsRetrieveParamsField = "customer"
-	MarketplaceProviderOfferingsRetrieveParamsFieldCustomerName           MarketplaceProviderOfferingsRetrieveParamsField = "customer_name"
-	MarketplaceProviderOfferingsRetrieveParamsFieldCustomerUuid           MarketplaceProviderOfferingsRetrieveParamsField = "customer_uuid"
-	MarketplaceProviderOfferingsRetrieveParamsFieldDataciteDoi            MarketplaceProviderOfferingsRetrieveParamsField = "datacite_doi"
-	MarketplaceProviderOfferingsRetrieveParamsFieldDescription            MarketplaceProviderOfferingsRetrieveParamsField = "description"
-	MarketplaceProviderOfferingsRetrieveParamsFieldEndpoints              MarketplaceProviderOfferingsRetrieveParamsField = "endpoints"
-	MarketplaceProviderOfferingsRetrieveParamsFieldFiles                  MarketplaceProviderOfferingsRetrieveParamsField = "files"
-	MarketplaceProviderOfferingsRetrieveParamsFieldFullDescription        MarketplaceProviderOfferingsRetrieveParamsField = "full_description"
-	MarketplaceProviderOfferingsRetrieveParamsFieldGettingStarted         MarketplaceProviderOfferingsRetrieveParamsField = "getting_started"
-	MarketplaceProviderOfferingsRetrieveParamsFieldGoogleCalendarIsPublic MarketplaceProviderOfferingsRetrieveParamsField = "google_calendar_is_public"
-	MarketplaceProviderOfferingsRetrieveParamsFieldGoogleCalendarLink     MarketplaceProviderOfferingsRetrieveParamsField = "google_calendar_link"
-	MarketplaceProviderOfferingsRetrieveParamsFieldImage                  MarketplaceProviderOfferingsRetrieveParamsField = "image"
-	MarketplaceProviderOfferingsRetrieveParamsFieldIntegrationGuide       MarketplaceProviderOfferingsRetrieveParamsField = "integration_guide"
-	MarketplaceProviderOfferingsRetrieveParamsFieldIntegrationStatus      MarketplaceProviderOfferingsRetrieveParamsField = "integration_status"
-	MarketplaceProviderOfferingsRetrieveParamsFieldLatitude               MarketplaceProviderOfferingsRetrieveParamsField = "latitude"
-	MarketplaceProviderOfferingsRetrieveParamsFieldLongitude              MarketplaceProviderOfferingsRetrieveParamsField = "longitude"
-	MarketplaceProviderOfferingsRetrieveParamsFieldName                   MarketplaceProviderOfferingsRetrieveParamsField = "name"
-	MarketplaceProviderOfferingsRetrieveParamsFieldOptions                MarketplaceProviderOfferingsRetrieveParamsField = "options"
-	MarketplaceProviderOfferingsRetrieveParamsFieldOrderCount             MarketplaceProviderOfferingsRetrieveParamsField = "order_count"
-	MarketplaceProviderOfferingsRetrieveParamsFieldOrganizationGroups     MarketplaceProviderOfferingsRetrieveParamsField = "organization_groups"
-	MarketplaceProviderOfferingsRetrieveParamsFieldParentDescription      MarketplaceProviderOfferingsRetrieveParamsField = "parent_description"
-	MarketplaceProviderOfferingsRetrieveParamsFieldParentName             MarketplaceProviderOfferingsRetrieveParamsField = "parent_name"
-	MarketplaceProviderOfferingsRetrieveParamsFieldParentUuid             MarketplaceProviderOfferingsRetrieveParamsField = "parent_uuid"
-	MarketplaceProviderOfferingsRetrieveParamsFieldPausedReason           MarketplaceProviderOfferingsRetrieveParamsField = "paused_reason"
-	MarketplaceProviderOfferingsRetrieveParamsFieldPlans                  MarketplaceProviderOfferingsRetrieveParamsField = "plans"
-	MarketplaceProviderOfferingsRetrieveParamsFieldPluginOptions          MarketplaceProviderOfferingsRetrieveParamsField = "plugin_options"
-	MarketplaceProviderOfferingsRetrieveParamsFieldPrivacyPolicyLink      MarketplaceProviderOfferingsRetrieveParamsField = "privacy_policy_link"
-	MarketplaceProviderOfferingsRetrieveParamsFieldProject                MarketplaceProviderOfferingsRetrieveParamsField = "project"
-	MarketplaceProviderOfferingsRetrieveParamsFieldProjectName            MarketplaceProviderOfferingsRetrieveParamsField = "project_name"
-	MarketplaceProviderOfferingsRetrieveParamsFieldProjectUuid            MarketplaceProviderOfferingsRetrieveParamsField = "project_uuid"
-	MarketplaceProviderOfferingsRetrieveParamsFieldQuotas                 MarketplaceProviderOfferingsRetrieveParamsField = "quotas"
-	MarketplaceProviderOfferingsRetrieveParamsFieldResourceOptions        MarketplaceProviderOfferingsRetrieveParamsField = "resource_options"
-	MarketplaceProviderOfferingsRetrieveParamsFieldRoles                  MarketplaceProviderOfferingsRetrieveParamsField = "roles"
-	MarketplaceProviderOfferingsRetrieveParamsFieldScope                  MarketplaceProviderOfferingsRetrieveParamsField = "scope"
-	MarketplaceProviderOfferingsRetrieveParamsFieldScopeErrorMessage      MarketplaceProviderOfferingsRetrieveParamsField = "scope_error_message"
-	MarketplaceProviderOfferingsRetrieveParamsFieldScopeName              MarketplaceProviderOfferingsRetrieveParamsField = "scope_name"
-	MarketplaceProviderOfferingsRetrieveParamsFieldScopeState             MarketplaceProviderOfferingsRetrieveParamsField = "scope_state"
-	MarketplaceProviderOfferingsRetrieveParamsFieldScopeUuid              MarketplaceProviderOfferingsRetrieveParamsField = "scope_uuid"
-	MarketplaceProviderOfferingsRetrieveParamsFieldScreenshots            MarketplaceProviderOfferingsRetrieveParamsField = "screenshots"
-	MarketplaceProviderOfferingsRetrieveParamsFieldSecretOptions          MarketplaceProviderOfferingsRetrieveParamsField = "secret_options"
-	MarketplaceProviderOfferingsRetrieveParamsFieldServiceAttributes      MarketplaceProviderOfferingsRetrieveParamsField = "service_attributes"
-	MarketplaceProviderOfferingsRetrieveParamsFieldShared                 MarketplaceProviderOfferingsRetrieveParamsField = "shared"
-	MarketplaceProviderOfferingsRetrieveParamsFieldSlug                   MarketplaceProviderOfferingsRetrieveParamsField = "slug"
-	MarketplaceProviderOfferingsRetrieveParamsFieldState                  MarketplaceProviderOfferingsRetrieveParamsField = "state"
-	MarketplaceProviderOfferingsRetrieveParamsFieldTermsOfService         MarketplaceProviderOfferingsRetrieveParamsField = "terms_of_service"
-	MarketplaceProviderOfferingsRetrieveParamsFieldTermsOfServiceLink     MarketplaceProviderOfferingsRetrieveParamsField = "terms_of_service_link"
-	MarketplaceProviderOfferingsRetrieveParamsFieldThumbnail              MarketplaceProviderOfferingsRetrieveParamsField = "thumbnail"
-	MarketplaceProviderOfferingsRetrieveParamsFieldTotalCost              MarketplaceProviderOfferingsRetrieveParamsField = "total_cost"
-	MarketplaceProviderOfferingsRetrieveParamsFieldTotalCostEstimated     MarketplaceProviderOfferingsRetrieveParamsField = "total_cost_estimated"
-	MarketplaceProviderOfferingsRetrieveParamsFieldTotalCustomers         MarketplaceProviderOfferingsRetrieveParamsField = "total_customers"
-	MarketplaceProviderOfferingsRetrieveParamsFieldType                   MarketplaceProviderOfferingsRetrieveParamsField = "type"
-	MarketplaceProviderOfferingsRetrieveParamsFieldUrl                    MarketplaceProviderOfferingsRetrieveParamsField = "url"
-	MarketplaceProviderOfferingsRetrieveParamsFieldUuid                   MarketplaceProviderOfferingsRetrieveParamsField = "uuid"
-	MarketplaceProviderOfferingsRetrieveParamsFieldVendorDetails          MarketplaceProviderOfferingsRetrieveParamsField = "vendor_details"
+	MarketplaceProviderOfferingsRetrieveParamsFieldAccessUrl                 MarketplaceProviderOfferingsRetrieveParamsField = "access_url"
+	MarketplaceProviderOfferingsRetrieveParamsFieldAttributes                MarketplaceProviderOfferingsRetrieveParamsField = "attributes"
+	MarketplaceProviderOfferingsRetrieveParamsFieldBackendId                 MarketplaceProviderOfferingsRetrieveParamsField = "backend_id"
+	MarketplaceProviderOfferingsRetrieveParamsFieldBackendMetadata           MarketplaceProviderOfferingsRetrieveParamsField = "backend_metadata"
+	MarketplaceProviderOfferingsRetrieveParamsFieldBillable                  MarketplaceProviderOfferingsRetrieveParamsField = "billable"
+	MarketplaceProviderOfferingsRetrieveParamsFieldCategory                  MarketplaceProviderOfferingsRetrieveParamsField = "category"
+	MarketplaceProviderOfferingsRetrieveParamsFieldCategoryTitle             MarketplaceProviderOfferingsRetrieveParamsField = "category_title"
+	MarketplaceProviderOfferingsRetrieveParamsFieldCategoryUuid              MarketplaceProviderOfferingsRetrieveParamsField = "category_uuid"
+	MarketplaceProviderOfferingsRetrieveParamsFieldCitationCount             MarketplaceProviderOfferingsRetrieveParamsField = "citation_count"
+	MarketplaceProviderOfferingsRetrieveParamsFieldComponents                MarketplaceProviderOfferingsRetrieveParamsField = "components"
+	MarketplaceProviderOfferingsRetrieveParamsFieldCountry                   MarketplaceProviderOfferingsRetrieveParamsField = "country"
+	MarketplaceProviderOfferingsRetrieveParamsFieldCreated                   MarketplaceProviderOfferingsRetrieveParamsField = "created"
+	MarketplaceProviderOfferingsRetrieveParamsFieldCustomer                  MarketplaceProviderOfferingsRetrieveParamsField = "customer"
+	MarketplaceProviderOfferingsRetrieveParamsFieldCustomerName              MarketplaceProviderOfferingsRetrieveParamsField = "customer_name"
+	MarketplaceProviderOfferingsRetrieveParamsFieldCustomerUuid              MarketplaceProviderOfferingsRetrieveParamsField = "customer_uuid"
+	MarketplaceProviderOfferingsRetrieveParamsFieldDataciteDoi               MarketplaceProviderOfferingsRetrieveParamsField = "datacite_doi"
+	MarketplaceProviderOfferingsRetrieveParamsFieldDescription               MarketplaceProviderOfferingsRetrieveParamsField = "description"
+	MarketplaceProviderOfferingsRetrieveParamsFieldEndpoints                 MarketplaceProviderOfferingsRetrieveParamsField = "endpoints"
+	MarketplaceProviderOfferingsRetrieveParamsFieldFiles                     MarketplaceProviderOfferingsRetrieveParamsField = "files"
+	MarketplaceProviderOfferingsRetrieveParamsFieldFullDescription           MarketplaceProviderOfferingsRetrieveParamsField = "full_description"
+	MarketplaceProviderOfferingsRetrieveParamsFieldGettingStarted            MarketplaceProviderOfferingsRetrieveParamsField = "getting_started"
+	MarketplaceProviderOfferingsRetrieveParamsFieldGoogleCalendarIsPublic    MarketplaceProviderOfferingsRetrieveParamsField = "google_calendar_is_public"
+	MarketplaceProviderOfferingsRetrieveParamsFieldGoogleCalendarLink        MarketplaceProviderOfferingsRetrieveParamsField = "google_calendar_link"
+	MarketplaceProviderOfferingsRetrieveParamsFieldHasComplianceRequirements MarketplaceProviderOfferingsRetrieveParamsField = "has_compliance_requirements"
+	MarketplaceProviderOfferingsRetrieveParamsFieldImage                     MarketplaceProviderOfferingsRetrieveParamsField = "image"
+	MarketplaceProviderOfferingsRetrieveParamsFieldIntegrationGuide          MarketplaceProviderOfferingsRetrieveParamsField = "integration_guide"
+	MarketplaceProviderOfferingsRetrieveParamsFieldIntegrationStatus         MarketplaceProviderOfferingsRetrieveParamsField = "integration_status"
+	MarketplaceProviderOfferingsRetrieveParamsFieldLatitude                  MarketplaceProviderOfferingsRetrieveParamsField = "latitude"
+	MarketplaceProviderOfferingsRetrieveParamsFieldLongitude                 MarketplaceProviderOfferingsRetrieveParamsField = "longitude"
+	MarketplaceProviderOfferingsRetrieveParamsFieldName                      MarketplaceProviderOfferingsRetrieveParamsField = "name"
+	MarketplaceProviderOfferingsRetrieveParamsFieldOptions                   MarketplaceProviderOfferingsRetrieveParamsField = "options"
+	MarketplaceProviderOfferingsRetrieveParamsFieldOrderCount                MarketplaceProviderOfferingsRetrieveParamsField = "order_count"
+	MarketplaceProviderOfferingsRetrieveParamsFieldOrganizationGroups        MarketplaceProviderOfferingsRetrieveParamsField = "organization_groups"
+	MarketplaceProviderOfferingsRetrieveParamsFieldParentDescription         MarketplaceProviderOfferingsRetrieveParamsField = "parent_description"
+	MarketplaceProviderOfferingsRetrieveParamsFieldParentName                MarketplaceProviderOfferingsRetrieveParamsField = "parent_name"
+	MarketplaceProviderOfferingsRetrieveParamsFieldParentUuid                MarketplaceProviderOfferingsRetrieveParamsField = "parent_uuid"
+	MarketplaceProviderOfferingsRetrieveParamsFieldPausedReason              MarketplaceProviderOfferingsRetrieveParamsField = "paused_reason"
+	MarketplaceProviderOfferingsRetrieveParamsFieldPlans                     MarketplaceProviderOfferingsRetrieveParamsField = "plans"
+	MarketplaceProviderOfferingsRetrieveParamsFieldPluginOptions             MarketplaceProviderOfferingsRetrieveParamsField = "plugin_options"
+	MarketplaceProviderOfferingsRetrieveParamsFieldPrivacyPolicyLink         MarketplaceProviderOfferingsRetrieveParamsField = "privacy_policy_link"
+	MarketplaceProviderOfferingsRetrieveParamsFieldProject                   MarketplaceProviderOfferingsRetrieveParamsField = "project"
+	MarketplaceProviderOfferingsRetrieveParamsFieldProjectName               MarketplaceProviderOfferingsRetrieveParamsField = "project_name"
+	MarketplaceProviderOfferingsRetrieveParamsFieldProjectUuid               MarketplaceProviderOfferingsRetrieveParamsField = "project_uuid"
+	MarketplaceProviderOfferingsRetrieveParamsFieldQuotas                    MarketplaceProviderOfferingsRetrieveParamsField = "quotas"
+	MarketplaceProviderOfferingsRetrieveParamsFieldResourceOptions           MarketplaceProviderOfferingsRetrieveParamsField = "resource_options"
+	MarketplaceProviderOfferingsRetrieveParamsFieldRoles                     MarketplaceProviderOfferingsRetrieveParamsField = "roles"
+	MarketplaceProviderOfferingsRetrieveParamsFieldScope                     MarketplaceProviderOfferingsRetrieveParamsField = "scope"
+	MarketplaceProviderOfferingsRetrieveParamsFieldScopeErrorMessage         MarketplaceProviderOfferingsRetrieveParamsField = "scope_error_message"
+	MarketplaceProviderOfferingsRetrieveParamsFieldScopeName                 MarketplaceProviderOfferingsRetrieveParamsField = "scope_name"
+	MarketplaceProviderOfferingsRetrieveParamsFieldScopeState                MarketplaceProviderOfferingsRetrieveParamsField = "scope_state"
+	MarketplaceProviderOfferingsRetrieveParamsFieldScopeUuid                 MarketplaceProviderOfferingsRetrieveParamsField = "scope_uuid"
+	MarketplaceProviderOfferingsRetrieveParamsFieldScreenshots               MarketplaceProviderOfferingsRetrieveParamsField = "screenshots"
+	MarketplaceProviderOfferingsRetrieveParamsFieldSecretOptions             MarketplaceProviderOfferingsRetrieveParamsField = "secret_options"
+	MarketplaceProviderOfferingsRetrieveParamsFieldServiceAttributes         MarketplaceProviderOfferingsRetrieveParamsField = "service_attributes"
+	MarketplaceProviderOfferingsRetrieveParamsFieldShared                    MarketplaceProviderOfferingsRetrieveParamsField = "shared"
+	MarketplaceProviderOfferingsRetrieveParamsFieldSlug                      MarketplaceProviderOfferingsRetrieveParamsField = "slug"
+	MarketplaceProviderOfferingsRetrieveParamsFieldState                     MarketplaceProviderOfferingsRetrieveParamsField = "state"
+	MarketplaceProviderOfferingsRetrieveParamsFieldTermsOfService            MarketplaceProviderOfferingsRetrieveParamsField = "terms_of_service"
+	MarketplaceProviderOfferingsRetrieveParamsFieldTermsOfServiceLink        MarketplaceProviderOfferingsRetrieveParamsField = "terms_of_service_link"
+	MarketplaceProviderOfferingsRetrieveParamsFieldThumbnail                 MarketplaceProviderOfferingsRetrieveParamsField = "thumbnail"
+	MarketplaceProviderOfferingsRetrieveParamsFieldTotalCost                 MarketplaceProviderOfferingsRetrieveParamsField = "total_cost"
+	MarketplaceProviderOfferingsRetrieveParamsFieldTotalCostEstimated        MarketplaceProviderOfferingsRetrieveParamsField = "total_cost_estimated"
+	MarketplaceProviderOfferingsRetrieveParamsFieldTotalCustomers            MarketplaceProviderOfferingsRetrieveParamsField = "total_customers"
+	MarketplaceProviderOfferingsRetrieveParamsFieldType                      MarketplaceProviderOfferingsRetrieveParamsField = "type"
+	MarketplaceProviderOfferingsRetrieveParamsFieldUrl                       MarketplaceProviderOfferingsRetrieveParamsField = "url"
+	MarketplaceProviderOfferingsRetrieveParamsFieldUuid                      MarketplaceProviderOfferingsRetrieveParamsField = "uuid"
+	MarketplaceProviderOfferingsRetrieveParamsFieldVendorDetails             MarketplaceProviderOfferingsRetrieveParamsField = "vendor_details"
 )
 
 // Defines values for MarketplaceProviderOfferingsComponentStatsListParamsO.
@@ -4370,142 +4388,144 @@ const (
 
 // Defines values for MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField.
 const (
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldAccessUrl              MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "access_url"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldAttributes             MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "attributes"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldBackendId              MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "backend_id"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldBackendMetadata        MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "backend_metadata"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldBillable               MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "billable"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldCategory               MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "category"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldCategoryTitle          MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "category_title"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldCategoryUuid           MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "category_uuid"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldCitationCount          MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "citation_count"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldComponents             MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "components"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldCountry                MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "country"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldCreated                MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "created"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldCustomer               MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "customer"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldCustomerName           MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "customer_name"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldCustomerUuid           MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "customer_uuid"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldDataciteDoi            MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "datacite_doi"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldDescription            MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "description"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldEndpoints              MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "endpoints"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldFiles                  MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "files"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldFullDescription        MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "full_description"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldGettingStarted         MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "getting_started"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldGoogleCalendarIsPublic MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "google_calendar_is_public"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldGoogleCalendarLink     MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "google_calendar_link"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldImage                  MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "image"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldIntegrationGuide       MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "integration_guide"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldIntegrationStatus      MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "integration_status"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldLatitude               MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "latitude"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldLongitude              MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "longitude"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldName                   MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "name"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldOptions                MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "options"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldOrderCount             MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "order_count"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldOrganizationGroups     MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "organization_groups"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldParentDescription      MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "parent_description"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldParentName             MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "parent_name"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldParentUuid             MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "parent_uuid"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldPausedReason           MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "paused_reason"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldPlans                  MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "plans"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldPluginOptions          MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "plugin_options"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldPrivacyPolicyLink      MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "privacy_policy_link"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldProject                MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "project"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldProjectName            MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "project_name"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldProjectUuid            MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "project_uuid"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldQuotas                 MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "quotas"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldResourceOptions        MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "resource_options"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldRoles                  MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "roles"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldScope                  MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "scope"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldScopeErrorMessage      MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "scope_error_message"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldScopeName              MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "scope_name"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldScopeState             MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "scope_state"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldScopeUuid              MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "scope_uuid"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldScreenshots            MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "screenshots"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldSecretOptions          MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "secret_options"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldServiceAttributes      MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "service_attributes"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldShared                 MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "shared"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldSlug                   MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "slug"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldState                  MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "state"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldTermsOfService         MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "terms_of_service"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldTermsOfServiceLink     MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "terms_of_service_link"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldThumbnail              MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "thumbnail"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldTotalCost              MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "total_cost"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldTotalCostEstimated     MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "total_cost_estimated"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldTotalCustomers         MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "total_customers"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldType                   MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "type"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldUrl                    MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "url"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldUuid                   MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "uuid"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldVendorDetails          MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "vendor_details"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldAccessUrl                 MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "access_url"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldAttributes                MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "attributes"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldBackendId                 MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "backend_id"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldBackendMetadata           MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "backend_metadata"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldBillable                  MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "billable"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldCategory                  MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "category"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldCategoryTitle             MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "category_title"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldCategoryUuid              MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "category_uuid"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldCitationCount             MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "citation_count"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldComponents                MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "components"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldCountry                   MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "country"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldCreated                   MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "created"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldCustomer                  MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "customer"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldCustomerName              MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "customer_name"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldCustomerUuid              MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "customer_uuid"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldDataciteDoi               MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "datacite_doi"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldDescription               MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "description"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldEndpoints                 MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "endpoints"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldFiles                     MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "files"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldFullDescription           MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "full_description"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldGettingStarted            MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "getting_started"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldGoogleCalendarIsPublic    MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "google_calendar_is_public"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldGoogleCalendarLink        MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "google_calendar_link"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldHasComplianceRequirements MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "has_compliance_requirements"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldImage                     MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "image"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldIntegrationGuide          MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "integration_guide"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldIntegrationStatus         MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "integration_status"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldLatitude                  MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "latitude"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldLongitude                 MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "longitude"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldName                      MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "name"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldOptions                   MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "options"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldOrderCount                MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "order_count"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldOrganizationGroups        MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "organization_groups"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldParentDescription         MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "parent_description"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldParentName                MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "parent_name"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldParentUuid                MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "parent_uuid"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldPausedReason              MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "paused_reason"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldPlans                     MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "plans"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldPluginOptions             MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "plugin_options"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldPrivacyPolicyLink         MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "privacy_policy_link"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldProject                   MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "project"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldProjectName               MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "project_name"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldProjectUuid               MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "project_uuid"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldQuotas                    MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "quotas"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldResourceOptions           MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "resource_options"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldRoles                     MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "roles"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldScope                     MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "scope"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldScopeErrorMessage         MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "scope_error_message"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldScopeName                 MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "scope_name"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldScopeState                MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "scope_state"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldScopeUuid                 MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "scope_uuid"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldScreenshots               MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "screenshots"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldSecretOptions             MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "secret_options"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldServiceAttributes         MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "service_attributes"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldShared                    MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "shared"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldSlug                      MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "slug"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldState                     MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "state"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldTermsOfService            MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "terms_of_service"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldTermsOfServiceLink        MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "terms_of_service_link"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldThumbnail                 MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "thumbnail"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldTotalCost                 MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "total_cost"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldTotalCostEstimated        MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "total_cost_estimated"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldTotalCustomers            MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "total_customers"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldType                      MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "type"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldUrl                       MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "url"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldUuid                      MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "uuid"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldVendorDetails             MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "vendor_details"
 )
 
 // Defines values for MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField.
 const (
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldAccessUrl              MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "access_url"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldAttributes             MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "attributes"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldBackendId              MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "backend_id"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldBackendMetadata        MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "backend_metadata"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldBillable               MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "billable"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldCategory               MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "category"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldCategoryTitle          MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "category_title"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldCategoryUuid           MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "category_uuid"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldCitationCount          MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "citation_count"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldComponents             MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "components"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldCountry                MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "country"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldCreated                MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "created"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldCustomer               MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "customer"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldCustomerName           MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "customer_name"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldCustomerUuid           MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "customer_uuid"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldDataciteDoi            MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "datacite_doi"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldDescription            MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "description"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldEndpoints              MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "endpoints"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldFiles                  MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "files"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldFullDescription        MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "full_description"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldGettingStarted         MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "getting_started"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldGoogleCalendarIsPublic MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "google_calendar_is_public"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldGoogleCalendarLink     MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "google_calendar_link"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldImage                  MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "image"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldIntegrationGuide       MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "integration_guide"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldIntegrationStatus      MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "integration_status"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldLatitude               MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "latitude"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldLongitude              MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "longitude"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldName                   MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "name"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldOptions                MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "options"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldOrderCount             MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "order_count"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldOrganizationGroups     MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "organization_groups"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldParentDescription      MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "parent_description"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldParentName             MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "parent_name"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldParentUuid             MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "parent_uuid"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldPausedReason           MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "paused_reason"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldPlans                  MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "plans"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldPluginOptions          MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "plugin_options"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldPrivacyPolicyLink      MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "privacy_policy_link"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldProject                MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "project"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldProjectName            MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "project_name"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldProjectUuid            MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "project_uuid"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldQuotas                 MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "quotas"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldResourceOptions        MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "resource_options"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldRoles                  MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "roles"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldScope                  MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "scope"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldScopeErrorMessage      MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "scope_error_message"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldScopeName              MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "scope_name"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldScopeState             MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "scope_state"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldScopeUuid              MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "scope_uuid"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldScreenshots            MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "screenshots"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldSecretOptions          MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "secret_options"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldServiceAttributes      MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "service_attributes"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldShared                 MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "shared"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldSlug                   MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "slug"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldState                  MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "state"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldTermsOfService         MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "terms_of_service"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldTermsOfServiceLink     MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "terms_of_service_link"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldThumbnail              MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "thumbnail"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldTotalCost              MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "total_cost"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldTotalCostEstimated     MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "total_cost_estimated"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldTotalCustomers         MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "total_customers"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldType                   MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "type"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldUrl                    MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "url"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldUuid                   MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "uuid"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldVendorDetails          MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "vendor_details"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldAccessUrl                 MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "access_url"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldAttributes                MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "attributes"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldBackendId                 MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "backend_id"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldBackendMetadata           MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "backend_metadata"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldBillable                  MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "billable"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldCategory                  MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "category"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldCategoryTitle             MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "category_title"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldCategoryUuid              MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "category_uuid"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldCitationCount             MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "citation_count"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldComponents                MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "components"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldCountry                   MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "country"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldCreated                   MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "created"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldCustomer                  MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "customer"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldCustomerName              MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "customer_name"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldCustomerUuid              MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "customer_uuid"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldDataciteDoi               MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "datacite_doi"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldDescription               MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "description"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldEndpoints                 MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "endpoints"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldFiles                     MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "files"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldFullDescription           MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "full_description"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldGettingStarted            MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "getting_started"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldGoogleCalendarIsPublic    MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "google_calendar_is_public"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldGoogleCalendarLink        MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "google_calendar_link"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldHasComplianceRequirements MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "has_compliance_requirements"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldImage                     MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "image"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldIntegrationGuide          MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "integration_guide"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldIntegrationStatus         MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "integration_status"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldLatitude                  MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "latitude"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldLongitude                 MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "longitude"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldName                      MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "name"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldOptions                   MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "options"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldOrderCount                MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "order_count"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldOrganizationGroups        MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "organization_groups"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldParentDescription         MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "parent_description"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldParentName                MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "parent_name"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldParentUuid                MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "parent_uuid"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldPausedReason              MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "paused_reason"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldPlans                     MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "plans"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldPluginOptions             MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "plugin_options"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldPrivacyPolicyLink         MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "privacy_policy_link"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldProject                   MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "project"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldProjectName               MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "project_name"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldProjectUuid               MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "project_uuid"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldQuotas                    MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "quotas"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldResourceOptions           MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "resource_options"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldRoles                     MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "roles"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldScope                     MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "scope"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldScopeErrorMessage         MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "scope_error_message"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldScopeName                 MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "scope_name"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldScopeState                MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "scope_state"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldScopeUuid                 MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "scope_uuid"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldScreenshots               MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "screenshots"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldSecretOptions             MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "secret_options"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldServiceAttributes         MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "service_attributes"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldShared                    MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "shared"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldSlug                      MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "slug"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldState                     MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "state"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldTermsOfService            MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "terms_of_service"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldTermsOfServiceLink        MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "terms_of_service_link"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldThumbnail                 MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "thumbnail"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldTotalCost                 MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "total_cost"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldTotalCostEstimated        MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "total_cost_estimated"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldTotalCustomers            MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "total_customers"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldType                      MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "type"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldUrl                       MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "url"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldUuid                      MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "uuid"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldVendorDetails             MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "vendor_details"
 )
 
 // Defines values for MarketplaceProviderOfferingsListUsersListParamsField.
@@ -4537,142 +4557,144 @@ const (
 
 // Defines values for MarketplaceProviderOfferingsStatsRetrieveParamsField.
 const (
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldAccessUrl              MarketplaceProviderOfferingsStatsRetrieveParamsField = "access_url"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldAttributes             MarketplaceProviderOfferingsStatsRetrieveParamsField = "attributes"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldBackendId              MarketplaceProviderOfferingsStatsRetrieveParamsField = "backend_id"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldBackendMetadata        MarketplaceProviderOfferingsStatsRetrieveParamsField = "backend_metadata"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldBillable               MarketplaceProviderOfferingsStatsRetrieveParamsField = "billable"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldCategory               MarketplaceProviderOfferingsStatsRetrieveParamsField = "category"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldCategoryTitle          MarketplaceProviderOfferingsStatsRetrieveParamsField = "category_title"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldCategoryUuid           MarketplaceProviderOfferingsStatsRetrieveParamsField = "category_uuid"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldCitationCount          MarketplaceProviderOfferingsStatsRetrieveParamsField = "citation_count"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldComponents             MarketplaceProviderOfferingsStatsRetrieveParamsField = "components"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldCountry                MarketplaceProviderOfferingsStatsRetrieveParamsField = "country"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldCreated                MarketplaceProviderOfferingsStatsRetrieveParamsField = "created"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldCustomer               MarketplaceProviderOfferingsStatsRetrieveParamsField = "customer"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldCustomerName           MarketplaceProviderOfferingsStatsRetrieveParamsField = "customer_name"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldCustomerUuid           MarketplaceProviderOfferingsStatsRetrieveParamsField = "customer_uuid"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldDataciteDoi            MarketplaceProviderOfferingsStatsRetrieveParamsField = "datacite_doi"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldDescription            MarketplaceProviderOfferingsStatsRetrieveParamsField = "description"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldEndpoints              MarketplaceProviderOfferingsStatsRetrieveParamsField = "endpoints"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldFiles                  MarketplaceProviderOfferingsStatsRetrieveParamsField = "files"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldFullDescription        MarketplaceProviderOfferingsStatsRetrieveParamsField = "full_description"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldGettingStarted         MarketplaceProviderOfferingsStatsRetrieveParamsField = "getting_started"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldGoogleCalendarIsPublic MarketplaceProviderOfferingsStatsRetrieveParamsField = "google_calendar_is_public"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldGoogleCalendarLink     MarketplaceProviderOfferingsStatsRetrieveParamsField = "google_calendar_link"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldImage                  MarketplaceProviderOfferingsStatsRetrieveParamsField = "image"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldIntegrationGuide       MarketplaceProviderOfferingsStatsRetrieveParamsField = "integration_guide"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldIntegrationStatus      MarketplaceProviderOfferingsStatsRetrieveParamsField = "integration_status"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldLatitude               MarketplaceProviderOfferingsStatsRetrieveParamsField = "latitude"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldLongitude              MarketplaceProviderOfferingsStatsRetrieveParamsField = "longitude"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldName                   MarketplaceProviderOfferingsStatsRetrieveParamsField = "name"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldOptions                MarketplaceProviderOfferingsStatsRetrieveParamsField = "options"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldOrderCount             MarketplaceProviderOfferingsStatsRetrieveParamsField = "order_count"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldOrganizationGroups     MarketplaceProviderOfferingsStatsRetrieveParamsField = "organization_groups"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldParentDescription      MarketplaceProviderOfferingsStatsRetrieveParamsField = "parent_description"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldParentName             MarketplaceProviderOfferingsStatsRetrieveParamsField = "parent_name"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldParentUuid             MarketplaceProviderOfferingsStatsRetrieveParamsField = "parent_uuid"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldPausedReason           MarketplaceProviderOfferingsStatsRetrieveParamsField = "paused_reason"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldPlans                  MarketplaceProviderOfferingsStatsRetrieveParamsField = "plans"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldPluginOptions          MarketplaceProviderOfferingsStatsRetrieveParamsField = "plugin_options"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldPrivacyPolicyLink      MarketplaceProviderOfferingsStatsRetrieveParamsField = "privacy_policy_link"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldProject                MarketplaceProviderOfferingsStatsRetrieveParamsField = "project"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldProjectName            MarketplaceProviderOfferingsStatsRetrieveParamsField = "project_name"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldProjectUuid            MarketplaceProviderOfferingsStatsRetrieveParamsField = "project_uuid"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldQuotas                 MarketplaceProviderOfferingsStatsRetrieveParamsField = "quotas"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldResourceOptions        MarketplaceProviderOfferingsStatsRetrieveParamsField = "resource_options"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldRoles                  MarketplaceProviderOfferingsStatsRetrieveParamsField = "roles"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldScope                  MarketplaceProviderOfferingsStatsRetrieveParamsField = "scope"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldScopeErrorMessage      MarketplaceProviderOfferingsStatsRetrieveParamsField = "scope_error_message"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldScopeName              MarketplaceProviderOfferingsStatsRetrieveParamsField = "scope_name"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldScopeState             MarketplaceProviderOfferingsStatsRetrieveParamsField = "scope_state"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldScopeUuid              MarketplaceProviderOfferingsStatsRetrieveParamsField = "scope_uuid"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldScreenshots            MarketplaceProviderOfferingsStatsRetrieveParamsField = "screenshots"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldSecretOptions          MarketplaceProviderOfferingsStatsRetrieveParamsField = "secret_options"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldServiceAttributes      MarketplaceProviderOfferingsStatsRetrieveParamsField = "service_attributes"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldShared                 MarketplaceProviderOfferingsStatsRetrieveParamsField = "shared"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldSlug                   MarketplaceProviderOfferingsStatsRetrieveParamsField = "slug"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldState                  MarketplaceProviderOfferingsStatsRetrieveParamsField = "state"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldTermsOfService         MarketplaceProviderOfferingsStatsRetrieveParamsField = "terms_of_service"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldTermsOfServiceLink     MarketplaceProviderOfferingsStatsRetrieveParamsField = "terms_of_service_link"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldThumbnail              MarketplaceProviderOfferingsStatsRetrieveParamsField = "thumbnail"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldTotalCost              MarketplaceProviderOfferingsStatsRetrieveParamsField = "total_cost"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldTotalCostEstimated     MarketplaceProviderOfferingsStatsRetrieveParamsField = "total_cost_estimated"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldTotalCustomers         MarketplaceProviderOfferingsStatsRetrieveParamsField = "total_customers"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldType                   MarketplaceProviderOfferingsStatsRetrieveParamsField = "type"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldUrl                    MarketplaceProviderOfferingsStatsRetrieveParamsField = "url"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldUuid                   MarketplaceProviderOfferingsStatsRetrieveParamsField = "uuid"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldVendorDetails          MarketplaceProviderOfferingsStatsRetrieveParamsField = "vendor_details"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldAccessUrl                 MarketplaceProviderOfferingsStatsRetrieveParamsField = "access_url"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldAttributes                MarketplaceProviderOfferingsStatsRetrieveParamsField = "attributes"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldBackendId                 MarketplaceProviderOfferingsStatsRetrieveParamsField = "backend_id"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldBackendMetadata           MarketplaceProviderOfferingsStatsRetrieveParamsField = "backend_metadata"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldBillable                  MarketplaceProviderOfferingsStatsRetrieveParamsField = "billable"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldCategory                  MarketplaceProviderOfferingsStatsRetrieveParamsField = "category"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldCategoryTitle             MarketplaceProviderOfferingsStatsRetrieveParamsField = "category_title"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldCategoryUuid              MarketplaceProviderOfferingsStatsRetrieveParamsField = "category_uuid"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldCitationCount             MarketplaceProviderOfferingsStatsRetrieveParamsField = "citation_count"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldComponents                MarketplaceProviderOfferingsStatsRetrieveParamsField = "components"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldCountry                   MarketplaceProviderOfferingsStatsRetrieveParamsField = "country"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldCreated                   MarketplaceProviderOfferingsStatsRetrieveParamsField = "created"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldCustomer                  MarketplaceProviderOfferingsStatsRetrieveParamsField = "customer"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldCustomerName              MarketplaceProviderOfferingsStatsRetrieveParamsField = "customer_name"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldCustomerUuid              MarketplaceProviderOfferingsStatsRetrieveParamsField = "customer_uuid"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldDataciteDoi               MarketplaceProviderOfferingsStatsRetrieveParamsField = "datacite_doi"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldDescription               MarketplaceProviderOfferingsStatsRetrieveParamsField = "description"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldEndpoints                 MarketplaceProviderOfferingsStatsRetrieveParamsField = "endpoints"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldFiles                     MarketplaceProviderOfferingsStatsRetrieveParamsField = "files"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldFullDescription           MarketplaceProviderOfferingsStatsRetrieveParamsField = "full_description"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldGettingStarted            MarketplaceProviderOfferingsStatsRetrieveParamsField = "getting_started"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldGoogleCalendarIsPublic    MarketplaceProviderOfferingsStatsRetrieveParamsField = "google_calendar_is_public"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldGoogleCalendarLink        MarketplaceProviderOfferingsStatsRetrieveParamsField = "google_calendar_link"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldHasComplianceRequirements MarketplaceProviderOfferingsStatsRetrieveParamsField = "has_compliance_requirements"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldImage                     MarketplaceProviderOfferingsStatsRetrieveParamsField = "image"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldIntegrationGuide          MarketplaceProviderOfferingsStatsRetrieveParamsField = "integration_guide"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldIntegrationStatus         MarketplaceProviderOfferingsStatsRetrieveParamsField = "integration_status"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldLatitude                  MarketplaceProviderOfferingsStatsRetrieveParamsField = "latitude"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldLongitude                 MarketplaceProviderOfferingsStatsRetrieveParamsField = "longitude"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldName                      MarketplaceProviderOfferingsStatsRetrieveParamsField = "name"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldOptions                   MarketplaceProviderOfferingsStatsRetrieveParamsField = "options"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldOrderCount                MarketplaceProviderOfferingsStatsRetrieveParamsField = "order_count"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldOrganizationGroups        MarketplaceProviderOfferingsStatsRetrieveParamsField = "organization_groups"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldParentDescription         MarketplaceProviderOfferingsStatsRetrieveParamsField = "parent_description"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldParentName                MarketplaceProviderOfferingsStatsRetrieveParamsField = "parent_name"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldParentUuid                MarketplaceProviderOfferingsStatsRetrieveParamsField = "parent_uuid"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldPausedReason              MarketplaceProviderOfferingsStatsRetrieveParamsField = "paused_reason"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldPlans                     MarketplaceProviderOfferingsStatsRetrieveParamsField = "plans"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldPluginOptions             MarketplaceProviderOfferingsStatsRetrieveParamsField = "plugin_options"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldPrivacyPolicyLink         MarketplaceProviderOfferingsStatsRetrieveParamsField = "privacy_policy_link"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldProject                   MarketplaceProviderOfferingsStatsRetrieveParamsField = "project"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldProjectName               MarketplaceProviderOfferingsStatsRetrieveParamsField = "project_name"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldProjectUuid               MarketplaceProviderOfferingsStatsRetrieveParamsField = "project_uuid"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldQuotas                    MarketplaceProviderOfferingsStatsRetrieveParamsField = "quotas"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldResourceOptions           MarketplaceProviderOfferingsStatsRetrieveParamsField = "resource_options"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldRoles                     MarketplaceProviderOfferingsStatsRetrieveParamsField = "roles"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldScope                     MarketplaceProviderOfferingsStatsRetrieveParamsField = "scope"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldScopeErrorMessage         MarketplaceProviderOfferingsStatsRetrieveParamsField = "scope_error_message"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldScopeName                 MarketplaceProviderOfferingsStatsRetrieveParamsField = "scope_name"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldScopeState                MarketplaceProviderOfferingsStatsRetrieveParamsField = "scope_state"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldScopeUuid                 MarketplaceProviderOfferingsStatsRetrieveParamsField = "scope_uuid"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldScreenshots               MarketplaceProviderOfferingsStatsRetrieveParamsField = "screenshots"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldSecretOptions             MarketplaceProviderOfferingsStatsRetrieveParamsField = "secret_options"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldServiceAttributes         MarketplaceProviderOfferingsStatsRetrieveParamsField = "service_attributes"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldShared                    MarketplaceProviderOfferingsStatsRetrieveParamsField = "shared"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldSlug                      MarketplaceProviderOfferingsStatsRetrieveParamsField = "slug"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldState                     MarketplaceProviderOfferingsStatsRetrieveParamsField = "state"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldTermsOfService            MarketplaceProviderOfferingsStatsRetrieveParamsField = "terms_of_service"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldTermsOfServiceLink        MarketplaceProviderOfferingsStatsRetrieveParamsField = "terms_of_service_link"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldThumbnail                 MarketplaceProviderOfferingsStatsRetrieveParamsField = "thumbnail"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldTotalCost                 MarketplaceProviderOfferingsStatsRetrieveParamsField = "total_cost"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldTotalCostEstimated        MarketplaceProviderOfferingsStatsRetrieveParamsField = "total_cost_estimated"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldTotalCustomers            MarketplaceProviderOfferingsStatsRetrieveParamsField = "total_customers"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldType                      MarketplaceProviderOfferingsStatsRetrieveParamsField = "type"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldUrl                       MarketplaceProviderOfferingsStatsRetrieveParamsField = "url"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldUuid                      MarketplaceProviderOfferingsStatsRetrieveParamsField = "uuid"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldVendorDetails             MarketplaceProviderOfferingsStatsRetrieveParamsField = "vendor_details"
 )
 
 // Defines values for MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField.
 const (
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldAccessUrl              MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "access_url"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldAttributes             MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "attributes"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldBackendId              MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "backend_id"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldBackendMetadata        MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "backend_metadata"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldBillable               MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "billable"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldCategory               MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "category"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldCategoryTitle          MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "category_title"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldCategoryUuid           MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "category_uuid"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldCitationCount          MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "citation_count"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldComponents             MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "components"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldCountry                MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "country"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldCreated                MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "created"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldCustomer               MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "customer"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldCustomerName           MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "customer_name"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldCustomerUuid           MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "customer_uuid"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldDataciteDoi            MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "datacite_doi"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldDescription            MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "description"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldEndpoints              MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "endpoints"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldFiles                  MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "files"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldFullDescription        MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "full_description"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldGettingStarted         MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "getting_started"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldGoogleCalendarIsPublic MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "google_calendar_is_public"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldGoogleCalendarLink     MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "google_calendar_link"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldImage                  MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "image"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldIntegrationGuide       MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "integration_guide"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldIntegrationStatus      MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "integration_status"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldLatitude               MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "latitude"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldLongitude              MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "longitude"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldName                   MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "name"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldOptions                MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "options"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldOrderCount             MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "order_count"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldOrganizationGroups     MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "organization_groups"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldParentDescription      MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "parent_description"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldParentName             MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "parent_name"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldParentUuid             MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "parent_uuid"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldPausedReason           MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "paused_reason"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldPlans                  MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "plans"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldPluginOptions          MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "plugin_options"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldPrivacyPolicyLink      MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "privacy_policy_link"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldProject                MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "project"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldProjectName            MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "project_name"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldProjectUuid            MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "project_uuid"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldQuotas                 MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "quotas"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldResourceOptions        MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "resource_options"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldRoles                  MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "roles"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldScope                  MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "scope"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldScopeErrorMessage      MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "scope_error_message"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldScopeName              MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "scope_name"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldScopeState             MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "scope_state"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldScopeUuid              MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "scope_uuid"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldScreenshots            MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "screenshots"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldSecretOptions          MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "secret_options"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldServiceAttributes      MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "service_attributes"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldShared                 MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "shared"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldSlug                   MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "slug"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldState                  MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "state"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldTermsOfService         MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "terms_of_service"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldTermsOfServiceLink     MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "terms_of_service_link"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldThumbnail              MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "thumbnail"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldTotalCost              MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "total_cost"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldTotalCostEstimated     MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "total_cost_estimated"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldTotalCustomers         MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "total_customers"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldType                   MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "type"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldUrl                    MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "url"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldUuid                   MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "uuid"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldVendorDetails          MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "vendor_details"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldAccessUrl                 MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "access_url"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldAttributes                MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "attributes"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldBackendId                 MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "backend_id"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldBackendMetadata           MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "backend_metadata"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldBillable                  MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "billable"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldCategory                  MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "category"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldCategoryTitle             MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "category_title"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldCategoryUuid              MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "category_uuid"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldCitationCount             MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "citation_count"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldComponents                MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "components"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldCountry                   MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "country"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldCreated                   MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "created"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldCustomer                  MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "customer"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldCustomerName              MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "customer_name"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldCustomerUuid              MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "customer_uuid"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldDataciteDoi               MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "datacite_doi"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldDescription               MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "description"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldEndpoints                 MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "endpoints"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldFiles                     MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "files"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldFullDescription           MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "full_description"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldGettingStarted            MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "getting_started"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldGoogleCalendarIsPublic    MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "google_calendar_is_public"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldGoogleCalendarLink        MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "google_calendar_link"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldHasComplianceRequirements MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "has_compliance_requirements"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldImage                     MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "image"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldIntegrationGuide          MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "integration_guide"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldIntegrationStatus         MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "integration_status"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldLatitude                  MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "latitude"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldLongitude                 MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "longitude"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldName                      MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "name"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldOptions                   MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "options"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldOrderCount                MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "order_count"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldOrganizationGroups        MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "organization_groups"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldParentDescription         MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "parent_description"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldParentName                MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "parent_name"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldParentUuid                MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "parent_uuid"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldPausedReason              MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "paused_reason"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldPlans                     MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "plans"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldPluginOptions             MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "plugin_options"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldPrivacyPolicyLink         MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "privacy_policy_link"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldProject                   MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "project"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldProjectName               MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "project_name"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldProjectUuid               MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "project_uuid"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldQuotas                    MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "quotas"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldResourceOptions           MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "resource_options"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldRoles                     MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "roles"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldScope                     MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "scope"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldScopeErrorMessage         MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "scope_error_message"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldScopeName                 MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "scope_name"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldScopeState                MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "scope_state"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldScopeUuid                 MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "scope_uuid"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldScreenshots               MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "screenshots"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldSecretOptions             MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "secret_options"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldServiceAttributes         MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "service_attributes"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldShared                    MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "shared"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldSlug                      MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "slug"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldState                     MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "state"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldTermsOfService            MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "terms_of_service"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldTermsOfServiceLink        MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "terms_of_service_link"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldThumbnail                 MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "thumbnail"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldTotalCost                 MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "total_cost"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldTotalCostEstimated        MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "total_cost_estimated"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldTotalCustomers            MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "total_customers"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldType                      MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "type"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldUrl                       MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "url"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldUuid                      MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "uuid"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldVendorDetails             MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "vendor_details"
 )
 
 // Defines values for MarketplaceProviderResourcesListParamsField.
@@ -4958,70 +4980,71 @@ const (
 
 // Defines values for MarketplacePublicOfferingsListParamsField.
 const (
-	MarketplacePublicOfferingsListParamsFieldAccessUrl              MarketplacePublicOfferingsListParamsField = "access_url"
-	MarketplacePublicOfferingsListParamsFieldAttributes             MarketplacePublicOfferingsListParamsField = "attributes"
-	MarketplacePublicOfferingsListParamsFieldBackendId              MarketplacePublicOfferingsListParamsField = "backend_id"
-	MarketplacePublicOfferingsListParamsFieldBackendMetadata        MarketplacePublicOfferingsListParamsField = "backend_metadata"
-	MarketplacePublicOfferingsListParamsFieldBillable               MarketplacePublicOfferingsListParamsField = "billable"
-	MarketplacePublicOfferingsListParamsFieldCategory               MarketplacePublicOfferingsListParamsField = "category"
-	MarketplacePublicOfferingsListParamsFieldCategoryTitle          MarketplacePublicOfferingsListParamsField = "category_title"
-	MarketplacePublicOfferingsListParamsFieldCategoryUuid           MarketplacePublicOfferingsListParamsField = "category_uuid"
-	MarketplacePublicOfferingsListParamsFieldCitationCount          MarketplacePublicOfferingsListParamsField = "citation_count"
-	MarketplacePublicOfferingsListParamsFieldComponents             MarketplacePublicOfferingsListParamsField = "components"
-	MarketplacePublicOfferingsListParamsFieldCountry                MarketplacePublicOfferingsListParamsField = "country"
-	MarketplacePublicOfferingsListParamsFieldCreated                MarketplacePublicOfferingsListParamsField = "created"
-	MarketplacePublicOfferingsListParamsFieldCustomer               MarketplacePublicOfferingsListParamsField = "customer"
-	MarketplacePublicOfferingsListParamsFieldCustomerName           MarketplacePublicOfferingsListParamsField = "customer_name"
-	MarketplacePublicOfferingsListParamsFieldCustomerUuid           MarketplacePublicOfferingsListParamsField = "customer_uuid"
-	MarketplacePublicOfferingsListParamsFieldDataciteDoi            MarketplacePublicOfferingsListParamsField = "datacite_doi"
-	MarketplacePublicOfferingsListParamsFieldDescription            MarketplacePublicOfferingsListParamsField = "description"
-	MarketplacePublicOfferingsListParamsFieldEndpoints              MarketplacePublicOfferingsListParamsField = "endpoints"
-	MarketplacePublicOfferingsListParamsFieldFiles                  MarketplacePublicOfferingsListParamsField = "files"
-	MarketplacePublicOfferingsListParamsFieldFullDescription        MarketplacePublicOfferingsListParamsField = "full_description"
-	MarketplacePublicOfferingsListParamsFieldGettingStarted         MarketplacePublicOfferingsListParamsField = "getting_started"
-	MarketplacePublicOfferingsListParamsFieldGoogleCalendarIsPublic MarketplacePublicOfferingsListParamsField = "google_calendar_is_public"
-	MarketplacePublicOfferingsListParamsFieldGoogleCalendarLink     MarketplacePublicOfferingsListParamsField = "google_calendar_link"
-	MarketplacePublicOfferingsListParamsFieldImage                  MarketplacePublicOfferingsListParamsField = "image"
-	MarketplacePublicOfferingsListParamsFieldIntegrationGuide       MarketplacePublicOfferingsListParamsField = "integration_guide"
-	MarketplacePublicOfferingsListParamsFieldLatitude               MarketplacePublicOfferingsListParamsField = "latitude"
-	MarketplacePublicOfferingsListParamsFieldLongitude              MarketplacePublicOfferingsListParamsField = "longitude"
-	MarketplacePublicOfferingsListParamsFieldName                   MarketplacePublicOfferingsListParamsField = "name"
-	MarketplacePublicOfferingsListParamsFieldOptions                MarketplacePublicOfferingsListParamsField = "options"
-	MarketplacePublicOfferingsListParamsFieldOrderCount             MarketplacePublicOfferingsListParamsField = "order_count"
-	MarketplacePublicOfferingsListParamsFieldOrganizationGroups     MarketplacePublicOfferingsListParamsField = "organization_groups"
-	MarketplacePublicOfferingsListParamsFieldParentDescription      MarketplacePublicOfferingsListParamsField = "parent_description"
-	MarketplacePublicOfferingsListParamsFieldParentName             MarketplacePublicOfferingsListParamsField = "parent_name"
-	MarketplacePublicOfferingsListParamsFieldParentUuid             MarketplacePublicOfferingsListParamsField = "parent_uuid"
-	MarketplacePublicOfferingsListParamsFieldPausedReason           MarketplacePublicOfferingsListParamsField = "paused_reason"
-	MarketplacePublicOfferingsListParamsFieldPlans                  MarketplacePublicOfferingsListParamsField = "plans"
-	MarketplacePublicOfferingsListParamsFieldPluginOptions          MarketplacePublicOfferingsListParamsField = "plugin_options"
-	MarketplacePublicOfferingsListParamsFieldPrivacyPolicyLink      MarketplacePublicOfferingsListParamsField = "privacy_policy_link"
-	MarketplacePublicOfferingsListParamsFieldProject                MarketplacePublicOfferingsListParamsField = "project"
-	MarketplacePublicOfferingsListParamsFieldProjectName            MarketplacePublicOfferingsListParamsField = "project_name"
-	MarketplacePublicOfferingsListParamsFieldProjectUuid            MarketplacePublicOfferingsListParamsField = "project_uuid"
-	MarketplacePublicOfferingsListParamsFieldPromotionCampaigns     MarketplacePublicOfferingsListParamsField = "promotion_campaigns"
-	MarketplacePublicOfferingsListParamsFieldQuotas                 MarketplacePublicOfferingsListParamsField = "quotas"
-	MarketplacePublicOfferingsListParamsFieldResourceOptions        MarketplacePublicOfferingsListParamsField = "resource_options"
-	MarketplacePublicOfferingsListParamsFieldRoles                  MarketplacePublicOfferingsListParamsField = "roles"
-	MarketplacePublicOfferingsListParamsFieldScope                  MarketplacePublicOfferingsListParamsField = "scope"
-	MarketplacePublicOfferingsListParamsFieldScopeErrorMessage      MarketplacePublicOfferingsListParamsField = "scope_error_message"
-	MarketplacePublicOfferingsListParamsFieldScopeName              MarketplacePublicOfferingsListParamsField = "scope_name"
-	MarketplacePublicOfferingsListParamsFieldScopeState             MarketplacePublicOfferingsListParamsField = "scope_state"
-	MarketplacePublicOfferingsListParamsFieldScopeUuid              MarketplacePublicOfferingsListParamsField = "scope_uuid"
-	MarketplacePublicOfferingsListParamsFieldScreenshots            MarketplacePublicOfferingsListParamsField = "screenshots"
-	MarketplacePublicOfferingsListParamsFieldShared                 MarketplacePublicOfferingsListParamsField = "shared"
-	MarketplacePublicOfferingsListParamsFieldSlug                   MarketplacePublicOfferingsListParamsField = "slug"
-	MarketplacePublicOfferingsListParamsFieldState                  MarketplacePublicOfferingsListParamsField = "state"
-	MarketplacePublicOfferingsListParamsFieldTermsOfService         MarketplacePublicOfferingsListParamsField = "terms_of_service"
-	MarketplacePublicOfferingsListParamsFieldTermsOfServiceLink     MarketplacePublicOfferingsListParamsField = "terms_of_service_link"
-	MarketplacePublicOfferingsListParamsFieldThumbnail              MarketplacePublicOfferingsListParamsField = "thumbnail"
-	MarketplacePublicOfferingsListParamsFieldTotalCost              MarketplacePublicOfferingsListParamsField = "total_cost"
-	MarketplacePublicOfferingsListParamsFieldTotalCostEstimated     MarketplacePublicOfferingsListParamsField = "total_cost_estimated"
-	MarketplacePublicOfferingsListParamsFieldTotalCustomers         MarketplacePublicOfferingsListParamsField = "total_customers"
-	MarketplacePublicOfferingsListParamsFieldType                   MarketplacePublicOfferingsListParamsField = "type"
-	MarketplacePublicOfferingsListParamsFieldUrl                    MarketplacePublicOfferingsListParamsField = "url"
-	MarketplacePublicOfferingsListParamsFieldUuid                   MarketplacePublicOfferingsListParamsField = "uuid"
-	MarketplacePublicOfferingsListParamsFieldVendorDetails          MarketplacePublicOfferingsListParamsField = "vendor_details"
+	MarketplacePublicOfferingsListParamsFieldAccessUrl                 MarketplacePublicOfferingsListParamsField = "access_url"
+	MarketplacePublicOfferingsListParamsFieldAttributes                MarketplacePublicOfferingsListParamsField = "attributes"
+	MarketplacePublicOfferingsListParamsFieldBackendId                 MarketplacePublicOfferingsListParamsField = "backend_id"
+	MarketplacePublicOfferingsListParamsFieldBackendMetadata           MarketplacePublicOfferingsListParamsField = "backend_metadata"
+	MarketplacePublicOfferingsListParamsFieldBillable                  MarketplacePublicOfferingsListParamsField = "billable"
+	MarketplacePublicOfferingsListParamsFieldCategory                  MarketplacePublicOfferingsListParamsField = "category"
+	MarketplacePublicOfferingsListParamsFieldCategoryTitle             MarketplacePublicOfferingsListParamsField = "category_title"
+	MarketplacePublicOfferingsListParamsFieldCategoryUuid              MarketplacePublicOfferingsListParamsField = "category_uuid"
+	MarketplacePublicOfferingsListParamsFieldCitationCount             MarketplacePublicOfferingsListParamsField = "citation_count"
+	MarketplacePublicOfferingsListParamsFieldComponents                MarketplacePublicOfferingsListParamsField = "components"
+	MarketplacePublicOfferingsListParamsFieldCountry                   MarketplacePublicOfferingsListParamsField = "country"
+	MarketplacePublicOfferingsListParamsFieldCreated                   MarketplacePublicOfferingsListParamsField = "created"
+	MarketplacePublicOfferingsListParamsFieldCustomer                  MarketplacePublicOfferingsListParamsField = "customer"
+	MarketplacePublicOfferingsListParamsFieldCustomerName              MarketplacePublicOfferingsListParamsField = "customer_name"
+	MarketplacePublicOfferingsListParamsFieldCustomerUuid              MarketplacePublicOfferingsListParamsField = "customer_uuid"
+	MarketplacePublicOfferingsListParamsFieldDataciteDoi               MarketplacePublicOfferingsListParamsField = "datacite_doi"
+	MarketplacePublicOfferingsListParamsFieldDescription               MarketplacePublicOfferingsListParamsField = "description"
+	MarketplacePublicOfferingsListParamsFieldEndpoints                 MarketplacePublicOfferingsListParamsField = "endpoints"
+	MarketplacePublicOfferingsListParamsFieldFiles                     MarketplacePublicOfferingsListParamsField = "files"
+	MarketplacePublicOfferingsListParamsFieldFullDescription           MarketplacePublicOfferingsListParamsField = "full_description"
+	MarketplacePublicOfferingsListParamsFieldGettingStarted            MarketplacePublicOfferingsListParamsField = "getting_started"
+	MarketplacePublicOfferingsListParamsFieldGoogleCalendarIsPublic    MarketplacePublicOfferingsListParamsField = "google_calendar_is_public"
+	MarketplacePublicOfferingsListParamsFieldGoogleCalendarLink        MarketplacePublicOfferingsListParamsField = "google_calendar_link"
+	MarketplacePublicOfferingsListParamsFieldHasComplianceRequirements MarketplacePublicOfferingsListParamsField = "has_compliance_requirements"
+	MarketplacePublicOfferingsListParamsFieldImage                     MarketplacePublicOfferingsListParamsField = "image"
+	MarketplacePublicOfferingsListParamsFieldIntegrationGuide          MarketplacePublicOfferingsListParamsField = "integration_guide"
+	MarketplacePublicOfferingsListParamsFieldLatitude                  MarketplacePublicOfferingsListParamsField = "latitude"
+	MarketplacePublicOfferingsListParamsFieldLongitude                 MarketplacePublicOfferingsListParamsField = "longitude"
+	MarketplacePublicOfferingsListParamsFieldName                      MarketplacePublicOfferingsListParamsField = "name"
+	MarketplacePublicOfferingsListParamsFieldOptions                   MarketplacePublicOfferingsListParamsField = "options"
+	MarketplacePublicOfferingsListParamsFieldOrderCount                MarketplacePublicOfferingsListParamsField = "order_count"
+	MarketplacePublicOfferingsListParamsFieldOrganizationGroups        MarketplacePublicOfferingsListParamsField = "organization_groups"
+	MarketplacePublicOfferingsListParamsFieldParentDescription         MarketplacePublicOfferingsListParamsField = "parent_description"
+	MarketplacePublicOfferingsListParamsFieldParentName                MarketplacePublicOfferingsListParamsField = "parent_name"
+	MarketplacePublicOfferingsListParamsFieldParentUuid                MarketplacePublicOfferingsListParamsField = "parent_uuid"
+	MarketplacePublicOfferingsListParamsFieldPausedReason              MarketplacePublicOfferingsListParamsField = "paused_reason"
+	MarketplacePublicOfferingsListParamsFieldPlans                     MarketplacePublicOfferingsListParamsField = "plans"
+	MarketplacePublicOfferingsListParamsFieldPluginOptions             MarketplacePublicOfferingsListParamsField = "plugin_options"
+	MarketplacePublicOfferingsListParamsFieldPrivacyPolicyLink         MarketplacePublicOfferingsListParamsField = "privacy_policy_link"
+	MarketplacePublicOfferingsListParamsFieldProject                   MarketplacePublicOfferingsListParamsField = "project"
+	MarketplacePublicOfferingsListParamsFieldProjectName               MarketplacePublicOfferingsListParamsField = "project_name"
+	MarketplacePublicOfferingsListParamsFieldProjectUuid               MarketplacePublicOfferingsListParamsField = "project_uuid"
+	MarketplacePublicOfferingsListParamsFieldPromotionCampaigns        MarketplacePublicOfferingsListParamsField = "promotion_campaigns"
+	MarketplacePublicOfferingsListParamsFieldQuotas                    MarketplacePublicOfferingsListParamsField = "quotas"
+	MarketplacePublicOfferingsListParamsFieldResourceOptions           MarketplacePublicOfferingsListParamsField = "resource_options"
+	MarketplacePublicOfferingsListParamsFieldRoles                     MarketplacePublicOfferingsListParamsField = "roles"
+	MarketplacePublicOfferingsListParamsFieldScope                     MarketplacePublicOfferingsListParamsField = "scope"
+	MarketplacePublicOfferingsListParamsFieldScopeErrorMessage         MarketplacePublicOfferingsListParamsField = "scope_error_message"
+	MarketplacePublicOfferingsListParamsFieldScopeName                 MarketplacePublicOfferingsListParamsField = "scope_name"
+	MarketplacePublicOfferingsListParamsFieldScopeState                MarketplacePublicOfferingsListParamsField = "scope_state"
+	MarketplacePublicOfferingsListParamsFieldScopeUuid                 MarketplacePublicOfferingsListParamsField = "scope_uuid"
+	MarketplacePublicOfferingsListParamsFieldScreenshots               MarketplacePublicOfferingsListParamsField = "screenshots"
+	MarketplacePublicOfferingsListParamsFieldShared                    MarketplacePublicOfferingsListParamsField = "shared"
+	MarketplacePublicOfferingsListParamsFieldSlug                      MarketplacePublicOfferingsListParamsField = "slug"
+	MarketplacePublicOfferingsListParamsFieldState                     MarketplacePublicOfferingsListParamsField = "state"
+	MarketplacePublicOfferingsListParamsFieldTermsOfService            MarketplacePublicOfferingsListParamsField = "terms_of_service"
+	MarketplacePublicOfferingsListParamsFieldTermsOfServiceLink        MarketplacePublicOfferingsListParamsField = "terms_of_service_link"
+	MarketplacePublicOfferingsListParamsFieldThumbnail                 MarketplacePublicOfferingsListParamsField = "thumbnail"
+	MarketplacePublicOfferingsListParamsFieldTotalCost                 MarketplacePublicOfferingsListParamsField = "total_cost"
+	MarketplacePublicOfferingsListParamsFieldTotalCostEstimated        MarketplacePublicOfferingsListParamsField = "total_cost_estimated"
+	MarketplacePublicOfferingsListParamsFieldTotalCustomers            MarketplacePublicOfferingsListParamsField = "total_customers"
+	MarketplacePublicOfferingsListParamsFieldType                      MarketplacePublicOfferingsListParamsField = "type"
+	MarketplacePublicOfferingsListParamsFieldUrl                       MarketplacePublicOfferingsListParamsField = "url"
+	MarketplacePublicOfferingsListParamsFieldUuid                      MarketplacePublicOfferingsListParamsField = "uuid"
+	MarketplacePublicOfferingsListParamsFieldVendorDetails             MarketplacePublicOfferingsListParamsField = "vendor_details"
 )
 
 // Defines values for MarketplacePublicOfferingsListParamsO.
@@ -5078,70 +5101,71 @@ const (
 
 // Defines values for MarketplacePublicOfferingsRetrieveParamsField.
 const (
-	MarketplacePublicOfferingsRetrieveParamsFieldAccessUrl              MarketplacePublicOfferingsRetrieveParamsField = "access_url"
-	MarketplacePublicOfferingsRetrieveParamsFieldAttributes             MarketplacePublicOfferingsRetrieveParamsField = "attributes"
-	MarketplacePublicOfferingsRetrieveParamsFieldBackendId              MarketplacePublicOfferingsRetrieveParamsField = "backend_id"
-	MarketplacePublicOfferingsRetrieveParamsFieldBackendMetadata        MarketplacePublicOfferingsRetrieveParamsField = "backend_metadata"
-	MarketplacePublicOfferingsRetrieveParamsFieldBillable               MarketplacePublicOfferingsRetrieveParamsField = "billable"
-	MarketplacePublicOfferingsRetrieveParamsFieldCategory               MarketplacePublicOfferingsRetrieveParamsField = "category"
-	MarketplacePublicOfferingsRetrieveParamsFieldCategoryTitle          MarketplacePublicOfferingsRetrieveParamsField = "category_title"
-	MarketplacePublicOfferingsRetrieveParamsFieldCategoryUuid           MarketplacePublicOfferingsRetrieveParamsField = "category_uuid"
-	MarketplacePublicOfferingsRetrieveParamsFieldCitationCount          MarketplacePublicOfferingsRetrieveParamsField = "citation_count"
-	MarketplacePublicOfferingsRetrieveParamsFieldComponents             MarketplacePublicOfferingsRetrieveParamsField = "components"
-	MarketplacePublicOfferingsRetrieveParamsFieldCountry                MarketplacePublicOfferingsRetrieveParamsField = "country"
-	MarketplacePublicOfferingsRetrieveParamsFieldCreated                MarketplacePublicOfferingsRetrieveParamsField = "created"
-	MarketplacePublicOfferingsRetrieveParamsFieldCustomer               MarketplacePublicOfferingsRetrieveParamsField = "customer"
-	MarketplacePublicOfferingsRetrieveParamsFieldCustomerName           MarketplacePublicOfferingsRetrieveParamsField = "customer_name"
-	MarketplacePublicOfferingsRetrieveParamsFieldCustomerUuid           MarketplacePublicOfferingsRetrieveParamsField = "customer_uuid"
-	MarketplacePublicOfferingsRetrieveParamsFieldDataciteDoi            MarketplacePublicOfferingsRetrieveParamsField = "datacite_doi"
-	MarketplacePublicOfferingsRetrieveParamsFieldDescription            MarketplacePublicOfferingsRetrieveParamsField = "description"
-	MarketplacePublicOfferingsRetrieveParamsFieldEndpoints              MarketplacePublicOfferingsRetrieveParamsField = "endpoints"
-	MarketplacePublicOfferingsRetrieveParamsFieldFiles                  MarketplacePublicOfferingsRetrieveParamsField = "files"
-	MarketplacePublicOfferingsRetrieveParamsFieldFullDescription        MarketplacePublicOfferingsRetrieveParamsField = "full_description"
-	MarketplacePublicOfferingsRetrieveParamsFieldGettingStarted         MarketplacePublicOfferingsRetrieveParamsField = "getting_started"
-	MarketplacePublicOfferingsRetrieveParamsFieldGoogleCalendarIsPublic MarketplacePublicOfferingsRetrieveParamsField = "google_calendar_is_public"
-	MarketplacePublicOfferingsRetrieveParamsFieldGoogleCalendarLink     MarketplacePublicOfferingsRetrieveParamsField = "google_calendar_link"
-	MarketplacePublicOfferingsRetrieveParamsFieldImage                  MarketplacePublicOfferingsRetrieveParamsField = "image"
-	MarketplacePublicOfferingsRetrieveParamsFieldIntegrationGuide       MarketplacePublicOfferingsRetrieveParamsField = "integration_guide"
-	MarketplacePublicOfferingsRetrieveParamsFieldLatitude               MarketplacePublicOfferingsRetrieveParamsField = "latitude"
-	MarketplacePublicOfferingsRetrieveParamsFieldLongitude              MarketplacePublicOfferingsRetrieveParamsField = "longitude"
-	MarketplacePublicOfferingsRetrieveParamsFieldName                   MarketplacePublicOfferingsRetrieveParamsField = "name"
-	MarketplacePublicOfferingsRetrieveParamsFieldOptions                MarketplacePublicOfferingsRetrieveParamsField = "options"
-	MarketplacePublicOfferingsRetrieveParamsFieldOrderCount             MarketplacePublicOfferingsRetrieveParamsField = "order_count"
-	MarketplacePublicOfferingsRetrieveParamsFieldOrganizationGroups     MarketplacePublicOfferingsRetrieveParamsField = "organization_groups"
-	MarketplacePublicOfferingsRetrieveParamsFieldParentDescription      MarketplacePublicOfferingsRetrieveParamsField = "parent_description"
-	MarketplacePublicOfferingsRetrieveParamsFieldParentName             MarketplacePublicOfferingsRetrieveParamsField = "parent_name"
-	MarketplacePublicOfferingsRetrieveParamsFieldParentUuid             MarketplacePublicOfferingsRetrieveParamsField = "parent_uuid"
-	MarketplacePublicOfferingsRetrieveParamsFieldPausedReason           MarketplacePublicOfferingsRetrieveParamsField = "paused_reason"
-	MarketplacePublicOfferingsRetrieveParamsFieldPlans                  MarketplacePublicOfferingsRetrieveParamsField = "plans"
-	MarketplacePublicOfferingsRetrieveParamsFieldPluginOptions          MarketplacePublicOfferingsRetrieveParamsField = "plugin_options"
-	MarketplacePublicOfferingsRetrieveParamsFieldPrivacyPolicyLink      MarketplacePublicOfferingsRetrieveParamsField = "privacy_policy_link"
-	MarketplacePublicOfferingsRetrieveParamsFieldProject                MarketplacePublicOfferingsRetrieveParamsField = "project"
-	MarketplacePublicOfferingsRetrieveParamsFieldProjectName            MarketplacePublicOfferingsRetrieveParamsField = "project_name"
-	MarketplacePublicOfferingsRetrieveParamsFieldProjectUuid            MarketplacePublicOfferingsRetrieveParamsField = "project_uuid"
-	MarketplacePublicOfferingsRetrieveParamsFieldPromotionCampaigns     MarketplacePublicOfferingsRetrieveParamsField = "promotion_campaigns"
-	MarketplacePublicOfferingsRetrieveParamsFieldQuotas                 MarketplacePublicOfferingsRetrieveParamsField = "quotas"
-	MarketplacePublicOfferingsRetrieveParamsFieldResourceOptions        MarketplacePublicOfferingsRetrieveParamsField = "resource_options"
-	MarketplacePublicOfferingsRetrieveParamsFieldRoles                  MarketplacePublicOfferingsRetrieveParamsField = "roles"
-	MarketplacePublicOfferingsRetrieveParamsFieldScope                  MarketplacePublicOfferingsRetrieveParamsField = "scope"
-	MarketplacePublicOfferingsRetrieveParamsFieldScopeErrorMessage      MarketplacePublicOfferingsRetrieveParamsField = "scope_error_message"
-	MarketplacePublicOfferingsRetrieveParamsFieldScopeName              MarketplacePublicOfferingsRetrieveParamsField = "scope_name"
-	MarketplacePublicOfferingsRetrieveParamsFieldScopeState             MarketplacePublicOfferingsRetrieveParamsField = "scope_state"
-	MarketplacePublicOfferingsRetrieveParamsFieldScopeUuid              MarketplacePublicOfferingsRetrieveParamsField = "scope_uuid"
-	MarketplacePublicOfferingsRetrieveParamsFieldScreenshots            MarketplacePublicOfferingsRetrieveParamsField = "screenshots"
-	MarketplacePublicOfferingsRetrieveParamsFieldShared                 MarketplacePublicOfferingsRetrieveParamsField = "shared"
-	MarketplacePublicOfferingsRetrieveParamsFieldSlug                   MarketplacePublicOfferingsRetrieveParamsField = "slug"
-	MarketplacePublicOfferingsRetrieveParamsFieldState                  MarketplacePublicOfferingsRetrieveParamsField = "state"
-	MarketplacePublicOfferingsRetrieveParamsFieldTermsOfService         MarketplacePublicOfferingsRetrieveParamsField = "terms_of_service"
-	MarketplacePublicOfferingsRetrieveParamsFieldTermsOfServiceLink     MarketplacePublicOfferingsRetrieveParamsField = "terms_of_service_link"
-	MarketplacePublicOfferingsRetrieveParamsFieldThumbnail              MarketplacePublicOfferingsRetrieveParamsField = "thumbnail"
-	MarketplacePublicOfferingsRetrieveParamsFieldTotalCost              MarketplacePublicOfferingsRetrieveParamsField = "total_cost"
-	MarketplacePublicOfferingsRetrieveParamsFieldTotalCostEstimated     MarketplacePublicOfferingsRetrieveParamsField = "total_cost_estimated"
-	MarketplacePublicOfferingsRetrieveParamsFieldTotalCustomers         MarketplacePublicOfferingsRetrieveParamsField = "total_customers"
-	MarketplacePublicOfferingsRetrieveParamsFieldType                   MarketplacePublicOfferingsRetrieveParamsField = "type"
-	MarketplacePublicOfferingsRetrieveParamsFieldUrl                    MarketplacePublicOfferingsRetrieveParamsField = "url"
-	MarketplacePublicOfferingsRetrieveParamsFieldUuid                   MarketplacePublicOfferingsRetrieveParamsField = "uuid"
-	MarketplacePublicOfferingsRetrieveParamsFieldVendorDetails          MarketplacePublicOfferingsRetrieveParamsField = "vendor_details"
+	MarketplacePublicOfferingsRetrieveParamsFieldAccessUrl                 MarketplacePublicOfferingsRetrieveParamsField = "access_url"
+	MarketplacePublicOfferingsRetrieveParamsFieldAttributes                MarketplacePublicOfferingsRetrieveParamsField = "attributes"
+	MarketplacePublicOfferingsRetrieveParamsFieldBackendId                 MarketplacePublicOfferingsRetrieveParamsField = "backend_id"
+	MarketplacePublicOfferingsRetrieveParamsFieldBackendMetadata           MarketplacePublicOfferingsRetrieveParamsField = "backend_metadata"
+	MarketplacePublicOfferingsRetrieveParamsFieldBillable                  MarketplacePublicOfferingsRetrieveParamsField = "billable"
+	MarketplacePublicOfferingsRetrieveParamsFieldCategory                  MarketplacePublicOfferingsRetrieveParamsField = "category"
+	MarketplacePublicOfferingsRetrieveParamsFieldCategoryTitle             MarketplacePublicOfferingsRetrieveParamsField = "category_title"
+	MarketplacePublicOfferingsRetrieveParamsFieldCategoryUuid              MarketplacePublicOfferingsRetrieveParamsField = "category_uuid"
+	MarketplacePublicOfferingsRetrieveParamsFieldCitationCount             MarketplacePublicOfferingsRetrieveParamsField = "citation_count"
+	MarketplacePublicOfferingsRetrieveParamsFieldComponents                MarketplacePublicOfferingsRetrieveParamsField = "components"
+	MarketplacePublicOfferingsRetrieveParamsFieldCountry                   MarketplacePublicOfferingsRetrieveParamsField = "country"
+	MarketplacePublicOfferingsRetrieveParamsFieldCreated                   MarketplacePublicOfferingsRetrieveParamsField = "created"
+	MarketplacePublicOfferingsRetrieveParamsFieldCustomer                  MarketplacePublicOfferingsRetrieveParamsField = "customer"
+	MarketplacePublicOfferingsRetrieveParamsFieldCustomerName              MarketplacePublicOfferingsRetrieveParamsField = "customer_name"
+	MarketplacePublicOfferingsRetrieveParamsFieldCustomerUuid              MarketplacePublicOfferingsRetrieveParamsField = "customer_uuid"
+	MarketplacePublicOfferingsRetrieveParamsFieldDataciteDoi               MarketplacePublicOfferingsRetrieveParamsField = "datacite_doi"
+	MarketplacePublicOfferingsRetrieveParamsFieldDescription               MarketplacePublicOfferingsRetrieveParamsField = "description"
+	MarketplacePublicOfferingsRetrieveParamsFieldEndpoints                 MarketplacePublicOfferingsRetrieveParamsField = "endpoints"
+	MarketplacePublicOfferingsRetrieveParamsFieldFiles                     MarketplacePublicOfferingsRetrieveParamsField = "files"
+	MarketplacePublicOfferingsRetrieveParamsFieldFullDescription           MarketplacePublicOfferingsRetrieveParamsField = "full_description"
+	MarketplacePublicOfferingsRetrieveParamsFieldGettingStarted            MarketplacePublicOfferingsRetrieveParamsField = "getting_started"
+	MarketplacePublicOfferingsRetrieveParamsFieldGoogleCalendarIsPublic    MarketplacePublicOfferingsRetrieveParamsField = "google_calendar_is_public"
+	MarketplacePublicOfferingsRetrieveParamsFieldGoogleCalendarLink        MarketplacePublicOfferingsRetrieveParamsField = "google_calendar_link"
+	MarketplacePublicOfferingsRetrieveParamsFieldHasComplianceRequirements MarketplacePublicOfferingsRetrieveParamsField = "has_compliance_requirements"
+	MarketplacePublicOfferingsRetrieveParamsFieldImage                     MarketplacePublicOfferingsRetrieveParamsField = "image"
+	MarketplacePublicOfferingsRetrieveParamsFieldIntegrationGuide          MarketplacePublicOfferingsRetrieveParamsField = "integration_guide"
+	MarketplacePublicOfferingsRetrieveParamsFieldLatitude                  MarketplacePublicOfferingsRetrieveParamsField = "latitude"
+	MarketplacePublicOfferingsRetrieveParamsFieldLongitude                 MarketplacePublicOfferingsRetrieveParamsField = "longitude"
+	MarketplacePublicOfferingsRetrieveParamsFieldName                      MarketplacePublicOfferingsRetrieveParamsField = "name"
+	MarketplacePublicOfferingsRetrieveParamsFieldOptions                   MarketplacePublicOfferingsRetrieveParamsField = "options"
+	MarketplacePublicOfferingsRetrieveParamsFieldOrderCount                MarketplacePublicOfferingsRetrieveParamsField = "order_count"
+	MarketplacePublicOfferingsRetrieveParamsFieldOrganizationGroups        MarketplacePublicOfferingsRetrieveParamsField = "organization_groups"
+	MarketplacePublicOfferingsRetrieveParamsFieldParentDescription         MarketplacePublicOfferingsRetrieveParamsField = "parent_description"
+	MarketplacePublicOfferingsRetrieveParamsFieldParentName                MarketplacePublicOfferingsRetrieveParamsField = "parent_name"
+	MarketplacePublicOfferingsRetrieveParamsFieldParentUuid                MarketplacePublicOfferingsRetrieveParamsField = "parent_uuid"
+	MarketplacePublicOfferingsRetrieveParamsFieldPausedReason              MarketplacePublicOfferingsRetrieveParamsField = "paused_reason"
+	MarketplacePublicOfferingsRetrieveParamsFieldPlans                     MarketplacePublicOfferingsRetrieveParamsField = "plans"
+	MarketplacePublicOfferingsRetrieveParamsFieldPluginOptions             MarketplacePublicOfferingsRetrieveParamsField = "plugin_options"
+	MarketplacePublicOfferingsRetrieveParamsFieldPrivacyPolicyLink         MarketplacePublicOfferingsRetrieveParamsField = "privacy_policy_link"
+	MarketplacePublicOfferingsRetrieveParamsFieldProject                   MarketplacePublicOfferingsRetrieveParamsField = "project"
+	MarketplacePublicOfferingsRetrieveParamsFieldProjectName               MarketplacePublicOfferingsRetrieveParamsField = "project_name"
+	MarketplacePublicOfferingsRetrieveParamsFieldProjectUuid               MarketplacePublicOfferingsRetrieveParamsField = "project_uuid"
+	MarketplacePublicOfferingsRetrieveParamsFieldPromotionCampaigns        MarketplacePublicOfferingsRetrieveParamsField = "promotion_campaigns"
+	MarketplacePublicOfferingsRetrieveParamsFieldQuotas                    MarketplacePublicOfferingsRetrieveParamsField = "quotas"
+	MarketplacePublicOfferingsRetrieveParamsFieldResourceOptions           MarketplacePublicOfferingsRetrieveParamsField = "resource_options"
+	MarketplacePublicOfferingsRetrieveParamsFieldRoles                     MarketplacePublicOfferingsRetrieveParamsField = "roles"
+	MarketplacePublicOfferingsRetrieveParamsFieldScope                     MarketplacePublicOfferingsRetrieveParamsField = "scope"
+	MarketplacePublicOfferingsRetrieveParamsFieldScopeErrorMessage         MarketplacePublicOfferingsRetrieveParamsField = "scope_error_message"
+	MarketplacePublicOfferingsRetrieveParamsFieldScopeName                 MarketplacePublicOfferingsRetrieveParamsField = "scope_name"
+	MarketplacePublicOfferingsRetrieveParamsFieldScopeState                MarketplacePublicOfferingsRetrieveParamsField = "scope_state"
+	MarketplacePublicOfferingsRetrieveParamsFieldScopeUuid                 MarketplacePublicOfferingsRetrieveParamsField = "scope_uuid"
+	MarketplacePublicOfferingsRetrieveParamsFieldScreenshots               MarketplacePublicOfferingsRetrieveParamsField = "screenshots"
+	MarketplacePublicOfferingsRetrieveParamsFieldShared                    MarketplacePublicOfferingsRetrieveParamsField = "shared"
+	MarketplacePublicOfferingsRetrieveParamsFieldSlug                      MarketplacePublicOfferingsRetrieveParamsField = "slug"
+	MarketplacePublicOfferingsRetrieveParamsFieldState                     MarketplacePublicOfferingsRetrieveParamsField = "state"
+	MarketplacePublicOfferingsRetrieveParamsFieldTermsOfService            MarketplacePublicOfferingsRetrieveParamsField = "terms_of_service"
+	MarketplacePublicOfferingsRetrieveParamsFieldTermsOfServiceLink        MarketplacePublicOfferingsRetrieveParamsField = "terms_of_service_link"
+	MarketplacePublicOfferingsRetrieveParamsFieldThumbnail                 MarketplacePublicOfferingsRetrieveParamsField = "thumbnail"
+	MarketplacePublicOfferingsRetrieveParamsFieldTotalCost                 MarketplacePublicOfferingsRetrieveParamsField = "total_cost"
+	MarketplacePublicOfferingsRetrieveParamsFieldTotalCostEstimated        MarketplacePublicOfferingsRetrieveParamsField = "total_cost_estimated"
+	MarketplacePublicOfferingsRetrieveParamsFieldTotalCustomers            MarketplacePublicOfferingsRetrieveParamsField = "total_customers"
+	MarketplacePublicOfferingsRetrieveParamsFieldType                      MarketplacePublicOfferingsRetrieveParamsField = "type"
+	MarketplacePublicOfferingsRetrieveParamsFieldUrl                       MarketplacePublicOfferingsRetrieveParamsField = "url"
+	MarketplacePublicOfferingsRetrieveParamsFieldUuid                      MarketplacePublicOfferingsRetrieveParamsField = "uuid"
+	MarketplacePublicOfferingsRetrieveParamsFieldVendorDetails             MarketplacePublicOfferingsRetrieveParamsField = "vendor_details"
 )
 
 // Defines values for MarketplaceResourcesListParamsField.
@@ -5466,12 +5490,12 @@ const (
 
 // Defines values for MarketplaceRobotAccountsCountParamsState.
 const (
-	N1 MarketplaceRobotAccountsCountParamsState = 1
-	N2 MarketplaceRobotAccountsCountParamsState = 2
-	N3 MarketplaceRobotAccountsCountParamsState = 3
-	N4 MarketplaceRobotAccountsCountParamsState = 4
-	N5 MarketplaceRobotAccountsCountParamsState = 5
-	N6 MarketplaceRobotAccountsCountParamsState = 6
+	MarketplaceRobotAccountsCountParamsStateN1 MarketplaceRobotAccountsCountParamsState = 1
+	MarketplaceRobotAccountsCountParamsStateN2 MarketplaceRobotAccountsCountParamsState = 2
+	MarketplaceRobotAccountsCountParamsStateN3 MarketplaceRobotAccountsCountParamsState = 3
+	MarketplaceRobotAccountsCountParamsStateN4 MarketplaceRobotAccountsCountParamsState = 4
+	MarketplaceRobotAccountsCountParamsStateN5 MarketplaceRobotAccountsCountParamsState = 5
+	MarketplaceRobotAccountsCountParamsStateN6 MarketplaceRobotAccountsCountParamsState = 6
 )
 
 // Defines values for MarketplaceRobotAccountsRetrieveParamsField.
@@ -14499,47 +14523,48 @@ type Offering struct {
 	CategoryUuid  *openapi_types.UUID `json:"category_uuid,omitempty"`
 
 	// CitationCount Number of citations of a DOI
-	CitationCount      *int                  `json:"citation_count,omitempty"`
-	Components         *[]OfferingComponent  `json:"components,omitempty"`
-	Country            *Offering_Country     `json:"country,omitempty"`
-	Created            *time.Time            `json:"created,omitempty"`
-	Customer           *string               `json:"customer"`
-	CustomerName       *string               `json:"customer_name"`
-	CustomerUuid       *openapi_types.UUID   `json:"customer_uuid"`
-	DataciteDoi        *string               `json:"datacite_doi,omitempty"`
-	Description        *string               `json:"description,omitempty"`
-	Endpoints          *[]NestedEndpoint     `json:"endpoints,omitempty"`
-	Files              *[]NestedOfferingFile `json:"files,omitempty"`
-	FullDescription    *string               `json:"full_description,omitempty"`
-	GettingStarted     *string               `json:"getting_started,omitempty"`
-	Googlecalendar     *GoogleCalendar       `json:"googlecalendar,omitempty"`
-	Image              *string               `json:"image"`
-	IntegrationGuide   *string               `json:"integration_guide,omitempty"`
-	Latitude           *float64              `json:"latitude"`
-	Longitude          *float64              `json:"longitude"`
-	Name               *string               `json:"name,omitempty"`
-	Options            *OfferingOptions      `json:"options,omitempty"`
-	OrderCount         *int                  `json:"order_count,omitempty"`
-	OrganizationGroups *[]OrganizationGroup  `json:"organization_groups,omitempty"`
-	ParentDescription  *string               `json:"parent_description"`
-	ParentName         *string               `json:"parent_name"`
-	ParentUuid         *openapi_types.UUID   `json:"parent_uuid"`
-	PausedReason       *string               `json:"paused_reason,omitempty"`
-	Plans              *[]BasePublicPlan     `json:"plans,omitempty"`
-	PluginOptions      *MergedPluginOptions  `json:"plugin_options,omitempty"`
-	PrivacyPolicyLink  *string               `json:"privacy_policy_link,omitempty"`
-	Project            *string               `json:"project"`
-	ProjectName        *string               `json:"project_name"`
-	ProjectUuid        *openapi_types.UUID   `json:"project_uuid"`
-	Quotas             *[]Quota              `json:"quotas,omitempty"`
-	ResourceOptions    *OfferingOptions      `json:"resource_options,omitempty"`
-	Roles              *[]NestedRole         `json:"roles,omitempty"`
-	Scope              *string               `json:"scope,omitempty"`
-	ScopeErrorMessage  *string               `json:"scope_error_message"`
-	ScopeName          *openapi_types.UUID   `json:"scope_name"`
-	ScopeState         *CoreStates           `json:"scope_state"`
-	ScopeUuid          *openapi_types.UUID   `json:"scope_uuid"`
-	Screenshots        *[]NestedScreenshot   `json:"screenshots,omitempty"`
+	CitationCount             *int                  `json:"citation_count,omitempty"`
+	Components                *[]OfferingComponent  `json:"components,omitempty"`
+	Country                   *Offering_Country     `json:"country,omitempty"`
+	Created                   *time.Time            `json:"created,omitempty"`
+	Customer                  *string               `json:"customer"`
+	CustomerName              *string               `json:"customer_name"`
+	CustomerUuid              *openapi_types.UUID   `json:"customer_uuid"`
+	DataciteDoi               *string               `json:"datacite_doi,omitempty"`
+	Description               *string               `json:"description,omitempty"`
+	Endpoints                 *[]NestedEndpoint     `json:"endpoints,omitempty"`
+	Files                     *[]NestedOfferingFile `json:"files,omitempty"`
+	FullDescription           *string               `json:"full_description,omitempty"`
+	GettingStarted            *string               `json:"getting_started,omitempty"`
+	Googlecalendar            *GoogleCalendar       `json:"googlecalendar,omitempty"`
+	HasComplianceRequirements *bool                 `json:"has_compliance_requirements,omitempty"`
+	Image                     *string               `json:"image"`
+	IntegrationGuide          *string               `json:"integration_guide,omitempty"`
+	Latitude                  *float64              `json:"latitude"`
+	Longitude                 *float64              `json:"longitude"`
+	Name                      *string               `json:"name,omitempty"`
+	Options                   *OfferingOptions      `json:"options,omitempty"`
+	OrderCount                *int                  `json:"order_count,omitempty"`
+	OrganizationGroups        *[]OrganizationGroup  `json:"organization_groups,omitempty"`
+	ParentDescription         *string               `json:"parent_description"`
+	ParentName                *string               `json:"parent_name"`
+	ParentUuid                *openapi_types.UUID   `json:"parent_uuid"`
+	PausedReason              *string               `json:"paused_reason,omitempty"`
+	Plans                     *[]BasePublicPlan     `json:"plans,omitempty"`
+	PluginOptions             *MergedPluginOptions  `json:"plugin_options,omitempty"`
+	PrivacyPolicyLink         *string               `json:"privacy_policy_link,omitempty"`
+	Project                   *string               `json:"project"`
+	ProjectName               *string               `json:"project_name"`
+	ProjectUuid               *openapi_types.UUID   `json:"project_uuid"`
+	Quotas                    *[]Quota              `json:"quotas,omitempty"`
+	ResourceOptions           *OfferingOptions      `json:"resource_options,omitempty"`
+	Roles                     *[]NestedRole         `json:"roles,omitempty"`
+	Scope                     *string               `json:"scope,omitempty"`
+	ScopeErrorMessage         *string               `json:"scope_error_message"`
+	ScopeName                 *openapi_types.UUID   `json:"scope_name"`
+	ScopeState                *CoreStates           `json:"scope_state"`
+	ScopeUuid                 *openapi_types.UUID   `json:"scope_uuid"`
+	Screenshots               *[]NestedScreenshot   `json:"screenshots,omitempty"`
 
 	// Shared Accessible to all customers.
 	Shared             *bool               `json:"shared,omitempty"`
@@ -14678,48 +14703,49 @@ type OfferingCreate struct {
 	CategoryUuid  *openapi_types.UUID `json:"category_uuid,omitempty"`
 
 	// CitationCount Number of citations of a DOI
-	CitationCount      *int                    `json:"citation_count,omitempty"`
-	Components         *[]OfferingComponent    `json:"components,omitempty"`
-	Country            *OfferingCreate_Country `json:"country,omitempty"`
-	Created            *time.Time              `json:"created,omitempty"`
-	Customer           *string                 `json:"customer"`
-	CustomerName       *string                 `json:"customer_name"`
-	CustomerUuid       *openapi_types.UUID     `json:"customer_uuid"`
-	DataciteDoi        *string                 `json:"datacite_doi,omitempty"`
-	Description        *string                 `json:"description,omitempty"`
-	Endpoints          *[]NestedEndpoint       `json:"endpoints,omitempty"`
-	Files              *[]NestedOfferingFile   `json:"files,omitempty"`
-	FullDescription    *string                 `json:"full_description,omitempty"`
-	GettingStarted     *string                 `json:"getting_started,omitempty"`
-	Image              *string                 `json:"image"`
-	IntegrationGuide   *string                 `json:"integration_guide,omitempty"`
-	Latitude           *float64                `json:"latitude"`
-	Longitude          *float64                `json:"longitude"`
-	Name               string                  `json:"name"`
-	Options            *OfferingOptions        `json:"options,omitempty"`
-	OrderCount         *int                    `json:"order_count,omitempty"`
-	OrganizationGroups *[]OrganizationGroup    `json:"organization_groups,omitempty"`
-	ParentDescription  *string                 `json:"parent_description"`
-	ParentName         *string                 `json:"parent_name"`
-	ParentUuid         *openapi_types.UUID     `json:"parent_uuid"`
-	PausedReason       *string                 `json:"paused_reason,omitempty"`
-	Plans              *[]BaseProviderPlan     `json:"plans,omitempty"`
-	PluginOptions      *MergedPluginOptions    `json:"plugin_options,omitempty"`
-	PrivacyPolicyLink  *string                 `json:"privacy_policy_link,omitempty"`
-	Project            *string                 `json:"project"`
-	ProjectName        *string                 `json:"project_name"`
-	ProjectUuid        *openapi_types.UUID     `json:"project_uuid"`
-	Quotas             *[]Quota                `json:"quotas,omitempty"`
-	ResourceOptions    *OfferingOptions        `json:"resource_options,omitempty"`
-	Roles              *[]NestedRole           `json:"roles,omitempty"`
-	Scope              *string                 `json:"scope,omitempty"`
-	ScopeErrorMessage  *string                 `json:"scope_error_message"`
-	ScopeName          *openapi_types.UUID     `json:"scope_name"`
-	ScopeState         *CoreStates             `json:"scope_state"`
-	ScopeUuid          *openapi_types.UUID     `json:"scope_uuid"`
-	Screenshots        *[]NestedScreenshot     `json:"screenshots,omitempty"`
-	SecretOptions      *MergedSecretOptions    `json:"secret_options,omitempty"`
-	ServiceAttributes  *map[string]interface{} `json:"service_attributes,omitempty"`
+	CitationCount             *int                    `json:"citation_count,omitempty"`
+	Components                *[]OfferingComponent    `json:"components,omitempty"`
+	Country                   *OfferingCreate_Country `json:"country,omitempty"`
+	Created                   *time.Time              `json:"created,omitempty"`
+	Customer                  *string                 `json:"customer"`
+	CustomerName              *string                 `json:"customer_name"`
+	CustomerUuid              *openapi_types.UUID     `json:"customer_uuid"`
+	DataciteDoi               *string                 `json:"datacite_doi,omitempty"`
+	Description               *string                 `json:"description,omitempty"`
+	Endpoints                 *[]NestedEndpoint       `json:"endpoints,omitempty"`
+	Files                     *[]NestedOfferingFile   `json:"files,omitempty"`
+	FullDescription           *string                 `json:"full_description,omitempty"`
+	GettingStarted            *string                 `json:"getting_started,omitempty"`
+	HasComplianceRequirements *bool                   `json:"has_compliance_requirements,omitempty"`
+	Image                     *string                 `json:"image"`
+	IntegrationGuide          *string                 `json:"integration_guide,omitempty"`
+	Latitude                  *float64                `json:"latitude"`
+	Longitude                 *float64                `json:"longitude"`
+	Name                      string                  `json:"name"`
+	Options                   *OfferingOptions        `json:"options,omitempty"`
+	OrderCount                *int                    `json:"order_count,omitempty"`
+	OrganizationGroups        *[]OrganizationGroup    `json:"organization_groups,omitempty"`
+	ParentDescription         *string                 `json:"parent_description"`
+	ParentName                *string                 `json:"parent_name"`
+	ParentUuid                *openapi_types.UUID     `json:"parent_uuid"`
+	PausedReason              *string                 `json:"paused_reason,omitempty"`
+	Plans                     *[]BaseProviderPlan     `json:"plans,omitempty"`
+	PluginOptions             *MergedPluginOptions    `json:"plugin_options,omitempty"`
+	PrivacyPolicyLink         *string                 `json:"privacy_policy_link,omitempty"`
+	Project                   *string                 `json:"project"`
+	ProjectName               *string                 `json:"project_name"`
+	ProjectUuid               *openapi_types.UUID     `json:"project_uuid"`
+	Quotas                    *[]Quota                `json:"quotas,omitempty"`
+	ResourceOptions           *OfferingOptions        `json:"resource_options,omitempty"`
+	Roles                     *[]NestedRole           `json:"roles,omitempty"`
+	Scope                     *string                 `json:"scope,omitempty"`
+	ScopeErrorMessage         *string                 `json:"scope_error_message"`
+	ScopeName                 *openapi_types.UUID     `json:"scope_name"`
+	ScopeState                *CoreStates             `json:"scope_state"`
+	ScopeUuid                 *openapi_types.UUID     `json:"scope_uuid"`
+	Screenshots               *[]NestedScreenshot     `json:"screenshots,omitempty"`
+	SecretOptions             *MergedSecretOptions    `json:"secret_options,omitempty"`
+	ServiceAttributes         *map[string]interface{} `json:"service_attributes,omitempty"`
 
 	// Shared Accessible to all customers.
 	Shared             *bool               `json:"shared,omitempty"`
@@ -18661,37 +18687,38 @@ type ProviderOfferingDetails struct {
 	GoogleCalendarIsPublic *bool                            `json:"google_calendar_is_public"`
 
 	// GoogleCalendarLink Get the Google Calendar link for an offering.
-	GoogleCalendarLink *string                 `json:"google_calendar_link"`
-	Image              *string                 `json:"image"`
-	IntegrationGuide   *string                 `json:"integration_guide,omitempty"`
-	IntegrationStatus  *[]IntegrationStatus    `json:"integration_status"`
-	Latitude           *float64                `json:"latitude"`
-	Longitude          *float64                `json:"longitude"`
-	Name               *string                 `json:"name,omitempty"`
-	Options            *OfferingOptions        `json:"options,omitempty"`
-	OrderCount         *int                    `json:"order_count,omitempty"`
-	OrganizationGroups *[]OrganizationGroup    `json:"organization_groups,omitempty"`
-	ParentDescription  *string                 `json:"parent_description"`
-	ParentName         *string                 `json:"parent_name"`
-	ParentUuid         *openapi_types.UUID     `json:"parent_uuid"`
-	PausedReason       *string                 `json:"paused_reason,omitempty"`
-	Plans              *[]BaseProviderPlan     `json:"plans,omitempty"`
-	PluginOptions      *MergedPluginOptions    `json:"plugin_options,omitempty"`
-	PrivacyPolicyLink  *string                 `json:"privacy_policy_link,omitempty"`
-	Project            *string                 `json:"project"`
-	ProjectName        *string                 `json:"project_name"`
-	ProjectUuid        *openapi_types.UUID     `json:"project_uuid"`
-	Quotas             *[]Quota                `json:"quotas,omitempty"`
-	ResourceOptions    *OfferingOptions        `json:"resource_options,omitempty"`
-	Roles              *[]NestedRole           `json:"roles,omitempty"`
-	Scope              *string                 `json:"scope,omitempty"`
-	ScopeErrorMessage  *string                 `json:"scope_error_message"`
-	ScopeName          *openapi_types.UUID     `json:"scope_name"`
-	ScopeState         *CoreStates             `json:"scope_state"`
-	ScopeUuid          *openapi_types.UUID     `json:"scope_uuid"`
-	Screenshots        *[]NestedScreenshot     `json:"screenshots,omitempty"`
-	SecretOptions      *MergedSecretOptions    `json:"secret_options,omitempty"`
-	ServiceAttributes  *map[string]interface{} `json:"service_attributes,omitempty"`
+	GoogleCalendarLink        *string                 `json:"google_calendar_link"`
+	HasComplianceRequirements *bool                   `json:"has_compliance_requirements,omitempty"`
+	Image                     *string                 `json:"image"`
+	IntegrationGuide          *string                 `json:"integration_guide,omitempty"`
+	IntegrationStatus         *[]IntegrationStatus    `json:"integration_status"`
+	Latitude                  *float64                `json:"latitude"`
+	Longitude                 *float64                `json:"longitude"`
+	Name                      *string                 `json:"name,omitempty"`
+	Options                   *OfferingOptions        `json:"options,omitempty"`
+	OrderCount                *int                    `json:"order_count,omitempty"`
+	OrganizationGroups        *[]OrganizationGroup    `json:"organization_groups,omitempty"`
+	ParentDescription         *string                 `json:"parent_description"`
+	ParentName                *string                 `json:"parent_name"`
+	ParentUuid                *openapi_types.UUID     `json:"parent_uuid"`
+	PausedReason              *string                 `json:"paused_reason,omitempty"`
+	Plans                     *[]BaseProviderPlan     `json:"plans,omitempty"`
+	PluginOptions             *MergedPluginOptions    `json:"plugin_options,omitempty"`
+	PrivacyPolicyLink         *string                 `json:"privacy_policy_link,omitempty"`
+	Project                   *string                 `json:"project"`
+	ProjectName               *string                 `json:"project_name"`
+	ProjectUuid               *openapi_types.UUID     `json:"project_uuid"`
+	Quotas                    *[]Quota                `json:"quotas,omitempty"`
+	ResourceOptions           *OfferingOptions        `json:"resource_options,omitempty"`
+	Roles                     *[]NestedRole           `json:"roles,omitempty"`
+	Scope                     *string                 `json:"scope,omitempty"`
+	ScopeErrorMessage         *string                 `json:"scope_error_message"`
+	ScopeName                 *openapi_types.UUID     `json:"scope_name"`
+	ScopeState                *CoreStates             `json:"scope_state"`
+	ScopeUuid                 *openapi_types.UUID     `json:"scope_uuid"`
+	Screenshots               *[]NestedScreenshot     `json:"screenshots,omitempty"`
+	SecretOptions             *MergedSecretOptions    `json:"secret_options,omitempty"`
+	ServiceAttributes         *map[string]interface{} `json:"service_attributes,omitempty"`
 
 	// Shared Accessible to all customers.
 	Shared             *bool               `json:"shared,omitempty"`
@@ -18951,35 +18978,36 @@ type PublicOfferingDetails struct {
 	GoogleCalendarIsPublic *bool                          `json:"google_calendar_is_public"`
 
 	// GoogleCalendarLink Get the Google Calendar link for an offering.
-	GoogleCalendarLink *string              `json:"google_calendar_link"`
-	Image              *string              `json:"image"`
-	IntegrationGuide   *string              `json:"integration_guide,omitempty"`
-	Latitude           *float64             `json:"latitude"`
-	Longitude          *float64             `json:"longitude"`
-	Name               *string              `json:"name,omitempty"`
-	Options            *OfferingOptions     `json:"options,omitempty"`
-	OrderCount         *int                 `json:"order_count,omitempty"`
-	OrganizationGroups *[]OrganizationGroup `json:"organization_groups,omitempty"`
-	ParentDescription  *string              `json:"parent_description"`
-	ParentName         *string              `json:"parent_name"`
-	ParentUuid         *openapi_types.UUID  `json:"parent_uuid"`
-	PausedReason       *string              `json:"paused_reason,omitempty"`
-	Plans              *[]BasePublicPlan    `json:"plans,omitempty"`
-	PluginOptions      *MergedPluginOptions `json:"plugin_options,omitempty"`
-	PrivacyPolicyLink  *string              `json:"privacy_policy_link,omitempty"`
-	Project            *string              `json:"project"`
-	ProjectName        *string              `json:"project_name"`
-	ProjectUuid        *openapi_types.UUID  `json:"project_uuid"`
-	PromotionCampaigns *[]NestedCampaign    `json:"promotion_campaigns,omitempty"`
-	Quotas             *[]Quota             `json:"quotas,omitempty"`
-	ResourceOptions    *OfferingOptions     `json:"resource_options,omitempty"`
-	Roles              *[]NestedRole        `json:"roles,omitempty"`
-	Scope              *string              `json:"scope,omitempty"`
-	ScopeErrorMessage  *string              `json:"scope_error_message"`
-	ScopeName          *openapi_types.UUID  `json:"scope_name"`
-	ScopeState         *CoreStates          `json:"scope_state"`
-	ScopeUuid          *openapi_types.UUID  `json:"scope_uuid"`
-	Screenshots        *[]NestedScreenshot  `json:"screenshots,omitempty"`
+	GoogleCalendarLink        *string              `json:"google_calendar_link"`
+	HasComplianceRequirements *bool                `json:"has_compliance_requirements,omitempty"`
+	Image                     *string              `json:"image"`
+	IntegrationGuide          *string              `json:"integration_guide,omitempty"`
+	Latitude                  *float64             `json:"latitude"`
+	Longitude                 *float64             `json:"longitude"`
+	Name                      *string              `json:"name,omitempty"`
+	Options                   *OfferingOptions     `json:"options,omitempty"`
+	OrderCount                *int                 `json:"order_count,omitempty"`
+	OrganizationGroups        *[]OrganizationGroup `json:"organization_groups,omitempty"`
+	ParentDescription         *string              `json:"parent_description"`
+	ParentName                *string              `json:"parent_name"`
+	ParentUuid                *openapi_types.UUID  `json:"parent_uuid"`
+	PausedReason              *string              `json:"paused_reason,omitempty"`
+	Plans                     *[]BasePublicPlan    `json:"plans,omitempty"`
+	PluginOptions             *MergedPluginOptions `json:"plugin_options,omitempty"`
+	PrivacyPolicyLink         *string              `json:"privacy_policy_link,omitempty"`
+	Project                   *string              `json:"project"`
+	ProjectName               *string              `json:"project_name"`
+	ProjectUuid               *openapi_types.UUID  `json:"project_uuid"`
+	PromotionCampaigns        *[]NestedCampaign    `json:"promotion_campaigns,omitempty"`
+	Quotas                    *[]Quota             `json:"quotas,omitempty"`
+	ResourceOptions           *OfferingOptions     `json:"resource_options,omitempty"`
+	Roles                     *[]NestedRole        `json:"roles,omitempty"`
+	Scope                     *string              `json:"scope,omitempty"`
+	ScopeErrorMessage         *string              `json:"scope_error_message"`
+	ScopeName                 *openapi_types.UUID  `json:"scope_name"`
+	ScopeState                *CoreStates          `json:"scope_state"`
+	ScopeUuid                 *openapi_types.UUID  `json:"scope_uuid"`
+	Screenshots               *[]NestedScreenshot  `json:"screenshots,omitempty"`
 
 	// Shared Accessible to all customers.
 	Shared             *bool               `json:"shared,omitempty"`
@@ -20794,6 +20822,36 @@ type ServiceProvider struct {
 type ServiceProviderApiSecretCode struct {
 	ApiSecretCode *string `json:"api_secret_code,omitempty"`
 }
+
+// ServiceProviderComplianceOverview defines model for ServiceProviderComplianceOverview.
+type ServiceProviderComplianceOverview struct {
+	ChecklistName        *string             `json:"checklist_name"`
+	CompletedUsers       *int                `json:"completed_users,omitempty"`
+	ComplianceRate       *float64            `json:"compliance_rate,omitempty"`
+	OfferingName         *string             `json:"offering_name,omitempty"`
+	OfferingUuid         *openapi_types.UUID `json:"offering_uuid,omitempty"`
+	PendingUsers         *int                `json:"pending_users,omitempty"`
+	TotalUsers           *int                `json:"total_users,omitempty"`
+	UsersWithCompletions *int                `json:"users_with_completions,omitempty"`
+}
+
+// ServiceProviderOfferingUserCompliance defines model for ServiceProviderOfferingUserCompliance.
+type ServiceProviderOfferingUserCompliance struct {
+	ChecklistName        *string                                         `json:"checklist_name"`
+	CompletionPercentage *int                                            `json:"completion_percentage"`
+	ComplianceStatus     *string                                         `json:"compliance_status,omitempty"`
+	Created              *time.Time                                      `json:"created,omitempty"`
+	LastUpdated          *time.Time                                      `json:"last_updated"`
+	OfferingName         *string                                         `json:"offering_name,omitempty"`
+	State                *ServiceProviderOfferingUserComplianceStateEnum `json:"state,omitempty"`
+	UserEmail            *string                                         `json:"user_email,omitempty"`
+	UserFullName         *string                                         `json:"user_full_name,omitempty"`
+	Username             *string                                         `json:"username"`
+	Uuid                 *openapi_types.UUID                             `json:"uuid,omitempty"`
+}
+
+// ServiceProviderOfferingUserComplianceStateEnum defines model for ServiceProviderOfferingUserComplianceStateEnum.
+type ServiceProviderOfferingUserComplianceStateEnum int
 
 // ServiceProviderRequest defines model for ServiceProviderRequest.
 type ServiceProviderRequest struct {
@@ -25729,6 +25787,9 @@ type MarketplaceOfferingUsersRetrieveParams struct {
 // MarketplaceOfferingUsersRetrieveParamsField defines parameters for MarketplaceOfferingUsersRetrieve.
 type MarketplaceOfferingUsersRetrieveParamsField string
 
+// MarketplaceOfferingUsersSubmitAnswersJSONBody defines parameters for MarketplaceOfferingUsersSubmitAnswers.
+type MarketplaceOfferingUsersSubmitAnswersJSONBody = []AnswerSubmitRequest
+
 // MarketplaceOrdersListParams defines parameters for MarketplaceOrdersList.
 type MarketplaceOrdersListParams struct {
 	CanApproveAsConsumer *bool               `form:"can_approve_as_consumer,omitempty" json:"can_approve_as_consumer,omitempty"`
@@ -27335,6 +27396,30 @@ type MarketplaceServiceProvidersCountParams struct {
 
 // MarketplaceServiceProvidersCountParamsO defines parameters for MarketplaceServiceProvidersCount.
 type MarketplaceServiceProvidersCountParamsO string
+
+// ServiceProviderComplianceOverviewParams defines parameters for ServiceProviderComplianceOverview.
+type ServiceProviderComplianceOverviewParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// ServiceProviderOfferingUsersComplianceParams defines parameters for ServiceProviderOfferingUsersCompliance.
+type ServiceProviderOfferingUsersComplianceParams struct {
+	// ComplianceStatus Filter by compliance status: completed, pending, no_checklist
+	ComplianceStatus *string `form:"compliance_status,omitempty" json:"compliance_status,omitempty"`
+
+	// OfferingUuid Filter by offering UUID
+	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
 
 // MarketplaceServiceProvidersCustomerProjectsListParams defines parameters for MarketplaceServiceProvidersCustomerProjectsList.
 type MarketplaceServiceProvidersCustomerProjectsListParams struct {
@@ -33433,6 +33518,9 @@ type MarketplaceOfferingUsersSetPendingAccountLinkingJSONRequestBody = OfferingU
 
 // MarketplaceOfferingUsersSetPendingAdditionalValidationJSONRequestBody defines body for MarketplaceOfferingUsersSetPendingAdditionalValidation for application/json ContentType.
 type MarketplaceOfferingUsersSetPendingAdditionalValidationJSONRequestBody = OfferingUserStateTransitionRequest
+
+// MarketplaceOfferingUsersSubmitAnswersJSONRequestBody defines body for MarketplaceOfferingUsersSubmitAnswers for application/json ContentType.
+type MarketplaceOfferingUsersSubmitAnswersJSONRequestBody = MarketplaceOfferingUsersSubmitAnswersJSONBody
 
 // MarketplaceOfferingUsersUpdateCommentsPartialUpdateJSONRequestBody defines body for MarketplaceOfferingUsersUpdateCommentsPartialUpdate for application/json ContentType.
 type MarketplaceOfferingUsersUpdateCommentsPartialUpdateJSONRequestBody = PatchedOfferingUserServiceProviderCommentRequest
@@ -39535,6 +39623,18 @@ type ClientInterface interface {
 	// MarketplaceOfferingUsersBeginCreating request
 	MarketplaceOfferingUsersBeginCreating(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceOfferingUsersChecklistRetrieve request
+	MarketplaceOfferingUsersChecklistRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOfferingUsersChecklistReviewRetrieve request
+	MarketplaceOfferingUsersChecklistReviewRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOfferingUsersCompletionReviewStatusRetrieve request
+	MarketplaceOfferingUsersCompletionReviewStatusRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOfferingUsersCompletionStatusRetrieve request
+	MarketplaceOfferingUsersCompletionStatusRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceOfferingUsersRequestDeletion request
 	MarketplaceOfferingUsersRequestDeletion(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -39565,6 +39665,11 @@ type ClientInterface interface {
 
 	// MarketplaceOfferingUsersSetValidationComplete request
 	MarketplaceOfferingUsersSetValidationComplete(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOfferingUsersSubmitAnswersWithBody request with any body
+	MarketplaceOfferingUsersSubmitAnswersWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceOfferingUsersSubmitAnswers(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingUsersSubmitAnswersJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceOfferingUsersUpdateCommentsPartialUpdateWithBody request with any body
 	MarketplaceOfferingUsersUpdateCommentsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -40368,6 +40473,12 @@ type ClientInterface interface {
 	MarketplaceServiceProvidersCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	MarketplaceServiceProvidersCreate(ctx context.Context, body MarketplaceServiceProvidersCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ServiceProviderComplianceOverview request
+	ServiceProviderComplianceOverview(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *ServiceProviderComplianceOverviewParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ServiceProviderOfferingUsersCompliance request
+	ServiceProviderOfferingUsersCompliance(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *ServiceProviderOfferingUsersComplianceParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceServiceProvidersCustomerProjectsList request
 	MarketplaceServiceProvidersCustomerProjectsList(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersCustomerProjectsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -51720,6 +51831,54 @@ func (c *Client) MarketplaceOfferingUsersBeginCreating(ctx context.Context, uuid
 	return c.Client.Do(req)
 }
 
+func (c *Client) MarketplaceOfferingUsersChecklistRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingUsersChecklistRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOfferingUsersChecklistReviewRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingUsersChecklistReviewRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOfferingUsersCompletionReviewStatusRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingUsersCompletionReviewStatusRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOfferingUsersCompletionStatusRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingUsersCompletionStatusRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) MarketplaceOfferingUsersRequestDeletion(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceOfferingUsersRequestDeletionRequest(c.Server, uuid)
 	if err != nil {
@@ -51842,6 +52001,30 @@ func (c *Client) MarketplaceOfferingUsersSetPendingAdditionalValidation(ctx cont
 
 func (c *Client) MarketplaceOfferingUsersSetValidationComplete(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceOfferingUsersSetValidationCompleteRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOfferingUsersSubmitAnswersWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingUsersSubmitAnswersRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOfferingUsersSubmitAnswers(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingUsersSubmitAnswersJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingUsersSubmitAnswersRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -55382,6 +55565,30 @@ func (c *Client) MarketplaceServiceProvidersCreateWithBody(ctx context.Context, 
 
 func (c *Client) MarketplaceServiceProvidersCreate(ctx context.Context, body MarketplaceServiceProvidersCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceServiceProvidersCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ServiceProviderComplianceOverview(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *ServiceProviderComplianceOverviewParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewServiceProviderComplianceOverviewRequest(c.Server, serviceProviderUuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ServiceProviderOfferingUsersCompliance(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *ServiceProviderOfferingUsersComplianceParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewServiceProviderOfferingUsersComplianceRequest(c.Server, serviceProviderUuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -111040,6 +111247,142 @@ func NewMarketplaceOfferingUsersBeginCreatingRequest(server string, uuid openapi
 	return req, nil
 }
 
+// NewMarketplaceOfferingUsersChecklistRetrieveRequest generates requests for MarketplaceOfferingUsersChecklistRetrieve
+func NewMarketplaceOfferingUsersChecklistRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-users/%s/checklist/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceOfferingUsersChecklistReviewRetrieveRequest generates requests for MarketplaceOfferingUsersChecklistReviewRetrieve
+func NewMarketplaceOfferingUsersChecklistReviewRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-users/%s/checklist_review/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceOfferingUsersCompletionReviewStatusRetrieveRequest generates requests for MarketplaceOfferingUsersCompletionReviewStatusRetrieve
+func NewMarketplaceOfferingUsersCompletionReviewStatusRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-users/%s/completion_review_status/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceOfferingUsersCompletionStatusRetrieveRequest generates requests for MarketplaceOfferingUsersCompletionStatusRetrieve
+func NewMarketplaceOfferingUsersCompletionStatusRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-users/%s/completion_status/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewMarketplaceOfferingUsersRequestDeletionRequest generates requests for MarketplaceOfferingUsersRequestDeletion
 func NewMarketplaceOfferingUsersRequestDeletionRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -111368,6 +111711,53 @@ func NewMarketplaceOfferingUsersSetValidationCompleteRequest(server string, uuid
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewMarketplaceOfferingUsersSubmitAnswersRequest calls the generic MarketplaceOfferingUsersSubmitAnswers builder with application/json body
+func NewMarketplaceOfferingUsersSubmitAnswersRequest(server string, uuid openapi_types.UUID, body MarketplaceOfferingUsersSubmitAnswersJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceOfferingUsersSubmitAnswersRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceOfferingUsersSubmitAnswersRequestWithBody generates requests for MarketplaceOfferingUsersSubmitAnswers with any type of body
+func NewMarketplaceOfferingUsersSubmitAnswersRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-users/%s/submit_answers/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -129557,6 +129947,182 @@ func NewMarketplaceServiceProvidersCreateRequestWithBody(server string, contentT
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewServiceProviderComplianceOverviewRequest generates requests for ServiceProviderComplianceOverview
+func NewServiceProviderComplianceOverviewRequest(server string, serviceProviderUuid openapi_types.UUID, params *ServiceProviderComplianceOverviewParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "service_provider_uuid", runtime.ParamLocationPath, serviceProviderUuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-service-providers/%s/compliance/compliance_overview/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewServiceProviderOfferingUsersComplianceRequest generates requests for ServiceProviderOfferingUsersCompliance
+func NewServiceProviderOfferingUsersComplianceRequest(server string, serviceProviderUuid openapi_types.UUID, params *ServiceProviderOfferingUsersComplianceParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "service_provider_uuid", runtime.ParamLocationPath, serviceProviderUuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-service-providers/%s/compliance/offering_users/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.ComplianceStatus != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "compliance_status", runtime.ParamLocationQuery, *params.ComplianceStatus); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
 
 	return req, nil
 }
@@ -196963,6 +197529,18 @@ type ClientWithResponsesInterface interface {
 	// MarketplaceOfferingUsersBeginCreatingWithResponse request
 	MarketplaceOfferingUsersBeginCreatingWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersBeginCreatingResponse, error)
 
+	// MarketplaceOfferingUsersChecklistRetrieveWithResponse request
+	MarketplaceOfferingUsersChecklistRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersChecklistRetrieveResponse, error)
+
+	// MarketplaceOfferingUsersChecklistReviewRetrieveWithResponse request
+	MarketplaceOfferingUsersChecklistReviewRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersChecklistReviewRetrieveResponse, error)
+
+	// MarketplaceOfferingUsersCompletionReviewStatusRetrieveWithResponse request
+	MarketplaceOfferingUsersCompletionReviewStatusRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersCompletionReviewStatusRetrieveResponse, error)
+
+	// MarketplaceOfferingUsersCompletionStatusRetrieveWithResponse request
+	MarketplaceOfferingUsersCompletionStatusRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersCompletionStatusRetrieveResponse, error)
+
 	// MarketplaceOfferingUsersRequestDeletionWithResponse request
 	MarketplaceOfferingUsersRequestDeletionWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersRequestDeletionResponse, error)
 
@@ -196993,6 +197571,11 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceOfferingUsersSetValidationCompleteWithResponse request
 	MarketplaceOfferingUsersSetValidationCompleteWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersSetValidationCompleteResponse, error)
+
+	// MarketplaceOfferingUsersSubmitAnswersWithBodyWithResponse request with any body
+	MarketplaceOfferingUsersSubmitAnswersWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersSubmitAnswersResponse, error)
+
+	MarketplaceOfferingUsersSubmitAnswersWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingUsersSubmitAnswersJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersSubmitAnswersResponse, error)
 
 	// MarketplaceOfferingUsersUpdateCommentsPartialUpdateWithBodyWithResponse request with any body
 	MarketplaceOfferingUsersUpdateCommentsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersUpdateCommentsPartialUpdateResponse, error)
@@ -197796,6 +198379,12 @@ type ClientWithResponsesInterface interface {
 	MarketplaceServiceProvidersCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersCreateResponse, error)
 
 	MarketplaceServiceProvidersCreateWithResponse(ctx context.Context, body MarketplaceServiceProvidersCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersCreateResponse, error)
+
+	// ServiceProviderComplianceOverviewWithResponse request
+	ServiceProviderComplianceOverviewWithResponse(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *ServiceProviderComplianceOverviewParams, reqEditors ...RequestEditorFn) (*ServiceProviderComplianceOverviewResponse, error)
+
+	// ServiceProviderOfferingUsersComplianceWithResponse request
+	ServiceProviderOfferingUsersComplianceWithResponse(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *ServiceProviderOfferingUsersComplianceParams, reqEditors ...RequestEditorFn) (*ServiceProviderOfferingUsersComplianceResponse, error)
 
 	// MarketplaceServiceProvidersCustomerProjectsListWithResponse request
 	MarketplaceServiceProvidersCustomerProjectsListWithResponse(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersCustomerProjectsListParams, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersCustomerProjectsListResponse, error)
@@ -212523,6 +213112,102 @@ func (r MarketplaceOfferingUsersBeginCreatingResponse) StatusCode() int {
 	return 0
 }
 
+type MarketplaceOfferingUsersChecklistRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ChecklistResponse
+	JSON400      *interface{}
+	JSON404      *interface{}
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingUsersChecklistRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingUsersChecklistRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceOfferingUsersChecklistReviewRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ChecklistReviewerResponse
+	JSON400      *interface{}
+	JSON404      *interface{}
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingUsersChecklistReviewRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingUsersChecklistReviewRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceOfferingUsersCompletionReviewStatusRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ChecklistCompletionReviewer
+	JSON400      *interface{}
+	JSON404      *interface{}
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingUsersCompletionReviewStatusRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingUsersCompletionReviewStatusRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceOfferingUsersCompletionStatusRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ChecklistCompletion
+	JSON400      *interface{}
+	JSON404      *interface{}
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingUsersCompletionStatusRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingUsersCompletionStatusRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type MarketplaceOfferingUsersRequestDeletionResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -212706,6 +213391,30 @@ func (r MarketplaceOfferingUsersSetValidationCompleteResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceOfferingUsersSetValidationCompleteResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceOfferingUsersSubmitAnswersResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *AnswerSubmitResponse
+	JSON400      *interface{}
+	JSON404      *interface{}
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingUsersSubmitAnswersResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingUsersSubmitAnswersResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -217314,6 +218023,50 @@ func (r MarketplaceServiceProvidersCreateResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceServiceProvidersCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ServiceProviderComplianceOverviewResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]ServiceProviderComplianceOverview
+}
+
+// Status returns HTTPResponse.Status
+func (r ServiceProviderComplianceOverviewResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ServiceProviderComplianceOverviewResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ServiceProviderOfferingUsersComplianceResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]ServiceProviderOfferingUserCompliance
+}
+
+// Status returns HTTPResponse.Status
+func (r ServiceProviderOfferingUsersComplianceResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ServiceProviderOfferingUsersComplianceResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -239521,6 +240274,42 @@ func (c *ClientWithResponses) MarketplaceOfferingUsersBeginCreatingWithResponse(
 	return ParseMarketplaceOfferingUsersBeginCreatingResponse(rsp)
 }
 
+// MarketplaceOfferingUsersChecklistRetrieveWithResponse request returning *MarketplaceOfferingUsersChecklistRetrieveResponse
+func (c *ClientWithResponses) MarketplaceOfferingUsersChecklistRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersChecklistRetrieveResponse, error) {
+	rsp, err := c.MarketplaceOfferingUsersChecklistRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingUsersChecklistRetrieveResponse(rsp)
+}
+
+// MarketplaceOfferingUsersChecklistReviewRetrieveWithResponse request returning *MarketplaceOfferingUsersChecklistReviewRetrieveResponse
+func (c *ClientWithResponses) MarketplaceOfferingUsersChecklistReviewRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersChecklistReviewRetrieveResponse, error) {
+	rsp, err := c.MarketplaceOfferingUsersChecklistReviewRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingUsersChecklistReviewRetrieveResponse(rsp)
+}
+
+// MarketplaceOfferingUsersCompletionReviewStatusRetrieveWithResponse request returning *MarketplaceOfferingUsersCompletionReviewStatusRetrieveResponse
+func (c *ClientWithResponses) MarketplaceOfferingUsersCompletionReviewStatusRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersCompletionReviewStatusRetrieveResponse, error) {
+	rsp, err := c.MarketplaceOfferingUsersCompletionReviewStatusRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingUsersCompletionReviewStatusRetrieveResponse(rsp)
+}
+
+// MarketplaceOfferingUsersCompletionStatusRetrieveWithResponse request returning *MarketplaceOfferingUsersCompletionStatusRetrieveResponse
+func (c *ClientWithResponses) MarketplaceOfferingUsersCompletionStatusRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersCompletionStatusRetrieveResponse, error) {
+	rsp, err := c.MarketplaceOfferingUsersCompletionStatusRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingUsersCompletionStatusRetrieveResponse(rsp)
+}
+
 // MarketplaceOfferingUsersRequestDeletionWithResponse request returning *MarketplaceOfferingUsersRequestDeletionResponse
 func (c *ClientWithResponses) MarketplaceOfferingUsersRequestDeletionWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersRequestDeletionResponse, error) {
 	rsp, err := c.MarketplaceOfferingUsersRequestDeletion(ctx, uuid, reqEditors...)
@@ -239616,6 +240405,23 @@ func (c *ClientWithResponses) MarketplaceOfferingUsersSetValidationCompleteWithR
 		return nil, err
 	}
 	return ParseMarketplaceOfferingUsersSetValidationCompleteResponse(rsp)
+}
+
+// MarketplaceOfferingUsersSubmitAnswersWithBodyWithResponse request with arbitrary body returning *MarketplaceOfferingUsersSubmitAnswersResponse
+func (c *ClientWithResponses) MarketplaceOfferingUsersSubmitAnswersWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersSubmitAnswersResponse, error) {
+	rsp, err := c.MarketplaceOfferingUsersSubmitAnswersWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingUsersSubmitAnswersResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceOfferingUsersSubmitAnswersWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingUsersSubmitAnswersJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersSubmitAnswersResponse, error) {
+	rsp, err := c.MarketplaceOfferingUsersSubmitAnswers(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingUsersSubmitAnswersResponse(rsp)
 }
 
 // MarketplaceOfferingUsersUpdateCommentsPartialUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceOfferingUsersUpdateCommentsPartialUpdateResponse
@@ -242189,6 +242995,24 @@ func (c *ClientWithResponses) MarketplaceServiceProvidersCreateWithResponse(ctx 
 		return nil, err
 	}
 	return ParseMarketplaceServiceProvidersCreateResponse(rsp)
+}
+
+// ServiceProviderComplianceOverviewWithResponse request returning *ServiceProviderComplianceOverviewResponse
+func (c *ClientWithResponses) ServiceProviderComplianceOverviewWithResponse(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *ServiceProviderComplianceOverviewParams, reqEditors ...RequestEditorFn) (*ServiceProviderComplianceOverviewResponse, error) {
+	rsp, err := c.ServiceProviderComplianceOverview(ctx, serviceProviderUuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseServiceProviderComplianceOverviewResponse(rsp)
+}
+
+// ServiceProviderOfferingUsersComplianceWithResponse request returning *ServiceProviderOfferingUsersComplianceResponse
+func (c *ClientWithResponses) ServiceProviderOfferingUsersComplianceWithResponse(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *ServiceProviderOfferingUsersComplianceParams, reqEditors ...RequestEditorFn) (*ServiceProviderOfferingUsersComplianceResponse, error) {
+	rsp, err := c.ServiceProviderOfferingUsersCompliance(ctx, serviceProviderUuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseServiceProviderOfferingUsersComplianceResponse(rsp)
 }
 
 // MarketplaceServiceProvidersCustomerProjectsListWithResponse request returning *MarketplaceServiceProvidersCustomerProjectsListResponse
@@ -263043,6 +263867,166 @@ func ParseMarketplaceOfferingUsersBeginCreatingResponse(rsp *http.Response) (*Ma
 	return response, nil
 }
 
+// ParseMarketplaceOfferingUsersChecklistRetrieveResponse parses an HTTP response from a MarketplaceOfferingUsersChecklistRetrieveWithResponse call
+func ParseMarketplaceOfferingUsersChecklistRetrieveResponse(rsp *http.Response) (*MarketplaceOfferingUsersChecklistRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingUsersChecklistRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ChecklistResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOfferingUsersChecklistReviewRetrieveResponse parses an HTTP response from a MarketplaceOfferingUsersChecklistReviewRetrieveWithResponse call
+func ParseMarketplaceOfferingUsersChecklistReviewRetrieveResponse(rsp *http.Response) (*MarketplaceOfferingUsersChecklistReviewRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingUsersChecklistReviewRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ChecklistReviewerResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOfferingUsersCompletionReviewStatusRetrieveResponse parses an HTTP response from a MarketplaceOfferingUsersCompletionReviewStatusRetrieveWithResponse call
+func ParseMarketplaceOfferingUsersCompletionReviewStatusRetrieveResponse(rsp *http.Response) (*MarketplaceOfferingUsersCompletionReviewStatusRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingUsersCompletionReviewStatusRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ChecklistCompletionReviewer
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOfferingUsersCompletionStatusRetrieveResponse parses an HTTP response from a MarketplaceOfferingUsersCompletionStatusRetrieveWithResponse call
+func ParseMarketplaceOfferingUsersCompletionStatusRetrieveResponse(rsp *http.Response) (*MarketplaceOfferingUsersCompletionStatusRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingUsersCompletionStatusRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ChecklistCompletion
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseMarketplaceOfferingUsersRequestDeletionResponse parses an HTTP response from a MarketplaceOfferingUsersRequestDeletionWithResponse call
 func ParseMarketplaceOfferingUsersRequestDeletionResponse(rsp *http.Response) (*MarketplaceOfferingUsersRequestDeletionResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -263182,6 +264166,46 @@ func ParseMarketplaceOfferingUsersSetValidationCompleteResponse(rsp *http.Respon
 	response := &MarketplaceOfferingUsersSetValidationCompleteResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOfferingUsersSubmitAnswersResponse parses an HTTP response from a MarketplaceOfferingUsersSubmitAnswersWithResponse call
+func ParseMarketplaceOfferingUsersSubmitAnswersResponse(rsp *http.Response) (*MarketplaceOfferingUsersSubmitAnswersResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingUsersSubmitAnswersResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest AnswerSubmitResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
 	}
 
 	return response, nil
@@ -267936,6 +268960,58 @@ func ParseMarketplaceServiceProvidersCreateResponse(rsp *http.Response) (*Market
 			return nil, err
 		}
 		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseServiceProviderComplianceOverviewResponse parses an HTTP response from a ServiceProviderComplianceOverviewWithResponse call
+func ParseServiceProviderComplianceOverviewResponse(rsp *http.Response) (*ServiceProviderComplianceOverviewResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ServiceProviderComplianceOverviewResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []ServiceProviderComplianceOverview
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseServiceProviderOfferingUsersComplianceResponse parses an HTTP response from a ServiceProviderOfferingUsersComplianceWithResponse call
+func ParseServiceProviderOfferingUsersComplianceResponse(rsp *http.Response) (*ServiceProviderOfferingUsersComplianceResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ServiceProviderOfferingUsersComplianceResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []ServiceProviderOfferingUserCompliance
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
 
 	}
 
