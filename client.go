@@ -15542,7 +15542,10 @@ type OpenStackInstanceCreateOrderAttributes struct {
 
 	// DataVolumeType Volume type for the data volume
 	DataVolumeType *string `json:"data_volume_type"`
-	Description    *string `json:"description,omitempty"`
+
+	// DataVolumes Additional data volumes to attach to the instance
+	DataVolumes *[]OpenStackDataVolumeRequest `json:"data_volumes,omitempty"`
+	Description *string                       `json:"description,omitempty"`
 
 	// Flavor The flavor to use for the instance
 	Flavor *string `json:"flavor,omitempty"`
