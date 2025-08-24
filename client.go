@@ -12691,12 +12691,16 @@ type GroupInvitation struct {
 	Expires           *time.Time          `json:"expires,omitempty"`
 	IsActive          *bool               `json:"is_active,omitempty"`
 
+	// IsPublic Allow non-authenticated users to see and accept this invitation. Only staff can create public invitations.
+	IsPublic *bool `json:"is_public,omitempty"`
+
 	// ProjectNameTemplate Template for project name. Supports {username}, {email}, {full_name} variables
 	ProjectNameTemplate *string             `json:"project_name_template"`
 	ProjectRole         *openapi_types.UUID `json:"project_role"`
 	Role                openapi_types.UUID  `json:"role"`
 	RoleDescription     *string             `json:"role_description,omitempty"`
 	RoleName            *string             `json:"role_name,omitempty"`
+	ScopeImage          *string             `json:"scope_image"`
 	ScopeName           *string             `json:"scope_name,omitempty"`
 	ScopeType           *string             `json:"scope_type"`
 	ScopeUuid           *openapi_types.UUID `json:"scope_uuid,omitempty"`
@@ -12710,6 +12714,9 @@ type GroupInvitation struct {
 type GroupInvitationRequest struct {
 	// AutoCreateProject Create project and grant project permissions instead of customer permissions
 	AutoCreateProject *bool `json:"auto_create_project,omitempty"`
+
+	// IsPublic Allow non-authenticated users to see and accept this invitation. Only staff can create public invitations.
+	IsPublic *bool `json:"is_public,omitempty"`
 
 	// ProjectNameTemplate Template for project name. Supports {username}, {email}, {full_name} variables
 	ProjectNameTemplate *string             `json:"project_name_template"`
