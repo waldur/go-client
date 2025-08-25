@@ -2226,8 +2226,6 @@ const (
 	BookingOfferingsListParamsFieldShared                    BookingOfferingsListParamsField = "shared"
 	BookingOfferingsListParamsFieldSlug                      BookingOfferingsListParamsField = "slug"
 	BookingOfferingsListParamsFieldState                     BookingOfferingsListParamsField = "state"
-	BookingOfferingsListParamsFieldTermsOfService            BookingOfferingsListParamsField = "terms_of_service"
-	BookingOfferingsListParamsFieldTermsOfServiceLink        BookingOfferingsListParamsField = "terms_of_service_link"
 	BookingOfferingsListParamsFieldThumbnail                 BookingOfferingsListParamsField = "thumbnail"
 	BookingOfferingsListParamsFieldTotalCost                 BookingOfferingsListParamsField = "total_cost"
 	BookingOfferingsListParamsFieldTotalCostEstimated        BookingOfferingsListParamsField = "total_cost_estimated"
@@ -2293,8 +2291,6 @@ const (
 	BookingOfferingsRetrieveParamsFieldShared                    BookingOfferingsRetrieveParamsField = "shared"
 	BookingOfferingsRetrieveParamsFieldSlug                      BookingOfferingsRetrieveParamsField = "slug"
 	BookingOfferingsRetrieveParamsFieldState                     BookingOfferingsRetrieveParamsField = "state"
-	BookingOfferingsRetrieveParamsFieldTermsOfService            BookingOfferingsRetrieveParamsField = "terms_of_service"
-	BookingOfferingsRetrieveParamsFieldTermsOfServiceLink        BookingOfferingsRetrieveParamsField = "terms_of_service_link"
 	BookingOfferingsRetrieveParamsFieldThumbnail                 BookingOfferingsRetrieveParamsField = "thumbnail"
 	BookingOfferingsRetrieveParamsFieldTotalCost                 BookingOfferingsRetrieveParamsField = "total_cost"
 	BookingOfferingsRetrieveParamsFieldTotalCostEstimated        BookingOfferingsRetrieveParamsField = "total_cost_estimated"
@@ -2351,7 +2347,6 @@ const (
 	BookingResourcesListParamsFieldOfferingPluginOptions      BookingResourcesListParamsField = "offering_plugin_options"
 	BookingResourcesListParamsFieldOfferingShared             BookingResourcesListParamsField = "offering_shared"
 	BookingResourcesListParamsFieldOfferingSlug               BookingResourcesListParamsField = "offering_slug"
-	BookingResourcesListParamsFieldOfferingTermsOfService     BookingResourcesListParamsField = "offering_terms_of_service"
 	BookingResourcesListParamsFieldOfferingThumbnail          BookingResourcesListParamsField = "offering_thumbnail"
 	BookingResourcesListParamsFieldOfferingType               BookingResourcesListParamsField = "offering_type"
 	BookingResourcesListParamsFieldOfferingUuid               BookingResourcesListParamsField = "offering_uuid"
@@ -2387,6 +2382,7 @@ const (
 	BookingResourcesListParamsFieldSlug                       BookingResourcesListParamsField = "slug"
 	BookingResourcesListParamsFieldState                      BookingResourcesListParamsField = "state"
 	BookingResourcesListParamsFieldUrl                        BookingResourcesListParamsField = "url"
+	BookingResourcesListParamsFieldUserRequiresReconsent      BookingResourcesListParamsField = "user_requires_reconsent"
 	BookingResourcesListParamsFieldUsername                   BookingResourcesListParamsField = "username"
 	BookingResourcesListParamsFieldUuid                       BookingResourcesListParamsField = "uuid"
 )
@@ -2481,7 +2477,6 @@ const (
 	BookingResourcesRetrieveParamsFieldOfferingPluginOptions      BookingResourcesRetrieveParamsField = "offering_plugin_options"
 	BookingResourcesRetrieveParamsFieldOfferingShared             BookingResourcesRetrieveParamsField = "offering_shared"
 	BookingResourcesRetrieveParamsFieldOfferingSlug               BookingResourcesRetrieveParamsField = "offering_slug"
-	BookingResourcesRetrieveParamsFieldOfferingTermsOfService     BookingResourcesRetrieveParamsField = "offering_terms_of_service"
 	BookingResourcesRetrieveParamsFieldOfferingThumbnail          BookingResourcesRetrieveParamsField = "offering_thumbnail"
 	BookingResourcesRetrieveParamsFieldOfferingType               BookingResourcesRetrieveParamsField = "offering_type"
 	BookingResourcesRetrieveParamsFieldOfferingUuid               BookingResourcesRetrieveParamsField = "offering_uuid"
@@ -2517,6 +2512,7 @@ const (
 	BookingResourcesRetrieveParamsFieldSlug                       BookingResourcesRetrieveParamsField = "slug"
 	BookingResourcesRetrieveParamsFieldState                      BookingResourcesRetrieveParamsField = "state"
 	BookingResourcesRetrieveParamsFieldUrl                        BookingResourcesRetrieveParamsField = "url"
+	BookingResourcesRetrieveParamsFieldUserRequiresReconsent      BookingResourcesRetrieveParamsField = "user_requires_reconsent"
 	BookingResourcesRetrieveParamsFieldUsername                   BookingResourcesRetrieveParamsField = "username"
 	BookingResourcesRetrieveParamsFieldUuid                       BookingResourcesRetrieveParamsField = "uuid"
 )
@@ -3744,6 +3740,26 @@ const (
 	MarketplaceOfferingReferralsCountParamsOResourceType      MarketplaceOfferingReferralsCountParamsO = "resource_type"
 )
 
+// Defines values for MarketplaceOfferingTermsOfServiceListParamsO.
+const (
+	MarketplaceOfferingTermsOfServiceListParamsOCreated       MarketplaceOfferingTermsOfServiceListParamsO = "created"
+	MarketplaceOfferingTermsOfServiceListParamsOMinusCreated  MarketplaceOfferingTermsOfServiceListParamsO = "-created"
+	MarketplaceOfferingTermsOfServiceListParamsOMinusModified MarketplaceOfferingTermsOfServiceListParamsO = "-modified"
+	MarketplaceOfferingTermsOfServiceListParamsOMinusVersion  MarketplaceOfferingTermsOfServiceListParamsO = "-version"
+	MarketplaceOfferingTermsOfServiceListParamsOModified      MarketplaceOfferingTermsOfServiceListParamsO = "modified"
+	MarketplaceOfferingTermsOfServiceListParamsOVersion       MarketplaceOfferingTermsOfServiceListParamsO = "version"
+)
+
+// Defines values for MarketplaceOfferingTermsOfServiceCountParamsO.
+const (
+	MarketplaceOfferingTermsOfServiceCountParamsOCreated       MarketplaceOfferingTermsOfServiceCountParamsO = "created"
+	MarketplaceOfferingTermsOfServiceCountParamsOMinusCreated  MarketplaceOfferingTermsOfServiceCountParamsO = "-created"
+	MarketplaceOfferingTermsOfServiceCountParamsOMinusModified MarketplaceOfferingTermsOfServiceCountParamsO = "-modified"
+	MarketplaceOfferingTermsOfServiceCountParamsOMinusVersion  MarketplaceOfferingTermsOfServiceCountParamsO = "-version"
+	MarketplaceOfferingTermsOfServiceCountParamsOModified      MarketplaceOfferingTermsOfServiceCountParamsO = "modified"
+	MarketplaceOfferingTermsOfServiceCountParamsOVersion       MarketplaceOfferingTermsOfServiceCountParamsO = "version"
+)
+
 // Defines values for MarketplaceOfferingUsersListParamsField.
 const (
 	MarketplaceOfferingUsersListParamsFieldCreated                   MarketplaceOfferingUsersListParamsField = "created"
@@ -3878,7 +3894,6 @@ const (
 	MarketplaceOrdersListParamsFieldOfferingName               MarketplaceOrdersListParamsField = "offering_name"
 	MarketplaceOrdersListParamsFieldOfferingPluginOptions      MarketplaceOrdersListParamsField = "offering_plugin_options"
 	MarketplaceOrdersListParamsFieldOfferingShared             MarketplaceOrdersListParamsField = "offering_shared"
-	MarketplaceOrdersListParamsFieldOfferingTermsOfService     MarketplaceOrdersListParamsField = "offering_terms_of_service"
 	MarketplaceOrdersListParamsFieldOfferingThumbnail          MarketplaceOrdersListParamsField = "offering_thumbnail"
 	MarketplaceOrdersListParamsFieldOfferingType               MarketplaceOrdersListParamsField = "offering_type"
 	MarketplaceOrdersListParamsFieldOfferingUuid               MarketplaceOrdersListParamsField = "offering_uuid"
@@ -4012,7 +4027,6 @@ const (
 	MarketplaceOrdersRetrieveParamsFieldOfferingName               MarketplaceOrdersRetrieveParamsField = "offering_name"
 	MarketplaceOrdersRetrieveParamsFieldOfferingPluginOptions      MarketplaceOrdersRetrieveParamsField = "offering_plugin_options"
 	MarketplaceOrdersRetrieveParamsFieldOfferingShared             MarketplaceOrdersRetrieveParamsField = "offering_shared"
-	MarketplaceOrdersRetrieveParamsFieldOfferingTermsOfService     MarketplaceOrdersRetrieveParamsField = "offering_terms_of_service"
 	MarketplaceOrdersRetrieveParamsFieldOfferingThumbnail          MarketplaceOrdersRetrieveParamsField = "offering_thumbnail"
 	MarketplaceOrdersRetrieveParamsFieldOfferingType               MarketplaceOrdersRetrieveParamsField = "offering_type"
 	MarketplaceOrdersRetrieveParamsFieldOfferingUuid               MarketplaceOrdersRetrieveParamsField = "offering_uuid"
@@ -4121,8 +4135,6 @@ const (
 	MarketplaceProviderOfferingsListParamsFieldShared                    MarketplaceProviderOfferingsListParamsField = "shared"
 	MarketplaceProviderOfferingsListParamsFieldSlug                      MarketplaceProviderOfferingsListParamsField = "slug"
 	MarketplaceProviderOfferingsListParamsFieldState                     MarketplaceProviderOfferingsListParamsField = "state"
-	MarketplaceProviderOfferingsListParamsFieldTermsOfService            MarketplaceProviderOfferingsListParamsField = "terms_of_service"
-	MarketplaceProviderOfferingsListParamsFieldTermsOfServiceLink        MarketplaceProviderOfferingsListParamsField = "terms_of_service_link"
 	MarketplaceProviderOfferingsListParamsFieldThumbnail                 MarketplaceProviderOfferingsListParamsField = "thumbnail"
 	MarketplaceProviderOfferingsListParamsFieldTotalCost                 MarketplaceProviderOfferingsListParamsField = "total_cost"
 	MarketplaceProviderOfferingsListParamsFieldTotalCostEstimated        MarketplaceProviderOfferingsListParamsField = "total_cost_estimated"
@@ -4296,8 +4308,6 @@ const (
 	MarketplaceProviderOfferingsRetrieveParamsFieldShared                    MarketplaceProviderOfferingsRetrieveParamsField = "shared"
 	MarketplaceProviderOfferingsRetrieveParamsFieldSlug                      MarketplaceProviderOfferingsRetrieveParamsField = "slug"
 	MarketplaceProviderOfferingsRetrieveParamsFieldState                     MarketplaceProviderOfferingsRetrieveParamsField = "state"
-	MarketplaceProviderOfferingsRetrieveParamsFieldTermsOfService            MarketplaceProviderOfferingsRetrieveParamsField = "terms_of_service"
-	MarketplaceProviderOfferingsRetrieveParamsFieldTermsOfServiceLink        MarketplaceProviderOfferingsRetrieveParamsField = "terms_of_service_link"
 	MarketplaceProviderOfferingsRetrieveParamsFieldThumbnail                 MarketplaceProviderOfferingsRetrieveParamsField = "thumbnail"
 	MarketplaceProviderOfferingsRetrieveParamsFieldTotalCost                 MarketplaceProviderOfferingsRetrieveParamsField = "total_cost"
 	MarketplaceProviderOfferingsRetrieveParamsFieldTotalCostEstimated        MarketplaceProviderOfferingsRetrieveParamsField = "total_cost_estimated"
@@ -4445,8 +4455,6 @@ const (
 	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldShared                    MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "shared"
 	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldSlug                      MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "slug"
 	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldState                     MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "state"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldTermsOfService            MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "terms_of_service"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldTermsOfServiceLink        MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "terms_of_service_link"
 	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldThumbnail                 MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "thumbnail"
 	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldTotalCost                 MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "total_cost"
 	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldTotalCostEstimated        MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "total_cost_estimated"
@@ -4516,8 +4524,6 @@ const (
 	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldShared                    MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "shared"
 	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldSlug                      MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "slug"
 	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldState                     MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "state"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldTermsOfService            MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "terms_of_service"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldTermsOfServiceLink        MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "terms_of_service_link"
 	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldThumbnail                 MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "thumbnail"
 	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldTotalCost                 MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "total_cost"
 	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldTotalCostEstimated        MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "total_cost_estimated"
@@ -4614,8 +4620,6 @@ const (
 	MarketplaceProviderOfferingsStatsRetrieveParamsFieldShared                    MarketplaceProviderOfferingsStatsRetrieveParamsField = "shared"
 	MarketplaceProviderOfferingsStatsRetrieveParamsFieldSlug                      MarketplaceProviderOfferingsStatsRetrieveParamsField = "slug"
 	MarketplaceProviderOfferingsStatsRetrieveParamsFieldState                     MarketplaceProviderOfferingsStatsRetrieveParamsField = "state"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldTermsOfService            MarketplaceProviderOfferingsStatsRetrieveParamsField = "terms_of_service"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldTermsOfServiceLink        MarketplaceProviderOfferingsStatsRetrieveParamsField = "terms_of_service_link"
 	MarketplaceProviderOfferingsStatsRetrieveParamsFieldThumbnail                 MarketplaceProviderOfferingsStatsRetrieveParamsField = "thumbnail"
 	MarketplaceProviderOfferingsStatsRetrieveParamsFieldTotalCost                 MarketplaceProviderOfferingsStatsRetrieveParamsField = "total_cost"
 	MarketplaceProviderOfferingsStatsRetrieveParamsFieldTotalCostEstimated        MarketplaceProviderOfferingsStatsRetrieveParamsField = "total_cost_estimated"
@@ -4685,8 +4689,6 @@ const (
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldShared                    MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "shared"
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldSlug                      MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "slug"
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldState                     MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "state"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldTermsOfService            MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "terms_of_service"
-	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldTermsOfServiceLink        MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "terms_of_service_link"
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldThumbnail                 MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "thumbnail"
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldTotalCost                 MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "total_cost"
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldTotalCostEstimated        MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "total_cost_estimated"
@@ -4737,7 +4739,6 @@ const (
 	MarketplaceProviderResourcesListParamsFieldOfferingPluginOptions     MarketplaceProviderResourcesListParamsField = "offering_plugin_options"
 	MarketplaceProviderResourcesListParamsFieldOfferingShared            MarketplaceProviderResourcesListParamsField = "offering_shared"
 	MarketplaceProviderResourcesListParamsFieldOfferingSlug              MarketplaceProviderResourcesListParamsField = "offering_slug"
-	MarketplaceProviderResourcesListParamsFieldOfferingTermsOfService    MarketplaceProviderResourcesListParamsField = "offering_terms_of_service"
 	MarketplaceProviderResourcesListParamsFieldOfferingThumbnail         MarketplaceProviderResourcesListParamsField = "offering_thumbnail"
 	MarketplaceProviderResourcesListParamsFieldOfferingType              MarketplaceProviderResourcesListParamsField = "offering_type"
 	MarketplaceProviderResourcesListParamsFieldOfferingUuid              MarketplaceProviderResourcesListParamsField = "offering_uuid"
@@ -4772,6 +4773,7 @@ const (
 	MarketplaceProviderResourcesListParamsFieldSlug                      MarketplaceProviderResourcesListParamsField = "slug"
 	MarketplaceProviderResourcesListParamsFieldState                     MarketplaceProviderResourcesListParamsField = "state"
 	MarketplaceProviderResourcesListParamsFieldUrl                       MarketplaceProviderResourcesListParamsField = "url"
+	MarketplaceProviderResourcesListParamsFieldUserRequiresReconsent     MarketplaceProviderResourcesListParamsField = "user_requires_reconsent"
 	MarketplaceProviderResourcesListParamsFieldUsername                  MarketplaceProviderResourcesListParamsField = "username"
 	MarketplaceProviderResourcesListParamsFieldUuid                      MarketplaceProviderResourcesListParamsField = "uuid"
 )
@@ -4860,7 +4862,6 @@ const (
 	MarketplaceProviderResourcesRetrieveParamsFieldOfferingPluginOptions     MarketplaceProviderResourcesRetrieveParamsField = "offering_plugin_options"
 	MarketplaceProviderResourcesRetrieveParamsFieldOfferingShared            MarketplaceProviderResourcesRetrieveParamsField = "offering_shared"
 	MarketplaceProviderResourcesRetrieveParamsFieldOfferingSlug              MarketplaceProviderResourcesRetrieveParamsField = "offering_slug"
-	MarketplaceProviderResourcesRetrieveParamsFieldOfferingTermsOfService    MarketplaceProviderResourcesRetrieveParamsField = "offering_terms_of_service"
 	MarketplaceProviderResourcesRetrieveParamsFieldOfferingThumbnail         MarketplaceProviderResourcesRetrieveParamsField = "offering_thumbnail"
 	MarketplaceProviderResourcesRetrieveParamsFieldOfferingType              MarketplaceProviderResourcesRetrieveParamsField = "offering_type"
 	MarketplaceProviderResourcesRetrieveParamsFieldOfferingUuid              MarketplaceProviderResourcesRetrieveParamsField = "offering_uuid"
@@ -4895,6 +4896,7 @@ const (
 	MarketplaceProviderResourcesRetrieveParamsFieldSlug                      MarketplaceProviderResourcesRetrieveParamsField = "slug"
 	MarketplaceProviderResourcesRetrieveParamsFieldState                     MarketplaceProviderResourcesRetrieveParamsField = "state"
 	MarketplaceProviderResourcesRetrieveParamsFieldUrl                       MarketplaceProviderResourcesRetrieveParamsField = "url"
+	MarketplaceProviderResourcesRetrieveParamsFieldUserRequiresReconsent     MarketplaceProviderResourcesRetrieveParamsField = "user_requires_reconsent"
 	MarketplaceProviderResourcesRetrieveParamsFieldUsername                  MarketplaceProviderResourcesRetrieveParamsField = "username"
 	MarketplaceProviderResourcesRetrieveParamsFieldUuid                      MarketplaceProviderResourcesRetrieveParamsField = "uuid"
 )
@@ -4939,7 +4941,6 @@ const (
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldOfferingPluginOptions     MarketplaceProviderResourcesDetailsRetrieveParamsField = "offering_plugin_options"
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldOfferingShared            MarketplaceProviderResourcesDetailsRetrieveParamsField = "offering_shared"
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldOfferingSlug              MarketplaceProviderResourcesDetailsRetrieveParamsField = "offering_slug"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldOfferingTermsOfService    MarketplaceProviderResourcesDetailsRetrieveParamsField = "offering_terms_of_service"
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldOfferingThumbnail         MarketplaceProviderResourcesDetailsRetrieveParamsField = "offering_thumbnail"
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldOfferingType              MarketplaceProviderResourcesDetailsRetrieveParamsField = "offering_type"
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldOfferingUuid              MarketplaceProviderResourcesDetailsRetrieveParamsField = "offering_uuid"
@@ -4974,6 +4975,7 @@ const (
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldSlug                      MarketplaceProviderResourcesDetailsRetrieveParamsField = "slug"
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldState                     MarketplaceProviderResourcesDetailsRetrieveParamsField = "state"
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldUrl                       MarketplaceProviderResourcesDetailsRetrieveParamsField = "url"
+	MarketplaceProviderResourcesDetailsRetrieveParamsFieldUserRequiresReconsent     MarketplaceProviderResourcesDetailsRetrieveParamsField = "user_requires_reconsent"
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldUsername                  MarketplaceProviderResourcesDetailsRetrieveParamsField = "username"
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldUuid                      MarketplaceProviderResourcesDetailsRetrieveParamsField = "uuid"
 )
@@ -5035,8 +5037,6 @@ const (
 	MarketplacePublicOfferingsListParamsFieldShared                    MarketplacePublicOfferingsListParamsField = "shared"
 	MarketplacePublicOfferingsListParamsFieldSlug                      MarketplacePublicOfferingsListParamsField = "slug"
 	MarketplacePublicOfferingsListParamsFieldState                     MarketplacePublicOfferingsListParamsField = "state"
-	MarketplacePublicOfferingsListParamsFieldTermsOfService            MarketplacePublicOfferingsListParamsField = "terms_of_service"
-	MarketplacePublicOfferingsListParamsFieldTermsOfServiceLink        MarketplacePublicOfferingsListParamsField = "terms_of_service_link"
 	MarketplacePublicOfferingsListParamsFieldThumbnail                 MarketplacePublicOfferingsListParamsField = "thumbnail"
 	MarketplacePublicOfferingsListParamsFieldTotalCost                 MarketplacePublicOfferingsListParamsField = "total_cost"
 	MarketplacePublicOfferingsListParamsFieldTotalCostEstimated        MarketplacePublicOfferingsListParamsField = "total_cost_estimated"
@@ -5156,8 +5156,6 @@ const (
 	MarketplacePublicOfferingsRetrieveParamsFieldShared                    MarketplacePublicOfferingsRetrieveParamsField = "shared"
 	MarketplacePublicOfferingsRetrieveParamsFieldSlug                      MarketplacePublicOfferingsRetrieveParamsField = "slug"
 	MarketplacePublicOfferingsRetrieveParamsFieldState                     MarketplacePublicOfferingsRetrieveParamsField = "state"
-	MarketplacePublicOfferingsRetrieveParamsFieldTermsOfService            MarketplacePublicOfferingsRetrieveParamsField = "terms_of_service"
-	MarketplacePublicOfferingsRetrieveParamsFieldTermsOfServiceLink        MarketplacePublicOfferingsRetrieveParamsField = "terms_of_service_link"
 	MarketplacePublicOfferingsRetrieveParamsFieldThumbnail                 MarketplacePublicOfferingsRetrieveParamsField = "thumbnail"
 	MarketplacePublicOfferingsRetrieveParamsFieldTotalCost                 MarketplacePublicOfferingsRetrieveParamsField = "total_cost"
 	MarketplacePublicOfferingsRetrieveParamsFieldTotalCostEstimated        MarketplacePublicOfferingsRetrieveParamsField = "total_cost_estimated"
@@ -5208,7 +5206,6 @@ const (
 	MarketplaceResourcesListParamsFieldOfferingPluginOptions     MarketplaceResourcesListParamsField = "offering_plugin_options"
 	MarketplaceResourcesListParamsFieldOfferingShared            MarketplaceResourcesListParamsField = "offering_shared"
 	MarketplaceResourcesListParamsFieldOfferingSlug              MarketplaceResourcesListParamsField = "offering_slug"
-	MarketplaceResourcesListParamsFieldOfferingTermsOfService    MarketplaceResourcesListParamsField = "offering_terms_of_service"
 	MarketplaceResourcesListParamsFieldOfferingThumbnail         MarketplaceResourcesListParamsField = "offering_thumbnail"
 	MarketplaceResourcesListParamsFieldOfferingType              MarketplaceResourcesListParamsField = "offering_type"
 	MarketplaceResourcesListParamsFieldOfferingUuid              MarketplaceResourcesListParamsField = "offering_uuid"
@@ -5243,6 +5240,7 @@ const (
 	MarketplaceResourcesListParamsFieldSlug                      MarketplaceResourcesListParamsField = "slug"
 	MarketplaceResourcesListParamsFieldState                     MarketplaceResourcesListParamsField = "state"
 	MarketplaceResourcesListParamsFieldUrl                       MarketplaceResourcesListParamsField = "url"
+	MarketplaceResourcesListParamsFieldUserRequiresReconsent     MarketplaceResourcesListParamsField = "user_requires_reconsent"
 	MarketplaceResourcesListParamsFieldUsername                  MarketplaceResourcesListParamsField = "username"
 	MarketplaceResourcesListParamsFieldUuid                      MarketplaceResourcesListParamsField = "uuid"
 )
@@ -5331,7 +5329,6 @@ const (
 	MarketplaceResourcesRetrieveParamsFieldOfferingPluginOptions     MarketplaceResourcesRetrieveParamsField = "offering_plugin_options"
 	MarketplaceResourcesRetrieveParamsFieldOfferingShared            MarketplaceResourcesRetrieveParamsField = "offering_shared"
 	MarketplaceResourcesRetrieveParamsFieldOfferingSlug              MarketplaceResourcesRetrieveParamsField = "offering_slug"
-	MarketplaceResourcesRetrieveParamsFieldOfferingTermsOfService    MarketplaceResourcesRetrieveParamsField = "offering_terms_of_service"
 	MarketplaceResourcesRetrieveParamsFieldOfferingThumbnail         MarketplaceResourcesRetrieveParamsField = "offering_thumbnail"
 	MarketplaceResourcesRetrieveParamsFieldOfferingType              MarketplaceResourcesRetrieveParamsField = "offering_type"
 	MarketplaceResourcesRetrieveParamsFieldOfferingUuid              MarketplaceResourcesRetrieveParamsField = "offering_uuid"
@@ -5366,6 +5363,7 @@ const (
 	MarketplaceResourcesRetrieveParamsFieldSlug                      MarketplaceResourcesRetrieveParamsField = "slug"
 	MarketplaceResourcesRetrieveParamsFieldState                     MarketplaceResourcesRetrieveParamsField = "state"
 	MarketplaceResourcesRetrieveParamsFieldUrl                       MarketplaceResourcesRetrieveParamsField = "url"
+	MarketplaceResourcesRetrieveParamsFieldUserRequiresReconsent     MarketplaceResourcesRetrieveParamsField = "user_requires_reconsent"
 	MarketplaceResourcesRetrieveParamsFieldUsername                  MarketplaceResourcesRetrieveParamsField = "username"
 	MarketplaceResourcesRetrieveParamsFieldUuid                      MarketplaceResourcesRetrieveParamsField = "uuid"
 )
@@ -5410,7 +5408,6 @@ const (
 	MarketplaceResourcesDetailsRetrieveParamsFieldOfferingPluginOptions     MarketplaceResourcesDetailsRetrieveParamsField = "offering_plugin_options"
 	MarketplaceResourcesDetailsRetrieveParamsFieldOfferingShared            MarketplaceResourcesDetailsRetrieveParamsField = "offering_shared"
 	MarketplaceResourcesDetailsRetrieveParamsFieldOfferingSlug              MarketplaceResourcesDetailsRetrieveParamsField = "offering_slug"
-	MarketplaceResourcesDetailsRetrieveParamsFieldOfferingTermsOfService    MarketplaceResourcesDetailsRetrieveParamsField = "offering_terms_of_service"
 	MarketplaceResourcesDetailsRetrieveParamsFieldOfferingThumbnail         MarketplaceResourcesDetailsRetrieveParamsField = "offering_thumbnail"
 	MarketplaceResourcesDetailsRetrieveParamsFieldOfferingType              MarketplaceResourcesDetailsRetrieveParamsField = "offering_type"
 	MarketplaceResourcesDetailsRetrieveParamsFieldOfferingUuid              MarketplaceResourcesDetailsRetrieveParamsField = "offering_uuid"
@@ -5445,6 +5442,7 @@ const (
 	MarketplaceResourcesDetailsRetrieveParamsFieldSlug                      MarketplaceResourcesDetailsRetrieveParamsField = "slug"
 	MarketplaceResourcesDetailsRetrieveParamsFieldState                     MarketplaceResourcesDetailsRetrieveParamsField = "state"
 	MarketplaceResourcesDetailsRetrieveParamsFieldUrl                       MarketplaceResourcesDetailsRetrieveParamsField = "url"
+	MarketplaceResourcesDetailsRetrieveParamsFieldUserRequiresReconsent     MarketplaceResourcesDetailsRetrieveParamsField = "user_requires_reconsent"
 	MarketplaceResourcesDetailsRetrieveParamsFieldUsername                  MarketplaceResourcesDetailsRetrieveParamsField = "username"
 	MarketplaceResourcesDetailsRetrieveParamsFieldUuid                      MarketplaceResourcesDetailsRetrieveParamsField = "uuid"
 )
@@ -5883,6 +5881,30 @@ const (
 	MarketplaceServiceProvidersListUsersListParamsONativeName     MarketplaceServiceProvidersListUsersListParamsO = "native_name"
 	MarketplaceServiceProvidersListUsersListParamsORole           MarketplaceServiceProvidersListUsersListParamsO = "role"
 	MarketplaceServiceProvidersListUsersListParamsOUsername       MarketplaceServiceProvidersListUsersListParamsO = "username"
+)
+
+// Defines values for MarketplaceUserOfferingConsentsListParamsO.
+const (
+	MarketplaceUserOfferingConsentsListParamsOAgreementDate       MarketplaceUserOfferingConsentsListParamsO = "agreement_date"
+	MarketplaceUserOfferingConsentsListParamsOCreated             MarketplaceUserOfferingConsentsListParamsO = "created"
+	MarketplaceUserOfferingConsentsListParamsOMinusAgreementDate  MarketplaceUserOfferingConsentsListParamsO = "-agreement_date"
+	MarketplaceUserOfferingConsentsListParamsOMinusCreated        MarketplaceUserOfferingConsentsListParamsO = "-created"
+	MarketplaceUserOfferingConsentsListParamsOMinusModified       MarketplaceUserOfferingConsentsListParamsO = "-modified"
+	MarketplaceUserOfferingConsentsListParamsOMinusRevocationDate MarketplaceUserOfferingConsentsListParamsO = "-revocation_date"
+	MarketplaceUserOfferingConsentsListParamsOModified            MarketplaceUserOfferingConsentsListParamsO = "modified"
+	MarketplaceUserOfferingConsentsListParamsORevocationDate      MarketplaceUserOfferingConsentsListParamsO = "revocation_date"
+)
+
+// Defines values for MarketplaceUserOfferingConsentsCountParamsO.
+const (
+	MarketplaceUserOfferingConsentsCountParamsOAgreementDate       MarketplaceUserOfferingConsentsCountParamsO = "agreement_date"
+	MarketplaceUserOfferingConsentsCountParamsOCreated             MarketplaceUserOfferingConsentsCountParamsO = "created"
+	MarketplaceUserOfferingConsentsCountParamsOMinusAgreementDate  MarketplaceUserOfferingConsentsCountParamsO = "-agreement_date"
+	MarketplaceUserOfferingConsentsCountParamsOMinusCreated        MarketplaceUserOfferingConsentsCountParamsO = "-created"
+	MarketplaceUserOfferingConsentsCountParamsOMinusModified       MarketplaceUserOfferingConsentsCountParamsO = "-modified"
+	MarketplaceUserOfferingConsentsCountParamsOMinusRevocationDate MarketplaceUserOfferingConsentsCountParamsO = "-revocation_date"
+	MarketplaceUserOfferingConsentsCountParamsOModified            MarketplaceUserOfferingConsentsCountParamsO = "modified"
+	MarketplaceUserOfferingConsentsCountParamsORevocationDate      MarketplaceUserOfferingConsentsCountParamsO = "revocation_date"
 )
 
 // Defines values for OpenstackBackupsListParamsField.
@@ -10832,27 +10854,26 @@ type BookingResource struct {
 	OfferingPluginOptions interface{} `json:"offering_plugin_options,omitempty"`
 
 	// OfferingShared Accessible to all customers.
-	OfferingShared         *bool               `json:"offering_shared,omitempty"`
-	OfferingSlug           *string             `json:"offering_slug,omitempty"`
-	OfferingTermsOfService *string             `json:"offering_terms_of_service,omitempty"`
-	OfferingThumbnail      *string             `json:"offering_thumbnail,omitempty"`
-	OfferingType           *string             `json:"offering_type,omitempty"`
-	OfferingUuid           *openapi_types.UUID `json:"offering_uuid,omitempty"`
-	Options                interface{}         `json:"options"`
-	OrderInProgress        *OrderDetails       `json:"order_in_progress"`
-	ParentName             *string             `json:"parent_name,omitempty"`
-	ParentOfferingName     *string             `json:"parent_offering_name,omitempty"`
-	ParentOfferingSlug     *string             `json:"parent_offering_slug,omitempty"`
-	ParentOfferingUuid     *openapi_types.UUID `json:"parent_offering_uuid,omitempty"`
-	ParentUuid             *openapi_types.UUID `json:"parent_uuid,omitempty"`
-	Paused                 *bool               `json:"paused,omitempty"`
-	Plan                   *string             `json:"plan,omitempty"`
-	PlanDescription        *string             `json:"plan_description"`
-	PlanName               *string             `json:"plan_name"`
-	PlanUnit               *BillingUnit        `json:"plan_unit"`
-	PlanUuid               *openapi_types.UUID `json:"plan_uuid"`
-	Project                *string             `json:"project,omitempty"`
-	ProjectDescription     *string             `json:"project_description,omitempty"`
+	OfferingShared     *bool               `json:"offering_shared,omitempty"`
+	OfferingSlug       *string             `json:"offering_slug,omitempty"`
+	OfferingThumbnail  *string             `json:"offering_thumbnail,omitempty"`
+	OfferingType       *string             `json:"offering_type,omitempty"`
+	OfferingUuid       *openapi_types.UUID `json:"offering_uuid,omitempty"`
+	Options            interface{}         `json:"options"`
+	OrderInProgress    *OrderDetails       `json:"order_in_progress"`
+	ParentName         *string             `json:"parent_name,omitempty"`
+	ParentOfferingName *string             `json:"parent_offering_name,omitempty"`
+	ParentOfferingSlug *string             `json:"parent_offering_slug,omitempty"`
+	ParentOfferingUuid *openapi_types.UUID `json:"parent_offering_uuid,omitempty"`
+	ParentUuid         *openapi_types.UUID `json:"parent_uuid,omitempty"`
+	Paused             *bool               `json:"paused,omitempty"`
+	Plan               *string             `json:"plan,omitempty"`
+	PlanDescription    *string             `json:"plan_description"`
+	PlanName           *string             `json:"plan_name"`
+	PlanUnit           *BillingUnit        `json:"plan_unit"`
+	PlanUuid           *openapi_types.UUID `json:"plan_uuid"`
+	Project            *string             `json:"project,omitempty"`
+	ProjectDescription *string             `json:"project_description,omitempty"`
 
 	// ProjectEndDate The date is inclusive. Once reached, all project resource will be scheduled for termination.
 	ProjectEndDate            *openapi_types.Date `json:"project_end_date"`
@@ -10872,8 +10893,11 @@ type BookingResource struct {
 	Slug                      *string             `json:"slug,omitempty"`
 	State                     *ResourceState      `json:"state,omitempty"`
 	Url                       *string             `json:"url,omitempty"`
-	Username                  *string             `json:"username"`
-	Uuid                      *openapi_types.UUID `json:"uuid,omitempty"`
+
+	// UserRequiresReconsent Check if the current user needs to re-consent for this resource's offering.
+	UserRequiresReconsent *bool               `json:"user_requires_reconsent,omitempty"`
+	Username              *string             `json:"username"`
+	Uuid                  *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // BookingSlot defines model for BookingSlot.
@@ -14577,8 +14601,6 @@ type Offering struct {
 	Shared             *bool               `json:"shared,omitempty"`
 	Slug               *string             `json:"slug,omitempty"`
 	State              *OfferingState      `json:"state,omitempty"`
-	TermsOfService     *string             `json:"terms_of_service,omitempty"`
-	TermsOfServiceLink *string             `json:"terms_of_service_link,omitempty"`
 	Thumbnail          *string             `json:"thumbnail"`
 	TotalCost          *int                `json:"total_cost"`
 	TotalCostEstimated *int                `json:"total_cost_estimated"`
@@ -14758,8 +14780,6 @@ type OfferingCreate struct {
 	Shared             *bool               `json:"shared,omitempty"`
 	Slug               *string             `json:"slug,omitempty"`
 	State              *OfferingState      `json:"state,omitempty"`
-	TermsOfService     *string             `json:"terms_of_service,omitempty"`
-	TermsOfServiceLink *string             `json:"terms_of_service_link,omitempty"`
 	Thumbnail          *string             `json:"thumbnail"`
 	TotalCost          *int                `json:"total_cost"`
 	TotalCostEstimated *int                `json:"total_cost_estimated"`
@@ -14805,12 +14825,10 @@ type OfferingCreateRequest struct {
 	ResourceOptions   *OfferingOptionsRequest                   `json:"resource_options,omitempty"`
 
 	// Shared Accessible to all customers.
-	Shared             *bool               `json:"shared,omitempty"`
-	TermsOfService     *string             `json:"terms_of_service,omitempty"`
-	TermsOfServiceLink *string             `json:"terms_of_service_link,omitempty"`
-	Thumbnail          *openapi_types.File `json:"thumbnail"`
-	Type               string              `json:"type"`
-	VendorDetails      *string             `json:"vendor_details,omitempty"`
+	Shared        *bool               `json:"shared,omitempty"`
+	Thumbnail     *openapi_types.File `json:"thumbnail"`
+	Type          string              `json:"type"`
+	VendorDetails *string             `json:"vendor_details,omitempty"`
 }
 
 // OfferingCreateRequest_Country defines model for OfferingCreateRequest.Country.
@@ -14920,15 +14938,13 @@ type OfferingOptionsUpdateRequest struct {
 // OfferingOverviewUpdateRequest defines model for OfferingOverviewUpdateRequest.
 type OfferingOverviewUpdateRequest struct {
 	// AccessUrl Publicly accessible offering access URL
-	AccessUrl          *string `json:"access_url,omitempty"`
-	Description        *string `json:"description,omitempty"`
-	FullDescription    *string `json:"full_description,omitempty"`
-	GettingStarted     *string `json:"getting_started,omitempty"`
-	IntegrationGuide   *string `json:"integration_guide,omitempty"`
-	Name               string  `json:"name"`
-	PrivacyPolicyLink  *string `json:"privacy_policy_link,omitempty"`
-	TermsOfService     *string `json:"terms_of_service,omitempty"`
-	TermsOfServiceLink *string `json:"terms_of_service_link,omitempty"`
+	AccessUrl         *string `json:"access_url,omitempty"`
+	Description       *string `json:"description,omitempty"`
+	FullDescription   *string `json:"full_description,omitempty"`
+	GettingStarted    *string `json:"getting_started,omitempty"`
+	IntegrationGuide  *string `json:"integration_guide,omitempty"`
+	Name              string  `json:"name"`
+	PrivacyPolicyLink *string `json:"privacy_policy_link,omitempty"`
 }
 
 // OfferingPauseRequest defines model for OfferingPauseRequest.
@@ -15004,6 +15020,57 @@ type OfferingStatsCounter struct {
 	Count               int                `json:"count"`
 	ServiceProviderName string             `json:"service_provider_name"`
 	ServiceProviderUuid openapi_types.UUID `json:"service_provider_uuid"`
+}
+
+// OfferingTermsOfService defines model for OfferingTermsOfService.
+type OfferingTermsOfService struct {
+	Created      *time.Time          `json:"created,omitempty"`
+	IsActive     *bool               `json:"is_active,omitempty"`
+	Modified     *time.Time          `json:"modified,omitempty"`
+	OfferingName *string             `json:"offering_name,omitempty"`
+	OfferingUuid *openapi_types.UUID `json:"offering_uuid,omitempty"`
+
+	// RequiresReconsent If True, user will be asked to re-consent to the terms of service when the terms of service are updated.
+	RequiresReconsent  *bool               `json:"requires_reconsent,omitempty"`
+	TermsOfService     *string             `json:"terms_of_service,omitempty"`
+	TermsOfServiceLink *string             `json:"terms_of_service_link,omitempty"`
+	Uuid               *openapi_types.UUID `json:"uuid,omitempty"`
+	Version            *string             `json:"version,omitempty"`
+}
+
+// OfferingTermsOfServiceCreate defines model for OfferingTermsOfServiceCreate.
+type OfferingTermsOfServiceCreate struct {
+	IsActive *bool  `json:"is_active,omitempty"`
+	Offering string `json:"offering"`
+
+	// RequiresReconsent If True, user will be asked to re-consent to the terms of service when the terms of service are updated.
+	RequiresReconsent  *bool   `json:"requires_reconsent,omitempty"`
+	TermsOfService     *string `json:"terms_of_service,omitempty"`
+	TermsOfServiceLink *string `json:"terms_of_service_link,omitempty"`
+	Version            *string `json:"version,omitempty"`
+}
+
+// OfferingTermsOfServiceCreateRequest defines model for OfferingTermsOfServiceCreateRequest.
+type OfferingTermsOfServiceCreateRequest struct {
+	IsActive *bool  `json:"is_active,omitempty"`
+	Offering string `json:"offering"`
+
+	// RequiresReconsent If True, user will be asked to re-consent to the terms of service when the terms of service are updated.
+	RequiresReconsent  *bool   `json:"requires_reconsent,omitempty"`
+	TermsOfService     *string `json:"terms_of_service,omitempty"`
+	TermsOfServiceLink *string `json:"terms_of_service_link,omitempty"`
+	Version            *string `json:"version,omitempty"`
+}
+
+// OfferingTermsOfServiceRequest defines model for OfferingTermsOfServiceRequest.
+type OfferingTermsOfServiceRequest struct {
+	IsActive *bool `json:"is_active,omitempty"`
+
+	// RequiresReconsent If True, user will be asked to re-consent to the terms of service when the terms of service are updated.
+	RequiresReconsent  *bool   `json:"requires_reconsent,omitempty"`
+	TermsOfService     *string `json:"terms_of_service,omitempty"`
+	TermsOfServiceLink *string `json:"terms_of_service_link,omitempty"`
+	Version            *string `json:"version,omitempty"`
 }
 
 // OfferingThumbnailRequest defines model for OfferingThumbnailRequest.
@@ -16708,30 +16775,29 @@ type OrderCreate struct {
 	OfferingPluginOptions interface{} `json:"offering_plugin_options,omitempty"`
 
 	// OfferingShared Accessible to all customers.
-	OfferingShared         *bool               `json:"offering_shared,omitempty"`
-	OfferingTermsOfService *string             `json:"offering_terms_of_service,omitempty"`
-	OfferingThumbnail      *string             `json:"offering_thumbnail,omitempty"`
-	OfferingType           *string             `json:"offering_type,omitempty"`
-	OfferingUuid           *openapi_types.UUID `json:"offering_uuid,omitempty"`
-	Output                 *string             `json:"output,omitempty"`
-	Plan                   *string             `json:"plan,omitempty"`
-	PlanDescription        *string             `json:"plan_description"`
-	PlanName               *string             `json:"plan_name"`
-	PlanUnit               *BillingUnit        `json:"plan_unit"`
-	PlanUuid               *openapi_types.UUID `json:"plan_uuid"`
-	Project                string              `json:"project"`
-	ProjectDescription     *string             `json:"project_description,omitempty"`
-	ProjectName            *string             `json:"project_name,omitempty"`
-	ProjectUuid            *openapi_types.UUID `json:"project_uuid,omitempty"`
-	ProviderName           *string             `json:"provider_name,omitempty"`
-	ProviderUuid           *openapi_types.UUID `json:"provider_uuid,omitempty"`
-	ResourceName           *string             `json:"resource_name,omitempty"`
-	ResourceType           *string             `json:"resource_type"`
-	ResourceUuid           *openapi_types.UUID `json:"resource_uuid"`
-	State                  *OrderState         `json:"state,omitempty"`
-	Type                   *RequestTypes       `json:"type,omitempty"`
-	Url                    *string             `json:"url,omitempty"`
-	Uuid                   *openapi_types.UUID `json:"uuid,omitempty"`
+	OfferingShared     *bool               `json:"offering_shared,omitempty"`
+	OfferingThumbnail  *string             `json:"offering_thumbnail,omitempty"`
+	OfferingType       *string             `json:"offering_type,omitempty"`
+	OfferingUuid       *openapi_types.UUID `json:"offering_uuid,omitempty"`
+	Output             *string             `json:"output,omitempty"`
+	Plan               *string             `json:"plan,omitempty"`
+	PlanDescription    *string             `json:"plan_description"`
+	PlanName           *string             `json:"plan_name"`
+	PlanUnit           *BillingUnit        `json:"plan_unit"`
+	PlanUuid           *openapi_types.UUID `json:"plan_uuid"`
+	Project            string              `json:"project"`
+	ProjectDescription *string             `json:"project_description,omitempty"`
+	ProjectName        *string             `json:"project_name,omitempty"`
+	ProjectUuid        *openapi_types.UUID `json:"project_uuid,omitempty"`
+	ProviderName       *string             `json:"provider_name,omitempty"`
+	ProviderUuid       *openapi_types.UUID `json:"provider_uuid,omitempty"`
+	ResourceName       *string             `json:"resource_name,omitempty"`
+	ResourceType       *string             `json:"resource_type"`
+	ResourceUuid       *openapi_types.UUID `json:"resource_uuid"`
+	State              *OrderState         `json:"state,omitempty"`
+	Type               *RequestTypes       `json:"type,omitempty"`
+	Url                *string             `json:"url,omitempty"`
+	Uuid               *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // OrderCreateRequest defines model for OrderCreateRequest.
@@ -16803,26 +16869,25 @@ type OrderDetails struct {
 	OfferingPluginOptions interface{} `json:"offering_plugin_options,omitempty"`
 
 	// OfferingShared Accessible to all customers.
-	OfferingShared         *bool               `json:"offering_shared,omitempty"`
-	OfferingTermsOfService *string             `json:"offering_terms_of_service,omitempty"`
-	OfferingThumbnail      *string             `json:"offering_thumbnail,omitempty"`
-	OfferingType           *string             `json:"offering_type,omitempty"`
-	OfferingUuid           *openapi_types.UUID `json:"offering_uuid,omitempty"`
-	OldCostEstimate        *string             `json:"old_cost_estimate"`
-	OldPlanName            *string             `json:"old_plan_name"`
-	OldPlanUuid            *openapi_types.UUID `json:"old_plan_uuid"`
-	Output                 *string             `json:"output,omitempty"`
-	Plan                   *string             `json:"plan,omitempty"`
-	PlanDescription        *string             `json:"plan_description"`
-	PlanName               *string             `json:"plan_name"`
-	PlanUnit               *BillingUnit        `json:"plan_unit"`
-	PlanUuid               *openapi_types.UUID `json:"plan_uuid"`
-	ProjectDescription     *string             `json:"project_description,omitempty"`
-	ProjectName            *string             `json:"project_name,omitempty"`
-	ProjectSlug            *string             `json:"project_slug,omitempty"`
-	ProjectUuid            *openapi_types.UUID `json:"project_uuid,omitempty"`
-	ProviderName           *string             `json:"provider_name,omitempty"`
-	ProviderReviewedAt     *time.Time          `json:"provider_reviewed_at"`
+	OfferingShared     *bool               `json:"offering_shared,omitempty"`
+	OfferingThumbnail  *string             `json:"offering_thumbnail,omitempty"`
+	OfferingType       *string             `json:"offering_type,omitempty"`
+	OfferingUuid       *openapi_types.UUID `json:"offering_uuid,omitempty"`
+	OldCostEstimate    *string             `json:"old_cost_estimate"`
+	OldPlanName        *string             `json:"old_plan_name"`
+	OldPlanUuid        *openapi_types.UUID `json:"old_plan_uuid"`
+	Output             *string             `json:"output,omitempty"`
+	Plan               *string             `json:"plan,omitempty"`
+	PlanDescription    *string             `json:"plan_description"`
+	PlanName           *string             `json:"plan_name"`
+	PlanUnit           *BillingUnit        `json:"plan_unit"`
+	PlanUuid           *openapi_types.UUID `json:"plan_uuid"`
+	ProjectDescription *string             `json:"project_description,omitempty"`
+	ProjectName        *string             `json:"project_name,omitempty"`
+	ProjectSlug        *string             `json:"project_slug,omitempty"`
+	ProjectUuid        *openapi_types.UUID `json:"project_uuid,omitempty"`
+	ProviderName       *string             `json:"provider_name,omitempty"`
+	ProviderReviewedAt *time.Time          `json:"provider_reviewed_at"`
 
 	// ProviderReviewedBy Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
 	ProviderReviewedBy         *string `json:"provider_reviewed_by"`
@@ -17313,6 +17378,17 @@ type PatchedOfferingEstimatedCostPolicyRequest struct {
 	OrganizationGroups *[]string   `json:"organization_groups,omitempty"`
 	Period             *PeriodEnum `json:"period,omitempty"`
 	Scope              *string     `json:"scope,omitempty"`
+}
+
+// PatchedOfferingTermsOfServiceRequest defines model for PatchedOfferingTermsOfServiceRequest.
+type PatchedOfferingTermsOfServiceRequest struct {
+	IsActive *bool `json:"is_active,omitempty"`
+
+	// RequiresReconsent If True, user will be asked to re-consent to the terms of service when the terms of service are updated.
+	RequiresReconsent  *bool   `json:"requires_reconsent,omitempty"`
+	TermsOfService     *string `json:"terms_of_service,omitempty"`
+	TermsOfServiceLink *string `json:"terms_of_service_link,omitempty"`
+	Version            *string `json:"version,omitempty"`
 }
 
 // PatchedOfferingUsagePolicyRequest defines model for PatchedOfferingUsagePolicyRequest.
@@ -17871,6 +17947,11 @@ type PatchedTemplateRequest struct {
 type PatchedUserAgreementRequest struct {
 	AgreementType *AgreementTypeEnum `json:"agreement_type,omitempty"`
 	Content       *string            `json:"content,omitempty"`
+}
+
+// PatchedUserOfferingConsentRequest defines model for PatchedUserOfferingConsentRequest.
+type PatchedUserOfferingConsentRequest struct {
+	Version *string `json:"version,omitempty"`
 }
 
 // PatchedUserRequest defines model for PatchedUserRequest.
@@ -18734,8 +18815,6 @@ type ProviderOfferingDetails struct {
 	Shared             *bool               `json:"shared,omitempty"`
 	Slug               *string             `json:"slug,omitempty"`
 	State              *OfferingState      `json:"state,omitempty"`
-	TermsOfService     *string             `json:"terms_of_service,omitempty"`
-	TermsOfServiceLink *string             `json:"terms_of_service_link,omitempty"`
 	Thumbnail          *string             `json:"thumbnail"`
 	TotalCost          *int                `json:"total_cost"`
 	TotalCostEstimated *int                `json:"total_cost_estimated"`
@@ -18778,12 +18857,10 @@ type ProviderOfferingDetailsRequest struct {
 	PrivacyPolicyLink *string                                 `json:"privacy_policy_link,omitempty"`
 
 	// Shared Accessible to all customers.
-	Shared             *bool               `json:"shared,omitempty"`
-	TermsOfService     *string             `json:"terms_of_service,omitempty"`
-	TermsOfServiceLink *string             `json:"terms_of_service_link,omitempty"`
-	Thumbnail          *openapi_types.File `json:"thumbnail"`
-	Type               string              `json:"type"`
-	VendorDetails      *string             `json:"vendor_details,omitempty"`
+	Shared        *bool               `json:"shared,omitempty"`
+	Thumbnail     *openapi_types.File `json:"thumbnail"`
+	Type          string              `json:"type"`
+	VendorDetails *string             `json:"vendor_details,omitempty"`
 }
 
 // ProviderOfferingDetailsRequest_Country defines model for ProviderOfferingDetailsRequest.Country.
@@ -19023,8 +19100,6 @@ type PublicOfferingDetails struct {
 	Shared             *bool               `json:"shared,omitempty"`
 	Slug               *string             `json:"slug,omitempty"`
 	State              *OfferingState      `json:"state,omitempty"`
-	TermsOfService     *string             `json:"terms_of_service,omitempty"`
-	TermsOfServiceLink *string             `json:"terms_of_service_link,omitempty"`
 	Thumbnail          *string             `json:"thumbnail"`
 	TotalCost          *int                `json:"total_cost"`
 	TotalCostEstimated *int                `json:"total_cost_estimated"`
@@ -20241,27 +20316,26 @@ type Resource struct {
 	OfferingPluginOptions interface{} `json:"offering_plugin_options,omitempty"`
 
 	// OfferingShared Accessible to all customers.
-	OfferingShared         *bool               `json:"offering_shared,omitempty"`
-	OfferingSlug           *string             `json:"offering_slug,omitempty"`
-	OfferingTermsOfService *string             `json:"offering_terms_of_service,omitempty"`
-	OfferingThumbnail      *string             `json:"offering_thumbnail,omitempty"`
-	OfferingType           *string             `json:"offering_type,omitempty"`
-	OfferingUuid           *openapi_types.UUID `json:"offering_uuid,omitempty"`
-	Options                interface{}         `json:"options"`
-	OrderInProgress        *OrderDetails       `json:"order_in_progress"`
-	ParentName             *string             `json:"parent_name,omitempty"`
-	ParentOfferingName     *string             `json:"parent_offering_name,omitempty"`
-	ParentOfferingSlug     *string             `json:"parent_offering_slug,omitempty"`
-	ParentOfferingUuid     *openapi_types.UUID `json:"parent_offering_uuid,omitempty"`
-	ParentUuid             *openapi_types.UUID `json:"parent_uuid,omitempty"`
-	Paused                 *bool               `json:"paused,omitempty"`
-	Plan                   *string             `json:"plan,omitempty"`
-	PlanDescription        *string             `json:"plan_description"`
-	PlanName               *string             `json:"plan_name"`
-	PlanUnit               *BillingUnit        `json:"plan_unit"`
-	PlanUuid               *openapi_types.UUID `json:"plan_uuid"`
-	Project                *string             `json:"project,omitempty"`
-	ProjectDescription     *string             `json:"project_description,omitempty"`
+	OfferingShared     *bool               `json:"offering_shared,omitempty"`
+	OfferingSlug       *string             `json:"offering_slug,omitempty"`
+	OfferingThumbnail  *string             `json:"offering_thumbnail,omitempty"`
+	OfferingType       *string             `json:"offering_type,omitempty"`
+	OfferingUuid       *openapi_types.UUID `json:"offering_uuid,omitempty"`
+	Options            interface{}         `json:"options"`
+	OrderInProgress    *OrderDetails       `json:"order_in_progress"`
+	ParentName         *string             `json:"parent_name,omitempty"`
+	ParentOfferingName *string             `json:"parent_offering_name,omitempty"`
+	ParentOfferingSlug *string             `json:"parent_offering_slug,omitempty"`
+	ParentOfferingUuid *openapi_types.UUID `json:"parent_offering_uuid,omitempty"`
+	ParentUuid         *openapi_types.UUID `json:"parent_uuid,omitempty"`
+	Paused             *bool               `json:"paused,omitempty"`
+	Plan               *string             `json:"plan,omitempty"`
+	PlanDescription    *string             `json:"plan_description"`
+	PlanName           *string             `json:"plan_name"`
+	PlanUnit           *BillingUnit        `json:"plan_unit"`
+	PlanUuid           *openapi_types.UUID `json:"plan_uuid"`
+	Project            *string             `json:"project,omitempty"`
+	ProjectDescription *string             `json:"project_description,omitempty"`
 
 	// ProjectEndDate The date is inclusive. Once reached, all project resource will be scheduled for termination.
 	ProjectEndDate            *openapi_types.Date `json:"project_end_date"`
@@ -20280,8 +20354,11 @@ type Resource struct {
 	Slug                      *string             `json:"slug,omitempty"`
 	State                     *ResourceState      `json:"state,omitempty"`
 	Url                       *string             `json:"url,omitempty"`
-	Username                  *string             `json:"username"`
-	Uuid                      *openapi_types.UUID `json:"uuid,omitempty"`
+
+	// UserRequiresReconsent Check if the current user needs to re-consent for this resource's offering.
+	UserRequiresReconsent *bool               `json:"user_requires_reconsent,omitempty"`
+	Username              *string             `json:"username"`
+	Uuid                  *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // ResourceBackendIDRequest defines model for ResourceBackendIDRequest.
@@ -21308,6 +21385,43 @@ type UserAuthToken struct {
 // UserEmailChangeRequest defines model for UserEmailChangeRequest.
 type UserEmailChangeRequest struct {
 	Email openapi_types.Email `json:"email"`
+}
+
+// UserOfferingConsent defines model for UserOfferingConsent.
+type UserOfferingConsent struct {
+	AgreementDate     *time.Time           `json:"agreement_date,omitempty"`
+	Created           *time.Time           `json:"created,omitempty"`
+	HasConsent        *bool                `json:"has_consent,omitempty"`
+	Modified          *time.Time           `json:"modified,omitempty"`
+	OfferingName      *string              `json:"offering_name,omitempty"`
+	OfferingSlug      *string              `json:"offering_slug,omitempty"`
+	OfferingUrl       *string              `json:"offering_url,omitempty"`
+	OfferingUuid      *openapi_types.UUID  `json:"offering_uuid,omitempty"`
+	RequiresReconsent *bool                `json:"requires_reconsent,omitempty"`
+	RevocationDate    *time.Time           `json:"revocation_date"`
+	UserEmail         *openapi_types.Email `json:"user_email,omitempty"`
+	UserFullName      *string              `json:"user_full_name,omitempty"`
+
+	// UserUsername Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
+	UserUsername *string             `json:"user_username,omitempty"`
+	UserUuid     *openapi_types.UUID `json:"user_uuid,omitempty"`
+	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
+	Version      *string             `json:"version,omitempty"`
+}
+
+// UserOfferingConsentCreate defines model for UserOfferingConsentCreate.
+type UserOfferingConsentCreate struct {
+	Offering openapi_types.UUID `json:"offering"`
+}
+
+// UserOfferingConsentCreateRequest defines model for UserOfferingConsentCreateRequest.
+type UserOfferingConsentCreateRequest struct {
+	Offering openapi_types.UUID `json:"offering"`
+}
+
+// UserOfferingConsentRequest defines model for UserOfferingConsentRequest.
+type UserOfferingConsentRequest struct {
+	Version *string `json:"version,omitempty"`
 }
 
 // UserRequest defines model for UserRequest.
@@ -25665,6 +25779,50 @@ type MarketplaceOfferingReferralsCountParams struct {
 // MarketplaceOfferingReferralsCountParamsO defines parameters for MarketplaceOfferingReferralsCount.
 type MarketplaceOfferingReferralsCountParamsO string
 
+// MarketplaceOfferingTermsOfServiceListParams defines parameters for MarketplaceOfferingTermsOfServiceList.
+type MarketplaceOfferingTermsOfServiceListParams struct {
+	IsActive *bool `form:"is_active,omitempty" json:"is_active,omitempty"`
+
+	// O Ordering
+	//
+	O            *[]MarketplaceOfferingTermsOfServiceListParamsO `form:"o,omitempty" json:"o,omitempty"`
+	Offering     *string                                         `form:"offering,omitempty" json:"offering,omitempty"`
+	OfferingUuid *openapi_types.UUID                             `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize          *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	RequiresReconsent *bool     `form:"requires_reconsent,omitempty" json:"requires_reconsent,omitempty"`
+	Version           *string   `form:"version,omitempty" json:"version,omitempty"`
+}
+
+// MarketplaceOfferingTermsOfServiceListParamsO defines parameters for MarketplaceOfferingTermsOfServiceList.
+type MarketplaceOfferingTermsOfServiceListParamsO string
+
+// MarketplaceOfferingTermsOfServiceCountParams defines parameters for MarketplaceOfferingTermsOfServiceCount.
+type MarketplaceOfferingTermsOfServiceCountParams struct {
+	IsActive *bool `form:"is_active,omitempty" json:"is_active,omitempty"`
+
+	// O Ordering
+	//
+	O            *[]MarketplaceOfferingTermsOfServiceCountParamsO `form:"o,omitempty" json:"o,omitempty"`
+	Offering     *string                                          `form:"offering,omitempty" json:"offering,omitempty"`
+	OfferingUuid *openapi_types.UUID                              `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize          *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	RequiresReconsent *bool     `form:"requires_reconsent,omitempty" json:"requires_reconsent,omitempty"`
+	Version           *string   `form:"version,omitempty" json:"version,omitempty"`
+}
+
+// MarketplaceOfferingTermsOfServiceCountParamsO defines parameters for MarketplaceOfferingTermsOfServiceCount.
+type MarketplaceOfferingTermsOfServiceCountParamsO string
+
 // MarketplaceOfferingUsagePoliciesListParams defines parameters for MarketplaceOfferingUsagePoliciesList.
 type MarketplaceOfferingUsagePoliciesListParams struct {
 	// Page A page number within the paginated result set.
@@ -28237,6 +28395,54 @@ type MarketplaceStatsTotalCostOfActiveResourcesPerOfferingCountParams struct {
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 }
+
+// MarketplaceUserOfferingConsentsListParams defines parameters for MarketplaceUserOfferingConsentsList.
+type MarketplaceUserOfferingConsentsListParams struct {
+	HasConsent *bool `form:"has_consent,omitempty" json:"has_consent,omitempty"`
+
+	// O Ordering
+	//
+	O            *[]MarketplaceUserOfferingConsentsListParamsO `form:"o,omitempty" json:"o,omitempty"`
+	Offering     *string                                       `form:"offering,omitempty" json:"offering,omitempty"`
+	OfferingUuid *openapi_types.UUID                           `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize          *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	RequiresReconsent *bool               `form:"requires_reconsent,omitempty" json:"requires_reconsent,omitempty"`
+	User              *string             `form:"user,omitempty" json:"user,omitempty"`
+	UserUuid          *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
+	Version           *string             `form:"version,omitempty" json:"version,omitempty"`
+}
+
+// MarketplaceUserOfferingConsentsListParamsO defines parameters for MarketplaceUserOfferingConsentsList.
+type MarketplaceUserOfferingConsentsListParamsO string
+
+// MarketplaceUserOfferingConsentsCountParams defines parameters for MarketplaceUserOfferingConsentsCount.
+type MarketplaceUserOfferingConsentsCountParams struct {
+	HasConsent *bool `form:"has_consent,omitempty" json:"has_consent,omitempty"`
+
+	// O Ordering
+	//
+	O            *[]MarketplaceUserOfferingConsentsCountParamsO `form:"o,omitempty" json:"o,omitempty"`
+	Offering     *string                                        `form:"offering,omitempty" json:"offering,omitempty"`
+	OfferingUuid *openapi_types.UUID                            `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize          *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	RequiresReconsent *bool               `form:"requires_reconsent,omitempty" json:"requires_reconsent,omitempty"`
+	User              *string             `form:"user,omitempty" json:"user,omitempty"`
+	UserUuid          *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
+	Version           *string             `form:"version,omitempty" json:"version,omitempty"`
+}
+
+// MarketplaceUserOfferingConsentsCountParamsO defines parameters for MarketplaceUserOfferingConsentsCount.
+type MarketplaceUserOfferingConsentsCountParamsO string
 
 // NotificationMessagesTemplatesListParams defines parameters for NotificationMessagesTemplatesList.
 type NotificationMessagesTemplatesListParams struct {
@@ -33496,6 +33702,15 @@ type MarketplaceOfferingEstimatedCostPoliciesUpdateJSONRequestBody = OfferingEst
 // MarketplaceOfferingFilesCreateJSONRequestBody defines body for MarketplaceOfferingFilesCreate for application/json ContentType.
 type MarketplaceOfferingFilesCreateJSONRequestBody = OfferingFileRequest
 
+// MarketplaceOfferingTermsOfServiceCreateJSONRequestBody defines body for MarketplaceOfferingTermsOfServiceCreate for application/json ContentType.
+type MarketplaceOfferingTermsOfServiceCreateJSONRequestBody = OfferingTermsOfServiceCreateRequest
+
+// MarketplaceOfferingTermsOfServicePartialUpdateJSONRequestBody defines body for MarketplaceOfferingTermsOfServicePartialUpdate for application/json ContentType.
+type MarketplaceOfferingTermsOfServicePartialUpdateJSONRequestBody = PatchedOfferingTermsOfServiceRequest
+
+// MarketplaceOfferingTermsOfServiceUpdateJSONRequestBody defines body for MarketplaceOfferingTermsOfServiceUpdate for application/json ContentType.
+type MarketplaceOfferingTermsOfServiceUpdateJSONRequestBody = OfferingTermsOfServiceRequest
+
 // MarketplaceOfferingUsagePoliciesCreateJSONRequestBody defines body for MarketplaceOfferingUsagePoliciesCreate for application/json ContentType.
 type MarketplaceOfferingUsagePoliciesCreateJSONRequestBody = OfferingUsagePolicyRequest
 
@@ -33795,6 +34010,15 @@ type MarketplaceServiceProvidersSetOfferingsUsernameJSONRequestBody = SetOfferin
 
 // MarketplaceServiceProvidersUpdateUserJSONRequestBody defines body for MarketplaceServiceProvidersUpdateUser for application/json ContentType.
 type MarketplaceServiceProvidersUpdateUserJSONRequestBody = UserRoleUpdateRequest
+
+// MarketplaceUserOfferingConsentsCreateJSONRequestBody defines body for MarketplaceUserOfferingConsentsCreate for application/json ContentType.
+type MarketplaceUserOfferingConsentsCreateJSONRequestBody = UserOfferingConsentCreateRequest
+
+// MarketplaceUserOfferingConsentsPartialUpdateJSONRequestBody defines body for MarketplaceUserOfferingConsentsPartialUpdate for application/json ContentType.
+type MarketplaceUserOfferingConsentsPartialUpdateJSONRequestBody = PatchedUserOfferingConsentRequest
+
+// MarketplaceUserOfferingConsentsUpdateJSONRequestBody defines body for MarketplaceUserOfferingConsentsUpdate for application/json ContentType.
+type MarketplaceUserOfferingConsentsUpdateJSONRequestBody = UserOfferingConsentRequest
 
 // NotificationMessagesTemplatesCreateJSONRequestBody defines body for NotificationMessagesTemplatesCreate for application/json ContentType.
 type NotificationMessagesTemplatesCreateJSONRequestBody = NotificationTemplateDetailSerializersRequest
@@ -39543,6 +39767,33 @@ type ClientInterface interface {
 	// MarketplaceOfferingReferralsRetrieve request
 	MarketplaceOfferingReferralsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceOfferingTermsOfServiceList request
+	MarketplaceOfferingTermsOfServiceList(ctx context.Context, params *MarketplaceOfferingTermsOfServiceListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOfferingTermsOfServiceCount request
+	MarketplaceOfferingTermsOfServiceCount(ctx context.Context, params *MarketplaceOfferingTermsOfServiceCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOfferingTermsOfServiceCreateWithBody request with any body
+	MarketplaceOfferingTermsOfServiceCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceOfferingTermsOfServiceCreate(ctx context.Context, body MarketplaceOfferingTermsOfServiceCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOfferingTermsOfServiceDestroy request
+	MarketplaceOfferingTermsOfServiceDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOfferingTermsOfServiceRetrieve request
+	MarketplaceOfferingTermsOfServiceRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOfferingTermsOfServicePartialUpdateWithBody request with any body
+	MarketplaceOfferingTermsOfServicePartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceOfferingTermsOfServicePartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingTermsOfServicePartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOfferingTermsOfServiceUpdateWithBody request with any body
+	MarketplaceOfferingTermsOfServiceUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceOfferingTermsOfServiceUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingTermsOfServiceUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceOfferingUsagePoliciesList request
 	MarketplaceOfferingUsagePoliciesList(ctx context.Context, params *MarketplaceOfferingUsagePoliciesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -40705,6 +40956,36 @@ type ClientInterface interface {
 
 	// MarketplaceStatsTotalCostOfActiveResourcesPerOfferingCount request
 	MarketplaceStatsTotalCostOfActiveResourcesPerOfferingCount(ctx context.Context, params *MarketplaceStatsTotalCostOfActiveResourcesPerOfferingCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceUserOfferingConsentsList request
+	MarketplaceUserOfferingConsentsList(ctx context.Context, params *MarketplaceUserOfferingConsentsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceUserOfferingConsentsCount request
+	MarketplaceUserOfferingConsentsCount(ctx context.Context, params *MarketplaceUserOfferingConsentsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceUserOfferingConsentsCreateWithBody request with any body
+	MarketplaceUserOfferingConsentsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceUserOfferingConsentsCreate(ctx context.Context, body MarketplaceUserOfferingConsentsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceUserOfferingConsentsDestroy request
+	MarketplaceUserOfferingConsentsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceUserOfferingConsentsRetrieve request
+	MarketplaceUserOfferingConsentsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceUserOfferingConsentsPartialUpdateWithBody request with any body
+	MarketplaceUserOfferingConsentsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceUserOfferingConsentsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceUserOfferingConsentsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceUserOfferingConsentsUpdateWithBody request with any body
+	MarketplaceUserOfferingConsentsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceUserOfferingConsentsUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceUserOfferingConsentsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceUserOfferingConsentsRevoke request
+	MarketplaceUserOfferingConsentsRevoke(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MediaRetrieve request
 	MediaRetrieve(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -51445,6 +51726,126 @@ func (c *Client) MarketplaceOfferingReferralsRetrieve(ctx context.Context, uuid 
 	return c.Client.Do(req)
 }
 
+func (c *Client) MarketplaceOfferingTermsOfServiceList(ctx context.Context, params *MarketplaceOfferingTermsOfServiceListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingTermsOfServiceListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOfferingTermsOfServiceCount(ctx context.Context, params *MarketplaceOfferingTermsOfServiceCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingTermsOfServiceCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOfferingTermsOfServiceCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingTermsOfServiceCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOfferingTermsOfServiceCreate(ctx context.Context, body MarketplaceOfferingTermsOfServiceCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingTermsOfServiceCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOfferingTermsOfServiceDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingTermsOfServiceDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOfferingTermsOfServiceRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingTermsOfServiceRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOfferingTermsOfServicePartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingTermsOfServicePartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOfferingTermsOfServicePartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingTermsOfServicePartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingTermsOfServicePartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOfferingTermsOfServiceUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingTermsOfServiceUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOfferingTermsOfServiceUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingTermsOfServiceUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingTermsOfServiceUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) MarketplaceOfferingUsagePoliciesList(ctx context.Context, params *MarketplaceOfferingUsagePoliciesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceOfferingUsagePoliciesListRequest(c.Server, params)
 	if err != nil {
@@ -56487,6 +56888,138 @@ func (c *Client) MarketplaceStatsTotalCostOfActiveResourcesPerOfferingList(ctx c
 
 func (c *Client) MarketplaceStatsTotalCostOfActiveResourcesPerOfferingCount(ctx context.Context, params *MarketplaceStatsTotalCostOfActiveResourcesPerOfferingCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceStatsTotalCostOfActiveResourcesPerOfferingCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceUserOfferingConsentsList(ctx context.Context, params *MarketplaceUserOfferingConsentsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceUserOfferingConsentsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceUserOfferingConsentsCount(ctx context.Context, params *MarketplaceUserOfferingConsentsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceUserOfferingConsentsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceUserOfferingConsentsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceUserOfferingConsentsCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceUserOfferingConsentsCreate(ctx context.Context, body MarketplaceUserOfferingConsentsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceUserOfferingConsentsCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceUserOfferingConsentsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceUserOfferingConsentsDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceUserOfferingConsentsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceUserOfferingConsentsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceUserOfferingConsentsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceUserOfferingConsentsPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceUserOfferingConsentsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceUserOfferingConsentsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceUserOfferingConsentsPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceUserOfferingConsentsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceUserOfferingConsentsUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceUserOfferingConsentsUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceUserOfferingConsentsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceUserOfferingConsentsUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceUserOfferingConsentsRevoke(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceUserOfferingConsentsRevokeRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -109591,6 +110124,530 @@ func NewMarketplaceOfferingReferralsRetrieveRequest(server string, uuid openapi_
 	return req, nil
 }
 
+// NewMarketplaceOfferingTermsOfServiceListRequest generates requests for MarketplaceOfferingTermsOfServiceList
+func NewMarketplaceOfferingTermsOfServiceListRequest(server string, params *MarketplaceOfferingTermsOfServiceListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-terms-of-service/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.IsActive != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_active", runtime.ParamLocationQuery, *params.IsActive); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Offering != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering", runtime.ParamLocationQuery, *params.Offering); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.RequiresReconsent != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "requires_reconsent", runtime.ParamLocationQuery, *params.RequiresReconsent); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Version != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "version", runtime.ParamLocationQuery, *params.Version); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceOfferingTermsOfServiceCountRequest generates requests for MarketplaceOfferingTermsOfServiceCount
+func NewMarketplaceOfferingTermsOfServiceCountRequest(server string, params *MarketplaceOfferingTermsOfServiceCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-terms-of-service/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.IsActive != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_active", runtime.ParamLocationQuery, *params.IsActive); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Offering != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering", runtime.ParamLocationQuery, *params.Offering); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.RequiresReconsent != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "requires_reconsent", runtime.ParamLocationQuery, *params.RequiresReconsent); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Version != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "version", runtime.ParamLocationQuery, *params.Version); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceOfferingTermsOfServiceCreateRequest calls the generic MarketplaceOfferingTermsOfServiceCreate builder with application/json body
+func NewMarketplaceOfferingTermsOfServiceCreateRequest(server string, body MarketplaceOfferingTermsOfServiceCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceOfferingTermsOfServiceCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewMarketplaceOfferingTermsOfServiceCreateRequestWithBody generates requests for MarketplaceOfferingTermsOfServiceCreate with any type of body
+func NewMarketplaceOfferingTermsOfServiceCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-terms-of-service/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceOfferingTermsOfServiceDestroyRequest generates requests for MarketplaceOfferingTermsOfServiceDestroy
+func NewMarketplaceOfferingTermsOfServiceDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-terms-of-service/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceOfferingTermsOfServiceRetrieveRequest generates requests for MarketplaceOfferingTermsOfServiceRetrieve
+func NewMarketplaceOfferingTermsOfServiceRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-terms-of-service/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceOfferingTermsOfServicePartialUpdateRequest calls the generic MarketplaceOfferingTermsOfServicePartialUpdate builder with application/json body
+func NewMarketplaceOfferingTermsOfServicePartialUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceOfferingTermsOfServicePartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceOfferingTermsOfServicePartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceOfferingTermsOfServicePartialUpdateRequestWithBody generates requests for MarketplaceOfferingTermsOfServicePartialUpdate with any type of body
+func NewMarketplaceOfferingTermsOfServicePartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-terms-of-service/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceOfferingTermsOfServiceUpdateRequest calls the generic MarketplaceOfferingTermsOfServiceUpdate builder with application/json body
+func NewMarketplaceOfferingTermsOfServiceUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceOfferingTermsOfServiceUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceOfferingTermsOfServiceUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceOfferingTermsOfServiceUpdateRequestWithBody generates requests for MarketplaceOfferingTermsOfServiceUpdate with any type of body
+func NewMarketplaceOfferingTermsOfServiceUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-terms-of-service/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewMarketplaceOfferingUsagePoliciesListRequest generates requests for MarketplaceOfferingUsagePoliciesList
 func NewMarketplaceOfferingUsagePoliciesListRequest(server string, params *MarketplaceOfferingUsagePoliciesListParams) (*http.Request, error) {
 	var err error
@@ -136636,6 +137693,628 @@ func NewMarketplaceStatsTotalCostOfActiveResourcesPerOfferingCountRequest(server
 	}
 
 	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceUserOfferingConsentsListRequest generates requests for MarketplaceUserOfferingConsentsList
+func NewMarketplaceUserOfferingConsentsListRequest(server string, params *MarketplaceUserOfferingConsentsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-user-offering-consents/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.HasConsent != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_consent", runtime.ParamLocationQuery, *params.HasConsent); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Offering != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering", runtime.ParamLocationQuery, *params.Offering); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.RequiresReconsent != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "requires_reconsent", runtime.ParamLocationQuery, *params.RequiresReconsent); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.User != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user", runtime.ParamLocationQuery, *params.User); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UserUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_uuid", runtime.ParamLocationQuery, *params.UserUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Version != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "version", runtime.ParamLocationQuery, *params.Version); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceUserOfferingConsentsCountRequest generates requests for MarketplaceUserOfferingConsentsCount
+func NewMarketplaceUserOfferingConsentsCountRequest(server string, params *MarketplaceUserOfferingConsentsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-user-offering-consents/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.HasConsent != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_consent", runtime.ParamLocationQuery, *params.HasConsent); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Offering != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering", runtime.ParamLocationQuery, *params.Offering); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.RequiresReconsent != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "requires_reconsent", runtime.ParamLocationQuery, *params.RequiresReconsent); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.User != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user", runtime.ParamLocationQuery, *params.User); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UserUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_uuid", runtime.ParamLocationQuery, *params.UserUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Version != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "version", runtime.ParamLocationQuery, *params.Version); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceUserOfferingConsentsCreateRequest calls the generic MarketplaceUserOfferingConsentsCreate builder with application/json body
+func NewMarketplaceUserOfferingConsentsCreateRequest(server string, body MarketplaceUserOfferingConsentsCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceUserOfferingConsentsCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewMarketplaceUserOfferingConsentsCreateRequestWithBody generates requests for MarketplaceUserOfferingConsentsCreate with any type of body
+func NewMarketplaceUserOfferingConsentsCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-user-offering-consents/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceUserOfferingConsentsDestroyRequest generates requests for MarketplaceUserOfferingConsentsDestroy
+func NewMarketplaceUserOfferingConsentsDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-user-offering-consents/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceUserOfferingConsentsRetrieveRequest generates requests for MarketplaceUserOfferingConsentsRetrieve
+func NewMarketplaceUserOfferingConsentsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-user-offering-consents/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceUserOfferingConsentsPartialUpdateRequest calls the generic MarketplaceUserOfferingConsentsPartialUpdate builder with application/json body
+func NewMarketplaceUserOfferingConsentsPartialUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceUserOfferingConsentsPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceUserOfferingConsentsPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceUserOfferingConsentsPartialUpdateRequestWithBody generates requests for MarketplaceUserOfferingConsentsPartialUpdate with any type of body
+func NewMarketplaceUserOfferingConsentsPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-user-offering-consents/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceUserOfferingConsentsUpdateRequest calls the generic MarketplaceUserOfferingConsentsUpdate builder with application/json body
+func NewMarketplaceUserOfferingConsentsUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceUserOfferingConsentsUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceUserOfferingConsentsUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceUserOfferingConsentsUpdateRequestWithBody generates requests for MarketplaceUserOfferingConsentsUpdate with any type of body
+func NewMarketplaceUserOfferingConsentsUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-user-offering-consents/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceUserOfferingConsentsRevokeRequest generates requests for MarketplaceUserOfferingConsentsRevoke
+func NewMarketplaceUserOfferingConsentsRevokeRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-user-offering-consents/%s/revoke/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
@@ -197449,6 +199128,33 @@ type ClientWithResponsesInterface interface {
 	// MarketplaceOfferingReferralsRetrieveWithResponse request
 	MarketplaceOfferingReferralsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingReferralsRetrieveResponse, error)
 
+	// MarketplaceOfferingTermsOfServiceListWithResponse request
+	MarketplaceOfferingTermsOfServiceListWithResponse(ctx context.Context, params *MarketplaceOfferingTermsOfServiceListParams, reqEditors ...RequestEditorFn) (*MarketplaceOfferingTermsOfServiceListResponse, error)
+
+	// MarketplaceOfferingTermsOfServiceCountWithResponse request
+	MarketplaceOfferingTermsOfServiceCountWithResponse(ctx context.Context, params *MarketplaceOfferingTermsOfServiceCountParams, reqEditors ...RequestEditorFn) (*MarketplaceOfferingTermsOfServiceCountResponse, error)
+
+	// MarketplaceOfferingTermsOfServiceCreateWithBodyWithResponse request with any body
+	MarketplaceOfferingTermsOfServiceCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOfferingTermsOfServiceCreateResponse, error)
+
+	MarketplaceOfferingTermsOfServiceCreateWithResponse(ctx context.Context, body MarketplaceOfferingTermsOfServiceCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingTermsOfServiceCreateResponse, error)
+
+	// MarketplaceOfferingTermsOfServiceDestroyWithResponse request
+	MarketplaceOfferingTermsOfServiceDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingTermsOfServiceDestroyResponse, error)
+
+	// MarketplaceOfferingTermsOfServiceRetrieveWithResponse request
+	MarketplaceOfferingTermsOfServiceRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingTermsOfServiceRetrieveResponse, error)
+
+	// MarketplaceOfferingTermsOfServicePartialUpdateWithBodyWithResponse request with any body
+	MarketplaceOfferingTermsOfServicePartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOfferingTermsOfServicePartialUpdateResponse, error)
+
+	MarketplaceOfferingTermsOfServicePartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingTermsOfServicePartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingTermsOfServicePartialUpdateResponse, error)
+
+	// MarketplaceOfferingTermsOfServiceUpdateWithBodyWithResponse request with any body
+	MarketplaceOfferingTermsOfServiceUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOfferingTermsOfServiceUpdateResponse, error)
+
+	MarketplaceOfferingTermsOfServiceUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingTermsOfServiceUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingTermsOfServiceUpdateResponse, error)
+
 	// MarketplaceOfferingUsagePoliciesListWithResponse request
 	MarketplaceOfferingUsagePoliciesListWithResponse(ctx context.Context, params *MarketplaceOfferingUsagePoliciesListParams, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsagePoliciesListResponse, error)
 
@@ -198611,6 +200317,36 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceStatsTotalCostOfActiveResourcesPerOfferingCountWithResponse request
 	MarketplaceStatsTotalCostOfActiveResourcesPerOfferingCountWithResponse(ctx context.Context, params *MarketplaceStatsTotalCostOfActiveResourcesPerOfferingCountParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsTotalCostOfActiveResourcesPerOfferingCountResponse, error)
+
+	// MarketplaceUserOfferingConsentsListWithResponse request
+	MarketplaceUserOfferingConsentsListWithResponse(ctx context.Context, params *MarketplaceUserOfferingConsentsListParams, reqEditors ...RequestEditorFn) (*MarketplaceUserOfferingConsentsListResponse, error)
+
+	// MarketplaceUserOfferingConsentsCountWithResponse request
+	MarketplaceUserOfferingConsentsCountWithResponse(ctx context.Context, params *MarketplaceUserOfferingConsentsCountParams, reqEditors ...RequestEditorFn) (*MarketplaceUserOfferingConsentsCountResponse, error)
+
+	// MarketplaceUserOfferingConsentsCreateWithBodyWithResponse request with any body
+	MarketplaceUserOfferingConsentsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceUserOfferingConsentsCreateResponse, error)
+
+	MarketplaceUserOfferingConsentsCreateWithResponse(ctx context.Context, body MarketplaceUserOfferingConsentsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceUserOfferingConsentsCreateResponse, error)
+
+	// MarketplaceUserOfferingConsentsDestroyWithResponse request
+	MarketplaceUserOfferingConsentsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceUserOfferingConsentsDestroyResponse, error)
+
+	// MarketplaceUserOfferingConsentsRetrieveWithResponse request
+	MarketplaceUserOfferingConsentsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceUserOfferingConsentsRetrieveResponse, error)
+
+	// MarketplaceUserOfferingConsentsPartialUpdateWithBodyWithResponse request with any body
+	MarketplaceUserOfferingConsentsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceUserOfferingConsentsPartialUpdateResponse, error)
+
+	MarketplaceUserOfferingConsentsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceUserOfferingConsentsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceUserOfferingConsentsPartialUpdateResponse, error)
+
+	// MarketplaceUserOfferingConsentsUpdateWithBodyWithResponse request with any body
+	MarketplaceUserOfferingConsentsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceUserOfferingConsentsUpdateResponse, error)
+
+	MarketplaceUserOfferingConsentsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceUserOfferingConsentsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceUserOfferingConsentsUpdateResponse, error)
+
+	// MarketplaceUserOfferingConsentsRevokeWithResponse request
+	MarketplaceUserOfferingConsentsRevokeWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceUserOfferingConsentsRevokeResponse, error)
 
 	// MediaRetrieveWithResponse request
 	MediaRetrieveWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*MediaRetrieveResponse, error)
@@ -212602,6 +214338,158 @@ func (r MarketplaceOfferingReferralsRetrieveResponse) StatusCode() int {
 	return 0
 }
 
+type MarketplaceOfferingTermsOfServiceListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]OfferingTermsOfService
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingTermsOfServiceListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingTermsOfServiceListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceOfferingTermsOfServiceCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingTermsOfServiceCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingTermsOfServiceCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceOfferingTermsOfServiceCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *OfferingTermsOfServiceCreate
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingTermsOfServiceCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingTermsOfServiceCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceOfferingTermsOfServiceDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingTermsOfServiceDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingTermsOfServiceDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceOfferingTermsOfServiceRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OfferingTermsOfService
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingTermsOfServiceRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingTermsOfServiceRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceOfferingTermsOfServicePartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OfferingTermsOfService
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingTermsOfServicePartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingTermsOfServicePartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceOfferingTermsOfServiceUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OfferingTermsOfService
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingTermsOfServiceUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingTermsOfServiceUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type MarketplaceOfferingUsagePoliciesListResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -219549,6 +221437,180 @@ func (r MarketplaceStatsTotalCostOfActiveResourcesPerOfferingCountResponse) Stat
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceStatsTotalCostOfActiveResourcesPerOfferingCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceUserOfferingConsentsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]UserOfferingConsent
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceUserOfferingConsentsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceUserOfferingConsentsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceUserOfferingConsentsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceUserOfferingConsentsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceUserOfferingConsentsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceUserOfferingConsentsCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *UserOfferingConsentCreate
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceUserOfferingConsentsCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceUserOfferingConsentsCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceUserOfferingConsentsDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceUserOfferingConsentsDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceUserOfferingConsentsDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceUserOfferingConsentsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *UserOfferingConsent
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceUserOfferingConsentsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceUserOfferingConsentsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceUserOfferingConsentsPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *UserOfferingConsent
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceUserOfferingConsentsPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceUserOfferingConsentsPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceUserOfferingConsentsUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *UserOfferingConsent
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceUserOfferingConsentsUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceUserOfferingConsentsUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceUserOfferingConsentsRevokeResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *UserOfferingConsent
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceUserOfferingConsentsRevokeResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceUserOfferingConsentsRevokeResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -239996,6 +242058,93 @@ func (c *ClientWithResponses) MarketplaceOfferingReferralsRetrieveWithResponse(c
 	return ParseMarketplaceOfferingReferralsRetrieveResponse(rsp)
 }
 
+// MarketplaceOfferingTermsOfServiceListWithResponse request returning *MarketplaceOfferingTermsOfServiceListResponse
+func (c *ClientWithResponses) MarketplaceOfferingTermsOfServiceListWithResponse(ctx context.Context, params *MarketplaceOfferingTermsOfServiceListParams, reqEditors ...RequestEditorFn) (*MarketplaceOfferingTermsOfServiceListResponse, error) {
+	rsp, err := c.MarketplaceOfferingTermsOfServiceList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingTermsOfServiceListResponse(rsp)
+}
+
+// MarketplaceOfferingTermsOfServiceCountWithResponse request returning *MarketplaceOfferingTermsOfServiceCountResponse
+func (c *ClientWithResponses) MarketplaceOfferingTermsOfServiceCountWithResponse(ctx context.Context, params *MarketplaceOfferingTermsOfServiceCountParams, reqEditors ...RequestEditorFn) (*MarketplaceOfferingTermsOfServiceCountResponse, error) {
+	rsp, err := c.MarketplaceOfferingTermsOfServiceCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingTermsOfServiceCountResponse(rsp)
+}
+
+// MarketplaceOfferingTermsOfServiceCreateWithBodyWithResponse request with arbitrary body returning *MarketplaceOfferingTermsOfServiceCreateResponse
+func (c *ClientWithResponses) MarketplaceOfferingTermsOfServiceCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOfferingTermsOfServiceCreateResponse, error) {
+	rsp, err := c.MarketplaceOfferingTermsOfServiceCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingTermsOfServiceCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceOfferingTermsOfServiceCreateWithResponse(ctx context.Context, body MarketplaceOfferingTermsOfServiceCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingTermsOfServiceCreateResponse, error) {
+	rsp, err := c.MarketplaceOfferingTermsOfServiceCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingTermsOfServiceCreateResponse(rsp)
+}
+
+// MarketplaceOfferingTermsOfServiceDestroyWithResponse request returning *MarketplaceOfferingTermsOfServiceDestroyResponse
+func (c *ClientWithResponses) MarketplaceOfferingTermsOfServiceDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingTermsOfServiceDestroyResponse, error) {
+	rsp, err := c.MarketplaceOfferingTermsOfServiceDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingTermsOfServiceDestroyResponse(rsp)
+}
+
+// MarketplaceOfferingTermsOfServiceRetrieveWithResponse request returning *MarketplaceOfferingTermsOfServiceRetrieveResponse
+func (c *ClientWithResponses) MarketplaceOfferingTermsOfServiceRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingTermsOfServiceRetrieveResponse, error) {
+	rsp, err := c.MarketplaceOfferingTermsOfServiceRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingTermsOfServiceRetrieveResponse(rsp)
+}
+
+// MarketplaceOfferingTermsOfServicePartialUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceOfferingTermsOfServicePartialUpdateResponse
+func (c *ClientWithResponses) MarketplaceOfferingTermsOfServicePartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOfferingTermsOfServicePartialUpdateResponse, error) {
+	rsp, err := c.MarketplaceOfferingTermsOfServicePartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingTermsOfServicePartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceOfferingTermsOfServicePartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingTermsOfServicePartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingTermsOfServicePartialUpdateResponse, error) {
+	rsp, err := c.MarketplaceOfferingTermsOfServicePartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingTermsOfServicePartialUpdateResponse(rsp)
+}
+
+// MarketplaceOfferingTermsOfServiceUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceOfferingTermsOfServiceUpdateResponse
+func (c *ClientWithResponses) MarketplaceOfferingTermsOfServiceUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOfferingTermsOfServiceUpdateResponse, error) {
+	rsp, err := c.MarketplaceOfferingTermsOfServiceUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingTermsOfServiceUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceOfferingTermsOfServiceUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingTermsOfServiceUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingTermsOfServiceUpdateResponse, error) {
+	rsp, err := c.MarketplaceOfferingTermsOfServiceUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingTermsOfServiceUpdateResponse(rsp)
+}
+
 // MarketplaceOfferingUsagePoliciesListWithResponse request returning *MarketplaceOfferingUsagePoliciesListResponse
 func (c *ClientWithResponses) MarketplaceOfferingUsagePoliciesListWithResponse(ctx context.Context, params *MarketplaceOfferingUsagePoliciesListParams, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsagePoliciesListResponse, error) {
 	rsp, err := c.MarketplaceOfferingUsagePoliciesList(ctx, params, reqEditors...)
@@ -243683,6 +245832,102 @@ func (c *ClientWithResponses) MarketplaceStatsTotalCostOfActiveResourcesPerOffer
 		return nil, err
 	}
 	return ParseMarketplaceStatsTotalCostOfActiveResourcesPerOfferingCountResponse(rsp)
+}
+
+// MarketplaceUserOfferingConsentsListWithResponse request returning *MarketplaceUserOfferingConsentsListResponse
+func (c *ClientWithResponses) MarketplaceUserOfferingConsentsListWithResponse(ctx context.Context, params *MarketplaceUserOfferingConsentsListParams, reqEditors ...RequestEditorFn) (*MarketplaceUserOfferingConsentsListResponse, error) {
+	rsp, err := c.MarketplaceUserOfferingConsentsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceUserOfferingConsentsListResponse(rsp)
+}
+
+// MarketplaceUserOfferingConsentsCountWithResponse request returning *MarketplaceUserOfferingConsentsCountResponse
+func (c *ClientWithResponses) MarketplaceUserOfferingConsentsCountWithResponse(ctx context.Context, params *MarketplaceUserOfferingConsentsCountParams, reqEditors ...RequestEditorFn) (*MarketplaceUserOfferingConsentsCountResponse, error) {
+	rsp, err := c.MarketplaceUserOfferingConsentsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceUserOfferingConsentsCountResponse(rsp)
+}
+
+// MarketplaceUserOfferingConsentsCreateWithBodyWithResponse request with arbitrary body returning *MarketplaceUserOfferingConsentsCreateResponse
+func (c *ClientWithResponses) MarketplaceUserOfferingConsentsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceUserOfferingConsentsCreateResponse, error) {
+	rsp, err := c.MarketplaceUserOfferingConsentsCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceUserOfferingConsentsCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceUserOfferingConsentsCreateWithResponse(ctx context.Context, body MarketplaceUserOfferingConsentsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceUserOfferingConsentsCreateResponse, error) {
+	rsp, err := c.MarketplaceUserOfferingConsentsCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceUserOfferingConsentsCreateResponse(rsp)
+}
+
+// MarketplaceUserOfferingConsentsDestroyWithResponse request returning *MarketplaceUserOfferingConsentsDestroyResponse
+func (c *ClientWithResponses) MarketplaceUserOfferingConsentsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceUserOfferingConsentsDestroyResponse, error) {
+	rsp, err := c.MarketplaceUserOfferingConsentsDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceUserOfferingConsentsDestroyResponse(rsp)
+}
+
+// MarketplaceUserOfferingConsentsRetrieveWithResponse request returning *MarketplaceUserOfferingConsentsRetrieveResponse
+func (c *ClientWithResponses) MarketplaceUserOfferingConsentsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceUserOfferingConsentsRetrieveResponse, error) {
+	rsp, err := c.MarketplaceUserOfferingConsentsRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceUserOfferingConsentsRetrieveResponse(rsp)
+}
+
+// MarketplaceUserOfferingConsentsPartialUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceUserOfferingConsentsPartialUpdateResponse
+func (c *ClientWithResponses) MarketplaceUserOfferingConsentsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceUserOfferingConsentsPartialUpdateResponse, error) {
+	rsp, err := c.MarketplaceUserOfferingConsentsPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceUserOfferingConsentsPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceUserOfferingConsentsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceUserOfferingConsentsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceUserOfferingConsentsPartialUpdateResponse, error) {
+	rsp, err := c.MarketplaceUserOfferingConsentsPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceUserOfferingConsentsPartialUpdateResponse(rsp)
+}
+
+// MarketplaceUserOfferingConsentsUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceUserOfferingConsentsUpdateResponse
+func (c *ClientWithResponses) MarketplaceUserOfferingConsentsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceUserOfferingConsentsUpdateResponse, error) {
+	rsp, err := c.MarketplaceUserOfferingConsentsUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceUserOfferingConsentsUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceUserOfferingConsentsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceUserOfferingConsentsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceUserOfferingConsentsUpdateResponse, error) {
+	rsp, err := c.MarketplaceUserOfferingConsentsUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceUserOfferingConsentsUpdateResponse(rsp)
+}
+
+// MarketplaceUserOfferingConsentsRevokeWithResponse request returning *MarketplaceUserOfferingConsentsRevokeResponse
+func (c *ClientWithResponses) MarketplaceUserOfferingConsentsRevokeWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceUserOfferingConsentsRevokeResponse, error) {
+	rsp, err := c.MarketplaceUserOfferingConsentsRevoke(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceUserOfferingConsentsRevokeResponse(rsp)
 }
 
 // MediaRetrieveWithResponse request returning *MediaRetrieveResponse
@@ -263333,6 +265578,168 @@ func ParseMarketplaceOfferingReferralsRetrieveResponse(rsp *http.Response) (*Mar
 	return response, nil
 }
 
+// ParseMarketplaceOfferingTermsOfServiceListResponse parses an HTTP response from a MarketplaceOfferingTermsOfServiceListWithResponse call
+func ParseMarketplaceOfferingTermsOfServiceListResponse(rsp *http.Response) (*MarketplaceOfferingTermsOfServiceListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingTermsOfServiceListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []OfferingTermsOfService
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOfferingTermsOfServiceCountResponse parses an HTTP response from a MarketplaceOfferingTermsOfServiceCountWithResponse call
+func ParseMarketplaceOfferingTermsOfServiceCountResponse(rsp *http.Response) (*MarketplaceOfferingTermsOfServiceCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingTermsOfServiceCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOfferingTermsOfServiceCreateResponse parses an HTTP response from a MarketplaceOfferingTermsOfServiceCreateWithResponse call
+func ParseMarketplaceOfferingTermsOfServiceCreateResponse(rsp *http.Response) (*MarketplaceOfferingTermsOfServiceCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingTermsOfServiceCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest OfferingTermsOfServiceCreate
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOfferingTermsOfServiceDestroyResponse parses an HTTP response from a MarketplaceOfferingTermsOfServiceDestroyWithResponse call
+func ParseMarketplaceOfferingTermsOfServiceDestroyResponse(rsp *http.Response) (*MarketplaceOfferingTermsOfServiceDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingTermsOfServiceDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOfferingTermsOfServiceRetrieveResponse parses an HTTP response from a MarketplaceOfferingTermsOfServiceRetrieveWithResponse call
+func ParseMarketplaceOfferingTermsOfServiceRetrieveResponse(rsp *http.Response) (*MarketplaceOfferingTermsOfServiceRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingTermsOfServiceRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OfferingTermsOfService
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOfferingTermsOfServicePartialUpdateResponse parses an HTTP response from a MarketplaceOfferingTermsOfServicePartialUpdateWithResponse call
+func ParseMarketplaceOfferingTermsOfServicePartialUpdateResponse(rsp *http.Response) (*MarketplaceOfferingTermsOfServicePartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingTermsOfServicePartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OfferingTermsOfService
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOfferingTermsOfServiceUpdateResponse parses an HTTP response from a MarketplaceOfferingTermsOfServiceUpdateWithResponse call
+func ParseMarketplaceOfferingTermsOfServiceUpdateResponse(rsp *http.Response) (*MarketplaceOfferingTermsOfServiceUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingTermsOfServiceUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OfferingTermsOfService
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseMarketplaceOfferingUsagePoliciesListResponse parses an HTTP response from a MarketplaceOfferingUsagePoliciesListWithResponse call
 func ParseMarketplaceOfferingUsagePoliciesListResponse(rsp *http.Response) (*MarketplaceOfferingUsagePoliciesListResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -270551,6 +272958,194 @@ func ParseMarketplaceStatsTotalCostOfActiveResourcesPerOfferingCountResponse(rsp
 	response := &MarketplaceStatsTotalCostOfActiveResourcesPerOfferingCountResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceUserOfferingConsentsListResponse parses an HTTP response from a MarketplaceUserOfferingConsentsListWithResponse call
+func ParseMarketplaceUserOfferingConsentsListResponse(rsp *http.Response) (*MarketplaceUserOfferingConsentsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceUserOfferingConsentsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []UserOfferingConsent
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceUserOfferingConsentsCountResponse parses an HTTP response from a MarketplaceUserOfferingConsentsCountWithResponse call
+func ParseMarketplaceUserOfferingConsentsCountResponse(rsp *http.Response) (*MarketplaceUserOfferingConsentsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceUserOfferingConsentsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceUserOfferingConsentsCreateResponse parses an HTTP response from a MarketplaceUserOfferingConsentsCreateWithResponse call
+func ParseMarketplaceUserOfferingConsentsCreateResponse(rsp *http.Response) (*MarketplaceUserOfferingConsentsCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceUserOfferingConsentsCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest UserOfferingConsentCreate
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceUserOfferingConsentsDestroyResponse parses an HTTP response from a MarketplaceUserOfferingConsentsDestroyWithResponse call
+func ParseMarketplaceUserOfferingConsentsDestroyResponse(rsp *http.Response) (*MarketplaceUserOfferingConsentsDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceUserOfferingConsentsDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceUserOfferingConsentsRetrieveResponse parses an HTTP response from a MarketplaceUserOfferingConsentsRetrieveWithResponse call
+func ParseMarketplaceUserOfferingConsentsRetrieveResponse(rsp *http.Response) (*MarketplaceUserOfferingConsentsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceUserOfferingConsentsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest UserOfferingConsent
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceUserOfferingConsentsPartialUpdateResponse parses an HTTP response from a MarketplaceUserOfferingConsentsPartialUpdateWithResponse call
+func ParseMarketplaceUserOfferingConsentsPartialUpdateResponse(rsp *http.Response) (*MarketplaceUserOfferingConsentsPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceUserOfferingConsentsPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest UserOfferingConsent
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceUserOfferingConsentsUpdateResponse parses an HTTP response from a MarketplaceUserOfferingConsentsUpdateWithResponse call
+func ParseMarketplaceUserOfferingConsentsUpdateResponse(rsp *http.Response) (*MarketplaceUserOfferingConsentsUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceUserOfferingConsentsUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest UserOfferingConsent
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceUserOfferingConsentsRevokeResponse parses an HTTP response from a MarketplaceUserOfferingConsentsRevokeWithResponse call
+func ParseMarketplaceUserOfferingConsentsRevokeResponse(rsp *http.Response) (*MarketplaceUserOfferingConsentsRevokeResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceUserOfferingConsentsRevokeResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest UserOfferingConsent
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
