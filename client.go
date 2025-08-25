@@ -2716,6 +2716,7 @@ const (
 	CustomersListParamsFieldPaymentProfiles              CustomersListParamsField = "payment_profiles"
 	CustomersListParamsFieldPhoneNumber                  CustomersListParamsField = "phone_number"
 	CustomersListParamsFieldPostal                       CustomersListParamsField = "postal"
+	CustomersListParamsFieldProjectMetadataChecklist     CustomersListParamsField = "project_metadata_checklist"
 	CustomersListParamsFieldProjectsCount                CustomersListParamsField = "projects_count"
 	CustomersListParamsFieldRegistrationCode             CustomersListParamsField = "registration_code"
 	CustomersListParamsFieldServiceProvider              CustomersListParamsField = "service_provider"
@@ -2762,6 +2763,7 @@ const (
 	CustomersRetrieveParamsFieldPaymentProfiles              CustomersRetrieveParamsField = "payment_profiles"
 	CustomersRetrieveParamsFieldPhoneNumber                  CustomersRetrieveParamsField = "phone_number"
 	CustomersRetrieveParamsFieldPostal                       CustomersRetrieveParamsField = "postal"
+	CustomersRetrieveParamsFieldProjectMetadataChecklist     CustomersRetrieveParamsField = "project_metadata_checklist"
 	CustomersRetrieveParamsFieldProjectsCount                CustomersRetrieveParamsField = "projects_count"
 	CustomersRetrieveParamsFieldRegistrationCode             CustomersRetrieveParamsField = "registration_code"
 	CustomersRetrieveParamsFieldServiceProvider              CustomersRetrieveParamsField = "service_provider"
@@ -12015,17 +12017,18 @@ type Customer struct {
 	Longitude                    *float64             `json:"longitude"`
 
 	// MaxServiceAccounts Maximum number of service accounts allowed
-	MaxServiceAccounts  *int                `json:"max_service_accounts"`
-	Name                *string             `json:"name,omitempty"`
-	NativeName          *string             `json:"native_name,omitempty"`
-	PaymentProfiles     *[]PaymentProfile   `json:"payment_profiles,omitempty"`
-	PhoneNumber         *string             `json:"phone_number,omitempty"`
-	Postal              *string             `json:"postal,omitempty"`
-	ProjectsCount       *int                `json:"projects_count,omitempty"`
-	RegistrationCode    *string             `json:"registration_code,omitempty"`
-	ServiceProvider     *string             `json:"service_provider"`
-	ServiceProviderUuid *openapi_types.UUID `json:"service_provider_uuid"`
-	Slug                *string             `json:"slug,omitempty"`
+	MaxServiceAccounts       *int                `json:"max_service_accounts"`
+	Name                     *string             `json:"name,omitempty"`
+	NativeName               *string             `json:"native_name,omitempty"`
+	PaymentProfiles          *[]PaymentProfile   `json:"payment_profiles,omitempty"`
+	PhoneNumber              *string             `json:"phone_number,omitempty"`
+	Postal                   *string             `json:"postal,omitempty"`
+	ProjectMetadataChecklist *openapi_types.UUID `json:"project_metadata_checklist"`
+	ProjectsCount            *int                `json:"projects_count,omitempty"`
+	RegistrationCode         *string             `json:"registration_code,omitempty"`
+	ServiceProvider          *string             `json:"service_provider"`
+	ServiceProviderUuid      *openapi_types.UUID `json:"service_provider_uuid"`
+	Slug                     *string             `json:"slug,omitempty"`
 
 	// SponsorNumber External ID of the sponsor covering the costs
 	SponsorNumber *int                `json:"sponsor_number"`
@@ -13413,6 +13416,7 @@ type MaintenanceAnnouncement struct {
 	// ActualStart When the maintenance actually began
 	ActualStart       *time.Time                         `json:"actual_start"`
 	AffectedOfferings *[]MaintenanceAnnouncementOffering `json:"affected_offerings,omitempty"`
+	BackendId         *string                            `json:"backend_id,omitempty"`
 	CreatedBy         *string                            `json:"created_by"`
 
 	// ExternalReferenceUrl Optional reference to an external maintenance tracker
