@@ -11336,6 +11336,13 @@ type ChecklistCompletionReviewer struct {
 	Uuid                        *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
+// ChecklistInfo defines model for ChecklistInfo.
+type ChecklistInfo struct {
+	ChecklistType *string             `json:"checklist_type,omitempty"`
+	Name          *string             `json:"name,omitempty"`
+	Uuid          *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
 // ChecklistOperators defines model for ChecklistOperators.
 type ChecklistOperators string
 
@@ -11403,6 +11410,15 @@ type Comment struct {
 type CommentRequest struct {
 	Description string `json:"description"`
 	IsPublic    *bool  `json:"is_public,omitempty"`
+}
+
+// ComplianceOverview defines model for ComplianceOverview.
+type ComplianceOverview struct {
+	AverageCompletionPercentage *float64 `json:"average_completion_percentage,omitempty"`
+	FullyCompletedProjects      *int     `json:"fully_completed_projects,omitempty"`
+	ProjectsRequiringReview     *int     `json:"projects_requiring_review,omitempty"`
+	ProjectsWithCompletions     *int     `json:"projects_with_completions,omitempty"`
+	TotalProjects               *int     `json:"total_projects,omitempty"`
 }
 
 // ComponentStats defines model for ComponentStats.
@@ -18233,6 +18249,29 @@ type Project_OecdFos2007Code struct {
 	union json.RawMessage
 }
 
+// ProjectAnswer defines model for ProjectAnswer.
+type ProjectAnswer struct {
+	// AnswersCount Get count of answers.
+	AnswersCount *int `json:"answers_count,omitempty"`
+
+	// CompletionPercentage Get completion percentage.
+	CompletionPercentage *float64 `json:"completion_percentage,omitempty"`
+
+	// CompletionUuid Get completion UUID.
+	CompletionUuid *string `json:"completion_uuid"`
+
+	// IsCompleted Get completion status.
+	IsCompleted *bool               `json:"is_completed,omitempty"`
+	ProjectName *string             `json:"project_name,omitempty"`
+	ProjectUuid *openapi_types.UUID `json:"project_uuid,omitempty"`
+
+	// RequiresReview Get review requirement status.
+	RequiresReview *bool `json:"requires_review,omitempty"`
+
+	// UnansweredRequiredCount Get count of unanswered required questions.
+	UnansweredRequiredCount *int `json:"unanswered_required_count,omitempty"`
+}
+
 // ProjectCredit defines model for ProjectCredit.
 type ProjectCredit struct {
 	AllocatedCustomerCredit   *float64                     `json:"allocated_customer_credit,omitempty"`
@@ -18266,6 +18305,25 @@ type ProjectCreditRequest struct {
 	MinimalConsumptionLogic   *MinimalConsumptionLogicEnum `json:"minimal_consumption_logic,omitempty"`
 	Project                   string                       `json:"project"`
 	Value                     *string                      `json:"value,omitempty"`
+}
+
+// ProjectDetail defines model for ProjectDetail.
+type ProjectDetail struct {
+	CompletionPercentage *float64            `json:"completion_percentage,omitempty"`
+	IsCompleted          *bool               `json:"is_completed,omitempty"`
+	ProjectName          *string             `json:"project_name,omitempty"`
+	ProjectUuid          *openapi_types.UUID `json:"project_uuid,omitempty"`
+	RequiresReview       *bool               `json:"requires_review,omitempty"`
+}
+
+// ProjectDetailsResponse defines model for ProjectDetailsResponse.
+type ProjectDetailsResponse struct {
+	Checklist               *ChecklistInfo   `json:"checklist,omitempty"`
+	FullyCompletedProjects  *int             `json:"fully_completed_projects,omitempty"`
+	ProjectDetails          *[]ProjectDetail `json:"project_details,omitempty"`
+	ProjectsRequiringReview *int             `json:"projects_requiring_review,omitempty"`
+	ProjectsWithCompletions *int             `json:"projects_with_completions,omitempty"`
+	TotalProjects           *int             `json:"total_projects,omitempty"`
 }
 
 // ProjectEstimatedCostPolicy defines model for ProjectEstimatedCostPolicy.
@@ -19222,6 +19280,23 @@ type QuestionAdminRequest_GuidanceOperator struct {
 // QuestionAdminRequest_Operator defines model for QuestionAdminRequest.Operator.
 type QuestionAdminRequest_Operator struct {
 	union json.RawMessage
+}
+
+// QuestionAnswer defines model for QuestionAnswer.
+type QuestionAnswer struct {
+	// AnsweredProjectsCount Get count of projects that answered this question.
+	AnsweredProjectsCount *int `json:"answered_projects_count,omitempty"`
+	Order                 *int `json:"order,omitempty"`
+
+	// ProjectAnswers Get all project answers for this question.
+	ProjectAnswers      *[]map[string]interface{} `json:"project_answers,omitempty"`
+	QuestionDescription *string                   `json:"question_description,omitempty"`
+	QuestionType        *string                   `json:"question_type,omitempty"`
+	QuestionUuid        *openapi_types.UUID       `json:"question_uuid,omitempty"`
+	Required            *bool                     `json:"required,omitempty"`
+
+	// TotalProjects Get total projects count.
+	TotalProjects *int `json:"total_projects,omitempty"`
 }
 
 // QuestionDependency defines model for QuestionDependency.
@@ -23659,6 +23734,42 @@ type CustomersCountriesCountParams struct {
 	// Query Filter by name, native name, abbreviation, domain, UUID, registration code or agreement number
 	Query            *string `form:"query,omitempty" json:"query,omitempty"`
 	RegistrationCode *string `form:"registration_code,omitempty" json:"registration_code,omitempty"`
+}
+
+// CustomersProjectMetadataComplianceDetailsListParams defines parameters for CustomersProjectMetadataComplianceDetailsList.
+type CustomersProjectMetadataComplianceDetailsListParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// CustomersProjectMetadataComplianceOverviewListParams defines parameters for CustomersProjectMetadataComplianceOverviewList.
+type CustomersProjectMetadataComplianceOverviewListParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// CustomersProjectMetadataComplianceProjectsListParams defines parameters for CustomersProjectMetadataComplianceProjectsList.
+type CustomersProjectMetadataComplianceProjectsListParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// CustomersProjectMetadataQuestionAnswersListParams defines parameters for CustomersProjectMetadataQuestionAnswersList.
+type CustomersProjectMetadataQuestionAnswersListParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 }
 
 // CustomersRetrieveParams defines parameters for CustomersRetrieve.
@@ -38778,6 +38889,18 @@ type ClientInterface interface {
 	// CustomersCountriesCount request
 	CustomersCountriesCount(ctx context.Context, params *CustomersCountriesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// CustomersProjectMetadataComplianceDetailsList request
+	CustomersProjectMetadataComplianceDetailsList(ctx context.Context, customerUuid openapi_types.UUID, params *CustomersProjectMetadataComplianceDetailsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// CustomersProjectMetadataComplianceOverviewList request
+	CustomersProjectMetadataComplianceOverviewList(ctx context.Context, customerUuid openapi_types.UUID, params *CustomersProjectMetadataComplianceOverviewListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// CustomersProjectMetadataComplianceProjectsList request
+	CustomersProjectMetadataComplianceProjectsList(ctx context.Context, customerUuid openapi_types.UUID, params *CustomersProjectMetadataComplianceProjectsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// CustomersProjectMetadataQuestionAnswersList request
+	CustomersProjectMetadataQuestionAnswersList(ctx context.Context, customerUuid openapi_types.UUID, params *CustomersProjectMetadataQuestionAnswersListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// CustomersDestroy request
 	CustomersDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -47424,6 +47547,54 @@ func (c *Client) CustomersCountriesList(ctx context.Context, params *CustomersCo
 
 func (c *Client) CustomersCountriesCount(ctx context.Context, params *CustomersCountriesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCustomersCountriesCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CustomersProjectMetadataComplianceDetailsList(ctx context.Context, customerUuid openapi_types.UUID, params *CustomersProjectMetadataComplianceDetailsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCustomersProjectMetadataComplianceDetailsListRequest(c.Server, customerUuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CustomersProjectMetadataComplianceOverviewList(ctx context.Context, customerUuid openapi_types.UUID, params *CustomersProjectMetadataComplianceOverviewListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCustomersProjectMetadataComplianceOverviewListRequest(c.Server, customerUuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CustomersProjectMetadataComplianceProjectsList(ctx context.Context, customerUuid openapi_types.UUID, params *CustomersProjectMetadataComplianceProjectsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCustomersProjectMetadataComplianceProjectsListRequest(c.Server, customerUuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CustomersProjectMetadataQuestionAnswersList(ctx context.Context, customerUuid openapi_types.UUID, params *CustomersProjectMetadataQuestionAnswersListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCustomersProjectMetadataQuestionAnswersListRequest(c.Server, customerUuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -87785,6 +87956,294 @@ func NewCustomersCountriesCountRequest(server string, params *CustomersCountries
 	}
 
 	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewCustomersProjectMetadataComplianceDetailsListRequest generates requests for CustomersProjectMetadataComplianceDetailsList
+func NewCustomersProjectMetadataComplianceDetailsListRequest(server string, customerUuid openapi_types.UUID, params *CustomersProjectMetadataComplianceDetailsListParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "customer_uuid", runtime.ParamLocationPath, customerUuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/customers/%s/project-metadata-compliance-details/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewCustomersProjectMetadataComplianceOverviewListRequest generates requests for CustomersProjectMetadataComplianceOverviewList
+func NewCustomersProjectMetadataComplianceOverviewListRequest(server string, customerUuid openapi_types.UUID, params *CustomersProjectMetadataComplianceOverviewListParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "customer_uuid", runtime.ParamLocationPath, customerUuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/customers/%s/project-metadata-compliance-overview/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewCustomersProjectMetadataComplianceProjectsListRequest generates requests for CustomersProjectMetadataComplianceProjectsList
+func NewCustomersProjectMetadataComplianceProjectsListRequest(server string, customerUuid openapi_types.UUID, params *CustomersProjectMetadataComplianceProjectsListParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "customer_uuid", runtime.ParamLocationPath, customerUuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/customers/%s/project-metadata-compliance-projects/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewCustomersProjectMetadataQuestionAnswersListRequest generates requests for CustomersProjectMetadataQuestionAnswersList
+func NewCustomersProjectMetadataQuestionAnswersListRequest(server string, customerUuid openapi_types.UUID, params *CustomersProjectMetadataQuestionAnswersListParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "customer_uuid", runtime.ParamLocationPath, customerUuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/customers/%s/project-metadata-question-answers/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
@@ -198139,6 +198598,18 @@ type ClientWithResponsesInterface interface {
 	// CustomersCountriesCountWithResponse request
 	CustomersCountriesCountWithResponse(ctx context.Context, params *CustomersCountriesCountParams, reqEditors ...RequestEditorFn) (*CustomersCountriesCountResponse, error)
 
+	// CustomersProjectMetadataComplianceDetailsListWithResponse request
+	CustomersProjectMetadataComplianceDetailsListWithResponse(ctx context.Context, customerUuid openapi_types.UUID, params *CustomersProjectMetadataComplianceDetailsListParams, reqEditors ...RequestEditorFn) (*CustomersProjectMetadataComplianceDetailsListResponse, error)
+
+	// CustomersProjectMetadataComplianceOverviewListWithResponse request
+	CustomersProjectMetadataComplianceOverviewListWithResponse(ctx context.Context, customerUuid openapi_types.UUID, params *CustomersProjectMetadataComplianceOverviewListParams, reqEditors ...RequestEditorFn) (*CustomersProjectMetadataComplianceOverviewListResponse, error)
+
+	// CustomersProjectMetadataComplianceProjectsListWithResponse request
+	CustomersProjectMetadataComplianceProjectsListWithResponse(ctx context.Context, customerUuid openapi_types.UUID, params *CustomersProjectMetadataComplianceProjectsListParams, reqEditors ...RequestEditorFn) (*CustomersProjectMetadataComplianceProjectsListResponse, error)
+
+	// CustomersProjectMetadataQuestionAnswersListWithResponse request
+	CustomersProjectMetadataQuestionAnswersListWithResponse(ctx context.Context, customerUuid openapi_types.UUID, params *CustomersProjectMetadataQuestionAnswersListParams, reqEditors ...RequestEditorFn) (*CustomersProjectMetadataQuestionAnswersListResponse, error)
+
 	// CustomersDestroyWithResponse request
 	CustomersDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*CustomersDestroyResponse, error)
 
@@ -208337,6 +208808,94 @@ func (r CustomersCountriesCountResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r CustomersCountriesCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type CustomersProjectMetadataComplianceDetailsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]ProjectDetailsResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r CustomersProjectMetadataComplianceDetailsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r CustomersProjectMetadataComplianceDetailsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type CustomersProjectMetadataComplianceOverviewListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]ComplianceOverview
+}
+
+// Status returns HTTPResponse.Status
+func (r CustomersProjectMetadataComplianceOverviewListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r CustomersProjectMetadataComplianceOverviewListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type CustomersProjectMetadataComplianceProjectsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]ProjectAnswer
+}
+
+// Status returns HTTPResponse.Status
+func (r CustomersProjectMetadataComplianceProjectsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r CustomersProjectMetadataComplianceProjectsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type CustomersProjectMetadataQuestionAnswersListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]QuestionAnswer
+}
+
+// Status returns HTTPResponse.Status
+func (r CustomersProjectMetadataQuestionAnswersListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r CustomersProjectMetadataQuestionAnswersListResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -238921,6 +239480,42 @@ func (c *ClientWithResponses) CustomersCountriesCountWithResponse(ctx context.Co
 	return ParseCustomersCountriesCountResponse(rsp)
 }
 
+// CustomersProjectMetadataComplianceDetailsListWithResponse request returning *CustomersProjectMetadataComplianceDetailsListResponse
+func (c *ClientWithResponses) CustomersProjectMetadataComplianceDetailsListWithResponse(ctx context.Context, customerUuid openapi_types.UUID, params *CustomersProjectMetadataComplianceDetailsListParams, reqEditors ...RequestEditorFn) (*CustomersProjectMetadataComplianceDetailsListResponse, error) {
+	rsp, err := c.CustomersProjectMetadataComplianceDetailsList(ctx, customerUuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCustomersProjectMetadataComplianceDetailsListResponse(rsp)
+}
+
+// CustomersProjectMetadataComplianceOverviewListWithResponse request returning *CustomersProjectMetadataComplianceOverviewListResponse
+func (c *ClientWithResponses) CustomersProjectMetadataComplianceOverviewListWithResponse(ctx context.Context, customerUuid openapi_types.UUID, params *CustomersProjectMetadataComplianceOverviewListParams, reqEditors ...RequestEditorFn) (*CustomersProjectMetadataComplianceOverviewListResponse, error) {
+	rsp, err := c.CustomersProjectMetadataComplianceOverviewList(ctx, customerUuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCustomersProjectMetadataComplianceOverviewListResponse(rsp)
+}
+
+// CustomersProjectMetadataComplianceProjectsListWithResponse request returning *CustomersProjectMetadataComplianceProjectsListResponse
+func (c *ClientWithResponses) CustomersProjectMetadataComplianceProjectsListWithResponse(ctx context.Context, customerUuid openapi_types.UUID, params *CustomersProjectMetadataComplianceProjectsListParams, reqEditors ...RequestEditorFn) (*CustomersProjectMetadataComplianceProjectsListResponse, error) {
+	rsp, err := c.CustomersProjectMetadataComplianceProjectsList(ctx, customerUuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCustomersProjectMetadataComplianceProjectsListResponse(rsp)
+}
+
+// CustomersProjectMetadataQuestionAnswersListWithResponse request returning *CustomersProjectMetadataQuestionAnswersListResponse
+func (c *ClientWithResponses) CustomersProjectMetadataQuestionAnswersListWithResponse(ctx context.Context, customerUuid openapi_types.UUID, params *CustomersProjectMetadataQuestionAnswersListParams, reqEditors ...RequestEditorFn) (*CustomersProjectMetadataQuestionAnswersListResponse, error) {
+	rsp, err := c.CustomersProjectMetadataQuestionAnswersList(ctx, customerUuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCustomersProjectMetadataQuestionAnswersListResponse(rsp)
+}
+
 // CustomersDestroyWithResponse request returning *CustomersDestroyResponse
 func (c *ClientWithResponses) CustomersDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*CustomersDestroyResponse, error) {
 	rsp, err := c.CustomersDestroy(ctx, uuid, reqEditors...)
@@ -259325,6 +259920,110 @@ func ParseCustomersCountriesCountResponse(rsp *http.Response) (*CustomersCountri
 	response := &CustomersCountriesCountResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseCustomersProjectMetadataComplianceDetailsListResponse parses an HTTP response from a CustomersProjectMetadataComplianceDetailsListWithResponse call
+func ParseCustomersProjectMetadataComplianceDetailsListResponse(rsp *http.Response) (*CustomersProjectMetadataComplianceDetailsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &CustomersProjectMetadataComplianceDetailsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []ProjectDetailsResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseCustomersProjectMetadataComplianceOverviewListResponse parses an HTTP response from a CustomersProjectMetadataComplianceOverviewListWithResponse call
+func ParseCustomersProjectMetadataComplianceOverviewListResponse(rsp *http.Response) (*CustomersProjectMetadataComplianceOverviewListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &CustomersProjectMetadataComplianceOverviewListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []ComplianceOverview
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseCustomersProjectMetadataComplianceProjectsListResponse parses an HTTP response from a CustomersProjectMetadataComplianceProjectsListWithResponse call
+func ParseCustomersProjectMetadataComplianceProjectsListResponse(rsp *http.Response) (*CustomersProjectMetadataComplianceProjectsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &CustomersProjectMetadataComplianceProjectsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []ProjectAnswer
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseCustomersProjectMetadataQuestionAnswersListResponse parses an HTTP response from a CustomersProjectMetadataQuestionAnswersListWithResponse call
+func ParseCustomersProjectMetadataQuestionAnswersListResponse(rsp *http.Response) (*CustomersProjectMetadataQuestionAnswersListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &CustomersProjectMetadataQuestionAnswersListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []QuestionAnswer
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
