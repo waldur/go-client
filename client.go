@@ -969,6 +969,28 @@ const (
 	RancherTemplateQuestionTypeString  RancherTemplateQuestionType = "string"
 )
 
+// Defines values for RemoteResourceOrderRemoteStateEnum.
+const (
+	RemoteResourceOrderRemoteStateEnumN1 RemoteResourceOrderRemoteStateEnum = 1
+	RemoteResourceOrderRemoteStateEnumN2 RemoteResourceOrderRemoteStateEnum = 2
+	RemoteResourceOrderRemoteStateEnumN3 RemoteResourceOrderRemoteStateEnum = 3
+	RemoteResourceOrderRemoteStateEnumN4 RemoteResourceOrderRemoteStateEnum = 4
+	RemoteResourceOrderRemoteStateEnumN5 RemoteResourceOrderRemoteStateEnum = 5
+	RemoteResourceOrderRemoteStateEnumN6 RemoteResourceOrderRemoteStateEnum = 6
+	RemoteResourceOrderRemoteStateEnumN7 RemoteResourceOrderRemoteStateEnum = 7
+	RemoteResourceOrderRemoteStateEnumN8 RemoteResourceOrderRemoteStateEnum = 8
+)
+
+// Defines values for RemoteResourceSyncStatusRemoteStateEnum.
+const (
+	RemoteResourceSyncStatusRemoteStateEnumN1 RemoteResourceSyncStatusRemoteStateEnum = 1
+	RemoteResourceSyncStatusRemoteStateEnumN2 RemoteResourceSyncStatusRemoteStateEnum = 2
+	RemoteResourceSyncStatusRemoteStateEnumN3 RemoteResourceSyncStatusRemoteStateEnum = 3
+	RemoteResourceSyncStatusRemoteStateEnumN4 RemoteResourceSyncStatusRemoteStateEnum = 4
+	RemoteResourceSyncStatusRemoteStateEnumN5 RemoteResourceSyncStatusRemoteStateEnum = 5
+	RemoteResourceSyncStatusRemoteStateEnumN6 RemoteResourceSyncStatusRemoteStateEnum = 6
+)
+
 // Defines values for RequestTypes.
 const (
 	RequestTypesCreate    RequestTypes = "Create"
@@ -1063,6 +1085,13 @@ const (
 const (
 	Dynamic StorageModeEnum = "dynamic"
 	Fixed   StorageModeEnum = "fixed"
+)
+
+// Defines values for SyncStatusEnum.
+const (
+	InSync     SyncStatusEnum = "in_sync"
+	OutOfSync  SyncStatusEnum = "out_of_sync"
+	SyncFailed SyncStatusEnum = "sync_failed"
 )
 
 // Defines values for UsernameGenerationPolicyEnum.
@@ -20237,6 +20266,62 @@ type RemoteProjectUpdateRequest struct {
 	Uuid               *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
+// RemoteResourceOrder defines model for RemoteResourceOrder.
+type RemoteResourceOrder struct {
+	// LocalState Local order state
+	LocalState *OrderState `json:"local_state,omitempty"`
+
+	// OrderUuid Order UUID
+	OrderUuid *openapi_types.UUID `json:"order_uuid,omitempty"`
+
+	// RemoteState Remote order state
+	RemoteState *RemoteResourceOrderRemoteStateEnum `json:"remote_state,omitempty"`
+
+	// SyncStatus Sync status: in_sync, out_of_sync, sync_failed
+	SyncStatus *SyncStatusEnum `json:"sync_status,omitempty"`
+}
+
+// RemoteResourceOrderRemoteStateEnum defines model for RemoteResourceOrderRemoteStateEnum.
+type RemoteResourceOrderRemoteStateEnum int
+
+// RemoteResourceSyncStatus defines model for RemoteResourceSyncStatus.
+type RemoteResourceSyncStatus struct {
+	// LastSync Last sync timestamp
+	LastSync *time.Time `json:"last_sync"`
+
+	// LocalState Local resource state
+	LocalState *ResourceState `json:"local_state,omitempty"`
+
+	// RemoteState Remote resource state
+	RemoteState *RemoteResourceSyncStatus_RemoteState `json:"remote_state"`
+
+	// SyncStatus Sync status: in_sync, out_of_sync, sync_failed
+	SyncStatus *SyncStatusEnum `json:"sync_status,omitempty"`
+}
+
+// RemoteResourceSyncStatus_RemoteState Remote resource state
+type RemoteResourceSyncStatus_RemoteState struct {
+	union json.RawMessage
+}
+
+// RemoteResourceSyncStatusRemoteStateEnum defines model for RemoteResourceSyncStatusRemoteStateEnum.
+type RemoteResourceSyncStatusRemoteStateEnum int
+
+// RemoteResourceTeamMember defines model for RemoteResourceTeamMember.
+type RemoteResourceTeamMember struct {
+	// FullName Full name
+	FullName *string `json:"full_name,omitempty"`
+
+	// LocalRole Local role
+	LocalRole *string `json:"local_role,omitempty"`
+
+	// RemoteRole Remote role
+	RemoteRole *string `json:"remote_role,omitempty"`
+
+	// SyncStatus Sync status: in_sync, out_of_sync, sync_failed
+	SyncStatus *SyncStatusEnum `json:"sync_status,omitempty"`
+}
+
 // RemoteSynchronisation defines model for RemoteSynchronisation.
 type RemoteSynchronisation struct {
 	ApiUrl                   string                      `json:"api_url"`
@@ -21277,6 +21362,9 @@ type SupportUser struct {
 	User        *string             `json:"user"`
 	Uuid        *openapi_types.UUID `json:"uuid,omitempty"`
 }
+
+// SyncStatusEnum defines model for SyncStatusEnum.
+type SyncStatusEnum string
 
 // TableSize defines model for TableSize.
 type TableSize struct {
@@ -31945,6 +32033,15 @@ type RemoteWaldurApiRemoteCustomersParams struct {
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 }
 
+// RemoteWaldurApiRemoteResourceTeamStatusListParams defines parameters for RemoteWaldurApiRemoteResourceTeamStatusList.
+type RemoteWaldurApiRemoteResourceTeamStatusListParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
 // RemoteWaldurApiSharedOfferingsParams defines parameters for RemoteWaldurApiSharedOfferings.
 type RemoteWaldurApiSharedOfferingsParams struct {
 	CustomerUuid *string `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
@@ -37674,6 +37771,68 @@ func (t *RancherClusterSecurityGroupRuleRequest_Protocol) UnmarshalJSON(b []byte
 	return err
 }
 
+// AsRemoteResourceSyncStatusRemoteStateEnum returns the union data inside the RemoteResourceSyncStatus_RemoteState as a RemoteResourceSyncStatusRemoteStateEnum
+func (t RemoteResourceSyncStatus_RemoteState) AsRemoteResourceSyncStatusRemoteStateEnum() (RemoteResourceSyncStatusRemoteStateEnum, error) {
+	var body RemoteResourceSyncStatusRemoteStateEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromRemoteResourceSyncStatusRemoteStateEnum overwrites any union data inside the RemoteResourceSyncStatus_RemoteState as the provided RemoteResourceSyncStatusRemoteStateEnum
+func (t *RemoteResourceSyncStatus_RemoteState) FromRemoteResourceSyncStatusRemoteStateEnum(v RemoteResourceSyncStatusRemoteStateEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeRemoteResourceSyncStatusRemoteStateEnum performs a merge with any union data inside the RemoteResourceSyncStatus_RemoteState, using the provided RemoteResourceSyncStatusRemoteStateEnum
+func (t *RemoteResourceSyncStatus_RemoteState) MergeRemoteResourceSyncStatusRemoteStateEnum(v RemoteResourceSyncStatusRemoteStateEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the RemoteResourceSyncStatus_RemoteState as a NullEnum
+func (t RemoteResourceSyncStatus_RemoteState) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the RemoteResourceSyncStatus_RemoteState as the provided NullEnum
+func (t *RemoteResourceSyncStatus_RemoteState) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the RemoteResourceSyncStatus_RemoteState, using the provided NullEnum
+func (t *RemoteResourceSyncStatus_RemoteState) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t RemoteResourceSyncStatus_RemoteState) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *RemoteResourceSyncStatus_RemoteState) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsLimitPeriodEnum returns the union data inside the UpdateOfferingComponentRequest_LimitPeriod as a LimitPeriodEnum
 func (t UpdateOfferingComponentRequest_LimitPeriod) AsLimitPeriodEnum() (LimitPeriodEnum, error) {
 	var body LimitPeriodEnum
@@ -42864,6 +43023,15 @@ type ClientInterface interface {
 	RemoteWaldurApiRemoteCustomersWithBody(ctx context.Context, params *RemoteWaldurApiRemoteCustomersParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	RemoteWaldurApiRemoteCustomers(ctx context.Context, params *RemoteWaldurApiRemoteCustomersParams, body RemoteWaldurApiRemoteCustomersJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// RemoteWaldurApiRemoteResourceOrderStatusRetrieve request
+	RemoteWaldurApiRemoteResourceOrderStatusRetrieve(ctx context.Context, resourceUuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// RemoteWaldurApiRemoteResourceStatusRetrieve request
+	RemoteWaldurApiRemoteResourceStatusRetrieve(ctx context.Context, resourceUuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// RemoteWaldurApiRemoteResourceTeamStatusList request
+	RemoteWaldurApiRemoteResourceTeamStatusList(ctx context.Context, resourceUuid string, params *RemoteWaldurApiRemoteResourceTeamStatusListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// RemoteWaldurApiSharedOfferingsWithBody request with any body
 	RemoteWaldurApiSharedOfferingsWithBody(ctx context.Context, params *RemoteWaldurApiSharedOfferingsParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -64839,6 +65007,42 @@ func (c *Client) RemoteWaldurApiRemoteCustomersWithBody(ctx context.Context, par
 
 func (c *Client) RemoteWaldurApiRemoteCustomers(ctx context.Context, params *RemoteWaldurApiRemoteCustomersParams, body RemoteWaldurApiRemoteCustomersJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewRemoteWaldurApiRemoteCustomersRequest(c.Server, params, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) RemoteWaldurApiRemoteResourceOrderStatusRetrieve(ctx context.Context, resourceUuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewRemoteWaldurApiRemoteResourceOrderStatusRetrieveRequest(c.Server, resourceUuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) RemoteWaldurApiRemoteResourceStatusRetrieve(ctx context.Context, resourceUuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewRemoteWaldurApiRemoteResourceStatusRetrieveRequest(c.Server, resourceUuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) RemoteWaldurApiRemoteResourceTeamStatusList(ctx context.Context, resourceUuid string, params *RemoteWaldurApiRemoteResourceTeamStatusListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewRemoteWaldurApiRemoteResourceTeamStatusListRequest(c.Server, resourceUuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -181361,6 +181565,146 @@ func NewRemoteWaldurApiRemoteCustomersRequestWithBody(server string, params *Rem
 	return req, nil
 }
 
+// NewRemoteWaldurApiRemoteResourceOrderStatusRetrieveRequest generates requests for RemoteWaldurApiRemoteResourceOrderStatusRetrieve
+func NewRemoteWaldurApiRemoteResourceOrderStatusRetrieveRequest(server string, resourceUuid string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "resource_uuid", runtime.ParamLocationPath, resourceUuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/remote-waldur-api/remote_resource_order_status/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewRemoteWaldurApiRemoteResourceStatusRetrieveRequest generates requests for RemoteWaldurApiRemoteResourceStatusRetrieve
+func NewRemoteWaldurApiRemoteResourceStatusRetrieveRequest(server string, resourceUuid string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "resource_uuid", runtime.ParamLocationPath, resourceUuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/remote-waldur-api/remote_resource_status/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewRemoteWaldurApiRemoteResourceTeamStatusListRequest generates requests for RemoteWaldurApiRemoteResourceTeamStatusList
+func NewRemoteWaldurApiRemoteResourceTeamStatusListRequest(server string, resourceUuid string, params *RemoteWaldurApiRemoteResourceTeamStatusListParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "resource_uuid", runtime.ParamLocationPath, resourceUuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/remote-waldur-api/remote_resource_team_status/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewRemoteWaldurApiSharedOfferingsRequest calls the generic RemoteWaldurApiSharedOfferings builder with application/json body
 func NewRemoteWaldurApiSharedOfferingsRequest(server string, params *RemoteWaldurApiSharedOfferingsParams, body RemoteWaldurApiSharedOfferingsJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -202573,6 +202917,15 @@ type ClientWithResponsesInterface interface {
 	RemoteWaldurApiRemoteCustomersWithBodyWithResponse(ctx context.Context, params *RemoteWaldurApiRemoteCustomersParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*RemoteWaldurApiRemoteCustomersResponse, error)
 
 	RemoteWaldurApiRemoteCustomersWithResponse(ctx context.Context, params *RemoteWaldurApiRemoteCustomersParams, body RemoteWaldurApiRemoteCustomersJSONRequestBody, reqEditors ...RequestEditorFn) (*RemoteWaldurApiRemoteCustomersResponse, error)
+
+	// RemoteWaldurApiRemoteResourceOrderStatusRetrieveWithResponse request
+	RemoteWaldurApiRemoteResourceOrderStatusRetrieveWithResponse(ctx context.Context, resourceUuid string, reqEditors ...RequestEditorFn) (*RemoteWaldurApiRemoteResourceOrderStatusRetrieveResponse, error)
+
+	// RemoteWaldurApiRemoteResourceStatusRetrieveWithResponse request
+	RemoteWaldurApiRemoteResourceStatusRetrieveWithResponse(ctx context.Context, resourceUuid string, reqEditors ...RequestEditorFn) (*RemoteWaldurApiRemoteResourceStatusRetrieveResponse, error)
+
+	// RemoteWaldurApiRemoteResourceTeamStatusListWithResponse request
+	RemoteWaldurApiRemoteResourceTeamStatusListWithResponse(ctx context.Context, resourceUuid string, params *RemoteWaldurApiRemoteResourceTeamStatusListParams, reqEditors ...RequestEditorFn) (*RemoteWaldurApiRemoteResourceTeamStatusListResponse, error)
 
 	// RemoteWaldurApiSharedOfferingsWithBodyWithResponse request with any body
 	RemoteWaldurApiSharedOfferingsWithBodyWithResponse(ctx context.Context, params *RemoteWaldurApiSharedOfferingsParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*RemoteWaldurApiSharedOfferingsResponse, error)
@@ -232499,6 +232852,72 @@ func (r RemoteWaldurApiRemoteCustomersResponse) StatusCode() int {
 	return 0
 }
 
+type RemoteWaldurApiRemoteResourceOrderStatusRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *RemoteResourceOrder
+}
+
+// Status returns HTTPResponse.Status
+func (r RemoteWaldurApiRemoteResourceOrderStatusRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r RemoteWaldurApiRemoteResourceOrderStatusRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type RemoteWaldurApiRemoteResourceStatusRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *RemoteResourceSyncStatus
+}
+
+// Status returns HTTPResponse.Status
+func (r RemoteWaldurApiRemoteResourceStatusRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r RemoteWaldurApiRemoteResourceStatusRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type RemoteWaldurApiRemoteResourceTeamStatusListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]RemoteResourceTeamMember
+}
+
+// Status returns HTTPResponse.Status
+func (r RemoteWaldurApiRemoteResourceTeamStatusListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r RemoteWaldurApiRemoteResourceTeamStatusListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type RemoteWaldurApiSharedOfferingsResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -252100,6 +252519,33 @@ func (c *ClientWithResponses) RemoteWaldurApiRemoteCustomersWithResponse(ctx con
 		return nil, err
 	}
 	return ParseRemoteWaldurApiRemoteCustomersResponse(rsp)
+}
+
+// RemoteWaldurApiRemoteResourceOrderStatusRetrieveWithResponse request returning *RemoteWaldurApiRemoteResourceOrderStatusRetrieveResponse
+func (c *ClientWithResponses) RemoteWaldurApiRemoteResourceOrderStatusRetrieveWithResponse(ctx context.Context, resourceUuid string, reqEditors ...RequestEditorFn) (*RemoteWaldurApiRemoteResourceOrderStatusRetrieveResponse, error) {
+	rsp, err := c.RemoteWaldurApiRemoteResourceOrderStatusRetrieve(ctx, resourceUuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseRemoteWaldurApiRemoteResourceOrderStatusRetrieveResponse(rsp)
+}
+
+// RemoteWaldurApiRemoteResourceStatusRetrieveWithResponse request returning *RemoteWaldurApiRemoteResourceStatusRetrieveResponse
+func (c *ClientWithResponses) RemoteWaldurApiRemoteResourceStatusRetrieveWithResponse(ctx context.Context, resourceUuid string, reqEditors ...RequestEditorFn) (*RemoteWaldurApiRemoteResourceStatusRetrieveResponse, error) {
+	rsp, err := c.RemoteWaldurApiRemoteResourceStatusRetrieve(ctx, resourceUuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseRemoteWaldurApiRemoteResourceStatusRetrieveResponse(rsp)
+}
+
+// RemoteWaldurApiRemoteResourceTeamStatusListWithResponse request returning *RemoteWaldurApiRemoteResourceTeamStatusListResponse
+func (c *ClientWithResponses) RemoteWaldurApiRemoteResourceTeamStatusListWithResponse(ctx context.Context, resourceUuid string, params *RemoteWaldurApiRemoteResourceTeamStatusListParams, reqEditors ...RequestEditorFn) (*RemoteWaldurApiRemoteResourceTeamStatusListResponse, error) {
+	rsp, err := c.RemoteWaldurApiRemoteResourceTeamStatusList(ctx, resourceUuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseRemoteWaldurApiRemoteResourceTeamStatusListResponse(rsp)
 }
 
 // RemoteWaldurApiSharedOfferingsWithBodyWithResponse request with arbitrary body returning *RemoteWaldurApiSharedOfferingsResponse
@@ -284448,6 +284894,84 @@ func ParseRemoteWaldurApiRemoteCustomersResponse(rsp *http.Response) (*RemoteWal
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest []RemoteCustomer
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseRemoteWaldurApiRemoteResourceOrderStatusRetrieveResponse parses an HTTP response from a RemoteWaldurApiRemoteResourceOrderStatusRetrieveWithResponse call
+func ParseRemoteWaldurApiRemoteResourceOrderStatusRetrieveResponse(rsp *http.Response) (*RemoteWaldurApiRemoteResourceOrderStatusRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &RemoteWaldurApiRemoteResourceOrderStatusRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest RemoteResourceOrder
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseRemoteWaldurApiRemoteResourceStatusRetrieveResponse parses an HTTP response from a RemoteWaldurApiRemoteResourceStatusRetrieveWithResponse call
+func ParseRemoteWaldurApiRemoteResourceStatusRetrieveResponse(rsp *http.Response) (*RemoteWaldurApiRemoteResourceStatusRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &RemoteWaldurApiRemoteResourceStatusRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest RemoteResourceSyncStatus
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseRemoteWaldurApiRemoteResourceTeamStatusListResponse parses an HTTP response from a RemoteWaldurApiRemoteResourceTeamStatusListWithResponse call
+func ParseRemoteWaldurApiRemoteResourceTeamStatusListResponse(rsp *http.Response) (*RemoteWaldurApiRemoteResourceTeamStatusListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &RemoteWaldurApiRemoteResourceTeamStatusListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []RemoteResourceTeamMember
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
