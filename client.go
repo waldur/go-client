@@ -18338,11 +18338,14 @@ type ProjectCreditRequest struct {
 
 // ProjectDetail defines model for ProjectDetail.
 type ProjectDetail struct {
-	CompletionPercentage *float64            `json:"completion_percentage,omitempty"`
-	IsCompleted          *bool               `json:"is_completed,omitempty"`
-	ProjectName          *string             `json:"project_name,omitempty"`
-	ProjectUuid          *openapi_types.UUID `json:"project_uuid,omitempty"`
-	RequiresReview       *bool               `json:"requires_review,omitempty"`
+	Answers                     *[]interface{}      `json:"answers,omitempty"`
+	CompletionPercentage        *float64            `json:"completion_percentage,omitempty"`
+	CompletionUuid              *openapi_types.UUID `json:"completion_uuid"`
+	IsCompleted                 *bool               `json:"is_completed,omitempty"`
+	ProjectName                 *string             `json:"project_name,omitempty"`
+	ProjectUuid                 *openapi_types.UUID `json:"project_uuid,omitempty"`
+	RequiresReview              *bool               `json:"requires_review,omitempty"`
+	UnansweredRequiredQuestions *[]interface{}      `json:"unanswered_required_questions,omitempty"`
 }
 
 // ProjectDetailsResponse defines model for ProjectDetailsResponse.
@@ -19320,9 +19323,12 @@ type QuestionAnswer struct {
 	// ProjectAnswers Get all project answers for this question.
 	ProjectAnswers      *[]map[string]interface{} `json:"project_answers,omitempty"`
 	QuestionDescription *string                   `json:"question_description,omitempty"`
-	QuestionType        *string                   `json:"question_type,omitempty"`
-	QuestionUuid        *openapi_types.UUID       `json:"question_uuid,omitempty"`
-	Required            *bool                     `json:"required,omitempty"`
+
+	// QuestionOptions Get question options for select-type questions.
+	QuestionOptions *[]map[string]interface{} `json:"question_options,omitempty"`
+	QuestionType    *string                   `json:"question_type,omitempty"`
+	QuestionUuid    *openapi_types.UUID       `json:"question_uuid,omitempty"`
+	Required        *bool                     `json:"required,omitempty"`
 
 	// TotalProjects Get total projects count.
 	TotalProjects *int `json:"total_projects,omitempty"`
