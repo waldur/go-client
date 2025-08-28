@@ -3105,6 +3105,7 @@ const (
 	GoogleAuthListParamsFieldCustomerSlug         GoogleAuthListParamsField = "customer_slug"
 	GoogleAuthListParamsFieldCustomerUuid         GoogleAuthListParamsField = "customer_uuid"
 	GoogleAuthListParamsFieldDescription          GoogleAuthListParamsField = "description"
+	GoogleAuthListParamsFieldEnableNotifications  GoogleAuthListParamsField = "enable_notifications"
 	GoogleAuthListParamsFieldGoogleAuthUrl        GoogleAuthListParamsField = "google_auth_url"
 	GoogleAuthListParamsFieldImage                GoogleAuthListParamsField = "image"
 	GoogleAuthListParamsFieldOfferingCount        GoogleAuthListParamsField = "offering_count"
@@ -3127,6 +3128,7 @@ const (
 	GoogleAuthRetrieveParamsFieldCustomerSlug         GoogleAuthRetrieveParamsField = "customer_slug"
 	GoogleAuthRetrieveParamsFieldCustomerUuid         GoogleAuthRetrieveParamsField = "customer_uuid"
 	GoogleAuthRetrieveParamsFieldDescription          GoogleAuthRetrieveParamsField = "description"
+	GoogleAuthRetrieveParamsFieldEnableNotifications  GoogleAuthRetrieveParamsField = "enable_notifications"
 	GoogleAuthRetrieveParamsFieldGoogleAuthUrl        GoogleAuthRetrieveParamsField = "google_auth_url"
 	GoogleAuthRetrieveParamsFieldImage                GoogleAuthRetrieveParamsField = "image"
 	GoogleAuthRetrieveParamsFieldOfferingCount        GoogleAuthRetrieveParamsField = "offering_count"
@@ -3149,6 +3151,7 @@ const (
 	GoogleAuthAuthorizeRetrieveParamsFieldCustomerSlug         GoogleAuthAuthorizeRetrieveParamsField = "customer_slug"
 	GoogleAuthAuthorizeRetrieveParamsFieldCustomerUuid         GoogleAuthAuthorizeRetrieveParamsField = "customer_uuid"
 	GoogleAuthAuthorizeRetrieveParamsFieldDescription          GoogleAuthAuthorizeRetrieveParamsField = "description"
+	GoogleAuthAuthorizeRetrieveParamsFieldEnableNotifications  GoogleAuthAuthorizeRetrieveParamsField = "enable_notifications"
 	GoogleAuthAuthorizeRetrieveParamsFieldGoogleAuthUrl        GoogleAuthAuthorizeRetrieveParamsField = "google_auth_url"
 	GoogleAuthAuthorizeRetrieveParamsFieldImage                GoogleAuthAuthorizeRetrieveParamsField = "image"
 	GoogleAuthAuthorizeRetrieveParamsFieldOfferingCount        GoogleAuthAuthorizeRetrieveParamsField = "offering_count"
@@ -3916,6 +3919,7 @@ const (
 	MarketplaceOrdersListParamsFieldCustomerSlug               MarketplaceOrdersListParamsField = "customer_slug"
 	MarketplaceOrdersListParamsFieldCustomerUuid               MarketplaceOrdersListParamsField = "customer_uuid"
 	MarketplaceOrdersListParamsFieldErrorMessage               MarketplaceOrdersListParamsField = "error_message"
+	MarketplaceOrdersListParamsFieldErrorTraceback             MarketplaceOrdersListParamsField = "error_traceback"
 	MarketplaceOrdersListParamsFieldFixedPrice                 MarketplaceOrdersListParamsField = "fixed_price"
 	MarketplaceOrdersListParamsFieldIssue                      MarketplaceOrdersListParamsField = "issue"
 	MarketplaceOrdersListParamsFieldLimits                     MarketplaceOrdersListParamsField = "limits"
@@ -4049,6 +4053,7 @@ const (
 	MarketplaceOrdersRetrieveParamsFieldCustomerSlug               MarketplaceOrdersRetrieveParamsField = "customer_slug"
 	MarketplaceOrdersRetrieveParamsFieldCustomerUuid               MarketplaceOrdersRetrieveParamsField = "customer_uuid"
 	MarketplaceOrdersRetrieveParamsFieldErrorMessage               MarketplaceOrdersRetrieveParamsField = "error_message"
+	MarketplaceOrdersRetrieveParamsFieldErrorTraceback             MarketplaceOrdersRetrieveParamsField = "error_traceback"
 	MarketplaceOrdersRetrieveParamsFieldFixedPrice                 MarketplaceOrdersRetrieveParamsField = "fixed_price"
 	MarketplaceOrdersRetrieveParamsFieldIssue                      MarketplaceOrdersRetrieveParamsField = "issue"
 	MarketplaceOrdersRetrieveParamsFieldLimits                     MarketplaceOrdersRetrieveParamsField = "limits"
@@ -5590,6 +5595,7 @@ const (
 	MarketplaceServiceProvidersListParamsFieldCustomerSlug         MarketplaceServiceProvidersListParamsField = "customer_slug"
 	MarketplaceServiceProvidersListParamsFieldCustomerUuid         MarketplaceServiceProvidersListParamsField = "customer_uuid"
 	MarketplaceServiceProvidersListParamsFieldDescription          MarketplaceServiceProvidersListParamsField = "description"
+	MarketplaceServiceProvidersListParamsFieldEnableNotifications  MarketplaceServiceProvidersListParamsField = "enable_notifications"
 	MarketplaceServiceProvidersListParamsFieldImage                MarketplaceServiceProvidersListParamsField = "image"
 	MarketplaceServiceProvidersListParamsFieldOfferingCount        MarketplaceServiceProvidersListParamsField = "offering_count"
 	MarketplaceServiceProvidersListParamsFieldOrganizationGroups   MarketplaceServiceProvidersListParamsField = "organization_groups"
@@ -5886,6 +5892,7 @@ const (
 	MarketplaceServiceProvidersRetrieveParamsFieldCustomerSlug         MarketplaceServiceProvidersRetrieveParamsField = "customer_slug"
 	MarketplaceServiceProvidersRetrieveParamsFieldCustomerUuid         MarketplaceServiceProvidersRetrieveParamsField = "customer_uuid"
 	MarketplaceServiceProvidersRetrieveParamsFieldDescription          MarketplaceServiceProvidersRetrieveParamsField = "description"
+	MarketplaceServiceProvidersRetrieveParamsFieldEnableNotifications  MarketplaceServiceProvidersRetrieveParamsField = "enable_notifications"
 	MarketplaceServiceProvidersRetrieveParamsFieldImage                MarketplaceServiceProvidersRetrieveParamsField = "image"
 	MarketplaceServiceProvidersRetrieveParamsFieldOfferingCount        MarketplaceServiceProvidersRetrieveParamsField = "offering_count"
 	MarketplaceServiceProvidersRetrieveParamsFieldOrganizationGroups   MarketplaceServiceProvidersRetrieveParamsField = "organization_groups"
@@ -7259,6 +7266,7 @@ const (
 
 // Defines values for OpenstackTenantsListParamsField.
 const (
+	OpenstackTenantsListParamsFieldAccessUrl                        OpenstackTenantsListParamsField = "access_url"
 	OpenstackTenantsListParamsFieldAvailabilityZone                 OpenstackTenantsListParamsField = "availability_zone"
 	OpenstackTenantsListParamsFieldBackendId                        OpenstackTenantsListParamsField = "backend_id"
 	OpenstackTenantsListParamsFieldCreated                          OpenstackTenantsListParamsField = "created"
@@ -7297,6 +7305,8 @@ const (
 	OpenstackTenantsListParamsFieldState                            OpenstackTenantsListParamsField = "state"
 	OpenstackTenantsListParamsFieldSubnetCidr                       OpenstackTenantsListParamsField = "subnet_cidr"
 	OpenstackTenantsListParamsFieldUrl                              OpenstackTenantsListParamsField = "url"
+	OpenstackTenantsListParamsFieldUserPassword                     OpenstackTenantsListParamsField = "user_password"
+	OpenstackTenantsListParamsFieldUserUsername                     OpenstackTenantsListParamsField = "user_username"
 	OpenstackTenantsListParamsFieldUuid                             OpenstackTenantsListParamsField = "uuid"
 )
 
@@ -7326,6 +7336,7 @@ const (
 
 // Defines values for OpenstackTenantsRetrieveParamsField.
 const (
+	OpenstackTenantsRetrieveParamsFieldAccessUrl                        OpenstackTenantsRetrieveParamsField = "access_url"
 	OpenstackTenantsRetrieveParamsFieldAvailabilityZone                 OpenstackTenantsRetrieveParamsField = "availability_zone"
 	OpenstackTenantsRetrieveParamsFieldBackendId                        OpenstackTenantsRetrieveParamsField = "backend_id"
 	OpenstackTenantsRetrieveParamsFieldCreated                          OpenstackTenantsRetrieveParamsField = "created"
@@ -7364,6 +7375,8 @@ const (
 	OpenstackTenantsRetrieveParamsFieldState                            OpenstackTenantsRetrieveParamsField = "state"
 	OpenstackTenantsRetrieveParamsFieldSubnetCidr                       OpenstackTenantsRetrieveParamsField = "subnet_cidr"
 	OpenstackTenantsRetrieveParamsFieldUrl                              OpenstackTenantsRetrieveParamsField = "url"
+	OpenstackTenantsRetrieveParamsFieldUserPassword                     OpenstackTenantsRetrieveParamsField = "user_password"
+	OpenstackTenantsRetrieveParamsFieldUserUsername                     OpenstackTenantsRetrieveParamsField = "user_username"
 	OpenstackTenantsRetrieveParamsFieldUuid                             OpenstackTenantsRetrieveParamsField = "uuid"
 )
 
@@ -12770,6 +12783,7 @@ type GoogleCredentials struct {
 	CustomerSlug         *string              `json:"customer_slug,omitempty"`
 	CustomerUuid         *openapi_types.UUID  `json:"customer_uuid,omitempty"`
 	Description          *string              `json:"description,omitempty"`
+	EnableNotifications  *bool                `json:"enable_notifications,omitempty"`
 	GoogleAuthUrl        *string              `json:"google_auth_url,omitempty"`
 	Image                *string              `json:"image"`
 	OfferingCount        *int                 `json:"offering_count,omitempty"`
@@ -16554,6 +16568,8 @@ type OpenStackSubNetRequest struct {
 
 // OpenStackTenant defines model for OpenStackTenant.
 type OpenStackTenant struct {
+	AccessUrl *string `json:"access_url"`
+
 	// AvailabilityZone Optional availability group. Will be used for all instances provisioned in this tenant
 	AvailabilityZone *string `json:"availability_zone,omitempty"`
 
@@ -16600,7 +16616,13 @@ type OpenStackTenant struct {
 	ServiceSettingsUuid              *openapi_types.UUID     `json:"service_settings_uuid,omitempty"`
 	State                            *CoreStates             `json:"state,omitempty"`
 	Url                              *string                 `json:"url,omitempty"`
-	Uuid                             *openapi_types.UUID     `json:"uuid,omitempty"`
+
+	// UserPassword Password of the tenant user
+	UserPassword *string `json:"user_password,omitempty"`
+
+	// UserUsername Username of the tenant user
+	UserUsername *string             `json:"user_username,omitempty"`
+	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // OpenStackTenantChangePasswordRequest defines model for OpenStackTenantChangePasswordRequest.
@@ -16622,6 +16644,12 @@ type OpenStackTenantCreateOrderAttributes struct {
 	SkipConnectionExtnet        *bool   `json:"skip_connection_extnet,omitempty"`
 	SkipCreationOfDefaultRouter *bool   `json:"skip_creation_of_default_router,omitempty"`
 	SubnetCidr                  *string `json:"subnet_cidr,omitempty"`
+
+	// UserPassword Password of the tenant user
+	UserPassword *string `json:"user_password,omitempty"`
+
+	// UserUsername Username of the tenant user
+	UserUsername *string `json:"user_username,omitempty"`
 }
 
 // OpenStackTenantQuota defines model for OpenStackTenantQuota.
@@ -21123,6 +21151,7 @@ type ServiceProvider struct {
 	CustomerSlug         *string              `json:"customer_slug,omitempty"`
 	CustomerUuid         *openapi_types.UUID  `json:"customer_uuid,omitempty"`
 	Description          *string              `json:"description,omitempty"`
+	EnableNotifications  *bool                `json:"enable_notifications,omitempty"`
 	Image                *string              `json:"image"`
 	OfferingCount        *int                 `json:"offering_count,omitempty"`
 	OrganizationGroups   *[]OrganizationGroup `json:"organization_groups,omitempty"`
