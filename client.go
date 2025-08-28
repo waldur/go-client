@@ -12722,6 +12722,16 @@ type FreeipaProfileRequest struct {
 	Username string `json:"username"`
 }
 
+// GenericOrderAttributes A generic JSON object for offerings without a predefined schema. Allows any key-value pairs.
+type GenericOrderAttributes struct {
+	// Description A free-form description for the resource.
+	Description *string `json:"description,omitempty"`
+
+	// Name The name of the resource to be created. Will be displayed in the portal.
+	Name                 *string                `json:"name,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
 // GoogleCalendar defines model for GoogleCalendar.
 type GoogleCalendar struct {
 	BackendId *string `json:"backend_id"`
@@ -16853,7 +16863,7 @@ type OrderCreate struct {
 type OrderCreateRequest struct {
 	AcceptingTermsOfService *bool `json:"accepting_terms_of_service,omitempty"`
 
-	// Attributes Attributes structure depends on the offering type specified in the parent object
+	// Attributes Attributes structure depends on the offering type specified in the parent object. Can also be a generic object for offerings without a specific attributes schema.
 	Attributes  *OrderCreateRequest_Attributes `json:"attributes,omitempty"`
 	CallbackUrl *string                        `json:"callback_url"`
 	Limits      *map[string]int                `json:"limits,omitempty"`
@@ -16863,7 +16873,7 @@ type OrderCreateRequest struct {
 	Type        *RequestTypes                  `json:"type,omitempty"`
 }
 
-// OrderCreateRequest_Attributes Attributes structure depends on the offering type specified in the parent object
+// OrderCreateRequest_Attributes Attributes structure depends on the offering type specified in the parent object. Can also be a generic object for offerings without a specific attributes schema.
 type OrderCreateRequest_Attributes struct {
 	union json.RawMessage
 }
@@ -19317,8 +19327,10 @@ type QuestionAdminRequest_Operator struct {
 // QuestionAnswer defines model for QuestionAnswer.
 type QuestionAnswer struct {
 	// AnsweredProjectsCount Get count of projects that answered this question.
-	AnsweredProjectsCount *int `json:"answered_projects_count,omitempty"`
-	Order                 *int `json:"order,omitempty"`
+	AnsweredProjectsCount *int    `json:"answered_projects_count,omitempty"`
+	MaxValue              *string `json:"max_value"`
+	MinValue              *string `json:"min_value"`
+	Order                 *int    `json:"order,omitempty"`
 
 	// ProjectAnswers Get all project answers for this question.
 	ProjectAnswers      *[]map[string]interface{} `json:"project_answers,omitempty"`
@@ -34865,6 +34877,89 @@ type VmwareVirtualMachineCreateDiskJSONRequestBody = VmwareDiskRequest
 // VmwareVirtualMachineCreatePortJSONRequestBody defines body for VmwareVirtualMachineCreatePort for application/json ContentType.
 type VmwareVirtualMachineCreatePortJSONRequestBody = VmwarePortRequest
 
+// Getter for additional properties for GenericOrderAttributes. Returns the specified
+// element and whether it was found
+func (a GenericOrderAttributes) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for GenericOrderAttributes
+func (a *GenericOrderAttributes) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for GenericOrderAttributes to handle AdditionalProperties
+func (a *GenericOrderAttributes) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["description"]; found {
+		err = json.Unmarshal(raw, &a.Description)
+		if err != nil {
+			return fmt.Errorf("error reading 'description': %w", err)
+		}
+		delete(object, "description")
+	}
+
+	if raw, found := object["name"]; found {
+		err = json.Unmarshal(raw, &a.Name)
+		if err != nil {
+			return fmt.Errorf("error reading 'name': %w", err)
+		}
+		delete(object, "name")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for GenericOrderAttributes to handle AdditionalProperties
+func (a GenericOrderAttributes) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if a.Description != nil {
+		object["description"], err = json.Marshal(a.Description)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'description': %w", err)
+		}
+	}
+
+	if a.Name != nil {
+		object["name"], err = json.Marshal(a.Name)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'name': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
 // AsWidgetEnum returns the union data inside the CategoryColumn_Widget as a WidgetEnum
 func (t CategoryColumn_Widget) AsWidgetEnum() (WidgetEnum, error) {
 	var body WidgetEnum
@@ -36273,6 +36368,32 @@ func (t *OrderCreateRequest_Attributes) FromVMwareVirtualMachineCreateOrderAttri
 
 // MergeVMwareVirtualMachineCreateOrderAttributes performs a merge with any union data inside the OrderCreateRequest_Attributes, using the provided VMwareVirtualMachineCreateOrderAttributes
 func (t *OrderCreateRequest_Attributes) MergeVMwareVirtualMachineCreateOrderAttributes(v VMwareVirtualMachineCreateOrderAttributes) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsGenericOrderAttributes returns the union data inside the OrderCreateRequest_Attributes as a GenericOrderAttributes
+func (t OrderCreateRequest_Attributes) AsGenericOrderAttributes() (GenericOrderAttributes, error) {
+	var body GenericOrderAttributes
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromGenericOrderAttributes overwrites any union data inside the OrderCreateRequest_Attributes as the provided GenericOrderAttributes
+func (t *OrderCreateRequest_Attributes) FromGenericOrderAttributes(v GenericOrderAttributes) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeGenericOrderAttributes performs a merge with any union data inside the OrderCreateRequest_Attributes, using the provided GenericOrderAttributes
+func (t *OrderCreateRequest_Attributes) MergeGenericOrderAttributes(v GenericOrderAttributes) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
