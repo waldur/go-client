@@ -2742,10 +2742,12 @@ const (
 	CustomersListParamsFieldMaxServiceAccounts           CustomersListParamsField = "max_service_accounts"
 	CustomersListParamsFieldName                         CustomersListParamsField = "name"
 	CustomersListParamsFieldNativeName                   CustomersListParamsField = "native_name"
+	CustomersListParamsFieldOrganizationGroups           CustomersListParamsField = "organization_groups"
 	CustomersListParamsFieldPaymentProfiles              CustomersListParamsField = "payment_profiles"
 	CustomersListParamsFieldPhoneNumber                  CustomersListParamsField = "phone_number"
 	CustomersListParamsFieldPostal                       CustomersListParamsField = "postal"
 	CustomersListParamsFieldProjectMetadataChecklist     CustomersListParamsField = "project_metadata_checklist"
+	CustomersListParamsFieldProjects                     CustomersListParamsField = "projects"
 	CustomersListParamsFieldProjectsCount                CustomersListParamsField = "projects_count"
 	CustomersListParamsFieldRegistrationCode             CustomersListParamsField = "registration_code"
 	CustomersListParamsFieldServiceProvider              CustomersListParamsField = "service_provider"
@@ -2753,6 +2755,7 @@ const (
 	CustomersListParamsFieldSlug                         CustomersListParamsField = "slug"
 	CustomersListParamsFieldSponsorNumber                CustomersListParamsField = "sponsor_number"
 	CustomersListParamsFieldUrl                          CustomersListParamsField = "url"
+	CustomersListParamsFieldUsersCount                   CustomersListParamsField = "users_count"
 	CustomersListParamsFieldUuid                         CustomersListParamsField = "uuid"
 	CustomersListParamsFieldVatCode                      CustomersListParamsField = "vat_code"
 )
@@ -2789,10 +2792,12 @@ const (
 	CustomersRetrieveParamsFieldMaxServiceAccounts           CustomersRetrieveParamsField = "max_service_accounts"
 	CustomersRetrieveParamsFieldName                         CustomersRetrieveParamsField = "name"
 	CustomersRetrieveParamsFieldNativeName                   CustomersRetrieveParamsField = "native_name"
+	CustomersRetrieveParamsFieldOrganizationGroups           CustomersRetrieveParamsField = "organization_groups"
 	CustomersRetrieveParamsFieldPaymentProfiles              CustomersRetrieveParamsField = "payment_profiles"
 	CustomersRetrieveParamsFieldPhoneNumber                  CustomersRetrieveParamsField = "phone_number"
 	CustomersRetrieveParamsFieldPostal                       CustomersRetrieveParamsField = "postal"
 	CustomersRetrieveParamsFieldProjectMetadataChecklist     CustomersRetrieveParamsField = "project_metadata_checklist"
+	CustomersRetrieveParamsFieldProjects                     CustomersRetrieveParamsField = "projects"
 	CustomersRetrieveParamsFieldProjectsCount                CustomersRetrieveParamsField = "projects_count"
 	CustomersRetrieveParamsFieldRegistrationCode             CustomersRetrieveParamsField = "registration_code"
 	CustomersRetrieveParamsFieldServiceProvider              CustomersRetrieveParamsField = "service_provider"
@@ -2800,6 +2805,7 @@ const (
 	CustomersRetrieveParamsFieldSlug                         CustomersRetrieveParamsField = "slug"
 	CustomersRetrieveParamsFieldSponsorNumber                CustomersRetrieveParamsField = "sponsor_number"
 	CustomersRetrieveParamsFieldUrl                          CustomersRetrieveParamsField = "url"
+	CustomersRetrieveParamsFieldUsersCount                   CustomersRetrieveParamsField = "users_count"
 	CustomersRetrieveParamsFieldUuid                         CustomersRetrieveParamsField = "uuid"
 	CustomersRetrieveParamsFieldVatCode                      CustomersRetrieveParamsField = "vat_code"
 )
@@ -6488,6 +6494,7 @@ const (
 	OpenstackNetworksListParamsFieldProjectUuid                      OpenstackNetworksListParamsField = "project_uuid"
 	OpenstackNetworksListParamsFieldRbacPolicies                     OpenstackNetworksListParamsField = "rbac_policies"
 	OpenstackNetworksListParamsFieldResourceType                     OpenstackNetworksListParamsField = "resource_type"
+	OpenstackNetworksListParamsFieldSegmentationId                   OpenstackNetworksListParamsField = "segmentation_id"
 	OpenstackNetworksListParamsFieldServiceName                      OpenstackNetworksListParamsField = "service_name"
 	OpenstackNetworksListParamsFieldServiceSettings                  OpenstackNetworksListParamsField = "service_settings"
 	OpenstackNetworksListParamsFieldServiceSettingsErrorMessage      OpenstackNetworksListParamsField = "service_settings_error_message"
@@ -6558,6 +6565,7 @@ const (
 	OpenstackNetworksRetrieveParamsFieldProjectUuid                      OpenstackNetworksRetrieveParamsField = "project_uuid"
 	OpenstackNetworksRetrieveParamsFieldRbacPolicies                     OpenstackNetworksRetrieveParamsField = "rbac_policies"
 	OpenstackNetworksRetrieveParamsFieldResourceType                     OpenstackNetworksRetrieveParamsField = "resource_type"
+	OpenstackNetworksRetrieveParamsFieldSegmentationId                   OpenstackNetworksRetrieveParamsField = "segmentation_id"
 	OpenstackNetworksRetrieveParamsFieldServiceName                      OpenstackNetworksRetrieveParamsField = "service_name"
 	OpenstackNetworksRetrieveParamsFieldServiceSettings                  OpenstackNetworksRetrieveParamsField = "service_settings"
 	OpenstackNetworksRetrieveParamsFieldServiceSettingsErrorMessage      OpenstackNetworksRetrieveParamsField = "service_settings_error_message"
@@ -10386,6 +10394,9 @@ type AzureResourceGroup struct {
 
 // AzureSQLServerCreateOrderAttributes This mixin allows to specify list of fields to be rendered by serializer.
 // It expects that request is available in serializer's context.
+//
+// It is disabled for nested serializers (where parent is another serializer)
+// but remains active for list views (where parent is a ListSerializer).
 type AzureSQLServerCreateOrderAttributes struct {
 	Description *string `json:"description,omitempty"`
 	Location    *string `json:"location,omitempty"`
@@ -10603,6 +10614,9 @@ type AzureVirtualMachine struct {
 
 // AzureVirtualMachineCreateOrderAttributes This mixin allows to specify list of fields to be rendered by serializer.
 // It expects that request is available in serializer's context.
+//
+// It is disabled for nested serializers (where parent is another serializer)
+// but remains active for list views (where parent is a ListSerializer).
 type AzureVirtualMachineCreateOrderAttributes struct {
 	Description *string `json:"description,omitempty"`
 	Image       string  `json:"image"`
@@ -12062,22 +12076,25 @@ type Customer struct {
 	Longitude                    *float64             `json:"longitude"`
 
 	// MaxServiceAccounts Maximum number of service accounts allowed
-	MaxServiceAccounts       *int                `json:"max_service_accounts"`
-	Name                     *string             `json:"name,omitempty"`
-	NativeName               *string             `json:"native_name,omitempty"`
-	PaymentProfiles          *[]PaymentProfile   `json:"payment_profiles,omitempty"`
-	PhoneNumber              *string             `json:"phone_number,omitempty"`
-	Postal                   *string             `json:"postal,omitempty"`
-	ProjectMetadataChecklist *openapi_types.UUID `json:"project_metadata_checklist"`
-	ProjectsCount            *int                `json:"projects_count,omitempty"`
-	RegistrationCode         *string             `json:"registration_code,omitempty"`
-	ServiceProvider          *string             `json:"service_provider"`
-	ServiceProviderUuid      *openapi_types.UUID `json:"service_provider_uuid"`
-	Slug                     *string             `json:"slug,omitempty"`
+	MaxServiceAccounts       *int                 `json:"max_service_accounts"`
+	Name                     *string              `json:"name,omitempty"`
+	NativeName               *string              `json:"native_name,omitempty"`
+	OrganizationGroups       *[]OrganizationGroup `json:"organization_groups,omitempty"`
+	PaymentProfiles          *[]PaymentProfile    `json:"payment_profiles,omitempty"`
+	PhoneNumber              *string              `json:"phone_number,omitempty"`
+	Postal                   *string              `json:"postal,omitempty"`
+	ProjectMetadataChecklist *openapi_types.UUID  `json:"project_metadata_checklist"`
+	Projects                 *[]PermissionProject `json:"projects,omitempty"`
+	ProjectsCount            *int                 `json:"projects_count,omitempty"`
+	RegistrationCode         *string              `json:"registration_code,omitempty"`
+	ServiceProvider          *string              `json:"service_provider"`
+	ServiceProviderUuid      *openapi_types.UUID  `json:"service_provider_uuid"`
+	Slug                     *string              `json:"slug,omitempty"`
 
 	// SponsorNumber External ID of the sponsor covering the costs
 	SponsorNumber *int                `json:"sponsor_number"`
 	Url           *string             `json:"url,omitempty"`
+	UsersCount    *int                `json:"users_count,omitempty"`
 	Uuid          *openapi_types.UUID `json:"uuid,omitempty"`
 
 	// VatCode VAT number
@@ -13720,6 +13737,9 @@ type MarketplaceProviderCustomerProject struct {
 
 // MarketplaceRancherCreateOrderAttributes This mixin allows to specify list of fields to be rendered by serializer.
 // It expects that request is available in serializer's context.
+//
+// It is disabled for nested serializers (where parent is another serializer)
+// but remains active for list views (where parent is a ListSerializer).
 type MarketplaceRancherCreateOrderAttributes struct {
 	Description *string `json:"description,omitempty"`
 
@@ -15663,6 +15683,9 @@ type OpenStackInstanceAvailabilityZone struct {
 
 // OpenStackInstanceCreateOrderAttributes This mixin allows to specify list of fields to be rendered by serializer.
 // It expects that request is available in serializer's context.
+//
+// It is disabled for nested serializers (where parent is another serializer)
+// but remains active for list views (where parent is a ListSerializer).
 type OpenStackInstanceCreateOrderAttributes struct {
 	// AvailabilityZone Availability zone where this instance is located
 	AvailabilityZone *string `json:"availability_zone"`
@@ -15897,13 +15920,16 @@ type OpenStackNetwork struct {
 	Modified                         *time.Time              `json:"modified,omitempty"`
 
 	// Mtu The maximum transmission unit (MTU) value to address fragmentation.
-	Mtu                         *int                     `json:"mtu"`
-	Name                        *string                  `json:"name,omitempty"`
-	Project                     *string                  `json:"project,omitempty"`
-	ProjectName                 *string                  `json:"project_name,omitempty"`
-	ProjectUuid                 *openapi_types.UUID      `json:"project_uuid,omitempty"`
-	RbacPolicies                *[]NetworkRBACPolicy     `json:"rbac_policies,omitempty"`
-	ResourceType                *string                  `json:"resource_type,omitempty"`
+	Mtu          *int                 `json:"mtu"`
+	Name         *string              `json:"name,omitempty"`
+	Project      *string              `json:"project,omitempty"`
+	ProjectName  *string              `json:"project_name,omitempty"`
+	ProjectUuid  *openapi_types.UUID  `json:"project_uuid,omitempty"`
+	RbacPolicies *[]NetworkRBACPolicy `json:"rbac_policies,omitempty"`
+	ResourceType *string              `json:"resource_type,omitempty"`
+
+	// SegmentationId VLAN ID for VLAN networks or tunnel ID for VXLAN/GRE networks
+	SegmentationId              *int                     `json:"segmentation_id"`
 	ServiceName                 *string                  `json:"service_name,omitempty"`
 	ServiceSettings             *string                  `json:"service_settings,omitempty"`
 	ServiceSettingsErrorMessage *string                  `json:"service_settings_error_message,omitempty"`
@@ -16585,6 +16611,9 @@ type OpenStackTenantChangePasswordRequest struct {
 
 // OpenStackTenantCreateOrderAttributes This mixin allows to specify list of fields to be rendered by serializer.
 // It expects that request is available in serializer's context.
+//
+// It is disabled for nested serializers (where parent is another serializer)
+// but remains active for list views (where parent is a ListSerializer).
 type OpenStackTenantCreateOrderAttributes struct {
 	// AvailabilityZone Optional availability group. Will be used for all instances provisioned in this tenant
 	AvailabilityZone            *string `json:"availability_zone,omitempty"`
@@ -16725,6 +16754,9 @@ type OpenStackVolumeAvailabilityZone struct {
 
 // OpenStackVolumeCreateOrderAttributes This mixin allows to specify list of fields to be rendered by serializer.
 // It expects that request is available in serializer's context.
+//
+// It is disabled for nested serializers (where parent is another serializer)
+// but remains active for list views (where parent is a ListSerializer).
 type OpenStackVolumeCreateOrderAttributes struct {
 	// AvailabilityZone Availability zone where this volume is located
 	AvailabilityZone *string `json:"availability_zone"`
@@ -18155,6 +18187,17 @@ type Permission struct {
 	UserName          *string             `json:"user_name,omitempty"`
 	UserSlug          *string             `json:"user_slug,omitempty"`
 	UserUuid          *openapi_types.UUID `json:"user_uuid,omitempty"`
+}
+
+// PermissionProject defines model for PermissionProject.
+type PermissionProject struct {
+	// EndDate The date is inclusive. Once reached, all project resource will be scheduled for termination.
+	EndDate       *openapi_types.Date `json:"end_date"`
+	Image         *string             `json:"image"`
+	Name          *string             `json:"name,omitempty"`
+	ResourceCount *int                `json:"resource_count,omitempty"`
+	Url           *string             `json:"url,omitempty"`
+	Uuid          *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // PermissionRequest defines model for PermissionRequest.
@@ -21299,6 +21342,9 @@ type SlurmAssociation struct {
 
 // SlurmInvoicesSlurmPackageCreateOrderAttributes This mixin allows to specify list of fields to be rendered by serializer.
 // It expects that request is available in serializer's context.
+//
+// It is disabled for nested serializers (where parent is another serializer)
+// but remains active for list views (where parent is a ListSerializer).
 type SlurmInvoicesSlurmPackageCreateOrderAttributes struct {
 	Description *string `json:"description,omitempty"`
 	Name        string  `json:"name"`
@@ -21692,6 +21738,9 @@ type UsernameGenerationPolicyEnum string
 
 // VMwareVirtualMachineCreateOrderAttributes This mixin allows to specify list of fields to be rendered by serializer.
 // It expects that request is available in serializer's context.
+//
+// It is disabled for nested serializers (where parent is another serializer)
+// but remains active for list views (where parent is a ListSerializer).
 type VMwareVirtualMachineCreateOrderAttributes struct {
 	Cluster *string `json:"cluster"`
 
@@ -23114,9 +23163,14 @@ type BookingResourcesListParams struct {
 	OfferingBillable *openapi_types.UUID            `form:"offering_billable,omitempty" json:"offering_billable,omitempty"`
 
 	// OfferingShared Offering shared
-	OfferingShared *bool               `form:"offering_shared,omitempty" json:"offering_shared,omitempty"`
-	OfferingType   *string             `form:"offering_type,omitempty" json:"offering_type,omitempty"`
-	OfferingUuid   *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	OfferingShared *bool `form:"offering_shared,omitempty" json:"offering_shared,omitempty"`
+
+	// OfferingSlug Multiple values may be separated by commas.
+	OfferingSlug *[]string `form:"offering_slug,omitempty" json:"offering_slug,omitempty"`
+	OfferingType *string   `form:"offering_type,omitempty" json:"offering_type,omitempty"`
+
+	// OfferingUuid Multiple values may be separated by commas.
+	OfferingUuid *[]openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -23184,9 +23238,14 @@ type BookingResourcesCountParams struct {
 	OfferingBillable *openapi_types.UUID             `form:"offering_billable,omitempty" json:"offering_billable,omitempty"`
 
 	// OfferingShared Offering shared
-	OfferingShared *bool               `form:"offering_shared,omitempty" json:"offering_shared,omitempty"`
-	OfferingType   *string             `form:"offering_type,omitempty" json:"offering_type,omitempty"`
-	OfferingUuid   *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	OfferingShared *bool `form:"offering_shared,omitempty" json:"offering_shared,omitempty"`
+
+	// OfferingSlug Multiple values may be separated by commas.
+	OfferingSlug *[]string `form:"offering_slug,omitempty" json:"offering_slug,omitempty"`
+	OfferingType *string   `form:"offering_type,omitempty" json:"offering_type,omitempty"`
+
+	// OfferingUuid Multiple values may be separated by commas.
+	OfferingUuid *[]openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -25654,9 +25713,14 @@ type MarketplaceIntegrationStatusesListParams struct {
 
 	// O Ordering
 	//
-	O            *[]MarketplaceIntegrationStatusesListParamsO `form:"o,omitempty" json:"o,omitempty"`
-	Offering     *string                                      `form:"offering,omitempty" json:"offering,omitempty"`
-	OfferingUuid *openapi_types.UUID                          `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	O        *[]MarketplaceIntegrationStatusesListParamsO `form:"o,omitempty" json:"o,omitempty"`
+	Offering *string                                      `form:"offering,omitempty" json:"offering,omitempty"`
+
+	// OfferingSlug Multiple values may be separated by commas.
+	OfferingSlug *[]string `form:"offering_slug,omitempty" json:"offering_slug,omitempty"`
+
+	// OfferingUuid Multiple values may be separated by commas.
+	OfferingUuid *[]openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -25680,9 +25744,14 @@ type MarketplaceIntegrationStatusesCountParams struct {
 
 	// O Ordering
 	//
-	O            *[]MarketplaceIntegrationStatusesCountParamsO `form:"o,omitempty" json:"o,omitempty"`
-	Offering     *string                                       `form:"offering,omitempty" json:"offering,omitempty"`
-	OfferingUuid *openapi_types.UUID                           `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	O        *[]MarketplaceIntegrationStatusesCountParamsO `form:"o,omitempty" json:"o,omitempty"`
+	Offering *string                                       `form:"offering,omitempty" json:"offering,omitempty"`
+
+	// OfferingSlug Multiple values may be separated by commas.
+	OfferingSlug *[]string `form:"offering_slug,omitempty" json:"offering_slug,omitempty"`
+
+	// OfferingUuid Multiple values may be separated by commas.
+	OfferingUuid *[]openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -25727,9 +25796,14 @@ type MarketplaceOfferingFilesListParams struct {
 
 	// O Ordering
 	//
-	O            *[]MarketplaceOfferingFilesListParamsO `form:"o,omitempty" json:"o,omitempty"`
-	Offering     *string                                `form:"offering,omitempty" json:"offering,omitempty"`
-	OfferingUuid *openapi_types.UUID                    `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	O        *[]MarketplaceOfferingFilesListParamsO `form:"o,omitempty" json:"o,omitempty"`
+	Offering *string                                `form:"offering,omitempty" json:"offering,omitempty"`
+
+	// OfferingSlug Multiple values may be separated by commas.
+	OfferingSlug *[]string `form:"offering_slug,omitempty" json:"offering_slug,omitempty"`
+
+	// OfferingUuid Multiple values may be separated by commas.
+	OfferingUuid *[]openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -25749,9 +25823,14 @@ type MarketplaceOfferingFilesListParamsO string
 type MarketplaceOfferingFilesCountParams struct {
 	// O Ordering
 	//
-	O            *[]MarketplaceOfferingFilesCountParamsO `form:"o,omitempty" json:"o,omitempty"`
-	Offering     *string                                 `form:"offering,omitempty" json:"offering,omitempty"`
-	OfferingUuid *openapi_types.UUID                     `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	O        *[]MarketplaceOfferingFilesCountParamsO `form:"o,omitempty" json:"o,omitempty"`
+	Offering *string                                 `form:"offering,omitempty" json:"offering,omitempty"`
+
+	// OfferingSlug Multiple values may be separated by commas.
+	OfferingSlug *[]string `form:"offering_slug,omitempty" json:"offering_slug,omitempty"`
+
+	// OfferingUuid Multiple values may be separated by commas.
+	OfferingUuid *[]openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -26068,8 +26147,13 @@ type MarketplaceOfferingUsagePoliciesCountParams struct {
 
 // MarketplaceOfferingUserRolesListParams defines parameters for MarketplaceOfferingUserRolesList.
 type MarketplaceOfferingUserRolesListParams struct {
-	Offering     *string             `form:"offering,omitempty" json:"offering,omitempty"`
-	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	Offering *string `form:"offering,omitempty" json:"offering,omitempty"`
+
+	// OfferingSlug Multiple values may be separated by commas.
+	OfferingSlug *[]string `form:"offering_slug,omitempty" json:"offering_slug,omitempty"`
+
+	// OfferingUuid Multiple values may be separated by commas.
+	OfferingUuid *[]openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -26081,8 +26165,13 @@ type MarketplaceOfferingUserRolesListParams struct {
 
 // MarketplaceOfferingUserRolesCountParams defines parameters for MarketplaceOfferingUserRolesCount.
 type MarketplaceOfferingUserRolesCountParams struct {
-	Offering     *string             `form:"offering,omitempty" json:"offering,omitempty"`
-	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	Offering *string `form:"offering,omitempty" json:"offering,omitempty"`
+
+	// OfferingSlug Multiple values may be separated by commas.
+	OfferingSlug *[]string `form:"offering_slug,omitempty" json:"offering_slug,omitempty"`
+
+	// OfferingUuid Multiple values may be separated by commas.
+	OfferingUuid *[]openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -26104,9 +26193,14 @@ type MarketplaceOfferingUsersListParams struct {
 
 	// O Ordering
 	//
-	O            *[]MarketplaceOfferingUsersListParamsO `form:"o,omitempty" json:"o,omitempty"`
-	Offering     *string                                `form:"offering,omitempty" json:"offering,omitempty"`
-	OfferingUuid *openapi_types.UUID                    `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	O        *[]MarketplaceOfferingUsersListParamsO `form:"o,omitempty" json:"o,omitempty"`
+	Offering *string                                `form:"offering,omitempty" json:"offering,omitempty"`
+
+	// OfferingSlug Multiple values may be separated by commas.
+	OfferingSlug *[]string `form:"offering_slug,omitempty" json:"offering_slug,omitempty"`
+
+	// OfferingUuid Multiple values may be separated by commas.
+	OfferingUuid *[]openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -26143,9 +26237,14 @@ type MarketplaceOfferingUsersCountParams struct {
 
 	// O Ordering
 	//
-	O            *[]MarketplaceOfferingUsersCountParamsO `form:"o,omitempty" json:"o,omitempty"`
-	Offering     *string                                 `form:"offering,omitempty" json:"offering,omitempty"`
-	OfferingUuid *openapi_types.UUID                     `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	O        *[]MarketplaceOfferingUsersCountParamsO `form:"o,omitempty" json:"o,omitempty"`
+	Offering *string                                 `form:"offering,omitempty" json:"offering,omitempty"`
+
+	// OfferingSlug Multiple values may be separated by commas.
+	OfferingSlug *[]string `form:"offering_slug,omitempty" json:"offering_slug,omitempty"`
+
+	// OfferingUuid Multiple values may be separated by commas.
+	OfferingUuid *[]openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -26195,10 +26294,13 @@ type MarketplaceOrdersListParams struct {
 
 	// O Ordering
 	//
-	O            *[]MarketplaceOrdersListParamsO `form:"o,omitempty" json:"o,omitempty"`
-	Offering     *string                         `form:"offering,omitempty" json:"offering,omitempty"`
-	OfferingType *[]string                       `form:"offering_type,omitempty" json:"offering_type,omitempty"`
-	OfferingUuid *openapi_types.UUID             `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	O        *[]MarketplaceOrdersListParamsO `form:"o,omitempty" json:"o,omitempty"`
+	Offering *string                         `form:"offering,omitempty" json:"offering,omitempty"`
+
+	// OfferingSlug Multiple values may be separated by commas.
+	OfferingSlug *[]string           `form:"offering_slug,omitempty" json:"offering_slug,omitempty"`
+	OfferingType *[]string           `form:"offering_type,omitempty" json:"offering_type,omitempty"`
+	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -26245,10 +26347,13 @@ type MarketplaceOrdersCountParams struct {
 
 	// O Ordering
 	//
-	O            *[]MarketplaceOrdersCountParamsO `form:"o,omitempty" json:"o,omitempty"`
-	Offering     *string                          `form:"offering,omitempty" json:"offering,omitempty"`
-	OfferingType *[]string                        `form:"offering_type,omitempty" json:"offering_type,omitempty"`
-	OfferingUuid *openapi_types.UUID              `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	O        *[]MarketplaceOrdersCountParamsO `form:"o,omitempty" json:"o,omitempty"`
+	Offering *string                          `form:"offering,omitempty" json:"offering,omitempty"`
+
+	// OfferingSlug Multiple values may be separated by commas.
+	OfferingSlug *[]string           `form:"offering_slug,omitempty" json:"offering_slug,omitempty"`
+	OfferingType *[]string           `form:"offering_type,omitempty" json:"offering_type,omitempty"`
+	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -26323,7 +26428,10 @@ type MarketplacePlanComponentsCountParams struct {
 
 // MarketplacePlansListParams defines parameters for MarketplacePlansList.
 type MarketplacePlansListParams struct {
-	Offering     *string             `form:"offering,omitempty" json:"offering,omitempty"`
+	Offering *string `form:"offering,omitempty" json:"offering,omitempty"`
+
+	// OfferingSlug Multiple values may be separated by commas.
+	OfferingSlug *[]string           `form:"offering_slug,omitempty" json:"offering_slug,omitempty"`
 	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
@@ -26336,7 +26444,10 @@ type MarketplacePlansListParams struct {
 
 // MarketplacePlansCountParams defines parameters for MarketplacePlansCount.
 type MarketplacePlansCountParams struct {
-	Offering     *string             `form:"offering,omitempty" json:"offering,omitempty"`
+	Offering *string `form:"offering,omitempty" json:"offering,omitempty"`
+
+	// OfferingSlug Multiple values may be separated by commas.
+	OfferingSlug *[]string           `form:"offering_slug,omitempty" json:"offering_slug,omitempty"`
 	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
@@ -26352,7 +26463,10 @@ type MarketplacePlansUsageStatsListParams struct {
 	CustomerProviderUuid *string `form:"customer_provider_uuid,omitempty" json:"customer_provider_uuid,omitempty"`
 	O                    *string `form:"o,omitempty" json:"o,omitempty"`
 	Offering             *string `form:"offering,omitempty" json:"offering,omitempty"`
-	OfferingUuid         *string `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// OfferingSlug Multiple values may be separated by commas.
+	OfferingSlug *[]string `form:"offering_slug,omitempty" json:"offering_slug,omitempty"`
+	OfferingUuid *string   `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -26367,7 +26481,10 @@ type MarketplacePlansUsageStatsCountParams struct {
 	CustomerProviderUuid *string `form:"customer_provider_uuid,omitempty" json:"customer_provider_uuid,omitempty"`
 	O                    *string `form:"o,omitempty" json:"o,omitempty"`
 	Offering             *string `form:"offering,omitempty" json:"offering,omitempty"`
-	OfferingUuid         *string `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// OfferingSlug Multiple values may be separated by commas.
+	OfferingSlug *[]string `form:"offering_slug,omitempty" json:"offering_slug,omitempty"`
+	OfferingUuid *string   `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -27110,9 +27227,14 @@ type MarketplaceProviderResourcesListParams struct {
 	OfferingBillable *openapi_types.UUID                        `form:"offering_billable,omitempty" json:"offering_billable,omitempty"`
 
 	// OfferingShared Offering shared
-	OfferingShared *bool               `form:"offering_shared,omitempty" json:"offering_shared,omitempty"`
-	OfferingType   *string             `form:"offering_type,omitempty" json:"offering_type,omitempty"`
-	OfferingUuid   *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	OfferingShared *bool `form:"offering_shared,omitempty" json:"offering_shared,omitempty"`
+
+	// OfferingSlug Multiple values may be separated by commas.
+	OfferingSlug *[]string `form:"offering_slug,omitempty" json:"offering_slug,omitempty"`
+	OfferingType *string   `form:"offering_type,omitempty" json:"offering_type,omitempty"`
+
+	// OfferingUuid Multiple values may be separated by commas.
+	OfferingUuid *[]openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -27179,9 +27301,14 @@ type MarketplaceProviderResourcesCountParams struct {
 	OfferingBillable *openapi_types.UUID                         `form:"offering_billable,omitempty" json:"offering_billable,omitempty"`
 
 	// OfferingShared Offering shared
-	OfferingShared *bool               `form:"offering_shared,omitempty" json:"offering_shared,omitempty"`
-	OfferingType   *string             `form:"offering_type,omitempty" json:"offering_type,omitempty"`
-	OfferingUuid   *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	OfferingShared *bool `form:"offering_shared,omitempty" json:"offering_shared,omitempty"`
+
+	// OfferingSlug Multiple values may be separated by commas.
+	OfferingSlug *[]string `form:"offering_slug,omitempty" json:"offering_slug,omitempty"`
+	OfferingType *string   `form:"offering_type,omitempty" json:"offering_type,omitempty"`
+
+	// OfferingUuid Multiple values may be separated by commas.
+	OfferingUuid *[]openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -27476,9 +27603,14 @@ type MarketplaceResourcesListParams struct {
 	OfferingBillable *openapi_types.UUID                `form:"offering_billable,omitempty" json:"offering_billable,omitempty"`
 
 	// OfferingShared Offering shared
-	OfferingShared *bool               `form:"offering_shared,omitempty" json:"offering_shared,omitempty"`
-	OfferingType   *string             `form:"offering_type,omitempty" json:"offering_type,omitempty"`
-	OfferingUuid   *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	OfferingShared *bool `form:"offering_shared,omitempty" json:"offering_shared,omitempty"`
+
+	// OfferingSlug Multiple values may be separated by commas.
+	OfferingSlug *[]string `form:"offering_slug,omitempty" json:"offering_slug,omitempty"`
+	OfferingType *string   `form:"offering_type,omitempty" json:"offering_type,omitempty"`
+
+	// OfferingUuid Multiple values may be separated by commas.
+	OfferingUuid *[]openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -27545,9 +27677,14 @@ type MarketplaceResourcesCountParams struct {
 	OfferingBillable *openapi_types.UUID                 `form:"offering_billable,omitempty" json:"offering_billable,omitempty"`
 
 	// OfferingShared Offering shared
-	OfferingShared *bool               `form:"offering_shared,omitempty" json:"offering_shared,omitempty"`
-	OfferingType   *string             `form:"offering_type,omitempty" json:"offering_type,omitempty"`
-	OfferingUuid   *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	OfferingShared *bool `form:"offering_shared,omitempty" json:"offering_shared,omitempty"`
+
+	// OfferingSlug Multiple values may be separated by commas.
+	OfferingSlug *[]string `form:"offering_slug,omitempty" json:"offering_slug,omitempty"`
+	OfferingType *string   `form:"offering_type,omitempty" json:"offering_type,omitempty"`
+
+	// OfferingUuid Multiple values may be separated by commas.
+	OfferingUuid *[]openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -27672,9 +27809,14 @@ type MarketplaceRuntimeStatesListParams struct {
 type MarketplaceScreenshotsListParams struct {
 	// O Ordering
 	//
-	O            *[]MarketplaceScreenshotsListParamsO `form:"o,omitempty" json:"o,omitempty"`
-	Offering     *string                              `form:"offering,omitempty" json:"offering,omitempty"`
-	OfferingUuid *openapi_types.UUID                  `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	O        *[]MarketplaceScreenshotsListParamsO `form:"o,omitempty" json:"o,omitempty"`
+	Offering *string                              `form:"offering,omitempty" json:"offering,omitempty"`
+
+	// OfferingSlug Multiple values may be separated by commas.
+	OfferingSlug *[]string `form:"offering_slug,omitempty" json:"offering_slug,omitempty"`
+
+	// OfferingUuid Multiple values may be separated by commas.
+	OfferingUuid *[]openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -27691,9 +27833,14 @@ type MarketplaceScreenshotsListParamsO string
 type MarketplaceScreenshotsCountParams struct {
 	// O Ordering
 	//
-	O            *[]MarketplaceScreenshotsCountParamsO `form:"o,omitempty" json:"o,omitempty"`
-	Offering     *string                               `form:"offering,omitempty" json:"offering,omitempty"`
-	OfferingUuid *openapi_types.UUID                   `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	O        *[]MarketplaceScreenshotsCountParamsO `form:"o,omitempty" json:"o,omitempty"`
+	Offering *string                               `form:"offering,omitempty" json:"offering,omitempty"`
+
+	// OfferingSlug Multiple values may be separated by commas.
+	OfferingSlug *[]string `form:"offering_slug,omitempty" json:"offering_slug,omitempty"`
+
+	// OfferingUuid Multiple values may be separated by commas.
+	OfferingUuid *[]openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -80185,6 +80332,22 @@ func NewBookingResourcesListRequest(server string, params *BookingResourcesListP
 
 		}
 
+		if params.OfferingSlug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "offering_slug", runtime.ParamLocationQuery, *params.OfferingSlug); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.OfferingType != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_type", runtime.ParamLocationQuery, *params.OfferingType); err != nil {
@@ -80203,7 +80366,7 @@ func NewBookingResourcesListRequest(server string, params *BookingResourcesListP
 
 		if params.OfferingUuid != nil {
 
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -80714,6 +80877,22 @@ func NewBookingResourcesCountRequest(server string, params *BookingResourcesCoun
 
 		}
 
+		if params.OfferingSlug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "offering_slug", runtime.ParamLocationQuery, *params.OfferingSlug); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.OfferingType != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_type", runtime.ParamLocationQuery, *params.OfferingType); err != nil {
@@ -80732,7 +80911,7 @@ func NewBookingResourcesCountRequest(server string, params *BookingResourcesCoun
 
 		if params.OfferingUuid != nil {
 
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -108214,9 +108393,25 @@ func NewMarketplaceIntegrationStatusesListRequest(server string, params *Marketp
 
 		}
 
+		if params.OfferingSlug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "offering_slug", runtime.ParamLocationQuery, *params.OfferingSlug); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.OfferingUuid != nil {
 
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -108391,9 +108586,25 @@ func NewMarketplaceIntegrationStatusesCountRequest(server string, params *Market
 
 		}
 
+		if params.OfferingSlug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "offering_slug", runtime.ParamLocationQuery, *params.OfferingSlug); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.OfferingUuid != nil {
 
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -109036,9 +109247,25 @@ func NewMarketplaceOfferingFilesListRequest(server string, params *MarketplaceOf
 
 		}
 
+		if params.OfferingSlug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "offering_slug", runtime.ParamLocationQuery, *params.OfferingSlug); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.OfferingUuid != nil {
 
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -109165,9 +109392,25 @@ func NewMarketplaceOfferingFilesCountRequest(server string, params *MarketplaceO
 
 		}
 
+		if params.OfferingSlug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "offering_slug", runtime.ParamLocationQuery, *params.OfferingSlug); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.OfferingUuid != nil {
 
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -111930,9 +112173,25 @@ func NewMarketplaceOfferingUserRolesListRequest(server string, params *Marketpla
 
 		}
 
+		if params.OfferingSlug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "offering_slug", runtime.ParamLocationQuery, *params.OfferingSlug); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.OfferingUuid != nil {
 
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -112043,9 +112302,25 @@ func NewMarketplaceOfferingUserRolesCountRequest(server string, params *Marketpl
 
 		}
 
+		if params.OfferingSlug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "offering_slug", runtime.ParamLocationQuery, *params.OfferingSlug); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.OfferingUuid != nil {
 
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -112438,9 +112713,25 @@ func NewMarketplaceOfferingUsersListRequest(server string, params *MarketplaceOf
 
 		}
 
+		if params.OfferingSlug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "offering_slug", runtime.ParamLocationQuery, *params.OfferingSlug); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.OfferingUuid != nil {
 
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -112695,9 +112986,25 @@ func NewMarketplaceOfferingUsersCountRequest(server string, params *MarketplaceO
 
 		}
 
+		if params.OfferingSlug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "offering_slug", runtime.ParamLocationQuery, *params.OfferingSlug); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.OfferingUuid != nil {
 
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -113883,6 +114190,22 @@ func NewMarketplaceOrdersListRequest(server string, params *MarketplaceOrdersLis
 
 		}
 
+		if params.OfferingSlug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "offering_slug", runtime.ParamLocationQuery, *params.OfferingSlug); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.OfferingType != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_type", runtime.ParamLocationQuery, *params.OfferingType); err != nil {
@@ -114239,6 +114562,22 @@ func NewMarketplaceOrdersCountRequest(server string, params *MarketplaceOrdersCo
 		if params.Offering != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering", runtime.ParamLocationQuery, *params.Offering); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OfferingSlug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "offering_slug", runtime.ParamLocationQuery, *params.OfferingSlug); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -115284,6 +115623,22 @@ func NewMarketplacePlansListRequest(server string, params *MarketplacePlansListP
 
 		}
 
+		if params.OfferingSlug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "offering_slug", runtime.ParamLocationQuery, *params.OfferingSlug); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.OfferingUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
@@ -115384,6 +115739,22 @@ func NewMarketplacePlansCountRequest(server string, params *MarketplacePlansCoun
 		if params.Offering != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering", runtime.ParamLocationQuery, *params.Offering); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OfferingSlug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "offering_slug", runtime.ParamLocationQuery, *params.OfferingSlug); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -115582,6 +115953,22 @@ func NewMarketplacePlansUsageStatsListRequest(server string, params *Marketplace
 
 		}
 
+		if params.OfferingSlug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "offering_slug", runtime.ParamLocationQuery, *params.OfferingSlug); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.OfferingUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
@@ -115714,6 +116101,22 @@ func NewMarketplacePlansUsageStatsCountRequest(server string, params *Marketplac
 		if params.Offering != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering", runtime.ParamLocationQuery, *params.Offering); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OfferingSlug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "offering_slug", runtime.ParamLocationQuery, *params.OfferingSlug); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -123766,6 +124169,22 @@ func NewMarketplaceProviderResourcesListRequest(server string, params *Marketpla
 
 		}
 
+		if params.OfferingSlug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "offering_slug", runtime.ParamLocationQuery, *params.OfferingSlug); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.OfferingType != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_type", runtime.ParamLocationQuery, *params.OfferingType); err != nil {
@@ -123784,7 +124203,7 @@ func NewMarketplaceProviderResourcesListRequest(server string, params *Marketpla
 
 		if params.OfferingUuid != nil {
 
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -124279,6 +124698,22 @@ func NewMarketplaceProviderResourcesCountRequest(server string, params *Marketpl
 
 		}
 
+		if params.OfferingSlug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "offering_slug", runtime.ParamLocationQuery, *params.OfferingSlug); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.OfferingType != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_type", runtime.ParamLocationQuery, *params.OfferingType); err != nil {
@@ -124297,7 +124732,7 @@ func NewMarketplaceProviderResourcesCountRequest(server string, params *Marketpl
 
 		if params.OfferingUuid != nil {
 
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -127938,6 +128373,22 @@ func NewMarketplaceResourcesListRequest(server string, params *MarketplaceResour
 
 		}
 
+		if params.OfferingSlug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "offering_slug", runtime.ParamLocationQuery, *params.OfferingSlug); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.OfferingType != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_type", runtime.ParamLocationQuery, *params.OfferingType); err != nil {
@@ -127956,7 +128407,7 @@ func NewMarketplaceResourcesListRequest(server string, params *MarketplaceResour
 
 		if params.OfferingUuid != nil {
 
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -128451,6 +128902,22 @@ func NewMarketplaceResourcesCountRequest(server string, params *MarketplaceResou
 
 		}
 
+		if params.OfferingSlug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "offering_slug", runtime.ParamLocationQuery, *params.OfferingSlug); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.OfferingType != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_type", runtime.ParamLocationQuery, *params.OfferingType); err != nil {
@@ -128469,7 +128936,7 @@ func NewMarketplaceResourcesCountRequest(server string, params *MarketplaceResou
 
 		if params.OfferingUuid != nil {
 
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -130462,9 +130929,25 @@ func NewMarketplaceScreenshotsListRequest(server string, params *MarketplaceScre
 
 		}
 
+		if params.OfferingSlug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "offering_slug", runtime.ParamLocationQuery, *params.OfferingSlug); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.OfferingUuid != nil {
 
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -130591,9 +131074,25 @@ func NewMarketplaceScreenshotsCountRequest(server string, params *MarketplaceScr
 
 		}
 
+		if params.OfferingSlug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "offering_slug", runtime.ParamLocationQuery, *params.OfferingSlug); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.OfferingUuid != nil {
 
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
