@@ -15843,7 +15843,21 @@ type OpenStackNestedPortRequest struct {
 
 // OpenStackNestedSecurityGroup defines model for OpenStackNestedSecurityGroup.
 type OpenStackNestedSecurityGroup struct {
-	Url *string `json:"url,omitempty"`
+	Description *string `json:"description,omitempty"`
+	Name        *string `json:"name,omitempty"`
+	Rules       *[]struct {
+		Cidr        *string `json:"cidr"`
+		Description *string `json:"description"`
+		Direction   *string `json:"direction,omitempty"`
+		Ethertype   *string `json:"ethertype,omitempty"`
+		FromPort    *int    `json:"from_port"`
+		Id          *int    `json:"id,omitempty"`
+		Protocol    *string `json:"protocol"`
+		RemoteGroup *string `json:"remote_group"`
+		ToPort      *int    `json:"to_port"`
+	} `json:"rules,omitempty"`
+	State *string `json:"state,omitempty"`
+	Url   *string `json:"url,omitempty"`
 }
 
 // OpenStackNestedSecurityGroupRequest defines model for OpenStackNestedSecurityGroupRequest.
