@@ -179,6 +179,12 @@ const (
 	ByCallManager DecidingEntityEnum = "by_call_manager"
 )
 
+// Defines values for DependencyLogicOperatorEnum.
+const (
+	And DependencyLogicOperatorEnum = "and"
+	Or  DependencyLogicOperatorEnum = "or"
+)
+
 // Defines values for DirectionEnum.
 const (
 	Egress  DirectionEnum = "egress"
@@ -3394,6 +3400,164 @@ const (
 	MaintenanceAnnouncementsCountParamsStateDraft      MaintenanceAnnouncementsCountParamsState = "Draft"
 	MaintenanceAnnouncementsCountParamsStateInProgress MaintenanceAnnouncementsCountParamsState = "In progress"
 	MaintenanceAnnouncementsCountParamsStateScheduled  MaintenanceAnnouncementsCountParamsState = "Scheduled"
+)
+
+// Defines values for ManagedRancherClusterResourcesListParamsField.
+const (
+	ManagedRancherClusterResourcesListParamsFieldAttributes                ManagedRancherClusterResourcesListParamsField = "attributes"
+	ManagedRancherClusterResourcesListParamsFieldAvailableActions          ManagedRancherClusterResourcesListParamsField = "available_actions"
+	ManagedRancherClusterResourcesListParamsFieldBackendId                 ManagedRancherClusterResourcesListParamsField = "backend_id"
+	ManagedRancherClusterResourcesListParamsFieldBackendMetadata           ManagedRancherClusterResourcesListParamsField = "backend_metadata"
+	ManagedRancherClusterResourcesListParamsFieldCanTerminate              ManagedRancherClusterResourcesListParamsField = "can_terminate"
+	ManagedRancherClusterResourcesListParamsFieldCategoryIcon              ManagedRancherClusterResourcesListParamsField = "category_icon"
+	ManagedRancherClusterResourcesListParamsFieldCategoryTitle             ManagedRancherClusterResourcesListParamsField = "category_title"
+	ManagedRancherClusterResourcesListParamsFieldCategoryUuid              ManagedRancherClusterResourcesListParamsField = "category_uuid"
+	ManagedRancherClusterResourcesListParamsFieldCreated                   ManagedRancherClusterResourcesListParamsField = "created"
+	ManagedRancherClusterResourcesListParamsFieldCreationOrder             ManagedRancherClusterResourcesListParamsField = "creation_order"
+	ManagedRancherClusterResourcesListParamsFieldCurrentUsages             ManagedRancherClusterResourcesListParamsField = "current_usages"
+	ManagedRancherClusterResourcesListParamsFieldCustomerName              ManagedRancherClusterResourcesListParamsField = "customer_name"
+	ManagedRancherClusterResourcesListParamsFieldCustomerSlug              ManagedRancherClusterResourcesListParamsField = "customer_slug"
+	ManagedRancherClusterResourcesListParamsFieldCustomerUuid              ManagedRancherClusterResourcesListParamsField = "customer_uuid"
+	ManagedRancherClusterResourcesListParamsFieldDescription               ManagedRancherClusterResourcesListParamsField = "description"
+	ManagedRancherClusterResourcesListParamsFieldDownscaled                ManagedRancherClusterResourcesListParamsField = "downscaled"
+	ManagedRancherClusterResourcesListParamsFieldEffectiveId               ManagedRancherClusterResourcesListParamsField = "effective_id"
+	ManagedRancherClusterResourcesListParamsFieldEndDate                   ManagedRancherClusterResourcesListParamsField = "end_date"
+	ManagedRancherClusterResourcesListParamsFieldEndDateRequestedBy        ManagedRancherClusterResourcesListParamsField = "end_date_requested_by"
+	ManagedRancherClusterResourcesListParamsFieldEndpoints                 ManagedRancherClusterResourcesListParamsField = "endpoints"
+	ManagedRancherClusterResourcesListParamsFieldErrorMessage              ManagedRancherClusterResourcesListParamsField = "error_message"
+	ManagedRancherClusterResourcesListParamsFieldErrorTraceback            ManagedRancherClusterResourcesListParamsField = "error_traceback"
+	ManagedRancherClusterResourcesListParamsFieldIsLimitBased              ManagedRancherClusterResourcesListParamsField = "is_limit_based"
+	ManagedRancherClusterResourcesListParamsFieldIsUsageBased              ManagedRancherClusterResourcesListParamsField = "is_usage_based"
+	ManagedRancherClusterResourcesListParamsFieldLastSync                  ManagedRancherClusterResourcesListParamsField = "last_sync"
+	ManagedRancherClusterResourcesListParamsFieldLimitUsage                ManagedRancherClusterResourcesListParamsField = "limit_usage"
+	ManagedRancherClusterResourcesListParamsFieldLimits                    ManagedRancherClusterResourcesListParamsField = "limits"
+	ManagedRancherClusterResourcesListParamsFieldModified                  ManagedRancherClusterResourcesListParamsField = "modified"
+	ManagedRancherClusterResourcesListParamsFieldName                      ManagedRancherClusterResourcesListParamsField = "name"
+	ManagedRancherClusterResourcesListParamsFieldOffering                  ManagedRancherClusterResourcesListParamsField = "offering"
+	ManagedRancherClusterResourcesListParamsFieldOfferingBillable          ManagedRancherClusterResourcesListParamsField = "offering_billable"
+	ManagedRancherClusterResourcesListParamsFieldOfferingCustomerUuid      ManagedRancherClusterResourcesListParamsField = "offering_customer_uuid"
+	ManagedRancherClusterResourcesListParamsFieldOfferingDescription       ManagedRancherClusterResourcesListParamsField = "offering_description"
+	ManagedRancherClusterResourcesListParamsFieldOfferingImage             ManagedRancherClusterResourcesListParamsField = "offering_image"
+	ManagedRancherClusterResourcesListParamsFieldOfferingName              ManagedRancherClusterResourcesListParamsField = "offering_name"
+	ManagedRancherClusterResourcesListParamsFieldOfferingPluginOptions     ManagedRancherClusterResourcesListParamsField = "offering_plugin_options"
+	ManagedRancherClusterResourcesListParamsFieldOfferingShared            ManagedRancherClusterResourcesListParamsField = "offering_shared"
+	ManagedRancherClusterResourcesListParamsFieldOfferingSlug              ManagedRancherClusterResourcesListParamsField = "offering_slug"
+	ManagedRancherClusterResourcesListParamsFieldOfferingThumbnail         ManagedRancherClusterResourcesListParamsField = "offering_thumbnail"
+	ManagedRancherClusterResourcesListParamsFieldOfferingType              ManagedRancherClusterResourcesListParamsField = "offering_type"
+	ManagedRancherClusterResourcesListParamsFieldOfferingUuid              ManagedRancherClusterResourcesListParamsField = "offering_uuid"
+	ManagedRancherClusterResourcesListParamsFieldOptions                   ManagedRancherClusterResourcesListParamsField = "options"
+	ManagedRancherClusterResourcesListParamsFieldOrderInProgress           ManagedRancherClusterResourcesListParamsField = "order_in_progress"
+	ManagedRancherClusterResourcesListParamsFieldParentName                ManagedRancherClusterResourcesListParamsField = "parent_name"
+	ManagedRancherClusterResourcesListParamsFieldParentOfferingName        ManagedRancherClusterResourcesListParamsField = "parent_offering_name"
+	ManagedRancherClusterResourcesListParamsFieldParentOfferingSlug        ManagedRancherClusterResourcesListParamsField = "parent_offering_slug"
+	ManagedRancherClusterResourcesListParamsFieldParentOfferingUuid        ManagedRancherClusterResourcesListParamsField = "parent_offering_uuid"
+	ManagedRancherClusterResourcesListParamsFieldParentUuid                ManagedRancherClusterResourcesListParamsField = "parent_uuid"
+	ManagedRancherClusterResourcesListParamsFieldPaused                    ManagedRancherClusterResourcesListParamsField = "paused"
+	ManagedRancherClusterResourcesListParamsFieldPlan                      ManagedRancherClusterResourcesListParamsField = "plan"
+	ManagedRancherClusterResourcesListParamsFieldPlanDescription           ManagedRancherClusterResourcesListParamsField = "plan_description"
+	ManagedRancherClusterResourcesListParamsFieldPlanName                  ManagedRancherClusterResourcesListParamsField = "plan_name"
+	ManagedRancherClusterResourcesListParamsFieldPlanUnit                  ManagedRancherClusterResourcesListParamsField = "plan_unit"
+	ManagedRancherClusterResourcesListParamsFieldPlanUuid                  ManagedRancherClusterResourcesListParamsField = "plan_uuid"
+	ManagedRancherClusterResourcesListParamsFieldProject                   ManagedRancherClusterResourcesListParamsField = "project"
+	ManagedRancherClusterResourcesListParamsFieldProjectDescription        ManagedRancherClusterResourcesListParamsField = "project_description"
+	ManagedRancherClusterResourcesListParamsFieldProjectEndDate            ManagedRancherClusterResourcesListParamsField = "project_end_date"
+	ManagedRancherClusterResourcesListParamsFieldProjectEndDateRequestedBy ManagedRancherClusterResourcesListParamsField = "project_end_date_requested_by"
+	ManagedRancherClusterResourcesListParamsFieldProjectName               ManagedRancherClusterResourcesListParamsField = "project_name"
+	ManagedRancherClusterResourcesListParamsFieldProjectSlug               ManagedRancherClusterResourcesListParamsField = "project_slug"
+	ManagedRancherClusterResourcesListParamsFieldProjectUuid               ManagedRancherClusterResourcesListParamsField = "project_uuid"
+	ManagedRancherClusterResourcesListParamsFieldProviderName              ManagedRancherClusterResourcesListParamsField = "provider_name"
+	ManagedRancherClusterResourcesListParamsFieldProviderUuid              ManagedRancherClusterResourcesListParamsField = "provider_uuid"
+	ManagedRancherClusterResourcesListParamsFieldReport                    ManagedRancherClusterResourcesListParamsField = "report"
+	ManagedRancherClusterResourcesListParamsFieldResourceType              ManagedRancherClusterResourcesListParamsField = "resource_type"
+	ManagedRancherClusterResourcesListParamsFieldResourceUuid              ManagedRancherClusterResourcesListParamsField = "resource_uuid"
+	ManagedRancherClusterResourcesListParamsFieldRestrictMemberAccess      ManagedRancherClusterResourcesListParamsField = "restrict_member_access"
+	ManagedRancherClusterResourcesListParamsFieldScope                     ManagedRancherClusterResourcesListParamsField = "scope"
+	ManagedRancherClusterResourcesListParamsFieldServiceSettingsUuid       ManagedRancherClusterResourcesListParamsField = "service_settings_uuid"
+	ManagedRancherClusterResourcesListParamsFieldSlug                      ManagedRancherClusterResourcesListParamsField = "slug"
+	ManagedRancherClusterResourcesListParamsFieldState                     ManagedRancherClusterResourcesListParamsField = "state"
+	ManagedRancherClusterResourcesListParamsFieldUrl                       ManagedRancherClusterResourcesListParamsField = "url"
+	ManagedRancherClusterResourcesListParamsFieldUserRequiresReconsent     ManagedRancherClusterResourcesListParamsField = "user_requires_reconsent"
+	ManagedRancherClusterResourcesListParamsFieldUsername                  ManagedRancherClusterResourcesListParamsField = "username"
+	ManagedRancherClusterResourcesListParamsFieldUuid                      ManagedRancherClusterResourcesListParamsField = "uuid"
+)
+
+// Defines values for ManagedRancherClusterResourcesRetrieveParamsField.
+const (
+	ManagedRancherClusterResourcesRetrieveParamsFieldAttributes                ManagedRancherClusterResourcesRetrieveParamsField = "attributes"
+	ManagedRancherClusterResourcesRetrieveParamsFieldAvailableActions          ManagedRancherClusterResourcesRetrieveParamsField = "available_actions"
+	ManagedRancherClusterResourcesRetrieveParamsFieldBackendId                 ManagedRancherClusterResourcesRetrieveParamsField = "backend_id"
+	ManagedRancherClusterResourcesRetrieveParamsFieldBackendMetadata           ManagedRancherClusterResourcesRetrieveParamsField = "backend_metadata"
+	ManagedRancherClusterResourcesRetrieveParamsFieldCanTerminate              ManagedRancherClusterResourcesRetrieveParamsField = "can_terminate"
+	ManagedRancherClusterResourcesRetrieveParamsFieldCategoryIcon              ManagedRancherClusterResourcesRetrieveParamsField = "category_icon"
+	ManagedRancherClusterResourcesRetrieveParamsFieldCategoryTitle             ManagedRancherClusterResourcesRetrieveParamsField = "category_title"
+	ManagedRancherClusterResourcesRetrieveParamsFieldCategoryUuid              ManagedRancherClusterResourcesRetrieveParamsField = "category_uuid"
+	ManagedRancherClusterResourcesRetrieveParamsFieldCreated                   ManagedRancherClusterResourcesRetrieveParamsField = "created"
+	ManagedRancherClusterResourcesRetrieveParamsFieldCreationOrder             ManagedRancherClusterResourcesRetrieveParamsField = "creation_order"
+	ManagedRancherClusterResourcesRetrieveParamsFieldCurrentUsages             ManagedRancherClusterResourcesRetrieveParamsField = "current_usages"
+	ManagedRancherClusterResourcesRetrieveParamsFieldCustomerName              ManagedRancherClusterResourcesRetrieveParamsField = "customer_name"
+	ManagedRancherClusterResourcesRetrieveParamsFieldCustomerSlug              ManagedRancherClusterResourcesRetrieveParamsField = "customer_slug"
+	ManagedRancherClusterResourcesRetrieveParamsFieldCustomerUuid              ManagedRancherClusterResourcesRetrieveParamsField = "customer_uuid"
+	ManagedRancherClusterResourcesRetrieveParamsFieldDescription               ManagedRancherClusterResourcesRetrieveParamsField = "description"
+	ManagedRancherClusterResourcesRetrieveParamsFieldDownscaled                ManagedRancherClusterResourcesRetrieveParamsField = "downscaled"
+	ManagedRancherClusterResourcesRetrieveParamsFieldEffectiveId               ManagedRancherClusterResourcesRetrieveParamsField = "effective_id"
+	ManagedRancherClusterResourcesRetrieveParamsFieldEndDate                   ManagedRancherClusterResourcesRetrieveParamsField = "end_date"
+	ManagedRancherClusterResourcesRetrieveParamsFieldEndDateRequestedBy        ManagedRancherClusterResourcesRetrieveParamsField = "end_date_requested_by"
+	ManagedRancherClusterResourcesRetrieveParamsFieldEndpoints                 ManagedRancherClusterResourcesRetrieveParamsField = "endpoints"
+	ManagedRancherClusterResourcesRetrieveParamsFieldErrorMessage              ManagedRancherClusterResourcesRetrieveParamsField = "error_message"
+	ManagedRancherClusterResourcesRetrieveParamsFieldErrorTraceback            ManagedRancherClusterResourcesRetrieveParamsField = "error_traceback"
+	ManagedRancherClusterResourcesRetrieveParamsFieldIsLimitBased              ManagedRancherClusterResourcesRetrieveParamsField = "is_limit_based"
+	ManagedRancherClusterResourcesRetrieveParamsFieldIsUsageBased              ManagedRancherClusterResourcesRetrieveParamsField = "is_usage_based"
+	ManagedRancherClusterResourcesRetrieveParamsFieldLastSync                  ManagedRancherClusterResourcesRetrieveParamsField = "last_sync"
+	ManagedRancherClusterResourcesRetrieveParamsFieldLimitUsage                ManagedRancherClusterResourcesRetrieveParamsField = "limit_usage"
+	ManagedRancherClusterResourcesRetrieveParamsFieldLimits                    ManagedRancherClusterResourcesRetrieveParamsField = "limits"
+	ManagedRancherClusterResourcesRetrieveParamsFieldModified                  ManagedRancherClusterResourcesRetrieveParamsField = "modified"
+	ManagedRancherClusterResourcesRetrieveParamsFieldName                      ManagedRancherClusterResourcesRetrieveParamsField = "name"
+	ManagedRancherClusterResourcesRetrieveParamsFieldOffering                  ManagedRancherClusterResourcesRetrieveParamsField = "offering"
+	ManagedRancherClusterResourcesRetrieveParamsFieldOfferingBillable          ManagedRancherClusterResourcesRetrieveParamsField = "offering_billable"
+	ManagedRancherClusterResourcesRetrieveParamsFieldOfferingCustomerUuid      ManagedRancherClusterResourcesRetrieveParamsField = "offering_customer_uuid"
+	ManagedRancherClusterResourcesRetrieveParamsFieldOfferingDescription       ManagedRancherClusterResourcesRetrieveParamsField = "offering_description"
+	ManagedRancherClusterResourcesRetrieveParamsFieldOfferingImage             ManagedRancherClusterResourcesRetrieveParamsField = "offering_image"
+	ManagedRancherClusterResourcesRetrieveParamsFieldOfferingName              ManagedRancherClusterResourcesRetrieveParamsField = "offering_name"
+	ManagedRancherClusterResourcesRetrieveParamsFieldOfferingPluginOptions     ManagedRancherClusterResourcesRetrieveParamsField = "offering_plugin_options"
+	ManagedRancherClusterResourcesRetrieveParamsFieldOfferingShared            ManagedRancherClusterResourcesRetrieveParamsField = "offering_shared"
+	ManagedRancherClusterResourcesRetrieveParamsFieldOfferingSlug              ManagedRancherClusterResourcesRetrieveParamsField = "offering_slug"
+	ManagedRancherClusterResourcesRetrieveParamsFieldOfferingThumbnail         ManagedRancherClusterResourcesRetrieveParamsField = "offering_thumbnail"
+	ManagedRancherClusterResourcesRetrieveParamsFieldOfferingType              ManagedRancherClusterResourcesRetrieveParamsField = "offering_type"
+	ManagedRancherClusterResourcesRetrieveParamsFieldOfferingUuid              ManagedRancherClusterResourcesRetrieveParamsField = "offering_uuid"
+	ManagedRancherClusterResourcesRetrieveParamsFieldOptions                   ManagedRancherClusterResourcesRetrieveParamsField = "options"
+	ManagedRancherClusterResourcesRetrieveParamsFieldOrderInProgress           ManagedRancherClusterResourcesRetrieveParamsField = "order_in_progress"
+	ManagedRancherClusterResourcesRetrieveParamsFieldParentName                ManagedRancherClusterResourcesRetrieveParamsField = "parent_name"
+	ManagedRancherClusterResourcesRetrieveParamsFieldParentOfferingName        ManagedRancherClusterResourcesRetrieveParamsField = "parent_offering_name"
+	ManagedRancherClusterResourcesRetrieveParamsFieldParentOfferingSlug        ManagedRancherClusterResourcesRetrieveParamsField = "parent_offering_slug"
+	ManagedRancherClusterResourcesRetrieveParamsFieldParentOfferingUuid        ManagedRancherClusterResourcesRetrieveParamsField = "parent_offering_uuid"
+	ManagedRancherClusterResourcesRetrieveParamsFieldParentUuid                ManagedRancherClusterResourcesRetrieveParamsField = "parent_uuid"
+	ManagedRancherClusterResourcesRetrieveParamsFieldPaused                    ManagedRancherClusterResourcesRetrieveParamsField = "paused"
+	ManagedRancherClusterResourcesRetrieveParamsFieldPlan                      ManagedRancherClusterResourcesRetrieveParamsField = "plan"
+	ManagedRancherClusterResourcesRetrieveParamsFieldPlanDescription           ManagedRancherClusterResourcesRetrieveParamsField = "plan_description"
+	ManagedRancherClusterResourcesRetrieveParamsFieldPlanName                  ManagedRancherClusterResourcesRetrieveParamsField = "plan_name"
+	ManagedRancherClusterResourcesRetrieveParamsFieldPlanUnit                  ManagedRancherClusterResourcesRetrieveParamsField = "plan_unit"
+	ManagedRancherClusterResourcesRetrieveParamsFieldPlanUuid                  ManagedRancherClusterResourcesRetrieveParamsField = "plan_uuid"
+	ManagedRancherClusterResourcesRetrieveParamsFieldProject                   ManagedRancherClusterResourcesRetrieveParamsField = "project"
+	ManagedRancherClusterResourcesRetrieveParamsFieldProjectDescription        ManagedRancherClusterResourcesRetrieveParamsField = "project_description"
+	ManagedRancherClusterResourcesRetrieveParamsFieldProjectEndDate            ManagedRancherClusterResourcesRetrieveParamsField = "project_end_date"
+	ManagedRancherClusterResourcesRetrieveParamsFieldProjectEndDateRequestedBy ManagedRancherClusterResourcesRetrieveParamsField = "project_end_date_requested_by"
+	ManagedRancherClusterResourcesRetrieveParamsFieldProjectName               ManagedRancherClusterResourcesRetrieveParamsField = "project_name"
+	ManagedRancherClusterResourcesRetrieveParamsFieldProjectSlug               ManagedRancherClusterResourcesRetrieveParamsField = "project_slug"
+	ManagedRancherClusterResourcesRetrieveParamsFieldProjectUuid               ManagedRancherClusterResourcesRetrieveParamsField = "project_uuid"
+	ManagedRancherClusterResourcesRetrieveParamsFieldProviderName              ManagedRancherClusterResourcesRetrieveParamsField = "provider_name"
+	ManagedRancherClusterResourcesRetrieveParamsFieldProviderUuid              ManagedRancherClusterResourcesRetrieveParamsField = "provider_uuid"
+	ManagedRancherClusterResourcesRetrieveParamsFieldReport                    ManagedRancherClusterResourcesRetrieveParamsField = "report"
+	ManagedRancherClusterResourcesRetrieveParamsFieldResourceType              ManagedRancherClusterResourcesRetrieveParamsField = "resource_type"
+	ManagedRancherClusterResourcesRetrieveParamsFieldResourceUuid              ManagedRancherClusterResourcesRetrieveParamsField = "resource_uuid"
+	ManagedRancherClusterResourcesRetrieveParamsFieldRestrictMemberAccess      ManagedRancherClusterResourcesRetrieveParamsField = "restrict_member_access"
+	ManagedRancherClusterResourcesRetrieveParamsFieldScope                     ManagedRancherClusterResourcesRetrieveParamsField = "scope"
+	ManagedRancherClusterResourcesRetrieveParamsFieldServiceSettingsUuid       ManagedRancherClusterResourcesRetrieveParamsField = "service_settings_uuid"
+	ManagedRancherClusterResourcesRetrieveParamsFieldSlug                      ManagedRancherClusterResourcesRetrieveParamsField = "slug"
+	ManagedRancherClusterResourcesRetrieveParamsFieldState                     ManagedRancherClusterResourcesRetrieveParamsField = "state"
+	ManagedRancherClusterResourcesRetrieveParamsFieldUrl                       ManagedRancherClusterResourcesRetrieveParamsField = "url"
+	ManagedRancherClusterResourcesRetrieveParamsFieldUserRequiresReconsent     ManagedRancherClusterResourcesRetrieveParamsField = "user_requires_reconsent"
+	ManagedRancherClusterResourcesRetrieveParamsFieldUsername                  ManagedRancherClusterResourcesRetrieveParamsField = "username"
+	ManagedRancherClusterResourcesRetrieveParamsFieldUuid                      ManagedRancherClusterResourcesRetrieveParamsField = "uuid"
 )
 
 // Defines values for MarketplaceCategoriesListParamsCustomersOfferingsState.
@@ -12344,6 +12508,9 @@ type DeleteAttachmentsRequest struct {
 	AttachmentIds []openapi_types.UUID `json:"attachment_ids"`
 }
 
+// DependencyLogicOperatorEnum defines model for DependencyLogicOperatorEnum.
+type DependencyLogicOperatorEnum string
+
 // DetailState defines model for DetailState.
 type DetailState struct {
 	Detail *string `json:"detail,omitempty"`
@@ -13631,6 +13798,20 @@ type MaintenanceAnnouncementTemplateRequest struct {
 // MaintenanceTypeEnum defines model for MaintenanceTypeEnum.
 type MaintenanceTypeEnum int
 
+// ManagedRancherCreateNodeRequest defines model for ManagedRancherCreateNodeRequest.
+type ManagedRancherCreateNodeRequest struct {
+	Cpu              *int                 `json:"cpu,omitempty"`
+	DataVolumes      *[]DataVolumeRequest `json:"data_volumes,omitempty"`
+	Flavor           *string              `json:"flavor"`
+	Memory           *int                 `json:"memory,omitempty"`
+	Role             RoleEnum             `json:"role"`
+	SshPublicKey     *string              `json:"ssh_public_key,omitempty"`
+	Subnet           *string              `json:"subnet"`
+	SystemVolumeSize *int                 `json:"system_volume_size,omitempty"`
+	SystemVolumeType *string              `json:"system_volume_type"`
+	Tenant           *string              `json:"tenant,omitempty"`
+}
+
 // Mapping defines model for Mapping.
 type Mapping struct {
 	Networks             *[]openapi_types.UUID `json:"networks,omitempty"`
@@ -14550,6 +14731,36 @@ type NestedSection struct {
 	Title        *string `json:"title,omitempty"`
 }
 
+// NestedSecurityGroupRule defines model for NestedSecurityGroupRule.
+type NestedSecurityGroupRule struct {
+	// Cidr CIDR notation for the source/destination network address range
+	Cidr        *string `json:"cidr"`
+	Description *string `json:"description,omitempty"`
+
+	// Direction Traffic direction - either 'ingress' (incoming) or 'egress' (outgoing)
+	Direction *DirectionEnum `json:"direction,omitempty"`
+
+	// Ethertype IP protocol version - either 'IPv4' or 'IPv6'
+	Ethertype *EthertypeEnum `json:"ethertype,omitempty"`
+
+	// FromPort Starting port number in the range (1-65535)
+	FromPort *int `json:"from_port"`
+	Id       *int `json:"id,omitempty"`
+
+	// Protocol The network protocol (TCP, UDP, ICMP, or empty for any protocol)
+	Protocol        *NestedSecurityGroupRule_Protocol `json:"protocol,omitempty"`
+	RemoteGroupName *string                           `json:"remote_group_name,omitempty"`
+	RemoteGroupUuid *openapi_types.UUID               `json:"remote_group_uuid,omitempty"`
+
+	// ToPort Ending port number in the range (1-65535)
+	ToPort *int `json:"to_port"`
+}
+
+// NestedSecurityGroupRule_Protocol The network protocol (TCP, UDP, ICMP, or empty for any protocol)
+type NestedSecurityGroupRule_Protocol struct {
+	union json.RawMessage
+}
+
 // NetworkRBACPolicy defines model for NetworkRBACPolicy.
 type NetworkRBACPolicy struct {
 	BackendId   *string    `json:"backend_id,omitempty"`
@@ -15430,9 +15641,6 @@ type OpenStackBackupRestorationRequest struct {
 
 	// Ports Network ports that will be attached to the restored instance
 	Ports *[]OpenStackNestedPortRequest `json:"ports,omitempty"`
-
-	// SecurityGroups Security groups that will be assigned to the restored instance
-	SecurityGroups *[]OpenStackNestedSecurityGroupRequest `json:"security_groups,omitempty"`
 }
 
 // OpenStackDataVolumeRequest defines model for OpenStackDataVolumeRequest.
@@ -15730,7 +15938,7 @@ type OpenStackInstanceCreateOrderAttributes struct {
 	// Ports Network ports to attach to the instance
 	Ports []OpenStackNestedPortRequest `json:"ports"`
 
-	// SecurityGroups List of security groups to apply to the instance
+	// SecurityGroups Security groups to attach to the instance
 	SecurityGroups *[]OpenStackNestedSecurityGroupRequest `json:"security_groups,omitempty"`
 	SshPublicKey   *string                                `json:"ssh_public_key,omitempty"`
 
@@ -15843,21 +16051,11 @@ type OpenStackNestedPortRequest struct {
 
 // OpenStackNestedSecurityGroup defines model for OpenStackNestedSecurityGroup.
 type OpenStackNestedSecurityGroup struct {
-	Description *string `json:"description,omitempty"`
-	Name        *string `json:"name,omitempty"`
-	Rules       *[]struct {
-		Cidr        *string `json:"cidr"`
-		Description *string `json:"description"`
-		Direction   *string `json:"direction,omitempty"`
-		Ethertype   *string `json:"ethertype,omitempty"`
-		FromPort    *int    `json:"from_port"`
-		Id          *int    `json:"id,omitempty"`
-		Protocol    *string `json:"protocol"`
-		RemoteGroup *string `json:"remote_group"`
-		ToPort      *int    `json:"to_port"`
-	} `json:"rules,omitempty"`
-	State *string `json:"state,omitempty"`
-	Url   *string `json:"url,omitempty"`
+	Description *string                    `json:"description,omitempty"`
+	Name        *string                    `json:"name,omitempty"`
+	Rules       *[]NestedSecurityGroupRule `json:"rules,omitempty"`
+	State       *string                    `json:"state,omitempty"`
+	Url         *string                    `json:"url,omitempty"`
 }
 
 // OpenStackNestedSecurityGroupRequest defines model for OpenStackNestedSecurityGroupRequest.
@@ -17815,7 +18013,10 @@ type PatchedQuestionAdminRequest struct {
 	// AlwaysShowGuidance Show user guidance always, regardless of answer. If False, guidance is conditional on answer matching guidance_answer_value with guidance_operator
 	AlwaysShowGuidance *bool   `json:"always_show_guidance,omitempty"`
 	Checklist          *string `json:"checklist,omitempty"`
-	Description        *string `json:"description,omitempty"`
+
+	// DependencyLogicOperator Defines how multiple dependencies are evaluated. AND: All dependencies must be satisfied. OR: At least one dependency must be satisfied.
+	DependencyLogicOperator *DependencyLogicOperatorEnum `json:"dependency_logic_operator,omitempty"`
+	Description             *string                      `json:"description,omitempty"`
 
 	// GuidanceAnswerValue Answer value that triggers display of user guidance.
 	GuidanceAnswerValue interface{} `json:"guidance_answer_value"`
@@ -19324,7 +19525,10 @@ type QuestionAdmin struct {
 	Checklist          string              `json:"checklist"`
 	ChecklistName      *string             `json:"checklist_name,omitempty"`
 	ChecklistUuid      *openapi_types.UUID `json:"checklist_uuid,omitempty"`
-	Description        *string             `json:"description,omitempty"`
+
+	// DependencyLogicOperator Defines how multiple dependencies are evaluated. AND: All dependencies must be satisfied. OR: At least one dependency must be satisfied.
+	DependencyLogicOperator *DependencyLogicOperatorEnum `json:"dependency_logic_operator,omitempty"`
+	Description             *string                      `json:"description,omitempty"`
 
 	// GuidanceAnswerValue Answer value that triggers display of user guidance.
 	GuidanceAnswerValue interface{} `json:"guidance_answer_value"`
@@ -19370,9 +19574,12 @@ type QuestionAdminRequest struct {
 	AlwaysRequiresReview *bool `json:"always_requires_review,omitempty"`
 
 	// AlwaysShowGuidance Show user guidance always, regardless of answer. If False, guidance is conditional on answer matching guidance_answer_value with guidance_operator
-	AlwaysShowGuidance *bool   `json:"always_show_guidance,omitempty"`
-	Checklist          string  `json:"checklist"`
-	Description        *string `json:"description,omitempty"`
+	AlwaysShowGuidance *bool  `json:"always_show_guidance,omitempty"`
+	Checklist          string `json:"checklist"`
+
+	// DependencyLogicOperator Defines how multiple dependencies are evaluated. AND: All dependencies must be satisfied. OR: At least one dependency must be satisfied.
+	DependencyLogicOperator *DependencyLogicOperatorEnum `json:"dependency_logic_operator,omitempty"`
+	Description             *string                      `json:"description,omitempty"`
 
 	// GuidanceAnswerValue Answer value that triggers display of user guidance.
 	GuidanceAnswerValue interface{} `json:"guidance_answer_value"`
@@ -25350,6 +25557,37 @@ type MaintenanceAnnouncementsCountParamsO string
 
 // MaintenanceAnnouncementsCountParamsState defines parameters for MaintenanceAnnouncementsCount.
 type MaintenanceAnnouncementsCountParamsState string
+
+// ManagedRancherClusterResourcesListParams defines parameters for ManagedRancherClusterResourcesList.
+type ManagedRancherClusterResourcesListParams struct {
+	Field *[]ManagedRancherClusterResourcesListParamsField `form:"field,omitempty" json:"field,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// ManagedRancherClusterResourcesListParamsField defines parameters for ManagedRancherClusterResourcesList.
+type ManagedRancherClusterResourcesListParamsField string
+
+// ManagedRancherClusterResourcesCountParams defines parameters for ManagedRancherClusterResourcesCount.
+type ManagedRancherClusterResourcesCountParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// ManagedRancherClusterResourcesRetrieveParams defines parameters for ManagedRancherClusterResourcesRetrieve.
+type ManagedRancherClusterResourcesRetrieveParams struct {
+	Field *[]ManagedRancherClusterResourcesRetrieveParamsField `form:"field,omitempty" json:"field,omitempty"`
+}
+
+// ManagedRancherClusterResourcesRetrieveParamsField defines parameters for ManagedRancherClusterResourcesRetrieve.
+type ManagedRancherClusterResourcesRetrieveParamsField string
 
 // MarketplaceCategoriesListParams defines parameters for MarketplaceCategoriesList.
 type MarketplaceCategoriesListParams struct {
@@ -34041,6 +34279,9 @@ type MaintenanceAnnouncementsPartialUpdateJSONRequestBody = PatchedMaintenanceAn
 // MaintenanceAnnouncementsUpdateJSONRequestBody defines body for MaintenanceAnnouncementsUpdate for application/json ContentType.
 type MaintenanceAnnouncementsUpdateJSONRequestBody = MaintenanceAnnouncementRequest
 
+// ManagedRancherClusterResourcesAddNodeJSONRequestBody defines body for ManagedRancherClusterResourcesAddNode for application/json ContentType.
+type ManagedRancherClusterResourcesAddNodeJSONRequestBody = ManagedRancherCreateNodeRequest
+
 // MarketplaceCategoriesCreateJSONRequestBody defines body for MarketplaceCategoriesCreate for application/json ContentType.
 type MarketplaceCategoriesCreateJSONRequestBody = MarketplaceCategoryRequest
 
@@ -35658,6 +35899,68 @@ func (t NestedColumn_Widget) MarshalJSON() ([]byte, error) {
 }
 
 func (t *NestedColumn_Widget) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsProtocolEnum returns the union data inside the NestedSecurityGroupRule_Protocol as a ProtocolEnum
+func (t NestedSecurityGroupRule_Protocol) AsProtocolEnum() (ProtocolEnum, error) {
+	var body ProtocolEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromProtocolEnum overwrites any union data inside the NestedSecurityGroupRule_Protocol as the provided ProtocolEnum
+func (t *NestedSecurityGroupRule_Protocol) FromProtocolEnum(v ProtocolEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeProtocolEnum performs a merge with any union data inside the NestedSecurityGroupRule_Protocol, using the provided ProtocolEnum
+func (t *NestedSecurityGroupRule_Protocol) MergeProtocolEnum(v ProtocolEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsBlankEnum returns the union data inside the NestedSecurityGroupRule_Protocol as a BlankEnum
+func (t NestedSecurityGroupRule_Protocol) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the NestedSecurityGroupRule_Protocol as the provided BlankEnum
+func (t *NestedSecurityGroupRule_Protocol) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the NestedSecurityGroupRule_Protocol, using the provided BlankEnum
+func (t *NestedSecurityGroupRule_Protocol) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t NestedSecurityGroupRule_Protocol) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *NestedSecurityGroupRule_Protocol) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -40042,6 +40345,20 @@ type ClientInterface interface {
 
 	// MaintenanceAnnouncementsUnschedule request
 	MaintenanceAnnouncementsUnschedule(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ManagedRancherClusterResourcesList request
+	ManagedRancherClusterResourcesList(ctx context.Context, params *ManagedRancherClusterResourcesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ManagedRancherClusterResourcesCount request
+	ManagedRancherClusterResourcesCount(ctx context.Context, params *ManagedRancherClusterResourcesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ManagedRancherClusterResourcesRetrieve request
+	ManagedRancherClusterResourcesRetrieve(ctx context.Context, uuid openapi_types.UUID, params *ManagedRancherClusterResourcesRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ManagedRancherClusterResourcesAddNodeWithBody request with any body
+	ManagedRancherClusterResourcesAddNodeWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ManagedRancherClusterResourcesAddNode(ctx context.Context, uuid openapi_types.UUID, body ManagedRancherClusterResourcesAddNodeJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceBookingsList request
 	MarketplaceBookingsList(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -50960,6 +51277,66 @@ func (c *Client) MaintenanceAnnouncementsStartMaintenance(ctx context.Context, u
 
 func (c *Client) MaintenanceAnnouncementsUnschedule(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMaintenanceAnnouncementsUnscheduleRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ManagedRancherClusterResourcesList(ctx context.Context, params *ManagedRancherClusterResourcesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewManagedRancherClusterResourcesListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ManagedRancherClusterResourcesCount(ctx context.Context, params *ManagedRancherClusterResourcesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewManagedRancherClusterResourcesCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ManagedRancherClusterResourcesRetrieve(ctx context.Context, uuid openapi_types.UUID, params *ManagedRancherClusterResourcesRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewManagedRancherClusterResourcesRetrieveRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ManagedRancherClusterResourcesAddNodeWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewManagedRancherClusterResourcesAddNodeRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ManagedRancherClusterResourcesAddNode(ctx context.Context, uuid openapi_types.UUID, body ManagedRancherClusterResourcesAddNodeJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewManagedRancherClusterResourcesAddNodeRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -103658,6 +104035,255 @@ func NewMaintenanceAnnouncementsUnscheduleRequest(server string, uuid openapi_ty
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewManagedRancherClusterResourcesListRequest generates requests for ManagedRancherClusterResourcesList
+func NewManagedRancherClusterResourcesListRequest(server string, params *ManagedRancherClusterResourcesListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/managed-rancher-cluster-resources/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Field != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "field", runtime.ParamLocationQuery, *params.Field); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewManagedRancherClusterResourcesCountRequest generates requests for ManagedRancherClusterResourcesCount
+func NewManagedRancherClusterResourcesCountRequest(server string, params *ManagedRancherClusterResourcesCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/managed-rancher-cluster-resources/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewManagedRancherClusterResourcesRetrieveRequest generates requests for ManagedRancherClusterResourcesRetrieve
+func NewManagedRancherClusterResourcesRetrieveRequest(server string, uuid openapi_types.UUID, params *ManagedRancherClusterResourcesRetrieveParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/managed-rancher-cluster-resources/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Field != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "field", runtime.ParamLocationQuery, *params.Field); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewManagedRancherClusterResourcesAddNodeRequest calls the generic ManagedRancherClusterResourcesAddNode builder with application/json body
+func NewManagedRancherClusterResourcesAddNodeRequest(server string, uuid openapi_types.UUID, body ManagedRancherClusterResourcesAddNodeJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewManagedRancherClusterResourcesAddNodeRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewManagedRancherClusterResourcesAddNodeRequestWithBody generates requests for ManagedRancherClusterResourcesAddNode with any type of body
+func NewManagedRancherClusterResourcesAddNodeRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/managed-rancher-cluster-resources/%s/add_node/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -200289,6 +200915,20 @@ type ClientWithResponsesInterface interface {
 	// MaintenanceAnnouncementsUnscheduleWithResponse request
 	MaintenanceAnnouncementsUnscheduleWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MaintenanceAnnouncementsUnscheduleResponse, error)
 
+	// ManagedRancherClusterResourcesListWithResponse request
+	ManagedRancherClusterResourcesListWithResponse(ctx context.Context, params *ManagedRancherClusterResourcesListParams, reqEditors ...RequestEditorFn) (*ManagedRancherClusterResourcesListResponse, error)
+
+	// ManagedRancherClusterResourcesCountWithResponse request
+	ManagedRancherClusterResourcesCountWithResponse(ctx context.Context, params *ManagedRancherClusterResourcesCountParams, reqEditors ...RequestEditorFn) (*ManagedRancherClusterResourcesCountResponse, error)
+
+	// ManagedRancherClusterResourcesRetrieveWithResponse request
+	ManagedRancherClusterResourcesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ManagedRancherClusterResourcesRetrieveParams, reqEditors ...RequestEditorFn) (*ManagedRancherClusterResourcesRetrieveResponse, error)
+
+	// ManagedRancherClusterResourcesAddNodeWithBodyWithResponse request with any body
+	ManagedRancherClusterResourcesAddNodeWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ManagedRancherClusterResourcesAddNodeResponse, error)
+
+	ManagedRancherClusterResourcesAddNodeWithResponse(ctx context.Context, uuid openapi_types.UUID, body ManagedRancherClusterResourcesAddNodeJSONRequestBody, reqEditors ...RequestEditorFn) (*ManagedRancherClusterResourcesAddNodeResponse, error)
+
 	// MarketplaceBookingsListWithResponse request
 	MarketplaceBookingsListWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*MarketplaceBookingsListResponse, error)
 
@@ -213944,6 +214584,93 @@ func (r MaintenanceAnnouncementsUnscheduleResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MaintenanceAnnouncementsUnscheduleResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ManagedRancherClusterResourcesListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]Resource
+}
+
+// Status returns HTTPResponse.Status
+func (r ManagedRancherClusterResourcesListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ManagedRancherClusterResourcesListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ManagedRancherClusterResourcesCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r ManagedRancherClusterResourcesCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ManagedRancherClusterResourcesCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ManagedRancherClusterResourcesRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *Resource
+}
+
+// Status returns HTTPResponse.Status
+func (r ManagedRancherClusterResourcesRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ManagedRancherClusterResourcesRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ManagedRancherClusterResourcesAddNodeResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *RancherNode
+}
+
+// Status returns HTTPResponse.Status
+func (r ManagedRancherClusterResourcesAddNodeResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ManagedRancherClusterResourcesAddNodeResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -242710,6 +243437,50 @@ func (c *ClientWithResponses) MaintenanceAnnouncementsUnscheduleWithResponse(ctx
 	return ParseMaintenanceAnnouncementsUnscheduleResponse(rsp)
 }
 
+// ManagedRancherClusterResourcesListWithResponse request returning *ManagedRancherClusterResourcesListResponse
+func (c *ClientWithResponses) ManagedRancherClusterResourcesListWithResponse(ctx context.Context, params *ManagedRancherClusterResourcesListParams, reqEditors ...RequestEditorFn) (*ManagedRancherClusterResourcesListResponse, error) {
+	rsp, err := c.ManagedRancherClusterResourcesList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseManagedRancherClusterResourcesListResponse(rsp)
+}
+
+// ManagedRancherClusterResourcesCountWithResponse request returning *ManagedRancherClusterResourcesCountResponse
+func (c *ClientWithResponses) ManagedRancherClusterResourcesCountWithResponse(ctx context.Context, params *ManagedRancherClusterResourcesCountParams, reqEditors ...RequestEditorFn) (*ManagedRancherClusterResourcesCountResponse, error) {
+	rsp, err := c.ManagedRancherClusterResourcesCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseManagedRancherClusterResourcesCountResponse(rsp)
+}
+
+// ManagedRancherClusterResourcesRetrieveWithResponse request returning *ManagedRancherClusterResourcesRetrieveResponse
+func (c *ClientWithResponses) ManagedRancherClusterResourcesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ManagedRancherClusterResourcesRetrieveParams, reqEditors ...RequestEditorFn) (*ManagedRancherClusterResourcesRetrieveResponse, error) {
+	rsp, err := c.ManagedRancherClusterResourcesRetrieve(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseManagedRancherClusterResourcesRetrieveResponse(rsp)
+}
+
+// ManagedRancherClusterResourcesAddNodeWithBodyWithResponse request with arbitrary body returning *ManagedRancherClusterResourcesAddNodeResponse
+func (c *ClientWithResponses) ManagedRancherClusterResourcesAddNodeWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ManagedRancherClusterResourcesAddNodeResponse, error) {
+	rsp, err := c.ManagedRancherClusterResourcesAddNodeWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseManagedRancherClusterResourcesAddNodeResponse(rsp)
+}
+
+func (c *ClientWithResponses) ManagedRancherClusterResourcesAddNodeWithResponse(ctx context.Context, uuid openapi_types.UUID, body ManagedRancherClusterResourcesAddNodeJSONRequestBody, reqEditors ...RequestEditorFn) (*ManagedRancherClusterResourcesAddNodeResponse, error) {
+	rsp, err := c.ManagedRancherClusterResourcesAddNode(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseManagedRancherClusterResourcesAddNodeResponse(rsp)
+}
+
 // MarketplaceBookingsListWithResponse request returning *MarketplaceBookingsListResponse
 func (c *ClientWithResponses) MarketplaceBookingsListWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*MarketplaceBookingsListResponse, error) {
 	rsp, err := c.MarketplaceBookingsList(ctx, uuid, reqEditors...)
@@ -265310,6 +266081,100 @@ func ParseMaintenanceAnnouncementsUnscheduleResponse(rsp *http.Response) (*Maint
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest MaintenanceActionResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseManagedRancherClusterResourcesListResponse parses an HTTP response from a ManagedRancherClusterResourcesListWithResponse call
+func ParseManagedRancherClusterResourcesListResponse(rsp *http.Response) (*ManagedRancherClusterResourcesListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ManagedRancherClusterResourcesListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []Resource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseManagedRancherClusterResourcesCountResponse parses an HTTP response from a ManagedRancherClusterResourcesCountWithResponse call
+func ParseManagedRancherClusterResourcesCountResponse(rsp *http.Response) (*ManagedRancherClusterResourcesCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ManagedRancherClusterResourcesCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseManagedRancherClusterResourcesRetrieveResponse parses an HTTP response from a ManagedRancherClusterResourcesRetrieveWithResponse call
+func ParseManagedRancherClusterResourcesRetrieveResponse(rsp *http.Response) (*ManagedRancherClusterResourcesRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ManagedRancherClusterResourcesRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest Resource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseManagedRancherClusterResourcesAddNodeResponse parses an HTTP response from a ManagedRancherClusterResourcesAddNodeWithResponse call
+func ParseManagedRancherClusterResourcesAddNodeResponse(rsp *http.Response) (*ManagedRancherClusterResourcesAddNodeResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ManagedRancherClusterResourcesAddNodeResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest RancherNode
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
