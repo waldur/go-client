@@ -18822,17 +18822,18 @@ type ProjectsUsagesGroupedByOecd struct {
 
 // Proposal defines model for Proposal.
 type Proposal struct {
-	AllocationComment *string                 `json:"allocation_comment"`
-	ApprovedBy        *string                 `json:"approved_by"`
-	CallName          *string                 `json:"call_name,omitempty"`
-	CallUuid          *openapi_types.UUID     `json:"call_uuid,omitempty"`
-	CanSubmit         *map[string]interface{} `json:"can_submit,omitempty"`
-	ComplianceStatus  *map[string]interface{} `json:"compliance_status"`
-	Created           *time.Time              `json:"created,omitempty"`
-	CreatedBy         *string                 `json:"created_by"`
-	CreatedByName     *string                 `json:"created_by_name,omitempty"`
-	CreatedByUuid     *openapi_types.UUID     `json:"created_by_uuid,omitempty"`
-	Description       *string                 `json:"description,omitempty"`
+	AllocationComment            *string                 `json:"allocation_comment"`
+	ApprovedBy                   *string                 `json:"approved_by"`
+	CallManagingOrganisationUuid *openapi_types.UUID     `json:"call_managing_organisation_uuid,omitempty"`
+	CallName                     *string                 `json:"call_name,omitempty"`
+	CallUuid                     *openapi_types.UUID     `json:"call_uuid,omitempty"`
+	CanSubmit                    *map[string]interface{} `json:"can_submit,omitempty"`
+	ComplianceStatus             *map[string]interface{} `json:"compliance_status"`
+	Created                      *time.Time              `json:"created,omitempty"`
+	CreatedBy                    *string                 `json:"created_by"`
+	CreatedByName                *string                 `json:"created_by_name,omitempty"`
+	CreatedByUuid                *openapi_types.UUID     `json:"created_by_uuid,omitempty"`
+	Description                  *string                 `json:"description,omitempty"`
 
 	// DurationInDays Duration in days after provisioning of resources.
 	DurationInDays            *int                      `json:"duration_in_days"`
@@ -18919,6 +18920,7 @@ type ProposalReview struct {
 	// AnonymousReviewerName Generate an anonymous reviewer identifier like 'Reviewer 1', 'Reviewer 2'.
 	// Returns None if the review is not associated with a proposal.
 	AnonymousReviewerName                 *string                  `json:"anonymous_reviewer_name"`
+	CallManagingOrganisationUuid          *openapi_types.UUID      `json:"call_managing_organisation_uuid,omitempty"`
 	CallName                              *string                  `json:"call_name,omitempty"`
 	CallUuid                              *openapi_types.UUID      `json:"call_uuid,omitempty"`
 	CommentProjectDescription             *string                  `json:"comment_project_description"`
