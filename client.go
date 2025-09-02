@@ -3262,6 +3262,18 @@ const (
 	InvoicesRetrieveParamsFieldYear            InvoicesRetrieveParamsField = "year"
 )
 
+// Defines values for InvoicesItemsRetrieveParamsO.
+const (
+	InvoicesItemsRetrieveParamsOMinusName         InvoicesItemsRetrieveParamsO = "-name"
+	InvoicesItemsRetrieveParamsOMinusProjectName  InvoicesItemsRetrieveParamsO = "-project_name"
+	InvoicesItemsRetrieveParamsOMinusProviderName InvoicesItemsRetrieveParamsO = "-provider_name"
+	InvoicesItemsRetrieveParamsOMinusResourceName InvoicesItemsRetrieveParamsO = "-resource_name"
+	InvoicesItemsRetrieveParamsOName              InvoicesItemsRetrieveParamsO = "name"
+	InvoicesItemsRetrieveParamsOProjectName       InvoicesItemsRetrieveParamsO = "project_name"
+	InvoicesItemsRetrieveParamsOProviderName      InvoicesItemsRetrieveParamsO = "provider_name"
+	InvoicesItemsRetrieveParamsOResourceName      InvoicesItemsRetrieveParamsO = "resource_name"
+)
+
 // Defines values for InvoicesStatsListParamsO.
 const (
 	InvoicesStatsListParamsOCreated      InvoicesStatsListParamsO = "created"
@@ -25198,12 +25210,18 @@ type InvoicesRetrieveParamsField string
 // InvoicesItemsRetrieveParams defines parameters for InvoicesItemsRetrieve.
 type InvoicesItemsRetrieveParams struct {
 	// ConcealCompensationItems Conceal compensation items
-	ConcealCompensationItems *bool   `form:"conceal_compensation_items,omitempty" json:"conceal_compensation_items,omitempty"`
-	OfferingUuid             *string `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
-	ProjectUuid              *string `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	ProviderUuid             *string `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
-	Query                    *string `form:"query,omitempty" json:"query,omitempty"`
+	ConcealCompensationItems *bool `form:"conceal_compensation_items,omitempty" json:"conceal_compensation_items,omitempty"`
+
+	// O Order results by field
+	O            *InvoicesItemsRetrieveParamsO `form:"o,omitempty" json:"o,omitempty"`
+	OfferingUuid *string                       `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	ProjectUuid  *string                       `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	ProviderUuid *string                       `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
+	Query        *string                       `form:"query,omitempty" json:"query,omitempty"`
 }
+
+// InvoicesItemsRetrieveParamsO defines parameters for InvoicesItemsRetrieve.
+type InvoicesItemsRetrieveParamsO string
 
 // InvoicesStatsListParams defines parameters for InvoicesStatsList.
 type InvoicesStatsListParams struct {
@@ -99489,6 +99507,22 @@ func NewInvoicesItemsRetrieveRequest(server string, uuid openapi_types.UUID, par
 		if params.ConcealCompensationItems != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "conceal_compensation_items", runtime.ParamLocationQuery, *params.ConcealCompensationItems); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "o", runtime.ParamLocationQuery, *params.O); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
