@@ -3802,6 +3802,20 @@ const (
 	MarketplaceComponentUserUsagesRetrieveParamsFieldUuid           MarketplaceComponentUserUsagesRetrieveParamsField = "uuid"
 )
 
+// Defines values for MarketplaceCustomerServiceAccountsListParamsState.
+const (
+	MarketplaceCustomerServiceAccountsListParamsStateClosed MarketplaceCustomerServiceAccountsListParamsState = "Closed"
+	MarketplaceCustomerServiceAccountsListParamsStateErred  MarketplaceCustomerServiceAccountsListParamsState = "Erred"
+	MarketplaceCustomerServiceAccountsListParamsStateOK     MarketplaceCustomerServiceAccountsListParamsState = "OK"
+)
+
+// Defines values for MarketplaceCustomerServiceAccountsCountParamsState.
+const (
+	MarketplaceCustomerServiceAccountsCountParamsStateClosed MarketplaceCustomerServiceAccountsCountParamsState = "Closed"
+	MarketplaceCustomerServiceAccountsCountParamsStateErred  MarketplaceCustomerServiceAccountsCountParamsState = "Erred"
+	MarketplaceCustomerServiceAccountsCountParamsStateOK     MarketplaceCustomerServiceAccountsCountParamsState = "OK"
+)
+
 // Defines values for MarketplaceIntegrationStatusesListParamsO.
 const (
 	MarketplaceIntegrationStatusesListParamsOLastRequestTimestamp      MarketplaceIntegrationStatusesListParamsO = "last_request_timestamp"
@@ -4274,6 +4288,20 @@ const (
 	MarketplaceOrdersRetrieveParamsFieldTerminationComment         MarketplaceOrdersRetrieveParamsField = "termination_comment"
 	MarketplaceOrdersRetrieveParamsFieldType                       MarketplaceOrdersRetrieveParamsField = "type"
 	MarketplaceOrdersRetrieveParamsFieldUuid                       MarketplaceOrdersRetrieveParamsField = "uuid"
+)
+
+// Defines values for MarketplaceProjectServiceAccountsListParamsState.
+const (
+	MarketplaceProjectServiceAccountsListParamsStateClosed MarketplaceProjectServiceAccountsListParamsState = "Closed"
+	MarketplaceProjectServiceAccountsListParamsStateErred  MarketplaceProjectServiceAccountsListParamsState = "Erred"
+	MarketplaceProjectServiceAccountsListParamsStateOK     MarketplaceProjectServiceAccountsListParamsState = "OK"
+)
+
+// Defines values for MarketplaceProjectServiceAccountsCountParamsState.
+const (
+	MarketplaceProjectServiceAccountsCountParamsStateClosed MarketplaceProjectServiceAccountsCountParamsState = "Closed"
+	MarketplaceProjectServiceAccountsCountParamsStateErred  MarketplaceProjectServiceAccountsCountParamsState = "Erred"
+	MarketplaceProjectServiceAccountsCountParamsStateOK     MarketplaceProjectServiceAccountsCountParamsState = "OK"
 )
 
 // Defines values for MarketplaceProjectUpdateRequestsListParamsState.
@@ -5942,6 +5970,13 @@ const (
 	MarketplaceServiceProvidersProjectPermissionsListParamsONativeName          MarketplaceServiceProvidersProjectPermissionsListParamsO = "native_name"
 	MarketplaceServiceProvidersProjectPermissionsListParamsORole                MarketplaceServiceProvidersProjectPermissionsListParamsO = "role"
 	MarketplaceServiceProvidersProjectPermissionsListParamsOUsername            MarketplaceServiceProvidersProjectPermissionsListParamsO = "username"
+)
+
+// Defines values for MarketplaceServiceProvidersProjectServiceAccountsListParamsState.
+const (
+	MarketplaceServiceProvidersProjectServiceAccountsListParamsStateClosed MarketplaceServiceProvidersProjectServiceAccountsListParamsState = "Closed"
+	MarketplaceServiceProvidersProjectServiceAccountsListParamsStateErred  MarketplaceServiceProvidersProjectServiceAccountsListParamsState = "Erred"
+	MarketplaceServiceProvidersProjectServiceAccountsListParamsStateOK     MarketplaceServiceProvidersProjectServiceAccountsListParamsState = "OK"
 )
 
 // Defines values for MarketplaceServiceProvidersProjectsListParamsField.
@@ -10055,14 +10090,14 @@ const (
 
 // Defines values for VmwareVirtualMachineCountParamsState.
 const (
-	VmwareVirtualMachineCountParamsStateCREATING          VmwareVirtualMachineCountParamsState = "CREATING"
-	VmwareVirtualMachineCountParamsStateCREATIONSCHEDULED VmwareVirtualMachineCountParamsState = "CREATION_SCHEDULED"
-	VmwareVirtualMachineCountParamsStateDELETING          VmwareVirtualMachineCountParamsState = "DELETING"
-	VmwareVirtualMachineCountParamsStateDELETIONSCHEDULED VmwareVirtualMachineCountParamsState = "DELETION_SCHEDULED"
-	VmwareVirtualMachineCountParamsStateERRED             VmwareVirtualMachineCountParamsState = "ERRED"
-	VmwareVirtualMachineCountParamsStateOK                VmwareVirtualMachineCountParamsState = "OK"
-	VmwareVirtualMachineCountParamsStateUPDATESCHEDULED   VmwareVirtualMachineCountParamsState = "UPDATE_SCHEDULED"
-	VmwareVirtualMachineCountParamsStateUPDATING          VmwareVirtualMachineCountParamsState = "UPDATING"
+	CREATING          VmwareVirtualMachineCountParamsState = "CREATING"
+	CREATIONSCHEDULED VmwareVirtualMachineCountParamsState = "CREATION_SCHEDULED"
+	DELETING          VmwareVirtualMachineCountParamsState = "DELETING"
+	DELETIONSCHEDULED VmwareVirtualMachineCountParamsState = "DELETION_SCHEDULED"
+	ERRED             VmwareVirtualMachineCountParamsState = "ERRED"
+	OK                VmwareVirtualMachineCountParamsState = "OK"
+	UPDATESCHEDULED   VmwareVirtualMachineCountParamsState = "UPDATE_SCHEDULED"
+	UPDATING          VmwareVirtualMachineCountParamsState = "UPDATING"
 )
 
 // Defines values for VmwareVirtualMachineRetrieveParamsField.
@@ -25980,9 +26015,13 @@ type MarketplaceCustomerServiceAccountsListParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Username *string   `form:"username,omitempty" json:"username,omitempty"`
+	PageSize *PageSize                                            `form:"page_size,omitempty" json:"page_size,omitempty"`
+	State    *[]MarketplaceCustomerServiceAccountsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+	Username *string                                              `form:"username,omitempty" json:"username,omitempty"`
 }
+
+// MarketplaceCustomerServiceAccountsListParamsState defines parameters for MarketplaceCustomerServiceAccountsList.
+type MarketplaceCustomerServiceAccountsListParamsState string
 
 // MarketplaceCustomerServiceAccountsCountParams defines parameters for MarketplaceCustomerServiceAccountsCount.
 type MarketplaceCustomerServiceAccountsCountParams struct {
@@ -25994,9 +26033,13 @@ type MarketplaceCustomerServiceAccountsCountParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Username *string   `form:"username,omitempty" json:"username,omitempty"`
+	PageSize *PageSize                                             `form:"page_size,omitempty" json:"page_size,omitempty"`
+	State    *[]MarketplaceCustomerServiceAccountsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+	Username *string                                               `form:"username,omitempty" json:"username,omitempty"`
 }
+
+// MarketplaceCustomerServiceAccountsCountParamsState defines parameters for MarketplaceCustomerServiceAccountsCount.
+type MarketplaceCustomerServiceAccountsCountParamsState string
 
 // MarketplaceGlobalCategoriesRetrieveParams defines parameters for MarketplaceGlobalCategoriesRetrieve.
 type MarketplaceGlobalCategoriesRetrieveParams struct {
@@ -26835,11 +26878,15 @@ type MarketplaceProjectServiceAccountsListParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize    *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project     *string             `form:"project,omitempty" json:"project,omitempty"`
-	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	Username    *string             `form:"username,omitempty" json:"username,omitempty"`
+	PageSize    *PageSize                                           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Project     *string                                             `form:"project,omitempty" json:"project,omitempty"`
+	ProjectUuid *openapi_types.UUID                                 `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	State       *[]MarketplaceProjectServiceAccountsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+	Username    *string                                             `form:"username,omitempty" json:"username,omitempty"`
 }
+
+// MarketplaceProjectServiceAccountsListParamsState defines parameters for MarketplaceProjectServiceAccountsList.
+type MarketplaceProjectServiceAccountsListParamsState string
 
 // MarketplaceProjectServiceAccountsCountParams defines parameters for MarketplaceProjectServiceAccountsCount.
 type MarketplaceProjectServiceAccountsCountParams struct {
@@ -26849,11 +26896,15 @@ type MarketplaceProjectServiceAccountsCountParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize    *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project     *string             `form:"project,omitempty" json:"project,omitempty"`
-	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	Username    *string             `form:"username,omitempty" json:"username,omitempty"`
+	PageSize    *PageSize                                            `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Project     *string                                              `form:"project,omitempty" json:"project,omitempty"`
+	ProjectUuid *openapi_types.UUID                                  `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	State       *[]MarketplaceProjectServiceAccountsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+	Username    *string                                              `form:"username,omitempty" json:"username,omitempty"`
 }
+
+// MarketplaceProjectServiceAccountsCountParamsState defines parameters for MarketplaceProjectServiceAccountsCount.
+type MarketplaceProjectServiceAccountsCountParamsState string
 
 // MarketplaceProjectUpdateRequestsListParams defines parameters for MarketplaceProjectUpdateRequestsList.
 type MarketplaceProjectUpdateRequestsListParams struct {
@@ -28505,11 +28556,15 @@ type MarketplaceServiceProvidersProjectServiceAccountsListParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize    *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project     *string             `form:"project,omitempty" json:"project,omitempty"`
-	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	Username    *string             `form:"username,omitempty" json:"username,omitempty"`
+	PageSize    *PageSize                                                           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Project     *string                                                             `form:"project,omitempty" json:"project,omitempty"`
+	ProjectUuid *openapi_types.UUID                                                 `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	State       *[]MarketplaceServiceProvidersProjectServiceAccountsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+	Username    *string                                                             `form:"username,omitempty" json:"username,omitempty"`
 }
+
+// MarketplaceServiceProvidersProjectServiceAccountsListParamsState defines parameters for MarketplaceServiceProvidersProjectServiceAccountsList.
+type MarketplaceServiceProvidersProjectServiceAccountsListParamsState string
 
 // MarketplaceServiceProvidersProjectsListParams defines parameters for MarketplaceServiceProvidersProjectsList.
 type MarketplaceServiceProvidersProjectsListParams struct {
@@ -108555,6 +108610,22 @@ func NewMarketplaceCustomerServiceAccountsListRequest(server string, params *Mar
 
 		}
 
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "state", runtime.ParamLocationQuery, *params.State); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Username != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "username", runtime.ParamLocationQuery, *params.Username); err != nil {
@@ -108671,6 +108742,22 @@ func NewMarketplaceCustomerServiceAccountsCountRequest(server string, params *Ma
 		if params.PageSize != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "state", runtime.ParamLocationQuery, *params.State); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -117988,6 +118075,22 @@ func NewMarketplaceProjectServiceAccountsListRequest(server string, params *Mark
 
 		}
 
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "state", runtime.ParamLocationQuery, *params.State); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Username != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "username", runtime.ParamLocationQuery, *params.Username); err != nil {
@@ -118104,6 +118207,22 @@ func NewMarketplaceProjectServiceAccountsCountRequest(server string, params *Mar
 		if params.ProjectUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_uuid", runtime.ParamLocationQuery, *params.ProjectUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "state", runtime.ParamLocationQuery, *params.State); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -135024,6 +135143,22 @@ func NewMarketplaceServiceProvidersProjectServiceAccountsListRequest(server stri
 		if params.ProjectUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_uuid", runtime.ParamLocationQuery, *params.ProjectUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "state", runtime.ParamLocationQuery, *params.State); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
