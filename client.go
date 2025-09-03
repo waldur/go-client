@@ -1027,16 +1027,6 @@ const (
 	AfterRound    ReviewStrategyEnum = "after_round"
 )
 
-// Defines values for RobotAccountStates.
-const (
-	RobotAccountStatesN1 RobotAccountStates = 1
-	RobotAccountStatesN2 RobotAccountStates = 2
-	RobotAccountStatesN3 RobotAccountStates = 3
-	RobotAccountStatesN4 RobotAccountStates = 4
-	RobotAccountStatesN5 RobotAccountStates = 5
-	RobotAccountStatesN6 RobotAccountStates = 6
-)
-
 // Defines values for RoleEnum.
 const (
 	RoleEnumAgent  RoleEnum = "agent"
@@ -1052,6 +1042,13 @@ const (
 	RoleTypeProject         RoleType = "project"
 	RoleTypeProposal        RoleType = "proposal"
 	RoleTypeServiceProvider RoleType = "service_provider"
+)
+
+// Defines values for ServiceAccountState.
+const (
+	ServiceAccountStateN1 ServiceAccountState = 1
+	ServiceAccountStateN2 ServiceAccountState = 2
+	ServiceAccountStateN3 ServiceAccountState = 3
 )
 
 // Defines values for ServiceProviderOfferingUserComplianceStateEnum.
@@ -12508,6 +12505,7 @@ type CustomerServiceAccount struct {
 	ExpiresAt           *string              `json:"expires_at"`
 	Modified            *time.Time           `json:"modified,omitempty"`
 	PreferredIdentifier *string              `json:"preferred_identifier,omitempty"`
+	State               *ServiceAccountState `json:"state,omitempty"`
 	Token               *string              `json:"token"`
 	Url                 *string              `json:"url,omitempty"`
 	Username            *string              `json:"username,omitempty"`
@@ -18809,6 +18807,7 @@ type ProjectServiceAccount struct {
 	Project              openapi_types.UUID   `json:"project"`
 	ProjectName          *string              `json:"project_name,omitempty"`
 	ProjectUuid          *openapi_types.UUID  `json:"project_uuid,omitempty"`
+	State                *ServiceAccountState `json:"state,omitempty"`
 	Token                *string              `json:"token"`
 	Url                  *string              `json:"url,omitempty"`
 	Username             *string              `json:"username,omitempty"`
@@ -21093,17 +21092,17 @@ type RmqWaldurUser struct {
 
 // RobotAccount defines model for RobotAccount.
 type RobotAccount struct {
-	BackendId       *string             `json:"backend_id,omitempty"`
-	Created         *time.Time          `json:"created,omitempty"`
-	Description     *string             `json:"description,omitempty"`
-	ErrorMessage    *string             `json:"error_message,omitempty"`
-	ErrorTraceback  *string             `json:"error_traceback,omitempty"`
-	Fingerprints    *[]Fingerprint      `json:"fingerprints,omitempty"`
-	Keys            interface{}         `json:"keys,omitempty"`
-	Modified        *time.Time          `json:"modified,omitempty"`
-	Resource        string              `json:"resource"`
-	ResponsibleUser *string             `json:"responsible_user"`
-	State           *RobotAccountStates `json:"state,omitempty"`
+	BackendId       *string        `json:"backend_id,omitempty"`
+	Created         *time.Time     `json:"created,omitempty"`
+	Description     *string        `json:"description,omitempty"`
+	ErrorMessage    *string        `json:"error_message,omitempty"`
+	ErrorTraceback  *string        `json:"error_traceback,omitempty"`
+	Fingerprints    *[]Fingerprint `json:"fingerprints,omitempty"`
+	Keys            interface{}    `json:"keys,omitempty"`
+	Modified        *time.Time     `json:"modified,omitempty"`
+	Resource        string         `json:"resource"`
+	ResponsibleUser *string        `json:"responsible_user"`
+	State           *string        `json:"state,omitempty"`
 
 	// Type Type of the robot account.
 	Type     string  `json:"type"`
@@ -21135,7 +21134,7 @@ type RobotAccountDetails struct {
 	ResourceName          *string              `json:"resource_name,omitempty"`
 	ResourceUuid          *openapi_types.UUID  `json:"resource_uuid,omitempty"`
 	ResponsibleUser       *BasicUser           `json:"responsible_user"`
-	State                 *RobotAccountStates  `json:"state,omitempty"`
+	State                 *string              `json:"state,omitempty"`
 
 	// Type Type of the robot account.
 	Type     *string             `json:"type,omitempty"`
@@ -21166,9 +21165,6 @@ type RobotAccountRequest struct {
 	// Users Users who have access to this robot account.
 	Users *[]string `json:"users,omitempty"`
 }
-
-// RobotAccountStates defines model for RobotAccountStates.
-type RobotAccountStates int
 
 // RoleDescription defines model for RoleDescription.
 type RoleDescription struct {
@@ -21408,6 +21404,9 @@ type SectionRequest struct {
 	Key          string `json:"key"`
 	Title        string `json:"title"`
 }
+
+// ServiceAccountState defines model for ServiceAccountState.
+type ServiceAccountState int
 
 // ServiceProvider defines model for ServiceProvider.
 type ServiceProvider struct {
@@ -42908,9 +42907,6 @@ type ClientInterface interface {
 
 	ProjectsSubmitAnswers(ctx context.Context, uuid openapi_types.UUID, body ProjectsSubmitAnswersJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// ProjectsSyncUserRoles request
-	ProjectsSyncUserRoles(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
-
 	// ProjectsUpdateUserWithBody request with any body
 	ProjectsUpdateUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -44400,6 +44396,9 @@ type ClientInterface interface {
 
 	// VmwareVirtualMachineWebConsoleRetrieve request
 	VmwareVirtualMachineWebConsoleRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProjectsSyncUserRoles request
+	ProjectsSyncUserRoles(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
 }
 
 func (c *Client) ApiAuthEduteamsCompleteRetrieve(ctx context.Context, params *ApiAuthEduteamsCompleteRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
@@ -62186,18 +62185,6 @@ func (c *Client) ProjectsSubmitAnswers(ctx context.Context, uuid openapi_types.U
 	return c.Client.Do(req)
 }
 
-func (c *Client) ProjectsSyncUserRoles(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewProjectsSyncUserRolesRequest(c.Server, uuid)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
 func (c *Client) ProjectsUpdateUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProjectsUpdateUserRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
@@ -68644,6 +68631,18 @@ func (c *Client) VmwareVirtualMachineUnlink(ctx context.Context, uuid openapi_ty
 
 func (c *Client) VmwareVirtualMachineWebConsoleRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewVmwareVirtualMachineWebConsoleRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProjectsSyncUserRoles(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProjectsSyncUserRolesRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -165240,40 +165239,6 @@ func NewProjectsSubmitAnswersRequestWithBody(server string, uuid openapi_types.U
 	return req, nil
 }
 
-// NewProjectsSyncUserRolesRequest generates requests for ProjectsSyncUserRoles
-func NewProjectsSyncUserRolesRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/projects/%s/sync_user_roles/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("POST", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
 // NewProjectsUpdateUserRequest calls the generic ProjectsUpdateUser builder with application/json body
 func NewProjectsUpdateUserRequest(server string, uuid openapi_types.UUID, body ProjectsUpdateUserJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -199435,6 +199400,40 @@ func NewVmwareVirtualMachineWebConsoleRetrieveRequest(server string, uuid openap
 	return req, nil
 }
 
+// NewProjectsSyncUserRolesRequest generates requests for ProjectsSyncUserRoles
+func NewProjectsSyncUserRolesRequest(server string, uuid string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/projects/%s/sync_user_roles/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 func (c *Client) applyEditors(ctx context.Context, req *http.Request, additionalEditors []RequestEditorFn) error {
 	for _, r := range c.RequestEditors {
 		if err := r(ctx, req); err != nil {
@@ -203573,9 +203572,6 @@ type ClientWithResponsesInterface interface {
 
 	ProjectsSubmitAnswersWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProjectsSubmitAnswersJSONRequestBody, reqEditors ...RequestEditorFn) (*ProjectsSubmitAnswersResponse, error)
 
-	// ProjectsSyncUserRolesWithResponse request
-	ProjectsSyncUserRolesWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProjectsSyncUserRolesResponse, error)
-
 	// ProjectsUpdateUserWithBodyWithResponse request with any body
 	ProjectsUpdateUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProjectsUpdateUserResponse, error)
 
@@ -205065,6 +205061,9 @@ type ClientWithResponsesInterface interface {
 
 	// VmwareVirtualMachineWebConsoleRetrieveWithResponse request
 	VmwareVirtualMachineWebConsoleRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*VmwareVirtualMachineWebConsoleRetrieveResponse, error)
+
+	// ProjectsSyncUserRolesWithResponse request
+	ProjectsSyncUserRolesWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*ProjectsSyncUserRolesResponse, error)
 }
 
 type ApiAuthEduteamsCompleteRetrieveResponse struct {
@@ -229541,27 +229540,6 @@ func (r ProjectsSubmitAnswersResponse) StatusCode() int {
 	return 0
 }
 
-type ProjectsSyncUserRolesResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// Status returns HTTPResponse.Status
-func (r ProjectsSyncUserRolesResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r ProjectsSyncUserRolesResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
 type ProjectsUpdateUserResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -238514,6 +238492,27 @@ func (r VmwareVirtualMachineWebConsoleRetrieveResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r VmwareVirtualMachineWebConsoleRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ProjectsSyncUserRolesResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r ProjectsSyncUserRolesResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProjectsSyncUserRolesResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -251507,15 +251506,6 @@ func (c *ClientWithResponses) ProjectsSubmitAnswersWithResponse(ctx context.Cont
 	return ParseProjectsSubmitAnswersResponse(rsp)
 }
 
-// ProjectsSyncUserRolesWithResponse request returning *ProjectsSyncUserRolesResponse
-func (c *ClientWithResponses) ProjectsSyncUserRolesWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProjectsSyncUserRolesResponse, error) {
-	rsp, err := c.ProjectsSyncUserRoles(ctx, uuid, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseProjectsSyncUserRolesResponse(rsp)
-}
-
 // ProjectsUpdateUserWithBodyWithResponse request with arbitrary body returning *ProjectsUpdateUserResponse
 func (c *ClientWithResponses) ProjectsUpdateUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProjectsUpdateUserResponse, error) {
 	rsp, err := c.ProjectsUpdateUserWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -256232,6 +256222,15 @@ func (c *ClientWithResponses) VmwareVirtualMachineWebConsoleRetrieveWithResponse
 		return nil, err
 	}
 	return ParseVmwareVirtualMachineWebConsoleRetrieveResponse(rsp)
+}
+
+// ProjectsSyncUserRolesWithResponse request returning *ProjectsSyncUserRolesResponse
+func (c *ClientWithResponses) ProjectsSyncUserRolesWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*ProjectsSyncUserRolesResponse, error) {
+	rsp, err := c.ProjectsSyncUserRoles(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProjectsSyncUserRolesResponse(rsp)
 }
 
 // ParseApiAuthEduteamsCompleteRetrieveResponse parses an HTTP response from a ApiAuthEduteamsCompleteRetrieveWithResponse call
@@ -281509,22 +281508,6 @@ func ParseProjectsSubmitAnswersResponse(rsp *http.Response) (*ProjectsSubmitAnsw
 	return response, nil
 }
 
-// ParseProjectsSyncUserRolesResponse parses an HTTP response from a ProjectsSyncUserRolesWithResponse call
-func ParseProjectsSyncUserRolesResponse(rsp *http.Response) (*ProjectsSyncUserRolesResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &ProjectsSyncUserRolesResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	return response, nil
-}
-
 // ParseProjectsUpdateUserResponse parses an HTTP response from a ProjectsUpdateUserWithResponse call
 func ParseProjectsUpdateUserResponse(rsp *http.Response) (*ProjectsUpdateUserResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -290754,6 +290737,22 @@ func ParseVmwareVirtualMachineWebConsoleRetrieveResponse(rsp *http.Response) (*V
 		}
 		response.JSON200 = &dest
 
+	}
+
+	return response, nil
+}
+
+// ParseProjectsSyncUserRolesResponse parses an HTTP response from a ProjectsSyncUserRolesWithResponse call
+func ParseProjectsSyncUserRolesResponse(rsp *http.Response) (*ProjectsSyncUserRolesResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProjectsSyncUserRolesResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
 	}
 
 	return response, nil
