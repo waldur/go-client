@@ -18490,12 +18490,14 @@ type PermissionProject struct {
 
 // PermissionRequest defines model for PermissionRequest.
 type PermissionRequest struct {
-	Created           *time.Time          `json:"created,omitempty"`
-	CreatedByFullName *string             `json:"created_by_full_name,omitempty"`
-	CreatedByUsername *string             `json:"created_by_username,omitempty"`
-	CustomerName      *string             `json:"customer_name,omitempty"`
-	CustomerUuid      *openapi_types.UUID `json:"customer_uuid,omitempty"`
-	Invitation        string              `json:"invitation"`
+	Created             *time.Time           `json:"created,omitempty"`
+	CreatedByEmail      *openapi_types.Email `json:"created_by_email,omitempty"`
+	CreatedByFullName   *string              `json:"created_by_full_name,omitempty"`
+	CreatedByUsername   *string              `json:"created_by_username,omitempty"`
+	CustomerName        *string              `json:"customer_name,omitempty"`
+	CustomerUuid        *openapi_types.UUID  `json:"customer_uuid,omitempty"`
+	Invitation          string               `json:"invitation"`
+	ProjectNameTemplate *string              `json:"project_name_template,omitempty"`
 
 	// ReviewComment Optional comment provided during review
 	ReviewComment *string `json:"review_comment"`
