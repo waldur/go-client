@@ -1046,9 +1046,9 @@ const (
 
 // Defines values for ServiceAccountState.
 const (
-	ServiceAccountStateN1 ServiceAccountState = 1
-	ServiceAccountStateN2 ServiceAccountState = 2
-	ServiceAccountStateN3 ServiceAccountState = 3
+	ServiceAccountStateClosed ServiceAccountState = "Closed"
+	ServiceAccountStateErred  ServiceAccountState = "Erred"
+	ServiceAccountStateOK     ServiceAccountState = "OK"
 )
 
 // Defines values for ServiceProviderOfferingUserComplianceStateEnum.
@@ -5731,12 +5731,12 @@ const (
 
 // Defines values for MarketplaceRobotAccountsCountParamsState.
 const (
-	MarketplaceRobotAccountsCountParamsStateN1 MarketplaceRobotAccountsCountParamsState = 1
-	MarketplaceRobotAccountsCountParamsStateN2 MarketplaceRobotAccountsCountParamsState = 2
-	MarketplaceRobotAccountsCountParamsStateN3 MarketplaceRobotAccountsCountParamsState = 3
-	MarketplaceRobotAccountsCountParamsStateN4 MarketplaceRobotAccountsCountParamsState = 4
-	MarketplaceRobotAccountsCountParamsStateN5 MarketplaceRobotAccountsCountParamsState = 5
-	MarketplaceRobotAccountsCountParamsStateN6 MarketplaceRobotAccountsCountParamsState = 6
+	N1 MarketplaceRobotAccountsCountParamsState = 1
+	N2 MarketplaceRobotAccountsCountParamsState = 2
+	N3 MarketplaceRobotAccountsCountParamsState = 3
+	N4 MarketplaceRobotAccountsCountParamsState = 4
+	N5 MarketplaceRobotAccountsCountParamsState = 5
+	N6 MarketplaceRobotAccountsCountParamsState = 6
 )
 
 // Defines values for MarketplaceRobotAccountsRetrieveParamsField.
@@ -10087,14 +10087,14 @@ const (
 
 // Defines values for VmwareVirtualMachineCountParamsState.
 const (
-	CREATING          VmwareVirtualMachineCountParamsState = "CREATING"
-	CREATIONSCHEDULED VmwareVirtualMachineCountParamsState = "CREATION_SCHEDULED"
-	DELETING          VmwareVirtualMachineCountParamsState = "DELETING"
-	DELETIONSCHEDULED VmwareVirtualMachineCountParamsState = "DELETION_SCHEDULED"
-	ERRED             VmwareVirtualMachineCountParamsState = "ERRED"
-	OK                VmwareVirtualMachineCountParamsState = "OK"
-	UPDATESCHEDULED   VmwareVirtualMachineCountParamsState = "UPDATE_SCHEDULED"
-	UPDATING          VmwareVirtualMachineCountParamsState = "UPDATING"
+	VmwareVirtualMachineCountParamsStateCREATING          VmwareVirtualMachineCountParamsState = "CREATING"
+	VmwareVirtualMachineCountParamsStateCREATIONSCHEDULED VmwareVirtualMachineCountParamsState = "CREATION_SCHEDULED"
+	VmwareVirtualMachineCountParamsStateDELETING          VmwareVirtualMachineCountParamsState = "DELETING"
+	VmwareVirtualMachineCountParamsStateDELETIONSCHEDULED VmwareVirtualMachineCountParamsState = "DELETION_SCHEDULED"
+	VmwareVirtualMachineCountParamsStateERRED             VmwareVirtualMachineCountParamsState = "ERRED"
+	VmwareVirtualMachineCountParamsStateOK                VmwareVirtualMachineCountParamsState = "OK"
+	VmwareVirtualMachineCountParamsStateUPDATESCHEDULED   VmwareVirtualMachineCountParamsState = "UPDATE_SCHEDULED"
+	VmwareVirtualMachineCountParamsStateUPDATING          VmwareVirtualMachineCountParamsState = "UPDATING"
 )
 
 // Defines values for VmwareVirtualMachineRetrieveParamsField.
@@ -21406,7 +21406,7 @@ type SectionRequest struct {
 }
 
 // ServiceAccountState defines model for ServiceAccountState.
-type ServiceAccountState int
+type ServiceAccountState string
 
 // ServiceProvider defines model for ServiceProvider.
 type ServiceProvider struct {
