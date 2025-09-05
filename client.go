@@ -723,6 +723,12 @@ const (
 	InvoiceStateEnumPending  InvoiceStateEnum = "pending"
 )
 
+// Defines values for IssueStatusTypeEnum.
+const (
+	IssueStatusTypeEnumN0 IssueStatusTypeEnum = 0
+	IssueStatusTypeEnumN1 IssueStatusTypeEnum = 1
+)
+
 // Defines values for IssueTypeEnum.
 const (
 	ChangeRequest  IssueTypeEnum = "Change Request"
@@ -5731,12 +5737,12 @@ const (
 
 // Defines values for MarketplaceRobotAccountsCountParamsState.
 const (
-	N1 MarketplaceRobotAccountsCountParamsState = 1
-	N2 MarketplaceRobotAccountsCountParamsState = 2
-	N3 MarketplaceRobotAccountsCountParamsState = 3
-	N4 MarketplaceRobotAccountsCountParamsState = 4
-	N5 MarketplaceRobotAccountsCountParamsState = 5
-	N6 MarketplaceRobotAccountsCountParamsState = 6
+	MarketplaceRobotAccountsCountParamsStateN1 MarketplaceRobotAccountsCountParamsState = 1
+	MarketplaceRobotAccountsCountParamsStateN2 MarketplaceRobotAccountsCountParamsState = 2
+	MarketplaceRobotAccountsCountParamsStateN3 MarketplaceRobotAccountsCountParamsState = 3
+	MarketplaceRobotAccountsCountParamsStateN4 MarketplaceRobotAccountsCountParamsState = 4
+	MarketplaceRobotAccountsCountParamsStateN5 MarketplaceRobotAccountsCountParamsState = 5
+	MarketplaceRobotAccountsCountParamsStateN6 MarketplaceRobotAccountsCountParamsState = 6
 )
 
 // Defines values for MarketplaceRobotAccountsRetrieveParamsField.
@@ -11903,6 +11909,7 @@ type ConstanceSettings struct {
 	ENABLEMOCKSERVICEACCOUNTBACKEND                *bool                `json:"ENABLE_MOCK_SERVICE_ACCOUNT_BACKEND,omitempty"`
 	ENABLESTALERESOURCENOTIFICATIONS               *bool                `json:"ENABLE_STALE_RESOURCE_NOTIFICATIONS,omitempty"`
 	ENABLESTRICTCHECKACCEPTINGINVITATION           *bool                `json:"ENABLE_STRICT_CHECK_ACCEPTING_INVITATION,omitempty"`
+	ENFORCEUSERCONSENTFOROFFERINGS                 *bool                `json:"ENFORCE_USER_CONSENT_FOR_OFFERINGS,omitempty"`
 	FAVICON                                        *string              `json:"FAVICON"`
 	FREEIPABLACKLISTEDUSERNAMES                    *[]string            `json:"FREEIPA_BLACKLISTED_USERNAMES,omitempty"`
 	FREEIPAENABLED                                 *bool                `json:"FREEIPA_ENABLED,omitempty"`
@@ -12039,6 +12046,7 @@ type ConstanceSettingsRequest struct {
 	ENABLEMOCKSERVICEACCOUNTBACKEND                *bool                `json:"ENABLE_MOCK_SERVICE_ACCOUNT_BACKEND,omitempty"`
 	ENABLESTALERESOURCENOTIFICATIONS               *bool                `json:"ENABLE_STALE_RESOURCE_NOTIFICATIONS,omitempty"`
 	ENABLESTRICTCHECKACCEPTINGINVITATION           *bool                `json:"ENABLE_STRICT_CHECK_ACCEPTING_INVITATION,omitempty"`
+	ENFORCEUSERCONSENTFOROFFERINGS                 *bool                `json:"ENFORCE_USER_CONSENT_FOR_OFFERINGS,omitempty"`
 	FAVICON                                        *openapi_types.File  `json:"FAVICON"`
 	FREEIPABLACKLISTEDUSERNAMES                    *[]string            `json:"FREEIPA_BLACKLISTED_USERNAMES,omitempty"`
 	FREEIPAENABLED                                 *bool                `json:"FREEIPA_ENABLED,omitempty"`
@@ -12806,15 +12814,28 @@ type EventSubscription struct {
 	Description       *string     `json:"description,omitempty"`
 	Modified          *time.Time  `json:"modified,omitempty"`
 	ObservableObjects interface{} `json:"observable_objects,omitempty"`
-	SourceIp          *string     `json:"source_ip"`
-	Url               *string     `json:"url,omitempty"`
-	User              *string     `json:"user,omitempty"`
-	UserFullName      *string     `json:"user_full_name,omitempty"`
+
+	// SourceIp An IPv4 or IPv6 address.
+	SourceIp     *EventSubscription_SourceIp `json:"source_ip"`
+	Url          *string                     `json:"url,omitempty"`
+	User         *string                     `json:"user,omitempty"`
+	UserFullName *string                     `json:"user_full_name,omitempty"`
 
 	// UserUsername Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
 	UserUsername *string             `json:"user_username,omitempty"`
 	UserUuid     *openapi_types.UUID `json:"user_uuid,omitempty"`
 	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// EventSubscriptionSourceIp0 defines model for .
+type EventSubscriptionSourceIp0 = string
+
+// EventSubscriptionSourceIp1 defines model for .
+type EventSubscriptionSourceIp1 = string
+
+// EventSubscription_SourceIp An IPv4 or IPv6 address.
+type EventSubscription_SourceIp struct {
+	union json.RawMessage
 }
 
 // EventSubscriptionRequest defines model for EventSubscriptionRequest.
@@ -13522,6 +13543,26 @@ type IssueRequest struct {
 	Template           *string        `json:"template"`
 	Type               *IssueTypeEnum `json:"type,omitempty"`
 }
+
+// IssueStatus defines model for IssueStatus.
+type IssueStatus struct {
+	// Name Status name in Jira.
+	Name        string               `json:"name"`
+	Type        *IssueStatusTypeEnum `json:"type,omitempty"`
+	TypeDisplay *string              `json:"type_display,omitempty"`
+	Url         *string              `json:"url,omitempty"`
+	Uuid        *openapi_types.UUID  `json:"uuid,omitempty"`
+}
+
+// IssueStatusRequest defines model for IssueStatusRequest.
+type IssueStatusRequest struct {
+	// Name Status name in Jira.
+	Name string               `json:"name"`
+	Type *IssueStatusTypeEnum `json:"type,omitempty"`
+}
+
+// IssueStatusTypeEnum defines model for IssueStatusTypeEnum.
+type IssueStatusTypeEnum int
 
 // IssueTypeEnum defines model for IssueTypeEnum.
 type IssueTypeEnum string
@@ -15697,19 +15738,41 @@ type OpenStackDataVolumeRequest struct {
 // OpenStackFixedIp defines model for OpenStackFixedIp.
 type OpenStackFixedIp struct {
 	// IpAddress IP address to assign to the port
-	IpAddress *string `json:"ip_address,omitempty"`
+	IpAddress *OpenStackFixedIp_IpAddress `json:"ip_address,omitempty"`
 
 	// SubnetId ID of the subnet in which to assign the IP address
 	SubnetId *string `json:"subnet_id,omitempty"`
 }
 
+// OpenStackFixedIpIpAddress0 defines model for .
+type OpenStackFixedIpIpAddress0 = string
+
+// OpenStackFixedIpIpAddress1 defines model for .
+type OpenStackFixedIpIpAddress1 = string
+
+// OpenStackFixedIp_IpAddress IP address to assign to the port
+type OpenStackFixedIp_IpAddress struct {
+	union json.RawMessage
+}
+
 // OpenStackFixedIpRequest defines model for OpenStackFixedIpRequest.
 type OpenStackFixedIpRequest struct {
 	// IpAddress IP address to assign to the port
-	IpAddress string `json:"ip_address"`
+	IpAddress OpenStackFixedIpRequest_IpAddress `json:"ip_address"`
 
 	// SubnetId ID of the subnet in which to assign the IP address
 	SubnetId string `json:"subnet_id"`
+}
+
+// OpenStackFixedIpRequestIpAddress0 defines model for .
+type OpenStackFixedIpRequestIpAddress0 = string
+
+// OpenStackFixedIpRequestIpAddress1 defines model for .
+type OpenStackFixedIpRequestIpAddress1 = string
+
+// OpenStackFixedIpRequest_IpAddress IP address to assign to the port
+type OpenStackFixedIpRequest_IpAddress struct {
+	union json.RawMessage
 }
 
 // OpenStackFlavor defines model for OpenStackFlavor.
@@ -15736,8 +15799,8 @@ type OpenStackFloatingIP struct {
 	AccessUrl *string `json:"access_url"`
 
 	// Address The public IPv4 address of the floating IP
-	Address   *string `json:"address"`
-	BackendId *string `json:"backend_id,omitempty"`
+	Address   *OpenStackFloatingIP_Address `json:"address"`
+	BackendId *string                      `json:"backend_id,omitempty"`
 
 	// BackendNetworkId ID of network in OpenStack where this floating IP is allocated
 	BackendNetworkId     *string    `json:"backend_network_id,omitempty"`
@@ -15751,35 +15814,35 @@ type OpenStackFloatingIP struct {
 	ErrorTraceback       *string    `json:"error_traceback,omitempty"`
 
 	// ExternalAddress Optional address that maps to floating IP's address in external networks
-	ExternalAddress                  *string                 `json:"external_address"`
-	InstanceName                     *string                 `json:"instance_name"`
-	InstanceUrl                      *string                 `json:"instance_url"`
-	InstanceUuid                     *string                 `json:"instance_uuid"`
-	IsLimitBased                     *bool                   `json:"is_limit_based"`
-	IsUsageBased                     *bool                   `json:"is_usage_based"`
-	MarketplaceCategoryName          *string                 `json:"marketplace_category_name"`
-	MarketplaceCategoryUuid          *string                 `json:"marketplace_category_uuid"`
-	MarketplaceOfferingName          *string                 `json:"marketplace_offering_name"`
-	MarketplaceOfferingPluginOptions *map[string]interface{} `json:"marketplace_offering_plugin_options"`
-	MarketplaceOfferingUuid          *string                 `json:"marketplace_offering_uuid"`
-	MarketplacePlanUuid              *string                 `json:"marketplace_plan_uuid"`
-	MarketplaceResourceState         *string                 `json:"marketplace_resource_state"`
-	MarketplaceResourceUuid          *string                 `json:"marketplace_resource_uuid"`
-	Modified                         *time.Time              `json:"modified,omitempty"`
-	Name                             *string                 `json:"name,omitempty"`
-	Port                             *string                 `json:"port,omitempty"`
-	PortFixedIps                     *[]OpenStackFixedIp     `json:"port_fixed_ips,omitempty"`
-	Project                          *string                 `json:"project,omitempty"`
-	ProjectName                      *string                 `json:"project_name,omitempty"`
-	ProjectUuid                      *openapi_types.UUID     `json:"project_uuid,omitempty"`
-	ResourceType                     *string                 `json:"resource_type,omitempty"`
-	RuntimeState                     *string                 `json:"runtime_state,omitempty"`
-	ServiceName                      *string                 `json:"service_name,omitempty"`
-	ServiceSettings                  *string                 `json:"service_settings,omitempty"`
-	ServiceSettingsErrorMessage      *string                 `json:"service_settings_error_message,omitempty"`
-	ServiceSettingsState             *string                 `json:"service_settings_state,omitempty"`
-	ServiceSettingsUuid              *openapi_types.UUID     `json:"service_settings_uuid,omitempty"`
-	State                            *CoreStates             `json:"state,omitempty"`
+	ExternalAddress                  *OpenStackFloatingIP_ExternalAddress `json:"external_address"`
+	InstanceName                     *string                              `json:"instance_name"`
+	InstanceUrl                      *string                              `json:"instance_url"`
+	InstanceUuid                     *string                              `json:"instance_uuid"`
+	IsLimitBased                     *bool                                `json:"is_limit_based"`
+	IsUsageBased                     *bool                                `json:"is_usage_based"`
+	MarketplaceCategoryName          *string                              `json:"marketplace_category_name"`
+	MarketplaceCategoryUuid          *string                              `json:"marketplace_category_uuid"`
+	MarketplaceOfferingName          *string                              `json:"marketplace_offering_name"`
+	MarketplaceOfferingPluginOptions *map[string]interface{}              `json:"marketplace_offering_plugin_options"`
+	MarketplaceOfferingUuid          *string                              `json:"marketplace_offering_uuid"`
+	MarketplacePlanUuid              *string                              `json:"marketplace_plan_uuid"`
+	MarketplaceResourceState         *string                              `json:"marketplace_resource_state"`
+	MarketplaceResourceUuid          *string                              `json:"marketplace_resource_uuid"`
+	Modified                         *time.Time                           `json:"modified,omitempty"`
+	Name                             *string                              `json:"name,omitempty"`
+	Port                             *string                              `json:"port,omitempty"`
+	PortFixedIps                     *[]OpenStackFixedIp                  `json:"port_fixed_ips,omitempty"`
+	Project                          *string                              `json:"project,omitempty"`
+	ProjectName                      *string                              `json:"project_name,omitempty"`
+	ProjectUuid                      *openapi_types.UUID                  `json:"project_uuid,omitempty"`
+	ResourceType                     *string                              `json:"resource_type,omitempty"`
+	RuntimeState                     *string                              `json:"runtime_state,omitempty"`
+	ServiceName                      *string                              `json:"service_name,omitempty"`
+	ServiceSettings                  *string                              `json:"service_settings,omitempty"`
+	ServiceSettingsErrorMessage      *string                              `json:"service_settings_error_message,omitempty"`
+	ServiceSettingsState             *string                              `json:"service_settings_state,omitempty"`
+	ServiceSettingsUuid              *openapi_types.UUID                  `json:"service_settings_uuid,omitempty"`
+	State                            *CoreStates                          `json:"state,omitempty"`
 
 	// Tenant OpenStack tenant this floating IP belongs to
 	Tenant     *string             `json:"tenant,omitempty"`
@@ -15787,6 +15850,28 @@ type OpenStackFloatingIP struct {
 	TenantUuid *openapi_types.UUID `json:"tenant_uuid,omitempty"`
 	Url        *string             `json:"url,omitempty"`
 	Uuid       *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// OpenStackFloatingIPAddress0 defines model for .
+type OpenStackFloatingIPAddress0 = string
+
+// OpenStackFloatingIPAddress1 defines model for .
+type OpenStackFloatingIPAddress1 = string
+
+// OpenStackFloatingIP_Address The public IPv4 address of the floating IP
+type OpenStackFloatingIP_Address struct {
+	union json.RawMessage
+}
+
+// OpenStackFloatingIPExternalAddress0 defines model for .
+type OpenStackFloatingIPExternalAddress0 = string
+
+// OpenStackFloatingIPExternalAddress1 defines model for .
+type OpenStackFloatingIPExternalAddress1 = string
+
+// OpenStackFloatingIP_ExternalAddress Optional address that maps to floating IP's address in external networks
+type OpenStackFloatingIP_ExternalAddress struct {
+	union json.RawMessage
 }
 
 // OpenStackFloatingIPAttachRequest defines model for OpenStackFloatingIPAttachRequest.
@@ -16030,8 +16115,8 @@ type OpenStackInstanceSecurityGroupsUpdateRequest struct {
 // OpenStackNestedFloatingIP defines model for OpenStackNestedFloatingIP.
 type OpenStackNestedFloatingIP struct {
 	// Address The public IPv4 address of the floating IP
-	Address      *string             `json:"address"`
-	PortFixedIps *[]OpenStackFixedIp `json:"port_fixed_ips,omitempty"`
+	Address      *OpenStackNestedFloatingIP_Address `json:"address"`
+	PortFixedIps *[]OpenStackFixedIp                `json:"port_fixed_ips,omitempty"`
 
 	// PortMacAddress MAC address of the port
 	PortMacAddress *string `json:"port_mac_address"`
@@ -16044,6 +16129,17 @@ type OpenStackNestedFloatingIP struct {
 	SubnetUuid        *openapi_types.UUID `json:"subnet_uuid,omitempty"`
 	Url               *string             `json:"url,omitempty"`
 	Uuid              *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// OpenStackNestedFloatingIPAddress0 defines model for .
+type OpenStackNestedFloatingIPAddress0 = string
+
+// OpenStackNestedFloatingIPAddress1 defines model for .
+type OpenStackNestedFloatingIPAddress1 = string
+
+// OpenStackNestedFloatingIP_Address The public IPv4 address of the floating IP
+type OpenStackNestedFloatingIP_Address struct {
+	union json.RawMessage
 }
 
 // OpenStackNestedFloatingIPRequest defines model for OpenStackNestedFloatingIPRequest.
@@ -16130,12 +16226,23 @@ type OpenStackNestedSubNet struct {
 	EnableDhcp *bool `json:"enable_dhcp,omitempty"`
 
 	// GatewayIp IP address of the gateway for this subnet
-	GatewayIp *string `json:"gateway_ip"`
+	GatewayIp *OpenStackNestedSubNet_GatewayIp `json:"gateway_ip"`
 
 	// IpVersion IP protocol version (4 or 6)
 	IpVersion *int                `json:"ip_version,omitempty"`
 	Name      *string             `json:"name,omitempty"`
 	Uuid      *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// OpenStackNestedSubNetGatewayIp0 defines model for .
+type OpenStackNestedSubNetGatewayIp0 = string
+
+// OpenStackNestedSubNetGatewayIp1 defines model for .
+type OpenStackNestedSubNetGatewayIp1 = string
+
+// OpenStackNestedSubNet_GatewayIp IP address of the gateway for this subnet
+type OpenStackNestedSubNet_GatewayIp struct {
+	union json.RawMessage
 }
 
 // OpenStackNestedVolume defines model for OpenStackNestedVolume.
@@ -16301,10 +16408,21 @@ type OpenStackPort struct {
 // OpenStackPortIPUpdateRequest defines model for OpenStackPortIPUpdateRequest.
 type OpenStackPortIPUpdateRequest struct {
 	// IpAddress The IP address to assign within the subnet
-	IpAddress string `json:"ip_address"`
+	IpAddress OpenStackPortIPUpdateRequest_IpAddress `json:"ip_address"`
 
 	// Subnet The subnet where the new IP address will be allocated
 	Subnet *string `json:"subnet,omitempty"`
+}
+
+// OpenStackPortIPUpdateRequestIpAddress0 defines model for .
+type OpenStackPortIPUpdateRequestIpAddress0 = string
+
+// OpenStackPortIPUpdateRequestIpAddress1 defines model for .
+type OpenStackPortIPUpdateRequestIpAddress1 = string
+
+// OpenStackPortIPUpdateRequest_IpAddress The IP address to assign within the subnet
+type OpenStackPortIPUpdateRequest_IpAddress struct {
+	union json.RawMessage
 }
 
 // OpenStackPortNestedSecurityGroup defines model for OpenStackPortNestedSecurityGroup.
@@ -16723,13 +16841,39 @@ type OpenStackSnapshotRestorationRequest struct {
 // OpenStackStaticRoute defines model for OpenStackStaticRoute.
 type OpenStackStaticRoute struct {
 	Destination *string `json:"destination,omitempty"`
-	Nexthop     *string `json:"nexthop,omitempty"`
+
+	// Nexthop An IPv4 or IPv6 address.
+	Nexthop *OpenStackStaticRoute_Nexthop `json:"nexthop,omitempty"`
+}
+
+// OpenStackStaticRouteNexthop0 defines model for .
+type OpenStackStaticRouteNexthop0 = string
+
+// OpenStackStaticRouteNexthop1 defines model for .
+type OpenStackStaticRouteNexthop1 = string
+
+// OpenStackStaticRoute_Nexthop An IPv4 or IPv6 address.
+type OpenStackStaticRoute_Nexthop struct {
+	union json.RawMessage
 }
 
 // OpenStackStaticRouteRequest defines model for OpenStackStaticRouteRequest.
 type OpenStackStaticRouteRequest struct {
 	Destination string `json:"destination"`
-	Nexthop     string `json:"nexthop"`
+
+	// Nexthop An IPv4 or IPv6 address.
+	Nexthop OpenStackStaticRouteRequest_Nexthop `json:"nexthop"`
+}
+
+// OpenStackStaticRouteRequestNexthop0 defines model for .
+type OpenStackStaticRouteRequestNexthop0 = string
+
+// OpenStackStaticRouteRequestNexthop1 defines model for .
+type OpenStackStaticRouteRequestNexthop1 = string
+
+// OpenStackStaticRouteRequest_Nexthop An IPv4 or IPv6 address.
+type OpenStackStaticRouteRequest_Nexthop struct {
+	union json.RawMessage
 }
 
 // OpenStackSubNet defines model for OpenStackSubNet.
@@ -16746,8 +16890,8 @@ type OpenStackSubNet struct {
 	Description          *string                          `json:"description,omitempty"`
 
 	// DisableGateway If True, no gateway IP address will be allocated
-	DisableGateway *bool     `json:"disable_gateway,omitempty"`
-	DnsNameservers *[]string `json:"dns_nameservers,omitempty"`
+	DisableGateway *bool                                  `json:"disable_gateway,omitempty"`
+	DnsNameservers *[]OpenStackSubNet_DnsNameservers_Item `json:"dns_nameservers,omitempty"`
 
 	// EnableDhcp If True, DHCP service will be enabled on this subnet
 	EnableDhcp     *bool   `json:"enable_dhcp,omitempty"`
@@ -16755,8 +16899,8 @@ type OpenStackSubNet struct {
 	ErrorTraceback *string `json:"error_traceback,omitempty"`
 
 	// GatewayIp IP address of the gateway for this subnet
-	GatewayIp  *string                 `json:"gateway_ip"`
-	HostRoutes *[]OpenStackStaticRoute `json:"host_routes,omitempty"`
+	GatewayIp  *OpenStackSubNet_GatewayIp `json:"gateway_ip"`
+	HostRoutes *[]OpenStackStaticRoute    `json:"host_routes,omitempty"`
 
 	// IpVersion IP protocol version (4 or 6)
 	IpVersion *int `json:"ip_version,omitempty"`
@@ -16795,16 +16939,88 @@ type OpenStackSubNet struct {
 	Uuid                        *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
+// OpenStackSubNetDnsNameservers0 defines model for .
+type OpenStackSubNetDnsNameservers0 = string
+
+// OpenStackSubNetDnsNameservers1 defines model for .
+type OpenStackSubNetDnsNameservers1 = string
+
+// OpenStackSubNet_DnsNameservers_Item An IPv4 or IPv6 address.
+type OpenStackSubNet_DnsNameservers_Item struct {
+	union json.RawMessage
+}
+
+// OpenStackSubNetGatewayIp0 defines model for .
+type OpenStackSubNetGatewayIp0 = string
+
+// OpenStackSubNetGatewayIp1 defines model for .
+type OpenStackSubNetGatewayIp1 = string
+
+// OpenStackSubNet_GatewayIp IP address of the gateway for this subnet
+type OpenStackSubNet_GatewayIp struct {
+	union json.RawMessage
+}
+
 // OpenStackSubNetAllocationPool defines model for OpenStackSubNetAllocationPool.
 type OpenStackSubNetAllocationPool struct {
-	End   *string `json:"end,omitempty"`
-	Start *string `json:"start,omitempty"`
+	// End An IPv4 or IPv6 address.
+	End *OpenStackSubNetAllocationPool_End `json:"end,omitempty"`
+
+	// Start An IPv4 or IPv6 address.
+	Start *OpenStackSubNetAllocationPool_Start `json:"start,omitempty"`
+}
+
+// OpenStackSubNetAllocationPoolEnd0 defines model for .
+type OpenStackSubNetAllocationPoolEnd0 = string
+
+// OpenStackSubNetAllocationPoolEnd1 defines model for .
+type OpenStackSubNetAllocationPoolEnd1 = string
+
+// OpenStackSubNetAllocationPool_End An IPv4 or IPv6 address.
+type OpenStackSubNetAllocationPool_End struct {
+	union json.RawMessage
+}
+
+// OpenStackSubNetAllocationPoolStart0 defines model for .
+type OpenStackSubNetAllocationPoolStart0 = string
+
+// OpenStackSubNetAllocationPoolStart1 defines model for .
+type OpenStackSubNetAllocationPoolStart1 = string
+
+// OpenStackSubNetAllocationPool_Start An IPv4 or IPv6 address.
+type OpenStackSubNetAllocationPool_Start struct {
+	union json.RawMessage
 }
 
 // OpenStackSubNetAllocationPoolRequest defines model for OpenStackSubNetAllocationPoolRequest.
 type OpenStackSubNetAllocationPoolRequest struct {
-	End   string `json:"end"`
-	Start string `json:"start"`
+	// End An IPv4 or IPv6 address.
+	End OpenStackSubNetAllocationPoolRequest_End `json:"end"`
+
+	// Start An IPv4 or IPv6 address.
+	Start OpenStackSubNetAllocationPoolRequest_Start `json:"start"`
+}
+
+// OpenStackSubNetAllocationPoolRequestEnd0 defines model for .
+type OpenStackSubNetAllocationPoolRequestEnd0 = string
+
+// OpenStackSubNetAllocationPoolRequestEnd1 defines model for .
+type OpenStackSubNetAllocationPoolRequestEnd1 = string
+
+// OpenStackSubNetAllocationPoolRequest_End An IPv4 or IPv6 address.
+type OpenStackSubNetAllocationPoolRequest_End struct {
+	union json.RawMessage
+}
+
+// OpenStackSubNetAllocationPoolRequestStart0 defines model for .
+type OpenStackSubNetAllocationPoolRequestStart0 = string
+
+// OpenStackSubNetAllocationPoolRequestStart1 defines model for .
+type OpenStackSubNetAllocationPoolRequestStart1 = string
+
+// OpenStackSubNetAllocationPoolRequest_Start An IPv4 or IPv6 address.
+type OpenStackSubNetAllocationPoolRequest_Start struct {
+	union json.RawMessage
 }
 
 // OpenStackSubNetRequest defines model for OpenStackSubNetRequest.
@@ -16814,13 +17030,35 @@ type OpenStackSubNetRequest struct {
 	Description     *string                                 `json:"description,omitempty"`
 
 	// DisableGateway If True, no gateway IP address will be allocated
-	DisableGateway *bool     `json:"disable_gateway,omitempty"`
-	DnsNameservers *[]string `json:"dns_nameservers,omitempty"`
+	DisableGateway *bool                                         `json:"disable_gateway,omitempty"`
+	DnsNameservers *[]OpenStackSubNetRequest_DnsNameservers_Item `json:"dns_nameservers,omitempty"`
 
 	// GatewayIp IP address of the gateway for this subnet
-	GatewayIp  *string                        `json:"gateway_ip"`
-	HostRoutes *[]OpenStackStaticRouteRequest `json:"host_routes,omitempty"`
-	Name       string                         `json:"name"`
+	GatewayIp  *OpenStackSubNetRequest_GatewayIp `json:"gateway_ip"`
+	HostRoutes *[]OpenStackStaticRouteRequest    `json:"host_routes,omitempty"`
+	Name       string                            `json:"name"`
+}
+
+// OpenStackSubNetRequestDnsNameservers0 defines model for .
+type OpenStackSubNetRequestDnsNameservers0 = string
+
+// OpenStackSubNetRequestDnsNameservers1 defines model for .
+type OpenStackSubNetRequestDnsNameservers1 = string
+
+// OpenStackSubNetRequest_DnsNameservers_Item An IPv4 or IPv6 address.
+type OpenStackSubNetRequest_DnsNameservers_Item struct {
+	union json.RawMessage
+}
+
+// OpenStackSubNetRequestGatewayIp0 defines model for .
+type OpenStackSubNetRequestGatewayIp0 = string
+
+// OpenStackSubNetRequestGatewayIp1 defines model for .
+type OpenStackSubNetRequestGatewayIp1 = string
+
+// OpenStackSubNetRequest_GatewayIp IP address of the gateway for this subnet
+type OpenStackSubNetRequest_GatewayIp struct {
+	union json.RawMessage
 }
 
 // OpenStackTenant defines model for OpenStackTenant.
@@ -17629,6 +17867,13 @@ type PatchedIssueRequest struct {
 	Summary            *string `json:"summary,omitempty"`
 }
 
+// PatchedIssueStatusRequest defines model for PatchedIssueStatusRequest.
+type PatchedIssueStatusRequest struct {
+	// Name Status name in Jira.
+	Name *string              `json:"name,omitempty"`
+	Type *IssueStatusTypeEnum `json:"type,omitempty"`
+}
+
 // PatchedKeycloakUserGroupMembershipRequest defines model for PatchedKeycloakUserGroupMembershipRequest.
 type PatchedKeycloakUserGroupMembershipRequest struct {
 	// Email User's email for notifications
@@ -17875,13 +18120,35 @@ type PatchedOpenStackSubNetRequest struct {
 	Description     *string                                 `json:"description,omitempty"`
 
 	// DisableGateway If True, no gateway IP address will be allocated
-	DisableGateway *bool     `json:"disable_gateway,omitempty"`
-	DnsNameservers *[]string `json:"dns_nameservers,omitempty"`
+	DisableGateway *bool                                                `json:"disable_gateway,omitempty"`
+	DnsNameservers *[]PatchedOpenStackSubNetRequest_DnsNameservers_Item `json:"dns_nameservers,omitempty"`
 
 	// GatewayIp IP address of the gateway for this subnet
-	GatewayIp  *string                        `json:"gateway_ip"`
-	HostRoutes *[]OpenStackStaticRouteRequest `json:"host_routes,omitempty"`
-	Name       *string                        `json:"name,omitempty"`
+	GatewayIp  *PatchedOpenStackSubNetRequest_GatewayIp `json:"gateway_ip"`
+	HostRoutes *[]OpenStackStaticRouteRequest           `json:"host_routes,omitempty"`
+	Name       *string                                  `json:"name,omitempty"`
+}
+
+// PatchedOpenStackSubNetRequestDnsNameservers0 defines model for .
+type PatchedOpenStackSubNetRequestDnsNameservers0 = string
+
+// PatchedOpenStackSubNetRequestDnsNameservers1 defines model for .
+type PatchedOpenStackSubNetRequestDnsNameservers1 = string
+
+// PatchedOpenStackSubNetRequest_DnsNameservers_Item An IPv4 or IPv6 address.
+type PatchedOpenStackSubNetRequest_DnsNameservers_Item struct {
+	union json.RawMessage
+}
+
+// PatchedOpenStackSubNetRequestGatewayIp0 defines model for .
+type PatchedOpenStackSubNetRequestGatewayIp0 = string
+
+// PatchedOpenStackSubNetRequestGatewayIp1 defines model for .
+type PatchedOpenStackSubNetRequestGatewayIp1 = string
+
+// PatchedOpenStackSubNetRequest_GatewayIp IP address of the gateway for this subnet
+type PatchedOpenStackSubNetRequest_GatewayIp struct {
+	union json.RawMessage
 }
 
 // PatchedOpenStackTenantRequest defines model for PatchedOpenStackTenantRequest.
@@ -18179,18 +18446,31 @@ type PatchedRancherIngressRequest struct {
 
 // PatchedRancherServiceRequest defines model for PatchedRancherServiceRequest.
 type PatchedRancherServiceRequest struct {
-	BackendId       *string                         `json:"backend_id,omitempty"`
-	ClusterIp       *string                         `json:"cluster_ip"`
-	Description     *string                         `json:"description,omitempty"`
-	ErrorMessage    *string                         `json:"error_message,omitempty"`
-	ErrorTraceback  *string                         `json:"error_traceback,omitempty"`
-	Name            *string                         `json:"name,omitempty"`
-	Namespace       *string                         `json:"namespace,omitempty"`
-	Project         *string                         `json:"project,omitempty"`
-	RuntimeState    *string                         `json:"runtime_state,omitempty"`
-	Selector        interface{}                     `json:"selector"`
-	ServiceSettings *string                         `json:"service_settings,omitempty"`
-	TargetWorkloads *[]RancherNestedWorkloadRequest `json:"target_workloads,omitempty"`
+	BackendId *string `json:"backend_id,omitempty"`
+
+	// ClusterIp An IPv4 or IPv6 address.
+	ClusterIp       *PatchedRancherServiceRequest_ClusterIp `json:"cluster_ip"`
+	Description     *string                                 `json:"description,omitempty"`
+	ErrorMessage    *string                                 `json:"error_message,omitempty"`
+	ErrorTraceback  *string                                 `json:"error_traceback,omitempty"`
+	Name            *string                                 `json:"name,omitempty"`
+	Namespace       *string                                 `json:"namespace,omitempty"`
+	Project         *string                                 `json:"project,omitempty"`
+	RuntimeState    *string                                 `json:"runtime_state,omitempty"`
+	Selector        interface{}                             `json:"selector"`
+	ServiceSettings *string                                 `json:"service_settings,omitempty"`
+	TargetWorkloads *[]RancherNestedWorkloadRequest         `json:"target_workloads,omitempty"`
+}
+
+// PatchedRancherServiceRequestClusterIp0 defines model for .
+type PatchedRancherServiceRequestClusterIp0 = string
+
+// PatchedRancherServiceRequestClusterIp1 defines model for .
+type PatchedRancherServiceRequestClusterIp1 = string
+
+// PatchedRancherServiceRequest_ClusterIp An IPv4 or IPv6 address.
+type PatchedRancherServiceRequest_ClusterIp struct {
+	union json.RawMessage
 }
 
 // PatchedRancherWorkloadRequest defines model for PatchedRancherWorkloadRequest.
@@ -20296,10 +20576,35 @@ type RancherNestedNodeRequest struct {
 
 // RancherNestedPublicIP defines model for RancherNestedPublicIP.
 type RancherNestedPublicIP struct {
-	ExternalIpAddress *string             `json:"external_ip_address,omitempty"`
-	FloatingIp        *string             `json:"floating_ip,omitempty"`
-	FloatingIpUuid    *openapi_types.UUID `json:"floating_ip_uuid,omitempty"`
-	IpAddress         *string             `json:"ip_address,omitempty"`
+	// ExternalIpAddress An IPv4 or IPv6 address.
+	ExternalIpAddress *RancherNestedPublicIP_ExternalIpAddress `json:"external_ip_address,omitempty"`
+	FloatingIp        *string                                  `json:"floating_ip,omitempty"`
+	FloatingIpUuid    *openapi_types.UUID                      `json:"floating_ip_uuid,omitempty"`
+
+	// IpAddress An IPv4 or IPv6 address.
+	IpAddress *RancherNestedPublicIP_IpAddress `json:"ip_address,omitempty"`
+}
+
+// RancherNestedPublicIPExternalIpAddress0 defines model for .
+type RancherNestedPublicIPExternalIpAddress0 = string
+
+// RancherNestedPublicIPExternalIpAddress1 defines model for .
+type RancherNestedPublicIPExternalIpAddress1 = string
+
+// RancherNestedPublicIP_ExternalIpAddress An IPv4 or IPv6 address.
+type RancherNestedPublicIP_ExternalIpAddress struct {
+	union json.RawMessage
+}
+
+// RancherNestedPublicIPIpAddress0 defines model for .
+type RancherNestedPublicIPIpAddress0 = string
+
+// RancherNestedPublicIPIpAddress1 defines model for .
+type RancherNestedPublicIPIpAddress1 = string
+
+// RancherNestedPublicIP_IpAddress An IPv4 or IPv6 address.
+type RancherNestedPublicIP_IpAddress struct {
+	union json.RawMessage
 }
 
 // RancherNestedWorkload defines model for RancherNestedWorkload.
@@ -20370,62 +20675,88 @@ type RancherRoleScopeType string
 
 // RancherService defines model for RancherService.
 type RancherService struct {
-	AccessUrl                        *string                  `json:"access_url"`
-	BackendId                        *string                  `json:"backend_id,omitempty"`
-	ClusterIp                        *string                  `json:"cluster_ip"`
-	Created                          *time.Time               `json:"created,omitempty"`
-	Customer                         *string                  `json:"customer,omitempty"`
-	CustomerAbbreviation             *string                  `json:"customer_abbreviation,omitempty"`
-	CustomerName                     *string                  `json:"customer_name,omitempty"`
-	CustomerNativeName               *string                  `json:"customer_native_name,omitempty"`
-	Description                      *string                  `json:"description,omitempty"`
-	ErrorMessage                     *string                  `json:"error_message,omitempty"`
-	ErrorTraceback                   *string                  `json:"error_traceback,omitempty"`
-	IsLimitBased                     *bool                    `json:"is_limit_based"`
-	IsUsageBased                     *bool                    `json:"is_usage_based"`
-	MarketplaceCategoryName          *string                  `json:"marketplace_category_name"`
-	MarketplaceCategoryUuid          *string                  `json:"marketplace_category_uuid"`
-	MarketplaceOfferingName          *string                  `json:"marketplace_offering_name"`
-	MarketplaceOfferingPluginOptions *map[string]interface{}  `json:"marketplace_offering_plugin_options"`
-	MarketplaceOfferingUuid          *string                  `json:"marketplace_offering_uuid"`
-	MarketplacePlanUuid              *string                  `json:"marketplace_plan_uuid"`
-	MarketplaceResourceState         *string                  `json:"marketplace_resource_state"`
-	MarketplaceResourceUuid          *string                  `json:"marketplace_resource_uuid"`
-	Modified                         *time.Time               `json:"modified,omitempty"`
-	Name                             *string                  `json:"name,omitempty"`
-	Namespace                        *string                  `json:"namespace,omitempty"`
-	NamespaceName                    *string                  `json:"namespace_name,omitempty"`
-	Project                          *string                  `json:"project,omitempty"`
-	ProjectName                      *string                  `json:"project_name,omitempty"`
-	ProjectUuid                      *openapi_types.UUID      `json:"project_uuid,omitempty"`
-	ResourceType                     *string                  `json:"resource_type,omitempty"`
-	RuntimeState                     *string                  `json:"runtime_state,omitempty"`
-	Selector                         interface{}              `json:"selector"`
-	ServiceName                      *string                  `json:"service_name,omitempty"`
-	ServiceSettings                  *string                  `json:"service_settings,omitempty"`
-	ServiceSettingsErrorMessage      *string                  `json:"service_settings_error_message,omitempty"`
-	ServiceSettingsState             *string                  `json:"service_settings_state,omitempty"`
-	ServiceSettingsUuid              *openapi_types.UUID      `json:"service_settings_uuid,omitempty"`
-	State                            *CoreStates              `json:"state,omitempty"`
-	TargetWorkloads                  *[]RancherNestedWorkload `json:"target_workloads,omitempty"`
-	Url                              *string                  `json:"url,omitempty"`
-	Uuid                             *openapi_types.UUID      `json:"uuid,omitempty"`
+	AccessUrl *string `json:"access_url"`
+	BackendId *string `json:"backend_id,omitempty"`
+
+	// ClusterIp An IPv4 or IPv6 address.
+	ClusterIp                        *RancherService_ClusterIp `json:"cluster_ip"`
+	Created                          *time.Time                `json:"created,omitempty"`
+	Customer                         *string                   `json:"customer,omitempty"`
+	CustomerAbbreviation             *string                   `json:"customer_abbreviation,omitempty"`
+	CustomerName                     *string                   `json:"customer_name,omitempty"`
+	CustomerNativeName               *string                   `json:"customer_native_name,omitempty"`
+	Description                      *string                   `json:"description,omitempty"`
+	ErrorMessage                     *string                   `json:"error_message,omitempty"`
+	ErrorTraceback                   *string                   `json:"error_traceback,omitempty"`
+	IsLimitBased                     *bool                     `json:"is_limit_based"`
+	IsUsageBased                     *bool                     `json:"is_usage_based"`
+	MarketplaceCategoryName          *string                   `json:"marketplace_category_name"`
+	MarketplaceCategoryUuid          *string                   `json:"marketplace_category_uuid"`
+	MarketplaceOfferingName          *string                   `json:"marketplace_offering_name"`
+	MarketplaceOfferingPluginOptions *map[string]interface{}   `json:"marketplace_offering_plugin_options"`
+	MarketplaceOfferingUuid          *string                   `json:"marketplace_offering_uuid"`
+	MarketplacePlanUuid              *string                   `json:"marketplace_plan_uuid"`
+	MarketplaceResourceState         *string                   `json:"marketplace_resource_state"`
+	MarketplaceResourceUuid          *string                   `json:"marketplace_resource_uuid"`
+	Modified                         *time.Time                `json:"modified,omitempty"`
+	Name                             *string                   `json:"name,omitempty"`
+	Namespace                        *string                   `json:"namespace,omitempty"`
+	NamespaceName                    *string                   `json:"namespace_name,omitempty"`
+	Project                          *string                   `json:"project,omitempty"`
+	ProjectName                      *string                   `json:"project_name,omitempty"`
+	ProjectUuid                      *openapi_types.UUID       `json:"project_uuid,omitempty"`
+	ResourceType                     *string                   `json:"resource_type,omitempty"`
+	RuntimeState                     *string                   `json:"runtime_state,omitempty"`
+	Selector                         interface{}               `json:"selector"`
+	ServiceName                      *string                   `json:"service_name,omitempty"`
+	ServiceSettings                  *string                   `json:"service_settings,omitempty"`
+	ServiceSettingsErrorMessage      *string                   `json:"service_settings_error_message,omitempty"`
+	ServiceSettingsState             *string                   `json:"service_settings_state,omitempty"`
+	ServiceSettingsUuid              *openapi_types.UUID       `json:"service_settings_uuid,omitempty"`
+	State                            *CoreStates               `json:"state,omitempty"`
+	TargetWorkloads                  *[]RancherNestedWorkload  `json:"target_workloads,omitempty"`
+	Url                              *string                   `json:"url,omitempty"`
+	Uuid                             *openapi_types.UUID       `json:"uuid,omitempty"`
+}
+
+// RancherServiceClusterIp0 defines model for .
+type RancherServiceClusterIp0 = string
+
+// RancherServiceClusterIp1 defines model for .
+type RancherServiceClusterIp1 = string
+
+// RancherService_ClusterIp An IPv4 or IPv6 address.
+type RancherService_ClusterIp struct {
+	union json.RawMessage
 }
 
 // RancherServiceRequest defines model for RancherServiceRequest.
 type RancherServiceRequest struct {
-	BackendId       *string                         `json:"backend_id,omitempty"`
-	ClusterIp       *string                         `json:"cluster_ip"`
-	Description     *string                         `json:"description,omitempty"`
-	ErrorMessage    *string                         `json:"error_message,omitempty"`
-	ErrorTraceback  *string                         `json:"error_traceback,omitempty"`
-	Name            string                          `json:"name"`
-	Namespace       *string                         `json:"namespace,omitempty"`
-	Project         string                          `json:"project"`
-	RuntimeState    *string                         `json:"runtime_state,omitempty"`
-	Selector        interface{}                     `json:"selector"`
-	ServiceSettings string                          `json:"service_settings"`
-	TargetWorkloads *[]RancherNestedWorkloadRequest `json:"target_workloads,omitempty"`
+	BackendId *string `json:"backend_id,omitempty"`
+
+	// ClusterIp An IPv4 or IPv6 address.
+	ClusterIp       *RancherServiceRequest_ClusterIp `json:"cluster_ip"`
+	Description     *string                          `json:"description,omitempty"`
+	ErrorMessage    *string                          `json:"error_message,omitempty"`
+	ErrorTraceback  *string                          `json:"error_traceback,omitempty"`
+	Name            string                           `json:"name"`
+	Namespace       *string                          `json:"namespace,omitempty"`
+	Project         string                           `json:"project"`
+	RuntimeState    *string                          `json:"runtime_state,omitempty"`
+	Selector        interface{}                      `json:"selector"`
+	ServiceSettings string                           `json:"service_settings"`
+	TargetWorkloads *[]RancherNestedWorkloadRequest  `json:"target_workloads,omitempty"`
+}
+
+// RancherServiceRequestClusterIp0 defines model for .
+type RancherServiceRequestClusterIp0 = string
+
+// RancherServiceRequestClusterIp1 defines model for .
+type RancherServiceRequestClusterIp1 = string
+
+// RancherServiceRequest_ClusterIp An IPv4 or IPv6 address.
+type RancherServiceRequest_ClusterIp struct {
+	union json.RawMessage
 }
 
 // RancherTemplate defines model for RancherTemplate.
@@ -21061,15 +21392,40 @@ type ReviewSubmitRequest struct {
 
 // RmqConnection defines model for RmqConnection.
 type RmqConnection struct {
-	SourceIp *string `json:"source_ip,omitempty"`
-	Vhost    *string `json:"vhost,omitempty"`
+	// SourceIp An IPv4 or IPv6 address.
+	SourceIp *RmqConnection_SourceIp `json:"source_ip,omitempty"`
+	Vhost    *string                 `json:"vhost,omitempty"`
+}
+
+// RmqConnectionSourceIp0 defines model for .
+type RmqConnectionSourceIp0 = string
+
+// RmqConnectionSourceIp1 defines model for .
+type RmqConnectionSourceIp1 = string
+
+// RmqConnection_SourceIp An IPv4 or IPv6 address.
+type RmqConnection_SourceIp struct {
+	union json.RawMessage
 }
 
 // RmqSubscription defines model for RmqSubscription.
 type RmqSubscription struct {
-	Created  *time.Time          `json:"created,omitempty"`
-	SourceIp *string             `json:"source_ip,omitempty"`
-	Uuid     *openapi_types.UUID `json:"uuid,omitempty"`
+	Created *time.Time `json:"created,omitempty"`
+
+	// SourceIp An IPv4 or IPv6 address.
+	SourceIp *RmqSubscription_SourceIp `json:"source_ip,omitempty"`
+	Uuid     *openapi_types.UUID       `json:"uuid,omitempty"`
+}
+
+// RmqSubscriptionSourceIp0 defines model for .
+type RmqSubscriptionSourceIp0 = string
+
+// RmqSubscriptionSourceIp1 defines model for .
+type RmqSubscriptionSourceIp1 = string
+
+// RmqSubscription_SourceIp An IPv4 or IPv6 address.
+type RmqSubscription_SourceIp struct {
+	union json.RawMessage
 }
 
 // RmqUserStatsItem defines model for RmqUserStatsItem.
@@ -32974,6 +33330,24 @@ type SupportFeedbacksCountParams struct {
 	UserUuid     *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
 }
 
+// SupportIssueStatusesListParams defines parameters for SupportIssueStatusesList.
+type SupportIssueStatusesListParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// SupportIssueStatusesCountParams defines parameters for SupportIssueStatusesCount.
+type SupportIssueStatusesCountParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
 // SupportIssuesListParams defines parameters for SupportIssuesList.
 type SupportIssuesListParams struct {
 	Assignee     *string `form:"assignee,omitempty" json:"assignee,omitempty"`
@@ -35285,6 +35659,15 @@ type SupportCommentsUpdateJSONRequestBody = CommentRequest
 // SupportFeedbacksCreateJSONRequestBody defines body for SupportFeedbacksCreate for application/json ContentType.
 type SupportFeedbacksCreateJSONRequestBody = CreateFeedbackRequest
 
+// SupportIssueStatusesCreateJSONRequestBody defines body for SupportIssueStatusesCreate for application/json ContentType.
+type SupportIssueStatusesCreateJSONRequestBody = IssueStatusRequest
+
+// SupportIssueStatusesPartialUpdateJSONRequestBody defines body for SupportIssueStatusesPartialUpdate for application/json ContentType.
+type SupportIssueStatusesPartialUpdateJSONRequestBody = PatchedIssueStatusRequest
+
+// SupportIssueStatusesUpdateJSONRequestBody defines body for SupportIssueStatusesUpdate for application/json ContentType.
+type SupportIssueStatusesUpdateJSONRequestBody = IssueStatusRequest
+
 // SupportIssuesCreateJSONRequestBody defines body for SupportIssuesCreate for application/json ContentType.
 type SupportIssuesCreateJSONRequestBody = IssueRequest
 
@@ -35763,6 +36146,68 @@ func (t CustomerRequest_Country) MarshalJSON() ([]byte, error) {
 }
 
 func (t *CustomerRequest_Country) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsEventSubscriptionSourceIp0 returns the union data inside the EventSubscription_SourceIp as a EventSubscriptionSourceIp0
+func (t EventSubscription_SourceIp) AsEventSubscriptionSourceIp0() (EventSubscriptionSourceIp0, error) {
+	var body EventSubscriptionSourceIp0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromEventSubscriptionSourceIp0 overwrites any union data inside the EventSubscription_SourceIp as the provided EventSubscriptionSourceIp0
+func (t *EventSubscription_SourceIp) FromEventSubscriptionSourceIp0(v EventSubscriptionSourceIp0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeEventSubscriptionSourceIp0 performs a merge with any union data inside the EventSubscription_SourceIp, using the provided EventSubscriptionSourceIp0
+func (t *EventSubscription_SourceIp) MergeEventSubscriptionSourceIp0(v EventSubscriptionSourceIp0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsEventSubscriptionSourceIp1 returns the union data inside the EventSubscription_SourceIp as a EventSubscriptionSourceIp1
+func (t EventSubscription_SourceIp) AsEventSubscriptionSourceIp1() (EventSubscriptionSourceIp1, error) {
+	var body EventSubscriptionSourceIp1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromEventSubscriptionSourceIp1 overwrites any union data inside the EventSubscription_SourceIp as the provided EventSubscriptionSourceIp1
+func (t *EventSubscription_SourceIp) FromEventSubscriptionSourceIp1(v EventSubscriptionSourceIp1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeEventSubscriptionSourceIp1 performs a merge with any union data inside the EventSubscription_SourceIp, using the provided EventSubscriptionSourceIp1
+func (t *EventSubscription_SourceIp) MergeEventSubscriptionSourceIp1(v EventSubscriptionSourceIp1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t EventSubscription_SourceIp) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *EventSubscription_SourceIp) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -36403,6 +36848,440 @@ func (t *OfferingCreateRequest_Country) UnmarshalJSON(b []byte) error {
 	return err
 }
 
+// AsOpenStackFixedIpIpAddress0 returns the union data inside the OpenStackFixedIp_IpAddress as a OpenStackFixedIpIpAddress0
+func (t OpenStackFixedIp_IpAddress) AsOpenStackFixedIpIpAddress0() (OpenStackFixedIpIpAddress0, error) {
+	var body OpenStackFixedIpIpAddress0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackFixedIpIpAddress0 overwrites any union data inside the OpenStackFixedIp_IpAddress as the provided OpenStackFixedIpIpAddress0
+func (t *OpenStackFixedIp_IpAddress) FromOpenStackFixedIpIpAddress0(v OpenStackFixedIpIpAddress0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackFixedIpIpAddress0 performs a merge with any union data inside the OpenStackFixedIp_IpAddress, using the provided OpenStackFixedIpIpAddress0
+func (t *OpenStackFixedIp_IpAddress) MergeOpenStackFixedIpIpAddress0(v OpenStackFixedIpIpAddress0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsOpenStackFixedIpIpAddress1 returns the union data inside the OpenStackFixedIp_IpAddress as a OpenStackFixedIpIpAddress1
+func (t OpenStackFixedIp_IpAddress) AsOpenStackFixedIpIpAddress1() (OpenStackFixedIpIpAddress1, error) {
+	var body OpenStackFixedIpIpAddress1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackFixedIpIpAddress1 overwrites any union data inside the OpenStackFixedIp_IpAddress as the provided OpenStackFixedIpIpAddress1
+func (t *OpenStackFixedIp_IpAddress) FromOpenStackFixedIpIpAddress1(v OpenStackFixedIpIpAddress1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackFixedIpIpAddress1 performs a merge with any union data inside the OpenStackFixedIp_IpAddress, using the provided OpenStackFixedIpIpAddress1
+func (t *OpenStackFixedIp_IpAddress) MergeOpenStackFixedIpIpAddress1(v OpenStackFixedIpIpAddress1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t OpenStackFixedIp_IpAddress) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *OpenStackFixedIp_IpAddress) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsOpenStackFixedIpRequestIpAddress0 returns the union data inside the OpenStackFixedIpRequest_IpAddress as a OpenStackFixedIpRequestIpAddress0
+func (t OpenStackFixedIpRequest_IpAddress) AsOpenStackFixedIpRequestIpAddress0() (OpenStackFixedIpRequestIpAddress0, error) {
+	var body OpenStackFixedIpRequestIpAddress0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackFixedIpRequestIpAddress0 overwrites any union data inside the OpenStackFixedIpRequest_IpAddress as the provided OpenStackFixedIpRequestIpAddress0
+func (t *OpenStackFixedIpRequest_IpAddress) FromOpenStackFixedIpRequestIpAddress0(v OpenStackFixedIpRequestIpAddress0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackFixedIpRequestIpAddress0 performs a merge with any union data inside the OpenStackFixedIpRequest_IpAddress, using the provided OpenStackFixedIpRequestIpAddress0
+func (t *OpenStackFixedIpRequest_IpAddress) MergeOpenStackFixedIpRequestIpAddress0(v OpenStackFixedIpRequestIpAddress0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsOpenStackFixedIpRequestIpAddress1 returns the union data inside the OpenStackFixedIpRequest_IpAddress as a OpenStackFixedIpRequestIpAddress1
+func (t OpenStackFixedIpRequest_IpAddress) AsOpenStackFixedIpRequestIpAddress1() (OpenStackFixedIpRequestIpAddress1, error) {
+	var body OpenStackFixedIpRequestIpAddress1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackFixedIpRequestIpAddress1 overwrites any union data inside the OpenStackFixedIpRequest_IpAddress as the provided OpenStackFixedIpRequestIpAddress1
+func (t *OpenStackFixedIpRequest_IpAddress) FromOpenStackFixedIpRequestIpAddress1(v OpenStackFixedIpRequestIpAddress1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackFixedIpRequestIpAddress1 performs a merge with any union data inside the OpenStackFixedIpRequest_IpAddress, using the provided OpenStackFixedIpRequestIpAddress1
+func (t *OpenStackFixedIpRequest_IpAddress) MergeOpenStackFixedIpRequestIpAddress1(v OpenStackFixedIpRequestIpAddress1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t OpenStackFixedIpRequest_IpAddress) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *OpenStackFixedIpRequest_IpAddress) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsOpenStackFloatingIPAddress0 returns the union data inside the OpenStackFloatingIP_Address as a OpenStackFloatingIPAddress0
+func (t OpenStackFloatingIP_Address) AsOpenStackFloatingIPAddress0() (OpenStackFloatingIPAddress0, error) {
+	var body OpenStackFloatingIPAddress0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackFloatingIPAddress0 overwrites any union data inside the OpenStackFloatingIP_Address as the provided OpenStackFloatingIPAddress0
+func (t *OpenStackFloatingIP_Address) FromOpenStackFloatingIPAddress0(v OpenStackFloatingIPAddress0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackFloatingIPAddress0 performs a merge with any union data inside the OpenStackFloatingIP_Address, using the provided OpenStackFloatingIPAddress0
+func (t *OpenStackFloatingIP_Address) MergeOpenStackFloatingIPAddress0(v OpenStackFloatingIPAddress0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsOpenStackFloatingIPAddress1 returns the union data inside the OpenStackFloatingIP_Address as a OpenStackFloatingIPAddress1
+func (t OpenStackFloatingIP_Address) AsOpenStackFloatingIPAddress1() (OpenStackFloatingIPAddress1, error) {
+	var body OpenStackFloatingIPAddress1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackFloatingIPAddress1 overwrites any union data inside the OpenStackFloatingIP_Address as the provided OpenStackFloatingIPAddress1
+func (t *OpenStackFloatingIP_Address) FromOpenStackFloatingIPAddress1(v OpenStackFloatingIPAddress1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackFloatingIPAddress1 performs a merge with any union data inside the OpenStackFloatingIP_Address, using the provided OpenStackFloatingIPAddress1
+func (t *OpenStackFloatingIP_Address) MergeOpenStackFloatingIPAddress1(v OpenStackFloatingIPAddress1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t OpenStackFloatingIP_Address) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *OpenStackFloatingIP_Address) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsOpenStackFloatingIPExternalAddress0 returns the union data inside the OpenStackFloatingIP_ExternalAddress as a OpenStackFloatingIPExternalAddress0
+func (t OpenStackFloatingIP_ExternalAddress) AsOpenStackFloatingIPExternalAddress0() (OpenStackFloatingIPExternalAddress0, error) {
+	var body OpenStackFloatingIPExternalAddress0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackFloatingIPExternalAddress0 overwrites any union data inside the OpenStackFloatingIP_ExternalAddress as the provided OpenStackFloatingIPExternalAddress0
+func (t *OpenStackFloatingIP_ExternalAddress) FromOpenStackFloatingIPExternalAddress0(v OpenStackFloatingIPExternalAddress0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackFloatingIPExternalAddress0 performs a merge with any union data inside the OpenStackFloatingIP_ExternalAddress, using the provided OpenStackFloatingIPExternalAddress0
+func (t *OpenStackFloatingIP_ExternalAddress) MergeOpenStackFloatingIPExternalAddress0(v OpenStackFloatingIPExternalAddress0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsOpenStackFloatingIPExternalAddress1 returns the union data inside the OpenStackFloatingIP_ExternalAddress as a OpenStackFloatingIPExternalAddress1
+func (t OpenStackFloatingIP_ExternalAddress) AsOpenStackFloatingIPExternalAddress1() (OpenStackFloatingIPExternalAddress1, error) {
+	var body OpenStackFloatingIPExternalAddress1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackFloatingIPExternalAddress1 overwrites any union data inside the OpenStackFloatingIP_ExternalAddress as the provided OpenStackFloatingIPExternalAddress1
+func (t *OpenStackFloatingIP_ExternalAddress) FromOpenStackFloatingIPExternalAddress1(v OpenStackFloatingIPExternalAddress1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackFloatingIPExternalAddress1 performs a merge with any union data inside the OpenStackFloatingIP_ExternalAddress, using the provided OpenStackFloatingIPExternalAddress1
+func (t *OpenStackFloatingIP_ExternalAddress) MergeOpenStackFloatingIPExternalAddress1(v OpenStackFloatingIPExternalAddress1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t OpenStackFloatingIP_ExternalAddress) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *OpenStackFloatingIP_ExternalAddress) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsOpenStackNestedFloatingIPAddress0 returns the union data inside the OpenStackNestedFloatingIP_Address as a OpenStackNestedFloatingIPAddress0
+func (t OpenStackNestedFloatingIP_Address) AsOpenStackNestedFloatingIPAddress0() (OpenStackNestedFloatingIPAddress0, error) {
+	var body OpenStackNestedFloatingIPAddress0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackNestedFloatingIPAddress0 overwrites any union data inside the OpenStackNestedFloatingIP_Address as the provided OpenStackNestedFloatingIPAddress0
+func (t *OpenStackNestedFloatingIP_Address) FromOpenStackNestedFloatingIPAddress0(v OpenStackNestedFloatingIPAddress0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackNestedFloatingIPAddress0 performs a merge with any union data inside the OpenStackNestedFloatingIP_Address, using the provided OpenStackNestedFloatingIPAddress0
+func (t *OpenStackNestedFloatingIP_Address) MergeOpenStackNestedFloatingIPAddress0(v OpenStackNestedFloatingIPAddress0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsOpenStackNestedFloatingIPAddress1 returns the union data inside the OpenStackNestedFloatingIP_Address as a OpenStackNestedFloatingIPAddress1
+func (t OpenStackNestedFloatingIP_Address) AsOpenStackNestedFloatingIPAddress1() (OpenStackNestedFloatingIPAddress1, error) {
+	var body OpenStackNestedFloatingIPAddress1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackNestedFloatingIPAddress1 overwrites any union data inside the OpenStackNestedFloatingIP_Address as the provided OpenStackNestedFloatingIPAddress1
+func (t *OpenStackNestedFloatingIP_Address) FromOpenStackNestedFloatingIPAddress1(v OpenStackNestedFloatingIPAddress1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackNestedFloatingIPAddress1 performs a merge with any union data inside the OpenStackNestedFloatingIP_Address, using the provided OpenStackNestedFloatingIPAddress1
+func (t *OpenStackNestedFloatingIP_Address) MergeOpenStackNestedFloatingIPAddress1(v OpenStackNestedFloatingIPAddress1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t OpenStackNestedFloatingIP_Address) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *OpenStackNestedFloatingIP_Address) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsOpenStackNestedSubNetGatewayIp0 returns the union data inside the OpenStackNestedSubNet_GatewayIp as a OpenStackNestedSubNetGatewayIp0
+func (t OpenStackNestedSubNet_GatewayIp) AsOpenStackNestedSubNetGatewayIp0() (OpenStackNestedSubNetGatewayIp0, error) {
+	var body OpenStackNestedSubNetGatewayIp0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackNestedSubNetGatewayIp0 overwrites any union data inside the OpenStackNestedSubNet_GatewayIp as the provided OpenStackNestedSubNetGatewayIp0
+func (t *OpenStackNestedSubNet_GatewayIp) FromOpenStackNestedSubNetGatewayIp0(v OpenStackNestedSubNetGatewayIp0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackNestedSubNetGatewayIp0 performs a merge with any union data inside the OpenStackNestedSubNet_GatewayIp, using the provided OpenStackNestedSubNetGatewayIp0
+func (t *OpenStackNestedSubNet_GatewayIp) MergeOpenStackNestedSubNetGatewayIp0(v OpenStackNestedSubNetGatewayIp0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsOpenStackNestedSubNetGatewayIp1 returns the union data inside the OpenStackNestedSubNet_GatewayIp as a OpenStackNestedSubNetGatewayIp1
+func (t OpenStackNestedSubNet_GatewayIp) AsOpenStackNestedSubNetGatewayIp1() (OpenStackNestedSubNetGatewayIp1, error) {
+	var body OpenStackNestedSubNetGatewayIp1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackNestedSubNetGatewayIp1 overwrites any union data inside the OpenStackNestedSubNet_GatewayIp as the provided OpenStackNestedSubNetGatewayIp1
+func (t *OpenStackNestedSubNet_GatewayIp) FromOpenStackNestedSubNetGatewayIp1(v OpenStackNestedSubNetGatewayIp1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackNestedSubNetGatewayIp1 performs a merge with any union data inside the OpenStackNestedSubNet_GatewayIp, using the provided OpenStackNestedSubNetGatewayIp1
+func (t *OpenStackNestedSubNet_GatewayIp) MergeOpenStackNestedSubNetGatewayIp1(v OpenStackNestedSubNetGatewayIp1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t OpenStackNestedSubNet_GatewayIp) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *OpenStackNestedSubNet_GatewayIp) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsOpenStackPortIPUpdateRequestIpAddress0 returns the union data inside the OpenStackPortIPUpdateRequest_IpAddress as a OpenStackPortIPUpdateRequestIpAddress0
+func (t OpenStackPortIPUpdateRequest_IpAddress) AsOpenStackPortIPUpdateRequestIpAddress0() (OpenStackPortIPUpdateRequestIpAddress0, error) {
+	var body OpenStackPortIPUpdateRequestIpAddress0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackPortIPUpdateRequestIpAddress0 overwrites any union data inside the OpenStackPortIPUpdateRequest_IpAddress as the provided OpenStackPortIPUpdateRequestIpAddress0
+func (t *OpenStackPortIPUpdateRequest_IpAddress) FromOpenStackPortIPUpdateRequestIpAddress0(v OpenStackPortIPUpdateRequestIpAddress0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackPortIPUpdateRequestIpAddress0 performs a merge with any union data inside the OpenStackPortIPUpdateRequest_IpAddress, using the provided OpenStackPortIPUpdateRequestIpAddress0
+func (t *OpenStackPortIPUpdateRequest_IpAddress) MergeOpenStackPortIPUpdateRequestIpAddress0(v OpenStackPortIPUpdateRequestIpAddress0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsOpenStackPortIPUpdateRequestIpAddress1 returns the union data inside the OpenStackPortIPUpdateRequest_IpAddress as a OpenStackPortIPUpdateRequestIpAddress1
+func (t OpenStackPortIPUpdateRequest_IpAddress) AsOpenStackPortIPUpdateRequestIpAddress1() (OpenStackPortIPUpdateRequestIpAddress1, error) {
+	var body OpenStackPortIPUpdateRequestIpAddress1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackPortIPUpdateRequestIpAddress1 overwrites any union data inside the OpenStackPortIPUpdateRequest_IpAddress as the provided OpenStackPortIPUpdateRequestIpAddress1
+func (t *OpenStackPortIPUpdateRequest_IpAddress) FromOpenStackPortIPUpdateRequestIpAddress1(v OpenStackPortIPUpdateRequestIpAddress1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackPortIPUpdateRequestIpAddress1 performs a merge with any union data inside the OpenStackPortIPUpdateRequest_IpAddress, using the provided OpenStackPortIPUpdateRequestIpAddress1
+func (t *OpenStackPortIPUpdateRequest_IpAddress) MergeOpenStackPortIPUpdateRequestIpAddress1(v OpenStackPortIPUpdateRequestIpAddress1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t OpenStackPortIPUpdateRequest_IpAddress) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *OpenStackPortIPUpdateRequest_IpAddress) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsProtocolEnum returns the union data inside the OpenStackSecurityGroupRuleCreate_Protocol as a ProtocolEnum
 func (t OpenStackSecurityGroupRuleCreate_Protocol) AsProtocolEnum() (ProtocolEnum, error) {
 	var body ProtocolEnum
@@ -36709,6 +37588,626 @@ func (t OpenStackServerGroupRequest_Policy) MarshalJSON() ([]byte, error) {
 }
 
 func (t *OpenStackServerGroupRequest_Policy) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsOpenStackStaticRouteNexthop0 returns the union data inside the OpenStackStaticRoute_Nexthop as a OpenStackStaticRouteNexthop0
+func (t OpenStackStaticRoute_Nexthop) AsOpenStackStaticRouteNexthop0() (OpenStackStaticRouteNexthop0, error) {
+	var body OpenStackStaticRouteNexthop0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackStaticRouteNexthop0 overwrites any union data inside the OpenStackStaticRoute_Nexthop as the provided OpenStackStaticRouteNexthop0
+func (t *OpenStackStaticRoute_Nexthop) FromOpenStackStaticRouteNexthop0(v OpenStackStaticRouteNexthop0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackStaticRouteNexthop0 performs a merge with any union data inside the OpenStackStaticRoute_Nexthop, using the provided OpenStackStaticRouteNexthop0
+func (t *OpenStackStaticRoute_Nexthop) MergeOpenStackStaticRouteNexthop0(v OpenStackStaticRouteNexthop0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsOpenStackStaticRouteNexthop1 returns the union data inside the OpenStackStaticRoute_Nexthop as a OpenStackStaticRouteNexthop1
+func (t OpenStackStaticRoute_Nexthop) AsOpenStackStaticRouteNexthop1() (OpenStackStaticRouteNexthop1, error) {
+	var body OpenStackStaticRouteNexthop1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackStaticRouteNexthop1 overwrites any union data inside the OpenStackStaticRoute_Nexthop as the provided OpenStackStaticRouteNexthop1
+func (t *OpenStackStaticRoute_Nexthop) FromOpenStackStaticRouteNexthop1(v OpenStackStaticRouteNexthop1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackStaticRouteNexthop1 performs a merge with any union data inside the OpenStackStaticRoute_Nexthop, using the provided OpenStackStaticRouteNexthop1
+func (t *OpenStackStaticRoute_Nexthop) MergeOpenStackStaticRouteNexthop1(v OpenStackStaticRouteNexthop1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t OpenStackStaticRoute_Nexthop) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *OpenStackStaticRoute_Nexthop) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsOpenStackStaticRouteRequestNexthop0 returns the union data inside the OpenStackStaticRouteRequest_Nexthop as a OpenStackStaticRouteRequestNexthop0
+func (t OpenStackStaticRouteRequest_Nexthop) AsOpenStackStaticRouteRequestNexthop0() (OpenStackStaticRouteRequestNexthop0, error) {
+	var body OpenStackStaticRouteRequestNexthop0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackStaticRouteRequestNexthop0 overwrites any union data inside the OpenStackStaticRouteRequest_Nexthop as the provided OpenStackStaticRouteRequestNexthop0
+func (t *OpenStackStaticRouteRequest_Nexthop) FromOpenStackStaticRouteRequestNexthop0(v OpenStackStaticRouteRequestNexthop0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackStaticRouteRequestNexthop0 performs a merge with any union data inside the OpenStackStaticRouteRequest_Nexthop, using the provided OpenStackStaticRouteRequestNexthop0
+func (t *OpenStackStaticRouteRequest_Nexthop) MergeOpenStackStaticRouteRequestNexthop0(v OpenStackStaticRouteRequestNexthop0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsOpenStackStaticRouteRequestNexthop1 returns the union data inside the OpenStackStaticRouteRequest_Nexthop as a OpenStackStaticRouteRequestNexthop1
+func (t OpenStackStaticRouteRequest_Nexthop) AsOpenStackStaticRouteRequestNexthop1() (OpenStackStaticRouteRequestNexthop1, error) {
+	var body OpenStackStaticRouteRequestNexthop1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackStaticRouteRequestNexthop1 overwrites any union data inside the OpenStackStaticRouteRequest_Nexthop as the provided OpenStackStaticRouteRequestNexthop1
+func (t *OpenStackStaticRouteRequest_Nexthop) FromOpenStackStaticRouteRequestNexthop1(v OpenStackStaticRouteRequestNexthop1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackStaticRouteRequestNexthop1 performs a merge with any union data inside the OpenStackStaticRouteRequest_Nexthop, using the provided OpenStackStaticRouteRequestNexthop1
+func (t *OpenStackStaticRouteRequest_Nexthop) MergeOpenStackStaticRouteRequestNexthop1(v OpenStackStaticRouteRequestNexthop1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t OpenStackStaticRouteRequest_Nexthop) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *OpenStackStaticRouteRequest_Nexthop) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsOpenStackSubNetDnsNameservers0 returns the union data inside the OpenStackSubNet_DnsNameservers_Item as a OpenStackSubNetDnsNameservers0
+func (t OpenStackSubNet_DnsNameservers_Item) AsOpenStackSubNetDnsNameservers0() (OpenStackSubNetDnsNameservers0, error) {
+	var body OpenStackSubNetDnsNameservers0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackSubNetDnsNameservers0 overwrites any union data inside the OpenStackSubNet_DnsNameservers_Item as the provided OpenStackSubNetDnsNameservers0
+func (t *OpenStackSubNet_DnsNameservers_Item) FromOpenStackSubNetDnsNameservers0(v OpenStackSubNetDnsNameservers0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackSubNetDnsNameservers0 performs a merge with any union data inside the OpenStackSubNet_DnsNameservers_Item, using the provided OpenStackSubNetDnsNameservers0
+func (t *OpenStackSubNet_DnsNameservers_Item) MergeOpenStackSubNetDnsNameservers0(v OpenStackSubNetDnsNameservers0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsOpenStackSubNetDnsNameservers1 returns the union data inside the OpenStackSubNet_DnsNameservers_Item as a OpenStackSubNetDnsNameservers1
+func (t OpenStackSubNet_DnsNameservers_Item) AsOpenStackSubNetDnsNameservers1() (OpenStackSubNetDnsNameservers1, error) {
+	var body OpenStackSubNetDnsNameservers1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackSubNetDnsNameservers1 overwrites any union data inside the OpenStackSubNet_DnsNameservers_Item as the provided OpenStackSubNetDnsNameservers1
+func (t *OpenStackSubNet_DnsNameservers_Item) FromOpenStackSubNetDnsNameservers1(v OpenStackSubNetDnsNameservers1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackSubNetDnsNameservers1 performs a merge with any union data inside the OpenStackSubNet_DnsNameservers_Item, using the provided OpenStackSubNetDnsNameservers1
+func (t *OpenStackSubNet_DnsNameservers_Item) MergeOpenStackSubNetDnsNameservers1(v OpenStackSubNetDnsNameservers1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t OpenStackSubNet_DnsNameservers_Item) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *OpenStackSubNet_DnsNameservers_Item) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsOpenStackSubNetGatewayIp0 returns the union data inside the OpenStackSubNet_GatewayIp as a OpenStackSubNetGatewayIp0
+func (t OpenStackSubNet_GatewayIp) AsOpenStackSubNetGatewayIp0() (OpenStackSubNetGatewayIp0, error) {
+	var body OpenStackSubNetGatewayIp0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackSubNetGatewayIp0 overwrites any union data inside the OpenStackSubNet_GatewayIp as the provided OpenStackSubNetGatewayIp0
+func (t *OpenStackSubNet_GatewayIp) FromOpenStackSubNetGatewayIp0(v OpenStackSubNetGatewayIp0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackSubNetGatewayIp0 performs a merge with any union data inside the OpenStackSubNet_GatewayIp, using the provided OpenStackSubNetGatewayIp0
+func (t *OpenStackSubNet_GatewayIp) MergeOpenStackSubNetGatewayIp0(v OpenStackSubNetGatewayIp0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsOpenStackSubNetGatewayIp1 returns the union data inside the OpenStackSubNet_GatewayIp as a OpenStackSubNetGatewayIp1
+func (t OpenStackSubNet_GatewayIp) AsOpenStackSubNetGatewayIp1() (OpenStackSubNetGatewayIp1, error) {
+	var body OpenStackSubNetGatewayIp1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackSubNetGatewayIp1 overwrites any union data inside the OpenStackSubNet_GatewayIp as the provided OpenStackSubNetGatewayIp1
+func (t *OpenStackSubNet_GatewayIp) FromOpenStackSubNetGatewayIp1(v OpenStackSubNetGatewayIp1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackSubNetGatewayIp1 performs a merge with any union data inside the OpenStackSubNet_GatewayIp, using the provided OpenStackSubNetGatewayIp1
+func (t *OpenStackSubNet_GatewayIp) MergeOpenStackSubNetGatewayIp1(v OpenStackSubNetGatewayIp1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t OpenStackSubNet_GatewayIp) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *OpenStackSubNet_GatewayIp) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsOpenStackSubNetAllocationPoolEnd0 returns the union data inside the OpenStackSubNetAllocationPool_End as a OpenStackSubNetAllocationPoolEnd0
+func (t OpenStackSubNetAllocationPool_End) AsOpenStackSubNetAllocationPoolEnd0() (OpenStackSubNetAllocationPoolEnd0, error) {
+	var body OpenStackSubNetAllocationPoolEnd0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackSubNetAllocationPoolEnd0 overwrites any union data inside the OpenStackSubNetAllocationPool_End as the provided OpenStackSubNetAllocationPoolEnd0
+func (t *OpenStackSubNetAllocationPool_End) FromOpenStackSubNetAllocationPoolEnd0(v OpenStackSubNetAllocationPoolEnd0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackSubNetAllocationPoolEnd0 performs a merge with any union data inside the OpenStackSubNetAllocationPool_End, using the provided OpenStackSubNetAllocationPoolEnd0
+func (t *OpenStackSubNetAllocationPool_End) MergeOpenStackSubNetAllocationPoolEnd0(v OpenStackSubNetAllocationPoolEnd0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsOpenStackSubNetAllocationPoolEnd1 returns the union data inside the OpenStackSubNetAllocationPool_End as a OpenStackSubNetAllocationPoolEnd1
+func (t OpenStackSubNetAllocationPool_End) AsOpenStackSubNetAllocationPoolEnd1() (OpenStackSubNetAllocationPoolEnd1, error) {
+	var body OpenStackSubNetAllocationPoolEnd1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackSubNetAllocationPoolEnd1 overwrites any union data inside the OpenStackSubNetAllocationPool_End as the provided OpenStackSubNetAllocationPoolEnd1
+func (t *OpenStackSubNetAllocationPool_End) FromOpenStackSubNetAllocationPoolEnd1(v OpenStackSubNetAllocationPoolEnd1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackSubNetAllocationPoolEnd1 performs a merge with any union data inside the OpenStackSubNetAllocationPool_End, using the provided OpenStackSubNetAllocationPoolEnd1
+func (t *OpenStackSubNetAllocationPool_End) MergeOpenStackSubNetAllocationPoolEnd1(v OpenStackSubNetAllocationPoolEnd1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t OpenStackSubNetAllocationPool_End) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *OpenStackSubNetAllocationPool_End) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsOpenStackSubNetAllocationPoolStart0 returns the union data inside the OpenStackSubNetAllocationPool_Start as a OpenStackSubNetAllocationPoolStart0
+func (t OpenStackSubNetAllocationPool_Start) AsOpenStackSubNetAllocationPoolStart0() (OpenStackSubNetAllocationPoolStart0, error) {
+	var body OpenStackSubNetAllocationPoolStart0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackSubNetAllocationPoolStart0 overwrites any union data inside the OpenStackSubNetAllocationPool_Start as the provided OpenStackSubNetAllocationPoolStart0
+func (t *OpenStackSubNetAllocationPool_Start) FromOpenStackSubNetAllocationPoolStart0(v OpenStackSubNetAllocationPoolStart0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackSubNetAllocationPoolStart0 performs a merge with any union data inside the OpenStackSubNetAllocationPool_Start, using the provided OpenStackSubNetAllocationPoolStart0
+func (t *OpenStackSubNetAllocationPool_Start) MergeOpenStackSubNetAllocationPoolStart0(v OpenStackSubNetAllocationPoolStart0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsOpenStackSubNetAllocationPoolStart1 returns the union data inside the OpenStackSubNetAllocationPool_Start as a OpenStackSubNetAllocationPoolStart1
+func (t OpenStackSubNetAllocationPool_Start) AsOpenStackSubNetAllocationPoolStart1() (OpenStackSubNetAllocationPoolStart1, error) {
+	var body OpenStackSubNetAllocationPoolStart1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackSubNetAllocationPoolStart1 overwrites any union data inside the OpenStackSubNetAllocationPool_Start as the provided OpenStackSubNetAllocationPoolStart1
+func (t *OpenStackSubNetAllocationPool_Start) FromOpenStackSubNetAllocationPoolStart1(v OpenStackSubNetAllocationPoolStart1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackSubNetAllocationPoolStart1 performs a merge with any union data inside the OpenStackSubNetAllocationPool_Start, using the provided OpenStackSubNetAllocationPoolStart1
+func (t *OpenStackSubNetAllocationPool_Start) MergeOpenStackSubNetAllocationPoolStart1(v OpenStackSubNetAllocationPoolStart1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t OpenStackSubNetAllocationPool_Start) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *OpenStackSubNetAllocationPool_Start) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsOpenStackSubNetAllocationPoolRequestEnd0 returns the union data inside the OpenStackSubNetAllocationPoolRequest_End as a OpenStackSubNetAllocationPoolRequestEnd0
+func (t OpenStackSubNetAllocationPoolRequest_End) AsOpenStackSubNetAllocationPoolRequestEnd0() (OpenStackSubNetAllocationPoolRequestEnd0, error) {
+	var body OpenStackSubNetAllocationPoolRequestEnd0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackSubNetAllocationPoolRequestEnd0 overwrites any union data inside the OpenStackSubNetAllocationPoolRequest_End as the provided OpenStackSubNetAllocationPoolRequestEnd0
+func (t *OpenStackSubNetAllocationPoolRequest_End) FromOpenStackSubNetAllocationPoolRequestEnd0(v OpenStackSubNetAllocationPoolRequestEnd0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackSubNetAllocationPoolRequestEnd0 performs a merge with any union data inside the OpenStackSubNetAllocationPoolRequest_End, using the provided OpenStackSubNetAllocationPoolRequestEnd0
+func (t *OpenStackSubNetAllocationPoolRequest_End) MergeOpenStackSubNetAllocationPoolRequestEnd0(v OpenStackSubNetAllocationPoolRequestEnd0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsOpenStackSubNetAllocationPoolRequestEnd1 returns the union data inside the OpenStackSubNetAllocationPoolRequest_End as a OpenStackSubNetAllocationPoolRequestEnd1
+func (t OpenStackSubNetAllocationPoolRequest_End) AsOpenStackSubNetAllocationPoolRequestEnd1() (OpenStackSubNetAllocationPoolRequestEnd1, error) {
+	var body OpenStackSubNetAllocationPoolRequestEnd1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackSubNetAllocationPoolRequestEnd1 overwrites any union data inside the OpenStackSubNetAllocationPoolRequest_End as the provided OpenStackSubNetAllocationPoolRequestEnd1
+func (t *OpenStackSubNetAllocationPoolRequest_End) FromOpenStackSubNetAllocationPoolRequestEnd1(v OpenStackSubNetAllocationPoolRequestEnd1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackSubNetAllocationPoolRequestEnd1 performs a merge with any union data inside the OpenStackSubNetAllocationPoolRequest_End, using the provided OpenStackSubNetAllocationPoolRequestEnd1
+func (t *OpenStackSubNetAllocationPoolRequest_End) MergeOpenStackSubNetAllocationPoolRequestEnd1(v OpenStackSubNetAllocationPoolRequestEnd1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t OpenStackSubNetAllocationPoolRequest_End) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *OpenStackSubNetAllocationPoolRequest_End) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsOpenStackSubNetAllocationPoolRequestStart0 returns the union data inside the OpenStackSubNetAllocationPoolRequest_Start as a OpenStackSubNetAllocationPoolRequestStart0
+func (t OpenStackSubNetAllocationPoolRequest_Start) AsOpenStackSubNetAllocationPoolRequestStart0() (OpenStackSubNetAllocationPoolRequestStart0, error) {
+	var body OpenStackSubNetAllocationPoolRequestStart0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackSubNetAllocationPoolRequestStart0 overwrites any union data inside the OpenStackSubNetAllocationPoolRequest_Start as the provided OpenStackSubNetAllocationPoolRequestStart0
+func (t *OpenStackSubNetAllocationPoolRequest_Start) FromOpenStackSubNetAllocationPoolRequestStart0(v OpenStackSubNetAllocationPoolRequestStart0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackSubNetAllocationPoolRequestStart0 performs a merge with any union data inside the OpenStackSubNetAllocationPoolRequest_Start, using the provided OpenStackSubNetAllocationPoolRequestStart0
+func (t *OpenStackSubNetAllocationPoolRequest_Start) MergeOpenStackSubNetAllocationPoolRequestStart0(v OpenStackSubNetAllocationPoolRequestStart0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsOpenStackSubNetAllocationPoolRequestStart1 returns the union data inside the OpenStackSubNetAllocationPoolRequest_Start as a OpenStackSubNetAllocationPoolRequestStart1
+func (t OpenStackSubNetAllocationPoolRequest_Start) AsOpenStackSubNetAllocationPoolRequestStart1() (OpenStackSubNetAllocationPoolRequestStart1, error) {
+	var body OpenStackSubNetAllocationPoolRequestStart1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackSubNetAllocationPoolRequestStart1 overwrites any union data inside the OpenStackSubNetAllocationPoolRequest_Start as the provided OpenStackSubNetAllocationPoolRequestStart1
+func (t *OpenStackSubNetAllocationPoolRequest_Start) FromOpenStackSubNetAllocationPoolRequestStart1(v OpenStackSubNetAllocationPoolRequestStart1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackSubNetAllocationPoolRequestStart1 performs a merge with any union data inside the OpenStackSubNetAllocationPoolRequest_Start, using the provided OpenStackSubNetAllocationPoolRequestStart1
+func (t *OpenStackSubNetAllocationPoolRequest_Start) MergeOpenStackSubNetAllocationPoolRequestStart1(v OpenStackSubNetAllocationPoolRequestStart1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t OpenStackSubNetAllocationPoolRequest_Start) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *OpenStackSubNetAllocationPoolRequest_Start) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsOpenStackSubNetRequestDnsNameservers0 returns the union data inside the OpenStackSubNetRequest_DnsNameservers_Item as a OpenStackSubNetRequestDnsNameservers0
+func (t OpenStackSubNetRequest_DnsNameservers_Item) AsOpenStackSubNetRequestDnsNameservers0() (OpenStackSubNetRequestDnsNameservers0, error) {
+	var body OpenStackSubNetRequestDnsNameservers0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackSubNetRequestDnsNameservers0 overwrites any union data inside the OpenStackSubNetRequest_DnsNameservers_Item as the provided OpenStackSubNetRequestDnsNameservers0
+func (t *OpenStackSubNetRequest_DnsNameservers_Item) FromOpenStackSubNetRequestDnsNameservers0(v OpenStackSubNetRequestDnsNameservers0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackSubNetRequestDnsNameservers0 performs a merge with any union data inside the OpenStackSubNetRequest_DnsNameservers_Item, using the provided OpenStackSubNetRequestDnsNameservers0
+func (t *OpenStackSubNetRequest_DnsNameservers_Item) MergeOpenStackSubNetRequestDnsNameservers0(v OpenStackSubNetRequestDnsNameservers0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsOpenStackSubNetRequestDnsNameservers1 returns the union data inside the OpenStackSubNetRequest_DnsNameservers_Item as a OpenStackSubNetRequestDnsNameservers1
+func (t OpenStackSubNetRequest_DnsNameservers_Item) AsOpenStackSubNetRequestDnsNameservers1() (OpenStackSubNetRequestDnsNameservers1, error) {
+	var body OpenStackSubNetRequestDnsNameservers1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackSubNetRequestDnsNameservers1 overwrites any union data inside the OpenStackSubNetRequest_DnsNameservers_Item as the provided OpenStackSubNetRequestDnsNameservers1
+func (t *OpenStackSubNetRequest_DnsNameservers_Item) FromOpenStackSubNetRequestDnsNameservers1(v OpenStackSubNetRequestDnsNameservers1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackSubNetRequestDnsNameservers1 performs a merge with any union data inside the OpenStackSubNetRequest_DnsNameservers_Item, using the provided OpenStackSubNetRequestDnsNameservers1
+func (t *OpenStackSubNetRequest_DnsNameservers_Item) MergeOpenStackSubNetRequestDnsNameservers1(v OpenStackSubNetRequestDnsNameservers1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t OpenStackSubNetRequest_DnsNameservers_Item) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *OpenStackSubNetRequest_DnsNameservers_Item) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsOpenStackSubNetRequestGatewayIp0 returns the union data inside the OpenStackSubNetRequest_GatewayIp as a OpenStackSubNetRequestGatewayIp0
+func (t OpenStackSubNetRequest_GatewayIp) AsOpenStackSubNetRequestGatewayIp0() (OpenStackSubNetRequestGatewayIp0, error) {
+	var body OpenStackSubNetRequestGatewayIp0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackSubNetRequestGatewayIp0 overwrites any union data inside the OpenStackSubNetRequest_GatewayIp as the provided OpenStackSubNetRequestGatewayIp0
+func (t *OpenStackSubNetRequest_GatewayIp) FromOpenStackSubNetRequestGatewayIp0(v OpenStackSubNetRequestGatewayIp0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackSubNetRequestGatewayIp0 performs a merge with any union data inside the OpenStackSubNetRequest_GatewayIp, using the provided OpenStackSubNetRequestGatewayIp0
+func (t *OpenStackSubNetRequest_GatewayIp) MergeOpenStackSubNetRequestGatewayIp0(v OpenStackSubNetRequestGatewayIp0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsOpenStackSubNetRequestGatewayIp1 returns the union data inside the OpenStackSubNetRequest_GatewayIp as a OpenStackSubNetRequestGatewayIp1
+func (t OpenStackSubNetRequest_GatewayIp) AsOpenStackSubNetRequestGatewayIp1() (OpenStackSubNetRequestGatewayIp1, error) {
+	var body OpenStackSubNetRequestGatewayIp1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackSubNetRequestGatewayIp1 overwrites any union data inside the OpenStackSubNetRequest_GatewayIp as the provided OpenStackSubNetRequestGatewayIp1
+func (t *OpenStackSubNetRequest_GatewayIp) FromOpenStackSubNetRequestGatewayIp1(v OpenStackSubNetRequestGatewayIp1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackSubNetRequestGatewayIp1 performs a merge with any union data inside the OpenStackSubNetRequest_GatewayIp, using the provided OpenStackSubNetRequestGatewayIp1
+func (t *OpenStackSubNetRequest_GatewayIp) MergeOpenStackSubNetRequestGatewayIp1(v OpenStackSubNetRequestGatewayIp1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t OpenStackSubNetRequest_GatewayIp) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *OpenStackSubNetRequest_GatewayIp) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -37195,6 +38694,130 @@ func (t *PatchedOpenStackServerGroupRequest_Policy) UnmarshalJSON(b []byte) erro
 	return err
 }
 
+// AsPatchedOpenStackSubNetRequestDnsNameservers0 returns the union data inside the PatchedOpenStackSubNetRequest_DnsNameservers_Item as a PatchedOpenStackSubNetRequestDnsNameservers0
+func (t PatchedOpenStackSubNetRequest_DnsNameservers_Item) AsPatchedOpenStackSubNetRequestDnsNameservers0() (PatchedOpenStackSubNetRequestDnsNameservers0, error) {
+	var body PatchedOpenStackSubNetRequestDnsNameservers0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPatchedOpenStackSubNetRequestDnsNameservers0 overwrites any union data inside the PatchedOpenStackSubNetRequest_DnsNameservers_Item as the provided PatchedOpenStackSubNetRequestDnsNameservers0
+func (t *PatchedOpenStackSubNetRequest_DnsNameservers_Item) FromPatchedOpenStackSubNetRequestDnsNameservers0(v PatchedOpenStackSubNetRequestDnsNameservers0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePatchedOpenStackSubNetRequestDnsNameservers0 performs a merge with any union data inside the PatchedOpenStackSubNetRequest_DnsNameservers_Item, using the provided PatchedOpenStackSubNetRequestDnsNameservers0
+func (t *PatchedOpenStackSubNetRequest_DnsNameservers_Item) MergePatchedOpenStackSubNetRequestDnsNameservers0(v PatchedOpenStackSubNetRequestDnsNameservers0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPatchedOpenStackSubNetRequestDnsNameservers1 returns the union data inside the PatchedOpenStackSubNetRequest_DnsNameservers_Item as a PatchedOpenStackSubNetRequestDnsNameservers1
+func (t PatchedOpenStackSubNetRequest_DnsNameservers_Item) AsPatchedOpenStackSubNetRequestDnsNameservers1() (PatchedOpenStackSubNetRequestDnsNameservers1, error) {
+	var body PatchedOpenStackSubNetRequestDnsNameservers1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPatchedOpenStackSubNetRequestDnsNameservers1 overwrites any union data inside the PatchedOpenStackSubNetRequest_DnsNameservers_Item as the provided PatchedOpenStackSubNetRequestDnsNameservers1
+func (t *PatchedOpenStackSubNetRequest_DnsNameservers_Item) FromPatchedOpenStackSubNetRequestDnsNameservers1(v PatchedOpenStackSubNetRequestDnsNameservers1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePatchedOpenStackSubNetRequestDnsNameservers1 performs a merge with any union data inside the PatchedOpenStackSubNetRequest_DnsNameservers_Item, using the provided PatchedOpenStackSubNetRequestDnsNameservers1
+func (t *PatchedOpenStackSubNetRequest_DnsNameservers_Item) MergePatchedOpenStackSubNetRequestDnsNameservers1(v PatchedOpenStackSubNetRequestDnsNameservers1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t PatchedOpenStackSubNetRequest_DnsNameservers_Item) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *PatchedOpenStackSubNetRequest_DnsNameservers_Item) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsPatchedOpenStackSubNetRequestGatewayIp0 returns the union data inside the PatchedOpenStackSubNetRequest_GatewayIp as a PatchedOpenStackSubNetRequestGatewayIp0
+func (t PatchedOpenStackSubNetRequest_GatewayIp) AsPatchedOpenStackSubNetRequestGatewayIp0() (PatchedOpenStackSubNetRequestGatewayIp0, error) {
+	var body PatchedOpenStackSubNetRequestGatewayIp0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPatchedOpenStackSubNetRequestGatewayIp0 overwrites any union data inside the PatchedOpenStackSubNetRequest_GatewayIp as the provided PatchedOpenStackSubNetRequestGatewayIp0
+func (t *PatchedOpenStackSubNetRequest_GatewayIp) FromPatchedOpenStackSubNetRequestGatewayIp0(v PatchedOpenStackSubNetRequestGatewayIp0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePatchedOpenStackSubNetRequestGatewayIp0 performs a merge with any union data inside the PatchedOpenStackSubNetRequest_GatewayIp, using the provided PatchedOpenStackSubNetRequestGatewayIp0
+func (t *PatchedOpenStackSubNetRequest_GatewayIp) MergePatchedOpenStackSubNetRequestGatewayIp0(v PatchedOpenStackSubNetRequestGatewayIp0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPatchedOpenStackSubNetRequestGatewayIp1 returns the union data inside the PatchedOpenStackSubNetRequest_GatewayIp as a PatchedOpenStackSubNetRequestGatewayIp1
+func (t PatchedOpenStackSubNetRequest_GatewayIp) AsPatchedOpenStackSubNetRequestGatewayIp1() (PatchedOpenStackSubNetRequestGatewayIp1, error) {
+	var body PatchedOpenStackSubNetRequestGatewayIp1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPatchedOpenStackSubNetRequestGatewayIp1 overwrites any union data inside the PatchedOpenStackSubNetRequest_GatewayIp as the provided PatchedOpenStackSubNetRequestGatewayIp1
+func (t *PatchedOpenStackSubNetRequest_GatewayIp) FromPatchedOpenStackSubNetRequestGatewayIp1(v PatchedOpenStackSubNetRequestGatewayIp1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePatchedOpenStackSubNetRequestGatewayIp1 performs a merge with any union data inside the PatchedOpenStackSubNetRequest_GatewayIp, using the provided PatchedOpenStackSubNetRequestGatewayIp1
+func (t *PatchedOpenStackSubNetRequest_GatewayIp) MergePatchedOpenStackSubNetRequestGatewayIp1(v PatchedOpenStackSubNetRequestGatewayIp1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t PatchedOpenStackSubNetRequest_GatewayIp) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *PatchedOpenStackSubNetRequest_GatewayIp) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsOecdFos2007CodeEnum returns the union data inside the PatchedProjectRequest_OecdFos2007Code as a OecdFos2007CodeEnum
 func (t PatchedProjectRequest_OecdFos2007Code) AsOecdFos2007CodeEnum() (OecdFos2007CodeEnum, error) {
 	var body OecdFos2007CodeEnum
@@ -37403,6 +39026,68 @@ func (t PatchedQuestionAdminRequest_Operator) MarshalJSON() ([]byte, error) {
 }
 
 func (t *PatchedQuestionAdminRequest_Operator) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsPatchedRancherServiceRequestClusterIp0 returns the union data inside the PatchedRancherServiceRequest_ClusterIp as a PatchedRancherServiceRequestClusterIp0
+func (t PatchedRancherServiceRequest_ClusterIp) AsPatchedRancherServiceRequestClusterIp0() (PatchedRancherServiceRequestClusterIp0, error) {
+	var body PatchedRancherServiceRequestClusterIp0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPatchedRancherServiceRequestClusterIp0 overwrites any union data inside the PatchedRancherServiceRequest_ClusterIp as the provided PatchedRancherServiceRequestClusterIp0
+func (t *PatchedRancherServiceRequest_ClusterIp) FromPatchedRancherServiceRequestClusterIp0(v PatchedRancherServiceRequestClusterIp0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePatchedRancherServiceRequestClusterIp0 performs a merge with any union data inside the PatchedRancherServiceRequest_ClusterIp, using the provided PatchedRancherServiceRequestClusterIp0
+func (t *PatchedRancherServiceRequest_ClusterIp) MergePatchedRancherServiceRequestClusterIp0(v PatchedRancherServiceRequestClusterIp0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsPatchedRancherServiceRequestClusterIp1 returns the union data inside the PatchedRancherServiceRequest_ClusterIp as a PatchedRancherServiceRequestClusterIp1
+func (t PatchedRancherServiceRequest_ClusterIp) AsPatchedRancherServiceRequestClusterIp1() (PatchedRancherServiceRequestClusterIp1, error) {
+	var body PatchedRancherServiceRequestClusterIp1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromPatchedRancherServiceRequestClusterIp1 overwrites any union data inside the PatchedRancherServiceRequest_ClusterIp as the provided PatchedRancherServiceRequestClusterIp1
+func (t *PatchedRancherServiceRequest_ClusterIp) FromPatchedRancherServiceRequestClusterIp1(v PatchedRancherServiceRequestClusterIp1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergePatchedRancherServiceRequestClusterIp1 performs a merge with any union data inside the PatchedRancherServiceRequest_ClusterIp, using the provided PatchedRancherServiceRequestClusterIp1
+func (t *PatchedRancherServiceRequest_ClusterIp) MergePatchedRancherServiceRequestClusterIp1(v PatchedRancherServiceRequestClusterIp1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t PatchedRancherServiceRequest_ClusterIp) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *PatchedRancherServiceRequest_ClusterIp) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -38467,6 +40152,254 @@ func (t *RancherClusterSecurityGroupRuleRequest_Protocol) UnmarshalJSON(b []byte
 	return err
 }
 
+// AsRancherNestedPublicIPExternalIpAddress0 returns the union data inside the RancherNestedPublicIP_ExternalIpAddress as a RancherNestedPublicIPExternalIpAddress0
+func (t RancherNestedPublicIP_ExternalIpAddress) AsRancherNestedPublicIPExternalIpAddress0() (RancherNestedPublicIPExternalIpAddress0, error) {
+	var body RancherNestedPublicIPExternalIpAddress0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromRancherNestedPublicIPExternalIpAddress0 overwrites any union data inside the RancherNestedPublicIP_ExternalIpAddress as the provided RancherNestedPublicIPExternalIpAddress0
+func (t *RancherNestedPublicIP_ExternalIpAddress) FromRancherNestedPublicIPExternalIpAddress0(v RancherNestedPublicIPExternalIpAddress0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeRancherNestedPublicIPExternalIpAddress0 performs a merge with any union data inside the RancherNestedPublicIP_ExternalIpAddress, using the provided RancherNestedPublicIPExternalIpAddress0
+func (t *RancherNestedPublicIP_ExternalIpAddress) MergeRancherNestedPublicIPExternalIpAddress0(v RancherNestedPublicIPExternalIpAddress0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsRancherNestedPublicIPExternalIpAddress1 returns the union data inside the RancherNestedPublicIP_ExternalIpAddress as a RancherNestedPublicIPExternalIpAddress1
+func (t RancherNestedPublicIP_ExternalIpAddress) AsRancherNestedPublicIPExternalIpAddress1() (RancherNestedPublicIPExternalIpAddress1, error) {
+	var body RancherNestedPublicIPExternalIpAddress1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromRancherNestedPublicIPExternalIpAddress1 overwrites any union data inside the RancherNestedPublicIP_ExternalIpAddress as the provided RancherNestedPublicIPExternalIpAddress1
+func (t *RancherNestedPublicIP_ExternalIpAddress) FromRancherNestedPublicIPExternalIpAddress1(v RancherNestedPublicIPExternalIpAddress1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeRancherNestedPublicIPExternalIpAddress1 performs a merge with any union data inside the RancherNestedPublicIP_ExternalIpAddress, using the provided RancherNestedPublicIPExternalIpAddress1
+func (t *RancherNestedPublicIP_ExternalIpAddress) MergeRancherNestedPublicIPExternalIpAddress1(v RancherNestedPublicIPExternalIpAddress1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t RancherNestedPublicIP_ExternalIpAddress) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *RancherNestedPublicIP_ExternalIpAddress) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsRancherNestedPublicIPIpAddress0 returns the union data inside the RancherNestedPublicIP_IpAddress as a RancherNestedPublicIPIpAddress0
+func (t RancherNestedPublicIP_IpAddress) AsRancherNestedPublicIPIpAddress0() (RancherNestedPublicIPIpAddress0, error) {
+	var body RancherNestedPublicIPIpAddress0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromRancherNestedPublicIPIpAddress0 overwrites any union data inside the RancherNestedPublicIP_IpAddress as the provided RancherNestedPublicIPIpAddress0
+func (t *RancherNestedPublicIP_IpAddress) FromRancherNestedPublicIPIpAddress0(v RancherNestedPublicIPIpAddress0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeRancherNestedPublicIPIpAddress0 performs a merge with any union data inside the RancherNestedPublicIP_IpAddress, using the provided RancherNestedPublicIPIpAddress0
+func (t *RancherNestedPublicIP_IpAddress) MergeRancherNestedPublicIPIpAddress0(v RancherNestedPublicIPIpAddress0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsRancherNestedPublicIPIpAddress1 returns the union data inside the RancherNestedPublicIP_IpAddress as a RancherNestedPublicIPIpAddress1
+func (t RancherNestedPublicIP_IpAddress) AsRancherNestedPublicIPIpAddress1() (RancherNestedPublicIPIpAddress1, error) {
+	var body RancherNestedPublicIPIpAddress1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromRancherNestedPublicIPIpAddress1 overwrites any union data inside the RancherNestedPublicIP_IpAddress as the provided RancherNestedPublicIPIpAddress1
+func (t *RancherNestedPublicIP_IpAddress) FromRancherNestedPublicIPIpAddress1(v RancherNestedPublicIPIpAddress1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeRancherNestedPublicIPIpAddress1 performs a merge with any union data inside the RancherNestedPublicIP_IpAddress, using the provided RancherNestedPublicIPIpAddress1
+func (t *RancherNestedPublicIP_IpAddress) MergeRancherNestedPublicIPIpAddress1(v RancherNestedPublicIPIpAddress1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t RancherNestedPublicIP_IpAddress) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *RancherNestedPublicIP_IpAddress) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsRancherServiceClusterIp0 returns the union data inside the RancherService_ClusterIp as a RancherServiceClusterIp0
+func (t RancherService_ClusterIp) AsRancherServiceClusterIp0() (RancherServiceClusterIp0, error) {
+	var body RancherServiceClusterIp0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromRancherServiceClusterIp0 overwrites any union data inside the RancherService_ClusterIp as the provided RancherServiceClusterIp0
+func (t *RancherService_ClusterIp) FromRancherServiceClusterIp0(v RancherServiceClusterIp0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeRancherServiceClusterIp0 performs a merge with any union data inside the RancherService_ClusterIp, using the provided RancherServiceClusterIp0
+func (t *RancherService_ClusterIp) MergeRancherServiceClusterIp0(v RancherServiceClusterIp0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsRancherServiceClusterIp1 returns the union data inside the RancherService_ClusterIp as a RancherServiceClusterIp1
+func (t RancherService_ClusterIp) AsRancherServiceClusterIp1() (RancherServiceClusterIp1, error) {
+	var body RancherServiceClusterIp1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromRancherServiceClusterIp1 overwrites any union data inside the RancherService_ClusterIp as the provided RancherServiceClusterIp1
+func (t *RancherService_ClusterIp) FromRancherServiceClusterIp1(v RancherServiceClusterIp1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeRancherServiceClusterIp1 performs a merge with any union data inside the RancherService_ClusterIp, using the provided RancherServiceClusterIp1
+func (t *RancherService_ClusterIp) MergeRancherServiceClusterIp1(v RancherServiceClusterIp1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t RancherService_ClusterIp) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *RancherService_ClusterIp) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsRancherServiceRequestClusterIp0 returns the union data inside the RancherServiceRequest_ClusterIp as a RancherServiceRequestClusterIp0
+func (t RancherServiceRequest_ClusterIp) AsRancherServiceRequestClusterIp0() (RancherServiceRequestClusterIp0, error) {
+	var body RancherServiceRequestClusterIp0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromRancherServiceRequestClusterIp0 overwrites any union data inside the RancherServiceRequest_ClusterIp as the provided RancherServiceRequestClusterIp0
+func (t *RancherServiceRequest_ClusterIp) FromRancherServiceRequestClusterIp0(v RancherServiceRequestClusterIp0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeRancherServiceRequestClusterIp0 performs a merge with any union data inside the RancherServiceRequest_ClusterIp, using the provided RancherServiceRequestClusterIp0
+func (t *RancherServiceRequest_ClusterIp) MergeRancherServiceRequestClusterIp0(v RancherServiceRequestClusterIp0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsRancherServiceRequestClusterIp1 returns the union data inside the RancherServiceRequest_ClusterIp as a RancherServiceRequestClusterIp1
+func (t RancherServiceRequest_ClusterIp) AsRancherServiceRequestClusterIp1() (RancherServiceRequestClusterIp1, error) {
+	var body RancherServiceRequestClusterIp1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromRancherServiceRequestClusterIp1 overwrites any union data inside the RancherServiceRequest_ClusterIp as the provided RancherServiceRequestClusterIp1
+func (t *RancherServiceRequest_ClusterIp) FromRancherServiceRequestClusterIp1(v RancherServiceRequestClusterIp1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeRancherServiceRequestClusterIp1 performs a merge with any union data inside the RancherServiceRequest_ClusterIp, using the provided RancherServiceRequestClusterIp1
+func (t *RancherServiceRequest_ClusterIp) MergeRancherServiceRequestClusterIp1(v RancherServiceRequestClusterIp1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t RancherServiceRequest_ClusterIp) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *RancherServiceRequest_ClusterIp) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsRemoteResourceSyncStatusRemoteStateEnum returns the union data inside the RemoteResourceSyncStatus_RemoteState as a RemoteResourceSyncStatusRemoteStateEnum
 func (t RemoteResourceSyncStatus_RemoteState) AsRemoteResourceSyncStatusRemoteStateEnum() (RemoteResourceSyncStatusRemoteStateEnum, error) {
 	var body RemoteResourceSyncStatusRemoteStateEnum
@@ -38525,6 +40458,130 @@ func (t RemoteResourceSyncStatus_RemoteState) MarshalJSON() ([]byte, error) {
 }
 
 func (t *RemoteResourceSyncStatus_RemoteState) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsRmqConnectionSourceIp0 returns the union data inside the RmqConnection_SourceIp as a RmqConnectionSourceIp0
+func (t RmqConnection_SourceIp) AsRmqConnectionSourceIp0() (RmqConnectionSourceIp0, error) {
+	var body RmqConnectionSourceIp0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromRmqConnectionSourceIp0 overwrites any union data inside the RmqConnection_SourceIp as the provided RmqConnectionSourceIp0
+func (t *RmqConnection_SourceIp) FromRmqConnectionSourceIp0(v RmqConnectionSourceIp0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeRmqConnectionSourceIp0 performs a merge with any union data inside the RmqConnection_SourceIp, using the provided RmqConnectionSourceIp0
+func (t *RmqConnection_SourceIp) MergeRmqConnectionSourceIp0(v RmqConnectionSourceIp0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsRmqConnectionSourceIp1 returns the union data inside the RmqConnection_SourceIp as a RmqConnectionSourceIp1
+func (t RmqConnection_SourceIp) AsRmqConnectionSourceIp1() (RmqConnectionSourceIp1, error) {
+	var body RmqConnectionSourceIp1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromRmqConnectionSourceIp1 overwrites any union data inside the RmqConnection_SourceIp as the provided RmqConnectionSourceIp1
+func (t *RmqConnection_SourceIp) FromRmqConnectionSourceIp1(v RmqConnectionSourceIp1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeRmqConnectionSourceIp1 performs a merge with any union data inside the RmqConnection_SourceIp, using the provided RmqConnectionSourceIp1
+func (t *RmqConnection_SourceIp) MergeRmqConnectionSourceIp1(v RmqConnectionSourceIp1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t RmqConnection_SourceIp) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *RmqConnection_SourceIp) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsRmqSubscriptionSourceIp0 returns the union data inside the RmqSubscription_SourceIp as a RmqSubscriptionSourceIp0
+func (t RmqSubscription_SourceIp) AsRmqSubscriptionSourceIp0() (RmqSubscriptionSourceIp0, error) {
+	var body RmqSubscriptionSourceIp0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromRmqSubscriptionSourceIp0 overwrites any union data inside the RmqSubscription_SourceIp as the provided RmqSubscriptionSourceIp0
+func (t *RmqSubscription_SourceIp) FromRmqSubscriptionSourceIp0(v RmqSubscriptionSourceIp0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeRmqSubscriptionSourceIp0 performs a merge with any union data inside the RmqSubscription_SourceIp, using the provided RmqSubscriptionSourceIp0
+func (t *RmqSubscription_SourceIp) MergeRmqSubscriptionSourceIp0(v RmqSubscriptionSourceIp0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsRmqSubscriptionSourceIp1 returns the union data inside the RmqSubscription_SourceIp as a RmqSubscriptionSourceIp1
+func (t RmqSubscription_SourceIp) AsRmqSubscriptionSourceIp1() (RmqSubscriptionSourceIp1, error) {
+	var body RmqSubscriptionSourceIp1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromRmqSubscriptionSourceIp1 overwrites any union data inside the RmqSubscription_SourceIp as the provided RmqSubscriptionSourceIp1
+func (t *RmqSubscription_SourceIp) FromRmqSubscriptionSourceIp1(v RmqSubscriptionSourceIp1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeRmqSubscriptionSourceIp1 performs a merge with any union data inside the RmqSubscription_SourceIp, using the provided RmqSubscriptionSourceIp1
+func (t *RmqSubscription_SourceIp) MergeRmqSubscriptionSourceIp1(v RmqSubscriptionSourceIp1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t RmqSubscription_SourceIp) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *RmqSubscription_SourceIp) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -43945,6 +46002,33 @@ type ClientInterface interface {
 
 	// SupportFeedbacksRetrieve request
 	SupportFeedbacksRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// SupportIssueStatusesList request
+	SupportIssueStatusesList(ctx context.Context, params *SupportIssueStatusesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// SupportIssueStatusesCount request
+	SupportIssueStatusesCount(ctx context.Context, params *SupportIssueStatusesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// SupportIssueStatusesCreateWithBody request with any body
+	SupportIssueStatusesCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	SupportIssueStatusesCreate(ctx context.Context, body SupportIssueStatusesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// SupportIssueStatusesDestroy request
+	SupportIssueStatusesDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// SupportIssueStatusesRetrieve request
+	SupportIssueStatusesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// SupportIssueStatusesPartialUpdateWithBody request with any body
+	SupportIssueStatusesPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	SupportIssueStatusesPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body SupportIssueStatusesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// SupportIssueStatusesUpdateWithBody request with any body
+	SupportIssueStatusesUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	SupportIssueStatusesUpdate(ctx context.Context, uuid openapi_types.UUID, body SupportIssueStatusesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// SupportIssuesList request
 	SupportIssuesList(ctx context.Context, params *SupportIssuesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -66689,6 +68773,126 @@ func (c *Client) SupportFeedbacksCreate(ctx context.Context, body SupportFeedbac
 
 func (c *Client) SupportFeedbacksRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewSupportFeedbacksRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SupportIssueStatusesList(ctx context.Context, params *SupportIssueStatusesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSupportIssueStatusesListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SupportIssueStatusesCount(ctx context.Context, params *SupportIssueStatusesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSupportIssueStatusesCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SupportIssueStatusesCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSupportIssueStatusesCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SupportIssueStatusesCreate(ctx context.Context, body SupportIssueStatusesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSupportIssueStatusesCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SupportIssueStatusesDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSupportIssueStatusesDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SupportIssueStatusesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSupportIssueStatusesRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SupportIssueStatusesPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSupportIssueStatusesPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SupportIssueStatusesPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body SupportIssueStatusesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSupportIssueStatusesPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SupportIssueStatusesUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSupportIssueStatusesUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SupportIssueStatusesUpdate(ctx context.Context, uuid openapi_types.UUID, body SupportIssueStatusesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSupportIssueStatusesUpdateRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -187920,6 +190124,338 @@ func NewSupportFeedbacksRetrieveRequest(server string, uuid openapi_types.UUID) 
 	return req, nil
 }
 
+// NewSupportIssueStatusesListRequest generates requests for SupportIssueStatusesList
+func NewSupportIssueStatusesListRequest(server string, params *SupportIssueStatusesListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/support-issue-statuses/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewSupportIssueStatusesCountRequest generates requests for SupportIssueStatusesCount
+func NewSupportIssueStatusesCountRequest(server string, params *SupportIssueStatusesCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/support-issue-statuses/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewSupportIssueStatusesCreateRequest calls the generic SupportIssueStatusesCreate builder with application/json body
+func NewSupportIssueStatusesCreateRequest(server string, body SupportIssueStatusesCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewSupportIssueStatusesCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewSupportIssueStatusesCreateRequestWithBody generates requests for SupportIssueStatusesCreate with any type of body
+func NewSupportIssueStatusesCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/support-issue-statuses/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewSupportIssueStatusesDestroyRequest generates requests for SupportIssueStatusesDestroy
+func NewSupportIssueStatusesDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/support-issue-statuses/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewSupportIssueStatusesRetrieveRequest generates requests for SupportIssueStatusesRetrieve
+func NewSupportIssueStatusesRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/support-issue-statuses/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewSupportIssueStatusesPartialUpdateRequest calls the generic SupportIssueStatusesPartialUpdate builder with application/json body
+func NewSupportIssueStatusesPartialUpdateRequest(server string, uuid openapi_types.UUID, body SupportIssueStatusesPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewSupportIssueStatusesPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewSupportIssueStatusesPartialUpdateRequestWithBody generates requests for SupportIssueStatusesPartialUpdate with any type of body
+func NewSupportIssueStatusesPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/support-issue-statuses/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewSupportIssueStatusesUpdateRequest calls the generic SupportIssueStatusesUpdate builder with application/json body
+func NewSupportIssueStatusesUpdateRequest(server string, uuid openapi_types.UUID, body SupportIssueStatusesUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewSupportIssueStatusesUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewSupportIssueStatusesUpdateRequestWithBody generates requests for SupportIssueStatusesUpdate with any type of body
+func NewSupportIssueStatusesUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/support-issue-statuses/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewSupportIssuesListRequest generates requests for SupportIssuesList
 func NewSupportIssuesListRequest(server string, params *SupportIssuesListParams) (*http.Request, error) {
 	var err error
@@ -204610,6 +207146,33 @@ type ClientWithResponsesInterface interface {
 
 	// SupportFeedbacksRetrieveWithResponse request
 	SupportFeedbacksRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*SupportFeedbacksRetrieveResponse, error)
+
+	// SupportIssueStatusesListWithResponse request
+	SupportIssueStatusesListWithResponse(ctx context.Context, params *SupportIssueStatusesListParams, reqEditors ...RequestEditorFn) (*SupportIssueStatusesListResponse, error)
+
+	// SupportIssueStatusesCountWithResponse request
+	SupportIssueStatusesCountWithResponse(ctx context.Context, params *SupportIssueStatusesCountParams, reqEditors ...RequestEditorFn) (*SupportIssueStatusesCountResponse, error)
+
+	// SupportIssueStatusesCreateWithBodyWithResponse request with any body
+	SupportIssueStatusesCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SupportIssueStatusesCreateResponse, error)
+
+	SupportIssueStatusesCreateWithResponse(ctx context.Context, body SupportIssueStatusesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*SupportIssueStatusesCreateResponse, error)
+
+	// SupportIssueStatusesDestroyWithResponse request
+	SupportIssueStatusesDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*SupportIssueStatusesDestroyResponse, error)
+
+	// SupportIssueStatusesRetrieveWithResponse request
+	SupportIssueStatusesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*SupportIssueStatusesRetrieveResponse, error)
+
+	// SupportIssueStatusesPartialUpdateWithBodyWithResponse request with any body
+	SupportIssueStatusesPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SupportIssueStatusesPartialUpdateResponse, error)
+
+	SupportIssueStatusesPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body SupportIssueStatusesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*SupportIssueStatusesPartialUpdateResponse, error)
+
+	// SupportIssueStatusesUpdateWithBodyWithResponse request with any body
+	SupportIssueStatusesUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SupportIssueStatusesUpdateResponse, error)
+
+	SupportIssueStatusesUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body SupportIssueStatusesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*SupportIssueStatusesUpdateResponse, error)
 
 	// SupportIssuesListWithResponse request
 	SupportIssuesListWithResponse(ctx context.Context, params *SupportIssuesListParams, reqEditors ...RequestEditorFn) (*SupportIssuesListResponse, error)
@@ -235717,6 +238280,158 @@ func (r SupportFeedbacksRetrieveResponse) StatusCode() int {
 	return 0
 }
 
+type SupportIssueStatusesListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]IssueStatus
+}
+
+// Status returns HTTPResponse.Status
+func (r SupportIssueStatusesListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r SupportIssueStatusesListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type SupportIssueStatusesCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r SupportIssueStatusesCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r SupportIssueStatusesCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type SupportIssueStatusesCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *IssueStatus
+}
+
+// Status returns HTTPResponse.Status
+func (r SupportIssueStatusesCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r SupportIssueStatusesCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type SupportIssueStatusesDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r SupportIssueStatusesDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r SupportIssueStatusesDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type SupportIssueStatusesRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *IssueStatus
+}
+
+// Status returns HTTPResponse.Status
+func (r SupportIssueStatusesRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r SupportIssueStatusesRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type SupportIssueStatusesPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *IssueStatus
+}
+
+// Status returns HTTPResponse.Status
+func (r SupportIssueStatusesPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r SupportIssueStatusesPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type SupportIssueStatusesUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *IssueStatus
+}
+
+// Status returns HTTPResponse.Status
+func (r SupportIssueStatusesUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r SupportIssueStatusesUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type SupportIssuesListResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -254799,6 +257514,93 @@ func (c *ClientWithResponses) SupportFeedbacksRetrieveWithResponse(ctx context.C
 		return nil, err
 	}
 	return ParseSupportFeedbacksRetrieveResponse(rsp)
+}
+
+// SupportIssueStatusesListWithResponse request returning *SupportIssueStatusesListResponse
+func (c *ClientWithResponses) SupportIssueStatusesListWithResponse(ctx context.Context, params *SupportIssueStatusesListParams, reqEditors ...RequestEditorFn) (*SupportIssueStatusesListResponse, error) {
+	rsp, err := c.SupportIssueStatusesList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSupportIssueStatusesListResponse(rsp)
+}
+
+// SupportIssueStatusesCountWithResponse request returning *SupportIssueStatusesCountResponse
+func (c *ClientWithResponses) SupportIssueStatusesCountWithResponse(ctx context.Context, params *SupportIssueStatusesCountParams, reqEditors ...RequestEditorFn) (*SupportIssueStatusesCountResponse, error) {
+	rsp, err := c.SupportIssueStatusesCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSupportIssueStatusesCountResponse(rsp)
+}
+
+// SupportIssueStatusesCreateWithBodyWithResponse request with arbitrary body returning *SupportIssueStatusesCreateResponse
+func (c *ClientWithResponses) SupportIssueStatusesCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SupportIssueStatusesCreateResponse, error) {
+	rsp, err := c.SupportIssueStatusesCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSupportIssueStatusesCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) SupportIssueStatusesCreateWithResponse(ctx context.Context, body SupportIssueStatusesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*SupportIssueStatusesCreateResponse, error) {
+	rsp, err := c.SupportIssueStatusesCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSupportIssueStatusesCreateResponse(rsp)
+}
+
+// SupportIssueStatusesDestroyWithResponse request returning *SupportIssueStatusesDestroyResponse
+func (c *ClientWithResponses) SupportIssueStatusesDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*SupportIssueStatusesDestroyResponse, error) {
+	rsp, err := c.SupportIssueStatusesDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSupportIssueStatusesDestroyResponse(rsp)
+}
+
+// SupportIssueStatusesRetrieveWithResponse request returning *SupportIssueStatusesRetrieveResponse
+func (c *ClientWithResponses) SupportIssueStatusesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*SupportIssueStatusesRetrieveResponse, error) {
+	rsp, err := c.SupportIssueStatusesRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSupportIssueStatusesRetrieveResponse(rsp)
+}
+
+// SupportIssueStatusesPartialUpdateWithBodyWithResponse request with arbitrary body returning *SupportIssueStatusesPartialUpdateResponse
+func (c *ClientWithResponses) SupportIssueStatusesPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SupportIssueStatusesPartialUpdateResponse, error) {
+	rsp, err := c.SupportIssueStatusesPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSupportIssueStatusesPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) SupportIssueStatusesPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body SupportIssueStatusesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*SupportIssueStatusesPartialUpdateResponse, error) {
+	rsp, err := c.SupportIssueStatusesPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSupportIssueStatusesPartialUpdateResponse(rsp)
+}
+
+// SupportIssueStatusesUpdateWithBodyWithResponse request with arbitrary body returning *SupportIssueStatusesUpdateResponse
+func (c *ClientWithResponses) SupportIssueStatusesUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SupportIssueStatusesUpdateResponse, error) {
+	rsp, err := c.SupportIssueStatusesUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSupportIssueStatusesUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) SupportIssueStatusesUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body SupportIssueStatusesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*SupportIssueStatusesUpdateResponse, error) {
+	rsp, err := c.SupportIssueStatusesUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSupportIssueStatusesUpdateResponse(rsp)
 }
 
 // SupportIssuesListWithResponse request returning *SupportIssuesListResponse
@@ -287930,6 +290732,168 @@ func ParseSupportFeedbacksRetrieveResponse(rsp *http.Response) (*SupportFeedback
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest Feedback
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseSupportIssueStatusesListResponse parses an HTTP response from a SupportIssueStatusesListWithResponse call
+func ParseSupportIssueStatusesListResponse(rsp *http.Response) (*SupportIssueStatusesListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &SupportIssueStatusesListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []IssueStatus
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseSupportIssueStatusesCountResponse parses an HTTP response from a SupportIssueStatusesCountWithResponse call
+func ParseSupportIssueStatusesCountResponse(rsp *http.Response) (*SupportIssueStatusesCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &SupportIssueStatusesCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseSupportIssueStatusesCreateResponse parses an HTTP response from a SupportIssueStatusesCreateWithResponse call
+func ParseSupportIssueStatusesCreateResponse(rsp *http.Response) (*SupportIssueStatusesCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &SupportIssueStatusesCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest IssueStatus
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseSupportIssueStatusesDestroyResponse parses an HTTP response from a SupportIssueStatusesDestroyWithResponse call
+func ParseSupportIssueStatusesDestroyResponse(rsp *http.Response) (*SupportIssueStatusesDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &SupportIssueStatusesDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseSupportIssueStatusesRetrieveResponse parses an HTTP response from a SupportIssueStatusesRetrieveWithResponse call
+func ParseSupportIssueStatusesRetrieveResponse(rsp *http.Response) (*SupportIssueStatusesRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &SupportIssueStatusesRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest IssueStatus
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseSupportIssueStatusesPartialUpdateResponse parses an HTTP response from a SupportIssueStatusesPartialUpdateWithResponse call
+func ParseSupportIssueStatusesPartialUpdateResponse(rsp *http.Response) (*SupportIssueStatusesPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &SupportIssueStatusesPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest IssueStatus
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseSupportIssueStatusesUpdateResponse parses an HTTP response from a SupportIssueStatusesUpdateWithResponse call
+func ParseSupportIssueStatusesUpdateResponse(rsp *http.Response) (*SupportIssueStatusesUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &SupportIssueStatusesUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest IssueStatus
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
