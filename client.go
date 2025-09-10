@@ -743,6 +743,13 @@ const (
 	KeycloakUserGroupMembershipStatePending KeycloakUserGroupMembershipState = "pending"
 )
 
+// Defines values for KindEnum.
+const (
+	KindEnumCourse  KindEnum = "course"
+	KindEnumDefault KindEnum = "default"
+	KindEnumPublic  KindEnum = "public"
+)
+
 // Defines values for LimitPeriodEnum.
 const (
 	LimitPeriodEnumAnnual    LimitPeriodEnum = "annual"
@@ -1268,8 +1275,8 @@ const (
 
 // Defines values for VisibilityEnum.
 const (
-	Private VisibilityEnum = "private"
-	Public  VisibilityEnum = "public"
+	VisibilityEnumPrivate VisibilityEnum = "private"
+	VisibilityEnumPublic  VisibilityEnum = "public"
 )
 
 // Defines values for VolumeTypeEnum.
@@ -2740,6 +2747,7 @@ const (
 	CustomersListParamsFieldCustomerCredit               CustomersListParamsField = "customer_credit"
 	CustomersListParamsFieldCustomerUnallocatedCredit    CustomersListParamsField = "customer_unallocated_credit"
 	CustomersListParamsFieldDefaultTaxPercent            CustomersListParamsField = "default_tax_percent"
+	CustomersListParamsFieldDescription                  CustomersListParamsField = "description"
 	CustomersListParamsFieldDisplayName                  CustomersListParamsField = "display_name"
 	CustomersListParamsFieldDomain                       CustomersListParamsField = "domain"
 	CustomersListParamsFieldEmail                        CustomersListParamsField = "email"
@@ -2790,6 +2798,7 @@ const (
 	CustomersRetrieveParamsFieldCustomerCredit               CustomersRetrieveParamsField = "customer_credit"
 	CustomersRetrieveParamsFieldCustomerUnallocatedCredit    CustomersRetrieveParamsField = "customer_unallocated_credit"
 	CustomersRetrieveParamsFieldDefaultTaxPercent            CustomersRetrieveParamsField = "default_tax_percent"
+	CustomersRetrieveParamsFieldDescription                  CustomersRetrieveParamsField = "description"
 	CustomersRetrieveParamsFieldDisplayName                  CustomersRetrieveParamsField = "display_name"
 	CustomersRetrieveParamsFieldDomain                       CustomersRetrieveParamsField = "domain"
 	CustomersRetrieveParamsFieldEmail                        CustomersRetrieveParamsField = "email"
@@ -3803,6 +3812,20 @@ const (
 	MarketplaceComponentUserUsagesRetrieveParamsFieldUser           MarketplaceComponentUserUsagesRetrieveParamsField = "user"
 	MarketplaceComponentUserUsagesRetrieveParamsFieldUsername       MarketplaceComponentUserUsagesRetrieveParamsField = "username"
 	MarketplaceComponentUserUsagesRetrieveParamsFieldUuid           MarketplaceComponentUserUsagesRetrieveParamsField = "uuid"
+)
+
+// Defines values for MarketplaceCourseAccountsListParamsState.
+const (
+	MarketplaceCourseAccountsListParamsStateClosed MarketplaceCourseAccountsListParamsState = "Closed"
+	MarketplaceCourseAccountsListParamsStateErred  MarketplaceCourseAccountsListParamsState = "Erred"
+	MarketplaceCourseAccountsListParamsStateOK     MarketplaceCourseAccountsListParamsState = "OK"
+)
+
+// Defines values for MarketplaceCourseAccountsCountParamsState.
+const (
+	MarketplaceCourseAccountsCountParamsStateClosed MarketplaceCourseAccountsCountParamsState = "Closed"
+	MarketplaceCourseAccountsCountParamsStateErred  MarketplaceCourseAccountsCountParamsState = "Erred"
+	MarketplaceCourseAccountsCountParamsStateOK     MarketplaceCourseAccountsCountParamsState = "OK"
 )
 
 // Defines values for MarketplaceCustomerServiceAccountsListParamsState.
@@ -5822,6 +5845,13 @@ const (
 	MarketplaceServiceProvidersCountParamsOMinusCustomerName MarketplaceServiceProvidersCountParamsO = "-customer_name"
 )
 
+// Defines values for MarketplaceServiceProvidersCourseAccountsListParamsState.
+const (
+	MarketplaceServiceProvidersCourseAccountsListParamsStateClosed MarketplaceServiceProvidersCourseAccountsListParamsState = "Closed"
+	MarketplaceServiceProvidersCourseAccountsListParamsStateErred  MarketplaceServiceProvidersCourseAccountsListParamsState = "Erred"
+	MarketplaceServiceProvidersCourseAccountsListParamsStateOK     MarketplaceServiceProvidersCourseAccountsListParamsState = "OK"
+)
+
 // Defines values for MarketplaceServiceProvidersCustomerProjectsListParamsField.
 const (
 	MarketplaceServiceProvidersCustomerProjectsListParamsFieldBillingPriceEstimate MarketplaceServiceProvidersCustomerProjectsListParamsField = "billing_price_estimate"
@@ -5998,6 +6028,7 @@ const (
 	MarketplaceServiceProvidersProjectsListParamsFieldEndDateRequestedBy       MarketplaceServiceProvidersProjectsListParamsField = "end_date_requested_by"
 	MarketplaceServiceProvidersProjectsListParamsFieldImage                    MarketplaceServiceProvidersProjectsListParamsField = "image"
 	MarketplaceServiceProvidersProjectsListParamsFieldIsIndustry               MarketplaceServiceProvidersProjectsListParamsField = "is_industry"
+	MarketplaceServiceProvidersProjectsListParamsFieldKind                     MarketplaceServiceProvidersProjectsListParamsField = "kind"
 	MarketplaceServiceProvidersProjectsListParamsFieldMarketplaceResourceCount MarketplaceServiceProvidersProjectsListParamsField = "marketplace_resource_count"
 	MarketplaceServiceProvidersProjectsListParamsFieldMaxServiceAccounts       MarketplaceServiceProvidersProjectsListParamsField = "max_service_accounts"
 	MarketplaceServiceProvidersProjectsListParamsFieldName                     MarketplaceServiceProvidersProjectsListParamsField = "name"
@@ -7834,6 +7865,7 @@ const (
 	ProjectsListParamsFieldEndDateRequestedBy       ProjectsListParamsField = "end_date_requested_by"
 	ProjectsListParamsFieldImage                    ProjectsListParamsField = "image"
 	ProjectsListParamsFieldIsIndustry               ProjectsListParamsField = "is_industry"
+	ProjectsListParamsFieldKind                     ProjectsListParamsField = "kind"
 	ProjectsListParamsFieldMarketplaceResourceCount ProjectsListParamsField = "marketplace_resource_count"
 	ProjectsListParamsFieldMaxServiceAccounts       ProjectsListParamsField = "max_service_accounts"
 	ProjectsListParamsFieldName                     ProjectsListParamsField = "name"
@@ -7906,6 +7938,7 @@ const (
 	ProjectsRetrieveParamsFieldEndDateRequestedBy       ProjectsRetrieveParamsField = "end_date_requested_by"
 	ProjectsRetrieveParamsFieldImage                    ProjectsRetrieveParamsField = "image"
 	ProjectsRetrieveParamsFieldIsIndustry               ProjectsRetrieveParamsField = "is_industry"
+	ProjectsRetrieveParamsFieldKind                     ProjectsRetrieveParamsField = "kind"
 	ProjectsRetrieveParamsFieldMarketplaceResourceCount ProjectsRetrieveParamsField = "marketplace_resource_count"
 	ProjectsRetrieveParamsFieldMaxServiceAccounts       ProjectsRetrieveParamsField = "max_service_accounts"
 	ProjectsRetrieveParamsFieldName                     ProjectsRetrieveParamsField = "name"
@@ -10093,14 +10126,14 @@ const (
 
 // Defines values for VmwareVirtualMachineCountParamsState.
 const (
-	VmwareVirtualMachineCountParamsStateCREATING          VmwareVirtualMachineCountParamsState = "CREATING"
-	VmwareVirtualMachineCountParamsStateCREATIONSCHEDULED VmwareVirtualMachineCountParamsState = "CREATION_SCHEDULED"
-	VmwareVirtualMachineCountParamsStateDELETING          VmwareVirtualMachineCountParamsState = "DELETING"
-	VmwareVirtualMachineCountParamsStateDELETIONSCHEDULED VmwareVirtualMachineCountParamsState = "DELETION_SCHEDULED"
-	VmwareVirtualMachineCountParamsStateERRED             VmwareVirtualMachineCountParamsState = "ERRED"
-	VmwareVirtualMachineCountParamsStateOK                VmwareVirtualMachineCountParamsState = "OK"
-	VmwareVirtualMachineCountParamsStateUPDATESCHEDULED   VmwareVirtualMachineCountParamsState = "UPDATE_SCHEDULED"
-	VmwareVirtualMachineCountParamsStateUPDATING          VmwareVirtualMachineCountParamsState = "UPDATING"
+	CREATING          VmwareVirtualMachineCountParamsState = "CREATING"
+	CREATIONSCHEDULED VmwareVirtualMachineCountParamsState = "CREATION_SCHEDULED"
+	DELETING          VmwareVirtualMachineCountParamsState = "DELETING"
+	DELETIONSCHEDULED VmwareVirtualMachineCountParamsState = "DELETION_SCHEDULED"
+	ERRED             VmwareVirtualMachineCountParamsState = "ERRED"
+	OK                VmwareVirtualMachineCountParamsState = "OK"
+	UPDATESCHEDULED   VmwareVirtualMachineCountParamsState = "UPDATE_SCHEDULED"
+	UPDATING          VmwareVirtualMachineCountParamsState = "UPDATING"
 )
 
 // Defines values for VmwareVirtualMachineRetrieveParamsField.
@@ -11378,6 +11411,18 @@ type CampaignRequest struct {
 	Stock     *int               `json:"stock"`
 }
 
+// CancelRequestResponse defines model for CancelRequestResponse.
+type CancelRequestResponse struct {
+	// ScopeName Name of the invitation scope
+	ScopeName string `json:"scope_name"`
+
+	// ScopeUuid UUID of the invitation scope
+	ScopeUuid string `json:"scope_uuid"`
+
+	// Uuid UUID of the canceled permission request
+	Uuid string `json:"uuid"`
+}
+
 // CategoryColumn defines model for CategoryColumn.
 type CategoryColumn struct {
 	// Attribute Resource attribute is rendered as table cell.
@@ -12198,6 +12243,58 @@ type Country struct {
 // CountryEnum defines model for CountryEnum.
 type CountryEnum string
 
+// CourseAccount defines model for CourseAccount.
+type CourseAccount struct {
+	Created        *time.Time           `json:"created,omitempty"`
+	CustomerName   *string              `json:"customer_name,omitempty"`
+	CustomerUuid   *openapi_types.UUID  `json:"customer_uuid,omitempty"`
+	Description    *string              `json:"description,omitempty"`
+	Email          *openapi_types.Email `json:"email,omitempty"`
+	ErrorMessage   *string              `json:"error_message,omitempty"`
+	ErrorTraceback *string              `json:"error_traceback,omitempty"`
+	Modified       *time.Time           `json:"modified,omitempty"`
+	Project        openapi_types.UUID   `json:"project"`
+	ProjectName    *string              `json:"project_name,omitempty"`
+	ProjectUuid    *openapi_types.UUID  `json:"project_uuid,omitempty"`
+	State          *string              `json:"state,omitempty"`
+	Url            *string              `json:"url,omitempty"`
+	UserUsername   *string              `json:"user_username,omitempty"`
+	UserUuid       *openapi_types.UUID  `json:"user_uuid,omitempty"`
+	Uuid           *openapi_types.UUID  `json:"uuid,omitempty"`
+}
+
+// CourseAccountCreateNested defines model for CourseAccountCreateNested.
+type CourseAccountCreateNested struct {
+	Description *string              `json:"description,omitempty"`
+	Email       *openapi_types.Email `json:"email,omitempty"`
+}
+
+// CourseAccountCreateNestedRequest defines model for CourseAccountCreateNestedRequest.
+type CourseAccountCreateNestedRequest struct {
+	Description *string              `json:"description,omitempty"`
+	Email       *openapi_types.Email `json:"email,omitempty"`
+}
+
+// CourseAccountRequest defines model for CourseAccountRequest.
+type CourseAccountRequest struct {
+	Description    *string              `json:"description,omitempty"`
+	Email          *openapi_types.Email `json:"email,omitempty"`
+	ErrorTraceback *string              `json:"error_traceback,omitempty"`
+	Project        openapi_types.UUID   `json:"project"`
+}
+
+// CourseAccountsBulkCreate defines model for CourseAccountsBulkCreate.
+type CourseAccountsBulkCreate struct {
+	CourseAccounts []CourseAccountCreateNested `json:"course_accounts"`
+	Project        openapi_types.UUID          `json:"project"`
+}
+
+// CourseAccountsBulkCreateRequest defines model for CourseAccountsBulkCreateRequest.
+type CourseAccountsBulkCreateRequest struct {
+	CourseAccounts []CourseAccountCreateNestedRequest `json:"course_accounts"`
+	Project        openapi_types.UUID                 `json:"project"`
+}
+
 // CreateAttachmentsRequest defines model for CreateAttachmentsRequest.
 type CreateAttachmentsRequest struct {
 	Attachments []openapi_types.File `json:"attachments"`
@@ -12295,6 +12392,7 @@ type Customer struct {
 	CustomerCredit               *float64             `json:"customer_credit"`
 	CustomerUnallocatedCredit    *float64             `json:"customer_unallocated_credit"`
 	DefaultTaxPercent            *string              `json:"default_tax_percent,omitempty"`
+	Description                  *string              `json:"description,omitempty"`
 	DisplayName                  *string              `json:"display_name,omitempty"`
 	Domain                       *string              `json:"domain,omitempty"`
 	Email                        *openapi_types.Email `json:"email,omitempty"`
@@ -12480,6 +12578,7 @@ type CustomerRequest struct {
 	BankName         *string                  `json:"bank_name,omitempty"`
 	ContactDetails   *string                  `json:"contact_details,omitempty"`
 	Country          *CustomerRequest_Country `json:"country,omitempty"`
+	Description      *string                  `json:"description,omitempty"`
 	Email            *openapi_types.Email     `json:"email,omitempty"`
 	Homepage         *string                  `json:"homepage,omitempty"`
 	Image            *openapi_types.File      `json:"image"`
@@ -13046,14 +13145,18 @@ type GroupInvitation struct {
 	Role                openapi_types.UUID  `json:"role"`
 	RoleDescription     *string             `json:"role_description,omitempty"`
 	RoleName            *string             `json:"role_name,omitempty"`
-	ScopeImage          *string             `json:"scope_image"`
-	ScopeName           *string             `json:"scope_name,omitempty"`
-	ScopeType           *string             `json:"scope_type"`
-	ScopeUuid           *openapi_types.UUID `json:"scope_uuid,omitempty"`
-	Url                 *string             `json:"url,omitempty"`
-	UserAffiliations    interface{}         `json:"user_affiliations,omitempty"`
-	UserEmailPatterns   interface{}         `json:"user_email_patterns,omitempty"`
-	Uuid                *openapi_types.UUID `json:"uuid,omitempty"`
+
+	// ScopeDescription Get the description field from the scope if it exists.
+	// Returns empty string if scope doesn't have a description field.
+	ScopeDescription  *string             `json:"scope_description,omitempty"`
+	ScopeImage        *string             `json:"scope_image"`
+	ScopeName         *string             `json:"scope_name,omitempty"`
+	ScopeType         *string             `json:"scope_type"`
+	ScopeUuid         *openapi_types.UUID `json:"scope_uuid,omitempty"`
+	Url               *string             `json:"url,omitempty"`
+	UserAffiliations  interface{}         `json:"user_affiliations,omitempty"`
+	UserEmailPatterns interface{}         `json:"user_email_patterns,omitempty"`
+	Uuid              *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // GroupInvitationRequest defines model for GroupInvitationRequest.
@@ -13235,25 +13338,29 @@ type Invitation struct {
 	CustomerUuid      *openapi_types.UUID `json:"customer_uuid,omitempty"`
 
 	// Email Invitation link will be sent to this email. Note that user can accept invitation with different email.
-	Email               openapi_types.Email  `json:"email"`
-	ErrorMessage        *string              `json:"error_message,omitempty"`
-	ExecutionState      *ExecutionStateEnum  `json:"execution_state,omitempty"`
-	Expires             *time.Time           `json:"expires,omitempty"`
-	ExtraInvitationText *string              `json:"extra_invitation_text,omitempty"`
-	FullName            *string              `json:"full_name,omitempty"`
-	JobTitle            *string              `json:"job_title,omitempty"`
-	NativeName          *string              `json:"native_name,omitempty"`
-	Organization        *string              `json:"organization,omitempty"`
-	PhoneNumber         *string              `json:"phone_number,omitempty"`
-	Role                openapi_types.UUID   `json:"role"`
-	RoleDescription     *string              `json:"role_description,omitempty"`
-	RoleName            *string              `json:"role_name,omitempty"`
-	ScopeName           *string              `json:"scope_name,omitempty"`
-	ScopeType           *string              `json:"scope_type"`
-	ScopeUuid           *openapi_types.UUID  `json:"scope_uuid,omitempty"`
-	State               *InvitationStateEnum `json:"state,omitempty"`
-	Url                 *string              `json:"url,omitempty"`
-	Uuid                *openapi_types.UUID  `json:"uuid,omitempty"`
+	Email               openapi_types.Email `json:"email"`
+	ErrorMessage        *string             `json:"error_message,omitempty"`
+	ExecutionState      *ExecutionStateEnum `json:"execution_state,omitempty"`
+	Expires             *time.Time          `json:"expires,omitempty"`
+	ExtraInvitationText *string             `json:"extra_invitation_text,omitempty"`
+	FullName            *string             `json:"full_name,omitempty"`
+	JobTitle            *string             `json:"job_title,omitempty"`
+	NativeName          *string             `json:"native_name,omitempty"`
+	Organization        *string             `json:"organization,omitempty"`
+	PhoneNumber         *string             `json:"phone_number,omitempty"`
+	Role                openapi_types.UUID  `json:"role"`
+	RoleDescription     *string             `json:"role_description,omitempty"`
+	RoleName            *string             `json:"role_name,omitempty"`
+
+	// ScopeDescription Get the description field from the scope if it exists.
+	// Returns empty string if scope doesn't have a description field.
+	ScopeDescription *string              `json:"scope_description,omitempty"`
+	ScopeName        *string              `json:"scope_name,omitempty"`
+	ScopeType        *string              `json:"scope_type"`
+	ScopeUuid        *openapi_types.UUID  `json:"scope_uuid,omitempty"`
+	State            *InvitationStateEnum `json:"state,omitempty"`
+	Url              *string              `json:"url,omitempty"`
+	Uuid             *openapi_types.UUID  `json:"uuid,omitempty"`
 }
 
 // InvitationCheck defines model for InvitationCheck.
@@ -13685,6 +13792,9 @@ type KeycloakUserGroupMembershipRequest struct {
 
 // KeycloakUserGroupMembershipState defines model for KeycloakUserGroupMembershipState.
 type KeycloakUserGroupMembershipState string
+
+// KindEnum defines model for KindEnum.
+type KindEnum string
 
 // LexisLink defines model for LexisLink.
 type LexisLink struct {
@@ -17761,6 +17871,7 @@ type PatchedCustomerRequest struct {
 	BankName         *string                         `json:"bank_name,omitempty"`
 	ContactDetails   *string                         `json:"contact_details,omitempty"`
 	Country          *PatchedCustomerRequest_Country `json:"country,omitempty"`
+	Description      *string                         `json:"description,omitempty"`
 	Email            *openapi_types.Email            `json:"email,omitempty"`
 	Homepage         *string                         `json:"homepage,omitempty"`
 	Image            *openapi_types.File             `json:"image"`
@@ -18225,6 +18336,7 @@ type PatchedProjectRequest struct {
 	EndDate         *openapi_types.Date                    `json:"end_date"`
 	Image           *openapi_types.File                    `json:"image"`
 	IsIndustry      *bool                                  `json:"is_industry,omitempty"`
+	Kind            *KindEnum                              `json:"kind,omitempty"`
 	Name            *string                                `json:"name,omitempty"`
 	OecdFos2007Code *PatchedProjectRequest_OecdFos2007Code `json:"oecd_fos_2007_code"`
 	StartDate       *openapi_types.Date                    `json:"start_date"`
@@ -18878,6 +18990,7 @@ type Project struct {
 	EndDateRequestedBy       *string             `json:"end_date_requested_by"`
 	Image                    *string             `json:"image"`
 	IsIndustry               *bool               `json:"is_industry,omitempty"`
+	Kind                     *KindEnum           `json:"kind,omitempty"`
 	MarketplaceResourceCount *map[string]int     `json:"marketplace_resource_count,omitempty"`
 
 	// MaxServiceAccounts Maximum number of service accounts allowed
@@ -19062,6 +19175,7 @@ type ProjectRequest struct {
 	EndDate         *openapi_types.Date             `json:"end_date"`
 	Image           *openapi_types.File             `json:"image"`
 	IsIndustry      *bool                           `json:"is_industry,omitempty"`
+	Kind            *KindEnum                       `json:"kind,omitempty"`
 	Name            string                          `json:"name"`
 	OecdFos2007Code *ProjectRequest_OecdFos2007Code `json:"oecd_fos_2007_code"`
 	StartDate       *openapi_types.Date             `json:"start_date"`
@@ -22060,6 +22174,18 @@ type SubNetMappingRequest struct {
 	SrcCidr string `json:"src_cidr"`
 }
 
+// SubmitRequestResponse defines model for SubmitRequestResponse.
+type SubmitRequestResponse struct {
+	// ScopeName Name of the invitation scope
+	ScopeName string `json:"scope_name"`
+
+	// ScopeUuid UUID of the invitation scope
+	ScopeUuid string `json:"scope_uuid"`
+
+	// Uuid UUID of the created permission request
+	Uuid string `json:"uuid"`
+}
+
 // SubresourceOffering defines model for SubresourceOffering.
 type SubresourceOffering struct {
 	Type *string             `json:"type,omitempty"`
@@ -22437,10 +22563,14 @@ type VisibleInvitationDetails struct {
 	ExecutionState  *ExecutionStateEnum `json:"execution_state,omitempty"`
 	RoleDescription *string             `json:"role_description,omitempty"`
 	RoleName        *string             `json:"role_name,omitempty"`
-	ScopeName       *string             `json:"scope_name,omitempty"`
-	ScopeType       *string             `json:"scope_type"`
-	ScopeUuid       *openapi_types.UUID `json:"scope_uuid,omitempty"`
-	State           *InvitationState    `json:"state,omitempty"`
+
+	// ScopeDescription Get the description field from the scope if it exists.
+	// Returns empty string if scope doesn't have a description field.
+	ScopeDescription *string             `json:"scope_description,omitempty"`
+	ScopeName        *string             `json:"scope_name,omitempty"`
+	ScopeType        *string             `json:"scope_type"`
+	ScopeUuid        *openapi_types.UUID `json:"scope_uuid,omitempty"`
+	State            *InvitationState    `json:"state,omitempty"`
 }
 
 // VmwareCluster defines model for VmwareCluster.
@@ -26334,6 +26464,40 @@ type MarketplaceComponentUserUsagesRetrieveParams struct {
 // MarketplaceComponentUserUsagesRetrieveParamsField defines parameters for MarketplaceComponentUserUsagesRetrieve.
 type MarketplaceComponentUserUsagesRetrieveParamsField string
 
+// MarketplaceCourseAccountsListParams defines parameters for MarketplaceCourseAccountsList.
+type MarketplaceCourseAccountsListParams struct {
+	Email *string `form:"email,omitempty" json:"email,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize    *PageSize                                   `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ProjectUuid *openapi_types.UUID                         `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	State       *[]MarketplaceCourseAccountsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+	Username    *string                                     `form:"username,omitempty" json:"username,omitempty"`
+}
+
+// MarketplaceCourseAccountsListParamsState defines parameters for MarketplaceCourseAccountsList.
+type MarketplaceCourseAccountsListParamsState string
+
+// MarketplaceCourseAccountsCountParams defines parameters for MarketplaceCourseAccountsCount.
+type MarketplaceCourseAccountsCountParams struct {
+	Email *string `form:"email,omitempty" json:"email,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize    *PageSize                                    `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ProjectUuid *openapi_types.UUID                          `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	State       *[]MarketplaceCourseAccountsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+	Username    *string                                      `form:"username,omitempty" json:"username,omitempty"`
+}
+
+// MarketplaceCourseAccountsCountParamsState defines parameters for MarketplaceCourseAccountsCount.
+type MarketplaceCourseAccountsCountParamsState string
+
 // MarketplaceCustomerEstimatedCostPoliciesListParams defines parameters for MarketplaceCustomerEstimatedCostPoliciesList.
 type MarketplaceCustomerEstimatedCostPoliciesListParams struct {
 	Customer     *string             `form:"customer,omitempty" json:"customer,omitempty"`
@@ -28665,6 +28829,23 @@ type ServiceProviderOfferingUsersComplianceParams struct {
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 }
+
+// MarketplaceServiceProvidersCourseAccountsListParams defines parameters for MarketplaceServiceProvidersCourseAccountsList.
+type MarketplaceServiceProvidersCourseAccountsListParams struct {
+	Email *string `form:"email,omitempty" json:"email,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize    *PageSize                                                   `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ProjectUuid *openapi_types.UUID                                         `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	State       *[]MarketplaceServiceProvidersCourseAccountsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+	Username    *string                                                     `form:"username,omitempty" json:"username,omitempty"`
+}
+
+// MarketplaceServiceProvidersCourseAccountsListParamsState defines parameters for MarketplaceServiceProvidersCourseAccountsList.
+type MarketplaceServiceProvidersCourseAccountsListParamsState string
 
 // MarketplaceServiceProvidersCustomerProjectsListParams defines parameters for MarketplaceServiceProvidersCustomerProjectsList.
 type MarketplaceServiceProvidersCustomerProjectsListParams struct {
@@ -33605,11 +33786,13 @@ type UserInvitationsListParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize  *PageSize                         `form:"page_size,omitempty" json:"page_size,omitempty"`
-	RoleName  *string                           `form:"role_name,omitempty" json:"role_name,omitempty"`
-	RoleUuid  *openapi_types.UUID               `form:"role_uuid,omitempty" json:"role_uuid,omitempty"`
-	ScopeType *string                           `form:"scope_type,omitempty" json:"scope_type,omitempty"`
-	State     *[]UserInvitationsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+	PageSize         *PageSize                         `form:"page_size,omitempty" json:"page_size,omitempty"`
+	RoleName         *string                           `form:"role_name,omitempty" json:"role_name,omitempty"`
+	RoleUuid         *openapi_types.UUID               `form:"role_uuid,omitempty" json:"role_uuid,omitempty"`
+	ScopeDescription *string                           `form:"scope_description,omitempty" json:"scope_description,omitempty"`
+	ScopeName        *string                           `form:"scope_name,omitempty" json:"scope_name,omitempty"`
+	ScopeType        *string                           `form:"scope_type,omitempty" json:"scope_type,omitempty"`
+	State            *[]UserInvitationsListParamsState `form:"state,omitempty" json:"state,omitempty"`
 }
 
 // UserInvitationsListParamsO defines parameters for UserInvitationsList.
@@ -33632,11 +33815,13 @@ type UserInvitationsCountParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize  *PageSize                          `form:"page_size,omitempty" json:"page_size,omitempty"`
-	RoleName  *string                            `form:"role_name,omitempty" json:"role_name,omitempty"`
-	RoleUuid  *openapi_types.UUID                `form:"role_uuid,omitempty" json:"role_uuid,omitempty"`
-	ScopeType *string                            `form:"scope_type,omitempty" json:"scope_type,omitempty"`
-	State     *[]UserInvitationsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+	PageSize         *PageSize                          `form:"page_size,omitempty" json:"page_size,omitempty"`
+	RoleName         *string                            `form:"role_name,omitempty" json:"role_name,omitempty"`
+	RoleUuid         *openapi_types.UUID                `form:"role_uuid,omitempty" json:"role_uuid,omitempty"`
+	ScopeDescription *string                            `form:"scope_description,omitempty" json:"scope_description,omitempty"`
+	ScopeName        *string                            `form:"scope_name,omitempty" json:"scope_name,omitempty"`
+	ScopeType        *string                            `form:"scope_type,omitempty" json:"scope_type,omitempty"`
+	State            *[]UserInvitationsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
 }
 
 // UserInvitationsCountParamsO defines parameters for UserInvitationsCount.
@@ -34782,6 +34967,12 @@ type MarketplaceComponentUsagesSetUsageJSONRequestBody = ComponentUsageCreateReq
 
 // MarketplaceComponentUsagesSetUserUsageJSONRequestBody defines body for MarketplaceComponentUsagesSetUserUsage for application/json ContentType.
 type MarketplaceComponentUsagesSetUserUsageJSONRequestBody = ComponentUserUsageCreateRequest
+
+// MarketplaceCourseAccountsCreateJSONRequestBody defines body for MarketplaceCourseAccountsCreate for application/json ContentType.
+type MarketplaceCourseAccountsCreateJSONRequestBody = CourseAccountRequest
+
+// MarketplaceCourseAccountsCreateBulkJSONRequestBody defines body for MarketplaceCourseAccountsCreateBulk for application/json ContentType.
+type MarketplaceCourseAccountsCreateBulkJSONRequestBody = CourseAccountsBulkCreateRequest
 
 // MarketplaceCustomerEstimatedCostPoliciesCreateJSONRequestBody defines body for MarketplaceCustomerEstimatedCostPoliciesCreate for application/json ContentType.
 type MarketplaceCustomerEstimatedCostPoliciesCreateJSONRequestBody = CustomerEstimatedCostPolicyRequest
@@ -42668,6 +42859,28 @@ type ClientInterface interface {
 	// MarketplaceComponentUserUsagesRetrieve request
 	MarketplaceComponentUserUsagesRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceComponentUserUsagesRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceCourseAccountsList request
+	MarketplaceCourseAccountsList(ctx context.Context, params *MarketplaceCourseAccountsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceCourseAccountsCount request
+	MarketplaceCourseAccountsCount(ctx context.Context, params *MarketplaceCourseAccountsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceCourseAccountsCreateWithBody request with any body
+	MarketplaceCourseAccountsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceCourseAccountsCreate(ctx context.Context, body MarketplaceCourseAccountsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceCourseAccountsCreateBulkWithBody request with any body
+	MarketplaceCourseAccountsCreateBulkWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceCourseAccountsCreateBulk(ctx context.Context, body MarketplaceCourseAccountsCreateBulkJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceCourseAccountsDestroy request
+	MarketplaceCourseAccountsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceCourseAccountsRetrieve request
+	MarketplaceCourseAccountsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceCustomerEstimatedCostPoliciesList request
 	MarketplaceCustomerEstimatedCostPoliciesList(ctx context.Context, params *MarketplaceCustomerEstimatedCostPoliciesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -43793,6 +44006,9 @@ type ClientInterface interface {
 
 	// ServiceProviderOfferingUsersCompliance request
 	ServiceProviderOfferingUsersCompliance(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *ServiceProviderOfferingUsersComplianceParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceServiceProvidersCourseAccountsList request
+	MarketplaceServiceProvidersCourseAccountsList(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersCourseAccountsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceServiceProvidersCustomerProjectsList request
 	MarketplaceServiceProvidersCustomerProjectsList(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersCustomerProjectsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -46249,6 +46465,9 @@ type ClientInterface interface {
 	UserPermissionRequestsApproveWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	UserPermissionRequestsApprove(ctx context.Context, uuid openapi_types.UUID, body UserPermissionRequestsApproveJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// UserPermissionRequestsCancelRequest request
+	UserPermissionRequestsCancelRequest(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UserPermissionRequestsRejectWithBody request with any body
 	UserPermissionRequestsRejectWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -54275,6 +54494,102 @@ func (c *Client) MarketplaceComponentUserUsagesRetrieve(ctx context.Context, uui
 	return c.Client.Do(req)
 }
 
+func (c *Client) MarketplaceCourseAccountsList(ctx context.Context, params *MarketplaceCourseAccountsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceCourseAccountsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceCourseAccountsCount(ctx context.Context, params *MarketplaceCourseAccountsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceCourseAccountsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceCourseAccountsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceCourseAccountsCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceCourseAccountsCreate(ctx context.Context, body MarketplaceCourseAccountsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceCourseAccountsCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceCourseAccountsCreateBulkWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceCourseAccountsCreateBulkRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceCourseAccountsCreateBulk(ctx context.Context, body MarketplaceCourseAccountsCreateBulkJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceCourseAccountsCreateBulkRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceCourseAccountsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceCourseAccountsDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceCourseAccountsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceCourseAccountsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) MarketplaceCustomerEstimatedCostPoliciesList(ctx context.Context, params *MarketplaceCustomerEstimatedCostPoliciesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceCustomerEstimatedCostPoliciesListRequest(c.Server, params)
 	if err != nil {
@@ -59197,6 +59512,18 @@ func (c *Client) ServiceProviderComplianceOverview(ctx context.Context, serviceP
 
 func (c *Client) ServiceProviderOfferingUsersCompliance(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *ServiceProviderOfferingUsersComplianceParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewServiceProviderOfferingUsersComplianceRequest(c.Server, serviceProviderUuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceServiceProvidersCourseAccountsList(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersCourseAccountsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceServiceProvidersCourseAccountsListRequest(c.Server, serviceProviderUuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -69853,6 +70180,18 @@ func (c *Client) UserPermissionRequestsApproveWithBody(ctx context.Context, uuid
 
 func (c *Client) UserPermissionRequestsApprove(ctx context.Context, uuid openapi_types.UUID, body UserPermissionRequestsApproveJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewUserPermissionRequestsApproveRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UserPermissionRequestsCancelRequest(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUserPermissionRequestsCancelRequestRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -110199,6 +110538,412 @@ func NewMarketplaceComponentUserUsagesRetrieveRequest(server string, uuid openap
 	return req, nil
 }
 
+// NewMarketplaceCourseAccountsListRequest generates requests for MarketplaceCourseAccountsList
+func NewMarketplaceCourseAccountsListRequest(server string, params *MarketplaceCourseAccountsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-course-accounts/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Email != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "email", runtime.ParamLocationQuery, *params.Email); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_uuid", runtime.ParamLocationQuery, *params.ProjectUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "state", runtime.ParamLocationQuery, *params.State); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Username != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "username", runtime.ParamLocationQuery, *params.Username); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceCourseAccountsCountRequest generates requests for MarketplaceCourseAccountsCount
+func NewMarketplaceCourseAccountsCountRequest(server string, params *MarketplaceCourseAccountsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-course-accounts/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Email != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "email", runtime.ParamLocationQuery, *params.Email); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_uuid", runtime.ParamLocationQuery, *params.ProjectUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "state", runtime.ParamLocationQuery, *params.State); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Username != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "username", runtime.ParamLocationQuery, *params.Username); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceCourseAccountsCreateRequest calls the generic MarketplaceCourseAccountsCreate builder with application/json body
+func NewMarketplaceCourseAccountsCreateRequest(server string, body MarketplaceCourseAccountsCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceCourseAccountsCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewMarketplaceCourseAccountsCreateRequestWithBody generates requests for MarketplaceCourseAccountsCreate with any type of body
+func NewMarketplaceCourseAccountsCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-course-accounts/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceCourseAccountsCreateBulkRequest calls the generic MarketplaceCourseAccountsCreateBulk builder with application/json body
+func NewMarketplaceCourseAccountsCreateBulkRequest(server string, body MarketplaceCourseAccountsCreateBulkJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceCourseAccountsCreateBulkRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewMarketplaceCourseAccountsCreateBulkRequestWithBody generates requests for MarketplaceCourseAccountsCreateBulk with any type of body
+func NewMarketplaceCourseAccountsCreateBulkRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-course-accounts/create_bulk/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceCourseAccountsDestroyRequest generates requests for MarketplaceCourseAccountsDestroy
+func NewMarketplaceCourseAccountsDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-course-accounts/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceCourseAccountsRetrieveRequest generates requests for MarketplaceCourseAccountsRetrieve
+func NewMarketplaceCourseAccountsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-course-accounts/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewMarketplaceCustomerEstimatedCostPoliciesListRequest generates requests for MarketplaceCustomerEstimatedCostPoliciesList
 func NewMarketplaceCustomerEstimatedCostPoliciesListRequest(server string, params *MarketplaceCustomerEstimatedCostPoliciesListParams) (*http.Request, error) {
 	var err error
@@ -135492,6 +136237,142 @@ func NewServiceProviderOfferingUsersComplianceRequest(server string, serviceProv
 		if params.PageSize != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceServiceProvidersCourseAccountsListRequest generates requests for MarketplaceServiceProvidersCourseAccountsList
+func NewMarketplaceServiceProvidersCourseAccountsListRequest(server string, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersCourseAccountsListParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "service_provider_uuid", runtime.ParamLocationPath, serviceProviderUuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-service-providers/%s/course_accounts/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Email != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "email", runtime.ParamLocationQuery, *params.Email); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_uuid", runtime.ParamLocationQuery, *params.ProjectUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "state", runtime.ParamLocationQuery, *params.State); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Username != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "username", runtime.ParamLocationQuery, *params.Username); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -193706,6 +194587,38 @@ func NewUserInvitationsListRequest(server string, params *UserInvitationsListPar
 
 		}
 
+		if params.ScopeDescription != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope_description", runtime.ParamLocationQuery, *params.ScopeDescription); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ScopeName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope_name", runtime.ParamLocationQuery, *params.ScopeName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.ScopeType != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope_type", runtime.ParamLocationQuery, *params.ScopeType); err != nil {
@@ -193886,6 +194799,38 @@ func NewUserInvitationsCountRequest(server string, params *UserInvitationsCountP
 		if params.RoleUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "role_uuid", runtime.ParamLocationQuery, *params.RoleUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ScopeDescription != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope_description", runtime.ParamLocationQuery, *params.ScopeDescription); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ScopeName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope_name", runtime.ParamLocationQuery, *params.ScopeName); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -194667,6 +195612,40 @@ func NewUserPermissionRequestsApproveRequestWithBody(server string, uuid openapi
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewUserPermissionRequestsCancelRequestRequest generates requests for UserPermissionRequestsCancelRequest
+func NewUserPermissionRequestsCancelRequestRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/user-permission-requests/%s/cancel_request/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
 
 	return req, nil
 }
@@ -203812,6 +204791,28 @@ type ClientWithResponsesInterface interface {
 	// MarketplaceComponentUserUsagesRetrieveWithResponse request
 	MarketplaceComponentUserUsagesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceComponentUserUsagesRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceComponentUserUsagesRetrieveResponse, error)
 
+	// MarketplaceCourseAccountsListWithResponse request
+	MarketplaceCourseAccountsListWithResponse(ctx context.Context, params *MarketplaceCourseAccountsListParams, reqEditors ...RequestEditorFn) (*MarketplaceCourseAccountsListResponse, error)
+
+	// MarketplaceCourseAccountsCountWithResponse request
+	MarketplaceCourseAccountsCountWithResponse(ctx context.Context, params *MarketplaceCourseAccountsCountParams, reqEditors ...RequestEditorFn) (*MarketplaceCourseAccountsCountResponse, error)
+
+	// MarketplaceCourseAccountsCreateWithBodyWithResponse request with any body
+	MarketplaceCourseAccountsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceCourseAccountsCreateResponse, error)
+
+	MarketplaceCourseAccountsCreateWithResponse(ctx context.Context, body MarketplaceCourseAccountsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceCourseAccountsCreateResponse, error)
+
+	// MarketplaceCourseAccountsCreateBulkWithBodyWithResponse request with any body
+	MarketplaceCourseAccountsCreateBulkWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceCourseAccountsCreateBulkResponse, error)
+
+	MarketplaceCourseAccountsCreateBulkWithResponse(ctx context.Context, body MarketplaceCourseAccountsCreateBulkJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceCourseAccountsCreateBulkResponse, error)
+
+	// MarketplaceCourseAccountsDestroyWithResponse request
+	MarketplaceCourseAccountsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceCourseAccountsDestroyResponse, error)
+
+	// MarketplaceCourseAccountsRetrieveWithResponse request
+	MarketplaceCourseAccountsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceCourseAccountsRetrieveResponse, error)
+
 	// MarketplaceCustomerEstimatedCostPoliciesListWithResponse request
 	MarketplaceCustomerEstimatedCostPoliciesListWithResponse(ctx context.Context, params *MarketplaceCustomerEstimatedCostPoliciesListParams, reqEditors ...RequestEditorFn) (*MarketplaceCustomerEstimatedCostPoliciesListResponse, error)
 
@@ -204937,6 +205938,9 @@ type ClientWithResponsesInterface interface {
 
 	// ServiceProviderOfferingUsersComplianceWithResponse request
 	ServiceProviderOfferingUsersComplianceWithResponse(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *ServiceProviderOfferingUsersComplianceParams, reqEditors ...RequestEditorFn) (*ServiceProviderOfferingUsersComplianceResponse, error)
+
+	// MarketplaceServiceProvidersCourseAccountsListWithResponse request
+	MarketplaceServiceProvidersCourseAccountsListWithResponse(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersCourseAccountsListParams, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersCourseAccountsListResponse, error)
 
 	// MarketplaceServiceProvidersCustomerProjectsListWithResponse request
 	MarketplaceServiceProvidersCustomerProjectsListWithResponse(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersCustomerProjectsListParams, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersCustomerProjectsListResponse, error)
@@ -207393,6 +208397,9 @@ type ClientWithResponsesInterface interface {
 	UserPermissionRequestsApproveWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UserPermissionRequestsApproveResponse, error)
 
 	UserPermissionRequestsApproveWithResponse(ctx context.Context, uuid openapi_types.UUID, body UserPermissionRequestsApproveJSONRequestBody, reqEditors ...RequestEditorFn) (*UserPermissionRequestsApproveResponse, error)
+
+	// UserPermissionRequestsCancelRequestWithResponse request
+	UserPermissionRequestsCancelRequestWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*UserPermissionRequestsCancelRequestResponse, error)
 
 	// UserPermissionRequestsRejectWithBodyWithResponse request with any body
 	UserPermissionRequestsRejectWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UserPermissionRequestsRejectResponse, error)
@@ -218431,6 +219438,136 @@ func (r MarketplaceComponentUserUsagesRetrieveResponse) StatusCode() int {
 	return 0
 }
 
+type MarketplaceCourseAccountsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]CourseAccount
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceCourseAccountsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceCourseAccountsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceCourseAccountsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceCourseAccountsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceCourseAccountsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceCourseAccountsCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *CourseAccount
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceCourseAccountsCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceCourseAccountsCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceCourseAccountsCreateBulkResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CourseAccountsBulkCreate
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceCourseAccountsCreateBulkResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceCourseAccountsCreateBulkResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceCourseAccountsDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceCourseAccountsDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceCourseAccountsDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceCourseAccountsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CourseAccount
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceCourseAccountsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceCourseAccountsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type MarketplaceCustomerEstimatedCostPoliciesListResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -225012,6 +226149,28 @@ func (r ServiceProviderOfferingUsersComplianceResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r ServiceProviderOfferingUsersComplianceResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceServiceProvidersCourseAccountsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]CourseAccount
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceServiceProvidersCourseAccountsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceServiceProvidersCourseAccountsListResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -239366,7 +240525,7 @@ func (r UserGroupInvitationsProjectsListResponse) StatusCode() int {
 type UserGroupInvitationsSubmitRequestResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *GroupInvitation
+	JSON200      *SubmitRequestResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -239723,6 +240882,28 @@ func (r UserPermissionRequestsApproveResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r UserPermissionRequestsApproveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type UserPermissionRequestsCancelRequestResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CancelRequestResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r UserPermissionRequestsCancelRequestResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r UserPermissionRequestsCancelRequestResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -246927,6 +248108,76 @@ func (c *ClientWithResponses) MarketplaceComponentUserUsagesRetrieveWithResponse
 	return ParseMarketplaceComponentUserUsagesRetrieveResponse(rsp)
 }
 
+// MarketplaceCourseAccountsListWithResponse request returning *MarketplaceCourseAccountsListResponse
+func (c *ClientWithResponses) MarketplaceCourseAccountsListWithResponse(ctx context.Context, params *MarketplaceCourseAccountsListParams, reqEditors ...RequestEditorFn) (*MarketplaceCourseAccountsListResponse, error) {
+	rsp, err := c.MarketplaceCourseAccountsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceCourseAccountsListResponse(rsp)
+}
+
+// MarketplaceCourseAccountsCountWithResponse request returning *MarketplaceCourseAccountsCountResponse
+func (c *ClientWithResponses) MarketplaceCourseAccountsCountWithResponse(ctx context.Context, params *MarketplaceCourseAccountsCountParams, reqEditors ...RequestEditorFn) (*MarketplaceCourseAccountsCountResponse, error) {
+	rsp, err := c.MarketplaceCourseAccountsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceCourseAccountsCountResponse(rsp)
+}
+
+// MarketplaceCourseAccountsCreateWithBodyWithResponse request with arbitrary body returning *MarketplaceCourseAccountsCreateResponse
+func (c *ClientWithResponses) MarketplaceCourseAccountsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceCourseAccountsCreateResponse, error) {
+	rsp, err := c.MarketplaceCourseAccountsCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceCourseAccountsCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceCourseAccountsCreateWithResponse(ctx context.Context, body MarketplaceCourseAccountsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceCourseAccountsCreateResponse, error) {
+	rsp, err := c.MarketplaceCourseAccountsCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceCourseAccountsCreateResponse(rsp)
+}
+
+// MarketplaceCourseAccountsCreateBulkWithBodyWithResponse request with arbitrary body returning *MarketplaceCourseAccountsCreateBulkResponse
+func (c *ClientWithResponses) MarketplaceCourseAccountsCreateBulkWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceCourseAccountsCreateBulkResponse, error) {
+	rsp, err := c.MarketplaceCourseAccountsCreateBulkWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceCourseAccountsCreateBulkResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceCourseAccountsCreateBulkWithResponse(ctx context.Context, body MarketplaceCourseAccountsCreateBulkJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceCourseAccountsCreateBulkResponse, error) {
+	rsp, err := c.MarketplaceCourseAccountsCreateBulk(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceCourseAccountsCreateBulkResponse(rsp)
+}
+
+// MarketplaceCourseAccountsDestroyWithResponse request returning *MarketplaceCourseAccountsDestroyResponse
+func (c *ClientWithResponses) MarketplaceCourseAccountsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceCourseAccountsDestroyResponse, error) {
+	rsp, err := c.MarketplaceCourseAccountsDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceCourseAccountsDestroyResponse(rsp)
+}
+
+// MarketplaceCourseAccountsRetrieveWithResponse request returning *MarketplaceCourseAccountsRetrieveResponse
+func (c *ClientWithResponses) MarketplaceCourseAccountsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceCourseAccountsRetrieveResponse, error) {
+	rsp, err := c.MarketplaceCourseAccountsRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceCourseAccountsRetrieveResponse(rsp)
+}
+
 // MarketplaceCustomerEstimatedCostPoliciesListWithResponse request returning *MarketplaceCustomerEstimatedCostPoliciesListResponse
 func (c *ClientWithResponses) MarketplaceCustomerEstimatedCostPoliciesListWithResponse(ctx context.Context, params *MarketplaceCustomerEstimatedCostPoliciesListParams, reqEditors ...RequestEditorFn) (*MarketplaceCustomerEstimatedCostPoliciesListResponse, error) {
 	rsp, err := c.MarketplaceCustomerEstimatedCostPoliciesList(ctx, params, reqEditors...)
@@ -250517,6 +251768,15 @@ func (c *ClientWithResponses) ServiceProviderOfferingUsersComplianceWithResponse
 		return nil, err
 	}
 	return ParseServiceProviderOfferingUsersComplianceResponse(rsp)
+}
+
+// MarketplaceServiceProvidersCourseAccountsListWithResponse request returning *MarketplaceServiceProvidersCourseAccountsListResponse
+func (c *ClientWithResponses) MarketplaceServiceProvidersCourseAccountsListWithResponse(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *MarketplaceServiceProvidersCourseAccountsListParams, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersCourseAccountsListResponse, error) {
+	rsp, err := c.MarketplaceServiceProvidersCourseAccountsList(ctx, serviceProviderUuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceServiceProvidersCourseAccountsListResponse(rsp)
 }
 
 // MarketplaceServiceProvidersCustomerProjectsListWithResponse request returning *MarketplaceServiceProvidersCustomerProjectsListResponse
@@ -258301,6 +259561,15 @@ func (c *ClientWithResponses) UserPermissionRequestsApproveWithResponse(ctx cont
 		return nil, err
 	}
 	return ParseUserPermissionRequestsApproveResponse(rsp)
+}
+
+// UserPermissionRequestsCancelRequestWithResponse request returning *UserPermissionRequestsCancelRequestResponse
+func (c *ClientWithResponses) UserPermissionRequestsCancelRequestWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*UserPermissionRequestsCancelRequestResponse, error) {
+	rsp, err := c.UserPermissionRequestsCancelRequest(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUserPermissionRequestsCancelRequestResponse(rsp)
 }
 
 // UserPermissionRequestsRejectWithBodyWithResponse request with arbitrary body returning *UserPermissionRequestsRejectResponse
@@ -270231,6 +271500,142 @@ func ParseMarketplaceComponentUserUsagesRetrieveResponse(rsp *http.Response) (*M
 	return response, nil
 }
 
+// ParseMarketplaceCourseAccountsListResponse parses an HTTP response from a MarketplaceCourseAccountsListWithResponse call
+func ParseMarketplaceCourseAccountsListResponse(rsp *http.Response) (*MarketplaceCourseAccountsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceCourseAccountsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []CourseAccount
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceCourseAccountsCountResponse parses an HTTP response from a MarketplaceCourseAccountsCountWithResponse call
+func ParseMarketplaceCourseAccountsCountResponse(rsp *http.Response) (*MarketplaceCourseAccountsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceCourseAccountsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceCourseAccountsCreateResponse parses an HTTP response from a MarketplaceCourseAccountsCreateWithResponse call
+func ParseMarketplaceCourseAccountsCreateResponse(rsp *http.Response) (*MarketplaceCourseAccountsCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceCourseAccountsCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest CourseAccount
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceCourseAccountsCreateBulkResponse parses an HTTP response from a MarketplaceCourseAccountsCreateBulkWithResponse call
+func ParseMarketplaceCourseAccountsCreateBulkResponse(rsp *http.Response) (*MarketplaceCourseAccountsCreateBulkResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceCourseAccountsCreateBulkResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CourseAccountsBulkCreate
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceCourseAccountsDestroyResponse parses an HTTP response from a MarketplaceCourseAccountsDestroyWithResponse call
+func ParseMarketplaceCourseAccountsDestroyResponse(rsp *http.Response) (*MarketplaceCourseAccountsDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceCourseAccountsDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceCourseAccountsRetrieveResponse parses an HTTP response from a MarketplaceCourseAccountsRetrieveWithResponse call
+func ParseMarketplaceCourseAccountsRetrieveResponse(rsp *http.Response) (*MarketplaceCourseAccountsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceCourseAccountsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CourseAccount
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseMarketplaceCustomerEstimatedCostPoliciesListResponse parses an HTTP response from a MarketplaceCustomerEstimatedCostPoliciesListWithResponse call
 func ParseMarketplaceCustomerEstimatedCostPoliciesListResponse(rsp *http.Response) (*MarketplaceCustomerEstimatedCostPoliciesListResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -277082,6 +278487,32 @@ func ParseServiceProviderOfferingUsersComplianceResponse(rsp *http.Response) (*S
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest []ServiceProviderOfferingUserCompliance
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceServiceProvidersCourseAccountsListResponse parses an HTTP response from a MarketplaceServiceProvidersCourseAccountsListWithResponse call
+func ParseMarketplaceServiceProvidersCourseAccountsListResponse(rsp *http.Response) (*MarketplaceServiceProvidersCourseAccountsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceServiceProvidersCourseAccountsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []CourseAccount
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -291887,7 +293318,7 @@ func ParseUserGroupInvitationsSubmitRequestResponse(rsp *http.Response) (*UserGr
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest GroupInvitation
+		var dest SubmitRequestResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -292224,6 +293655,32 @@ func ParseUserPermissionRequestsApproveResponse(rsp *http.Response) (*UserPermis
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest ReviewComment
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseUserPermissionRequestsCancelRequestResponse parses an HTTP response from a UserPermissionRequestsCancelRequestWithResponse call
+func ParseUserPermissionRequestsCancelRequestResponse(rsp *http.Response) (*UserPermissionRequestsCancelRequestResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &UserPermissionRequestsCancelRequestResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CancelRequestResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
