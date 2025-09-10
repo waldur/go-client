@@ -12297,8 +12297,8 @@ type CourseAccount struct {
 	ProjectUuid    *openapi_types.UUID  `json:"project_uuid,omitempty"`
 	State          *ServiceAccountState `json:"state,omitempty"`
 	Url            *string              `json:"url,omitempty"`
-	UserUsername   *string              `json:"user_username,omitempty"`
 	UserUuid       *openapi_types.UUID  `json:"user_uuid,omitempty"`
+	Username       *string              `json:"username,omitempty"`
 	Uuid           *openapi_types.UUID  `json:"uuid,omitempty"`
 }
 
