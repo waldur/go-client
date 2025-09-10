@@ -275,6 +275,8 @@ const (
 	CustomNotification                               EventTypesEnum = "custom_notification"
 	CustomerCreationSucceeded                        EventTypesEnum = "customer_creation_succeeded"
 	CustomerDeletionSucceeded                        EventTypesEnum = "customer_deletion_succeeded"
+	CustomerPermissionReviewClosed                   EventTypesEnum = "customer_permission_review_closed"
+	CustomerPermissionReviewCreated                  EventTypesEnum = "customer_permission_review_created"
 	CustomerUpdateSucceeded                          EventTypesEnum = "customer_update_succeeded"
 	DropletResizeScheduled                           EventTypesEnum = "droplet_resize_scheduled"
 	DropletResizeSucceeded                           EventTypesEnum = "droplet_resize_succeeded"
@@ -393,6 +395,8 @@ const (
 	ProjectCreationSucceeded                         EventTypesEnum = "project_creation_succeeded"
 	ProjectDeletionSucceeded                         EventTypesEnum = "project_deletion_succeeded"
 	ProjectDeletionTriggered                         EventTypesEnum = "project_deletion_triggered"
+	ProjectPermissionReviewClosed                    EventTypesEnum = "project_permission_review_closed"
+	ProjectPermissionReviewCreated                   EventTypesEnum = "project_permission_review_created"
 	ProjectUpdateRequestApproved                     EventTypesEnum = "project_update_request_approved"
 	ProjectUpdateRequestCreated                      EventTypesEnum = "project_update_request_created"
 	ProjectUpdateRequestRejected                     EventTypesEnum = "project_update_request_rejected"
@@ -7860,6 +7864,22 @@ const (
 	ProjectCreditsCountParamsOMinusValue               ProjectCreditsCountParamsO = "-value"
 	ProjectCreditsCountParamsOProjectName              ProjectCreditsCountParamsO = "project_name"
 	ProjectCreditsCountParamsOValue                    ProjectCreditsCountParamsO = "value"
+)
+
+// Defines values for ProjectPermissionsReviewsListParamsO.
+const (
+	ProjectPermissionsReviewsListParamsOClosed       ProjectPermissionsReviewsListParamsO = "closed"
+	ProjectPermissionsReviewsListParamsOCreated      ProjectPermissionsReviewsListParamsO = "created"
+	ProjectPermissionsReviewsListParamsOMinusClosed  ProjectPermissionsReviewsListParamsO = "-closed"
+	ProjectPermissionsReviewsListParamsOMinusCreated ProjectPermissionsReviewsListParamsO = "-created"
+)
+
+// Defines values for ProjectPermissionsReviewsCountParamsO.
+const (
+	ProjectPermissionsReviewsCountParamsOClosed       ProjectPermissionsReviewsCountParamsO = "closed"
+	ProjectPermissionsReviewsCountParamsOCreated      ProjectPermissionsReviewsCountParamsO = "created"
+	ProjectPermissionsReviewsCountParamsOMinusClosed  ProjectPermissionsReviewsCountParamsO = "-closed"
+	ProjectPermissionsReviewsCountParamsOMinusCreated ProjectPermissionsReviewsCountParamsO = "-created"
 )
 
 // Defines values for ProjectsListParamsField.
@@ -19176,6 +19196,19 @@ type ProjectPermissionLog struct {
 	UserUuid     *openapi_types.UUID `json:"user_uuid,omitempty"`
 }
 
+// ProjectPermissionReview defines model for ProjectPermissionReview.
+type ProjectPermissionReview struct {
+	Closed           *time.Time          `json:"closed"`
+	Created          *time.Time          `json:"created,omitempty"`
+	IsPending        *bool               `json:"is_pending,omitempty"`
+	ProjectName      *string             `json:"project_name,omitempty"`
+	ProjectUuid      *openapi_types.UUID `json:"project_uuid,omitempty"`
+	ReviewerFullName *string             `json:"reviewer_full_name"`
+	ReviewerUuid     *openapi_types.UUID `json:"reviewer_uuid"`
+	Url              *string             `json:"url,omitempty"`
+	Uuid             *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
 // ProjectQuotas defines model for ProjectQuotas.
 type ProjectQuotas struct {
 	CustomerAbbreviation *string `json:"customer_abbreviation,omitempty"`
@@ -24518,8 +24551,13 @@ type CustomerCreditsConsumptionsListParamsO string
 
 // CustomerPermissionsReviewsListParams defines parameters for CustomerPermissionsReviewsList.
 type CustomerPermissionsReviewsListParams struct {
+	Closed *time.Time `form:"closed,omitempty" json:"closed,omitempty"`
+
+	// CustomerUuid Customer UUID
 	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	IsPending    *bool               `form:"is_pending,omitempty" json:"is_pending,omitempty"`
+
+	// IsPending Is pending
+	IsPending *bool `form:"is_pending,omitempty" json:"is_pending,omitempty"`
 
 	// O Ordering
 	//
@@ -24529,7 +24567,9 @@ type CustomerPermissionsReviewsListParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ReviewerUuid Reviewer UUID
 	ReviewerUuid *openapi_types.UUID `form:"reviewer_uuid,omitempty" json:"reviewer_uuid,omitempty"`
 }
 
@@ -24538,8 +24578,13 @@ type CustomerPermissionsReviewsListParamsO string
 
 // CustomerPermissionsReviewsCountParams defines parameters for CustomerPermissionsReviewsCount.
 type CustomerPermissionsReviewsCountParams struct {
+	Closed *time.Time `form:"closed,omitempty" json:"closed,omitempty"`
+
+	// CustomerUuid Customer UUID
 	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	IsPending    *bool               `form:"is_pending,omitempty" json:"is_pending,omitempty"`
+
+	// IsPending Is pending
+	IsPending *bool `form:"is_pending,omitempty" json:"is_pending,omitempty"`
 
 	// O Ordering
 	//
@@ -24549,7 +24594,9 @@ type CustomerPermissionsReviewsCountParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ReviewerUuid Reviewer UUID
 	ReviewerUuid *openapi_types.UUID `form:"reviewer_uuid,omitempty" json:"reviewer_uuid,omitempty"`
 }
 
@@ -31483,6 +31530,60 @@ type ProjectCreditsCountParams struct {
 
 // ProjectCreditsCountParamsO defines parameters for ProjectCreditsCount.
 type ProjectCreditsCountParamsO string
+
+// ProjectPermissionsReviewsListParams defines parameters for ProjectPermissionsReviewsList.
+type ProjectPermissionsReviewsListParams struct {
+	Closed *time.Time `form:"closed,omitempty" json:"closed,omitempty"`
+
+	// IsPending Is pending
+	IsPending *bool `form:"is_pending,omitempty" json:"is_pending,omitempty"`
+
+	// O Ordering
+	//
+	O *[]ProjectPermissionsReviewsListParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ReviewerUuid Reviewer UUID
+	ReviewerUuid *openapi_types.UUID `form:"reviewer_uuid,omitempty" json:"reviewer_uuid,omitempty"`
+}
+
+// ProjectPermissionsReviewsListParamsO defines parameters for ProjectPermissionsReviewsList.
+type ProjectPermissionsReviewsListParamsO string
+
+// ProjectPermissionsReviewsCountParams defines parameters for ProjectPermissionsReviewsCount.
+type ProjectPermissionsReviewsCountParams struct {
+	Closed *time.Time `form:"closed,omitempty" json:"closed,omitempty"`
+
+	// IsPending Is pending
+	IsPending *bool `form:"is_pending,omitempty" json:"is_pending,omitempty"`
+
+	// O Ordering
+	//
+	O *[]ProjectPermissionsReviewsCountParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ReviewerUuid Reviewer UUID
+	ReviewerUuid *openapi_types.UUID `form:"reviewer_uuid,omitempty" json:"reviewer_uuid,omitempty"`
+}
+
+// ProjectPermissionsReviewsCountParamsO defines parameters for ProjectPermissionsReviewsCount.
+type ProjectPermissionsReviewsCountParamsO string
 
 // ProjectQuotasListParams defines parameters for ProjectQuotasList.
 type ProjectQuotasListParams struct {
@@ -45184,6 +45285,18 @@ type ClientInterface interface {
 	ProjectCreditsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	ProjectCreditsUpdate(ctx context.Context, uuid openapi_types.UUID, body ProjectCreditsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProjectPermissionsReviewsList request
+	ProjectPermissionsReviewsList(ctx context.Context, params *ProjectPermissionsReviewsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProjectPermissionsReviewsCount request
+	ProjectPermissionsReviewsCount(ctx context.Context, params *ProjectPermissionsReviewsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProjectPermissionsReviewsRetrieve request
+	ProjectPermissionsReviewsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProjectPermissionsReviewsClose request
+	ProjectPermissionsReviewsClose(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProjectQuotasList request
 	ProjectQuotasList(ctx context.Context, params *ProjectQuotasListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -64332,6 +64445,54 @@ func (c *Client) ProjectCreditsUpdateWithBody(ctx context.Context, uuid openapi_
 
 func (c *Client) ProjectCreditsUpdate(ctx context.Context, uuid openapi_types.UUID, body ProjectCreditsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProjectCreditsUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProjectPermissionsReviewsList(ctx context.Context, params *ProjectPermissionsReviewsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProjectPermissionsReviewsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProjectPermissionsReviewsCount(ctx context.Context, params *ProjectPermissionsReviewsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProjectPermissionsReviewsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProjectPermissionsReviewsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProjectPermissionsReviewsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProjectPermissionsReviewsClose(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProjectPermissionsReviewsCloseRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -89946,6 +90107,22 @@ func NewCustomerPermissionsReviewsListRequest(server string, params *CustomerPer
 	if params != nil {
 		queryValues := queryURL.Query()
 
+		if params.Closed != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "closed", runtime.ParamLocationQuery, *params.Closed); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.CustomerUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer_uuid", runtime.ParamLocationQuery, *params.CustomerUuid); err != nil {
@@ -90074,6 +90251,22 @@ func NewCustomerPermissionsReviewsCountRequest(server string, params *CustomerPe
 
 	if params != nil {
 		queryValues := queryURL.Query()
+
+		if params.Closed != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "closed", runtime.ParamLocationQuery, *params.Closed); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
 
 		if params.CustomerUuid != nil {
 
@@ -166406,6 +166599,364 @@ func NewProjectCreditsUpdateRequestWithBody(server string, uuid openapi_types.UU
 	return req, nil
 }
 
+// NewProjectPermissionsReviewsListRequest generates requests for ProjectPermissionsReviewsList
+func NewProjectPermissionsReviewsListRequest(server string, params *ProjectPermissionsReviewsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/project-permissions-reviews/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Closed != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "closed", runtime.ParamLocationQuery, *params.Closed); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsPending != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_pending", runtime.ParamLocationQuery, *params.IsPending); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_uuid", runtime.ParamLocationQuery, *params.ProjectUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ReviewerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "reviewer_uuid", runtime.ParamLocationQuery, *params.ReviewerUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewProjectPermissionsReviewsCountRequest generates requests for ProjectPermissionsReviewsCount
+func NewProjectPermissionsReviewsCountRequest(server string, params *ProjectPermissionsReviewsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/project-permissions-reviews/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Closed != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "closed", runtime.ParamLocationQuery, *params.Closed); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsPending != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_pending", runtime.ParamLocationQuery, *params.IsPending); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_uuid", runtime.ParamLocationQuery, *params.ProjectUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ReviewerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "reviewer_uuid", runtime.ParamLocationQuery, *params.ReviewerUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewProjectPermissionsReviewsRetrieveRequest generates requests for ProjectPermissionsReviewsRetrieve
+func NewProjectPermissionsReviewsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/project-permissions-reviews/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewProjectPermissionsReviewsCloseRequest generates requests for ProjectPermissionsReviewsClose
+func NewProjectPermissionsReviewsCloseRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/project-permissions-reviews/%s/close/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewProjectQuotasListRequest generates requests for ProjectQuotasList
 func NewProjectQuotasListRequest(server string, params *ProjectQuotasListParams) (*http.Request, error) {
 	var err error
@@ -207229,6 +207780,18 @@ type ClientWithResponsesInterface interface {
 
 	ProjectCreditsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProjectCreditsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ProjectCreditsUpdateResponse, error)
 
+	// ProjectPermissionsReviewsListWithResponse request
+	ProjectPermissionsReviewsListWithResponse(ctx context.Context, params *ProjectPermissionsReviewsListParams, reqEditors ...RequestEditorFn) (*ProjectPermissionsReviewsListResponse, error)
+
+	// ProjectPermissionsReviewsCountWithResponse request
+	ProjectPermissionsReviewsCountWithResponse(ctx context.Context, params *ProjectPermissionsReviewsCountParams, reqEditors ...RequestEditorFn) (*ProjectPermissionsReviewsCountResponse, error)
+
+	// ProjectPermissionsReviewsRetrieveWithResponse request
+	ProjectPermissionsReviewsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProjectPermissionsReviewsRetrieveResponse, error)
+
+	// ProjectPermissionsReviewsCloseWithResponse request
+	ProjectPermissionsReviewsCloseWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProjectPermissionsReviewsCloseResponse, error)
+
 	// ProjectQuotasListWithResponse request
 	ProjectQuotasListWithResponse(ctx context.Context, params *ProjectQuotasListParams, reqEditors ...RequestEditorFn) (*ProjectQuotasListResponse, error)
 
@@ -232993,6 +233556,92 @@ func (r ProjectCreditsUpdateResponse) StatusCode() int {
 	return 0
 }
 
+type ProjectPermissionsReviewsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]ProjectPermissionReview
+}
+
+// Status returns HTTPResponse.Status
+func (r ProjectPermissionsReviewsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProjectPermissionsReviewsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ProjectPermissionsReviewsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r ProjectPermissionsReviewsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProjectPermissionsReviewsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ProjectPermissionsReviewsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ProjectPermissionReview
+}
+
+// Status returns HTTPResponse.Status
+func (r ProjectPermissionsReviewsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProjectPermissionsReviewsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ProjectPermissionsReviewsCloseResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r ProjectPermissionsReviewsCloseResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProjectPermissionsReviewsCloseResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type ProjectQuotasListResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -255428,6 +256077,42 @@ func (c *ClientWithResponses) ProjectCreditsUpdateWithResponse(ctx context.Conte
 		return nil, err
 	}
 	return ParseProjectCreditsUpdateResponse(rsp)
+}
+
+// ProjectPermissionsReviewsListWithResponse request returning *ProjectPermissionsReviewsListResponse
+func (c *ClientWithResponses) ProjectPermissionsReviewsListWithResponse(ctx context.Context, params *ProjectPermissionsReviewsListParams, reqEditors ...RequestEditorFn) (*ProjectPermissionsReviewsListResponse, error) {
+	rsp, err := c.ProjectPermissionsReviewsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProjectPermissionsReviewsListResponse(rsp)
+}
+
+// ProjectPermissionsReviewsCountWithResponse request returning *ProjectPermissionsReviewsCountResponse
+func (c *ClientWithResponses) ProjectPermissionsReviewsCountWithResponse(ctx context.Context, params *ProjectPermissionsReviewsCountParams, reqEditors ...RequestEditorFn) (*ProjectPermissionsReviewsCountResponse, error) {
+	rsp, err := c.ProjectPermissionsReviewsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProjectPermissionsReviewsCountResponse(rsp)
+}
+
+// ProjectPermissionsReviewsRetrieveWithResponse request returning *ProjectPermissionsReviewsRetrieveResponse
+func (c *ClientWithResponses) ProjectPermissionsReviewsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProjectPermissionsReviewsRetrieveResponse, error) {
+	rsp, err := c.ProjectPermissionsReviewsRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProjectPermissionsReviewsRetrieveResponse(rsp)
+}
+
+// ProjectPermissionsReviewsCloseWithResponse request returning *ProjectPermissionsReviewsCloseResponse
+func (c *ClientWithResponses) ProjectPermissionsReviewsCloseWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProjectPermissionsReviewsCloseResponse, error) {
+	rsp, err := c.ProjectPermissionsReviewsClose(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProjectPermissionsReviewsCloseResponse(rsp)
 }
 
 // ProjectQuotasListWithResponse request returning *ProjectQuotasListResponse
@@ -285392,6 +286077,90 @@ func ParseProjectCreditsUpdateResponse(rsp *http.Response) (*ProjectCreditsUpdat
 		}
 		response.JSON200 = &dest
 
+	}
+
+	return response, nil
+}
+
+// ParseProjectPermissionsReviewsListResponse parses an HTTP response from a ProjectPermissionsReviewsListWithResponse call
+func ParseProjectPermissionsReviewsListResponse(rsp *http.Response) (*ProjectPermissionsReviewsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProjectPermissionsReviewsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []ProjectPermissionReview
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseProjectPermissionsReviewsCountResponse parses an HTTP response from a ProjectPermissionsReviewsCountWithResponse call
+func ParseProjectPermissionsReviewsCountResponse(rsp *http.Response) (*ProjectPermissionsReviewsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProjectPermissionsReviewsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseProjectPermissionsReviewsRetrieveResponse parses an HTTP response from a ProjectPermissionsReviewsRetrieveWithResponse call
+func ParseProjectPermissionsReviewsRetrieveResponse(rsp *http.Response) (*ProjectPermissionsReviewsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProjectPermissionsReviewsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ProjectPermissionReview
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseProjectPermissionsReviewsCloseResponse parses an HTTP response from a ProjectPermissionsReviewsCloseWithResponse call
+func ParseProjectPermissionsReviewsCloseResponse(rsp *http.Response) (*ProjectPermissionsReviewsCloseResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProjectPermissionsReviewsCloseResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
 	}
 
 	return response, nil
