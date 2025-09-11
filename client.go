@@ -1044,6 +1044,16 @@ const (
 	AfterRound    ReviewStrategyEnum = "after_round"
 )
 
+// Defines values for RobotAccountStates.
+const (
+	RobotAccountStatesN1 RobotAccountStates = 1
+	RobotAccountStatesN2 RobotAccountStates = 2
+	RobotAccountStatesN3 RobotAccountStates = 3
+	RobotAccountStatesN4 RobotAccountStates = 4
+	RobotAccountStatesN5 RobotAccountStates = 5
+	RobotAccountStatesN6 RobotAccountStates = 6
+)
+
 // Defines values for RoleEnum.
 const (
 	RoleEnumAgent  RoleEnum = "agent"
@@ -5777,12 +5787,12 @@ const (
 
 // Defines values for MarketplaceRobotAccountsCountParamsState.
 const (
-	MarketplaceRobotAccountsCountParamsStateN1 MarketplaceRobotAccountsCountParamsState = 1
-	MarketplaceRobotAccountsCountParamsStateN2 MarketplaceRobotAccountsCountParamsState = 2
-	MarketplaceRobotAccountsCountParamsStateN3 MarketplaceRobotAccountsCountParamsState = 3
-	MarketplaceRobotAccountsCountParamsStateN4 MarketplaceRobotAccountsCountParamsState = 4
-	MarketplaceRobotAccountsCountParamsStateN5 MarketplaceRobotAccountsCountParamsState = 5
-	MarketplaceRobotAccountsCountParamsStateN6 MarketplaceRobotAccountsCountParamsState = 6
+	N1 MarketplaceRobotAccountsCountParamsState = 1
+	N2 MarketplaceRobotAccountsCountParamsState = 2
+	N3 MarketplaceRobotAccountsCountParamsState = 3
+	N4 MarketplaceRobotAccountsCountParamsState = 4
+	N5 MarketplaceRobotAccountsCountParamsState = 5
+	N6 MarketplaceRobotAccountsCountParamsState = 6
 )
 
 // Defines values for MarketplaceRobotAccountsRetrieveParamsField.
@@ -11990,6 +12000,7 @@ type ConstanceSettings struct {
 	DOCKERSCRIPTDIR                                *string              `json:"DOCKER_SCRIPT_DIR,omitempty"`
 	DOCKERVOLUMENAME                               *string              `json:"DOCKER_VOLUME_NAME,omitempty"`
 	DOCSURL                                        *string              `json:"DOCS_URL,omitempty"`
+	ENABLEMOCKCOURSEACCOUNTBACKEND                 *bool                `json:"ENABLE_MOCK_COURSE_ACCOUNT_BACKEND,omitempty"`
 	ENABLEMOCKSERVICEACCOUNTBACKEND                *bool                `json:"ENABLE_MOCK_SERVICE_ACCOUNT_BACKEND,omitempty"`
 	ENABLESTALERESOURCENOTIFICATIONS               *bool                `json:"ENABLE_STALE_RESOURCE_NOTIFICATIONS,omitempty"`
 	ENABLESTRICTCHECKACCEPTINGINVITATION           *bool                `json:"ENABLE_STRICT_CHECK_ACCEPTING_INVITATION,omitempty"`
@@ -12127,6 +12138,7 @@ type ConstanceSettingsRequest struct {
 	DOCKERSCRIPTDIR                                *string              `json:"DOCKER_SCRIPT_DIR,omitempty"`
 	DOCKERVOLUMENAME                               *string              `json:"DOCKER_VOLUME_NAME,omitempty"`
 	DOCSURL                                        *string              `json:"DOCS_URL,omitempty"`
+	ENABLEMOCKCOURSEACCOUNTBACKEND                 *bool                `json:"ENABLE_MOCK_COURSE_ACCOUNT_BACKEND,omitempty"`
 	ENABLEMOCKSERVICEACCOUNTBACKEND                *bool                `json:"ENABLE_MOCK_SERVICE_ACCOUNT_BACKEND,omitempty"`
 	ENABLESTALERESOURCENOTIFICATIONS               *bool                `json:"ENABLE_STALE_RESOURCE_NOTIFICATIONS,omitempty"`
 	ENABLESTRICTCHECKACCEPTINGINVITATION           *bool                `json:"ENABLE_STRICT_CHECK_ACCEPTING_INVITATION,omitempty"`
@@ -21616,17 +21628,17 @@ type RmqWaldurUser struct {
 
 // RobotAccount defines model for RobotAccount.
 type RobotAccount struct {
-	BackendId       *string        `json:"backend_id,omitempty"`
-	Created         *time.Time     `json:"created,omitempty"`
-	Description     *string        `json:"description,omitempty"`
-	ErrorMessage    *string        `json:"error_message,omitempty"`
-	ErrorTraceback  *string        `json:"error_traceback,omitempty"`
-	Fingerprints    *[]Fingerprint `json:"fingerprints,omitempty"`
-	Keys            interface{}    `json:"keys,omitempty"`
-	Modified        *time.Time     `json:"modified,omitempty"`
-	Resource        string         `json:"resource"`
-	ResponsibleUser *string        `json:"responsible_user"`
-	State           *string        `json:"state,omitempty"`
+	BackendId       *string             `json:"backend_id,omitempty"`
+	Created         *time.Time          `json:"created,omitempty"`
+	Description     *string             `json:"description,omitempty"`
+	ErrorMessage    *string             `json:"error_message,omitempty"`
+	ErrorTraceback  *string             `json:"error_traceback,omitempty"`
+	Fingerprints    *[]Fingerprint      `json:"fingerprints,omitempty"`
+	Keys            interface{}         `json:"keys,omitempty"`
+	Modified        *time.Time          `json:"modified,omitempty"`
+	Resource        string              `json:"resource"`
+	ResponsibleUser *string             `json:"responsible_user"`
+	State           *RobotAccountStates `json:"state,omitempty"`
 
 	// Type Type of the robot account.
 	Type     string  `json:"type"`
@@ -21658,7 +21670,7 @@ type RobotAccountDetails struct {
 	ResourceName          *string              `json:"resource_name,omitempty"`
 	ResourceUuid          *openapi_types.UUID  `json:"resource_uuid,omitempty"`
 	ResponsibleUser       *BasicUser           `json:"responsible_user"`
-	State                 *string              `json:"state,omitempty"`
+	State                 *RobotAccountStates  `json:"state,omitempty"`
 
 	// Type Type of the robot account.
 	Type     *string             `json:"type,omitempty"`
@@ -21689,6 +21701,9 @@ type RobotAccountRequest struct {
 	// Users Users who have access to this robot account.
 	Users *[]string `json:"users,omitempty"`
 }
+
+// RobotAccountStates defines model for RobotAccountStates.
+type RobotAccountStates int
 
 // RoleDescription defines model for RoleDescription.
 type RoleDescription struct {
@@ -27591,6 +27606,12 @@ type MarketplaceProviderOfferingsListParams struct {
 	Description  *string                                        `form:"description,omitempty" json:"description,omitempty"`
 	Field        *[]MarketplaceProviderOfferingsListParamsField `form:"field,omitempty" json:"field,omitempty"`
 
+	// HasActiveTermsOfService Has Active Terms of Service
+	HasActiveTermsOfService *bool `form:"has_active_terms_of_service,omitempty" json:"has_active_terms_of_service,omitempty"`
+
+	// HasTermsOfService Has Terms of Service
+	HasTermsOfService *bool `form:"has_terms_of_service,omitempty" json:"has_terms_of_service,omitempty"`
+
 	// Keyword Keyword
 	Keyword *string `form:"keyword,omitempty" json:"keyword,omitempty"`
 
@@ -27660,6 +27681,12 @@ type MarketplaceProviderOfferingsCountParams struct {
 	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
 	Description  *string             `form:"description,omitempty" json:"description,omitempty"`
 
+	// HasActiveTermsOfService Has Active Terms of Service
+	HasActiveTermsOfService *bool `form:"has_active_terms_of_service,omitempty" json:"has_active_terms_of_service,omitempty"`
+
+	// HasTermsOfService Has Terms of Service
+	HasTermsOfService *bool `form:"has_terms_of_service,omitempty" json:"has_terms_of_service,omitempty"`
+
 	// Keyword Keyword
 	Keyword *string `form:"keyword,omitempty" json:"keyword,omitempty"`
 
@@ -27726,6 +27753,12 @@ type MarketplaceProviderOfferingsGroupsListParams struct {
 	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
 	Description  *string             `form:"description,omitempty" json:"description,omitempty"`
 
+	// HasActiveTermsOfService Has Active Terms of Service
+	HasActiveTermsOfService *bool `form:"has_active_terms_of_service,omitempty" json:"has_active_terms_of_service,omitempty"`
+
+	// HasTermsOfService Has Terms of Service
+	HasTermsOfService *bool `form:"has_terms_of_service,omitempty" json:"has_terms_of_service,omitempty"`
+
 	// Keyword Keyword
 	Keyword *string `form:"keyword,omitempty" json:"keyword,omitempty"`
 
@@ -27791,6 +27824,12 @@ type MarketplaceProviderOfferingsGroupsCountParams struct {
 	Customer     *string             `form:"customer,omitempty" json:"customer,omitempty"`
 	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
 	Description  *string             `form:"description,omitempty" json:"description,omitempty"`
+
+	// HasActiveTermsOfService Has Active Terms of Service
+	HasActiveTermsOfService *bool `form:"has_active_terms_of_service,omitempty" json:"has_active_terms_of_service,omitempty"`
+
+	// HasTermsOfService Has Terms of Service
+	HasTermsOfService *bool `form:"has_terms_of_service,omitempty" json:"has_terms_of_service,omitempty"`
 
 	// Keyword Keyword
 	Keyword *string `form:"keyword,omitempty" json:"keyword,omitempty"`
@@ -27869,6 +27908,12 @@ type MarketplaceProviderOfferingsComponentStatsListParams struct {
 	// End End date in format YYYY-MM.
 	End *string `form:"end,omitempty" json:"end,omitempty"`
 
+	// HasActiveTermsOfService Has Active Terms of Service
+	HasActiveTermsOfService *bool `form:"has_active_terms_of_service,omitempty" json:"has_active_terms_of_service,omitempty"`
+
+	// HasTermsOfService Has Terms of Service
+	HasTermsOfService *bool `form:"has_terms_of_service,omitempty" json:"has_terms_of_service,omitempty"`
+
 	// Keyword Keyword
 	Keyword *string `form:"keyword,omitempty" json:"keyword,omitempty"`
 
@@ -27942,6 +27987,12 @@ type MarketplaceProviderOfferingsCostsListParams struct {
 	// End End date in format YYYY-MM.
 	End *string `form:"end,omitempty" json:"end,omitempty"`
 
+	// HasActiveTermsOfService Has Active Terms of Service
+	HasActiveTermsOfService *bool `form:"has_active_terms_of_service,omitempty" json:"has_active_terms_of_service,omitempty"`
+
+	// HasTermsOfService Has Terms of Service
+	HasTermsOfService *bool `form:"has_terms_of_service,omitempty" json:"has_terms_of_service,omitempty"`
+
 	// Keyword Keyword
 	Keyword *string `form:"keyword,omitempty" json:"keyword,omitempty"`
 
@@ -28010,6 +28061,12 @@ type MarketplaceProviderOfferingsCustomersListParams struct {
 	Customer     *string             `form:"customer,omitempty" json:"customer,omitempty"`
 	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
 	Description  *string             `form:"description,omitempty" json:"description,omitempty"`
+
+	// HasActiveTermsOfService Has Active Terms of Service
+	HasActiveTermsOfService *bool `form:"has_active_terms_of_service,omitempty" json:"has_active_terms_of_service,omitempty"`
+
+	// HasTermsOfService Has Terms of Service
+	HasTermsOfService *bool `form:"has_terms_of_service,omitempty" json:"has_terms_of_service,omitempty"`
 
 	// Keyword Keyword
 	Keyword *string `form:"keyword,omitempty" json:"keyword,omitempty"`
@@ -28359,6 +28416,12 @@ type MarketplacePublicOfferingsListParams struct {
 	Description  *string                                      `form:"description,omitempty" json:"description,omitempty"`
 	Field        *[]MarketplacePublicOfferingsListParamsField `form:"field,omitempty" json:"field,omitempty"`
 
+	// HasActiveTermsOfService Has Active Terms of Service
+	HasActiveTermsOfService *bool `form:"has_active_terms_of_service,omitempty" json:"has_active_terms_of_service,omitempty"`
+
+	// HasTermsOfService Has Terms of Service
+	HasTermsOfService *bool `form:"has_terms_of_service,omitempty" json:"has_terms_of_service,omitempty"`
+
 	// Keyword Keyword
 	Keyword *string `form:"keyword,omitempty" json:"keyword,omitempty"`
 
@@ -28427,6 +28490,12 @@ type MarketplacePublicOfferingsCountParams struct {
 	Customer     *string             `form:"customer,omitempty" json:"customer,omitempty"`
 	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
 	Description  *string             `form:"description,omitempty" json:"description,omitempty"`
+
+	// HasActiveTermsOfService Has Active Terms of Service
+	HasActiveTermsOfService *bool `form:"has_active_terms_of_service,omitempty" json:"has_active_terms_of_service,omitempty"`
+
+	// HasTermsOfService Has Terms of Service
+	HasTermsOfService *bool `form:"has_terms_of_service,omitempty" json:"has_terms_of_service,omitempty"`
 
 	// Keyword Keyword
 	Keyword *string `form:"keyword,omitempty" json:"keyword,omitempty"`
@@ -29091,6 +29160,12 @@ type MarketplaceServiceProvidersOfferingsListParams struct {
 	CustomerUuid *openapi_types.UUID                                    `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
 	Description  *string                                                `form:"description,omitempty" json:"description,omitempty"`
 	Field        *[]MarketplaceServiceProvidersOfferingsListParamsField `form:"field,omitempty" json:"field,omitempty"`
+
+	// HasActiveTermsOfService Has Active Terms of Service
+	HasActiveTermsOfService *bool `form:"has_active_terms_of_service,omitempty" json:"has_active_terms_of_service,omitempty"`
+
+	// HasTermsOfService Has Terms of Service
+	HasTermsOfService *bool `form:"has_terms_of_service,omitempty" json:"has_terms_of_service,omitempty"`
 
 	// Keyword Keyword
 	Keyword *string `form:"keyword,omitempty" json:"keyword,omitempty"`
@@ -122386,6 +122461,38 @@ func NewMarketplaceProviderOfferingsListRequest(server string, params *Marketpla
 
 		}
 
+		if params.HasActiveTermsOfService != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_active_terms_of_service", runtime.ParamLocationQuery, *params.HasActiveTermsOfService); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.HasTermsOfService != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_terms_of_service", runtime.ParamLocationQuery, *params.HasTermsOfService); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Keyword != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "keyword", runtime.ParamLocationQuery, *params.Keyword); err != nil {
@@ -122854,6 +122961,38 @@ func NewMarketplaceProviderOfferingsCountRequest(server string, params *Marketpl
 		if params.Description != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "description", runtime.ParamLocationQuery, *params.Description); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.HasActiveTermsOfService != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_active_terms_of_service", runtime.ParamLocationQuery, *params.HasActiveTermsOfService); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.HasTermsOfService != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_terms_of_service", runtime.ParamLocationQuery, *params.HasTermsOfService); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -123388,6 +123527,38 @@ func NewMarketplaceProviderOfferingsGroupsListRequest(server string, params *Mar
 
 		}
 
+		if params.HasActiveTermsOfService != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_active_terms_of_service", runtime.ParamLocationQuery, *params.HasActiveTermsOfService); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.HasTermsOfService != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_terms_of_service", runtime.ParamLocationQuery, *params.HasTermsOfService); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Keyword != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "keyword", runtime.ParamLocationQuery, *params.Keyword); err != nil {
@@ -123856,6 +124027,38 @@ func NewMarketplaceProviderOfferingsGroupsCountRequest(server string, params *Ma
 		if params.Description != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "description", runtime.ParamLocationQuery, *params.Description); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.HasActiveTermsOfService != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_active_terms_of_service", runtime.ParamLocationQuery, *params.HasActiveTermsOfService); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.HasTermsOfService != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_terms_of_service", runtime.ParamLocationQuery, *params.HasTermsOfService); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -124625,6 +124828,38 @@ func NewMarketplaceProviderOfferingsComponentStatsListRequest(server string, uui
 
 		}
 
+		if params.HasActiveTermsOfService != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_active_terms_of_service", runtime.ParamLocationQuery, *params.HasActiveTermsOfService); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.HasTermsOfService != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_terms_of_service", runtime.ParamLocationQuery, *params.HasTermsOfService); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Keyword != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "keyword", runtime.ParamLocationQuery, *params.Keyword); err != nil {
@@ -125148,6 +125383,38 @@ func NewMarketplaceProviderOfferingsCostsListRequest(server string, uuid openapi
 		if params.End != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "end", runtime.ParamLocationQuery, *params.End); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.HasActiveTermsOfService != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_active_terms_of_service", runtime.ParamLocationQuery, *params.HasActiveTermsOfService); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.HasTermsOfService != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_terms_of_service", runtime.ParamLocationQuery, *params.HasTermsOfService); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -125699,6 +125966,38 @@ func NewMarketplaceProviderOfferingsCustomersListRequest(server string, uuid ope
 		if params.Description != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "description", runtime.ParamLocationQuery, *params.Description); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.HasActiveTermsOfService != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_active_terms_of_service", runtime.ParamLocationQuery, *params.HasActiveTermsOfService); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.HasTermsOfService != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_terms_of_service", runtime.ParamLocationQuery, *params.HasTermsOfService); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -130307,6 +130606,38 @@ func NewMarketplacePublicOfferingsListRequest(server string, params *Marketplace
 
 		}
 
+		if params.HasActiveTermsOfService != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_active_terms_of_service", runtime.ParamLocationQuery, *params.HasActiveTermsOfService); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.HasTermsOfService != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_terms_of_service", runtime.ParamLocationQuery, *params.HasTermsOfService); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Keyword != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "keyword", runtime.ParamLocationQuery, *params.Keyword); err != nil {
@@ -130775,6 +131106,38 @@ func NewMarketplacePublicOfferingsCountRequest(server string, params *Marketplac
 		if params.Description != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "description", runtime.ParamLocationQuery, *params.Description); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.HasActiveTermsOfService != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_active_terms_of_service", runtime.ParamLocationQuery, *params.HasActiveTermsOfService); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.HasTermsOfService != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_terms_of_service", runtime.ParamLocationQuery, *params.HasTermsOfService); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -137814,6 +138177,38 @@ func NewMarketplaceServiceProvidersOfferingsListRequest(server string, servicePr
 		if params.Field != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "field", runtime.ParamLocationQuery, *params.Field); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.HasActiveTermsOfService != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_active_terms_of_service", runtime.ParamLocationQuery, *params.HasActiveTermsOfService); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.HasTermsOfService != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_terms_of_service", runtime.ParamLocationQuery, *params.HasTermsOfService); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
