@@ -132,45 +132,256 @@ const (
 
 // Defines values for CountryEnum.
 const (
+	AD CountryEnum = "AD"
+	AE CountryEnum = "AE"
+	AF CountryEnum = "AF"
+	AG CountryEnum = "AG"
+	AI CountryEnum = "AI"
 	AL CountryEnum = "AL"
+	AM CountryEnum = "AM"
+	AO CountryEnum = "AO"
+	AQ CountryEnum = "AQ"
+	AR CountryEnum = "AR"
+	AS CountryEnum = "AS"
 	AT CountryEnum = "AT"
+	AU CountryEnum = "AU"
+	AW CountryEnum = "AW"
+	AX CountryEnum = "AX"
+	AZ CountryEnum = "AZ"
 	BA CountryEnum = "BA"
+	BB CountryEnum = "BB"
+	BD CountryEnum = "BD"
 	BE CountryEnum = "BE"
+	BF CountryEnum = "BF"
 	BG CountryEnum = "BG"
+	BH CountryEnum = "BH"
+	BI CountryEnum = "BI"
+	BJ CountryEnum = "BJ"
+	BL CountryEnum = "BL"
+	BM CountryEnum = "BM"
+	BN CountryEnum = "BN"
+	BO CountryEnum = "BO"
+	BQ CountryEnum = "BQ"
+	BR CountryEnum = "BR"
+	BS CountryEnum = "BS"
+	BT CountryEnum = "BT"
+	BV CountryEnum = "BV"
+	BW CountryEnum = "BW"
+	BY CountryEnum = "BY"
+	BZ CountryEnum = "BZ"
+	CA CountryEnum = "CA"
+	CC CountryEnum = "CC"
+	CD CountryEnum = "CD"
+	CF CountryEnum = "CF"
+	CG CountryEnum = "CG"
 	CH CountryEnum = "CH"
+	CI CountryEnum = "CI"
+	CK CountryEnum = "CK"
+	CL CountryEnum = "CL"
+	CM CountryEnum = "CM"
+	CN CountryEnum = "CN"
+	CO CountryEnum = "CO"
+	CR CountryEnum = "CR"
+	CU CountryEnum = "CU"
+	CV CountryEnum = "CV"
+	CW CountryEnum = "CW"
+	CX CountryEnum = "CX"
 	CY CountryEnum = "CY"
 	CZ CountryEnum = "CZ"
 	DE CountryEnum = "DE"
+	DJ CountryEnum = "DJ"
 	DK CountryEnum = "DK"
+	DM CountryEnum = "DM"
+	DO CountryEnum = "DO"
+	DZ CountryEnum = "DZ"
+	EC CountryEnum = "EC"
 	EE CountryEnum = "EE"
+	EG CountryEnum = "EG"
+	EH CountryEnum = "EH"
+	ER CountryEnum = "ER"
 	ES CountryEnum = "ES"
+	ET CountryEnum = "ET"
 	EU CountryEnum = "EU"
 	FI CountryEnum = "FI"
+	FJ CountryEnum = "FJ"
+	FK CountryEnum = "FK"
+	FM CountryEnum = "FM"
+	FO CountryEnum = "FO"
 	FR CountryEnum = "FR"
+	GA CountryEnum = "GA"
 	GB CountryEnum = "GB"
+	GD CountryEnum = "GD"
 	GE CountryEnum = "GE"
+	GF CountryEnum = "GF"
+	GG CountryEnum = "GG"
+	GH CountryEnum = "GH"
+	GI CountryEnum = "GI"
+	GL CountryEnum = "GL"
+	GM CountryEnum = "GM"
+	GN CountryEnum = "GN"
+	GP CountryEnum = "GP"
+	GQ CountryEnum = "GQ"
 	GR CountryEnum = "GR"
+	GS CountryEnum = "GS"
+	GT CountryEnum = "GT"
+	GU CountryEnum = "GU"
+	GW CountryEnum = "GW"
+	GY CountryEnum = "GY"
+	HK CountryEnum = "HK"
+	HM CountryEnum = "HM"
+	HN CountryEnum = "HN"
 	HR CountryEnum = "HR"
+	HT CountryEnum = "HT"
 	HU CountryEnum = "HU"
+	ID CountryEnum = "ID"
 	IE CountryEnum = "IE"
+	IL CountryEnum = "IL"
+	IM CountryEnum = "IM"
+	IN CountryEnum = "IN"
+	IO CountryEnum = "IO"
+	IQ CountryEnum = "IQ"
+	IR CountryEnum = "IR"
 	IS CountryEnum = "IS"
 	IT CountryEnum = "IT"
+	JE CountryEnum = "JE"
+	JM CountryEnum = "JM"
+	JO CountryEnum = "JO"
+	JP CountryEnum = "JP"
+	KE CountryEnum = "KE"
+	KG CountryEnum = "KG"
+	KH CountryEnum = "KH"
+	KI CountryEnum = "KI"
+	KM CountryEnum = "KM"
+	KN CountryEnum = "KN"
+	KP CountryEnum = "KP"
+	KR CountryEnum = "KR"
+	KW CountryEnum = "KW"
+	KY CountryEnum = "KY"
+	KZ CountryEnum = "KZ"
+	LA CountryEnum = "LA"
+	LB CountryEnum = "LB"
+	LC CountryEnum = "LC"
+	LI CountryEnum = "LI"
+	LK CountryEnum = "LK"
+	LR CountryEnum = "LR"
+	LS CountryEnum = "LS"
 	LT CountryEnum = "LT"
 	LU CountryEnum = "LU"
 	LV CountryEnum = "LV"
+	LY CountryEnum = "LY"
+	MA CountryEnum = "MA"
 	MC CountryEnum = "MC"
+	MD CountryEnum = "MD"
+	ME CountryEnum = "ME"
+	MF CountryEnum = "MF"
+	MG CountryEnum = "MG"
+	MH CountryEnum = "MH"
 	MK CountryEnum = "MK"
+	ML CountryEnum = "ML"
+	MM CountryEnum = "MM"
+	MN CountryEnum = "MN"
+	MO CountryEnum = "MO"
+	MP CountryEnum = "MP"
+	MQ CountryEnum = "MQ"
+	MR CountryEnum = "MR"
+	MS CountryEnum = "MS"
 	MT CountryEnum = "MT"
+	MU CountryEnum = "MU"
+	MV CountryEnum = "MV"
+	MW CountryEnum = "MW"
+	MX CountryEnum = "MX"
+	MY CountryEnum = "MY"
+	MZ CountryEnum = "MZ"
+	NA CountryEnum = "NA"
+	NC CountryEnum = "NC"
+	NE CountryEnum = "NE"
+	NF CountryEnum = "NF"
+	NG CountryEnum = "NG"
+	NI CountryEnum = "NI"
 	NL CountryEnum = "NL"
 	NO CountryEnum = "NO"
+	NP CountryEnum = "NP"
+	NR CountryEnum = "NR"
+	NU CountryEnum = "NU"
+	NZ CountryEnum = "NZ"
+	OM CountryEnum = "OM"
+	PA CountryEnum = "PA"
+	PE CountryEnum = "PE"
+	PF CountryEnum = "PF"
+	PG CountryEnum = "PG"
+	PH CountryEnum = "PH"
+	PK CountryEnum = "PK"
 	PL CountryEnum = "PL"
+	PM CountryEnum = "PM"
+	PN CountryEnum = "PN"
+	PR CountryEnum = "PR"
+	PS CountryEnum = "PS"
 	PT CountryEnum = "PT"
+	PW CountryEnum = "PW"
+	PY CountryEnum = "PY"
+	QA CountryEnum = "QA"
+	RE CountryEnum = "RE"
 	RO CountryEnum = "RO"
 	RS CountryEnum = "RS"
+	RU CountryEnum = "RU"
+	RW CountryEnum = "RW"
+	SA CountryEnum = "SA"
+	SB CountryEnum = "SB"
+	SC CountryEnum = "SC"
+	SD CountryEnum = "SD"
 	SE CountryEnum = "SE"
+	SG CountryEnum = "SG"
+	SH CountryEnum = "SH"
 	SI CountryEnum = "SI"
+	SJ CountryEnum = "SJ"
 	SK CountryEnum = "SK"
+	SL CountryEnum = "SL"
+	SM CountryEnum = "SM"
+	SN CountryEnum = "SN"
+	SO CountryEnum = "SO"
+	SR CountryEnum = "SR"
+	SS CountryEnum = "SS"
+	ST CountryEnum = "ST"
+	SV CountryEnum = "SV"
+	SX CountryEnum = "SX"
+	SY CountryEnum = "SY"
+	SZ CountryEnum = "SZ"
+	TC CountryEnum = "TC"
+	TD CountryEnum = "TD"
+	TF CountryEnum = "TF"
+	TG CountryEnum = "TG"
+	TH CountryEnum = "TH"
+	TJ CountryEnum = "TJ"
+	TK CountryEnum = "TK"
+	TL CountryEnum = "TL"
+	TM CountryEnum = "TM"
+	TN CountryEnum = "TN"
+	TO CountryEnum = "TO"
+	TR CountryEnum = "TR"
+	TT CountryEnum = "TT"
+	TV CountryEnum = "TV"
+	TW CountryEnum = "TW"
+	TZ CountryEnum = "TZ"
 	UA CountryEnum = "UA"
+	UG CountryEnum = "UG"
+	UM CountryEnum = "UM"
+	US CountryEnum = "US"
+	UY CountryEnum = "UY"
+	UZ CountryEnum = "UZ"
+	VA CountryEnum = "VA"
+	VC CountryEnum = "VC"
+	VE CountryEnum = "VE"
+	VG CountryEnum = "VG"
+	VI CountryEnum = "VI"
+	VN CountryEnum = "VN"
+	VU CountryEnum = "VU"
+	WF CountryEnum = "WF"
+	WS CountryEnum = "WS"
+	YE CountryEnum = "YE"
+	YT CountryEnum = "YT"
+	ZA CountryEnum = "ZA"
+	ZM CountryEnum = "ZM"
+	ZW CountryEnum = "ZW"
 )
 
 // Defines values for DecidingEntityEnum.
@@ -731,14 +942,6 @@ const (
 const (
 	IssueStatusTypeEnumN0 IssueStatusTypeEnum = 0
 	IssueStatusTypeEnumN1 IssueStatusTypeEnum = 1
-)
-
-// Defines values for IssueTypeEnum.
-const (
-	ChangeRequest  IssueTypeEnum = "Change Request"
-	Incident       IssueTypeEnum = "Incident"
-	Informational  IssueTypeEnum = "Informational"
-	ServiceRequest IssueTypeEnum = "Service Request"
 )
 
 // Defines values for KeycloakUserGroupMembershipState.
@@ -2284,6 +2487,7 @@ const (
 	BookingOfferingsListParamsFieldTotalCustomers            BookingOfferingsListParamsField = "total_customers"
 	BookingOfferingsListParamsFieldType                      BookingOfferingsListParamsField = "type"
 	BookingOfferingsListParamsFieldUrl                       BookingOfferingsListParamsField = "url"
+	BookingOfferingsListParamsFieldUserHasConsent            BookingOfferingsListParamsField = "user_has_consent"
 	BookingOfferingsListParamsFieldUuid                      BookingOfferingsListParamsField = "uuid"
 	BookingOfferingsListParamsFieldVendorDetails             BookingOfferingsListParamsField = "vendor_details"
 )
@@ -2349,6 +2553,7 @@ const (
 	BookingOfferingsRetrieveParamsFieldTotalCustomers            BookingOfferingsRetrieveParamsField = "total_customers"
 	BookingOfferingsRetrieveParamsFieldType                      BookingOfferingsRetrieveParamsField = "type"
 	BookingOfferingsRetrieveParamsFieldUrl                       BookingOfferingsRetrieveParamsField = "url"
+	BookingOfferingsRetrieveParamsFieldUserHasConsent            BookingOfferingsRetrieveParamsField = "user_has_consent"
 	BookingOfferingsRetrieveParamsFieldUuid                      BookingOfferingsRetrieveParamsField = "uuid"
 	BookingOfferingsRetrieveParamsFieldVendorDetails             BookingOfferingsRetrieveParamsField = "vendor_details"
 )
@@ -5342,6 +5547,7 @@ const (
 	MarketplacePublicOfferingsListParamsFieldTotalCustomers            MarketplacePublicOfferingsListParamsField = "total_customers"
 	MarketplacePublicOfferingsListParamsFieldType                      MarketplacePublicOfferingsListParamsField = "type"
 	MarketplacePublicOfferingsListParamsFieldUrl                       MarketplacePublicOfferingsListParamsField = "url"
+	MarketplacePublicOfferingsListParamsFieldUserHasConsent            MarketplacePublicOfferingsListParamsField = "user_has_consent"
 	MarketplacePublicOfferingsListParamsFieldUuid                      MarketplacePublicOfferingsListParamsField = "uuid"
 	MarketplacePublicOfferingsListParamsFieldVendorDetails             MarketplacePublicOfferingsListParamsField = "vendor_details"
 )
@@ -5461,6 +5667,7 @@ const (
 	MarketplacePublicOfferingsRetrieveParamsFieldTotalCustomers            MarketplacePublicOfferingsRetrieveParamsField = "total_customers"
 	MarketplacePublicOfferingsRetrieveParamsFieldType                      MarketplacePublicOfferingsRetrieveParamsField = "type"
 	MarketplacePublicOfferingsRetrieveParamsFieldUrl                       MarketplacePublicOfferingsRetrieveParamsField = "url"
+	MarketplacePublicOfferingsRetrieveParamsFieldUserHasConsent            MarketplacePublicOfferingsRetrieveParamsField = "user_has_consent"
 	MarketplacePublicOfferingsRetrieveParamsFieldUuid                      MarketplacePublicOfferingsRetrieveParamsField = "uuid"
 	MarketplacePublicOfferingsRetrieveParamsFieldVendorDetails             MarketplacePublicOfferingsRetrieveParamsField = "vendor_details"
 )
@@ -13252,16 +13459,25 @@ type IPMappingRequest struct {
 
 // IdentityProvider defines model for IdentityProvider.
 type IdentityProvider struct {
+	// AttributeMapping A JSON object mapping Waldur User model fields to OIDC claims. Example: {"first_name": "given_name", "last_name": "family_name", "email": "email"}
+	AttributeMapping interface{} `json:"attribute_mapping,omitempty"`
+
 	// AuthUrl The endpoint for authorization request flow.
 	AuthUrl *string `json:"auth_url,omitempty"`
 
 	// ClientId ID of application used for OAuth authentication.
 	ClientId string `json:"client_id"`
 
+	// ClientSecret Application secret key.
+	ClientSecret string `json:"client_secret"`
+
 	// DiscoveryUrl The endpoint for endpoint discovery.
 	DiscoveryUrl             string `json:"discovery_url"`
 	EnablePkce               *bool  `json:"enable_pkce,omitempty"`
 	EnablePostLogoutRedirect *bool  `json:"enable_post_logout_redirect,omitempty"`
+
+	// ExtraFields Space-separated list of extra fields to persist.
+	ExtraFields *string `json:"extra_fields"`
 
 	// ExtraScope Space-separated list of scopes to request during authentication.
 	ExtraScope *string `json:"extra_scope"`
@@ -13281,6 +13497,12 @@ type IdentityProvider struct {
 	// TokenUrl The endpoint for obtaining auth token.
 	TokenUrl *string `json:"token_url,omitempty"`
 
+	// UserClaim The OIDC claim from the userinfo endpoint to be used as the value for the lookup field.
+	UserClaim *string `json:"user_claim,omitempty"`
+
+	// UserField The field in Waldur User model to be used for looking up the user
+	UserField *string `json:"user_field,omitempty"`
+
 	// UserinfoUrl The endpoint for fetching user info.
 	UserinfoUrl *string `json:"userinfo_url,omitempty"`
 	VerifySsl   *bool   `json:"verify_ssl,omitempty"`
@@ -13288,13 +13510,22 @@ type IdentityProvider struct {
 
 // IdentityProviderRequest defines model for IdentityProviderRequest.
 type IdentityProviderRequest struct {
+	// AttributeMapping A JSON object mapping Waldur User model fields to OIDC claims. Example: {"first_name": "given_name", "last_name": "family_name", "email": "email"}
+	AttributeMapping interface{} `json:"attribute_mapping,omitempty"`
+
 	// ClientId ID of application used for OAuth authentication.
 	ClientId string `json:"client_id"`
+
+	// ClientSecret Application secret key.
+	ClientSecret string `json:"client_secret"`
 
 	// DiscoveryUrl The endpoint for endpoint discovery.
 	DiscoveryUrl             string `json:"discovery_url"`
 	EnablePkce               *bool  `json:"enable_pkce,omitempty"`
 	EnablePostLogoutRedirect *bool  `json:"enable_post_logout_redirect,omitempty"`
+
+	// ExtraFields Space-separated list of extra fields to persist.
+	ExtraFields *string `json:"extra_fields"`
 
 	// ExtraScope Space-separated list of scopes to request during authentication.
 	ExtraScope *string `json:"extra_scope"`
@@ -13307,7 +13538,13 @@ type IdentityProviderRequest struct {
 	ManagementUrl   *string     `json:"management_url,omitempty"`
 	ProtectedFields interface{} `json:"protected_fields,omitempty"`
 	Provider        string      `json:"provider"`
-	VerifySsl       *bool       `json:"verify_ssl,omitempty"`
+
+	// UserClaim The OIDC claim from the userinfo endpoint to be used as the value for the lookup field.
+	UserClaim *string `json:"user_claim,omitempty"`
+
+	// UserField The field in Waldur User model to be used for looking up the user
+	UserField *string `json:"user_field,omitempty"`
+	VerifySsl *bool   `json:"verify_ssl,omitempty"`
 }
 
 // ImageCreateRequest defines model for ImageCreateRequest.
@@ -13671,7 +13908,7 @@ type Issue struct {
 	Status            *string             `json:"status,omitempty"`
 	Summary           string              `json:"summary"`
 	Template          *string             `json:"template"`
-	Type              *IssueTypeEnum      `json:"type,omitempty"`
+	Type              IssueTypeEnum       `json:"type"`
 	UpdateIsAvailable *bool               `json:"update_is_available,omitempty"`
 	Url               *string             `json:"url,omitempty"`
 	Uuid              *openapi_types.UUID `json:"uuid,omitempty"`
@@ -13691,14 +13928,14 @@ type IssueRequest struct {
 	Description *string `json:"description,omitempty"`
 
 	// IsReportedManually Set true if issue is created by regular user via portal.
-	IsReportedManually *bool          `json:"is_reported_manually,omitempty"`
-	Priority           *string        `json:"priority,omitempty"`
-	Project            *string        `json:"project"`
-	RemoteId           *string        `json:"remote_id"`
-	Resource           *string        `json:"resource,omitempty"`
-	Summary            string         `json:"summary"`
-	Template           *string        `json:"template"`
-	Type               *IssueTypeEnum `json:"type,omitempty"`
+	IsReportedManually *bool         `json:"is_reported_manually,omitempty"`
+	Priority           *string       `json:"priority,omitempty"`
+	Project            *string       `json:"project"`
+	RemoteId           *string       `json:"remote_id"`
+	Resource           *string       `json:"resource,omitempty"`
+	Summary            string        `json:"summary"`
+	Template           *string       `json:"template"`
+	Type               IssueTypeEnum `json:"type"`
 }
 
 // IssueStatus defines model for IssueStatus.
@@ -13722,7 +13959,7 @@ type IssueStatusRequest struct {
 type IssueStatusTypeEnum int
 
 // IssueTypeEnum defines model for IssueTypeEnum.
-type IssueTypeEnum string
+type IssueTypeEnum = interface{}
 
 // JiraChangelog defines model for JiraChangelog.
 type JiraChangelog struct {
@@ -15157,6 +15394,7 @@ type Offering struct {
 	TotalCustomers     *int                `json:"total_customers"`
 	Type               *string             `json:"type,omitempty"`
 	Url                *string             `json:"url,omitempty"`
+	UserHasConsent     *bool               `json:"user_has_consent,omitempty"`
 	Uuid               *openapi_types.UUID `json:"uuid,omitempty"`
 	VendorDetails      *string             `json:"vendor_details,omitempty"`
 }
@@ -15574,16 +15812,18 @@ type OfferingStatsCounter struct {
 
 // OfferingTermsOfService defines model for OfferingTermsOfService.
 type OfferingTermsOfService struct {
-	Created      *time.Time          `json:"created,omitempty"`
-	IsActive     *bool               `json:"is_active,omitempty"`
-	Modified     *time.Time          `json:"modified,omitempty"`
-	OfferingName *string             `json:"offering_name,omitempty"`
-	OfferingUuid *openapi_types.UUID `json:"offering_uuid,omitempty"`
+	Created        *time.Time          `json:"created,omitempty"`
+	HasUserConsent *bool               `json:"has_user_consent,omitempty"`
+	IsActive       *bool               `json:"is_active,omitempty"`
+	Modified       *time.Time          `json:"modified,omitempty"`
+	OfferingName   *string             `json:"offering_name,omitempty"`
+	OfferingUuid   *openapi_types.UUID `json:"offering_uuid,omitempty"`
 
 	// RequiresReconsent If True, user will be asked to re-consent to the terms of service when the terms of service are updated.
 	RequiresReconsent  *bool               `json:"requires_reconsent,omitempty"`
 	TermsOfService     *string             `json:"terms_of_service,omitempty"`
 	TermsOfServiceLink *string             `json:"terms_of_service_link,omitempty"`
+	UserConsent        *UserConsentInfo    `json:"user_consent"`
 	Uuid               *openapi_types.UUID `json:"uuid,omitempty"`
 	Version            *string             `json:"version,omitempty"`
 }
@@ -17983,13 +18223,22 @@ type PatchedFirecrestJobRequest struct {
 
 // PatchedIdentityProviderRequest defines model for PatchedIdentityProviderRequest.
 type PatchedIdentityProviderRequest struct {
+	// AttributeMapping A JSON object mapping Waldur User model fields to OIDC claims. Example: {"first_name": "given_name", "last_name": "family_name", "email": "email"}
+	AttributeMapping interface{} `json:"attribute_mapping,omitempty"`
+
 	// ClientId ID of application used for OAuth authentication.
 	ClientId *string `json:"client_id,omitempty"`
+
+	// ClientSecret Application secret key.
+	ClientSecret *string `json:"client_secret,omitempty"`
 
 	// DiscoveryUrl The endpoint for endpoint discovery.
 	DiscoveryUrl             *string `json:"discovery_url,omitempty"`
 	EnablePkce               *bool   `json:"enable_pkce,omitempty"`
 	EnablePostLogoutRedirect *bool   `json:"enable_post_logout_redirect,omitempty"`
+
+	// ExtraFields Space-separated list of extra fields to persist.
+	ExtraFields *string `json:"extra_fields"`
 
 	// ExtraScope Space-separated list of scopes to request during authentication.
 	ExtraScope *string `json:"extra_scope"`
@@ -18002,7 +18251,13 @@ type PatchedIdentityProviderRequest struct {
 	ManagementUrl   *string     `json:"management_url,omitempty"`
 	ProtectedFields interface{} `json:"protected_fields,omitempty"`
 	Provider        *string     `json:"provider,omitempty"`
-	VerifySsl       *bool       `json:"verify_ssl,omitempty"`
+
+	// UserClaim The OIDC claim from the userinfo endpoint to be used as the value for the lookup field.
+	UserClaim *string `json:"user_claim,omitempty"`
+
+	// UserField The field in Waldur User model to be used for looking up the user
+	UserField *string `json:"user_field,omitempty"`
+	VerifySsl *bool   `json:"verify_ssl,omitempty"`
 }
 
 // PatchedInvoiceItemUpdateRequest defines model for PatchedInvoiceItemUpdateRequest.
@@ -20003,6 +20258,7 @@ type PublicOfferingDetails struct {
 	TotalCustomers     *int                `json:"total_customers"`
 	Type               *string             `json:"type,omitempty"`
 	Url                *string             `json:"url,omitempty"`
+	UserHasConsent     *bool               `json:"user_has_consent,omitempty"`
 	Uuid               *openapi_types.UUID `json:"uuid,omitempty"`
 	VendorDetails      *string             `json:"vendor_details,omitempty"`
 }
@@ -22459,6 +22715,14 @@ type UserAuthToken struct {
 
 	// UserUsername Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
 	UserUsername *string `json:"user_username,omitempty"`
+}
+
+// UserConsentInfo defines model for UserConsentInfo.
+type UserConsentInfo struct {
+	AgreementDate *time.Time          `json:"agreement_date,omitempty"`
+	IsRevoked     *bool               `json:"is_revoked,omitempty"`
+	Uuid          *openapi_types.UUID `json:"uuid,omitempty"`
+	Version       *string             `json:"version,omitempty"`
 }
 
 // UserEmailChangeRequest defines model for UserEmailChangeRequest.
@@ -27649,6 +27913,9 @@ type MarketplaceProviderOfferingsListParams struct {
 	State              *[]MarketplaceProviderOfferingsListParamsState `form:"state,omitempty" json:"state,omitempty"`
 	Type               *[]string                                      `form:"type,omitempty" json:"type,omitempty"`
 
+	// UserHasConsent User Has Consent
+	UserHasConsent *bool `form:"user_has_consent,omitempty" json:"user_has_consent,omitempty"`
+
 	// UuidList Comma-separated offering UUIDs
 	UuidList *string `form:"uuid_list,omitempty" json:"uuid_list,omitempty"`
 }
@@ -27724,6 +27991,9 @@ type MarketplaceProviderOfferingsCountParams struct {
 	State              *[]MarketplaceProviderOfferingsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
 	Type               *[]string                                       `form:"type,omitempty" json:"type,omitempty"`
 
+	// UserHasConsent User Has Consent
+	UserHasConsent *bool `form:"user_has_consent,omitempty" json:"user_has_consent,omitempty"`
+
 	// UuidList Comma-separated offering UUIDs
 	UuidList *string `form:"uuid_list,omitempty" json:"uuid_list,omitempty"`
 }
@@ -27796,6 +28066,9 @@ type MarketplaceProviderOfferingsGroupsListParams struct {
 	State              *[]MarketplaceProviderOfferingsGroupsListParamsState `form:"state,omitempty" json:"state,omitempty"`
 	Type               *[]string                                            `form:"type,omitempty" json:"type,omitempty"`
 
+	// UserHasConsent User Has Consent
+	UserHasConsent *bool `form:"user_has_consent,omitempty" json:"user_has_consent,omitempty"`
+
 	// UuidList Comma-separated offering UUIDs
 	UuidList *string `form:"uuid_list,omitempty" json:"uuid_list,omitempty"`
 }
@@ -27867,6 +28140,9 @@ type MarketplaceProviderOfferingsGroupsCountParams struct {
 	Shared             *bool                                                 `form:"shared,omitempty" json:"shared,omitempty"`
 	State              *[]MarketplaceProviderOfferingsGroupsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
 	Type               *[]string                                             `form:"type,omitempty" json:"type,omitempty"`
+
+	// UserHasConsent User Has Consent
+	UserHasConsent *bool `form:"user_has_consent,omitempty" json:"user_has_consent,omitempty"`
 
 	// UuidList Comma-separated offering UUIDs
 	UuidList *string `form:"uuid_list,omitempty" json:"uuid_list,omitempty"`
@@ -27954,6 +28230,9 @@ type MarketplaceProviderOfferingsComponentStatsListParams struct {
 	State *[]MarketplaceProviderOfferingsComponentStatsListParamsState `form:"state,omitempty" json:"state,omitempty"`
 	Type  *[]string                                                    `form:"type,omitempty" json:"type,omitempty"`
 
+	// UserHasConsent User Has Consent
+	UserHasConsent *bool `form:"user_has_consent,omitempty" json:"user_has_consent,omitempty"`
+
 	// UuidList Comma-separated offering UUIDs
 	UuidList *string `form:"uuid_list,omitempty" json:"uuid_list,omitempty"`
 }
@@ -28033,6 +28312,9 @@ type MarketplaceProviderOfferingsCostsListParams struct {
 	State *[]MarketplaceProviderOfferingsCostsListParamsState `form:"state,omitempty" json:"state,omitempty"`
 	Type  *[]string                                           `form:"type,omitempty" json:"type,omitempty"`
 
+	// UserHasConsent User Has Consent
+	UserHasConsent *bool `form:"user_has_consent,omitempty" json:"user_has_consent,omitempty"`
+
 	// UuidList Comma-separated offering UUIDs
 	UuidList *string `form:"uuid_list,omitempty" json:"uuid_list,omitempty"`
 }
@@ -28104,6 +28386,9 @@ type MarketplaceProviderOfferingsCustomersListParams struct {
 	Shared             *bool                                                   `form:"shared,omitempty" json:"shared,omitempty"`
 	State              *[]MarketplaceProviderOfferingsCustomersListParamsState `form:"state,omitempty" json:"state,omitempty"`
 	Type               *[]string                                               `form:"type,omitempty" json:"type,omitempty"`
+
+	// UserHasConsent User Has Consent
+	UserHasConsent *bool `form:"user_has_consent,omitempty" json:"user_has_consent,omitempty"`
 
 	// UuidList Comma-separated offering UUIDs
 	UuidList *string `form:"uuid_list,omitempty" json:"uuid_list,omitempty"`
@@ -28459,6 +28744,9 @@ type MarketplacePublicOfferingsListParams struct {
 	State              *[]MarketplacePublicOfferingsListParamsState `form:"state,omitempty" json:"state,omitempty"`
 	Type               *[]string                                    `form:"type,omitempty" json:"type,omitempty"`
 
+	// UserHasConsent User Has Consent
+	UserHasConsent *bool `form:"user_has_consent,omitempty" json:"user_has_consent,omitempty"`
+
 	// UuidList Comma-separated offering UUIDs
 	UuidList *string `form:"uuid_list,omitempty" json:"uuid_list,omitempty"`
 }
@@ -28533,6 +28821,9 @@ type MarketplacePublicOfferingsCountParams struct {
 	Shared             *bool                                         `form:"shared,omitempty" json:"shared,omitempty"`
 	State              *[]MarketplacePublicOfferingsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
 	Type               *[]string                                     `form:"type,omitempty" json:"type,omitempty"`
+
+	// UserHasConsent User Has Consent
+	UserHasConsent *bool `form:"user_has_consent,omitempty" json:"user_has_consent,omitempty"`
 
 	// UuidList Comma-separated offering UUIDs
 	UuidList *string `form:"uuid_list,omitempty" json:"uuid_list,omitempty"`
@@ -29203,6 +29494,9 @@ type MarketplaceServiceProvidersOfferingsListParams struct {
 	Shared             *bool                                                  `form:"shared,omitempty" json:"shared,omitempty"`
 	State              *[]MarketplaceServiceProvidersOfferingsListParamsState `form:"state,omitempty" json:"state,omitempty"`
 	Type               *[]string                                              `form:"type,omitempty" json:"type,omitempty"`
+
+	// UserHasConsent User Has Consent
+	UserHasConsent *bool `form:"user_has_consent,omitempty" json:"user_has_consent,omitempty"`
 
 	// UuidList Comma-separated offering UUIDs
 	UuidList *string `form:"uuid_list,omitempty" json:"uuid_list,omitempty"`
@@ -122764,6 +123058,22 @@ func NewMarketplaceProviderOfferingsListRequest(server string, params *Marketpla
 
 		}
 
+		if params.UserHasConsent != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_has_consent", runtime.ParamLocationQuery, *params.UserHasConsent); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.UuidList != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "uuid_list", runtime.ParamLocationQuery, *params.UuidList); err != nil {
@@ -123264,6 +123574,22 @@ func NewMarketplaceProviderOfferingsCountRequest(server string, params *Marketpl
 		if params.Type != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "type", runtime.ParamLocationQuery, *params.Type); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UserHasConsent != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_has_consent", runtime.ParamLocationQuery, *params.UserHasConsent); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -123830,6 +124156,22 @@ func NewMarketplaceProviderOfferingsGroupsListRequest(server string, params *Mar
 
 		}
 
+		if params.UserHasConsent != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_has_consent", runtime.ParamLocationQuery, *params.UserHasConsent); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.UuidList != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "uuid_list", runtime.ParamLocationQuery, *params.UuidList); err != nil {
@@ -124330,6 +124672,22 @@ func NewMarketplaceProviderOfferingsGroupsCountRequest(server string, params *Ma
 		if params.Type != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "type", runtime.ParamLocationQuery, *params.Type); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UserHasConsent != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_has_consent", runtime.ParamLocationQuery, *params.UserHasConsent); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -125147,6 +125505,22 @@ func NewMarketplaceProviderOfferingsComponentStatsListRequest(server string, uui
 
 		}
 
+		if params.UserHasConsent != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_has_consent", runtime.ParamLocationQuery, *params.UserHasConsent); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.UuidList != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "uuid_list", runtime.ParamLocationQuery, *params.UuidList); err != nil {
@@ -125715,6 +126089,22 @@ func NewMarketplaceProviderOfferingsCostsListRequest(server string, uuid openapi
 
 		}
 
+		if params.UserHasConsent != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_has_consent", runtime.ParamLocationQuery, *params.UserHasConsent); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.UuidList != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "uuid_list", runtime.ParamLocationQuery, *params.UuidList); err != nil {
@@ -126269,6 +126659,22 @@ func NewMarketplaceProviderOfferingsCustomersListRequest(server string, uuid ope
 		if params.Type != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "type", runtime.ParamLocationQuery, *params.Type); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UserHasConsent != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_has_consent", runtime.ParamLocationQuery, *params.UserHasConsent); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -130909,6 +131315,22 @@ func NewMarketplacePublicOfferingsListRequest(server string, params *Marketplace
 
 		}
 
+		if params.UserHasConsent != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_has_consent", runtime.ParamLocationQuery, *params.UserHasConsent); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.UuidList != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "uuid_list", runtime.ParamLocationQuery, *params.UuidList); err != nil {
@@ -131409,6 +131831,22 @@ func NewMarketplacePublicOfferingsCountRequest(server string, params *Marketplac
 		if params.Type != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "type", runtime.ParamLocationQuery, *params.Type); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UserHasConsent != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_has_consent", runtime.ParamLocationQuery, *params.UserHasConsent); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -138480,6 +138918,22 @@ func NewMarketplaceServiceProvidersOfferingsListRequest(server string, servicePr
 		if params.Type != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "type", runtime.ParamLocationQuery, *params.Type); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UserHasConsent != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_has_consent", runtime.ParamLocationQuery, *params.UserHasConsent); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
