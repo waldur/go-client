@@ -12328,10 +12328,9 @@ type CourseAccountCreateNestedRequest struct {
 
 // CourseAccountRequest defines model for CourseAccountRequest.
 type CourseAccountRequest struct {
-	Description    *string              `json:"description,omitempty"`
-	Email          *openapi_types.Email `json:"email,omitempty"`
-	ErrorTraceback *string              `json:"error_traceback,omitempty"`
-	Project        openapi_types.UUID   `json:"project"`
+	Description *string              `json:"description,omitempty"`
+	Email       *openapi_types.Email `json:"email,omitempty"`
+	Project     openapi_types.UUID   `json:"project"`
 }
 
 // CourseAccountsBulkCreate defines model for CourseAccountsBulkCreate.
