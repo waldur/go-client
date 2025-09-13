@@ -944,6 +944,14 @@ const (
 	IssueStatusTypeEnumN1 IssueStatusTypeEnum = 1
 )
 
+// Defines values for IssueTypeEnum.
+const (
+	CHANGEREQUEST  IssueTypeEnum = "CHANGE_REQUEST"
+	INCIDENT       IssueTypeEnum = "INCIDENT"
+	INFORMATIONAL  IssueTypeEnum = "INFORMATIONAL"
+	SERVICEREQUEST IssueTypeEnum = "SERVICE_REQUEST"
+)
+
 // Defines values for KeycloakUserGroupMembershipState.
 const (
 	KeycloakUserGroupMembershipStateActive  KeycloakUserGroupMembershipState = "active"
@@ -13908,7 +13916,7 @@ type Issue struct {
 	Status            *string             `json:"status,omitempty"`
 	Summary           string              `json:"summary"`
 	Template          *string             `json:"template"`
-	Type              IssueTypeEnum       `json:"type"`
+	Type              string              `json:"type"`
 	UpdateIsAvailable *bool               `json:"update_is_available,omitempty"`
 	Url               *string             `json:"url,omitempty"`
 	Uuid              *openapi_types.UUID `json:"uuid,omitempty"`
@@ -13928,14 +13936,14 @@ type IssueRequest struct {
 	Description *string `json:"description,omitempty"`
 
 	// IsReportedManually Set true if issue is created by regular user via portal.
-	IsReportedManually *bool         `json:"is_reported_manually,omitempty"`
-	Priority           *string       `json:"priority,omitempty"`
-	Project            *string       `json:"project"`
-	RemoteId           *string       `json:"remote_id"`
-	Resource           *string       `json:"resource,omitempty"`
-	Summary            string        `json:"summary"`
-	Template           *string       `json:"template"`
-	Type               IssueTypeEnum `json:"type"`
+	IsReportedManually *bool   `json:"is_reported_manually,omitempty"`
+	Priority           *string `json:"priority,omitempty"`
+	Project            *string `json:"project"`
+	RemoteId           *string `json:"remote_id"`
+	Resource           *string `json:"resource,omitempty"`
+	Summary            string  `json:"summary"`
+	Template           *string `json:"template"`
+	Type               string  `json:"type"`
 }
 
 // IssueStatus defines model for IssueStatus.
@@ -13959,7 +13967,7 @@ type IssueStatusRequest struct {
 type IssueStatusTypeEnum int
 
 // IssueTypeEnum defines model for IssueTypeEnum.
-type IssueTypeEnum = interface{}
+type IssueTypeEnum string
 
 // JiraChangelog defines model for JiraChangelog.
 type JiraChangelog struct {
