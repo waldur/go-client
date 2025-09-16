@@ -4261,11 +4261,13 @@ const (
 	MarketplaceOfferingUsersListParamsFieldCreated                   MarketplaceOfferingUsersListParamsField = "created"
 	MarketplaceOfferingUsersListParamsFieldCustomerName              MarketplaceOfferingUsersListParamsField = "customer_name"
 	MarketplaceOfferingUsersListParamsFieldCustomerUuid              MarketplaceOfferingUsersListParamsField = "customer_uuid"
+	MarketplaceOfferingUsersListParamsFieldHasConsent                MarketplaceOfferingUsersListParamsField = "has_consent"
 	MarketplaceOfferingUsersListParamsFieldIsRestricted              MarketplaceOfferingUsersListParamsField = "is_restricted"
 	MarketplaceOfferingUsersListParamsFieldModified                  MarketplaceOfferingUsersListParamsField = "modified"
 	MarketplaceOfferingUsersListParamsFieldOffering                  MarketplaceOfferingUsersListParamsField = "offering"
 	MarketplaceOfferingUsersListParamsFieldOfferingName              MarketplaceOfferingUsersListParamsField = "offering_name"
 	MarketplaceOfferingUsersListParamsFieldOfferingUuid              MarketplaceOfferingUsersListParamsField = "offering_uuid"
+	MarketplaceOfferingUsersListParamsFieldRequiresReconsent         MarketplaceOfferingUsersListParamsField = "requires_reconsent"
 	MarketplaceOfferingUsersListParamsFieldServiceProviderComment    MarketplaceOfferingUsersListParamsField = "service_provider_comment"
 	MarketplaceOfferingUsersListParamsFieldServiceProviderCommentUrl MarketplaceOfferingUsersListParamsField = "service_provider_comment_url"
 	MarketplaceOfferingUsersListParamsFieldState                     MarketplaceOfferingUsersListParamsField = "state"
@@ -4332,11 +4334,13 @@ const (
 	MarketplaceOfferingUsersRetrieveParamsFieldCreated                   MarketplaceOfferingUsersRetrieveParamsField = "created"
 	MarketplaceOfferingUsersRetrieveParamsFieldCustomerName              MarketplaceOfferingUsersRetrieveParamsField = "customer_name"
 	MarketplaceOfferingUsersRetrieveParamsFieldCustomerUuid              MarketplaceOfferingUsersRetrieveParamsField = "customer_uuid"
+	MarketplaceOfferingUsersRetrieveParamsFieldHasConsent                MarketplaceOfferingUsersRetrieveParamsField = "has_consent"
 	MarketplaceOfferingUsersRetrieveParamsFieldIsRestricted              MarketplaceOfferingUsersRetrieveParamsField = "is_restricted"
 	MarketplaceOfferingUsersRetrieveParamsFieldModified                  MarketplaceOfferingUsersRetrieveParamsField = "modified"
 	MarketplaceOfferingUsersRetrieveParamsFieldOffering                  MarketplaceOfferingUsersRetrieveParamsField = "offering"
 	MarketplaceOfferingUsersRetrieveParamsFieldOfferingName              MarketplaceOfferingUsersRetrieveParamsField = "offering_name"
 	MarketplaceOfferingUsersRetrieveParamsFieldOfferingUuid              MarketplaceOfferingUsersRetrieveParamsField = "offering_uuid"
+	MarketplaceOfferingUsersRetrieveParamsFieldRequiresReconsent         MarketplaceOfferingUsersRetrieveParamsField = "requires_reconsent"
 	MarketplaceOfferingUsersRetrieveParamsFieldServiceProviderComment    MarketplaceOfferingUsersRetrieveParamsField = "service_provider_comment"
 	MarketplaceOfferingUsersRetrieveParamsFieldServiceProviderCommentUrl MarketplaceOfferingUsersRetrieveParamsField = "service_provider_comment_url"
 	MarketplaceOfferingUsersRetrieveParamsFieldState                     MarketplaceOfferingUsersRetrieveParamsField = "state"
@@ -15916,12 +15920,18 @@ type OfferingUser struct {
 	CustomerName *string             `json:"customer_name,omitempty"`
 	CustomerUuid *openapi_types.UUID `json:"customer_uuid,omitempty"`
 
+	// HasConsent Check if the user has active consent for this offering.
+	HasConsent *bool `json:"has_consent,omitempty"`
+
 	// IsRestricted Signal to service if the user account is restricted or not
 	IsRestricted *bool               `json:"is_restricted,omitempty"`
 	Modified     *time.Time          `json:"modified,omitempty"`
 	Offering     *string             `json:"offering,omitempty"`
 	OfferingName *string             `json:"offering_name,omitempty"`
 	OfferingUuid *openapi_types.UUID `json:"offering_uuid,omitempty"`
+
+	// RequiresReconsent Check if the user needs to re-consent due to ToS changes.
+	RequiresReconsent *bool `json:"requires_reconsent,omitempty"`
 
 	// ServiceProviderComment Additional comment for pending states like validation or account linking
 	ServiceProviderComment *string `json:"service_provider_comment,omitempty"`
@@ -27444,9 +27454,12 @@ type MarketplaceOfferingUserRolesCountParams struct {
 // MarketplaceOfferingUsersListParams defines parameters for MarketplaceOfferingUsersList.
 type MarketplaceOfferingUsersListParams struct {
 	// Created Created after
-	Created      *time.Time                                 `form:"created,omitempty" json:"created,omitempty"`
-	Field        *[]MarketplaceOfferingUsersListParamsField `form:"field,omitempty" json:"field,omitempty"`
-	IsRestricted *bool                                      `form:"is_restricted,omitempty" json:"is_restricted,omitempty"`
+	Created *time.Time                                 `form:"created,omitempty" json:"created,omitempty"`
+	Field   *[]MarketplaceOfferingUsersListParamsField `form:"field,omitempty" json:"field,omitempty"`
+
+	// HasConsent User Has Consent
+	HasConsent   *bool `form:"has_consent,omitempty" json:"has_consent,omitempty"`
+	IsRestricted *bool `form:"is_restricted,omitempty" json:"is_restricted,omitempty"`
 
 	// Modified Modified after
 	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
@@ -27489,8 +27502,11 @@ type MarketplaceOfferingUsersListParamsState string
 // MarketplaceOfferingUsersCountParams defines parameters for MarketplaceOfferingUsersCount.
 type MarketplaceOfferingUsersCountParams struct {
 	// Created Created after
-	Created      *time.Time `form:"created,omitempty" json:"created,omitempty"`
-	IsRestricted *bool      `form:"is_restricted,omitempty" json:"is_restricted,omitempty"`
+	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
+
+	// HasConsent User Has Consent
+	HasConsent   *bool `form:"has_consent,omitempty" json:"has_consent,omitempty"`
+	IsRestricted *bool `form:"is_restricted,omitempty" json:"is_restricted,omitempty"`
 
 	// Modified Modified after
 	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
@@ -117088,6 +117104,22 @@ func NewMarketplaceOfferingUsersListRequest(server string, params *MarketplaceOf
 
 		}
 
+		if params.HasConsent != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_consent", runtime.ParamLocationQuery, *params.HasConsent); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.IsRestricted != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_restricted", runtime.ParamLocationQuery, *params.IsRestricted); err != nil {
@@ -117348,6 +117380,22 @@ func NewMarketplaceOfferingUsersCountRequest(server string, params *MarketplaceO
 		if params.Created != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "created", runtime.ParamLocationQuery, *params.Created); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.HasConsent != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_consent", runtime.ParamLocationQuery, *params.HasConsent); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
