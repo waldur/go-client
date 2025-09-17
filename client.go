@@ -396,6 +396,12 @@ const (
 	Or  DependencyLogicOperatorEnum = "or"
 )
 
+// Defines values for DeploymentModeEnum.
+const (
+	Managed     DeploymentModeEnum = "managed"
+	SelfManaged DeploymentModeEnum = "self_managed"
+)
+
 // Defines values for DirectionEnum.
 const (
 	Egress  DirectionEnum = "egress"
@@ -12937,6 +12943,9 @@ type DeleteAttachmentsRequest struct {
 // DependencyLogicOperatorEnum defines model for DependencyLogicOperatorEnum.
 type DependencyLogicOperatorEnum string
 
+// DeploymentModeEnum defines model for DeploymentModeEnum.
+type DeploymentModeEnum string
+
 // DetailState defines model for DetailState.
 type DetailState struct {
 	Detail *string `json:"detail,omitempty"`
@@ -14379,28 +14388,6 @@ type MarketplaceCustomerStats struct {
 	Uuid         *string `json:"uuid,omitempty"`
 }
 
-// MarketplaceManagedRancherCreateOrderAttributes defines model for MarketplaceManagedRancherCreateOrderAttributes.
-type MarketplaceManagedRancherCreateOrderAttributes struct {
-	// InstallLonghorn Longhorn is a distributed block storage deployed on top of Kubernetes cluster
-	InstallLonghorn *bool `json:"install_longhorn,omitempty"`
-
-	// Name Unique identifier for the cluster
-	Name string `json:"name"`
-
-	// OpenstackOfferingUuidList List of UUID of OpenStack offerings where tenant can be created
-	OpenstackOfferingUuidList *[]openapi_types.UUID `json:"openstack_offering_uuid_list,omitempty"`
-	WorkerNodesCount          int                   `json:"worker_nodes_count"`
-
-	// WorkerNodesDataVolumeSize Data volume size for worker nodes in MB (consistent with OpenStack)
-	WorkerNodesDataVolumeSize     int     `json:"worker_nodes_data_volume_size"`
-	WorkerNodesDataVolumeTypeName *string `json:"worker_nodes_data_volume_type_name,omitempty"`
-	WorkerNodesFlavorName         string  `json:"worker_nodes_flavor_name"`
-
-	// WorkerNodesLonghornVolumeSize Longhorn storage volume size for worker nodes in MB (consistent with OpenStack)
-	WorkerNodesLonghornVolumeSize     *int    `json:"worker_nodes_longhorn_volume_size,omitempty"`
-	WorkerNodesLonghornVolumeTypeName *string `json:"worker_nodes_longhorn_volume_type_name,omitempty"`
-}
-
 // MarketplaceProviderCustomer defines model for MarketplaceProviderCustomer.
 type MarketplaceProviderCustomer struct {
 	Abbreviation         *string              `json:"abbreviation,omitempty"`
@@ -14428,23 +14415,6 @@ type MarketplaceProviderCustomerProject struct {
 	ResourcesCount *int                `json:"resources_count,omitempty"`
 	UsersCount     *int                `json:"users_count,omitempty"`
 	Uuid           *openapi_types.UUID `json:"uuid,omitempty"`
-}
-
-// MarketplaceRancherCreateOrderAttributes This mixin allows to specify list of fields to be rendered by serializer.
-// It expects that request is available in serializer's context.
-//
-// It is disabled for nested serializers (where parent is another serializer)
-// but remains active for list views (where parent is a ListSerializer).
-type MarketplaceRancherCreateOrderAttributes struct {
-	Description *string `json:"description,omitempty"`
-
-	// InstallLonghorn Longhorn is a distributed block storage deployed on top of Kubernetes cluster
-	InstallLonghorn *bool                      `json:"install_longhorn,omitempty"`
-	Name            string                     `json:"name"`
-	Nodes           []RancherNestedNodeRequest `json:"nodes"`
-	SshPublicKey    *string                    `json:"ssh_public_key,omitempty"`
-	Tenant          *string                    `json:"tenant,omitempty"`
-	VmProject       *string                    `json:"vm_project"`
 }
 
 // MarketplaceServiceProviderUser defines model for MarketplaceServiceProviderUser.
@@ -14487,11 +14457,11 @@ type MergedPluginOptions struct {
 	// DefaultResourceTerminationOffsetInDays If set, it will be used as a default resource termination offset in days
 	DefaultResourceTerminationOffsetInDays *int `json:"default_resource_termination_offset_in_days,omitempty"`
 
+	// DeploymentMode Rancher deployment mode
+	DeploymentMode *DeploymentModeEnum `json:"deployment_mode,omitempty"`
+
 	// EnableIssuesForMembershipChanges Enable issues for membership changes
 	EnableIssuesForMembershipChanges *bool `json:"enable_issues_for_membership_changes,omitempty"`
-
-	// FlavorsRegex Regular expression to limit flavors list
-	FlavorsRegex *string `json:"flavors_regex,omitempty"`
 
 	// HeappeClusterId HEAppE cluster id
 	HeappeClusterId *string `json:"heappe_cluster_id,omitempty"`
@@ -14606,11 +14576,11 @@ type MergedPluginOptionsRequest struct {
 	// DefaultResourceTerminationOffsetInDays If set, it will be used as a default resource termination offset in days
 	DefaultResourceTerminationOffsetInDays *int `json:"default_resource_termination_offset_in_days,omitempty"`
 
+	// DeploymentMode Rancher deployment mode
+	DeploymentMode *DeploymentModeEnum `json:"deployment_mode,omitempty"`
+
 	// EnableIssuesForMembershipChanges Enable issues for membership changes
 	EnableIssuesForMembershipChanges *bool `json:"enable_issues_for_membership_changes,omitempty"`
-
-	// FlavorsRegex Regular expression to limit flavors list
-	FlavorsRegex *string `json:"flavors_regex,omitempty"`
 
 	// HeappeClusterId HEAppE cluster id
 	HeappeClusterId *string `json:"heappe_cluster_id,omitempty"`
@@ -20767,14 +20737,10 @@ type RancherClusterRequest struct {
 	Description *string `json:"description,omitempty"`
 
 	// InstallLonghorn Longhorn is a distributed block storage deployed on top of Kubernetes cluster
-	InstallLonghorn *bool                      `json:"install_longhorn,omitempty"`
-	Name            string                     `json:"name"`
-	Nodes           []RancherNestedNodeRequest `json:"nodes"`
-	Project         string                     `json:"project"`
-	ServiceSettings string                     `json:"service_settings"`
-	SshPublicKey    *string                    `json:"ssh_public_key,omitempty"`
-	Tenant          *string                    `json:"tenant,omitempty"`
-	VmProject       *string                    `json:"vm_project"`
+	InstallLonghorn *bool   `json:"install_longhorn,omitempty"`
+	Name            string  `json:"name"`
+	SshPublicKey    *string `json:"ssh_public_key,omitempty"`
+	VmProject       *string `json:"vm_project"`
 }
 
 // RancherClusterSecurityGroupRule defines model for RancherClusterSecurityGroupRule.
@@ -21031,21 +20997,6 @@ type RancherNestedNode struct {
 	RuntimeState *string             `json:"runtime_state,omitempty"`
 	Url          *string             `json:"url,omitempty"`
 	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
-}
-
-// RancherNestedNodeRequest defines model for RancherNestedNodeRequest.
-type RancherNestedNodeRequest struct {
-	BackendId        *string              `json:"backend_id,omitempty"`
-	Cpu              *int                 `json:"cpu,omitempty"`
-	DataVolumes      *[]DataVolumeRequest `json:"data_volumes,omitempty"`
-	ErrorTraceback   *string              `json:"error_traceback,omitempty"`
-	Flavor           *string              `json:"flavor"`
-	Memory           *int                 `json:"memory,omitempty"`
-	Role             RoleEnum             `json:"role"`
-	Subnet           *string              `json:"subnet"`
-	SystemVolumeSize *int                 `json:"system_volume_size,omitempty"`
-	SystemVolumeType *string              `json:"system_volume_type"`
-	Tenant           *string              `json:"tenant,omitempty"`
 }
 
 // RancherNestedPublicIP defines model for RancherNestedPublicIP.
@@ -36319,9 +36270,6 @@ type RancherClusterSecurityGroupsPartialUpdateJSONRequestBody = PatchedClusterSe
 // RancherClusterSecurityGroupsUpdateJSONRequestBody defines body for RancherClusterSecurityGroupsUpdate for application/json ContentType.
 type RancherClusterSecurityGroupsUpdateJSONRequestBody = ClusterSecurityGroupRequest
 
-// RancherClustersCreateJSONRequestBody defines body for RancherClustersCreate for application/json ContentType.
-type RancherClustersCreateJSONRequestBody = RancherClusterRequest
-
 // RancherClustersPartialUpdateJSONRequestBody defines body for RancherClustersPartialUpdate for application/json ContentType.
 type RancherClustersPartialUpdateJSONRequestBody = PatchedRancherClusterRequest
 
@@ -39121,58 +39069,6 @@ func (t *OrderCreateRequest_Attributes) FromOpenStackVolumeCreateOrderAttributes
 
 // MergeOpenStackVolumeCreateOrderAttributes performs a merge with any union data inside the OrderCreateRequest_Attributes, using the provided OpenStackVolumeCreateOrderAttributes
 func (t *OrderCreateRequest_Attributes) MergeOpenStackVolumeCreateOrderAttributes(v OpenStackVolumeCreateOrderAttributes) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsMarketplaceRancherCreateOrderAttributes returns the union data inside the OrderCreateRequest_Attributes as a MarketplaceRancherCreateOrderAttributes
-func (t OrderCreateRequest_Attributes) AsMarketplaceRancherCreateOrderAttributes() (MarketplaceRancherCreateOrderAttributes, error) {
-	var body MarketplaceRancherCreateOrderAttributes
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromMarketplaceRancherCreateOrderAttributes overwrites any union data inside the OrderCreateRequest_Attributes as the provided MarketplaceRancherCreateOrderAttributes
-func (t *OrderCreateRequest_Attributes) FromMarketplaceRancherCreateOrderAttributes(v MarketplaceRancherCreateOrderAttributes) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeMarketplaceRancherCreateOrderAttributes performs a merge with any union data inside the OrderCreateRequest_Attributes, using the provided MarketplaceRancherCreateOrderAttributes
-func (t *OrderCreateRequest_Attributes) MergeMarketplaceRancherCreateOrderAttributes(v MarketplaceRancherCreateOrderAttributes) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsMarketplaceManagedRancherCreateOrderAttributes returns the union data inside the OrderCreateRequest_Attributes as a MarketplaceManagedRancherCreateOrderAttributes
-func (t OrderCreateRequest_Attributes) AsMarketplaceManagedRancherCreateOrderAttributes() (MarketplaceManagedRancherCreateOrderAttributes, error) {
-	var body MarketplaceManagedRancherCreateOrderAttributes
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromMarketplaceManagedRancherCreateOrderAttributes overwrites any union data inside the OrderCreateRequest_Attributes as the provided MarketplaceManagedRancherCreateOrderAttributes
-func (t *OrderCreateRequest_Attributes) FromMarketplaceManagedRancherCreateOrderAttributes(v MarketplaceManagedRancherCreateOrderAttributes) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeMarketplaceManagedRancherCreateOrderAttributes performs a merge with any union data inside the OrderCreateRequest_Attributes, using the provided MarketplaceManagedRancherCreateOrderAttributes
-func (t *OrderCreateRequest_Attributes) MergeMarketplaceManagedRancherCreateOrderAttributes(v MarketplaceManagedRancherCreateOrderAttributes) error {
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -46277,14 +46173,6 @@ type ClientInterface interface {
 
 	// RancherClustersCount request
 	RancherClustersCount(ctx context.Context, params *RancherClustersCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// RancherClustersCreateWithBody request with any body
-	RancherClustersCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	RancherClustersCreate(ctx context.Context, body RancherClustersCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// RancherClustersDestroy request
-	RancherClustersDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// RancherClustersRetrieve request
 	RancherClustersRetrieve(ctx context.Context, uuid openapi_types.UUID, params *RancherClustersRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -67382,42 +67270,6 @@ func (c *Client) RancherClustersList(ctx context.Context, params *RancherCluster
 
 func (c *Client) RancherClustersCount(ctx context.Context, params *RancherClustersCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewRancherClustersCountRequest(c.Server, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) RancherClustersCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewRancherClustersCreateRequestWithBody(c.Server, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) RancherClustersCreate(ctx context.Context, body RancherClustersCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewRancherClustersCreateRequest(c.Server, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) RancherClustersDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewRancherClustersDestroyRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -180563,80 +180415,6 @@ func NewRancherClustersCountRequest(server string, params *RancherClustersCountP
 	return req, nil
 }
 
-// NewRancherClustersCreateRequest calls the generic RancherClustersCreate builder with application/json body
-func NewRancherClustersCreateRequest(server string, body RancherClustersCreateJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewRancherClustersCreateRequestWithBody(server, "application/json", bodyReader)
-}
-
-// NewRancherClustersCreateRequestWithBody generates requests for RancherClustersCreate with any type of body
-func NewRancherClustersCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/rancher-clusters/")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("POST", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewRancherClustersDestroyRequest generates requests for RancherClustersDestroy
-func NewRancherClustersDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/rancher-clusters/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
 // NewRancherClustersRetrieveRequest generates requests for RancherClustersRetrieve
 func NewRancherClustersRetrieveRequest(server string, uuid openapi_types.UUID, params *RancherClustersRetrieveParams) (*http.Request, error) {
 	var err error
@@ -209284,14 +209062,6 @@ type ClientWithResponsesInterface interface {
 	// RancherClustersCountWithResponse request
 	RancherClustersCountWithResponse(ctx context.Context, params *RancherClustersCountParams, reqEditors ...RequestEditorFn) (*RancherClustersCountResponse, error)
 
-	// RancherClustersCreateWithBodyWithResponse request with any body
-	RancherClustersCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*RancherClustersCreateResponse, error)
-
-	RancherClustersCreateWithResponse(ctx context.Context, body RancherClustersCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*RancherClustersCreateResponse, error)
-
-	// RancherClustersDestroyWithResponse request
-	RancherClustersDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*RancherClustersDestroyResponse, error)
-
 	// RancherClustersRetrieveWithResponse request
 	RancherClustersRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *RancherClustersRetrieveParams, reqEditors ...RequestEditorFn) (*RancherClustersRetrieveResponse, error)
 
@@ -237862,49 +237632,6 @@ func (r RancherClustersCountResponse) StatusCode() int {
 	return 0
 }
 
-type RancherClustersCreateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON201      *RancherCluster
-}
-
-// Status returns HTTPResponse.Status
-func (r RancherClustersCreateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r RancherClustersCreateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type RancherClustersDestroyResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// Status returns HTTPResponse.Status
-func (r RancherClustersDestroyResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r RancherClustersDestroyResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
 type RancherClustersRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -258841,32 +258568,6 @@ func (c *ClientWithResponses) RancherClustersCountWithResponse(ctx context.Conte
 		return nil, err
 	}
 	return ParseRancherClustersCountResponse(rsp)
-}
-
-// RancherClustersCreateWithBodyWithResponse request with arbitrary body returning *RancherClustersCreateResponse
-func (c *ClientWithResponses) RancherClustersCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*RancherClustersCreateResponse, error) {
-	rsp, err := c.RancherClustersCreateWithBody(ctx, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseRancherClustersCreateResponse(rsp)
-}
-
-func (c *ClientWithResponses) RancherClustersCreateWithResponse(ctx context.Context, body RancherClustersCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*RancherClustersCreateResponse, error) {
-	rsp, err := c.RancherClustersCreate(ctx, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseRancherClustersCreateResponse(rsp)
-}
-
-// RancherClustersDestroyWithResponse request returning *RancherClustersDestroyResponse
-func (c *ClientWithResponses) RancherClustersDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*RancherClustersDestroyResponse, error) {
-	rsp, err := c.RancherClustersDestroy(ctx, uuid, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseRancherClustersDestroyResponse(rsp)
 }
 
 // RancherClustersRetrieveWithResponse request returning *RancherClustersRetrieveResponse
@@ -290656,48 +290357,6 @@ func ParseRancherClustersCountResponse(rsp *http.Response) (*RancherClustersCoun
 	}
 
 	response := &RancherClustersCountResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	return response, nil
-}
-
-// ParseRancherClustersCreateResponse parses an HTTP response from a RancherClustersCreateWithResponse call
-func ParseRancherClustersCreateResponse(rsp *http.Response) (*RancherClustersCreateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &RancherClustersCreateResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest RancherCluster
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON201 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseRancherClustersDestroyResponse parses an HTTP response from a RancherClustersDestroyWithResponse call
-func ParseRancherClustersDestroyResponse(rsp *http.Response) (*RancherClustersDestroyResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &RancherClustersDestroyResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
