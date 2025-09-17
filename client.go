@@ -4358,6 +4358,7 @@ const (
 const (
 	MarketplaceOrdersListParamsFieldAcceptingTermsOfService    MarketplaceOrdersListParamsField = "accepting_terms_of_service"
 	MarketplaceOrdersListParamsFieldActivationPrice            MarketplaceOrdersListParamsField = "activation_price"
+	MarketplaceOrdersListParamsFieldAttachment                 MarketplaceOrdersListParamsField = "attachment"
 	MarketplaceOrdersListParamsFieldAttributes                 MarketplaceOrdersListParamsField = "attributes"
 	MarketplaceOrdersListParamsFieldBackendId                  MarketplaceOrdersListParamsField = "backend_id"
 	MarketplaceOrdersListParamsFieldCallbackUrl                MarketplaceOrdersListParamsField = "callback_url"
@@ -4417,6 +4418,7 @@ const (
 	MarketplaceOrdersListParamsFieldProviderReviewedByFullName MarketplaceOrdersListParamsField = "provider_reviewed_by_full_name"
 	MarketplaceOrdersListParamsFieldProviderReviewedByUsername MarketplaceOrdersListParamsField = "provider_reviewed_by_username"
 	MarketplaceOrdersListParamsFieldProviderUuid               MarketplaceOrdersListParamsField = "provider_uuid"
+	MarketplaceOrdersListParamsFieldRequestComment             MarketplaceOrdersListParamsField = "request_comment"
 	MarketplaceOrdersListParamsFieldResourceName               MarketplaceOrdersListParamsField = "resource_name"
 	MarketplaceOrdersListParamsFieldResourceType               MarketplaceOrdersListParamsField = "resource_type"
 	MarketplaceOrdersListParamsFieldResourceUuid               MarketplaceOrdersListParamsField = "resource_uuid"
@@ -4492,6 +4494,7 @@ const (
 const (
 	MarketplaceOrdersRetrieveParamsFieldAcceptingTermsOfService    MarketplaceOrdersRetrieveParamsField = "accepting_terms_of_service"
 	MarketplaceOrdersRetrieveParamsFieldActivationPrice            MarketplaceOrdersRetrieveParamsField = "activation_price"
+	MarketplaceOrdersRetrieveParamsFieldAttachment                 MarketplaceOrdersRetrieveParamsField = "attachment"
 	MarketplaceOrdersRetrieveParamsFieldAttributes                 MarketplaceOrdersRetrieveParamsField = "attributes"
 	MarketplaceOrdersRetrieveParamsFieldBackendId                  MarketplaceOrdersRetrieveParamsField = "backend_id"
 	MarketplaceOrdersRetrieveParamsFieldCallbackUrl                MarketplaceOrdersRetrieveParamsField = "callback_url"
@@ -4551,6 +4554,7 @@ const (
 	MarketplaceOrdersRetrieveParamsFieldProviderReviewedByFullName MarketplaceOrdersRetrieveParamsField = "provider_reviewed_by_full_name"
 	MarketplaceOrdersRetrieveParamsFieldProviderReviewedByUsername MarketplaceOrdersRetrieveParamsField = "provider_reviewed_by_username"
 	MarketplaceOrdersRetrieveParamsFieldProviderUuid               MarketplaceOrdersRetrieveParamsField = "provider_uuid"
+	MarketplaceOrdersRetrieveParamsFieldRequestComment             MarketplaceOrdersRetrieveParamsField = "request_comment"
 	MarketplaceOrdersRetrieveParamsFieldResourceName               MarketplaceOrdersRetrieveParamsField = "resource_name"
 	MarketplaceOrdersRetrieveParamsFieldResourceType               MarketplaceOrdersRetrieveParamsField = "resource_type"
 	MarketplaceOrdersRetrieveParamsFieldResourceUuid               MarketplaceOrdersRetrieveParamsField = "resource_uuid"
@@ -12858,6 +12862,7 @@ type CustomerRequest struct {
 	PhoneNumber      *string                  `json:"phone_number,omitempty"`
 	Postal           *string                  `json:"postal,omitempty"`
 	RegistrationCode *string                  `json:"registration_code,omitempty"`
+	Slug             *string                  `json:"slug,omitempty"`
 
 	// VatCode VAT number
 	VatCode *string `json:"vat_code,omitempty"`
@@ -15626,6 +15631,7 @@ type OfferingCreateRequest struct {
 
 	// Shared Accessible to all customers.
 	Shared        *bool               `json:"shared,omitempty"`
+	Slug          *string             `json:"slug,omitempty"`
 	Thumbnail     *openapi_types.File `json:"thumbnail"`
 	Type          string              `json:"type"`
 	VendorDetails *string             `json:"vendor_details,omitempty"`
@@ -15745,6 +15751,7 @@ type OfferingOverviewUpdateRequest struct {
 	IntegrationGuide  *string `json:"integration_guide,omitempty"`
 	Name              string  `json:"name"`
 	PrivacyPolicyLink *string `json:"privacy_policy_link,omitempty"`
+	Slug              *string `json:"slug,omitempty"`
 }
 
 // OfferingPauseRequest defines model for OfferingPauseRequest.
@@ -17557,12 +17564,6 @@ type OpenStackTenantCreateOrderAttributes struct {
 	SkipConnectionExtnet        *bool   `json:"skip_connection_extnet,omitempty"`
 	SkipCreationOfDefaultRouter *bool   `json:"skip_creation_of_default_router,omitempty"`
 	SubnetCidr                  *string `json:"subnet_cidr,omitempty"`
-
-	// UserPassword Password of the tenant user
-	UserPassword *string `json:"user_password,omitempty"`
-
-	// UserUsername Username of the tenant user
-	UserUsername *string `json:"user_username,omitempty"`
 }
 
 // OpenStackTenantQuota defines model for OpenStackTenantQuota.
@@ -17601,6 +17602,12 @@ type OpenStackTenantRequest struct {
 	Project               string  `json:"project"`
 	ServiceSettings       string  `json:"service_settings"`
 	SubnetCidr            *string `json:"subnet_cidr,omitempty"`
+
+	// UserPassword Password of the tenant user
+	UserPassword *string `json:"user_password,omitempty"`
+
+	// UserUsername Username of the tenant user
+	UserUsername *string `json:"user_username,omitempty"`
 }
 
 // OpenStackVolume defines model for OpenStackVolume.
@@ -17770,6 +17777,7 @@ type OptionFieldTypeEnum string
 
 // OrderCreate defines model for OrderCreate.
 type OrderCreate struct {
+	Attachment                 *string             `json:"attachment"`
 	Attributes                 interface{}         `json:"attributes,omitempty"`
 	CallbackUrl                *string             `json:"callback_url"`
 	CategoryIcon               *string             `json:"category_icon,omitempty"`
@@ -17792,6 +17800,7 @@ type OrderCreate struct {
 	CustomerName            *string             `json:"customer_name,omitempty"`
 	CustomerUuid            *openapi_types.UUID `json:"customer_uuid,omitempty"`
 	ErrorMessage            *string             `json:"error_message,omitempty"`
+	ErrorTraceback          *string             `json:"error_traceback,omitempty"`
 	Limits                  *map[string]int     `json:"limits,omitempty"`
 	MarketplaceResourceUuid *openapi_types.UUID `json:"marketplace_resource_uuid,omitempty"`
 	Modified                *time.Time          `json:"modified,omitempty"`
@@ -17823,6 +17832,7 @@ type OrderCreate struct {
 	ProjectUuid        *openapi_types.UUID `json:"project_uuid,omitempty"`
 	ProviderName       *string             `json:"provider_name,omitempty"`
 	ProviderUuid       *openapi_types.UUID `json:"provider_uuid,omitempty"`
+	RequestComment     *string             `json:"request_comment"`
 	ResourceName       *string             `json:"resource_name,omitempty"`
 	ResourceType       *string             `json:"resource_type"`
 	ResourceUuid       *openapi_types.UUID `json:"resource_uuid"`
@@ -17834,16 +17844,18 @@ type OrderCreate struct {
 
 // OrderCreateRequest defines model for OrderCreateRequest.
 type OrderCreateRequest struct {
-	AcceptingTermsOfService *bool `json:"accepting_terms_of_service,omitempty"`
+	AcceptingTermsOfService *bool               `json:"accepting_terms_of_service,omitempty"`
+	Attachment              *openapi_types.File `json:"attachment"`
 
 	// Attributes Attributes structure depends on the offering type specified in the parent object. Can also be a generic object for offerings without a specific attributes schema.
-	Attributes  *OrderCreateRequest_Attributes `json:"attributes,omitempty"`
-	CallbackUrl *string                        `json:"callback_url"`
-	Limits      *map[string]int                `json:"limits,omitempty"`
-	Offering    string                         `json:"offering"`
-	Plan        *string                        `json:"plan,omitempty"`
-	Project     string                         `json:"project"`
-	Type        *RequestTypes                  `json:"type,omitempty"`
+	Attributes     *OrderCreateRequest_Attributes `json:"attributes,omitempty"`
+	CallbackUrl    *string                        `json:"callback_url"`
+	Limits         *map[string]int                `json:"limits,omitempty"`
+	Offering       string                         `json:"offering"`
+	Plan           *string                        `json:"plan,omitempty"`
+	Project        string                         `json:"project"`
+	RequestComment *string                        `json:"request_comment"`
+	Type           *RequestTypes                  `json:"type,omitempty"`
 }
 
 // OrderCreateRequest_Attributes Attributes structure depends on the offering type specified in the parent object. Can also be a generic object for offerings without a specific attributes schema.
@@ -17854,6 +17866,7 @@ type OrderCreateRequest_Attributes struct {
 // OrderDetails defines model for OrderDetails.
 type OrderDetails struct {
 	ActivationPrice    *float64            `json:"activation_price,omitempty"`
+	Attachment         *string             `json:"attachment"`
 	Attributes         interface{}         `json:"attributes,omitempty"`
 	BackendId          *string             `json:"backend_id,omitempty"`
 	CallbackUrl        *string             `json:"callback_url"`
@@ -17881,6 +17894,7 @@ type OrderDetails struct {
 	CustomerSlug            *string             `json:"customer_slug,omitempty"`
 	CustomerUuid            *openapi_types.UUID `json:"customer_uuid,omitempty"`
 	ErrorMessage            *string             `json:"error_message,omitempty"`
+	ErrorTraceback          *string             `json:"error_traceback,omitempty"`
 	FixedPrice              *float64            `json:"fixed_price,omitempty"`
 	Issue                   *IssueReference     `json:"issue"`
 	Limits                  *map[string]int     `json:"limits,omitempty"`
@@ -17928,6 +17942,7 @@ type OrderDetails struct {
 	// ProviderReviewedByUsername Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
 	ProviderReviewedByUsername *string             `json:"provider_reviewed_by_username"`
 	ProviderUuid               *openapi_types.UUID `json:"provider_uuid,omitempty"`
+	RequestComment             *string             `json:"request_comment"`
 	ResourceName               *string             `json:"resource_name,omitempty"`
 	ResourceType               *string             `json:"resource_type"`
 	ResourceUuid               *openapi_types.UUID `json:"resource_uuid"`
@@ -18190,6 +18205,7 @@ type PatchedCustomerRequest struct {
 	PhoneNumber      *string                         `json:"phone_number,omitempty"`
 	Postal           *string                         `json:"postal,omitempty"`
 	RegistrationCode *string                         `json:"registration_code,omitempty"`
+	Slug             *string                         `json:"slug,omitempty"`
 
 	// VatCode VAT number
 	VatCode *string `json:"vat_code,omitempty"`
@@ -18662,6 +18678,7 @@ type PatchedProjectRequest struct {
 	Kind            *KindEnum                              `json:"kind,omitempty"`
 	Name            *string                                `json:"name,omitempty"`
 	OecdFos2007Code *PatchedProjectRequest_OecdFos2007Code `json:"oecd_fos_2007_code"`
+	Slug            *string                                `json:"slug,omitempty"`
 	StartDate       *openapi_types.Date                    `json:"start_date"`
 	Type            *string                                `json:"type"`
 }
@@ -18721,7 +18738,8 @@ type PatchedProtectedCallRequest struct {
 	ReviewerIdentityVisibleToSubmitters *bool `json:"reviewer_identity_visible_to_submitters,omitempty"`
 
 	// ReviewsVisibleToSubmitters Whether proposal submitters can see review comments and scores
-	ReviewsVisibleToSubmitters *bool `json:"reviews_visible_to_submitters,omitempty"`
+	ReviewsVisibleToSubmitters *bool   `json:"reviews_visible_to_submitters,omitempty"`
+	Slug                       *string `json:"slug,omitempty"`
 }
 
 // PatchedProtectedRoundRequest defines model for PatchedProtectedRoundRequest.
@@ -19020,8 +19038,9 @@ type PatchedSectionRequest struct {
 
 // PatchedServiceProviderRequest defines model for PatchedServiceProviderRequest.
 type PatchedServiceProviderRequest struct {
-	Description *string             `json:"description,omitempty"`
-	Image       *openapi_types.File `json:"image"`
+	Description         *string             `json:"description,omitempty"`
+	EnableNotifications *bool               `json:"enable_notifications,omitempty"`
+	Image               *openapi_types.File `json:"image"`
 }
 
 // PatchedSlurmAllocationRequest defines model for PatchedSlurmAllocationRequest.
@@ -19073,6 +19092,7 @@ type PatchedUserRequest struct {
 	Organization         *string `json:"organization,omitempty"`
 	PhoneNumber          *string `json:"phone_number,omitempty"`
 	PreferredLanguage    *string `json:"preferred_language,omitempty"`
+	Slug                 *string `json:"slug,omitempty"`
 
 	// TokenLifetime Token lifetime in seconds.
 	TokenLifetime *int `json:"token_lifetime"`
@@ -19514,6 +19534,7 @@ type ProjectRequest struct {
 	Kind            *KindEnum                       `json:"kind,omitempty"`
 	Name            string                          `json:"name"`
 	OecdFos2007Code *ProjectRequest_OecdFos2007Code `json:"oecd_fos_2007_code"`
+	Slug            *string                         `json:"slug,omitempty"`
 	StartDate       *openapi_types.Date             `json:"start_date"`
 	Type            *string                         `json:"type"`
 }
@@ -19825,7 +19846,8 @@ type ProtectedCallRequest struct {
 	ReviewerIdentityVisibleToSubmitters *bool `json:"reviewer_identity_visible_to_submitters,omitempty"`
 
 	// ReviewsVisibleToSubmitters Whether proposal submitters can see review comments and scores
-	ReviewsVisibleToSubmitters *bool `json:"reviews_visible_to_submitters,omitempty"`
+	ReviewsVisibleToSubmitters *bool   `json:"reviews_visible_to_submitters,omitempty"`
+	Slug                       *string `json:"slug,omitempty"`
 }
 
 // ProtectedProposalList defines model for ProtectedProposalList.
@@ -20028,6 +20050,7 @@ type ProviderOfferingDetailsRequest struct {
 
 	// Shared Accessible to all customers.
 	Shared        *bool               `json:"shared,omitempty"`
+	Slug          *string             `json:"slug,omitempty"`
 	Thumbnail     *openapi_types.File `json:"thumbnail"`
 	Type          string              `json:"type"`
 	VendorDetails *string             `json:"vendor_details,omitempty"`
@@ -22277,9 +22300,10 @@ type ServiceProviderOfferingUserComplianceStateEnum int
 
 // ServiceProviderRequest defines model for ServiceProviderRequest.
 type ServiceProviderRequest struct {
-	Customer    string              `json:"customer"`
-	Description *string             `json:"description,omitempty"`
-	Image       *openapi_types.File `json:"image"`
+	Customer            string              `json:"customer"`
+	Description         *string             `json:"description,omitempty"`
+	EnableNotifications *bool               `json:"enable_notifications,omitempty"`
+	Image               *openapi_types.File `json:"image"`
 }
 
 // ServiceProviderRevenues defines model for ServiceProviderRevenues.
@@ -22811,6 +22835,7 @@ type UserRequest struct {
 	Organization         *string `json:"organization,omitempty"`
 	PhoneNumber          *string `json:"phone_number,omitempty"`
 	PreferredLanguage    *string `json:"preferred_language,omitempty"`
+	Slug                 *string `json:"slug,omitempty"`
 
 	// TokenLifetime Token lifetime in seconds.
 	TokenLifetime *int `json:"token_lifetime"`
