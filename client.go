@@ -21755,7 +21755,9 @@ type ResourceUpdate struct {
 
 // ResourceUpdateLimitsRequest defines model for ResourceUpdateLimitsRequest.
 type ResourceUpdateLimitsRequest struct {
-	Limits map[string]int `json:"limits"`
+	Attachment     *openapi_types.File `json:"attachment"`
+	Limits         map[string]int      `json:"limits"`
+	RequestComment *string             `json:"request_comment"`
 }
 
 // ResourceUpdateRequest defines model for ResourceUpdateRequest.
