@@ -14529,6 +14529,9 @@ type MergedPluginOptions struct {
 	// OpenstackOfferingUuidList List of UUID of OpenStack offerings where tenant can be created
 	OpenstackOfferingUuidList *[]string `json:"openstack_offering_uuid_list,omitempty"`
 
+	// OrderSupportsCommentsAndMetadata If set to True, orders will support comments and metadata
+	OrderSupportsCommentsAndMetadata *bool `json:"order_supports_comments_and_metadata,omitempty"`
+
 	// RequiredTeamRoleForProvisioning Required user role in a project for provisioning of resources
 	RequiredTeamRoleForProvisioning *string `json:"required_team_role_for_provisioning,omitempty"`
 
@@ -14647,6 +14650,9 @@ type MergedPluginOptionsRequest struct {
 
 	// OpenstackOfferingUuidList List of UUID of OpenStack offerings where tenant can be created
 	OpenstackOfferingUuidList *[]string `json:"openstack_offering_uuid_list,omitempty"`
+
+	// OrderSupportsCommentsAndMetadata If set to True, orders will support comments and metadata
+	OrderSupportsCommentsAndMetadata *bool `json:"order_supports_comments_and_metadata,omitempty"`
 
 	// RequiredTeamRoleForProvisioning Required user role in a project for provisioning of resources
 	RequiredTeamRoleForProvisioning *string `json:"required_team_role_for_provisioning,omitempty"`
