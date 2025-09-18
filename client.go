@@ -14463,6 +14463,9 @@ type MergedPluginOptions struct {
 	// EnableIssuesForMembershipChanges Enable issues for membership changes
 	EnableIssuesForMembershipChanges *bool `json:"enable_issues_for_membership_changes,omitempty"`
 
+	// FlavorsRegex Regular expression to limit flavors list
+	FlavorsRegex *string `json:"flavors_regex,omitempty"`
+
 	// HeappeClusterId HEAppE cluster id
 	HeappeClusterId *string `json:"heappe_cluster_id,omitempty"`
 
@@ -14584,6 +14587,9 @@ type MergedPluginOptionsRequest struct {
 
 	// EnableIssuesForMembershipChanges Enable issues for membership changes
 	EnableIssuesForMembershipChanges *bool `json:"enable_issues_for_membership_changes,omitempty"`
+
+	// FlavorsRegex Regular expression to limit flavors list
+	FlavorsRegex *string `json:"flavors_regex,omitempty"`
 
 	// HeappeClusterId HEAppE cluster id
 	HeappeClusterId *string `json:"heappe_cluster_id,omitempty"`
