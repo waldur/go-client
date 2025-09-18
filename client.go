@@ -18611,11 +18611,6 @@ type PatchedOpenStackVolumeRequest struct {
 	Name        *string `json:"name,omitempty"`
 }
 
-// PatchedOrderAttachmentRequest defines model for PatchedOrderAttachmentRequest.
-type PatchedOrderAttachmentRequest struct {
-	Attachment *openapi_types.File `json:"attachment"`
-}
-
 // PatchedOrganizationGroupRequest defines model for PatchedOrganizationGroupRequest.
 type PatchedOrganizationGroupRequest struct {
 	Name   *string `json:"name,omitempty"`
@@ -35635,14 +35630,11 @@ type MarketplaceOfferingUsersUpdateRestrictedJSONRequestBody = OfferingUserUpdat
 // MarketplaceOrdersCreateJSONRequestBody defines body for MarketplaceOrdersCreate for application/json ContentType.
 type MarketplaceOrdersCreateJSONRequestBody = OrderCreateRequest
 
-// MarketplaceOrdersAttachmentPartialUpdateJSONRequestBody defines body for MarketplaceOrdersAttachmentPartialUpdate for application/json ContentType.
-type MarketplaceOrdersAttachmentPartialUpdateJSONRequestBody = PatchedOrderAttachmentRequest
-
-// MarketplaceOrdersAttachmentUpdateJSONRequestBody defines body for MarketplaceOrdersAttachmentUpdate for application/json ContentType.
-type MarketplaceOrdersAttachmentUpdateJSONRequestBody = OrderAttachmentRequest
-
 // MarketplaceOrdersSetStateErredJSONRequestBody defines body for MarketplaceOrdersSetStateErred for application/json ContentType.
 type MarketplaceOrdersSetStateErredJSONRequestBody = OrderSetStateErredRequest
+
+// MarketplaceOrdersUpdateAttachmentJSONRequestBody defines body for MarketplaceOrdersUpdateAttachment for application/json ContentType.
+type MarketplaceOrdersUpdateAttachmentJSONRequestBody = OrderAttachmentRequest
 
 // MarketplacePlansCreateJSONRequestBody defines body for MarketplacePlansCreate for application/json ContentType.
 type MarketplacePlansCreateJSONRequestBody = ProviderPlanDetailsRequest
@@ -43759,21 +43751,11 @@ type ClientInterface interface {
 	// MarketplaceOrdersApproveByProvider request
 	MarketplaceOrdersApproveByProvider(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// MarketplaceOrdersAttachmentDestroy request
-	MarketplaceOrdersAttachmentDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceOrdersAttachmentPartialUpdateWithBody request with any body
-	MarketplaceOrdersAttachmentPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	MarketplaceOrdersAttachmentPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersAttachmentPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceOrdersAttachmentUpdateWithBody request with any body
-	MarketplaceOrdersAttachmentUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	MarketplaceOrdersAttachmentUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersAttachmentUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
 	// MarketplaceOrdersCancel request
 	MarketplaceOrdersCancel(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOrdersDeleteAttachment request
+	MarketplaceOrdersDeleteAttachment(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceOrdersOfferingRetrieve request
 	MarketplaceOrdersOfferingRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -43797,6 +43779,11 @@ type ClientInterface interface {
 
 	// MarketplaceOrdersUnlink request
 	MarketplaceOrdersUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOrdersUpdateAttachmentWithBody request with any body
+	MarketplaceOrdersUpdateAttachmentWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceOrdersUpdateAttachment(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersUpdateAttachmentJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplacePlanComponentsList request
 	MarketplacePlanComponentsList(ctx context.Context, params *MarketplacePlanComponentsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -56647,68 +56634,20 @@ func (c *Client) MarketplaceOrdersApproveByProvider(ctx context.Context, uuid op
 	return c.Client.Do(req)
 }
 
-func (c *Client) MarketplaceOrdersAttachmentDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceOrdersAttachmentDestroyRequest(c.Server, uuid)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceOrdersAttachmentPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceOrdersAttachmentPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceOrdersAttachmentPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersAttachmentPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceOrdersAttachmentPartialUpdateRequest(c.Server, uuid, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceOrdersAttachmentUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceOrdersAttachmentUpdateRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceOrdersAttachmentUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersAttachmentUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceOrdersAttachmentUpdateRequest(c.Server, uuid, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
 func (c *Client) MarketplaceOrdersCancel(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceOrdersCancelRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOrdersDeleteAttachment(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOrdersDeleteAttachmentRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -56805,6 +56744,30 @@ func (c *Client) MarketplaceOrdersSetStateExecuting(ctx context.Context, uuid op
 
 func (c *Client) MarketplaceOrdersUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceOrdersUnlinkRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOrdersUpdateAttachmentWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOrdersUpdateAttachmentRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOrdersUpdateAttachment(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersUpdateAttachmentJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOrdersUpdateAttachmentRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -119479,134 +119442,6 @@ func NewMarketplaceOrdersApproveByProviderRequest(server string, uuid openapi_ty
 	return req, nil
 }
 
-// NewMarketplaceOrdersAttachmentDestroyRequest generates requests for MarketplaceOrdersAttachmentDestroy
-func NewMarketplaceOrdersAttachmentDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-orders/%s/attachment/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewMarketplaceOrdersAttachmentPartialUpdateRequest calls the generic MarketplaceOrdersAttachmentPartialUpdate builder with application/json body
-func NewMarketplaceOrdersAttachmentPartialUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceOrdersAttachmentPartialUpdateJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewMarketplaceOrdersAttachmentPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewMarketplaceOrdersAttachmentPartialUpdateRequestWithBody generates requests for MarketplaceOrdersAttachmentPartialUpdate with any type of body
-func NewMarketplaceOrdersAttachmentPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-orders/%s/attachment/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("PATCH", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewMarketplaceOrdersAttachmentUpdateRequest calls the generic MarketplaceOrdersAttachmentUpdate builder with application/json body
-func NewMarketplaceOrdersAttachmentUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceOrdersAttachmentUpdateJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewMarketplaceOrdersAttachmentUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewMarketplaceOrdersAttachmentUpdateRequestWithBody generates requests for MarketplaceOrdersAttachmentUpdate with any type of body
-func NewMarketplaceOrdersAttachmentUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-orders/%s/attachment/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("PUT", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
 // NewMarketplaceOrdersCancelRequest generates requests for MarketplaceOrdersCancel
 func NewMarketplaceOrdersCancelRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -119624,6 +119459,40 @@ func NewMarketplaceOrdersCancelRequest(server string, uuid openapi_types.UUID) (
 	}
 
 	operationPath := fmt.Sprintf("/api/marketplace-orders/%s/cancel/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceOrdersDeleteAttachmentRequest generates requests for MarketplaceOrdersDeleteAttachment
+func NewMarketplaceOrdersDeleteAttachmentRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-orders/%s/delete_attachment/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -119888,6 +119757,53 @@ func NewMarketplaceOrdersUnlinkRequest(server string, uuid openapi_types.UUID) (
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewMarketplaceOrdersUpdateAttachmentRequest calls the generic MarketplaceOrdersUpdateAttachment builder with application/json body
+func NewMarketplaceOrdersUpdateAttachmentRequest(server string, uuid openapi_types.UUID, body MarketplaceOrdersUpdateAttachmentJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceOrdersUpdateAttachmentRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceOrdersUpdateAttachmentRequestWithBody generates requests for MarketplaceOrdersUpdateAttachment with any type of body
+func NewMarketplaceOrdersUpdateAttachmentRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-orders/%s/update_attachment/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -206848,21 +206764,11 @@ type ClientWithResponsesInterface interface {
 	// MarketplaceOrdersApproveByProviderWithResponse request
 	MarketplaceOrdersApproveByProviderWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOrdersApproveByProviderResponse, error)
 
-	// MarketplaceOrdersAttachmentDestroyWithResponse request
-	MarketplaceOrdersAttachmentDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOrdersAttachmentDestroyResponse, error)
-
-	// MarketplaceOrdersAttachmentPartialUpdateWithBodyWithResponse request with any body
-	MarketplaceOrdersAttachmentPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOrdersAttachmentPartialUpdateResponse, error)
-
-	MarketplaceOrdersAttachmentPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersAttachmentPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOrdersAttachmentPartialUpdateResponse, error)
-
-	// MarketplaceOrdersAttachmentUpdateWithBodyWithResponse request with any body
-	MarketplaceOrdersAttachmentUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOrdersAttachmentUpdateResponse, error)
-
-	MarketplaceOrdersAttachmentUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersAttachmentUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOrdersAttachmentUpdateResponse, error)
-
 	// MarketplaceOrdersCancelWithResponse request
 	MarketplaceOrdersCancelWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOrdersCancelResponse, error)
+
+	// MarketplaceOrdersDeleteAttachmentWithResponse request
+	MarketplaceOrdersDeleteAttachmentWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOrdersDeleteAttachmentResponse, error)
 
 	// MarketplaceOrdersOfferingRetrieveWithResponse request
 	MarketplaceOrdersOfferingRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOrdersOfferingRetrieveResponse, error)
@@ -206886,6 +206792,11 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceOrdersUnlinkWithResponse request
 	MarketplaceOrdersUnlinkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOrdersUnlinkResponse, error)
+
+	// MarketplaceOrdersUpdateAttachmentWithBodyWithResponse request with any body
+	MarketplaceOrdersUpdateAttachmentWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOrdersUpdateAttachmentResponse, error)
+
+	MarketplaceOrdersUpdateAttachmentWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersUpdateAttachmentJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOrdersUpdateAttachmentResponse, error)
 
 	// MarketplacePlanComponentsListWithResponse request
 	MarketplacePlanComponentsListWithResponse(ctx context.Context, params *MarketplacePlanComponentsListParams, reqEditors ...RequestEditorFn) (*MarketplacePlanComponentsListResponse, error)
@@ -223398,71 +223309,6 @@ func (r MarketplaceOrdersApproveByProviderResponse) StatusCode() int {
 	return 0
 }
 
-type MarketplaceOrdersAttachmentDestroyResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceOrdersAttachmentDestroyResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceOrdersAttachmentDestroyResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type MarketplaceOrdersAttachmentPartialUpdateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *OrderAttachment
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceOrdersAttachmentPartialUpdateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceOrdersAttachmentPartialUpdateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type MarketplaceOrdersAttachmentUpdateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *OrderAttachment
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceOrdersAttachmentUpdateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceOrdersAttachmentUpdateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
 type MarketplaceOrdersCancelResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -223478,6 +223324,27 @@ func (r MarketplaceOrdersCancelResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceOrdersCancelResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceOrdersDeleteAttachmentResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOrdersDeleteAttachmentResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOrdersDeleteAttachmentResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -223626,6 +223493,28 @@ func (r MarketplaceOrdersUnlinkResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceOrdersUnlinkResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceOrdersUpdateAttachmentResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OrderAttachment
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOrdersUpdateAttachmentResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOrdersUpdateAttachmentResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -251094,49 +250983,6 @@ func (c *ClientWithResponses) MarketplaceOrdersApproveByProviderWithResponse(ctx
 	return ParseMarketplaceOrdersApproveByProviderResponse(rsp)
 }
 
-// MarketplaceOrdersAttachmentDestroyWithResponse request returning *MarketplaceOrdersAttachmentDestroyResponse
-func (c *ClientWithResponses) MarketplaceOrdersAttachmentDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOrdersAttachmentDestroyResponse, error) {
-	rsp, err := c.MarketplaceOrdersAttachmentDestroy(ctx, uuid, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceOrdersAttachmentDestroyResponse(rsp)
-}
-
-// MarketplaceOrdersAttachmentPartialUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceOrdersAttachmentPartialUpdateResponse
-func (c *ClientWithResponses) MarketplaceOrdersAttachmentPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOrdersAttachmentPartialUpdateResponse, error) {
-	rsp, err := c.MarketplaceOrdersAttachmentPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceOrdersAttachmentPartialUpdateResponse(rsp)
-}
-
-func (c *ClientWithResponses) MarketplaceOrdersAttachmentPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersAttachmentPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOrdersAttachmentPartialUpdateResponse, error) {
-	rsp, err := c.MarketplaceOrdersAttachmentPartialUpdate(ctx, uuid, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceOrdersAttachmentPartialUpdateResponse(rsp)
-}
-
-// MarketplaceOrdersAttachmentUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceOrdersAttachmentUpdateResponse
-func (c *ClientWithResponses) MarketplaceOrdersAttachmentUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOrdersAttachmentUpdateResponse, error) {
-	rsp, err := c.MarketplaceOrdersAttachmentUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceOrdersAttachmentUpdateResponse(rsp)
-}
-
-func (c *ClientWithResponses) MarketplaceOrdersAttachmentUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersAttachmentUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOrdersAttachmentUpdateResponse, error) {
-	rsp, err := c.MarketplaceOrdersAttachmentUpdate(ctx, uuid, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceOrdersAttachmentUpdateResponse(rsp)
-}
-
 // MarketplaceOrdersCancelWithResponse request returning *MarketplaceOrdersCancelResponse
 func (c *ClientWithResponses) MarketplaceOrdersCancelWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOrdersCancelResponse, error) {
 	rsp, err := c.MarketplaceOrdersCancel(ctx, uuid, reqEditors...)
@@ -251144,6 +250990,15 @@ func (c *ClientWithResponses) MarketplaceOrdersCancelWithResponse(ctx context.Co
 		return nil, err
 	}
 	return ParseMarketplaceOrdersCancelResponse(rsp)
+}
+
+// MarketplaceOrdersDeleteAttachmentWithResponse request returning *MarketplaceOrdersDeleteAttachmentResponse
+func (c *ClientWithResponses) MarketplaceOrdersDeleteAttachmentWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOrdersDeleteAttachmentResponse, error) {
+	rsp, err := c.MarketplaceOrdersDeleteAttachment(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOrdersDeleteAttachmentResponse(rsp)
 }
 
 // MarketplaceOrdersOfferingRetrieveWithResponse request returning *MarketplaceOrdersOfferingRetrieveResponse
@@ -251215,6 +251070,23 @@ func (c *ClientWithResponses) MarketplaceOrdersUnlinkWithResponse(ctx context.Co
 		return nil, err
 	}
 	return ParseMarketplaceOrdersUnlinkResponse(rsp)
+}
+
+// MarketplaceOrdersUpdateAttachmentWithBodyWithResponse request with arbitrary body returning *MarketplaceOrdersUpdateAttachmentResponse
+func (c *ClientWithResponses) MarketplaceOrdersUpdateAttachmentWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOrdersUpdateAttachmentResponse, error) {
+	rsp, err := c.MarketplaceOrdersUpdateAttachmentWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOrdersUpdateAttachmentResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceOrdersUpdateAttachmentWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersUpdateAttachmentJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOrdersUpdateAttachmentResponse, error) {
+	rsp, err := c.MarketplaceOrdersUpdateAttachment(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOrdersUpdateAttachmentResponse(rsp)
 }
 
 // MarketplacePlanComponentsListWithResponse request returning *MarketplacePlanComponentsListResponse
@@ -275737,74 +275609,6 @@ func ParseMarketplaceOrdersApproveByProviderResponse(rsp *http.Response) (*Marke
 	return response, nil
 }
 
-// ParseMarketplaceOrdersAttachmentDestroyResponse parses an HTTP response from a MarketplaceOrdersAttachmentDestroyWithResponse call
-func ParseMarketplaceOrdersAttachmentDestroyResponse(rsp *http.Response) (*MarketplaceOrdersAttachmentDestroyResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceOrdersAttachmentDestroyResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceOrdersAttachmentPartialUpdateResponse parses an HTTP response from a MarketplaceOrdersAttachmentPartialUpdateWithResponse call
-func ParseMarketplaceOrdersAttachmentPartialUpdateResponse(rsp *http.Response) (*MarketplaceOrdersAttachmentPartialUpdateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceOrdersAttachmentPartialUpdateResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest OrderAttachment
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceOrdersAttachmentUpdateResponse parses an HTTP response from a MarketplaceOrdersAttachmentUpdateWithResponse call
-func ParseMarketplaceOrdersAttachmentUpdateResponse(rsp *http.Response) (*MarketplaceOrdersAttachmentUpdateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceOrdersAttachmentUpdateResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest OrderAttachment
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
 // ParseMarketplaceOrdersCancelResponse parses an HTTP response from a MarketplaceOrdersCancelWithResponse call
 func ParseMarketplaceOrdersCancelResponse(rsp *http.Response) (*MarketplaceOrdersCancelResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -275814,6 +275618,22 @@ func ParseMarketplaceOrdersCancelResponse(rsp *http.Response) (*MarketplaceOrder
 	}
 
 	response := &MarketplaceOrdersCancelResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOrdersDeleteAttachmentResponse parses an HTTP response from a MarketplaceOrdersDeleteAttachmentWithResponse call
+func ParseMarketplaceOrdersDeleteAttachmentResponse(rsp *http.Response) (*MarketplaceOrdersDeleteAttachmentResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOrdersDeleteAttachmentResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -275938,6 +275758,32 @@ func ParseMarketplaceOrdersUnlinkResponse(rsp *http.Response) (*MarketplaceOrder
 	response := &MarketplaceOrdersUnlinkResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOrdersUpdateAttachmentResponse parses an HTTP response from a MarketplaceOrdersUpdateAttachmentWithResponse call
+func ParseMarketplaceOrdersUpdateAttachmentResponse(rsp *http.Response) (*MarketplaceOrdersUpdateAttachmentResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOrdersUpdateAttachmentResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OrderAttachment
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
