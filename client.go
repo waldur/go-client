@@ -4060,11 +4060,51 @@ const (
 	MarketplaceComponentUserUsagesRetrieveParamsFieldUuid           MarketplaceComponentUserUsagesRetrieveParamsField = "uuid"
 )
 
+// Defines values for MarketplaceCourseAccountsListParamsO.
+const (
+	MarketplaceCourseAccountsListParamsOCreated               MarketplaceCourseAccountsListParamsO = "created"
+	MarketplaceCourseAccountsListParamsOEmail                 MarketplaceCourseAccountsListParamsO = "email"
+	MarketplaceCourseAccountsListParamsOMinusCreated          MarketplaceCourseAccountsListParamsO = "-created"
+	MarketplaceCourseAccountsListParamsOMinusEmail            MarketplaceCourseAccountsListParamsO = "-email"
+	MarketplaceCourseAccountsListParamsOMinusModified         MarketplaceCourseAccountsListParamsO = "-modified"
+	MarketplaceCourseAccountsListParamsOMinusProjectEndDate   MarketplaceCourseAccountsListParamsO = "-project_end_date"
+	MarketplaceCourseAccountsListParamsOMinusProjectName      MarketplaceCourseAccountsListParamsO = "-project_name"
+	MarketplaceCourseAccountsListParamsOMinusProjectStartDate MarketplaceCourseAccountsListParamsO = "-project_start_date"
+	MarketplaceCourseAccountsListParamsOMinusState            MarketplaceCourseAccountsListParamsO = "-state"
+	MarketplaceCourseAccountsListParamsOMinusUsername         MarketplaceCourseAccountsListParamsO = "-username"
+	MarketplaceCourseAccountsListParamsOModified              MarketplaceCourseAccountsListParamsO = "modified"
+	MarketplaceCourseAccountsListParamsOProjectEndDate        MarketplaceCourseAccountsListParamsO = "project_end_date"
+	MarketplaceCourseAccountsListParamsOProjectName           MarketplaceCourseAccountsListParamsO = "project_name"
+	MarketplaceCourseAccountsListParamsOProjectStartDate      MarketplaceCourseAccountsListParamsO = "project_start_date"
+	MarketplaceCourseAccountsListParamsOState                 MarketplaceCourseAccountsListParamsO = "state"
+	MarketplaceCourseAccountsListParamsOUsername              MarketplaceCourseAccountsListParamsO = "username"
+)
+
 // Defines values for MarketplaceCourseAccountsListParamsState.
 const (
 	MarketplaceCourseAccountsListParamsStateClosed MarketplaceCourseAccountsListParamsState = "Closed"
 	MarketplaceCourseAccountsListParamsStateErred  MarketplaceCourseAccountsListParamsState = "Erred"
 	MarketplaceCourseAccountsListParamsStateOK     MarketplaceCourseAccountsListParamsState = "OK"
+)
+
+// Defines values for MarketplaceCourseAccountsCountParamsO.
+const (
+	MarketplaceCourseAccountsCountParamsOCreated               MarketplaceCourseAccountsCountParamsO = "created"
+	MarketplaceCourseAccountsCountParamsOEmail                 MarketplaceCourseAccountsCountParamsO = "email"
+	MarketplaceCourseAccountsCountParamsOMinusCreated          MarketplaceCourseAccountsCountParamsO = "-created"
+	MarketplaceCourseAccountsCountParamsOMinusEmail            MarketplaceCourseAccountsCountParamsO = "-email"
+	MarketplaceCourseAccountsCountParamsOMinusModified         MarketplaceCourseAccountsCountParamsO = "-modified"
+	MarketplaceCourseAccountsCountParamsOMinusProjectEndDate   MarketplaceCourseAccountsCountParamsO = "-project_end_date"
+	MarketplaceCourseAccountsCountParamsOMinusProjectName      MarketplaceCourseAccountsCountParamsO = "-project_name"
+	MarketplaceCourseAccountsCountParamsOMinusProjectStartDate MarketplaceCourseAccountsCountParamsO = "-project_start_date"
+	MarketplaceCourseAccountsCountParamsOMinusState            MarketplaceCourseAccountsCountParamsO = "-state"
+	MarketplaceCourseAccountsCountParamsOMinusUsername         MarketplaceCourseAccountsCountParamsO = "-username"
+	MarketplaceCourseAccountsCountParamsOModified              MarketplaceCourseAccountsCountParamsO = "modified"
+	MarketplaceCourseAccountsCountParamsOProjectEndDate        MarketplaceCourseAccountsCountParamsO = "project_end_date"
+	MarketplaceCourseAccountsCountParamsOProjectName           MarketplaceCourseAccountsCountParamsO = "project_name"
+	MarketplaceCourseAccountsCountParamsOProjectStartDate      MarketplaceCourseAccountsCountParamsO = "project_start_date"
+	MarketplaceCourseAccountsCountParamsOState                 MarketplaceCourseAccountsCountParamsO = "state"
+	MarketplaceCourseAccountsCountParamsOUsername              MarketplaceCourseAccountsCountParamsO = "username"
 )
 
 // Defines values for MarketplaceCourseAccountsCountParamsState.
@@ -6099,6 +6139,26 @@ const (
 const (
 	MarketplaceServiceProvidersCountParamsOCustomerName      MarketplaceServiceProvidersCountParamsO = "customer_name"
 	MarketplaceServiceProvidersCountParamsOMinusCustomerName MarketplaceServiceProvidersCountParamsO = "-customer_name"
+)
+
+// Defines values for MarketplaceServiceProvidersCourseAccountsListParamsO.
+const (
+	MarketplaceServiceProvidersCourseAccountsListParamsOCreated               MarketplaceServiceProvidersCourseAccountsListParamsO = "created"
+	MarketplaceServiceProvidersCourseAccountsListParamsOEmail                 MarketplaceServiceProvidersCourseAccountsListParamsO = "email"
+	MarketplaceServiceProvidersCourseAccountsListParamsOMinusCreated          MarketplaceServiceProvidersCourseAccountsListParamsO = "-created"
+	MarketplaceServiceProvidersCourseAccountsListParamsOMinusEmail            MarketplaceServiceProvidersCourseAccountsListParamsO = "-email"
+	MarketplaceServiceProvidersCourseAccountsListParamsOMinusModified         MarketplaceServiceProvidersCourseAccountsListParamsO = "-modified"
+	MarketplaceServiceProvidersCourseAccountsListParamsOMinusProjectEndDate   MarketplaceServiceProvidersCourseAccountsListParamsO = "-project_end_date"
+	MarketplaceServiceProvidersCourseAccountsListParamsOMinusProjectName      MarketplaceServiceProvidersCourseAccountsListParamsO = "-project_name"
+	MarketplaceServiceProvidersCourseAccountsListParamsOMinusProjectStartDate MarketplaceServiceProvidersCourseAccountsListParamsO = "-project_start_date"
+	MarketplaceServiceProvidersCourseAccountsListParamsOMinusState            MarketplaceServiceProvidersCourseAccountsListParamsO = "-state"
+	MarketplaceServiceProvidersCourseAccountsListParamsOMinusUsername         MarketplaceServiceProvidersCourseAccountsListParamsO = "-username"
+	MarketplaceServiceProvidersCourseAccountsListParamsOModified              MarketplaceServiceProvidersCourseAccountsListParamsO = "modified"
+	MarketplaceServiceProvidersCourseAccountsListParamsOProjectEndDate        MarketplaceServiceProvidersCourseAccountsListParamsO = "project_end_date"
+	MarketplaceServiceProvidersCourseAccountsListParamsOProjectName           MarketplaceServiceProvidersCourseAccountsListParamsO = "project_name"
+	MarketplaceServiceProvidersCourseAccountsListParamsOProjectStartDate      MarketplaceServiceProvidersCourseAccountsListParamsO = "project_start_date"
+	MarketplaceServiceProvidersCourseAccountsListParamsOState                 MarketplaceServiceProvidersCourseAccountsListParamsO = "state"
+	MarketplaceServiceProvidersCourseAccountsListParamsOUsername              MarketplaceServiceProvidersCourseAccountsListParamsO = "username"
 )
 
 // Defines values for MarketplaceServiceProvidersCourseAccountsListParamsState.
@@ -12525,22 +12585,25 @@ type CountryEnum string
 
 // CourseAccount defines model for CourseAccount.
 type CourseAccount struct {
-	Created        *time.Time           `json:"created,omitempty"`
-	CustomerName   *string              `json:"customer_name,omitempty"`
-	CustomerUuid   *openapi_types.UUID  `json:"customer_uuid,omitempty"`
-	Description    *string              `json:"description,omitempty"`
-	Email          *openapi_types.Email `json:"email,omitempty"`
-	ErrorMessage   *string              `json:"error_message,omitempty"`
-	ErrorTraceback *string              `json:"error_traceback,omitempty"`
-	Modified       *time.Time           `json:"modified,omitempty"`
-	Project        openapi_types.UUID   `json:"project"`
-	ProjectName    *string              `json:"project_name,omitempty"`
-	ProjectUuid    *openapi_types.UUID  `json:"project_uuid,omitempty"`
-	State          *ServiceAccountState `json:"state,omitempty"`
-	Url            *string              `json:"url,omitempty"`
-	UserUuid       *openapi_types.UUID  `json:"user_uuid,omitempty"`
-	Username       *string              `json:"username,omitempty"`
-	Uuid           *openapi_types.UUID  `json:"uuid,omitempty"`
+	Created          *time.Time           `json:"created,omitempty"`
+	CustomerName     *string              `json:"customer_name,omitempty"`
+	CustomerUuid     *openapi_types.UUID  `json:"customer_uuid,omitempty"`
+	Description      *string              `json:"description,omitempty"`
+	Email            *openapi_types.Email `json:"email,omitempty"`
+	ErrorMessage     *string              `json:"error_message,omitempty"`
+	ErrorTraceback   *string              `json:"error_traceback,omitempty"`
+	Modified         *time.Time           `json:"modified,omitempty"`
+	Project          openapi_types.UUID   `json:"project"`
+	ProjectEndDate   *openapi_types.Date  `json:"project_end_date,omitempty"`
+	ProjectName      *string              `json:"project_name,omitempty"`
+	ProjectSlug      *string              `json:"project_slug,omitempty"`
+	ProjectStartDate *openapi_types.Date  `json:"project_start_date,omitempty"`
+	ProjectUuid      *openapi_types.UUID  `json:"project_uuid,omitempty"`
+	State            *ServiceAccountState `json:"state,omitempty"`
+	Url              *string              `json:"url,omitempty"`
+	UserUuid         *openapi_types.UUID  `json:"user_uuid,omitempty"`
+	Username         *string              `json:"username,omitempty"`
+	Uuid             *openapi_types.UUID  `json:"uuid,omitempty"`
 }
 
 // CourseAccountCreateNested defines model for CourseAccountCreateNested.
@@ -26872,15 +26935,26 @@ type MarketplaceComponentUserUsagesRetrieveParamsField string
 type MarketplaceCourseAccountsListParams struct {
 	Email *string `form:"email,omitempty" json:"email,omitempty"`
 
+	// O Ordering
+	//
+	O *[]MarketplaceCourseAccountsListParamsO `form:"o,omitempty" json:"o,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize    *PageSize                                   `form:"page_size,omitempty" json:"page_size,omitempty"`
-	ProjectUuid *openapi_types.UUID                         `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	State       *[]MarketplaceCourseAccountsListParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Username    *string                                     `form:"username,omitempty" json:"username,omitempty"`
+	PageSize               *PageSize                                   `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ProjectEndDateAfter    *openapi_types.Date                         `form:"project_end_date_after,omitempty" json:"project_end_date_after,omitempty"`
+	ProjectEndDateBefore   *openapi_types.Date                         `form:"project_end_date_before,omitempty" json:"project_end_date_before,omitempty"`
+	ProjectStartDateAfter  *openapi_types.Date                         `form:"project_start_date_after,omitempty" json:"project_start_date_after,omitempty"`
+	ProjectStartDateBefore *openapi_types.Date                         `form:"project_start_date_before,omitempty" json:"project_start_date_before,omitempty"`
+	ProjectUuid            *openapi_types.UUID                         `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	State                  *[]MarketplaceCourseAccountsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+	Username               *string                                     `form:"username,omitempty" json:"username,omitempty"`
 }
+
+// MarketplaceCourseAccountsListParamsO defines parameters for MarketplaceCourseAccountsList.
+type MarketplaceCourseAccountsListParamsO string
 
 // MarketplaceCourseAccountsListParamsState defines parameters for MarketplaceCourseAccountsList.
 type MarketplaceCourseAccountsListParamsState string
@@ -26889,15 +26963,26 @@ type MarketplaceCourseAccountsListParamsState string
 type MarketplaceCourseAccountsCountParams struct {
 	Email *string `form:"email,omitempty" json:"email,omitempty"`
 
+	// O Ordering
+	//
+	O *[]MarketplaceCourseAccountsCountParamsO `form:"o,omitempty" json:"o,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize    *PageSize                                    `form:"page_size,omitempty" json:"page_size,omitempty"`
-	ProjectUuid *openapi_types.UUID                          `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	State       *[]MarketplaceCourseAccountsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Username    *string                                      `form:"username,omitempty" json:"username,omitempty"`
+	PageSize               *PageSize                                    `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ProjectEndDateAfter    *openapi_types.Date                          `form:"project_end_date_after,omitempty" json:"project_end_date_after,omitempty"`
+	ProjectEndDateBefore   *openapi_types.Date                          `form:"project_end_date_before,omitempty" json:"project_end_date_before,omitempty"`
+	ProjectStartDateAfter  *openapi_types.Date                          `form:"project_start_date_after,omitempty" json:"project_start_date_after,omitempty"`
+	ProjectStartDateBefore *openapi_types.Date                          `form:"project_start_date_before,omitempty" json:"project_start_date_before,omitempty"`
+	ProjectUuid            *openapi_types.UUID                          `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	State                  *[]MarketplaceCourseAccountsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+	Username               *string                                      `form:"username,omitempty" json:"username,omitempty"`
 }
+
+// MarketplaceCourseAccountsCountParamsO defines parameters for MarketplaceCourseAccountsCount.
+type MarketplaceCourseAccountsCountParamsO string
 
 // MarketplaceCourseAccountsCountParamsState defines parameters for MarketplaceCourseAccountsCount.
 type MarketplaceCourseAccountsCountParamsState string
@@ -29325,15 +29410,26 @@ type ServiceProviderOfferingUsersComplianceParams struct {
 type MarketplaceServiceProvidersCourseAccountsListParams struct {
 	Email *string `form:"email,omitempty" json:"email,omitempty"`
 
+	// O Ordering
+	//
+	O *[]MarketplaceServiceProvidersCourseAccountsListParamsO `form:"o,omitempty" json:"o,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize    *PageSize                                                   `form:"page_size,omitempty" json:"page_size,omitempty"`
-	ProjectUuid *openapi_types.UUID                                         `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	State       *[]MarketplaceServiceProvidersCourseAccountsListParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Username    *string                                                     `form:"username,omitempty" json:"username,omitempty"`
+	PageSize               *PageSize                                                   `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ProjectEndDateAfter    *openapi_types.Date                                         `form:"project_end_date_after,omitempty" json:"project_end_date_after,omitempty"`
+	ProjectEndDateBefore   *openapi_types.Date                                         `form:"project_end_date_before,omitempty" json:"project_end_date_before,omitempty"`
+	ProjectStartDateAfter  *openapi_types.Date                                         `form:"project_start_date_after,omitempty" json:"project_start_date_after,omitempty"`
+	ProjectStartDateBefore *openapi_types.Date                                         `form:"project_start_date_before,omitempty" json:"project_start_date_before,omitempty"`
+	ProjectUuid            *openapi_types.UUID                                         `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	State                  *[]MarketplaceServiceProvidersCourseAccountsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+	Username               *string                                                     `form:"username,omitempty" json:"username,omitempty"`
 }
+
+// MarketplaceServiceProvidersCourseAccountsListParamsO defines parameters for MarketplaceServiceProvidersCourseAccountsList.
+type MarketplaceServiceProvidersCourseAccountsListParamsO string
 
 // MarketplaceServiceProvidersCourseAccountsListParamsState defines parameters for MarketplaceServiceProvidersCourseAccountsList.
 type MarketplaceServiceProvidersCourseAccountsListParamsState string
@@ -111236,6 +111332,22 @@ func NewMarketplaceCourseAccountsListRequest(server string, params *MarketplaceC
 
 		}
 
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Page != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
@@ -111255,6 +111367,70 @@ func NewMarketplaceCourseAccountsListRequest(server string, params *MarketplaceC
 		if params.PageSize != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectEndDateAfter != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_end_date_after", runtime.ParamLocationQuery, *params.ProjectEndDateAfter); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectEndDateBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_end_date_before", runtime.ParamLocationQuery, *params.ProjectEndDateBefore); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectStartDateAfter != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_start_date_after", runtime.ParamLocationQuery, *params.ProjectStartDateAfter); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectStartDateBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_start_date_before", runtime.ParamLocationQuery, *params.ProjectStartDateBefore); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -111365,6 +111541,22 @@ func NewMarketplaceCourseAccountsCountRequest(server string, params *Marketplace
 
 		}
 
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Page != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
@@ -111384,6 +111576,70 @@ func NewMarketplaceCourseAccountsCountRequest(server string, params *Marketplace
 		if params.PageSize != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectEndDateAfter != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_end_date_after", runtime.ParamLocationQuery, *params.ProjectEndDateAfter); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectEndDateBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_end_date_before", runtime.ParamLocationQuery, *params.ProjectEndDateBefore); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectStartDateAfter != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_start_date_after", runtime.ParamLocationQuery, *params.ProjectStartDateAfter); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectStartDateBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_start_date_before", runtime.ParamLocationQuery, *params.ProjectStartDateBefore); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -137511,6 +137767,22 @@ func NewMarketplaceServiceProvidersCourseAccountsListRequest(server string, serv
 
 		}
 
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Page != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
@@ -137530,6 +137802,70 @@ func NewMarketplaceServiceProvidersCourseAccountsListRequest(server string, serv
 		if params.PageSize != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectEndDateAfter != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_end_date_after", runtime.ParamLocationQuery, *params.ProjectEndDateAfter); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectEndDateBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_end_date_before", runtime.ParamLocationQuery, *params.ProjectEndDateBefore); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectStartDateAfter != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_start_date_after", runtime.ParamLocationQuery, *params.ProjectStartDateAfter); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectStartDateBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_start_date_before", runtime.ParamLocationQuery, *params.ProjectStartDateBefore); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
