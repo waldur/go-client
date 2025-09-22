@@ -4302,6 +4302,22 @@ const (
 	MarketplaceOfferingTermsOfServiceCountParamsOVersion       MarketplaceOfferingTermsOfServiceCountParamsO = "version"
 )
 
+// Defines values for MarketplaceOfferingUserChecklistCompletionsListParamsO.
+const (
+	MarketplaceOfferingUserChecklistCompletionsListParamsOIsCompleted      MarketplaceOfferingUserChecklistCompletionsListParamsO = "is_completed"
+	MarketplaceOfferingUserChecklistCompletionsListParamsOMinusIsCompleted MarketplaceOfferingUserChecklistCompletionsListParamsO = "-is_completed"
+	MarketplaceOfferingUserChecklistCompletionsListParamsOMinusModified    MarketplaceOfferingUserChecklistCompletionsListParamsO = "-modified"
+	MarketplaceOfferingUserChecklistCompletionsListParamsOModified         MarketplaceOfferingUserChecklistCompletionsListParamsO = "modified"
+)
+
+// Defines values for MarketplaceOfferingUserChecklistCompletionsCountParamsO.
+const (
+	MarketplaceOfferingUserChecklistCompletionsCountParamsOIsCompleted      MarketplaceOfferingUserChecklistCompletionsCountParamsO = "is_completed"
+	MarketplaceOfferingUserChecklistCompletionsCountParamsOMinusIsCompleted MarketplaceOfferingUserChecklistCompletionsCountParamsO = "-is_completed"
+	MarketplaceOfferingUserChecklistCompletionsCountParamsOMinusModified    MarketplaceOfferingUserChecklistCompletionsCountParamsO = "-modified"
+	MarketplaceOfferingUserChecklistCompletionsCountParamsOModified         MarketplaceOfferingUserChecklistCompletionsCountParamsO = "modified"
+)
+
 // Defines values for MarketplaceOfferingUsersListParamsField.
 const (
 	MarketplaceOfferingUsersListParamsFieldCreated                   MarketplaceOfferingUsersListParamsField = "created"
@@ -22796,6 +22812,35 @@ type UserAuthToken struct {
 	UserUsername *string `json:"user_username,omitempty"`
 }
 
+// UserChecklistCompletion defines model for UserChecklistCompletion.
+type UserChecklistCompletion struct {
+	ChecklistDescription *string    `json:"checklist_description,omitempty"`
+	ChecklistName        *string    `json:"checklist_name,omitempty"`
+	ChecklistUuid        *string    `json:"checklist_uuid,omitempty"`
+	CompletionPercentage *float64   `json:"completion_percentage,omitempty"`
+	Created              *time.Time `json:"created,omitempty"`
+
+	// IsCompleted Whether all required questions have been answered
+	IsCompleted      *bool         `json:"is_completed,omitempty"`
+	Modified         *time.Time    `json:"modified,omitempty"`
+	OfferingName     *string       `json:"offering_name"`
+	OfferingUser     *OfferingUser `json:"offering_user,omitempty"`
+	OfferingUserUuid *string       `json:"offering_user_uuid"`
+	OfferingUuid     *string       `json:"offering_uuid"`
+
+	// RequiresReview Whether any answers triggered review requirements
+	RequiresReview *bool `json:"requires_review,omitempty"`
+
+	// ReviewNotes Notes from the reviewer
+	ReviewNotes *string    `json:"review_notes,omitempty"`
+	ReviewedAt  *time.Time `json:"reviewed_at"`
+
+	// ReviewedBy User who reviewed the checklist completion
+	ReviewedBy                  *int                `json:"reviewed_by"`
+	UnansweredRequiredQuestions *int                `json:"unanswered_required_questions,omitempty"`
+	Uuid                        *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
 // UserConsentInfo defines model for UserConsentInfo.
 type UserConsentInfo struct {
 	AgreementDate *time.Time          `json:"agreement_date,omitempty"`
@@ -27498,6 +27543,64 @@ type MarketplaceOfferingUsagePoliciesCountParams struct {
 	Scope     *string             `form:"scope,omitempty" json:"scope,omitempty"`
 	ScopeUuid *openapi_types.UUID `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
 }
+
+// MarketplaceOfferingUserChecklistCompletionsListParams defines parameters for MarketplaceOfferingUserChecklistCompletionsList.
+type MarketplaceOfferingUserChecklistCompletionsListParams struct {
+	// Created Created after
+	Created     *time.Time `form:"created,omitempty" json:"created,omitempty"`
+	IsCompleted *bool      `form:"is_completed,omitempty" json:"is_completed,omitempty"`
+
+	// Modified Modified after
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// O Ordering
+	//
+	O *[]MarketplaceOfferingUserChecklistCompletionsListParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// OfferingUuid Filter by offering UUID
+	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// UserUuid Filter by user UUID
+	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
+}
+
+// MarketplaceOfferingUserChecklistCompletionsListParamsO defines parameters for MarketplaceOfferingUserChecklistCompletionsList.
+type MarketplaceOfferingUserChecklistCompletionsListParamsO string
+
+// MarketplaceOfferingUserChecklistCompletionsCountParams defines parameters for MarketplaceOfferingUserChecklistCompletionsCount.
+type MarketplaceOfferingUserChecklistCompletionsCountParams struct {
+	// Created Created after
+	Created     *time.Time `form:"created,omitempty" json:"created,omitempty"`
+	IsCompleted *bool      `form:"is_completed,omitempty" json:"is_completed,omitempty"`
+
+	// Modified Modified after
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// O Ordering
+	//
+	O *[]MarketplaceOfferingUserChecklistCompletionsCountParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// OfferingUuid Filter by offering UUID
+	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// UserUuid Filter by user UUID
+	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
+}
+
+// MarketplaceOfferingUserChecklistCompletionsCountParamsO defines parameters for MarketplaceOfferingUserChecklistCompletionsCount.
+type MarketplaceOfferingUserChecklistCompletionsCountParamsO string
 
 // MarketplaceOfferingUserRolesListParams defines parameters for MarketplaceOfferingUserRolesList.
 type MarketplaceOfferingUserRolesListParams struct {
@@ -43709,6 +43812,15 @@ type ClientInterface interface {
 
 	MarketplaceOfferingUsagePoliciesUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingUsagePoliciesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceOfferingUserChecklistCompletionsList request
+	MarketplaceOfferingUserChecklistCompletionsList(ctx context.Context, params *MarketplaceOfferingUserChecklistCompletionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOfferingUserChecklistCompletionsCount request
+	MarketplaceOfferingUserChecklistCompletionsCount(ctx context.Context, params *MarketplaceOfferingUserChecklistCompletionsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOfferingUserChecklistCompletionsRetrieve request
+	MarketplaceOfferingUserChecklistCompletionsRetrieve(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceOfferingUserRolesList request
 	MarketplaceOfferingUserRolesList(ctx context.Context, params *MarketplaceOfferingUserRolesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -56120,6 +56232,42 @@ func (c *Client) MarketplaceOfferingUsagePoliciesUpdateWithBody(ctx context.Cont
 
 func (c *Client) MarketplaceOfferingUsagePoliciesUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingUsagePoliciesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceOfferingUsagePoliciesUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOfferingUserChecklistCompletionsList(ctx context.Context, params *MarketplaceOfferingUserChecklistCompletionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingUserChecklistCompletionsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOfferingUserChecklistCompletionsCount(ctx context.Context, params *MarketplaceOfferingUserChecklistCompletionsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingUserChecklistCompletionsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOfferingUserChecklistCompletionsRetrieve(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingUserChecklistCompletionsRetrieveRequest(c.Server, id)
 	if err != nil {
 		return nil, err
 	}
@@ -116789,6 +116937,362 @@ func NewMarketplaceOfferingUsagePoliciesUpdateRequestWithBody(server string, uui
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceOfferingUserChecklistCompletionsListRequest generates requests for MarketplaceOfferingUserChecklistCompletionsList
+func NewMarketplaceOfferingUserChecklistCompletionsListRequest(server string, params *MarketplaceOfferingUserChecklistCompletionsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-user-checklist-completions/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Created != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "created", runtime.ParamLocationQuery, *params.Created); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsCompleted != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_completed", runtime.ParamLocationQuery, *params.IsCompleted); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Modified != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "modified", runtime.ParamLocationQuery, *params.Modified); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UserUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_uuid", runtime.ParamLocationQuery, *params.UserUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceOfferingUserChecklistCompletionsCountRequest generates requests for MarketplaceOfferingUserChecklistCompletionsCount
+func NewMarketplaceOfferingUserChecklistCompletionsCountRequest(server string, params *MarketplaceOfferingUserChecklistCompletionsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-user-checklist-completions/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Created != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "created", runtime.ParamLocationQuery, *params.Created); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsCompleted != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_completed", runtime.ParamLocationQuery, *params.IsCompleted); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Modified != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "modified", runtime.ParamLocationQuery, *params.Modified); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UserUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_uuid", runtime.ParamLocationQuery, *params.UserUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceOfferingUserChecklistCompletionsRetrieveRequest generates requests for MarketplaceOfferingUserChecklistCompletionsRetrieve
+func NewMarketplaceOfferingUserChecklistCompletionsRetrieveRequest(server string, id int) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-user-checklist-completions/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
 
 	return req, nil
 }
@@ -206962,6 +207466,15 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceOfferingUsagePoliciesUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingUsagePoliciesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsagePoliciesUpdateResponse, error)
 
+	// MarketplaceOfferingUserChecklistCompletionsListWithResponse request
+	MarketplaceOfferingUserChecklistCompletionsListWithResponse(ctx context.Context, params *MarketplaceOfferingUserChecklistCompletionsListParams, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUserChecklistCompletionsListResponse, error)
+
+	// MarketplaceOfferingUserChecklistCompletionsCountWithResponse request
+	MarketplaceOfferingUserChecklistCompletionsCountWithResponse(ctx context.Context, params *MarketplaceOfferingUserChecklistCompletionsCountParams, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUserChecklistCompletionsCountResponse, error)
+
+	// MarketplaceOfferingUserChecklistCompletionsRetrieveWithResponse request
+	MarketplaceOfferingUserChecklistCompletionsRetrieveWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUserChecklistCompletionsRetrieveResponse, error)
+
 	// MarketplaceOfferingUserRolesListWithResponse request
 	MarketplaceOfferingUserRolesListWithResponse(ctx context.Context, params *MarketplaceOfferingUserRolesListParams, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUserRolesListResponse, error)
 
@@ -222812,6 +223325,71 @@ func (r MarketplaceOfferingUsagePoliciesUpdateResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceOfferingUsagePoliciesUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceOfferingUserChecklistCompletionsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]UserChecklistCompletion
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingUserChecklistCompletionsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingUserChecklistCompletionsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceOfferingUserChecklistCompletionsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingUserChecklistCompletionsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingUserChecklistCompletionsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceOfferingUserChecklistCompletionsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *UserChecklistCompletion
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingUserChecklistCompletionsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingUserChecklistCompletionsRetrieveResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -250881,6 +251459,33 @@ func (c *ClientWithResponses) MarketplaceOfferingUsagePoliciesUpdateWithResponse
 	return ParseMarketplaceOfferingUsagePoliciesUpdateResponse(rsp)
 }
 
+// MarketplaceOfferingUserChecklistCompletionsListWithResponse request returning *MarketplaceOfferingUserChecklistCompletionsListResponse
+func (c *ClientWithResponses) MarketplaceOfferingUserChecklistCompletionsListWithResponse(ctx context.Context, params *MarketplaceOfferingUserChecklistCompletionsListParams, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUserChecklistCompletionsListResponse, error) {
+	rsp, err := c.MarketplaceOfferingUserChecklistCompletionsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingUserChecklistCompletionsListResponse(rsp)
+}
+
+// MarketplaceOfferingUserChecklistCompletionsCountWithResponse request returning *MarketplaceOfferingUserChecklistCompletionsCountResponse
+func (c *ClientWithResponses) MarketplaceOfferingUserChecklistCompletionsCountWithResponse(ctx context.Context, params *MarketplaceOfferingUserChecklistCompletionsCountParams, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUserChecklistCompletionsCountResponse, error) {
+	rsp, err := c.MarketplaceOfferingUserChecklistCompletionsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingUserChecklistCompletionsCountResponse(rsp)
+}
+
+// MarketplaceOfferingUserChecklistCompletionsRetrieveWithResponse request returning *MarketplaceOfferingUserChecklistCompletionsRetrieveResponse
+func (c *ClientWithResponses) MarketplaceOfferingUserChecklistCompletionsRetrieveWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUserChecklistCompletionsRetrieveResponse, error) {
+	rsp, err := c.MarketplaceOfferingUserChecklistCompletionsRetrieve(ctx, id, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingUserChecklistCompletionsRetrieveResponse(rsp)
+}
+
 // MarketplaceOfferingUserRolesListWithResponse request returning *MarketplaceOfferingUserRolesListResponse
 func (c *ClientWithResponses) MarketplaceOfferingUserRolesListWithResponse(ctx context.Context, params *MarketplaceOfferingUserRolesListParams, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUserRolesListResponse, error) {
 	rsp, err := c.MarketplaceOfferingUserRolesList(ctx, params, reqEditors...)
@@ -275067,6 +275672,74 @@ func ParseMarketplaceOfferingUsagePoliciesUpdateResponse(rsp *http.Response) (*M
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest OfferingUsagePolicy
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOfferingUserChecklistCompletionsListResponse parses an HTTP response from a MarketplaceOfferingUserChecklistCompletionsListWithResponse call
+func ParseMarketplaceOfferingUserChecklistCompletionsListResponse(rsp *http.Response) (*MarketplaceOfferingUserChecklistCompletionsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingUserChecklistCompletionsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []UserChecklistCompletion
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOfferingUserChecklistCompletionsCountResponse parses an HTTP response from a MarketplaceOfferingUserChecklistCompletionsCountWithResponse call
+func ParseMarketplaceOfferingUserChecklistCompletionsCountResponse(rsp *http.Response) (*MarketplaceOfferingUserChecklistCompletionsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingUserChecklistCompletionsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOfferingUserChecklistCompletionsRetrieveResponse parses an HTTP response from a MarketplaceOfferingUserChecklistCompletionsRetrieveWithResponse call
+func ParseMarketplaceOfferingUserChecklistCompletionsRetrieveResponse(rsp *http.Response) (*MarketplaceOfferingUserChecklistCompletionsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingUserChecklistCompletionsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest UserChecklistCompletion
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
