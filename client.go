@@ -4978,6 +4978,75 @@ const (
 	MarketplaceProviderOfferingsCustomersListParamsStatePaused   MarketplaceProviderOfferingsCustomersListParamsState = "Paused"
 )
 
+// Defines values for MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField.
+const (
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldAccessUrl                 MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "access_url"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldAttributes                MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "attributes"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldBackendId                 MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "backend_id"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldBackendMetadata           MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "backend_metadata"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldBillable                  MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "billable"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldCategory                  MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "category"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldCategoryTitle             MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "category_title"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldCategoryUuid              MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "category_uuid"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldCitationCount             MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "citation_count"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldComponents                MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "components"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldCountry                   MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "country"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldCreated                   MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "created"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldCustomer                  MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "customer"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldCustomerName              MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "customer_name"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldCustomerUuid              MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "customer_uuid"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldDataciteDoi               MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "datacite_doi"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldDescription               MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "description"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldEndpoints                 MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "endpoints"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldFiles                     MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "files"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldFullDescription           MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "full_description"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldGettingStarted            MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "getting_started"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldGoogleCalendarIsPublic    MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "google_calendar_is_public"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldGoogleCalendarLink        MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "google_calendar_link"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldHasComplianceRequirements MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "has_compliance_requirements"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldImage                     MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "image"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldIntegrationGuide          MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "integration_guide"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldIntegrationStatus         MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "integration_status"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldLatitude                  MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "latitude"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldLongitude                 MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "longitude"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldName                      MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "name"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldOptions                   MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "options"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldOrderCount                MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "order_count"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldOrganizationGroups        MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "organization_groups"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldParentDescription         MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "parent_description"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldParentName                MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "parent_name"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldParentUuid                MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "parent_uuid"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldPausedReason              MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "paused_reason"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldPlans                     MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "plans"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldPluginOptions             MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "plugin_options"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldPrivacyPolicyLink         MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "privacy_policy_link"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldProject                   MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "project"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldProjectName               MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "project_name"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldProjectUuid               MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "project_uuid"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldQuotas                    MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "quotas"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldResourceOptions           MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "resource_options"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldRoles                     MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "roles"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldScope                     MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "scope"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldScopeErrorMessage         MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "scope_error_message"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldScopeName                 MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "scope_name"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldScopeState                MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "scope_state"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldScopeUuid                 MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "scope_uuid"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldScreenshots               MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "screenshots"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldSecretOptions             MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "secret_options"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldServiceAttributes         MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "service_attributes"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldShared                    MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "shared"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldSlug                      MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "slug"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldState                     MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "state"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldThumbnail                 MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "thumbnail"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldTotalCost                 MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "total_cost"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldTotalCostEstimated        MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "total_cost_estimated"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldTotalCustomers            MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "total_customers"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldType                      MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "type"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldUrl                       MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "url"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldUuid                      MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "uuid"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldVendorDetails             MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "vendor_details"
+)
+
 // Defines values for MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField.
 const (
 	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldAccessUrl                 MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "access_url"
@@ -13492,6 +13561,7 @@ type GroupInvitation struct {
 	AutoCreateProject *bool               `json:"auto_create_project,omitempty"`
 	Created           *time.Time          `json:"created,omitempty"`
 	CreatedByFullName *string             `json:"created_by_full_name,omitempty"`
+	CreatedByImage    *string             `json:"created_by_image,omitempty"`
 	CreatedByUsername *string             `json:"created_by_username,omitempty"`
 	CustomerName      *string             `json:"customer_name,omitempty"`
 	CustomerUuid      *openapi_types.UUID `json:"customer_uuid,omitempty"`
@@ -13725,6 +13795,7 @@ type Invitation struct {
 	CivilNumber       *string             `json:"civil_number,omitempty"`
 	Created           *time.Time          `json:"created,omitempty"`
 	CreatedByFullName *string             `json:"created_by_full_name,omitempty"`
+	CreatedByImage    *string             `json:"created_by_image,omitempty"`
 	CreatedByUsername *string             `json:"created_by_username,omitempty"`
 	CustomerName      *string             `json:"customer_name,omitempty"`
 	CustomerUuid      *openapi_types.UUID `json:"customer_uuid,omitempty"`
@@ -20092,45 +20163,6 @@ type ProviderOfferingDetails_Country struct {
 	union json.RawMessage
 }
 
-// ProviderOfferingDetailsRequest defines model for ProviderOfferingDetailsRequest.
-type ProviderOfferingDetailsRequest struct {
-	// AccessUrl Publicly accessible offering access URL
-	AccessUrl       *string     `json:"access_url,omitempty"`
-	Attributes      interface{} `json:"attributes,omitempty"`
-	BackendId       *string     `json:"backend_id,omitempty"`
-	BackendMetadata interface{} `json:"backend_metadata,omitempty"`
-
-	// Billable Purchase and usage is invoiced.
-	Billable          *bool                                   `json:"billable,omitempty"`
-	Category          string                                  `json:"category"`
-	Components        *[]OfferingComponentRequest             `json:"components,omitempty"`
-	Country           *ProviderOfferingDetailsRequest_Country `json:"country,omitempty"`
-	Customer          *string                                 `json:"customer"`
-	DataciteDoi       *string                                 `json:"datacite_doi,omitempty"`
-	Description       *string                                 `json:"description,omitempty"`
-	FullDescription   *string                                 `json:"full_description,omitempty"`
-	GettingStarted    *string                                 `json:"getting_started,omitempty"`
-	Image             *openapi_types.File                     `json:"image"`
-	IntegrationGuide  *string                                 `json:"integration_guide,omitempty"`
-	Latitude          *float64                                `json:"latitude"`
-	Longitude         *float64                                `json:"longitude"`
-	Name              string                                  `json:"name"`
-	Plans             *[]BaseProviderPlanRequest              `json:"plans,omitempty"`
-	PrivacyPolicyLink *string                                 `json:"privacy_policy_link,omitempty"`
-
-	// Shared Accessible to all customers.
-	Shared        *bool               `json:"shared,omitempty"`
-	Slug          *string             `json:"slug,omitempty"`
-	Thumbnail     *openapi_types.File `json:"thumbnail"`
-	Type          string              `json:"type"`
-	VendorDetails *string             `json:"vendor_details,omitempty"`
-}
-
-// ProviderOfferingDetailsRequest_Country defines model for ProviderOfferingDetailsRequest.Country.
-type ProviderOfferingDetailsRequest_Country struct {
-	union json.RawMessage
-}
-
 // ProviderPlanDetails defines model for ProviderPlanDetails.
 type ProviderPlanDetails struct {
 	// Archived Forbids creation of new resources.
@@ -21849,9 +21881,8 @@ type ResourceUpdate struct {
 
 // ResourceUpdateLimitsRequest defines model for ResourceUpdateLimitsRequest.
 type ResourceUpdateLimitsRequest struct {
-	Attachment     *openapi_types.File `json:"attachment"`
-	Limits         map[string]int      `json:"limits"`
-	RequestComment *string             `json:"request_comment"`
+	Limits         map[string]int `json:"limits"`
+	RequestComment *string        `json:"request_comment"`
 }
 
 // ResourceUpdateRequest defines model for ResourceUpdateRequest.
@@ -23008,6 +23039,7 @@ type VisibilityEnum string
 // VisibleInvitationDetails defines model for VisibleInvitationDetails.
 type VisibleInvitationDetails struct {
 	CreatedByFullName *string             `json:"created_by_full_name,omitempty"`
+	CreatedByImage    *string             `json:"created_by_image,omitempty"`
 	CreatedByUsername *string             `json:"created_by_username,omitempty"`
 	CustomerName      *string             `json:"customer_name,omitempty"`
 	CustomerUuid      *openapi_types.UUID `json:"customer_uuid,omitempty"`
@@ -28619,6 +28651,14 @@ type MarketplaceProviderOfferingsImportableResourcesListParams struct {
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 }
+
+// MarketplaceProviderOfferingsListCourseAccountsRetrieveParams defines parameters for MarketplaceProviderOfferingsListCourseAccountsRetrieve.
+type MarketplaceProviderOfferingsListCourseAccountsRetrieveParams struct {
+	Field *[]MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField `form:"field,omitempty" json:"field,omitempty"`
+}
+
+// MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField defines parameters for MarketplaceProviderOfferingsListCourseAccountsRetrieve.
+type MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField string
 
 // MarketplaceProviderOfferingsListCustomerProjectsListParams defines parameters for MarketplaceProviderOfferingsListCustomerProjectsList.
 type MarketplaceProviderOfferingsListCustomerProjectsListParams struct {
@@ -34548,6 +34588,7 @@ type UserInvitationsListParams struct {
 	CivilNumber  *string             `form:"civil_number,omitempty" json:"civil_number,omitempty"`
 	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
 	Email        *string             `form:"email,omitempty" json:"email,omitempty"`
+	EmailExact   *string             `form:"email_exact,omitempty" json:"email_exact,omitempty"`
 
 	// O Ordering
 	//
@@ -34577,6 +34618,7 @@ type UserInvitationsCountParams struct {
 	CivilNumber  *string             `form:"civil_number,omitempty" json:"civil_number,omitempty"`
 	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
 	Email        *string             `form:"email,omitempty" json:"email,omitempty"`
+	EmailExact   *string             `form:"email_exact,omitempty" json:"email_exact,omitempty"`
 
 	// O Ordering
 	//
@@ -35903,9 +35945,6 @@ type MarketplaceProviderOfferingsMoveOfferingJSONRequestBody = MoveOfferingReque
 
 // MarketplaceProviderOfferingsPauseJSONRequestBody defines body for MarketplaceProviderOfferingsPause for application/json ContentType.
 type MarketplaceProviderOfferingsPauseJSONRequestBody = OfferingPauseRequest
-
-// MarketplaceProviderOfferingsRefreshOfferingUsernamesJSONRequestBody defines body for MarketplaceProviderOfferingsRefreshOfferingUsernames for application/json ContentType.
-type MarketplaceProviderOfferingsRefreshOfferingUsernamesJSONRequestBody = ProviderOfferingDetailsRequest
 
 // MarketplaceProviderOfferingsRemoveOfferingComponentJSONRequestBody defines body for MarketplaceProviderOfferingsRemoveOfferingComponent for application/json ContentType.
 type MarketplaceProviderOfferingsRemoveOfferingComponentJSONRequestBody = RemoveOfferingComponentRequest
@@ -40504,68 +40543,6 @@ func (t *ProviderOfferingDetails_Country) UnmarshalJSON(b []byte) error {
 	return err
 }
 
-// AsCountryEnum returns the union data inside the ProviderOfferingDetailsRequest_Country as a CountryEnum
-func (t ProviderOfferingDetailsRequest_Country) AsCountryEnum() (CountryEnum, error) {
-	var body CountryEnum
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromCountryEnum overwrites any union data inside the ProviderOfferingDetailsRequest_Country as the provided CountryEnum
-func (t *ProviderOfferingDetailsRequest_Country) FromCountryEnum(v CountryEnum) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeCountryEnum performs a merge with any union data inside the ProviderOfferingDetailsRequest_Country, using the provided CountryEnum
-func (t *ProviderOfferingDetailsRequest_Country) MergeCountryEnum(v CountryEnum) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsBlankEnum returns the union data inside the ProviderOfferingDetailsRequest_Country as a BlankEnum
-func (t ProviderOfferingDetailsRequest_Country) AsBlankEnum() (BlankEnum, error) {
-	var body BlankEnum
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromBlankEnum overwrites any union data inside the ProviderOfferingDetailsRequest_Country as the provided BlankEnum
-func (t *ProviderOfferingDetailsRequest_Country) FromBlankEnum(v BlankEnum) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeBlankEnum performs a merge with any union data inside the ProviderOfferingDetailsRequest_Country, using the provided BlankEnum
-func (t *ProviderOfferingDetailsRequest_Country) MergeBlankEnum(v BlankEnum) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t ProviderOfferingDetailsRequest_Country) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *ProviderOfferingDetailsRequest_Country) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
 // AsCountryEnum returns the union data inside the PublicOfferingDetails_Country as a CountryEnum
 func (t PublicOfferingDetails_Country) AsCountryEnum() (CountryEnum, error) {
 	var body CountryEnum
@@ -44227,6 +44204,9 @@ type ClientInterface interface {
 	// MarketplaceProviderOfferingsImportableResourcesList request
 	MarketplaceProviderOfferingsImportableResourcesList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsImportableResourcesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceProviderOfferingsListCourseAccountsRetrieve request
+	MarketplaceProviderOfferingsListCourseAccountsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListCourseAccountsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceProviderOfferingsListCustomerProjectsList request
 	MarketplaceProviderOfferingsListCustomerProjectsList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListCustomerProjectsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -44258,10 +44238,8 @@ type ClientInterface interface {
 
 	MarketplaceProviderOfferingsPause(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsPauseJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// MarketplaceProviderOfferingsRefreshOfferingUsernamesWithBody request with any body
-	MarketplaceProviderOfferingsRefreshOfferingUsernamesWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	MarketplaceProviderOfferingsRefreshOfferingUsernames(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsRefreshOfferingUsernamesJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// MarketplaceProviderOfferingsRefreshOfferingUsernames request
+	MarketplaceProviderOfferingsRefreshOfferingUsernames(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceProviderOfferingsRemoveOfferingComponentWithBody request with any body
 	MarketplaceProviderOfferingsRemoveOfferingComponentWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -58042,6 +58020,18 @@ func (c *Client) MarketplaceProviderOfferingsImportableResourcesList(ctx context
 	return c.Client.Do(req)
 }
 
+func (c *Client) MarketplaceProviderOfferingsListCourseAccountsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListCourseAccountsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsListCourseAccountsRetrieveRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) MarketplaceProviderOfferingsListCustomerProjectsList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListCustomerProjectsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProviderOfferingsListCustomerProjectsListRequest(c.Server, uuid, params)
 	if err != nil {
@@ -58174,20 +58164,8 @@ func (c *Client) MarketplaceProviderOfferingsPause(ctx context.Context, uuid ope
 	return c.Client.Do(req)
 }
 
-func (c *Client) MarketplaceProviderOfferingsRefreshOfferingUsernamesWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceProviderOfferingsRefreshOfferingUsernamesRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceProviderOfferingsRefreshOfferingUsernames(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsRefreshOfferingUsernamesJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceProviderOfferingsRefreshOfferingUsernamesRequest(c.Server, uuid, body)
+func (c *Client) MarketplaceProviderOfferingsRefreshOfferingUsernames(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsRefreshOfferingUsernamesRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -127942,6 +127920,62 @@ func NewMarketplaceProviderOfferingsImportableResourcesListRequest(server string
 	return req, nil
 }
 
+// NewMarketplaceProviderOfferingsListCourseAccountsRetrieveRequest generates requests for MarketplaceProviderOfferingsListCourseAccountsRetrieve
+func NewMarketplaceProviderOfferingsListCourseAccountsRetrieveRequest(server string, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListCourseAccountsRetrieveParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-offerings/%s/list_course_accounts/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Field != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "field", runtime.ParamLocationQuery, *params.Field); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewMarketplaceProviderOfferingsListCustomerProjectsListRequest generates requests for MarketplaceProviderOfferingsListCustomerProjectsList
 func NewMarketplaceProviderOfferingsListCustomerProjectsListRequest(server string, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListCustomerProjectsListParams) (*http.Request, error) {
 	var err error
@@ -128637,19 +128671,8 @@ func NewMarketplaceProviderOfferingsPauseRequestWithBody(server string, uuid ope
 	return req, nil
 }
 
-// NewMarketplaceProviderOfferingsRefreshOfferingUsernamesRequest calls the generic MarketplaceProviderOfferingsRefreshOfferingUsernames builder with application/json body
-func NewMarketplaceProviderOfferingsRefreshOfferingUsernamesRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderOfferingsRefreshOfferingUsernamesJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewMarketplaceProviderOfferingsRefreshOfferingUsernamesRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewMarketplaceProviderOfferingsRefreshOfferingUsernamesRequestWithBody generates requests for MarketplaceProviderOfferingsRefreshOfferingUsernames with any type of body
-func NewMarketplaceProviderOfferingsRefreshOfferingUsernamesRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+// NewMarketplaceProviderOfferingsRefreshOfferingUsernamesRequest generates requests for MarketplaceProviderOfferingsRefreshOfferingUsernames
+func NewMarketplaceProviderOfferingsRefreshOfferingUsernamesRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -128674,12 +128697,10 @@ func NewMarketplaceProviderOfferingsRefreshOfferingUsernamesRequestWithBody(serv
 		return nil, err
 	}
 
-	req, err := http.NewRequest("POST", queryURL.String(), body)
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
-
-	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -196948,6 +196969,22 @@ func NewUserInvitationsListRequest(server string, params *UserInvitationsListPar
 
 		}
 
+		if params.EmailExact != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "email_exact", runtime.ParamLocationQuery, *params.EmailExact); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.O != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
@@ -197160,6 +197197,22 @@ func NewUserInvitationsCountRequest(server string, params *UserInvitationsCountP
 		if params.Email != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "email", runtime.ParamLocationQuery, *params.Email); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.EmailExact != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "email_exact", runtime.ParamLocationQuery, *params.EmailExact); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -207881,6 +207934,9 @@ type ClientWithResponsesInterface interface {
 	// MarketplaceProviderOfferingsImportableResourcesListWithResponse request
 	MarketplaceProviderOfferingsImportableResourcesListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsImportableResourcesListParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsImportableResourcesListResponse, error)
 
+	// MarketplaceProviderOfferingsListCourseAccountsRetrieveWithResponse request
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListCourseAccountsRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsListCourseAccountsRetrieveResponse, error)
+
 	// MarketplaceProviderOfferingsListCustomerProjectsListWithResponse request
 	MarketplaceProviderOfferingsListCustomerProjectsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListCustomerProjectsListParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsListCustomerProjectsListResponse, error)
 
@@ -207912,10 +207968,8 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceProviderOfferingsPauseWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsPauseJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsPauseResponse, error)
 
-	// MarketplaceProviderOfferingsRefreshOfferingUsernamesWithBodyWithResponse request with any body
-	MarketplaceProviderOfferingsRefreshOfferingUsernamesWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsRefreshOfferingUsernamesResponse, error)
-
-	MarketplaceProviderOfferingsRefreshOfferingUsernamesWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsRefreshOfferingUsernamesJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsRefreshOfferingUsernamesResponse, error)
+	// MarketplaceProviderOfferingsRefreshOfferingUsernamesWithResponse request
+	MarketplaceProviderOfferingsRefreshOfferingUsernamesWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsRefreshOfferingUsernamesResponse, error)
 
 	// MarketplaceProviderOfferingsRemoveOfferingComponentWithBodyWithResponse request with any body
 	MarketplaceProviderOfferingsRemoveOfferingComponentWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsRemoveOfferingComponentResponse, error)
@@ -225810,6 +225864,28 @@ func (r MarketplaceProviderOfferingsImportableResourcesListResponse) Status() st
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceProviderOfferingsImportableResourcesListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceProviderOfferingsListCourseAccountsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ProviderOfferingDetails
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderOfferingsListCourseAccountsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderOfferingsListCourseAccountsRetrieveResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -252774,6 +252850,15 @@ func (c *ClientWithResponses) MarketplaceProviderOfferingsImportableResourcesLis
 	return ParseMarketplaceProviderOfferingsImportableResourcesListResponse(rsp)
 }
 
+// MarketplaceProviderOfferingsListCourseAccountsRetrieveWithResponse request returning *MarketplaceProviderOfferingsListCourseAccountsRetrieveResponse
+func (c *ClientWithResponses) MarketplaceProviderOfferingsListCourseAccountsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListCourseAccountsRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsListCourseAccountsRetrieveResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsListCourseAccountsRetrieve(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsListCourseAccountsRetrieveResponse(rsp)
+}
+
 // MarketplaceProviderOfferingsListCustomerProjectsListWithResponse request returning *MarketplaceProviderOfferingsListCustomerProjectsListResponse
 func (c *ClientWithResponses) MarketplaceProviderOfferingsListCustomerProjectsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListCustomerProjectsListParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsListCustomerProjectsListResponse, error) {
 	rsp, err := c.MarketplaceProviderOfferingsListCustomerProjectsList(ctx, uuid, params, reqEditors...)
@@ -252871,17 +252956,9 @@ func (c *ClientWithResponses) MarketplaceProviderOfferingsPauseWithResponse(ctx 
 	return ParseMarketplaceProviderOfferingsPauseResponse(rsp)
 }
 
-// MarketplaceProviderOfferingsRefreshOfferingUsernamesWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderOfferingsRefreshOfferingUsernamesResponse
-func (c *ClientWithResponses) MarketplaceProviderOfferingsRefreshOfferingUsernamesWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsRefreshOfferingUsernamesResponse, error) {
-	rsp, err := c.MarketplaceProviderOfferingsRefreshOfferingUsernamesWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceProviderOfferingsRefreshOfferingUsernamesResponse(rsp)
-}
-
-func (c *ClientWithResponses) MarketplaceProviderOfferingsRefreshOfferingUsernamesWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsRefreshOfferingUsernamesJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsRefreshOfferingUsernamesResponse, error) {
-	rsp, err := c.MarketplaceProviderOfferingsRefreshOfferingUsernames(ctx, uuid, body, reqEditors...)
+// MarketplaceProviderOfferingsRefreshOfferingUsernamesWithResponse request returning *MarketplaceProviderOfferingsRefreshOfferingUsernamesResponse
+func (c *ClientWithResponses) MarketplaceProviderOfferingsRefreshOfferingUsernamesWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsRefreshOfferingUsernamesResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsRefreshOfferingUsernames(ctx, uuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -278182,6 +278259,32 @@ func ParseMarketplaceProviderOfferingsImportableResourcesListResponse(rsp *http.
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest []ImportableResource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProviderOfferingsListCourseAccountsRetrieveResponse parses an HTTP response from a MarketplaceProviderOfferingsListCourseAccountsRetrieveWithResponse call
+func ParseMarketplaceProviderOfferingsListCourseAccountsRetrieveResponse(rsp *http.Response) (*MarketplaceProviderOfferingsListCourseAccountsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderOfferingsListCourseAccountsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ProviderOfferingDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
