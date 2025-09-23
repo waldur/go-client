@@ -2611,6 +2611,8 @@ const (
 	BookingResourcesListParamsFieldName                       BookingResourcesListParamsField = "name"
 	BookingResourcesListParamsFieldOffering                   BookingResourcesListParamsField = "offering"
 	BookingResourcesListParamsFieldOfferingBillable           BookingResourcesListParamsField = "offering_billable"
+	BookingResourcesListParamsFieldOfferingCustomerName       BookingResourcesListParamsField = "offering_customer_name"
+	BookingResourcesListParamsFieldOfferingCustomerSlug       BookingResourcesListParamsField = "offering_customer_slug"
 	BookingResourcesListParamsFieldOfferingCustomerUuid       BookingResourcesListParamsField = "offering_customer_uuid"
 	BookingResourcesListParamsFieldOfferingDescription        BookingResourcesListParamsField = "offering_description"
 	BookingResourcesListParamsFieldOfferingImage              BookingResourcesListParamsField = "offering_image"
@@ -2741,6 +2743,8 @@ const (
 	BookingResourcesRetrieveParamsFieldName                       BookingResourcesRetrieveParamsField = "name"
 	BookingResourcesRetrieveParamsFieldOffering                   BookingResourcesRetrieveParamsField = "offering"
 	BookingResourcesRetrieveParamsFieldOfferingBillable           BookingResourcesRetrieveParamsField = "offering_billable"
+	BookingResourcesRetrieveParamsFieldOfferingCustomerName       BookingResourcesRetrieveParamsField = "offering_customer_name"
+	BookingResourcesRetrieveParamsFieldOfferingCustomerSlug       BookingResourcesRetrieveParamsField = "offering_customer_slug"
 	BookingResourcesRetrieveParamsFieldOfferingCustomerUuid       BookingResourcesRetrieveParamsField = "offering_customer_uuid"
 	BookingResourcesRetrieveParamsFieldOfferingDescription        BookingResourcesRetrieveParamsField = "offering_description"
 	BookingResourcesRetrieveParamsFieldOfferingImage              BookingResourcesRetrieveParamsField = "offering_image"
@@ -3705,6 +3709,8 @@ const (
 	ManagedRancherClusterResourcesListParamsFieldName                      ManagedRancherClusterResourcesListParamsField = "name"
 	ManagedRancherClusterResourcesListParamsFieldOffering                  ManagedRancherClusterResourcesListParamsField = "offering"
 	ManagedRancherClusterResourcesListParamsFieldOfferingBillable          ManagedRancherClusterResourcesListParamsField = "offering_billable"
+	ManagedRancherClusterResourcesListParamsFieldOfferingCustomerName      ManagedRancherClusterResourcesListParamsField = "offering_customer_name"
+	ManagedRancherClusterResourcesListParamsFieldOfferingCustomerSlug      ManagedRancherClusterResourcesListParamsField = "offering_customer_slug"
 	ManagedRancherClusterResourcesListParamsFieldOfferingCustomerUuid      ManagedRancherClusterResourcesListParamsField = "offering_customer_uuid"
 	ManagedRancherClusterResourcesListParamsFieldOfferingDescription       ManagedRancherClusterResourcesListParamsField = "offering_description"
 	ManagedRancherClusterResourcesListParamsFieldOfferingImage             ManagedRancherClusterResourcesListParamsField = "offering_image"
@@ -3784,6 +3790,8 @@ const (
 	ManagedRancherClusterResourcesRetrieveParamsFieldName                      ManagedRancherClusterResourcesRetrieveParamsField = "name"
 	ManagedRancherClusterResourcesRetrieveParamsFieldOffering                  ManagedRancherClusterResourcesRetrieveParamsField = "offering"
 	ManagedRancherClusterResourcesRetrieveParamsFieldOfferingBillable          ManagedRancherClusterResourcesRetrieveParamsField = "offering_billable"
+	ManagedRancherClusterResourcesRetrieveParamsFieldOfferingCustomerName      ManagedRancherClusterResourcesRetrieveParamsField = "offering_customer_name"
+	ManagedRancherClusterResourcesRetrieveParamsFieldOfferingCustomerSlug      ManagedRancherClusterResourcesRetrieveParamsField = "offering_customer_slug"
 	ManagedRancherClusterResourcesRetrieveParamsFieldOfferingCustomerUuid      ManagedRancherClusterResourcesRetrieveParamsField = "offering_customer_uuid"
 	ManagedRancherClusterResourcesRetrieveParamsFieldOfferingDescription       ManagedRancherClusterResourcesRetrieveParamsField = "offering_description"
 	ManagedRancherClusterResourcesRetrieveParamsFieldOfferingImage             ManagedRancherClusterResourcesRetrieveParamsField = "offering_image"
@@ -4453,6 +4461,9 @@ const (
 	MarketplaceOrdersListParamsFieldNewPlanUuid                MarketplaceOrdersListParamsField = "new_plan_uuid"
 	MarketplaceOrdersListParamsFieldOffering                   MarketplaceOrdersListParamsField = "offering"
 	MarketplaceOrdersListParamsFieldOfferingBillable           MarketplaceOrdersListParamsField = "offering_billable"
+	MarketplaceOrdersListParamsFieldOfferingCustomerName       MarketplaceOrdersListParamsField = "offering_customer_name"
+	MarketplaceOrdersListParamsFieldOfferingCustomerSlug       MarketplaceOrdersListParamsField = "offering_customer_slug"
+	MarketplaceOrdersListParamsFieldOfferingCustomerUuid       MarketplaceOrdersListParamsField = "offering_customer_uuid"
 	MarketplaceOrdersListParamsFieldOfferingDescription        MarketplaceOrdersListParamsField = "offering_description"
 	MarketplaceOrdersListParamsFieldOfferingImage              MarketplaceOrdersListParamsField = "offering_image"
 	MarketplaceOrdersListParamsFieldOfferingName               MarketplaceOrdersListParamsField = "offering_name"
@@ -4589,6 +4600,9 @@ const (
 	MarketplaceOrdersRetrieveParamsFieldNewPlanUuid                MarketplaceOrdersRetrieveParamsField = "new_plan_uuid"
 	MarketplaceOrdersRetrieveParamsFieldOffering                   MarketplaceOrdersRetrieveParamsField = "offering"
 	MarketplaceOrdersRetrieveParamsFieldOfferingBillable           MarketplaceOrdersRetrieveParamsField = "offering_billable"
+	MarketplaceOrdersRetrieveParamsFieldOfferingCustomerName       MarketplaceOrdersRetrieveParamsField = "offering_customer_name"
+	MarketplaceOrdersRetrieveParamsFieldOfferingCustomerSlug       MarketplaceOrdersRetrieveParamsField = "offering_customer_slug"
+	MarketplaceOrdersRetrieveParamsFieldOfferingCustomerUuid       MarketplaceOrdersRetrieveParamsField = "offering_customer_uuid"
 	MarketplaceOrdersRetrieveParamsFieldOfferingDescription        MarketplaceOrdersRetrieveParamsField = "offering_description"
 	MarketplaceOrdersRetrieveParamsFieldOfferingImage              MarketplaceOrdersRetrieveParamsField = "offering_image"
 	MarketplaceOrdersRetrieveParamsFieldOfferingName               MarketplaceOrdersRetrieveParamsField = "offering_name"
@@ -5383,6 +5397,8 @@ const (
 	MarketplaceProviderResourcesListParamsFieldName                      MarketplaceProviderResourcesListParamsField = "name"
 	MarketplaceProviderResourcesListParamsFieldOffering                  MarketplaceProviderResourcesListParamsField = "offering"
 	MarketplaceProviderResourcesListParamsFieldOfferingBillable          MarketplaceProviderResourcesListParamsField = "offering_billable"
+	MarketplaceProviderResourcesListParamsFieldOfferingCustomerName      MarketplaceProviderResourcesListParamsField = "offering_customer_name"
+	MarketplaceProviderResourcesListParamsFieldOfferingCustomerSlug      MarketplaceProviderResourcesListParamsField = "offering_customer_slug"
 	MarketplaceProviderResourcesListParamsFieldOfferingCustomerUuid      MarketplaceProviderResourcesListParamsField = "offering_customer_uuid"
 	MarketplaceProviderResourcesListParamsFieldOfferingDescription       MarketplaceProviderResourcesListParamsField = "offering_description"
 	MarketplaceProviderResourcesListParamsFieldOfferingImage             MarketplaceProviderResourcesListParamsField = "offering_image"
@@ -5506,6 +5522,8 @@ const (
 	MarketplaceProviderResourcesRetrieveParamsFieldName                      MarketplaceProviderResourcesRetrieveParamsField = "name"
 	MarketplaceProviderResourcesRetrieveParamsFieldOffering                  MarketplaceProviderResourcesRetrieveParamsField = "offering"
 	MarketplaceProviderResourcesRetrieveParamsFieldOfferingBillable          MarketplaceProviderResourcesRetrieveParamsField = "offering_billable"
+	MarketplaceProviderResourcesRetrieveParamsFieldOfferingCustomerName      MarketplaceProviderResourcesRetrieveParamsField = "offering_customer_name"
+	MarketplaceProviderResourcesRetrieveParamsFieldOfferingCustomerSlug      MarketplaceProviderResourcesRetrieveParamsField = "offering_customer_slug"
 	MarketplaceProviderResourcesRetrieveParamsFieldOfferingCustomerUuid      MarketplaceProviderResourcesRetrieveParamsField = "offering_customer_uuid"
 	MarketplaceProviderResourcesRetrieveParamsFieldOfferingDescription       MarketplaceProviderResourcesRetrieveParamsField = "offering_description"
 	MarketplaceProviderResourcesRetrieveParamsFieldOfferingImage             MarketplaceProviderResourcesRetrieveParamsField = "offering_image"
@@ -5585,6 +5603,8 @@ const (
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldName                      MarketplaceProviderResourcesDetailsRetrieveParamsField = "name"
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldOffering                  MarketplaceProviderResourcesDetailsRetrieveParamsField = "offering"
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldOfferingBillable          MarketplaceProviderResourcesDetailsRetrieveParamsField = "offering_billable"
+	MarketplaceProviderResourcesDetailsRetrieveParamsFieldOfferingCustomerName      MarketplaceProviderResourcesDetailsRetrieveParamsField = "offering_customer_name"
+	MarketplaceProviderResourcesDetailsRetrieveParamsFieldOfferingCustomerSlug      MarketplaceProviderResourcesDetailsRetrieveParamsField = "offering_customer_slug"
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldOfferingCustomerUuid      MarketplaceProviderResourcesDetailsRetrieveParamsField = "offering_customer_uuid"
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldOfferingDescription       MarketplaceProviderResourcesDetailsRetrieveParamsField = "offering_description"
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldOfferingImage             MarketplaceProviderResourcesDetailsRetrieveParamsField = "offering_image"
@@ -5852,6 +5872,8 @@ const (
 	MarketplaceResourcesListParamsFieldName                      MarketplaceResourcesListParamsField = "name"
 	MarketplaceResourcesListParamsFieldOffering                  MarketplaceResourcesListParamsField = "offering"
 	MarketplaceResourcesListParamsFieldOfferingBillable          MarketplaceResourcesListParamsField = "offering_billable"
+	MarketplaceResourcesListParamsFieldOfferingCustomerName      MarketplaceResourcesListParamsField = "offering_customer_name"
+	MarketplaceResourcesListParamsFieldOfferingCustomerSlug      MarketplaceResourcesListParamsField = "offering_customer_slug"
 	MarketplaceResourcesListParamsFieldOfferingCustomerUuid      MarketplaceResourcesListParamsField = "offering_customer_uuid"
 	MarketplaceResourcesListParamsFieldOfferingDescription       MarketplaceResourcesListParamsField = "offering_description"
 	MarketplaceResourcesListParamsFieldOfferingImage             MarketplaceResourcesListParamsField = "offering_image"
@@ -5975,6 +5997,8 @@ const (
 	MarketplaceResourcesRetrieveParamsFieldName                      MarketplaceResourcesRetrieveParamsField = "name"
 	MarketplaceResourcesRetrieveParamsFieldOffering                  MarketplaceResourcesRetrieveParamsField = "offering"
 	MarketplaceResourcesRetrieveParamsFieldOfferingBillable          MarketplaceResourcesRetrieveParamsField = "offering_billable"
+	MarketplaceResourcesRetrieveParamsFieldOfferingCustomerName      MarketplaceResourcesRetrieveParamsField = "offering_customer_name"
+	MarketplaceResourcesRetrieveParamsFieldOfferingCustomerSlug      MarketplaceResourcesRetrieveParamsField = "offering_customer_slug"
 	MarketplaceResourcesRetrieveParamsFieldOfferingCustomerUuid      MarketplaceResourcesRetrieveParamsField = "offering_customer_uuid"
 	MarketplaceResourcesRetrieveParamsFieldOfferingDescription       MarketplaceResourcesRetrieveParamsField = "offering_description"
 	MarketplaceResourcesRetrieveParamsFieldOfferingImage             MarketplaceResourcesRetrieveParamsField = "offering_image"
@@ -6054,6 +6078,8 @@ const (
 	MarketplaceResourcesDetailsRetrieveParamsFieldName                      MarketplaceResourcesDetailsRetrieveParamsField = "name"
 	MarketplaceResourcesDetailsRetrieveParamsFieldOffering                  MarketplaceResourcesDetailsRetrieveParamsField = "offering"
 	MarketplaceResourcesDetailsRetrieveParamsFieldOfferingBillable          MarketplaceResourcesDetailsRetrieveParamsField = "offering_billable"
+	MarketplaceResourcesDetailsRetrieveParamsFieldOfferingCustomerName      MarketplaceResourcesDetailsRetrieveParamsField = "offering_customer_name"
+	MarketplaceResourcesDetailsRetrieveParamsFieldOfferingCustomerSlug      MarketplaceResourcesDetailsRetrieveParamsField = "offering_customer_slug"
 	MarketplaceResourcesDetailsRetrieveParamsFieldOfferingCustomerUuid      MarketplaceResourcesDetailsRetrieveParamsField = "offering_customer_uuid"
 	MarketplaceResourcesDetailsRetrieveParamsFieldOfferingDescription       MarketplaceResourcesDetailsRetrieveParamsField = "offering_description"
 	MarketplaceResourcesDetailsRetrieveParamsFieldOfferingImage             MarketplaceResourcesDetailsRetrieveParamsField = "offering_image"
@@ -11573,6 +11599,8 @@ type BookingResource struct {
 
 	// OfferingBillable Purchase and usage is invoiced.
 	OfferingBillable     *bool               `json:"offering_billable,omitempty"`
+	OfferingCustomerName *string             `json:"offering_customer_name,omitempty"`
+	OfferingCustomerSlug *string             `json:"offering_customer_slug,omitempty"`
 	OfferingCustomerUuid *openapi_types.UUID `json:"offering_customer_uuid,omitempty"`
 	OfferingDescription  *string             `json:"offering_description,omitempty"`
 	OfferingImage        *string             `json:"offering_image,omitempty"`
@@ -14676,6 +14704,9 @@ type MergedPluginOptions struct {
 	// MaxVolumes Default limit for number of volumes in OpenStack tenant
 	MaxVolumes *int `json:"max_volumes,omitempty"`
 
+	// MaximalResourceCountPerProject Maximal number of offering resources allowed per project
+	MaximalResourceCountPerProject *int `json:"maximal_resource_count_per_project,omitempty"`
+
 	// MinimalTeamCountForProvisioning Minimal team count required for provisioning of resources
 	MinimalTeamCountForProvisioning *int `json:"minimal_team_count_for_provisioning,omitempty"`
 
@@ -14800,6 +14831,9 @@ type MergedPluginOptionsRequest struct {
 
 	// MaxVolumes Default limit for number of volumes in OpenStack tenant
 	MaxVolumes *int `json:"max_volumes,omitempty"`
+
+	// MaximalResourceCountPerProject Maximal number of offering resources allowed per project
+	MaximalResourceCountPerProject *int `json:"maximal_resource_count_per_project,omitempty"`
 
 	// MinimalTeamCountForProvisioning Minimal team count required for provisioning of resources
 	MinimalTeamCountForProvisioning *int `json:"minimal_team_count_for_provisioning,omitempty"`
@@ -15420,8 +15454,11 @@ type NodeDiskDriverEnum string
 
 // Notification defines model for Notification.
 type Notification struct {
-	Created     *time.Time `json:"created,omitempty"`
-	Description *string    `json:"description,omitempty"`
+	// ContextFields Finds the notification definition in the global NOTIFICATIONS
+	// dictionary and returns its 'context' fields.
+	ContextFields *map[string]interface{} `json:"context_fields,omitempty"`
+	Created       *time.Time              `json:"created,omitempty"`
+	Description   *string                 `json:"description,omitempty"`
 
 	// Enabled Indicates if notification is enabled or disabled
 	Enabled   *bool                                    `json:"enabled,omitempty"`
@@ -18052,10 +18089,13 @@ type OrderDetails struct {
 	Offering                *string             `json:"offering,omitempty"`
 
 	// OfferingBillable Purchase and usage is invoiced.
-	OfferingBillable    *bool   `json:"offering_billable,omitempty"`
-	OfferingDescription *string `json:"offering_description,omitempty"`
-	OfferingImage       *string `json:"offering_image,omitempty"`
-	OfferingName        *string `json:"offering_name,omitempty"`
+	OfferingBillable     *bool               `json:"offering_billable,omitempty"`
+	OfferingCustomerName *string             `json:"offering_customer_name,omitempty"`
+	OfferingCustomerSlug *string             `json:"offering_customer_slug,omitempty"`
+	OfferingCustomerUuid *openapi_types.UUID `json:"offering_customer_uuid,omitempty"`
+	OfferingDescription  *string             `json:"offering_description,omitempty"`
+	OfferingImage        *string             `json:"offering_image,omitempty"`
+	OfferingName         *string             `json:"offering_name,omitempty"`
 
 	// OfferingPluginOptions Public data used by specific plugin, such as storage mode for OpenStack.
 	OfferingPluginOptions interface{} `json:"offering_plugin_options,omitempty"`
@@ -21724,6 +21764,8 @@ type Resource struct {
 
 	// OfferingBillable Purchase and usage is invoiced.
 	OfferingBillable     *bool               `json:"offering_billable,omitempty"`
+	OfferingCustomerName *string             `json:"offering_customer_name,omitempty"`
+	OfferingCustomerSlug *string             `json:"offering_customer_slug,omitempty"`
 	OfferingCustomerUuid *openapi_types.UUID `json:"offering_customer_uuid,omitempty"`
 	OfferingDescription  *string             `json:"offering_description,omitempty"`
 	OfferingImage        *string             `json:"offering_image,omitempty"`
