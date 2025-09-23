@@ -15558,6 +15558,11 @@ type OfferingBackendMetadataRequest struct {
 	BackendMetadata interface{} `json:"backend_metadata,omitempty"`
 }
 
+// OfferingComplianceChecklistUpdateRequest defines model for OfferingComplianceChecklistUpdateRequest.
+type OfferingComplianceChecklistUpdateRequest struct {
+	ComplianceChecklist *openapi_types.UUID `json:"compliance_checklist"`
+}
+
 // OfferingComponent defines model for OfferingComponent.
 type OfferingComponent struct {
 	ArticleCode       *string                        `json:"article_code,omitempty"`
@@ -22850,6 +22855,8 @@ type UserChecklistCompletion struct {
 	ChecklistUuid        *string    `json:"checklist_uuid,omitempty"`
 	CompletionPercentage *float64   `json:"completion_percentage,omitempty"`
 	Created              *time.Time `json:"created,omitempty"`
+	CustomerProviderName *string    `json:"customer_provider_name"`
+	CustomerProviderUuid *string    `json:"customer_provider_uuid"`
 
 	// IsCompleted Whether all required questions have been answered
 	IsCompleted      *bool         `json:"is_completed,omitempty"`
@@ -35955,6 +35962,9 @@ type MarketplaceProviderOfferingsSetBackendMetadataJSONRequestBody = OfferingBac
 // MarketplaceProviderOfferingsUpdateAttributesJSONRequestBody defines body for MarketplaceProviderOfferingsUpdateAttributes for application/json ContentType.
 type MarketplaceProviderOfferingsUpdateAttributesJSONRequestBody MarketplaceProviderOfferingsUpdateAttributesJSONBody
 
+// MarketplaceProviderOfferingsUpdateComplianceChecklistJSONRequestBody defines body for MarketplaceProviderOfferingsUpdateComplianceChecklist for application/json ContentType.
+type MarketplaceProviderOfferingsUpdateComplianceChecklistJSONRequestBody = OfferingComplianceChecklistUpdateRequest
+
 // MarketplaceProviderOfferingsUpdateDescriptionJSONRequestBody defines body for MarketplaceProviderOfferingsUpdateDescription for application/json ContentType.
 type MarketplaceProviderOfferingsUpdateDescriptionJSONRequestBody = OfferingDescriptionUpdateRequest
 
@@ -44264,6 +44274,11 @@ type ClientInterface interface {
 	MarketplaceProviderOfferingsUpdateAttributesWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	MarketplaceProviderOfferingsUpdateAttributes(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateAttributesJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProviderOfferingsUpdateComplianceChecklistWithBody request with any body
+	MarketplaceProviderOfferingsUpdateComplianceChecklistWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceProviderOfferingsUpdateComplianceChecklist(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateComplianceChecklistJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceProviderOfferingsUpdateDescriptionWithBody request with any body
 	MarketplaceProviderOfferingsUpdateDescriptionWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -58274,6 +58289,30 @@ func (c *Client) MarketplaceProviderOfferingsUpdateAttributesWithBody(ctx contex
 
 func (c *Client) MarketplaceProviderOfferingsUpdateAttributes(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateAttributesJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProviderOfferingsUpdateAttributesRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderOfferingsUpdateComplianceChecklistWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsUpdateComplianceChecklistRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderOfferingsUpdateComplianceChecklist(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateComplianceChecklistJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsUpdateComplianceChecklistRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -128951,6 +128990,53 @@ func NewMarketplaceProviderOfferingsUpdateAttributesRequestWithBody(server strin
 	}
 
 	operationPath := fmt.Sprintf("/api/marketplace-provider-offerings/%s/update_attributes/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceProviderOfferingsUpdateComplianceChecklistRequest calls the generic MarketplaceProviderOfferingsUpdateComplianceChecklist builder with application/json body
+func NewMarketplaceProviderOfferingsUpdateComplianceChecklistRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateComplianceChecklistJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceProviderOfferingsUpdateComplianceChecklistRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceProviderOfferingsUpdateComplianceChecklistRequestWithBody generates requests for MarketplaceProviderOfferingsUpdateComplianceChecklist with any type of body
+func NewMarketplaceProviderOfferingsUpdateComplianceChecklistRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-offerings/%s/update_compliance_checklist/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -207995,6 +208081,11 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceProviderOfferingsUpdateAttributesWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateAttributesJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateAttributesResponse, error)
 
+	// MarketplaceProviderOfferingsUpdateComplianceChecklistWithBodyWithResponse request with any body
+	MarketplaceProviderOfferingsUpdateComplianceChecklistWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateComplianceChecklistResponse, error)
+
+	MarketplaceProviderOfferingsUpdateComplianceChecklistWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateComplianceChecklistJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateComplianceChecklistResponse, error)
+
 	// MarketplaceProviderOfferingsUpdateDescriptionWithBodyWithResponse request with any body
 	MarketplaceProviderOfferingsUpdateDescriptionWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateDescriptionResponse, error)
 
@@ -226234,6 +226325,27 @@ func (r MarketplaceProviderOfferingsUpdateAttributesResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceProviderOfferingsUpdateAttributesResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceProviderOfferingsUpdateComplianceChecklistResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderOfferingsUpdateComplianceChecklistResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderOfferingsUpdateComplianceChecklistResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -253043,6 +253155,23 @@ func (c *ClientWithResponses) MarketplaceProviderOfferingsUpdateAttributesWithRe
 	return ParseMarketplaceProviderOfferingsUpdateAttributesResponse(rsp)
 }
 
+// MarketplaceProviderOfferingsUpdateComplianceChecklistWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderOfferingsUpdateComplianceChecklistResponse
+func (c *ClientWithResponses) MarketplaceProviderOfferingsUpdateComplianceChecklistWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateComplianceChecklistResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsUpdateComplianceChecklistWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsUpdateComplianceChecklistResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceProviderOfferingsUpdateComplianceChecklistWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateComplianceChecklistJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateComplianceChecklistResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsUpdateComplianceChecklist(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsUpdateComplianceChecklistResponse(rsp)
+}
+
 // MarketplaceProviderOfferingsUpdateDescriptionWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderOfferingsUpdateDescriptionResponse
 func (c *ClientWithResponses) MarketplaceProviderOfferingsUpdateDescriptionWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateDescriptionResponse, error) {
 	rsp, err := c.MarketplaceProviderOfferingsUpdateDescriptionWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -278664,6 +278793,22 @@ func ParseMarketplaceProviderOfferingsUpdateAttributesResponse(rsp *http.Respons
 	}
 
 	response := &MarketplaceProviderOfferingsUpdateAttributesResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProviderOfferingsUpdateComplianceChecklistResponse parses an HTTP response from a MarketplaceProviderOfferingsUpdateComplianceChecklistWithResponse call
+func ParseMarketplaceProviderOfferingsUpdateComplianceChecklistResponse(rsp *http.Response) (*MarketplaceProviderOfferingsUpdateComplianceChecklistResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderOfferingsUpdateComplianceChecklistResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
