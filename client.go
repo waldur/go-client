@@ -30,6 +30,16 @@ const (
 	AdminAnnouncementTypeEnumWarning     AdminAnnouncementTypeEnum = "warning"
 )
 
+// Defines values for AgentTypeEnum.
+const (
+	AgentTypeEnumEventProcessing AgentTypeEnum = "Event processing"
+	AgentTypeEnumGlauthSync      AgentTypeEnum = "Glauth sync"
+	AgentTypeEnumOrderProcessing AgentTypeEnum = "Order processing"
+	AgentTypeEnumResourceSync    AgentTypeEnum = "Resource sync"
+	AgentTypeEnumUnknown         AgentTypeEnum = "unknown"
+	AgentTypeEnumUsageReporting  AgentTypeEnum = "Usage reporting"
+)
+
 // Defines values for AgreementTypeEnum.
 const (
 	AgreementTypeEnumPP  AgreementTypeEnum = "PP"
@@ -103,10 +113,10 @@ const (
 
 // Defines values for ChecklistTypeEnum.
 const (
-	OfferingCompliance ChecklistTypeEnum = "offering_compliance"
-	ProjectCompliance  ChecklistTypeEnum = "project_compliance"
-	ProjectMetadata    ChecklistTypeEnum = "project_metadata"
-	ProposalCompliance ChecklistTypeEnum = "proposal_compliance"
+	ChecklistTypeEnumOfferingCompliance ChecklistTypeEnum = "offering_compliance"
+	ChecklistTypeEnumProjectCompliance  ChecklistTypeEnum = "project_compliance"
+	ChecklistTypeEnumProjectMetadata    ChecklistTypeEnum = "project_metadata"
+	ChecklistTypeEnumProposalCompliance ChecklistTypeEnum = "proposal_compliance"
 )
 
 // Defines values for ContainerFormatEnum.
@@ -2451,6 +2461,7 @@ const (
 	BookingOfferingsListParamsFieldCategoryTitle             BookingOfferingsListParamsField = "category_title"
 	BookingOfferingsListParamsFieldCategoryUuid              BookingOfferingsListParamsField = "category_uuid"
 	BookingOfferingsListParamsFieldCitationCount             BookingOfferingsListParamsField = "citation_count"
+	BookingOfferingsListParamsFieldComplianceChecklist       BookingOfferingsListParamsField = "compliance_checklist"
 	BookingOfferingsListParamsFieldComponents                BookingOfferingsListParamsField = "components"
 	BookingOfferingsListParamsFieldCountry                   BookingOfferingsListParamsField = "country"
 	BookingOfferingsListParamsFieldCreated                   BookingOfferingsListParamsField = "created"
@@ -2517,6 +2528,7 @@ const (
 	BookingOfferingsRetrieveParamsFieldCategoryTitle             BookingOfferingsRetrieveParamsField = "category_title"
 	BookingOfferingsRetrieveParamsFieldCategoryUuid              BookingOfferingsRetrieveParamsField = "category_uuid"
 	BookingOfferingsRetrieveParamsFieldCitationCount             BookingOfferingsRetrieveParamsField = "citation_count"
+	BookingOfferingsRetrieveParamsFieldComplianceChecklist       BookingOfferingsRetrieveParamsField = "compliance_checklist"
 	BookingOfferingsRetrieveParamsFieldComponents                BookingOfferingsRetrieveParamsField = "components"
 	BookingOfferingsRetrieveParamsFieldCountry                   BookingOfferingsRetrieveParamsField = "country"
 	BookingOfferingsRetrieveParamsFieldCreated                   BookingOfferingsRetrieveParamsField = "created"
@@ -2902,6 +2914,54 @@ const (
 	CallManagingOrganisationsListUsersListParamsONativeName     CallManagingOrganisationsListUsersListParamsO = "native_name"
 	CallManagingOrganisationsListUsersListParamsORole           CallManagingOrganisationsListUsersListParamsO = "role"
 	CallManagingOrganisationsListUsersListParamsOUsername       CallManagingOrganisationsListUsersListParamsO = "username"
+)
+
+// Defines values for ChecklistsAdminListParamsChecklistType.
+const (
+	ChecklistsAdminListParamsChecklistTypeOfferingCompliance ChecklistsAdminListParamsChecklistType = "offering_compliance"
+	ChecklistsAdminListParamsChecklistTypeProjectCompliance  ChecklistsAdminListParamsChecklistType = "project_compliance"
+	ChecklistsAdminListParamsChecklistTypeProjectMetadata    ChecklistsAdminListParamsChecklistType = "project_metadata"
+	ChecklistsAdminListParamsChecklistTypeProposalCompliance ChecklistsAdminListParamsChecklistType = "proposal_compliance"
+)
+
+// Defines values for ChecklistsAdminListParamsChecklistTypeIn.
+const (
+	ChecklistsAdminListParamsChecklistTypeInOfferingCompliance ChecklistsAdminListParamsChecklistTypeIn = "offering_compliance"
+	ChecklistsAdminListParamsChecklistTypeInProjectCompliance  ChecklistsAdminListParamsChecklistTypeIn = "project_compliance"
+	ChecklistsAdminListParamsChecklistTypeInProjectMetadata    ChecklistsAdminListParamsChecklistTypeIn = "project_metadata"
+	ChecklistsAdminListParamsChecklistTypeInProposalCompliance ChecklistsAdminListParamsChecklistTypeIn = "proposal_compliance"
+)
+
+// Defines values for ChecklistsAdminCountParamsChecklistType.
+const (
+	ChecklistsAdminCountParamsChecklistTypeOfferingCompliance ChecklistsAdminCountParamsChecklistType = "offering_compliance"
+	ChecklistsAdminCountParamsChecklistTypeProjectCompliance  ChecklistsAdminCountParamsChecklistType = "project_compliance"
+	ChecklistsAdminCountParamsChecklistTypeProjectMetadata    ChecklistsAdminCountParamsChecklistType = "project_metadata"
+	ChecklistsAdminCountParamsChecklistTypeProposalCompliance ChecklistsAdminCountParamsChecklistType = "proposal_compliance"
+)
+
+// Defines values for ChecklistsAdminCountParamsChecklistTypeIn.
+const (
+	ChecklistsAdminCountParamsChecklistTypeInOfferingCompliance ChecklistsAdminCountParamsChecklistTypeIn = "offering_compliance"
+	ChecklistsAdminCountParamsChecklistTypeInProjectCompliance  ChecklistsAdminCountParamsChecklistTypeIn = "project_compliance"
+	ChecklistsAdminCountParamsChecklistTypeInProjectMetadata    ChecklistsAdminCountParamsChecklistTypeIn = "project_metadata"
+	ChecklistsAdminCountParamsChecklistTypeInProposalCompliance ChecklistsAdminCountParamsChecklistTypeIn = "proposal_compliance"
+)
+
+// Defines values for ChecklistsAdminChecklistQuestionsParamsChecklistType.
+const (
+	ChecklistsAdminChecklistQuestionsParamsChecklistTypeOfferingCompliance ChecklistsAdminChecklistQuestionsParamsChecklistType = "offering_compliance"
+	ChecklistsAdminChecklistQuestionsParamsChecklistTypeProjectCompliance  ChecklistsAdminChecklistQuestionsParamsChecklistType = "project_compliance"
+	ChecklistsAdminChecklistQuestionsParamsChecklistTypeProjectMetadata    ChecklistsAdminChecklistQuestionsParamsChecklistType = "project_metadata"
+	ChecklistsAdminChecklistQuestionsParamsChecklistTypeProposalCompliance ChecklistsAdminChecklistQuestionsParamsChecklistType = "proposal_compliance"
+)
+
+// Defines values for ChecklistsAdminChecklistQuestionsParamsChecklistTypeIn.
+const (
+	OfferingCompliance ChecklistsAdminChecklistQuestionsParamsChecklistTypeIn = "offering_compliance"
+	ProjectCompliance  ChecklistsAdminChecklistQuestionsParamsChecklistTypeIn = "project_compliance"
+	ProjectMetadata    ChecklistsAdminChecklistQuestionsParamsChecklistTypeIn = "project_metadata"
+	ProposalCompliance ChecklistsAdminChecklistQuestionsParamsChecklistTypeIn = "proposal_compliance"
 )
 
 // Defines values for CustomerCreditsListParamsO.
@@ -4683,6 +4743,7 @@ const (
 	MarketplaceProviderOfferingsListParamsFieldCategoryTitle             MarketplaceProviderOfferingsListParamsField = "category_title"
 	MarketplaceProviderOfferingsListParamsFieldCategoryUuid              MarketplaceProviderOfferingsListParamsField = "category_uuid"
 	MarketplaceProviderOfferingsListParamsFieldCitationCount             MarketplaceProviderOfferingsListParamsField = "citation_count"
+	MarketplaceProviderOfferingsListParamsFieldComplianceChecklist       MarketplaceProviderOfferingsListParamsField = "compliance_checklist"
 	MarketplaceProviderOfferingsListParamsFieldComponents                MarketplaceProviderOfferingsListParamsField = "components"
 	MarketplaceProviderOfferingsListParamsFieldCountry                   MarketplaceProviderOfferingsListParamsField = "country"
 	MarketplaceProviderOfferingsListParamsFieldCreated                   MarketplaceProviderOfferingsListParamsField = "created"
@@ -4856,6 +4917,7 @@ const (
 	MarketplaceProviderOfferingsRetrieveParamsFieldCategoryTitle             MarketplaceProviderOfferingsRetrieveParamsField = "category_title"
 	MarketplaceProviderOfferingsRetrieveParamsFieldCategoryUuid              MarketplaceProviderOfferingsRetrieveParamsField = "category_uuid"
 	MarketplaceProviderOfferingsRetrieveParamsFieldCitationCount             MarketplaceProviderOfferingsRetrieveParamsField = "citation_count"
+	MarketplaceProviderOfferingsRetrieveParamsFieldComplianceChecklist       MarketplaceProviderOfferingsRetrieveParamsField = "compliance_checklist"
 	MarketplaceProviderOfferingsRetrieveParamsFieldComponents                MarketplaceProviderOfferingsRetrieveParamsField = "components"
 	MarketplaceProviderOfferingsRetrieveParamsFieldCountry                   MarketplaceProviderOfferingsRetrieveParamsField = "country"
 	MarketplaceProviderOfferingsRetrieveParamsFieldCreated                   MarketplaceProviderOfferingsRetrieveParamsField = "created"
@@ -5003,6 +5065,7 @@ const (
 	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldCategoryTitle             MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "category_title"
 	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldCategoryUuid              MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "category_uuid"
 	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldCitationCount             MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "citation_count"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldComplianceChecklist       MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "compliance_checklist"
 	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldComponents                MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "components"
 	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldCountry                   MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "country"
 	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldCreated                   MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "created"
@@ -5072,6 +5135,7 @@ const (
 	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldCategoryTitle             MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "category_title"
 	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldCategoryUuid              MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "category_uuid"
 	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldCitationCount             MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "citation_count"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldComplianceChecklist       MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "compliance_checklist"
 	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldComponents                MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "components"
 	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldCountry                   MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "country"
 	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldCreated                   MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "created"
@@ -5141,6 +5205,7 @@ const (
 	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldCategoryTitle             MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "category_title"
 	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldCategoryUuid              MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "category_uuid"
 	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldCitationCount             MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "citation_count"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldComplianceChecklist       MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "compliance_checklist"
 	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldComponents                MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "components"
 	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldCountry                   MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "country"
 	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldCreated                   MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "created"
@@ -5237,6 +5302,7 @@ const (
 	MarketplaceProviderOfferingsStatsRetrieveParamsFieldCategoryTitle             MarketplaceProviderOfferingsStatsRetrieveParamsField = "category_title"
 	MarketplaceProviderOfferingsStatsRetrieveParamsFieldCategoryUuid              MarketplaceProviderOfferingsStatsRetrieveParamsField = "category_uuid"
 	MarketplaceProviderOfferingsStatsRetrieveParamsFieldCitationCount             MarketplaceProviderOfferingsStatsRetrieveParamsField = "citation_count"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldComplianceChecklist       MarketplaceProviderOfferingsStatsRetrieveParamsField = "compliance_checklist"
 	MarketplaceProviderOfferingsStatsRetrieveParamsFieldComponents                MarketplaceProviderOfferingsStatsRetrieveParamsField = "components"
 	MarketplaceProviderOfferingsStatsRetrieveParamsFieldCountry                   MarketplaceProviderOfferingsStatsRetrieveParamsField = "country"
 	MarketplaceProviderOfferingsStatsRetrieveParamsFieldCreated                   MarketplaceProviderOfferingsStatsRetrieveParamsField = "created"
@@ -5306,6 +5372,7 @@ const (
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldCategoryTitle             MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "category_title"
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldCategoryUuid              MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "category_uuid"
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldCitationCount             MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "citation_count"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldComplianceChecklist       MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "compliance_checklist"
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldComponents                MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "components"
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldCountry                   MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "country"
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldCreated                   MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "created"
@@ -5662,6 +5729,7 @@ const (
 	MarketplacePublicOfferingsListParamsFieldCategoryTitle             MarketplacePublicOfferingsListParamsField = "category_title"
 	MarketplacePublicOfferingsListParamsFieldCategoryUuid              MarketplacePublicOfferingsListParamsField = "category_uuid"
 	MarketplacePublicOfferingsListParamsFieldCitationCount             MarketplacePublicOfferingsListParamsField = "citation_count"
+	MarketplacePublicOfferingsListParamsFieldComplianceChecklist       MarketplacePublicOfferingsListParamsField = "compliance_checklist"
 	MarketplacePublicOfferingsListParamsFieldComponents                MarketplacePublicOfferingsListParamsField = "components"
 	MarketplacePublicOfferingsListParamsFieldCountry                   MarketplacePublicOfferingsListParamsField = "country"
 	MarketplacePublicOfferingsListParamsFieldCreated                   MarketplacePublicOfferingsListParamsField = "created"
@@ -5782,6 +5850,7 @@ const (
 	MarketplacePublicOfferingsRetrieveParamsFieldCategoryTitle             MarketplacePublicOfferingsRetrieveParamsField = "category_title"
 	MarketplacePublicOfferingsRetrieveParamsFieldCategoryUuid              MarketplacePublicOfferingsRetrieveParamsField = "category_uuid"
 	MarketplacePublicOfferingsRetrieveParamsFieldCitationCount             MarketplacePublicOfferingsRetrieveParamsField = "citation_count"
+	MarketplacePublicOfferingsRetrieveParamsFieldComplianceChecklist       MarketplacePublicOfferingsRetrieveParamsField = "compliance_checklist"
 	MarketplacePublicOfferingsRetrieveParamsFieldComponents                MarketplacePublicOfferingsRetrieveParamsField = "components"
 	MarketplacePublicOfferingsRetrieveParamsFieldCountry                   MarketplacePublicOfferingsRetrieveParamsField = "country"
 	MarketplacePublicOfferingsRetrieveParamsFieldCreated                   MarketplacePublicOfferingsRetrieveParamsField = "created"
@@ -10698,6 +10767,9 @@ type AdminAnnouncementRequest struct {
 // AdminAnnouncementTypeEnum defines model for AdminAnnouncementTypeEnum.
 type AdminAnnouncementTypeEnum string
 
+// AgentTypeEnum defines model for AgentTypeEnum.
+type AgentTypeEnum string
+
 // AgreementTypeEnum defines model for AgreementTypeEnum.
 type AgreementTypeEnum string
 
@@ -13804,9 +13876,10 @@ type InstanceFlavorChangeRequest struct {
 
 // IntegrationStatus defines model for IntegrationStatus.
 type IntegrationStatus struct {
-	AgentType            *string    `json:"agent_type,omitempty"`
-	LastRequestTimestamp *time.Time `json:"last_request_timestamp"`
-	Status               *string    `json:"status,omitempty"`
+	AgentType            *AgentTypeEnum `json:"agent_type,omitempty"`
+	LastRequestTimestamp *time.Time     `json:"last_request_timestamp"`
+	ServiceName          *string        `json:"service_name,omitempty"`
+	Status               *string        `json:"status,omitempty"`
 }
 
 // IntegrationStatusDetails defines model for IntegrationStatusDetails.
@@ -15527,7 +15600,10 @@ type Offering struct {
 	CategoryUuid  *openapi_types.UUID `json:"category_uuid,omitempty"`
 
 	// CitationCount Number of citations of a DOI
-	CitationCount             *int                  `json:"citation_count,omitempty"`
+	CitationCount *int `json:"citation_count,omitempty"`
+
+	// ComplianceChecklist Checklist that offering users must complete for compliance
+	ComplianceChecklist       *string               `json:"compliance_checklist"`
 	Components                *[]OfferingComponent  `json:"components,omitempty"`
 	Country                   *Offering_Country     `json:"country,omitempty"`
 	Created                   *time.Time            `json:"created,omitempty"`
@@ -15711,7 +15787,10 @@ type OfferingCreate struct {
 	CategoryUuid  *openapi_types.UUID `json:"category_uuid,omitempty"`
 
 	// CitationCount Number of citations of a DOI
-	CitationCount             *int                    `json:"citation_count,omitempty"`
+	CitationCount *int `json:"citation_count,omitempty"`
+
+	// ComplianceChecklist Checklist that offering users must complete for compliance
+	ComplianceChecklist       *string                 `json:"compliance_checklist"`
 	Components                *[]OfferingComponent    `json:"components,omitempty"`
 	Country                   *OfferingCreate_Country `json:"country,omitempty"`
 	Created                   *time.Time              `json:"created,omitempty"`
@@ -15783,25 +15862,28 @@ type OfferingCreateRequest struct {
 	BackendMetadata interface{} `json:"backend_metadata,omitempty"`
 
 	// Billable Purchase and usage is invoiced.
-	Billable          *bool                                     `json:"billable,omitempty"`
-	Category          string                                    `json:"category"`
-	Components        *[]OfferingComponentRequest               `json:"components,omitempty"`
-	Country           *OfferingCreateRequest_Country            `json:"country,omitempty"`
-	Customer          *string                                   `json:"customer"`
-	DataciteDoi       *string                                   `json:"datacite_doi,omitempty"`
-	Description       *string                                   `json:"description,omitempty"`
-	FullDescription   *string                                   `json:"full_description,omitempty"`
-	GettingStarted    *string                                   `json:"getting_started,omitempty"`
-	Image             *openapi_types.File                       `json:"image"`
-	IntegrationGuide  *string                                   `json:"integration_guide,omitempty"`
-	Latitude          *float64                                  `json:"latitude"`
-	Limits            *map[string]OfferingComponentLimitRequest `json:"limits,omitempty"`
-	Longitude         *float64                                  `json:"longitude"`
-	Name              string                                    `json:"name"`
-	Options           *OfferingOptionsRequest                   `json:"options,omitempty"`
-	Plans             *[]BaseProviderPlanRequest                `json:"plans,omitempty"`
-	PrivacyPolicyLink *string                                   `json:"privacy_policy_link,omitempty"`
-	ResourceOptions   *OfferingOptionsRequest                   `json:"resource_options,omitempty"`
+	Billable *bool  `json:"billable,omitempty"`
+	Category string `json:"category"`
+
+	// ComplianceChecklist Checklist that offering users must complete for compliance
+	ComplianceChecklist *string                                   `json:"compliance_checklist"`
+	Components          *[]OfferingComponentRequest               `json:"components,omitempty"`
+	Country             *OfferingCreateRequest_Country            `json:"country,omitempty"`
+	Customer            *string                                   `json:"customer"`
+	DataciteDoi         *string                                   `json:"datacite_doi,omitempty"`
+	Description         *string                                   `json:"description,omitempty"`
+	FullDescription     *string                                   `json:"full_description,omitempty"`
+	GettingStarted      *string                                   `json:"getting_started,omitempty"`
+	Image               *openapi_types.File                       `json:"image"`
+	IntegrationGuide    *string                                   `json:"integration_guide,omitempty"`
+	Latitude            *float64                                  `json:"latitude"`
+	Limits              *map[string]OfferingComponentLimitRequest `json:"limits,omitempty"`
+	Longitude           *float64                                  `json:"longitude"`
+	Name                string                                    `json:"name"`
+	Options             *OfferingOptionsRequest                   `json:"options,omitempty"`
+	Plans               *[]BaseProviderPlanRequest                `json:"plans,omitempty"`
+	PrivacyPolicyLink   *string                                   `json:"privacy_policy_link,omitempty"`
+	ResourceOptions     *OfferingOptionsRequest                   `json:"resource_options,omitempty"`
 
 	// Shared Accessible to all customers.
 	Shared        *bool               `json:"shared,omitempty"`
@@ -20140,7 +20222,10 @@ type ProviderOfferingDetails struct {
 	CategoryUuid  *openapi_types.UUID `json:"category_uuid,omitempty"`
 
 	// CitationCount Number of citations of a DOI
-	CitationCount          *int                             `json:"citation_count,omitempty"`
+	CitationCount *int `json:"citation_count,omitempty"`
+
+	// ComplianceChecklist Checklist that offering users must complete for compliance
+	ComplianceChecklist    *string                          `json:"compliance_checklist"`
 	Components             *[]OfferingComponent             `json:"components,omitempty"`
 	Country                *ProviderOfferingDetails_Country `json:"country,omitempty"`
 	Created                *time.Time                       `json:"created,omitempty"`
@@ -20389,7 +20474,10 @@ type PublicOfferingDetails struct {
 	CategoryUuid  *openapi_types.UUID `json:"category_uuid,omitempty"`
 
 	// CitationCount Number of citations of a DOI
-	CitationCount          *int                           `json:"citation_count,omitempty"`
+	CitationCount *int `json:"citation_count,omitempty"`
+
+	// ComplianceChecklist Checklist that offering users must complete for compliance
+	ComplianceChecklist    *string                        `json:"compliance_checklist"`
 	Components             *[]OfferingComponent           `json:"components,omitempty"`
 	Country                *PublicOfferingDetails_Country `json:"country,omitempty"`
 	Created                *time.Time                     `json:"created,omitempty"`
@@ -24914,30 +25002,72 @@ type ChecklistsAdminQuestionsCountParams struct {
 
 // ChecklistsAdminListParams defines parameters for ChecklistsAdminList.
 type ChecklistsAdminListParams struct {
+	// ChecklistType Type of compliance this checklist addresses
+	//
+	ChecklistType *ChecklistsAdminListParamsChecklistType `form:"checklist_type,omitempty" json:"checklist_type,omitempty"`
+
+	// ChecklistTypeIn Filter by multiple checklist types
+	//
+	ChecklistTypeIn *[]ChecklistsAdminListParamsChecklistTypeIn `form:"checklist_type__in,omitempty" json:"checklist_type__in,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 }
+
+// ChecklistsAdminListParamsChecklistType defines parameters for ChecklistsAdminList.
+type ChecklistsAdminListParamsChecklistType string
+
+// ChecklistsAdminListParamsChecklistTypeIn defines parameters for ChecklistsAdminList.
+type ChecklistsAdminListParamsChecklistTypeIn string
 
 // ChecklistsAdminCountParams defines parameters for ChecklistsAdminCount.
 type ChecklistsAdminCountParams struct {
+	// ChecklistType Type of compliance this checklist addresses
+	//
+	ChecklistType *ChecklistsAdminCountParamsChecklistType `form:"checklist_type,omitempty" json:"checklist_type,omitempty"`
+
+	// ChecklistTypeIn Filter by multiple checklist types
+	//
+	ChecklistTypeIn *[]ChecklistsAdminCountParamsChecklistTypeIn `form:"checklist_type__in,omitempty" json:"checklist_type__in,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 }
+
+// ChecklistsAdminCountParamsChecklistType defines parameters for ChecklistsAdminCount.
+type ChecklistsAdminCountParamsChecklistType string
+
+// ChecklistsAdminCountParamsChecklistTypeIn defines parameters for ChecklistsAdminCount.
+type ChecklistsAdminCountParamsChecklistTypeIn string
 
 // ChecklistsAdminChecklistQuestionsParams defines parameters for ChecklistsAdminChecklistQuestions.
 type ChecklistsAdminChecklistQuestionsParams struct {
+	// ChecklistType Type of compliance this checklist addresses
+	//
+	ChecklistType *ChecklistsAdminChecklistQuestionsParamsChecklistType `form:"checklist_type,omitempty" json:"checklist_type,omitempty"`
+
+	// ChecklistTypeIn Filter by multiple checklist types
+	//
+	ChecklistTypeIn *[]ChecklistsAdminChecklistQuestionsParamsChecklistTypeIn `form:"checklist_type__in,omitempty" json:"checklist_type__in,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 }
+
+// ChecklistsAdminChecklistQuestionsParamsChecklistType defines parameters for ChecklistsAdminChecklistQuestions.
+type ChecklistsAdminChecklistQuestionsParamsChecklistType string
+
+// ChecklistsAdminChecklistQuestionsParamsChecklistTypeIn defines parameters for ChecklistsAdminChecklistQuestions.
+type ChecklistsAdminChecklistQuestionsParamsChecklistTypeIn string
 
 // ComponentUserUsageLimitsListParams defines parameters for ComponentUserUsageLimitsList.
 type ComponentUserUsageLimitsListParams struct {
@@ -89136,6 +89266,38 @@ func NewChecklistsAdminListRequest(server string, params *ChecklistsAdminListPar
 	if params != nil {
 		queryValues := queryURL.Query()
 
+		if params.ChecklistType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "checklist_type", runtime.ParamLocationQuery, *params.ChecklistType); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ChecklistTypeIn != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "checklist_type__in", runtime.ParamLocationQuery, *params.ChecklistTypeIn); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Page != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
@@ -89200,6 +89362,38 @@ func NewChecklistsAdminCountRequest(server string, params *ChecklistsAdminCountP
 
 	if params != nil {
 		queryValues := queryURL.Query()
+
+		if params.ChecklistType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "checklist_type", runtime.ParamLocationQuery, *params.ChecklistType); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ChecklistTypeIn != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "checklist_type__in", runtime.ParamLocationQuery, *params.ChecklistTypeIn); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
 
 		if params.Page != nil {
 
@@ -89474,6 +89668,38 @@ func NewChecklistsAdminChecklistQuestionsRequest(server string, uuid openapi_typ
 
 	if params != nil {
 		queryValues := queryURL.Query()
+
+		if params.ChecklistType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "checklist_type", runtime.ParamLocationQuery, *params.ChecklistType); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ChecklistTypeIn != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "checklist_type__in", runtime.ParamLocationQuery, *params.ChecklistTypeIn); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
 
 		if params.Page != nil {
 
