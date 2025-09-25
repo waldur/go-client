@@ -1084,18 +1084,18 @@ const (
 	OfferingStatePaused   OfferingState = "Paused"
 )
 
-// Defines values for OfferingUserStateEnum.
+// Defines values for OfferingUserState.
 const (
-	OfferingUserStateEnumCreating                    OfferingUserStateEnum = "Creating"
-	OfferingUserStateEnumDeleted                     OfferingUserStateEnum = "Deleted"
-	OfferingUserStateEnumDeleting                    OfferingUserStateEnum = "Deleting"
-	OfferingUserStateEnumErrorCreating               OfferingUserStateEnum = "Error creating"
-	OfferingUserStateEnumErrorDeleting               OfferingUserStateEnum = "Error deleting"
-	OfferingUserStateEnumOK                          OfferingUserStateEnum = "OK"
-	OfferingUserStateEnumPendingAccountLinking       OfferingUserStateEnum = "Pending account linking"
-	OfferingUserStateEnumPendingAdditionalValidation OfferingUserStateEnum = "Pending additional validation"
-	OfferingUserStateEnumRequested                   OfferingUserStateEnum = "Requested"
-	OfferingUserStateEnumRequestedDeletion           OfferingUserStateEnum = "Requested deletion"
+	OfferingUserStateCreating                    OfferingUserState = "Creating"
+	OfferingUserStateDeleted                     OfferingUserState = "Deleted"
+	OfferingUserStateDeleting                    OfferingUserState = "Deleting"
+	OfferingUserStateErrorCreating               OfferingUserState = "Error creating"
+	OfferingUserStateErrorDeleting               OfferingUserState = "Error deleting"
+	OfferingUserStateOK                          OfferingUserState = "OK"
+	OfferingUserStatePendingAccountLinking       OfferingUserState = "Pending account linking"
+	OfferingUserStatePendingAdditionalValidation OfferingUserState = "Pending additional validation"
+	OfferingUserStateRequested                   OfferingUserState = "Requested"
+	OfferingUserStateRequestedDeletion           OfferingUserState = "Requested deletion"
 )
 
 // Defines values for OptionFieldTypeEnum.
@@ -6429,6 +6429,7 @@ const (
 	MarketplaceServiceProvidersOfferingsListParamsFieldSecretOptions        MarketplaceServiceProvidersOfferingsListParamsField = "secret_options"
 	MarketplaceServiceProvidersOfferingsListParamsFieldSlug                 MarketplaceServiceProvidersOfferingsListParamsField = "slug"
 	MarketplaceServiceProvidersOfferingsListParamsFieldState                MarketplaceServiceProvidersOfferingsListParamsField = "state"
+	MarketplaceServiceProvidersOfferingsListParamsFieldThumbnail            MarketplaceServiceProvidersOfferingsListParamsField = "thumbnail"
 	MarketplaceServiceProvidersOfferingsListParamsFieldType                 MarketplaceServiceProvidersOfferingsListParamsField = "type"
 	MarketplaceServiceProvidersOfferingsListParamsFieldUuid                 MarketplaceServiceProvidersOfferingsListParamsField = "uuid"
 )
@@ -16200,12 +16201,12 @@ type OfferingUser struct {
 	ServiceProviderComment *string `json:"service_provider_comment,omitempty"`
 
 	// ServiceProviderCommentUrl URL link for additional information or actions related to service provider comment
-	ServiceProviderCommentUrl *string                `json:"service_provider_comment_url,omitempty"`
-	State                     *OfferingUserStateEnum `json:"state,omitempty"`
-	Url                       *string                `json:"url,omitempty"`
-	User                      *string                `json:"user,omitempty"`
-	UserEmail                 *openapi_types.Email   `json:"user_email,omitempty"`
-	UserFullName              *string                `json:"user_full_name,omitempty"`
+	ServiceProviderCommentUrl *string              `json:"service_provider_comment_url,omitempty"`
+	State                     *OfferingUserState   `json:"state,omitempty"`
+	Url                       *string              `json:"url,omitempty"`
+	User                      *string              `json:"user,omitempty"`
+	UserEmail                 *openapi_types.Email `json:"user_email,omitempty"`
+	UserFullName              *string              `json:"user_full_name,omitempty"`
 
 	// UserUsername Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
 	UserUsername *string             `json:"user_username,omitempty"`
@@ -16246,8 +16247,8 @@ type OfferingUserServiceProviderComment struct {
 	ServiceProviderCommentUrl *string `json:"service_provider_comment_url,omitempty"`
 }
 
-// OfferingUserStateEnum defines model for OfferingUserStateEnum.
-type OfferingUserStateEnum string
+// OfferingUserState defines model for OfferingUserState.
+type OfferingUserState string
 
 // OfferingUserStateTransitionRequest defines model for OfferingUserStateTransitionRequest.
 type OfferingUserStateTransitionRequest struct {
@@ -19858,6 +19859,7 @@ type ProjectUser struct {
 	Email                *openapi_types.Email `json:"email,omitempty"`
 	ExpirationTime       *time.Time           `json:"expiration_time"`
 	FullName             *string              `json:"full_name,omitempty"`
+	OfferingUserState    *OfferingUserState   `json:"offering_user_state,omitempty"`
 	OfferingUserUsername *string              `json:"offering_user_username"`
 	Role                 *string              `json:"role,omitempty"`
 	Url                  *string              `json:"url,omitempty"`
@@ -20185,6 +20187,7 @@ type ProviderOffering struct {
 	SecretOptions   *MergedSecretOptions `json:"secret_options,omitempty"`
 	Slug            *string              `json:"slug,omitempty"`
 	State           *OfferingState       `json:"state,omitempty"`
+	Thumbnail       *string              `json:"thumbnail"`
 	Type            *string              `json:"type,omitempty"`
 	Uuid            *openapi_types.UUID  `json:"uuid,omitempty"`
 }
@@ -24570,7 +24573,7 @@ type BookingResourcesListParams struct {
 	//
 	O                *[]BookingResourcesListParamsO `form:"o,omitempty" json:"o,omitempty"`
 	Offering         *string                        `form:"offering,omitempty" json:"offering,omitempty"`
-	OfferingBillable *openapi_types.UUID            `form:"offering_billable,omitempty" json:"offering_billable,omitempty"`
+	OfferingBillable *bool                          `form:"offering_billable,omitempty" json:"offering_billable,omitempty"`
 
 	// OfferingShared Offering shared
 	OfferingShared *bool `form:"offering_shared,omitempty" json:"offering_shared,omitempty"`
@@ -24645,7 +24648,7 @@ type BookingResourcesCountParams struct {
 	//
 	O                *[]BookingResourcesCountParamsO `form:"o,omitempty" json:"o,omitempty"`
 	Offering         *string                         `form:"offering,omitempty" json:"offering,omitempty"`
-	OfferingBillable *openapi_types.UUID             `form:"offering_billable,omitempty" json:"offering_billable,omitempty"`
+	OfferingBillable *bool                           `form:"offering_billable,omitempty" json:"offering_billable,omitempty"`
 
 	// OfferingShared Offering shared
 	OfferingShared *bool `form:"offering_shared,omitempty" json:"offering_shared,omitempty"`
@@ -28977,7 +28980,7 @@ type MarketplaceProviderResourcesListParams struct {
 	//
 	O                *[]MarketplaceProviderResourcesListParamsO `form:"o,omitempty" json:"o,omitempty"`
 	Offering         *string                                    `form:"offering,omitempty" json:"offering,omitempty"`
-	OfferingBillable *openapi_types.UUID                        `form:"offering_billable,omitempty" json:"offering_billable,omitempty"`
+	OfferingBillable *bool                                      `form:"offering_billable,omitempty" json:"offering_billable,omitempty"`
 
 	// OfferingShared Offering shared
 	OfferingShared *bool `form:"offering_shared,omitempty" json:"offering_shared,omitempty"`
@@ -29051,7 +29054,7 @@ type MarketplaceProviderResourcesCountParams struct {
 	//
 	O                *[]MarketplaceProviderResourcesCountParamsO `form:"o,omitempty" json:"o,omitempty"`
 	Offering         *string                                     `form:"offering,omitempty" json:"offering,omitempty"`
-	OfferingBillable *openapi_types.UUID                         `form:"offering_billable,omitempty" json:"offering_billable,omitempty"`
+	OfferingBillable *bool                                       `form:"offering_billable,omitempty" json:"offering_billable,omitempty"`
 
 	// OfferingShared Offering shared
 	OfferingShared *bool `form:"offering_shared,omitempty" json:"offering_shared,omitempty"`
@@ -29371,7 +29374,7 @@ type MarketplaceResourcesListParams struct {
 	//
 	O                *[]MarketplaceResourcesListParamsO `form:"o,omitempty" json:"o,omitempty"`
 	Offering         *string                            `form:"offering,omitempty" json:"offering,omitempty"`
-	OfferingBillable *openapi_types.UUID                `form:"offering_billable,omitempty" json:"offering_billable,omitempty"`
+	OfferingBillable *bool                              `form:"offering_billable,omitempty" json:"offering_billable,omitempty"`
 
 	// OfferingShared Offering shared
 	OfferingShared *bool `form:"offering_shared,omitempty" json:"offering_shared,omitempty"`
@@ -29445,7 +29448,7 @@ type MarketplaceResourcesCountParams struct {
 	//
 	O                *[]MarketplaceResourcesCountParamsO `form:"o,omitempty" json:"o,omitempty"`
 	Offering         *string                             `form:"offering,omitempty" json:"offering,omitempty"`
-	OfferingBillable *openapi_types.UUID                 `form:"offering_billable,omitempty" json:"offering_billable,omitempty"`
+	OfferingBillable *bool                               `form:"offering_billable,omitempty" json:"offering_billable,omitempty"`
 
 	// OfferingShared Offering shared
 	OfferingShared *bool `form:"offering_shared,omitempty" json:"offering_shared,omitempty"`
@@ -34713,6 +34716,7 @@ type UserAgreementsCountParamsAgreementType string
 type UserGroupInvitationsListParams struct {
 	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
 	IsActive     *bool               `form:"is_active,omitempty" json:"is_active,omitempty"`
+	IsPublic     *bool               `form:"is_public,omitempty" json:"is_public,omitempty"`
 
 	// O Ordering
 	//
@@ -34735,6 +34739,7 @@ type UserGroupInvitationsListParamsO string
 type UserGroupInvitationsCountParams struct {
 	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
 	IsActive     *bool               `form:"is_active,omitempty" json:"is_active,omitempty"`
+	IsPublic     *bool               `form:"is_public,omitempty" json:"is_public,omitempty"`
 
 	// O Ordering
 	//
@@ -196771,6 +196776,22 @@ func NewUserGroupInvitationsListRequest(server string, params *UserGroupInvitati
 
 		}
 
+		if params.IsPublic != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_public", runtime.ParamLocationQuery, *params.IsPublic); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.O != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
@@ -196919,6 +196940,22 @@ func NewUserGroupInvitationsCountRequest(server string, params *UserGroupInvitat
 		if params.IsActive != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_active", runtime.ParamLocationQuery, *params.IsActive); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsPublic != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_public", runtime.ParamLocationQuery, *params.IsPublic); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
