@@ -3049,6 +3049,7 @@ const (
 	CustomersListParamsFieldMaxServiceAccounts           CustomersListParamsField = "max_service_accounts"
 	CustomersListParamsFieldName                         CustomersListParamsField = "name"
 	CustomersListParamsFieldNativeName                   CustomersListParamsField = "native_name"
+	CustomersListParamsFieldNotificationEmails           CustomersListParamsField = "notification_emails"
 	CustomersListParamsFieldOrganizationGroups           CustomersListParamsField = "organization_groups"
 	CustomersListParamsFieldPaymentProfiles              CustomersListParamsField = "payment_profiles"
 	CustomersListParamsFieldPhoneNumber                  CustomersListParamsField = "phone_number"
@@ -3133,6 +3134,7 @@ const (
 	CustomersRetrieveParamsFieldMaxServiceAccounts           CustomersRetrieveParamsField = "max_service_accounts"
 	CustomersRetrieveParamsFieldName                         CustomersRetrieveParamsField = "name"
 	CustomersRetrieveParamsFieldNativeName                   CustomersRetrieveParamsField = "native_name"
+	CustomersRetrieveParamsFieldNotificationEmails           CustomersRetrieveParamsField = "notification_emails"
 	CustomersRetrieveParamsFieldOrganizationGroups           CustomersRetrieveParamsField = "organization_groups"
 	CustomersRetrieveParamsFieldPaymentProfiles              CustomersRetrieveParamsField = "payment_profiles"
 	CustomersRetrieveParamsFieldPhoneNumber                  CustomersRetrieveParamsField = "phone_number"
@@ -13261,9 +13263,12 @@ type Customer struct {
 	Longitude                    *float64             `json:"longitude"`
 
 	// MaxServiceAccounts Maximum number of service accounts allowed
-	MaxServiceAccounts       *int                 `json:"max_service_accounts"`
-	Name                     *string              `json:"name,omitempty"`
-	NativeName               *string              `json:"native_name,omitempty"`
+	MaxServiceAccounts *int    `json:"max_service_accounts"`
+	Name               *string `json:"name,omitempty"`
+	NativeName         *string `json:"native_name,omitempty"`
+
+	// NotificationEmails Comma-separated list of notification email addresses
+	NotificationEmails       *string              `json:"notification_emails,omitempty"`
 	OrganizationGroups       *[]OrganizationGroup `json:"organization_groups,omitempty"`
 	PaymentProfiles          *[]PaymentProfile    `json:"payment_profiles,omitempty"`
 	PhoneNumber              *string              `json:"phone_number,omitempty"`
@@ -13431,23 +13436,26 @@ type CustomerRequest struct {
 	Address      *string `json:"address,omitempty"`
 
 	// BackendId Organization identifier in another application.
-	BackendId        *string                  `json:"backend_id,omitempty"`
-	BankAccount      *string                  `json:"bank_account,omitempty"`
-	BankName         *string                  `json:"bank_name,omitempty"`
-	ContactDetails   *string                  `json:"contact_details,omitempty"`
-	Country          *CustomerRequest_Country `json:"country,omitempty"`
-	Description      *string                  `json:"description,omitempty"`
-	Email            *openapi_types.Email     `json:"email,omitempty"`
-	Homepage         *string                  `json:"homepage,omitempty"`
-	Image            *openapi_types.File      `json:"image"`
-	Latitude         *float64                 `json:"latitude"`
-	Longitude        *float64                 `json:"longitude"`
-	Name             string                   `json:"name"`
-	NativeName       *string                  `json:"native_name,omitempty"`
-	PhoneNumber      *string                  `json:"phone_number,omitempty"`
-	Postal           *string                  `json:"postal,omitempty"`
-	RegistrationCode *string                  `json:"registration_code,omitempty"`
-	Slug             *string                  `json:"slug,omitempty"`
+	BackendId      *string                  `json:"backend_id,omitempty"`
+	BankAccount    *string                  `json:"bank_account,omitempty"`
+	BankName       *string                  `json:"bank_name,omitempty"`
+	ContactDetails *string                  `json:"contact_details,omitempty"`
+	Country        *CustomerRequest_Country `json:"country,omitempty"`
+	Description    *string                  `json:"description,omitempty"`
+	Email          *openapi_types.Email     `json:"email,omitempty"`
+	Homepage       *string                  `json:"homepage,omitempty"`
+	Image          *openapi_types.File      `json:"image"`
+	Latitude       *float64                 `json:"latitude"`
+	Longitude      *float64                 `json:"longitude"`
+	Name           string                   `json:"name"`
+	NativeName     *string                  `json:"native_name,omitempty"`
+
+	// NotificationEmails Comma-separated list of notification email addresses
+	NotificationEmails *string `json:"notification_emails,omitempty"`
+	PhoneNumber        *string `json:"phone_number,omitempty"`
+	Postal             *string `json:"postal,omitempty"`
+	RegistrationCode   *string `json:"registration_code,omitempty"`
+	Slug               *string `json:"slug,omitempty"`
 
 	// VatCode VAT number
 	VatCode *string `json:"vat_code,omitempty"`
@@ -13464,23 +13472,26 @@ type CustomerRequestForm struct {
 	Address      *string `json:"address,omitempty"`
 
 	// BackendId Organization identifier in another application.
-	BackendId        *string                      `json:"backend_id,omitempty"`
-	BankAccount      *string                      `json:"bank_account,omitempty"`
-	BankName         *string                      `json:"bank_name,omitempty"`
-	ContactDetails   *string                      `json:"contact_details,omitempty"`
-	Country          *CustomerRequestForm_Country `json:"country,omitempty"`
-	Description      *string                      `json:"description,omitempty"`
-	Email            *openapi_types.Email         `json:"email,omitempty"`
-	Homepage         *string                      `json:"homepage,omitempty"`
-	Image            *openapi_types.File          `json:"image"`
-	Latitude         *float64                     `json:"latitude"`
-	Longitude        *float64                     `json:"longitude"`
-	Name             string                       `json:"name"`
-	NativeName       *string                      `json:"native_name,omitempty"`
-	PhoneNumber      *string                      `json:"phone_number,omitempty"`
-	Postal           *string                      `json:"postal,omitempty"`
-	RegistrationCode *string                      `json:"registration_code,omitempty"`
-	Slug             *string                      `json:"slug,omitempty"`
+	BackendId      *string                      `json:"backend_id,omitempty"`
+	BankAccount    *string                      `json:"bank_account,omitempty"`
+	BankName       *string                      `json:"bank_name,omitempty"`
+	ContactDetails *string                      `json:"contact_details,omitempty"`
+	Country        *CustomerRequestForm_Country `json:"country,omitempty"`
+	Description    *string                      `json:"description,omitempty"`
+	Email          *openapi_types.Email         `json:"email,omitempty"`
+	Homepage       *string                      `json:"homepage,omitempty"`
+	Image          *openapi_types.File          `json:"image"`
+	Latitude       *float64                     `json:"latitude"`
+	Longitude      *float64                     `json:"longitude"`
+	Name           string                       `json:"name"`
+	NativeName     *string                      `json:"native_name,omitempty"`
+
+	// NotificationEmails Comma-separated list of notification email addresses
+	NotificationEmails *string `json:"notification_emails,omitempty"`
+	PhoneNumber        *string `json:"phone_number,omitempty"`
+	Postal             *string `json:"postal,omitempty"`
+	RegistrationCode   *string `json:"registration_code,omitempty"`
+	Slug               *string `json:"slug,omitempty"`
 
 	// VatCode VAT number
 	VatCode *string `json:"vat_code,omitempty"`
@@ -13497,23 +13508,26 @@ type CustomerRequestMultipart struct {
 	Address      *string `json:"address,omitempty"`
 
 	// BackendId Organization identifier in another application.
-	BackendId        *string                           `json:"backend_id,omitempty"`
-	BankAccount      *string                           `json:"bank_account,omitempty"`
-	BankName         *string                           `json:"bank_name,omitempty"`
-	ContactDetails   *string                           `json:"contact_details,omitempty"`
-	Country          *CustomerRequestMultipart_Country `json:"country,omitempty"`
-	Description      *string                           `json:"description,omitempty"`
-	Email            *openapi_types.Email              `json:"email,omitempty"`
-	Homepage         *string                           `json:"homepage,omitempty"`
-	Image            *openapi_types.File               `json:"image"`
-	Latitude         *float64                          `json:"latitude"`
-	Longitude        *float64                          `json:"longitude"`
-	Name             string                            `json:"name"`
-	NativeName       *string                           `json:"native_name,omitempty"`
-	PhoneNumber      *string                           `json:"phone_number,omitempty"`
-	Postal           *string                           `json:"postal,omitempty"`
-	RegistrationCode *string                           `json:"registration_code,omitempty"`
-	Slug             *string                           `json:"slug,omitempty"`
+	BackendId      *string                           `json:"backend_id,omitempty"`
+	BankAccount    *string                           `json:"bank_account,omitempty"`
+	BankName       *string                           `json:"bank_name,omitempty"`
+	ContactDetails *string                           `json:"contact_details,omitempty"`
+	Country        *CustomerRequestMultipart_Country `json:"country,omitempty"`
+	Description    *string                           `json:"description,omitempty"`
+	Email          *openapi_types.Email              `json:"email,omitempty"`
+	Homepage       *string                           `json:"homepage,omitempty"`
+	Image          *openapi_types.File               `json:"image"`
+	Latitude       *float64                          `json:"latitude"`
+	Longitude      *float64                          `json:"longitude"`
+	Name           string                            `json:"name"`
+	NativeName     *string                           `json:"native_name,omitempty"`
+
+	// NotificationEmails Comma-separated list of notification email addresses
+	NotificationEmails *string `json:"notification_emails,omitempty"`
+	PhoneNumber        *string `json:"phone_number,omitempty"`
+	Postal             *string `json:"postal,omitempty"`
+	RegistrationCode   *string `json:"registration_code,omitempty"`
+	Slug               *string `json:"slug,omitempty"`
 
 	// VatCode VAT number
 	VatCode *string `json:"vat_code,omitempty"`
@@ -19098,23 +19112,26 @@ type PatchedCustomerRequest struct {
 	Address      *string `json:"address,omitempty"`
 
 	// BackendId Organization identifier in another application.
-	BackendId        *string                         `json:"backend_id,omitempty"`
-	BankAccount      *string                         `json:"bank_account,omitempty"`
-	BankName         *string                         `json:"bank_name,omitempty"`
-	ContactDetails   *string                         `json:"contact_details,omitempty"`
-	Country          *PatchedCustomerRequest_Country `json:"country,omitempty"`
-	Description      *string                         `json:"description,omitempty"`
-	Email            *openapi_types.Email            `json:"email,omitempty"`
-	Homepage         *string                         `json:"homepage,omitempty"`
-	Image            *openapi_types.File             `json:"image"`
-	Latitude         *float64                        `json:"latitude"`
-	Longitude        *float64                        `json:"longitude"`
-	Name             *string                         `json:"name,omitempty"`
-	NativeName       *string                         `json:"native_name,omitempty"`
-	PhoneNumber      *string                         `json:"phone_number,omitempty"`
-	Postal           *string                         `json:"postal,omitempty"`
-	RegistrationCode *string                         `json:"registration_code,omitempty"`
-	Slug             *string                         `json:"slug,omitempty"`
+	BackendId      *string                         `json:"backend_id,omitempty"`
+	BankAccount    *string                         `json:"bank_account,omitempty"`
+	BankName       *string                         `json:"bank_name,omitempty"`
+	ContactDetails *string                         `json:"contact_details,omitempty"`
+	Country        *PatchedCustomerRequest_Country `json:"country,omitempty"`
+	Description    *string                         `json:"description,omitempty"`
+	Email          *openapi_types.Email            `json:"email,omitempty"`
+	Homepage       *string                         `json:"homepage,omitempty"`
+	Image          *openapi_types.File             `json:"image"`
+	Latitude       *float64                        `json:"latitude"`
+	Longitude      *float64                        `json:"longitude"`
+	Name           *string                         `json:"name,omitempty"`
+	NativeName     *string                         `json:"native_name,omitempty"`
+
+	// NotificationEmails Comma-separated list of notification email addresses
+	NotificationEmails *string `json:"notification_emails,omitempty"`
+	PhoneNumber        *string `json:"phone_number,omitempty"`
+	Postal             *string `json:"postal,omitempty"`
+	RegistrationCode   *string `json:"registration_code,omitempty"`
+	Slug               *string `json:"slug,omitempty"`
 
 	// VatCode VAT number
 	VatCode *string `json:"vat_code,omitempty"`
@@ -19131,23 +19148,26 @@ type PatchedCustomerRequestForm struct {
 	Address      *string `json:"address,omitempty"`
 
 	// BackendId Organization identifier in another application.
-	BackendId        *string                             `json:"backend_id,omitempty"`
-	BankAccount      *string                             `json:"bank_account,omitempty"`
-	BankName         *string                             `json:"bank_name,omitempty"`
-	ContactDetails   *string                             `json:"contact_details,omitempty"`
-	Country          *PatchedCustomerRequestForm_Country `json:"country,omitempty"`
-	Description      *string                             `json:"description,omitempty"`
-	Email            *openapi_types.Email                `json:"email,omitempty"`
-	Homepage         *string                             `json:"homepage,omitempty"`
-	Image            *openapi_types.File                 `json:"image"`
-	Latitude         *float64                            `json:"latitude"`
-	Longitude        *float64                            `json:"longitude"`
-	Name             *string                             `json:"name,omitempty"`
-	NativeName       *string                             `json:"native_name,omitempty"`
-	PhoneNumber      *string                             `json:"phone_number,omitempty"`
-	Postal           *string                             `json:"postal,omitempty"`
-	RegistrationCode *string                             `json:"registration_code,omitempty"`
-	Slug             *string                             `json:"slug,omitempty"`
+	BackendId      *string                             `json:"backend_id,omitempty"`
+	BankAccount    *string                             `json:"bank_account,omitempty"`
+	BankName       *string                             `json:"bank_name,omitempty"`
+	ContactDetails *string                             `json:"contact_details,omitempty"`
+	Country        *PatchedCustomerRequestForm_Country `json:"country,omitempty"`
+	Description    *string                             `json:"description,omitempty"`
+	Email          *openapi_types.Email                `json:"email,omitempty"`
+	Homepage       *string                             `json:"homepage,omitempty"`
+	Image          *openapi_types.File                 `json:"image"`
+	Latitude       *float64                            `json:"latitude"`
+	Longitude      *float64                            `json:"longitude"`
+	Name           *string                             `json:"name,omitempty"`
+	NativeName     *string                             `json:"native_name,omitempty"`
+
+	// NotificationEmails Comma-separated list of notification email addresses
+	NotificationEmails *string `json:"notification_emails,omitempty"`
+	PhoneNumber        *string `json:"phone_number,omitempty"`
+	Postal             *string `json:"postal,omitempty"`
+	RegistrationCode   *string `json:"registration_code,omitempty"`
+	Slug               *string `json:"slug,omitempty"`
 
 	// VatCode VAT number
 	VatCode *string `json:"vat_code,omitempty"`
@@ -19164,23 +19184,26 @@ type PatchedCustomerRequestMultipart struct {
 	Address      *string `json:"address,omitempty"`
 
 	// BackendId Organization identifier in another application.
-	BackendId        *string                                  `json:"backend_id,omitempty"`
-	BankAccount      *string                                  `json:"bank_account,omitempty"`
-	BankName         *string                                  `json:"bank_name,omitempty"`
-	ContactDetails   *string                                  `json:"contact_details,omitempty"`
-	Country          *PatchedCustomerRequestMultipart_Country `json:"country,omitempty"`
-	Description      *string                                  `json:"description,omitempty"`
-	Email            *openapi_types.Email                     `json:"email,omitempty"`
-	Homepage         *string                                  `json:"homepage,omitempty"`
-	Image            *openapi_types.File                      `json:"image"`
-	Latitude         *float64                                 `json:"latitude"`
-	Longitude        *float64                                 `json:"longitude"`
-	Name             *string                                  `json:"name,omitempty"`
-	NativeName       *string                                  `json:"native_name,omitempty"`
-	PhoneNumber      *string                                  `json:"phone_number,omitempty"`
-	Postal           *string                                  `json:"postal,omitempty"`
-	RegistrationCode *string                                  `json:"registration_code,omitempty"`
-	Slug             *string                                  `json:"slug,omitempty"`
+	BackendId      *string                                  `json:"backend_id,omitempty"`
+	BankAccount    *string                                  `json:"bank_account,omitempty"`
+	BankName       *string                                  `json:"bank_name,omitempty"`
+	ContactDetails *string                                  `json:"contact_details,omitempty"`
+	Country        *PatchedCustomerRequestMultipart_Country `json:"country,omitempty"`
+	Description    *string                                  `json:"description,omitempty"`
+	Email          *openapi_types.Email                     `json:"email,omitempty"`
+	Homepage       *string                                  `json:"homepage,omitempty"`
+	Image          *openapi_types.File                      `json:"image"`
+	Latitude       *float64                                 `json:"latitude"`
+	Longitude      *float64                                 `json:"longitude"`
+	Name           *string                                  `json:"name,omitempty"`
+	NativeName     *string                                  `json:"native_name,omitempty"`
+
+	// NotificationEmails Comma-separated list of notification email addresses
+	NotificationEmails *string `json:"notification_emails,omitempty"`
+	PhoneNumber        *string `json:"phone_number,omitempty"`
+	Postal             *string `json:"postal,omitempty"`
+	RegistrationCode   *string `json:"registration_code,omitempty"`
+	Slug               *string `json:"slug,omitempty"`
 
 	// VatCode VAT number
 	VatCode *string `json:"vat_code,omitempty"`
