@@ -20996,6 +20996,8 @@ type ProposalReview struct {
 	CommentProjectTitle                   *string                  `json:"comment_project_title"`
 	CommentResourceRequests               *string                  `json:"comment_resource_requests"`
 	CommentTeam                           *string                  `json:"comment_team"`
+	Created                               *time.Time               `json:"created,omitempty"`
+	Modified                              *time.Time               `json:"modified,omitempty"`
 	Proposal                              string                   `json:"proposal"`
 	ProposalName                          *string                  `json:"proposal_name,omitempty"`
 	ProposalUuid                          *openapi_types.UUID      `json:"proposal_uuid,omitempty"`
