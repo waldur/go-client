@@ -16065,9 +16065,7 @@ type Offering struct {
 	CategoryUuid  *openapi_types.UUID `json:"category_uuid,omitempty"`
 
 	// CitationCount Number of citations of a DOI
-	CitationCount *int `json:"citation_count,omitempty"`
-
-	// ComplianceChecklist Checklist that offering users must complete for compliance
+	CitationCount             *int                  `json:"citation_count,omitempty"`
 	ComplianceChecklist       *string               `json:"compliance_checklist"`
 	Components                *[]OfferingComponent  `json:"components,omitempty"`
 	Country                   *Offering_Country     `json:"country,omitempty"`
@@ -16252,9 +16250,7 @@ type OfferingCreate struct {
 	CategoryUuid  *openapi_types.UUID `json:"category_uuid,omitempty"`
 
 	// CitationCount Number of citations of a DOI
-	CitationCount *int `json:"citation_count,omitempty"`
-
-	// ComplianceChecklist Checklist that offering users must complete for compliance
+	CitationCount             *int                    `json:"citation_count,omitempty"`
 	ComplianceChecklist       *string                 `json:"compliance_checklist"`
 	Components                *[]OfferingComponent    `json:"components,omitempty"`
 	Country                   *OfferingCreate_Country `json:"country,omitempty"`
@@ -16327,10 +16323,8 @@ type OfferingCreateRequest struct {
 	BackendMetadata interface{} `json:"backend_metadata,omitempty"`
 
 	// Billable Purchase and usage is invoiced.
-	Billable *bool  `json:"billable,omitempty"`
-	Category string `json:"category"`
-
-	// ComplianceChecklist Checklist that offering users must complete for compliance
+	Billable            *bool                                     `json:"billable,omitempty"`
+	Category            string                                    `json:"category"`
 	ComplianceChecklist *string                                   `json:"compliance_checklist"`
 	Components          *[]OfferingComponentRequest               `json:"components,omitempty"`
 	Country             *OfferingCreateRequest_Country            `json:"country,omitempty"`
@@ -16372,10 +16366,8 @@ type OfferingCreateRequestForm struct {
 	BackendMetadata interface{} `json:"backend_metadata,omitempty"`
 
 	// Billable Purchase and usage is invoiced.
-	Billable *bool  `json:"billable,omitempty"`
-	Category string `json:"category"`
-
-	// ComplianceChecklist Checklist that offering users must complete for compliance
+	Billable            *bool                                     `json:"billable,omitempty"`
+	Category            string                                    `json:"category"`
 	ComplianceChecklist *string                                   `json:"compliance_checklist"`
 	Components          *[]OfferingComponentRequest               `json:"components,omitempty"`
 	Country             *OfferingCreateRequestForm_Country        `json:"country,omitempty"`
@@ -16417,10 +16409,8 @@ type OfferingCreateRequestMultipart struct {
 	BackendMetadata interface{} `json:"backend_metadata,omitempty"`
 
 	// Billable Purchase and usage is invoiced.
-	Billable *bool  `json:"billable,omitempty"`
-	Category string `json:"category"`
-
-	// ComplianceChecklist Checklist that offering users must complete for compliance
+	Billable            *bool                                     `json:"billable,omitempty"`
+	Category            string                                    `json:"category"`
 	ComplianceChecklist *string                                   `json:"compliance_checklist"`
 	Components          *[]OfferingComponentRequest               `json:"components,omitempty"`
 	Country             *OfferingCreateRequestMultipart_Country   `json:"country,omitempty"`
@@ -21207,9 +21197,7 @@ type ProviderOfferingDetails struct {
 	CategoryUuid  *openapi_types.UUID `json:"category_uuid,omitempty"`
 
 	// CitationCount Number of citations of a DOI
-	CitationCount *int `json:"citation_count,omitempty"`
-
-	// ComplianceChecklist Checklist that offering users must complete for compliance
+	CitationCount          *int                             `json:"citation_count,omitempty"`
 	ComplianceChecklist    *string                          `json:"compliance_checklist"`
 	Components             *[]OfferingComponent             `json:"components,omitempty"`
 	Country                *ProviderOfferingDetails_Country `json:"country,omitempty"`
@@ -21459,9 +21447,7 @@ type PublicOfferingDetails struct {
 	CategoryUuid  *openapi_types.UUID `json:"category_uuid,omitempty"`
 
 	// CitationCount Number of citations of a DOI
-	CitationCount *int `json:"citation_count,omitempty"`
-
-	// ComplianceChecklist Checklist that offering users must complete for compliance
+	CitationCount          *int                           `json:"citation_count,omitempty"`
 	ComplianceChecklist    *string                        `json:"compliance_checklist"`
 	Components             *[]OfferingComponent           `json:"components,omitempty"`
 	Country                *PublicOfferingDetails_Country `json:"country,omitempty"`
