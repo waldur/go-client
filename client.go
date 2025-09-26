@@ -10827,6 +10827,18 @@ type AttachmentRequest struct {
 	Issue string             `json:"issue"`
 }
 
+// AttachmentRequestForm defines model for AttachmentRequestForm.
+type AttachmentRequestForm struct {
+	File  openapi_types.File `json:"file"`
+	Issue string             `json:"issue"`
+}
+
+// AttachmentRequestMultipart defines model for AttachmentRequestMultipart.
+type AttachmentRequestMultipart struct {
+	File  openapi_types.File `json:"file"`
+	Issue string             `json:"issue"`
+}
+
 // AuthResult defines model for AuthResult.
 type AuthResult struct {
 	// Details Cancellation details.
@@ -11818,6 +11830,20 @@ type CallManagingOrganisationRequest struct {
 	Image       *openapi_types.File `json:"image"`
 }
 
+// CallManagingOrganisationRequestForm defines model for CallManagingOrganisationRequestForm.
+type CallManagingOrganisationRequestForm struct {
+	Customer    string              `json:"customer"`
+	Description *string             `json:"description,omitempty"`
+	Image       *openapi_types.File `json:"image"`
+}
+
+// CallManagingOrganisationRequestMultipart defines model for CallManagingOrganisationRequestMultipart.
+type CallManagingOrganisationRequestMultipart struct {
+	Customer    string              `json:"customer"`
+	Description *string             `json:"description,omitempty"`
+	Image       *openapi_types.File `json:"image"`
+}
+
 // CallManagingOrganisationStat defines model for CallManagingOrganisationStat.
 type CallManagingOrganisationStat struct {
 	AcceptedProposals       *int `json:"accepted_proposals,omitempty"`
@@ -12070,6 +12096,20 @@ type CategoryGroupRequest struct {
 	Title       string              `json:"title"`
 }
 
+// CategoryGroupRequestForm defines model for CategoryGroupRequestForm.
+type CategoryGroupRequestForm struct {
+	Description *string             `json:"description,omitempty"`
+	Icon        *openapi_types.File `json:"icon"`
+	Title       string              `json:"title"`
+}
+
+// CategoryGroupRequestMultipart defines model for CategoryGroupRequestMultipart.
+type CategoryGroupRequestMultipart struct {
+	Description *string             `json:"description,omitempty"`
+	Icon        *openapi_types.File `json:"icon"`
+	Title       string              `json:"title"`
+}
+
 // CategoryHelpArticle defines model for CategoryHelpArticle.
 type CategoryHelpArticle struct {
 	Title *string `json:"title"`
@@ -12130,6 +12170,20 @@ type ChecklistCategory struct {
 
 // ChecklistCategoryRequest defines model for ChecklistCategoryRequest.
 type ChecklistCategoryRequest struct {
+	Description *string             `json:"description,omitempty"`
+	Icon        *openapi_types.File `json:"icon"`
+	Name        string              `json:"name"`
+}
+
+// ChecklistCategoryRequestForm defines model for ChecklistCategoryRequestForm.
+type ChecklistCategoryRequestForm struct {
+	Description *string             `json:"description,omitempty"`
+	Icon        *openapi_types.File `json:"icon"`
+	Name        string              `json:"name"`
+}
+
+// ChecklistCategoryRequestMultipart defines model for ChecklistCategoryRequestMultipart.
+type ChecklistCategoryRequestMultipart struct {
 	Description *string             `json:"description,omitempty"`
 	Icon        *openapi_types.File `json:"icon"`
 	Name        string              `json:"name"`
@@ -12697,6 +12751,282 @@ type ConstanceSettingsRequest struct {
 	ZAMMADTOKEN                                    *string              `json:"ZAMMAD_TOKEN,omitempty"`
 }
 
+// ConstanceSettingsRequestForm defines model for ConstanceSettingsRequestForm.
+type ConstanceSettingsRequestForm struct {
+	ANONYMOUSUSERCANVIEWOFFERINGS                  *bool                `json:"ANONYMOUS_USER_CAN_VIEW_OFFERINGS,omitempty"`
+	ANONYMOUSUSERCANVIEWPLANS                      *bool                `json:"ANONYMOUS_USER_CAN_VIEW_PLANS,omitempty"`
+	ATLASSIANAFFECTEDRESOURCEFIELD                 *string              `json:"ATLASSIAN_AFFECTED_RESOURCE_FIELD,omitempty"`
+	ATLASSIANAPIURL                                *string              `json:"ATLASSIAN_API_URL,omitempty"`
+	ATLASSIANCALLERFIELD                           *string              `json:"ATLASSIAN_CALLER_FIELD,omitempty"`
+	ATLASSIANCUSTOMISSUEFIELDMAPPINGENABLED        *bool                `json:"ATLASSIAN_CUSTOM_ISSUE_FIELD_MAPPING_ENABLED,omitempty"`
+	ATLASSIANDEFAULTOFFERINGISSUETYPE              *string              `json:"ATLASSIAN_DEFAULT_OFFERING_ISSUE_TYPE,omitempty"`
+	ATLASSIANDESCRIPTIONTEMPLATE                   *string              `json:"ATLASSIAN_DESCRIPTION_TEMPLATE,omitempty"`
+	ATLASSIANEMAIL                                 *openapi_types.Email `json:"ATLASSIAN_EMAIL,omitempty"`
+	ATLASSIANEXCLUDEDATTACHMENTTYPES               *string              `json:"ATLASSIAN_EXCLUDED_ATTACHMENT_TYPES,omitempty"`
+	ATLASSIANIMPACTFIELD                           *string              `json:"ATLASSIAN_IMPACT_FIELD,omitempty"`
+	ATLASSIANISSUETYPES                            *string              `json:"ATLASSIAN_ISSUE_TYPES,omitempty"`
+	ATLASSIANLINKEDISSUETYPE                       *string              `json:"ATLASSIAN_LINKED_ISSUE_TYPE,omitempty"`
+	ATLASSIANMAPWALDURUSERSTOSERVICEDESKAGENTS     *bool                `json:"ATLASSIAN_MAP_WALDUR_USERS_TO_SERVICEDESK_AGENTS,omitempty"`
+	ATLASSIANORGANISATIONFIELD                     *string              `json:"ATLASSIAN_ORGANISATION_FIELD,omitempty"`
+	ATLASSIANPASSWORD                              *string              `json:"ATLASSIAN_PASSWORD,omitempty"`
+	ATLASSIANPROJECTFIELD                          *string              `json:"ATLASSIAN_PROJECT_FIELD,omitempty"`
+	ATLASSIANPROJECTID                             *string              `json:"ATLASSIAN_PROJECT_ID,omitempty"`
+	ATLASSIANPULLPRIORITIES                        *bool                `json:"ATLASSIAN_PULL_PRIORITIES,omitempty"`
+	ATLASSIANREPORTERFIELD                         *string              `json:"ATLASSIAN_REPORTER_FIELD,omitempty"`
+	ATLASSIANREQUESTFEEDBACKFIELD                  *string              `json:"ATLASSIAN_REQUEST_FEEDBACK_FIELD,omitempty"`
+	ATLASSIANRESOLUTIONSLAFIELD                    *string              `json:"ATLASSIAN_RESOLUTION_SLA_FIELD,omitempty"`
+	ATLASSIANSATISFACTIONFIELD                     *string              `json:"ATLASSIAN_SATISFACTION_FIELD,omitempty"`
+	ATLASSIANSHAREDUSERNAME                        *bool                `json:"ATLASSIAN_SHARED_USERNAME,omitempty"`
+	ATLASSIANSLAFIELD                              *string              `json:"ATLASSIAN_SLA_FIELD,omitempty"`
+	ATLASSIANSTRANGESETTING                        *int                 `json:"ATLASSIAN_STRANGE_SETTING,omitempty"`
+	ATLASSIANSUMMARYTEMPLATE                       *string              `json:"ATLASSIAN_SUMMARY_TEMPLATE,omitempty"`
+	ATLASSIANTEMPLATEFIELD                         *string              `json:"ATLASSIAN_TEMPLATE_FIELD,omitempty"`
+	ATLASSIANTOKEN                                 *string              `json:"ATLASSIAN_TOKEN,omitempty"`
+	ATLASSIANUSERNAME                              *string              `json:"ATLASSIAN_USERNAME,omitempty"`
+	ATLASSIANUSEAUTOMATICREQUESTMAPPING            *bool                `json:"ATLASSIAN_USE_AUTOMATIC_REQUEST_MAPPING,omitempty"`
+	ATLASSIANUSEOLDAPI                             *bool                `json:"ATLASSIAN_USE_OLD_API,omitempty"`
+	ATLASSIANUSETEENAGEAPI                         *bool                `json:"ATLASSIAN_USE_TEENAGE_API,omitempty"`
+	ATLASSIANVERIFYSSL                             *bool                `json:"ATLASSIAN_VERIFY_SSL,omitempty"`
+	AUTOAPPROVEUSERTOS                             *bool                `json:"AUTO_APPROVE_USER_TOS,omitempty"`
+	BRANDCOLOR                                     *string              `json:"BRAND_COLOR,omitempty"`
+	CALLMANAGEMENTHEROIMAGE                        *openapi_types.File  `json:"CALL_MANAGEMENT_HERO_IMAGE"`
+	COMMONFOOTERHTML                               *string              `json:"COMMON_FOOTER_HTML,omitempty"`
+	COMMONFOOTERTEXT                               *string              `json:"COMMON_FOOTER_TEXT,omitempty"`
+	COUNTRIES                                      *[]string            `json:"COUNTRIES,omitempty"`
+	CURRENCYNAME                                   *string              `json:"CURRENCY_NAME,omitempty"`
+	DEACTIVATEUSERIFNOROLES                        *bool                `json:"DEACTIVATE_USER_IF_NO_ROLES,omitempty"`
+	DEFAULTIDP                                     *string              `json:"DEFAULT_IDP,omitempty"`
+	DISABLEDARKTHEME                               *bool                `json:"DISABLE_DARK_THEME,omitempty"`
+	DISABLESENDINGNOTIFICATIONSABOUTRESOURCEUPDATE *bool                `json:"DISABLE_SENDING_NOTIFICATIONS_ABOUT_RESOURCE_UPDATE,omitempty"`
+	DOCKERCLIENT                                   *string              `json:"DOCKER_CLIENT,omitempty"`
+	DOCKERIMAGES                                   *string              `json:"DOCKER_IMAGES,omitempty"`
+	DOCKERREMOVECONTAINER                          *bool                `json:"DOCKER_REMOVE_CONTAINER,omitempty"`
+	DOCKERRUNOPTIONS                               *string              `json:"DOCKER_RUN_OPTIONS,omitempty"`
+	DOCKERSCRIPTDIR                                *string              `json:"DOCKER_SCRIPT_DIR,omitempty"`
+	DOCKERVOLUMENAME                               *string              `json:"DOCKER_VOLUME_NAME,omitempty"`
+	DOCSURL                                        *string              `json:"DOCS_URL,omitempty"`
+	ENABLEMOCKCOURSEACCOUNTBACKEND                 *bool                `json:"ENABLE_MOCK_COURSE_ACCOUNT_BACKEND,omitempty"`
+	ENABLEMOCKSERVICEACCOUNTBACKEND                *bool                `json:"ENABLE_MOCK_SERVICE_ACCOUNT_BACKEND,omitempty"`
+	ENABLESTALERESOURCENOTIFICATIONS               *bool                `json:"ENABLE_STALE_RESOURCE_NOTIFICATIONS,omitempty"`
+	ENABLESTRICTCHECKACCEPTINGINVITATION           *bool                `json:"ENABLE_STRICT_CHECK_ACCEPTING_INVITATION,omitempty"`
+	ENFORCEUSERCONSENTFOROFFERINGS                 *bool                `json:"ENFORCE_USER_CONSENT_FOR_OFFERINGS,omitempty"`
+	FAVICON                                        *openapi_types.File  `json:"FAVICON"`
+	FREEIPABLACKLISTEDUSERNAMES                    *[]string            `json:"FREEIPA_BLACKLISTED_USERNAMES,omitempty"`
+	FREEIPAENABLED                                 *bool                `json:"FREEIPA_ENABLED,omitempty"`
+	FREEIPAGROUPNAMEPREFIX                         *string              `json:"FREEIPA_GROUPNAME_PREFIX,omitempty"`
+	FREEIPAGROUPSYNCHRONIZATIONENABLED             *bool                `json:"FREEIPA_GROUP_SYNCHRONIZATION_ENABLED,omitempty"`
+	FREEIPAHOSTNAME                                *string              `json:"FREEIPA_HOSTNAME,omitempty"`
+	FREEIPAPASSWORD                                *string              `json:"FREEIPA_PASSWORD,omitempty"`
+	FREEIPAUSERNAME                                *string              `json:"FREEIPA_USERNAME,omitempty"`
+	FREEIPAUSERNAMEPREFIX                          *string              `json:"FREEIPA_USERNAME_PREFIX,omitempty"`
+	FREEIPAVERIFYSSL                               *bool                `json:"FREEIPA_VERIFY_SSL,omitempty"`
+	FULLPAGETITLE                                  *string              `json:"FULL_PAGE_TITLE,omitempty"`
+	HEROIMAGE                                      *openapi_types.File  `json:"HERO_IMAGE"`
+	HEROLINKLABEL                                  *string              `json:"HERO_LINK_LABEL,omitempty"`
+	HEROLINKURL                                    *string              `json:"HERO_LINK_URL,omitempty"`
+	HOMEPORTURL                                    *string              `json:"HOMEPORT_URL,omitempty"`
+	INVITATIONDISABLEMULTIPLEROLES                 *bool                `json:"INVITATION_DISABLE_MULTIPLE_ROLES,omitempty"`
+	K8SCONFIGPATH                                  *string              `json:"K8S_CONFIG_PATH,omitempty"`
+	K8SJOBTIMEOUT                                  *int                 `json:"K8S_JOB_TIMEOUT,omitempty"`
+	K8SNAMESPACE                                   *string              `json:"K8S_NAMESPACE,omitempty"`
+	KEYCLOAKICON                                   *openapi_types.File  `json:"KEYCLOAK_ICON"`
+	LANGUAGECHOICES                                *string              `json:"LANGUAGE_CHOICES,omitempty"`
+	LOGINLOGO                                      *openapi_types.File  `json:"LOGIN_LOGO"`
+	MAINTENANCEANNOUNCEMENTNOTIFYBEFOREMINUTES     *int                 `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_BEFORE_MINUTES,omitempty"`
+	MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM            *[]string            `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_SYSTEM,omitempty"`
+	MARKETPLACEHEROIMAGE                           *openapi_types.File  `json:"MARKETPLACE_HERO_IMAGE"`
+	MARKETPLACELANDINGPAGE                         *string              `json:"MARKETPLACE_LANDING_PAGE,omitempty"`
+	NOTIFYABOUTRESOURCECHANGE                      *bool                `json:"NOTIFY_ABOUT_RESOURCE_CHANGE,omitempty"`
+	NOTIFYSTAFFABOUTAPPROVALS                      *bool                `json:"NOTIFY_STAFF_ABOUT_APPROVALS,omitempty"`
+	OFFERINGLOGOPLACEHOLDER                        *openapi_types.File  `json:"OFFERING_LOGO_PLACEHOLDER"`
+	OIDCAUTHURL                                    *string              `json:"OIDC_AUTH_URL,omitempty"`
+	OIDCCACHETIMEOUT                               *int                 `json:"OIDC_CACHE_TIMEOUT,omitempty"`
+	OIDCCLIENTID                                   *string              `json:"OIDC_CLIENT_ID,omitempty"`
+	OIDCCLIENTSECRET                               *string              `json:"OIDC_CLIENT_SECRET,omitempty"`
+	OIDCINTROSPECTIONURL                           *string              `json:"OIDC_INTROSPECTION_URL,omitempty"`
+	OIDCUSERFIELD                                  *string              `json:"OIDC_USER_FIELD,omitempty"`
+	POWEREDBYLOGO                                  *openapi_types.File  `json:"POWERED_BY_LOGO"`
+	PROPOSALREVIEWDURATION                         *int                 `json:"PROPOSAL_REVIEW_DURATION,omitempty"`
+	RANCHERUSERNAMEINPUTLABEL                      *string              `json:"RANCHER_USERNAME_INPUT_LABEL,omitempty"`
+	SCRIPTRUNMODE                                  *string              `json:"SCRIPT_RUN_MODE,omitempty"`
+	SHORTPAGETITLE                                 *string              `json:"SHORT_PAGE_TITLE,omitempty"`
+	SIDEBARLOGO                                    *openapi_types.File  `json:"SIDEBAR_LOGO"`
+	SIDEBARLOGODARK                                *openapi_types.File  `json:"SIDEBAR_LOGO_DARK"`
+	SIDEBARLOGOMOBILE                              *openapi_types.File  `json:"SIDEBAR_LOGO_MOBILE"`
+	SIDEBARSTYLE                                   *string              `json:"SIDEBAR_STYLE,omitempty"`
+	SITEADDRESS                                    *string              `json:"SITE_ADDRESS,omitempty"`
+	SITEDESCRIPTION                                *string              `json:"SITE_DESCRIPTION,omitempty"`
+	SITEEMAIL                                      *string              `json:"SITE_EMAIL,omitempty"`
+	SITELOGO                                       *openapi_types.File  `json:"SITE_LOGO"`
+	SITENAME                                       *string              `json:"SITE_NAME,omitempty"`
+	SITEPHONE                                      *string              `json:"SITE_PHONE,omitempty"`
+	SMAXAFFECTEDRESOURCEFIELD                      *string              `json:"SMAX_AFFECTED_RESOURCE_FIELD,omitempty"`
+	SMAXAPIURL                                     *string              `json:"SMAX_API_URL,omitempty"`
+	SMAXCREATIONSOURCENAME                         *string              `json:"SMAX_CREATION_SOURCE_NAME,omitempty"`
+	SMAXLOGIN                                      *string              `json:"SMAX_LOGIN,omitempty"`
+	SMAXORGANISATIONFIELD                          *string              `json:"SMAX_ORGANISATION_FIELD,omitempty"`
+	SMAXPASSWORD                                   *string              `json:"SMAX_PASSWORD,omitempty"`
+	SMAXPROJECTFIELD                               *string              `json:"SMAX_PROJECT_FIELD,omitempty"`
+	SMAXREQUESTSOFFERING                           *string              `json:"SMAX_REQUESTS_OFFERING,omitempty"`
+	SMAXSECONDSTOWAIT                              *int                 `json:"SMAX_SECONDS_TO_WAIT,omitempty"`
+	SMAXTENANTID                                   *string              `json:"SMAX_TENANT_ID,omitempty"`
+	SMAXTIMESTOPULL                                *int                 `json:"SMAX_TIMES_TO_PULL,omitempty"`
+	SMAXVERIFYSSL                                  *bool                `json:"SMAX_VERIFY_SSL,omitempty"`
+	SUPPORTPORTALURL                               *string              `json:"SUPPORT_PORTAL_URL,omitempty"`
+	TELEMETRYURL                                   *string              `json:"TELEMETRY_URL,omitempty"`
+	TELEMETRYVERSION                               *int                 `json:"TELEMETRY_VERSION,omitempty"`
+	THUMBNAILSIZE                                  *string              `json:"THUMBNAIL_SIZE,omitempty"`
+	USERTABLECOLUMNS                               *string              `json:"USER_TABLE_COLUMNS,omitempty"`
+	WALDURSUPPORTACTIVEBACKENDTYPE                 *string              `json:"WALDUR_SUPPORT_ACTIVE_BACKEND_TYPE,omitempty"`
+	WALDURSUPPORTDISPLAYREQUESTTYPE                *bool                `json:"WALDUR_SUPPORT_DISPLAY_REQUEST_TYPE,omitempty"`
+	WALDURSUPPORTENABLED                           *bool                `json:"WALDUR_SUPPORT_ENABLED,omitempty"`
+	ZAMMADAPIURL                                   *string              `json:"ZAMMAD_API_URL,omitempty"`
+	ZAMMADARTICLETYPE                              *string              `json:"ZAMMAD_ARTICLE_TYPE,omitempty"`
+	ZAMMADCOMMENTCOOLDOWNDURATION                  *int                 `json:"ZAMMAD_COMMENT_COOLDOWN_DURATION,omitempty"`
+	ZAMMADCOMMENTMARKER                            *string              `json:"ZAMMAD_COMMENT_MARKER,omitempty"`
+	ZAMMADCOMMENTPREFIX                            *string              `json:"ZAMMAD_COMMENT_PREFIX,omitempty"`
+	ZAMMADGROUP                                    *string              `json:"ZAMMAD_GROUP,omitempty"`
+	ZAMMADTOKEN                                    *string              `json:"ZAMMAD_TOKEN,omitempty"`
+}
+
+// ConstanceSettingsRequestMultipart defines model for ConstanceSettingsRequestMultipart.
+type ConstanceSettingsRequestMultipart struct {
+	ANONYMOUSUSERCANVIEWOFFERINGS                  *bool                `json:"ANONYMOUS_USER_CAN_VIEW_OFFERINGS,omitempty"`
+	ANONYMOUSUSERCANVIEWPLANS                      *bool                `json:"ANONYMOUS_USER_CAN_VIEW_PLANS,omitempty"`
+	ATLASSIANAFFECTEDRESOURCEFIELD                 *string              `json:"ATLASSIAN_AFFECTED_RESOURCE_FIELD,omitempty"`
+	ATLASSIANAPIURL                                *string              `json:"ATLASSIAN_API_URL,omitempty"`
+	ATLASSIANCALLERFIELD                           *string              `json:"ATLASSIAN_CALLER_FIELD,omitempty"`
+	ATLASSIANCUSTOMISSUEFIELDMAPPINGENABLED        *bool                `json:"ATLASSIAN_CUSTOM_ISSUE_FIELD_MAPPING_ENABLED,omitempty"`
+	ATLASSIANDEFAULTOFFERINGISSUETYPE              *string              `json:"ATLASSIAN_DEFAULT_OFFERING_ISSUE_TYPE,omitempty"`
+	ATLASSIANDESCRIPTIONTEMPLATE                   *string              `json:"ATLASSIAN_DESCRIPTION_TEMPLATE,omitempty"`
+	ATLASSIANEMAIL                                 *openapi_types.Email `json:"ATLASSIAN_EMAIL,omitempty"`
+	ATLASSIANEXCLUDEDATTACHMENTTYPES               *string              `json:"ATLASSIAN_EXCLUDED_ATTACHMENT_TYPES,omitempty"`
+	ATLASSIANIMPACTFIELD                           *string              `json:"ATLASSIAN_IMPACT_FIELD,omitempty"`
+	ATLASSIANISSUETYPES                            *string              `json:"ATLASSIAN_ISSUE_TYPES,omitempty"`
+	ATLASSIANLINKEDISSUETYPE                       *string              `json:"ATLASSIAN_LINKED_ISSUE_TYPE,omitempty"`
+	ATLASSIANMAPWALDURUSERSTOSERVICEDESKAGENTS     *bool                `json:"ATLASSIAN_MAP_WALDUR_USERS_TO_SERVICEDESK_AGENTS,omitempty"`
+	ATLASSIANORGANISATIONFIELD                     *string              `json:"ATLASSIAN_ORGANISATION_FIELD,omitempty"`
+	ATLASSIANPASSWORD                              *string              `json:"ATLASSIAN_PASSWORD,omitempty"`
+	ATLASSIANPROJECTFIELD                          *string              `json:"ATLASSIAN_PROJECT_FIELD,omitempty"`
+	ATLASSIANPROJECTID                             *string              `json:"ATLASSIAN_PROJECT_ID,omitempty"`
+	ATLASSIANPULLPRIORITIES                        *bool                `json:"ATLASSIAN_PULL_PRIORITIES,omitempty"`
+	ATLASSIANREPORTERFIELD                         *string              `json:"ATLASSIAN_REPORTER_FIELD,omitempty"`
+	ATLASSIANREQUESTFEEDBACKFIELD                  *string              `json:"ATLASSIAN_REQUEST_FEEDBACK_FIELD,omitempty"`
+	ATLASSIANRESOLUTIONSLAFIELD                    *string              `json:"ATLASSIAN_RESOLUTION_SLA_FIELD,omitempty"`
+	ATLASSIANSATISFACTIONFIELD                     *string              `json:"ATLASSIAN_SATISFACTION_FIELD,omitempty"`
+	ATLASSIANSHAREDUSERNAME                        *bool                `json:"ATLASSIAN_SHARED_USERNAME,omitempty"`
+	ATLASSIANSLAFIELD                              *string              `json:"ATLASSIAN_SLA_FIELD,omitempty"`
+	ATLASSIANSTRANGESETTING                        *int                 `json:"ATLASSIAN_STRANGE_SETTING,omitempty"`
+	ATLASSIANSUMMARYTEMPLATE                       *string              `json:"ATLASSIAN_SUMMARY_TEMPLATE,omitempty"`
+	ATLASSIANTEMPLATEFIELD                         *string              `json:"ATLASSIAN_TEMPLATE_FIELD,omitempty"`
+	ATLASSIANTOKEN                                 *string              `json:"ATLASSIAN_TOKEN,omitempty"`
+	ATLASSIANUSERNAME                              *string              `json:"ATLASSIAN_USERNAME,omitempty"`
+	ATLASSIANUSEAUTOMATICREQUESTMAPPING            *bool                `json:"ATLASSIAN_USE_AUTOMATIC_REQUEST_MAPPING,omitempty"`
+	ATLASSIANUSEOLDAPI                             *bool                `json:"ATLASSIAN_USE_OLD_API,omitempty"`
+	ATLASSIANUSETEENAGEAPI                         *bool                `json:"ATLASSIAN_USE_TEENAGE_API,omitempty"`
+	ATLASSIANVERIFYSSL                             *bool                `json:"ATLASSIAN_VERIFY_SSL,omitempty"`
+	AUTOAPPROVEUSERTOS                             *bool                `json:"AUTO_APPROVE_USER_TOS,omitempty"`
+	BRANDCOLOR                                     *string              `json:"BRAND_COLOR,omitempty"`
+	CALLMANAGEMENTHEROIMAGE                        *openapi_types.File  `json:"CALL_MANAGEMENT_HERO_IMAGE"`
+	COMMONFOOTERHTML                               *string              `json:"COMMON_FOOTER_HTML,omitempty"`
+	COMMONFOOTERTEXT                               *string              `json:"COMMON_FOOTER_TEXT,omitempty"`
+	COUNTRIES                                      *[]string            `json:"COUNTRIES,omitempty"`
+	CURRENCYNAME                                   *string              `json:"CURRENCY_NAME,omitempty"`
+	DEACTIVATEUSERIFNOROLES                        *bool                `json:"DEACTIVATE_USER_IF_NO_ROLES,omitempty"`
+	DEFAULTIDP                                     *string              `json:"DEFAULT_IDP,omitempty"`
+	DISABLEDARKTHEME                               *bool                `json:"DISABLE_DARK_THEME,omitempty"`
+	DISABLESENDINGNOTIFICATIONSABOUTRESOURCEUPDATE *bool                `json:"DISABLE_SENDING_NOTIFICATIONS_ABOUT_RESOURCE_UPDATE,omitempty"`
+	DOCKERCLIENT                                   *string              `json:"DOCKER_CLIENT,omitempty"`
+	DOCKERIMAGES                                   *string              `json:"DOCKER_IMAGES,omitempty"`
+	DOCKERREMOVECONTAINER                          *bool                `json:"DOCKER_REMOVE_CONTAINER,omitempty"`
+	DOCKERRUNOPTIONS                               *string              `json:"DOCKER_RUN_OPTIONS,omitempty"`
+	DOCKERSCRIPTDIR                                *string              `json:"DOCKER_SCRIPT_DIR,omitempty"`
+	DOCKERVOLUMENAME                               *string              `json:"DOCKER_VOLUME_NAME,omitempty"`
+	DOCSURL                                        *string              `json:"DOCS_URL,omitempty"`
+	ENABLEMOCKCOURSEACCOUNTBACKEND                 *bool                `json:"ENABLE_MOCK_COURSE_ACCOUNT_BACKEND,omitempty"`
+	ENABLEMOCKSERVICEACCOUNTBACKEND                *bool                `json:"ENABLE_MOCK_SERVICE_ACCOUNT_BACKEND,omitempty"`
+	ENABLESTALERESOURCENOTIFICATIONS               *bool                `json:"ENABLE_STALE_RESOURCE_NOTIFICATIONS,omitempty"`
+	ENABLESTRICTCHECKACCEPTINGINVITATION           *bool                `json:"ENABLE_STRICT_CHECK_ACCEPTING_INVITATION,omitempty"`
+	ENFORCEUSERCONSENTFOROFFERINGS                 *bool                `json:"ENFORCE_USER_CONSENT_FOR_OFFERINGS,omitempty"`
+	FAVICON                                        *openapi_types.File  `json:"FAVICON"`
+	FREEIPABLACKLISTEDUSERNAMES                    *[]string            `json:"FREEIPA_BLACKLISTED_USERNAMES,omitempty"`
+	FREEIPAENABLED                                 *bool                `json:"FREEIPA_ENABLED,omitempty"`
+	FREEIPAGROUPNAMEPREFIX                         *string              `json:"FREEIPA_GROUPNAME_PREFIX,omitempty"`
+	FREEIPAGROUPSYNCHRONIZATIONENABLED             *bool                `json:"FREEIPA_GROUP_SYNCHRONIZATION_ENABLED,omitempty"`
+	FREEIPAHOSTNAME                                *string              `json:"FREEIPA_HOSTNAME,omitempty"`
+	FREEIPAPASSWORD                                *string              `json:"FREEIPA_PASSWORD,omitempty"`
+	FREEIPAUSERNAME                                *string              `json:"FREEIPA_USERNAME,omitempty"`
+	FREEIPAUSERNAMEPREFIX                          *string              `json:"FREEIPA_USERNAME_PREFIX,omitempty"`
+	FREEIPAVERIFYSSL                               *bool                `json:"FREEIPA_VERIFY_SSL,omitempty"`
+	FULLPAGETITLE                                  *string              `json:"FULL_PAGE_TITLE,omitempty"`
+	HEROIMAGE                                      *openapi_types.File  `json:"HERO_IMAGE"`
+	HEROLINKLABEL                                  *string              `json:"HERO_LINK_LABEL,omitempty"`
+	HEROLINKURL                                    *string              `json:"HERO_LINK_URL,omitempty"`
+	HOMEPORTURL                                    *string              `json:"HOMEPORT_URL,omitempty"`
+	INVITATIONDISABLEMULTIPLEROLES                 *bool                `json:"INVITATION_DISABLE_MULTIPLE_ROLES,omitempty"`
+	K8SCONFIGPATH                                  *string              `json:"K8S_CONFIG_PATH,omitempty"`
+	K8SJOBTIMEOUT                                  *int                 `json:"K8S_JOB_TIMEOUT,omitempty"`
+	K8SNAMESPACE                                   *string              `json:"K8S_NAMESPACE,omitempty"`
+	KEYCLOAKICON                                   *openapi_types.File  `json:"KEYCLOAK_ICON"`
+	LANGUAGECHOICES                                *string              `json:"LANGUAGE_CHOICES,omitempty"`
+	LOGINLOGO                                      *openapi_types.File  `json:"LOGIN_LOGO"`
+	MAINTENANCEANNOUNCEMENTNOTIFYBEFOREMINUTES     *int                 `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_BEFORE_MINUTES,omitempty"`
+	MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM            *[]string            `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_SYSTEM,omitempty"`
+	MARKETPLACEHEROIMAGE                           *openapi_types.File  `json:"MARKETPLACE_HERO_IMAGE"`
+	MARKETPLACELANDINGPAGE                         *string              `json:"MARKETPLACE_LANDING_PAGE,omitempty"`
+	NOTIFYABOUTRESOURCECHANGE                      *bool                `json:"NOTIFY_ABOUT_RESOURCE_CHANGE,omitempty"`
+	NOTIFYSTAFFABOUTAPPROVALS                      *bool                `json:"NOTIFY_STAFF_ABOUT_APPROVALS,omitempty"`
+	OFFERINGLOGOPLACEHOLDER                        *openapi_types.File  `json:"OFFERING_LOGO_PLACEHOLDER"`
+	OIDCAUTHURL                                    *string              `json:"OIDC_AUTH_URL,omitempty"`
+	OIDCCACHETIMEOUT                               *int                 `json:"OIDC_CACHE_TIMEOUT,omitempty"`
+	OIDCCLIENTID                                   *string              `json:"OIDC_CLIENT_ID,omitempty"`
+	OIDCCLIENTSECRET                               *string              `json:"OIDC_CLIENT_SECRET,omitempty"`
+	OIDCINTROSPECTIONURL                           *string              `json:"OIDC_INTROSPECTION_URL,omitempty"`
+	OIDCUSERFIELD                                  *string              `json:"OIDC_USER_FIELD,omitempty"`
+	POWEREDBYLOGO                                  *openapi_types.File  `json:"POWERED_BY_LOGO"`
+	PROPOSALREVIEWDURATION                         *int                 `json:"PROPOSAL_REVIEW_DURATION,omitempty"`
+	RANCHERUSERNAMEINPUTLABEL                      *string              `json:"RANCHER_USERNAME_INPUT_LABEL,omitempty"`
+	SCRIPTRUNMODE                                  *string              `json:"SCRIPT_RUN_MODE,omitempty"`
+	SHORTPAGETITLE                                 *string              `json:"SHORT_PAGE_TITLE,omitempty"`
+	SIDEBARLOGO                                    *openapi_types.File  `json:"SIDEBAR_LOGO"`
+	SIDEBARLOGODARK                                *openapi_types.File  `json:"SIDEBAR_LOGO_DARK"`
+	SIDEBARLOGOMOBILE                              *openapi_types.File  `json:"SIDEBAR_LOGO_MOBILE"`
+	SIDEBARSTYLE                                   *string              `json:"SIDEBAR_STYLE,omitempty"`
+	SITEADDRESS                                    *string              `json:"SITE_ADDRESS,omitempty"`
+	SITEDESCRIPTION                                *string              `json:"SITE_DESCRIPTION,omitempty"`
+	SITEEMAIL                                      *string              `json:"SITE_EMAIL,omitempty"`
+	SITELOGO                                       *openapi_types.File  `json:"SITE_LOGO"`
+	SITENAME                                       *string              `json:"SITE_NAME,omitempty"`
+	SITEPHONE                                      *string              `json:"SITE_PHONE,omitempty"`
+	SMAXAFFECTEDRESOURCEFIELD                      *string              `json:"SMAX_AFFECTED_RESOURCE_FIELD,omitempty"`
+	SMAXAPIURL                                     *string              `json:"SMAX_API_URL,omitempty"`
+	SMAXCREATIONSOURCENAME                         *string              `json:"SMAX_CREATION_SOURCE_NAME,omitempty"`
+	SMAXLOGIN                                      *string              `json:"SMAX_LOGIN,omitempty"`
+	SMAXORGANISATIONFIELD                          *string              `json:"SMAX_ORGANISATION_FIELD,omitempty"`
+	SMAXPASSWORD                                   *string              `json:"SMAX_PASSWORD,omitempty"`
+	SMAXPROJECTFIELD                               *string              `json:"SMAX_PROJECT_FIELD,omitempty"`
+	SMAXREQUESTSOFFERING                           *string              `json:"SMAX_REQUESTS_OFFERING,omitempty"`
+	SMAXSECONDSTOWAIT                              *int                 `json:"SMAX_SECONDS_TO_WAIT,omitempty"`
+	SMAXTENANTID                                   *string              `json:"SMAX_TENANT_ID,omitempty"`
+	SMAXTIMESTOPULL                                *int                 `json:"SMAX_TIMES_TO_PULL,omitempty"`
+	SMAXVERIFYSSL                                  *bool                `json:"SMAX_VERIFY_SSL,omitempty"`
+	SUPPORTPORTALURL                               *string              `json:"SUPPORT_PORTAL_URL,omitempty"`
+	TELEMETRYURL                                   *string              `json:"TELEMETRY_URL,omitempty"`
+	TELEMETRYVERSION                               *int                 `json:"TELEMETRY_VERSION,omitempty"`
+	THUMBNAILSIZE                                  *string              `json:"THUMBNAIL_SIZE,omitempty"`
+	USERTABLECOLUMNS                               *string              `json:"USER_TABLE_COLUMNS,omitempty"`
+	WALDURSUPPORTACTIVEBACKENDTYPE                 *string              `json:"WALDUR_SUPPORT_ACTIVE_BACKEND_TYPE,omitempty"`
+	WALDURSUPPORTDISPLAYREQUESTTYPE                *bool                `json:"WALDUR_SUPPORT_DISPLAY_REQUEST_TYPE,omitempty"`
+	WALDURSUPPORTENABLED                           *bool                `json:"WALDUR_SUPPORT_ENABLED,omitempty"`
+	ZAMMADAPIURL                                   *string              `json:"ZAMMAD_API_URL,omitempty"`
+	ZAMMADARTICLETYPE                              *string              `json:"ZAMMAD_ARTICLE_TYPE,omitempty"`
+	ZAMMADCOMMENTCOOLDOWNDURATION                  *int                 `json:"ZAMMAD_COMMENT_COOLDOWN_DURATION,omitempty"`
+	ZAMMADCOMMENTMARKER                            *string              `json:"ZAMMAD_COMMENT_MARKER,omitempty"`
+	ZAMMADCOMMENTPREFIX                            *string              `json:"ZAMMAD_COMMENT_PREFIX,omitempty"`
+	ZAMMADGROUP                                    *string              `json:"ZAMMAD_GROUP,omitempty"`
+	ZAMMADTOKEN                                    *string              `json:"ZAMMAD_TOKEN,omitempty"`
+}
+
 // ContainerFormatEnum defines model for ContainerFormatEnum.
 type ContainerFormatEnum string
 
@@ -13128,6 +13458,72 @@ type CustomerRequest_Country struct {
 	union json.RawMessage
 }
 
+// CustomerRequestForm defines model for CustomerRequestForm.
+type CustomerRequestForm struct {
+	Abbreviation *string `json:"abbreviation,omitempty"`
+	Address      *string `json:"address,omitempty"`
+
+	// BackendId Organization identifier in another application.
+	BackendId        *string                      `json:"backend_id,omitempty"`
+	BankAccount      *string                      `json:"bank_account,omitempty"`
+	BankName         *string                      `json:"bank_name,omitempty"`
+	ContactDetails   *string                      `json:"contact_details,omitempty"`
+	Country          *CustomerRequestForm_Country `json:"country,omitempty"`
+	Description      *string                      `json:"description,omitempty"`
+	Email            *openapi_types.Email         `json:"email,omitempty"`
+	Homepage         *string                      `json:"homepage,omitempty"`
+	Image            *openapi_types.File          `json:"image"`
+	Latitude         *float64                     `json:"latitude"`
+	Longitude        *float64                     `json:"longitude"`
+	Name             string                       `json:"name"`
+	NativeName       *string                      `json:"native_name,omitempty"`
+	PhoneNumber      *string                      `json:"phone_number,omitempty"`
+	Postal           *string                      `json:"postal,omitempty"`
+	RegistrationCode *string                      `json:"registration_code,omitempty"`
+	Slug             *string                      `json:"slug,omitempty"`
+
+	// VatCode VAT number
+	VatCode *string `json:"vat_code,omitempty"`
+}
+
+// CustomerRequestForm_Country defines model for CustomerRequestForm.Country.
+type CustomerRequestForm_Country struct {
+	union json.RawMessage
+}
+
+// CustomerRequestMultipart defines model for CustomerRequestMultipart.
+type CustomerRequestMultipart struct {
+	Abbreviation *string `json:"abbreviation,omitempty"`
+	Address      *string `json:"address,omitempty"`
+
+	// BackendId Organization identifier in another application.
+	BackendId        *string                           `json:"backend_id,omitempty"`
+	BankAccount      *string                           `json:"bank_account,omitempty"`
+	BankName         *string                           `json:"bank_name,omitempty"`
+	ContactDetails   *string                           `json:"contact_details,omitempty"`
+	Country          *CustomerRequestMultipart_Country `json:"country,omitempty"`
+	Description      *string                           `json:"description,omitempty"`
+	Email            *openapi_types.Email              `json:"email,omitempty"`
+	Homepage         *string                           `json:"homepage,omitempty"`
+	Image            *openapi_types.File               `json:"image"`
+	Latitude         *float64                          `json:"latitude"`
+	Longitude        *float64                          `json:"longitude"`
+	Name             string                            `json:"name"`
+	NativeName       *string                           `json:"native_name,omitempty"`
+	PhoneNumber      *string                           `json:"phone_number,omitempty"`
+	Postal           *string                           `json:"postal,omitempty"`
+	RegistrationCode *string                           `json:"registration_code,omitempty"`
+	Slug             *string                           `json:"slug,omitempty"`
+
+	// VatCode VAT number
+	VatCode *string `json:"vat_code,omitempty"`
+}
+
+// CustomerRequestMultipart_Country defines model for CustomerRequestMultipart.Country.
+type CustomerRequestMultipart_Country struct {
+	union json.RawMessage
+}
+
 // CustomerServiceAccount defines model for CustomerServiceAccount.
 type CustomerServiceAccount struct {
 	Created             *time.Time           `json:"created,omitempty"`
@@ -13501,6 +13897,22 @@ type ExternalLinkRequest struct {
 	Name        string              `json:"name"`
 }
 
+// ExternalLinkRequestForm defines model for ExternalLinkRequestForm.
+type ExternalLinkRequestForm struct {
+	Description *string             `json:"description,omitempty"`
+	Image       *openapi_types.File `json:"image"`
+	Link        string              `json:"link"`
+	Name        string              `json:"name"`
+}
+
+// ExternalLinkRequestMultipart defines model for ExternalLinkRequestMultipart.
+type ExternalLinkRequestMultipart struct {
+	Description *string             `json:"description,omitempty"`
+	Image       *openapi_types.File `json:"image"`
+	Link        string              `json:"link"`
+	Name        string              `json:"name"`
+}
+
 // Feedback defines model for Feedback.
 type Feedback struct {
 	Comment      *string             `json:"comment,omitempty"`
@@ -13582,6 +13994,26 @@ type FirecrestJob struct {
 
 // FirecrestJobRequest defines model for FirecrestJobRequest.
 type FirecrestJobRequest struct {
+	Description     *string            `json:"description,omitempty"`
+	File            openapi_types.File `json:"file"`
+	Name            string             `json:"name"`
+	Project         string             `json:"project"`
+	RuntimeState    *string            `json:"runtime_state,omitempty"`
+	ServiceSettings string             `json:"service_settings"`
+}
+
+// FirecrestJobRequestForm defines model for FirecrestJobRequestForm.
+type FirecrestJobRequestForm struct {
+	Description     *string            `json:"description,omitempty"`
+	File            openapi_types.File `json:"file"`
+	Name            string             `json:"name"`
+	Project         string             `json:"project"`
+	RuntimeState    *string            `json:"runtime_state,omitempty"`
+	ServiceSettings string             `json:"service_settings"`
+}
+
+// FirecrestJobRequestMultipart defines model for FirecrestJobRequestMultipart.
+type FirecrestJobRequestMultipart struct {
 	Description     *string            `json:"description,omitempty"`
 	File            openapi_types.File `json:"file"`
 	Name            string             `json:"name"`
@@ -14618,6 +15050,38 @@ type MarketplaceCategory struct {
 
 // MarketplaceCategoryRequest defines model for MarketplaceCategoryRequest.
 type MarketplaceCategoryRequest struct {
+	// DefaultTenantCategory Set to true if this category is for OpenStack Tenant. Only one category can have "true" value.
+	DefaultTenantCategory *bool `json:"default_tenant_category,omitempty"`
+
+	// DefaultVmCategory Set to "true" if this category is for OpenStack VM. Only one category can have "true" value.
+	DefaultVmCategory *bool `json:"default_vm_category,omitempty"`
+
+	// DefaultVolumeCategory Set to true if this category is for OpenStack Volume. Only one category can have "true" value.
+	DefaultVolumeCategory *bool               `json:"default_volume_category,omitempty"`
+	Description           *string             `json:"description,omitempty"`
+	Group                 *string             `json:"group"`
+	Icon                  *openapi_types.File `json:"icon"`
+	Title                 string              `json:"title"`
+}
+
+// MarketplaceCategoryRequestForm defines model for MarketplaceCategoryRequestForm.
+type MarketplaceCategoryRequestForm struct {
+	// DefaultTenantCategory Set to true if this category is for OpenStack Tenant. Only one category can have "true" value.
+	DefaultTenantCategory *bool `json:"default_tenant_category,omitempty"`
+
+	// DefaultVmCategory Set to "true" if this category is for OpenStack VM. Only one category can have "true" value.
+	DefaultVmCategory *bool `json:"default_vm_category,omitempty"`
+
+	// DefaultVolumeCategory Set to true if this category is for OpenStack Volume. Only one category can have "true" value.
+	DefaultVolumeCategory *bool               `json:"default_volume_category,omitempty"`
+	Description           *string             `json:"description,omitempty"`
+	Group                 *string             `json:"group"`
+	Icon                  *openapi_types.File `json:"icon"`
+	Title                 string              `json:"title"`
+}
+
+// MarketplaceCategoryRequestMultipart defines model for MarketplaceCategoryRequestMultipart.
+type MarketplaceCategoryRequestMultipart struct {
 	// DefaultTenantCategory Set to true if this category is for OpenStack Tenant. Only one category can have "true" value.
 	DefaultTenantCategory *bool `json:"default_tenant_category,omitempty"`
 
@@ -15899,6 +16363,96 @@ type OfferingCreateRequest_Country struct {
 	union json.RawMessage
 }
 
+// OfferingCreateRequestForm defines model for OfferingCreateRequestForm.
+type OfferingCreateRequestForm struct {
+	// AccessUrl Publicly accessible offering access URL
+	AccessUrl       *string     `json:"access_url,omitempty"`
+	Attributes      interface{} `json:"attributes,omitempty"`
+	BackendId       *string     `json:"backend_id,omitempty"`
+	BackendMetadata interface{} `json:"backend_metadata,omitempty"`
+
+	// Billable Purchase and usage is invoiced.
+	Billable *bool  `json:"billable,omitempty"`
+	Category string `json:"category"`
+
+	// ComplianceChecklist Checklist that offering users must complete for compliance
+	ComplianceChecklist *string                                   `json:"compliance_checklist"`
+	Components          *[]OfferingComponentRequest               `json:"components,omitempty"`
+	Country             *OfferingCreateRequestForm_Country        `json:"country,omitempty"`
+	Customer            *string                                   `json:"customer"`
+	DataciteDoi         *string                                   `json:"datacite_doi,omitempty"`
+	Description         *string                                   `json:"description,omitempty"`
+	FullDescription     *string                                   `json:"full_description,omitempty"`
+	GettingStarted      *string                                   `json:"getting_started,omitempty"`
+	Image               *openapi_types.File                       `json:"image"`
+	IntegrationGuide    *string                                   `json:"integration_guide,omitempty"`
+	Latitude            *float64                                  `json:"latitude"`
+	Limits              *map[string]OfferingComponentLimitRequest `json:"limits,omitempty"`
+	Longitude           *float64                                  `json:"longitude"`
+	Name                string                                    `json:"name"`
+	Options             *OfferingOptionsRequest                   `json:"options,omitempty"`
+	Plans               *[]BaseProviderPlanRequest                `json:"plans,omitempty"`
+	PrivacyPolicyLink   *string                                   `json:"privacy_policy_link,omitempty"`
+	ResourceOptions     *OfferingOptionsRequest                   `json:"resource_options,omitempty"`
+
+	// Shared Accessible to all customers.
+	Shared        *bool               `json:"shared,omitempty"`
+	Slug          *string             `json:"slug,omitempty"`
+	Thumbnail     *openapi_types.File `json:"thumbnail"`
+	Type          string              `json:"type"`
+	VendorDetails *string             `json:"vendor_details,omitempty"`
+}
+
+// OfferingCreateRequestForm_Country defines model for OfferingCreateRequestForm.Country.
+type OfferingCreateRequestForm_Country struct {
+	union json.RawMessage
+}
+
+// OfferingCreateRequestMultipart defines model for OfferingCreateRequestMultipart.
+type OfferingCreateRequestMultipart struct {
+	// AccessUrl Publicly accessible offering access URL
+	AccessUrl       *string     `json:"access_url,omitempty"`
+	Attributes      interface{} `json:"attributes,omitempty"`
+	BackendId       *string     `json:"backend_id,omitempty"`
+	BackendMetadata interface{} `json:"backend_metadata,omitempty"`
+
+	// Billable Purchase and usage is invoiced.
+	Billable *bool  `json:"billable,omitempty"`
+	Category string `json:"category"`
+
+	// ComplianceChecklist Checklist that offering users must complete for compliance
+	ComplianceChecklist *string                                   `json:"compliance_checklist"`
+	Components          *[]OfferingComponentRequest               `json:"components,omitempty"`
+	Country             *OfferingCreateRequestMultipart_Country   `json:"country,omitempty"`
+	Customer            *string                                   `json:"customer"`
+	DataciteDoi         *string                                   `json:"datacite_doi,omitempty"`
+	Description         *string                                   `json:"description,omitempty"`
+	FullDescription     *string                                   `json:"full_description,omitempty"`
+	GettingStarted      *string                                   `json:"getting_started,omitempty"`
+	Image               *openapi_types.File                       `json:"image"`
+	IntegrationGuide    *string                                   `json:"integration_guide,omitempty"`
+	Latitude            *float64                                  `json:"latitude"`
+	Limits              *map[string]OfferingComponentLimitRequest `json:"limits,omitempty"`
+	Longitude           *float64                                  `json:"longitude"`
+	Name                string                                    `json:"name"`
+	Options             *OfferingOptionsRequest                   `json:"options,omitempty"`
+	Plans               *[]BaseProviderPlanRequest                `json:"plans,omitempty"`
+	PrivacyPolicyLink   *string                                   `json:"privacy_policy_link,omitempty"`
+	ResourceOptions     *OfferingOptionsRequest                   `json:"resource_options,omitempty"`
+
+	// Shared Accessible to all customers.
+	Shared        *bool               `json:"shared,omitempty"`
+	Slug          *string             `json:"slug,omitempty"`
+	Thumbnail     *openapi_types.File `json:"thumbnail"`
+	Type          string              `json:"type"`
+	VendorDetails *string             `json:"vendor_details,omitempty"`
+}
+
+// OfferingCreateRequestMultipart_Country defines model for OfferingCreateRequestMultipart.Country.
+type OfferingCreateRequestMultipart_Country struct {
+	union json.RawMessage
+}
+
 // OfferingDescriptionUpdateRequest defines model for OfferingDescriptionUpdateRequest.
 type OfferingDescriptionUpdateRequest struct {
 	Category string `json:"category"`
@@ -15955,6 +16509,20 @@ type OfferingFileRequest struct {
 	Offering string             `json:"offering"`
 }
 
+// OfferingFileRequestForm defines model for OfferingFileRequestForm.
+type OfferingFileRequestForm struct {
+	File     openapi_types.File `json:"file"`
+	Name     string             `json:"name"`
+	Offering string             `json:"offering"`
+}
+
+// OfferingFileRequestMultipart defines model for OfferingFileRequestMultipart.
+type OfferingFileRequestMultipart struct {
+	File     openapi_types.File `json:"file"`
+	Name     string             `json:"name"`
+	Offering string             `json:"offering"`
+}
+
 // OfferingGroups defines model for OfferingGroups.
 type OfferingGroups struct {
 	CustomerName *string              `json:"customer_name,omitempty"`
@@ -15964,6 +16532,16 @@ type OfferingGroups struct {
 
 // OfferingImageRequest defines model for OfferingImageRequest.
 type OfferingImageRequest struct {
+	Image openapi_types.File `json:"image"`
+}
+
+// OfferingImageRequestForm defines model for OfferingImageRequestForm.
+type OfferingImageRequestForm struct {
+	Image openapi_types.File `json:"image"`
+}
+
+// OfferingImageRequestMultipart defines model for OfferingImageRequestMultipart.
+type OfferingImageRequestMultipart struct {
 	Image openapi_types.File `json:"image"`
 }
 
@@ -16141,6 +16719,16 @@ type OfferingTermsOfServiceRequest struct {
 
 // OfferingThumbnailRequest defines model for OfferingThumbnailRequest.
 type OfferingThumbnailRequest struct {
+	Thumbnail openapi_types.File `json:"thumbnail"`
+}
+
+// OfferingThumbnailRequestForm defines model for OfferingThumbnailRequestForm.
+type OfferingThumbnailRequestForm struct {
+	Thumbnail openapi_types.File `json:"thumbnail"`
+}
+
+// OfferingThumbnailRequestMultipart defines model for OfferingThumbnailRequestMultipart.
+type OfferingThumbnailRequestMultipart struct {
 	Thumbnail openapi_types.File `json:"thumbnail"`
 }
 
@@ -18042,6 +18630,16 @@ type OrderAttachmentRequest struct {
 	Attachment *openapi_types.File `json:"attachment"`
 }
 
+// OrderAttachmentRequestForm defines model for OrderAttachmentRequestForm.
+type OrderAttachmentRequestForm struct {
+	Attachment *openapi_types.File `json:"attachment"`
+}
+
+// OrderAttachmentRequestMultipart defines model for OrderAttachmentRequestMultipart.
+type OrderAttachmentRequestMultipart struct {
+	Attachment *openapi_types.File `json:"attachment"`
+}
+
 // OrderCreate defines model for OrderCreate.
 type OrderCreate struct {
 	Attachment                 *string             `json:"attachment"`
@@ -18263,6 +18861,18 @@ type PaidRequest struct {
 	Proof *openapi_types.File `json:"proof,omitempty"`
 }
 
+// PaidRequestForm defines model for PaidRequestForm.
+type PaidRequestForm struct {
+	Date  openapi_types.Date  `json:"date"`
+	Proof *openapi_types.File `json:"proof,omitempty"`
+}
+
+// PaidRequestMultipart defines model for PaidRequestMultipart.
+type PaidRequestMultipart struct {
+	Date  openapi_types.Date  `json:"date"`
+	Proof *openapi_types.File `json:"proof,omitempty"`
+}
+
 // PasswordChangeRequest defines model for PasswordChangeRequest.
 type PasswordChangeRequest struct {
 	NewPassword *string `json:"new_password,omitempty"`
@@ -18330,6 +18940,18 @@ type PatchedCallManagingOrganisationRequest struct {
 	Image       *openapi_types.File `json:"image"`
 }
 
+// PatchedCallManagingOrganisationRequestForm defines model for PatchedCallManagingOrganisationRequestForm.
+type PatchedCallManagingOrganisationRequestForm struct {
+	Description *string             `json:"description,omitempty"`
+	Image       *openapi_types.File `json:"image"`
+}
+
+// PatchedCallManagingOrganisationRequestMultipart defines model for PatchedCallManagingOrganisationRequestMultipart.
+type PatchedCallManagingOrganisationRequestMultipart struct {
+	Description *string             `json:"description,omitempty"`
+	Image       *openapi_types.File `json:"image"`
+}
+
 // PatchedCallResourceTemplateRequest defines model for PatchedCallResourceTemplateRequest.
 type PatchedCallResourceTemplateRequest struct {
 	Attributes  interface{} `json:"attributes,omitempty"`
@@ -18385,6 +19007,20 @@ type PatchedCategoryGroupRequest struct {
 	Title       *string             `json:"title,omitempty"`
 }
 
+// PatchedCategoryGroupRequestForm defines model for PatchedCategoryGroupRequestForm.
+type PatchedCategoryGroupRequestForm struct {
+	Description *string             `json:"description,omitempty"`
+	Icon        *openapi_types.File `json:"icon"`
+	Title       *string             `json:"title,omitempty"`
+}
+
+// PatchedCategoryGroupRequestMultipart defines model for PatchedCategoryGroupRequestMultipart.
+type PatchedCategoryGroupRequestMultipart struct {
+	Description *string             `json:"description,omitempty"`
+	Icon        *openapi_types.File `json:"icon"`
+	Title       *string             `json:"title,omitempty"`
+}
+
 // PatchedCategoryHelpArticlesRequest defines model for PatchedCategoryHelpArticlesRequest.
 type PatchedCategoryHelpArticlesRequest struct {
 	Categories *[]CategorySerializerForForNestedFieldsRequest `json:"categories,omitempty"`
@@ -18394,6 +19030,20 @@ type PatchedCategoryHelpArticlesRequest struct {
 
 // PatchedChecklistCategoryRequest defines model for PatchedChecklistCategoryRequest.
 type PatchedChecklistCategoryRequest struct {
+	Description *string             `json:"description,omitempty"`
+	Icon        *openapi_types.File `json:"icon"`
+	Name        *string             `json:"name,omitempty"`
+}
+
+// PatchedChecklistCategoryRequestForm defines model for PatchedChecklistCategoryRequestForm.
+type PatchedChecklistCategoryRequestForm struct {
+	Description *string             `json:"description,omitempty"`
+	Icon        *openapi_types.File `json:"icon"`
+	Name        *string             `json:"name,omitempty"`
+}
+
+// PatchedChecklistCategoryRequestMultipart defines model for PatchedChecklistCategoryRequestMultipart.
+type PatchedChecklistCategoryRequestMultipart struct {
 	Description *string             `json:"description,omitempty"`
 	Icon        *openapi_types.File `json:"icon"`
 	Name        *string             `json:"name,omitempty"`
@@ -18485,6 +19135,72 @@ type PatchedCustomerRequest_Country struct {
 	union json.RawMessage
 }
 
+// PatchedCustomerRequestForm defines model for PatchedCustomerRequestForm.
+type PatchedCustomerRequestForm struct {
+	Abbreviation *string `json:"abbreviation,omitempty"`
+	Address      *string `json:"address,omitempty"`
+
+	// BackendId Organization identifier in another application.
+	BackendId        *string                             `json:"backend_id,omitempty"`
+	BankAccount      *string                             `json:"bank_account,omitempty"`
+	BankName         *string                             `json:"bank_name,omitempty"`
+	ContactDetails   *string                             `json:"contact_details,omitempty"`
+	Country          *PatchedCustomerRequestForm_Country `json:"country,omitempty"`
+	Description      *string                             `json:"description,omitempty"`
+	Email            *openapi_types.Email                `json:"email,omitempty"`
+	Homepage         *string                             `json:"homepage,omitempty"`
+	Image            *openapi_types.File                 `json:"image"`
+	Latitude         *float64                            `json:"latitude"`
+	Longitude        *float64                            `json:"longitude"`
+	Name             *string                             `json:"name,omitempty"`
+	NativeName       *string                             `json:"native_name,omitempty"`
+	PhoneNumber      *string                             `json:"phone_number,omitempty"`
+	Postal           *string                             `json:"postal,omitempty"`
+	RegistrationCode *string                             `json:"registration_code,omitempty"`
+	Slug             *string                             `json:"slug,omitempty"`
+
+	// VatCode VAT number
+	VatCode *string `json:"vat_code,omitempty"`
+}
+
+// PatchedCustomerRequestForm_Country defines model for PatchedCustomerRequestForm.Country.
+type PatchedCustomerRequestForm_Country struct {
+	union json.RawMessage
+}
+
+// PatchedCustomerRequestMultipart defines model for PatchedCustomerRequestMultipart.
+type PatchedCustomerRequestMultipart struct {
+	Abbreviation *string `json:"abbreviation,omitempty"`
+	Address      *string `json:"address,omitempty"`
+
+	// BackendId Organization identifier in another application.
+	BackendId        *string                                  `json:"backend_id,omitempty"`
+	BankAccount      *string                                  `json:"bank_account,omitempty"`
+	BankName         *string                                  `json:"bank_name,omitempty"`
+	ContactDetails   *string                                  `json:"contact_details,omitempty"`
+	Country          *PatchedCustomerRequestMultipart_Country `json:"country,omitempty"`
+	Description      *string                                  `json:"description,omitempty"`
+	Email            *openapi_types.Email                     `json:"email,omitempty"`
+	Homepage         *string                                  `json:"homepage,omitempty"`
+	Image            *openapi_types.File                      `json:"image"`
+	Latitude         *float64                                 `json:"latitude"`
+	Longitude        *float64                                 `json:"longitude"`
+	Name             *string                                  `json:"name,omitempty"`
+	NativeName       *string                                  `json:"native_name,omitempty"`
+	PhoneNumber      *string                                  `json:"phone_number,omitempty"`
+	Postal           *string                                  `json:"postal,omitempty"`
+	RegistrationCode *string                                  `json:"registration_code,omitempty"`
+	Slug             *string                                  `json:"slug,omitempty"`
+
+	// VatCode VAT number
+	VatCode *string `json:"vat_code,omitempty"`
+}
+
+// PatchedCustomerRequestMultipart_Country defines model for PatchedCustomerRequestMultipart.Country.
+type PatchedCustomerRequestMultipart_Country struct {
+	union json.RawMessage
+}
+
 // PatchedCustomerServiceAccountRequest defines model for PatchedCustomerServiceAccountRequest.
 type PatchedCustomerServiceAccountRequest struct {
 	Customer            *openapi_types.UUID  `json:"customer,omitempty"`
@@ -18511,6 +19227,22 @@ type PatchedEmailHookRequest struct {
 
 // PatchedExternalLinkRequest defines model for PatchedExternalLinkRequest.
 type PatchedExternalLinkRequest struct {
+	Description *string             `json:"description,omitempty"`
+	Image       *openapi_types.File `json:"image"`
+	Link        *string             `json:"link,omitempty"`
+	Name        *string             `json:"name,omitempty"`
+}
+
+// PatchedExternalLinkRequestForm defines model for PatchedExternalLinkRequestForm.
+type PatchedExternalLinkRequestForm struct {
+	Description *string             `json:"description,omitempty"`
+	Image       *openapi_types.File `json:"image"`
+	Link        *string             `json:"link,omitempty"`
+	Name        *string             `json:"name,omitempty"`
+}
+
+// PatchedExternalLinkRequestMultipart defines model for PatchedExternalLinkRequestMultipart.
+type PatchedExternalLinkRequestMultipart struct {
 	Description *string             `json:"description,omitempty"`
 	Image       *openapi_types.File `json:"image"`
 	Link        *string             `json:"link,omitempty"`
@@ -18666,6 +19398,38 @@ type PatchedMaintenanceAnnouncementTemplateRequest struct {
 
 // PatchedMarketplaceCategoryRequest defines model for PatchedMarketplaceCategoryRequest.
 type PatchedMarketplaceCategoryRequest struct {
+	// DefaultTenantCategory Set to true if this category is for OpenStack Tenant. Only one category can have "true" value.
+	DefaultTenantCategory *bool `json:"default_tenant_category,omitempty"`
+
+	// DefaultVmCategory Set to "true" if this category is for OpenStack VM. Only one category can have "true" value.
+	DefaultVmCategory *bool `json:"default_vm_category,omitempty"`
+
+	// DefaultVolumeCategory Set to true if this category is for OpenStack Volume. Only one category can have "true" value.
+	DefaultVolumeCategory *bool               `json:"default_volume_category,omitempty"`
+	Description           *string             `json:"description,omitempty"`
+	Group                 *string             `json:"group"`
+	Icon                  *openapi_types.File `json:"icon"`
+	Title                 *string             `json:"title,omitempty"`
+}
+
+// PatchedMarketplaceCategoryRequestForm defines model for PatchedMarketplaceCategoryRequestForm.
+type PatchedMarketplaceCategoryRequestForm struct {
+	// DefaultTenantCategory Set to true if this category is for OpenStack Tenant. Only one category can have "true" value.
+	DefaultTenantCategory *bool `json:"default_tenant_category,omitempty"`
+
+	// DefaultVmCategory Set to "true" if this category is for OpenStack VM. Only one category can have "true" value.
+	DefaultVmCategory *bool `json:"default_vm_category,omitempty"`
+
+	// DefaultVolumeCategory Set to true if this category is for OpenStack Volume. Only one category can have "true" value.
+	DefaultVolumeCategory *bool               `json:"default_volume_category,omitempty"`
+	Description           *string             `json:"description,omitempty"`
+	Group                 *string             `json:"group"`
+	Icon                  *openapi_types.File `json:"icon"`
+	Title                 *string             `json:"title,omitempty"`
+}
+
+// PatchedMarketplaceCategoryRequestMultipart defines model for PatchedMarketplaceCategoryRequestMultipart.
+type PatchedMarketplaceCategoryRequestMultipart struct {
 	// DefaultTenantCategory Set to true if this category is for OpenStack Tenant. Only one category can have "true" value.
 	DefaultTenantCategory *bool `json:"default_tenant_category,omitempty"`
 
@@ -18912,6 +19676,22 @@ type PatchedPaymentRequest struct {
 	Sum           *string             `json:"sum,omitempty"`
 }
 
+// PatchedPaymentRequestForm defines model for PatchedPaymentRequestForm.
+type PatchedPaymentRequestForm struct {
+	DateOfPayment *openapi_types.Date `json:"date_of_payment,omitempty"`
+	Profile       *string             `json:"profile,omitempty"`
+	Proof         *openapi_types.File `json:"proof"`
+	Sum           *string             `json:"sum,omitempty"`
+}
+
+// PatchedPaymentRequestMultipart defines model for PatchedPaymentRequestMultipart.
+type PatchedPaymentRequestMultipart struct {
+	DateOfPayment *openapi_types.Date `json:"date_of_payment,omitempty"`
+	Profile       *string             `json:"profile,omitempty"`
+	Proof         *openapi_types.File `json:"proof"`
+	Sum           *string             `json:"sum,omitempty"`
+}
+
 // PatchedProjectCreditRequest defines model for PatchedProjectCreditRequest.
 type PatchedProjectCreditRequest struct {
 	ApplyAsMinimalConsumption *bool                        `json:"apply_as_minimal_consumption,omitempty"`
@@ -18954,6 +19734,52 @@ type PatchedProjectRequest struct {
 
 // PatchedProjectRequest_OecdFos2007Code defines model for PatchedProjectRequest.OecdFos2007Code.
 type PatchedProjectRequest_OecdFos2007Code struct {
+	union json.RawMessage
+}
+
+// PatchedProjectRequestForm defines model for PatchedProjectRequestForm.
+type PatchedProjectRequestForm struct {
+	BackendId   *string `json:"backend_id,omitempty"`
+	Customer    *string `json:"customer,omitempty"`
+	Description *string `json:"description,omitempty"`
+
+	// EndDate The date is inclusive. Once reached, all project resource will be scheduled for termination.
+	EndDate         *openapi_types.Date                        `json:"end_date"`
+	Image           *openapi_types.File                        `json:"image"`
+	IsIndustry      *bool                                      `json:"is_industry,omitempty"`
+	Kind            *KindEnum                                  `json:"kind,omitempty"`
+	Name            *string                                    `json:"name,omitempty"`
+	OecdFos2007Code *PatchedProjectRequestForm_OecdFos2007Code `json:"oecd_fos_2007_code"`
+	Slug            *string                                    `json:"slug,omitempty"`
+	StartDate       *openapi_types.Date                        `json:"start_date"`
+	Type            *string                                    `json:"type"`
+}
+
+// PatchedProjectRequestForm_OecdFos2007Code defines model for PatchedProjectRequestForm.OecdFos2007Code.
+type PatchedProjectRequestForm_OecdFos2007Code struct {
+	union json.RawMessage
+}
+
+// PatchedProjectRequestMultipart defines model for PatchedProjectRequestMultipart.
+type PatchedProjectRequestMultipart struct {
+	BackendId   *string `json:"backend_id,omitempty"`
+	Customer    *string `json:"customer,omitempty"`
+	Description *string `json:"description,omitempty"`
+
+	// EndDate The date is inclusive. Once reached, all project resource will be scheduled for termination.
+	EndDate         *openapi_types.Date                             `json:"end_date"`
+	Image           *openapi_types.File                             `json:"image"`
+	IsIndustry      *bool                                           `json:"is_industry,omitempty"`
+	Kind            *KindEnum                                       `json:"kind,omitempty"`
+	Name            *string                                         `json:"name,omitempty"`
+	OecdFos2007Code *PatchedProjectRequestMultipart_OecdFos2007Code `json:"oecd_fos_2007_code"`
+	Slug            *string                                         `json:"slug,omitempty"`
+	StartDate       *openapi_types.Date                             `json:"start_date"`
+	Type            *string                                         `json:"type"`
+}
+
+// PatchedProjectRequestMultipart_OecdFos2007Code defines model for PatchedProjectRequestMultipart.OecdFos2007Code.
+type PatchedProjectRequestMultipart_OecdFos2007Code struct {
 	union json.RawMessage
 }
 
@@ -19312,6 +20138,20 @@ type PatchedServiceProviderRequest struct {
 	Image               *openapi_types.File `json:"image"`
 }
 
+// PatchedServiceProviderRequestForm defines model for PatchedServiceProviderRequestForm.
+type PatchedServiceProviderRequestForm struct {
+	Description         *string             `json:"description,omitempty"`
+	EnableNotifications *bool               `json:"enable_notifications,omitempty"`
+	Image               *openapi_types.File `json:"image"`
+}
+
+// PatchedServiceProviderRequestMultipart defines model for PatchedServiceProviderRequestMultipart.
+type PatchedServiceProviderRequestMultipart struct {
+	Description         *string             `json:"description,omitempty"`
+	EnableNotifications *bool               `json:"enable_notifications,omitempty"`
+	Image               *openapi_types.File `json:"image"`
+}
+
 // PatchedSlurmAllocationRequest defines model for PatchedSlurmAllocationRequest.
 type PatchedSlurmAllocationRequest struct {
 	Description *string `json:"description,omitempty"`
@@ -19338,6 +20178,74 @@ type PatchedUserOfferingConsentRequest struct {
 
 // PatchedUserRequest defines model for PatchedUserRequest.
 type PatchedUserRequest struct {
+	// AgreeWithPolicy User must agree with the policy to register.
+	AgreeWithPolicy *bool               `json:"agree_with_policy,omitempty"`
+	Description     *string             `json:"description,omitempty"`
+	FirstName       *string             `json:"first_name,omitempty"`
+	Image           *openapi_types.File `json:"image"`
+
+	// IsActive Designates whether this user should be treated as active. Unselect this instead of deleting accounts.
+	IsActive *bool `json:"is_active,omitempty"`
+
+	// IsStaff Designates whether the user can log into this admin site.
+	IsStaff *bool `json:"is_staff,omitempty"`
+
+	// IsSupport Designates whether the user is a global support user.
+	IsSupport  *bool   `json:"is_support,omitempty"`
+	JobTitle   *string `json:"job_title,omitempty"`
+	LastName   *string `json:"last_name,omitempty"`
+	NativeName *string `json:"native_name,omitempty"`
+
+	// NotificationsEnabled Designates whether the user is allowed to receive email notifications.
+	NotificationsEnabled *bool   `json:"notifications_enabled,omitempty"`
+	Organization         *string `json:"organization,omitempty"`
+	PhoneNumber          *string `json:"phone_number,omitempty"`
+	PreferredLanguage    *string `json:"preferred_language,omitempty"`
+	Slug                 *string `json:"slug,omitempty"`
+
+	// TokenLifetime Token lifetime in seconds.
+	TokenLifetime *int `json:"token_lifetime"`
+
+	// Username Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
+	Username *string `json:"username,omitempty"`
+}
+
+// PatchedUserRequestForm defines model for PatchedUserRequestForm.
+type PatchedUserRequestForm struct {
+	// AgreeWithPolicy User must agree with the policy to register.
+	AgreeWithPolicy *bool               `json:"agree_with_policy,omitempty"`
+	Description     *string             `json:"description,omitempty"`
+	FirstName       *string             `json:"first_name,omitempty"`
+	Image           *openapi_types.File `json:"image"`
+
+	// IsActive Designates whether this user should be treated as active. Unselect this instead of deleting accounts.
+	IsActive *bool `json:"is_active,omitempty"`
+
+	// IsStaff Designates whether the user can log into this admin site.
+	IsStaff *bool `json:"is_staff,omitempty"`
+
+	// IsSupport Designates whether the user is a global support user.
+	IsSupport  *bool   `json:"is_support,omitempty"`
+	JobTitle   *string `json:"job_title,omitempty"`
+	LastName   *string `json:"last_name,omitempty"`
+	NativeName *string `json:"native_name,omitempty"`
+
+	// NotificationsEnabled Designates whether the user is allowed to receive email notifications.
+	NotificationsEnabled *bool   `json:"notifications_enabled,omitempty"`
+	Organization         *string `json:"organization,omitempty"`
+	PhoneNumber          *string `json:"phone_number,omitempty"`
+	PreferredLanguage    *string `json:"preferred_language,omitempty"`
+	Slug                 *string `json:"slug,omitempty"`
+
+	// TokenLifetime Token lifetime in seconds.
+	TokenLifetime *int `json:"token_lifetime"`
+
+	// Username Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
+	Username *string `json:"username,omitempty"`
+}
+
+// PatchedUserRequestMultipart defines model for PatchedUserRequestMultipart.
+type PatchedUserRequestMultipart struct {
 	// AgreeWithPolicy User must agree with the policy to register.
 	AgreeWithPolicy *bool               `json:"agree_with_policy,omitempty"`
 	Description     *string             `json:"description,omitempty"`
@@ -19444,6 +20352,22 @@ type PaymentProfileRequest struct {
 
 // PaymentRequest defines model for PaymentRequest.
 type PaymentRequest struct {
+	DateOfPayment openapi_types.Date  `json:"date_of_payment"`
+	Profile       string              `json:"profile"`
+	Proof         *openapi_types.File `json:"proof"`
+	Sum           *string             `json:"sum,omitempty"`
+}
+
+// PaymentRequestForm defines model for PaymentRequestForm.
+type PaymentRequestForm struct {
+	DateOfPayment openapi_types.Date  `json:"date_of_payment"`
+	Profile       string              `json:"profile"`
+	Proof         *openapi_types.File `json:"proof"`
+	Sum           *string             `json:"sum,omitempty"`
+}
+
+// PaymentRequestMultipart defines model for PaymentRequestMultipart.
+type PaymentRequestMultipart struct {
 	DateOfPayment openapi_types.Date  `json:"date_of_payment"`
 	Profile       string              `json:"profile"`
 	Proof         *openapi_types.File `json:"proof"`
@@ -19813,6 +20737,52 @@ type ProjectRequest_OecdFos2007Code struct {
 	union json.RawMessage
 }
 
+// ProjectRequestForm defines model for ProjectRequestForm.
+type ProjectRequestForm struct {
+	BackendId   *string `json:"backend_id,omitempty"`
+	Customer    string  `json:"customer"`
+	Description *string `json:"description,omitempty"`
+
+	// EndDate The date is inclusive. Once reached, all project resource will be scheduled for termination.
+	EndDate         *openapi_types.Date                 `json:"end_date"`
+	Image           *openapi_types.File                 `json:"image"`
+	IsIndustry      *bool                               `json:"is_industry,omitempty"`
+	Kind            *KindEnum                           `json:"kind,omitempty"`
+	Name            string                              `json:"name"`
+	OecdFos2007Code *ProjectRequestForm_OecdFos2007Code `json:"oecd_fos_2007_code"`
+	Slug            *string                             `json:"slug,omitempty"`
+	StartDate       *openapi_types.Date                 `json:"start_date"`
+	Type            *string                             `json:"type"`
+}
+
+// ProjectRequestForm_OecdFos2007Code defines model for ProjectRequestForm.OecdFos2007Code.
+type ProjectRequestForm_OecdFos2007Code struct {
+	union json.RawMessage
+}
+
+// ProjectRequestMultipart defines model for ProjectRequestMultipart.
+type ProjectRequestMultipart struct {
+	BackendId   *string `json:"backend_id,omitempty"`
+	Customer    string  `json:"customer"`
+	Description *string `json:"description,omitempty"`
+
+	// EndDate The date is inclusive. Once reached, all project resource will be scheduled for termination.
+	EndDate         *openapi_types.Date                      `json:"end_date"`
+	Image           *openapi_types.File                      `json:"image"`
+	IsIndustry      *bool                                    `json:"is_industry,omitempty"`
+	Kind            *KindEnum                                `json:"kind,omitempty"`
+	Name            string                                   `json:"name"`
+	OecdFos2007Code *ProjectRequestMultipart_OecdFos2007Code `json:"oecd_fos_2007_code"`
+	Slug            *string                                  `json:"slug,omitempty"`
+	StartDate       *openapi_types.Date                      `json:"start_date"`
+	Type            *string                                  `json:"type"`
+}
+
+// ProjectRequestMultipart_OecdFos2007Code defines model for ProjectRequestMultipart.OecdFos2007Code.
+type ProjectRequestMultipart_OecdFos2007Code struct {
+	union json.RawMessage
+}
+
 // ProjectServiceAccount defines model for ProjectServiceAccount.
 type ProjectServiceAccount struct {
 	Created              *time.Time           `json:"created,omitempty"`
@@ -19943,6 +20913,18 @@ type ProposalDocumentation struct {
 
 // ProposalDocumentationRequest defines model for ProposalDocumentationRequest.
 type ProposalDocumentationRequest struct {
+	// File Upload supporting documentation in PDF format.
+	File *openapi_types.File `json:"file"`
+}
+
+// ProposalDocumentationRequestForm defines model for ProposalDocumentationRequestForm.
+type ProposalDocumentationRequestForm struct {
+	// File Upload supporting documentation in PDF format.
+	File *openapi_types.File `json:"file"`
+}
+
+// ProposalDocumentationRequestMultipart defines model for ProposalDocumentationRequestMultipart.
+type ProposalDocumentationRequestMultipart struct {
 	// File Upload supporting documentation in PDF format.
 	File *openapi_types.File `json:"file"`
 }
@@ -22439,6 +23421,22 @@ type ScreenshotRequest struct {
 	Offering    string             `json:"offering"`
 }
 
+// ScreenshotRequestForm defines model for ScreenshotRequestForm.
+type ScreenshotRequestForm struct {
+	Description *string            `json:"description,omitempty"`
+	Image       openapi_types.File `json:"image"`
+	Name        string             `json:"name"`
+	Offering    string             `json:"offering"`
+}
+
+// ScreenshotRequestMultipart defines model for ScreenshotRequestMultipart.
+type ScreenshotRequestMultipart struct {
+	Description *string            `json:"description,omitempty"`
+	Image       openapi_types.File `json:"image"`
+	Name        string             `json:"name"`
+	Offering    string             `json:"offering"`
+}
+
 // Section defines model for Section.
 type Section struct {
 	Category      string     `json:"category"`
@@ -22522,6 +23520,22 @@ type ServiceProviderOfferingUserComplianceStateEnum int
 
 // ServiceProviderRequest defines model for ServiceProviderRequest.
 type ServiceProviderRequest struct {
+	Customer            string              `json:"customer"`
+	Description         *string             `json:"description,omitempty"`
+	EnableNotifications *bool               `json:"enable_notifications,omitempty"`
+	Image               *openapi_types.File `json:"image"`
+}
+
+// ServiceProviderRequestForm defines model for ServiceProviderRequestForm.
+type ServiceProviderRequestForm struct {
+	Customer            string              `json:"customer"`
+	Description         *string             `json:"description,omitempty"`
+	EnableNotifications *bool               `json:"enable_notifications,omitempty"`
+	Image               *openapi_types.File `json:"image"`
+}
+
+// ServiceProviderRequestMultipart defines model for ServiceProviderRequestMultipart.
+type ServiceProviderRequestMultipart struct {
 	Customer            string              `json:"customer"`
 	Description         *string             `json:"description,omitempty"`
 	EnableNotifications *bool               `json:"enable_notifications,omitempty"`
@@ -23064,6 +24078,76 @@ type UserOfferingConsentRequest struct {
 
 // UserRequest defines model for UserRequest.
 type UserRequest struct {
+	// AgreeWithPolicy User must agree with the policy to register.
+	AgreeWithPolicy *bool               `json:"agree_with_policy,omitempty"`
+	Description     *string             `json:"description,omitempty"`
+	Email           openapi_types.Email `json:"email"`
+	FirstName       *string             `json:"first_name,omitempty"`
+	Image           *openapi_types.File `json:"image"`
+
+	// IsActive Designates whether this user should be treated as active. Unselect this instead of deleting accounts.
+	IsActive *bool `json:"is_active,omitempty"`
+
+	// IsStaff Designates whether the user can log into this admin site.
+	IsStaff *bool `json:"is_staff,omitempty"`
+
+	// IsSupport Designates whether the user is a global support user.
+	IsSupport  *bool   `json:"is_support,omitempty"`
+	JobTitle   *string `json:"job_title,omitempty"`
+	LastName   *string `json:"last_name,omitempty"`
+	NativeName *string `json:"native_name,omitempty"`
+
+	// NotificationsEnabled Designates whether the user is allowed to receive email notifications.
+	NotificationsEnabled *bool   `json:"notifications_enabled,omitempty"`
+	Organization         *string `json:"organization,omitempty"`
+	PhoneNumber          *string `json:"phone_number,omitempty"`
+	PreferredLanguage    *string `json:"preferred_language,omitempty"`
+	Slug                 *string `json:"slug,omitempty"`
+
+	// TokenLifetime Token lifetime in seconds.
+	TokenLifetime *int `json:"token_lifetime"`
+
+	// Username Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
+	Username string `json:"username"`
+}
+
+// UserRequestForm defines model for UserRequestForm.
+type UserRequestForm struct {
+	// AgreeWithPolicy User must agree with the policy to register.
+	AgreeWithPolicy *bool               `json:"agree_with_policy,omitempty"`
+	Description     *string             `json:"description,omitempty"`
+	Email           openapi_types.Email `json:"email"`
+	FirstName       *string             `json:"first_name,omitempty"`
+	Image           *openapi_types.File `json:"image"`
+
+	// IsActive Designates whether this user should be treated as active. Unselect this instead of deleting accounts.
+	IsActive *bool `json:"is_active,omitempty"`
+
+	// IsStaff Designates whether the user can log into this admin site.
+	IsStaff *bool `json:"is_staff,omitempty"`
+
+	// IsSupport Designates whether the user is a global support user.
+	IsSupport  *bool   `json:"is_support,omitempty"`
+	JobTitle   *string `json:"job_title,omitempty"`
+	LastName   *string `json:"last_name,omitempty"`
+	NativeName *string `json:"native_name,omitempty"`
+
+	// NotificationsEnabled Designates whether the user is allowed to receive email notifications.
+	NotificationsEnabled *bool   `json:"notifications_enabled,omitempty"`
+	Organization         *string `json:"organization,omitempty"`
+	PhoneNumber          *string `json:"phone_number,omitempty"`
+	PreferredLanguage    *string `json:"preferred_language,omitempty"`
+	Slug                 *string `json:"slug,omitempty"`
+
+	// TokenLifetime Token lifetime in seconds.
+	TokenLifetime *int `json:"token_lifetime"`
+
+	// Username Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
+	Username string `json:"username"`
+}
+
+// UserRequestMultipart defines model for UserRequestMultipart.
+type UserRequestMultipart struct {
 	// AgreeWithPolicy User must agree with the policy to register.
 	AgreeWithPolicy *bool               `json:"agree_with_policy,omitempty"`
 	Description     *string             `json:"description,omitempty"`
@@ -35653,11 +36737,29 @@ type BroadcastMessagesUpdateJSONRequestBody = BroadcastMessageRequest
 // CallManagingOrganisationsCreateJSONRequestBody defines body for CallManagingOrganisationsCreate for application/json ContentType.
 type CallManagingOrganisationsCreateJSONRequestBody = CallManagingOrganisationRequest
 
+// CallManagingOrganisationsCreateFormdataRequestBody defines body for CallManagingOrganisationsCreate for application/x-www-form-urlencoded ContentType.
+type CallManagingOrganisationsCreateFormdataRequestBody = CallManagingOrganisationRequestForm
+
+// CallManagingOrganisationsCreateMultipartRequestBody defines body for CallManagingOrganisationsCreate for multipart/form-data ContentType.
+type CallManagingOrganisationsCreateMultipartRequestBody = CallManagingOrganisationRequestMultipart
+
 // CallManagingOrganisationsPartialUpdateJSONRequestBody defines body for CallManagingOrganisationsPartialUpdate for application/json ContentType.
 type CallManagingOrganisationsPartialUpdateJSONRequestBody = PatchedCallManagingOrganisationRequest
 
+// CallManagingOrganisationsPartialUpdateFormdataRequestBody defines body for CallManagingOrganisationsPartialUpdate for application/x-www-form-urlencoded ContentType.
+type CallManagingOrganisationsPartialUpdateFormdataRequestBody = PatchedCallManagingOrganisationRequestForm
+
+// CallManagingOrganisationsPartialUpdateMultipartRequestBody defines body for CallManagingOrganisationsPartialUpdate for multipart/form-data ContentType.
+type CallManagingOrganisationsPartialUpdateMultipartRequestBody = PatchedCallManagingOrganisationRequestMultipart
+
 // CallManagingOrganisationsUpdateJSONRequestBody defines body for CallManagingOrganisationsUpdate for application/json ContentType.
 type CallManagingOrganisationsUpdateJSONRequestBody = CallManagingOrganisationRequest
+
+// CallManagingOrganisationsUpdateFormdataRequestBody defines body for CallManagingOrganisationsUpdate for application/x-www-form-urlencoded ContentType.
+type CallManagingOrganisationsUpdateFormdataRequestBody = CallManagingOrganisationRequestForm
+
+// CallManagingOrganisationsUpdateMultipartRequestBody defines body for CallManagingOrganisationsUpdate for multipart/form-data ContentType.
+type CallManagingOrganisationsUpdateMultipartRequestBody = CallManagingOrganisationRequestMultipart
 
 // CallManagingOrganisationsAddUserJSONRequestBody defines body for CallManagingOrganisationsAddUser for application/json ContentType.
 type CallManagingOrganisationsAddUserJSONRequestBody = UserRoleCreateRequest
@@ -35680,11 +36782,29 @@ type CallProposalProjectRoleMappingsUpdateJSONRequestBody = ProposalProjectRoleM
 // ChecklistsAdminCategoriesCreateJSONRequestBody defines body for ChecklistsAdminCategoriesCreate for application/json ContentType.
 type ChecklistsAdminCategoriesCreateJSONRequestBody = ChecklistCategoryRequest
 
+// ChecklistsAdminCategoriesCreateFormdataRequestBody defines body for ChecklistsAdminCategoriesCreate for application/x-www-form-urlencoded ContentType.
+type ChecklistsAdminCategoriesCreateFormdataRequestBody = ChecklistCategoryRequestForm
+
+// ChecklistsAdminCategoriesCreateMultipartRequestBody defines body for ChecklistsAdminCategoriesCreate for multipart/form-data ContentType.
+type ChecklistsAdminCategoriesCreateMultipartRequestBody = ChecklistCategoryRequestMultipart
+
 // ChecklistsAdminCategoriesPartialUpdateJSONRequestBody defines body for ChecklistsAdminCategoriesPartialUpdate for application/json ContentType.
 type ChecklistsAdminCategoriesPartialUpdateJSONRequestBody = PatchedChecklistCategoryRequest
 
+// ChecklistsAdminCategoriesPartialUpdateFormdataRequestBody defines body for ChecklistsAdminCategoriesPartialUpdate for application/x-www-form-urlencoded ContentType.
+type ChecklistsAdminCategoriesPartialUpdateFormdataRequestBody = PatchedChecklistCategoryRequestForm
+
+// ChecklistsAdminCategoriesPartialUpdateMultipartRequestBody defines body for ChecklistsAdminCategoriesPartialUpdate for multipart/form-data ContentType.
+type ChecklistsAdminCategoriesPartialUpdateMultipartRequestBody = PatchedChecklistCategoryRequestMultipart
+
 // ChecklistsAdminCategoriesUpdateJSONRequestBody defines body for ChecklistsAdminCategoriesUpdate for application/json ContentType.
 type ChecklistsAdminCategoriesUpdateJSONRequestBody = ChecklistCategoryRequest
+
+// ChecklistsAdminCategoriesUpdateFormdataRequestBody defines body for ChecklistsAdminCategoriesUpdate for application/x-www-form-urlencoded ContentType.
+type ChecklistsAdminCategoriesUpdateFormdataRequestBody = ChecklistCategoryRequestForm
+
+// ChecklistsAdminCategoriesUpdateMultipartRequestBody defines body for ChecklistsAdminCategoriesUpdate for multipart/form-data ContentType.
+type ChecklistsAdminCategoriesUpdateMultipartRequestBody = ChecklistCategoryRequestMultipart
 
 // ChecklistsAdminQuestionDependenciesCreateJSONRequestBody defines body for ChecklistsAdminQuestionDependenciesCreate for application/json ContentType.
 type ChecklistsAdminQuestionDependenciesCreateJSONRequestBody = QuestionDependencyRequest
@@ -35749,11 +36869,29 @@ type CustomerCreditsClearCompensationsJSONRequestBody = CustomerCreditRequest
 // CustomersCreateJSONRequestBody defines body for CustomersCreate for application/json ContentType.
 type CustomersCreateJSONRequestBody = CustomerRequest
 
+// CustomersCreateFormdataRequestBody defines body for CustomersCreate for application/x-www-form-urlencoded ContentType.
+type CustomersCreateFormdataRequestBody = CustomerRequestForm
+
+// CustomersCreateMultipartRequestBody defines body for CustomersCreate for multipart/form-data ContentType.
+type CustomersCreateMultipartRequestBody = CustomerRequestMultipart
+
 // CustomersPartialUpdateJSONRequestBody defines body for CustomersPartialUpdate for application/json ContentType.
 type CustomersPartialUpdateJSONRequestBody = PatchedCustomerRequest
 
+// CustomersPartialUpdateFormdataRequestBody defines body for CustomersPartialUpdate for application/x-www-form-urlencoded ContentType.
+type CustomersPartialUpdateFormdataRequestBody = PatchedCustomerRequestForm
+
+// CustomersPartialUpdateMultipartRequestBody defines body for CustomersPartialUpdate for multipart/form-data ContentType.
+type CustomersPartialUpdateMultipartRequestBody = PatchedCustomerRequestMultipart
+
 // CustomersUpdateJSONRequestBody defines body for CustomersUpdate for application/json ContentType.
 type CustomersUpdateJSONRequestBody = CustomerRequest
+
+// CustomersUpdateFormdataRequestBody defines body for CustomersUpdate for application/x-www-form-urlencoded ContentType.
+type CustomersUpdateFormdataRequestBody = CustomerRequestForm
+
+// CustomersUpdateMultipartRequestBody defines body for CustomersUpdate for multipart/form-data ContentType.
+type CustomersUpdateMultipartRequestBody = CustomerRequestMultipart
 
 // CustomersAddUserJSONRequestBody defines body for CustomersAddUser for application/json ContentType.
 type CustomersAddUserJSONRequestBody = UserRoleCreateRequest
@@ -35785,11 +36923,29 @@ type EventSubscriptionsCreateJSONRequestBody = EventSubscriptionRequest
 // ExternalLinksCreateJSONRequestBody defines body for ExternalLinksCreate for application/json ContentType.
 type ExternalLinksCreateJSONRequestBody = ExternalLinkRequest
 
+// ExternalLinksCreateFormdataRequestBody defines body for ExternalLinksCreate for application/x-www-form-urlencoded ContentType.
+type ExternalLinksCreateFormdataRequestBody = ExternalLinkRequestForm
+
+// ExternalLinksCreateMultipartRequestBody defines body for ExternalLinksCreate for multipart/form-data ContentType.
+type ExternalLinksCreateMultipartRequestBody = ExternalLinkRequestMultipart
+
 // ExternalLinksPartialUpdateJSONRequestBody defines body for ExternalLinksPartialUpdate for application/json ContentType.
 type ExternalLinksPartialUpdateJSONRequestBody = PatchedExternalLinkRequest
 
+// ExternalLinksPartialUpdateFormdataRequestBody defines body for ExternalLinksPartialUpdate for application/x-www-form-urlencoded ContentType.
+type ExternalLinksPartialUpdateFormdataRequestBody = PatchedExternalLinkRequestForm
+
+// ExternalLinksPartialUpdateMultipartRequestBody defines body for ExternalLinksPartialUpdate for multipart/form-data ContentType.
+type ExternalLinksPartialUpdateMultipartRequestBody = PatchedExternalLinkRequestMultipart
+
 // ExternalLinksUpdateJSONRequestBody defines body for ExternalLinksUpdate for application/json ContentType.
 type ExternalLinksUpdateJSONRequestBody = ExternalLinkRequest
+
+// ExternalLinksUpdateFormdataRequestBody defines body for ExternalLinksUpdate for application/x-www-form-urlencoded ContentType.
+type ExternalLinksUpdateFormdataRequestBody = ExternalLinkRequestForm
+
+// ExternalLinksUpdateMultipartRequestBody defines body for ExternalLinksUpdate for multipart/form-data ContentType.
+type ExternalLinksUpdateMultipartRequestBody = ExternalLinkRequestMultipart
 
 // FeatureValuesJSONRequestBody defines body for FeatureValues for application/json ContentType.
 type FeatureValuesJSONRequestBody FeatureValuesJSONBody
@@ -35844,6 +37000,12 @@ type InvoiceSendFinancialReportByMailJSONRequestBody = FinancialReportEmailReque
 
 // InvoicesPaidJSONRequestBody defines body for InvoicesPaid for application/json ContentType.
 type InvoicesPaidJSONRequestBody = PaidRequest
+
+// InvoicesPaidFormdataRequestBody defines body for InvoicesPaid for application/x-www-form-urlencoded ContentType.
+type InvoicesPaidFormdataRequestBody = PaidRequestForm
+
+// InvoicesPaidMultipartRequestBody defines body for InvoicesPaid for multipart/form-data ContentType.
+type InvoicesPaidMultipartRequestBody = PaidRequestMultipart
 
 // InvoicesSetBackendIdJSONRequestBody defines body for InvoicesSetBackendId for application/json ContentType.
 type InvoicesSetBackendIdJSONRequestBody = BackendIdRequest
@@ -35917,11 +37079,29 @@ type ManagedRancherClusterResourcesAddNodeJSONRequestBody = ManagedRancherCreate
 // MarketplaceCategoriesCreateJSONRequestBody defines body for MarketplaceCategoriesCreate for application/json ContentType.
 type MarketplaceCategoriesCreateJSONRequestBody = MarketplaceCategoryRequest
 
+// MarketplaceCategoriesCreateFormdataRequestBody defines body for MarketplaceCategoriesCreate for application/x-www-form-urlencoded ContentType.
+type MarketplaceCategoriesCreateFormdataRequestBody = MarketplaceCategoryRequestForm
+
+// MarketplaceCategoriesCreateMultipartRequestBody defines body for MarketplaceCategoriesCreate for multipart/form-data ContentType.
+type MarketplaceCategoriesCreateMultipartRequestBody = MarketplaceCategoryRequestMultipart
+
 // MarketplaceCategoriesPartialUpdateJSONRequestBody defines body for MarketplaceCategoriesPartialUpdate for application/json ContentType.
 type MarketplaceCategoriesPartialUpdateJSONRequestBody = PatchedMarketplaceCategoryRequest
 
+// MarketplaceCategoriesPartialUpdateFormdataRequestBody defines body for MarketplaceCategoriesPartialUpdate for application/x-www-form-urlencoded ContentType.
+type MarketplaceCategoriesPartialUpdateFormdataRequestBody = PatchedMarketplaceCategoryRequestForm
+
+// MarketplaceCategoriesPartialUpdateMultipartRequestBody defines body for MarketplaceCategoriesPartialUpdate for multipart/form-data ContentType.
+type MarketplaceCategoriesPartialUpdateMultipartRequestBody = PatchedMarketplaceCategoryRequestMultipart
+
 // MarketplaceCategoriesUpdateJSONRequestBody defines body for MarketplaceCategoriesUpdate for application/json ContentType.
 type MarketplaceCategoriesUpdateJSONRequestBody = MarketplaceCategoryRequest
+
+// MarketplaceCategoriesUpdateFormdataRequestBody defines body for MarketplaceCategoriesUpdate for application/x-www-form-urlencoded ContentType.
+type MarketplaceCategoriesUpdateFormdataRequestBody = MarketplaceCategoryRequestForm
+
+// MarketplaceCategoriesUpdateMultipartRequestBody defines body for MarketplaceCategoriesUpdate for multipart/form-data ContentType.
+type MarketplaceCategoriesUpdateMultipartRequestBody = MarketplaceCategoryRequestMultipart
 
 // MarketplaceCategoryColumnsCreateJSONRequestBody defines body for MarketplaceCategoryColumnsCreate for application/json ContentType.
 type MarketplaceCategoryColumnsCreateJSONRequestBody = CategoryColumnRequest
@@ -35944,11 +37124,29 @@ type MarketplaceCategoryComponentsUpdateJSONRequestBody = CategoryComponentsRequ
 // MarketplaceCategoryGroupsCreateJSONRequestBody defines body for MarketplaceCategoryGroupsCreate for application/json ContentType.
 type MarketplaceCategoryGroupsCreateJSONRequestBody = CategoryGroupRequest
 
+// MarketplaceCategoryGroupsCreateFormdataRequestBody defines body for MarketplaceCategoryGroupsCreate for application/x-www-form-urlencoded ContentType.
+type MarketplaceCategoryGroupsCreateFormdataRequestBody = CategoryGroupRequestForm
+
+// MarketplaceCategoryGroupsCreateMultipartRequestBody defines body for MarketplaceCategoryGroupsCreate for multipart/form-data ContentType.
+type MarketplaceCategoryGroupsCreateMultipartRequestBody = CategoryGroupRequestMultipart
+
 // MarketplaceCategoryGroupsPartialUpdateJSONRequestBody defines body for MarketplaceCategoryGroupsPartialUpdate for application/json ContentType.
 type MarketplaceCategoryGroupsPartialUpdateJSONRequestBody = PatchedCategoryGroupRequest
 
+// MarketplaceCategoryGroupsPartialUpdateFormdataRequestBody defines body for MarketplaceCategoryGroupsPartialUpdate for application/x-www-form-urlencoded ContentType.
+type MarketplaceCategoryGroupsPartialUpdateFormdataRequestBody = PatchedCategoryGroupRequestForm
+
+// MarketplaceCategoryGroupsPartialUpdateMultipartRequestBody defines body for MarketplaceCategoryGroupsPartialUpdate for multipart/form-data ContentType.
+type MarketplaceCategoryGroupsPartialUpdateMultipartRequestBody = PatchedCategoryGroupRequestMultipart
+
 // MarketplaceCategoryGroupsUpdateJSONRequestBody defines body for MarketplaceCategoryGroupsUpdate for application/json ContentType.
 type MarketplaceCategoryGroupsUpdateJSONRequestBody = CategoryGroupRequest
+
+// MarketplaceCategoryGroupsUpdateFormdataRequestBody defines body for MarketplaceCategoryGroupsUpdate for application/x-www-form-urlencoded ContentType.
+type MarketplaceCategoryGroupsUpdateFormdataRequestBody = CategoryGroupRequestForm
+
+// MarketplaceCategoryGroupsUpdateMultipartRequestBody defines body for MarketplaceCategoryGroupsUpdate for multipart/form-data ContentType.
+type MarketplaceCategoryGroupsUpdateMultipartRequestBody = CategoryGroupRequestMultipart
 
 // MarketplaceCategoryHelpArticlesCreateJSONRequestBody defines body for MarketplaceCategoryHelpArticlesCreate for application/json ContentType.
 type MarketplaceCategoryHelpArticlesCreateJSONRequestBody = CategoryHelpArticlesRequest
@@ -36000,6 +37198,12 @@ type MarketplaceOfferingEstimatedCostPoliciesUpdateJSONRequestBody = OfferingEst
 
 // MarketplaceOfferingFilesCreateJSONRequestBody defines body for MarketplaceOfferingFilesCreate for application/json ContentType.
 type MarketplaceOfferingFilesCreateJSONRequestBody = OfferingFileRequest
+
+// MarketplaceOfferingFilesCreateFormdataRequestBody defines body for MarketplaceOfferingFilesCreate for application/x-www-form-urlencoded ContentType.
+type MarketplaceOfferingFilesCreateFormdataRequestBody = OfferingFileRequestForm
+
+// MarketplaceOfferingFilesCreateMultipartRequestBody defines body for MarketplaceOfferingFilesCreate for multipart/form-data ContentType.
+type MarketplaceOfferingFilesCreateMultipartRequestBody = OfferingFileRequestMultipart
 
 // MarketplaceOfferingTermsOfServiceCreateJSONRequestBody defines body for MarketplaceOfferingTermsOfServiceCreate for application/json ContentType.
 type MarketplaceOfferingTermsOfServiceCreateJSONRequestBody = OfferingTermsOfServiceCreateRequest
@@ -36061,6 +37265,12 @@ type MarketplaceOrdersSetStateErredJSONRequestBody = OrderSetStateErredRequest
 // MarketplaceOrdersUpdateAttachmentJSONRequestBody defines body for MarketplaceOrdersUpdateAttachment for application/json ContentType.
 type MarketplaceOrdersUpdateAttachmentJSONRequestBody = OrderAttachmentRequest
 
+// MarketplaceOrdersUpdateAttachmentFormdataRequestBody defines body for MarketplaceOrdersUpdateAttachment for application/x-www-form-urlencoded ContentType.
+type MarketplaceOrdersUpdateAttachmentFormdataRequestBody = OrderAttachmentRequestForm
+
+// MarketplaceOrdersUpdateAttachmentMultipartRequestBody defines body for MarketplaceOrdersUpdateAttachment for multipart/form-data ContentType.
+type MarketplaceOrdersUpdateAttachmentMultipartRequestBody = OrderAttachmentRequestMultipart
+
 // MarketplacePlansCreateJSONRequestBody defines body for MarketplacePlansCreate for application/json ContentType.
 type MarketplacePlansCreateJSONRequestBody = ProviderPlanDetailsRequest
 
@@ -36106,6 +37316,12 @@ type MarketplaceProjectUpdateRequestsRejectJSONRequestBody = ReviewCommentReques
 // MarketplaceProviderOfferingsCreateJSONRequestBody defines body for MarketplaceProviderOfferingsCreate for application/json ContentType.
 type MarketplaceProviderOfferingsCreateJSONRequestBody = OfferingCreateRequest
 
+// MarketplaceProviderOfferingsCreateFormdataRequestBody defines body for MarketplaceProviderOfferingsCreate for application/x-www-form-urlencoded ContentType.
+type MarketplaceProviderOfferingsCreateFormdataRequestBody = OfferingCreateRequestForm
+
+// MarketplaceProviderOfferingsCreateMultipartRequestBody defines body for MarketplaceProviderOfferingsCreate for multipart/form-data ContentType.
+type MarketplaceProviderOfferingsCreateMultipartRequestBody = OfferingCreateRequestMultipart
+
 // MarketplaceProviderOfferingsAddEndpointJSONRequestBody defines body for MarketplaceProviderOfferingsAddEndpoint for application/json ContentType.
 type MarketplaceProviderOfferingsAddEndpointJSONRequestBody = NestedEndpointRequest
 
@@ -36148,6 +37364,12 @@ type MarketplaceProviderOfferingsUpdateDescriptionJSONRequestBody = OfferingDesc
 // MarketplaceProviderOfferingsUpdateImageJSONRequestBody defines body for MarketplaceProviderOfferingsUpdateImage for application/json ContentType.
 type MarketplaceProviderOfferingsUpdateImageJSONRequestBody = OfferingImageRequest
 
+// MarketplaceProviderOfferingsUpdateImageFormdataRequestBody defines body for MarketplaceProviderOfferingsUpdateImage for application/x-www-form-urlencoded ContentType.
+type MarketplaceProviderOfferingsUpdateImageFormdataRequestBody = OfferingImageRequestForm
+
+// MarketplaceProviderOfferingsUpdateImageMultipartRequestBody defines body for MarketplaceProviderOfferingsUpdateImage for multipart/form-data ContentType.
+type MarketplaceProviderOfferingsUpdateImageMultipartRequestBody = OfferingImageRequestMultipart
+
 // MarketplaceProviderOfferingsUpdateIntegrationJSONRequestBody defines body for MarketplaceProviderOfferingsUpdateIntegration for application/json ContentType.
 type MarketplaceProviderOfferingsUpdateIntegrationJSONRequestBody = OfferingIntegrationUpdateRequest
 
@@ -36171,6 +37393,12 @@ type MarketplaceProviderOfferingsUpdateResourceOptionsJSONRequestBody = Offering
 
 // MarketplaceProviderOfferingsUpdateThumbnailJSONRequestBody defines body for MarketplaceProviderOfferingsUpdateThumbnail for application/json ContentType.
 type MarketplaceProviderOfferingsUpdateThumbnailJSONRequestBody = OfferingThumbnailRequest
+
+// MarketplaceProviderOfferingsUpdateThumbnailFormdataRequestBody defines body for MarketplaceProviderOfferingsUpdateThumbnail for application/x-www-form-urlencoded ContentType.
+type MarketplaceProviderOfferingsUpdateThumbnailFormdataRequestBody = OfferingThumbnailRequestForm
+
+// MarketplaceProviderOfferingsUpdateThumbnailMultipartRequestBody defines body for MarketplaceProviderOfferingsUpdateThumbnail for multipart/form-data ContentType.
+type MarketplaceProviderOfferingsUpdateThumbnailMultipartRequestBody = OfferingThumbnailRequestMultipart
 
 // MarketplaceProviderOfferingsUpdateUserJSONRequestBody defines body for MarketplaceProviderOfferingsUpdateUser for application/json ContentType.
 type MarketplaceProviderOfferingsUpdateUserJSONRequestBody = UserRoleUpdateRequest
@@ -36268,11 +37496,23 @@ type MarketplaceRobotAccountsSetStateErredJSONRequestBody = RobotAccountErrorReq
 // MarketplaceScreenshotsCreateJSONRequestBody defines body for MarketplaceScreenshotsCreate for application/json ContentType.
 type MarketplaceScreenshotsCreateJSONRequestBody = ScreenshotRequest
 
+// MarketplaceScreenshotsCreateFormdataRequestBody defines body for MarketplaceScreenshotsCreate for application/x-www-form-urlencoded ContentType.
+type MarketplaceScreenshotsCreateFormdataRequestBody = ScreenshotRequestForm
+
+// MarketplaceScreenshotsCreateMultipartRequestBody defines body for MarketplaceScreenshotsCreate for multipart/form-data ContentType.
+type MarketplaceScreenshotsCreateMultipartRequestBody = ScreenshotRequestMultipart
+
 // MarketplaceScreenshotsPartialUpdateJSONRequestBody defines body for MarketplaceScreenshotsPartialUpdate for application/json ContentType.
 type MarketplaceScreenshotsPartialUpdateJSONRequestBody = PatchedScreenshotRequest
 
 // MarketplaceScreenshotsUpdateJSONRequestBody defines body for MarketplaceScreenshotsUpdate for application/json ContentType.
 type MarketplaceScreenshotsUpdateJSONRequestBody = ScreenshotRequest
+
+// MarketplaceScreenshotsUpdateFormdataRequestBody defines body for MarketplaceScreenshotsUpdate for application/x-www-form-urlencoded ContentType.
+type MarketplaceScreenshotsUpdateFormdataRequestBody = ScreenshotRequestForm
+
+// MarketplaceScreenshotsUpdateMultipartRequestBody defines body for MarketplaceScreenshotsUpdate for multipart/form-data ContentType.
+type MarketplaceScreenshotsUpdateMultipartRequestBody = ScreenshotRequestMultipart
 
 // MarketplaceScriptDryRunAsyncRunJSONRequestBody defines body for MarketplaceScriptDryRunAsyncRun for application/json ContentType.
 type MarketplaceScriptDryRunAsyncRunJSONRequestBody = DryRunRequest
@@ -36295,11 +37535,29 @@ type MarketplaceSectionsUpdateJSONRequestBody = SectionRequest
 // MarketplaceServiceProvidersCreateJSONRequestBody defines body for MarketplaceServiceProvidersCreate for application/json ContentType.
 type MarketplaceServiceProvidersCreateJSONRequestBody = ServiceProviderRequest
 
+// MarketplaceServiceProvidersCreateFormdataRequestBody defines body for MarketplaceServiceProvidersCreate for application/x-www-form-urlencoded ContentType.
+type MarketplaceServiceProvidersCreateFormdataRequestBody = ServiceProviderRequestForm
+
+// MarketplaceServiceProvidersCreateMultipartRequestBody defines body for MarketplaceServiceProvidersCreate for multipart/form-data ContentType.
+type MarketplaceServiceProvidersCreateMultipartRequestBody = ServiceProviderRequestMultipart
+
 // MarketplaceServiceProvidersPartialUpdateJSONRequestBody defines body for MarketplaceServiceProvidersPartialUpdate for application/json ContentType.
 type MarketplaceServiceProvidersPartialUpdateJSONRequestBody = PatchedServiceProviderRequest
 
+// MarketplaceServiceProvidersPartialUpdateFormdataRequestBody defines body for MarketplaceServiceProvidersPartialUpdate for application/x-www-form-urlencoded ContentType.
+type MarketplaceServiceProvidersPartialUpdateFormdataRequestBody = PatchedServiceProviderRequestForm
+
+// MarketplaceServiceProvidersPartialUpdateMultipartRequestBody defines body for MarketplaceServiceProvidersPartialUpdate for multipart/form-data ContentType.
+type MarketplaceServiceProvidersPartialUpdateMultipartRequestBody = PatchedServiceProviderRequestMultipart
+
 // MarketplaceServiceProvidersUpdateJSONRequestBody defines body for MarketplaceServiceProvidersUpdate for application/json ContentType.
 type MarketplaceServiceProvidersUpdateJSONRequestBody = ServiceProviderRequest
+
+// MarketplaceServiceProvidersUpdateFormdataRequestBody defines body for MarketplaceServiceProvidersUpdate for application/x-www-form-urlencoded ContentType.
+type MarketplaceServiceProvidersUpdateFormdataRequestBody = ServiceProviderRequestForm
+
+// MarketplaceServiceProvidersUpdateMultipartRequestBody defines body for MarketplaceServiceProvidersUpdate for multipart/form-data ContentType.
+type MarketplaceServiceProvidersUpdateMultipartRequestBody = ServiceProviderRequestMultipart
 
 // MarketplaceServiceProvidersAddUserJSONRequestBody defines body for MarketplaceServiceProvidersAddUser for application/json ContentType.
 type MarketplaceServiceProvidersAddUserJSONRequestBody = UserRoleCreateRequest
@@ -36526,6 +37784,12 @@ type OrganizationGroupsUpdateJSONRequestBody = OrganizationGroupRequest
 // OverrideSettingsJSONRequestBody defines body for OverrideSettings for application/json ContentType.
 type OverrideSettingsJSONRequestBody = ConstanceSettingsRequest
 
+// OverrideSettingsFormdataRequestBody defines body for OverrideSettings for application/x-www-form-urlencoded ContentType.
+type OverrideSettingsFormdataRequestBody = ConstanceSettingsRequestForm
+
+// OverrideSettingsMultipartRequestBody defines body for OverrideSettings for multipart/form-data ContentType.
+type OverrideSettingsMultipartRequestBody = ConstanceSettingsRequestMultipart
+
 // PaymentProfilesCreateJSONRequestBody defines body for PaymentProfilesCreate for application/json ContentType.
 type PaymentProfilesCreateJSONRequestBody = PaymentProfileRequest
 
@@ -36538,11 +37802,29 @@ type PaymentProfilesUpdateJSONRequestBody = PaymentProfileRequest
 // PaymentsCreateJSONRequestBody defines body for PaymentsCreate for application/json ContentType.
 type PaymentsCreateJSONRequestBody = PaymentRequest
 
+// PaymentsCreateFormdataRequestBody defines body for PaymentsCreate for application/x-www-form-urlencoded ContentType.
+type PaymentsCreateFormdataRequestBody = PaymentRequestForm
+
+// PaymentsCreateMultipartRequestBody defines body for PaymentsCreate for multipart/form-data ContentType.
+type PaymentsCreateMultipartRequestBody = PaymentRequestMultipart
+
 // PaymentsPartialUpdateJSONRequestBody defines body for PaymentsPartialUpdate for application/json ContentType.
 type PaymentsPartialUpdateJSONRequestBody = PatchedPaymentRequest
 
+// PaymentsPartialUpdateFormdataRequestBody defines body for PaymentsPartialUpdate for application/x-www-form-urlencoded ContentType.
+type PaymentsPartialUpdateFormdataRequestBody = PatchedPaymentRequestForm
+
+// PaymentsPartialUpdateMultipartRequestBody defines body for PaymentsPartialUpdate for multipart/form-data ContentType.
+type PaymentsPartialUpdateMultipartRequestBody = PatchedPaymentRequestMultipart
+
 // PaymentsUpdateJSONRequestBody defines body for PaymentsUpdate for application/json ContentType.
 type PaymentsUpdateJSONRequestBody = PaymentRequest
+
+// PaymentsUpdateFormdataRequestBody defines body for PaymentsUpdate for application/x-www-form-urlencoded ContentType.
+type PaymentsUpdateFormdataRequestBody = PaymentRequestForm
+
+// PaymentsUpdateMultipartRequestBody defines body for PaymentsUpdate for multipart/form-data ContentType.
+type PaymentsUpdateMultipartRequestBody = PaymentRequestMultipart
 
 // PaymentsLinkToInvoiceJSONRequestBody defines body for PaymentsLinkToInvoice for application/json ContentType.
 type PaymentsLinkToInvoiceJSONRequestBody = LinkToInvoiceRequest
@@ -36559,11 +37841,29 @@ type ProjectCreditsUpdateJSONRequestBody = ProjectCreditRequest
 // ProjectsCreateJSONRequestBody defines body for ProjectsCreate for application/json ContentType.
 type ProjectsCreateJSONRequestBody = ProjectRequest
 
+// ProjectsCreateFormdataRequestBody defines body for ProjectsCreate for application/x-www-form-urlencoded ContentType.
+type ProjectsCreateFormdataRequestBody = ProjectRequestForm
+
+// ProjectsCreateMultipartRequestBody defines body for ProjectsCreate for multipart/form-data ContentType.
+type ProjectsCreateMultipartRequestBody = ProjectRequestMultipart
+
 // ProjectsPartialUpdateJSONRequestBody defines body for ProjectsPartialUpdate for application/json ContentType.
 type ProjectsPartialUpdateJSONRequestBody = PatchedProjectRequest
 
+// ProjectsPartialUpdateFormdataRequestBody defines body for ProjectsPartialUpdate for application/x-www-form-urlencoded ContentType.
+type ProjectsPartialUpdateFormdataRequestBody = PatchedProjectRequestForm
+
+// ProjectsPartialUpdateMultipartRequestBody defines body for ProjectsPartialUpdate for multipart/form-data ContentType.
+type ProjectsPartialUpdateMultipartRequestBody = PatchedProjectRequestMultipart
+
 // ProjectsUpdateJSONRequestBody defines body for ProjectsUpdate for application/json ContentType.
 type ProjectsUpdateJSONRequestBody = ProjectRequest
+
+// ProjectsUpdateFormdataRequestBody defines body for ProjectsUpdate for application/x-www-form-urlencoded ContentType.
+type ProjectsUpdateFormdataRequestBody = ProjectRequestForm
+
+// ProjectsUpdateMultipartRequestBody defines body for ProjectsUpdate for multipart/form-data ContentType.
+type ProjectsUpdateMultipartRequestBody = ProjectRequestMultipart
 
 // ProjectsAddUserJSONRequestBody defines body for ProjectsAddUser for application/json ContentType.
 type ProjectsAddUserJSONRequestBody = UserRoleCreateRequest
@@ -36597,6 +37897,12 @@ type ProposalProposalsApproveJSONRequestBody = ProposalApproveRequest
 
 // ProposalProposalsAttachDocumentJSONRequestBody defines body for ProposalProposalsAttachDocument for application/json ContentType.
 type ProposalProposalsAttachDocumentJSONRequestBody = ProposalDocumentationRequest
+
+// ProposalProposalsAttachDocumentFormdataRequestBody defines body for ProposalProposalsAttachDocument for application/x-www-form-urlencoded ContentType.
+type ProposalProposalsAttachDocumentFormdataRequestBody = ProposalDocumentationRequestForm
+
+// ProposalProposalsAttachDocumentMultipartRequestBody defines body for ProposalProposalsAttachDocument for multipart/form-data ContentType.
+type ProposalProposalsAttachDocumentMultipartRequestBody = ProposalDocumentationRequestMultipart
 
 // ProposalProposalsDeleteUserJSONRequestBody defines body for ProposalProposalsDeleteUser for application/json ContentType.
 type ProposalProposalsDeleteUserJSONRequestBody = UserRoleDeleteRequest
@@ -36829,14 +38135,32 @@ type SlurmAllocationsSetLimitsJSONRequestBody = SlurmAllocationSetLimitsRequest
 // SlurmJobsCreateJSONRequestBody defines body for SlurmJobsCreate for application/json ContentType.
 type SlurmJobsCreateJSONRequestBody = FirecrestJobRequest
 
+// SlurmJobsCreateFormdataRequestBody defines body for SlurmJobsCreate for application/x-www-form-urlencoded ContentType.
+type SlurmJobsCreateFormdataRequestBody = FirecrestJobRequestForm
+
+// SlurmJobsCreateMultipartRequestBody defines body for SlurmJobsCreate for multipart/form-data ContentType.
+type SlurmJobsCreateMultipartRequestBody = FirecrestJobRequestMultipart
+
 // SlurmJobsPartialUpdateJSONRequestBody defines body for SlurmJobsPartialUpdate for application/json ContentType.
 type SlurmJobsPartialUpdateJSONRequestBody = PatchedFirecrestJobRequest
 
 // SlurmJobsUpdateJSONRequestBody defines body for SlurmJobsUpdate for application/json ContentType.
 type SlurmJobsUpdateJSONRequestBody = FirecrestJobRequest
 
+// SlurmJobsUpdateFormdataRequestBody defines body for SlurmJobsUpdate for application/x-www-form-urlencoded ContentType.
+type SlurmJobsUpdateFormdataRequestBody = FirecrestJobRequestForm
+
+// SlurmJobsUpdateMultipartRequestBody defines body for SlurmJobsUpdate for multipart/form-data ContentType.
+type SlurmJobsUpdateMultipartRequestBody = FirecrestJobRequestMultipart
+
 // SupportAttachmentsCreateJSONRequestBody defines body for SupportAttachmentsCreate for application/json ContentType.
 type SupportAttachmentsCreateJSONRequestBody = AttachmentRequest
+
+// SupportAttachmentsCreateFormdataRequestBody defines body for SupportAttachmentsCreate for application/x-www-form-urlencoded ContentType.
+type SupportAttachmentsCreateFormdataRequestBody = AttachmentRequestForm
+
+// SupportAttachmentsCreateMultipartRequestBody defines body for SupportAttachmentsCreate for multipart/form-data ContentType.
+type SupportAttachmentsCreateMultipartRequestBody = AttachmentRequestMultipart
 
 // SupportCommentsPartialUpdateJSONRequestBody defines body for SupportCommentsPartialUpdate for application/json ContentType.
 type SupportCommentsPartialUpdateJSONRequestBody = PatchedCommentRequest
@@ -36922,14 +38246,32 @@ type UserPermissionRequestsRejectJSONRequestBody = ReviewCommentRequest
 // UsersCreateJSONRequestBody defines body for UsersCreate for application/json ContentType.
 type UsersCreateJSONRequestBody = UserRequest
 
+// UsersCreateFormdataRequestBody defines body for UsersCreate for application/x-www-form-urlencoded ContentType.
+type UsersCreateFormdataRequestBody = UserRequestForm
+
+// UsersCreateMultipartRequestBody defines body for UsersCreate for multipart/form-data ContentType.
+type UsersCreateMultipartRequestBody = UserRequestMultipart
+
 // UsersConfirmEmailJSONRequestBody defines body for UsersConfirmEmail for application/json ContentType.
 type UsersConfirmEmailJSONRequestBody = ConfirmEmailRequestRequest
 
 // UsersPartialUpdateJSONRequestBody defines body for UsersPartialUpdate for application/json ContentType.
 type UsersPartialUpdateJSONRequestBody = PatchedUserRequest
 
+// UsersPartialUpdateFormdataRequestBody defines body for UsersPartialUpdate for application/x-www-form-urlencoded ContentType.
+type UsersPartialUpdateFormdataRequestBody = PatchedUserRequestForm
+
+// UsersPartialUpdateMultipartRequestBody defines body for UsersPartialUpdate for multipart/form-data ContentType.
+type UsersPartialUpdateMultipartRequestBody = PatchedUserRequestMultipart
+
 // UsersUpdateJSONRequestBody defines body for UsersUpdate for application/json ContentType.
 type UsersUpdateJSONRequestBody = UserRequest
+
+// UsersUpdateFormdataRequestBody defines body for UsersUpdate for application/x-www-form-urlencoded ContentType.
+type UsersUpdateFormdataRequestBody = UserRequestForm
+
+// UsersUpdateMultipartRequestBody defines body for UsersUpdate for multipart/form-data ContentType.
+type UsersUpdateMultipartRequestBody = UserRequestMultipart
 
 // UsersChangeEmailJSONRequestBody defines body for UsersChangeEmail for application/json ContentType.
 type UsersChangeEmailJSONRequestBody = UserEmailChangeRequest
@@ -37334,6 +38676,130 @@ func (t CustomerRequest_Country) MarshalJSON() ([]byte, error) {
 }
 
 func (t *CustomerRequest_Country) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsCountryEnum returns the union data inside the CustomerRequestForm_Country as a CountryEnum
+func (t CustomerRequestForm_Country) AsCountryEnum() (CountryEnum, error) {
+	var body CountryEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromCountryEnum overwrites any union data inside the CustomerRequestForm_Country as the provided CountryEnum
+func (t *CustomerRequestForm_Country) FromCountryEnum(v CountryEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeCountryEnum performs a merge with any union data inside the CustomerRequestForm_Country, using the provided CountryEnum
+func (t *CustomerRequestForm_Country) MergeCountryEnum(v CountryEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsBlankEnum returns the union data inside the CustomerRequestForm_Country as a BlankEnum
+func (t CustomerRequestForm_Country) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the CustomerRequestForm_Country as the provided BlankEnum
+func (t *CustomerRequestForm_Country) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the CustomerRequestForm_Country, using the provided BlankEnum
+func (t *CustomerRequestForm_Country) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t CustomerRequestForm_Country) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *CustomerRequestForm_Country) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsCountryEnum returns the union data inside the CustomerRequestMultipart_Country as a CountryEnum
+func (t CustomerRequestMultipart_Country) AsCountryEnum() (CountryEnum, error) {
+	var body CountryEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromCountryEnum overwrites any union data inside the CustomerRequestMultipart_Country as the provided CountryEnum
+func (t *CustomerRequestMultipart_Country) FromCountryEnum(v CountryEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeCountryEnum performs a merge with any union data inside the CustomerRequestMultipart_Country, using the provided CountryEnum
+func (t *CustomerRequestMultipart_Country) MergeCountryEnum(v CountryEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsBlankEnum returns the union data inside the CustomerRequestMultipart_Country as a BlankEnum
+func (t CustomerRequestMultipart_Country) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the CustomerRequestMultipart_Country as the provided BlankEnum
+func (t *CustomerRequestMultipart_Country) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the CustomerRequestMultipart_Country, using the provided BlankEnum
+func (t *CustomerRequestMultipart_Country) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t CustomerRequestMultipart_Country) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *CustomerRequestMultipart_Country) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -38032,6 +39498,130 @@ func (t OfferingCreateRequest_Country) MarshalJSON() ([]byte, error) {
 }
 
 func (t *OfferingCreateRequest_Country) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsCountryEnum returns the union data inside the OfferingCreateRequestForm_Country as a CountryEnum
+func (t OfferingCreateRequestForm_Country) AsCountryEnum() (CountryEnum, error) {
+	var body CountryEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromCountryEnum overwrites any union data inside the OfferingCreateRequestForm_Country as the provided CountryEnum
+func (t *OfferingCreateRequestForm_Country) FromCountryEnum(v CountryEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeCountryEnum performs a merge with any union data inside the OfferingCreateRequestForm_Country, using the provided CountryEnum
+func (t *OfferingCreateRequestForm_Country) MergeCountryEnum(v CountryEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsBlankEnum returns the union data inside the OfferingCreateRequestForm_Country as a BlankEnum
+func (t OfferingCreateRequestForm_Country) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the OfferingCreateRequestForm_Country as the provided BlankEnum
+func (t *OfferingCreateRequestForm_Country) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the OfferingCreateRequestForm_Country, using the provided BlankEnum
+func (t *OfferingCreateRequestForm_Country) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t OfferingCreateRequestForm_Country) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *OfferingCreateRequestForm_Country) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsCountryEnum returns the union data inside the OfferingCreateRequestMultipart_Country as a CountryEnum
+func (t OfferingCreateRequestMultipart_Country) AsCountryEnum() (CountryEnum, error) {
+	var body CountryEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromCountryEnum overwrites any union data inside the OfferingCreateRequestMultipart_Country as the provided CountryEnum
+func (t *OfferingCreateRequestMultipart_Country) FromCountryEnum(v CountryEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeCountryEnum performs a merge with any union data inside the OfferingCreateRequestMultipart_Country, using the provided CountryEnum
+func (t *OfferingCreateRequestMultipart_Country) MergeCountryEnum(v CountryEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsBlankEnum returns the union data inside the OfferingCreateRequestMultipart_Country as a BlankEnum
+func (t OfferingCreateRequestMultipart_Country) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the OfferingCreateRequestMultipart_Country as the provided BlankEnum
+func (t *OfferingCreateRequestMultipart_Country) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the OfferingCreateRequestMultipart_Country, using the provided BlankEnum
+func (t *OfferingCreateRequestMultipart_Country) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t OfferingCreateRequestMultipart_Country) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *OfferingCreateRequestMultipart_Country) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -39768,6 +41358,130 @@ func (t *PatchedCustomerRequest_Country) UnmarshalJSON(b []byte) error {
 	return err
 }
 
+// AsCountryEnum returns the union data inside the PatchedCustomerRequestForm_Country as a CountryEnum
+func (t PatchedCustomerRequestForm_Country) AsCountryEnum() (CountryEnum, error) {
+	var body CountryEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromCountryEnum overwrites any union data inside the PatchedCustomerRequestForm_Country as the provided CountryEnum
+func (t *PatchedCustomerRequestForm_Country) FromCountryEnum(v CountryEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeCountryEnum performs a merge with any union data inside the PatchedCustomerRequestForm_Country, using the provided CountryEnum
+func (t *PatchedCustomerRequestForm_Country) MergeCountryEnum(v CountryEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsBlankEnum returns the union data inside the PatchedCustomerRequestForm_Country as a BlankEnum
+func (t PatchedCustomerRequestForm_Country) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the PatchedCustomerRequestForm_Country as the provided BlankEnum
+func (t *PatchedCustomerRequestForm_Country) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the PatchedCustomerRequestForm_Country, using the provided BlankEnum
+func (t *PatchedCustomerRequestForm_Country) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t PatchedCustomerRequestForm_Country) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *PatchedCustomerRequestForm_Country) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsCountryEnum returns the union data inside the PatchedCustomerRequestMultipart_Country as a CountryEnum
+func (t PatchedCustomerRequestMultipart_Country) AsCountryEnum() (CountryEnum, error) {
+	var body CountryEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromCountryEnum overwrites any union data inside the PatchedCustomerRequestMultipart_Country as the provided CountryEnum
+func (t *PatchedCustomerRequestMultipart_Country) FromCountryEnum(v CountryEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeCountryEnum performs a merge with any union data inside the PatchedCustomerRequestMultipart_Country, using the provided CountryEnum
+func (t *PatchedCustomerRequestMultipart_Country) MergeCountryEnum(v CountryEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsBlankEnum returns the union data inside the PatchedCustomerRequestMultipart_Country as a BlankEnum
+func (t PatchedCustomerRequestMultipart_Country) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the PatchedCustomerRequestMultipart_Country as the provided BlankEnum
+func (t *PatchedCustomerRequestMultipart_Country) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the PatchedCustomerRequestMultipart_Country, using the provided BlankEnum
+func (t *PatchedCustomerRequestMultipart_Country) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t PatchedCustomerRequestMultipart_Country) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *PatchedCustomerRequestMultipart_Country) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsPolicyEnum returns the union data inside the PatchedOpenStackServerGroupRequest_Policy as a PolicyEnum
 func (t PatchedOpenStackServerGroupRequest_Policy) AsPolicyEnum() (PolicyEnum, error) {
 	var body PolicyEnum
@@ -40038,6 +41752,182 @@ func (t PatchedProjectRequest_OecdFos2007Code) MarshalJSON() ([]byte, error) {
 }
 
 func (t *PatchedProjectRequest_OecdFos2007Code) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsOecdFos2007CodeEnum returns the union data inside the PatchedProjectRequestForm_OecdFos2007Code as a OecdFos2007CodeEnum
+func (t PatchedProjectRequestForm_OecdFos2007Code) AsOecdFos2007CodeEnum() (OecdFos2007CodeEnum, error) {
+	var body OecdFos2007CodeEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOecdFos2007CodeEnum overwrites any union data inside the PatchedProjectRequestForm_OecdFos2007Code as the provided OecdFos2007CodeEnum
+func (t *PatchedProjectRequestForm_OecdFos2007Code) FromOecdFos2007CodeEnum(v OecdFos2007CodeEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOecdFos2007CodeEnum performs a merge with any union data inside the PatchedProjectRequestForm_OecdFos2007Code, using the provided OecdFos2007CodeEnum
+func (t *PatchedProjectRequestForm_OecdFos2007Code) MergeOecdFos2007CodeEnum(v OecdFos2007CodeEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsBlankEnum returns the union data inside the PatchedProjectRequestForm_OecdFos2007Code as a BlankEnum
+func (t PatchedProjectRequestForm_OecdFos2007Code) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the PatchedProjectRequestForm_OecdFos2007Code as the provided BlankEnum
+func (t *PatchedProjectRequestForm_OecdFos2007Code) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the PatchedProjectRequestForm_OecdFos2007Code, using the provided BlankEnum
+func (t *PatchedProjectRequestForm_OecdFos2007Code) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the PatchedProjectRequestForm_OecdFos2007Code as a NullEnum
+func (t PatchedProjectRequestForm_OecdFos2007Code) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the PatchedProjectRequestForm_OecdFos2007Code as the provided NullEnum
+func (t *PatchedProjectRequestForm_OecdFos2007Code) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the PatchedProjectRequestForm_OecdFos2007Code, using the provided NullEnum
+func (t *PatchedProjectRequestForm_OecdFos2007Code) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t PatchedProjectRequestForm_OecdFos2007Code) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *PatchedProjectRequestForm_OecdFos2007Code) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsOecdFos2007CodeEnum returns the union data inside the PatchedProjectRequestMultipart_OecdFos2007Code as a OecdFos2007CodeEnum
+func (t PatchedProjectRequestMultipart_OecdFos2007Code) AsOecdFos2007CodeEnum() (OecdFos2007CodeEnum, error) {
+	var body OecdFos2007CodeEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOecdFos2007CodeEnum overwrites any union data inside the PatchedProjectRequestMultipart_OecdFos2007Code as the provided OecdFos2007CodeEnum
+func (t *PatchedProjectRequestMultipart_OecdFos2007Code) FromOecdFos2007CodeEnum(v OecdFos2007CodeEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOecdFos2007CodeEnum performs a merge with any union data inside the PatchedProjectRequestMultipart_OecdFos2007Code, using the provided OecdFos2007CodeEnum
+func (t *PatchedProjectRequestMultipart_OecdFos2007Code) MergeOecdFos2007CodeEnum(v OecdFos2007CodeEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsBlankEnum returns the union data inside the PatchedProjectRequestMultipart_OecdFos2007Code as a BlankEnum
+func (t PatchedProjectRequestMultipart_OecdFos2007Code) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the PatchedProjectRequestMultipart_OecdFos2007Code as the provided BlankEnum
+func (t *PatchedProjectRequestMultipart_OecdFos2007Code) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the PatchedProjectRequestMultipart_OecdFos2007Code, using the provided BlankEnum
+func (t *PatchedProjectRequestMultipart_OecdFos2007Code) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the PatchedProjectRequestMultipart_OecdFos2007Code as a NullEnum
+func (t PatchedProjectRequestMultipart_OecdFos2007Code) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the PatchedProjectRequestMultipart_OecdFos2007Code as the provided NullEnum
+func (t *PatchedProjectRequestMultipart_OecdFos2007Code) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the PatchedProjectRequestMultipart_OecdFos2007Code, using the provided NullEnum
+func (t *PatchedProjectRequestMultipart_OecdFos2007Code) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t PatchedProjectRequestMultipart_OecdFos2007Code) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *PatchedProjectRequestMultipart_OecdFos2007Code) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -40400,6 +42290,182 @@ func (t ProjectRequest_OecdFos2007Code) MarshalJSON() ([]byte, error) {
 }
 
 func (t *ProjectRequest_OecdFos2007Code) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsOecdFos2007CodeEnum returns the union data inside the ProjectRequestForm_OecdFos2007Code as a OecdFos2007CodeEnum
+func (t ProjectRequestForm_OecdFos2007Code) AsOecdFos2007CodeEnum() (OecdFos2007CodeEnum, error) {
+	var body OecdFos2007CodeEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOecdFos2007CodeEnum overwrites any union data inside the ProjectRequestForm_OecdFos2007Code as the provided OecdFos2007CodeEnum
+func (t *ProjectRequestForm_OecdFos2007Code) FromOecdFos2007CodeEnum(v OecdFos2007CodeEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOecdFos2007CodeEnum performs a merge with any union data inside the ProjectRequestForm_OecdFos2007Code, using the provided OecdFos2007CodeEnum
+func (t *ProjectRequestForm_OecdFos2007Code) MergeOecdFos2007CodeEnum(v OecdFos2007CodeEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsBlankEnum returns the union data inside the ProjectRequestForm_OecdFos2007Code as a BlankEnum
+func (t ProjectRequestForm_OecdFos2007Code) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the ProjectRequestForm_OecdFos2007Code as the provided BlankEnum
+func (t *ProjectRequestForm_OecdFos2007Code) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the ProjectRequestForm_OecdFos2007Code, using the provided BlankEnum
+func (t *ProjectRequestForm_OecdFos2007Code) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the ProjectRequestForm_OecdFos2007Code as a NullEnum
+func (t ProjectRequestForm_OecdFos2007Code) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the ProjectRequestForm_OecdFos2007Code as the provided NullEnum
+func (t *ProjectRequestForm_OecdFos2007Code) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the ProjectRequestForm_OecdFos2007Code, using the provided NullEnum
+func (t *ProjectRequestForm_OecdFos2007Code) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t ProjectRequestForm_OecdFos2007Code) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *ProjectRequestForm_OecdFos2007Code) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsOecdFos2007CodeEnum returns the union data inside the ProjectRequestMultipart_OecdFos2007Code as a OecdFos2007CodeEnum
+func (t ProjectRequestMultipart_OecdFos2007Code) AsOecdFos2007CodeEnum() (OecdFos2007CodeEnum, error) {
+	var body OecdFos2007CodeEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOecdFos2007CodeEnum overwrites any union data inside the ProjectRequestMultipart_OecdFos2007Code as the provided OecdFos2007CodeEnum
+func (t *ProjectRequestMultipart_OecdFos2007Code) FromOecdFos2007CodeEnum(v OecdFos2007CodeEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOecdFos2007CodeEnum performs a merge with any union data inside the ProjectRequestMultipart_OecdFos2007Code, using the provided OecdFos2007CodeEnum
+func (t *ProjectRequestMultipart_OecdFos2007Code) MergeOecdFos2007CodeEnum(v OecdFos2007CodeEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsBlankEnum returns the union data inside the ProjectRequestMultipart_OecdFos2007Code as a BlankEnum
+func (t ProjectRequestMultipart_OecdFos2007Code) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the ProjectRequestMultipart_OecdFos2007Code as the provided BlankEnum
+func (t *ProjectRequestMultipart_OecdFos2007Code) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the ProjectRequestMultipart_OecdFos2007Code, using the provided BlankEnum
+func (t *ProjectRequestMultipart_OecdFos2007Code) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the ProjectRequestMultipart_OecdFos2007Code as a NullEnum
+func (t ProjectRequestMultipart_OecdFos2007Code) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the ProjectRequestMultipart_OecdFos2007Code as the provided NullEnum
+func (t *ProjectRequestMultipart_OecdFos2007Code) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the ProjectRequestMultipart_OecdFos2007Code, using the provided NullEnum
+func (t *ProjectRequestMultipart_OecdFos2007Code) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t ProjectRequestMultipart_OecdFos2007Code) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *ProjectRequestMultipart_OecdFos2007Code) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -42553,6 +44619,8 @@ type ClientInterface interface {
 
 	CallManagingOrganisationsCreate(ctx context.Context, body CallManagingOrganisationsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	CallManagingOrganisationsCreateWithFormdataBody(ctx context.Context, body CallManagingOrganisationsCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// CallManagingOrganisationsDestroy request
 	CallManagingOrganisationsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -42564,10 +44632,14 @@ type ClientInterface interface {
 
 	CallManagingOrganisationsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body CallManagingOrganisationsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	CallManagingOrganisationsPartialUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body CallManagingOrganisationsPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// CallManagingOrganisationsUpdateWithBody request with any body
 	CallManagingOrganisationsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	CallManagingOrganisationsUpdate(ctx context.Context, uuid openapi_types.UUID, body CallManagingOrganisationsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	CallManagingOrganisationsUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body CallManagingOrganisationsUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// CallManagingOrganisationsAddUserWithBody request with any body
 	CallManagingOrganisationsAddUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -42643,6 +44715,8 @@ type ClientInterface interface {
 
 	ChecklistsAdminCategoriesCreate(ctx context.Context, body ChecklistsAdminCategoriesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	ChecklistsAdminCategoriesCreateWithFormdataBody(ctx context.Context, body ChecklistsAdminCategoriesCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// ChecklistsAdminCategoriesDestroy request
 	ChecklistsAdminCategoriesDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -42654,10 +44728,14 @@ type ClientInterface interface {
 
 	ChecklistsAdminCategoriesPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body ChecklistsAdminCategoriesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	ChecklistsAdminCategoriesPartialUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body ChecklistsAdminCategoriesPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// ChecklistsAdminCategoriesUpdateWithBody request with any body
 	ChecklistsAdminCategoriesUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	ChecklistsAdminCategoriesUpdate(ctx context.Context, uuid openapi_types.UUID, body ChecklistsAdminCategoriesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ChecklistsAdminCategoriesUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body ChecklistsAdminCategoriesUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ChecklistsAdminQuestionDependenciesList request
 	ChecklistsAdminQuestionDependenciesList(ctx context.Context, params *ChecklistsAdminQuestionDependenciesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -42869,6 +44947,8 @@ type ClientInterface interface {
 
 	CustomersCreate(ctx context.Context, body CustomersCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	CustomersCreateWithFormdataBody(ctx context.Context, body CustomersCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// CustomersCountriesList request
 	CustomersCountriesList(ctx context.Context, params *CustomersCountriesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -42901,10 +44981,14 @@ type ClientInterface interface {
 
 	CustomersPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body CustomersPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	CustomersPartialUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body CustomersPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// CustomersUpdateWithBody request with any body
 	CustomersUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	CustomersUpdate(ctx context.Context, uuid openapi_types.UUID, body CustomersUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	CustomersUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body CustomersUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// CustomersAddUserWithBody request with any body
 	CustomersAddUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -43082,6 +45166,8 @@ type ClientInterface interface {
 
 	ExternalLinksCreate(ctx context.Context, body ExternalLinksCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	ExternalLinksCreateWithFormdataBody(ctx context.Context, body ExternalLinksCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// ExternalLinksDestroy request
 	ExternalLinksDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -43093,10 +45179,14 @@ type ClientInterface interface {
 
 	ExternalLinksPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body ExternalLinksPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	ExternalLinksPartialUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body ExternalLinksPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// ExternalLinksUpdateWithBody request with any body
 	ExternalLinksUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	ExternalLinksUpdate(ctx context.Context, uuid openapi_types.UUID, body ExternalLinksUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ExternalLinksUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body ExternalLinksUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// FeatureValuesWithBody request with any body
 	FeatureValuesWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -43328,6 +45418,8 @@ type ClientInterface interface {
 	InvoicesPaidWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	InvoicesPaid(ctx context.Context, uuid openapi_types.UUID, body InvoicesPaidJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	InvoicesPaidWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body InvoicesPaidFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// InvoicesSendNotification request
 	InvoicesSendNotification(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -43581,6 +45673,8 @@ type ClientInterface interface {
 
 	MarketplaceCategoriesCreate(ctx context.Context, body MarketplaceCategoriesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	MarketplaceCategoriesCreateWithFormdataBody(ctx context.Context, body MarketplaceCategoriesCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceCategoriesDestroy request
 	MarketplaceCategoriesDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -43592,10 +45686,14 @@ type ClientInterface interface {
 
 	MarketplaceCategoriesPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceCategoriesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	MarketplaceCategoriesPartialUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body MarketplaceCategoriesPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceCategoriesUpdateWithBody request with any body
 	MarketplaceCategoriesUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	MarketplaceCategoriesUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceCategoriesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceCategoriesUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body MarketplaceCategoriesUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceCategoryColumnsList request
 	MarketplaceCategoryColumnsList(ctx context.Context, params *MarketplaceCategoryColumnsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -43671,6 +45769,8 @@ type ClientInterface interface {
 
 	MarketplaceCategoryGroupsCreate(ctx context.Context, body MarketplaceCategoryGroupsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	MarketplaceCategoryGroupsCreateWithFormdataBody(ctx context.Context, body MarketplaceCategoryGroupsCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceCategoryGroupsDestroy request
 	MarketplaceCategoryGroupsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -43682,10 +45782,14 @@ type ClientInterface interface {
 
 	MarketplaceCategoryGroupsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceCategoryGroupsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	MarketplaceCategoryGroupsPartialUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body MarketplaceCategoryGroupsPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceCategoryGroupsUpdateWithBody request with any body
 	MarketplaceCategoryGroupsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	MarketplaceCategoryGroupsUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceCategoryGroupsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceCategoryGroupsUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body MarketplaceCategoryGroupsUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceCategoryHelpArticlesList request
 	MarketplaceCategoryHelpArticlesList(ctx context.Context, params *MarketplaceCategoryHelpArticlesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -43882,6 +45986,8 @@ type ClientInterface interface {
 	MarketplaceOfferingFilesCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	MarketplaceOfferingFilesCreate(ctx context.Context, body MarketplaceOfferingFilesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceOfferingFilesCreateWithFormdataBody(ctx context.Context, body MarketplaceOfferingFilesCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceOfferingFilesDestroy request
 	MarketplaceOfferingFilesDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -44157,6 +46263,8 @@ type ClientInterface interface {
 
 	MarketplaceOrdersUpdateAttachment(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersUpdateAttachmentJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	MarketplaceOrdersUpdateAttachmentWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersUpdateAttachmentFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplacePlanComponentsList request
 	MarketplacePlanComponentsList(ctx context.Context, params *MarketplacePlanComponentsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -44316,6 +46424,8 @@ type ClientInterface interface {
 
 	MarketplaceProviderOfferingsCreate(ctx context.Context, body MarketplaceProviderOfferingsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	MarketplaceProviderOfferingsCreateWithFormdataBody(ctx context.Context, body MarketplaceProviderOfferingsCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceProviderOfferingsGroupsList request
 	MarketplaceProviderOfferingsGroupsList(ctx context.Context, params *MarketplaceProviderOfferingsGroupsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -44467,6 +46577,8 @@ type ClientInterface interface {
 
 	MarketplaceProviderOfferingsUpdateImage(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateImageJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	MarketplaceProviderOfferingsUpdateImageWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateImageFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceProviderOfferingsUpdateIntegrationWithBody request with any body
 	MarketplaceProviderOfferingsUpdateIntegrationWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -44506,6 +46618,8 @@ type ClientInterface interface {
 	MarketplaceProviderOfferingsUpdateThumbnailWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	MarketplaceProviderOfferingsUpdateThumbnail(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateThumbnailJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceProviderOfferingsUpdateThumbnailWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateThumbnailFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceProviderOfferingsUpdateUserWithBody request with any body
 	MarketplaceProviderOfferingsUpdateUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -44829,6 +46943,8 @@ type ClientInterface interface {
 
 	MarketplaceScreenshotsCreate(ctx context.Context, body MarketplaceScreenshotsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	MarketplaceScreenshotsCreateWithFormdataBody(ctx context.Context, body MarketplaceScreenshotsCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceScreenshotsDestroy request
 	MarketplaceScreenshotsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -44844,6 +46960,8 @@ type ClientInterface interface {
 	MarketplaceScreenshotsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	MarketplaceScreenshotsUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceScreenshotsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceScreenshotsUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body MarketplaceScreenshotsUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceScriptAsyncDryRunList request
 	MarketplaceScriptAsyncDryRunList(ctx context.Context, params *MarketplaceScriptAsyncDryRunListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -44907,6 +47025,8 @@ type ClientInterface interface {
 
 	MarketplaceServiceProvidersCreate(ctx context.Context, body MarketplaceServiceProvidersCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	MarketplaceServiceProvidersCreateWithFormdataBody(ctx context.Context, body MarketplaceServiceProvidersCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// ServiceProviderComplianceOverview request
 	ServiceProviderComplianceOverview(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *ServiceProviderComplianceOverviewParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -44954,10 +47074,14 @@ type ClientInterface interface {
 
 	MarketplaceServiceProvidersPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceServiceProvidersPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	MarketplaceServiceProvidersPartialUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body MarketplaceServiceProvidersPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceServiceProvidersUpdateWithBody request with any body
 	MarketplaceServiceProvidersUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	MarketplaceServiceProvidersUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceServiceProvidersUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceServiceProvidersUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body MarketplaceServiceProvidersUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceServiceProvidersAddUserWithBody request with any body
 	MarketplaceServiceProvidersAddUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -45919,6 +48043,8 @@ type ClientInterface interface {
 
 	OverrideSettings(ctx context.Context, body OverrideSettingsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	OverrideSettingsWithFormdataBody(ctx context.Context, body OverrideSettingsFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// PaymentProfilesList request
 	PaymentProfilesList(ctx context.Context, params *PaymentProfilesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -45960,6 +48086,8 @@ type ClientInterface interface {
 
 	PaymentsCreate(ctx context.Context, body PaymentsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	PaymentsCreateWithFormdataBody(ctx context.Context, body PaymentsCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// PaymentsDestroy request
 	PaymentsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -45971,10 +48099,14 @@ type ClientInterface interface {
 
 	PaymentsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body PaymentsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	PaymentsPartialUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body PaymentsPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// PaymentsUpdateWithBody request with any body
 	PaymentsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	PaymentsUpdate(ctx context.Context, uuid openapi_types.UUID, body PaymentsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	PaymentsUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body PaymentsUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// PaymentsLinkToInvoiceWithBody request with any body
 	PaymentsLinkToInvoiceWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -46049,6 +48181,8 @@ type ClientInterface interface {
 
 	ProjectsCreate(ctx context.Context, body ProjectsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	ProjectsCreateWithFormdataBody(ctx context.Context, body ProjectsCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// ProjectsOtherUsersList request
 	ProjectsOtherUsersList(ctx context.Context, projectUuid openapi_types.UUID, params *ProjectsOtherUsersListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -46063,10 +48197,14 @@ type ClientInterface interface {
 
 	ProjectsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body ProjectsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	ProjectsPartialUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body ProjectsPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// ProjectsUpdateWithBody request with any body
 	ProjectsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	ProjectsUpdate(ctx context.Context, uuid openapi_types.UUID, body ProjectsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ProjectsUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body ProjectsUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProjectsAddUserWithBody request with any body
 	ProjectsAddUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -46170,6 +48308,8 @@ type ClientInterface interface {
 	ProposalProposalsAttachDocumentWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	ProposalProposalsAttachDocument(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsAttachDocumentJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ProposalProposalsAttachDocumentWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsAttachDocumentFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProposalProposalsChecklistRetrieve request
 	ProposalProposalsChecklistRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -47048,6 +49188,8 @@ type ClientInterface interface {
 
 	SlurmJobsCreate(ctx context.Context, body SlurmJobsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	SlurmJobsCreateWithFormdataBody(ctx context.Context, body SlurmJobsCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// SlurmJobsDestroy request
 	SlurmJobsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -47063,6 +49205,8 @@ type ClientInterface interface {
 	SlurmJobsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	SlurmJobsUpdate(ctx context.Context, uuid openapi_types.UUID, body SlurmJobsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	SlurmJobsUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body SlurmJobsUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// SlurmJobsPull request
 	SlurmJobsPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -47080,6 +49224,8 @@ type ClientInterface interface {
 	SupportAttachmentsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	SupportAttachmentsCreate(ctx context.Context, body SupportAttachmentsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	SupportAttachmentsCreateWithFormdataBody(ctx context.Context, body SupportAttachmentsCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// SupportAttachmentsDestroy request
 	SupportAttachmentsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -47404,6 +49550,8 @@ type ClientInterface interface {
 
 	UsersCreate(ctx context.Context, body UsersCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	UsersCreateWithFormdataBody(ctx context.Context, body UsersCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// UsersConfirmEmailWithBody request with any body
 	UsersConfirmEmailWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -47426,10 +49574,14 @@ type ClientInterface interface {
 
 	UsersPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body UsersPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	UsersPartialUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body UsersPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// UsersUpdateWithBody request with any body
 	UsersUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	UsersUpdate(ctx context.Context, uuid openapi_types.UUID, body UsersUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	UsersUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body UsersUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UsersCancelChangeEmail request
 	UsersCancelChangeEmail(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -50232,6 +52384,18 @@ func (c *Client) CallManagingOrganisationsCreate(ctx context.Context, body CallM
 	return c.Client.Do(req)
 }
 
+func (c *Client) CallManagingOrganisationsCreateWithFormdataBody(ctx context.Context, body CallManagingOrganisationsCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCallManagingOrganisationsCreateRequestWithFormdataBody(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) CallManagingOrganisationsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCallManagingOrganisationsDestroyRequest(c.Server, uuid)
 	if err != nil {
@@ -50280,6 +52444,18 @@ func (c *Client) CallManagingOrganisationsPartialUpdate(ctx context.Context, uui
 	return c.Client.Do(req)
 }
 
+func (c *Client) CallManagingOrganisationsPartialUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body CallManagingOrganisationsPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCallManagingOrganisationsPartialUpdateRequestWithFormdataBody(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) CallManagingOrganisationsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCallManagingOrganisationsUpdateRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
@@ -50294,6 +52470,18 @@ func (c *Client) CallManagingOrganisationsUpdateWithBody(ctx context.Context, uu
 
 func (c *Client) CallManagingOrganisationsUpdate(ctx context.Context, uuid openapi_types.UUID, body CallManagingOrganisationsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCallManagingOrganisationsUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CallManagingOrganisationsUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body CallManagingOrganisationsUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCallManagingOrganisationsUpdateRequestWithFormdataBody(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -50628,6 +52816,18 @@ func (c *Client) ChecklistsAdminCategoriesCreate(ctx context.Context, body Check
 	return c.Client.Do(req)
 }
 
+func (c *Client) ChecklistsAdminCategoriesCreateWithFormdataBody(ctx context.Context, body ChecklistsAdminCategoriesCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChecklistsAdminCategoriesCreateRequestWithFormdataBody(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) ChecklistsAdminCategoriesDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewChecklistsAdminCategoriesDestroyRequest(c.Server, uuid)
 	if err != nil {
@@ -50676,6 +52876,18 @@ func (c *Client) ChecklistsAdminCategoriesPartialUpdate(ctx context.Context, uui
 	return c.Client.Do(req)
 }
 
+func (c *Client) ChecklistsAdminCategoriesPartialUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body ChecklistsAdminCategoriesPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChecklistsAdminCategoriesPartialUpdateRequestWithFormdataBody(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) ChecklistsAdminCategoriesUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewChecklistsAdminCategoriesUpdateRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
@@ -50690,6 +52902,18 @@ func (c *Client) ChecklistsAdminCategoriesUpdateWithBody(ctx context.Context, uu
 
 func (c *Client) ChecklistsAdminCategoriesUpdate(ctx context.Context, uuid openapi_types.UUID, body ChecklistsAdminCategoriesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewChecklistsAdminCategoriesUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChecklistsAdminCategoriesUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body ChecklistsAdminCategoriesUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChecklistsAdminCategoriesUpdateRequestWithFormdataBody(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -51624,6 +53848,18 @@ func (c *Client) CustomersCreate(ctx context.Context, body CustomersCreateJSONRe
 	return c.Client.Do(req)
 }
 
+func (c *Client) CustomersCreateWithFormdataBody(ctx context.Context, body CustomersCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCustomersCreateRequestWithFormdataBody(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) CustomersCountriesList(ctx context.Context, params *CustomersCountriesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCustomersCountriesListRequest(c.Server, params)
 	if err != nil {
@@ -51756,6 +53992,18 @@ func (c *Client) CustomersPartialUpdate(ctx context.Context, uuid openapi_types.
 	return c.Client.Do(req)
 }
 
+func (c *Client) CustomersPartialUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body CustomersPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCustomersPartialUpdateRequestWithFormdataBody(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) CustomersUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCustomersUpdateRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
@@ -51770,6 +54018,18 @@ func (c *Client) CustomersUpdateWithBody(ctx context.Context, uuid openapi_types
 
 func (c *Client) CustomersUpdate(ctx context.Context, uuid openapi_types.UUID, body CustomersUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCustomersUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CustomersUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body CustomersUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCustomersUpdateRequestWithFormdataBody(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -52524,6 +54784,18 @@ func (c *Client) ExternalLinksCreate(ctx context.Context, body ExternalLinksCrea
 	return c.Client.Do(req)
 }
 
+func (c *Client) ExternalLinksCreateWithFormdataBody(ctx context.Context, body ExternalLinksCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewExternalLinksCreateRequestWithFormdataBody(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) ExternalLinksDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewExternalLinksDestroyRequest(c.Server, uuid)
 	if err != nil {
@@ -52572,6 +54844,18 @@ func (c *Client) ExternalLinksPartialUpdate(ctx context.Context, uuid openapi_ty
 	return c.Client.Do(req)
 }
 
+func (c *Client) ExternalLinksPartialUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body ExternalLinksPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewExternalLinksPartialUpdateRequestWithFormdataBody(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) ExternalLinksUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewExternalLinksUpdateRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
@@ -52586,6 +54870,18 @@ func (c *Client) ExternalLinksUpdateWithBody(ctx context.Context, uuid openapi_t
 
 func (c *Client) ExternalLinksUpdate(ctx context.Context, uuid openapi_types.UUID, body ExternalLinksUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewExternalLinksUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ExternalLinksUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body ExternalLinksUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewExternalLinksUpdateRequestWithFormdataBody(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -53582,6 +55878,18 @@ func (c *Client) InvoicesPaidWithBody(ctx context.Context, uuid openapi_types.UU
 
 func (c *Client) InvoicesPaid(ctx context.Context, uuid openapi_types.UUID, body InvoicesPaidJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewInvoicesPaidRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) InvoicesPaidWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body InvoicesPaidFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewInvoicesPaidRequestWithFormdataBody(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -54696,6 +57004,18 @@ func (c *Client) MarketplaceCategoriesCreate(ctx context.Context, body Marketpla
 	return c.Client.Do(req)
 }
 
+func (c *Client) MarketplaceCategoriesCreateWithFormdataBody(ctx context.Context, body MarketplaceCategoriesCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceCategoriesCreateRequestWithFormdataBody(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) MarketplaceCategoriesDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceCategoriesDestroyRequest(c.Server, uuid)
 	if err != nil {
@@ -54744,6 +57064,18 @@ func (c *Client) MarketplaceCategoriesPartialUpdate(ctx context.Context, uuid op
 	return c.Client.Do(req)
 }
 
+func (c *Client) MarketplaceCategoriesPartialUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body MarketplaceCategoriesPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceCategoriesPartialUpdateRequestWithFormdataBody(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) MarketplaceCategoriesUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceCategoriesUpdateRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
@@ -54758,6 +57090,18 @@ func (c *Client) MarketplaceCategoriesUpdateWithBody(ctx context.Context, uuid o
 
 func (c *Client) MarketplaceCategoriesUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceCategoriesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceCategoriesUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceCategoriesUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body MarketplaceCategoriesUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceCategoriesUpdateRequestWithFormdataBody(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -55092,6 +57436,18 @@ func (c *Client) MarketplaceCategoryGroupsCreate(ctx context.Context, body Marke
 	return c.Client.Do(req)
 }
 
+func (c *Client) MarketplaceCategoryGroupsCreateWithFormdataBody(ctx context.Context, body MarketplaceCategoryGroupsCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceCategoryGroupsCreateRequestWithFormdataBody(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) MarketplaceCategoryGroupsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceCategoryGroupsDestroyRequest(c.Server, uuid)
 	if err != nil {
@@ -55140,6 +57496,18 @@ func (c *Client) MarketplaceCategoryGroupsPartialUpdate(ctx context.Context, uui
 	return c.Client.Do(req)
 }
 
+func (c *Client) MarketplaceCategoryGroupsPartialUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body MarketplaceCategoryGroupsPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceCategoryGroupsPartialUpdateRequestWithFormdataBody(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) MarketplaceCategoryGroupsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceCategoryGroupsUpdateRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
@@ -55154,6 +57522,18 @@ func (c *Client) MarketplaceCategoryGroupsUpdateWithBody(ctx context.Context, uu
 
 func (c *Client) MarketplaceCategoryGroupsUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceCategoryGroupsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceCategoryGroupsUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceCategoryGroupsUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body MarketplaceCategoryGroupsUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceCategoryGroupsUpdateRequestWithFormdataBody(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -56006,6 +58386,18 @@ func (c *Client) MarketplaceOfferingFilesCreateWithBody(ctx context.Context, con
 
 func (c *Client) MarketplaceOfferingFilesCreate(ctx context.Context, body MarketplaceOfferingFilesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceOfferingFilesCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOfferingFilesCreateWithFormdataBody(ctx context.Context, body MarketplaceOfferingFilesCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingFilesCreateRequestWithFormdataBody(c.Server, body)
 	if err != nil {
 		return nil, err
 	}
@@ -57192,6 +59584,18 @@ func (c *Client) MarketplaceOrdersUpdateAttachment(ctx context.Context, uuid ope
 	return c.Client.Do(req)
 }
 
+func (c *Client) MarketplaceOrdersUpdateAttachmentWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersUpdateAttachmentFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOrdersUpdateAttachmentRequestWithFormdataBody(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) MarketplacePlanComponentsList(ctx context.Context, params *MarketplacePlanComponentsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplacePlanComponentsListRequest(c.Server, params)
 	if err != nil {
@@ -57888,6 +60292,18 @@ func (c *Client) MarketplaceProviderOfferingsCreate(ctx context.Context, body Ma
 	return c.Client.Do(req)
 }
 
+func (c *Client) MarketplaceProviderOfferingsCreateWithFormdataBody(ctx context.Context, body MarketplaceProviderOfferingsCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsCreateRequestWithFormdataBody(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) MarketplaceProviderOfferingsGroupsList(ctx context.Context, params *MarketplaceProviderOfferingsGroupsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProviderOfferingsGroupsListRequest(c.Server, params)
 	if err != nil {
@@ -58548,6 +60964,18 @@ func (c *Client) MarketplaceProviderOfferingsUpdateImage(ctx context.Context, uu
 	return c.Client.Do(req)
 }
 
+func (c *Client) MarketplaceProviderOfferingsUpdateImageWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateImageFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsUpdateImageRequestWithFormdataBody(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) MarketplaceProviderOfferingsUpdateIntegrationWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProviderOfferingsUpdateIntegrationRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
@@ -58730,6 +61158,18 @@ func (c *Client) MarketplaceProviderOfferingsUpdateThumbnailWithBody(ctx context
 
 func (c *Client) MarketplaceProviderOfferingsUpdateThumbnail(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateThumbnailJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProviderOfferingsUpdateThumbnailRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderOfferingsUpdateThumbnailWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateThumbnailFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsUpdateThumbnailRequestWithFormdataBody(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -60156,6 +62596,18 @@ func (c *Client) MarketplaceScreenshotsCreate(ctx context.Context, body Marketpl
 	return c.Client.Do(req)
 }
 
+func (c *Client) MarketplaceScreenshotsCreateWithFormdataBody(ctx context.Context, body MarketplaceScreenshotsCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceScreenshotsCreateRequestWithFormdataBody(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) MarketplaceScreenshotsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceScreenshotsDestroyRequest(c.Server, uuid)
 	if err != nil {
@@ -60218,6 +62670,18 @@ func (c *Client) MarketplaceScreenshotsUpdateWithBody(ctx context.Context, uuid 
 
 func (c *Client) MarketplaceScreenshotsUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceScreenshotsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceScreenshotsUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceScreenshotsUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body MarketplaceScreenshotsUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceScreenshotsUpdateRequestWithFormdataBody(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -60504,6 +62968,18 @@ func (c *Client) MarketplaceServiceProvidersCreate(ctx context.Context, body Mar
 	return c.Client.Do(req)
 }
 
+func (c *Client) MarketplaceServiceProvidersCreateWithFormdataBody(ctx context.Context, body MarketplaceServiceProvidersCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceServiceProvidersCreateRequestWithFormdataBody(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) ServiceProviderComplianceOverview(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *ServiceProviderComplianceOverviewParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewServiceProviderComplianceOverviewRequest(c.Server, serviceProviderUuid, params)
 	if err != nil {
@@ -60696,6 +63172,18 @@ func (c *Client) MarketplaceServiceProvidersPartialUpdate(ctx context.Context, u
 	return c.Client.Do(req)
 }
 
+func (c *Client) MarketplaceServiceProvidersPartialUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body MarketplaceServiceProvidersPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceServiceProvidersPartialUpdateRequestWithFormdataBody(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) MarketplaceServiceProvidersUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceServiceProvidersUpdateRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
@@ -60710,6 +63198,18 @@ func (c *Client) MarketplaceServiceProvidersUpdateWithBody(ctx context.Context, 
 
 func (c *Client) MarketplaceServiceProvidersUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceServiceProvidersUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceServiceProvidersUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceServiceProvidersUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body MarketplaceServiceProvidersUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceServiceProvidersUpdateRequestWithFormdataBody(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -64860,6 +67360,18 @@ func (c *Client) OverrideSettings(ctx context.Context, body OverrideSettingsJSON
 	return c.Client.Do(req)
 }
 
+func (c *Client) OverrideSettingsWithFormdataBody(ctx context.Context, body OverrideSettingsFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOverrideSettingsRequestWithFormdataBody(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) PaymentProfilesList(ctx context.Context, params *PaymentProfilesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewPaymentProfilesListRequest(c.Server, params)
 	if err != nil {
@@ -65040,6 +67552,18 @@ func (c *Client) PaymentsCreate(ctx context.Context, body PaymentsCreateJSONRequ
 	return c.Client.Do(req)
 }
 
+func (c *Client) PaymentsCreateWithFormdataBody(ctx context.Context, body PaymentsCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPaymentsCreateRequestWithFormdataBody(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) PaymentsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewPaymentsDestroyRequest(c.Server, uuid)
 	if err != nil {
@@ -65088,6 +67612,18 @@ func (c *Client) PaymentsPartialUpdate(ctx context.Context, uuid openapi_types.U
 	return c.Client.Do(req)
 }
 
+func (c *Client) PaymentsPartialUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body PaymentsPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPaymentsPartialUpdateRequestWithFormdataBody(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) PaymentsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewPaymentsUpdateRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
@@ -65102,6 +67638,18 @@ func (c *Client) PaymentsUpdateWithBody(ctx context.Context, uuid openapi_types.
 
 func (c *Client) PaymentsUpdate(ctx context.Context, uuid openapi_types.UUID, body PaymentsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewPaymentsUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PaymentsUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body PaymentsUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPaymentsUpdateRequestWithFormdataBody(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -65424,6 +67972,18 @@ func (c *Client) ProjectsCreate(ctx context.Context, body ProjectsCreateJSONRequ
 	return c.Client.Do(req)
 }
 
+func (c *Client) ProjectsCreateWithFormdataBody(ctx context.Context, body ProjectsCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProjectsCreateRequestWithFormdataBody(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) ProjectsOtherUsersList(ctx context.Context, projectUuid openapi_types.UUID, params *ProjectsOtherUsersListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProjectsOtherUsersListRequest(c.Server, projectUuid, params)
 	if err != nil {
@@ -65484,6 +68044,18 @@ func (c *Client) ProjectsPartialUpdate(ctx context.Context, uuid openapi_types.U
 	return c.Client.Do(req)
 }
 
+func (c *Client) ProjectsPartialUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body ProjectsPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProjectsPartialUpdateRequestWithFormdataBody(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) ProjectsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProjectsUpdateRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
@@ -65498,6 +68070,18 @@ func (c *Client) ProjectsUpdateWithBody(ctx context.Context, uuid openapi_types.
 
 func (c *Client) ProjectsUpdate(ctx context.Context, uuid openapi_types.UUID, body ProjectsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProjectsUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProjectsUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body ProjectsUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProjectsUpdateRequestWithFormdataBody(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -65954,6 +68538,18 @@ func (c *Client) ProposalProposalsAttachDocumentWithBody(ctx context.Context, uu
 
 func (c *Client) ProposalProposalsAttachDocument(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsAttachDocumentJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProposalProposalsAttachDocumentRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProposalProposalsAttachDocumentWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsAttachDocumentFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProposalsAttachDocumentRequestWithFormdataBody(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -69780,6 +72376,18 @@ func (c *Client) SlurmJobsCreate(ctx context.Context, body SlurmJobsCreateJSONRe
 	return c.Client.Do(req)
 }
 
+func (c *Client) SlurmJobsCreateWithFormdataBody(ctx context.Context, body SlurmJobsCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSlurmJobsCreateRequestWithFormdataBody(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) SlurmJobsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewSlurmJobsDestroyRequest(c.Server, uuid)
 	if err != nil {
@@ -69852,6 +72460,18 @@ func (c *Client) SlurmJobsUpdate(ctx context.Context, uuid openapi_types.UUID, b
 	return c.Client.Do(req)
 }
 
+func (c *Client) SlurmJobsUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body SlurmJobsUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSlurmJobsUpdateRequestWithFormdataBody(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) SlurmJobsPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewSlurmJobsPullRequest(c.Server, uuid)
 	if err != nil {
@@ -69914,6 +72534,18 @@ func (c *Client) SupportAttachmentsCreateWithBody(ctx context.Context, contentTy
 
 func (c *Client) SupportAttachmentsCreate(ctx context.Context, body SupportAttachmentsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewSupportAttachmentsCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SupportAttachmentsCreateWithFormdataBody(ctx context.Context, body SupportAttachmentsCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSupportAttachmentsCreateRequestWithFormdataBody(c.Server, body)
 	if err != nil {
 		return nil, err
 	}
@@ -71328,6 +73960,18 @@ func (c *Client) UsersCreate(ctx context.Context, body UsersCreateJSONRequestBod
 	return c.Client.Do(req)
 }
 
+func (c *Client) UsersCreateWithFormdataBody(ctx context.Context, body UsersCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUsersCreateRequestWithFormdataBody(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) UsersConfirmEmailWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewUsersConfirmEmailRequestWithBody(c.Server, contentType, body)
 	if err != nil {
@@ -71424,6 +74068,18 @@ func (c *Client) UsersPartialUpdate(ctx context.Context, uuid openapi_types.UUID
 	return c.Client.Do(req)
 }
 
+func (c *Client) UsersPartialUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body UsersPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUsersPartialUpdateRequestWithFormdataBody(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) UsersUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewUsersUpdateRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
@@ -71438,6 +74094,18 @@ func (c *Client) UsersUpdateWithBody(ctx context.Context, uuid openapi_types.UUI
 
 func (c *Client) UsersUpdate(ctx context.Context, uuid openapi_types.UUID, body UsersUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewUsersUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UsersUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body UsersUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUsersUpdateRequestWithFormdataBody(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -86568,6 +89236,17 @@ func NewCallManagingOrganisationsCreateRequest(server string, body CallManagingO
 	return NewCallManagingOrganisationsCreateRequestWithBody(server, "application/json", bodyReader)
 }
 
+// NewCallManagingOrganisationsCreateRequestWithFormdataBody calls the generic CallManagingOrganisationsCreate builder with application/x-www-form-urlencoded body
+func NewCallManagingOrganisationsCreateRequestWithFormdataBody(server string, body CallManagingOrganisationsCreateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewCallManagingOrganisationsCreateRequestWithBody(server, "application/x-www-form-urlencoded", bodyReader)
+}
+
 // NewCallManagingOrganisationsCreateRequestWithBody generates requests for CallManagingOrganisationsCreate with any type of body
 func NewCallManagingOrganisationsCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
@@ -86676,6 +89355,17 @@ func NewCallManagingOrganisationsPartialUpdateRequest(server string, uuid openap
 	return NewCallManagingOrganisationsPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
 }
 
+// NewCallManagingOrganisationsPartialUpdateRequestWithFormdataBody calls the generic CallManagingOrganisationsPartialUpdate builder with application/x-www-form-urlencoded body
+func NewCallManagingOrganisationsPartialUpdateRequestWithFormdataBody(server string, uuid openapi_types.UUID, body CallManagingOrganisationsPartialUpdateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewCallManagingOrganisationsPartialUpdateRequestWithBody(server, uuid, "application/x-www-form-urlencoded", bodyReader)
+}
+
 // NewCallManagingOrganisationsPartialUpdateRequestWithBody generates requests for CallManagingOrganisationsPartialUpdate with any type of body
 func NewCallManagingOrganisationsPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
@@ -86721,6 +89411,17 @@ func NewCallManagingOrganisationsUpdateRequest(server string, uuid openapi_types
 	}
 	bodyReader = bytes.NewReader(buf)
 	return NewCallManagingOrganisationsUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewCallManagingOrganisationsUpdateRequestWithFormdataBody calls the generic CallManagingOrganisationsUpdate builder with application/x-www-form-urlencoded body
+func NewCallManagingOrganisationsUpdateRequestWithFormdataBody(server string, uuid openapi_types.UUID, body CallManagingOrganisationsUpdateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewCallManagingOrganisationsUpdateRequestWithBody(server, uuid, "application/x-www-form-urlencoded", bodyReader)
 }
 
 // NewCallManagingOrganisationsUpdateRequestWithBody generates requests for CallManagingOrganisationsUpdate with any type of body
@@ -87934,6 +90635,17 @@ func NewChecklistsAdminCategoriesCreateRequest(server string, body ChecklistsAdm
 	return NewChecklistsAdminCategoriesCreateRequestWithBody(server, "application/json", bodyReader)
 }
 
+// NewChecklistsAdminCategoriesCreateRequestWithFormdataBody calls the generic ChecklistsAdminCategoriesCreate builder with application/x-www-form-urlencoded body
+func NewChecklistsAdminCategoriesCreateRequestWithFormdataBody(server string, body ChecklistsAdminCategoriesCreateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewChecklistsAdminCategoriesCreateRequestWithBody(server, "application/x-www-form-urlencoded", bodyReader)
+}
+
 // NewChecklistsAdminCategoriesCreateRequestWithBody generates requests for ChecklistsAdminCategoriesCreate with any type of body
 func NewChecklistsAdminCategoriesCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
@@ -88042,6 +90754,17 @@ func NewChecklistsAdminCategoriesPartialUpdateRequest(server string, uuid openap
 	return NewChecklistsAdminCategoriesPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
 }
 
+// NewChecklistsAdminCategoriesPartialUpdateRequestWithFormdataBody calls the generic ChecklistsAdminCategoriesPartialUpdate builder with application/x-www-form-urlencoded body
+func NewChecklistsAdminCategoriesPartialUpdateRequestWithFormdataBody(server string, uuid openapi_types.UUID, body ChecklistsAdminCategoriesPartialUpdateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewChecklistsAdminCategoriesPartialUpdateRequestWithBody(server, uuid, "application/x-www-form-urlencoded", bodyReader)
+}
+
 // NewChecklistsAdminCategoriesPartialUpdateRequestWithBody generates requests for ChecklistsAdminCategoriesPartialUpdate with any type of body
 func NewChecklistsAdminCategoriesPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
@@ -88087,6 +90810,17 @@ func NewChecklistsAdminCategoriesUpdateRequest(server string, uuid openapi_types
 	}
 	bodyReader = bytes.NewReader(buf)
 	return NewChecklistsAdminCategoriesUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewChecklistsAdminCategoriesUpdateRequestWithFormdataBody calls the generic ChecklistsAdminCategoriesUpdate builder with application/x-www-form-urlencoded body
+func NewChecklistsAdminCategoriesUpdateRequestWithFormdataBody(server string, uuid openapi_types.UUID, body ChecklistsAdminCategoriesUpdateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewChecklistsAdminCategoriesUpdateRequestWithBody(server, uuid, "application/x-www-form-urlencoded", bodyReader)
 }
 
 // NewChecklistsAdminCategoriesUpdateRequestWithBody generates requests for ChecklistsAdminCategoriesUpdate with any type of body
@@ -92051,6 +94785,17 @@ func NewCustomersCreateRequest(server string, body CustomersCreateJSONRequestBod
 	return NewCustomersCreateRequestWithBody(server, "application/json", bodyReader)
 }
 
+// NewCustomersCreateRequestWithFormdataBody calls the generic CustomersCreate builder with application/x-www-form-urlencoded body
+func NewCustomersCreateRequestWithFormdataBody(server string, body CustomersCreateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewCustomersCreateRequestWithBody(server, "application/x-www-form-urlencoded", bodyReader)
+}
+
 // NewCustomersCreateRequestWithBody generates requests for CustomersCreate with any type of body
 func NewCustomersCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
@@ -93423,6 +96168,17 @@ func NewCustomersPartialUpdateRequest(server string, uuid openapi_types.UUID, bo
 	return NewCustomersPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
 }
 
+// NewCustomersPartialUpdateRequestWithFormdataBody calls the generic CustomersPartialUpdate builder with application/x-www-form-urlencoded body
+func NewCustomersPartialUpdateRequestWithFormdataBody(server string, uuid openapi_types.UUID, body CustomersPartialUpdateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewCustomersPartialUpdateRequestWithBody(server, uuid, "application/x-www-form-urlencoded", bodyReader)
+}
+
 // NewCustomersPartialUpdateRequestWithBody generates requests for CustomersPartialUpdate with any type of body
 func NewCustomersPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
@@ -93468,6 +96224,17 @@ func NewCustomersUpdateRequest(server string, uuid openapi_types.UUID, body Cust
 	}
 	bodyReader = bytes.NewReader(buf)
 	return NewCustomersUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewCustomersUpdateRequestWithFormdataBody calls the generic CustomersUpdate builder with application/x-www-form-urlencoded body
+func NewCustomersUpdateRequestWithFormdataBody(server string, uuid openapi_types.UUID, body CustomersUpdateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewCustomersUpdateRequestWithBody(server, uuid, "application/x-www-form-urlencoded", bodyReader)
 }
 
 // NewCustomersUpdateRequestWithBody generates requests for CustomersUpdate with any type of body
@@ -97792,6 +100559,17 @@ func NewExternalLinksCreateRequest(server string, body ExternalLinksCreateJSONRe
 	return NewExternalLinksCreateRequestWithBody(server, "application/json", bodyReader)
 }
 
+// NewExternalLinksCreateRequestWithFormdataBody calls the generic ExternalLinksCreate builder with application/x-www-form-urlencoded body
+func NewExternalLinksCreateRequestWithFormdataBody(server string, body ExternalLinksCreateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewExternalLinksCreateRequestWithBody(server, "application/x-www-form-urlencoded", bodyReader)
+}
+
 // NewExternalLinksCreateRequestWithBody generates requests for ExternalLinksCreate with any type of body
 func NewExternalLinksCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
@@ -97900,6 +100678,17 @@ func NewExternalLinksPartialUpdateRequest(server string, uuid openapi_types.UUID
 	return NewExternalLinksPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
 }
 
+// NewExternalLinksPartialUpdateRequestWithFormdataBody calls the generic ExternalLinksPartialUpdate builder with application/x-www-form-urlencoded body
+func NewExternalLinksPartialUpdateRequestWithFormdataBody(server string, uuid openapi_types.UUID, body ExternalLinksPartialUpdateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewExternalLinksPartialUpdateRequestWithBody(server, uuid, "application/x-www-form-urlencoded", bodyReader)
+}
+
 // NewExternalLinksPartialUpdateRequestWithBody generates requests for ExternalLinksPartialUpdate with any type of body
 func NewExternalLinksPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
@@ -97945,6 +100734,17 @@ func NewExternalLinksUpdateRequest(server string, uuid openapi_types.UUID, body 
 	}
 	bodyReader = bytes.NewReader(buf)
 	return NewExternalLinksUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewExternalLinksUpdateRequestWithFormdataBody calls the generic ExternalLinksUpdate builder with application/x-www-form-urlencoded body
+func NewExternalLinksUpdateRequestWithFormdataBody(server string, uuid openapi_types.UUID, body ExternalLinksUpdateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewExternalLinksUpdateRequestWithBody(server, uuid, "application/x-www-form-urlencoded", bodyReader)
 }
 
 // NewExternalLinksUpdateRequestWithBody generates requests for ExternalLinksUpdate with any type of body
@@ -103415,6 +106215,17 @@ func NewInvoicesPaidRequest(server string, uuid openapi_types.UUID, body Invoice
 	return NewInvoicesPaidRequestWithBody(server, uuid, "application/json", bodyReader)
 }
 
+// NewInvoicesPaidRequestWithFormdataBody calls the generic InvoicesPaid builder with application/x-www-form-urlencoded body
+func NewInvoicesPaidRequestWithFormdataBody(server string, uuid openapi_types.UUID, body InvoicesPaidFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewInvoicesPaidRequestWithBody(server, uuid, "application/x-www-form-urlencoded", bodyReader)
+}
+
 // NewInvoicesPaidRequestWithBody generates requests for InvoicesPaid with any type of body
 func NewInvoicesPaidRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
@@ -108564,6 +111375,17 @@ func NewMarketplaceCategoriesCreateRequest(server string, body MarketplaceCatego
 	return NewMarketplaceCategoriesCreateRequestWithBody(server, "application/json", bodyReader)
 }
 
+// NewMarketplaceCategoriesCreateRequestWithFormdataBody calls the generic MarketplaceCategoriesCreate builder with application/x-www-form-urlencoded body
+func NewMarketplaceCategoriesCreateRequestWithFormdataBody(server string, body MarketplaceCategoriesCreateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewMarketplaceCategoriesCreateRequestWithBody(server, "application/x-www-form-urlencoded", bodyReader)
+}
+
 // NewMarketplaceCategoriesCreateRequestWithBody generates requests for MarketplaceCategoriesCreate with any type of body
 func NewMarketplaceCategoriesCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
@@ -108694,6 +111516,17 @@ func NewMarketplaceCategoriesPartialUpdateRequest(server string, uuid openapi_ty
 	return NewMarketplaceCategoriesPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
 }
 
+// NewMarketplaceCategoriesPartialUpdateRequestWithFormdataBody calls the generic MarketplaceCategoriesPartialUpdate builder with application/x-www-form-urlencoded body
+func NewMarketplaceCategoriesPartialUpdateRequestWithFormdataBody(server string, uuid openapi_types.UUID, body MarketplaceCategoriesPartialUpdateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewMarketplaceCategoriesPartialUpdateRequestWithBody(server, uuid, "application/x-www-form-urlencoded", bodyReader)
+}
+
 // NewMarketplaceCategoriesPartialUpdateRequestWithBody generates requests for MarketplaceCategoriesPartialUpdate with any type of body
 func NewMarketplaceCategoriesPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
@@ -108739,6 +111572,17 @@ func NewMarketplaceCategoriesUpdateRequest(server string, uuid openapi_types.UUI
 	}
 	bodyReader = bytes.NewReader(buf)
 	return NewMarketplaceCategoriesUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceCategoriesUpdateRequestWithFormdataBody calls the generic MarketplaceCategoriesUpdate builder with application/x-www-form-urlencoded body
+func NewMarketplaceCategoriesUpdateRequestWithFormdataBody(server string, uuid openapi_types.UUID, body MarketplaceCategoriesUpdateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewMarketplaceCategoriesUpdateRequestWithBody(server, uuid, "application/x-www-form-urlencoded", bodyReader)
 }
 
 // NewMarketplaceCategoriesUpdateRequestWithBody generates requests for MarketplaceCategoriesUpdate with any type of body
@@ -109960,6 +112804,17 @@ func NewMarketplaceCategoryGroupsCreateRequest(server string, body MarketplaceCa
 	return NewMarketplaceCategoryGroupsCreateRequestWithBody(server, "application/json", bodyReader)
 }
 
+// NewMarketplaceCategoryGroupsCreateRequestWithFormdataBody calls the generic MarketplaceCategoryGroupsCreate builder with application/x-www-form-urlencoded body
+func NewMarketplaceCategoryGroupsCreateRequestWithFormdataBody(server string, body MarketplaceCategoryGroupsCreateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewMarketplaceCategoryGroupsCreateRequestWithBody(server, "application/x-www-form-urlencoded", bodyReader)
+}
+
 // NewMarketplaceCategoryGroupsCreateRequestWithBody generates requests for MarketplaceCategoryGroupsCreate with any type of body
 func NewMarketplaceCategoryGroupsCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
@@ -110090,6 +112945,17 @@ func NewMarketplaceCategoryGroupsPartialUpdateRequest(server string, uuid openap
 	return NewMarketplaceCategoryGroupsPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
 }
 
+// NewMarketplaceCategoryGroupsPartialUpdateRequestWithFormdataBody calls the generic MarketplaceCategoryGroupsPartialUpdate builder with application/x-www-form-urlencoded body
+func NewMarketplaceCategoryGroupsPartialUpdateRequestWithFormdataBody(server string, uuid openapi_types.UUID, body MarketplaceCategoryGroupsPartialUpdateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewMarketplaceCategoryGroupsPartialUpdateRequestWithBody(server, uuid, "application/x-www-form-urlencoded", bodyReader)
+}
+
 // NewMarketplaceCategoryGroupsPartialUpdateRequestWithBody generates requests for MarketplaceCategoryGroupsPartialUpdate with any type of body
 func NewMarketplaceCategoryGroupsPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
@@ -110135,6 +113001,17 @@ func NewMarketplaceCategoryGroupsUpdateRequest(server string, uuid openapi_types
 	}
 	bodyReader = bytes.NewReader(buf)
 	return NewMarketplaceCategoryGroupsUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceCategoryGroupsUpdateRequestWithFormdataBody calls the generic MarketplaceCategoryGroupsUpdate builder with application/x-www-form-urlencoded body
+func NewMarketplaceCategoryGroupsUpdateRequestWithFormdataBody(server string, uuid openapi_types.UUID, body MarketplaceCategoryGroupsUpdateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewMarketplaceCategoryGroupsUpdateRequestWithBody(server, uuid, "application/x-www-form-urlencoded", bodyReader)
 }
 
 // NewMarketplaceCategoryGroupsUpdateRequestWithBody generates requests for MarketplaceCategoryGroupsUpdate with any type of body
@@ -114588,6 +117465,17 @@ func NewMarketplaceOfferingFilesCreateRequest(server string, body MarketplaceOff
 	}
 	bodyReader = bytes.NewReader(buf)
 	return NewMarketplaceOfferingFilesCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewMarketplaceOfferingFilesCreateRequestWithFormdataBody calls the generic MarketplaceOfferingFilesCreate builder with application/x-www-form-urlencoded body
+func NewMarketplaceOfferingFilesCreateRequestWithFormdataBody(server string, body MarketplaceOfferingFilesCreateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewMarketplaceOfferingFilesCreateRequestWithBody(server, "application/x-www-form-urlencoded", bodyReader)
 }
 
 // NewMarketplaceOfferingFilesCreateRequestWithBody generates requests for MarketplaceOfferingFilesCreate with any type of body
@@ -120822,6 +123710,17 @@ func NewMarketplaceOrdersUpdateAttachmentRequest(server string, uuid openapi_typ
 	return NewMarketplaceOrdersUpdateAttachmentRequestWithBody(server, uuid, "application/json", bodyReader)
 }
 
+// NewMarketplaceOrdersUpdateAttachmentRequestWithFormdataBody calls the generic MarketplaceOrdersUpdateAttachment builder with application/x-www-form-urlencoded body
+func NewMarketplaceOrdersUpdateAttachmentRequestWithFormdataBody(server string, uuid openapi_types.UUID, body MarketplaceOrdersUpdateAttachmentFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewMarketplaceOrdersUpdateAttachmentRequestWithBody(server, uuid, "application/x-www-form-urlencoded", bodyReader)
+}
+
 // NewMarketplaceOrdersUpdateAttachmentRequestWithBody generates requests for MarketplaceOrdersUpdateAttachment with any type of body
 func NewMarketplaceOrdersUpdateAttachmentRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
@@ -124773,6 +127672,17 @@ func NewMarketplaceProviderOfferingsCreateRequest(server string, body Marketplac
 	}
 	bodyReader = bytes.NewReader(buf)
 	return NewMarketplaceProviderOfferingsCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewMarketplaceProviderOfferingsCreateRequestWithFormdataBody calls the generic MarketplaceProviderOfferingsCreate builder with application/x-www-form-urlencoded body
+func NewMarketplaceProviderOfferingsCreateRequestWithFormdataBody(server string, body MarketplaceProviderOfferingsCreateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewMarketplaceProviderOfferingsCreateRequestWithBody(server, "application/x-www-form-urlencoded", bodyReader)
 }
 
 // NewMarketplaceProviderOfferingsCreateRequestWithBody generates requests for MarketplaceProviderOfferingsCreate with any type of body
@@ -129387,6 +132297,17 @@ func NewMarketplaceProviderOfferingsUpdateImageRequest(server string, uuid opena
 	return NewMarketplaceProviderOfferingsUpdateImageRequestWithBody(server, uuid, "application/json", bodyReader)
 }
 
+// NewMarketplaceProviderOfferingsUpdateImageRequestWithFormdataBody calls the generic MarketplaceProviderOfferingsUpdateImage builder with application/x-www-form-urlencoded body
+func NewMarketplaceProviderOfferingsUpdateImageRequestWithFormdataBody(server string, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateImageFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewMarketplaceProviderOfferingsUpdateImageRequestWithBody(server, uuid, "application/x-www-form-urlencoded", bodyReader)
+}
+
 // NewMarketplaceProviderOfferingsUpdateImageRequestWithBody generates requests for MarketplaceProviderOfferingsUpdateImage with any type of body
 func NewMarketplaceProviderOfferingsUpdateImageRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
@@ -129761,6 +132682,17 @@ func NewMarketplaceProviderOfferingsUpdateThumbnailRequest(server string, uuid o
 	}
 	bodyReader = bytes.NewReader(buf)
 	return NewMarketplaceProviderOfferingsUpdateThumbnailRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceProviderOfferingsUpdateThumbnailRequestWithFormdataBody calls the generic MarketplaceProviderOfferingsUpdateThumbnail builder with application/x-www-form-urlencoded body
+func NewMarketplaceProviderOfferingsUpdateThumbnailRequestWithFormdataBody(server string, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateThumbnailFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewMarketplaceProviderOfferingsUpdateThumbnailRequestWithBody(server, uuid, "application/x-www-form-urlencoded", bodyReader)
 }
 
 // NewMarketplaceProviderOfferingsUpdateThumbnailRequestWithBody generates requests for MarketplaceProviderOfferingsUpdateThumbnail with any type of body
@@ -137295,6 +140227,17 @@ func NewMarketplaceScreenshotsCreateRequest(server string, body MarketplaceScree
 	return NewMarketplaceScreenshotsCreateRequestWithBody(server, "application/json", bodyReader)
 }
 
+// NewMarketplaceScreenshotsCreateRequestWithFormdataBody calls the generic MarketplaceScreenshotsCreate builder with application/x-www-form-urlencoded body
+func NewMarketplaceScreenshotsCreateRequestWithFormdataBody(server string, body MarketplaceScreenshotsCreateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewMarketplaceScreenshotsCreateRequestWithBody(server, "application/x-www-form-urlencoded", bodyReader)
+}
+
 // NewMarketplaceScreenshotsCreateRequestWithBody generates requests for MarketplaceScreenshotsCreate with any type of body
 func NewMarketplaceScreenshotsCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
@@ -137448,6 +140391,17 @@ func NewMarketplaceScreenshotsUpdateRequest(server string, uuid openapi_types.UU
 	}
 	bodyReader = bytes.NewReader(buf)
 	return NewMarketplaceScreenshotsUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceScreenshotsUpdateRequestWithFormdataBody calls the generic MarketplaceScreenshotsUpdate builder with application/x-www-form-urlencoded body
+func NewMarketplaceScreenshotsUpdateRequestWithFormdataBody(server string, uuid openapi_types.UUID, body MarketplaceScreenshotsUpdateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewMarketplaceScreenshotsUpdateRequestWithBody(server, uuid, "application/x-www-form-urlencoded", bodyReader)
 }
 
 // NewMarketplaceScreenshotsUpdateRequestWithBody generates requests for MarketplaceScreenshotsUpdate with any type of body
@@ -138399,6 +141353,17 @@ func NewMarketplaceServiceProvidersCreateRequest(server string, body Marketplace
 	}
 	bodyReader = bytes.NewReader(buf)
 	return NewMarketplaceServiceProvidersCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewMarketplaceServiceProvidersCreateRequestWithFormdataBody calls the generic MarketplaceServiceProvidersCreate builder with application/x-www-form-urlencoded body
+func NewMarketplaceServiceProvidersCreateRequestWithFormdataBody(server string, body MarketplaceServiceProvidersCreateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewMarketplaceServiceProvidersCreateRequestWithBody(server, "application/x-www-form-urlencoded", bodyReader)
 }
 
 // NewMarketplaceServiceProvidersCreateRequestWithBody generates requests for MarketplaceServiceProvidersCreate with any type of body
@@ -141983,6 +144948,17 @@ func NewMarketplaceServiceProvidersPartialUpdateRequest(server string, uuid open
 	return NewMarketplaceServiceProvidersPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
 }
 
+// NewMarketplaceServiceProvidersPartialUpdateRequestWithFormdataBody calls the generic MarketplaceServiceProvidersPartialUpdate builder with application/x-www-form-urlencoded body
+func NewMarketplaceServiceProvidersPartialUpdateRequestWithFormdataBody(server string, uuid openapi_types.UUID, body MarketplaceServiceProvidersPartialUpdateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewMarketplaceServiceProvidersPartialUpdateRequestWithBody(server, uuid, "application/x-www-form-urlencoded", bodyReader)
+}
+
 // NewMarketplaceServiceProvidersPartialUpdateRequestWithBody generates requests for MarketplaceServiceProvidersPartialUpdate with any type of body
 func NewMarketplaceServiceProvidersPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
@@ -142028,6 +145004,17 @@ func NewMarketplaceServiceProvidersUpdateRequest(server string, uuid openapi_typ
 	}
 	bodyReader = bytes.NewReader(buf)
 	return NewMarketplaceServiceProvidersUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceServiceProvidersUpdateRequestWithFormdataBody calls the generic MarketplaceServiceProvidersUpdate builder with application/x-www-form-urlencoded body
+func NewMarketplaceServiceProvidersUpdateRequestWithFormdataBody(server string, uuid openapi_types.UUID, body MarketplaceServiceProvidersUpdateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewMarketplaceServiceProvidersUpdateRequestWithBody(server, uuid, "application/x-www-form-urlencoded", bodyReader)
 }
 
 // NewMarketplaceServiceProvidersUpdateRequestWithBody generates requests for MarketplaceServiceProvidersUpdate with any type of body
@@ -167163,6 +170150,17 @@ func NewOverrideSettingsRequest(server string, body OverrideSettingsJSONRequestB
 	return NewOverrideSettingsRequestWithBody(server, "application/json", bodyReader)
 }
 
+// NewOverrideSettingsRequestWithFormdataBody calls the generic OverrideSettings builder with application/x-www-form-urlencoded body
+func NewOverrideSettingsRequestWithFormdataBody(server string, body OverrideSettingsFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewOverrideSettingsRequestWithBody(server, "application/x-www-form-urlencoded", bodyReader)
+}
+
 // NewOverrideSettingsRequestWithBody generates requests for OverrideSettings with any type of body
 func NewOverrideSettingsRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
@@ -167955,6 +170953,17 @@ func NewPaymentsCreateRequest(server string, body PaymentsCreateJSONRequestBody)
 	return NewPaymentsCreateRequestWithBody(server, "application/json", bodyReader)
 }
 
+// NewPaymentsCreateRequestWithFormdataBody calls the generic PaymentsCreate builder with application/x-www-form-urlencoded body
+func NewPaymentsCreateRequestWithFormdataBody(server string, body PaymentsCreateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewPaymentsCreateRequestWithBody(server, "application/x-www-form-urlencoded", bodyReader)
+}
+
 // NewPaymentsCreateRequestWithBody generates requests for PaymentsCreate with any type of body
 func NewPaymentsCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
@@ -168063,6 +171072,17 @@ func NewPaymentsPartialUpdateRequest(server string, uuid openapi_types.UUID, bod
 	return NewPaymentsPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
 }
 
+// NewPaymentsPartialUpdateRequestWithFormdataBody calls the generic PaymentsPartialUpdate builder with application/x-www-form-urlencoded body
+func NewPaymentsPartialUpdateRequestWithFormdataBody(server string, uuid openapi_types.UUID, body PaymentsPartialUpdateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewPaymentsPartialUpdateRequestWithBody(server, uuid, "application/x-www-form-urlencoded", bodyReader)
+}
+
 // NewPaymentsPartialUpdateRequestWithBody generates requests for PaymentsPartialUpdate with any type of body
 func NewPaymentsPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
@@ -168108,6 +171128,17 @@ func NewPaymentsUpdateRequest(server string, uuid openapi_types.UUID, body Payme
 	}
 	bodyReader = bytes.NewReader(buf)
 	return NewPaymentsUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewPaymentsUpdateRequestWithFormdataBody calls the generic PaymentsUpdate builder with application/x-www-form-urlencoded body
+func NewPaymentsUpdateRequestWithFormdataBody(server string, uuid openapi_types.UUID, body PaymentsUpdateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewPaymentsUpdateRequestWithBody(server, uuid, "application/x-www-form-urlencoded", bodyReader)
 }
 
 // NewPaymentsUpdateRequestWithBody generates requests for PaymentsUpdate with any type of body
@@ -170136,6 +173167,17 @@ func NewProjectsCreateRequest(server string, body ProjectsCreateJSONRequestBody)
 	return NewProjectsCreateRequestWithBody(server, "application/json", bodyReader)
 }
 
+// NewProjectsCreateRequestWithFormdataBody calls the generic ProjectsCreate builder with application/x-www-form-urlencoded body
+func NewProjectsCreateRequestWithFormdataBody(server string, body ProjectsCreateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewProjectsCreateRequestWithBody(server, "application/x-www-form-urlencoded", bodyReader)
+}
+
 // NewProjectsCreateRequestWithBody generates requests for ProjectsCreate with any type of body
 func NewProjectsCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
@@ -170594,6 +173636,17 @@ func NewProjectsPartialUpdateRequest(server string, uuid openapi_types.UUID, bod
 	return NewProjectsPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
 }
 
+// NewProjectsPartialUpdateRequestWithFormdataBody calls the generic ProjectsPartialUpdate builder with application/x-www-form-urlencoded body
+func NewProjectsPartialUpdateRequestWithFormdataBody(server string, uuid openapi_types.UUID, body ProjectsPartialUpdateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewProjectsPartialUpdateRequestWithBody(server, uuid, "application/x-www-form-urlencoded", bodyReader)
+}
+
 // NewProjectsPartialUpdateRequestWithBody generates requests for ProjectsPartialUpdate with any type of body
 func NewProjectsPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
@@ -170639,6 +173692,17 @@ func NewProjectsUpdateRequest(server string, uuid openapi_types.UUID, body Proje
 	}
 	bodyReader = bytes.NewReader(buf)
 	return NewProjectsUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewProjectsUpdateRequestWithFormdataBody calls the generic ProjectsUpdate builder with application/x-www-form-urlencoded body
+func NewProjectsUpdateRequestWithFormdataBody(server string, uuid openapi_types.UUID, body ProjectsUpdateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewProjectsUpdateRequestWithBody(server, uuid, "application/x-www-form-urlencoded", bodyReader)
 }
 
 // NewProjectsUpdateRequestWithBody generates requests for ProjectsUpdate with any type of body
@@ -172586,6 +175650,17 @@ func NewProposalProposalsAttachDocumentRequest(server string, uuid openapi_types
 	}
 	bodyReader = bytes.NewReader(buf)
 	return NewProposalProposalsAttachDocumentRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewProposalProposalsAttachDocumentRequestWithFormdataBody calls the generic ProposalProposalsAttachDocument builder with application/x-www-form-urlencoded body
+func NewProposalProposalsAttachDocumentRequestWithFormdataBody(server string, uuid openapi_types.UUID, body ProposalProposalsAttachDocumentFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewProposalProposalsAttachDocumentRequestWithBody(server, uuid, "application/x-www-form-urlencoded", bodyReader)
 }
 
 // NewProposalProposalsAttachDocumentRequestWithBody generates requests for ProposalProposalsAttachDocument with any type of body
@@ -192111,6 +195186,17 @@ func NewSlurmJobsCreateRequest(server string, body SlurmJobsCreateJSONRequestBod
 	return NewSlurmJobsCreateRequestWithBody(server, "application/json", bodyReader)
 }
 
+// NewSlurmJobsCreateRequestWithFormdataBody calls the generic SlurmJobsCreate builder with application/x-www-form-urlencoded body
+func NewSlurmJobsCreateRequestWithFormdataBody(server string, body SlurmJobsCreateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewSlurmJobsCreateRequestWithBody(server, "application/x-www-form-urlencoded", bodyReader)
+}
+
 // NewSlurmJobsCreateRequestWithBody generates requests for SlurmJobsCreate with any type of body
 func NewSlurmJobsCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
@@ -192286,6 +195372,17 @@ func NewSlurmJobsUpdateRequest(server string, uuid openapi_types.UUID, body Slur
 	}
 	bodyReader = bytes.NewReader(buf)
 	return NewSlurmJobsUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewSlurmJobsUpdateRequestWithFormdataBody calls the generic SlurmJobsUpdate builder with application/x-www-form-urlencoded body
+func NewSlurmJobsUpdateRequestWithFormdataBody(server string, uuid openapi_types.UUID, body SlurmJobsUpdateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewSlurmJobsUpdateRequestWithBody(server, uuid, "application/x-www-form-urlencoded", bodyReader)
 }
 
 // NewSlurmJobsUpdateRequestWithBody generates requests for SlurmJobsUpdate with any type of body
@@ -192611,6 +195708,17 @@ func NewSupportAttachmentsCreateRequest(server string, body SupportAttachmentsCr
 	}
 	bodyReader = bytes.NewReader(buf)
 	return NewSupportAttachmentsCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewSupportAttachmentsCreateRequestWithFormdataBody calls the generic SupportAttachmentsCreate builder with application/x-www-form-urlencoded body
+func NewSupportAttachmentsCreateRequestWithFormdataBody(server string, body SupportAttachmentsCreateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewSupportAttachmentsCreateRequestWithBody(server, "application/x-www-form-urlencoded", bodyReader)
 }
 
 // NewSupportAttachmentsCreateRequestWithBody generates requests for SupportAttachmentsCreate with any type of body
@@ -200151,6 +203259,17 @@ func NewUsersCreateRequest(server string, body UsersCreateJSONRequestBody) (*htt
 	return NewUsersCreateRequestWithBody(server, "application/json", bodyReader)
 }
 
+// NewUsersCreateRequestWithFormdataBody calls the generic UsersCreate builder with application/x-www-form-urlencoded body
+func NewUsersCreateRequestWithFormdataBody(server string, body UsersCreateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewUsersCreateRequestWithBody(server, "application/x-www-form-urlencoded", bodyReader)
+}
+
 // NewUsersCreateRequestWithBody generates requests for UsersCreate with any type of body
 func NewUsersCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
@@ -200397,6 +203516,17 @@ func NewUsersPartialUpdateRequest(server string, uuid openapi_types.UUID, body U
 	return NewUsersPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
 }
 
+// NewUsersPartialUpdateRequestWithFormdataBody calls the generic UsersPartialUpdate builder with application/x-www-form-urlencoded body
+func NewUsersPartialUpdateRequestWithFormdataBody(server string, uuid openapi_types.UUID, body UsersPartialUpdateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewUsersPartialUpdateRequestWithBody(server, uuid, "application/x-www-form-urlencoded", bodyReader)
+}
+
 // NewUsersPartialUpdateRequestWithBody generates requests for UsersPartialUpdate with any type of body
 func NewUsersPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
@@ -200442,6 +203572,17 @@ func NewUsersUpdateRequest(server string, uuid openapi_types.UUID, body UsersUpd
 	}
 	bodyReader = bytes.NewReader(buf)
 	return NewUsersUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewUsersUpdateRequestWithFormdataBody calls the generic UsersUpdate builder with application/x-www-form-urlencoded body
+func NewUsersUpdateRequestWithFormdataBody(server string, uuid openapi_types.UUID, body UsersUpdateFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewUsersUpdateRequestWithBody(server, uuid, "application/x-www-form-urlencoded", bodyReader)
 }
 
 // NewUsersUpdateRequestWithBody generates requests for UsersUpdate with any type of body
@@ -206487,6 +209628,8 @@ type ClientWithResponsesInterface interface {
 
 	CallManagingOrganisationsCreateWithResponse(ctx context.Context, body CallManagingOrganisationsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*CallManagingOrganisationsCreateResponse, error)
 
+	CallManagingOrganisationsCreateWithFormdataBodyWithResponse(ctx context.Context, body CallManagingOrganisationsCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*CallManagingOrganisationsCreateResponse, error)
+
 	// CallManagingOrganisationsDestroyWithResponse request
 	CallManagingOrganisationsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*CallManagingOrganisationsDestroyResponse, error)
 
@@ -206498,10 +209641,14 @@ type ClientWithResponsesInterface interface {
 
 	CallManagingOrganisationsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body CallManagingOrganisationsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*CallManagingOrganisationsPartialUpdateResponse, error)
 
+	CallManagingOrganisationsPartialUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body CallManagingOrganisationsPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*CallManagingOrganisationsPartialUpdateResponse, error)
+
 	// CallManagingOrganisationsUpdateWithBodyWithResponse request with any body
 	CallManagingOrganisationsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CallManagingOrganisationsUpdateResponse, error)
 
 	CallManagingOrganisationsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body CallManagingOrganisationsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*CallManagingOrganisationsUpdateResponse, error)
+
+	CallManagingOrganisationsUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body CallManagingOrganisationsUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*CallManagingOrganisationsUpdateResponse, error)
 
 	// CallManagingOrganisationsAddUserWithBodyWithResponse request with any body
 	CallManagingOrganisationsAddUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CallManagingOrganisationsAddUserResponse, error)
@@ -206577,6 +209724,8 @@ type ClientWithResponsesInterface interface {
 
 	ChecklistsAdminCategoriesCreateWithResponse(ctx context.Context, body ChecklistsAdminCategoriesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChecklistsAdminCategoriesCreateResponse, error)
 
+	ChecklistsAdminCategoriesCreateWithFormdataBodyWithResponse(ctx context.Context, body ChecklistsAdminCategoriesCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ChecklistsAdminCategoriesCreateResponse, error)
+
 	// ChecklistsAdminCategoriesDestroyWithResponse request
 	ChecklistsAdminCategoriesDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ChecklistsAdminCategoriesDestroyResponse, error)
 
@@ -206588,10 +209737,14 @@ type ClientWithResponsesInterface interface {
 
 	ChecklistsAdminCategoriesPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChecklistsAdminCategoriesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChecklistsAdminCategoriesPartialUpdateResponse, error)
 
+	ChecklistsAdminCategoriesPartialUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChecklistsAdminCategoriesPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ChecklistsAdminCategoriesPartialUpdateResponse, error)
+
 	// ChecklistsAdminCategoriesUpdateWithBodyWithResponse request with any body
 	ChecklistsAdminCategoriesUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChecklistsAdminCategoriesUpdateResponse, error)
 
 	ChecklistsAdminCategoriesUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChecklistsAdminCategoriesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChecklistsAdminCategoriesUpdateResponse, error)
+
+	ChecklistsAdminCategoriesUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChecklistsAdminCategoriesUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ChecklistsAdminCategoriesUpdateResponse, error)
 
 	// ChecklistsAdminQuestionDependenciesListWithResponse request
 	ChecklistsAdminQuestionDependenciesListWithResponse(ctx context.Context, params *ChecklistsAdminQuestionDependenciesListParams, reqEditors ...RequestEditorFn) (*ChecklistsAdminQuestionDependenciesListResponse, error)
@@ -206803,6 +209956,8 @@ type ClientWithResponsesInterface interface {
 
 	CustomersCreateWithResponse(ctx context.Context, body CustomersCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*CustomersCreateResponse, error)
 
+	CustomersCreateWithFormdataBodyWithResponse(ctx context.Context, body CustomersCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*CustomersCreateResponse, error)
+
 	// CustomersCountriesListWithResponse request
 	CustomersCountriesListWithResponse(ctx context.Context, params *CustomersCountriesListParams, reqEditors ...RequestEditorFn) (*CustomersCountriesListResponse, error)
 
@@ -206835,10 +209990,14 @@ type ClientWithResponsesInterface interface {
 
 	CustomersPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body CustomersPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*CustomersPartialUpdateResponse, error)
 
+	CustomersPartialUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body CustomersPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*CustomersPartialUpdateResponse, error)
+
 	// CustomersUpdateWithBodyWithResponse request with any body
 	CustomersUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CustomersUpdateResponse, error)
 
 	CustomersUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body CustomersUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*CustomersUpdateResponse, error)
+
+	CustomersUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body CustomersUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*CustomersUpdateResponse, error)
 
 	// CustomersAddUserWithBodyWithResponse request with any body
 	CustomersAddUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CustomersAddUserResponse, error)
@@ -207016,6 +210175,8 @@ type ClientWithResponsesInterface interface {
 
 	ExternalLinksCreateWithResponse(ctx context.Context, body ExternalLinksCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ExternalLinksCreateResponse, error)
 
+	ExternalLinksCreateWithFormdataBodyWithResponse(ctx context.Context, body ExternalLinksCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ExternalLinksCreateResponse, error)
+
 	// ExternalLinksDestroyWithResponse request
 	ExternalLinksDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ExternalLinksDestroyResponse, error)
 
@@ -207027,10 +210188,14 @@ type ClientWithResponsesInterface interface {
 
 	ExternalLinksPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ExternalLinksPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ExternalLinksPartialUpdateResponse, error)
 
+	ExternalLinksPartialUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body ExternalLinksPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ExternalLinksPartialUpdateResponse, error)
+
 	// ExternalLinksUpdateWithBodyWithResponse request with any body
 	ExternalLinksUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ExternalLinksUpdateResponse, error)
 
 	ExternalLinksUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ExternalLinksUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ExternalLinksUpdateResponse, error)
+
+	ExternalLinksUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body ExternalLinksUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ExternalLinksUpdateResponse, error)
 
 	// FeatureValuesWithBodyWithResponse request with any body
 	FeatureValuesWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*FeatureValuesResponse, error)
@@ -207262,6 +210427,8 @@ type ClientWithResponsesInterface interface {
 	InvoicesPaidWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*InvoicesPaidResponse, error)
 
 	InvoicesPaidWithResponse(ctx context.Context, uuid openapi_types.UUID, body InvoicesPaidJSONRequestBody, reqEditors ...RequestEditorFn) (*InvoicesPaidResponse, error)
+
+	InvoicesPaidWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body InvoicesPaidFormdataRequestBody, reqEditors ...RequestEditorFn) (*InvoicesPaidResponse, error)
 
 	// InvoicesSendNotificationWithResponse request
 	InvoicesSendNotificationWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*InvoicesSendNotificationResponse, error)
@@ -207515,6 +210682,8 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceCategoriesCreateWithResponse(ctx context.Context, body MarketplaceCategoriesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceCategoriesCreateResponse, error)
 
+	MarketplaceCategoriesCreateWithFormdataBodyWithResponse(ctx context.Context, body MarketplaceCategoriesCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceCategoriesCreateResponse, error)
+
 	// MarketplaceCategoriesDestroyWithResponse request
 	MarketplaceCategoriesDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceCategoriesDestroyResponse, error)
 
@@ -207526,10 +210695,14 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceCategoriesPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceCategoriesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceCategoriesPartialUpdateResponse, error)
 
+	MarketplaceCategoriesPartialUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceCategoriesPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceCategoriesPartialUpdateResponse, error)
+
 	// MarketplaceCategoriesUpdateWithBodyWithResponse request with any body
 	MarketplaceCategoriesUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceCategoriesUpdateResponse, error)
 
 	MarketplaceCategoriesUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceCategoriesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceCategoriesUpdateResponse, error)
+
+	MarketplaceCategoriesUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceCategoriesUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceCategoriesUpdateResponse, error)
 
 	// MarketplaceCategoryColumnsListWithResponse request
 	MarketplaceCategoryColumnsListWithResponse(ctx context.Context, params *MarketplaceCategoryColumnsListParams, reqEditors ...RequestEditorFn) (*MarketplaceCategoryColumnsListResponse, error)
@@ -207605,6 +210778,8 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceCategoryGroupsCreateWithResponse(ctx context.Context, body MarketplaceCategoryGroupsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceCategoryGroupsCreateResponse, error)
 
+	MarketplaceCategoryGroupsCreateWithFormdataBodyWithResponse(ctx context.Context, body MarketplaceCategoryGroupsCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceCategoryGroupsCreateResponse, error)
+
 	// MarketplaceCategoryGroupsDestroyWithResponse request
 	MarketplaceCategoryGroupsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceCategoryGroupsDestroyResponse, error)
 
@@ -207616,10 +210791,14 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceCategoryGroupsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceCategoryGroupsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceCategoryGroupsPartialUpdateResponse, error)
 
+	MarketplaceCategoryGroupsPartialUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceCategoryGroupsPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceCategoryGroupsPartialUpdateResponse, error)
+
 	// MarketplaceCategoryGroupsUpdateWithBodyWithResponse request with any body
 	MarketplaceCategoryGroupsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceCategoryGroupsUpdateResponse, error)
 
 	MarketplaceCategoryGroupsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceCategoryGroupsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceCategoryGroupsUpdateResponse, error)
+
+	MarketplaceCategoryGroupsUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceCategoryGroupsUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceCategoryGroupsUpdateResponse, error)
 
 	// MarketplaceCategoryHelpArticlesListWithResponse request
 	MarketplaceCategoryHelpArticlesListWithResponse(ctx context.Context, params *MarketplaceCategoryHelpArticlesListParams, reqEditors ...RequestEditorFn) (*MarketplaceCategoryHelpArticlesListResponse, error)
@@ -207816,6 +210995,8 @@ type ClientWithResponsesInterface interface {
 	MarketplaceOfferingFilesCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOfferingFilesCreateResponse, error)
 
 	MarketplaceOfferingFilesCreateWithResponse(ctx context.Context, body MarketplaceOfferingFilesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingFilesCreateResponse, error)
+
+	MarketplaceOfferingFilesCreateWithFormdataBodyWithResponse(ctx context.Context, body MarketplaceOfferingFilesCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingFilesCreateResponse, error)
 
 	// MarketplaceOfferingFilesDestroyWithResponse request
 	MarketplaceOfferingFilesDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingFilesDestroyResponse, error)
@@ -208091,6 +211272,8 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceOrdersUpdateAttachmentWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersUpdateAttachmentJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOrdersUpdateAttachmentResponse, error)
 
+	MarketplaceOrdersUpdateAttachmentWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersUpdateAttachmentFormdataRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOrdersUpdateAttachmentResponse, error)
+
 	// MarketplacePlanComponentsListWithResponse request
 	MarketplacePlanComponentsListWithResponse(ctx context.Context, params *MarketplacePlanComponentsListParams, reqEditors ...RequestEditorFn) (*MarketplacePlanComponentsListResponse, error)
 
@@ -208250,6 +211433,8 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceProviderOfferingsCreateWithResponse(ctx context.Context, body MarketplaceProviderOfferingsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsCreateResponse, error)
 
+	MarketplaceProviderOfferingsCreateWithFormdataBodyWithResponse(ctx context.Context, body MarketplaceProviderOfferingsCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsCreateResponse, error)
+
 	// MarketplaceProviderOfferingsGroupsListWithResponse request
 	MarketplaceProviderOfferingsGroupsListWithResponse(ctx context.Context, params *MarketplaceProviderOfferingsGroupsListParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsGroupsListResponse, error)
 
@@ -208401,6 +211586,8 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceProviderOfferingsUpdateImageWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateImageJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateImageResponse, error)
 
+	MarketplaceProviderOfferingsUpdateImageWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateImageFormdataRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateImageResponse, error)
+
 	// MarketplaceProviderOfferingsUpdateIntegrationWithBodyWithResponse request with any body
 	MarketplaceProviderOfferingsUpdateIntegrationWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateIntegrationResponse, error)
 
@@ -208440,6 +211627,8 @@ type ClientWithResponsesInterface interface {
 	MarketplaceProviderOfferingsUpdateThumbnailWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateThumbnailResponse, error)
 
 	MarketplaceProviderOfferingsUpdateThumbnailWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateThumbnailJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateThumbnailResponse, error)
+
+	MarketplaceProviderOfferingsUpdateThumbnailWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateThumbnailFormdataRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateThumbnailResponse, error)
 
 	// MarketplaceProviderOfferingsUpdateUserWithBodyWithResponse request with any body
 	MarketplaceProviderOfferingsUpdateUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateUserResponse, error)
@@ -208763,6 +211952,8 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceScreenshotsCreateWithResponse(ctx context.Context, body MarketplaceScreenshotsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceScreenshotsCreateResponse, error)
 
+	MarketplaceScreenshotsCreateWithFormdataBodyWithResponse(ctx context.Context, body MarketplaceScreenshotsCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceScreenshotsCreateResponse, error)
+
 	// MarketplaceScreenshotsDestroyWithResponse request
 	MarketplaceScreenshotsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceScreenshotsDestroyResponse, error)
 
@@ -208778,6 +211969,8 @@ type ClientWithResponsesInterface interface {
 	MarketplaceScreenshotsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceScreenshotsUpdateResponse, error)
 
 	MarketplaceScreenshotsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceScreenshotsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceScreenshotsUpdateResponse, error)
+
+	MarketplaceScreenshotsUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceScreenshotsUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceScreenshotsUpdateResponse, error)
 
 	// MarketplaceScriptAsyncDryRunListWithResponse request
 	MarketplaceScriptAsyncDryRunListWithResponse(ctx context.Context, params *MarketplaceScriptAsyncDryRunListParams, reqEditors ...RequestEditorFn) (*MarketplaceScriptAsyncDryRunListResponse, error)
@@ -208841,6 +212034,8 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceServiceProvidersCreateWithResponse(ctx context.Context, body MarketplaceServiceProvidersCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersCreateResponse, error)
 
+	MarketplaceServiceProvidersCreateWithFormdataBodyWithResponse(ctx context.Context, body MarketplaceServiceProvidersCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersCreateResponse, error)
+
 	// ServiceProviderComplianceOverviewWithResponse request
 	ServiceProviderComplianceOverviewWithResponse(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *ServiceProviderComplianceOverviewParams, reqEditors ...RequestEditorFn) (*ServiceProviderComplianceOverviewResponse, error)
 
@@ -208888,10 +212083,14 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceServiceProvidersPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceServiceProvidersPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersPartialUpdateResponse, error)
 
+	MarketplaceServiceProvidersPartialUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceServiceProvidersPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersPartialUpdateResponse, error)
+
 	// MarketplaceServiceProvidersUpdateWithBodyWithResponse request with any body
 	MarketplaceServiceProvidersUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersUpdateResponse, error)
 
 	MarketplaceServiceProvidersUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceServiceProvidersUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersUpdateResponse, error)
+
+	MarketplaceServiceProvidersUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceServiceProvidersUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersUpdateResponse, error)
 
 	// MarketplaceServiceProvidersAddUserWithBodyWithResponse request with any body
 	MarketplaceServiceProvidersAddUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersAddUserResponse, error)
@@ -209853,6 +213052,8 @@ type ClientWithResponsesInterface interface {
 
 	OverrideSettingsWithResponse(ctx context.Context, body OverrideSettingsJSONRequestBody, reqEditors ...RequestEditorFn) (*OverrideSettingsResponse, error)
 
+	OverrideSettingsWithFormdataBodyWithResponse(ctx context.Context, body OverrideSettingsFormdataRequestBody, reqEditors ...RequestEditorFn) (*OverrideSettingsResponse, error)
+
 	// PaymentProfilesListWithResponse request
 	PaymentProfilesListWithResponse(ctx context.Context, params *PaymentProfilesListParams, reqEditors ...RequestEditorFn) (*PaymentProfilesListResponse, error)
 
@@ -209894,6 +213095,8 @@ type ClientWithResponsesInterface interface {
 
 	PaymentsCreateWithResponse(ctx context.Context, body PaymentsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*PaymentsCreateResponse, error)
 
+	PaymentsCreateWithFormdataBodyWithResponse(ctx context.Context, body PaymentsCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*PaymentsCreateResponse, error)
+
 	// PaymentsDestroyWithResponse request
 	PaymentsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*PaymentsDestroyResponse, error)
 
@@ -209905,10 +213108,14 @@ type ClientWithResponsesInterface interface {
 
 	PaymentsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body PaymentsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*PaymentsPartialUpdateResponse, error)
 
+	PaymentsPartialUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body PaymentsPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*PaymentsPartialUpdateResponse, error)
+
 	// PaymentsUpdateWithBodyWithResponse request with any body
 	PaymentsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PaymentsUpdateResponse, error)
 
 	PaymentsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body PaymentsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*PaymentsUpdateResponse, error)
+
+	PaymentsUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body PaymentsUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*PaymentsUpdateResponse, error)
 
 	// PaymentsLinkToInvoiceWithBodyWithResponse request with any body
 	PaymentsLinkToInvoiceWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PaymentsLinkToInvoiceResponse, error)
@@ -209983,6 +213190,8 @@ type ClientWithResponsesInterface interface {
 
 	ProjectsCreateWithResponse(ctx context.Context, body ProjectsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ProjectsCreateResponse, error)
 
+	ProjectsCreateWithFormdataBodyWithResponse(ctx context.Context, body ProjectsCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ProjectsCreateResponse, error)
+
 	// ProjectsOtherUsersListWithResponse request
 	ProjectsOtherUsersListWithResponse(ctx context.Context, projectUuid openapi_types.UUID, params *ProjectsOtherUsersListParams, reqEditors ...RequestEditorFn) (*ProjectsOtherUsersListResponse, error)
 
@@ -209997,10 +213206,14 @@ type ClientWithResponsesInterface interface {
 
 	ProjectsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProjectsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ProjectsPartialUpdateResponse, error)
 
+	ProjectsPartialUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProjectsPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ProjectsPartialUpdateResponse, error)
+
 	// ProjectsUpdateWithBodyWithResponse request with any body
 	ProjectsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProjectsUpdateResponse, error)
 
 	ProjectsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProjectsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ProjectsUpdateResponse, error)
+
+	ProjectsUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProjectsUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ProjectsUpdateResponse, error)
 
 	// ProjectsAddUserWithBodyWithResponse request with any body
 	ProjectsAddUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProjectsAddUserResponse, error)
@@ -210104,6 +213317,8 @@ type ClientWithResponsesInterface interface {
 	ProposalProposalsAttachDocumentWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProposalsAttachDocumentResponse, error)
 
 	ProposalProposalsAttachDocumentWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsAttachDocumentJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProposalsAttachDocumentResponse, error)
+
+	ProposalProposalsAttachDocumentWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsAttachDocumentFormdataRequestBody, reqEditors ...RequestEditorFn) (*ProposalProposalsAttachDocumentResponse, error)
 
 	// ProposalProposalsChecklistRetrieveWithResponse request
 	ProposalProposalsChecklistRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProposalsChecklistRetrieveResponse, error)
@@ -210982,6 +214197,8 @@ type ClientWithResponsesInterface interface {
 
 	SlurmJobsCreateWithResponse(ctx context.Context, body SlurmJobsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*SlurmJobsCreateResponse, error)
 
+	SlurmJobsCreateWithFormdataBodyWithResponse(ctx context.Context, body SlurmJobsCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*SlurmJobsCreateResponse, error)
+
 	// SlurmJobsDestroyWithResponse request
 	SlurmJobsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*SlurmJobsDestroyResponse, error)
 
@@ -210997,6 +214214,8 @@ type ClientWithResponsesInterface interface {
 	SlurmJobsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SlurmJobsUpdateResponse, error)
 
 	SlurmJobsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body SlurmJobsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*SlurmJobsUpdateResponse, error)
+
+	SlurmJobsUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body SlurmJobsUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*SlurmJobsUpdateResponse, error)
 
 	// SlurmJobsPullWithResponse request
 	SlurmJobsPullWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*SlurmJobsPullResponse, error)
@@ -211014,6 +214233,8 @@ type ClientWithResponsesInterface interface {
 	SupportAttachmentsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SupportAttachmentsCreateResponse, error)
 
 	SupportAttachmentsCreateWithResponse(ctx context.Context, body SupportAttachmentsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*SupportAttachmentsCreateResponse, error)
+
+	SupportAttachmentsCreateWithFormdataBodyWithResponse(ctx context.Context, body SupportAttachmentsCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*SupportAttachmentsCreateResponse, error)
 
 	// SupportAttachmentsDestroyWithResponse request
 	SupportAttachmentsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*SupportAttachmentsDestroyResponse, error)
@@ -211338,6 +214559,8 @@ type ClientWithResponsesInterface interface {
 
 	UsersCreateWithResponse(ctx context.Context, body UsersCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*UsersCreateResponse, error)
 
+	UsersCreateWithFormdataBodyWithResponse(ctx context.Context, body UsersCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*UsersCreateResponse, error)
+
 	// UsersConfirmEmailWithBodyWithResponse request with any body
 	UsersConfirmEmailWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UsersConfirmEmailResponse, error)
 
@@ -211360,10 +214583,14 @@ type ClientWithResponsesInterface interface {
 
 	UsersPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body UsersPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*UsersPartialUpdateResponse, error)
 
+	UsersPartialUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body UsersPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*UsersPartialUpdateResponse, error)
+
 	// UsersUpdateWithBodyWithResponse request with any body
 	UsersUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UsersUpdateResponse, error)
 
 	UsersUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body UsersUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*UsersUpdateResponse, error)
+
+	UsersUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body UsersUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*UsersUpdateResponse, error)
 
 	// UsersCancelChangeEmailWithResponse request
 	UsersCancelChangeEmailWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*UsersCancelChangeEmailResponse, error)
@@ -247439,6 +250666,14 @@ func (c *ClientWithResponses) CallManagingOrganisationsCreateWithResponse(ctx co
 	return ParseCallManagingOrganisationsCreateResponse(rsp)
 }
 
+func (c *ClientWithResponses) CallManagingOrganisationsCreateWithFormdataBodyWithResponse(ctx context.Context, body CallManagingOrganisationsCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*CallManagingOrganisationsCreateResponse, error) {
+	rsp, err := c.CallManagingOrganisationsCreateWithFormdataBody(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCallManagingOrganisationsCreateResponse(rsp)
+}
+
 // CallManagingOrganisationsDestroyWithResponse request returning *CallManagingOrganisationsDestroyResponse
 func (c *ClientWithResponses) CallManagingOrganisationsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*CallManagingOrganisationsDestroyResponse, error) {
 	rsp, err := c.CallManagingOrganisationsDestroy(ctx, uuid, reqEditors...)
@@ -247474,6 +250709,14 @@ func (c *ClientWithResponses) CallManagingOrganisationsPartialUpdateWithResponse
 	return ParseCallManagingOrganisationsPartialUpdateResponse(rsp)
 }
 
+func (c *ClientWithResponses) CallManagingOrganisationsPartialUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body CallManagingOrganisationsPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*CallManagingOrganisationsPartialUpdateResponse, error) {
+	rsp, err := c.CallManagingOrganisationsPartialUpdateWithFormdataBody(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCallManagingOrganisationsPartialUpdateResponse(rsp)
+}
+
 // CallManagingOrganisationsUpdateWithBodyWithResponse request with arbitrary body returning *CallManagingOrganisationsUpdateResponse
 func (c *ClientWithResponses) CallManagingOrganisationsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CallManagingOrganisationsUpdateResponse, error) {
 	rsp, err := c.CallManagingOrganisationsUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -247485,6 +250728,14 @@ func (c *ClientWithResponses) CallManagingOrganisationsUpdateWithBodyWithRespons
 
 func (c *ClientWithResponses) CallManagingOrganisationsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body CallManagingOrganisationsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*CallManagingOrganisationsUpdateResponse, error) {
 	rsp, err := c.CallManagingOrganisationsUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCallManagingOrganisationsUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) CallManagingOrganisationsUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body CallManagingOrganisationsUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*CallManagingOrganisationsUpdateResponse, error) {
+	rsp, err := c.CallManagingOrganisationsUpdateWithFormdataBody(ctx, uuid, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -247727,6 +250978,14 @@ func (c *ClientWithResponses) ChecklistsAdminCategoriesCreateWithResponse(ctx co
 	return ParseChecklistsAdminCategoriesCreateResponse(rsp)
 }
 
+func (c *ClientWithResponses) ChecklistsAdminCategoriesCreateWithFormdataBodyWithResponse(ctx context.Context, body ChecklistsAdminCategoriesCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ChecklistsAdminCategoriesCreateResponse, error) {
+	rsp, err := c.ChecklistsAdminCategoriesCreateWithFormdataBody(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChecklistsAdminCategoriesCreateResponse(rsp)
+}
+
 // ChecklistsAdminCategoriesDestroyWithResponse request returning *ChecklistsAdminCategoriesDestroyResponse
 func (c *ClientWithResponses) ChecklistsAdminCategoriesDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ChecklistsAdminCategoriesDestroyResponse, error) {
 	rsp, err := c.ChecklistsAdminCategoriesDestroy(ctx, uuid, reqEditors...)
@@ -247762,6 +251021,14 @@ func (c *ClientWithResponses) ChecklistsAdminCategoriesPartialUpdateWithResponse
 	return ParseChecklistsAdminCategoriesPartialUpdateResponse(rsp)
 }
 
+func (c *ClientWithResponses) ChecklistsAdminCategoriesPartialUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChecklistsAdminCategoriesPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ChecklistsAdminCategoriesPartialUpdateResponse, error) {
+	rsp, err := c.ChecklistsAdminCategoriesPartialUpdateWithFormdataBody(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChecklistsAdminCategoriesPartialUpdateResponse(rsp)
+}
+
 // ChecklistsAdminCategoriesUpdateWithBodyWithResponse request with arbitrary body returning *ChecklistsAdminCategoriesUpdateResponse
 func (c *ClientWithResponses) ChecklistsAdminCategoriesUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChecklistsAdminCategoriesUpdateResponse, error) {
 	rsp, err := c.ChecklistsAdminCategoriesUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -247773,6 +251040,14 @@ func (c *ClientWithResponses) ChecklistsAdminCategoriesUpdateWithBodyWithRespons
 
 func (c *ClientWithResponses) ChecklistsAdminCategoriesUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChecklistsAdminCategoriesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ChecklistsAdminCategoriesUpdateResponse, error) {
 	rsp, err := c.ChecklistsAdminCategoriesUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChecklistsAdminCategoriesUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ChecklistsAdminCategoriesUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body ChecklistsAdminCategoriesUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ChecklistsAdminCategoriesUpdateResponse, error) {
+	rsp, err := c.ChecklistsAdminCategoriesUpdateWithFormdataBody(ctx, uuid, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -248451,6 +251726,14 @@ func (c *ClientWithResponses) CustomersCreateWithResponse(ctx context.Context, b
 	return ParseCustomersCreateResponse(rsp)
 }
 
+func (c *ClientWithResponses) CustomersCreateWithFormdataBodyWithResponse(ctx context.Context, body CustomersCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*CustomersCreateResponse, error) {
+	rsp, err := c.CustomersCreateWithFormdataBody(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCustomersCreateResponse(rsp)
+}
+
 // CustomersCountriesListWithResponse request returning *CustomersCountriesListResponse
 func (c *ClientWithResponses) CustomersCountriesListWithResponse(ctx context.Context, params *CustomersCountriesListParams, reqEditors ...RequestEditorFn) (*CustomersCountriesListResponse, error) {
 	rsp, err := c.CustomersCountriesList(ctx, params, reqEditors...)
@@ -248549,6 +251832,14 @@ func (c *ClientWithResponses) CustomersPartialUpdateWithResponse(ctx context.Con
 	return ParseCustomersPartialUpdateResponse(rsp)
 }
 
+func (c *ClientWithResponses) CustomersPartialUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body CustomersPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*CustomersPartialUpdateResponse, error) {
+	rsp, err := c.CustomersPartialUpdateWithFormdataBody(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCustomersPartialUpdateResponse(rsp)
+}
+
 // CustomersUpdateWithBodyWithResponse request with arbitrary body returning *CustomersUpdateResponse
 func (c *ClientWithResponses) CustomersUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CustomersUpdateResponse, error) {
 	rsp, err := c.CustomersUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -248560,6 +251851,14 @@ func (c *ClientWithResponses) CustomersUpdateWithBodyWithResponse(ctx context.Co
 
 func (c *ClientWithResponses) CustomersUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body CustomersUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*CustomersUpdateResponse, error) {
 	rsp, err := c.CustomersUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCustomersUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) CustomersUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body CustomersUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*CustomersUpdateResponse, error) {
+	rsp, err := c.CustomersUpdateWithFormdataBody(ctx, uuid, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -249114,6 +252413,14 @@ func (c *ClientWithResponses) ExternalLinksCreateWithResponse(ctx context.Contex
 	return ParseExternalLinksCreateResponse(rsp)
 }
 
+func (c *ClientWithResponses) ExternalLinksCreateWithFormdataBodyWithResponse(ctx context.Context, body ExternalLinksCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ExternalLinksCreateResponse, error) {
+	rsp, err := c.ExternalLinksCreateWithFormdataBody(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseExternalLinksCreateResponse(rsp)
+}
+
 // ExternalLinksDestroyWithResponse request returning *ExternalLinksDestroyResponse
 func (c *ClientWithResponses) ExternalLinksDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ExternalLinksDestroyResponse, error) {
 	rsp, err := c.ExternalLinksDestroy(ctx, uuid, reqEditors...)
@@ -249149,6 +252456,14 @@ func (c *ClientWithResponses) ExternalLinksPartialUpdateWithResponse(ctx context
 	return ParseExternalLinksPartialUpdateResponse(rsp)
 }
 
+func (c *ClientWithResponses) ExternalLinksPartialUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body ExternalLinksPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ExternalLinksPartialUpdateResponse, error) {
+	rsp, err := c.ExternalLinksPartialUpdateWithFormdataBody(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseExternalLinksPartialUpdateResponse(rsp)
+}
+
 // ExternalLinksUpdateWithBodyWithResponse request with arbitrary body returning *ExternalLinksUpdateResponse
 func (c *ClientWithResponses) ExternalLinksUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ExternalLinksUpdateResponse, error) {
 	rsp, err := c.ExternalLinksUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -249160,6 +252475,14 @@ func (c *ClientWithResponses) ExternalLinksUpdateWithBodyWithResponse(ctx contex
 
 func (c *ClientWithResponses) ExternalLinksUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ExternalLinksUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ExternalLinksUpdateResponse, error) {
 	rsp, err := c.ExternalLinksUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseExternalLinksUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ExternalLinksUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body ExternalLinksUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ExternalLinksUpdateResponse, error) {
+	rsp, err := c.ExternalLinksUpdateWithFormdataBody(ctx, uuid, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -249889,6 +253212,14 @@ func (c *ClientWithResponses) InvoicesPaidWithBodyWithResponse(ctx context.Conte
 
 func (c *ClientWithResponses) InvoicesPaidWithResponse(ctx context.Context, uuid openapi_types.UUID, body InvoicesPaidJSONRequestBody, reqEditors ...RequestEditorFn) (*InvoicesPaidResponse, error) {
 	rsp, err := c.InvoicesPaid(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseInvoicesPaidResponse(rsp)
+}
+
+func (c *ClientWithResponses) InvoicesPaidWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body InvoicesPaidFormdataRequestBody, reqEditors ...RequestEditorFn) (*InvoicesPaidResponse, error) {
+	rsp, err := c.InvoicesPaidWithFormdataBody(ctx, uuid, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -250699,6 +254030,14 @@ func (c *ClientWithResponses) MarketplaceCategoriesCreateWithResponse(ctx contex
 	return ParseMarketplaceCategoriesCreateResponse(rsp)
 }
 
+func (c *ClientWithResponses) MarketplaceCategoriesCreateWithFormdataBodyWithResponse(ctx context.Context, body MarketplaceCategoriesCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceCategoriesCreateResponse, error) {
+	rsp, err := c.MarketplaceCategoriesCreateWithFormdataBody(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceCategoriesCreateResponse(rsp)
+}
+
 // MarketplaceCategoriesDestroyWithResponse request returning *MarketplaceCategoriesDestroyResponse
 func (c *ClientWithResponses) MarketplaceCategoriesDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceCategoriesDestroyResponse, error) {
 	rsp, err := c.MarketplaceCategoriesDestroy(ctx, uuid, reqEditors...)
@@ -250734,6 +254073,14 @@ func (c *ClientWithResponses) MarketplaceCategoriesPartialUpdateWithResponse(ctx
 	return ParseMarketplaceCategoriesPartialUpdateResponse(rsp)
 }
 
+func (c *ClientWithResponses) MarketplaceCategoriesPartialUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceCategoriesPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceCategoriesPartialUpdateResponse, error) {
+	rsp, err := c.MarketplaceCategoriesPartialUpdateWithFormdataBody(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceCategoriesPartialUpdateResponse(rsp)
+}
+
 // MarketplaceCategoriesUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceCategoriesUpdateResponse
 func (c *ClientWithResponses) MarketplaceCategoriesUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceCategoriesUpdateResponse, error) {
 	rsp, err := c.MarketplaceCategoriesUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -250745,6 +254092,14 @@ func (c *ClientWithResponses) MarketplaceCategoriesUpdateWithBodyWithResponse(ct
 
 func (c *ClientWithResponses) MarketplaceCategoriesUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceCategoriesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceCategoriesUpdateResponse, error) {
 	rsp, err := c.MarketplaceCategoriesUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceCategoriesUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceCategoriesUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceCategoriesUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceCategoriesUpdateResponse, error) {
+	rsp, err := c.MarketplaceCategoriesUpdateWithFormdataBody(ctx, uuid, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -250987,6 +254342,14 @@ func (c *ClientWithResponses) MarketplaceCategoryGroupsCreateWithResponse(ctx co
 	return ParseMarketplaceCategoryGroupsCreateResponse(rsp)
 }
 
+func (c *ClientWithResponses) MarketplaceCategoryGroupsCreateWithFormdataBodyWithResponse(ctx context.Context, body MarketplaceCategoryGroupsCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceCategoryGroupsCreateResponse, error) {
+	rsp, err := c.MarketplaceCategoryGroupsCreateWithFormdataBody(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceCategoryGroupsCreateResponse(rsp)
+}
+
 // MarketplaceCategoryGroupsDestroyWithResponse request returning *MarketplaceCategoryGroupsDestroyResponse
 func (c *ClientWithResponses) MarketplaceCategoryGroupsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceCategoryGroupsDestroyResponse, error) {
 	rsp, err := c.MarketplaceCategoryGroupsDestroy(ctx, uuid, reqEditors...)
@@ -251022,6 +254385,14 @@ func (c *ClientWithResponses) MarketplaceCategoryGroupsPartialUpdateWithResponse
 	return ParseMarketplaceCategoryGroupsPartialUpdateResponse(rsp)
 }
 
+func (c *ClientWithResponses) MarketplaceCategoryGroupsPartialUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceCategoryGroupsPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceCategoryGroupsPartialUpdateResponse, error) {
+	rsp, err := c.MarketplaceCategoryGroupsPartialUpdateWithFormdataBody(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceCategoryGroupsPartialUpdateResponse(rsp)
+}
+
 // MarketplaceCategoryGroupsUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceCategoryGroupsUpdateResponse
 func (c *ClientWithResponses) MarketplaceCategoryGroupsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceCategoryGroupsUpdateResponse, error) {
 	rsp, err := c.MarketplaceCategoryGroupsUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -251033,6 +254404,14 @@ func (c *ClientWithResponses) MarketplaceCategoryGroupsUpdateWithBodyWithRespons
 
 func (c *ClientWithResponses) MarketplaceCategoryGroupsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceCategoryGroupsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceCategoryGroupsUpdateResponse, error) {
 	rsp, err := c.MarketplaceCategoryGroupsUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceCategoryGroupsUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceCategoryGroupsUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceCategoryGroupsUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceCategoryGroupsUpdateResponse, error) {
+	rsp, err := c.MarketplaceCategoryGroupsUpdateWithFormdataBody(ctx, uuid, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -251655,6 +255034,14 @@ func (c *ClientWithResponses) MarketplaceOfferingFilesCreateWithBodyWithResponse
 
 func (c *ClientWithResponses) MarketplaceOfferingFilesCreateWithResponse(ctx context.Context, body MarketplaceOfferingFilesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingFilesCreateResponse, error) {
 	rsp, err := c.MarketplaceOfferingFilesCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingFilesCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceOfferingFilesCreateWithFormdataBodyWithResponse(ctx context.Context, body MarketplaceOfferingFilesCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingFilesCreateResponse, error) {
+	rsp, err := c.MarketplaceOfferingFilesCreateWithFormdataBody(ctx, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -252523,6 +255910,14 @@ func (c *ClientWithResponses) MarketplaceOrdersUpdateAttachmentWithResponse(ctx 
 	return ParseMarketplaceOrdersUpdateAttachmentResponse(rsp)
 }
 
+func (c *ClientWithResponses) MarketplaceOrdersUpdateAttachmentWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersUpdateAttachmentFormdataRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOrdersUpdateAttachmentResponse, error) {
+	rsp, err := c.MarketplaceOrdersUpdateAttachmentWithFormdataBody(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOrdersUpdateAttachmentResponse(rsp)
+}
+
 // MarketplacePlanComponentsListWithResponse request returning *MarketplacePlanComponentsListResponse
 func (c *ClientWithResponses) MarketplacePlanComponentsListWithResponse(ctx context.Context, params *MarketplacePlanComponentsListParams, reqEditors ...RequestEditorFn) (*MarketplacePlanComponentsListResponse, error) {
 	rsp, err := c.MarketplacePlanComponentsList(ctx, params, reqEditors...)
@@ -253030,6 +256425,14 @@ func (c *ClientWithResponses) MarketplaceProviderOfferingsCreateWithResponse(ctx
 	return ParseMarketplaceProviderOfferingsCreateResponse(rsp)
 }
 
+func (c *ClientWithResponses) MarketplaceProviderOfferingsCreateWithFormdataBodyWithResponse(ctx context.Context, body MarketplaceProviderOfferingsCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsCreateResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsCreateWithFormdataBody(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsCreateResponse(rsp)
+}
+
 // MarketplaceProviderOfferingsGroupsListWithResponse request returning *MarketplaceProviderOfferingsGroupsListResponse
 func (c *ClientWithResponses) MarketplaceProviderOfferingsGroupsListWithResponse(ctx context.Context, params *MarketplaceProviderOfferingsGroupsListParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsGroupsListResponse, error) {
 	rsp, err := c.MarketplaceProviderOfferingsGroupsList(ctx, params, reqEditors...)
@@ -253511,6 +256914,14 @@ func (c *ClientWithResponses) MarketplaceProviderOfferingsUpdateImageWithRespons
 	return ParseMarketplaceProviderOfferingsUpdateImageResponse(rsp)
 }
 
+func (c *ClientWithResponses) MarketplaceProviderOfferingsUpdateImageWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateImageFormdataRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateImageResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsUpdateImageWithFormdataBody(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsUpdateImageResponse(rsp)
+}
+
 // MarketplaceProviderOfferingsUpdateIntegrationWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderOfferingsUpdateIntegrationResponse
 func (c *ClientWithResponses) MarketplaceProviderOfferingsUpdateIntegrationWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateIntegrationResponse, error) {
 	rsp, err := c.MarketplaceProviderOfferingsUpdateIntegrationWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -253641,6 +257052,14 @@ func (c *ClientWithResponses) MarketplaceProviderOfferingsUpdateThumbnailWithBod
 
 func (c *ClientWithResponses) MarketplaceProviderOfferingsUpdateThumbnailWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateThumbnailJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateThumbnailResponse, error) {
 	rsp, err := c.MarketplaceProviderOfferingsUpdateThumbnail(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsUpdateThumbnailResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceProviderOfferingsUpdateThumbnailWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateThumbnailFormdataRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateThumbnailResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsUpdateThumbnailWithFormdataBody(ctx, uuid, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -254677,6 +258096,14 @@ func (c *ClientWithResponses) MarketplaceScreenshotsCreateWithResponse(ctx conte
 	return ParseMarketplaceScreenshotsCreateResponse(rsp)
 }
 
+func (c *ClientWithResponses) MarketplaceScreenshotsCreateWithFormdataBodyWithResponse(ctx context.Context, body MarketplaceScreenshotsCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceScreenshotsCreateResponse, error) {
+	rsp, err := c.MarketplaceScreenshotsCreateWithFormdataBody(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceScreenshotsCreateResponse(rsp)
+}
+
 // MarketplaceScreenshotsDestroyWithResponse request returning *MarketplaceScreenshotsDestroyResponse
 func (c *ClientWithResponses) MarketplaceScreenshotsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceScreenshotsDestroyResponse, error) {
 	rsp, err := c.MarketplaceScreenshotsDestroy(ctx, uuid, reqEditors...)
@@ -254723,6 +258150,14 @@ func (c *ClientWithResponses) MarketplaceScreenshotsUpdateWithBodyWithResponse(c
 
 func (c *ClientWithResponses) MarketplaceScreenshotsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceScreenshotsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceScreenshotsUpdateResponse, error) {
 	rsp, err := c.MarketplaceScreenshotsUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceScreenshotsUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceScreenshotsUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceScreenshotsUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceScreenshotsUpdateResponse, error) {
+	rsp, err := c.MarketplaceScreenshotsUpdateWithFormdataBody(ctx, uuid, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -254929,6 +258364,14 @@ func (c *ClientWithResponses) MarketplaceServiceProvidersCreateWithResponse(ctx 
 	return ParseMarketplaceServiceProvidersCreateResponse(rsp)
 }
 
+func (c *ClientWithResponses) MarketplaceServiceProvidersCreateWithFormdataBodyWithResponse(ctx context.Context, body MarketplaceServiceProvidersCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersCreateResponse, error) {
+	rsp, err := c.MarketplaceServiceProvidersCreateWithFormdataBody(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceServiceProvidersCreateResponse(rsp)
+}
+
 // ServiceProviderComplianceOverviewWithResponse request returning *ServiceProviderComplianceOverviewResponse
 func (c *ClientWithResponses) ServiceProviderComplianceOverviewWithResponse(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *ServiceProviderComplianceOverviewParams, reqEditors ...RequestEditorFn) (*ServiceProviderComplianceOverviewResponse, error) {
 	rsp, err := c.ServiceProviderComplianceOverview(ctx, serviceProviderUuid, params, reqEditors...)
@@ -255072,6 +258515,14 @@ func (c *ClientWithResponses) MarketplaceServiceProvidersPartialUpdateWithRespon
 	return ParseMarketplaceServiceProvidersPartialUpdateResponse(rsp)
 }
 
+func (c *ClientWithResponses) MarketplaceServiceProvidersPartialUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceServiceProvidersPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersPartialUpdateResponse, error) {
+	rsp, err := c.MarketplaceServiceProvidersPartialUpdateWithFormdataBody(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceServiceProvidersPartialUpdateResponse(rsp)
+}
+
 // MarketplaceServiceProvidersUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceServiceProvidersUpdateResponse
 func (c *ClientWithResponses) MarketplaceServiceProvidersUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersUpdateResponse, error) {
 	rsp, err := c.MarketplaceServiceProvidersUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -255083,6 +258534,14 @@ func (c *ClientWithResponses) MarketplaceServiceProvidersUpdateWithBodyWithRespo
 
 func (c *ClientWithResponses) MarketplaceServiceProvidersUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceServiceProvidersUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersUpdateResponse, error) {
 	rsp, err := c.MarketplaceServiceProvidersUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceServiceProvidersUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceServiceProvidersUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceServiceProvidersUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersUpdateResponse, error) {
+	rsp, err := c.MarketplaceServiceProvidersUpdateWithFormdataBody(ctx, uuid, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -258119,6 +261578,14 @@ func (c *ClientWithResponses) OverrideSettingsWithResponse(ctx context.Context, 
 	return ParseOverrideSettingsResponse(rsp)
 }
 
+func (c *ClientWithResponses) OverrideSettingsWithFormdataBodyWithResponse(ctx context.Context, body OverrideSettingsFormdataRequestBody, reqEditors ...RequestEditorFn) (*OverrideSettingsResponse, error) {
+	rsp, err := c.OverrideSettingsWithFormdataBody(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOverrideSettingsResponse(rsp)
+}
+
 // PaymentProfilesListWithResponse request returning *PaymentProfilesListResponse
 func (c *ClientWithResponses) PaymentProfilesListWithResponse(ctx context.Context, params *PaymentProfilesListParams, reqEditors ...RequestEditorFn) (*PaymentProfilesListResponse, error) {
 	rsp, err := c.PaymentProfilesList(ctx, params, reqEditors...)
@@ -258250,6 +261717,14 @@ func (c *ClientWithResponses) PaymentsCreateWithResponse(ctx context.Context, bo
 	return ParsePaymentsCreateResponse(rsp)
 }
 
+func (c *ClientWithResponses) PaymentsCreateWithFormdataBodyWithResponse(ctx context.Context, body PaymentsCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*PaymentsCreateResponse, error) {
+	rsp, err := c.PaymentsCreateWithFormdataBody(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePaymentsCreateResponse(rsp)
+}
+
 // PaymentsDestroyWithResponse request returning *PaymentsDestroyResponse
 func (c *ClientWithResponses) PaymentsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*PaymentsDestroyResponse, error) {
 	rsp, err := c.PaymentsDestroy(ctx, uuid, reqEditors...)
@@ -258285,6 +261760,14 @@ func (c *ClientWithResponses) PaymentsPartialUpdateWithResponse(ctx context.Cont
 	return ParsePaymentsPartialUpdateResponse(rsp)
 }
 
+func (c *ClientWithResponses) PaymentsPartialUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body PaymentsPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*PaymentsPartialUpdateResponse, error) {
+	rsp, err := c.PaymentsPartialUpdateWithFormdataBody(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePaymentsPartialUpdateResponse(rsp)
+}
+
 // PaymentsUpdateWithBodyWithResponse request with arbitrary body returning *PaymentsUpdateResponse
 func (c *ClientWithResponses) PaymentsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PaymentsUpdateResponse, error) {
 	rsp, err := c.PaymentsUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -258296,6 +261779,14 @@ func (c *ClientWithResponses) PaymentsUpdateWithBodyWithResponse(ctx context.Con
 
 func (c *ClientWithResponses) PaymentsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body PaymentsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*PaymentsUpdateResponse, error) {
 	rsp, err := c.PaymentsUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePaymentsUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) PaymentsUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body PaymentsUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*PaymentsUpdateResponse, error) {
+	rsp, err := c.PaymentsUpdateWithFormdataBody(ctx, uuid, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -258531,6 +262022,14 @@ func (c *ClientWithResponses) ProjectsCreateWithResponse(ctx context.Context, bo
 	return ParseProjectsCreateResponse(rsp)
 }
 
+func (c *ClientWithResponses) ProjectsCreateWithFormdataBodyWithResponse(ctx context.Context, body ProjectsCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ProjectsCreateResponse, error) {
+	rsp, err := c.ProjectsCreateWithFormdataBody(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProjectsCreateResponse(rsp)
+}
+
 // ProjectsOtherUsersListWithResponse request returning *ProjectsOtherUsersListResponse
 func (c *ClientWithResponses) ProjectsOtherUsersListWithResponse(ctx context.Context, projectUuid openapi_types.UUID, params *ProjectsOtherUsersListParams, reqEditors ...RequestEditorFn) (*ProjectsOtherUsersListResponse, error) {
 	rsp, err := c.ProjectsOtherUsersList(ctx, projectUuid, params, reqEditors...)
@@ -258575,6 +262074,14 @@ func (c *ClientWithResponses) ProjectsPartialUpdateWithResponse(ctx context.Cont
 	return ParseProjectsPartialUpdateResponse(rsp)
 }
 
+func (c *ClientWithResponses) ProjectsPartialUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProjectsPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ProjectsPartialUpdateResponse, error) {
+	rsp, err := c.ProjectsPartialUpdateWithFormdataBody(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProjectsPartialUpdateResponse(rsp)
+}
+
 // ProjectsUpdateWithBodyWithResponse request with arbitrary body returning *ProjectsUpdateResponse
 func (c *ClientWithResponses) ProjectsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProjectsUpdateResponse, error) {
 	rsp, err := c.ProjectsUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -258586,6 +262093,14 @@ func (c *ClientWithResponses) ProjectsUpdateWithBodyWithResponse(ctx context.Con
 
 func (c *ClientWithResponses) ProjectsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProjectsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ProjectsUpdateResponse, error) {
 	rsp, err := c.ProjectsUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProjectsUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ProjectsUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProjectsUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ProjectsUpdateResponse, error) {
+	rsp, err := c.ProjectsUpdateWithFormdataBody(ctx, uuid, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -258917,6 +262432,14 @@ func (c *ClientWithResponses) ProposalProposalsAttachDocumentWithBodyWithRespons
 
 func (c *ClientWithResponses) ProposalProposalsAttachDocumentWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsAttachDocumentJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProposalsAttachDocumentResponse, error) {
 	rsp, err := c.ProposalProposalsAttachDocument(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProposalsAttachDocumentResponse(rsp)
+}
+
+func (c *ClientWithResponses) ProposalProposalsAttachDocumentWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsAttachDocumentFormdataRequestBody, reqEditors ...RequestEditorFn) (*ProposalProposalsAttachDocumentResponse, error) {
+	rsp, err := c.ProposalProposalsAttachDocumentWithFormdataBody(ctx, uuid, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -261708,6 +265231,14 @@ func (c *ClientWithResponses) SlurmJobsCreateWithResponse(ctx context.Context, b
 	return ParseSlurmJobsCreateResponse(rsp)
 }
 
+func (c *ClientWithResponses) SlurmJobsCreateWithFormdataBodyWithResponse(ctx context.Context, body SlurmJobsCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*SlurmJobsCreateResponse, error) {
+	rsp, err := c.SlurmJobsCreateWithFormdataBody(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSlurmJobsCreateResponse(rsp)
+}
+
 // SlurmJobsDestroyWithResponse request returning *SlurmJobsDestroyResponse
 func (c *ClientWithResponses) SlurmJobsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*SlurmJobsDestroyResponse, error) {
 	rsp, err := c.SlurmJobsDestroy(ctx, uuid, reqEditors...)
@@ -261754,6 +265285,14 @@ func (c *ClientWithResponses) SlurmJobsUpdateWithBodyWithResponse(ctx context.Co
 
 func (c *ClientWithResponses) SlurmJobsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body SlurmJobsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*SlurmJobsUpdateResponse, error) {
 	rsp, err := c.SlurmJobsUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSlurmJobsUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) SlurmJobsUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body SlurmJobsUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*SlurmJobsUpdateResponse, error) {
+	rsp, err := c.SlurmJobsUpdateWithFormdataBody(ctx, uuid, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -261807,6 +265346,14 @@ func (c *ClientWithResponses) SupportAttachmentsCreateWithBodyWithResponse(ctx c
 
 func (c *ClientWithResponses) SupportAttachmentsCreateWithResponse(ctx context.Context, body SupportAttachmentsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*SupportAttachmentsCreateResponse, error) {
 	rsp, err := c.SupportAttachmentsCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSupportAttachmentsCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) SupportAttachmentsCreateWithFormdataBodyWithResponse(ctx context.Context, body SupportAttachmentsCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*SupportAttachmentsCreateResponse, error) {
+	rsp, err := c.SupportAttachmentsCreateWithFormdataBody(ctx, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -262838,6 +266385,14 @@ func (c *ClientWithResponses) UsersCreateWithResponse(ctx context.Context, body 
 	return ParseUsersCreateResponse(rsp)
 }
 
+func (c *ClientWithResponses) UsersCreateWithFormdataBodyWithResponse(ctx context.Context, body UsersCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*UsersCreateResponse, error) {
+	rsp, err := c.UsersCreateWithFormdataBody(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUsersCreateResponse(rsp)
+}
+
 // UsersConfirmEmailWithBodyWithResponse request with arbitrary body returning *UsersConfirmEmailResponse
 func (c *ClientWithResponses) UsersConfirmEmailWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UsersConfirmEmailResponse, error) {
 	rsp, err := c.UsersConfirmEmailWithBody(ctx, contentType, body, reqEditors...)
@@ -262908,6 +266463,14 @@ func (c *ClientWithResponses) UsersPartialUpdateWithResponse(ctx context.Context
 	return ParseUsersPartialUpdateResponse(rsp)
 }
 
+func (c *ClientWithResponses) UsersPartialUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body UsersPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*UsersPartialUpdateResponse, error) {
+	rsp, err := c.UsersPartialUpdateWithFormdataBody(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUsersPartialUpdateResponse(rsp)
+}
+
 // UsersUpdateWithBodyWithResponse request with arbitrary body returning *UsersUpdateResponse
 func (c *ClientWithResponses) UsersUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UsersUpdateResponse, error) {
 	rsp, err := c.UsersUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -262919,6 +266482,14 @@ func (c *ClientWithResponses) UsersUpdateWithBodyWithResponse(ctx context.Contex
 
 func (c *ClientWithResponses) UsersUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body UsersUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*UsersUpdateResponse, error) {
 	rsp, err := c.UsersUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUsersUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) UsersUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body UsersUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*UsersUpdateResponse, error) {
+	rsp, err := c.UsersUpdateWithFormdataBody(ctx, uuid, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
