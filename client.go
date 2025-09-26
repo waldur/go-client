@@ -12566,6 +12566,7 @@ type ConstanceSettings struct {
 	NOTIFYSTAFFABOUTAPPROVALS                      *bool                `json:"NOTIFY_STAFF_ABOUT_APPROVALS,omitempty"`
 	OFFERINGLOGOPLACEHOLDER                        *string              `json:"OFFERING_LOGO_PLACEHOLDER"`
 	OIDCAUTHURL                                    *string              `json:"OIDC_AUTH_URL,omitempty"`
+	OIDCBLOCKCREATIONOFUNINVITEDUSERS              *bool                `json:"OIDC_BLOCK_CREATION_OF_UNINVITED_USERS,omitempty"`
 	OIDCCACHETIMEOUT                               *int                 `json:"OIDC_CACHE_TIMEOUT,omitempty"`
 	OIDCCLIENTID                                   *string              `json:"OIDC_CLIENT_ID,omitempty"`
 	OIDCCLIENTSECRET                               *string              `json:"OIDC_CLIENT_SECRET,omitempty"`
@@ -12704,6 +12705,7 @@ type ConstanceSettingsRequest struct {
 	NOTIFYSTAFFABOUTAPPROVALS                      *bool                `json:"NOTIFY_STAFF_ABOUT_APPROVALS,omitempty"`
 	OFFERINGLOGOPLACEHOLDER                        *openapi_types.File  `json:"OFFERING_LOGO_PLACEHOLDER"`
 	OIDCAUTHURL                                    *string              `json:"OIDC_AUTH_URL,omitempty"`
+	OIDCBLOCKCREATIONOFUNINVITEDUSERS              *bool                `json:"OIDC_BLOCK_CREATION_OF_UNINVITED_USERS,omitempty"`
 	OIDCCACHETIMEOUT                               *int                 `json:"OIDC_CACHE_TIMEOUT,omitempty"`
 	OIDCCLIENTID                                   *string              `json:"OIDC_CLIENT_ID,omitempty"`
 	OIDCCLIENTSECRET                               *string              `json:"OIDC_CLIENT_SECRET,omitempty"`
@@ -12842,6 +12844,7 @@ type ConstanceSettingsRequestForm struct {
 	NOTIFYSTAFFABOUTAPPROVALS                      *bool                `json:"NOTIFY_STAFF_ABOUT_APPROVALS,omitempty"`
 	OFFERINGLOGOPLACEHOLDER                        *openapi_types.File  `json:"OFFERING_LOGO_PLACEHOLDER"`
 	OIDCAUTHURL                                    *string              `json:"OIDC_AUTH_URL,omitempty"`
+	OIDCBLOCKCREATIONOFUNINVITEDUSERS              *bool                `json:"OIDC_BLOCK_CREATION_OF_UNINVITED_USERS,omitempty"`
 	OIDCCACHETIMEOUT                               *int                 `json:"OIDC_CACHE_TIMEOUT,omitempty"`
 	OIDCCLIENTID                                   *string              `json:"OIDC_CLIENT_ID,omitempty"`
 	OIDCCLIENTSECRET                               *string              `json:"OIDC_CLIENT_SECRET,omitempty"`
@@ -12980,6 +12983,7 @@ type ConstanceSettingsRequestMultipart struct {
 	NOTIFYSTAFFABOUTAPPROVALS                      *bool                `json:"NOTIFY_STAFF_ABOUT_APPROVALS,omitempty"`
 	OFFERINGLOGOPLACEHOLDER                        *openapi_types.File  `json:"OFFERING_LOGO_PLACEHOLDER"`
 	OIDCAUTHURL                                    *string              `json:"OIDC_AUTH_URL,omitempty"`
+	OIDCBLOCKCREATIONOFUNINVITEDUSERS              *bool                `json:"OIDC_BLOCK_CREATION_OF_UNINVITED_USERS,omitempty"`
 	OIDCCACHETIMEOUT                               *int                 `json:"OIDC_CACHE_TIMEOUT,omitempty"`
 	OIDCCLIENTID                                   *string              `json:"OIDC_CLIENT_ID,omitempty"`
 	OIDCCLIENTSECRET                               *string              `json:"OIDC_CLIENT_SECRET,omitempty"`
