@@ -11895,6 +11895,7 @@ type CallRound struct {
 	CallName   *string             `json:"call_name,omitempty"`
 	CallUuid   *openapi_types.UUID `json:"call_uuid,omitempty"`
 	CutoffTime time.Time           `json:"cutoff_time"`
+	Slug       *string             `json:"slug,omitempty"`
 	StartTime  time.Time           `json:"start_time"`
 	Status     *StatusEnum         `json:"status,omitempty"`
 	Url        *string             `json:"url,omitempty"`
@@ -15928,6 +15929,7 @@ type NestedRound struct {
 	Name                     *string             `json:"name,omitempty"`
 	ReviewDurationInDays     *int                `json:"review_duration_in_days"`
 	ReviewStrategy           *ReviewStrategyEnum `json:"review_strategy,omitempty"`
+	Slug                     *string             `json:"slug,omitempty"`
 	StartTime                *time.Time          `json:"start_time,omitempty"`
 	Status                   *StatusEnum         `json:"status,omitempty"`
 	Uuid                     *openapi_types.UUID `json:"uuid,omitempty"`
@@ -20902,6 +20904,7 @@ type Proposal struct {
 	ProjectName               *string                   `json:"project_name,omitempty"`
 	ProjectSummary            *string                   `json:"project_summary,omitempty"`
 	Round                     *NestedRound              `json:"round,omitempty"`
+	Slug                      *string                   `json:"slug,omitempty"`
 	State                     *ProposalStates           `json:"state,omitempty"`
 	SupportingDocumentation   *[]ProposalDocumentation  `json:"supporting_documentation,omitempty"`
 	Url                       *string                   `json:"url,omitempty"`
@@ -21132,6 +21135,7 @@ type ProtectedProposalList struct {
 	// - Staff, call managers, and reviewers see all reviews.
 	// - Submitters see submitted reviews if visibility is enabled.
 	Reviews *[]interface{}      `json:"reviews,omitempty"`
+	Slug    string              `json:"slug"`
 	State   *ProposalStates     `json:"state,omitempty"`
 	Uuid    *openapi_types.UUID `json:"uuid,omitempty"`
 }
@@ -21148,6 +21152,7 @@ type ProtectedRound struct {
 	Proposals                *[]ProtectedProposalList `json:"proposals,omitempty"`
 	ReviewDurationInDays     *int                     `json:"review_duration_in_days,omitempty"`
 	ReviewStrategy           *ReviewStrategyEnum      `json:"review_strategy,omitempty"`
+	Slug                     *string                  `json:"slug,omitempty"`
 	StartTime                time.Time                `json:"start_time"`
 	Status                   *StatusEnum              `json:"status,omitempty"`
 	Url                      *string                  `json:"url,omitempty"`
