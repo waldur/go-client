@@ -8540,10 +8540,12 @@ const (
 	ProposalProposalsListParamsOMinusRoundCallName   ProposalProposalsListParamsO = "-round__call__name"
 	ProposalProposalsListParamsOMinusRoundCutoffTime ProposalProposalsListParamsO = "-round__cutoff_time"
 	ProposalProposalsListParamsOMinusRoundStartTime  ProposalProposalsListParamsO = "-round__start_time"
+	ProposalProposalsListParamsOMinusSlug            ProposalProposalsListParamsO = "-slug"
 	ProposalProposalsListParamsOMinusState           ProposalProposalsListParamsO = "-state"
 	ProposalProposalsListParamsORoundCallName        ProposalProposalsListParamsO = "round__call__name"
 	ProposalProposalsListParamsORoundCutoffTime      ProposalProposalsListParamsO = "round__cutoff_time"
 	ProposalProposalsListParamsORoundStartTime       ProposalProposalsListParamsO = "round__start_time"
+	ProposalProposalsListParamsOSlug                 ProposalProposalsListParamsO = "slug"
 	ProposalProposalsListParamsOState                ProposalProposalsListParamsO = "state"
 )
 
@@ -8564,10 +8566,12 @@ const (
 	ProposalProposalsCountParamsOMinusRoundCallName   ProposalProposalsCountParamsO = "-round__call__name"
 	ProposalProposalsCountParamsOMinusRoundCutoffTime ProposalProposalsCountParamsO = "-round__cutoff_time"
 	ProposalProposalsCountParamsOMinusRoundStartTime  ProposalProposalsCountParamsO = "-round__start_time"
+	ProposalProposalsCountParamsOMinusSlug            ProposalProposalsCountParamsO = "-slug"
 	ProposalProposalsCountParamsOMinusState           ProposalProposalsCountParamsO = "-state"
 	ProposalProposalsCountParamsORoundCallName        ProposalProposalsCountParamsO = "round__call__name"
 	ProposalProposalsCountParamsORoundCutoffTime      ProposalProposalsCountParamsO = "round__cutoff_time"
 	ProposalProposalsCountParamsORoundStartTime       ProposalProposalsCountParamsO = "round__start_time"
+	ProposalProposalsCountParamsOSlug                 ProposalProposalsCountParamsO = "slug"
 	ProposalProposalsCountParamsOState                ProposalProposalsCountParamsO = "state"
 )
 
@@ -20993,6 +20997,7 @@ type ProposalReview struct {
 	AnonymousReviewerName                 *string                  `json:"anonymous_reviewer_name"`
 	CallManagingOrganisationUuid          *openapi_types.UUID      `json:"call_managing_organisation_uuid,omitempty"`
 	CallName                              *string                  `json:"call_name,omitempty"`
+	CallSlug                              *string                  `json:"call_slug,omitempty"`
 	CallUuid                              *openapi_types.UUID      `json:"call_uuid,omitempty"`
 	CommentProjectDescription             *string                  `json:"comment_project_description"`
 	CommentProjectDuration                *string                  `json:"comment_project_duration"`
@@ -21007,6 +21012,7 @@ type ProposalReview struct {
 	Modified                              *time.Time               `json:"modified,omitempty"`
 	Proposal                              string                   `json:"proposal"`
 	ProposalName                          *string                  `json:"proposal_name,omitempty"`
+	ProposalSlug                          *string                  `json:"proposal_slug,omitempty"`
 	ProposalUuid                          *openapi_types.UUID      `json:"proposal_uuid,omitempty"`
 	ReviewEndDate                         *time.Time               `json:"review_end_date,omitempty"`
 	Reviewer                              string                   `json:"reviewer"`
@@ -21014,6 +21020,7 @@ type ProposalReview struct {
 	ReviewerUuid                          *openapi_types.UUID      `json:"reviewer_uuid,omitempty"`
 	RoundCutoffTime                       *time.Time               `json:"round_cutoff_time,omitempty"`
 	RoundName                             *string                  `json:"round_name,omitempty"`
+	RoundSlug                             *string                  `json:"round_slug,omitempty"`
 	RoundStartTime                        *time.Time               `json:"round_start_time,omitempty"`
 	RoundUuid                             *openapi_types.UUID      `json:"round_uuid,omitempty"`
 	State                                 *ProposalReviewStateEnum `json:"state,omitempty"`
