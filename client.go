@@ -2623,9 +2623,6 @@ const (
 	BookingResourcesListParamsFieldName                       BookingResourcesListParamsField = "name"
 	BookingResourcesListParamsFieldOffering                   BookingResourcesListParamsField = "offering"
 	BookingResourcesListParamsFieldOfferingBillable           BookingResourcesListParamsField = "offering_billable"
-	BookingResourcesListParamsFieldOfferingCustomerName       BookingResourcesListParamsField = "offering_customer_name"
-	BookingResourcesListParamsFieldOfferingCustomerSlug       BookingResourcesListParamsField = "offering_customer_slug"
-	BookingResourcesListParamsFieldOfferingCustomerUuid       BookingResourcesListParamsField = "offering_customer_uuid"
 	BookingResourcesListParamsFieldOfferingDescription        BookingResourcesListParamsField = "offering_description"
 	BookingResourcesListParamsFieldOfferingImage              BookingResourcesListParamsField = "offering_image"
 	BookingResourcesListParamsFieldOfferingName               BookingResourcesListParamsField = "offering_name"
@@ -2656,6 +2653,7 @@ const (
 	BookingResourcesListParamsFieldProjectSlug                BookingResourcesListParamsField = "project_slug"
 	BookingResourcesListParamsFieldProjectUuid                BookingResourcesListParamsField = "project_uuid"
 	BookingResourcesListParamsFieldProviderName               BookingResourcesListParamsField = "provider_name"
+	BookingResourcesListParamsFieldProviderSlug               BookingResourcesListParamsField = "provider_slug"
 	BookingResourcesListParamsFieldProviderUuid               BookingResourcesListParamsField = "provider_uuid"
 	BookingResourcesListParamsFieldReport                     BookingResourcesListParamsField = "report"
 	BookingResourcesListParamsFieldResourceType               BookingResourcesListParamsField = "resource_type"
@@ -2755,9 +2753,6 @@ const (
 	BookingResourcesRetrieveParamsFieldName                       BookingResourcesRetrieveParamsField = "name"
 	BookingResourcesRetrieveParamsFieldOffering                   BookingResourcesRetrieveParamsField = "offering"
 	BookingResourcesRetrieveParamsFieldOfferingBillable           BookingResourcesRetrieveParamsField = "offering_billable"
-	BookingResourcesRetrieveParamsFieldOfferingCustomerName       BookingResourcesRetrieveParamsField = "offering_customer_name"
-	BookingResourcesRetrieveParamsFieldOfferingCustomerSlug       BookingResourcesRetrieveParamsField = "offering_customer_slug"
-	BookingResourcesRetrieveParamsFieldOfferingCustomerUuid       BookingResourcesRetrieveParamsField = "offering_customer_uuid"
 	BookingResourcesRetrieveParamsFieldOfferingDescription        BookingResourcesRetrieveParamsField = "offering_description"
 	BookingResourcesRetrieveParamsFieldOfferingImage              BookingResourcesRetrieveParamsField = "offering_image"
 	BookingResourcesRetrieveParamsFieldOfferingName               BookingResourcesRetrieveParamsField = "offering_name"
@@ -2788,6 +2783,7 @@ const (
 	BookingResourcesRetrieveParamsFieldProjectSlug                BookingResourcesRetrieveParamsField = "project_slug"
 	BookingResourcesRetrieveParamsFieldProjectUuid                BookingResourcesRetrieveParamsField = "project_uuid"
 	BookingResourcesRetrieveParamsFieldProviderName               BookingResourcesRetrieveParamsField = "provider_name"
+	BookingResourcesRetrieveParamsFieldProviderSlug               BookingResourcesRetrieveParamsField = "provider_slug"
 	BookingResourcesRetrieveParamsFieldProviderUuid               BookingResourcesRetrieveParamsField = "provider_uuid"
 	BookingResourcesRetrieveParamsFieldReport                     BookingResourcesRetrieveParamsField = "report"
 	BookingResourcesRetrieveParamsFieldResourceType               BookingResourcesRetrieveParamsField = "resource_type"
@@ -3771,9 +3767,6 @@ const (
 	ManagedRancherClusterResourcesListParamsFieldName                      ManagedRancherClusterResourcesListParamsField = "name"
 	ManagedRancherClusterResourcesListParamsFieldOffering                  ManagedRancherClusterResourcesListParamsField = "offering"
 	ManagedRancherClusterResourcesListParamsFieldOfferingBillable          ManagedRancherClusterResourcesListParamsField = "offering_billable"
-	ManagedRancherClusterResourcesListParamsFieldOfferingCustomerName      ManagedRancherClusterResourcesListParamsField = "offering_customer_name"
-	ManagedRancherClusterResourcesListParamsFieldOfferingCustomerSlug      ManagedRancherClusterResourcesListParamsField = "offering_customer_slug"
-	ManagedRancherClusterResourcesListParamsFieldOfferingCustomerUuid      ManagedRancherClusterResourcesListParamsField = "offering_customer_uuid"
 	ManagedRancherClusterResourcesListParamsFieldOfferingDescription       ManagedRancherClusterResourcesListParamsField = "offering_description"
 	ManagedRancherClusterResourcesListParamsFieldOfferingImage             ManagedRancherClusterResourcesListParamsField = "offering_image"
 	ManagedRancherClusterResourcesListParamsFieldOfferingName              ManagedRancherClusterResourcesListParamsField = "offering_name"
@@ -3804,6 +3797,7 @@ const (
 	ManagedRancherClusterResourcesListParamsFieldProjectSlug               ManagedRancherClusterResourcesListParamsField = "project_slug"
 	ManagedRancherClusterResourcesListParamsFieldProjectUuid               ManagedRancherClusterResourcesListParamsField = "project_uuid"
 	ManagedRancherClusterResourcesListParamsFieldProviderName              ManagedRancherClusterResourcesListParamsField = "provider_name"
+	ManagedRancherClusterResourcesListParamsFieldProviderSlug              ManagedRancherClusterResourcesListParamsField = "provider_slug"
 	ManagedRancherClusterResourcesListParamsFieldProviderUuid              ManagedRancherClusterResourcesListParamsField = "provider_uuid"
 	ManagedRancherClusterResourcesListParamsFieldReport                    ManagedRancherClusterResourcesListParamsField = "report"
 	ManagedRancherClusterResourcesListParamsFieldResourceType              ManagedRancherClusterResourcesListParamsField = "resource_type"
@@ -3852,9 +3846,6 @@ const (
 	ManagedRancherClusterResourcesRetrieveParamsFieldName                      ManagedRancherClusterResourcesRetrieveParamsField = "name"
 	ManagedRancherClusterResourcesRetrieveParamsFieldOffering                  ManagedRancherClusterResourcesRetrieveParamsField = "offering"
 	ManagedRancherClusterResourcesRetrieveParamsFieldOfferingBillable          ManagedRancherClusterResourcesRetrieveParamsField = "offering_billable"
-	ManagedRancherClusterResourcesRetrieveParamsFieldOfferingCustomerName      ManagedRancherClusterResourcesRetrieveParamsField = "offering_customer_name"
-	ManagedRancherClusterResourcesRetrieveParamsFieldOfferingCustomerSlug      ManagedRancherClusterResourcesRetrieveParamsField = "offering_customer_slug"
-	ManagedRancherClusterResourcesRetrieveParamsFieldOfferingCustomerUuid      ManagedRancherClusterResourcesRetrieveParamsField = "offering_customer_uuid"
 	ManagedRancherClusterResourcesRetrieveParamsFieldOfferingDescription       ManagedRancherClusterResourcesRetrieveParamsField = "offering_description"
 	ManagedRancherClusterResourcesRetrieveParamsFieldOfferingImage             ManagedRancherClusterResourcesRetrieveParamsField = "offering_image"
 	ManagedRancherClusterResourcesRetrieveParamsFieldOfferingName              ManagedRancherClusterResourcesRetrieveParamsField = "offering_name"
@@ -3885,6 +3876,7 @@ const (
 	ManagedRancherClusterResourcesRetrieveParamsFieldProjectSlug               ManagedRancherClusterResourcesRetrieveParamsField = "project_slug"
 	ManagedRancherClusterResourcesRetrieveParamsFieldProjectUuid               ManagedRancherClusterResourcesRetrieveParamsField = "project_uuid"
 	ManagedRancherClusterResourcesRetrieveParamsFieldProviderName              ManagedRancherClusterResourcesRetrieveParamsField = "provider_name"
+	ManagedRancherClusterResourcesRetrieveParamsFieldProviderSlug              ManagedRancherClusterResourcesRetrieveParamsField = "provider_slug"
 	ManagedRancherClusterResourcesRetrieveParamsFieldProviderUuid              ManagedRancherClusterResourcesRetrieveParamsField = "provider_uuid"
 	ManagedRancherClusterResourcesRetrieveParamsFieldReport                    ManagedRancherClusterResourcesRetrieveParamsField = "report"
 	ManagedRancherClusterResourcesRetrieveParamsFieldResourceType              ManagedRancherClusterResourcesRetrieveParamsField = "resource_type"
@@ -4523,9 +4515,6 @@ const (
 	MarketplaceOrdersListParamsFieldNewPlanUuid                MarketplaceOrdersListParamsField = "new_plan_uuid"
 	MarketplaceOrdersListParamsFieldOffering                   MarketplaceOrdersListParamsField = "offering"
 	MarketplaceOrdersListParamsFieldOfferingBillable           MarketplaceOrdersListParamsField = "offering_billable"
-	MarketplaceOrdersListParamsFieldOfferingCustomerName       MarketplaceOrdersListParamsField = "offering_customer_name"
-	MarketplaceOrdersListParamsFieldOfferingCustomerSlug       MarketplaceOrdersListParamsField = "offering_customer_slug"
-	MarketplaceOrdersListParamsFieldOfferingCustomerUuid       MarketplaceOrdersListParamsField = "offering_customer_uuid"
 	MarketplaceOrdersListParamsFieldOfferingDescription        MarketplaceOrdersListParamsField = "offering_description"
 	MarketplaceOrdersListParamsFieldOfferingImage              MarketplaceOrdersListParamsField = "offering_image"
 	MarketplaceOrdersListParamsFieldOfferingName               MarketplaceOrdersListParamsField = "offering_name"
@@ -4552,6 +4541,7 @@ const (
 	MarketplaceOrdersListParamsFieldProviderReviewedBy         MarketplaceOrdersListParamsField = "provider_reviewed_by"
 	MarketplaceOrdersListParamsFieldProviderReviewedByFullName MarketplaceOrdersListParamsField = "provider_reviewed_by_full_name"
 	MarketplaceOrdersListParamsFieldProviderReviewedByUsername MarketplaceOrdersListParamsField = "provider_reviewed_by_username"
+	MarketplaceOrdersListParamsFieldProviderSlug               MarketplaceOrdersListParamsField = "provider_slug"
 	MarketplaceOrdersListParamsFieldProviderUuid               MarketplaceOrdersListParamsField = "provider_uuid"
 	MarketplaceOrdersListParamsFieldRequestComment             MarketplaceOrdersListParamsField = "request_comment"
 	MarketplaceOrdersListParamsFieldResourceName               MarketplaceOrdersListParamsField = "resource_name"
@@ -4662,9 +4652,6 @@ const (
 	MarketplaceOrdersRetrieveParamsFieldNewPlanUuid                MarketplaceOrdersRetrieveParamsField = "new_plan_uuid"
 	MarketplaceOrdersRetrieveParamsFieldOffering                   MarketplaceOrdersRetrieveParamsField = "offering"
 	MarketplaceOrdersRetrieveParamsFieldOfferingBillable           MarketplaceOrdersRetrieveParamsField = "offering_billable"
-	MarketplaceOrdersRetrieveParamsFieldOfferingCustomerName       MarketplaceOrdersRetrieveParamsField = "offering_customer_name"
-	MarketplaceOrdersRetrieveParamsFieldOfferingCustomerSlug       MarketplaceOrdersRetrieveParamsField = "offering_customer_slug"
-	MarketplaceOrdersRetrieveParamsFieldOfferingCustomerUuid       MarketplaceOrdersRetrieveParamsField = "offering_customer_uuid"
 	MarketplaceOrdersRetrieveParamsFieldOfferingDescription        MarketplaceOrdersRetrieveParamsField = "offering_description"
 	MarketplaceOrdersRetrieveParamsFieldOfferingImage              MarketplaceOrdersRetrieveParamsField = "offering_image"
 	MarketplaceOrdersRetrieveParamsFieldOfferingName               MarketplaceOrdersRetrieveParamsField = "offering_name"
@@ -4691,6 +4678,7 @@ const (
 	MarketplaceOrdersRetrieveParamsFieldProviderReviewedBy         MarketplaceOrdersRetrieveParamsField = "provider_reviewed_by"
 	MarketplaceOrdersRetrieveParamsFieldProviderReviewedByFullName MarketplaceOrdersRetrieveParamsField = "provider_reviewed_by_full_name"
 	MarketplaceOrdersRetrieveParamsFieldProviderReviewedByUsername MarketplaceOrdersRetrieveParamsField = "provider_reviewed_by_username"
+	MarketplaceOrdersRetrieveParamsFieldProviderSlug               MarketplaceOrdersRetrieveParamsField = "provider_slug"
 	MarketplaceOrdersRetrieveParamsFieldProviderUuid               MarketplaceOrdersRetrieveParamsField = "provider_uuid"
 	MarketplaceOrdersRetrieveParamsFieldRequestComment             MarketplaceOrdersRetrieveParamsField = "request_comment"
 	MarketplaceOrdersRetrieveParamsFieldResourceName               MarketplaceOrdersRetrieveParamsField = "resource_name"
@@ -5466,9 +5454,6 @@ const (
 	MarketplaceProviderResourcesListParamsFieldName                      MarketplaceProviderResourcesListParamsField = "name"
 	MarketplaceProviderResourcesListParamsFieldOffering                  MarketplaceProviderResourcesListParamsField = "offering"
 	MarketplaceProviderResourcesListParamsFieldOfferingBillable          MarketplaceProviderResourcesListParamsField = "offering_billable"
-	MarketplaceProviderResourcesListParamsFieldOfferingCustomerName      MarketplaceProviderResourcesListParamsField = "offering_customer_name"
-	MarketplaceProviderResourcesListParamsFieldOfferingCustomerSlug      MarketplaceProviderResourcesListParamsField = "offering_customer_slug"
-	MarketplaceProviderResourcesListParamsFieldOfferingCustomerUuid      MarketplaceProviderResourcesListParamsField = "offering_customer_uuid"
 	MarketplaceProviderResourcesListParamsFieldOfferingDescription       MarketplaceProviderResourcesListParamsField = "offering_description"
 	MarketplaceProviderResourcesListParamsFieldOfferingImage             MarketplaceProviderResourcesListParamsField = "offering_image"
 	MarketplaceProviderResourcesListParamsFieldOfferingName              MarketplaceProviderResourcesListParamsField = "offering_name"
@@ -5499,6 +5484,7 @@ const (
 	MarketplaceProviderResourcesListParamsFieldProjectSlug               MarketplaceProviderResourcesListParamsField = "project_slug"
 	MarketplaceProviderResourcesListParamsFieldProjectUuid               MarketplaceProviderResourcesListParamsField = "project_uuid"
 	MarketplaceProviderResourcesListParamsFieldProviderName              MarketplaceProviderResourcesListParamsField = "provider_name"
+	MarketplaceProviderResourcesListParamsFieldProviderSlug              MarketplaceProviderResourcesListParamsField = "provider_slug"
 	MarketplaceProviderResourcesListParamsFieldProviderUuid              MarketplaceProviderResourcesListParamsField = "provider_uuid"
 	MarketplaceProviderResourcesListParamsFieldReport                    MarketplaceProviderResourcesListParamsField = "report"
 	MarketplaceProviderResourcesListParamsFieldResourceType              MarketplaceProviderResourcesListParamsField = "resource_type"
@@ -5591,9 +5577,6 @@ const (
 	MarketplaceProviderResourcesRetrieveParamsFieldName                      MarketplaceProviderResourcesRetrieveParamsField = "name"
 	MarketplaceProviderResourcesRetrieveParamsFieldOffering                  MarketplaceProviderResourcesRetrieveParamsField = "offering"
 	MarketplaceProviderResourcesRetrieveParamsFieldOfferingBillable          MarketplaceProviderResourcesRetrieveParamsField = "offering_billable"
-	MarketplaceProviderResourcesRetrieveParamsFieldOfferingCustomerName      MarketplaceProviderResourcesRetrieveParamsField = "offering_customer_name"
-	MarketplaceProviderResourcesRetrieveParamsFieldOfferingCustomerSlug      MarketplaceProviderResourcesRetrieveParamsField = "offering_customer_slug"
-	MarketplaceProviderResourcesRetrieveParamsFieldOfferingCustomerUuid      MarketplaceProviderResourcesRetrieveParamsField = "offering_customer_uuid"
 	MarketplaceProviderResourcesRetrieveParamsFieldOfferingDescription       MarketplaceProviderResourcesRetrieveParamsField = "offering_description"
 	MarketplaceProviderResourcesRetrieveParamsFieldOfferingImage             MarketplaceProviderResourcesRetrieveParamsField = "offering_image"
 	MarketplaceProviderResourcesRetrieveParamsFieldOfferingName              MarketplaceProviderResourcesRetrieveParamsField = "offering_name"
@@ -5624,6 +5607,7 @@ const (
 	MarketplaceProviderResourcesRetrieveParamsFieldProjectSlug               MarketplaceProviderResourcesRetrieveParamsField = "project_slug"
 	MarketplaceProviderResourcesRetrieveParamsFieldProjectUuid               MarketplaceProviderResourcesRetrieveParamsField = "project_uuid"
 	MarketplaceProviderResourcesRetrieveParamsFieldProviderName              MarketplaceProviderResourcesRetrieveParamsField = "provider_name"
+	MarketplaceProviderResourcesRetrieveParamsFieldProviderSlug              MarketplaceProviderResourcesRetrieveParamsField = "provider_slug"
 	MarketplaceProviderResourcesRetrieveParamsFieldProviderUuid              MarketplaceProviderResourcesRetrieveParamsField = "provider_uuid"
 	MarketplaceProviderResourcesRetrieveParamsFieldReport                    MarketplaceProviderResourcesRetrieveParamsField = "report"
 	MarketplaceProviderResourcesRetrieveParamsFieldResourceType              MarketplaceProviderResourcesRetrieveParamsField = "resource_type"
@@ -5672,9 +5656,6 @@ const (
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldName                      MarketplaceProviderResourcesDetailsRetrieveParamsField = "name"
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldOffering                  MarketplaceProviderResourcesDetailsRetrieveParamsField = "offering"
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldOfferingBillable          MarketplaceProviderResourcesDetailsRetrieveParamsField = "offering_billable"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldOfferingCustomerName      MarketplaceProviderResourcesDetailsRetrieveParamsField = "offering_customer_name"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldOfferingCustomerSlug      MarketplaceProviderResourcesDetailsRetrieveParamsField = "offering_customer_slug"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldOfferingCustomerUuid      MarketplaceProviderResourcesDetailsRetrieveParamsField = "offering_customer_uuid"
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldOfferingDescription       MarketplaceProviderResourcesDetailsRetrieveParamsField = "offering_description"
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldOfferingImage             MarketplaceProviderResourcesDetailsRetrieveParamsField = "offering_image"
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldOfferingName              MarketplaceProviderResourcesDetailsRetrieveParamsField = "offering_name"
@@ -5705,6 +5686,7 @@ const (
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldProjectSlug               MarketplaceProviderResourcesDetailsRetrieveParamsField = "project_slug"
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldProjectUuid               MarketplaceProviderResourcesDetailsRetrieveParamsField = "project_uuid"
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldProviderName              MarketplaceProviderResourcesDetailsRetrieveParamsField = "provider_name"
+	MarketplaceProviderResourcesDetailsRetrieveParamsFieldProviderSlug              MarketplaceProviderResourcesDetailsRetrieveParamsField = "provider_slug"
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldProviderUuid              MarketplaceProviderResourcesDetailsRetrieveParamsField = "provider_uuid"
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldReport                    MarketplaceProviderResourcesDetailsRetrieveParamsField = "report"
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldResourceType              MarketplaceProviderResourcesDetailsRetrieveParamsField = "resource_type"
@@ -5943,9 +5925,6 @@ const (
 	MarketplaceResourcesListParamsFieldName                      MarketplaceResourcesListParamsField = "name"
 	MarketplaceResourcesListParamsFieldOffering                  MarketplaceResourcesListParamsField = "offering"
 	MarketplaceResourcesListParamsFieldOfferingBillable          MarketplaceResourcesListParamsField = "offering_billable"
-	MarketplaceResourcesListParamsFieldOfferingCustomerName      MarketplaceResourcesListParamsField = "offering_customer_name"
-	MarketplaceResourcesListParamsFieldOfferingCustomerSlug      MarketplaceResourcesListParamsField = "offering_customer_slug"
-	MarketplaceResourcesListParamsFieldOfferingCustomerUuid      MarketplaceResourcesListParamsField = "offering_customer_uuid"
 	MarketplaceResourcesListParamsFieldOfferingDescription       MarketplaceResourcesListParamsField = "offering_description"
 	MarketplaceResourcesListParamsFieldOfferingImage             MarketplaceResourcesListParamsField = "offering_image"
 	MarketplaceResourcesListParamsFieldOfferingName              MarketplaceResourcesListParamsField = "offering_name"
@@ -5976,6 +5955,7 @@ const (
 	MarketplaceResourcesListParamsFieldProjectSlug               MarketplaceResourcesListParamsField = "project_slug"
 	MarketplaceResourcesListParamsFieldProjectUuid               MarketplaceResourcesListParamsField = "project_uuid"
 	MarketplaceResourcesListParamsFieldProviderName              MarketplaceResourcesListParamsField = "provider_name"
+	MarketplaceResourcesListParamsFieldProviderSlug              MarketplaceResourcesListParamsField = "provider_slug"
 	MarketplaceResourcesListParamsFieldProviderUuid              MarketplaceResourcesListParamsField = "provider_uuid"
 	MarketplaceResourcesListParamsFieldReport                    MarketplaceResourcesListParamsField = "report"
 	MarketplaceResourcesListParamsFieldResourceType              MarketplaceResourcesListParamsField = "resource_type"
@@ -6068,9 +6048,6 @@ const (
 	MarketplaceResourcesRetrieveParamsFieldName                      MarketplaceResourcesRetrieveParamsField = "name"
 	MarketplaceResourcesRetrieveParamsFieldOffering                  MarketplaceResourcesRetrieveParamsField = "offering"
 	MarketplaceResourcesRetrieveParamsFieldOfferingBillable          MarketplaceResourcesRetrieveParamsField = "offering_billable"
-	MarketplaceResourcesRetrieveParamsFieldOfferingCustomerName      MarketplaceResourcesRetrieveParamsField = "offering_customer_name"
-	MarketplaceResourcesRetrieveParamsFieldOfferingCustomerSlug      MarketplaceResourcesRetrieveParamsField = "offering_customer_slug"
-	MarketplaceResourcesRetrieveParamsFieldOfferingCustomerUuid      MarketplaceResourcesRetrieveParamsField = "offering_customer_uuid"
 	MarketplaceResourcesRetrieveParamsFieldOfferingDescription       MarketplaceResourcesRetrieveParamsField = "offering_description"
 	MarketplaceResourcesRetrieveParamsFieldOfferingImage             MarketplaceResourcesRetrieveParamsField = "offering_image"
 	MarketplaceResourcesRetrieveParamsFieldOfferingName              MarketplaceResourcesRetrieveParamsField = "offering_name"
@@ -6101,6 +6078,7 @@ const (
 	MarketplaceResourcesRetrieveParamsFieldProjectSlug               MarketplaceResourcesRetrieveParamsField = "project_slug"
 	MarketplaceResourcesRetrieveParamsFieldProjectUuid               MarketplaceResourcesRetrieveParamsField = "project_uuid"
 	MarketplaceResourcesRetrieveParamsFieldProviderName              MarketplaceResourcesRetrieveParamsField = "provider_name"
+	MarketplaceResourcesRetrieveParamsFieldProviderSlug              MarketplaceResourcesRetrieveParamsField = "provider_slug"
 	MarketplaceResourcesRetrieveParamsFieldProviderUuid              MarketplaceResourcesRetrieveParamsField = "provider_uuid"
 	MarketplaceResourcesRetrieveParamsFieldReport                    MarketplaceResourcesRetrieveParamsField = "report"
 	MarketplaceResourcesRetrieveParamsFieldResourceType              MarketplaceResourcesRetrieveParamsField = "resource_type"
@@ -6149,9 +6127,6 @@ const (
 	MarketplaceResourcesDetailsRetrieveParamsFieldName                      MarketplaceResourcesDetailsRetrieveParamsField = "name"
 	MarketplaceResourcesDetailsRetrieveParamsFieldOffering                  MarketplaceResourcesDetailsRetrieveParamsField = "offering"
 	MarketplaceResourcesDetailsRetrieveParamsFieldOfferingBillable          MarketplaceResourcesDetailsRetrieveParamsField = "offering_billable"
-	MarketplaceResourcesDetailsRetrieveParamsFieldOfferingCustomerName      MarketplaceResourcesDetailsRetrieveParamsField = "offering_customer_name"
-	MarketplaceResourcesDetailsRetrieveParamsFieldOfferingCustomerSlug      MarketplaceResourcesDetailsRetrieveParamsField = "offering_customer_slug"
-	MarketplaceResourcesDetailsRetrieveParamsFieldOfferingCustomerUuid      MarketplaceResourcesDetailsRetrieveParamsField = "offering_customer_uuid"
 	MarketplaceResourcesDetailsRetrieveParamsFieldOfferingDescription       MarketplaceResourcesDetailsRetrieveParamsField = "offering_description"
 	MarketplaceResourcesDetailsRetrieveParamsFieldOfferingImage             MarketplaceResourcesDetailsRetrieveParamsField = "offering_image"
 	MarketplaceResourcesDetailsRetrieveParamsFieldOfferingName              MarketplaceResourcesDetailsRetrieveParamsField = "offering_name"
@@ -6182,6 +6157,7 @@ const (
 	MarketplaceResourcesDetailsRetrieveParamsFieldProjectSlug               MarketplaceResourcesDetailsRetrieveParamsField = "project_slug"
 	MarketplaceResourcesDetailsRetrieveParamsFieldProjectUuid               MarketplaceResourcesDetailsRetrieveParamsField = "project_uuid"
 	MarketplaceResourcesDetailsRetrieveParamsFieldProviderName              MarketplaceResourcesDetailsRetrieveParamsField = "provider_name"
+	MarketplaceResourcesDetailsRetrieveParamsFieldProviderSlug              MarketplaceResourcesDetailsRetrieveParamsField = "provider_slug"
 	MarketplaceResourcesDetailsRetrieveParamsFieldProviderUuid              MarketplaceResourcesDetailsRetrieveParamsField = "provider_uuid"
 	MarketplaceResourcesDetailsRetrieveParamsFieldReport                    MarketplaceResourcesDetailsRetrieveParamsField = "report"
 	MarketplaceResourcesDetailsRetrieveParamsFieldResourceType              MarketplaceResourcesDetailsRetrieveParamsField = "resource_type"
@@ -6209,10 +6185,11 @@ const (
 	MarketplaceRobotAccountsListParamsFieldFingerprints          MarketplaceRobotAccountsListParamsField = "fingerprints"
 	MarketplaceRobotAccountsListParamsFieldKeys                  MarketplaceRobotAccountsListParamsField = "keys"
 	MarketplaceRobotAccountsListParamsFieldModified              MarketplaceRobotAccountsListParamsField = "modified"
-	MarketplaceRobotAccountsListParamsFieldOfferingCustomerUuid  MarketplaceRobotAccountsListParamsField = "offering_customer_uuid"
 	MarketplaceRobotAccountsListParamsFieldOfferingPluginOptions MarketplaceRobotAccountsListParamsField = "offering_plugin_options"
 	MarketplaceRobotAccountsListParamsFieldProjectName           MarketplaceRobotAccountsListParamsField = "project_name"
 	MarketplaceRobotAccountsListParamsFieldProjectUuid           MarketplaceRobotAccountsListParamsField = "project_uuid"
+	MarketplaceRobotAccountsListParamsFieldProviderName          MarketplaceRobotAccountsListParamsField = "provider_name"
+	MarketplaceRobotAccountsListParamsFieldProviderUuid          MarketplaceRobotAccountsListParamsField = "provider_uuid"
 	MarketplaceRobotAccountsListParamsFieldResource              MarketplaceRobotAccountsListParamsField = "resource"
 	MarketplaceRobotAccountsListParamsFieldResourceName          MarketplaceRobotAccountsListParamsField = "resource_name"
 	MarketplaceRobotAccountsListParamsFieldResourceUuid          MarketplaceRobotAccountsListParamsField = "resource_uuid"
@@ -6258,10 +6235,11 @@ const (
 	MarketplaceRobotAccountsRetrieveParamsFieldFingerprints          MarketplaceRobotAccountsRetrieveParamsField = "fingerprints"
 	MarketplaceRobotAccountsRetrieveParamsFieldKeys                  MarketplaceRobotAccountsRetrieveParamsField = "keys"
 	MarketplaceRobotAccountsRetrieveParamsFieldModified              MarketplaceRobotAccountsRetrieveParamsField = "modified"
-	MarketplaceRobotAccountsRetrieveParamsFieldOfferingCustomerUuid  MarketplaceRobotAccountsRetrieveParamsField = "offering_customer_uuid"
 	MarketplaceRobotAccountsRetrieveParamsFieldOfferingPluginOptions MarketplaceRobotAccountsRetrieveParamsField = "offering_plugin_options"
 	MarketplaceRobotAccountsRetrieveParamsFieldProjectName           MarketplaceRobotAccountsRetrieveParamsField = "project_name"
 	MarketplaceRobotAccountsRetrieveParamsFieldProjectUuid           MarketplaceRobotAccountsRetrieveParamsField = "project_uuid"
+	MarketplaceRobotAccountsRetrieveParamsFieldProviderName          MarketplaceRobotAccountsRetrieveParamsField = "provider_name"
+	MarketplaceRobotAccountsRetrieveParamsFieldProviderUuid          MarketplaceRobotAccountsRetrieveParamsField = "provider_uuid"
 	MarketplaceRobotAccountsRetrieveParamsFieldResource              MarketplaceRobotAccountsRetrieveParamsField = "resource"
 	MarketplaceRobotAccountsRetrieveParamsFieldResourceName          MarketplaceRobotAccountsRetrieveParamsField = "resource_name"
 	MarketplaceRobotAccountsRetrieveParamsFieldResourceUuid          MarketplaceRobotAccountsRetrieveParamsField = "resource_uuid"
@@ -7013,21 +6991,16 @@ const (
 	OpenstackInstancesListParamsFieldCustomerAbbreviation             OpenstackInstancesListParamsField = "customer_abbreviation"
 	OpenstackInstancesListParamsFieldCustomerName                     OpenstackInstancesListParamsField = "customer_name"
 	OpenstackInstancesListParamsFieldCustomerNativeName               OpenstackInstancesListParamsField = "customer_native_name"
-	OpenstackInstancesListParamsFieldDataVolumeSize                   OpenstackInstancesListParamsField = "data_volume_size"
-	OpenstackInstancesListParamsFieldDataVolumeType                   OpenstackInstancesListParamsField = "data_volume_type"
-	OpenstackInstancesListParamsFieldDataVolumes                      OpenstackInstancesListParamsField = "data_volumes"
 	OpenstackInstancesListParamsFieldDescription                      OpenstackInstancesListParamsField = "description"
 	OpenstackInstancesListParamsFieldDisk                             OpenstackInstancesListParamsField = "disk"
 	OpenstackInstancesListParamsFieldErrorMessage                     OpenstackInstancesListParamsField = "error_message"
 	OpenstackInstancesListParamsFieldErrorTraceback                   OpenstackInstancesListParamsField = "error_traceback"
 	OpenstackInstancesListParamsFieldExternalAddress                  OpenstackInstancesListParamsField = "external_address"
 	OpenstackInstancesListParamsFieldExternalIps                      OpenstackInstancesListParamsField = "external_ips"
-	OpenstackInstancesListParamsFieldFlavor                           OpenstackInstancesListParamsField = "flavor"
 	OpenstackInstancesListParamsFieldFlavorDisk                       OpenstackInstancesListParamsField = "flavor_disk"
 	OpenstackInstancesListParamsFieldFlavorName                       OpenstackInstancesListParamsField = "flavor_name"
 	OpenstackInstancesListParamsFieldFloatingIps                      OpenstackInstancesListParamsField = "floating_ips"
 	OpenstackInstancesListParamsFieldHypervisorHostname               OpenstackInstancesListParamsField = "hypervisor_hostname"
-	OpenstackInstancesListParamsFieldImage                            OpenstackInstancesListParamsField = "image"
 	OpenstackInstancesListParamsFieldImageName                        OpenstackInstancesListParamsField = "image_name"
 	OpenstackInstancesListParamsFieldInternalIps                      OpenstackInstancesListParamsField = "internal_ips"
 	OpenstackInstancesListParamsFieldIsLimitBased                     OpenstackInstancesListParamsField = "is_limit_based"
@@ -7066,8 +7039,6 @@ const (
 	OpenstackInstancesListParamsFieldSshPublicKey                     OpenstackInstancesListParamsField = "ssh_public_key"
 	OpenstackInstancesListParamsFieldStartTime                        OpenstackInstancesListParamsField = "start_time"
 	OpenstackInstancesListParamsFieldState                            OpenstackInstancesListParamsField = "state"
-	OpenstackInstancesListParamsFieldSystemVolumeSize                 OpenstackInstancesListParamsField = "system_volume_size"
-	OpenstackInstancesListParamsFieldSystemVolumeType                 OpenstackInstancesListParamsField = "system_volume_type"
 	OpenstackInstancesListParamsFieldTenant                           OpenstackInstancesListParamsField = "tenant"
 	OpenstackInstancesListParamsFieldTenantUuid                       OpenstackInstancesListParamsField = "tenant_uuid"
 	OpenstackInstancesListParamsFieldUrl                              OpenstackInstancesListParamsField = "url"
@@ -7115,21 +7086,16 @@ const (
 	OpenstackInstancesRetrieveParamsFieldCustomerAbbreviation             OpenstackInstancesRetrieveParamsField = "customer_abbreviation"
 	OpenstackInstancesRetrieveParamsFieldCustomerName                     OpenstackInstancesRetrieveParamsField = "customer_name"
 	OpenstackInstancesRetrieveParamsFieldCustomerNativeName               OpenstackInstancesRetrieveParamsField = "customer_native_name"
-	OpenstackInstancesRetrieveParamsFieldDataVolumeSize                   OpenstackInstancesRetrieveParamsField = "data_volume_size"
-	OpenstackInstancesRetrieveParamsFieldDataVolumeType                   OpenstackInstancesRetrieveParamsField = "data_volume_type"
-	OpenstackInstancesRetrieveParamsFieldDataVolumes                      OpenstackInstancesRetrieveParamsField = "data_volumes"
 	OpenstackInstancesRetrieveParamsFieldDescription                      OpenstackInstancesRetrieveParamsField = "description"
 	OpenstackInstancesRetrieveParamsFieldDisk                             OpenstackInstancesRetrieveParamsField = "disk"
 	OpenstackInstancesRetrieveParamsFieldErrorMessage                     OpenstackInstancesRetrieveParamsField = "error_message"
 	OpenstackInstancesRetrieveParamsFieldErrorTraceback                   OpenstackInstancesRetrieveParamsField = "error_traceback"
 	OpenstackInstancesRetrieveParamsFieldExternalAddress                  OpenstackInstancesRetrieveParamsField = "external_address"
 	OpenstackInstancesRetrieveParamsFieldExternalIps                      OpenstackInstancesRetrieveParamsField = "external_ips"
-	OpenstackInstancesRetrieveParamsFieldFlavor                           OpenstackInstancesRetrieveParamsField = "flavor"
 	OpenstackInstancesRetrieveParamsFieldFlavorDisk                       OpenstackInstancesRetrieveParamsField = "flavor_disk"
 	OpenstackInstancesRetrieveParamsFieldFlavorName                       OpenstackInstancesRetrieveParamsField = "flavor_name"
 	OpenstackInstancesRetrieveParamsFieldFloatingIps                      OpenstackInstancesRetrieveParamsField = "floating_ips"
 	OpenstackInstancesRetrieveParamsFieldHypervisorHostname               OpenstackInstancesRetrieveParamsField = "hypervisor_hostname"
-	OpenstackInstancesRetrieveParamsFieldImage                            OpenstackInstancesRetrieveParamsField = "image"
 	OpenstackInstancesRetrieveParamsFieldImageName                        OpenstackInstancesRetrieveParamsField = "image_name"
 	OpenstackInstancesRetrieveParamsFieldInternalIps                      OpenstackInstancesRetrieveParamsField = "internal_ips"
 	OpenstackInstancesRetrieveParamsFieldIsLimitBased                     OpenstackInstancesRetrieveParamsField = "is_limit_based"
@@ -7168,8 +7134,6 @@ const (
 	OpenstackInstancesRetrieveParamsFieldSshPublicKey                     OpenstackInstancesRetrieveParamsField = "ssh_public_key"
 	OpenstackInstancesRetrieveParamsFieldStartTime                        OpenstackInstancesRetrieveParamsField = "start_time"
 	OpenstackInstancesRetrieveParamsFieldState                            OpenstackInstancesRetrieveParamsField = "state"
-	OpenstackInstancesRetrieveParamsFieldSystemVolumeSize                 OpenstackInstancesRetrieveParamsField = "system_volume_size"
-	OpenstackInstancesRetrieveParamsFieldSystemVolumeType                 OpenstackInstancesRetrieveParamsField = "system_volume_type"
 	OpenstackInstancesRetrieveParamsFieldTenant                           OpenstackInstancesRetrieveParamsField = "tenant"
 	OpenstackInstancesRetrieveParamsFieldTenantUuid                       OpenstackInstancesRetrieveParamsField = "tenant_uuid"
 	OpenstackInstancesRetrieveParamsFieldUrl                              OpenstackInstancesRetrieveParamsField = "url"
@@ -9155,7 +9119,6 @@ const (
 	RancherClustersListParamsFieldResourceType                     RancherClustersListParamsField = "resource_type"
 	RancherClustersListParamsFieldRouterIps                        RancherClustersListParamsField = "router_ips"
 	RancherClustersListParamsFieldRuntimeState                     RancherClustersListParamsField = "runtime_state"
-	RancherClustersListParamsFieldSecurityGroups                   RancherClustersListParamsField = "security_groups"
 	RancherClustersListParamsFieldServiceName                      RancherClustersListParamsField = "service_name"
 	RancherClustersListParamsFieldServiceSettings                  RancherClustersListParamsField = "service_settings"
 	RancherClustersListParamsFieldServiceSettingsErrorMessage      RancherClustersListParamsField = "service_settings_error_message"
@@ -9231,7 +9194,6 @@ const (
 	RancherClustersRetrieveParamsFieldResourceType                     RancherClustersRetrieveParamsField = "resource_type"
 	RancherClustersRetrieveParamsFieldRouterIps                        RancherClustersRetrieveParamsField = "router_ips"
 	RancherClustersRetrieveParamsFieldRuntimeState                     RancherClustersRetrieveParamsField = "runtime_state"
-	RancherClustersRetrieveParamsFieldSecurityGroups                   RancherClustersRetrieveParamsField = "security_groups"
 	RancherClustersRetrieveParamsFieldServiceName                      RancherClustersRetrieveParamsField = "service_name"
 	RancherClustersRetrieveParamsFieldServiceSettings                  RancherClustersRetrieveParamsField = "service_settings"
 	RancherClustersRetrieveParamsFieldServiceSettingsErrorMessage      RancherClustersRetrieveParamsField = "service_settings_error_message"
@@ -11192,11 +11154,7 @@ type AzureResourceGroup struct {
 	Uuid                             *openapi_types.UUID     `json:"uuid,omitempty"`
 }
 
-// AzureSQLServerCreateOrderAttributes This mixin allows to specify list of fields to be rendered by serializer.
-// It expects that request is available in serializer's context.
-//
-// It is disabled for nested serializers (where parent is another serializer)
-// but remains active for list views (where parent is a ListSerializer).
+// AzureSQLServerCreateOrderAttributes defines model for AzureSQLServerCreateOrderAttributes.
 type AzureSQLServerCreateOrderAttributes struct {
 	Description *string `json:"description,omitempty"`
 	Location    *string `json:"location,omitempty"`
@@ -11412,11 +11370,7 @@ type AzureVirtualMachine struct {
 	Uuid     *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
-// AzureVirtualMachineCreateOrderAttributes This mixin allows to specify list of fields to be rendered by serializer.
-// It expects that request is available in serializer's context.
-//
-// It is disabled for nested serializers (where parent is another serializer)
-// but remains active for list views (where parent is a ListSerializer).
+// AzureVirtualMachineCreateOrderAttributes defines model for AzureVirtualMachineCreateOrderAttributes.
 type AzureVirtualMachineCreateOrderAttributes struct {
 	Description *string `json:"description,omitempty"`
 	Image       string  `json:"image"`
@@ -11689,13 +11643,10 @@ type BookingResource struct {
 	Offering           *string             `json:"offering,omitempty"`
 
 	// OfferingBillable Purchase and usage is invoiced.
-	OfferingBillable     *bool               `json:"offering_billable,omitempty"`
-	OfferingCustomerName *string             `json:"offering_customer_name,omitempty"`
-	OfferingCustomerSlug *string             `json:"offering_customer_slug,omitempty"`
-	OfferingCustomerUuid *openapi_types.UUID `json:"offering_customer_uuid,omitempty"`
-	OfferingDescription  *string             `json:"offering_description,omitempty"`
-	OfferingImage        *string             `json:"offering_image,omitempty"`
-	OfferingName         *string             `json:"offering_name,omitempty"`
+	OfferingBillable    *bool   `json:"offering_billable,omitempty"`
+	OfferingDescription *string `json:"offering_description,omitempty"`
+	OfferingImage       *string `json:"offering_image,omitempty"`
+	OfferingName        *string `json:"offering_name,omitempty"`
 
 	// OfferingPluginOptions Public data used by specific plugin, such as storage mode for OpenStack.
 	OfferingPluginOptions interface{} `json:"offering_plugin_options,omitempty"`
@@ -11729,6 +11680,7 @@ type BookingResource struct {
 	ProjectSlug               *string             `json:"project_slug,omitempty"`
 	ProjectUuid               *openapi_types.UUID `json:"project_uuid,omitempty"`
 	ProviderName              *string             `json:"provider_name,omitempty"`
+	ProviderSlug              *openapi_types.UUID `json:"provider_slug,omitempty"`
 	ProviderUuid              *openapi_types.UUID `json:"provider_uuid,omitempty"`
 	Report                    *[]ReportSection    `json:"report,omitempty"`
 	ResourceType              *string             `json:"resource_type"`
@@ -14071,7 +14023,7 @@ type FreeipaProfileRequest struct {
 	Username string `json:"username"`
 }
 
-// GenericOrderAttributes A generic JSON object for offerings without a predefined schema. Allows any key-value pairs.
+// GenericOrderAttributes defines model for GenericOrderAttributes.
 type GenericOrderAttributes struct {
 	// Description A free-form description for the resource.
 	Description *string `json:"description,omitempty"`
@@ -15190,6 +15142,9 @@ type MergedPluginOptions struct {
 	// AutoApproveRemoteOrders If set to True, an order can be processed without approval
 	AutoApproveRemoteOrders *bool `json:"auto_approve_remote_orders,omitempty"`
 
+	// ConcealBillingData If set to True, pricing and components tab would be concealed.
+	ConcealBillingData *bool `json:"conceal_billing_data,omitempty"`
+
 	// DefaultInternalNetworkMtu If set, it will be used as a default MTU for the first network in a tenant
 	DefaultInternalNetworkMtu *int `json:"default_internal_network_mtu,omitempty"`
 
@@ -15317,6 +15272,9 @@ type MergedPluginOptionsRequest struct {
 
 	// AutoApproveRemoteOrders If set to True, an order can be processed without approval
 	AutoApproveRemoteOrders *bool `json:"auto_approve_remote_orders,omitempty"`
+
+	// ConcealBillingData If set to True, pricing and components tab would be concealed.
+	ConcealBillingData *bool `json:"conceal_billing_data,omitempty"`
 
 	// DefaultInternalNetworkMtu If set, it will be used as a default MTU for the first network in a tenant
 	DefaultInternalNetworkMtu *int `json:"default_internal_network_mtu,omitempty"`
@@ -15731,6 +15689,11 @@ type MoveOfferingRequest struct {
 type MoveProjectRequest struct {
 	Customer            string `json:"customer"`
 	PreservePermissions bool   `json:"preserve_permissions"`
+}
+
+// MoveResourceRequest defines model for MoveResourceRequest.
+type MoveResourceRequest struct {
+	Project *ProjectHyperlinkRequest `json:"project,omitempty"`
 }
 
 // NameUUID defines model for NameUUID.
@@ -16979,38 +16942,50 @@ type OpenStackBackupRestoration struct {
 	Created *time.Time `json:"created,omitempty"`
 
 	// Flavor Flavor to be used for the restored instance. If not specified, original instance flavor will be used
-	Flavor *string `json:"flavor,omitempty"`
-
-	// FloatingIps Floating IPs that will be assigned to the restored instance
+	Flavor      *string                      `json:"flavor,omitempty"`
 	FloatingIps *[]OpenStackNestedFloatingIP `json:"floating_ips,omitempty"`
 
 	// Instance Instance that is being restored from the backup
 	Instance *string `json:"instance,omitempty"`
 
 	// Name New instance name. Leave blank to use source instance name.
-	Name *string `json:"name,omitempty"`
-
-	// Ports Network ports that will be attached to the restored instance
-	Ports *[]OpenStackNestedPort `json:"ports,omitempty"`
-
-	// SecurityGroups Security groups that will be assigned to the restored instance
+	Name           *string                         `json:"name,omitempty"`
+	Ports          *[]OpenStackNestedPort          `json:"ports,omitempty"`
 	SecurityGroups *[]OpenStackNestedSecurityGroup `json:"security_groups,omitempty"`
 	Uuid           *openapi_types.UUID             `json:"uuid,omitempty"`
 }
 
-// OpenStackBackupRestorationRequest defines model for OpenStackBackupRestorationRequest.
-type OpenStackBackupRestorationRequest struct {
+// OpenStackBackupRestorationCreateRequest defines model for OpenStackBackupRestorationCreateRequest.
+type OpenStackBackupRestorationCreateRequest struct {
 	// Flavor Flavor to be used for the restored instance. If not specified, original instance flavor will be used
 	Flavor string `json:"flavor"`
 
 	// FloatingIps Floating IPs that will be assigned to the restored instance
-	FloatingIps *[]OpenStackNestedFloatingIPRequest `json:"floating_ips,omitempty"`
+	FloatingIps *[]OpenStackCreateFloatingIPRequest `json:"floating_ips,omitempty"`
 
 	// Name New instance name. Leave blank to use source instance name.
 	Name *string `json:"name,omitempty"`
 
 	// Ports Network ports that will be attached to the restored instance
-	Ports *[]OpenStackNestedPortRequest `json:"ports,omitempty"`
+	Ports *[]OpenStackCreatePortRequest `json:"ports,omitempty"`
+
+	// SecurityGroups Security groups that will be assigned to the restored instance
+	SecurityGroups *[]OpenStackSecurityGroupHyperlinkRequest `json:"security_groups,omitempty"`
+}
+
+// OpenStackCreateFloatingIPRequest defines model for OpenStackCreateFloatingIPRequest.
+type OpenStackCreateFloatingIPRequest struct {
+	Subnet string  `json:"subnet"`
+	Url    *string `json:"url,omitempty"`
+}
+
+// OpenStackCreatePortRequest defines model for OpenStackCreatePortRequest.
+type OpenStackCreatePortRequest struct {
+	FixedIps *[]OpenStackFixedIpRequest `json:"fixed_ips,omitempty"`
+	Port     *string                    `json:"port,omitempty"`
+
+	// Subnet Subnet to which this port belongs
+	Subnet *string `json:"subnet"`
 }
 
 // OpenStackDataVolumeRequest defines model for OpenStackDataVolumeRequest.
@@ -17224,9 +17199,7 @@ type OpenStackInstance struct {
 	FlavorDisk *int `json:"flavor_disk,omitempty"`
 
 	// FlavorName Name of the flavor used by this instance
-	FlavorName *string `json:"flavor_name,omitempty"`
-
-	// FloatingIps Floating IPs to assign to the instance
+	FlavorName  *string                      `json:"flavor_name,omitempty"`
 	FloatingIps *[]OpenStackNestedFloatingIP `json:"floating_ips,omitempty"`
 
 	// HypervisorHostname Name of the hypervisor hosting this instance
@@ -17252,28 +17225,22 @@ type OpenStackInstance struct {
 	MinDisk *int `json:"min_disk,omitempty"`
 
 	// MinRam Minimum memory size in MiB
-	MinRam   *int       `json:"min_ram,omitempty"`
-	Modified *time.Time `json:"modified,omitempty"`
-	Name     *string    `json:"name,omitempty"`
-
-	// Ports Network ports to attach to the instance
+	MinRam      *int                   `json:"min_ram,omitempty"`
+	Modified    *time.Time             `json:"modified,omitempty"`
+	Name        *string                `json:"name,omitempty"`
 	Ports       *[]OpenStackNestedPort `json:"ports,omitempty"`
 	Project     *string                `json:"project,omitempty"`
 	ProjectName *string                `json:"project_name,omitempty"`
 	ProjectUuid *openapi_types.UUID    `json:"project_uuid,omitempty"`
 
 	// Ram Memory size in MiB
-	Ram            *int                     `json:"ram,omitempty"`
-	RancherCluster *RancherClusterReference `json:"rancher_cluster"`
-	ResourceType   *string                  `json:"resource_type,omitempty"`
-	RuntimeState   *string                  `json:"runtime_state,omitempty"`
-
-	// SecurityGroups List of security groups to apply to the instance
+	Ram            *int                            `json:"ram,omitempty"`
+	RancherCluster *RancherClusterReference        `json:"rancher_cluster"`
+	ResourceType   *string                         `json:"resource_type,omitempty"`
+	RuntimeState   *string                         `json:"runtime_state,omitempty"`
 	SecurityGroups *[]OpenStackNestedSecurityGroup `json:"security_groups,omitempty"`
-
-	// ServerGroup Server group for instance scheduling policy
-	ServerGroup *OpenStackNestedServerGroup `json:"server_group"`
-	ServiceName *string                     `json:"service_name,omitempty"`
+	ServerGroup    *OpenStackNestedServerGroup     `json:"server_group,omitempty"`
+	ServiceName    *string                         `json:"service_name,omitempty"`
 
 	// ServiceSettings OpenStack provider settings
 	ServiceSettings             *string             `json:"service_settings,omitempty"`
@@ -17317,11 +17284,7 @@ type OpenStackInstanceAvailabilityZone struct {
 	Uuid      *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
-// OpenStackInstanceCreateOrderAttributes This mixin allows to specify list of fields to be rendered by serializer.
-// It expects that request is available in serializer's context.
-//
-// It is disabled for nested serializers (where parent is another serializer)
-// but remains active for list views (where parent is a ListSerializer).
+// OpenStackInstanceCreateOrderAttributes defines model for OpenStackInstanceCreateOrderAttributes.
 type OpenStackInstanceCreateOrderAttributes struct {
 	// AvailabilityZone Availability zone where this instance is located
 	AvailabilityZone *string `json:"availability_zone"`
@@ -17343,18 +17306,21 @@ type OpenStackInstanceCreateOrderAttributes struct {
 	Flavor *string `json:"flavor,omitempty"`
 
 	// FloatingIps Floating IPs to assign to the instance
-	FloatingIps *[]OpenStackNestedFloatingIPRequest `json:"floating_ips,omitempty"`
+	FloatingIps *[]OpenStackCreateFloatingIPRequest `json:"floating_ips,omitempty"`
 
 	// Image The OS image to use for the instance
 	Image *string `json:"image,omitempty"`
 	Name  string  `json:"name"`
 
 	// Ports Network ports to attach to the instance
-	Ports []OpenStackNestedPortRequest `json:"ports"`
+	Ports *[]OpenStackCreatePortRequest `json:"ports,omitempty"`
 
-	// SecurityGroups Security groups to attach to the instance
-	SecurityGroups *[]OpenStackNestedSecurityGroupRequest `json:"security_groups,omitempty"`
-	SshPublicKey   *string                                `json:"ssh_public_key,omitempty"`
+	// SecurityGroups List of security groups to apply to the instance
+	SecurityGroups *[]OpenStackSecurityGroupHyperlinkRequest `json:"security_groups,omitempty"`
+
+	// ServerGroup Server group for instance scheduling policy
+	ServerGroup  *OpenStackServerGroupHyperlinkRequest `json:"server_group,omitempty"`
+	SshPublicKey *string                               `json:"ssh_public_key,omitempty"`
 
 	// SystemVolumeSize Size of the system volume in MiB. Minimum size is 1024 MiB (1 GiB)
 	SystemVolumeSize *int `json:"system_volume_size,omitempty"`
@@ -17368,26 +17334,18 @@ type OpenStackInstanceCreateOrderAttributes struct {
 
 // OpenStackInstanceFloatingIPsUpdateRequest defines model for OpenStackInstanceFloatingIPsUpdateRequest.
 type OpenStackInstanceFloatingIPsUpdateRequest struct {
-	FloatingIps *[]OpenStackNestedFloatingIPRequest `json:"floating_ips,omitempty"`
+	FloatingIps *[]OpenStackCreateFloatingIPRequest `json:"floating_ips,omitempty"`
 }
 
 // OpenStackInstancePortsUpdateRequest defines model for OpenStackInstancePortsUpdateRequest.
 type OpenStackInstancePortsUpdateRequest struct {
-	Ports []OpenStackNestedPortRequest `json:"ports"`
+	Ports []OpenStackCreatePortRequest `json:"ports"`
 }
 
 // OpenStackInstanceRequest defines model for OpenStackInstanceRequest.
 type OpenStackInstanceRequest struct {
-	// DataVolumeType Volume type for the data volume
-	DataVolumeType *string `json:"data_volume_type"`
-
-	// DataVolumes Additional data volumes to attach to the instance
-	DataVolumes *[]OpenStackDataVolumeRequest `json:"data_volumes,omitempty"`
-	Description *string                       `json:"description,omitempty"`
-	Name        string                        `json:"name"`
-
-	// SystemVolumeType Volume type for the system volume
-	SystemVolumeType *string `json:"system_volume_type"`
+	Description *string `json:"description,omitempty"`
+	Name        string  `json:"name"`
 }
 
 // OpenStackInstanceSecurityGroupsUpdateRequest defines model for OpenStackInstanceSecurityGroupsUpdateRequest.
@@ -17426,11 +17384,6 @@ type OpenStackNestedFloatingIP_Address struct {
 	union json.RawMessage
 }
 
-// OpenStackNestedFloatingIPRequest defines model for OpenStackNestedFloatingIPRequest.
-type OpenStackNestedFloatingIPRequest struct {
-	Subnet string `json:"subnet"`
-}
-
 // OpenStackNestedInstance defines model for OpenStackNestedInstance.
 type OpenStackNestedInstance struct {
 	// BackendId Instance ID in the OpenStack backend
@@ -17465,15 +17418,6 @@ type OpenStackNestedPort struct {
 	Url               *string             `json:"url,omitempty"`
 }
 
-// OpenStackNestedPortRequest defines model for OpenStackNestedPortRequest.
-type OpenStackNestedPortRequest struct {
-	FixedIps *[]OpenStackFixedIpRequest `json:"fixed_ips,omitempty"`
-	Port     *string                    `json:"port,omitempty"`
-
-	// Subnet Subnet to which this port belongs
-	Subnet *string `json:"subnet"`
-}
-
 // OpenStackNestedSecurityGroup defines model for OpenStackNestedSecurityGroup.
 type OpenStackNestedSecurityGroup struct {
 	Description *string                    `json:"description,omitempty"`
@@ -17481,11 +17425,6 @@ type OpenStackNestedSecurityGroup struct {
 	Rules       *[]NestedSecurityGroupRule `json:"rules,omitempty"`
 	State       *string                    `json:"state,omitempty"`
 	Url         *string                    `json:"url,omitempty"`
-}
-
-// OpenStackNestedSecurityGroupRequest defines model for OpenStackNestedSecurityGroupRequest.
-type OpenStackNestedSecurityGroupRequest struct {
-	Url *string `json:"url,omitempty"`
 }
 
 // OpenStackNestedServerGroup defines model for OpenStackNestedServerGroup.
@@ -17849,6 +17788,11 @@ type OpenStackSecurityGroup struct {
 	Uuid                             *openapi_types.UUID                 `json:"uuid,omitempty"`
 }
 
+// OpenStackSecurityGroupHyperlinkRequest defines model for OpenStackSecurityGroupHyperlinkRequest.
+type OpenStackSecurityGroupHyperlinkRequest struct {
+	Url string `json:"url"`
+}
+
 // OpenStackSecurityGroupRequest defines model for OpenStackSecurityGroupRequest.
 type OpenStackSecurityGroupRequest struct {
 	Description *string                                   `json:"description,omitempty"`
@@ -18010,6 +17954,11 @@ type OpenStackServerGroup struct {
 // OpenStackServerGroup_Policy Server group policy determining the rules for scheduling servers in this group
 type OpenStackServerGroup_Policy struct {
 	union json.RawMessage
+}
+
+// OpenStackServerGroupHyperlinkRequest defines model for OpenStackServerGroupHyperlinkRequest.
+type OpenStackServerGroupHyperlinkRequest struct {
+	Url string `json:"url"`
 }
 
 // OpenStackServerGroupRequest defines model for OpenStackServerGroupRequest.
@@ -18410,11 +18359,7 @@ type OpenStackTenantChangePasswordRequest struct {
 	UserPassword string `json:"user_password"`
 }
 
-// OpenStackTenantCreateOrderAttributes This mixin allows to specify list of fields to be rendered by serializer.
-// It expects that request is available in serializer's context.
-//
-// It is disabled for nested serializers (where parent is another serializer)
-// but remains active for list views (where parent is a ListSerializer).
+// OpenStackTenantCreateOrderAttributes defines model for OpenStackTenantCreateOrderAttributes.
 type OpenStackTenantCreateOrderAttributes struct {
 	// AvailabilityZone Optional availability group. Will be used for all instances provisioned in this tenant
 	AvailabilityZone            *string `json:"availability_zone,omitempty"`
@@ -18559,11 +18504,7 @@ type OpenStackVolumeAvailabilityZone struct {
 	Uuid      *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
-// OpenStackVolumeCreateOrderAttributes This mixin allows to specify list of fields to be rendered by serializer.
-// It expects that request is available in serializer's context.
-//
-// It is disabled for nested serializers (where parent is another serializer)
-// but remains active for list views (where parent is a ListSerializer).
+// OpenStackVolumeCreateOrderAttributes defines model for OpenStackVolumeCreateOrderAttributes.
 type OpenStackVolumeCreateOrderAttributes struct {
 	// AvailabilityZone Availability zone where this volume is located
 	AvailabilityZone *string `json:"availability_zone"`
@@ -18710,6 +18651,7 @@ type OrderCreate struct {
 	ProjectName        *string             `json:"project_name,omitempty"`
 	ProjectUuid        *openapi_types.UUID `json:"project_uuid,omitempty"`
 	ProviderName       *string             `json:"provider_name,omitempty"`
+	ProviderSlug       *openapi_types.UUID `json:"provider_slug,omitempty"`
 	ProviderUuid       *openapi_types.UUID `json:"provider_uuid,omitempty"`
 	RequestComment     *string             `json:"request_comment"`
 	ResourceName       *string             `json:"resource_name,omitempty"`
@@ -18784,13 +18726,10 @@ type OrderDetails struct {
 	Offering                *string             `json:"offering,omitempty"`
 
 	// OfferingBillable Purchase and usage is invoiced.
-	OfferingBillable     *bool               `json:"offering_billable,omitempty"`
-	OfferingCustomerName *string             `json:"offering_customer_name,omitempty"`
-	OfferingCustomerSlug *string             `json:"offering_customer_slug,omitempty"`
-	OfferingCustomerUuid *openapi_types.UUID `json:"offering_customer_uuid,omitempty"`
-	OfferingDescription  *string             `json:"offering_description,omitempty"`
-	OfferingImage        *string             `json:"offering_image,omitempty"`
-	OfferingName         *string             `json:"offering_name,omitempty"`
+	OfferingBillable    *bool   `json:"offering_billable,omitempty"`
+	OfferingDescription *string `json:"offering_description,omitempty"`
+	OfferingImage       *string `json:"offering_image,omitempty"`
+	OfferingName        *string `json:"offering_name,omitempty"`
 
 	// OfferingPluginOptions Public data used by specific plugin, such as storage mode for OpenStack.
 	OfferingPluginOptions interface{} `json:"offering_plugin_options,omitempty"`
@@ -18822,6 +18761,7 @@ type OrderDetails struct {
 
 	// ProviderReviewedByUsername Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
 	ProviderReviewedByUsername *string             `json:"provider_reviewed_by_username"`
+	ProviderSlug               *openapi_types.UUID `json:"provider_slug,omitempty"`
 	ProviderUuid               *openapi_types.UUID `json:"provider_uuid,omitempty"`
 	RequestComment             *string             `json:"request_comment"`
 	ResourceName               *string             `json:"resource_name,omitempty"`
@@ -19564,16 +19504,8 @@ type PatchedOpenStackBackupRequest struct {
 
 // PatchedOpenStackInstanceRequest defines model for PatchedOpenStackInstanceRequest.
 type PatchedOpenStackInstanceRequest struct {
-	// DataVolumeType Volume type for the data volume
-	DataVolumeType *string `json:"data_volume_type"`
-
-	// DataVolumes Additional data volumes to attach to the instance
-	DataVolumes *[]OpenStackDataVolumeRequest `json:"data_volumes,omitempty"`
-	Description *string                       `json:"description,omitempty"`
-	Name        *string                       `json:"name,omitempty"`
-
-	// SystemVolumeType Volume type for the system volume
-	SystemVolumeType *string `json:"system_volume_type"`
+	Description *string `json:"description,omitempty"`
+	Name        *string `json:"name,omitempty"`
 }
 
 // PatchedOpenStackNetworkRequest defines model for PatchedOpenStackNetworkRequest.
@@ -20686,6 +20618,11 @@ type ProjectEstimatedCostPolicyRequest struct {
 	Options interface{} `json:"options,omitempty"`
 	Period  *PeriodEnum `json:"period,omitempty"`
 	Scope   string      `json:"scope"`
+}
+
+// ProjectHyperlinkRequest defines model for ProjectHyperlinkRequest.
+type ProjectHyperlinkRequest struct {
+	Url string `json:"url"`
 }
 
 // ProjectPermissionLog defines model for ProjectPermissionLog.
@@ -22432,6 +22369,92 @@ type RancherService_ClusterIp struct {
 	union json.RawMessage
 }
 
+// RancherServiceCreate defines model for RancherServiceCreate.
+type RancherServiceCreate struct {
+	AccessUrl *string `json:"access_url"`
+	BackendId *string `json:"backend_id,omitempty"`
+
+	// ClusterIp An IPv4 or IPv6 address.
+	ClusterIp                        *RancherServiceCreate_ClusterIp `json:"cluster_ip"`
+	Created                          *time.Time                      `json:"created,omitempty"`
+	Customer                         *string                         `json:"customer,omitempty"`
+	CustomerAbbreviation             *string                         `json:"customer_abbreviation,omitempty"`
+	CustomerName                     *string                         `json:"customer_name,omitempty"`
+	CustomerNativeName               *string                         `json:"customer_native_name,omitempty"`
+	Description                      *string                         `json:"description,omitempty"`
+	ErrorMessage                     *string                         `json:"error_message,omitempty"`
+	ErrorTraceback                   *string                         `json:"error_traceback,omitempty"`
+	IsLimitBased                     *bool                           `json:"is_limit_based"`
+	IsUsageBased                     *bool                           `json:"is_usage_based"`
+	MarketplaceCategoryName          *string                         `json:"marketplace_category_name"`
+	MarketplaceCategoryUuid          *string                         `json:"marketplace_category_uuid"`
+	MarketplaceOfferingName          *string                         `json:"marketplace_offering_name"`
+	MarketplaceOfferingPluginOptions *map[string]interface{}         `json:"marketplace_offering_plugin_options"`
+	MarketplaceOfferingUuid          *string                         `json:"marketplace_offering_uuid"`
+	MarketplacePlanUuid              *string                         `json:"marketplace_plan_uuid"`
+	MarketplaceResourceState         *string                         `json:"marketplace_resource_state"`
+	MarketplaceResourceUuid          *string                         `json:"marketplace_resource_uuid"`
+	Modified                         *time.Time                      `json:"modified,omitempty"`
+	Name                             string                          `json:"name"`
+	Namespace                        *string                         `json:"namespace,omitempty"`
+	NamespaceName                    *string                         `json:"namespace_name,omitempty"`
+	Project                          string                          `json:"project"`
+	ProjectName                      *string                         `json:"project_name,omitempty"`
+	ProjectUuid                      *openapi_types.UUID             `json:"project_uuid,omitempty"`
+	ResourceType                     *string                         `json:"resource_type,omitempty"`
+	RuntimeState                     *string                         `json:"runtime_state,omitempty"`
+	Selector                         interface{}                     `json:"selector"`
+	ServiceName                      *string                         `json:"service_name,omitempty"`
+	ServiceSettings                  string                          `json:"service_settings"`
+	ServiceSettingsErrorMessage      *string                         `json:"service_settings_error_message,omitempty"`
+	ServiceSettingsState             *string                         `json:"service_settings_state,omitempty"`
+	ServiceSettingsUuid              *openapi_types.UUID             `json:"service_settings_uuid,omitempty"`
+	State                            *CoreStates                     `json:"state,omitempty"`
+	TargetWorkloads                  *[]RancherWorkloadCreate        `json:"target_workloads,omitempty"`
+	Url                              *string                         `json:"url,omitempty"`
+	Uuid                             *openapi_types.UUID             `json:"uuid,omitempty"`
+}
+
+// RancherServiceCreateClusterIp0 defines model for .
+type RancherServiceCreateClusterIp0 = string
+
+// RancherServiceCreateClusterIp1 defines model for .
+type RancherServiceCreateClusterIp1 = string
+
+// RancherServiceCreate_ClusterIp An IPv4 or IPv6 address.
+type RancherServiceCreate_ClusterIp struct {
+	union json.RawMessage
+}
+
+// RancherServiceCreateRequest defines model for RancherServiceCreateRequest.
+type RancherServiceCreateRequest struct {
+	BackendId *string `json:"backend_id,omitempty"`
+
+	// ClusterIp An IPv4 or IPv6 address.
+	ClusterIp       *RancherServiceCreateRequest_ClusterIp `json:"cluster_ip"`
+	Description     *string                                `json:"description,omitempty"`
+	ErrorMessage    *string                                `json:"error_message,omitempty"`
+	ErrorTraceback  *string                                `json:"error_traceback,omitempty"`
+	Name            string                                 `json:"name"`
+	Namespace       *string                                `json:"namespace,omitempty"`
+	Project         string                                 `json:"project"`
+	RuntimeState    *string                                `json:"runtime_state,omitempty"`
+	Selector        interface{}                            `json:"selector"`
+	ServiceSettings string                                 `json:"service_settings"`
+	TargetWorkloads *[]RancherWorkloadCreateRequest        `json:"target_workloads,omitempty"`
+}
+
+// RancherServiceCreateRequestClusterIp0 defines model for .
+type RancherServiceCreateRequestClusterIp0 = string
+
+// RancherServiceCreateRequestClusterIp1 defines model for .
+type RancherServiceCreateRequestClusterIp1 = string
+
+// RancherServiceCreateRequest_ClusterIp An IPv4 or IPv6 address.
+type RancherServiceCreateRequest_ClusterIp struct {
+	union json.RawMessage
+}
+
 // RancherServiceRequest defines model for RancherServiceRequest.
 type RancherServiceRequest struct {
 	BackendId *string `json:"backend_id,omitempty"`
@@ -22447,7 +22470,7 @@ type RancherServiceRequest struct {
 	RuntimeState    *string                          `json:"runtime_state,omitempty"`
 	Selector        interface{}                      `json:"selector"`
 	ServiceSettings string                           `json:"service_settings"`
-	TargetWorkloads *[]RancherNestedWorkloadRequest  `json:"target_workloads,omitempty"`
+	TargetWorkloads []RancherNestedWorkloadRequest   `json:"target_workloads"`
 }
 
 // RancherServiceRequestClusterIp0 defines model for .
@@ -22560,6 +22583,16 @@ type RancherWorkload struct {
 	Scale         int                 `json:"scale"`
 	Url           *string             `json:"url,omitempty"`
 	Uuid          *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// RancherWorkloadCreate defines model for RancherWorkloadCreate.
+type RancherWorkloadCreate struct {
+	Url string `json:"url"`
+}
+
+// RancherWorkloadCreateRequest defines model for RancherWorkloadCreateRequest.
+type RancherWorkloadCreateRequest struct {
+	Url string `json:"url"`
 }
 
 // RancherWorkloadRequest defines model for RancherWorkloadRequest.
@@ -22863,13 +22896,10 @@ type Resource struct {
 	Offering           *string             `json:"offering,omitempty"`
 
 	// OfferingBillable Purchase and usage is invoiced.
-	OfferingBillable     *bool               `json:"offering_billable,omitempty"`
-	OfferingCustomerName *string             `json:"offering_customer_name,omitempty"`
-	OfferingCustomerSlug *string             `json:"offering_customer_slug,omitempty"`
-	OfferingCustomerUuid *openapi_types.UUID `json:"offering_customer_uuid,omitempty"`
-	OfferingDescription  *string             `json:"offering_description,omitempty"`
-	OfferingImage        *string             `json:"offering_image,omitempty"`
-	OfferingName         *string             `json:"offering_name,omitempty"`
+	OfferingBillable    *bool   `json:"offering_billable,omitempty"`
+	OfferingDescription *string `json:"offering_description,omitempty"`
+	OfferingImage       *string `json:"offering_image,omitempty"`
+	OfferingName        *string `json:"offering_name,omitempty"`
 
 	// OfferingPluginOptions Public data used by specific plugin, such as storage mode for OpenStack.
 	OfferingPluginOptions interface{} `json:"offering_plugin_options,omitempty"`
@@ -22903,6 +22933,7 @@ type Resource struct {
 	ProjectSlug               *string             `json:"project_slug,omitempty"`
 	ProjectUuid               *openapi_types.UUID `json:"project_uuid,omitempty"`
 	ProviderName              *string             `json:"provider_name,omitempty"`
+	ProviderSlug              *openapi_types.UUID `json:"provider_slug,omitempty"`
 	ProviderUuid              *openapi_types.UUID `json:"provider_uuid,omitempty"`
 	Report                    *[]ReportSection    `json:"report,omitempty"`
 	ResourceType              *string             `json:"resource_type"`
@@ -23189,10 +23220,11 @@ type RobotAccountDetails struct {
 	Fingerprints          *[]Fingerprint       `json:"fingerprints,omitempty"`
 	Keys                  interface{}          `json:"keys,omitempty"`
 	Modified              *time.Time           `json:"modified,omitempty"`
-	OfferingCustomerUuid  *openapi_types.UUID  `json:"offering_customer_uuid,omitempty"`
 	OfferingPluginOptions *MergedPluginOptions `json:"offering_plugin_options,omitempty"`
 	ProjectName           *string              `json:"project_name,omitempty"`
 	ProjectUuid           *openapi_types.UUID  `json:"project_uuid,omitempty"`
+	ProviderName          *string              `json:"provider_name,omitempty"`
+	ProviderUuid          *openapi_types.UUID  `json:"provider_uuid,omitempty"`
 	Resource              *string              `json:"resource,omitempty"`
 	ResourceName          *string              `json:"resource_name,omitempty"`
 	ResourceUuid          *openapi_types.UUID  `json:"resource_uuid,omitempty"`
@@ -23737,11 +23769,7 @@ type SlurmAssociation struct {
 	Uuid       *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
-// SlurmInvoicesSlurmPackageCreateOrderAttributes This mixin allows to specify list of fields to be rendered by serializer.
-// It expects that request is available in serializer's context.
-//
-// It is disabled for nested serializers (where parent is another serializer)
-// but remains active for list views (where parent is a ListSerializer).
+// SlurmInvoicesSlurmPackageCreateOrderAttributes defines model for SlurmInvoicesSlurmPackageCreateOrderAttributes.
 type SlurmInvoicesSlurmPackageCreateOrderAttributes struct {
 	Description *string `json:"description,omitempty"`
 	Name        string  `json:"name"`
@@ -24255,11 +24283,7 @@ type UserRoleUpdateRequest struct {
 // UsernameGenerationPolicyEnum defines model for UsernameGenerationPolicyEnum.
 type UsernameGenerationPolicyEnum string
 
-// VMwareVirtualMachineCreateOrderAttributes This mixin allows to specify list of fields to be rendered by serializer.
-// It expects that request is available in serializer's context.
-//
-// It is disabled for nested serializers (where parent is another serializer)
-// but remains active for list views (where parent is a ListSerializer).
+// VMwareVirtualMachineCreateOrderAttributes defines model for VMwareVirtualMachineCreateOrderAttributes.
 type VMwareVirtualMachineCreateOrderAttributes struct {
 	Cluster *string `json:"cluster"`
 
@@ -24421,8 +24445,7 @@ type VmwareNestedDisk struct {
 
 // VmwareNestedNetworkRequest defines model for VmwareNestedNetworkRequest.
 type VmwareNestedNetworkRequest struct {
-	Name string `json:"name"`
-	Type string `json:"type"`
+	Url string `json:"url"`
 }
 
 // VmwareNestedPort defines model for VmwareNestedPort.
@@ -29352,17 +29375,17 @@ type MarketplaceProjectServiceAccountsCountParamsState string
 
 // MarketplaceProjectUpdateRequestsListParams defines parameters for MarketplaceProjectUpdateRequestsList.
 type MarketplaceProjectUpdateRequestsListParams struct {
-	CustomerUuid         *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	OfferingCustomerUuid *openapi_types.UUID `form:"offering_customer_uuid,omitempty" json:"offering_customer_uuid,omitempty"`
-	OfferingUuid         *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize    *PageSize                                          `form:"page_size,omitempty" json:"page_size,omitempty"`
-	ProjectUuid *openapi_types.UUID                                `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	State       *[]MarketplaceProjectUpdateRequestsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+	PageSize     *PageSize                                          `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ProjectUuid  *openapi_types.UUID                                `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	ProviderUuid *openapi_types.UUID                                `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
+	State        *[]MarketplaceProjectUpdateRequestsListParamsState `form:"state,omitempty" json:"state,omitempty"`
 }
 
 // MarketplaceProjectUpdateRequestsListParamsState defines parameters for MarketplaceProjectUpdateRequestsList.
@@ -29370,17 +29393,17 @@ type MarketplaceProjectUpdateRequestsListParamsState string
 
 // MarketplaceProjectUpdateRequestsCountParams defines parameters for MarketplaceProjectUpdateRequestsCount.
 type MarketplaceProjectUpdateRequestsCountParams struct {
-	CustomerUuid         *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	OfferingCustomerUuid *openapi_types.UUID `form:"offering_customer_uuid,omitempty" json:"offering_customer_uuid,omitempty"`
-	OfferingUuid         *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize    *PageSize                                           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	ProjectUuid *openapi_types.UUID                                 `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	State       *[]MarketplaceProjectUpdateRequestsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+	PageSize     *PageSize                                           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ProjectUuid  *openapi_types.UUID                                 `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	ProviderUuid *openapi_types.UUID                                 `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
+	State        *[]MarketplaceProjectUpdateRequestsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
 }
 
 // MarketplaceProjectUpdateRequestsCountParamsState defines parameters for MarketplaceProjectUpdateRequestsCount.
@@ -37436,6 +37459,9 @@ type MarketplaceProviderResourcesPartialUpdateJSONRequestBody = PatchedResourceU
 // MarketplaceProviderResourcesUpdateJSONRequestBody defines body for MarketplaceProviderResourcesUpdate for application/json ContentType.
 type MarketplaceProviderResourcesUpdateJSONRequestBody = ResourceUpdateRequest
 
+// MarketplaceProviderResourcesMoveResourceJSONRequestBody defines body for MarketplaceProviderResourcesMoveResource for application/json ContentType.
+type MarketplaceProviderResourcesMoveResourceJSONRequestBody = MoveResourceRequest
+
 // MarketplaceProviderResourcesSetAsErredJSONRequestBody defines body for MarketplaceProviderResourcesSetAsErred for application/json ContentType.
 type MarketplaceProviderResourcesSetAsErredJSONRequestBody = ResourceSetStateErredRequest
 
@@ -37489,6 +37515,9 @@ type MarketplaceResourcesPartialUpdateJSONRequestBody = PatchedResourceUpdateReq
 
 // MarketplaceResourcesUpdateJSONRequestBody defines body for MarketplaceResourcesUpdate for application/json ContentType.
 type MarketplaceResourcesUpdateJSONRequestBody = ResourceUpdateRequest
+
+// MarketplaceResourcesMoveResourceJSONRequestBody defines body for MarketplaceResourcesMoveResource for application/json ContentType.
+type MarketplaceResourcesMoveResourceJSONRequestBody = MoveResourceRequest
 
 // MarketplaceResourcesSetEndDateByStaffJSONRequestBody defines body for MarketplaceResourcesSetEndDateByStaff for application/json ContentType.
 type MarketplaceResourcesSetEndDateByStaffJSONRequestBody = ResourceEndDateByProviderRequest
@@ -37635,7 +37664,7 @@ type OpenstackBackupsPartialUpdateJSONRequestBody = PatchedOpenStackBackupReques
 type OpenstackBackupsUpdateJSONRequestBody = OpenStackBackupRequest
 
 // OpenstackBackupsRestoreJSONRequestBody defines body for OpenstackBackupsRestore for application/json ContentType.
-type OpenstackBackupsRestoreJSONRequestBody = OpenStackBackupRestorationRequest
+type OpenstackBackupsRestoreJSONRequestBody = OpenStackBackupRestorationCreateRequest
 
 // OpenstackFloatingIpsAttachToPortJSONRequestBody defines body for OpenstackFloatingIpsAttachToPort for application/json ContentType.
 type OpenstackFloatingIpsAttachToPortJSONRequestBody = OpenStackFloatingIPAttachRequest
@@ -38097,7 +38126,7 @@ type RancherNodesCreateJSONRequestBody = RancherCreateNodeRequest
 type RancherNodesLinkOpenstackJSONRequestBody = LinkOpenstackRequest
 
 // RancherServicesCreateJSONRequestBody defines body for RancherServicesCreate for application/json ContentType.
-type RancherServicesCreateJSONRequestBody = RancherServiceRequest
+type RancherServicesCreateJSONRequestBody = RancherServiceCreateRequest
 
 // RancherServicesPartialUpdateJSONRequestBody defines body for RancherServicesPartialUpdate for application/json ContentType.
 type RancherServicesPartialUpdateJSONRequestBody = PatchedRancherServiceRequest
@@ -43505,6 +43534,130 @@ func (t *RancherService_ClusterIp) UnmarshalJSON(b []byte) error {
 	return err
 }
 
+// AsRancherServiceCreateClusterIp0 returns the union data inside the RancherServiceCreate_ClusterIp as a RancherServiceCreateClusterIp0
+func (t RancherServiceCreate_ClusterIp) AsRancherServiceCreateClusterIp0() (RancherServiceCreateClusterIp0, error) {
+	var body RancherServiceCreateClusterIp0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromRancherServiceCreateClusterIp0 overwrites any union data inside the RancherServiceCreate_ClusterIp as the provided RancherServiceCreateClusterIp0
+func (t *RancherServiceCreate_ClusterIp) FromRancherServiceCreateClusterIp0(v RancherServiceCreateClusterIp0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeRancherServiceCreateClusterIp0 performs a merge with any union data inside the RancherServiceCreate_ClusterIp, using the provided RancherServiceCreateClusterIp0
+func (t *RancherServiceCreate_ClusterIp) MergeRancherServiceCreateClusterIp0(v RancherServiceCreateClusterIp0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsRancherServiceCreateClusterIp1 returns the union data inside the RancherServiceCreate_ClusterIp as a RancherServiceCreateClusterIp1
+func (t RancherServiceCreate_ClusterIp) AsRancherServiceCreateClusterIp1() (RancherServiceCreateClusterIp1, error) {
+	var body RancherServiceCreateClusterIp1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromRancherServiceCreateClusterIp1 overwrites any union data inside the RancherServiceCreate_ClusterIp as the provided RancherServiceCreateClusterIp1
+func (t *RancherServiceCreate_ClusterIp) FromRancherServiceCreateClusterIp1(v RancherServiceCreateClusterIp1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeRancherServiceCreateClusterIp1 performs a merge with any union data inside the RancherServiceCreate_ClusterIp, using the provided RancherServiceCreateClusterIp1
+func (t *RancherServiceCreate_ClusterIp) MergeRancherServiceCreateClusterIp1(v RancherServiceCreateClusterIp1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t RancherServiceCreate_ClusterIp) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *RancherServiceCreate_ClusterIp) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsRancherServiceCreateRequestClusterIp0 returns the union data inside the RancherServiceCreateRequest_ClusterIp as a RancherServiceCreateRequestClusterIp0
+func (t RancherServiceCreateRequest_ClusterIp) AsRancherServiceCreateRequestClusterIp0() (RancherServiceCreateRequestClusterIp0, error) {
+	var body RancherServiceCreateRequestClusterIp0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromRancherServiceCreateRequestClusterIp0 overwrites any union data inside the RancherServiceCreateRequest_ClusterIp as the provided RancherServiceCreateRequestClusterIp0
+func (t *RancherServiceCreateRequest_ClusterIp) FromRancherServiceCreateRequestClusterIp0(v RancherServiceCreateRequestClusterIp0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeRancherServiceCreateRequestClusterIp0 performs a merge with any union data inside the RancherServiceCreateRequest_ClusterIp, using the provided RancherServiceCreateRequestClusterIp0
+func (t *RancherServiceCreateRequest_ClusterIp) MergeRancherServiceCreateRequestClusterIp0(v RancherServiceCreateRequestClusterIp0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsRancherServiceCreateRequestClusterIp1 returns the union data inside the RancherServiceCreateRequest_ClusterIp as a RancherServiceCreateRequestClusterIp1
+func (t RancherServiceCreateRequest_ClusterIp) AsRancherServiceCreateRequestClusterIp1() (RancherServiceCreateRequestClusterIp1, error) {
+	var body RancherServiceCreateRequestClusterIp1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromRancherServiceCreateRequestClusterIp1 overwrites any union data inside the RancherServiceCreateRequest_ClusterIp as the provided RancherServiceCreateRequestClusterIp1
+func (t *RancherServiceCreateRequest_ClusterIp) FromRancherServiceCreateRequestClusterIp1(v RancherServiceCreateRequestClusterIp1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeRancherServiceCreateRequestClusterIp1 performs a merge with any union data inside the RancherServiceCreateRequest_ClusterIp, using the provided RancherServiceCreateRequestClusterIp1
+func (t *RancherServiceCreateRequest_ClusterIp) MergeRancherServiceCreateRequestClusterIp1(v RancherServiceCreateRequestClusterIp1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t RancherServiceCreateRequest_ClusterIp) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *RancherServiceCreateRequest_ClusterIp) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsRancherServiceRequestClusterIp0 returns the union data inside the RancherServiceRequest_ClusterIp as a RancherServiceRequestClusterIp0
 func (t RancherServiceRequest_ClusterIp) AsRancherServiceRequestClusterIp0() (RancherServiceRequestClusterIp0, error) {
 	var body RancherServiceRequestClusterIp0
@@ -46681,8 +46834,10 @@ type ClientInterface interface {
 	// MarketplaceProviderResourcesGlauthUsersConfigRetrieve request
 	MarketplaceProviderResourcesGlauthUsersConfigRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// MarketplaceProviderResourcesMoveResource request
-	MarketplaceProviderResourcesMoveResource(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// MarketplaceProviderResourcesMoveResourceWithBody request with any body
+	MarketplaceProviderResourcesMoveResourceWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceProviderResourcesMoveResource(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesMoveResourceJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceProviderResourcesOfferingRetrieve request
 	MarketplaceProviderResourcesOfferingRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -46861,8 +47016,10 @@ type ClientInterface interface {
 	// MarketplaceResourcesGlauthUsersConfigRetrieve request
 	MarketplaceResourcesGlauthUsersConfigRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// MarketplaceResourcesMoveResource request
-	MarketplaceResourcesMoveResource(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// MarketplaceResourcesMoveResourceWithBody request with any body
+	MarketplaceResourcesMoveResourceWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceResourcesMoveResource(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesMoveResourceJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceResourcesOfferingRetrieve request
 	MarketplaceResourcesOfferingRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -61351,8 +61508,20 @@ func (c *Client) MarketplaceProviderResourcesGlauthUsersConfigRetrieve(ctx conte
 	return c.Client.Do(req)
 }
 
-func (c *Client) MarketplaceProviderResourcesMoveResource(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceProviderResourcesMoveResourceRequest(c.Server, uuid)
+func (c *Client) MarketplaceProviderResourcesMoveResourceWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderResourcesMoveResourceRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderResourcesMoveResource(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesMoveResourceJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderResourcesMoveResourceRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -62143,8 +62312,20 @@ func (c *Client) MarketplaceResourcesGlauthUsersConfigRetrieve(ctx context.Conte
 	return c.Client.Do(req)
 }
 
-func (c *Client) MarketplaceResourcesMoveResource(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceResourcesMoveResourceRequest(c.Server, uuid)
+func (c *Client) MarketplaceResourcesMoveResourceWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourcesMoveResourceRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceResourcesMoveResource(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesMoveResourceJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourcesMoveResourceRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -126236,22 +126417,6 @@ func NewMarketplaceProjectUpdateRequestsListRequest(server string, params *Marke
 
 		}
 
-		if params.OfferingCustomerUuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_customer_uuid", runtime.ParamLocationQuery, *params.OfferingCustomerUuid); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
 		if params.OfferingUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
@@ -126303,6 +126468,22 @@ func NewMarketplaceProjectUpdateRequestsListRequest(server string, params *Marke
 		if params.ProjectUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_uuid", runtime.ParamLocationQuery, *params.ProjectUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProviderUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "provider_uuid", runtime.ParamLocationQuery, *params.ProviderUuid); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -126381,22 +126562,6 @@ func NewMarketplaceProjectUpdateRequestsCountRequest(server string, params *Mark
 
 		}
 
-		if params.OfferingCustomerUuid != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_customer_uuid", runtime.ParamLocationQuery, *params.OfferingCustomerUuid); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
 		if params.OfferingUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
@@ -126448,6 +126613,22 @@ func NewMarketplaceProjectUpdateRequestsCountRequest(server string, params *Mark
 		if params.ProjectUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_uuid", runtime.ParamLocationQuery, *params.ProjectUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProviderUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "provider_uuid", runtime.ParamLocationQuery, *params.ProviderUuid); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -134187,8 +134368,19 @@ func NewMarketplaceProviderResourcesGlauthUsersConfigRetrieveRequest(server stri
 	return req, nil
 }
 
-// NewMarketplaceProviderResourcesMoveResourceRequest generates requests for MarketplaceProviderResourcesMoveResource
-func NewMarketplaceProviderResourcesMoveResourceRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+// NewMarketplaceProviderResourcesMoveResourceRequest calls the generic MarketplaceProviderResourcesMoveResource builder with application/json body
+func NewMarketplaceProviderResourcesMoveResourceRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderResourcesMoveResourceJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceProviderResourcesMoveResourceRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceProviderResourcesMoveResourceRequestWithBody generates requests for MarketplaceProviderResourcesMoveResource with any type of body
+func NewMarketplaceProviderResourcesMoveResourceRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -134213,10 +134405,12 @@ func NewMarketplaceProviderResourcesMoveResourceRequest(server string, uuid open
 		return nil, err
 	}
 
-	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	req, err := http.NewRequest("POST", queryURL.String(), body)
 	if err != nil {
 		return nil, err
 	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -138527,8 +138721,19 @@ func NewMarketplaceResourcesGlauthUsersConfigRetrieveRequest(server string, uuid
 	return req, nil
 }
 
-// NewMarketplaceResourcesMoveResourceRequest generates requests for MarketplaceResourcesMoveResource
-func NewMarketplaceResourcesMoveResourceRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+// NewMarketplaceResourcesMoveResourceRequest calls the generic MarketplaceResourcesMoveResource builder with application/json body
+func NewMarketplaceResourcesMoveResourceRequest(server string, uuid openapi_types.UUID, body MarketplaceResourcesMoveResourceJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceResourcesMoveResourceRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceResourcesMoveResourceRequestWithBody generates requests for MarketplaceResourcesMoveResource with any type of body
+func NewMarketplaceResourcesMoveResourceRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -138553,10 +138758,12 @@ func NewMarketplaceResourcesMoveResourceRequest(server string, uuid openapi_type
 		return nil, err
 	}
 
-	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	req, err := http.NewRequest("POST", queryURL.String(), body)
 	if err != nil {
 		return nil, err
 	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -211690,8 +211897,10 @@ type ClientWithResponsesInterface interface {
 	// MarketplaceProviderResourcesGlauthUsersConfigRetrieveWithResponse request
 	MarketplaceProviderResourcesGlauthUsersConfigRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesGlauthUsersConfigRetrieveResponse, error)
 
-	// MarketplaceProviderResourcesMoveResourceWithResponse request
-	MarketplaceProviderResourcesMoveResourceWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesMoveResourceResponse, error)
+	// MarketplaceProviderResourcesMoveResourceWithBodyWithResponse request with any body
+	MarketplaceProviderResourcesMoveResourceWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesMoveResourceResponse, error)
+
+	MarketplaceProviderResourcesMoveResourceWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesMoveResourceJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesMoveResourceResponse, error)
 
 	// MarketplaceProviderResourcesOfferingRetrieveWithResponse request
 	MarketplaceProviderResourcesOfferingRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesOfferingRetrieveResponse, error)
@@ -211870,8 +212079,10 @@ type ClientWithResponsesInterface interface {
 	// MarketplaceResourcesGlauthUsersConfigRetrieveWithResponse request
 	MarketplaceResourcesGlauthUsersConfigRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceResourcesGlauthUsersConfigRetrieveResponse, error)
 
-	// MarketplaceResourcesMoveResourceWithResponse request
-	MarketplaceResourcesMoveResourceWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceResourcesMoveResourceResponse, error)
+	// MarketplaceResourcesMoveResourceWithBodyWithResponse request with any body
+	MarketplaceResourcesMoveResourceWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourcesMoveResourceResponse, error)
+
+	MarketplaceResourcesMoveResourceWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesMoveResourceJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourcesMoveResourceResponse, error)
 
 	// MarketplaceResourcesOfferingRetrieveWithResponse request
 	MarketplaceResourcesOfferingRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceResourcesOfferingRetrieveResponse, error)
@@ -243622,7 +243833,7 @@ func (r RancherServicesCountResponse) StatusCode() int {
 type RancherServicesCreateResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON201      *RancherService
+	JSON201      *RancherServiceCreate
 }
 
 // Status returns HTTPResponse.Status
@@ -257198,9 +257409,17 @@ func (c *ClientWithResponses) MarketplaceProviderResourcesGlauthUsersConfigRetri
 	return ParseMarketplaceProviderResourcesGlauthUsersConfigRetrieveResponse(rsp)
 }
 
-// MarketplaceProviderResourcesMoveResourceWithResponse request returning *MarketplaceProviderResourcesMoveResourceResponse
-func (c *ClientWithResponses) MarketplaceProviderResourcesMoveResourceWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesMoveResourceResponse, error) {
-	rsp, err := c.MarketplaceProviderResourcesMoveResource(ctx, uuid, reqEditors...)
+// MarketplaceProviderResourcesMoveResourceWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderResourcesMoveResourceResponse
+func (c *ClientWithResponses) MarketplaceProviderResourcesMoveResourceWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesMoveResourceResponse, error) {
+	rsp, err := c.MarketplaceProviderResourcesMoveResourceWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderResourcesMoveResourceResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceProviderResourcesMoveResourceWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesMoveResourceJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesMoveResourceResponse, error) {
+	rsp, err := c.MarketplaceProviderResourcesMoveResource(ctx, uuid, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -257774,9 +257993,17 @@ func (c *ClientWithResponses) MarketplaceResourcesGlauthUsersConfigRetrieveWithR
 	return ParseMarketplaceResourcesGlauthUsersConfigRetrieveResponse(rsp)
 }
 
-// MarketplaceResourcesMoveResourceWithResponse request returning *MarketplaceResourcesMoveResourceResponse
-func (c *ClientWithResponses) MarketplaceResourcesMoveResourceWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceResourcesMoveResourceResponse, error) {
-	rsp, err := c.MarketplaceResourcesMoveResource(ctx, uuid, reqEditors...)
+// MarketplaceResourcesMoveResourceWithBodyWithResponse request with arbitrary body returning *MarketplaceResourcesMoveResourceResponse
+func (c *ClientWithResponses) MarketplaceResourcesMoveResourceWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourcesMoveResourceResponse, error) {
+	rsp, err := c.MarketplaceResourcesMoveResourceWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourcesMoveResourceResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceResourcesMoveResourceWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesMoveResourceJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourcesMoveResourceResponse, error) {
+	rsp, err := c.MarketplaceResourcesMoveResource(ctx, uuid, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -296961,7 +297188,7 @@ func ParseRancherServicesCreateResponse(rsp *http.Response) (*RancherServicesCre
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest RancherService
+		var dest RancherServiceCreate
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
