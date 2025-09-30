@@ -476,6 +476,7 @@ const (
 	EventGroupsEnumReview             EventGroupsEnum = "review"
 	EventGroupsEnumSsh                EventGroupsEnum = "ssh"
 	EventGroupsEnumSupport            EventGroupsEnum = "support"
+	EventGroupsEnumTermsOfService     EventGroupsEnum = "terms_of_service"
 	EventGroupsEnumUsers              EventGroupsEnum = "users"
 )
 
@@ -723,6 +724,8 @@ const (
 	SshKeyCreationSucceeded                          EventTypesEnum = "ssh_key_creation_succeeded"
 	SshKeyDeletionSucceeded                          EventTypesEnum = "ssh_key_deletion_succeeded"
 	TerminateResources                               EventTypesEnum = "terminate_resources"
+	TermsOfServiceConsentGranted                     EventTypesEnum = "terms_of_service_consent_granted"
+	TermsOfServiceConsentRevoked                     EventTypesEnum = "terms_of_service_consent_revoked"
 	TokenCreated                                     EventTypesEnum = "token_created"
 	TokenLifetimeUpdated                             EventTypesEnum = "token_lifetime_updated"
 	UpdateOfCreditByStaff                            EventTypesEnum = "update_of_credit_by_staff"
@@ -12522,6 +12525,7 @@ type ConstanceSettings struct {
 	NOTIFYABOUTRESOURCECHANGE                      *bool                `json:"NOTIFY_ABOUT_RESOURCE_CHANGE,omitempty"`
 	NOTIFYSTAFFABOUTAPPROVALS                      *bool                `json:"NOTIFY_STAFF_ABOUT_APPROVALS,omitempty"`
 	OFFERINGLOGOPLACEHOLDER                        *string              `json:"OFFERING_LOGO_PLACEHOLDER"`
+	OIDCACCESSTOKENENABLED                         *bool                `json:"OIDC_ACCESS_TOKEN_ENABLED,omitempty"`
 	OIDCAUTHURL                                    *string              `json:"OIDC_AUTH_URL,omitempty"`
 	OIDCBLOCKCREATIONOFUNINVITEDUSERS              *bool                `json:"OIDC_BLOCK_CREATION_OF_UNINVITED_USERS,omitempty"`
 	OIDCCACHETIMEOUT                               *int                 `json:"OIDC_CACHE_TIMEOUT,omitempty"`
@@ -12661,6 +12665,7 @@ type ConstanceSettingsRequest struct {
 	NOTIFYABOUTRESOURCECHANGE                      *bool                `json:"NOTIFY_ABOUT_RESOURCE_CHANGE,omitempty"`
 	NOTIFYSTAFFABOUTAPPROVALS                      *bool                `json:"NOTIFY_STAFF_ABOUT_APPROVALS,omitempty"`
 	OFFERINGLOGOPLACEHOLDER                        *openapi_types.File  `json:"OFFERING_LOGO_PLACEHOLDER"`
+	OIDCACCESSTOKENENABLED                         *bool                `json:"OIDC_ACCESS_TOKEN_ENABLED,omitempty"`
 	OIDCAUTHURL                                    *string              `json:"OIDC_AUTH_URL,omitempty"`
 	OIDCBLOCKCREATIONOFUNINVITEDUSERS              *bool                `json:"OIDC_BLOCK_CREATION_OF_UNINVITED_USERS,omitempty"`
 	OIDCCACHETIMEOUT                               *int                 `json:"OIDC_CACHE_TIMEOUT,omitempty"`
@@ -12800,6 +12805,7 @@ type ConstanceSettingsRequestForm struct {
 	NOTIFYABOUTRESOURCECHANGE                      *bool                `json:"NOTIFY_ABOUT_RESOURCE_CHANGE,omitempty"`
 	NOTIFYSTAFFABOUTAPPROVALS                      *bool                `json:"NOTIFY_STAFF_ABOUT_APPROVALS,omitempty"`
 	OFFERINGLOGOPLACEHOLDER                        *openapi_types.File  `json:"OFFERING_LOGO_PLACEHOLDER"`
+	OIDCACCESSTOKENENABLED                         *bool                `json:"OIDC_ACCESS_TOKEN_ENABLED,omitempty"`
 	OIDCAUTHURL                                    *string              `json:"OIDC_AUTH_URL,omitempty"`
 	OIDCBLOCKCREATIONOFUNINVITEDUSERS              *bool                `json:"OIDC_BLOCK_CREATION_OF_UNINVITED_USERS,omitempty"`
 	OIDCCACHETIMEOUT                               *int                 `json:"OIDC_CACHE_TIMEOUT,omitempty"`
@@ -12939,6 +12945,7 @@ type ConstanceSettingsRequestMultipart struct {
 	NOTIFYABOUTRESOURCECHANGE                      *bool                `json:"NOTIFY_ABOUT_RESOURCE_CHANGE,omitempty"`
 	NOTIFYSTAFFABOUTAPPROVALS                      *bool                `json:"NOTIFY_STAFF_ABOUT_APPROVALS,omitempty"`
 	OFFERINGLOGOPLACEHOLDER                        *openapi_types.File  `json:"OFFERING_LOGO_PLACEHOLDER"`
+	OIDCACCESSTOKENENABLED                         *bool                `json:"OIDC_ACCESS_TOKEN_ENABLED,omitempty"`
 	OIDCAUTHURL                                    *string              `json:"OIDC_AUTH_URL,omitempty"`
 	OIDCBLOCKCREATIONOFUNINVITEDUSERS              *bool                `json:"OIDC_BLOCK_CREATION_OF_UNINVITED_USERS,omitempty"`
 	OIDCCACHETIMEOUT                               *int                 `json:"OIDC_CACHE_TIMEOUT,omitempty"`
