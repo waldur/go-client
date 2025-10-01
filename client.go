@@ -15976,6 +15976,8 @@ type NetworkRBACPolicy struct {
 
 // NetworkRBACPolicyRequest defines model for NetworkRBACPolicyRequest.
 type NetworkRBACPolicyRequest struct {
+	Network string `json:"network"`
+
 	// PolicyType Type of access granted - either shared access or external network access
 	PolicyType   *PolicyTypeEnum `json:"policy_type,omitempty"`
 	TargetTenant string          `json:"target_tenant"`
@@ -19426,6 +19428,15 @@ type PatchedMigrationDetailsRequest struct {
 	ErrorMessage   *string         `json:"error_message,omitempty"`
 	ErrorTraceback *string         `json:"error_traceback,omitempty"`
 	Mappings       *MappingRequest `json:"mappings,omitempty"`
+}
+
+// PatchedNetworkRBACPolicyRequest defines model for PatchedNetworkRBACPolicyRequest.
+type PatchedNetworkRBACPolicyRequest struct {
+	Network *string `json:"network,omitempty"`
+
+	// PolicyType Type of access granted - either shared access or external network access
+	PolicyType   *PolicyTypeEnum `json:"policy_type,omitempty"`
+	TargetTenant *string         `json:"target_tenant,omitempty"`
 }
 
 // PatchedNotificationRequest defines model for PatchedNotificationRequest.
@@ -23554,6 +23565,15 @@ type ServiceProviderApiSecretCode struct {
 	ApiSecretCode *string `json:"api_secret_code,omitempty"`
 }
 
+// ServiceProviderChecklistSummary defines model for ServiceProviderChecklistSummary.
+type ServiceProviderChecklistSummary struct {
+	CategoryName   *string             `json:"category_name"`
+	ChecklistName  *string             `json:"checklist_name,omitempty"`
+	ChecklistUuid  *openapi_types.UUID `json:"checklist_uuid,omitempty"`
+	OfferingsCount *int                `json:"offerings_count,omitempty"`
+	QuestionsCount *int                `json:"questions_count,omitempty"`
+}
+
 // ServiceProviderComplianceOverview defines model for ServiceProviderComplianceOverview.
 type ServiceProviderComplianceOverview struct {
 	ChecklistName        *string             `json:"checklist_name"`
@@ -25733,6 +25753,7 @@ type BookingResourcesListParams struct {
 	PageSize           *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
 	ParentOfferingUuid *openapi_types.UUID `form:"parent_offering_uuid,omitempty" json:"parent_offering_uuid,omitempty"`
 	Paused             *bool               `form:"paused,omitempty" json:"paused,omitempty"`
+	PlanUuid           *openapi_types.UUID `form:"plan_uuid,omitempty" json:"plan_uuid,omitempty"`
 	ProjectName        *string             `form:"project_name,omitempty" json:"project_name,omitempty"`
 	ProjectUuid        *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 	ProviderUuid       *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
@@ -25808,6 +25829,7 @@ type BookingResourcesCountParams struct {
 	PageSize           *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
 	ParentOfferingUuid *openapi_types.UUID `form:"parent_offering_uuid,omitempty" json:"parent_offering_uuid,omitempty"`
 	Paused             *bool               `form:"paused,omitempty" json:"paused,omitempty"`
+	PlanUuid           *openapi_types.UUID `form:"plan_uuid,omitempty" json:"plan_uuid,omitempty"`
 	ProjectName        *string             `form:"project_name,omitempty" json:"project_name,omitempty"`
 	ProjectUuid        *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 	ProviderUuid       *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
@@ -30140,6 +30162,7 @@ type MarketplaceProviderResourcesListParams struct {
 	PageSize           *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
 	ParentOfferingUuid *openapi_types.UUID `form:"parent_offering_uuid,omitempty" json:"parent_offering_uuid,omitempty"`
 	Paused             *bool               `form:"paused,omitempty" json:"paused,omitempty"`
+	PlanUuid           *openapi_types.UUID `form:"plan_uuid,omitempty" json:"plan_uuid,omitempty"`
 	ProjectName        *string             `form:"project_name,omitempty" json:"project_name,omitempty"`
 	ProjectUuid        *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 	ProviderUuid       *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
@@ -30214,6 +30237,7 @@ type MarketplaceProviderResourcesCountParams struct {
 	PageSize           *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
 	ParentOfferingUuid *openapi_types.UUID `form:"parent_offering_uuid,omitempty" json:"parent_offering_uuid,omitempty"`
 	Paused             *bool               `form:"paused,omitempty" json:"paused,omitempty"`
+	PlanUuid           *openapi_types.UUID `form:"plan_uuid,omitempty" json:"plan_uuid,omitempty"`
 	ProjectName        *string             `form:"project_name,omitempty" json:"project_name,omitempty"`
 	ProjectUuid        *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 	ProviderUuid       *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
@@ -30534,6 +30558,7 @@ type MarketplaceResourcesListParams struct {
 	PageSize           *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
 	ParentOfferingUuid *openapi_types.UUID `form:"parent_offering_uuid,omitempty" json:"parent_offering_uuid,omitempty"`
 	Paused             *bool               `form:"paused,omitempty" json:"paused,omitempty"`
+	PlanUuid           *openapi_types.UUID `form:"plan_uuid,omitempty" json:"plan_uuid,omitempty"`
 	ProjectName        *string             `form:"project_name,omitempty" json:"project_name,omitempty"`
 	ProjectUuid        *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 	ProviderUuid       *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
@@ -30608,6 +30633,7 @@ type MarketplaceResourcesCountParams struct {
 	PageSize           *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
 	ParentOfferingUuid *openapi_types.UUID `form:"parent_offering_uuid,omitempty" json:"parent_offering_uuid,omitempty"`
 	Paused             *bool               `form:"paused,omitempty" json:"paused,omitempty"`
+	PlanUuid           *openapi_types.UUID `form:"plan_uuid,omitempty" json:"plan_uuid,omitempty"`
 	ProjectName        *string             `form:"project_name,omitempty" json:"project_name,omitempty"`
 	ProjectUuid        *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 	ProviderUuid       *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
@@ -30847,6 +30873,15 @@ type MarketplaceServiceProvidersCountParams struct {
 
 // MarketplaceServiceProvidersCountParamsO defines parameters for MarketplaceServiceProvidersCount.
 type MarketplaceServiceProvidersCountParamsO string
+
+// ServiceProviderChecklistsSummaryParams defines parameters for ServiceProviderChecklistsSummary.
+type ServiceProviderChecklistsSummaryParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
 
 // ServiceProviderComplianceOverviewParams defines parameters for ServiceProviderComplianceOverview.
 type ServiceProviderComplianceOverviewParams struct {
@@ -37717,6 +37752,15 @@ type OpenstackMigrationsPartialUpdateJSONRequestBody = PatchedMigrationDetailsRe
 
 // OpenstackMigrationsUpdateJSONRequestBody defines body for OpenstackMigrationsUpdate for application/json ContentType.
 type OpenstackMigrationsUpdateJSONRequestBody = MigrationDetailsRequest
+
+// OpenstackNetworkRbacPoliciesCreateJSONRequestBody defines body for OpenstackNetworkRbacPoliciesCreate for application/json ContentType.
+type OpenstackNetworkRbacPoliciesCreateJSONRequestBody = NetworkRBACPolicyRequest
+
+// OpenstackNetworkRbacPoliciesPartialUpdateJSONRequestBody defines body for OpenstackNetworkRbacPoliciesPartialUpdate for application/json ContentType.
+type OpenstackNetworkRbacPoliciesPartialUpdateJSONRequestBody = PatchedNetworkRBACPolicyRequest
+
+// OpenstackNetworkRbacPoliciesUpdateJSONRequestBody defines body for OpenstackNetworkRbacPoliciesUpdate for application/json ContentType.
+type OpenstackNetworkRbacPoliciesUpdateJSONRequestBody = NetworkRBACPolicyRequest
 
 // OpenstackNetworksPartialUpdateJSONRequestBody defines body for OpenstackNetworksPartialUpdate for application/json ContentType.
 type OpenstackNetworksPartialUpdateJSONRequestBody = PatchedOpenStackNetworkRequest
@@ -47218,6 +47262,9 @@ type ClientInterface interface {
 
 	MarketplaceServiceProvidersCreateWithFormdataBody(ctx context.Context, body MarketplaceServiceProvidersCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// ServiceProviderChecklistsSummary request
+	ServiceProviderChecklistsSummary(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *ServiceProviderChecklistsSummaryParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// ServiceProviderComplianceOverview request
 	ServiceProviderComplianceOverview(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *ServiceProviderComplianceOverviewParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -47776,8 +47823,26 @@ type ClientInterface interface {
 	// OpenstackNetworkRbacPoliciesCount request
 	OpenstackNetworkRbacPoliciesCount(ctx context.Context, params *OpenstackNetworkRbacPoliciesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// OpenstackNetworkRbacPoliciesCreateWithBody request with any body
+	OpenstackNetworkRbacPoliciesCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackNetworkRbacPoliciesCreate(ctx context.Context, body OpenstackNetworkRbacPoliciesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackNetworkRbacPoliciesDestroy request
+	OpenstackNetworkRbacPoliciesDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// OpenstackNetworkRbacPoliciesRetrieve request
 	OpenstackNetworkRbacPoliciesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackNetworkRbacPoliciesPartialUpdateWithBody request with any body
+	OpenstackNetworkRbacPoliciesPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackNetworkRbacPoliciesPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body OpenstackNetworkRbacPoliciesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackNetworkRbacPoliciesUpdateWithBody request with any body
+	OpenstackNetworkRbacPoliciesUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackNetworkRbacPoliciesUpdate(ctx context.Context, uuid openapi_types.UUID, body OpenstackNetworkRbacPoliciesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenstackNetworksList request
 	OpenstackNetworksList(ctx context.Context, params *OpenstackNetworksListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -63195,6 +63260,18 @@ func (c *Client) MarketplaceServiceProvidersCreateWithFormdataBody(ctx context.C
 	return c.Client.Do(req)
 }
 
+func (c *Client) ServiceProviderChecklistsSummary(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *ServiceProviderChecklistsSummaryParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewServiceProviderChecklistsSummaryRequest(c.Server, serviceProviderUuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) ServiceProviderComplianceOverview(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *ServiceProviderComplianceOverviewParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewServiceProviderComplianceOverviewRequest(c.Server, serviceProviderUuid, params)
 	if err != nil {
@@ -65571,8 +65648,92 @@ func (c *Client) OpenstackNetworkRbacPoliciesCount(ctx context.Context, params *
 	return c.Client.Do(req)
 }
 
+func (c *Client) OpenstackNetworkRbacPoliciesCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackNetworkRbacPoliciesCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackNetworkRbacPoliciesCreate(ctx context.Context, body OpenstackNetworkRbacPoliciesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackNetworkRbacPoliciesCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackNetworkRbacPoliciesDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackNetworkRbacPoliciesDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) OpenstackNetworkRbacPoliciesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenstackNetworkRbacPoliciesRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackNetworkRbacPoliciesPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackNetworkRbacPoliciesPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackNetworkRbacPoliciesPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body OpenstackNetworkRbacPoliciesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackNetworkRbacPoliciesPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackNetworkRbacPoliciesUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackNetworkRbacPoliciesUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackNetworkRbacPoliciesUpdate(ctx context.Context, uuid openapi_types.UUID, body OpenstackNetworkRbacPoliciesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackNetworkRbacPoliciesUpdateRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -87384,6 +87545,22 @@ func NewBookingResourcesListRequest(server string, params *BookingResourcesListP
 
 		}
 
+		if params.PlanUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "plan_uuid", runtime.ParamLocationQuery, *params.PlanUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.ProjectName != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_name", runtime.ParamLocationQuery, *params.ProjectName); err != nil {
@@ -87916,6 +88093,22 @@ func NewBookingResourcesCountRequest(server string, params *BookingResourcesCoun
 		if params.Paused != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "paused", runtime.ParamLocationQuery, *params.Paused); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PlanUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "plan_uuid", runtime.ParamLocationQuery, *params.PlanUuid); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -133451,6 +133644,22 @@ func NewMarketplaceProviderResourcesListRequest(server string, params *Marketpla
 
 		}
 
+		if params.PlanUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "plan_uuid", runtime.ParamLocationQuery, *params.PlanUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.ProjectName != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_name", runtime.ParamLocationQuery, *params.ProjectName); err != nil {
@@ -133967,6 +134176,22 @@ func NewMarketplaceProviderResourcesCountRequest(server string, params *Marketpl
 		if params.Paused != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "paused", runtime.ParamLocationQuery, *params.Paused); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PlanUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "plan_uuid", runtime.ParamLocationQuery, *params.PlanUuid); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -137764,6 +137989,22 @@ func NewMarketplaceResourcesListRequest(server string, params *MarketplaceResour
 
 		}
 
+		if params.PlanUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "plan_uuid", runtime.ParamLocationQuery, *params.PlanUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.ProjectName != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_name", runtime.ParamLocationQuery, *params.ProjectName); err != nil {
@@ -138280,6 +138521,22 @@ func NewMarketplaceResourcesCountRequest(server string, params *MarketplaceResou
 		if params.Paused != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "paused", runtime.ParamLocationQuery, *params.Paused); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PlanUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "plan_uuid", runtime.ParamLocationQuery, *params.PlanUuid); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -141632,6 +141889,78 @@ func NewMarketplaceServiceProvidersCreateRequestWithBody(server string, contentT
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewServiceProviderChecklistsSummaryRequest generates requests for ServiceProviderChecklistsSummary
+func NewServiceProviderChecklistsSummaryRequest(server string, serviceProviderUuid openapi_types.UUID, params *ServiceProviderChecklistsSummaryParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "service_provider_uuid", runtime.ParamLocationPath, serviceProviderUuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-service-providers/%s/compliance/checklists_summary/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
 
 	return req, nil
 }
@@ -157653,6 +157982,80 @@ func NewOpenstackNetworkRbacPoliciesCountRequest(server string, params *Openstac
 	return req, nil
 }
 
+// NewOpenstackNetworkRbacPoliciesCreateRequest calls the generic OpenstackNetworkRbacPoliciesCreate builder with application/json body
+func NewOpenstackNetworkRbacPoliciesCreateRequest(server string, body OpenstackNetworkRbacPoliciesCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackNetworkRbacPoliciesCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewOpenstackNetworkRbacPoliciesCreateRequestWithBody generates requests for OpenstackNetworkRbacPoliciesCreate with any type of body
+func NewOpenstackNetworkRbacPoliciesCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-network-rbac-policies/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenstackNetworkRbacPoliciesDestroyRequest generates requests for OpenstackNetworkRbacPoliciesDestroy
+func NewOpenstackNetworkRbacPoliciesDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-network-rbac-policies/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewOpenstackNetworkRbacPoliciesRetrieveRequest generates requests for OpenstackNetworkRbacPoliciesRetrieve
 func NewOpenstackNetworkRbacPoliciesRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -157683,6 +158086,100 @@ func NewOpenstackNetworkRbacPoliciesRetrieveRequest(server string, uuid openapi_
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewOpenstackNetworkRbacPoliciesPartialUpdateRequest calls the generic OpenstackNetworkRbacPoliciesPartialUpdate builder with application/json body
+func NewOpenstackNetworkRbacPoliciesPartialUpdateRequest(server string, uuid openapi_types.UUID, body OpenstackNetworkRbacPoliciesPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackNetworkRbacPoliciesPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOpenstackNetworkRbacPoliciesPartialUpdateRequestWithBody generates requests for OpenstackNetworkRbacPoliciesPartialUpdate with any type of body
+func NewOpenstackNetworkRbacPoliciesPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-network-rbac-policies/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOpenstackNetworkRbacPoliciesUpdateRequest calls the generic OpenstackNetworkRbacPoliciesUpdate builder with application/json body
+func NewOpenstackNetworkRbacPoliciesUpdateRequest(server string, uuid openapi_types.UUID, body OpenstackNetworkRbacPoliciesUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackNetworkRbacPoliciesUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOpenstackNetworkRbacPoliciesUpdateRequestWithBody generates requests for OpenstackNetworkRbacPoliciesUpdate with any type of body
+func NewOpenstackNetworkRbacPoliciesUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-network-rbac-policies/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -212281,6 +212778,9 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceServiceProvidersCreateWithFormdataBodyWithResponse(ctx context.Context, body MarketplaceServiceProvidersCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersCreateResponse, error)
 
+	// ServiceProviderChecklistsSummaryWithResponse request
+	ServiceProviderChecklistsSummaryWithResponse(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *ServiceProviderChecklistsSummaryParams, reqEditors ...RequestEditorFn) (*ServiceProviderChecklistsSummaryResponse, error)
+
 	// ServiceProviderComplianceOverviewWithResponse request
 	ServiceProviderComplianceOverviewWithResponse(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *ServiceProviderComplianceOverviewParams, reqEditors ...RequestEditorFn) (*ServiceProviderComplianceOverviewResponse, error)
 
@@ -212839,8 +213339,26 @@ type ClientWithResponsesInterface interface {
 	// OpenstackNetworkRbacPoliciesCountWithResponse request
 	OpenstackNetworkRbacPoliciesCountWithResponse(ctx context.Context, params *OpenstackNetworkRbacPoliciesCountParams, reqEditors ...RequestEditorFn) (*OpenstackNetworkRbacPoliciesCountResponse, error)
 
+	// OpenstackNetworkRbacPoliciesCreateWithBodyWithResponse request with any body
+	OpenstackNetworkRbacPoliciesCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackNetworkRbacPoliciesCreateResponse, error)
+
+	OpenstackNetworkRbacPoliciesCreateWithResponse(ctx context.Context, body OpenstackNetworkRbacPoliciesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackNetworkRbacPoliciesCreateResponse, error)
+
+	// OpenstackNetworkRbacPoliciesDestroyWithResponse request
+	OpenstackNetworkRbacPoliciesDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackNetworkRbacPoliciesDestroyResponse, error)
+
 	// OpenstackNetworkRbacPoliciesRetrieveWithResponse request
 	OpenstackNetworkRbacPoliciesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackNetworkRbacPoliciesRetrieveResponse, error)
+
+	// OpenstackNetworkRbacPoliciesPartialUpdateWithBodyWithResponse request with any body
+	OpenstackNetworkRbacPoliciesPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackNetworkRbacPoliciesPartialUpdateResponse, error)
+
+	OpenstackNetworkRbacPoliciesPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackNetworkRbacPoliciesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackNetworkRbacPoliciesPartialUpdateResponse, error)
+
+	// OpenstackNetworkRbacPoliciesUpdateWithBodyWithResponse request with any body
+	OpenstackNetworkRbacPoliciesUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackNetworkRbacPoliciesUpdateResponse, error)
+
+	OpenstackNetworkRbacPoliciesUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackNetworkRbacPoliciesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackNetworkRbacPoliciesUpdateResponse, error)
 
 	// OpenstackNetworksListWithResponse request
 	OpenstackNetworksListWithResponse(ctx context.Context, params *OpenstackNetworksListParams, reqEditors ...RequestEditorFn) (*OpenstackNetworksListResponse, error)
@@ -232646,6 +233164,28 @@ func (r MarketplaceServiceProvidersCreateResponse) StatusCode() int {
 	return 0
 }
 
+type ServiceProviderChecklistsSummaryResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]ServiceProviderChecklistSummary
+}
+
+// Status returns HTTPResponse.Status
+func (r ServiceProviderChecklistsSummaryResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ServiceProviderChecklistsSummaryResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type ServiceProviderComplianceOverviewResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -236146,6 +236686,49 @@ func (r OpenstackNetworkRbacPoliciesCountResponse) StatusCode() int {
 	return 0
 }
 
+type OpenstackNetworkRbacPoliciesCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *NetworkRBACPolicy
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackNetworkRbacPoliciesCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackNetworkRbacPoliciesCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackNetworkRbacPoliciesDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackNetworkRbacPoliciesDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackNetworkRbacPoliciesDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type OpenstackNetworkRbacPoliciesRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -236162,6 +236745,50 @@ func (r OpenstackNetworkRbacPoliciesRetrieveResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r OpenstackNetworkRbacPoliciesRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackNetworkRbacPoliciesPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *NetworkRBACPolicy
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackNetworkRbacPoliciesPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackNetworkRbacPoliciesPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OpenstackNetworkRbacPoliciesUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *NetworkRBACPolicy
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackNetworkRbacPoliciesUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackNetworkRbacPoliciesUpdateResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -258633,6 +259260,15 @@ func (c *ClientWithResponses) MarketplaceServiceProvidersCreateWithFormdataBodyW
 	return ParseMarketplaceServiceProvidersCreateResponse(rsp)
 }
 
+// ServiceProviderChecklistsSummaryWithResponse request returning *ServiceProviderChecklistsSummaryResponse
+func (c *ClientWithResponses) ServiceProviderChecklistsSummaryWithResponse(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *ServiceProviderChecklistsSummaryParams, reqEditors ...RequestEditorFn) (*ServiceProviderChecklistsSummaryResponse, error) {
+	rsp, err := c.ServiceProviderChecklistsSummary(ctx, serviceProviderUuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseServiceProviderChecklistsSummaryResponse(rsp)
+}
+
 // ServiceProviderComplianceOverviewWithResponse request returning *ServiceProviderComplianceOverviewResponse
 func (c *ClientWithResponses) ServiceProviderComplianceOverviewWithResponse(ctx context.Context, serviceProviderUuid openapi_types.UUID, params *ServiceProviderComplianceOverviewParams, reqEditors ...RequestEditorFn) (*ServiceProviderComplianceOverviewResponse, error) {
 	rsp, err := c.ServiceProviderComplianceOverview(ctx, serviceProviderUuid, params, reqEditors...)
@@ -260379,6 +261015,32 @@ func (c *ClientWithResponses) OpenstackNetworkRbacPoliciesCountWithResponse(ctx 
 	return ParseOpenstackNetworkRbacPoliciesCountResponse(rsp)
 }
 
+// OpenstackNetworkRbacPoliciesCreateWithBodyWithResponse request with arbitrary body returning *OpenstackNetworkRbacPoliciesCreateResponse
+func (c *ClientWithResponses) OpenstackNetworkRbacPoliciesCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackNetworkRbacPoliciesCreateResponse, error) {
+	rsp, err := c.OpenstackNetworkRbacPoliciesCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackNetworkRbacPoliciesCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackNetworkRbacPoliciesCreateWithResponse(ctx context.Context, body OpenstackNetworkRbacPoliciesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackNetworkRbacPoliciesCreateResponse, error) {
+	rsp, err := c.OpenstackNetworkRbacPoliciesCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackNetworkRbacPoliciesCreateResponse(rsp)
+}
+
+// OpenstackNetworkRbacPoliciesDestroyWithResponse request returning *OpenstackNetworkRbacPoliciesDestroyResponse
+func (c *ClientWithResponses) OpenstackNetworkRbacPoliciesDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackNetworkRbacPoliciesDestroyResponse, error) {
+	rsp, err := c.OpenstackNetworkRbacPoliciesDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackNetworkRbacPoliciesDestroyResponse(rsp)
+}
+
 // OpenstackNetworkRbacPoliciesRetrieveWithResponse request returning *OpenstackNetworkRbacPoliciesRetrieveResponse
 func (c *ClientWithResponses) OpenstackNetworkRbacPoliciesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackNetworkRbacPoliciesRetrieveResponse, error) {
 	rsp, err := c.OpenstackNetworkRbacPoliciesRetrieve(ctx, uuid, reqEditors...)
@@ -260386,6 +261048,40 @@ func (c *ClientWithResponses) OpenstackNetworkRbacPoliciesRetrieveWithResponse(c
 		return nil, err
 	}
 	return ParseOpenstackNetworkRbacPoliciesRetrieveResponse(rsp)
+}
+
+// OpenstackNetworkRbacPoliciesPartialUpdateWithBodyWithResponse request with arbitrary body returning *OpenstackNetworkRbacPoliciesPartialUpdateResponse
+func (c *ClientWithResponses) OpenstackNetworkRbacPoliciesPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackNetworkRbacPoliciesPartialUpdateResponse, error) {
+	rsp, err := c.OpenstackNetworkRbacPoliciesPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackNetworkRbacPoliciesPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackNetworkRbacPoliciesPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackNetworkRbacPoliciesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackNetworkRbacPoliciesPartialUpdateResponse, error) {
+	rsp, err := c.OpenstackNetworkRbacPoliciesPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackNetworkRbacPoliciesPartialUpdateResponse(rsp)
+}
+
+// OpenstackNetworkRbacPoliciesUpdateWithBodyWithResponse request with arbitrary body returning *OpenstackNetworkRbacPoliciesUpdateResponse
+func (c *ClientWithResponses) OpenstackNetworkRbacPoliciesUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackNetworkRbacPoliciesUpdateResponse, error) {
+	rsp, err := c.OpenstackNetworkRbacPoliciesUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackNetworkRbacPoliciesUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackNetworkRbacPoliciesUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackNetworkRbacPoliciesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackNetworkRbacPoliciesUpdateResponse, error) {
+	rsp, err := c.OpenstackNetworkRbacPoliciesUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackNetworkRbacPoliciesUpdateResponse(rsp)
 }
 
 // OpenstackNetworksListWithResponse request returning *OpenstackNetworksListResponse
@@ -285616,6 +286312,32 @@ func ParseMarketplaceServiceProvidersCreateResponse(rsp *http.Response) (*Market
 	return response, nil
 }
 
+// ParseServiceProviderChecklistsSummaryResponse parses an HTTP response from a ServiceProviderChecklistsSummaryWithResponse call
+func ParseServiceProviderChecklistsSummaryResponse(rsp *http.Response) (*ServiceProviderChecklistsSummaryResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ServiceProviderChecklistsSummaryResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []ServiceProviderChecklistSummary
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseServiceProviderComplianceOverviewResponse parses an HTTP response from a ServiceProviderComplianceOverviewWithResponse call
 func ParseServiceProviderComplianceOverviewResponse(rsp *http.Response) (*ServiceProviderComplianceOverviewResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -289188,6 +289910,48 @@ func ParseOpenstackNetworkRbacPoliciesCountResponse(rsp *http.Response) (*Openst
 	return response, nil
 }
 
+// ParseOpenstackNetworkRbacPoliciesCreateResponse parses an HTTP response from a OpenstackNetworkRbacPoliciesCreateWithResponse call
+func ParseOpenstackNetworkRbacPoliciesCreateResponse(rsp *http.Response) (*OpenstackNetworkRbacPoliciesCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackNetworkRbacPoliciesCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest NetworkRBACPolicy
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackNetworkRbacPoliciesDestroyResponse parses an HTTP response from a OpenstackNetworkRbacPoliciesDestroyWithResponse call
+func ParseOpenstackNetworkRbacPoliciesDestroyResponse(rsp *http.Response) (*OpenstackNetworkRbacPoliciesDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackNetworkRbacPoliciesDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
 // ParseOpenstackNetworkRbacPoliciesRetrieveResponse parses an HTTP response from a OpenstackNetworkRbacPoliciesRetrieveWithResponse call
 func ParseOpenstackNetworkRbacPoliciesRetrieveResponse(rsp *http.Response) (*OpenstackNetworkRbacPoliciesRetrieveResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -289197,6 +289961,58 @@ func ParseOpenstackNetworkRbacPoliciesRetrieveResponse(rsp *http.Response) (*Ope
 	}
 
 	response := &OpenstackNetworkRbacPoliciesRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest NetworkRBACPolicy
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackNetworkRbacPoliciesPartialUpdateResponse parses an HTTP response from a OpenstackNetworkRbacPoliciesPartialUpdateWithResponse call
+func ParseOpenstackNetworkRbacPoliciesPartialUpdateResponse(rsp *http.Response) (*OpenstackNetworkRbacPoliciesPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackNetworkRbacPoliciesPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest NetworkRBACPolicy
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackNetworkRbacPoliciesUpdateResponse parses an HTTP response from a OpenstackNetworkRbacPoliciesUpdateWithResponse call
+func ParseOpenstackNetworkRbacPoliciesUpdateResponse(rsp *http.Response) (*OpenstackNetworkRbacPoliciesUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackNetworkRbacPoliciesUpdateResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
