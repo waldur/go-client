@@ -13573,6 +13573,28 @@ type DependencyLogicOperatorEnum string
 // DeploymentModeEnum defines model for DeploymentModeEnum.
 type DeploymentModeEnum string
 
+// DeprecatedNetworkRBACPolicy defines model for DeprecatedNetworkRBACPolicy.
+type DeprecatedNetworkRBACPolicy struct {
+	BackendId   *string    `json:"backend_id,omitempty"`
+	Created     *time.Time `json:"created,omitempty"`
+	Network     *string    `json:"network,omitempty"`
+	NetworkName *string    `json:"network_name,omitempty"`
+
+	// PolicyType Type of access granted - either shared access or external network access
+	PolicyType       *PolicyTypeEnum     `json:"policy_type,omitempty"`
+	TargetTenant     string              `json:"target_tenant"`
+	TargetTenantName *string             `json:"target_tenant_name,omitempty"`
+	Url              *string             `json:"url,omitempty"`
+	Uuid             *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// DeprecatedNetworkRBACPolicyRequest defines model for DeprecatedNetworkRBACPolicyRequest.
+type DeprecatedNetworkRBACPolicyRequest struct {
+	// PolicyType Type of access granted - either shared access or external network access
+	PolicyType   *PolicyTypeEnum `json:"policy_type,omitempty"`
+	TargetTenant string          `json:"target_tenant"`
+}
+
 // DetailState defines model for DetailState.
 type DetailState struct {
 	Detail *string `json:"detail,omitempty"`
@@ -37772,7 +37794,7 @@ type OpenstackNetworksUpdateJSONRequestBody = OpenStackNetworkRequest
 type OpenstackNetworksCreateSubnetJSONRequestBody = OpenStackSubNetRequest
 
 // OpenstackNetworksRbacPolicyCreateJSONRequestBody defines body for OpenstackNetworksRbacPolicyCreate for application/json ContentType.
-type OpenstackNetworksRbacPolicyCreateJSONRequestBody = NetworkRBACPolicyRequest
+type OpenstackNetworksRbacPolicyCreateJSONRequestBody = DeprecatedNetworkRBACPolicyRequest
 
 // OpenstackNetworksSetMtuJSONRequestBody defines body for OpenstackNetworksSetMtu for application/json ContentType.
 type OpenstackNetworksSetMtuJSONRequestBody = SetMtuRequest
@@ -236971,7 +236993,7 @@ func (r OpenstackNetworksPullResponse) StatusCode() int {
 type OpenstackNetworksRbacPolicyCreateResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *NetworkRBACPolicy
+	JSON200      *DeprecatedNetworkRBACPolicy
 }
 
 // Status returns HTTPResponse.Status
@@ -290223,7 +290245,7 @@ func ParseOpenstackNetworksRbacPolicyCreateResponse(rsp *http.Response) (*Openst
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest NetworkRBACPolicy
+		var dest DeprecatedNetworkRBACPolicy
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
