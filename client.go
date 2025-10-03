@@ -495,6 +495,7 @@ const (
 	AuthLoggedOut                                    EventTypesEnum = "auth_logged_out"
 	AuthLoggedOutWithSaml2                           EventTypesEnum = "auth_logged_out_with_saml2"
 	AuthLoginFailedWithUsername                      EventTypesEnum = "auth_login_failed_with_username"
+	AutomaticCreditAdjustment                        EventTypesEnum = "automatic_credit_adjustment"
 	BlockCreationOfNewResources                      EventTypesEnum = "block_creation_of_new_resources"
 	BlockModificationOfExistingResources             EventTypesEnum = "block_modification_of_existing_resources"
 	CallDocumentAdded                                EventTypesEnum = "call_document_added"
@@ -19689,13 +19690,14 @@ type PatchedPaymentRequestMultipart struct {
 
 // PatchedProjectCreditRequest defines model for PatchedProjectCreditRequest.
 type PatchedProjectCreditRequest struct {
-	ApplyAsMinimalConsumption *bool                        `json:"apply_as_minimal_consumption,omitempty"`
-	EndDate                   *openapi_types.Date          `json:"end_date"`
-	ExpectedConsumption       *string                      `json:"expected_consumption,omitempty"`
-	GraceCoefficient          *string                      `json:"grace_coefficient,omitempty"`
-	MinimalConsumptionLogic   *MinimalConsumptionLogicEnum `json:"minimal_consumption_logic,omitempty"`
-	Project                   *string                      `json:"project,omitempty"`
-	Value                     *string                      `json:"value,omitempty"`
+	ApplyAsMinimalConsumption                   *bool                        `json:"apply_as_minimal_consumption,omitempty"`
+	EndDate                                     *openapi_types.Date          `json:"end_date"`
+	ExpectedConsumption                         *string                      `json:"expected_consumption,omitempty"`
+	GraceCoefficient                            *string                      `json:"grace_coefficient,omitempty"`
+	MarkUnusedCreditAsSpentOnProjectTermination *bool                        `json:"mark_unused_credit_as_spent_on_project_termination,omitempty"`
+	MinimalConsumptionLogic                     *MinimalConsumptionLogicEnum `json:"minimal_consumption_logic,omitempty"`
+	Project                                     *string                      `json:"project,omitempty"`
+	Value                                       *string                      `json:"value,omitempty"`
 }
 
 // PatchedProjectEstimatedCostPolicyRequest defines model for PatchedProjectEstimatedCostPolicyRequest.
@@ -20570,37 +20572,39 @@ type ProjectAnswer struct {
 
 // ProjectCredit defines model for ProjectCredit.
 type ProjectCredit struct {
-	AllocatedCustomerCredit   *float64                     `json:"allocated_customer_credit,omitempty"`
-	ApplyAsMinimalConsumption *bool                        `json:"apply_as_minimal_consumption,omitempty"`
-	ConsumptionLastMonth      *float64                     `json:"consumption_last_month,omitempty"`
-	CustomerCredit            *string                      `json:"customer_credit,omitempty"`
-	CustomerName              *string                      `json:"customer_name,omitempty"`
-	CustomerSlug              *string                      `json:"customer_slug,omitempty"`
-	CustomerUuid              *openapi_types.UUID          `json:"customer_uuid,omitempty"`
-	EndDate                   *openapi_types.Date          `json:"end_date"`
-	ExpectedConsumption       *string                      `json:"expected_consumption,omitempty"`
-	GraceCoefficient          *string                      `json:"grace_coefficient,omitempty"`
-	MinimalConsumption        *float64                     `json:"minimal_consumption,omitempty"`
-	MinimalConsumptionLogic   *MinimalConsumptionLogicEnum `json:"minimal_consumption_logic,omitempty"`
-	Offerings                 *[]NestedPublicOffering      `json:"offerings,omitempty"`
-	Project                   string                       `json:"project"`
-	ProjectName               *string                      `json:"project_name,omitempty"`
-	ProjectSlug               *string                      `json:"project_slug,omitempty"`
-	ProjectUuid               *openapi_types.UUID          `json:"project_uuid,omitempty"`
-	Url                       *string                      `json:"url,omitempty"`
-	Uuid                      *openapi_types.UUID          `json:"uuid,omitempty"`
-	Value                     *string                      `json:"value,omitempty"`
+	AllocatedCustomerCredit                     *float64                     `json:"allocated_customer_credit,omitempty"`
+	ApplyAsMinimalConsumption                   *bool                        `json:"apply_as_minimal_consumption,omitempty"`
+	ConsumptionLastMonth                        *float64                     `json:"consumption_last_month,omitempty"`
+	CustomerCredit                              *string                      `json:"customer_credit,omitempty"`
+	CustomerName                                *string                      `json:"customer_name,omitempty"`
+	CustomerSlug                                *string                      `json:"customer_slug,omitempty"`
+	CustomerUuid                                *openapi_types.UUID          `json:"customer_uuid,omitempty"`
+	EndDate                                     *openapi_types.Date          `json:"end_date"`
+	ExpectedConsumption                         *string                      `json:"expected_consumption,omitempty"`
+	GraceCoefficient                            *string                      `json:"grace_coefficient,omitempty"`
+	MarkUnusedCreditAsSpentOnProjectTermination *bool                        `json:"mark_unused_credit_as_spent_on_project_termination,omitempty"`
+	MinimalConsumption                          *float64                     `json:"minimal_consumption,omitempty"`
+	MinimalConsumptionLogic                     *MinimalConsumptionLogicEnum `json:"minimal_consumption_logic,omitempty"`
+	Offerings                                   *[]NestedPublicOffering      `json:"offerings,omitempty"`
+	Project                                     string                       `json:"project"`
+	ProjectName                                 *string                      `json:"project_name,omitempty"`
+	ProjectSlug                                 *string                      `json:"project_slug,omitempty"`
+	ProjectUuid                                 *openapi_types.UUID          `json:"project_uuid,omitempty"`
+	Url                                         *string                      `json:"url,omitempty"`
+	Uuid                                        *openapi_types.UUID          `json:"uuid,omitempty"`
+	Value                                       *string                      `json:"value,omitempty"`
 }
 
 // ProjectCreditRequest defines model for ProjectCreditRequest.
 type ProjectCreditRequest struct {
-	ApplyAsMinimalConsumption *bool                        `json:"apply_as_minimal_consumption,omitempty"`
-	EndDate                   *openapi_types.Date          `json:"end_date"`
-	ExpectedConsumption       *string                      `json:"expected_consumption,omitempty"`
-	GraceCoefficient          *string                      `json:"grace_coefficient,omitempty"`
-	MinimalConsumptionLogic   *MinimalConsumptionLogicEnum `json:"minimal_consumption_logic,omitempty"`
-	Project                   string                       `json:"project"`
-	Value                     *string                      `json:"value,omitempty"`
+	ApplyAsMinimalConsumption                   *bool                        `json:"apply_as_minimal_consumption,omitempty"`
+	EndDate                                     *openapi_types.Date          `json:"end_date"`
+	ExpectedConsumption                         *string                      `json:"expected_consumption,omitempty"`
+	GraceCoefficient                            *string                      `json:"grace_coefficient,omitempty"`
+	MarkUnusedCreditAsSpentOnProjectTermination *bool                        `json:"mark_unused_credit_as_spent_on_project_termination,omitempty"`
+	MinimalConsumptionLogic                     *MinimalConsumptionLogicEnum `json:"minimal_consumption_logic,omitempty"`
+	Project                                     string                       `json:"project"`
+	Value                                       *string                      `json:"value,omitempty"`
 }
 
 // ProjectDetail defines model for ProjectDetail.
@@ -23965,6 +23969,25 @@ type Tenant struct {
 	Uuid *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
+// TimeSeriesToSData defines model for TimeSeriesToSData.
+type TimeSeriesToSData struct {
+	Count *int                `json:"count,omitempty"`
+	Date  *openapi_types.Date `json:"date,omitempty"`
+}
+
+// ToSConsentDashboard defines model for ToSConsentDashboard.
+type ToSConsentDashboard struct {
+	AcceptedConsentsCount   *int                 `json:"accepted_consents_count,omitempty"`
+	ActiveUsersCount        *int                 `json:"active_users_count,omitempty"`
+	ActiveUsersOverTime     *[]TimeSeriesToSData `json:"active_users_over_time,omitempty"`
+	ActiveUsersPercentage   *float64             `json:"active_users_percentage,omitempty"`
+	RevokedConsentsCount    *int                 `json:"revoked_consents_count,omitempty"`
+	RevokedConsentsOverTime *[]TimeSeriesToSData `json:"revoked_consents_over_time,omitempty"`
+	TosVersionAdoption      *[]VersionAdoption   `json:"tos_version_adoption,omitempty"`
+	TotalConsentsCount      *int                 `json:"total_consents_count,omitempty"`
+	TotalUsersCount         *int                 `json:"total_users_count,omitempty"`
+}
+
 // TokenRequest defines model for TokenRequest.
 type TokenRequest struct {
 	Token string `json:"token"`
@@ -24355,6 +24378,12 @@ type Version struct {
 
 	// Version Current installed version of the application
 	Version string `json:"version"`
+}
+
+// VersionAdoption defines model for VersionAdoption.
+type VersionAdoption struct {
+	UsersCount *int    `json:"users_count,omitempty"`
+	Version    *string `json:"version,omitempty"`
 }
 
 // VisibilityEnum defines model for VisibilityEnum.
@@ -46807,6 +46836,9 @@ type ClientInterface interface {
 	// MarketplaceProviderOfferingsSync request
 	MarketplaceProviderOfferingsSync(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceProviderOfferingsTosStatsRetrieve request
+	MarketplaceProviderOfferingsTosStatsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceProviderOfferingsUnpause request
 	MarketplaceProviderOfferingsUnpause(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -61124,6 +61156,18 @@ func (c *Client) MarketplaceProviderOfferingsStatsRetrieve(ctx context.Context, 
 
 func (c *Client) MarketplaceProviderOfferingsSync(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProviderOfferingsSyncRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderOfferingsTosStatsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsTosStatsRetrieveRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -132534,6 +132578,40 @@ func NewMarketplaceProviderOfferingsSyncRequest(server string, uuid openapi_type
 	}
 
 	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceProviderOfferingsTosStatsRetrieveRequest generates requests for MarketplaceProviderOfferingsTosStatsRetrieve
+func NewMarketplaceProviderOfferingsTosStatsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-offerings/%s/tos_stats/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
@@ -212323,6 +212401,9 @@ type ClientWithResponsesInterface interface {
 	// MarketplaceProviderOfferingsSyncWithResponse request
 	MarketplaceProviderOfferingsSyncWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsSyncResponse, error)
 
+	// MarketplaceProviderOfferingsTosStatsRetrieveWithResponse request
+	MarketplaceProviderOfferingsTosStatsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsTosStatsRetrieveResponse, error)
+
 	// MarketplaceProviderOfferingsUnpauseWithResponse request
 	MarketplaceProviderOfferingsUnpauseWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUnpauseResponse, error)
 
@@ -230599,6 +230680,28 @@ func (r MarketplaceProviderOfferingsSyncResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceProviderOfferingsSyncResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceProviderOfferingsTosStatsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ToSConsentDashboard
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderOfferingsTosStatsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderOfferingsTosStatsRetrieveResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -257731,6 +257834,15 @@ func (c *ClientWithResponses) MarketplaceProviderOfferingsSyncWithResponse(ctx c
 	return ParseMarketplaceProviderOfferingsSyncResponse(rsp)
 }
 
+// MarketplaceProviderOfferingsTosStatsRetrieveWithResponse request returning *MarketplaceProviderOfferingsTosStatsRetrieveResponse
+func (c *ClientWithResponses) MarketplaceProviderOfferingsTosStatsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsTosStatsRetrieveResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsTosStatsRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsTosStatsRetrieveResponse(rsp)
+}
+
 // MarketplaceProviderOfferingsUnpauseWithResponse request returning *MarketplaceProviderOfferingsUnpauseResponse
 func (c *ClientWithResponses) MarketplaceProviderOfferingsUnpauseWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUnpauseResponse, error) {
 	rsp, err := c.MarketplaceProviderOfferingsUnpause(ctx, uuid, reqEditors...)
@@ -283608,6 +283720,32 @@ func ParseMarketplaceProviderOfferingsSyncResponse(rsp *http.Response) (*Marketp
 	response := &MarketplaceProviderOfferingsSyncResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProviderOfferingsTosStatsRetrieveResponse parses an HTTP response from a MarketplaceProviderOfferingsTosStatsRetrieveWithResponse call
+func ParseMarketplaceProviderOfferingsTosStatsRetrieveResponse(rsp *http.Response) (*MarketplaceProviderOfferingsTosStatsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderOfferingsTosStatsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ToSConsentDashboard
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
