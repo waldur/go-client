@@ -16033,7 +16033,7 @@ type NotificationRequest struct {
 
 // NotificationTemplateDetailSerializers defines model for NotificationTemplateDetailSerializers.
 type NotificationTemplateDetailSerializers struct {
-	Content             *string `json:"content,omitempty"`
+	Content             *string `json:"content"`
 	IsContentOverridden *bool   `json:"is_content_overridden,omitempty"`
 	Name                string  `json:"name"`
 	OriginalContent     *string `json:"original_content"`
