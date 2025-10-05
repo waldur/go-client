@@ -17007,8 +17007,21 @@ type OpenStackBackupRestorationCreateRequest struct {
 
 // OpenStackCreateFloatingIPRequest defines model for OpenStackCreateFloatingIPRequest.
 type OpenStackCreateFloatingIPRequest struct {
-	Subnet string  `json:"subnet"`
-	Url    *string `json:"url,omitempty"`
+	// IpAddress Existing floating IP address in selected OpenStack tenant to be assigned to new virtual machine
+	IpAddress *OpenStackCreateFloatingIPRequest_IpAddress `json:"ip_address,omitempty"`
+	Subnet    string                                      `json:"subnet"`
+	Url       *string                                     `json:"url,omitempty"`
+}
+
+// OpenStackCreateFloatingIPRequestIpAddress0 defines model for .
+type OpenStackCreateFloatingIPRequestIpAddress0 = string
+
+// OpenStackCreateFloatingIPRequestIpAddress1 defines model for .
+type OpenStackCreateFloatingIPRequestIpAddress1 = string
+
+// OpenStackCreateFloatingIPRequest_IpAddress Existing floating IP address in selected OpenStack tenant to be assigned to new virtual machine
+type OpenStackCreateFloatingIPRequest_IpAddress struct {
+	union json.RawMessage
 }
 
 // OpenStackCreatePortRequest defines model for OpenStackCreatePortRequest.
@@ -39780,6 +39793,68 @@ func (t OfferingCreateRequestMultipart_Country) MarshalJSON() ([]byte, error) {
 }
 
 func (t *OfferingCreateRequestMultipart_Country) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsOpenStackCreateFloatingIPRequestIpAddress0 returns the union data inside the OpenStackCreateFloatingIPRequest_IpAddress as a OpenStackCreateFloatingIPRequestIpAddress0
+func (t OpenStackCreateFloatingIPRequest_IpAddress) AsOpenStackCreateFloatingIPRequestIpAddress0() (OpenStackCreateFloatingIPRequestIpAddress0, error) {
+	var body OpenStackCreateFloatingIPRequestIpAddress0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackCreateFloatingIPRequestIpAddress0 overwrites any union data inside the OpenStackCreateFloatingIPRequest_IpAddress as the provided OpenStackCreateFloatingIPRequestIpAddress0
+func (t *OpenStackCreateFloatingIPRequest_IpAddress) FromOpenStackCreateFloatingIPRequestIpAddress0(v OpenStackCreateFloatingIPRequestIpAddress0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackCreateFloatingIPRequestIpAddress0 performs a merge with any union data inside the OpenStackCreateFloatingIPRequest_IpAddress, using the provided OpenStackCreateFloatingIPRequestIpAddress0
+func (t *OpenStackCreateFloatingIPRequest_IpAddress) MergeOpenStackCreateFloatingIPRequestIpAddress0(v OpenStackCreateFloatingIPRequestIpAddress0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsOpenStackCreateFloatingIPRequestIpAddress1 returns the union data inside the OpenStackCreateFloatingIPRequest_IpAddress as a OpenStackCreateFloatingIPRequestIpAddress1
+func (t OpenStackCreateFloatingIPRequest_IpAddress) AsOpenStackCreateFloatingIPRequestIpAddress1() (OpenStackCreateFloatingIPRequestIpAddress1, error) {
+	var body OpenStackCreateFloatingIPRequestIpAddress1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackCreateFloatingIPRequestIpAddress1 overwrites any union data inside the OpenStackCreateFloatingIPRequest_IpAddress as the provided OpenStackCreateFloatingIPRequestIpAddress1
+func (t *OpenStackCreateFloatingIPRequest_IpAddress) FromOpenStackCreateFloatingIPRequestIpAddress1(v OpenStackCreateFloatingIPRequestIpAddress1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackCreateFloatingIPRequestIpAddress1 performs a merge with any union data inside the OpenStackCreateFloatingIPRequest_IpAddress, using the provided OpenStackCreateFloatingIPRequestIpAddress1
+func (t *OpenStackCreateFloatingIPRequest_IpAddress) MergeOpenStackCreateFloatingIPRequestIpAddress1(v OpenStackCreateFloatingIPRequestIpAddress1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t OpenStackCreateFloatingIPRequest_IpAddress) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *OpenStackCreateFloatingIPRequest_IpAddress) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
