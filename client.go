@@ -11684,7 +11684,7 @@ type BookingResource struct {
 	ProjectSlug               *string             `json:"project_slug,omitempty"`
 	ProjectUuid               *openapi_types.UUID `json:"project_uuid,omitempty"`
 	ProviderName              *string             `json:"provider_name,omitempty"`
-	ProviderSlug              *openapi_types.UUID `json:"provider_slug,omitempty"`
+	ProviderSlug              *string             `json:"provider_slug,omitempty"`
 	ProviderUuid              *openapi_types.UUID `json:"provider_uuid,omitempty"`
 	Report                    *[]ReportSection    `json:"report,omitempty"`
 	ResourceType              *string             `json:"resource_type"`
@@ -18696,7 +18696,7 @@ type OrderCreate struct {
 	ProjectName        *string             `json:"project_name,omitempty"`
 	ProjectUuid        *openapi_types.UUID `json:"project_uuid,omitempty"`
 	ProviderName       *string             `json:"provider_name,omitempty"`
-	ProviderSlug       *openapi_types.UUID `json:"provider_slug,omitempty"`
+	ProviderSlug       *string             `json:"provider_slug,omitempty"`
 	ProviderUuid       *openapi_types.UUID `json:"provider_uuid,omitempty"`
 	RequestComment     *string             `json:"request_comment"`
 	ResourceName       *string             `json:"resource_name,omitempty"`
@@ -18806,7 +18806,7 @@ type OrderDetails struct {
 
 	// ProviderReviewedByUsername Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
 	ProviderReviewedByUsername *string             `json:"provider_reviewed_by_username"`
-	ProviderSlug               *openapi_types.UUID `json:"provider_slug,omitempty"`
+	ProviderSlug               *string             `json:"provider_slug,omitempty"`
 	ProviderUuid               *openapi_types.UUID `json:"provider_uuid,omitempty"`
 	RequestComment             *string             `json:"request_comment"`
 	ResourceName               *string             `json:"resource_name,omitempty"`
@@ -22990,7 +22990,7 @@ type Resource struct {
 	ProjectSlug               *string             `json:"project_slug,omitempty"`
 	ProjectUuid               *openapi_types.UUID `json:"project_uuid,omitempty"`
 	ProviderName              *string             `json:"provider_name,omitempty"`
-	ProviderSlug              *openapi_types.UUID `json:"provider_slug,omitempty"`
+	ProviderSlug              *string             `json:"provider_slug,omitempty"`
 	ProviderUuid              *openapi_types.UUID `json:"provider_uuid,omitempty"`
 	Report                    *[]ReportSection    `json:"report,omitempty"`
 	ResourceType              *string             `json:"resource_type"`
