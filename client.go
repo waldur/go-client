@@ -34185,6 +34185,9 @@ type ProposalProtectedCallsOfferingsListParams struct {
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// State Filter by state
+	State *string `form:"state,omitempty" json:"state,omitempty"`
 }
 
 // ProposalProtectedCallsProposalsComplianceAnswersListParams defines parameters for ProposalProtectedCallsProposalsComplianceAnswersList.
@@ -178786,6 +178789,22 @@ func NewProposalProtectedCallsOfferingsListRequest(server string, uuid openapi_t
 		if params.PageSize != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "state", runtime.ParamLocationQuery, *params.State); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
