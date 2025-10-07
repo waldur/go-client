@@ -3038,6 +3038,7 @@ const (
 	CustomersListParamsFieldCustomerUnallocatedCredit    CustomersListParamsField = "customer_unallocated_credit"
 	CustomersListParamsFieldDefaultTaxPercent            CustomersListParamsField = "default_tax_percent"
 	CustomersListParamsFieldDescription                  CustomersListParamsField = "description"
+	CustomersListParamsFieldDisplayBillingInfoInProjects CustomersListParamsField = "display_billing_info_in_projects"
 	CustomersListParamsFieldDisplayName                  CustomersListParamsField = "display_name"
 	CustomersListParamsFieldDomain                       CustomersListParamsField = "domain"
 	CustomersListParamsFieldEmail                        CustomersListParamsField = "email"
@@ -3123,6 +3124,7 @@ const (
 	CustomersRetrieveParamsFieldCustomerUnallocatedCredit    CustomersRetrieveParamsField = "customer_unallocated_credit"
 	CustomersRetrieveParamsFieldDefaultTaxPercent            CustomersRetrieveParamsField = "default_tax_percent"
 	CustomersRetrieveParamsFieldDescription                  CustomersRetrieveParamsField = "description"
+	CustomersRetrieveParamsFieldDisplayBillingInfoInProjects CustomersRetrieveParamsField = "display_billing_info_in_projects"
 	CustomersRetrieveParamsFieldDisplayName                  CustomersRetrieveParamsField = "display_name"
 	CustomersRetrieveParamsFieldDomain                       CustomersRetrieveParamsField = "domain"
 	CustomersRetrieveParamsFieldEmail                        CustomersRetrieveParamsField = "email"
@@ -6495,35 +6497,36 @@ const (
 
 // Defines values for MarketplaceServiceProvidersProjectsListParamsField.
 const (
-	MarketplaceServiceProvidersProjectsListParamsFieldBackendId                MarketplaceServiceProvidersProjectsListParamsField = "backend_id"
-	MarketplaceServiceProvidersProjectsListParamsFieldBillingPriceEstimate     MarketplaceServiceProvidersProjectsListParamsField = "billing_price_estimate"
-	MarketplaceServiceProvidersProjectsListParamsFieldCreated                  MarketplaceServiceProvidersProjectsListParamsField = "created"
-	MarketplaceServiceProvidersProjectsListParamsFieldCustomer                 MarketplaceServiceProvidersProjectsListParamsField = "customer"
-	MarketplaceServiceProvidersProjectsListParamsFieldCustomerAbbreviation     MarketplaceServiceProvidersProjectsListParamsField = "customer_abbreviation"
-	MarketplaceServiceProvidersProjectsListParamsFieldCustomerName             MarketplaceServiceProvidersProjectsListParamsField = "customer_name"
-	MarketplaceServiceProvidersProjectsListParamsFieldCustomerNativeName       MarketplaceServiceProvidersProjectsListParamsField = "customer_native_name"
-	MarketplaceServiceProvidersProjectsListParamsFieldCustomerSlug             MarketplaceServiceProvidersProjectsListParamsField = "customer_slug"
-	MarketplaceServiceProvidersProjectsListParamsFieldCustomerUuid             MarketplaceServiceProvidersProjectsListParamsField = "customer_uuid"
-	MarketplaceServiceProvidersProjectsListParamsFieldDescription              MarketplaceServiceProvidersProjectsListParamsField = "description"
-	MarketplaceServiceProvidersProjectsListParamsFieldEndDate                  MarketplaceServiceProvidersProjectsListParamsField = "end_date"
-	MarketplaceServiceProvidersProjectsListParamsFieldEndDateRequestedBy       MarketplaceServiceProvidersProjectsListParamsField = "end_date_requested_by"
-	MarketplaceServiceProvidersProjectsListParamsFieldImage                    MarketplaceServiceProvidersProjectsListParamsField = "image"
-	MarketplaceServiceProvidersProjectsListParamsFieldIsIndustry               MarketplaceServiceProvidersProjectsListParamsField = "is_industry"
-	MarketplaceServiceProvidersProjectsListParamsFieldKind                     MarketplaceServiceProvidersProjectsListParamsField = "kind"
-	MarketplaceServiceProvidersProjectsListParamsFieldMarketplaceResourceCount MarketplaceServiceProvidersProjectsListParamsField = "marketplace_resource_count"
-	MarketplaceServiceProvidersProjectsListParamsFieldMaxServiceAccounts       MarketplaceServiceProvidersProjectsListParamsField = "max_service_accounts"
-	MarketplaceServiceProvidersProjectsListParamsFieldName                     MarketplaceServiceProvidersProjectsListParamsField = "name"
-	MarketplaceServiceProvidersProjectsListParamsFieldOecdFos2007Code          MarketplaceServiceProvidersProjectsListParamsField = "oecd_fos_2007_code"
-	MarketplaceServiceProvidersProjectsListParamsFieldOecdFos2007Label         MarketplaceServiceProvidersProjectsListParamsField = "oecd_fos_2007_label"
-	MarketplaceServiceProvidersProjectsListParamsFieldProjectCredit            MarketplaceServiceProvidersProjectsListParamsField = "project_credit"
-	MarketplaceServiceProvidersProjectsListParamsFieldResourcesCount           MarketplaceServiceProvidersProjectsListParamsField = "resources_count"
-	MarketplaceServiceProvidersProjectsListParamsFieldSlug                     MarketplaceServiceProvidersProjectsListParamsField = "slug"
-	MarketplaceServiceProvidersProjectsListParamsFieldStartDate                MarketplaceServiceProvidersProjectsListParamsField = "start_date"
-	MarketplaceServiceProvidersProjectsListParamsFieldType                     MarketplaceServiceProvidersProjectsListParamsField = "type"
-	MarketplaceServiceProvidersProjectsListParamsFieldTypeName                 MarketplaceServiceProvidersProjectsListParamsField = "type_name"
-	MarketplaceServiceProvidersProjectsListParamsFieldTypeUuid                 MarketplaceServiceProvidersProjectsListParamsField = "type_uuid"
-	MarketplaceServiceProvidersProjectsListParamsFieldUrl                      MarketplaceServiceProvidersProjectsListParamsField = "url"
-	MarketplaceServiceProvidersProjectsListParamsFieldUuid                     MarketplaceServiceProvidersProjectsListParamsField = "uuid"
+	MarketplaceServiceProvidersProjectsListParamsFieldBackendId                            MarketplaceServiceProvidersProjectsListParamsField = "backend_id"
+	MarketplaceServiceProvidersProjectsListParamsFieldBillingPriceEstimate                 MarketplaceServiceProvidersProjectsListParamsField = "billing_price_estimate"
+	MarketplaceServiceProvidersProjectsListParamsFieldCreated                              MarketplaceServiceProvidersProjectsListParamsField = "created"
+	MarketplaceServiceProvidersProjectsListParamsFieldCustomer                             MarketplaceServiceProvidersProjectsListParamsField = "customer"
+	MarketplaceServiceProvidersProjectsListParamsFieldCustomerAbbreviation                 MarketplaceServiceProvidersProjectsListParamsField = "customer_abbreviation"
+	MarketplaceServiceProvidersProjectsListParamsFieldCustomerDisplayBillingInfoInProjects MarketplaceServiceProvidersProjectsListParamsField = "customer_display_billing_info_in_projects"
+	MarketplaceServiceProvidersProjectsListParamsFieldCustomerName                         MarketplaceServiceProvidersProjectsListParamsField = "customer_name"
+	MarketplaceServiceProvidersProjectsListParamsFieldCustomerNativeName                   MarketplaceServiceProvidersProjectsListParamsField = "customer_native_name"
+	MarketplaceServiceProvidersProjectsListParamsFieldCustomerSlug                         MarketplaceServiceProvidersProjectsListParamsField = "customer_slug"
+	MarketplaceServiceProvidersProjectsListParamsFieldCustomerUuid                         MarketplaceServiceProvidersProjectsListParamsField = "customer_uuid"
+	MarketplaceServiceProvidersProjectsListParamsFieldDescription                          MarketplaceServiceProvidersProjectsListParamsField = "description"
+	MarketplaceServiceProvidersProjectsListParamsFieldEndDate                              MarketplaceServiceProvidersProjectsListParamsField = "end_date"
+	MarketplaceServiceProvidersProjectsListParamsFieldEndDateRequestedBy                   MarketplaceServiceProvidersProjectsListParamsField = "end_date_requested_by"
+	MarketplaceServiceProvidersProjectsListParamsFieldImage                                MarketplaceServiceProvidersProjectsListParamsField = "image"
+	MarketplaceServiceProvidersProjectsListParamsFieldIsIndustry                           MarketplaceServiceProvidersProjectsListParamsField = "is_industry"
+	MarketplaceServiceProvidersProjectsListParamsFieldKind                                 MarketplaceServiceProvidersProjectsListParamsField = "kind"
+	MarketplaceServiceProvidersProjectsListParamsFieldMarketplaceResourceCount             MarketplaceServiceProvidersProjectsListParamsField = "marketplace_resource_count"
+	MarketplaceServiceProvidersProjectsListParamsFieldMaxServiceAccounts                   MarketplaceServiceProvidersProjectsListParamsField = "max_service_accounts"
+	MarketplaceServiceProvidersProjectsListParamsFieldName                                 MarketplaceServiceProvidersProjectsListParamsField = "name"
+	MarketplaceServiceProvidersProjectsListParamsFieldOecdFos2007Code                      MarketplaceServiceProvidersProjectsListParamsField = "oecd_fos_2007_code"
+	MarketplaceServiceProvidersProjectsListParamsFieldOecdFos2007Label                     MarketplaceServiceProvidersProjectsListParamsField = "oecd_fos_2007_label"
+	MarketplaceServiceProvidersProjectsListParamsFieldProjectCredit                        MarketplaceServiceProvidersProjectsListParamsField = "project_credit"
+	MarketplaceServiceProvidersProjectsListParamsFieldResourcesCount                       MarketplaceServiceProvidersProjectsListParamsField = "resources_count"
+	MarketplaceServiceProvidersProjectsListParamsFieldSlug                                 MarketplaceServiceProvidersProjectsListParamsField = "slug"
+	MarketplaceServiceProvidersProjectsListParamsFieldStartDate                            MarketplaceServiceProvidersProjectsListParamsField = "start_date"
+	MarketplaceServiceProvidersProjectsListParamsFieldType                                 MarketplaceServiceProvidersProjectsListParamsField = "type"
+	MarketplaceServiceProvidersProjectsListParamsFieldTypeName                             MarketplaceServiceProvidersProjectsListParamsField = "type_name"
+	MarketplaceServiceProvidersProjectsListParamsFieldTypeUuid                             MarketplaceServiceProvidersProjectsListParamsField = "type_uuid"
+	MarketplaceServiceProvidersProjectsListParamsFieldUrl                                  MarketplaceServiceProvidersProjectsListParamsField = "url"
+	MarketplaceServiceProvidersProjectsListParamsFieldUuid                                 MarketplaceServiceProvidersProjectsListParamsField = "uuid"
 )
 
 // Defines values for MarketplaceServiceProvidersProjectsListParamsO.
@@ -8334,35 +8337,36 @@ const (
 
 // Defines values for ProjectsListParamsField.
 const (
-	ProjectsListParamsFieldBackendId                ProjectsListParamsField = "backend_id"
-	ProjectsListParamsFieldBillingPriceEstimate     ProjectsListParamsField = "billing_price_estimate"
-	ProjectsListParamsFieldCreated                  ProjectsListParamsField = "created"
-	ProjectsListParamsFieldCustomer                 ProjectsListParamsField = "customer"
-	ProjectsListParamsFieldCustomerAbbreviation     ProjectsListParamsField = "customer_abbreviation"
-	ProjectsListParamsFieldCustomerName             ProjectsListParamsField = "customer_name"
-	ProjectsListParamsFieldCustomerNativeName       ProjectsListParamsField = "customer_native_name"
-	ProjectsListParamsFieldCustomerSlug             ProjectsListParamsField = "customer_slug"
-	ProjectsListParamsFieldCustomerUuid             ProjectsListParamsField = "customer_uuid"
-	ProjectsListParamsFieldDescription              ProjectsListParamsField = "description"
-	ProjectsListParamsFieldEndDate                  ProjectsListParamsField = "end_date"
-	ProjectsListParamsFieldEndDateRequestedBy       ProjectsListParamsField = "end_date_requested_by"
-	ProjectsListParamsFieldImage                    ProjectsListParamsField = "image"
-	ProjectsListParamsFieldIsIndustry               ProjectsListParamsField = "is_industry"
-	ProjectsListParamsFieldKind                     ProjectsListParamsField = "kind"
-	ProjectsListParamsFieldMarketplaceResourceCount ProjectsListParamsField = "marketplace_resource_count"
-	ProjectsListParamsFieldMaxServiceAccounts       ProjectsListParamsField = "max_service_accounts"
-	ProjectsListParamsFieldName                     ProjectsListParamsField = "name"
-	ProjectsListParamsFieldOecdFos2007Code          ProjectsListParamsField = "oecd_fos_2007_code"
-	ProjectsListParamsFieldOecdFos2007Label         ProjectsListParamsField = "oecd_fos_2007_label"
-	ProjectsListParamsFieldProjectCredit            ProjectsListParamsField = "project_credit"
-	ProjectsListParamsFieldResourcesCount           ProjectsListParamsField = "resources_count"
-	ProjectsListParamsFieldSlug                     ProjectsListParamsField = "slug"
-	ProjectsListParamsFieldStartDate                ProjectsListParamsField = "start_date"
-	ProjectsListParamsFieldType                     ProjectsListParamsField = "type"
-	ProjectsListParamsFieldTypeName                 ProjectsListParamsField = "type_name"
-	ProjectsListParamsFieldTypeUuid                 ProjectsListParamsField = "type_uuid"
-	ProjectsListParamsFieldUrl                      ProjectsListParamsField = "url"
-	ProjectsListParamsFieldUuid                     ProjectsListParamsField = "uuid"
+	ProjectsListParamsFieldBackendId                            ProjectsListParamsField = "backend_id"
+	ProjectsListParamsFieldBillingPriceEstimate                 ProjectsListParamsField = "billing_price_estimate"
+	ProjectsListParamsFieldCreated                              ProjectsListParamsField = "created"
+	ProjectsListParamsFieldCustomer                             ProjectsListParamsField = "customer"
+	ProjectsListParamsFieldCustomerAbbreviation                 ProjectsListParamsField = "customer_abbreviation"
+	ProjectsListParamsFieldCustomerDisplayBillingInfoInProjects ProjectsListParamsField = "customer_display_billing_info_in_projects"
+	ProjectsListParamsFieldCustomerName                         ProjectsListParamsField = "customer_name"
+	ProjectsListParamsFieldCustomerNativeName                   ProjectsListParamsField = "customer_native_name"
+	ProjectsListParamsFieldCustomerSlug                         ProjectsListParamsField = "customer_slug"
+	ProjectsListParamsFieldCustomerUuid                         ProjectsListParamsField = "customer_uuid"
+	ProjectsListParamsFieldDescription                          ProjectsListParamsField = "description"
+	ProjectsListParamsFieldEndDate                              ProjectsListParamsField = "end_date"
+	ProjectsListParamsFieldEndDateRequestedBy                   ProjectsListParamsField = "end_date_requested_by"
+	ProjectsListParamsFieldImage                                ProjectsListParamsField = "image"
+	ProjectsListParamsFieldIsIndustry                           ProjectsListParamsField = "is_industry"
+	ProjectsListParamsFieldKind                                 ProjectsListParamsField = "kind"
+	ProjectsListParamsFieldMarketplaceResourceCount             ProjectsListParamsField = "marketplace_resource_count"
+	ProjectsListParamsFieldMaxServiceAccounts                   ProjectsListParamsField = "max_service_accounts"
+	ProjectsListParamsFieldName                                 ProjectsListParamsField = "name"
+	ProjectsListParamsFieldOecdFos2007Code                      ProjectsListParamsField = "oecd_fos_2007_code"
+	ProjectsListParamsFieldOecdFos2007Label                     ProjectsListParamsField = "oecd_fos_2007_label"
+	ProjectsListParamsFieldProjectCredit                        ProjectsListParamsField = "project_credit"
+	ProjectsListParamsFieldResourcesCount                       ProjectsListParamsField = "resources_count"
+	ProjectsListParamsFieldSlug                                 ProjectsListParamsField = "slug"
+	ProjectsListParamsFieldStartDate                            ProjectsListParamsField = "start_date"
+	ProjectsListParamsFieldType                                 ProjectsListParamsField = "type"
+	ProjectsListParamsFieldTypeName                             ProjectsListParamsField = "type_name"
+	ProjectsListParamsFieldTypeUuid                             ProjectsListParamsField = "type_uuid"
+	ProjectsListParamsFieldUrl                                  ProjectsListParamsField = "url"
+	ProjectsListParamsFieldUuid                                 ProjectsListParamsField = "uuid"
 )
 
 // Defines values for ProjectsListParamsO.
@@ -8413,35 +8417,36 @@ const (
 
 // Defines values for ProjectsRetrieveParamsField.
 const (
-	ProjectsRetrieveParamsFieldBackendId                ProjectsRetrieveParamsField = "backend_id"
-	ProjectsRetrieveParamsFieldBillingPriceEstimate     ProjectsRetrieveParamsField = "billing_price_estimate"
-	ProjectsRetrieveParamsFieldCreated                  ProjectsRetrieveParamsField = "created"
-	ProjectsRetrieveParamsFieldCustomer                 ProjectsRetrieveParamsField = "customer"
-	ProjectsRetrieveParamsFieldCustomerAbbreviation     ProjectsRetrieveParamsField = "customer_abbreviation"
-	ProjectsRetrieveParamsFieldCustomerName             ProjectsRetrieveParamsField = "customer_name"
-	ProjectsRetrieveParamsFieldCustomerNativeName       ProjectsRetrieveParamsField = "customer_native_name"
-	ProjectsRetrieveParamsFieldCustomerSlug             ProjectsRetrieveParamsField = "customer_slug"
-	ProjectsRetrieveParamsFieldCustomerUuid             ProjectsRetrieveParamsField = "customer_uuid"
-	ProjectsRetrieveParamsFieldDescription              ProjectsRetrieveParamsField = "description"
-	ProjectsRetrieveParamsFieldEndDate                  ProjectsRetrieveParamsField = "end_date"
-	ProjectsRetrieveParamsFieldEndDateRequestedBy       ProjectsRetrieveParamsField = "end_date_requested_by"
-	ProjectsRetrieveParamsFieldImage                    ProjectsRetrieveParamsField = "image"
-	ProjectsRetrieveParamsFieldIsIndustry               ProjectsRetrieveParamsField = "is_industry"
-	ProjectsRetrieveParamsFieldKind                     ProjectsRetrieveParamsField = "kind"
-	ProjectsRetrieveParamsFieldMarketplaceResourceCount ProjectsRetrieveParamsField = "marketplace_resource_count"
-	ProjectsRetrieveParamsFieldMaxServiceAccounts       ProjectsRetrieveParamsField = "max_service_accounts"
-	ProjectsRetrieveParamsFieldName                     ProjectsRetrieveParamsField = "name"
-	ProjectsRetrieveParamsFieldOecdFos2007Code          ProjectsRetrieveParamsField = "oecd_fos_2007_code"
-	ProjectsRetrieveParamsFieldOecdFos2007Label         ProjectsRetrieveParamsField = "oecd_fos_2007_label"
-	ProjectsRetrieveParamsFieldProjectCredit            ProjectsRetrieveParamsField = "project_credit"
-	ProjectsRetrieveParamsFieldResourcesCount           ProjectsRetrieveParamsField = "resources_count"
-	ProjectsRetrieveParamsFieldSlug                     ProjectsRetrieveParamsField = "slug"
-	ProjectsRetrieveParamsFieldStartDate                ProjectsRetrieveParamsField = "start_date"
-	ProjectsRetrieveParamsFieldType                     ProjectsRetrieveParamsField = "type"
-	ProjectsRetrieveParamsFieldTypeName                 ProjectsRetrieveParamsField = "type_name"
-	ProjectsRetrieveParamsFieldTypeUuid                 ProjectsRetrieveParamsField = "type_uuid"
-	ProjectsRetrieveParamsFieldUrl                      ProjectsRetrieveParamsField = "url"
-	ProjectsRetrieveParamsFieldUuid                     ProjectsRetrieveParamsField = "uuid"
+	ProjectsRetrieveParamsFieldBackendId                            ProjectsRetrieveParamsField = "backend_id"
+	ProjectsRetrieveParamsFieldBillingPriceEstimate                 ProjectsRetrieveParamsField = "billing_price_estimate"
+	ProjectsRetrieveParamsFieldCreated                              ProjectsRetrieveParamsField = "created"
+	ProjectsRetrieveParamsFieldCustomer                             ProjectsRetrieveParamsField = "customer"
+	ProjectsRetrieveParamsFieldCustomerAbbreviation                 ProjectsRetrieveParamsField = "customer_abbreviation"
+	ProjectsRetrieveParamsFieldCustomerDisplayBillingInfoInProjects ProjectsRetrieveParamsField = "customer_display_billing_info_in_projects"
+	ProjectsRetrieveParamsFieldCustomerName                         ProjectsRetrieveParamsField = "customer_name"
+	ProjectsRetrieveParamsFieldCustomerNativeName                   ProjectsRetrieveParamsField = "customer_native_name"
+	ProjectsRetrieveParamsFieldCustomerSlug                         ProjectsRetrieveParamsField = "customer_slug"
+	ProjectsRetrieveParamsFieldCustomerUuid                         ProjectsRetrieveParamsField = "customer_uuid"
+	ProjectsRetrieveParamsFieldDescription                          ProjectsRetrieveParamsField = "description"
+	ProjectsRetrieveParamsFieldEndDate                              ProjectsRetrieveParamsField = "end_date"
+	ProjectsRetrieveParamsFieldEndDateRequestedBy                   ProjectsRetrieveParamsField = "end_date_requested_by"
+	ProjectsRetrieveParamsFieldImage                                ProjectsRetrieveParamsField = "image"
+	ProjectsRetrieveParamsFieldIsIndustry                           ProjectsRetrieveParamsField = "is_industry"
+	ProjectsRetrieveParamsFieldKind                                 ProjectsRetrieveParamsField = "kind"
+	ProjectsRetrieveParamsFieldMarketplaceResourceCount             ProjectsRetrieveParamsField = "marketplace_resource_count"
+	ProjectsRetrieveParamsFieldMaxServiceAccounts                   ProjectsRetrieveParamsField = "max_service_accounts"
+	ProjectsRetrieveParamsFieldName                                 ProjectsRetrieveParamsField = "name"
+	ProjectsRetrieveParamsFieldOecdFos2007Code                      ProjectsRetrieveParamsField = "oecd_fos_2007_code"
+	ProjectsRetrieveParamsFieldOecdFos2007Label                     ProjectsRetrieveParamsField = "oecd_fos_2007_label"
+	ProjectsRetrieveParamsFieldProjectCredit                        ProjectsRetrieveParamsField = "project_credit"
+	ProjectsRetrieveParamsFieldResourcesCount                       ProjectsRetrieveParamsField = "resources_count"
+	ProjectsRetrieveParamsFieldSlug                                 ProjectsRetrieveParamsField = "slug"
+	ProjectsRetrieveParamsFieldStartDate                            ProjectsRetrieveParamsField = "start_date"
+	ProjectsRetrieveParamsFieldType                                 ProjectsRetrieveParamsField = "type"
+	ProjectsRetrieveParamsFieldTypeName                             ProjectsRetrieveParamsField = "type_name"
+	ProjectsRetrieveParamsFieldTypeUuid                             ProjectsRetrieveParamsField = "type_uuid"
+	ProjectsRetrieveParamsFieldUrl                                  ProjectsRetrieveParamsField = "url"
+	ProjectsRetrieveParamsFieldUuid                                 ProjectsRetrieveParamsField = "uuid"
 )
 
 // Defines values for ProjectsListUsersListParamsField.
@@ -13222,6 +13227,7 @@ type Customer struct {
 	CustomerUnallocatedCredit    *float64             `json:"customer_unallocated_credit"`
 	DefaultTaxPercent            *string              `json:"default_tax_percent,omitempty"`
 	Description                  *string              `json:"description,omitempty"`
+	DisplayBillingInfoInProjects *bool                `json:"display_billing_info_in_projects,omitempty"`
 	DisplayName                  *string              `json:"display_name,omitempty"`
 	Domain                       *string              `json:"domain,omitempty"`
 	Email                        *openapi_types.Email `json:"email,omitempty"`
@@ -20520,16 +20526,17 @@ type Priority struct {
 
 // Project defines model for Project.
 type Project struct {
-	BackendId            *string              `json:"backend_id,omitempty"`
-	BillingPriceEstimate *NestedPriceEstimate `json:"billing_price_estimate,omitempty"`
-	Created              *time.Time           `json:"created,omitempty"`
-	Customer             *string              `json:"customer,omitempty"`
-	CustomerAbbreviation *string              `json:"customer_abbreviation,omitempty"`
-	CustomerName         *string              `json:"customer_name,omitempty"`
-	CustomerNativeName   *string              `json:"customer_native_name,omitempty"`
-	CustomerSlug         *string              `json:"customer_slug,omitempty"`
-	CustomerUuid         *openapi_types.UUID  `json:"customer_uuid,omitempty"`
-	Description          *string              `json:"description,omitempty"`
+	BackendId                            *string              `json:"backend_id,omitempty"`
+	BillingPriceEstimate                 *NestedPriceEstimate `json:"billing_price_estimate,omitempty"`
+	Created                              *time.Time           `json:"created,omitempty"`
+	Customer                             *string              `json:"customer,omitempty"`
+	CustomerAbbreviation                 *string              `json:"customer_abbreviation,omitempty"`
+	CustomerDisplayBillingInfoInProjects *bool                `json:"customer_display_billing_info_in_projects,omitempty"`
+	CustomerName                         *string              `json:"customer_name,omitempty"`
+	CustomerNativeName                   *string              `json:"customer_native_name,omitempty"`
+	CustomerSlug                         *string              `json:"customer_slug,omitempty"`
+	CustomerUuid                         *openapi_types.UUID  `json:"customer_uuid,omitempty"`
+	Description                          *string              `json:"description,omitempty"`
 
 	// EndDate The date is inclusive. Once reached, all project resource will be scheduled for termination.
 	EndDate                  *openapi_types.Date `json:"end_date"`
