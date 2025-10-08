@@ -1102,6 +1102,15 @@ const (
 	OfferingUserStateRequestedDeletion           OfferingUserState = "Requested deletion"
 )
 
+// Defines values for OnboardingVerificationStatusEnum.
+const (
+	OnboardingVerificationStatusEnumEscalated OnboardingVerificationStatusEnum = "escalated"
+	OnboardingVerificationStatusEnumExpired   OnboardingVerificationStatusEnum = "expired"
+	OnboardingVerificationStatusEnumFailed    OnboardingVerificationStatusEnum = "failed"
+	OnboardingVerificationStatusEnumPending   OnboardingVerificationStatusEnum = "pending"
+	OnboardingVerificationStatusEnumVerified  OnboardingVerificationStatusEnum = "verified"
+)
+
 // Defines values for OptionFieldTypeEnum.
 const (
 	OptionFieldTypeEnumBoolean                          OptionFieldTypeEnum = "boolean"
@@ -1302,6 +1311,13 @@ const (
 	RoleTypeServiceProvider RoleType = "service_provider"
 )
 
+// Defines values for RoundStatus.
+const (
+	RoundStatusEnded     RoundStatus = "ended"
+	RoundStatusOpen      RoundStatus = "open"
+	RoundStatusScheduled RoundStatus = "scheduled"
+)
+
 // Defines values for ServiceProviderOfferingUserComplianceStateEnum.
 const (
 	ServiceProviderOfferingUserComplianceStateEnumN1  ServiceProviderOfferingUserComplianceStateEnum = 1
@@ -1326,13 +1342,6 @@ const (
 	ServiceSettingsStateEnumOK                ServiceSettingsStateEnum = "OK"
 	ServiceSettingsStateEnumUPDATESCHEDULED   ServiceSettingsStateEnum = "UPDATE_SCHEDULED"
 	ServiceSettingsStateEnumUPDATING          ServiceSettingsStateEnum = "UPDATING"
-)
-
-// Defines values for StatusEnum.
-const (
-	StatusEnumEnded     StatusEnum = "ended"
-	StatusEnumOpen      StatusEnum = "open"
-	StatusEnumScheduled StatusEnum = "scheduled"
 )
 
 // Defines values for StorageModeEnum.
@@ -1509,6 +1518,18 @@ const (
 	VMwareVirtualMachineCreateOrderAttributesGuestOsWINXPHOME          VMwareVirtualMachineCreateOrderAttributesGuestOs = "WIN_XP_HOME"
 	VMwareVirtualMachineCreateOrderAttributesGuestOsWINXPPRO           VMwareVirtualMachineCreateOrderAttributesGuestOs = "WIN_XP_PRO"
 	VMwareVirtualMachineCreateOrderAttributesGuestOsWINXPPRO64         VMwareVirtualMachineCreateOrderAttributesGuestOs = "WIN_XP_PRO_64"
+)
+
+// Defines values for ValidationDecisionEnum.
+const (
+	ValidationDecisionEnumApproved ValidationDecisionEnum = "approved"
+	ValidationDecisionEnumPending  ValidationDecisionEnum = "pending"
+	ValidationDecisionEnumRejected ValidationDecisionEnum = "rejected"
+)
+
+// Defines values for ValidationMethodEnum.
+const (
+	Ariregister ValidationMethodEnum = "ariregister"
 )
 
 // Defines values for VisibilityEnum.
@@ -11862,7 +11883,7 @@ type CallRound struct {
 	CutoffTime time.Time           `json:"cutoff_time"`
 	Slug       *string             `json:"slug,omitempty"`
 	StartTime  time.Time           `json:"start_time"`
-	Status     *StatusEnum         `json:"status,omitempty"`
+	Status     *RoundStatus        `json:"status,omitempty"`
 	Url        *string             `json:"url,omitempty"`
 	Uuid       *openapi_types.UUID `json:"uuid,omitempty"`
 }
@@ -12539,6 +12560,11 @@ type ConstanceSettings struct {
 	OIDCCLIENTSECRET                               *string              `json:"OIDC_CLIENT_SECRET,omitempty"`
 	OIDCINTROSPECTIONURL                           *string              `json:"OIDC_INTROSPECTION_URL,omitempty"`
 	OIDCUSERFIELD                                  *string              `json:"OIDC_USER_FIELD,omitempty"`
+	ONBOARDINGARIREGISTERBASEURL                   *string              `json:"ONBOARDING_ARIREGISTER_BASE_URL,omitempty"`
+	ONBOARDINGARIREGISTERPASSWORD                  *string              `json:"ONBOARDING_ARIREGISTER_PASSWORD,omitempty"`
+	ONBOARDINGARIREGISTERTIMEOUT                   *int                 `json:"ONBOARDING_ARIREGISTER_TIMEOUT,omitempty"`
+	ONBOARDINGARIREGISTERUSERNAME                  *string              `json:"ONBOARDING_ARIREGISTER_USERNAME,omitempty"`
+	ONBOARDINGVERIFICATIONEXPIRYHOURS              *int                 `json:"ONBOARDING_VERIFICATION_EXPIRY_HOURS,omitempty"`
 	POWEREDBYLOGO                                  *string              `json:"POWERED_BY_LOGO"`
 	PROPOSALREVIEWDURATION                         *int                 `json:"PROPOSAL_REVIEW_DURATION,omitempty"`
 	RANCHERUSERNAMEINPUTLABEL                      *string              `json:"RANCHER_USERNAME_INPUT_LABEL,omitempty"`
@@ -12679,6 +12705,11 @@ type ConstanceSettingsRequest struct {
 	OIDCCLIENTSECRET                               *string              `json:"OIDC_CLIENT_SECRET,omitempty"`
 	OIDCINTROSPECTIONURL                           *string              `json:"OIDC_INTROSPECTION_URL,omitempty"`
 	OIDCUSERFIELD                                  *string              `json:"OIDC_USER_FIELD,omitempty"`
+	ONBOARDINGARIREGISTERBASEURL                   *string              `json:"ONBOARDING_ARIREGISTER_BASE_URL,omitempty"`
+	ONBOARDINGARIREGISTERPASSWORD                  *string              `json:"ONBOARDING_ARIREGISTER_PASSWORD,omitempty"`
+	ONBOARDINGARIREGISTERTIMEOUT                   *int                 `json:"ONBOARDING_ARIREGISTER_TIMEOUT,omitempty"`
+	ONBOARDINGARIREGISTERUSERNAME                  *string              `json:"ONBOARDING_ARIREGISTER_USERNAME,omitempty"`
+	ONBOARDINGVERIFICATIONEXPIRYHOURS              *int                 `json:"ONBOARDING_VERIFICATION_EXPIRY_HOURS,omitempty"`
 	POWEREDBYLOGO                                  *openapi_types.File  `json:"POWERED_BY_LOGO"`
 	PROPOSALREVIEWDURATION                         *int                 `json:"PROPOSAL_REVIEW_DURATION,omitempty"`
 	RANCHERUSERNAMEINPUTLABEL                      *string              `json:"RANCHER_USERNAME_INPUT_LABEL,omitempty"`
@@ -12819,6 +12850,11 @@ type ConstanceSettingsRequestForm struct {
 	OIDCCLIENTSECRET                               *string              `json:"OIDC_CLIENT_SECRET,omitempty"`
 	OIDCINTROSPECTIONURL                           *string              `json:"OIDC_INTROSPECTION_URL,omitempty"`
 	OIDCUSERFIELD                                  *string              `json:"OIDC_USER_FIELD,omitempty"`
+	ONBOARDINGARIREGISTERBASEURL                   *string              `json:"ONBOARDING_ARIREGISTER_BASE_URL,omitempty"`
+	ONBOARDINGARIREGISTERPASSWORD                  *string              `json:"ONBOARDING_ARIREGISTER_PASSWORD,omitempty"`
+	ONBOARDINGARIREGISTERTIMEOUT                   *int                 `json:"ONBOARDING_ARIREGISTER_TIMEOUT,omitempty"`
+	ONBOARDINGARIREGISTERUSERNAME                  *string              `json:"ONBOARDING_ARIREGISTER_USERNAME,omitempty"`
+	ONBOARDINGVERIFICATIONEXPIRYHOURS              *int                 `json:"ONBOARDING_VERIFICATION_EXPIRY_HOURS,omitempty"`
 	POWEREDBYLOGO                                  *openapi_types.File  `json:"POWERED_BY_LOGO"`
 	PROPOSALREVIEWDURATION                         *int                 `json:"PROPOSAL_REVIEW_DURATION,omitempty"`
 	RANCHERUSERNAMEINPUTLABEL                      *string              `json:"RANCHER_USERNAME_INPUT_LABEL,omitempty"`
@@ -12959,6 +12995,11 @@ type ConstanceSettingsRequestMultipart struct {
 	OIDCCLIENTSECRET                               *string              `json:"OIDC_CLIENT_SECRET,omitempty"`
 	OIDCINTROSPECTIONURL                           *string              `json:"OIDC_INTROSPECTION_URL,omitempty"`
 	OIDCUSERFIELD                                  *string              `json:"OIDC_USER_FIELD,omitempty"`
+	ONBOARDINGARIREGISTERBASEURL                   *string              `json:"ONBOARDING_ARIREGISTER_BASE_URL,omitempty"`
+	ONBOARDINGARIREGISTERPASSWORD                  *string              `json:"ONBOARDING_ARIREGISTER_PASSWORD,omitempty"`
+	ONBOARDINGARIREGISTERTIMEOUT                   *int                 `json:"ONBOARDING_ARIREGISTER_TIMEOUT,omitempty"`
+	ONBOARDINGARIREGISTERUSERNAME                  *string              `json:"ONBOARDING_ARIREGISTER_USERNAME,omitempty"`
+	ONBOARDINGVERIFICATIONEXPIRYHOURS              *int                 `json:"ONBOARDING_VERIFICATION_EXPIRY_HOURS,omitempty"`
 	POWEREDBYLOGO                                  *openapi_types.File  `json:"POWERED_BY_LOGO"`
 	PROPOSALREVIEWDURATION                         *int                 `json:"PROPOSAL_REVIEW_DURATION,omitempty"`
 	RANCHERUSERNAMEINPUTLABEL                      *string              `json:"RANCHER_USERNAME_INPUT_LABEL,omitempty"`
@@ -15268,8 +15309,14 @@ type MergedPluginOptions struct {
 	// OrderSupportsCommentsAndMetadata If set to True, orders will support comments and metadata
 	OrderSupportsCommentsAndMetadata *bool `json:"order_supports_comments_and_metadata,omitempty"`
 
+	// ProjectPermanentDirectory HEAppE project permanent directory
+	ProjectPermanentDirectory *string `json:"project_permanent_directory,omitempty"`
+
 	// RequiredTeamRoleForProvisioning Required user role in a project for provisioning of resources
 	RequiredTeamRoleForProvisioning *string `json:"required_team_role_for_provisioning,omitempty"`
+
+	// ScratchProjectDirectory HEAppE scratch project directory
+	ScratchProjectDirectory *string `json:"scratch_project_directory,omitempty"`
 
 	// ServiceProviderCanCreateOfferingUser Service provider can create offering user
 	ServiceProviderCanCreateOfferingUser *bool `json:"service_provider_can_create_offering_user,omitempty"`
@@ -15399,8 +15446,14 @@ type MergedPluginOptionsRequest struct {
 	// OrderSupportsCommentsAndMetadata If set to True, orders will support comments and metadata
 	OrderSupportsCommentsAndMetadata *bool `json:"order_supports_comments_and_metadata,omitempty"`
 
+	// ProjectPermanentDirectory HEAppE project permanent directory
+	ProjectPermanentDirectory *string `json:"project_permanent_directory,omitempty"`
+
 	// RequiredTeamRoleForProvisioning Required user role in a project for provisioning of resources
 	RequiredTeamRoleForProvisioning *string `json:"required_team_role_for_provisioning,omitempty"`
+
+	// ScratchProjectDirectory HEAppE scratch project directory
+	ScratchProjectDirectory *string `json:"scratch_project_directory,omitempty"`
 
 	// ServiceProviderCanCreateOfferingUser Service provider can create offering user
 	ServiceProviderCanCreateOfferingUser *bool `json:"service_provider_can_create_offering_user,omitempty"`
@@ -15934,7 +15987,7 @@ type NestedRound struct {
 	ReviewStrategy           *ReviewStrategyEnum `json:"review_strategy,omitempty"`
 	Slug                     *string             `json:"slug,omitempty"`
 	StartTime                *time.Time          `json:"start_time,omitempty"`
-	Status                   *StatusEnum         `json:"status,omitempty"`
+	Status                   *RoundStatus        `json:"status,omitempty"`
 	Uuid                     *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
@@ -16017,9 +16070,9 @@ type NodeDiskDriverEnum string
 
 // Notification defines model for Notification.
 type Notification struct {
-	// ContextFields Finds the notification definition in the global NOTIFICATIONS
-	// dictionary and returns its 'context' fields.
-	ContextFields *map[string]interface{} `json:"context_fields,omitempty"`
+	// ContextSchema Finds the notification definition in the global NOTIFICATIONS
+	// dictionary and returns its 'context' schema.
+	ContextSchema *map[string]interface{} `json:"context_schema,omitempty"`
 	Created       *time.Time              `json:"created,omitempty"`
 	Description   *string                 `json:"description,omitempty"`
 
@@ -16166,24 +16219,28 @@ type OfferingComplianceChecklistUpdateRequest struct {
 
 // OfferingComponent defines model for OfferingComponent.
 type OfferingComponent struct {
-	ArticleCode       *string                        `json:"article_code,omitempty"`
-	BillingType       *BillingTypeEnum               `json:"billing_type,omitempty"`
-	DefaultLimit      *int                           `json:"default_limit"`
-	Description       *string                        `json:"description,omitempty"`
-	Factor            *int                           `json:"factor"`
-	IsBoolean         *bool                          `json:"is_boolean,omitempty"`
-	IsBuiltin         *bool                          `json:"is_builtin,omitempty"`
-	LimitAmount       *int                           `json:"limit_amount"`
-	LimitPeriod       *OfferingComponent_LimitPeriod `json:"limit_period"`
-	MaxAvailableLimit *int                           `json:"max_available_limit"`
-	MaxValue          *int                           `json:"max_value"`
+	ArticleCode        *string                        `json:"article_code,omitempty"`
+	BillingType        *BillingTypeEnum               `json:"billing_type,omitempty"`
+	DefaultLimit       *int                           `json:"default_limit"`
+	Description        *string                        `json:"description,omitempty"`
+	Factor             *int                           `json:"factor"`
+	IsBoolean          *bool                          `json:"is_boolean,omitempty"`
+	IsBuiltin          *bool                          `json:"is_builtin,omitempty"`
+	IsPrepaid          *bool                          `json:"is_prepaid,omitempty"`
+	LimitAmount        *int                           `json:"limit_amount"`
+	LimitPeriod        *OfferingComponent_LimitPeriod `json:"limit_period"`
+	MaxAvailableLimit  *int                           `json:"max_available_limit"`
+	MaxPrepaidDuration *int                           `json:"max_prepaid_duration"`
+	MaxValue           *int                           `json:"max_value"`
 
 	// MeasuredUnit Unit of measurement, for example, GB.
-	MeasuredUnit *string `json:"measured_unit,omitempty"`
-	MinValue     *int    `json:"min_value"`
+	MeasuredUnit       *string `json:"measured_unit,omitempty"`
+	MinPrepaidDuration *int    `json:"min_prepaid_duration"`
+	MinValue           *int    `json:"min_value"`
 
 	// Name Display name for the measured unit, for example, Floating IP.
-	Name *string `json:"name,omitempty"`
+	Name             *string             `json:"name,omitempty"`
+	OverageComponent *openapi_types.UUID `json:"overage_component"`
 
 	// Type Unique internal name of the measured unit, for example floating_ip.
 	Type *string `json:"type,omitempty"`
@@ -16207,22 +16264,26 @@ type OfferingComponentLimitRequest struct {
 
 // OfferingComponentRequest defines model for OfferingComponentRequest.
 type OfferingComponentRequest struct {
-	ArticleCode       *string                               `json:"article_code,omitempty"`
-	BillingType       BillingTypeEnum                       `json:"billing_type"`
-	DefaultLimit      *int                                  `json:"default_limit"`
-	Description       *string                               `json:"description,omitempty"`
-	IsBoolean         *bool                                 `json:"is_boolean,omitempty"`
-	LimitAmount       *int                                  `json:"limit_amount"`
-	LimitPeriod       *OfferingComponentRequest_LimitPeriod `json:"limit_period"`
-	MaxAvailableLimit *int                                  `json:"max_available_limit"`
-	MaxValue          *int                                  `json:"max_value"`
+	ArticleCode        *string                               `json:"article_code,omitempty"`
+	BillingType        BillingTypeEnum                       `json:"billing_type"`
+	DefaultLimit       *int                                  `json:"default_limit"`
+	Description        *string                               `json:"description,omitempty"`
+	IsBoolean          *bool                                 `json:"is_boolean,omitempty"`
+	IsPrepaid          *bool                                 `json:"is_prepaid,omitempty"`
+	LimitAmount        *int                                  `json:"limit_amount"`
+	LimitPeriod        *OfferingComponentRequest_LimitPeriod `json:"limit_period"`
+	MaxAvailableLimit  *int                                  `json:"max_available_limit"`
+	MaxPrepaidDuration *int                                  `json:"max_prepaid_duration"`
+	MaxValue           *int                                  `json:"max_value"`
 
 	// MeasuredUnit Unit of measurement, for example, GB.
-	MeasuredUnit *string `json:"measured_unit,omitempty"`
-	MinValue     *int    `json:"min_value"`
+	MeasuredUnit       *string `json:"measured_unit,omitempty"`
+	MinPrepaidDuration *int    `json:"min_prepaid_duration"`
+	MinValue           *int    `json:"min_value"`
 
 	// Name Display name for the measured unit, for example, Floating IP.
-	Name string `json:"name"`
+	Name             string              `json:"name"`
+	OverageComponent *openapi_types.UUID `json:"overage_component"`
 
 	// Type Unique internal name of the measured unit, for example floating_ip.
 	Type string `json:"type"`
@@ -16863,6 +16924,156 @@ type OfferingUserStateTransitionRequest struct {
 type OfferingUserUpdateRestrictionRequest struct {
 	IsRestricted bool `json:"is_restricted"`
 }
+
+// OnboardingCompanyValidationRequestRequest defines model for OnboardingCompanyValidationRequestRequest.
+type OnboardingCompanyValidationRequestRequest struct {
+	// Country ISO country code (e.g., 'EE' for Estonia)
+	Country string `json:"country"`
+
+	// LegalName Company name (optional, for reference)
+	LegalName *string `json:"legal_name,omitempty"`
+
+	// LegalPersonIdentifier Official company registration code
+	LegalPersonIdentifier string `json:"legal_person_identifier"`
+
+	// UserSubmittedCustomerMetadata Optional customer metadata for manual verification cases. Should contain valid Customer model fields.
+	UserSubmittedCustomerMetadata interface{} `json:"user_submitted_customer_metadata,omitempty"`
+}
+
+// OnboardingJustification defines model for OnboardingJustification.
+type OnboardingJustification struct {
+	Created  *time.Time `json:"created,omitempty"`
+	Modified *time.Time `json:"modified,omitempty"`
+
+	// StaffNotes Administrator notes on the review decision
+	StaffNotes              *string                                 `json:"staff_notes,omitempty"`
+	SupportingDocumentation *[]OnboardingJustificationDocumentation `json:"supporting_documentation,omitempty"`
+	User                    int                                     `json:"user"`
+
+	// UserJustification User's explanation for why they should be authorized
+	UserJustification  string                  `json:"user_justification"`
+	Uuid               *openapi_types.UUID     `json:"uuid,omitempty"`
+	ValidatedAt        *time.Time              `json:"validated_at"`
+	ValidatedBy        *int                    `json:"validated_by"`
+	ValidationDecision *ValidationDecisionEnum `json:"validation_decision,omitempty"`
+	Verification       int                     `json:"verification"`
+}
+
+// OnboardingJustificationCreateRequest defines model for OnboardingJustificationCreateRequest.
+type OnboardingJustificationCreateRequest struct {
+	// UserJustification User's explanation for why they should be authorized
+	UserJustification string `json:"user_justification"`
+
+	// VerificationUuid UUID of the OnboardingVerification to justify
+	VerificationUuid openapi_types.UUID `json:"verification_uuid"`
+}
+
+// OnboardingJustificationDocumentation defines model for OnboardingJustificationDocumentation.
+type OnboardingJustificationDocumentation struct {
+	Created *time.Time `json:"created,omitempty"`
+
+	// File Upload supporting documentation.
+	File     *string             `json:"file"`
+	FileName *string             `json:"file_name,omitempty"`
+	FileSize *int                `json:"file_size,omitempty"`
+	Uuid     *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// OnboardingJustificationDocumentationRequest defines model for OnboardingJustificationDocumentationRequest.
+type OnboardingJustificationDocumentationRequest struct {
+	// File Upload supporting documentation.
+	File *openapi_types.File `json:"file"`
+}
+
+// OnboardingJustificationDocumentationRequestForm defines model for OnboardingJustificationDocumentationRequestForm.
+type OnboardingJustificationDocumentationRequestForm struct {
+	// File Upload supporting documentation.
+	File *openapi_types.File `json:"file"`
+}
+
+// OnboardingJustificationDocumentationRequestMultipart defines model for OnboardingJustificationDocumentationRequestMultipart.
+type OnboardingJustificationDocumentationRequestMultipart struct {
+	// File Upload supporting documentation.
+	File *openapi_types.File `json:"file"`
+}
+
+// OnboardingJustificationRequest defines model for OnboardingJustificationRequest.
+type OnboardingJustificationRequest struct {
+	User int `json:"user"`
+
+	// UserJustification User's explanation for why they should be authorized
+	UserJustification string `json:"user_justification"`
+	Verification      int    `json:"verification"`
+}
+
+// OnboardingVerification defines model for OnboardingVerification.
+type OnboardingVerification struct {
+	// Country ISO country code (e.g., 'EE' for Estonia)
+	Country string     `json:"country"`
+	Created *time.Time `json:"created,omitempty"`
+
+	// Customer Customer created after successful validation
+	Customer       *int    `json:"customer"`
+	ErrorMessage   *string `json:"error_message,omitempty"`
+	ErrorTraceback *string `json:"error_traceback,omitempty"`
+
+	// ExpiresAt When this verification expires
+	ExpiresAt *time.Time `json:"expires_at"`
+
+	// LegalName Claimed company name (optional, for reference)
+	LegalName *string `json:"legal_name,omitempty"`
+
+	// LegalPersonIdentifier Official company registration code
+	LegalPersonIdentifier string     `json:"legal_person_identifier"`
+	Modified              *time.Time `json:"modified,omitempty"`
+
+	// RawResponse Raw API response for debugging and auditing
+	RawResponse interface{}                       `json:"raw_response,omitempty"`
+	Status      *OnboardingVerificationStatusEnum `json:"status,omitempty"`
+
+	// User User requesting company onboarding
+	User int `json:"user"`
+
+	// UserSubmittedCustomerMetadata Additional customer metadata submitted by user for manual verification cases. Should contain valid Customer model fields.
+	UserSubmittedCustomerMetadata interface{}         `json:"user_submitted_customer_metadata,omitempty"`
+	Uuid                          *openapi_types.UUID `json:"uuid,omitempty"`
+
+	// ValidatedAt When validation was completed
+	ValidatedAt *time.Time `json:"validated_at"`
+
+	// ValidationMethod Method used for validation
+	ValidationMethod *ValidationMethodEnum `json:"validation_method,omitempty"`
+
+	// VerifiedCompanyData Company information retrieved during validation
+	VerifiedCompanyData interface{} `json:"verified_company_data,omitempty"`
+
+	// VerifiedUserRoles Roles the user has in the company
+	VerifiedUserRoles interface{} `json:"verified_user_roles,omitempty"`
+}
+
+// OnboardingVerificationRequest defines model for OnboardingVerificationRequest.
+type OnboardingVerificationRequest struct {
+	// Country ISO country code (e.g., 'EE' for Estonia)
+	Country string `json:"country"`
+
+	// ExpiresAt When this verification expires
+	ExpiresAt *time.Time `json:"expires_at"`
+
+	// LegalName Claimed company name (optional, for reference)
+	LegalName *string `json:"legal_name,omitempty"`
+
+	// LegalPersonIdentifier Official company registration code
+	LegalPersonIdentifier string `json:"legal_person_identifier"`
+
+	// User User requesting company onboarding
+	User int `json:"user"`
+
+	// UserSubmittedCustomerMetadata Additional customer metadata submitted by user for manual verification cases. Should contain valid Customer model fields.
+	UserSubmittedCustomerMetadata interface{} `json:"user_submitted_customer_metadata,omitempty"`
+}
+
+// OnboardingVerificationStatusEnum defines model for OnboardingVerificationStatusEnum.
+type OnboardingVerificationStatusEnum string
 
 // OpenStackAllowedAddressPair defines model for OpenStackAllowedAddressPair.
 type OpenStackAllowedAddressPair struct {
@@ -19553,6 +19764,36 @@ type PatchedOfferingUserServiceProviderCommentRequest struct {
 	ServiceProviderCommentUrl *string `json:"service_provider_comment_url,omitempty"`
 }
 
+// PatchedOnboardingJustificationRequest defines model for PatchedOnboardingJustificationRequest.
+type PatchedOnboardingJustificationRequest struct {
+	User *int `json:"user,omitempty"`
+
+	// UserJustification User's explanation for why they should be authorized
+	UserJustification *string `json:"user_justification,omitempty"`
+	Verification      *int    `json:"verification,omitempty"`
+}
+
+// PatchedOnboardingVerificationRequest defines model for PatchedOnboardingVerificationRequest.
+type PatchedOnboardingVerificationRequest struct {
+	// Country ISO country code (e.g., 'EE' for Estonia)
+	Country *string `json:"country,omitempty"`
+
+	// ExpiresAt When this verification expires
+	ExpiresAt *time.Time `json:"expires_at"`
+
+	// LegalName Claimed company name (optional, for reference)
+	LegalName *string `json:"legal_name,omitempty"`
+
+	// LegalPersonIdentifier Official company registration code
+	LegalPersonIdentifier *string `json:"legal_person_identifier,omitempty"`
+
+	// User User requesting company onboarding
+	User *int `json:"user,omitempty"`
+
+	// UserSubmittedCustomerMetadata Additional customer metadata submitted by user for manual verification cases. Should contain valid Customer model fields.
+	UserSubmittedCustomerMetadata interface{} `json:"user_submitted_customer_metadata,omitempty"`
+}
+
 // PatchedOpenStackBackupRequest defines model for PatchedOpenStackBackupRequest.
 type PatchedOpenStackBackupRequest struct {
 	Description *string `json:"description,omitempty"`
@@ -21162,7 +21403,7 @@ type ProtectedRound struct {
 	ReviewStrategy           *ReviewStrategyEnum      `json:"review_strategy,omitempty"`
 	Slug                     *string                  `json:"slug,omitempty"`
 	StartTime                time.Time                `json:"start_time"`
-	Status                   *StatusEnum              `json:"status,omitempty"`
+	Status                   *RoundStatus             `json:"status,omitempty"`
 	Url                      *string                  `json:"url,omitempty"`
 	Uuid                     *openapi_types.UUID      `json:"uuid,omitempty"`
 }
@@ -23061,6 +23302,15 @@ type ResourcePlanPeriod struct {
 	Uuid       *openapi_types.UUID  `json:"uuid,omitempty"`
 }
 
+// ResourceRenewRequest defines model for ResourceRenewRequest.
+type ResourceRenewRequest struct {
+	// ExtensionMonths Number of months to extend the subscription by.
+	ExtensionMonths int `json:"extension_months"`
+
+	// Limits Optional new limits for the resource. Supports upgrades only.
+	Limits *map[string]int `json:"limits,omitempty"`
+}
+
 // ResourceReportRequest defines model for ResourceReportRequest.
 type ResourceReportRequest struct {
 	Report []ReportSectionRequest `json:"report"`
@@ -23442,6 +23692,9 @@ type RoundReviewer struct {
 	InReviewProposals int                 `json:"in_review_proposals"`
 	RejectedProposals int                 `json:"rejected_proposals"`
 }
+
+// RoundStatus defines model for RoundStatus.
+type RoundStatus string
 
 // Rule defines model for Rule.
 type Rule struct {
@@ -23884,9 +24137,6 @@ type StateTransitionError struct {
 	Detail string `json:"detail"`
 }
 
-// StatusEnum defines model for StatusEnum.
-type StatusEnum string
-
 // StorageModeEnum defines model for StorageModeEnum.
 type StorageModeEnum string
 
@@ -24021,22 +24271,26 @@ type TotalCustomerCost struct {
 
 // UpdateOfferingComponentRequest defines model for UpdateOfferingComponentRequest.
 type UpdateOfferingComponentRequest struct {
-	ArticleCode       *string                                     `json:"article_code,omitempty"`
-	BillingType       BillingTypeEnum                             `json:"billing_type"`
-	DefaultLimit      *int                                        `json:"default_limit"`
-	Description       *string                                     `json:"description,omitempty"`
-	IsBoolean         *bool                                       `json:"is_boolean,omitempty"`
-	LimitAmount       *int                                        `json:"limit_amount"`
-	LimitPeriod       *UpdateOfferingComponentRequest_LimitPeriod `json:"limit_period"`
-	MaxAvailableLimit *int                                        `json:"max_available_limit"`
-	MaxValue          *int                                        `json:"max_value"`
+	ArticleCode        *string                                     `json:"article_code,omitempty"`
+	BillingType        BillingTypeEnum                             `json:"billing_type"`
+	DefaultLimit       *int                                        `json:"default_limit"`
+	Description        *string                                     `json:"description,omitempty"`
+	IsBoolean          *bool                                       `json:"is_boolean,omitempty"`
+	IsPrepaid          *bool                                       `json:"is_prepaid,omitempty"`
+	LimitAmount        *int                                        `json:"limit_amount"`
+	LimitPeriod        *UpdateOfferingComponentRequest_LimitPeriod `json:"limit_period"`
+	MaxAvailableLimit  *int                                        `json:"max_available_limit"`
+	MaxPrepaidDuration *int                                        `json:"max_prepaid_duration"`
+	MaxValue           *int                                        `json:"max_value"`
 
 	// MeasuredUnit Unit of measurement, for example, GB.
-	MeasuredUnit *string `json:"measured_unit,omitempty"`
-	MinValue     *int    `json:"min_value"`
+	MeasuredUnit       *string `json:"measured_unit,omitempty"`
+	MinPrepaidDuration *int    `json:"min_prepaid_duration"`
+	MinValue           *int    `json:"min_value"`
 
 	// Name Display name for the measured unit, for example, Floating IP.
-	Name string `json:"name"`
+	Name             string              `json:"name"`
+	OverageComponent *openapi_types.UUID `json:"overage_component"`
 
 	// Type Unique internal name of the measured unit, for example floating_ip.
 	Type string `json:"type"`
@@ -24390,6 +24644,12 @@ type VMwareVirtualMachineCreateOrderAttributes struct {
 
 // VMwareVirtualMachineCreateOrderAttributesGuestOs defines model for VMwareVirtualMachineCreateOrderAttributes.GuestOs.
 type VMwareVirtualMachineCreateOrderAttributesGuestOs string
+
+// ValidationDecisionEnum defines model for ValidationDecisionEnum.
+type ValidationDecisionEnum string
+
+// ValidationMethodEnum defines model for ValidationMethodEnum.
+type ValidationMethodEnum string
 
 // Version defines model for Version.
 type Version struct {
@@ -31940,6 +32200,42 @@ type NotificationMessagesCountParams struct {
 	Query *string `form:"query,omitempty" json:"query,omitempty"`
 }
 
+// OnboardingJustificationsListParams defines parameters for OnboardingJustificationsList.
+type OnboardingJustificationsListParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// OnboardingJustificationsCountParams defines parameters for OnboardingJustificationsCount.
+type OnboardingJustificationsCountParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// OnboardingVerificationsListParams defines parameters for OnboardingVerificationsList.
+type OnboardingVerificationsListParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// OnboardingVerificationsCountParams defines parameters for OnboardingVerificationsCount.
+type OnboardingVerificationsCountParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
 // OpenstackBackupsListParams defines parameters for OpenstackBackupsList.
 type OpenstackBackupsListParams struct {
 	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
@@ -32494,6 +32790,8 @@ type OpenstackNetworkRbacPoliciesListParams struct {
 	PolicyType       *OpenstackNetworkRbacPoliciesListParamsPolicyType `form:"policy_type,omitempty" json:"policy_type,omitempty"`
 	TargetTenant     *string                                           `form:"target_tenant,omitempty" json:"target_tenant,omitempty"`
 	TargetTenantUuid *openapi_types.UUID                               `form:"target_tenant_uuid,omitempty" json:"target_tenant_uuid,omitempty"`
+	Tenant           *string                                           `form:"tenant,omitempty" json:"tenant,omitempty"`
+	TenantUuid       *openapi_types.UUID                               `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
 }
 
 // OpenstackNetworkRbacPoliciesListParamsPolicyType defines parameters for OpenstackNetworkRbacPoliciesList.
@@ -32515,6 +32813,8 @@ type OpenstackNetworkRbacPoliciesCountParams struct {
 	PolicyType       *OpenstackNetworkRbacPoliciesCountParamsPolicyType `form:"policy_type,omitempty" json:"policy_type,omitempty"`
 	TargetTenant     *string                                            `form:"target_tenant,omitempty" json:"target_tenant,omitempty"`
 	TargetTenantUuid *openapi_types.UUID                                `form:"target_tenant_uuid,omitempty" json:"target_tenant_uuid,omitempty"`
+	Tenant           *string                                            `form:"tenant,omitempty" json:"tenant,omitempty"`
+	TenantUuid       *openapi_types.UUID                                `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
 }
 
 // OpenstackNetworkRbacPoliciesCountParamsPolicyType defines parameters for OpenstackNetworkRbacPoliciesCount.
@@ -37635,6 +37935,9 @@ type MarketplaceResourcesUpdateJSONRequestBody = ResourceUpdateRequest
 // MarketplaceResourcesMoveResourceJSONRequestBody defines body for MarketplaceResourcesMoveResource for application/json ContentType.
 type MarketplaceResourcesMoveResourceJSONRequestBody = MoveResourceRequest
 
+// MarketplaceResourcesRenewJSONRequestBody defines body for MarketplaceResourcesRenew for application/json ContentType.
+type MarketplaceResourcesRenewJSONRequestBody = ResourceRenewRequest
+
 // MarketplaceResourcesSetEndDateByStaffJSONRequestBody defines body for MarketplaceResourcesSetEndDateByStaff for application/json ContentType.
 type MarketplaceResourcesSetEndDateByStaffJSONRequestBody = ResourceEndDateByProviderRequest
 
@@ -37772,6 +38075,39 @@ type NotificationMessagesPartialUpdateJSONRequestBody = PatchedNotificationReque
 
 // NotificationMessagesUpdateJSONRequestBody defines body for NotificationMessagesUpdate for application/json ContentType.
 type NotificationMessagesUpdateJSONRequestBody = NotificationRequest
+
+// OnboardingJustificationsCreateJSONRequestBody defines body for OnboardingJustificationsCreate for application/json ContentType.
+type OnboardingJustificationsCreateJSONRequestBody = OnboardingJustificationRequest
+
+// OnboardingJustificationsCreateJustificationJSONRequestBody defines body for OnboardingJustificationsCreateJustification for application/json ContentType.
+type OnboardingJustificationsCreateJustificationJSONRequestBody = OnboardingJustificationCreateRequest
+
+// OnboardingJustificationsPartialUpdateJSONRequestBody defines body for OnboardingJustificationsPartialUpdate for application/json ContentType.
+type OnboardingJustificationsPartialUpdateJSONRequestBody = PatchedOnboardingJustificationRequest
+
+// OnboardingJustificationsUpdateJSONRequestBody defines body for OnboardingJustificationsUpdate for application/json ContentType.
+type OnboardingJustificationsUpdateJSONRequestBody = OnboardingJustificationRequest
+
+// OnboardingJustificationsAttachDocumentJSONRequestBody defines body for OnboardingJustificationsAttachDocument for application/json ContentType.
+type OnboardingJustificationsAttachDocumentJSONRequestBody = OnboardingJustificationDocumentationRequest
+
+// OnboardingJustificationsAttachDocumentFormdataRequestBody defines body for OnboardingJustificationsAttachDocument for application/x-www-form-urlencoded ContentType.
+type OnboardingJustificationsAttachDocumentFormdataRequestBody = OnboardingJustificationDocumentationRequestForm
+
+// OnboardingJustificationsAttachDocumentMultipartRequestBody defines body for OnboardingJustificationsAttachDocument for multipart/form-data ContentType.
+type OnboardingJustificationsAttachDocumentMultipartRequestBody = OnboardingJustificationDocumentationRequestMultipart
+
+// OnboardingVerificationsCreateJSONRequestBody defines body for OnboardingVerificationsCreate for application/json ContentType.
+type OnboardingVerificationsCreateJSONRequestBody = OnboardingVerificationRequest
+
+// OnboardingVerificationsValidateCompanyJSONRequestBody defines body for OnboardingVerificationsValidateCompany for application/json ContentType.
+type OnboardingVerificationsValidateCompanyJSONRequestBody = OnboardingCompanyValidationRequestRequest
+
+// OnboardingVerificationsPartialUpdateJSONRequestBody defines body for OnboardingVerificationsPartialUpdate for application/json ContentType.
+type OnboardingVerificationsPartialUpdateJSONRequestBody = PatchedOnboardingVerificationRequest
+
+// OnboardingVerificationsUpdateJSONRequestBody defines body for OnboardingVerificationsUpdate for application/json ContentType.
+type OnboardingVerificationsUpdateJSONRequestBody = OnboardingVerificationRequest
 
 // OpenstackBackupsPartialUpdateJSONRequestBody defines body for OpenstackBackupsPartialUpdate for application/json ContentType.
 type OpenstackBackupsPartialUpdateJSONRequestBody = PatchedOpenStackBackupRequest
@@ -47223,6 +47559,11 @@ type ClientInterface interface {
 	// MarketplaceResourcesPull request
 	MarketplaceResourcesPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceResourcesRenewWithBody request with any body
+	MarketplaceResourcesRenewWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceResourcesRenew(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesRenewJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceResourcesSetEndDateByStaffWithBody request with any body
 	MarketplaceResourcesSetEndDateByStaffWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -47730,6 +48071,83 @@ type ClientInterface interface {
 
 	// NotificationMessagesEnable request
 	NotificationMessagesEnable(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OnboardingJustificationsList request
+	OnboardingJustificationsList(ctx context.Context, params *OnboardingJustificationsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OnboardingJustificationsCount request
+	OnboardingJustificationsCount(ctx context.Context, params *OnboardingJustificationsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OnboardingJustificationsCreateWithBody request with any body
+	OnboardingJustificationsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OnboardingJustificationsCreate(ctx context.Context, body OnboardingJustificationsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OnboardingJustificationsCreateJustificationWithBody request with any body
+	OnboardingJustificationsCreateJustificationWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OnboardingJustificationsCreateJustification(ctx context.Context, body OnboardingJustificationsCreateJustificationJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OnboardingJustificationsDestroy request
+	OnboardingJustificationsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OnboardingJustificationsRetrieve request
+	OnboardingJustificationsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OnboardingJustificationsPartialUpdateWithBody request with any body
+	OnboardingJustificationsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OnboardingJustificationsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body OnboardingJustificationsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OnboardingJustificationsUpdateWithBody request with any body
+	OnboardingJustificationsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OnboardingJustificationsUpdate(ctx context.Context, uuid openapi_types.UUID, body OnboardingJustificationsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OnboardingJustificationsAttachDocumentWithBody request with any body
+	OnboardingJustificationsAttachDocumentWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OnboardingJustificationsAttachDocument(ctx context.Context, uuid openapi_types.UUID, body OnboardingJustificationsAttachDocumentJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OnboardingJustificationsAttachDocumentWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body OnboardingJustificationsAttachDocumentFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OnboardingVerificationsList request
+	OnboardingVerificationsList(ctx context.Context, params *OnboardingVerificationsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OnboardingVerificationsCount request
+	OnboardingVerificationsCount(ctx context.Context, params *OnboardingVerificationsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OnboardingVerificationsCreateWithBody request with any body
+	OnboardingVerificationsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OnboardingVerificationsCreate(ctx context.Context, body OnboardingVerificationsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OnboardingVerificationsValidateCompanyWithBody request with any body
+	OnboardingVerificationsValidateCompanyWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OnboardingVerificationsValidateCompany(ctx context.Context, body OnboardingVerificationsValidateCompanyJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OnboardingVerificationsDestroy request
+	OnboardingVerificationsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OnboardingVerificationsRetrieve request
+	OnboardingVerificationsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OnboardingVerificationsPartialUpdateWithBody request with any body
+	OnboardingVerificationsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OnboardingVerificationsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body OnboardingVerificationsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OnboardingVerificationsUpdateWithBody request with any body
+	OnboardingVerificationsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OnboardingVerificationsUpdate(ctx context.Context, uuid openapi_types.UUID, body OnboardingVerificationsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OnboardingVerificationsCreateCustomer request
+	OnboardingVerificationsCreateCustomer(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OnboardingSupportedCountriesRetrieve request
+	OnboardingSupportedCountriesRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenstackBackupsList request
 	OpenstackBackupsList(ctx context.Context, params *OpenstackBackupsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -62607,6 +63025,30 @@ func (c *Client) MarketplaceResourcesPull(ctx context.Context, uuid openapi_type
 	return c.Client.Do(req)
 }
 
+func (c *Client) MarketplaceResourcesRenewWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourcesRenewRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceResourcesRenew(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesRenewJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourcesRenewRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) MarketplaceResourcesSetEndDateByStaffWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceResourcesSetEndDateByStaffRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
@@ -64793,6 +65235,354 @@ func (c *Client) NotificationMessagesDisable(ctx context.Context, uuid openapi_t
 
 func (c *Client) NotificationMessagesEnable(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewNotificationMessagesEnableRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OnboardingJustificationsList(ctx context.Context, params *OnboardingJustificationsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOnboardingJustificationsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OnboardingJustificationsCount(ctx context.Context, params *OnboardingJustificationsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOnboardingJustificationsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OnboardingJustificationsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOnboardingJustificationsCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OnboardingJustificationsCreate(ctx context.Context, body OnboardingJustificationsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOnboardingJustificationsCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OnboardingJustificationsCreateJustificationWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOnboardingJustificationsCreateJustificationRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OnboardingJustificationsCreateJustification(ctx context.Context, body OnboardingJustificationsCreateJustificationJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOnboardingJustificationsCreateJustificationRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OnboardingJustificationsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOnboardingJustificationsDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OnboardingJustificationsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOnboardingJustificationsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OnboardingJustificationsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOnboardingJustificationsPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OnboardingJustificationsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body OnboardingJustificationsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOnboardingJustificationsPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OnboardingJustificationsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOnboardingJustificationsUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OnboardingJustificationsUpdate(ctx context.Context, uuid openapi_types.UUID, body OnboardingJustificationsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOnboardingJustificationsUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OnboardingJustificationsAttachDocumentWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOnboardingJustificationsAttachDocumentRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OnboardingJustificationsAttachDocument(ctx context.Context, uuid openapi_types.UUID, body OnboardingJustificationsAttachDocumentJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOnboardingJustificationsAttachDocumentRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OnboardingJustificationsAttachDocumentWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body OnboardingJustificationsAttachDocumentFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOnboardingJustificationsAttachDocumentRequestWithFormdataBody(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OnboardingVerificationsList(ctx context.Context, params *OnboardingVerificationsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOnboardingVerificationsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OnboardingVerificationsCount(ctx context.Context, params *OnboardingVerificationsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOnboardingVerificationsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OnboardingVerificationsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOnboardingVerificationsCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OnboardingVerificationsCreate(ctx context.Context, body OnboardingVerificationsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOnboardingVerificationsCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OnboardingVerificationsValidateCompanyWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOnboardingVerificationsValidateCompanyRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OnboardingVerificationsValidateCompany(ctx context.Context, body OnboardingVerificationsValidateCompanyJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOnboardingVerificationsValidateCompanyRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OnboardingVerificationsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOnboardingVerificationsDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OnboardingVerificationsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOnboardingVerificationsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OnboardingVerificationsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOnboardingVerificationsPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OnboardingVerificationsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body OnboardingVerificationsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOnboardingVerificationsPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OnboardingVerificationsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOnboardingVerificationsUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OnboardingVerificationsUpdate(ctx context.Context, uuid openapi_types.UUID, body OnboardingVerificationsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOnboardingVerificationsUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OnboardingVerificationsCreateCustomer(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOnboardingVerificationsCreateCustomerRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OnboardingSupportedCountriesRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOnboardingSupportedCountriesRetrieveRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -139353,6 +140143,53 @@ func NewMarketplaceResourcesPullRequest(server string, uuid openapi_types.UUID) 
 	return req, nil
 }
 
+// NewMarketplaceResourcesRenewRequest calls the generic MarketplaceResourcesRenew builder with application/json body
+func NewMarketplaceResourcesRenewRequest(server string, uuid openapi_types.UUID, body MarketplaceResourcesRenewJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceResourcesRenewRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceResourcesRenewRequestWithBody generates requests for MarketplaceResourcesRenew with any type of body
+func NewMarketplaceResourcesRenewRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-resources/%s/renew/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewMarketplaceResourcesSetEndDateByStaffRequest calls the generic MarketplaceResourcesSetEndDateByStaff builder with application/json body
 func NewMarketplaceResourcesSetEndDateByStaffRequest(server string, uuid openapi_types.UUID, body MarketplaceResourcesSetEndDateByStaffJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -150921,6 +151758,869 @@ func NewNotificationMessagesEnableRequest(server string, uuid openapi_types.UUID
 	return req, nil
 }
 
+// NewOnboardingJustificationsListRequest generates requests for OnboardingJustificationsList
+func NewOnboardingJustificationsListRequest(server string, params *OnboardingJustificationsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/onboarding-justifications/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOnboardingJustificationsCountRequest generates requests for OnboardingJustificationsCount
+func NewOnboardingJustificationsCountRequest(server string, params *OnboardingJustificationsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/onboarding-justifications/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOnboardingJustificationsCreateRequest calls the generic OnboardingJustificationsCreate builder with application/json body
+func NewOnboardingJustificationsCreateRequest(server string, body OnboardingJustificationsCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOnboardingJustificationsCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewOnboardingJustificationsCreateRequestWithBody generates requests for OnboardingJustificationsCreate with any type of body
+func NewOnboardingJustificationsCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/onboarding-justifications/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOnboardingJustificationsCreateJustificationRequest calls the generic OnboardingJustificationsCreateJustification builder with application/json body
+func NewOnboardingJustificationsCreateJustificationRequest(server string, body OnboardingJustificationsCreateJustificationJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOnboardingJustificationsCreateJustificationRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewOnboardingJustificationsCreateJustificationRequestWithBody generates requests for OnboardingJustificationsCreateJustification with any type of body
+func NewOnboardingJustificationsCreateJustificationRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/onboarding-justifications/create_justification/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOnboardingJustificationsDestroyRequest generates requests for OnboardingJustificationsDestroy
+func NewOnboardingJustificationsDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/onboarding-justifications/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOnboardingJustificationsRetrieveRequest generates requests for OnboardingJustificationsRetrieve
+func NewOnboardingJustificationsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/onboarding-justifications/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOnboardingJustificationsPartialUpdateRequest calls the generic OnboardingJustificationsPartialUpdate builder with application/json body
+func NewOnboardingJustificationsPartialUpdateRequest(server string, uuid openapi_types.UUID, body OnboardingJustificationsPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOnboardingJustificationsPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOnboardingJustificationsPartialUpdateRequestWithBody generates requests for OnboardingJustificationsPartialUpdate with any type of body
+func NewOnboardingJustificationsPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/onboarding-justifications/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOnboardingJustificationsUpdateRequest calls the generic OnboardingJustificationsUpdate builder with application/json body
+func NewOnboardingJustificationsUpdateRequest(server string, uuid openapi_types.UUID, body OnboardingJustificationsUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOnboardingJustificationsUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOnboardingJustificationsUpdateRequestWithBody generates requests for OnboardingJustificationsUpdate with any type of body
+func NewOnboardingJustificationsUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/onboarding-justifications/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOnboardingJustificationsAttachDocumentRequest calls the generic OnboardingJustificationsAttachDocument builder with application/json body
+func NewOnboardingJustificationsAttachDocumentRequest(server string, uuid openapi_types.UUID, body OnboardingJustificationsAttachDocumentJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOnboardingJustificationsAttachDocumentRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOnboardingJustificationsAttachDocumentRequestWithFormdataBody calls the generic OnboardingJustificationsAttachDocument builder with application/x-www-form-urlencoded body
+func NewOnboardingJustificationsAttachDocumentRequestWithFormdataBody(server string, uuid openapi_types.UUID, body OnboardingJustificationsAttachDocumentFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewOnboardingJustificationsAttachDocumentRequestWithBody(server, uuid, "application/x-www-form-urlencoded", bodyReader)
+}
+
+// NewOnboardingJustificationsAttachDocumentRequestWithBody generates requests for OnboardingJustificationsAttachDocument with any type of body
+func NewOnboardingJustificationsAttachDocumentRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/onboarding-justifications/%s/attach_document/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOnboardingVerificationsListRequest generates requests for OnboardingVerificationsList
+func NewOnboardingVerificationsListRequest(server string, params *OnboardingVerificationsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/onboarding-verifications/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOnboardingVerificationsCountRequest generates requests for OnboardingVerificationsCount
+func NewOnboardingVerificationsCountRequest(server string, params *OnboardingVerificationsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/onboarding-verifications/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOnboardingVerificationsCreateRequest calls the generic OnboardingVerificationsCreate builder with application/json body
+func NewOnboardingVerificationsCreateRequest(server string, body OnboardingVerificationsCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOnboardingVerificationsCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewOnboardingVerificationsCreateRequestWithBody generates requests for OnboardingVerificationsCreate with any type of body
+func NewOnboardingVerificationsCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/onboarding-verifications/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOnboardingVerificationsValidateCompanyRequest calls the generic OnboardingVerificationsValidateCompany builder with application/json body
+func NewOnboardingVerificationsValidateCompanyRequest(server string, body OnboardingVerificationsValidateCompanyJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOnboardingVerificationsValidateCompanyRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewOnboardingVerificationsValidateCompanyRequestWithBody generates requests for OnboardingVerificationsValidateCompany with any type of body
+func NewOnboardingVerificationsValidateCompanyRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/onboarding-verifications/validate_company/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOnboardingVerificationsDestroyRequest generates requests for OnboardingVerificationsDestroy
+func NewOnboardingVerificationsDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/onboarding-verifications/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOnboardingVerificationsRetrieveRequest generates requests for OnboardingVerificationsRetrieve
+func NewOnboardingVerificationsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/onboarding-verifications/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOnboardingVerificationsPartialUpdateRequest calls the generic OnboardingVerificationsPartialUpdate builder with application/json body
+func NewOnboardingVerificationsPartialUpdateRequest(server string, uuid openapi_types.UUID, body OnboardingVerificationsPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOnboardingVerificationsPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOnboardingVerificationsPartialUpdateRequestWithBody generates requests for OnboardingVerificationsPartialUpdate with any type of body
+func NewOnboardingVerificationsPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/onboarding-verifications/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOnboardingVerificationsUpdateRequest calls the generic OnboardingVerificationsUpdate builder with application/json body
+func NewOnboardingVerificationsUpdateRequest(server string, uuid openapi_types.UUID, body OnboardingVerificationsUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOnboardingVerificationsUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOnboardingVerificationsUpdateRequestWithBody generates requests for OnboardingVerificationsUpdate with any type of body
+func NewOnboardingVerificationsUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/onboarding-verifications/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOnboardingVerificationsCreateCustomerRequest generates requests for OnboardingVerificationsCreateCustomer
+func NewOnboardingVerificationsCreateCustomerRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/onboarding-verifications/%s/create_customer/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOnboardingSupportedCountriesRetrieveRequest generates requests for OnboardingSupportedCountriesRetrieve
+func NewOnboardingSupportedCountriesRetrieveRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/onboarding/supported-countries/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewOpenstackBackupsListRequest generates requests for OpenstackBackupsList
 func NewOpenstackBackupsListRequest(server string, params *OpenstackBackupsListParams) (*http.Request, error) {
 	var err error
@@ -158011,6 +159711,38 @@ func NewOpenstackNetworkRbacPoliciesListRequest(server string, params *Openstack
 
 		}
 
+		if params.Tenant != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tenant", runtime.ParamLocationQuery, *params.Tenant); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TenantUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tenant_uuid", runtime.ParamLocationQuery, *params.TenantUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		queryURL.RawQuery = queryValues.Encode()
 	}
 
@@ -158143,6 +159875,38 @@ func NewOpenstackNetworkRbacPoliciesCountRequest(server string, params *Openstac
 		if params.TargetTenantUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "target_tenant_uuid", runtime.ParamLocationQuery, *params.TargetTenantUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Tenant != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tenant", runtime.ParamLocationQuery, *params.Tenant); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TenantUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tenant_uuid", runtime.ParamLocationQuery, *params.TenantUuid); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -212804,6 +214568,11 @@ type ClientWithResponsesInterface interface {
 	// MarketplaceResourcesPullWithResponse request
 	MarketplaceResourcesPullWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceResourcesPullResponse, error)
 
+	// MarketplaceResourcesRenewWithBodyWithResponse request with any body
+	MarketplaceResourcesRenewWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourcesRenewResponse, error)
+
+	MarketplaceResourcesRenewWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesRenewJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourcesRenewResponse, error)
+
 	// MarketplaceResourcesSetEndDateByStaffWithBodyWithResponse request with any body
 	MarketplaceResourcesSetEndDateByStaffWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourcesSetEndDateByStaffResponse, error)
 
@@ -213311,6 +215080,83 @@ type ClientWithResponsesInterface interface {
 
 	// NotificationMessagesEnableWithResponse request
 	NotificationMessagesEnableWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*NotificationMessagesEnableResponse, error)
+
+	// OnboardingJustificationsListWithResponse request
+	OnboardingJustificationsListWithResponse(ctx context.Context, params *OnboardingJustificationsListParams, reqEditors ...RequestEditorFn) (*OnboardingJustificationsListResponse, error)
+
+	// OnboardingJustificationsCountWithResponse request
+	OnboardingJustificationsCountWithResponse(ctx context.Context, params *OnboardingJustificationsCountParams, reqEditors ...RequestEditorFn) (*OnboardingJustificationsCountResponse, error)
+
+	// OnboardingJustificationsCreateWithBodyWithResponse request with any body
+	OnboardingJustificationsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OnboardingJustificationsCreateResponse, error)
+
+	OnboardingJustificationsCreateWithResponse(ctx context.Context, body OnboardingJustificationsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*OnboardingJustificationsCreateResponse, error)
+
+	// OnboardingJustificationsCreateJustificationWithBodyWithResponse request with any body
+	OnboardingJustificationsCreateJustificationWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OnboardingJustificationsCreateJustificationResponse, error)
+
+	OnboardingJustificationsCreateJustificationWithResponse(ctx context.Context, body OnboardingJustificationsCreateJustificationJSONRequestBody, reqEditors ...RequestEditorFn) (*OnboardingJustificationsCreateJustificationResponse, error)
+
+	// OnboardingJustificationsDestroyWithResponse request
+	OnboardingJustificationsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OnboardingJustificationsDestroyResponse, error)
+
+	// OnboardingJustificationsRetrieveWithResponse request
+	OnboardingJustificationsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OnboardingJustificationsRetrieveResponse, error)
+
+	// OnboardingJustificationsPartialUpdateWithBodyWithResponse request with any body
+	OnboardingJustificationsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OnboardingJustificationsPartialUpdateResponse, error)
+
+	OnboardingJustificationsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OnboardingJustificationsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OnboardingJustificationsPartialUpdateResponse, error)
+
+	// OnboardingJustificationsUpdateWithBodyWithResponse request with any body
+	OnboardingJustificationsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OnboardingJustificationsUpdateResponse, error)
+
+	OnboardingJustificationsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OnboardingJustificationsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OnboardingJustificationsUpdateResponse, error)
+
+	// OnboardingJustificationsAttachDocumentWithBodyWithResponse request with any body
+	OnboardingJustificationsAttachDocumentWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OnboardingJustificationsAttachDocumentResponse, error)
+
+	OnboardingJustificationsAttachDocumentWithResponse(ctx context.Context, uuid openapi_types.UUID, body OnboardingJustificationsAttachDocumentJSONRequestBody, reqEditors ...RequestEditorFn) (*OnboardingJustificationsAttachDocumentResponse, error)
+
+	OnboardingJustificationsAttachDocumentWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body OnboardingJustificationsAttachDocumentFormdataRequestBody, reqEditors ...RequestEditorFn) (*OnboardingJustificationsAttachDocumentResponse, error)
+
+	// OnboardingVerificationsListWithResponse request
+	OnboardingVerificationsListWithResponse(ctx context.Context, params *OnboardingVerificationsListParams, reqEditors ...RequestEditorFn) (*OnboardingVerificationsListResponse, error)
+
+	// OnboardingVerificationsCountWithResponse request
+	OnboardingVerificationsCountWithResponse(ctx context.Context, params *OnboardingVerificationsCountParams, reqEditors ...RequestEditorFn) (*OnboardingVerificationsCountResponse, error)
+
+	// OnboardingVerificationsCreateWithBodyWithResponse request with any body
+	OnboardingVerificationsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OnboardingVerificationsCreateResponse, error)
+
+	OnboardingVerificationsCreateWithResponse(ctx context.Context, body OnboardingVerificationsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*OnboardingVerificationsCreateResponse, error)
+
+	// OnboardingVerificationsValidateCompanyWithBodyWithResponse request with any body
+	OnboardingVerificationsValidateCompanyWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OnboardingVerificationsValidateCompanyResponse, error)
+
+	OnboardingVerificationsValidateCompanyWithResponse(ctx context.Context, body OnboardingVerificationsValidateCompanyJSONRequestBody, reqEditors ...RequestEditorFn) (*OnboardingVerificationsValidateCompanyResponse, error)
+
+	// OnboardingVerificationsDestroyWithResponse request
+	OnboardingVerificationsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OnboardingVerificationsDestroyResponse, error)
+
+	// OnboardingVerificationsRetrieveWithResponse request
+	OnboardingVerificationsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OnboardingVerificationsRetrieveResponse, error)
+
+	// OnboardingVerificationsPartialUpdateWithBodyWithResponse request with any body
+	OnboardingVerificationsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OnboardingVerificationsPartialUpdateResponse, error)
+
+	OnboardingVerificationsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OnboardingVerificationsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OnboardingVerificationsPartialUpdateResponse, error)
+
+	// OnboardingVerificationsUpdateWithBodyWithResponse request with any body
+	OnboardingVerificationsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OnboardingVerificationsUpdateResponse, error)
+
+	OnboardingVerificationsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OnboardingVerificationsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OnboardingVerificationsUpdateResponse, error)
+
+	// OnboardingVerificationsCreateCustomerWithResponse request
+	OnboardingVerificationsCreateCustomerWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OnboardingVerificationsCreateCustomerResponse, error)
+
+	// OnboardingSupportedCountriesRetrieveWithResponse request
+	OnboardingSupportedCountriesRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*OnboardingSupportedCountriesRetrieveResponse, error)
 
 	// OpenstackBackupsListWithResponse request
 	OpenstackBackupsListWithResponse(ctx context.Context, params *OpenstackBackupsListParams, reqEditors ...RequestEditorFn) (*OpenstackBackupsListResponse, error)
@@ -232433,6 +234279,28 @@ func (r MarketplaceResourcesPullResponse) StatusCode() int {
 	return 0
 }
 
+type MarketplaceResourcesRenewResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OrderUUID
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceResourcesRenewResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceResourcesRenewResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type MarketplaceResourcesSetEndDateByStaffResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -235507,6 +237375,420 @@ func (r NotificationMessagesEnableResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r NotificationMessagesEnableResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OnboardingJustificationsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]OnboardingJustification
+}
+
+// Status returns HTTPResponse.Status
+func (r OnboardingJustificationsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OnboardingJustificationsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OnboardingJustificationsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OnboardingJustificationsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OnboardingJustificationsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OnboardingJustificationsCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *OnboardingJustification
+}
+
+// Status returns HTTPResponse.Status
+func (r OnboardingJustificationsCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OnboardingJustificationsCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OnboardingJustificationsCreateJustificationResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OnboardingJustification
+}
+
+// Status returns HTTPResponse.Status
+func (r OnboardingJustificationsCreateJustificationResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OnboardingJustificationsCreateJustificationResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OnboardingJustificationsDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OnboardingJustificationsDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OnboardingJustificationsDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OnboardingJustificationsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OnboardingJustification
+}
+
+// Status returns HTTPResponse.Status
+func (r OnboardingJustificationsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OnboardingJustificationsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OnboardingJustificationsPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OnboardingJustification
+}
+
+// Status returns HTTPResponse.Status
+func (r OnboardingJustificationsPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OnboardingJustificationsPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OnboardingJustificationsUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OnboardingJustification
+}
+
+// Status returns HTTPResponse.Status
+func (r OnboardingJustificationsUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OnboardingJustificationsUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OnboardingJustificationsAttachDocumentResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OnboardingJustificationDocumentation
+}
+
+// Status returns HTTPResponse.Status
+func (r OnboardingJustificationsAttachDocumentResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OnboardingJustificationsAttachDocumentResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OnboardingVerificationsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]OnboardingVerification
+}
+
+// Status returns HTTPResponse.Status
+func (r OnboardingVerificationsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OnboardingVerificationsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OnboardingVerificationsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OnboardingVerificationsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OnboardingVerificationsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OnboardingVerificationsCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *OnboardingVerification
+}
+
+// Status returns HTTPResponse.Status
+func (r OnboardingVerificationsCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OnboardingVerificationsCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OnboardingVerificationsValidateCompanyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OnboardingVerification
+}
+
+// Status returns HTTPResponse.Status
+func (r OnboardingVerificationsValidateCompanyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OnboardingVerificationsValidateCompanyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OnboardingVerificationsDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OnboardingVerificationsDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OnboardingVerificationsDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OnboardingVerificationsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OnboardingVerification
+}
+
+// Status returns HTTPResponse.Status
+func (r OnboardingVerificationsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OnboardingVerificationsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OnboardingVerificationsPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OnboardingVerification
+}
+
+// Status returns HTTPResponse.Status
+func (r OnboardingVerificationsPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OnboardingVerificationsPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OnboardingVerificationsUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OnboardingVerification
+}
+
+// Status returns HTTPResponse.Status
+func (r OnboardingVerificationsUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OnboardingVerificationsUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OnboardingVerificationsCreateCustomerResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *Customer
+}
+
+// Status returns HTTPResponse.Status
+func (r OnboardingVerificationsCreateCustomerResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OnboardingVerificationsCreateCustomerResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OnboardingSupportedCountriesRetrieveResponse struct {
+	Body                   []byte
+	HTTPResponse           *http.Response
+	JSONSupportedCountries *[]string
+}
+
+// Status returns HTTPResponse.Status
+func (r OnboardingSupportedCountriesRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OnboardingSupportedCountriesRetrieveResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -258915,6 +261197,23 @@ func (c *ClientWithResponses) MarketplaceResourcesPullWithResponse(ctx context.C
 	return ParseMarketplaceResourcesPullResponse(rsp)
 }
 
+// MarketplaceResourcesRenewWithBodyWithResponse request with arbitrary body returning *MarketplaceResourcesRenewResponse
+func (c *ClientWithResponses) MarketplaceResourcesRenewWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourcesRenewResponse, error) {
+	rsp, err := c.MarketplaceResourcesRenewWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourcesRenewResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceResourcesRenewWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesRenewJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourcesRenewResponse, error) {
+	rsp, err := c.MarketplaceResourcesRenew(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourcesRenewResponse(rsp)
+}
+
 // MarketplaceResourcesSetEndDateByStaffWithBodyWithResponse request with arbitrary body returning *MarketplaceResourcesSetEndDateByStaffResponse
 func (c *ClientWithResponses) MarketplaceResourcesSetEndDateByStaffWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourcesSetEndDateByStaffResponse, error) {
 	rsp, err := c.MarketplaceResourcesSetEndDateByStaffWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -260519,6 +262818,257 @@ func (c *ClientWithResponses) NotificationMessagesEnableWithResponse(ctx context
 		return nil, err
 	}
 	return ParseNotificationMessagesEnableResponse(rsp)
+}
+
+// OnboardingJustificationsListWithResponse request returning *OnboardingJustificationsListResponse
+func (c *ClientWithResponses) OnboardingJustificationsListWithResponse(ctx context.Context, params *OnboardingJustificationsListParams, reqEditors ...RequestEditorFn) (*OnboardingJustificationsListResponse, error) {
+	rsp, err := c.OnboardingJustificationsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOnboardingJustificationsListResponse(rsp)
+}
+
+// OnboardingJustificationsCountWithResponse request returning *OnboardingJustificationsCountResponse
+func (c *ClientWithResponses) OnboardingJustificationsCountWithResponse(ctx context.Context, params *OnboardingJustificationsCountParams, reqEditors ...RequestEditorFn) (*OnboardingJustificationsCountResponse, error) {
+	rsp, err := c.OnboardingJustificationsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOnboardingJustificationsCountResponse(rsp)
+}
+
+// OnboardingJustificationsCreateWithBodyWithResponse request with arbitrary body returning *OnboardingJustificationsCreateResponse
+func (c *ClientWithResponses) OnboardingJustificationsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OnboardingJustificationsCreateResponse, error) {
+	rsp, err := c.OnboardingJustificationsCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOnboardingJustificationsCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) OnboardingJustificationsCreateWithResponse(ctx context.Context, body OnboardingJustificationsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*OnboardingJustificationsCreateResponse, error) {
+	rsp, err := c.OnboardingJustificationsCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOnboardingJustificationsCreateResponse(rsp)
+}
+
+// OnboardingJustificationsCreateJustificationWithBodyWithResponse request with arbitrary body returning *OnboardingJustificationsCreateJustificationResponse
+func (c *ClientWithResponses) OnboardingJustificationsCreateJustificationWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OnboardingJustificationsCreateJustificationResponse, error) {
+	rsp, err := c.OnboardingJustificationsCreateJustificationWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOnboardingJustificationsCreateJustificationResponse(rsp)
+}
+
+func (c *ClientWithResponses) OnboardingJustificationsCreateJustificationWithResponse(ctx context.Context, body OnboardingJustificationsCreateJustificationJSONRequestBody, reqEditors ...RequestEditorFn) (*OnboardingJustificationsCreateJustificationResponse, error) {
+	rsp, err := c.OnboardingJustificationsCreateJustification(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOnboardingJustificationsCreateJustificationResponse(rsp)
+}
+
+// OnboardingJustificationsDestroyWithResponse request returning *OnboardingJustificationsDestroyResponse
+func (c *ClientWithResponses) OnboardingJustificationsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OnboardingJustificationsDestroyResponse, error) {
+	rsp, err := c.OnboardingJustificationsDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOnboardingJustificationsDestroyResponse(rsp)
+}
+
+// OnboardingJustificationsRetrieveWithResponse request returning *OnboardingJustificationsRetrieveResponse
+func (c *ClientWithResponses) OnboardingJustificationsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OnboardingJustificationsRetrieveResponse, error) {
+	rsp, err := c.OnboardingJustificationsRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOnboardingJustificationsRetrieveResponse(rsp)
+}
+
+// OnboardingJustificationsPartialUpdateWithBodyWithResponse request with arbitrary body returning *OnboardingJustificationsPartialUpdateResponse
+func (c *ClientWithResponses) OnboardingJustificationsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OnboardingJustificationsPartialUpdateResponse, error) {
+	rsp, err := c.OnboardingJustificationsPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOnboardingJustificationsPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) OnboardingJustificationsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OnboardingJustificationsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OnboardingJustificationsPartialUpdateResponse, error) {
+	rsp, err := c.OnboardingJustificationsPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOnboardingJustificationsPartialUpdateResponse(rsp)
+}
+
+// OnboardingJustificationsUpdateWithBodyWithResponse request with arbitrary body returning *OnboardingJustificationsUpdateResponse
+func (c *ClientWithResponses) OnboardingJustificationsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OnboardingJustificationsUpdateResponse, error) {
+	rsp, err := c.OnboardingJustificationsUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOnboardingJustificationsUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) OnboardingJustificationsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OnboardingJustificationsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OnboardingJustificationsUpdateResponse, error) {
+	rsp, err := c.OnboardingJustificationsUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOnboardingJustificationsUpdateResponse(rsp)
+}
+
+// OnboardingJustificationsAttachDocumentWithBodyWithResponse request with arbitrary body returning *OnboardingJustificationsAttachDocumentResponse
+func (c *ClientWithResponses) OnboardingJustificationsAttachDocumentWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OnboardingJustificationsAttachDocumentResponse, error) {
+	rsp, err := c.OnboardingJustificationsAttachDocumentWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOnboardingJustificationsAttachDocumentResponse(rsp)
+}
+
+func (c *ClientWithResponses) OnboardingJustificationsAttachDocumentWithResponse(ctx context.Context, uuid openapi_types.UUID, body OnboardingJustificationsAttachDocumentJSONRequestBody, reqEditors ...RequestEditorFn) (*OnboardingJustificationsAttachDocumentResponse, error) {
+	rsp, err := c.OnboardingJustificationsAttachDocument(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOnboardingJustificationsAttachDocumentResponse(rsp)
+}
+
+func (c *ClientWithResponses) OnboardingJustificationsAttachDocumentWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body OnboardingJustificationsAttachDocumentFormdataRequestBody, reqEditors ...RequestEditorFn) (*OnboardingJustificationsAttachDocumentResponse, error) {
+	rsp, err := c.OnboardingJustificationsAttachDocumentWithFormdataBody(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOnboardingJustificationsAttachDocumentResponse(rsp)
+}
+
+// OnboardingVerificationsListWithResponse request returning *OnboardingVerificationsListResponse
+func (c *ClientWithResponses) OnboardingVerificationsListWithResponse(ctx context.Context, params *OnboardingVerificationsListParams, reqEditors ...RequestEditorFn) (*OnboardingVerificationsListResponse, error) {
+	rsp, err := c.OnboardingVerificationsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOnboardingVerificationsListResponse(rsp)
+}
+
+// OnboardingVerificationsCountWithResponse request returning *OnboardingVerificationsCountResponse
+func (c *ClientWithResponses) OnboardingVerificationsCountWithResponse(ctx context.Context, params *OnboardingVerificationsCountParams, reqEditors ...RequestEditorFn) (*OnboardingVerificationsCountResponse, error) {
+	rsp, err := c.OnboardingVerificationsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOnboardingVerificationsCountResponse(rsp)
+}
+
+// OnboardingVerificationsCreateWithBodyWithResponse request with arbitrary body returning *OnboardingVerificationsCreateResponse
+func (c *ClientWithResponses) OnboardingVerificationsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OnboardingVerificationsCreateResponse, error) {
+	rsp, err := c.OnboardingVerificationsCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOnboardingVerificationsCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) OnboardingVerificationsCreateWithResponse(ctx context.Context, body OnboardingVerificationsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*OnboardingVerificationsCreateResponse, error) {
+	rsp, err := c.OnboardingVerificationsCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOnboardingVerificationsCreateResponse(rsp)
+}
+
+// OnboardingVerificationsValidateCompanyWithBodyWithResponse request with arbitrary body returning *OnboardingVerificationsValidateCompanyResponse
+func (c *ClientWithResponses) OnboardingVerificationsValidateCompanyWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OnboardingVerificationsValidateCompanyResponse, error) {
+	rsp, err := c.OnboardingVerificationsValidateCompanyWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOnboardingVerificationsValidateCompanyResponse(rsp)
+}
+
+func (c *ClientWithResponses) OnboardingVerificationsValidateCompanyWithResponse(ctx context.Context, body OnboardingVerificationsValidateCompanyJSONRequestBody, reqEditors ...RequestEditorFn) (*OnboardingVerificationsValidateCompanyResponse, error) {
+	rsp, err := c.OnboardingVerificationsValidateCompany(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOnboardingVerificationsValidateCompanyResponse(rsp)
+}
+
+// OnboardingVerificationsDestroyWithResponse request returning *OnboardingVerificationsDestroyResponse
+func (c *ClientWithResponses) OnboardingVerificationsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OnboardingVerificationsDestroyResponse, error) {
+	rsp, err := c.OnboardingVerificationsDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOnboardingVerificationsDestroyResponse(rsp)
+}
+
+// OnboardingVerificationsRetrieveWithResponse request returning *OnboardingVerificationsRetrieveResponse
+func (c *ClientWithResponses) OnboardingVerificationsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OnboardingVerificationsRetrieveResponse, error) {
+	rsp, err := c.OnboardingVerificationsRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOnboardingVerificationsRetrieveResponse(rsp)
+}
+
+// OnboardingVerificationsPartialUpdateWithBodyWithResponse request with arbitrary body returning *OnboardingVerificationsPartialUpdateResponse
+func (c *ClientWithResponses) OnboardingVerificationsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OnboardingVerificationsPartialUpdateResponse, error) {
+	rsp, err := c.OnboardingVerificationsPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOnboardingVerificationsPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) OnboardingVerificationsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OnboardingVerificationsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OnboardingVerificationsPartialUpdateResponse, error) {
+	rsp, err := c.OnboardingVerificationsPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOnboardingVerificationsPartialUpdateResponse(rsp)
+}
+
+// OnboardingVerificationsUpdateWithBodyWithResponse request with arbitrary body returning *OnboardingVerificationsUpdateResponse
+func (c *ClientWithResponses) OnboardingVerificationsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OnboardingVerificationsUpdateResponse, error) {
+	rsp, err := c.OnboardingVerificationsUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOnboardingVerificationsUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) OnboardingVerificationsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OnboardingVerificationsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OnboardingVerificationsUpdateResponse, error) {
+	rsp, err := c.OnboardingVerificationsUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOnboardingVerificationsUpdateResponse(rsp)
+}
+
+// OnboardingVerificationsCreateCustomerWithResponse request returning *OnboardingVerificationsCreateCustomerResponse
+func (c *ClientWithResponses) OnboardingVerificationsCreateCustomerWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OnboardingVerificationsCreateCustomerResponse, error) {
+	rsp, err := c.OnboardingVerificationsCreateCustomer(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOnboardingVerificationsCreateCustomerResponse(rsp)
+}
+
+// OnboardingSupportedCountriesRetrieveWithResponse request returning *OnboardingSupportedCountriesRetrieveResponse
+func (c *ClientWithResponses) OnboardingSupportedCountriesRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*OnboardingSupportedCountriesRetrieveResponse, error) {
+	rsp, err := c.OnboardingSupportedCountriesRetrieve(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOnboardingSupportedCountriesRetrieveResponse(rsp)
 }
 
 // OpenstackBackupsListWithResponse request returning *OpenstackBackupsListResponse
@@ -285542,6 +288092,32 @@ func ParseMarketplaceResourcesPullResponse(rsp *http.Response) (*MarketplaceReso
 	return response, nil
 }
 
+// ParseMarketplaceResourcesRenewResponse parses an HTTP response from a MarketplaceResourcesRenewWithResponse call
+func ParseMarketplaceResourcesRenewResponse(rsp *http.Response) (*MarketplaceResourcesRenewResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceResourcesRenewResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OrderUUID
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseMarketplaceResourcesSetEndDateByStaffResponse parses an HTTP response from a MarketplaceResourcesSetEndDateByStaffWithResponse call
 func ParseMarketplaceResourcesSetEndDateByStaffResponse(rsp *http.Response) (*MarketplaceResourcesSetEndDateByStaffResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -288786,6 +291362,460 @@ func ParseNotificationMessagesEnableResponse(rsp *http.Response) (*NotificationM
 	response := &NotificationMessagesEnableResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOnboardingJustificationsListResponse parses an HTTP response from a OnboardingJustificationsListWithResponse call
+func ParseOnboardingJustificationsListResponse(rsp *http.Response) (*OnboardingJustificationsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OnboardingJustificationsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []OnboardingJustification
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOnboardingJustificationsCountResponse parses an HTTP response from a OnboardingJustificationsCountWithResponse call
+func ParseOnboardingJustificationsCountResponse(rsp *http.Response) (*OnboardingJustificationsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OnboardingJustificationsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOnboardingJustificationsCreateResponse parses an HTTP response from a OnboardingJustificationsCreateWithResponse call
+func ParseOnboardingJustificationsCreateResponse(rsp *http.Response) (*OnboardingJustificationsCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OnboardingJustificationsCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest OnboardingJustification
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOnboardingJustificationsCreateJustificationResponse parses an HTTP response from a OnboardingJustificationsCreateJustificationWithResponse call
+func ParseOnboardingJustificationsCreateJustificationResponse(rsp *http.Response) (*OnboardingJustificationsCreateJustificationResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OnboardingJustificationsCreateJustificationResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OnboardingJustification
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOnboardingJustificationsDestroyResponse parses an HTTP response from a OnboardingJustificationsDestroyWithResponse call
+func ParseOnboardingJustificationsDestroyResponse(rsp *http.Response) (*OnboardingJustificationsDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OnboardingJustificationsDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOnboardingJustificationsRetrieveResponse parses an HTTP response from a OnboardingJustificationsRetrieveWithResponse call
+func ParseOnboardingJustificationsRetrieveResponse(rsp *http.Response) (*OnboardingJustificationsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OnboardingJustificationsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OnboardingJustification
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOnboardingJustificationsPartialUpdateResponse parses an HTTP response from a OnboardingJustificationsPartialUpdateWithResponse call
+func ParseOnboardingJustificationsPartialUpdateResponse(rsp *http.Response) (*OnboardingJustificationsPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OnboardingJustificationsPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OnboardingJustification
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOnboardingJustificationsUpdateResponse parses an HTTP response from a OnboardingJustificationsUpdateWithResponse call
+func ParseOnboardingJustificationsUpdateResponse(rsp *http.Response) (*OnboardingJustificationsUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OnboardingJustificationsUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OnboardingJustification
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOnboardingJustificationsAttachDocumentResponse parses an HTTP response from a OnboardingJustificationsAttachDocumentWithResponse call
+func ParseOnboardingJustificationsAttachDocumentResponse(rsp *http.Response) (*OnboardingJustificationsAttachDocumentResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OnboardingJustificationsAttachDocumentResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OnboardingJustificationDocumentation
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOnboardingVerificationsListResponse parses an HTTP response from a OnboardingVerificationsListWithResponse call
+func ParseOnboardingVerificationsListResponse(rsp *http.Response) (*OnboardingVerificationsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OnboardingVerificationsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []OnboardingVerification
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOnboardingVerificationsCountResponse parses an HTTP response from a OnboardingVerificationsCountWithResponse call
+func ParseOnboardingVerificationsCountResponse(rsp *http.Response) (*OnboardingVerificationsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OnboardingVerificationsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOnboardingVerificationsCreateResponse parses an HTTP response from a OnboardingVerificationsCreateWithResponse call
+func ParseOnboardingVerificationsCreateResponse(rsp *http.Response) (*OnboardingVerificationsCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OnboardingVerificationsCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest OnboardingVerification
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOnboardingVerificationsValidateCompanyResponse parses an HTTP response from a OnboardingVerificationsValidateCompanyWithResponse call
+func ParseOnboardingVerificationsValidateCompanyResponse(rsp *http.Response) (*OnboardingVerificationsValidateCompanyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OnboardingVerificationsValidateCompanyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OnboardingVerification
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOnboardingVerificationsDestroyResponse parses an HTTP response from a OnboardingVerificationsDestroyWithResponse call
+func ParseOnboardingVerificationsDestroyResponse(rsp *http.Response) (*OnboardingVerificationsDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OnboardingVerificationsDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOnboardingVerificationsRetrieveResponse parses an HTTP response from a OnboardingVerificationsRetrieveWithResponse call
+func ParseOnboardingVerificationsRetrieveResponse(rsp *http.Response) (*OnboardingVerificationsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OnboardingVerificationsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OnboardingVerification
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOnboardingVerificationsPartialUpdateResponse parses an HTTP response from a OnboardingVerificationsPartialUpdateWithResponse call
+func ParseOnboardingVerificationsPartialUpdateResponse(rsp *http.Response) (*OnboardingVerificationsPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OnboardingVerificationsPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OnboardingVerification
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOnboardingVerificationsUpdateResponse parses an HTTP response from a OnboardingVerificationsUpdateWithResponse call
+func ParseOnboardingVerificationsUpdateResponse(rsp *http.Response) (*OnboardingVerificationsUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OnboardingVerificationsUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OnboardingVerification
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOnboardingVerificationsCreateCustomerResponse parses an HTTP response from a OnboardingVerificationsCreateCustomerWithResponse call
+func ParseOnboardingVerificationsCreateCustomerResponse(rsp *http.Response) (*OnboardingVerificationsCreateCustomerResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OnboardingVerificationsCreateCustomerResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest Customer
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOnboardingSupportedCountriesRetrieveResponse parses an HTTP response from a OnboardingSupportedCountriesRetrieveWithResponse call
+func ParseOnboardingSupportedCountriesRetrieveResponse(rsp *http.Response) (*OnboardingSupportedCountriesRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OnboardingSupportedCountriesRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == supported_countries:
+		var dest []string
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSONSupportedCountries = &dest
+
 	}
 
 	return response, nil
