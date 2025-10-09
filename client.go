@@ -37905,6 +37905,9 @@ type MarketplaceProviderResourcesSubmitReportJSONRequestBody = ResourceReportReq
 // MarketplaceProviderResourcesTerminateJSONRequestBody defines body for MarketplaceProviderResourcesTerminate for application/json ContentType.
 type MarketplaceProviderResourcesTerminateJSONRequestBody = ResourceTerminateRequest
 
+// MarketplaceProviderResourcesUpdateOptionsJSONRequestBody defines body for MarketplaceProviderResourcesUpdateOptions for application/json ContentType.
+type MarketplaceProviderResourcesUpdateOptionsJSONRequestBody = ResourceOptionsRequest
+
 // MarketplacePublicApiCheckSignatureJSONRequestBody defines body for MarketplacePublicApiCheckSignature for application/json ContentType.
 type MarketplacePublicApiCheckSignatureJSONRequestBody = ServiceProviderSignatureRequest
 
@@ -47433,6 +47436,11 @@ type ClientInterface interface {
 
 	// MarketplaceProviderResourcesUnlink request
 	MarketplaceProviderResourcesUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProviderResourcesUpdateOptionsWithBody request with any body
+	MarketplaceProviderResourcesUpdateOptionsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceProviderResourcesUpdateOptions(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesUpdateOptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplacePublicApiCheckSignatureWithBody request with any body
 	MarketplacePublicApiCheckSignatureWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -62475,6 +62483,30 @@ func (c *Client) MarketplaceProviderResourcesTerminate(ctx context.Context, uuid
 
 func (c *Client) MarketplaceProviderResourcesUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProviderResourcesUnlinkRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderResourcesUpdateOptionsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderResourcesUpdateOptionsRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderResourcesUpdateOptions(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesUpdateOptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderResourcesUpdateOptionsRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -136313,6 +136345,53 @@ func NewMarketplaceProviderResourcesUnlinkRequest(server string, uuid openapi_ty
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewMarketplaceProviderResourcesUpdateOptionsRequest calls the generic MarketplaceProviderResourcesUpdateOptions builder with application/json body
+func NewMarketplaceProviderResourcesUpdateOptionsRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderResourcesUpdateOptionsJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceProviderResourcesUpdateOptionsRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceProviderResourcesUpdateOptionsRequestWithBody generates requests for MarketplaceProviderResourcesUpdateOptions with any type of body
+func NewMarketplaceProviderResourcesUpdateOptionsRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-resources/%s/update_options/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -214443,6 +214522,11 @@ type ClientWithResponsesInterface interface {
 	// MarketplaceProviderResourcesUnlinkWithResponse request
 	MarketplaceProviderResourcesUnlinkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesUnlinkResponse, error)
 
+	// MarketplaceProviderResourcesUpdateOptionsWithBodyWithResponse request with any body
+	MarketplaceProviderResourcesUpdateOptionsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesUpdateOptionsResponse, error)
+
+	MarketplaceProviderResourcesUpdateOptionsWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesUpdateOptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesUpdateOptionsResponse, error)
+
 	// MarketplacePublicApiCheckSignatureWithBodyWithResponse request with any body
 	MarketplacePublicApiCheckSignatureWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplacePublicApiCheckSignatureResponse, error)
 
@@ -233510,6 +233594,28 @@ func (r MarketplaceProviderResourcesUnlinkResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceProviderResourcesUnlinkResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceProviderResourcesUpdateOptionsResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ResourceResponseStatus
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderResourcesUpdateOptionsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderResourcesUpdateOptionsResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -260802,6 +260908,23 @@ func (c *ClientWithResponses) MarketplaceProviderResourcesUnlinkWithResponse(ctx
 	return ParseMarketplaceProviderResourcesUnlinkResponse(rsp)
 }
 
+// MarketplaceProviderResourcesUpdateOptionsWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderResourcesUpdateOptionsResponse
+func (c *ClientWithResponses) MarketplaceProviderResourcesUpdateOptionsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesUpdateOptionsResponse, error) {
+	rsp, err := c.MarketplaceProviderResourcesUpdateOptionsWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderResourcesUpdateOptionsResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceProviderResourcesUpdateOptionsWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesUpdateOptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesUpdateOptionsResponse, error) {
+	rsp, err := c.MarketplaceProviderResourcesUpdateOptions(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderResourcesUpdateOptionsResponse(rsp)
+}
+
 // MarketplacePublicApiCheckSignatureWithBodyWithResponse request with arbitrary body returning *MarketplacePublicApiCheckSignatureResponse
 func (c *ClientWithResponses) MarketplacePublicApiCheckSignatureWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplacePublicApiCheckSignatureResponse, error) {
 	rsp, err := c.MarketplacePublicApiCheckSignatureWithBody(ctx, contentType, body, reqEditors...)
@@ -287247,6 +287370,32 @@ func ParseMarketplaceProviderResourcesUnlinkResponse(rsp *http.Response) (*Marke
 	response := &MarketplaceProviderResourcesUnlinkResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProviderResourcesUpdateOptionsResponse parses an HTTP response from a MarketplaceProviderResourcesUpdateOptionsWithResponse call
+func ParseMarketplaceProviderResourcesUpdateOptionsResponse(rsp *http.Response) (*MarketplaceProviderResourcesUpdateOptionsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderResourcesUpdateOptionsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ResourceResponseStatus
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
