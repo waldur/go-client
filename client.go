@@ -30,6 +30,13 @@ const (
 	AdminAnnouncementTypeEnumWarning     AdminAnnouncementTypeEnum = "warning"
 )
 
+// Defines values for AgentServiceStateEnum.
+const (
+	AgentServiceStateEnumActive AgentServiceStateEnum = "Active"
+	AgentServiceStateEnumError  AgentServiceStateEnum = "Error"
+	AgentServiceStateEnumIdle   AgentServiceStateEnum = "Idle"
+)
+
 // Defines values for AgentTypeEnum.
 const (
 	AgentTypeEnumEventProcessing AgentTypeEnum = "Event processing"
@@ -1031,6 +1038,17 @@ const (
 const (
 	Sd NodeDiskDriverEnum = "sd"
 	Vd NodeDiskDriverEnum = "vd"
+)
+
+// Defines values for ObservableObjectTypeEnum.
+const (
+	ObservableObjectTypeEnumCourseAccount       ObservableObjectTypeEnum = "course_account"
+	ObservableObjectTypeEnumImportableResources ObservableObjectTypeEnum = "importable_resources"
+	ObservableObjectTypeEnumOfferingUser        ObservableObjectTypeEnum = "offering_user"
+	ObservableObjectTypeEnumOrder               ObservableObjectTypeEnum = "order"
+	ObservableObjectTypeEnumResource            ObservableObjectTypeEnum = "resource"
+	ObservableObjectTypeEnumServiceAccount      ObservableObjectTypeEnum = "service_account"
+	ObservableObjectTypeEnumUserRole            ObservableObjectTypeEnum = "user_role"
 )
 
 // Defines values for OecdFos2007CodeEnum.
@@ -6242,12 +6260,12 @@ const (
 
 // Defines values for MarketplaceRobotAccountsCountParamsState.
 const (
-	N1 MarketplaceRobotAccountsCountParamsState = 1
-	N2 MarketplaceRobotAccountsCountParamsState = 2
-	N3 MarketplaceRobotAccountsCountParamsState = 3
-	N4 MarketplaceRobotAccountsCountParamsState = 4
-	N5 MarketplaceRobotAccountsCountParamsState = 5
-	N6 MarketplaceRobotAccountsCountParamsState = 6
+	MarketplaceRobotAccountsCountParamsStateN1 MarketplaceRobotAccountsCountParamsState = 1
+	MarketplaceRobotAccountsCountParamsStateN2 MarketplaceRobotAccountsCountParamsState = 2
+	MarketplaceRobotAccountsCountParamsStateN3 MarketplaceRobotAccountsCountParamsState = 3
+	MarketplaceRobotAccountsCountParamsStateN4 MarketplaceRobotAccountsCountParamsState = 4
+	MarketplaceRobotAccountsCountParamsStateN5 MarketplaceRobotAccountsCountParamsState = 5
+	MarketplaceRobotAccountsCountParamsStateN6 MarketplaceRobotAccountsCountParamsState = 6
 )
 
 // Defines values for MarketplaceRobotAccountsRetrieveParamsField.
@@ -6675,6 +6693,20 @@ const (
 	MarketplaceServiceProvidersListUsersListParamsONativeName     MarketplaceServiceProvidersListUsersListParamsO = "native_name"
 	MarketplaceServiceProvidersListUsersListParamsORole           MarketplaceServiceProvidersListUsersListParamsO = "role"
 	MarketplaceServiceProvidersListUsersListParamsOUsername       MarketplaceServiceProvidersListUsersListParamsO = "username"
+)
+
+// Defines values for MarketplaceSiteAgentServicesListParamsState.
+const (
+	MarketplaceSiteAgentServicesListParamsStateN1 MarketplaceSiteAgentServicesListParamsState = "1"
+	MarketplaceSiteAgentServicesListParamsStateN2 MarketplaceSiteAgentServicesListParamsState = "2"
+	MarketplaceSiteAgentServicesListParamsStateN3 MarketplaceSiteAgentServicesListParamsState = "3"
+)
+
+// Defines values for MarketplaceSiteAgentServicesCountParamsState.
+const (
+	N1 MarketplaceSiteAgentServicesCountParamsState = "1"
+	N2 MarketplaceSiteAgentServicesCountParamsState = "2"
+	N3 MarketplaceSiteAgentServicesCountParamsState = "3"
 )
 
 // Defines values for MarketplaceUserOfferingConsentsListParamsO.
@@ -10766,6 +10798,97 @@ type AdminAnnouncementRequest struct {
 // AdminAnnouncementTypeEnum defines model for AdminAnnouncementTypeEnum.
 type AdminAnnouncementTypeEnum string
 
+// AgentEventSubscriptionCreateRequest defines model for AgentEventSubscriptionCreateRequest.
+type AgentEventSubscriptionCreateRequest struct {
+	// Description Optional description for the event subscription
+	Description *string `json:"description,omitempty"`
+
+	// ObservableObjectType The type of object to observe for events
+	ObservableObjectType ObservableObjectTypeEnum `json:"observable_object_type"`
+}
+
+// AgentIdentity defines model for AgentIdentity.
+type AgentIdentity struct {
+	ConfigFileContent *string `json:"config_file_content"`
+
+	// ConfigFilePath Example: '/etc/waldur/agent.yaml'
+	ConfigFilePath *string             `json:"config_file_path"`
+	Created        *time.Time          `json:"created,omitempty"`
+	Dependencies   interface{}         `json:"dependencies,omitempty"`
+	LastRestarted  *time.Time          `json:"last_restarted,omitempty"`
+	Modified       *time.Time          `json:"modified,omitempty"`
+	Name           string              `json:"name"`
+	Offering       openapi_types.UUID  `json:"offering"`
+	Url            *string             `json:"url,omitempty"`
+	Uuid           *openapi_types.UUID `json:"uuid,omitempty"`
+	Version        *string             `json:"version"`
+}
+
+// AgentIdentityRequest defines model for AgentIdentityRequest.
+type AgentIdentityRequest struct {
+	ConfigFileContent *string `json:"config_file_content"`
+
+	// ConfigFilePath Example: '/etc/waldur/agent.yaml'
+	ConfigFilePath *string            `json:"config_file_path"`
+	Dependencies   interface{}        `json:"dependencies,omitempty"`
+	LastRestarted  *time.Time         `json:"last_restarted,omitempty"`
+	Name           string             `json:"name"`
+	Offering       openapi_types.UUID `json:"offering"`
+	Version        *string            `json:"version"`
+}
+
+// AgentProcessor defines model for AgentProcessor.
+type AgentProcessor struct {
+	// BackendType Type of the backend, for example SLURM.
+	BackendType    string              `json:"backend_type"`
+	BackendVersion *string             `json:"backend_version"`
+	Created        *time.Time          `json:"created,omitempty"`
+	LastRun        *time.Time          `json:"last_run"`
+	Modified       *time.Time          `json:"modified,omitempty"`
+	Name           string              `json:"name"`
+	Service        openapi_types.UUID  `json:"service"`
+	ServiceName    *string             `json:"service_name,omitempty"`
+	Url            *string             `json:"url,omitempty"`
+	Uuid           *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// AgentProcessorCreateRequest defines model for AgentProcessorCreateRequest.
+type AgentProcessorCreateRequest struct {
+	// BackendType Type of the backend, for example SLURM.
+	BackendType    string  `json:"backend_type"`
+	BackendVersion *string `json:"backend_version"`
+	Name           string  `json:"name"`
+}
+
+// AgentService defines model for AgentService.
+type AgentService struct {
+	Created      *time.Time             `json:"created,omitempty"`
+	Identity     openapi_types.UUID     `json:"identity"`
+	IdentityName *string                `json:"identity_name,omitempty"`
+	Mode         *string                `json:"mode"`
+	Modified     *time.Time             `json:"modified,omitempty"`
+	Name         string                 `json:"name"`
+	State        *AgentServiceStateEnum `json:"state,omitempty"`
+	Statistics   interface{}            `json:"statistics,omitempty"`
+	Url          *string                `json:"url,omitempty"`
+	Uuid         *openapi_types.UUID    `json:"uuid,omitempty"`
+}
+
+// AgentServiceCreateRequest defines model for AgentServiceCreateRequest.
+type AgentServiceCreateRequest struct {
+	Mode *string `json:"mode"`
+	Name string  `json:"name"`
+}
+
+// AgentServiceStateEnum defines model for AgentServiceStateEnum.
+type AgentServiceStateEnum string
+
+// AgentServiceStatisticsRequest defines model for AgentServiceStatisticsRequest.
+type AgentServiceStatisticsRequest struct {
+	// Statistics Statistics data to be stored for the service
+	Statistics interface{} `json:"statistics"`
+}
+
 // AgentTypeEnum defines model for AgentTypeEnum.
 type AgentTypeEnum string
 
@@ -12487,25 +12610,25 @@ type ConstanceSettings struct {
 	ATLASSIANISSUETYPES                            *string              `json:"ATLASSIAN_ISSUE_TYPES,omitempty"`
 	ATLASSIANLINKEDISSUETYPE                       *string              `json:"ATLASSIAN_LINKED_ISSUE_TYPE,omitempty"`
 	ATLASSIANMAPWALDURUSERSTOSERVICEDESKAGENTS     *bool                `json:"ATLASSIAN_MAP_WALDUR_USERS_TO_SERVICEDESK_AGENTS,omitempty"`
+	ATLASSIANOAUTH2ACCESSTOKEN                     *string              `json:"ATLASSIAN_OAUTH2_ACCESS_TOKEN,omitempty"`
+	ATLASSIANOAUTH2CLIENTID                        *string              `json:"ATLASSIAN_OAUTH2_CLIENT_ID,omitempty"`
+	ATLASSIANOAUTH2TOKENTYPE                       *string              `json:"ATLASSIAN_OAUTH2_TOKEN_TYPE,omitempty"`
 	ATLASSIANORGANISATIONFIELD                     *string              `json:"ATLASSIAN_ORGANISATION_FIELD,omitempty"`
 	ATLASSIANPASSWORD                              *string              `json:"ATLASSIAN_PASSWORD,omitempty"`
+	ATLASSIANPERSONALACCESSTOKEN                   *string              `json:"ATLASSIAN_PERSONAL_ACCESS_TOKEN,omitempty"`
 	ATLASSIANPROJECTFIELD                          *string              `json:"ATLASSIAN_PROJECT_FIELD,omitempty"`
 	ATLASSIANPROJECTID                             *string              `json:"ATLASSIAN_PROJECT_ID,omitempty"`
-	ATLASSIANPULLPRIORITIES                        *bool                `json:"ATLASSIAN_PULL_PRIORITIES,omitempty"`
 	ATLASSIANREPORTERFIELD                         *string              `json:"ATLASSIAN_REPORTER_FIELD,omitempty"`
 	ATLASSIANREQUESTFEEDBACKFIELD                  *string              `json:"ATLASSIAN_REQUEST_FEEDBACK_FIELD,omitempty"`
 	ATLASSIANRESOLUTIONSLAFIELD                    *string              `json:"ATLASSIAN_RESOLUTION_SLA_FIELD,omitempty"`
 	ATLASSIANSATISFACTIONFIELD                     *string              `json:"ATLASSIAN_SATISFACTION_FIELD,omitempty"`
 	ATLASSIANSHAREDUSERNAME                        *bool                `json:"ATLASSIAN_SHARED_USERNAME,omitempty"`
 	ATLASSIANSLAFIELD                              *string              `json:"ATLASSIAN_SLA_FIELD,omitempty"`
-	ATLASSIANSTRANGESETTING                        *int                 `json:"ATLASSIAN_STRANGE_SETTING,omitempty"`
 	ATLASSIANSUMMARYTEMPLATE                       *string              `json:"ATLASSIAN_SUMMARY_TEMPLATE,omitempty"`
 	ATLASSIANTEMPLATEFIELD                         *string              `json:"ATLASSIAN_TEMPLATE_FIELD,omitempty"`
 	ATLASSIANTOKEN                                 *string              `json:"ATLASSIAN_TOKEN,omitempty"`
 	ATLASSIANUSERNAME                              *string              `json:"ATLASSIAN_USERNAME,omitempty"`
-	ATLASSIANUSEAUTOMATICREQUESTMAPPING            *bool                `json:"ATLASSIAN_USE_AUTOMATIC_REQUEST_MAPPING,omitempty"`
 	ATLASSIANUSEOLDAPI                             *bool                `json:"ATLASSIAN_USE_OLD_API,omitempty"`
-	ATLASSIANUSETEENAGEAPI                         *bool                `json:"ATLASSIAN_USE_TEENAGE_API,omitempty"`
 	ATLASSIANVERIFYSSL                             *bool                `json:"ATLASSIAN_VERIFY_SSL,omitempty"`
 	AUTOAPPROVEUSERTOS                             *bool                `json:"AUTO_APPROVE_USER_TOS,omitempty"`
 	BRANDCOLOR                                     *string              `json:"BRAND_COLOR,omitempty"`
@@ -12632,25 +12755,25 @@ type ConstanceSettingsRequest struct {
 	ATLASSIANISSUETYPES                            *string              `json:"ATLASSIAN_ISSUE_TYPES,omitempty"`
 	ATLASSIANLINKEDISSUETYPE                       *string              `json:"ATLASSIAN_LINKED_ISSUE_TYPE,omitempty"`
 	ATLASSIANMAPWALDURUSERSTOSERVICEDESKAGENTS     *bool                `json:"ATLASSIAN_MAP_WALDUR_USERS_TO_SERVICEDESK_AGENTS,omitempty"`
+	ATLASSIANOAUTH2ACCESSTOKEN                     *string              `json:"ATLASSIAN_OAUTH2_ACCESS_TOKEN,omitempty"`
+	ATLASSIANOAUTH2CLIENTID                        *string              `json:"ATLASSIAN_OAUTH2_CLIENT_ID,omitempty"`
+	ATLASSIANOAUTH2TOKENTYPE                       *string              `json:"ATLASSIAN_OAUTH2_TOKEN_TYPE,omitempty"`
 	ATLASSIANORGANISATIONFIELD                     *string              `json:"ATLASSIAN_ORGANISATION_FIELD,omitempty"`
 	ATLASSIANPASSWORD                              *string              `json:"ATLASSIAN_PASSWORD,omitempty"`
+	ATLASSIANPERSONALACCESSTOKEN                   *string              `json:"ATLASSIAN_PERSONAL_ACCESS_TOKEN,omitempty"`
 	ATLASSIANPROJECTFIELD                          *string              `json:"ATLASSIAN_PROJECT_FIELD,omitempty"`
 	ATLASSIANPROJECTID                             *string              `json:"ATLASSIAN_PROJECT_ID,omitempty"`
-	ATLASSIANPULLPRIORITIES                        *bool                `json:"ATLASSIAN_PULL_PRIORITIES,omitempty"`
 	ATLASSIANREPORTERFIELD                         *string              `json:"ATLASSIAN_REPORTER_FIELD,omitempty"`
 	ATLASSIANREQUESTFEEDBACKFIELD                  *string              `json:"ATLASSIAN_REQUEST_FEEDBACK_FIELD,omitempty"`
 	ATLASSIANRESOLUTIONSLAFIELD                    *string              `json:"ATLASSIAN_RESOLUTION_SLA_FIELD,omitempty"`
 	ATLASSIANSATISFACTIONFIELD                     *string              `json:"ATLASSIAN_SATISFACTION_FIELD,omitempty"`
 	ATLASSIANSHAREDUSERNAME                        *bool                `json:"ATLASSIAN_SHARED_USERNAME,omitempty"`
 	ATLASSIANSLAFIELD                              *string              `json:"ATLASSIAN_SLA_FIELD,omitempty"`
-	ATLASSIANSTRANGESETTING                        *int                 `json:"ATLASSIAN_STRANGE_SETTING,omitempty"`
 	ATLASSIANSUMMARYTEMPLATE                       *string              `json:"ATLASSIAN_SUMMARY_TEMPLATE,omitempty"`
 	ATLASSIANTEMPLATEFIELD                         *string              `json:"ATLASSIAN_TEMPLATE_FIELD,omitempty"`
 	ATLASSIANTOKEN                                 *string              `json:"ATLASSIAN_TOKEN,omitempty"`
 	ATLASSIANUSERNAME                              *string              `json:"ATLASSIAN_USERNAME,omitempty"`
-	ATLASSIANUSEAUTOMATICREQUESTMAPPING            *bool                `json:"ATLASSIAN_USE_AUTOMATIC_REQUEST_MAPPING,omitempty"`
 	ATLASSIANUSEOLDAPI                             *bool                `json:"ATLASSIAN_USE_OLD_API,omitempty"`
-	ATLASSIANUSETEENAGEAPI                         *bool                `json:"ATLASSIAN_USE_TEENAGE_API,omitempty"`
 	ATLASSIANVERIFYSSL                             *bool                `json:"ATLASSIAN_VERIFY_SSL,omitempty"`
 	AUTOAPPROVEUSERTOS                             *bool                `json:"AUTO_APPROVE_USER_TOS,omitempty"`
 	BRANDCOLOR                                     *string              `json:"BRAND_COLOR,omitempty"`
@@ -12777,25 +12900,25 @@ type ConstanceSettingsRequestForm struct {
 	ATLASSIANISSUETYPES                            *string              `json:"ATLASSIAN_ISSUE_TYPES,omitempty"`
 	ATLASSIANLINKEDISSUETYPE                       *string              `json:"ATLASSIAN_LINKED_ISSUE_TYPE,omitempty"`
 	ATLASSIANMAPWALDURUSERSTOSERVICEDESKAGENTS     *bool                `json:"ATLASSIAN_MAP_WALDUR_USERS_TO_SERVICEDESK_AGENTS,omitempty"`
+	ATLASSIANOAUTH2ACCESSTOKEN                     *string              `json:"ATLASSIAN_OAUTH2_ACCESS_TOKEN,omitempty"`
+	ATLASSIANOAUTH2CLIENTID                        *string              `json:"ATLASSIAN_OAUTH2_CLIENT_ID,omitempty"`
+	ATLASSIANOAUTH2TOKENTYPE                       *string              `json:"ATLASSIAN_OAUTH2_TOKEN_TYPE,omitempty"`
 	ATLASSIANORGANISATIONFIELD                     *string              `json:"ATLASSIAN_ORGANISATION_FIELD,omitempty"`
 	ATLASSIANPASSWORD                              *string              `json:"ATLASSIAN_PASSWORD,omitempty"`
+	ATLASSIANPERSONALACCESSTOKEN                   *string              `json:"ATLASSIAN_PERSONAL_ACCESS_TOKEN,omitempty"`
 	ATLASSIANPROJECTFIELD                          *string              `json:"ATLASSIAN_PROJECT_FIELD,omitempty"`
 	ATLASSIANPROJECTID                             *string              `json:"ATLASSIAN_PROJECT_ID,omitempty"`
-	ATLASSIANPULLPRIORITIES                        *bool                `json:"ATLASSIAN_PULL_PRIORITIES,omitempty"`
 	ATLASSIANREPORTERFIELD                         *string              `json:"ATLASSIAN_REPORTER_FIELD,omitempty"`
 	ATLASSIANREQUESTFEEDBACKFIELD                  *string              `json:"ATLASSIAN_REQUEST_FEEDBACK_FIELD,omitempty"`
 	ATLASSIANRESOLUTIONSLAFIELD                    *string              `json:"ATLASSIAN_RESOLUTION_SLA_FIELD,omitempty"`
 	ATLASSIANSATISFACTIONFIELD                     *string              `json:"ATLASSIAN_SATISFACTION_FIELD,omitempty"`
 	ATLASSIANSHAREDUSERNAME                        *bool                `json:"ATLASSIAN_SHARED_USERNAME,omitempty"`
 	ATLASSIANSLAFIELD                              *string              `json:"ATLASSIAN_SLA_FIELD,omitempty"`
-	ATLASSIANSTRANGESETTING                        *int                 `json:"ATLASSIAN_STRANGE_SETTING,omitempty"`
 	ATLASSIANSUMMARYTEMPLATE                       *string              `json:"ATLASSIAN_SUMMARY_TEMPLATE,omitempty"`
 	ATLASSIANTEMPLATEFIELD                         *string              `json:"ATLASSIAN_TEMPLATE_FIELD,omitempty"`
 	ATLASSIANTOKEN                                 *string              `json:"ATLASSIAN_TOKEN,omitempty"`
 	ATLASSIANUSERNAME                              *string              `json:"ATLASSIAN_USERNAME,omitempty"`
-	ATLASSIANUSEAUTOMATICREQUESTMAPPING            *bool                `json:"ATLASSIAN_USE_AUTOMATIC_REQUEST_MAPPING,omitempty"`
 	ATLASSIANUSEOLDAPI                             *bool                `json:"ATLASSIAN_USE_OLD_API,omitempty"`
-	ATLASSIANUSETEENAGEAPI                         *bool                `json:"ATLASSIAN_USE_TEENAGE_API,omitempty"`
 	ATLASSIANVERIFYSSL                             *bool                `json:"ATLASSIAN_VERIFY_SSL,omitempty"`
 	AUTOAPPROVEUSERTOS                             *bool                `json:"AUTO_APPROVE_USER_TOS,omitempty"`
 	BRANDCOLOR                                     *string              `json:"BRAND_COLOR,omitempty"`
@@ -12922,25 +13045,25 @@ type ConstanceSettingsRequestMultipart struct {
 	ATLASSIANISSUETYPES                            *string              `json:"ATLASSIAN_ISSUE_TYPES,omitempty"`
 	ATLASSIANLINKEDISSUETYPE                       *string              `json:"ATLASSIAN_LINKED_ISSUE_TYPE,omitempty"`
 	ATLASSIANMAPWALDURUSERSTOSERVICEDESKAGENTS     *bool                `json:"ATLASSIAN_MAP_WALDUR_USERS_TO_SERVICEDESK_AGENTS,omitempty"`
+	ATLASSIANOAUTH2ACCESSTOKEN                     *string              `json:"ATLASSIAN_OAUTH2_ACCESS_TOKEN,omitempty"`
+	ATLASSIANOAUTH2CLIENTID                        *string              `json:"ATLASSIAN_OAUTH2_CLIENT_ID,omitempty"`
+	ATLASSIANOAUTH2TOKENTYPE                       *string              `json:"ATLASSIAN_OAUTH2_TOKEN_TYPE,omitempty"`
 	ATLASSIANORGANISATIONFIELD                     *string              `json:"ATLASSIAN_ORGANISATION_FIELD,omitempty"`
 	ATLASSIANPASSWORD                              *string              `json:"ATLASSIAN_PASSWORD,omitempty"`
+	ATLASSIANPERSONALACCESSTOKEN                   *string              `json:"ATLASSIAN_PERSONAL_ACCESS_TOKEN,omitempty"`
 	ATLASSIANPROJECTFIELD                          *string              `json:"ATLASSIAN_PROJECT_FIELD,omitempty"`
 	ATLASSIANPROJECTID                             *string              `json:"ATLASSIAN_PROJECT_ID,omitempty"`
-	ATLASSIANPULLPRIORITIES                        *bool                `json:"ATLASSIAN_PULL_PRIORITIES,omitempty"`
 	ATLASSIANREPORTERFIELD                         *string              `json:"ATLASSIAN_REPORTER_FIELD,omitempty"`
 	ATLASSIANREQUESTFEEDBACKFIELD                  *string              `json:"ATLASSIAN_REQUEST_FEEDBACK_FIELD,omitempty"`
 	ATLASSIANRESOLUTIONSLAFIELD                    *string              `json:"ATLASSIAN_RESOLUTION_SLA_FIELD,omitempty"`
 	ATLASSIANSATISFACTIONFIELD                     *string              `json:"ATLASSIAN_SATISFACTION_FIELD,omitempty"`
 	ATLASSIANSHAREDUSERNAME                        *bool                `json:"ATLASSIAN_SHARED_USERNAME,omitempty"`
 	ATLASSIANSLAFIELD                              *string              `json:"ATLASSIAN_SLA_FIELD,omitempty"`
-	ATLASSIANSTRANGESETTING                        *int                 `json:"ATLASSIAN_STRANGE_SETTING,omitempty"`
 	ATLASSIANSUMMARYTEMPLATE                       *string              `json:"ATLASSIAN_SUMMARY_TEMPLATE,omitempty"`
 	ATLASSIANTEMPLATEFIELD                         *string              `json:"ATLASSIAN_TEMPLATE_FIELD,omitempty"`
 	ATLASSIANTOKEN                                 *string              `json:"ATLASSIAN_TOKEN,omitempty"`
 	ATLASSIANUSERNAME                              *string              `json:"ATLASSIAN_USERNAME,omitempty"`
-	ATLASSIANUSEAUTOMATICREQUESTMAPPING            *bool                `json:"ATLASSIAN_USE_AUTOMATIC_REQUEST_MAPPING,omitempty"`
 	ATLASSIANUSEOLDAPI                             *bool                `json:"ATLASSIAN_USE_OLD_API,omitempty"`
-	ATLASSIANUSETEENAGEAPI                         *bool                `json:"ATLASSIAN_USE_TEENAGE_API,omitempty"`
 	ATLASSIANVERIFYSSL                             *bool                `json:"ATLASSIAN_VERIFY_SSL,omitempty"`
 	AUTOAPPROVEUSERTOS                             *bool                `json:"AUTO_APPROVE_USER_TOS,omitempty"`
 	BRANDCOLOR                                     *string              `json:"BRAND_COLOR,omitempty"`
@@ -14655,7 +14778,6 @@ type Issue struct {
 	Description              *string             `json:"description,omitempty"`
 	DestroyIsAvailable       *bool               `json:"destroy_is_available,omitempty"`
 	Feedback                 *NestedFeedback     `json:"feedback"`
-	FirstResponseSla         *time.Time          `json:"first_response_sla"`
 	Key                      *string             `json:"key,omitempty"`
 
 	// Link Link to issue in support system.
@@ -16126,6 +16248,9 @@ type NotificationTemplateUpdateSerializersRequest struct {
 // NullEnum defines model for NullEnum.
 type NullEnum = interface{}
 
+// ObservableObjectTypeEnum defines model for ObservableObjectTypeEnum.
+type ObservableObjectTypeEnum string
+
 // ObtainAuthTokenRequest defines model for ObtainAuthTokenRequest.
 type ObtainAuthTokenRequest struct {
 	Password string `json:"password"`
@@ -17011,6 +17136,12 @@ type OnboardingJustificationRequest struct {
 	// UserJustification User's explanation for why they should be authorized
 	UserJustification string `json:"user_justification"`
 	Verification      int    `json:"verification"`
+}
+
+// OnboardingJustificationReviewRequest defines model for OnboardingJustificationReviewRequest.
+type OnboardingJustificationReviewRequest struct {
+	// StaffNotes Administrator notes about the review decision
+	StaffNotes *string `json:"staff_notes,omitempty"`
 }
 
 // OnboardingVerification defines model for OnboardingVerification.
@@ -21084,17 +21215,22 @@ type ProjectType struct {
 
 // ProjectUser defines model for ProjectUser.
 type ProjectUser struct {
-	Email                *openapi_types.Email `json:"email,omitempty"`
-	ExpirationTime       *time.Time           `json:"expiration_time"`
-	FullName             *string              `json:"full_name,omitempty"`
-	OfferingUserState    *OfferingUserState   `json:"offering_user_state,omitempty"`
-	OfferingUserUsername *string              `json:"offering_user_username"`
-	Role                 *string              `json:"role,omitempty"`
-	Url                  *string              `json:"url,omitempty"`
+	Email                *openapi_types.Email           `json:"email,omitempty"`
+	ExpirationTime       *time.Time                     `json:"expiration_time"`
+	FullName             *string                        `json:"full_name,omitempty"`
+	OfferingUserState    *ProjectUser_OfferingUserState `json:"offering_user_state"`
+	OfferingUserUsername *string                        `json:"offering_user_username"`
+	Role                 *string                        `json:"role,omitempty"`
+	Url                  *string                        `json:"url,omitempty"`
 
 	// Username Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
 	Username string              `json:"username"`
 	Uuid     *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// ProjectUser_OfferingUserState defines model for ProjectUser.OfferingUserState.
+type ProjectUser_OfferingUserState struct {
+	union json.RawMessage
 }
 
 // ProjectsLimitsGroupedByIndustryFlag defines model for ProjectsLimitsGroupedByIndustryFlag.
@@ -23276,6 +23412,11 @@ type ResourceBackendMetadataRequest struct {
 	BackendMetadata interface{} `json:"backend_metadata"`
 }
 
+// ResourceDownscaledRequest defines model for ResourceDownscaledRequest.
+type ResourceDownscaledRequest struct {
+	Downscaled *bool `json:"downscaled,omitempty"`
+}
+
 // ResourceEndDateByProviderRequest defines model for ResourceEndDateByProviderRequest.
 type ResourceEndDateByProviderRequest struct {
 	// EndDate The date is inclusive. Once reached, a resource will be scheduled for termination.
@@ -23300,6 +23441,11 @@ type ResourceOffering struct {
 // ResourceOptionsRequest defines model for ResourceOptionsRequest.
 type ResourceOptionsRequest struct {
 	Options interface{} `json:"options"`
+}
+
+// ResourcePausedRequest defines model for ResourcePausedRequest.
+type ResourcePausedRequest struct {
+	Paused *bool `json:"paused,omitempty"`
 }
 
 // ResourcePlanPeriod defines model for ResourcePlanPeriod.
@@ -23329,6 +23475,11 @@ type ResourceReportRequest struct {
 // ResourceResponseStatus defines model for ResourceResponseStatus.
 type ResourceResponseStatus struct {
 	Status *string `json:"status,omitempty"`
+}
+
+// ResourceRestrictMemberAccessRequest defines model for ResourceRestrictMemberAccessRequest.
+type ResourceRestrictMemberAccessRequest struct {
+	RestrictMemberAccess *bool `json:"restrict_member_access,omitempty"`
 }
 
 // ResourceSetLimitsRequest defines model for ResourceSetLimitsRequest.
@@ -31772,6 +31923,100 @@ type MarketplaceServiceProvidersRobotAccountProjectsListParams struct {
 	ProjectName *string   `form:"project_name,omitempty" json:"project_name,omitempty"`
 }
 
+// MarketplaceSiteAgentIdentitiesListParams defines parameters for MarketplaceSiteAgentIdentitiesList.
+type MarketplaceSiteAgentIdentitiesListParams struct {
+	// LastRestarted Last restarted after
+	LastRestarted *time.Time          `form:"last_restarted,omitempty" json:"last_restarted,omitempty"`
+	Name          *string             `form:"name,omitempty" json:"name,omitempty"`
+	OfferingUuid  *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Version  *string   `form:"version,omitempty" json:"version,omitempty"`
+}
+
+// MarketplaceSiteAgentIdentitiesCountParams defines parameters for MarketplaceSiteAgentIdentitiesCount.
+type MarketplaceSiteAgentIdentitiesCountParams struct {
+	// LastRestarted Last restarted after
+	LastRestarted *time.Time          `form:"last_restarted,omitempty" json:"last_restarted,omitempty"`
+	Name          *string             `form:"name,omitempty" json:"name,omitempty"`
+	OfferingUuid  *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Version  *string   `form:"version,omitempty" json:"version,omitempty"`
+}
+
+// MarketplaceSiteAgentProcessorsListParams defines parameters for MarketplaceSiteAgentProcessorsList.
+type MarketplaceSiteAgentProcessorsListParams struct {
+	BackendType    *string `form:"backend_type,omitempty" json:"backend_type,omitempty"`
+	BackendVersion *string `form:"backend_version,omitempty" json:"backend_version,omitempty"`
+
+	// LastRun Last run after
+	LastRun *time.Time `form:"last_run,omitempty" json:"last_run,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize    *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ServiceUuid *openapi_types.UUID `form:"service_uuid,omitempty" json:"service_uuid,omitempty"`
+}
+
+// MarketplaceSiteAgentProcessorsCountParams defines parameters for MarketplaceSiteAgentProcessorsCount.
+type MarketplaceSiteAgentProcessorsCountParams struct {
+	BackendType    *string `form:"backend_type,omitempty" json:"backend_type,omitempty"`
+	BackendVersion *string `form:"backend_version,omitempty" json:"backend_version,omitempty"`
+
+	// LastRun Last run after
+	LastRun *time.Time `form:"last_run,omitempty" json:"last_run,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize    *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ServiceUuid *openapi_types.UUID `form:"service_uuid,omitempty" json:"service_uuid,omitempty"`
+}
+
+// MarketplaceSiteAgentServicesListParams defines parameters for MarketplaceSiteAgentServicesList.
+type MarketplaceSiteAgentServicesListParams struct {
+	IdentityUuid *openapi_types.UUID `form:"identity_uuid,omitempty" json:"identity_uuid,omitempty"`
+	Mode         *string             `form:"mode,omitempty" json:"mode,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize                                      `form:"page_size,omitempty" json:"page_size,omitempty"`
+	State    *[]MarketplaceSiteAgentServicesListParamsState `form:"state,omitempty" json:"state,omitempty"`
+}
+
+// MarketplaceSiteAgentServicesListParamsState defines parameters for MarketplaceSiteAgentServicesList.
+type MarketplaceSiteAgentServicesListParamsState string
+
+// MarketplaceSiteAgentServicesCountParams defines parameters for MarketplaceSiteAgentServicesCount.
+type MarketplaceSiteAgentServicesCountParams struct {
+	IdentityUuid *openapi_types.UUID `form:"identity_uuid,omitempty" json:"identity_uuid,omitempty"`
+	Mode         *string             `form:"mode,omitempty" json:"mode,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize                                       `form:"page_size,omitempty" json:"page_size,omitempty"`
+	State    *[]MarketplaceSiteAgentServicesCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+}
+
+// MarketplaceSiteAgentServicesCountParamsState defines parameters for MarketplaceSiteAgentServicesCount.
+type MarketplaceSiteAgentServicesCountParamsState string
+
 // MarketplaceStatsComponentUsagesListParams defines parameters for MarketplaceStatsComponentUsagesList.
 type MarketplaceStatsComponentUsagesListParams struct {
 	// Page A page number within the paginated result set.
@@ -37897,6 +38142,9 @@ type MarketplaceProviderResourcesSetBackendIdJSONRequestBody = ResourceBackendID
 // MarketplaceProviderResourcesSetBackendMetadataJSONRequestBody defines body for MarketplaceProviderResourcesSetBackendMetadata for application/json ContentType.
 type MarketplaceProviderResourcesSetBackendMetadataJSONRequestBody = ResourceBackendMetadataRequest
 
+// MarketplaceProviderResourcesSetDownscaledJSONRequestBody defines body for MarketplaceProviderResourcesSetDownscaled for application/json ContentType.
+type MarketplaceProviderResourcesSetDownscaledJSONRequestBody = ResourceDownscaledRequest
+
 // MarketplaceProviderResourcesSetEndDateByProviderJSONRequestBody defines body for MarketplaceProviderResourcesSetEndDateByProvider for application/json ContentType.
 type MarketplaceProviderResourcesSetEndDateByProviderJSONRequestBody = ResourceEndDateByProviderRequest
 
@@ -37905,6 +38153,12 @@ type MarketplaceProviderResourcesSetEndDateByStaffJSONRequestBody = ResourceEndD
 
 // MarketplaceProviderResourcesSetLimitsJSONRequestBody defines body for MarketplaceProviderResourcesSetLimits for application/json ContentType.
 type MarketplaceProviderResourcesSetLimitsJSONRequestBody = ResourceSetLimitsRequest
+
+// MarketplaceProviderResourcesSetPausedJSONRequestBody defines body for MarketplaceProviderResourcesSetPaused for application/json ContentType.
+type MarketplaceProviderResourcesSetPausedJSONRequestBody = ResourcePausedRequest
+
+// MarketplaceProviderResourcesSetRestrictMemberAccessJSONRequestBody defines body for MarketplaceProviderResourcesSetRestrictMemberAccess for application/json ContentType.
+type MarketplaceProviderResourcesSetRestrictMemberAccessJSONRequestBody = ResourceRestrictMemberAccessRequest
 
 // MarketplaceProviderResourcesSetSlugJSONRequestBody defines body for MarketplaceProviderResourcesSetSlug for application/json ContentType.
 type MarketplaceProviderResourcesSetSlugJSONRequestBody = ResourceSlugRequest
@@ -37951,8 +38205,17 @@ type MarketplaceResourcesMoveResourceJSONRequestBody = MoveResourceRequest
 // MarketplaceResourcesRenewJSONRequestBody defines body for MarketplaceResourcesRenew for application/json ContentType.
 type MarketplaceResourcesRenewJSONRequestBody = ResourceRenewRequest
 
+// MarketplaceResourcesSetDownscaledJSONRequestBody defines body for MarketplaceResourcesSetDownscaled for application/json ContentType.
+type MarketplaceResourcesSetDownscaledJSONRequestBody = ResourceDownscaledRequest
+
 // MarketplaceResourcesSetEndDateByStaffJSONRequestBody defines body for MarketplaceResourcesSetEndDateByStaff for application/json ContentType.
 type MarketplaceResourcesSetEndDateByStaffJSONRequestBody = ResourceEndDateByProviderRequest
+
+// MarketplaceResourcesSetPausedJSONRequestBody defines body for MarketplaceResourcesSetPaused for application/json ContentType.
+type MarketplaceResourcesSetPausedJSONRequestBody = ResourcePausedRequest
+
+// MarketplaceResourcesSetRestrictMemberAccessJSONRequestBody defines body for MarketplaceResourcesSetRestrictMemberAccess for application/json ContentType.
+type MarketplaceResourcesSetRestrictMemberAccessJSONRequestBody = ResourceRestrictMemberAccessRequest
 
 // MarketplaceResourcesSetSlugJSONRequestBody defines body for MarketplaceResourcesSetSlug for application/json ContentType.
 type MarketplaceResourcesSetSlugJSONRequestBody = ResourceSlugRequest
@@ -38059,6 +38322,24 @@ type MarketplaceServiceProvidersSetOfferingsUsernameJSONRequestBody = SetOfferin
 // MarketplaceServiceProvidersUpdateUserJSONRequestBody defines body for MarketplaceServiceProvidersUpdateUser for application/json ContentType.
 type MarketplaceServiceProvidersUpdateUserJSONRequestBody = UserRoleUpdateRequest
 
+// MarketplaceSiteAgentIdentitiesCreateJSONRequestBody defines body for MarketplaceSiteAgentIdentitiesCreate for application/json ContentType.
+type MarketplaceSiteAgentIdentitiesCreateJSONRequestBody = AgentIdentityRequest
+
+// MarketplaceSiteAgentIdentitiesUpdateJSONRequestBody defines body for MarketplaceSiteAgentIdentitiesUpdate for application/json ContentType.
+type MarketplaceSiteAgentIdentitiesUpdateJSONRequestBody = AgentIdentityRequest
+
+// MarketplaceSiteAgentIdentitiesRegisterEventSubscriptionJSONRequestBody defines body for MarketplaceSiteAgentIdentitiesRegisterEventSubscription for application/json ContentType.
+type MarketplaceSiteAgentIdentitiesRegisterEventSubscriptionJSONRequestBody = AgentEventSubscriptionCreateRequest
+
+// MarketplaceSiteAgentIdentitiesRegisterServiceJSONRequestBody defines body for MarketplaceSiteAgentIdentitiesRegisterService for application/json ContentType.
+type MarketplaceSiteAgentIdentitiesRegisterServiceJSONRequestBody = AgentServiceCreateRequest
+
+// MarketplaceSiteAgentServicesRegisterProcessorJSONRequestBody defines body for MarketplaceSiteAgentServicesRegisterProcessor for application/json ContentType.
+type MarketplaceSiteAgentServicesRegisterProcessorJSONRequestBody = AgentProcessorCreateRequest
+
+// MarketplaceSiteAgentServicesSetStatisticsJSONRequestBody defines body for MarketplaceSiteAgentServicesSetStatistics for application/json ContentType.
+type MarketplaceSiteAgentServicesSetStatisticsJSONRequestBody = AgentServiceStatisticsRequest
+
 // MarketplaceUserOfferingConsentsCreateJSONRequestBody defines body for MarketplaceUserOfferingConsentsCreate for application/json ContentType.
 type MarketplaceUserOfferingConsentsCreateJSONRequestBody = UserOfferingConsentCreateRequest
 
@@ -38101,6 +38382,9 @@ type OnboardingJustificationsPartialUpdateJSONRequestBody = PatchedOnboardingJus
 // OnboardingJustificationsUpdateJSONRequestBody defines body for OnboardingJustificationsUpdate for application/json ContentType.
 type OnboardingJustificationsUpdateJSONRequestBody = OnboardingJustificationRequest
 
+// OnboardingJustificationsApproveJSONRequestBody defines body for OnboardingJustificationsApprove for application/json ContentType.
+type OnboardingJustificationsApproveJSONRequestBody = OnboardingJustificationReviewRequest
+
 // OnboardingJustificationsAttachDocumentJSONRequestBody defines body for OnboardingJustificationsAttachDocument for application/json ContentType.
 type OnboardingJustificationsAttachDocumentJSONRequestBody = OnboardingJustificationDocumentationRequest
 
@@ -38109,6 +38393,9 @@ type OnboardingJustificationsAttachDocumentFormdataRequestBody = OnboardingJusti
 
 // OnboardingJustificationsAttachDocumentMultipartRequestBody defines body for OnboardingJustificationsAttachDocument for multipart/form-data ContentType.
 type OnboardingJustificationsAttachDocumentMultipartRequestBody = OnboardingJustificationDocumentationRequestMultipart
+
+// OnboardingJustificationsRejectJSONRequestBody defines body for OnboardingJustificationsReject for application/json ContentType.
+type OnboardingJustificationsRejectJSONRequestBody = OnboardingJustificationReviewRequest
 
 // OnboardingVerificationsCreateJSONRequestBody defines body for OnboardingVerificationsCreate for application/json ContentType.
 type OnboardingVerificationsCreateJSONRequestBody = OnboardingVerificationRequest
@@ -43062,6 +43349,68 @@ func (t *ProjectRequestMultipart_OecdFos2007Code) UnmarshalJSON(b []byte) error 
 	return err
 }
 
+// AsOfferingUserState returns the union data inside the ProjectUser_OfferingUserState as a OfferingUserState
+func (t ProjectUser_OfferingUserState) AsOfferingUserState() (OfferingUserState, error) {
+	var body OfferingUserState
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOfferingUserState overwrites any union data inside the ProjectUser_OfferingUserState as the provided OfferingUserState
+func (t *ProjectUser_OfferingUserState) FromOfferingUserState(v OfferingUserState) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOfferingUserState performs a merge with any union data inside the ProjectUser_OfferingUserState, using the provided OfferingUserState
+func (t *ProjectUser_OfferingUserState) MergeOfferingUserState(v OfferingUserState) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the ProjectUser_OfferingUserState as a NullEnum
+func (t ProjectUser_OfferingUserState) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the ProjectUser_OfferingUserState as the provided NullEnum
+func (t *ProjectUser_OfferingUserState) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the ProjectUser_OfferingUserState, using the provided NullEnum
+func (t *ProjectUser_OfferingUserState) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t ProjectUser_OfferingUserState) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *ProjectUser_OfferingUserState) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsOecdFos2007CodeEnum returns the union data inside the Proposal_OecdFos2007Code as a OecdFos2007CodeEnum
 func (t Proposal_OecdFos2007Code) AsOecdFos2007CodeEnum() (OecdFos2007CodeEnum, error) {
 	var body OecdFos2007CodeEnum
@@ -47417,6 +47766,11 @@ type ClientInterface interface {
 
 	MarketplaceProviderResourcesSetBackendMetadata(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetBackendMetadataJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceProviderResourcesSetDownscaledWithBody request with any body
+	MarketplaceProviderResourcesSetDownscaledWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceProviderResourcesSetDownscaled(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetDownscaledJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceProviderResourcesSetEndDateByProviderWithBody request with any body
 	MarketplaceProviderResourcesSetEndDateByProviderWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -47431,6 +47785,16 @@ type ClientInterface interface {
 	MarketplaceProviderResourcesSetLimitsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	MarketplaceProviderResourcesSetLimits(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetLimitsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProviderResourcesSetPausedWithBody request with any body
+	MarketplaceProviderResourcesSetPausedWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceProviderResourcesSetPaused(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetPausedJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProviderResourcesSetRestrictMemberAccessWithBody request with any body
+	MarketplaceProviderResourcesSetRestrictMemberAccessWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceProviderResourcesSetRestrictMemberAccess(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetRestrictMemberAccessJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceProviderResourcesSetSlugWithBody request with any body
 	MarketplaceProviderResourcesSetSlugWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -47588,10 +47952,25 @@ type ClientInterface interface {
 
 	MarketplaceResourcesRenew(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesRenewJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceResourcesSetDownscaledWithBody request with any body
+	MarketplaceResourcesSetDownscaledWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceResourcesSetDownscaled(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesSetDownscaledJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceResourcesSetEndDateByStaffWithBody request with any body
 	MarketplaceResourcesSetEndDateByStaffWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	MarketplaceResourcesSetEndDateByStaff(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesSetEndDateByStaffJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceResourcesSetPausedWithBody request with any body
+	MarketplaceResourcesSetPausedWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceResourcesSetPaused(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesSetPausedJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceResourcesSetRestrictMemberAccessWithBody request with any body
+	MarketplaceResourcesSetRestrictMemberAccessWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceResourcesSetRestrictMemberAccess(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesSetRestrictMemberAccessJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceResourcesSetSlugWithBody request with any body
 	MarketplaceResourcesSetSlugWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -47866,6 +48245,66 @@ type ClientInterface interface {
 
 	MarketplaceServiceProvidersUpdateUser(ctx context.Context, uuid openapi_types.UUID, body MarketplaceServiceProvidersUpdateUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceSiteAgentIdentitiesList request
+	MarketplaceSiteAgentIdentitiesList(ctx context.Context, params *MarketplaceSiteAgentIdentitiesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSiteAgentIdentitiesCount request
+	MarketplaceSiteAgentIdentitiesCount(ctx context.Context, params *MarketplaceSiteAgentIdentitiesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSiteAgentIdentitiesCreateWithBody request with any body
+	MarketplaceSiteAgentIdentitiesCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceSiteAgentIdentitiesCreate(ctx context.Context, body MarketplaceSiteAgentIdentitiesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSiteAgentIdentitiesDestroy request
+	MarketplaceSiteAgentIdentitiesDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSiteAgentIdentitiesRetrieve request
+	MarketplaceSiteAgentIdentitiesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSiteAgentIdentitiesUpdateWithBody request with any body
+	MarketplaceSiteAgentIdentitiesUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceSiteAgentIdentitiesUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSiteAgentIdentitiesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSiteAgentIdentitiesRegisterEventSubscriptionWithBody request with any body
+	MarketplaceSiteAgentIdentitiesRegisterEventSubscriptionWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceSiteAgentIdentitiesRegisterEventSubscription(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSiteAgentIdentitiesRegisterEventSubscriptionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSiteAgentIdentitiesRegisterServiceWithBody request with any body
+	MarketplaceSiteAgentIdentitiesRegisterServiceWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceSiteAgentIdentitiesRegisterService(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSiteAgentIdentitiesRegisterServiceJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSiteAgentProcessorsList request
+	MarketplaceSiteAgentProcessorsList(ctx context.Context, params *MarketplaceSiteAgentProcessorsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSiteAgentProcessorsCount request
+	MarketplaceSiteAgentProcessorsCount(ctx context.Context, params *MarketplaceSiteAgentProcessorsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSiteAgentProcessorsRetrieve request
+	MarketplaceSiteAgentProcessorsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSiteAgentServicesList request
+	MarketplaceSiteAgentServicesList(ctx context.Context, params *MarketplaceSiteAgentServicesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSiteAgentServicesCount request
+	MarketplaceSiteAgentServicesCount(ctx context.Context, params *MarketplaceSiteAgentServicesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSiteAgentServicesRetrieve request
+	MarketplaceSiteAgentServicesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSiteAgentServicesRegisterProcessorWithBody request with any body
+	MarketplaceSiteAgentServicesRegisterProcessorWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceSiteAgentServicesRegisterProcessor(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSiteAgentServicesRegisterProcessorJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSiteAgentServicesSetStatisticsWithBody request with any body
+	MarketplaceSiteAgentServicesSetStatisticsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceSiteAgentServicesSetStatistics(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSiteAgentServicesSetStatisticsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceStatsComponentUsagesList request
 	MarketplaceStatsComponentUsagesList(ctx context.Context, params *MarketplaceStatsComponentUsagesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -48128,12 +48567,22 @@ type ClientInterface interface {
 
 	OnboardingJustificationsUpdate(ctx context.Context, uuid openapi_types.UUID, body OnboardingJustificationsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// OnboardingJustificationsApproveWithBody request with any body
+	OnboardingJustificationsApproveWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OnboardingJustificationsApprove(ctx context.Context, uuid openapi_types.UUID, body OnboardingJustificationsApproveJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// OnboardingJustificationsAttachDocumentWithBody request with any body
 	OnboardingJustificationsAttachDocumentWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	OnboardingJustificationsAttachDocument(ctx context.Context, uuid openapi_types.UUID, body OnboardingJustificationsAttachDocumentJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	OnboardingJustificationsAttachDocumentWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body OnboardingJustificationsAttachDocumentFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OnboardingJustificationsRejectWithBody request with any body
+	OnboardingJustificationsRejectWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OnboardingJustificationsReject(ctx context.Context, uuid openapi_types.UUID, body OnboardingJustificationsRejectJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OnboardingVerificationsList request
 	OnboardingVerificationsList(ctx context.Context, params *OnboardingVerificationsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -62377,6 +62826,30 @@ func (c *Client) MarketplaceProviderResourcesSetBackendMetadata(ctx context.Cont
 	return c.Client.Do(req)
 }
 
+func (c *Client) MarketplaceProviderResourcesSetDownscaledWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderResourcesSetDownscaledRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderResourcesSetDownscaled(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetDownscaledJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderResourcesSetDownscaledRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) MarketplaceProviderResourcesSetEndDateByProviderWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProviderResourcesSetEndDateByProviderRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
@@ -62439,6 +62912,54 @@ func (c *Client) MarketplaceProviderResourcesSetLimitsWithBody(ctx context.Conte
 
 func (c *Client) MarketplaceProviderResourcesSetLimits(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetLimitsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProviderResourcesSetLimitsRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderResourcesSetPausedWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderResourcesSetPausedRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderResourcesSetPaused(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetPausedJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderResourcesSetPausedRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderResourcesSetRestrictMemberAccessWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderResourcesSetRestrictMemberAccessRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderResourcesSetRestrictMemberAccess(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetRestrictMemberAccessJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderResourcesSetRestrictMemberAccessRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -63133,6 +63654,30 @@ func (c *Client) MarketplaceResourcesRenew(ctx context.Context, uuid openapi_typ
 	return c.Client.Do(req)
 }
 
+func (c *Client) MarketplaceResourcesSetDownscaledWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourcesSetDownscaledRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceResourcesSetDownscaled(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesSetDownscaledJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourcesSetDownscaledRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) MarketplaceResourcesSetEndDateByStaffWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceResourcesSetEndDateByStaffRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
@@ -63147,6 +63692,54 @@ func (c *Client) MarketplaceResourcesSetEndDateByStaffWithBody(ctx context.Conte
 
 func (c *Client) MarketplaceResourcesSetEndDateByStaff(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesSetEndDateByStaffJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceResourcesSetEndDateByStaffRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceResourcesSetPausedWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourcesSetPausedRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceResourcesSetPaused(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesSetPausedJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourcesSetPausedRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceResourcesSetRestrictMemberAccessWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourcesSetRestrictMemberAccessRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceResourcesSetRestrictMemberAccess(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesSetRestrictMemberAccessJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourcesSetRestrictMemberAccessRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -64369,6 +64962,270 @@ func (c *Client) MarketplaceServiceProvidersUpdateUser(ctx context.Context, uuid
 	return c.Client.Do(req)
 }
 
+func (c *Client) MarketplaceSiteAgentIdentitiesList(ctx context.Context, params *MarketplaceSiteAgentIdentitiesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSiteAgentIdentitiesListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSiteAgentIdentitiesCount(ctx context.Context, params *MarketplaceSiteAgentIdentitiesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSiteAgentIdentitiesCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSiteAgentIdentitiesCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSiteAgentIdentitiesCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSiteAgentIdentitiesCreate(ctx context.Context, body MarketplaceSiteAgentIdentitiesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSiteAgentIdentitiesCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSiteAgentIdentitiesDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSiteAgentIdentitiesDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSiteAgentIdentitiesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSiteAgentIdentitiesRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSiteAgentIdentitiesUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSiteAgentIdentitiesUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSiteAgentIdentitiesUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSiteAgentIdentitiesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSiteAgentIdentitiesUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSiteAgentIdentitiesRegisterEventSubscriptionWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSiteAgentIdentitiesRegisterEventSubscriptionRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSiteAgentIdentitiesRegisterEventSubscription(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSiteAgentIdentitiesRegisterEventSubscriptionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSiteAgentIdentitiesRegisterEventSubscriptionRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSiteAgentIdentitiesRegisterServiceWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSiteAgentIdentitiesRegisterServiceRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSiteAgentIdentitiesRegisterService(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSiteAgentIdentitiesRegisterServiceJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSiteAgentIdentitiesRegisterServiceRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSiteAgentProcessorsList(ctx context.Context, params *MarketplaceSiteAgentProcessorsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSiteAgentProcessorsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSiteAgentProcessorsCount(ctx context.Context, params *MarketplaceSiteAgentProcessorsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSiteAgentProcessorsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSiteAgentProcessorsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSiteAgentProcessorsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSiteAgentServicesList(ctx context.Context, params *MarketplaceSiteAgentServicesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSiteAgentServicesListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSiteAgentServicesCount(ctx context.Context, params *MarketplaceSiteAgentServicesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSiteAgentServicesCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSiteAgentServicesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSiteAgentServicesRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSiteAgentServicesRegisterProcessorWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSiteAgentServicesRegisterProcessorRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSiteAgentServicesRegisterProcessor(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSiteAgentServicesRegisterProcessorJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSiteAgentServicesRegisterProcessorRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSiteAgentServicesSetStatisticsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSiteAgentServicesSetStatisticsRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSiteAgentServicesSetStatistics(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSiteAgentServicesSetStatisticsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSiteAgentServicesSetStatisticsRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) MarketplaceStatsComponentUsagesList(ctx context.Context, params *MarketplaceStatsComponentUsagesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceStatsComponentUsagesListRequest(c.Server, params)
 	if err != nil {
@@ -65473,6 +66330,30 @@ func (c *Client) OnboardingJustificationsUpdate(ctx context.Context, uuid openap
 	return c.Client.Do(req)
 }
 
+func (c *Client) OnboardingJustificationsApproveWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOnboardingJustificationsApproveRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OnboardingJustificationsApprove(ctx context.Context, uuid openapi_types.UUID, body OnboardingJustificationsApproveJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOnboardingJustificationsApproveRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) OnboardingJustificationsAttachDocumentWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOnboardingJustificationsAttachDocumentRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
@@ -65499,6 +66380,30 @@ func (c *Client) OnboardingJustificationsAttachDocument(ctx context.Context, uui
 
 func (c *Client) OnboardingJustificationsAttachDocumentWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body OnboardingJustificationsAttachDocumentFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOnboardingJustificationsAttachDocumentRequestWithFormdataBody(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OnboardingJustificationsRejectWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOnboardingJustificationsRejectRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OnboardingJustificationsReject(ctx context.Context, uuid openapi_types.UUID, body OnboardingJustificationsRejectJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOnboardingJustificationsRejectRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -136153,6 +137058,53 @@ func NewMarketplaceProviderResourcesSetBackendMetadataRequestWithBody(server str
 	return req, nil
 }
 
+// NewMarketplaceProviderResourcesSetDownscaledRequest calls the generic MarketplaceProviderResourcesSetDownscaled builder with application/json body
+func NewMarketplaceProviderResourcesSetDownscaledRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetDownscaledJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceProviderResourcesSetDownscaledRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceProviderResourcesSetDownscaledRequestWithBody generates requests for MarketplaceProviderResourcesSetDownscaled with any type of body
+func NewMarketplaceProviderResourcesSetDownscaledRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-resources/%s/set_downscaled/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewMarketplaceProviderResourcesSetEndDateByProviderRequest calls the generic MarketplaceProviderResourcesSetEndDateByProvider builder with application/json body
 func NewMarketplaceProviderResourcesSetEndDateByProviderRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetEndDateByProviderJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -136275,6 +137227,100 @@ func NewMarketplaceProviderResourcesSetLimitsRequestWithBody(server string, uuid
 	}
 
 	operationPath := fmt.Sprintf("/api/marketplace-provider-resources/%s/set_limits/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceProviderResourcesSetPausedRequest calls the generic MarketplaceProviderResourcesSetPaused builder with application/json body
+func NewMarketplaceProviderResourcesSetPausedRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetPausedJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceProviderResourcesSetPausedRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceProviderResourcesSetPausedRequestWithBody generates requests for MarketplaceProviderResourcesSetPaused with any type of body
+func NewMarketplaceProviderResourcesSetPausedRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-resources/%s/set_paused/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceProviderResourcesSetRestrictMemberAccessRequest calls the generic MarketplaceProviderResourcesSetRestrictMemberAccess builder with application/json body
+func NewMarketplaceProviderResourcesSetRestrictMemberAccessRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetRestrictMemberAccessJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceProviderResourcesSetRestrictMemberAccessRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceProviderResourcesSetRestrictMemberAccessRequestWithBody generates requests for MarketplaceProviderResourcesSetRestrictMemberAccess with any type of body
+func NewMarketplaceProviderResourcesSetRestrictMemberAccessRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-resources/%s/set_restrict_member_access/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -140423,6 +141469,53 @@ func NewMarketplaceResourcesRenewRequestWithBody(server string, uuid openapi_typ
 	return req, nil
 }
 
+// NewMarketplaceResourcesSetDownscaledRequest calls the generic MarketplaceResourcesSetDownscaled builder with application/json body
+func NewMarketplaceResourcesSetDownscaledRequest(server string, uuid openapi_types.UUID, body MarketplaceResourcesSetDownscaledJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceResourcesSetDownscaledRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceResourcesSetDownscaledRequestWithBody generates requests for MarketplaceResourcesSetDownscaled with any type of body
+func NewMarketplaceResourcesSetDownscaledRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-resources/%s/set_downscaled/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewMarketplaceResourcesSetEndDateByStaffRequest calls the generic MarketplaceResourcesSetEndDateByStaff builder with application/json body
 func NewMarketplaceResourcesSetEndDateByStaffRequest(server string, uuid openapi_types.UUID, body MarketplaceResourcesSetEndDateByStaffJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -140451,6 +141544,100 @@ func NewMarketplaceResourcesSetEndDateByStaffRequestWithBody(server string, uuid
 	}
 
 	operationPath := fmt.Sprintf("/api/marketplace-resources/%s/set_end_date_by_staff/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceResourcesSetPausedRequest calls the generic MarketplaceResourcesSetPaused builder with application/json body
+func NewMarketplaceResourcesSetPausedRequest(server string, uuid openapi_types.UUID, body MarketplaceResourcesSetPausedJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceResourcesSetPausedRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceResourcesSetPausedRequestWithBody generates requests for MarketplaceResourcesSetPaused with any type of body
+func NewMarketplaceResourcesSetPausedRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-resources/%s/set_paused/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceResourcesSetRestrictMemberAccessRequest calls the generic MarketplaceResourcesSetRestrictMemberAccess builder with application/json body
+func NewMarketplaceResourcesSetRestrictMemberAccessRequest(server string, uuid openapi_types.UUID, body MarketplaceResourcesSetRestrictMemberAccessJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceResourcesSetRestrictMemberAccessRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceResourcesSetRestrictMemberAccessRequestWithBody generates requests for MarketplaceResourcesSetRestrictMemberAccess with any type of body
+func NewMarketplaceResourcesSetRestrictMemberAccessRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-resources/%s/set_restrict_member_access/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -147648,6 +148835,1159 @@ func NewMarketplaceServiceProvidersUpdateUserRequestWithBody(server string, uuid
 	return req, nil
 }
 
+// NewMarketplaceSiteAgentIdentitiesListRequest generates requests for MarketplaceSiteAgentIdentitiesList
+func NewMarketplaceSiteAgentIdentitiesListRequest(server string, params *MarketplaceSiteAgentIdentitiesListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-site-agent-identities/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.LastRestarted != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "last_restarted", runtime.ParamLocationQuery, *params.LastRestarted); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name", runtime.ParamLocationQuery, *params.Name); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Version != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "version", runtime.ParamLocationQuery, *params.Version); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceSiteAgentIdentitiesCountRequest generates requests for MarketplaceSiteAgentIdentitiesCount
+func NewMarketplaceSiteAgentIdentitiesCountRequest(server string, params *MarketplaceSiteAgentIdentitiesCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-site-agent-identities/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.LastRestarted != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "last_restarted", runtime.ParamLocationQuery, *params.LastRestarted); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name", runtime.ParamLocationQuery, *params.Name); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Version != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "version", runtime.ParamLocationQuery, *params.Version); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceSiteAgentIdentitiesCreateRequest calls the generic MarketplaceSiteAgentIdentitiesCreate builder with application/json body
+func NewMarketplaceSiteAgentIdentitiesCreateRequest(server string, body MarketplaceSiteAgentIdentitiesCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceSiteAgentIdentitiesCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewMarketplaceSiteAgentIdentitiesCreateRequestWithBody generates requests for MarketplaceSiteAgentIdentitiesCreate with any type of body
+func NewMarketplaceSiteAgentIdentitiesCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-site-agent-identities/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceSiteAgentIdentitiesDestroyRequest generates requests for MarketplaceSiteAgentIdentitiesDestroy
+func NewMarketplaceSiteAgentIdentitiesDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-site-agent-identities/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceSiteAgentIdentitiesRetrieveRequest generates requests for MarketplaceSiteAgentIdentitiesRetrieve
+func NewMarketplaceSiteAgentIdentitiesRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-site-agent-identities/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceSiteAgentIdentitiesUpdateRequest calls the generic MarketplaceSiteAgentIdentitiesUpdate builder with application/json body
+func NewMarketplaceSiteAgentIdentitiesUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceSiteAgentIdentitiesUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceSiteAgentIdentitiesUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceSiteAgentIdentitiesUpdateRequestWithBody generates requests for MarketplaceSiteAgentIdentitiesUpdate with any type of body
+func NewMarketplaceSiteAgentIdentitiesUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-site-agent-identities/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceSiteAgentIdentitiesRegisterEventSubscriptionRequest calls the generic MarketplaceSiteAgentIdentitiesRegisterEventSubscription builder with application/json body
+func NewMarketplaceSiteAgentIdentitiesRegisterEventSubscriptionRequest(server string, uuid openapi_types.UUID, body MarketplaceSiteAgentIdentitiesRegisterEventSubscriptionJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceSiteAgentIdentitiesRegisterEventSubscriptionRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceSiteAgentIdentitiesRegisterEventSubscriptionRequestWithBody generates requests for MarketplaceSiteAgentIdentitiesRegisterEventSubscription with any type of body
+func NewMarketplaceSiteAgentIdentitiesRegisterEventSubscriptionRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-site-agent-identities/%s/register_event_subscription/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceSiteAgentIdentitiesRegisterServiceRequest calls the generic MarketplaceSiteAgentIdentitiesRegisterService builder with application/json body
+func NewMarketplaceSiteAgentIdentitiesRegisterServiceRequest(server string, uuid openapi_types.UUID, body MarketplaceSiteAgentIdentitiesRegisterServiceJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceSiteAgentIdentitiesRegisterServiceRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceSiteAgentIdentitiesRegisterServiceRequestWithBody generates requests for MarketplaceSiteAgentIdentitiesRegisterService with any type of body
+func NewMarketplaceSiteAgentIdentitiesRegisterServiceRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-site-agent-identities/%s/register_service/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceSiteAgentProcessorsListRequest generates requests for MarketplaceSiteAgentProcessorsList
+func NewMarketplaceSiteAgentProcessorsListRequest(server string, params *MarketplaceSiteAgentProcessorsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-site-agent-processors/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.BackendType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "backend_type", runtime.ParamLocationQuery, *params.BackendType); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.BackendVersion != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "backend_version", runtime.ParamLocationQuery, *params.BackendVersion); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.LastRun != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "last_run", runtime.ParamLocationQuery, *params.LastRun); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ServiceUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "service_uuid", runtime.ParamLocationQuery, *params.ServiceUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceSiteAgentProcessorsCountRequest generates requests for MarketplaceSiteAgentProcessorsCount
+func NewMarketplaceSiteAgentProcessorsCountRequest(server string, params *MarketplaceSiteAgentProcessorsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-site-agent-processors/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.BackendType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "backend_type", runtime.ParamLocationQuery, *params.BackendType); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.BackendVersion != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "backend_version", runtime.ParamLocationQuery, *params.BackendVersion); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.LastRun != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "last_run", runtime.ParamLocationQuery, *params.LastRun); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ServiceUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "service_uuid", runtime.ParamLocationQuery, *params.ServiceUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceSiteAgentProcessorsRetrieveRequest generates requests for MarketplaceSiteAgentProcessorsRetrieve
+func NewMarketplaceSiteAgentProcessorsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-site-agent-processors/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceSiteAgentServicesListRequest generates requests for MarketplaceSiteAgentServicesList
+func NewMarketplaceSiteAgentServicesListRequest(server string, params *MarketplaceSiteAgentServicesListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-site-agent-services/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.IdentityUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "identity_uuid", runtime.ParamLocationQuery, *params.IdentityUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Mode != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "mode", runtime.ParamLocationQuery, *params.Mode); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "state", runtime.ParamLocationQuery, *params.State); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceSiteAgentServicesCountRequest generates requests for MarketplaceSiteAgentServicesCount
+func NewMarketplaceSiteAgentServicesCountRequest(server string, params *MarketplaceSiteAgentServicesCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-site-agent-services/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.IdentityUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "identity_uuid", runtime.ParamLocationQuery, *params.IdentityUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Mode != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "mode", runtime.ParamLocationQuery, *params.Mode); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "state", runtime.ParamLocationQuery, *params.State); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceSiteAgentServicesRetrieveRequest generates requests for MarketplaceSiteAgentServicesRetrieve
+func NewMarketplaceSiteAgentServicesRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-site-agent-services/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceSiteAgentServicesRegisterProcessorRequest calls the generic MarketplaceSiteAgentServicesRegisterProcessor builder with application/json body
+func NewMarketplaceSiteAgentServicesRegisterProcessorRequest(server string, uuid openapi_types.UUID, body MarketplaceSiteAgentServicesRegisterProcessorJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceSiteAgentServicesRegisterProcessorRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceSiteAgentServicesRegisterProcessorRequestWithBody generates requests for MarketplaceSiteAgentServicesRegisterProcessor with any type of body
+func NewMarketplaceSiteAgentServicesRegisterProcessorRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-site-agent-services/%s/register_processor/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceSiteAgentServicesSetStatisticsRequest calls the generic MarketplaceSiteAgentServicesSetStatistics builder with application/json body
+func NewMarketplaceSiteAgentServicesSetStatisticsRequest(server string, uuid openapi_types.UUID, body MarketplaceSiteAgentServicesSetStatisticsJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceSiteAgentServicesSetStatisticsRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceSiteAgentServicesSetStatisticsRequestWithBody generates requests for MarketplaceSiteAgentServicesSetStatistics with any type of body
+func NewMarketplaceSiteAgentServicesSetStatisticsRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-site-agent-services/%s/set_statistics/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewMarketplaceStatsComponentUsagesListRequest generates requests for MarketplaceStatsComponentUsagesList
 func NewMarketplaceStatsComponentUsagesListRequest(server string, params *MarketplaceStatsComponentUsagesListParams) (*http.Request, error) {
 	var err error
@@ -152363,6 +154703,53 @@ func NewOnboardingJustificationsUpdateRequestWithBody(server string, uuid openap
 	return req, nil
 }
 
+// NewOnboardingJustificationsApproveRequest calls the generic OnboardingJustificationsApprove builder with application/json body
+func NewOnboardingJustificationsApproveRequest(server string, uuid openapi_types.UUID, body OnboardingJustificationsApproveJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOnboardingJustificationsApproveRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOnboardingJustificationsApproveRequestWithBody generates requests for OnboardingJustificationsApprove with any type of body
+func NewOnboardingJustificationsApproveRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/onboarding-justifications/%s/approve/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewOnboardingJustificationsAttachDocumentRequest calls the generic OnboardingJustificationsAttachDocument builder with application/json body
 func NewOnboardingJustificationsAttachDocumentRequest(server string, uuid openapi_types.UUID, body OnboardingJustificationsAttachDocumentJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -152402,6 +154789,53 @@ func NewOnboardingJustificationsAttachDocumentRequestWithBody(server string, uui
 	}
 
 	operationPath := fmt.Sprintf("/api/onboarding-justifications/%s/attach_document/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewOnboardingJustificationsRejectRequest calls the generic OnboardingJustificationsReject builder with application/json body
+func NewOnboardingJustificationsRejectRequest(server string, uuid openapi_types.UUID, body OnboardingJustificationsRejectJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOnboardingJustificationsRejectRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOnboardingJustificationsRejectRequestWithBody generates requests for OnboardingJustificationsReject with any type of body
+func NewOnboardingJustificationsRejectRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/onboarding-justifications/%s/reject/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -214754,6 +217188,11 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceProviderResourcesSetBackendMetadataWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetBackendMetadataJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetBackendMetadataResponse, error)
 
+	// MarketplaceProviderResourcesSetDownscaledWithBodyWithResponse request with any body
+	MarketplaceProviderResourcesSetDownscaledWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetDownscaledResponse, error)
+
+	MarketplaceProviderResourcesSetDownscaledWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetDownscaledJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetDownscaledResponse, error)
+
 	// MarketplaceProviderResourcesSetEndDateByProviderWithBodyWithResponse request with any body
 	MarketplaceProviderResourcesSetEndDateByProviderWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetEndDateByProviderResponse, error)
 
@@ -214768,6 +217207,16 @@ type ClientWithResponsesInterface interface {
 	MarketplaceProviderResourcesSetLimitsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetLimitsResponse, error)
 
 	MarketplaceProviderResourcesSetLimitsWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetLimitsJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetLimitsResponse, error)
+
+	// MarketplaceProviderResourcesSetPausedWithBodyWithResponse request with any body
+	MarketplaceProviderResourcesSetPausedWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetPausedResponse, error)
+
+	MarketplaceProviderResourcesSetPausedWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetPausedJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetPausedResponse, error)
+
+	// MarketplaceProviderResourcesSetRestrictMemberAccessWithBodyWithResponse request with any body
+	MarketplaceProviderResourcesSetRestrictMemberAccessWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetRestrictMemberAccessResponse, error)
+
+	MarketplaceProviderResourcesSetRestrictMemberAccessWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetRestrictMemberAccessJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetRestrictMemberAccessResponse, error)
 
 	// MarketplaceProviderResourcesSetSlugWithBodyWithResponse request with any body
 	MarketplaceProviderResourcesSetSlugWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetSlugResponse, error)
@@ -214925,10 +217374,25 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceResourcesRenewWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesRenewJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourcesRenewResponse, error)
 
+	// MarketplaceResourcesSetDownscaledWithBodyWithResponse request with any body
+	MarketplaceResourcesSetDownscaledWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourcesSetDownscaledResponse, error)
+
+	MarketplaceResourcesSetDownscaledWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesSetDownscaledJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourcesSetDownscaledResponse, error)
+
 	// MarketplaceResourcesSetEndDateByStaffWithBodyWithResponse request with any body
 	MarketplaceResourcesSetEndDateByStaffWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourcesSetEndDateByStaffResponse, error)
 
 	MarketplaceResourcesSetEndDateByStaffWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesSetEndDateByStaffJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourcesSetEndDateByStaffResponse, error)
+
+	// MarketplaceResourcesSetPausedWithBodyWithResponse request with any body
+	MarketplaceResourcesSetPausedWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourcesSetPausedResponse, error)
+
+	MarketplaceResourcesSetPausedWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesSetPausedJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourcesSetPausedResponse, error)
+
+	// MarketplaceResourcesSetRestrictMemberAccessWithBodyWithResponse request with any body
+	MarketplaceResourcesSetRestrictMemberAccessWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourcesSetRestrictMemberAccessResponse, error)
+
+	MarketplaceResourcesSetRestrictMemberAccessWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesSetRestrictMemberAccessJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourcesSetRestrictMemberAccessResponse, error)
 
 	// MarketplaceResourcesSetSlugWithBodyWithResponse request with any body
 	MarketplaceResourcesSetSlugWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourcesSetSlugResponse, error)
@@ -215203,6 +217667,66 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceServiceProvidersUpdateUserWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceServiceProvidersUpdateUserJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersUpdateUserResponse, error)
 
+	// MarketplaceSiteAgentIdentitiesListWithResponse request
+	MarketplaceSiteAgentIdentitiesListWithResponse(ctx context.Context, params *MarketplaceSiteAgentIdentitiesListParams, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentIdentitiesListResponse, error)
+
+	// MarketplaceSiteAgentIdentitiesCountWithResponse request
+	MarketplaceSiteAgentIdentitiesCountWithResponse(ctx context.Context, params *MarketplaceSiteAgentIdentitiesCountParams, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentIdentitiesCountResponse, error)
+
+	// MarketplaceSiteAgentIdentitiesCreateWithBodyWithResponse request with any body
+	MarketplaceSiteAgentIdentitiesCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentIdentitiesCreateResponse, error)
+
+	MarketplaceSiteAgentIdentitiesCreateWithResponse(ctx context.Context, body MarketplaceSiteAgentIdentitiesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentIdentitiesCreateResponse, error)
+
+	// MarketplaceSiteAgentIdentitiesDestroyWithResponse request
+	MarketplaceSiteAgentIdentitiesDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentIdentitiesDestroyResponse, error)
+
+	// MarketplaceSiteAgentIdentitiesRetrieveWithResponse request
+	MarketplaceSiteAgentIdentitiesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentIdentitiesRetrieveResponse, error)
+
+	// MarketplaceSiteAgentIdentitiesUpdateWithBodyWithResponse request with any body
+	MarketplaceSiteAgentIdentitiesUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentIdentitiesUpdateResponse, error)
+
+	MarketplaceSiteAgentIdentitiesUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSiteAgentIdentitiesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentIdentitiesUpdateResponse, error)
+
+	// MarketplaceSiteAgentIdentitiesRegisterEventSubscriptionWithBodyWithResponse request with any body
+	MarketplaceSiteAgentIdentitiesRegisterEventSubscriptionWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentIdentitiesRegisterEventSubscriptionResponse, error)
+
+	MarketplaceSiteAgentIdentitiesRegisterEventSubscriptionWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSiteAgentIdentitiesRegisterEventSubscriptionJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentIdentitiesRegisterEventSubscriptionResponse, error)
+
+	// MarketplaceSiteAgentIdentitiesRegisterServiceWithBodyWithResponse request with any body
+	MarketplaceSiteAgentIdentitiesRegisterServiceWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentIdentitiesRegisterServiceResponse, error)
+
+	MarketplaceSiteAgentIdentitiesRegisterServiceWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSiteAgentIdentitiesRegisterServiceJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentIdentitiesRegisterServiceResponse, error)
+
+	// MarketplaceSiteAgentProcessorsListWithResponse request
+	MarketplaceSiteAgentProcessorsListWithResponse(ctx context.Context, params *MarketplaceSiteAgentProcessorsListParams, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentProcessorsListResponse, error)
+
+	// MarketplaceSiteAgentProcessorsCountWithResponse request
+	MarketplaceSiteAgentProcessorsCountWithResponse(ctx context.Context, params *MarketplaceSiteAgentProcessorsCountParams, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentProcessorsCountResponse, error)
+
+	// MarketplaceSiteAgentProcessorsRetrieveWithResponse request
+	MarketplaceSiteAgentProcessorsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentProcessorsRetrieveResponse, error)
+
+	// MarketplaceSiteAgentServicesListWithResponse request
+	MarketplaceSiteAgentServicesListWithResponse(ctx context.Context, params *MarketplaceSiteAgentServicesListParams, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentServicesListResponse, error)
+
+	// MarketplaceSiteAgentServicesCountWithResponse request
+	MarketplaceSiteAgentServicesCountWithResponse(ctx context.Context, params *MarketplaceSiteAgentServicesCountParams, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentServicesCountResponse, error)
+
+	// MarketplaceSiteAgentServicesRetrieveWithResponse request
+	MarketplaceSiteAgentServicesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentServicesRetrieveResponse, error)
+
+	// MarketplaceSiteAgentServicesRegisterProcessorWithBodyWithResponse request with any body
+	MarketplaceSiteAgentServicesRegisterProcessorWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentServicesRegisterProcessorResponse, error)
+
+	MarketplaceSiteAgentServicesRegisterProcessorWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSiteAgentServicesRegisterProcessorJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentServicesRegisterProcessorResponse, error)
+
+	// MarketplaceSiteAgentServicesSetStatisticsWithBodyWithResponse request with any body
+	MarketplaceSiteAgentServicesSetStatisticsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentServicesSetStatisticsResponse, error)
+
+	MarketplaceSiteAgentServicesSetStatisticsWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSiteAgentServicesSetStatisticsJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentServicesSetStatisticsResponse, error)
+
 	// MarketplaceStatsComponentUsagesListWithResponse request
 	MarketplaceStatsComponentUsagesListWithResponse(ctx context.Context, params *MarketplaceStatsComponentUsagesListParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsComponentUsagesListResponse, error)
 
@@ -215465,12 +217989,22 @@ type ClientWithResponsesInterface interface {
 
 	OnboardingJustificationsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OnboardingJustificationsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OnboardingJustificationsUpdateResponse, error)
 
+	// OnboardingJustificationsApproveWithBodyWithResponse request with any body
+	OnboardingJustificationsApproveWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OnboardingJustificationsApproveResponse, error)
+
+	OnboardingJustificationsApproveWithResponse(ctx context.Context, uuid openapi_types.UUID, body OnboardingJustificationsApproveJSONRequestBody, reqEditors ...RequestEditorFn) (*OnboardingJustificationsApproveResponse, error)
+
 	// OnboardingJustificationsAttachDocumentWithBodyWithResponse request with any body
 	OnboardingJustificationsAttachDocumentWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OnboardingJustificationsAttachDocumentResponse, error)
 
 	OnboardingJustificationsAttachDocumentWithResponse(ctx context.Context, uuid openapi_types.UUID, body OnboardingJustificationsAttachDocumentJSONRequestBody, reqEditors ...RequestEditorFn) (*OnboardingJustificationsAttachDocumentResponse, error)
 
 	OnboardingJustificationsAttachDocumentWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body OnboardingJustificationsAttachDocumentFormdataRequestBody, reqEditors ...RequestEditorFn) (*OnboardingJustificationsAttachDocumentResponse, error)
+
+	// OnboardingJustificationsRejectWithBodyWithResponse request with any body
+	OnboardingJustificationsRejectWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OnboardingJustificationsRejectResponse, error)
+
+	OnboardingJustificationsRejectWithResponse(ctx context.Context, uuid openapi_types.UUID, body OnboardingJustificationsRejectJSONRequestBody, reqEditors ...RequestEditorFn) (*OnboardingJustificationsRejectResponse, error)
 
 	// OnboardingVerificationsListWithResponse request
 	OnboardingVerificationsListWithResponse(ctx context.Context, params *OnboardingVerificationsListParams, reqEditors ...RequestEditorFn) (*OnboardingVerificationsListResponse, error)
@@ -233751,6 +236285,27 @@ func (r MarketplaceProviderResourcesSetBackendMetadataResponse) StatusCode() int
 	return 0
 }
 
+type MarketplaceProviderResourcesSetDownscaledResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderResourcesSetDownscaledResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderResourcesSetDownscaledResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type MarketplaceProviderResourcesSetEndDateByProviderResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -233810,6 +236365,48 @@ func (r MarketplaceProviderResourcesSetLimitsResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceProviderResourcesSetLimitsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceProviderResourcesSetPausedResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderResourcesSetPausedResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderResourcesSetPausedResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceProviderResourcesSetRestrictMemberAccessResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderResourcesSetRestrictMemberAccessResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderResourcesSetRestrictMemberAccessResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -234731,6 +237328,27 @@ func (r MarketplaceResourcesRenewResponse) StatusCode() int {
 	return 0
 }
 
+type MarketplaceResourcesSetDownscaledResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceResourcesSetDownscaledResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceResourcesSetDownscaledResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type MarketplaceResourcesSetEndDateByStaffResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -234746,6 +237364,48 @@ func (r MarketplaceResourcesSetEndDateByStaffResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceResourcesSetEndDateByStaffResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceResourcesSetPausedResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceResourcesSetPausedResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceResourcesSetPausedResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceResourcesSetRestrictMemberAccessResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceResourcesSetRestrictMemberAccessResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceResourcesSetRestrictMemberAccessResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -236296,6 +238956,357 @@ func (r MarketplaceServiceProvidersUpdateUserResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceServiceProvidersUpdateUserResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSiteAgentIdentitiesListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]AgentIdentity
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSiteAgentIdentitiesListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSiteAgentIdentitiesListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSiteAgentIdentitiesCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSiteAgentIdentitiesCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSiteAgentIdentitiesCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSiteAgentIdentitiesCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *AgentIdentity
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSiteAgentIdentitiesCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSiteAgentIdentitiesCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSiteAgentIdentitiesDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSiteAgentIdentitiesDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSiteAgentIdentitiesDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSiteAgentIdentitiesRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *AgentIdentity
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSiteAgentIdentitiesRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSiteAgentIdentitiesRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSiteAgentIdentitiesUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *AgentIdentity
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSiteAgentIdentitiesUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSiteAgentIdentitiesUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSiteAgentIdentitiesRegisterEventSubscriptionResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *EventSubscription
+	JSON201      *EventSubscription
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSiteAgentIdentitiesRegisterEventSubscriptionResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSiteAgentIdentitiesRegisterEventSubscriptionResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSiteAgentIdentitiesRegisterServiceResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *AgentService
+	JSON201      *AgentService
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSiteAgentIdentitiesRegisterServiceResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSiteAgentIdentitiesRegisterServiceResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSiteAgentProcessorsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]AgentProcessor
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSiteAgentProcessorsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSiteAgentProcessorsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSiteAgentProcessorsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSiteAgentProcessorsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSiteAgentProcessorsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSiteAgentProcessorsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *AgentProcessor
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSiteAgentProcessorsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSiteAgentProcessorsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSiteAgentServicesListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]AgentService
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSiteAgentServicesListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSiteAgentServicesListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSiteAgentServicesCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSiteAgentServicesCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSiteAgentServicesCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSiteAgentServicesRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *AgentService
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSiteAgentServicesRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSiteAgentServicesRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSiteAgentServicesRegisterProcessorResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *AgentProcessor
+	JSON201      *AgentProcessor
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSiteAgentServicesRegisterProcessorResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSiteAgentServicesRegisterProcessorResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSiteAgentServicesSetStatisticsResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *AgentService
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSiteAgentServicesSetStatisticsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSiteAgentServicesSetStatisticsResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -237985,6 +240996,28 @@ func (r OnboardingJustificationsUpdateResponse) StatusCode() int {
 	return 0
 }
 
+type OnboardingJustificationsApproveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OnboardingJustification
+}
+
+// Status returns HTTPResponse.Status
+func (r OnboardingJustificationsApproveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OnboardingJustificationsApproveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type OnboardingJustificationsAttachDocumentResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -238001,6 +241034,28 @@ func (r OnboardingJustificationsAttachDocumentResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r OnboardingJustificationsAttachDocumentResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OnboardingJustificationsRejectResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OnboardingJustification
+}
+
+// Status returns HTTPResponse.Status
+func (r OnboardingJustificationsRejectResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OnboardingJustificationsRejectResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -261218,6 +264273,23 @@ func (c *ClientWithResponses) MarketplaceProviderResourcesSetBackendMetadataWith
 	return ParseMarketplaceProviderResourcesSetBackendMetadataResponse(rsp)
 }
 
+// MarketplaceProviderResourcesSetDownscaledWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderResourcesSetDownscaledResponse
+func (c *ClientWithResponses) MarketplaceProviderResourcesSetDownscaledWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetDownscaledResponse, error) {
+	rsp, err := c.MarketplaceProviderResourcesSetDownscaledWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderResourcesSetDownscaledResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceProviderResourcesSetDownscaledWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetDownscaledJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetDownscaledResponse, error) {
+	rsp, err := c.MarketplaceProviderResourcesSetDownscaled(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderResourcesSetDownscaledResponse(rsp)
+}
+
 // MarketplaceProviderResourcesSetEndDateByProviderWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderResourcesSetEndDateByProviderResponse
 func (c *ClientWithResponses) MarketplaceProviderResourcesSetEndDateByProviderWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetEndDateByProviderResponse, error) {
 	rsp, err := c.MarketplaceProviderResourcesSetEndDateByProviderWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -261267,6 +264339,40 @@ func (c *ClientWithResponses) MarketplaceProviderResourcesSetLimitsWithResponse(
 		return nil, err
 	}
 	return ParseMarketplaceProviderResourcesSetLimitsResponse(rsp)
+}
+
+// MarketplaceProviderResourcesSetPausedWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderResourcesSetPausedResponse
+func (c *ClientWithResponses) MarketplaceProviderResourcesSetPausedWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetPausedResponse, error) {
+	rsp, err := c.MarketplaceProviderResourcesSetPausedWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderResourcesSetPausedResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceProviderResourcesSetPausedWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetPausedJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetPausedResponse, error) {
+	rsp, err := c.MarketplaceProviderResourcesSetPaused(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderResourcesSetPausedResponse(rsp)
+}
+
+// MarketplaceProviderResourcesSetRestrictMemberAccessWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderResourcesSetRestrictMemberAccessResponse
+func (c *ClientWithResponses) MarketplaceProviderResourcesSetRestrictMemberAccessWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetRestrictMemberAccessResponse, error) {
+	rsp, err := c.MarketplaceProviderResourcesSetRestrictMemberAccessWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderResourcesSetRestrictMemberAccessResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceProviderResourcesSetRestrictMemberAccessWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetRestrictMemberAccessJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetRestrictMemberAccessResponse, error) {
+	rsp, err := c.MarketplaceProviderResourcesSetRestrictMemberAccess(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderResourcesSetRestrictMemberAccessResponse(rsp)
 }
 
 // MarketplaceProviderResourcesSetSlugWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderResourcesSetSlugResponse
@@ -261767,6 +264873,23 @@ func (c *ClientWithResponses) MarketplaceResourcesRenewWithResponse(ctx context.
 	return ParseMarketplaceResourcesRenewResponse(rsp)
 }
 
+// MarketplaceResourcesSetDownscaledWithBodyWithResponse request with arbitrary body returning *MarketplaceResourcesSetDownscaledResponse
+func (c *ClientWithResponses) MarketplaceResourcesSetDownscaledWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourcesSetDownscaledResponse, error) {
+	rsp, err := c.MarketplaceResourcesSetDownscaledWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourcesSetDownscaledResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceResourcesSetDownscaledWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesSetDownscaledJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourcesSetDownscaledResponse, error) {
+	rsp, err := c.MarketplaceResourcesSetDownscaled(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourcesSetDownscaledResponse(rsp)
+}
+
 // MarketplaceResourcesSetEndDateByStaffWithBodyWithResponse request with arbitrary body returning *MarketplaceResourcesSetEndDateByStaffResponse
 func (c *ClientWithResponses) MarketplaceResourcesSetEndDateByStaffWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourcesSetEndDateByStaffResponse, error) {
 	rsp, err := c.MarketplaceResourcesSetEndDateByStaffWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -261782,6 +264905,40 @@ func (c *ClientWithResponses) MarketplaceResourcesSetEndDateByStaffWithResponse(
 		return nil, err
 	}
 	return ParseMarketplaceResourcesSetEndDateByStaffResponse(rsp)
+}
+
+// MarketplaceResourcesSetPausedWithBodyWithResponse request with arbitrary body returning *MarketplaceResourcesSetPausedResponse
+func (c *ClientWithResponses) MarketplaceResourcesSetPausedWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourcesSetPausedResponse, error) {
+	rsp, err := c.MarketplaceResourcesSetPausedWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourcesSetPausedResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceResourcesSetPausedWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesSetPausedJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourcesSetPausedResponse, error) {
+	rsp, err := c.MarketplaceResourcesSetPaused(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourcesSetPausedResponse(rsp)
+}
+
+// MarketplaceResourcesSetRestrictMemberAccessWithBodyWithResponse request with arbitrary body returning *MarketplaceResourcesSetRestrictMemberAccessResponse
+func (c *ClientWithResponses) MarketplaceResourcesSetRestrictMemberAccessWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourcesSetRestrictMemberAccessResponse, error) {
+	rsp, err := c.MarketplaceResourcesSetRestrictMemberAccessWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourcesSetRestrictMemberAccessResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceResourcesSetRestrictMemberAccessWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesSetRestrictMemberAccessJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourcesSetRestrictMemberAccessResponse, error) {
+	rsp, err := c.MarketplaceResourcesSetRestrictMemberAccess(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourcesSetRestrictMemberAccessResponse(rsp)
 }
 
 // MarketplaceResourcesSetSlugWithBodyWithResponse request with arbitrary body returning *MarketplaceResourcesSetSlugResponse
@@ -262663,6 +265820,198 @@ func (c *ClientWithResponses) MarketplaceServiceProvidersUpdateUserWithResponse(
 	return ParseMarketplaceServiceProvidersUpdateUserResponse(rsp)
 }
 
+// MarketplaceSiteAgentIdentitiesListWithResponse request returning *MarketplaceSiteAgentIdentitiesListResponse
+func (c *ClientWithResponses) MarketplaceSiteAgentIdentitiesListWithResponse(ctx context.Context, params *MarketplaceSiteAgentIdentitiesListParams, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentIdentitiesListResponse, error) {
+	rsp, err := c.MarketplaceSiteAgentIdentitiesList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSiteAgentIdentitiesListResponse(rsp)
+}
+
+// MarketplaceSiteAgentIdentitiesCountWithResponse request returning *MarketplaceSiteAgentIdentitiesCountResponse
+func (c *ClientWithResponses) MarketplaceSiteAgentIdentitiesCountWithResponse(ctx context.Context, params *MarketplaceSiteAgentIdentitiesCountParams, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentIdentitiesCountResponse, error) {
+	rsp, err := c.MarketplaceSiteAgentIdentitiesCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSiteAgentIdentitiesCountResponse(rsp)
+}
+
+// MarketplaceSiteAgentIdentitiesCreateWithBodyWithResponse request with arbitrary body returning *MarketplaceSiteAgentIdentitiesCreateResponse
+func (c *ClientWithResponses) MarketplaceSiteAgentIdentitiesCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentIdentitiesCreateResponse, error) {
+	rsp, err := c.MarketplaceSiteAgentIdentitiesCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSiteAgentIdentitiesCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceSiteAgentIdentitiesCreateWithResponse(ctx context.Context, body MarketplaceSiteAgentIdentitiesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentIdentitiesCreateResponse, error) {
+	rsp, err := c.MarketplaceSiteAgentIdentitiesCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSiteAgentIdentitiesCreateResponse(rsp)
+}
+
+// MarketplaceSiteAgentIdentitiesDestroyWithResponse request returning *MarketplaceSiteAgentIdentitiesDestroyResponse
+func (c *ClientWithResponses) MarketplaceSiteAgentIdentitiesDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentIdentitiesDestroyResponse, error) {
+	rsp, err := c.MarketplaceSiteAgentIdentitiesDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSiteAgentIdentitiesDestroyResponse(rsp)
+}
+
+// MarketplaceSiteAgentIdentitiesRetrieveWithResponse request returning *MarketplaceSiteAgentIdentitiesRetrieveResponse
+func (c *ClientWithResponses) MarketplaceSiteAgentIdentitiesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentIdentitiesRetrieveResponse, error) {
+	rsp, err := c.MarketplaceSiteAgentIdentitiesRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSiteAgentIdentitiesRetrieveResponse(rsp)
+}
+
+// MarketplaceSiteAgentIdentitiesUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceSiteAgentIdentitiesUpdateResponse
+func (c *ClientWithResponses) MarketplaceSiteAgentIdentitiesUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentIdentitiesUpdateResponse, error) {
+	rsp, err := c.MarketplaceSiteAgentIdentitiesUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSiteAgentIdentitiesUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceSiteAgentIdentitiesUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSiteAgentIdentitiesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentIdentitiesUpdateResponse, error) {
+	rsp, err := c.MarketplaceSiteAgentIdentitiesUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSiteAgentIdentitiesUpdateResponse(rsp)
+}
+
+// MarketplaceSiteAgentIdentitiesRegisterEventSubscriptionWithBodyWithResponse request with arbitrary body returning *MarketplaceSiteAgentIdentitiesRegisterEventSubscriptionResponse
+func (c *ClientWithResponses) MarketplaceSiteAgentIdentitiesRegisterEventSubscriptionWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentIdentitiesRegisterEventSubscriptionResponse, error) {
+	rsp, err := c.MarketplaceSiteAgentIdentitiesRegisterEventSubscriptionWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSiteAgentIdentitiesRegisterEventSubscriptionResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceSiteAgentIdentitiesRegisterEventSubscriptionWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSiteAgentIdentitiesRegisterEventSubscriptionJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentIdentitiesRegisterEventSubscriptionResponse, error) {
+	rsp, err := c.MarketplaceSiteAgentIdentitiesRegisterEventSubscription(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSiteAgentIdentitiesRegisterEventSubscriptionResponse(rsp)
+}
+
+// MarketplaceSiteAgentIdentitiesRegisterServiceWithBodyWithResponse request with arbitrary body returning *MarketplaceSiteAgentIdentitiesRegisterServiceResponse
+func (c *ClientWithResponses) MarketplaceSiteAgentIdentitiesRegisterServiceWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentIdentitiesRegisterServiceResponse, error) {
+	rsp, err := c.MarketplaceSiteAgentIdentitiesRegisterServiceWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSiteAgentIdentitiesRegisterServiceResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceSiteAgentIdentitiesRegisterServiceWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSiteAgentIdentitiesRegisterServiceJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentIdentitiesRegisterServiceResponse, error) {
+	rsp, err := c.MarketplaceSiteAgentIdentitiesRegisterService(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSiteAgentIdentitiesRegisterServiceResponse(rsp)
+}
+
+// MarketplaceSiteAgentProcessorsListWithResponse request returning *MarketplaceSiteAgentProcessorsListResponse
+func (c *ClientWithResponses) MarketplaceSiteAgentProcessorsListWithResponse(ctx context.Context, params *MarketplaceSiteAgentProcessorsListParams, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentProcessorsListResponse, error) {
+	rsp, err := c.MarketplaceSiteAgentProcessorsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSiteAgentProcessorsListResponse(rsp)
+}
+
+// MarketplaceSiteAgentProcessorsCountWithResponse request returning *MarketplaceSiteAgentProcessorsCountResponse
+func (c *ClientWithResponses) MarketplaceSiteAgentProcessorsCountWithResponse(ctx context.Context, params *MarketplaceSiteAgentProcessorsCountParams, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentProcessorsCountResponse, error) {
+	rsp, err := c.MarketplaceSiteAgentProcessorsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSiteAgentProcessorsCountResponse(rsp)
+}
+
+// MarketplaceSiteAgentProcessorsRetrieveWithResponse request returning *MarketplaceSiteAgentProcessorsRetrieveResponse
+func (c *ClientWithResponses) MarketplaceSiteAgentProcessorsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentProcessorsRetrieveResponse, error) {
+	rsp, err := c.MarketplaceSiteAgentProcessorsRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSiteAgentProcessorsRetrieveResponse(rsp)
+}
+
+// MarketplaceSiteAgentServicesListWithResponse request returning *MarketplaceSiteAgentServicesListResponse
+func (c *ClientWithResponses) MarketplaceSiteAgentServicesListWithResponse(ctx context.Context, params *MarketplaceSiteAgentServicesListParams, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentServicesListResponse, error) {
+	rsp, err := c.MarketplaceSiteAgentServicesList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSiteAgentServicesListResponse(rsp)
+}
+
+// MarketplaceSiteAgentServicesCountWithResponse request returning *MarketplaceSiteAgentServicesCountResponse
+func (c *ClientWithResponses) MarketplaceSiteAgentServicesCountWithResponse(ctx context.Context, params *MarketplaceSiteAgentServicesCountParams, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentServicesCountResponse, error) {
+	rsp, err := c.MarketplaceSiteAgentServicesCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSiteAgentServicesCountResponse(rsp)
+}
+
+// MarketplaceSiteAgentServicesRetrieveWithResponse request returning *MarketplaceSiteAgentServicesRetrieveResponse
+func (c *ClientWithResponses) MarketplaceSiteAgentServicesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentServicesRetrieveResponse, error) {
+	rsp, err := c.MarketplaceSiteAgentServicesRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSiteAgentServicesRetrieveResponse(rsp)
+}
+
+// MarketplaceSiteAgentServicesRegisterProcessorWithBodyWithResponse request with arbitrary body returning *MarketplaceSiteAgentServicesRegisterProcessorResponse
+func (c *ClientWithResponses) MarketplaceSiteAgentServicesRegisterProcessorWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentServicesRegisterProcessorResponse, error) {
+	rsp, err := c.MarketplaceSiteAgentServicesRegisterProcessorWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSiteAgentServicesRegisterProcessorResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceSiteAgentServicesRegisterProcessorWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSiteAgentServicesRegisterProcessorJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentServicesRegisterProcessorResponse, error) {
+	rsp, err := c.MarketplaceSiteAgentServicesRegisterProcessor(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSiteAgentServicesRegisterProcessorResponse(rsp)
+}
+
+// MarketplaceSiteAgentServicesSetStatisticsWithBodyWithResponse request with arbitrary body returning *MarketplaceSiteAgentServicesSetStatisticsResponse
+func (c *ClientWithResponses) MarketplaceSiteAgentServicesSetStatisticsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentServicesSetStatisticsResponse, error) {
+	rsp, err := c.MarketplaceSiteAgentServicesSetStatisticsWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSiteAgentServicesSetStatisticsResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceSiteAgentServicesSetStatisticsWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSiteAgentServicesSetStatisticsJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentServicesSetStatisticsResponse, error) {
+	rsp, err := c.MarketplaceSiteAgentServicesSetStatistics(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSiteAgentServicesSetStatisticsResponse(rsp)
+}
+
 // MarketplaceStatsComponentUsagesListWithResponse request returning *MarketplaceStatsComponentUsagesListResponse
 func (c *ClientWithResponses) MarketplaceStatsComponentUsagesListWithResponse(ctx context.Context, params *MarketplaceStatsComponentUsagesListParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsComponentUsagesListResponse, error) {
 	rsp, err := c.MarketplaceStatsComponentUsagesList(ctx, params, reqEditors...)
@@ -263477,6 +266826,23 @@ func (c *ClientWithResponses) OnboardingJustificationsUpdateWithResponse(ctx con
 	return ParseOnboardingJustificationsUpdateResponse(rsp)
 }
 
+// OnboardingJustificationsApproveWithBodyWithResponse request with arbitrary body returning *OnboardingJustificationsApproveResponse
+func (c *ClientWithResponses) OnboardingJustificationsApproveWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OnboardingJustificationsApproveResponse, error) {
+	rsp, err := c.OnboardingJustificationsApproveWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOnboardingJustificationsApproveResponse(rsp)
+}
+
+func (c *ClientWithResponses) OnboardingJustificationsApproveWithResponse(ctx context.Context, uuid openapi_types.UUID, body OnboardingJustificationsApproveJSONRequestBody, reqEditors ...RequestEditorFn) (*OnboardingJustificationsApproveResponse, error) {
+	rsp, err := c.OnboardingJustificationsApprove(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOnboardingJustificationsApproveResponse(rsp)
+}
+
 // OnboardingJustificationsAttachDocumentWithBodyWithResponse request with arbitrary body returning *OnboardingJustificationsAttachDocumentResponse
 func (c *ClientWithResponses) OnboardingJustificationsAttachDocumentWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OnboardingJustificationsAttachDocumentResponse, error) {
 	rsp, err := c.OnboardingJustificationsAttachDocumentWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -263500,6 +266866,23 @@ func (c *ClientWithResponses) OnboardingJustificationsAttachDocumentWithFormdata
 		return nil, err
 	}
 	return ParseOnboardingJustificationsAttachDocumentResponse(rsp)
+}
+
+// OnboardingJustificationsRejectWithBodyWithResponse request with arbitrary body returning *OnboardingJustificationsRejectResponse
+func (c *ClientWithResponses) OnboardingJustificationsRejectWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OnboardingJustificationsRejectResponse, error) {
+	rsp, err := c.OnboardingJustificationsRejectWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOnboardingJustificationsRejectResponse(rsp)
+}
+
+func (c *ClientWithResponses) OnboardingJustificationsRejectWithResponse(ctx context.Context, uuid openapi_types.UUID, body OnboardingJustificationsRejectJSONRequestBody, reqEditors ...RequestEditorFn) (*OnboardingJustificationsRejectResponse, error) {
+	rsp, err := c.OnboardingJustificationsReject(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOnboardingJustificationsRejectResponse(rsp)
 }
 
 // OnboardingVerificationsListWithResponse request returning *OnboardingVerificationsListResponse
@@ -287712,6 +291095,22 @@ func ParseMarketplaceProviderResourcesSetBackendMetadataResponse(rsp *http.Respo
 	return response, nil
 }
 
+// ParseMarketplaceProviderResourcesSetDownscaledResponse parses an HTTP response from a MarketplaceProviderResourcesSetDownscaledWithResponse call
+func ParseMarketplaceProviderResourcesSetDownscaledResponse(rsp *http.Response) (*MarketplaceProviderResourcesSetDownscaledResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderResourcesSetDownscaledResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
 // ParseMarketplaceProviderResourcesSetEndDateByProviderResponse parses an HTTP response from a MarketplaceProviderResourcesSetEndDateByProviderWithResponse call
 func ParseMarketplaceProviderResourcesSetEndDateByProviderResponse(rsp *http.Response) (*MarketplaceProviderResourcesSetEndDateByProviderResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -287775,6 +291174,38 @@ func ParseMarketplaceProviderResourcesSetLimitsResponse(rsp *http.Response) (*Ma
 		}
 		response.JSON200 = &dest
 
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProviderResourcesSetPausedResponse parses an HTTP response from a MarketplaceProviderResourcesSetPausedWithResponse call
+func ParseMarketplaceProviderResourcesSetPausedResponse(rsp *http.Response) (*MarketplaceProviderResourcesSetPausedResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderResourcesSetPausedResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProviderResourcesSetRestrictMemberAccessResponse parses an HTTP response from a MarketplaceProviderResourcesSetRestrictMemberAccessWithResponse call
+func ParseMarketplaceProviderResourcesSetRestrictMemberAccessResponse(rsp *http.Response) (*MarketplaceProviderResourcesSetRestrictMemberAccessResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderResourcesSetRestrictMemberAccessResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
 	}
 
 	return response, nil
@@ -288782,6 +292213,22 @@ func ParseMarketplaceResourcesRenewResponse(rsp *http.Response) (*MarketplaceRes
 	return response, nil
 }
 
+// ParseMarketplaceResourcesSetDownscaledResponse parses an HTTP response from a MarketplaceResourcesSetDownscaledWithResponse call
+func ParseMarketplaceResourcesSetDownscaledResponse(rsp *http.Response) (*MarketplaceResourcesSetDownscaledResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceResourcesSetDownscaledResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
 // ParseMarketplaceResourcesSetEndDateByStaffResponse parses an HTTP response from a MarketplaceResourcesSetEndDateByStaffWithResponse call
 func ParseMarketplaceResourcesSetEndDateByStaffResponse(rsp *http.Response) (*MarketplaceResourcesSetEndDateByStaffResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -288791,6 +292238,38 @@ func ParseMarketplaceResourcesSetEndDateByStaffResponse(rsp *http.Response) (*Ma
 	}
 
 	response := &MarketplaceResourcesSetEndDateByStaffResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceResourcesSetPausedResponse parses an HTTP response from a MarketplaceResourcesSetPausedWithResponse call
+func ParseMarketplaceResourcesSetPausedResponse(rsp *http.Response) (*MarketplaceResourcesSetPausedResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceResourcesSetPausedResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceResourcesSetRestrictMemberAccessResponse parses an HTTP response from a MarketplaceResourcesSetRestrictMemberAccessWithResponse call
+func ParseMarketplaceResourcesSetRestrictMemberAccessResponse(rsp *http.Response) (*MarketplaceResourcesSetRestrictMemberAccessResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceResourcesSetRestrictMemberAccessResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -290521,6 +294000,403 @@ func ParseMarketplaceServiceProvidersUpdateUserResponse(rsp *http.Response) (*Ma
 	return response, nil
 }
 
+// ParseMarketplaceSiteAgentIdentitiesListResponse parses an HTTP response from a MarketplaceSiteAgentIdentitiesListWithResponse call
+func ParseMarketplaceSiteAgentIdentitiesListResponse(rsp *http.Response) (*MarketplaceSiteAgentIdentitiesListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSiteAgentIdentitiesListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []AgentIdentity
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSiteAgentIdentitiesCountResponse parses an HTTP response from a MarketplaceSiteAgentIdentitiesCountWithResponse call
+func ParseMarketplaceSiteAgentIdentitiesCountResponse(rsp *http.Response) (*MarketplaceSiteAgentIdentitiesCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSiteAgentIdentitiesCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSiteAgentIdentitiesCreateResponse parses an HTTP response from a MarketplaceSiteAgentIdentitiesCreateWithResponse call
+func ParseMarketplaceSiteAgentIdentitiesCreateResponse(rsp *http.Response) (*MarketplaceSiteAgentIdentitiesCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSiteAgentIdentitiesCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest AgentIdentity
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSiteAgentIdentitiesDestroyResponse parses an HTTP response from a MarketplaceSiteAgentIdentitiesDestroyWithResponse call
+func ParseMarketplaceSiteAgentIdentitiesDestroyResponse(rsp *http.Response) (*MarketplaceSiteAgentIdentitiesDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSiteAgentIdentitiesDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSiteAgentIdentitiesRetrieveResponse parses an HTTP response from a MarketplaceSiteAgentIdentitiesRetrieveWithResponse call
+func ParseMarketplaceSiteAgentIdentitiesRetrieveResponse(rsp *http.Response) (*MarketplaceSiteAgentIdentitiesRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSiteAgentIdentitiesRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest AgentIdentity
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSiteAgentIdentitiesUpdateResponse parses an HTTP response from a MarketplaceSiteAgentIdentitiesUpdateWithResponse call
+func ParseMarketplaceSiteAgentIdentitiesUpdateResponse(rsp *http.Response) (*MarketplaceSiteAgentIdentitiesUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSiteAgentIdentitiesUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest AgentIdentity
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSiteAgentIdentitiesRegisterEventSubscriptionResponse parses an HTTP response from a MarketplaceSiteAgentIdentitiesRegisterEventSubscriptionWithResponse call
+func ParseMarketplaceSiteAgentIdentitiesRegisterEventSubscriptionResponse(rsp *http.Response) (*MarketplaceSiteAgentIdentitiesRegisterEventSubscriptionResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSiteAgentIdentitiesRegisterEventSubscriptionResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest EventSubscription
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest EventSubscription
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSiteAgentIdentitiesRegisterServiceResponse parses an HTTP response from a MarketplaceSiteAgentIdentitiesRegisterServiceWithResponse call
+func ParseMarketplaceSiteAgentIdentitiesRegisterServiceResponse(rsp *http.Response) (*MarketplaceSiteAgentIdentitiesRegisterServiceResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSiteAgentIdentitiesRegisterServiceResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest AgentService
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest AgentService
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSiteAgentProcessorsListResponse parses an HTTP response from a MarketplaceSiteAgentProcessorsListWithResponse call
+func ParseMarketplaceSiteAgentProcessorsListResponse(rsp *http.Response) (*MarketplaceSiteAgentProcessorsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSiteAgentProcessorsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []AgentProcessor
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSiteAgentProcessorsCountResponse parses an HTTP response from a MarketplaceSiteAgentProcessorsCountWithResponse call
+func ParseMarketplaceSiteAgentProcessorsCountResponse(rsp *http.Response) (*MarketplaceSiteAgentProcessorsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSiteAgentProcessorsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSiteAgentProcessorsRetrieveResponse parses an HTTP response from a MarketplaceSiteAgentProcessorsRetrieveWithResponse call
+func ParseMarketplaceSiteAgentProcessorsRetrieveResponse(rsp *http.Response) (*MarketplaceSiteAgentProcessorsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSiteAgentProcessorsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest AgentProcessor
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSiteAgentServicesListResponse parses an HTTP response from a MarketplaceSiteAgentServicesListWithResponse call
+func ParseMarketplaceSiteAgentServicesListResponse(rsp *http.Response) (*MarketplaceSiteAgentServicesListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSiteAgentServicesListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []AgentService
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSiteAgentServicesCountResponse parses an HTTP response from a MarketplaceSiteAgentServicesCountWithResponse call
+func ParseMarketplaceSiteAgentServicesCountResponse(rsp *http.Response) (*MarketplaceSiteAgentServicesCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSiteAgentServicesCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSiteAgentServicesRetrieveResponse parses an HTTP response from a MarketplaceSiteAgentServicesRetrieveWithResponse call
+func ParseMarketplaceSiteAgentServicesRetrieveResponse(rsp *http.Response) (*MarketplaceSiteAgentServicesRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSiteAgentServicesRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest AgentService
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSiteAgentServicesRegisterProcessorResponse parses an HTTP response from a MarketplaceSiteAgentServicesRegisterProcessorWithResponse call
+func ParseMarketplaceSiteAgentServicesRegisterProcessorResponse(rsp *http.Response) (*MarketplaceSiteAgentServicesRegisterProcessorResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSiteAgentServicesRegisterProcessorResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest AgentProcessor
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest AgentProcessor
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSiteAgentServicesSetStatisticsResponse parses an HTTP response from a MarketplaceSiteAgentServicesSetStatisticsWithResponse call
+func ParseMarketplaceSiteAgentServicesSetStatisticsResponse(rsp *http.Response) (*MarketplaceSiteAgentServicesSetStatisticsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSiteAgentServicesSetStatisticsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest AgentService
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseMarketplaceStatsComponentUsagesListResponse parses an HTTP response from a MarketplaceStatsComponentUsagesListWithResponse call
 func ParseMarketplaceStatsComponentUsagesListResponse(rsp *http.Response) (*MarketplaceStatsComponentUsagesListResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -292219,6 +296095,32 @@ func ParseOnboardingJustificationsUpdateResponse(rsp *http.Response) (*Onboardin
 	return response, nil
 }
 
+// ParseOnboardingJustificationsApproveResponse parses an HTTP response from a OnboardingJustificationsApproveWithResponse call
+func ParseOnboardingJustificationsApproveResponse(rsp *http.Response) (*OnboardingJustificationsApproveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OnboardingJustificationsApproveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OnboardingJustification
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseOnboardingJustificationsAttachDocumentResponse parses an HTTP response from a OnboardingJustificationsAttachDocumentWithResponse call
 func ParseOnboardingJustificationsAttachDocumentResponse(rsp *http.Response) (*OnboardingJustificationsAttachDocumentResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -292235,6 +296137,32 @@ func ParseOnboardingJustificationsAttachDocumentResponse(rsp *http.Response) (*O
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest OnboardingJustificationDocumentation
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOnboardingJustificationsRejectResponse parses an HTTP response from a OnboardingJustificationsRejectWithResponse call
+func ParseOnboardingJustificationsRejectResponse(rsp *http.Response) (*OnboardingJustificationsRejectResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OnboardingJustificationsRejectResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OnboardingJustification
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
