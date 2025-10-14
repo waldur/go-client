@@ -50339,6 +50339,9 @@ type ClientInterface interface {
 	// RemoteWaldurApiPullOrder request
 	RemoteWaldurApiPullOrder(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// RemoteWaldurApiPullResourceRobotAccounts request
+	RemoteWaldurApiPullResourceRobotAccounts(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// RemoteWaldurApiPushProjectData request
 	RemoteWaldurApiPushProjectData(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -74084,6 +74087,18 @@ func (c *Client) RemoteWaldurApiPullOfferingUsers(ctx context.Context, uuid stri
 
 func (c *Client) RemoteWaldurApiPullOrder(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewRemoteWaldurApiPullOrderRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) RemoteWaldurApiPullResourceRobotAccounts(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewRemoteWaldurApiPullResourceRobotAccountsRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -197267,6 +197282,40 @@ func NewRemoteWaldurApiPullOrderRequest(server string, uuid string) (*http.Reque
 	return req, nil
 }
 
+// NewRemoteWaldurApiPullResourceRobotAccountsRequest generates requests for RemoteWaldurApiPullResourceRobotAccounts
+func NewRemoteWaldurApiPullResourceRobotAccountsRequest(server string, uuid string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/remote-waldur-api/pull_resource_robot_accounts/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewRemoteWaldurApiPushProjectDataRequest generates requests for RemoteWaldurApiPushProjectData
 func NewRemoteWaldurApiPushProjectDataRequest(server string, uuid string) (*http.Request, error) {
 	var err error
@@ -219760,6 +219809,9 @@ type ClientWithResponsesInterface interface {
 
 	// RemoteWaldurApiPullOrderWithResponse request
 	RemoteWaldurApiPullOrderWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*RemoteWaldurApiPullOrderResponse, error)
+
+	// RemoteWaldurApiPullResourceRobotAccountsWithResponse request
+	RemoteWaldurApiPullResourceRobotAccountsWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*RemoteWaldurApiPullResourceRobotAccountsResponse, error)
 
 	// RemoteWaldurApiPushProjectDataWithResponse request
 	RemoteWaldurApiPushProjectDataWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*RemoteWaldurApiPushProjectDataResponse, error)
@@ -251342,6 +251394,27 @@ func (r RemoteWaldurApiPullOrderResponse) StatusCode() int {
 	return 0
 }
 
+type RemoteWaldurApiPullResourceRobotAccountsResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r RemoteWaldurApiPullResourceRobotAccountsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r RemoteWaldurApiPullResourceRobotAccountsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type RemoteWaldurApiPushProjectDataResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -272478,6 +272551,15 @@ func (c *ClientWithResponses) RemoteWaldurApiPullOrderWithResponse(ctx context.C
 		return nil, err
 	}
 	return ParseRemoteWaldurApiPullOrderResponse(rsp)
+}
+
+// RemoteWaldurApiPullResourceRobotAccountsWithResponse request returning *RemoteWaldurApiPullResourceRobotAccountsResponse
+func (c *ClientWithResponses) RemoteWaldurApiPullResourceRobotAccountsWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*RemoteWaldurApiPullResourceRobotAccountsResponse, error) {
+	rsp, err := c.RemoteWaldurApiPullResourceRobotAccounts(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseRemoteWaldurApiPullResourceRobotAccountsResponse(rsp)
 }
 
 // RemoteWaldurApiPushProjectDataWithResponse request returning *RemoteWaldurApiPushProjectDataResponse
@@ -306762,6 +306844,22 @@ func ParseRemoteWaldurApiPullOrderResponse(rsp *http.Response) (*RemoteWaldurApi
 	}
 
 	response := &RemoteWaldurApiPullOrderResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseRemoteWaldurApiPullResourceRobotAccountsResponse parses an HTTP response from a RemoteWaldurApiPullResourceRobotAccountsWithResponse call
+func ParseRemoteWaldurApiPullResourceRobotAccountsResponse(rsp *http.Response) (*RemoteWaldurApiPullResourceRobotAccountsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &RemoteWaldurApiPullResourceRobotAccountsResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
