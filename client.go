@@ -18995,6 +18995,11 @@ type OrderAttachmentRequestMultipart struct {
 	Attachment *openapi_types.File `json:"attachment"`
 }
 
+// OrderBackendIDRequest defines model for OrderBackendIDRequest.
+type OrderBackendIDRequest struct {
+	BackendId *string `json:"backend_id,omitempty"`
+}
+
 // OrderCreate defines model for OrderCreate.
 type OrderCreate struct {
 	Attachment                 *string             `json:"attachment"`
@@ -26217,6 +26222,9 @@ type BookingResourcesListParams struct {
 	// LexisLinksSupported LEXIS links supported
 	LexisLinksSupported *bool `form:"lexis_links_supported,omitempty" json:"lexis_links_supported,omitempty"`
 
+	// LimitBased Filter by limit-based offerings
+	LimitBased *bool `form:"limit_based,omitempty" json:"limit_based,omitempty"`
+
 	// Modified Modified after
 	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
 	Name      *string    `form:"name,omitempty" json:"name,omitempty"`
@@ -26261,6 +26269,9 @@ type BookingResourcesListParams struct {
 	ServiceManagerUuid *openapi_types.UUID                `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
 	State              *[]BookingResourcesListParamsState `form:"state,omitempty" json:"state,omitempty"`
 
+	// UsageBased Filter by usage-based offerings
+	UsageBased *bool `form:"usage_based,omitempty" json:"usage_based,omitempty"`
+
 	// VisibleToUsername Visible to username
 	VisibleToUsername *string `form:"visible_to_username,omitempty" json:"visible_to_username,omitempty"`
 }
@@ -26292,6 +26303,9 @@ type BookingResourcesCountParams struct {
 
 	// LexisLinksSupported LEXIS links supported
 	LexisLinksSupported *bool `form:"lexis_links_supported,omitempty" json:"lexis_links_supported,omitempty"`
+
+	// LimitBased Filter by limit-based offerings
+	LimitBased *bool `form:"limit_based,omitempty" json:"limit_based,omitempty"`
 
 	// Modified Modified after
 	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
@@ -26336,6 +26350,9 @@ type BookingResourcesCountParams struct {
 	// ServiceManagerUuid Service Manager UUID
 	ServiceManagerUuid *openapi_types.UUID                 `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
 	State              *[]BookingResourcesCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// UsageBased Filter by usage-based offerings
+	UsageBased *bool `form:"usage_based,omitempty" json:"usage_based,omitempty"`
 
 	// VisibleToUsername Visible to username
 	VisibleToUsername *string `form:"visible_to_username,omitempty" json:"visible_to_username,omitempty"`
@@ -30626,6 +30643,9 @@ type MarketplaceProviderResourcesListParams struct {
 	// LexisLinksSupported LEXIS links supported
 	LexisLinksSupported *bool `form:"lexis_links_supported,omitempty" json:"lexis_links_supported,omitempty"`
 
+	// LimitBased Filter by limit-based offerings
+	LimitBased *bool `form:"limit_based,omitempty" json:"limit_based,omitempty"`
+
 	// Modified Modified after
 	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
 	Name      *string    `form:"name,omitempty" json:"name,omitempty"`
@@ -30670,6 +30690,9 @@ type MarketplaceProviderResourcesListParams struct {
 	ServiceManagerUuid *openapi_types.UUID                            `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
 	State              *[]MarketplaceProviderResourcesListParamsState `form:"state,omitempty" json:"state,omitempty"`
 
+	// UsageBased Filter by usage-based offerings
+	UsageBased *bool `form:"usage_based,omitempty" json:"usage_based,omitempty"`
+
 	// VisibleToUsername Visible to username
 	VisibleToUsername *string `form:"visible_to_username,omitempty" json:"visible_to_username,omitempty"`
 }
@@ -30700,6 +30723,9 @@ type MarketplaceProviderResourcesCountParams struct {
 
 	// LexisLinksSupported LEXIS links supported
 	LexisLinksSupported *bool `form:"lexis_links_supported,omitempty" json:"lexis_links_supported,omitempty"`
+
+	// LimitBased Filter by limit-based offerings
+	LimitBased *bool `form:"limit_based,omitempty" json:"limit_based,omitempty"`
 
 	// Modified Modified after
 	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
@@ -30744,6 +30770,9 @@ type MarketplaceProviderResourcesCountParams struct {
 	// ServiceManagerUuid Service Manager UUID
 	ServiceManagerUuid *openapi_types.UUID                             `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
 	State              *[]MarketplaceProviderResourcesCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// UsageBased Filter by usage-based offerings
+	UsageBased *bool `form:"usage_based,omitempty" json:"usage_based,omitempty"`
 
 	// VisibleToUsername Visible to username
 	VisibleToUsername *string `form:"visible_to_username,omitempty" json:"visible_to_username,omitempty"`
@@ -31022,6 +31051,9 @@ type MarketplaceResourcesListParams struct {
 	// LexisLinksSupported LEXIS links supported
 	LexisLinksSupported *bool `form:"lexis_links_supported,omitempty" json:"lexis_links_supported,omitempty"`
 
+	// LimitBased Filter by limit-based offerings
+	LimitBased *bool `form:"limit_based,omitempty" json:"limit_based,omitempty"`
+
 	// Modified Modified after
 	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
 	Name      *string    `form:"name,omitempty" json:"name,omitempty"`
@@ -31066,6 +31098,9 @@ type MarketplaceResourcesListParams struct {
 	ServiceManagerUuid *openapi_types.UUID                    `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
 	State              *[]MarketplaceResourcesListParamsState `form:"state,omitempty" json:"state,omitempty"`
 
+	// UsageBased Filter by usage-based offerings
+	UsageBased *bool `form:"usage_based,omitempty" json:"usage_based,omitempty"`
+
 	// VisibleToUsername Visible to username
 	VisibleToUsername *string `form:"visible_to_username,omitempty" json:"visible_to_username,omitempty"`
 }
@@ -31096,6 +31131,9 @@ type MarketplaceResourcesCountParams struct {
 
 	// LexisLinksSupported LEXIS links supported
 	LexisLinksSupported *bool `form:"lexis_links_supported,omitempty" json:"lexis_links_supported,omitempty"`
+
+	// LimitBased Filter by limit-based offerings
+	LimitBased *bool `form:"limit_based,omitempty" json:"limit_based,omitempty"`
 
 	// Modified Modified after
 	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
@@ -31140,6 +31178,9 @@ type MarketplaceResourcesCountParams struct {
 	// ServiceManagerUuid Service Manager UUID
 	ServiceManagerUuid *openapi_types.UUID                     `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
 	State              *[]MarketplaceResourcesCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// UsageBased Filter by usage-based offerings
+	UsageBased *bool `form:"usage_based,omitempty" json:"usage_based,omitempty"`
 
 	// VisibleToUsername Visible to username
 	VisibleToUsername *string `form:"visible_to_username,omitempty" json:"visible_to_username,omitempty"`
@@ -37979,6 +38020,9 @@ type MarketplaceOfferingUsersUpdateRestrictedJSONRequestBody = OfferingUserUpdat
 
 // MarketplaceOrdersCreateJSONRequestBody defines body for MarketplaceOrdersCreate for application/json ContentType.
 type MarketplaceOrdersCreateJSONRequestBody = OrderCreateRequest
+
+// MarketplaceOrdersSetBackendIdJSONRequestBody defines body for MarketplaceOrdersSetBackendId for application/json ContentType.
+type MarketplaceOrdersSetBackendIdJSONRequestBody = OrderBackendIDRequest
 
 // MarketplaceOrdersSetStateErredJSONRequestBody defines body for MarketplaceOrdersSetStateErred for application/json ContentType.
 type MarketplaceOrdersSetStateErredJSONRequestBody = OrderSetStateErredRequest
@@ -47314,6 +47358,11 @@ type ClientInterface interface {
 
 	// MarketplaceOrdersRejectByProvider request
 	MarketplaceOrdersRejectByProvider(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOrdersSetBackendIdWithBody request with any body
+	MarketplaceOrdersSetBackendIdWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceOrdersSetBackendId(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersSetBackendIdJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceOrdersSetStateDone request
 	MarketplaceOrdersSetStateDone(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -60815,6 +60864,30 @@ func (c *Client) MarketplaceOrdersRejectByConsumer(ctx context.Context, uuid ope
 
 func (c *Client) MarketplaceOrdersRejectByProvider(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceOrdersRejectByProviderRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOrdersSetBackendIdWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOrdersSetBackendIdRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOrdersSetBackendId(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersSetBackendIdJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOrdersSetBackendIdRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -89314,6 +89387,22 @@ func NewBookingResourcesListRequest(server string, params *BookingResourcesListP
 
 		}
 
+		if params.LimitBased != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "limit_based", runtime.ParamLocationQuery, *params.LimitBased); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Modified != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "modified", runtime.ParamLocationQuery, *params.Modified); err != nil {
@@ -89669,6 +89758,22 @@ func NewBookingResourcesListRequest(server string, params *BookingResourcesListP
 		if params.State != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "state", runtime.ParamLocationQuery, *params.State); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UsageBased != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "usage_based", runtime.ParamLocationQuery, *params.UsageBased); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -89875,6 +89980,22 @@ func NewBookingResourcesCountRequest(server string, params *BookingResourcesCoun
 
 		}
 
+		if params.LimitBased != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "limit_based", runtime.ParamLocationQuery, *params.LimitBased); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Modified != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "modified", runtime.ParamLocationQuery, *params.Modified); err != nil {
@@ -90230,6 +90351,22 @@ func NewBookingResourcesCountRequest(server string, params *BookingResourcesCoun
 		if params.State != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "state", runtime.ParamLocationQuery, *params.State); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UsageBased != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "usage_based", runtime.ParamLocationQuery, *params.UsageBased); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -126005,6 +126142,53 @@ func NewMarketplaceOrdersRejectByProviderRequest(server string, uuid openapi_typ
 	return req, nil
 }
 
+// NewMarketplaceOrdersSetBackendIdRequest calls the generic MarketplaceOrdersSetBackendId builder with application/json body
+func NewMarketplaceOrdersSetBackendIdRequest(server string, uuid openapi_types.UUID, body MarketplaceOrdersSetBackendIdJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceOrdersSetBackendIdRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceOrdersSetBackendIdRequestWithBody generates requests for MarketplaceOrdersSetBackendId with any type of body
+func NewMarketplaceOrdersSetBackendIdRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-orders/%s/set_backend_id/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewMarketplaceOrdersSetStateDoneRequest generates requests for MarketplaceOrdersSetStateDone
 func NewMarketplaceOrdersSetStateDoneRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -135501,6 +135685,22 @@ func NewMarketplaceProviderResourcesListRequest(server string, params *Marketpla
 
 		}
 
+		if params.LimitBased != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "limit_based", runtime.ParamLocationQuery, *params.LimitBased); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Modified != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "modified", runtime.ParamLocationQuery, *params.Modified); err != nil {
@@ -135856,6 +136056,22 @@ func NewMarketplaceProviderResourcesListRequest(server string, params *Marketpla
 		if params.State != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "state", runtime.ParamLocationQuery, *params.State); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UsageBased != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "usage_based", runtime.ParamLocationQuery, *params.UsageBased); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -136046,6 +136262,22 @@ func NewMarketplaceProviderResourcesCountRequest(server string, params *Marketpl
 
 		}
 
+		if params.LimitBased != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "limit_based", runtime.ParamLocationQuery, *params.LimitBased); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Modified != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "modified", runtime.ParamLocationQuery, *params.Modified); err != nil {
@@ -136401,6 +136633,22 @@ func NewMarketplaceProviderResourcesCountRequest(server string, params *Marketpl
 		if params.State != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "state", runtime.ParamLocationQuery, *params.State); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UsageBased != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "usage_based", runtime.ParamLocationQuery, *params.UsageBased); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -140034,6 +140282,22 @@ func NewMarketplaceResourcesListRequest(server string, params *MarketplaceResour
 
 		}
 
+		if params.LimitBased != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "limit_based", runtime.ParamLocationQuery, *params.LimitBased); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Modified != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "modified", runtime.ParamLocationQuery, *params.Modified); err != nil {
@@ -140389,6 +140653,22 @@ func NewMarketplaceResourcesListRequest(server string, params *MarketplaceResour
 		if params.State != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "state", runtime.ParamLocationQuery, *params.State); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UsageBased != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "usage_based", runtime.ParamLocationQuery, *params.UsageBased); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -140579,6 +140859,22 @@ func NewMarketplaceResourcesCountRequest(server string, params *MarketplaceResou
 
 		}
 
+		if params.LimitBased != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "limit_based", runtime.ParamLocationQuery, *params.LimitBased); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Modified != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "modified", runtime.ParamLocationQuery, *params.Modified); err != nil {
@@ -140934,6 +141230,22 @@ func NewMarketplaceResourcesCountRequest(server string, params *MarketplaceResou
 		if params.State != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "state", runtime.ParamLocationQuery, *params.State); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UsageBased != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "usage_based", runtime.ParamLocationQuery, *params.UsageBased); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -216786,6 +217098,11 @@ type ClientWithResponsesInterface interface {
 	// MarketplaceOrdersRejectByProviderWithResponse request
 	MarketplaceOrdersRejectByProviderWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOrdersRejectByProviderResponse, error)
 
+	// MarketplaceOrdersSetBackendIdWithBodyWithResponse request with any body
+	MarketplaceOrdersSetBackendIdWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOrdersSetBackendIdResponse, error)
+
+	MarketplaceOrdersSetBackendIdWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersSetBackendIdJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOrdersSetBackendIdResponse, error)
+
 	// MarketplaceOrdersSetStateDoneWithResponse request
 	MarketplaceOrdersSetStateDoneWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOrdersSetStateDoneResponse, error)
 
@@ -233807,6 +234124,27 @@ func (r MarketplaceOrdersRejectByProviderResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceOrdersRejectByProviderResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceOrdersSetBackendIdResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOrdersSetBackendIdResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOrdersSetBackendIdResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -262893,6 +263231,23 @@ func (c *ClientWithResponses) MarketplaceOrdersRejectByProviderWithResponse(ctx 
 	return ParseMarketplaceOrdersRejectByProviderResponse(rsp)
 }
 
+// MarketplaceOrdersSetBackendIdWithBodyWithResponse request with arbitrary body returning *MarketplaceOrdersSetBackendIdResponse
+func (c *ClientWithResponses) MarketplaceOrdersSetBackendIdWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOrdersSetBackendIdResponse, error) {
+	rsp, err := c.MarketplaceOrdersSetBackendIdWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOrdersSetBackendIdResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceOrdersSetBackendIdWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersSetBackendIdJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOrdersSetBackendIdResponse, error) {
+	rsp, err := c.MarketplaceOrdersSetBackendId(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOrdersSetBackendIdResponse(rsp)
+}
+
 // MarketplaceOrdersSetStateDoneWithResponse request returning *MarketplaceOrdersSetStateDoneResponse
 func (c *ClientWithResponses) MarketplaceOrdersSetStateDoneWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOrdersSetStateDoneResponse, error) {
 	rsp, err := c.MarketplaceOrdersSetStateDone(ctx, uuid, reqEditors...)
@@ -288628,6 +288983,22 @@ func ParseMarketplaceOrdersRejectByProviderResponse(rsp *http.Response) (*Market
 	}
 
 	response := &MarketplaceOrdersRejectByProviderResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOrdersSetBackendIdResponse parses an HTTP response from a MarketplaceOrdersSetBackendIdWithResponse call
+func ParseMarketplaceOrdersSetBackendIdResponse(rsp *http.Response) (*MarketplaceOrdersSetBackendIdResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOrdersSetBackendIdResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
