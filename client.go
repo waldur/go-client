@@ -26246,6 +26246,12 @@ type BookingResourcesListParams struct {
 	// OfferingUuid Multiple values may be separated by commas.
 	OfferingUuid *[]openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
+	// OnlyLimitBased Filter out resources with only limit-based components
+	OnlyLimitBased *bool `form:"only_limit_based,omitempty" json:"only_limit_based,omitempty"`
+
+	// OnlyUsageBased Filter out resources with only usage-based components
+	OnlyUsageBased *bool `form:"only_usage_based,omitempty" json:"only_usage_based,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
@@ -26327,6 +26333,12 @@ type BookingResourcesCountParams struct {
 
 	// OfferingUuid Multiple values may be separated by commas.
 	OfferingUuid *[]openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// OnlyLimitBased Filter out resources with only limit-based components
+	OnlyLimitBased *bool `form:"only_limit_based,omitempty" json:"only_limit_based,omitempty"`
+
+	// OnlyUsageBased Filter out resources with only usage-based components
+	OnlyUsageBased *bool `form:"only_usage_based,omitempty" json:"only_usage_based,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -30667,6 +30679,12 @@ type MarketplaceProviderResourcesListParams struct {
 	// OfferingUuid Multiple values may be separated by commas.
 	OfferingUuid *[]openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
+	// OnlyLimitBased Filter out resources with only limit-based components
+	OnlyLimitBased *bool `form:"only_limit_based,omitempty" json:"only_limit_based,omitempty"`
+
+	// OnlyUsageBased Filter out resources with only usage-based components
+	OnlyUsageBased *bool `form:"only_usage_based,omitempty" json:"only_usage_based,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
@@ -30747,6 +30765,12 @@ type MarketplaceProviderResourcesCountParams struct {
 
 	// OfferingUuid Multiple values may be separated by commas.
 	OfferingUuid *[]openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// OnlyLimitBased Filter out resources with only limit-based components
+	OnlyLimitBased *bool `form:"only_limit_based,omitempty" json:"only_limit_based,omitempty"`
+
+	// OnlyUsageBased Filter out resources with only usage-based components
+	OnlyUsageBased *bool `form:"only_usage_based,omitempty" json:"only_usage_based,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -31075,6 +31099,12 @@ type MarketplaceResourcesListParams struct {
 	// OfferingUuid Multiple values may be separated by commas.
 	OfferingUuid *[]openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
+	// OnlyLimitBased Filter out resources with only limit-based components
+	OnlyLimitBased *bool `form:"only_limit_based,omitempty" json:"only_limit_based,omitempty"`
+
+	// OnlyUsageBased Filter out resources with only usage-based components
+	OnlyUsageBased *bool `form:"only_usage_based,omitempty" json:"only_usage_based,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
@@ -31155,6 +31185,12 @@ type MarketplaceResourcesCountParams struct {
 
 	// OfferingUuid Multiple values may be separated by commas.
 	OfferingUuid *[]openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// OnlyLimitBased Filter out resources with only limit-based components
+	OnlyLimitBased *bool `form:"only_limit_based,omitempty" json:"only_limit_based,omitempty"`
+
+	// OnlyUsageBased Filter out resources with only usage-based components
+	OnlyUsageBased *bool `form:"only_usage_based,omitempty" json:"only_usage_based,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -89563,6 +89599,38 @@ func NewBookingResourcesListRequest(server string, params *BookingResourcesListP
 
 		}
 
+		if params.OnlyLimitBased != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "only_limit_based", runtime.ParamLocationQuery, *params.OnlyLimitBased); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OnlyUsageBased != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "only_usage_based", runtime.ParamLocationQuery, *params.OnlyUsageBased); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Page != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
@@ -90143,6 +90211,38 @@ func NewBookingResourcesCountRequest(server string, params *BookingResourcesCoun
 		if params.OfferingUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OnlyLimitBased != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "only_limit_based", runtime.ParamLocationQuery, *params.OnlyLimitBased); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OnlyUsageBased != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "only_usage_based", runtime.ParamLocationQuery, *params.OnlyUsageBased); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -135861,6 +135961,38 @@ func NewMarketplaceProviderResourcesListRequest(server string, params *Marketpla
 
 		}
 
+		if params.OnlyLimitBased != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "only_limit_based", runtime.ParamLocationQuery, *params.OnlyLimitBased); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OnlyUsageBased != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "only_usage_based", runtime.ParamLocationQuery, *params.OnlyUsageBased); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Page != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
@@ -136425,6 +136557,38 @@ func NewMarketplaceProviderResourcesCountRequest(server string, params *Marketpl
 		if params.OfferingUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OnlyLimitBased != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "only_limit_based", runtime.ParamLocationQuery, *params.OnlyLimitBased); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OnlyUsageBased != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "only_usage_based", runtime.ParamLocationQuery, *params.OnlyUsageBased); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -140458,6 +140622,38 @@ func NewMarketplaceResourcesListRequest(server string, params *MarketplaceResour
 
 		}
 
+		if params.OnlyLimitBased != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "only_limit_based", runtime.ParamLocationQuery, *params.OnlyLimitBased); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OnlyUsageBased != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "only_usage_based", runtime.ParamLocationQuery, *params.OnlyUsageBased); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Page != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
@@ -141022,6 +141218,38 @@ func NewMarketplaceResourcesCountRequest(server string, params *MarketplaceResou
 		if params.OfferingUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OnlyLimitBased != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "only_limit_based", runtime.ParamLocationQuery, *params.OnlyLimitBased); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OnlyUsageBased != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "only_usage_based", runtime.ParamLocationQuery, *params.OnlyUsageBased); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
