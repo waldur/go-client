@@ -30,11 +30,11 @@ const (
 	AdminAnnouncementTypeEnumWarning     AdminAnnouncementTypeEnum = "warning"
 )
 
-// Defines values for AgentServiceStateEnum.
+// Defines values for AgentServiceState.
 const (
-	AgentServiceStateEnumActive AgentServiceStateEnum = "Active"
-	AgentServiceStateEnumError  AgentServiceStateEnum = "Error"
-	AgentServiceStateEnumIdle   AgentServiceStateEnum = "Idle"
+	AgentServiceStateActive AgentServiceState = "Active"
+	AgentServiceStateError  AgentServiceState = "Error"
+	AgentServiceStateIdle   AgentServiceState = "Idle"
 )
 
 // Defines values for AgentTypeEnum.
@@ -2698,6 +2698,7 @@ const (
 	BookingResourcesListParamsFieldProviderName               BookingResourcesListParamsField = "provider_name"
 	BookingResourcesListParamsFieldProviderSlug               BookingResourcesListParamsField = "provider_slug"
 	BookingResourcesListParamsFieldProviderUuid               BookingResourcesListParamsField = "provider_uuid"
+	BookingResourcesListParamsFieldRenewalDate                BookingResourcesListParamsField = "renewal_date"
 	BookingResourcesListParamsFieldReport                     BookingResourcesListParamsField = "report"
 	BookingResourcesListParamsFieldResourceType               BookingResourcesListParamsField = "resource_type"
 	BookingResourcesListParamsFieldResourceUuid               BookingResourcesListParamsField = "resource_uuid"
@@ -2828,6 +2829,7 @@ const (
 	BookingResourcesRetrieveParamsFieldProviderName               BookingResourcesRetrieveParamsField = "provider_name"
 	BookingResourcesRetrieveParamsFieldProviderSlug               BookingResourcesRetrieveParamsField = "provider_slug"
 	BookingResourcesRetrieveParamsFieldProviderUuid               BookingResourcesRetrieveParamsField = "provider_uuid"
+	BookingResourcesRetrieveParamsFieldRenewalDate                BookingResourcesRetrieveParamsField = "renewal_date"
 	BookingResourcesRetrieveParamsFieldReport                     BookingResourcesRetrieveParamsField = "report"
 	BookingResourcesRetrieveParamsFieldResourceType               BookingResourcesRetrieveParamsField = "resource_type"
 	BookingResourcesRetrieveParamsFieldResourceUuid               BookingResourcesRetrieveParamsField = "resource_uuid"
@@ -3844,6 +3846,7 @@ const (
 	ManagedRancherClusterResourcesListParamsFieldProviderName              ManagedRancherClusterResourcesListParamsField = "provider_name"
 	ManagedRancherClusterResourcesListParamsFieldProviderSlug              ManagedRancherClusterResourcesListParamsField = "provider_slug"
 	ManagedRancherClusterResourcesListParamsFieldProviderUuid              ManagedRancherClusterResourcesListParamsField = "provider_uuid"
+	ManagedRancherClusterResourcesListParamsFieldRenewalDate               ManagedRancherClusterResourcesListParamsField = "renewal_date"
 	ManagedRancherClusterResourcesListParamsFieldReport                    ManagedRancherClusterResourcesListParamsField = "report"
 	ManagedRancherClusterResourcesListParamsFieldResourceType              ManagedRancherClusterResourcesListParamsField = "resource_type"
 	ManagedRancherClusterResourcesListParamsFieldResourceUuid              ManagedRancherClusterResourcesListParamsField = "resource_uuid"
@@ -3923,6 +3926,7 @@ const (
 	ManagedRancherClusterResourcesRetrieveParamsFieldProviderName              ManagedRancherClusterResourcesRetrieveParamsField = "provider_name"
 	ManagedRancherClusterResourcesRetrieveParamsFieldProviderSlug              ManagedRancherClusterResourcesRetrieveParamsField = "provider_slug"
 	ManagedRancherClusterResourcesRetrieveParamsFieldProviderUuid              ManagedRancherClusterResourcesRetrieveParamsField = "provider_uuid"
+	ManagedRancherClusterResourcesRetrieveParamsFieldRenewalDate               ManagedRancherClusterResourcesRetrieveParamsField = "renewal_date"
 	ManagedRancherClusterResourcesRetrieveParamsFieldReport                    ManagedRancherClusterResourcesRetrieveParamsField = "report"
 	ManagedRancherClusterResourcesRetrieveParamsFieldResourceType              ManagedRancherClusterResourcesRetrieveParamsField = "resource_type"
 	ManagedRancherClusterResourcesRetrieveParamsFieldResourceUuid              ManagedRancherClusterResourcesRetrieveParamsField = "resource_uuid"
@@ -5531,6 +5535,7 @@ const (
 	MarketplaceProviderResourcesListParamsFieldProviderName              MarketplaceProviderResourcesListParamsField = "provider_name"
 	MarketplaceProviderResourcesListParamsFieldProviderSlug              MarketplaceProviderResourcesListParamsField = "provider_slug"
 	MarketplaceProviderResourcesListParamsFieldProviderUuid              MarketplaceProviderResourcesListParamsField = "provider_uuid"
+	MarketplaceProviderResourcesListParamsFieldRenewalDate               MarketplaceProviderResourcesListParamsField = "renewal_date"
 	MarketplaceProviderResourcesListParamsFieldReport                    MarketplaceProviderResourcesListParamsField = "report"
 	MarketplaceProviderResourcesListParamsFieldResourceType              MarketplaceProviderResourcesListParamsField = "resource_type"
 	MarketplaceProviderResourcesListParamsFieldResourceUuid              MarketplaceProviderResourcesListParamsField = "resource_uuid"
@@ -5654,6 +5659,7 @@ const (
 	MarketplaceProviderResourcesRetrieveParamsFieldProviderName              MarketplaceProviderResourcesRetrieveParamsField = "provider_name"
 	MarketplaceProviderResourcesRetrieveParamsFieldProviderSlug              MarketplaceProviderResourcesRetrieveParamsField = "provider_slug"
 	MarketplaceProviderResourcesRetrieveParamsFieldProviderUuid              MarketplaceProviderResourcesRetrieveParamsField = "provider_uuid"
+	MarketplaceProviderResourcesRetrieveParamsFieldRenewalDate               MarketplaceProviderResourcesRetrieveParamsField = "renewal_date"
 	MarketplaceProviderResourcesRetrieveParamsFieldReport                    MarketplaceProviderResourcesRetrieveParamsField = "report"
 	MarketplaceProviderResourcesRetrieveParamsFieldResourceType              MarketplaceProviderResourcesRetrieveParamsField = "resource_type"
 	MarketplaceProviderResourcesRetrieveParamsFieldResourceUuid              MarketplaceProviderResourcesRetrieveParamsField = "resource_uuid"
@@ -5733,6 +5739,7 @@ const (
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldProviderName              MarketplaceProviderResourcesDetailsRetrieveParamsField = "provider_name"
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldProviderSlug              MarketplaceProviderResourcesDetailsRetrieveParamsField = "provider_slug"
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldProviderUuid              MarketplaceProviderResourcesDetailsRetrieveParamsField = "provider_uuid"
+	MarketplaceProviderResourcesDetailsRetrieveParamsFieldRenewalDate               MarketplaceProviderResourcesDetailsRetrieveParamsField = "renewal_date"
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldReport                    MarketplaceProviderResourcesDetailsRetrieveParamsField = "report"
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldResourceType              MarketplaceProviderResourcesDetailsRetrieveParamsField = "resource_type"
 	MarketplaceProviderResourcesDetailsRetrieveParamsFieldResourceUuid              MarketplaceProviderResourcesDetailsRetrieveParamsField = "resource_uuid"
@@ -6002,6 +6009,7 @@ const (
 	MarketplaceResourcesListParamsFieldProviderName              MarketplaceResourcesListParamsField = "provider_name"
 	MarketplaceResourcesListParamsFieldProviderSlug              MarketplaceResourcesListParamsField = "provider_slug"
 	MarketplaceResourcesListParamsFieldProviderUuid              MarketplaceResourcesListParamsField = "provider_uuid"
+	MarketplaceResourcesListParamsFieldRenewalDate               MarketplaceResourcesListParamsField = "renewal_date"
 	MarketplaceResourcesListParamsFieldReport                    MarketplaceResourcesListParamsField = "report"
 	MarketplaceResourcesListParamsFieldResourceType              MarketplaceResourcesListParamsField = "resource_type"
 	MarketplaceResourcesListParamsFieldResourceUuid              MarketplaceResourcesListParamsField = "resource_uuid"
@@ -6125,6 +6133,7 @@ const (
 	MarketplaceResourcesRetrieveParamsFieldProviderName              MarketplaceResourcesRetrieveParamsField = "provider_name"
 	MarketplaceResourcesRetrieveParamsFieldProviderSlug              MarketplaceResourcesRetrieveParamsField = "provider_slug"
 	MarketplaceResourcesRetrieveParamsFieldProviderUuid              MarketplaceResourcesRetrieveParamsField = "provider_uuid"
+	MarketplaceResourcesRetrieveParamsFieldRenewalDate               MarketplaceResourcesRetrieveParamsField = "renewal_date"
 	MarketplaceResourcesRetrieveParamsFieldReport                    MarketplaceResourcesRetrieveParamsField = "report"
 	MarketplaceResourcesRetrieveParamsFieldResourceType              MarketplaceResourcesRetrieveParamsField = "resource_type"
 	MarketplaceResourcesRetrieveParamsFieldResourceUuid              MarketplaceResourcesRetrieveParamsField = "resource_uuid"
@@ -6204,6 +6213,7 @@ const (
 	MarketplaceResourcesDetailsRetrieveParamsFieldProviderName              MarketplaceResourcesDetailsRetrieveParamsField = "provider_name"
 	MarketplaceResourcesDetailsRetrieveParamsFieldProviderSlug              MarketplaceResourcesDetailsRetrieveParamsField = "provider_slug"
 	MarketplaceResourcesDetailsRetrieveParamsFieldProviderUuid              MarketplaceResourcesDetailsRetrieveParamsField = "provider_uuid"
+	MarketplaceResourcesDetailsRetrieveParamsFieldRenewalDate               MarketplaceResourcesDetailsRetrieveParamsField = "renewal_date"
 	MarketplaceResourcesDetailsRetrieveParamsFieldReport                    MarketplaceResourcesDetailsRetrieveParamsField = "report"
 	MarketplaceResourcesDetailsRetrieveParamsFieldResourceType              MarketplaceResourcesDetailsRetrieveParamsField = "resource_type"
 	MarketplaceResourcesDetailsRetrieveParamsFieldResourceUuid              MarketplaceResourcesDetailsRetrieveParamsField = "resource_uuid"
@@ -6551,6 +6561,7 @@ const (
 	MarketplaceServiceProvidersProjectsListParamsFieldEndDateRequestedBy                   MarketplaceServiceProvidersProjectsListParamsField = "end_date_requested_by"
 	MarketplaceServiceProvidersProjectsListParamsFieldImage                                MarketplaceServiceProvidersProjectsListParamsField = "image"
 	MarketplaceServiceProvidersProjectsListParamsFieldIsIndustry                           MarketplaceServiceProvidersProjectsListParamsField = "is_industry"
+	MarketplaceServiceProvidersProjectsListParamsFieldIsRemoved                            MarketplaceServiceProvidersProjectsListParamsField = "is_removed"
 	MarketplaceServiceProvidersProjectsListParamsFieldKind                                 MarketplaceServiceProvidersProjectsListParamsField = "kind"
 	MarketplaceServiceProvidersProjectsListParamsFieldMarketplaceResourceCount             MarketplaceServiceProvidersProjectsListParamsField = "marketplace_resource_count"
 	MarketplaceServiceProvidersProjectsListParamsFieldMaxServiceAccounts                   MarketplaceServiceProvidersProjectsListParamsField = "max_service_accounts"
@@ -8405,6 +8416,7 @@ const (
 	ProjectsListParamsFieldEndDateRequestedBy                   ProjectsListParamsField = "end_date_requested_by"
 	ProjectsListParamsFieldImage                                ProjectsListParamsField = "image"
 	ProjectsListParamsFieldIsIndustry                           ProjectsListParamsField = "is_industry"
+	ProjectsListParamsFieldIsRemoved                            ProjectsListParamsField = "is_removed"
 	ProjectsListParamsFieldKind                                 ProjectsListParamsField = "kind"
 	ProjectsListParamsFieldMarketplaceResourceCount             ProjectsListParamsField = "marketplace_resource_count"
 	ProjectsListParamsFieldMaxServiceAccounts                   ProjectsListParamsField = "max_service_accounts"
@@ -8485,6 +8497,7 @@ const (
 	ProjectsRetrieveParamsFieldEndDateRequestedBy                   ProjectsRetrieveParamsField = "end_date_requested_by"
 	ProjectsRetrieveParamsFieldImage                                ProjectsRetrieveParamsField = "image"
 	ProjectsRetrieveParamsFieldIsIndustry                           ProjectsRetrieveParamsField = "is_industry"
+	ProjectsRetrieveParamsFieldIsRemoved                            ProjectsRetrieveParamsField = "is_removed"
 	ProjectsRetrieveParamsFieldKind                                 ProjectsRetrieveParamsField = "kind"
 	ProjectsRetrieveParamsFieldMarketplaceResourceCount             ProjectsRetrieveParamsField = "marketplace_resource_count"
 	ProjectsRetrieveParamsFieldMaxServiceAccounts                   ProjectsRetrieveParamsField = "max_service_accounts"
@@ -10812,16 +10825,17 @@ type AgentIdentity struct {
 	ConfigFileContent *string `json:"config_file_content"`
 
 	// ConfigFilePath Example: '/etc/waldur/agent.yaml'
-	ConfigFilePath *string             `json:"config_file_path"`
-	Created        *time.Time          `json:"created,omitempty"`
-	Dependencies   interface{}         `json:"dependencies,omitempty"`
-	LastRestarted  *time.Time          `json:"last_restarted,omitempty"`
-	Modified       *time.Time          `json:"modified,omitempty"`
-	Name           string              `json:"name"`
-	Offering       openapi_types.UUID  `json:"offering"`
-	Url            *string             `json:"url,omitempty"`
-	Uuid           *openapi_types.UUID `json:"uuid,omitempty"`
-	Version        *string             `json:"version"`
+	ConfigFilePath *string               `json:"config_file_path"`
+	Created        *time.Time            `json:"created,omitempty"`
+	Dependencies   interface{}           `json:"dependencies,omitempty"`
+	LastRestarted  *time.Time            `json:"last_restarted,omitempty"`
+	Modified       *time.Time            `json:"modified,omitempty"`
+	Name           string                `json:"name"`
+	Offering       openapi_types.UUID    `json:"offering"`
+	Services       *[]NestedAgentService `json:"services,omitempty"`
+	Url            *string               `json:"url,omitempty"`
+	Uuid           *openapi_types.UUID   `json:"uuid,omitempty"`
+	Version        *string               `json:"version"`
 }
 
 // AgentIdentityRequest defines model for AgentIdentityRequest.
@@ -10862,16 +10876,17 @@ type AgentProcessorCreateRequest struct {
 
 // AgentService defines model for AgentService.
 type AgentService struct {
-	Created      *time.Time             `json:"created,omitempty"`
-	Identity     openapi_types.UUID     `json:"identity"`
-	IdentityName *string                `json:"identity_name,omitempty"`
-	Mode         *string                `json:"mode"`
-	Modified     *time.Time             `json:"modified,omitempty"`
-	Name         string                 `json:"name"`
-	State        *AgentServiceStateEnum `json:"state,omitempty"`
-	Statistics   interface{}            `json:"statistics,omitempty"`
-	Url          *string                `json:"url,omitempty"`
-	Uuid         *openapi_types.UUID    `json:"uuid,omitempty"`
+	Created      *time.Time              `json:"created,omitempty"`
+	Identity     openapi_types.UUID      `json:"identity"`
+	IdentityName *string                 `json:"identity_name,omitempty"`
+	Mode         *string                 `json:"mode"`
+	Modified     *time.Time              `json:"modified,omitempty"`
+	Name         string                  `json:"name"`
+	Processors   *[]NestedAgentProcessor `json:"processors,omitempty"`
+	State        *AgentServiceState      `json:"state,omitempty"`
+	Statistics   interface{}             `json:"statistics,omitempty"`
+	Url          *string                 `json:"url,omitempty"`
+	Uuid         *openapi_types.UUID     `json:"uuid,omitempty"`
 }
 
 // AgentServiceCreateRequest defines model for AgentServiceCreateRequest.
@@ -10880,8 +10895,8 @@ type AgentServiceCreateRequest struct {
 	Name string  `json:"name"`
 }
 
-// AgentServiceStateEnum defines model for AgentServiceStateEnum.
-type AgentServiceStateEnum string
+// AgentServiceState defines model for AgentServiceState.
+type AgentServiceState string
 
 // AgentServiceStatisticsRequest defines model for AgentServiceStatisticsRequest.
 type AgentServiceStatisticsRequest struct {
@@ -11827,24 +11842,25 @@ type BookingResource struct {
 	ProjectDescription *string             `json:"project_description,omitempty"`
 
 	// ProjectEndDate The date is inclusive. Once reached, all project resource will be scheduled for termination.
-	ProjectEndDate            *openapi_types.Date `json:"project_end_date"`
-	ProjectEndDateRequestedBy *string             `json:"project_end_date_requested_by,omitempty"`
-	ProjectName               *string             `json:"project_name,omitempty"`
-	ProjectSlug               *string             `json:"project_slug,omitempty"`
-	ProjectUuid               *openapi_types.UUID `json:"project_uuid,omitempty"`
-	ProviderName              *string             `json:"provider_name,omitempty"`
-	ProviderSlug              *string             `json:"provider_slug,omitempty"`
-	ProviderUuid              *openapi_types.UUID `json:"provider_uuid,omitempty"`
-	Report                    *[]ReportSection    `json:"report,omitempty"`
-	ResourceType              *string             `json:"resource_type"`
-	ResourceUuid              *openapi_types.UUID `json:"resource_uuid"`
-	RestrictMemberAccess      *bool               `json:"restrict_member_access,omitempty"`
-	Scope                     *string             `json:"scope,omitempty"`
-	ServiceSettingsUuid       *openapi_types.UUID `json:"service_settings_uuid,omitempty"`
-	Slots                     *[]BookingSlot      `json:"slots,omitempty"`
-	Slug                      *string             `json:"slug,omitempty"`
-	State                     *ResourceState      `json:"state,omitempty"`
-	Url                       *string             `json:"url,omitempty"`
+	ProjectEndDate            *openapi_types.Date            `json:"project_end_date"`
+	ProjectEndDateRequestedBy *string                        `json:"project_end_date_requested_by,omitempty"`
+	ProjectName               *string                        `json:"project_name,omitempty"`
+	ProjectSlug               *string                        `json:"project_slug,omitempty"`
+	ProjectUuid               *openapi_types.UUID            `json:"project_uuid,omitempty"`
+	ProviderName              *string                        `json:"provider_name,omitempty"`
+	ProviderSlug              *string                        `json:"provider_slug,omitempty"`
+	ProviderUuid              *openapi_types.UUID            `json:"provider_uuid,omitempty"`
+	RenewalDate               *map[string]openapi_types.Date `json:"renewal_date"`
+	Report                    *[]ReportSection               `json:"report,omitempty"`
+	ResourceType              *string                        `json:"resource_type"`
+	ResourceUuid              *openapi_types.UUID            `json:"resource_uuid"`
+	RestrictMemberAccess      *bool                          `json:"restrict_member_access,omitempty"`
+	Scope                     *string                        `json:"scope,omitempty"`
+	ServiceSettingsUuid       *openapi_types.UUID            `json:"service_settings_uuid,omitempty"`
+	Slots                     *[]BookingSlot                 `json:"slots,omitempty"`
+	Slug                      *string                        `json:"slug,omitempty"`
+	State                     *ResourceState                 `json:"state,omitempty"`
+	Url                       *string                        `json:"url,omitempty"`
 
 	// UserRequiresReconsent Check if the current user needs to re-consent for this resource's offering.
 	UserRequiresReconsent *bool               `json:"user_requires_reconsent,omitempty"`
@@ -13440,6 +13456,35 @@ type Customer struct {
 // Customer_Country defines model for Customer.Country.
 type Customer_Country struct {
 	union json.RawMessage
+}
+
+// CustomerComponentUsagePolicy defines model for CustomerComponentUsagePolicy.
+type CustomerComponentUsagePolicy struct {
+	Actions            string                               `json:"actions"`
+	ComponentLimitsSet []NestedCustomerUsagePolicyComponent `json:"component_limits_set"`
+	Created            *time.Time                           `json:"created,omitempty"`
+	CreatedByFullName  *string                              `json:"created_by_full_name,omitempty"`
+	CreatedByUsername  *string                              `json:"created_by_username,omitempty"`
+	FiredDatetime      *time.Time                           `json:"fired_datetime,omitempty"`
+	HasFired           *bool                                `json:"has_fired,omitempty"`
+
+	// Options Fields for saving actions extra data. Keys are name of actions.
+	Options   interface{}         `json:"options,omitempty"`
+	Scope     string              `json:"scope"`
+	ScopeName *string             `json:"scope_name,omitempty"`
+	ScopeUuid *openapi_types.UUID `json:"scope_uuid,omitempty"`
+	Url       *string             `json:"url,omitempty"`
+	Uuid      *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// CustomerComponentUsagePolicyRequest defines model for CustomerComponentUsagePolicyRequest.
+type CustomerComponentUsagePolicyRequest struct {
+	Actions            string                                      `json:"actions"`
+	ComponentLimitsSet []NestedCustomerUsagePolicyComponentRequest `json:"component_limits_set"`
+
+	// Options Fields for saving actions extra data. Keys are name of actions.
+	Options interface{} `json:"options,omitempty"`
+	Scope   string      `json:"scope"`
 }
 
 // CustomerCredit defines model for CustomerCredit.
@@ -15920,6 +15965,31 @@ type NameUUID struct {
 	Uuid *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
+// NestedAgentProcessor defines model for NestedAgentProcessor.
+type NestedAgentProcessor struct {
+	// BackendType Type of the backend, for example SLURM.
+	BackendType    string              `json:"backend_type"`
+	BackendVersion *string             `json:"backend_version"`
+	Created        *time.Time          `json:"created,omitempty"`
+	LastRun        *time.Time          `json:"last_run"`
+	Modified       *time.Time          `json:"modified,omitempty"`
+	Name           string              `json:"name"`
+	Url            *string             `json:"url,omitempty"`
+	Uuid           *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// NestedAgentService defines model for NestedAgentService.
+type NestedAgentService struct {
+	Created    *time.Time          `json:"created,omitempty"`
+	Mode       *string             `json:"mode"`
+	Modified   *time.Time          `json:"modified,omitempty"`
+	Name       string              `json:"name"`
+	State      *AgentServiceState  `json:"state,omitempty"`
+	Statistics interface{}         `json:"statistics,omitempty"`
+	Url        *string             `json:"url,omitempty"`
+	Uuid       *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
 // NestedAttribute defines model for NestedAttribute.
 type NestedAttribute struct {
 	Default interface{}              `json:"default"`
@@ -15980,6 +16050,22 @@ type NestedColumn struct {
 // NestedColumn_Widget Widget field allows to customise table cell rendering.
 type NestedColumn_Widget struct {
 	union json.RawMessage
+}
+
+// NestedCustomerUsagePolicyComponent defines model for NestedCustomerUsagePolicyComponent.
+type NestedCustomerUsagePolicyComponent struct {
+	Component  openapi_types.UUID `json:"component"`
+	Limit      int                `json:"limit"`
+	Period     *PeriodEnum        `json:"period,omitempty"`
+	PeriodName *string            `json:"period_name,omitempty"`
+	Type       *string            `json:"type,omitempty"`
+}
+
+// NestedCustomerUsagePolicyComponentRequest defines model for NestedCustomerUsagePolicyComponentRequest.
+type NestedCustomerUsagePolicyComponentRequest struct {
+	Component openapi_types.UUID `json:"component"`
+	Limit     int                `json:"limit"`
+	Period    *PeriodEnum        `json:"period,omitempty"`
 }
 
 // NestedEndpoint defines model for NestedEndpoint.
@@ -19450,6 +19536,16 @@ type PatchedCreateCustomerCreditRequest struct {
 	Value                     *string                      `json:"value,omitempty"`
 }
 
+// PatchedCustomerComponentUsagePolicyRequest defines model for PatchedCustomerComponentUsagePolicyRequest.
+type PatchedCustomerComponentUsagePolicyRequest struct {
+	Actions            *string                                      `json:"actions,omitempty"`
+	ComponentLimitsSet *[]NestedCustomerUsagePolicyComponentRequest `json:"component_limits_set,omitempty"`
+
+	// Options Fields for saving actions extra data. Keys are name of actions.
+	Options interface{} `json:"options,omitempty"`
+	Scope   *string     `json:"scope,omitempty"`
+}
+
 // PatchedCustomerEstimatedCostPolicyRequest defines model for PatchedCustomerEstimatedCostPolicyRequest.
 type PatchedCustomerEstimatedCostPolicyRequest struct {
 	Actions   *string `json:"actions,omitempty"`
@@ -20919,6 +21015,7 @@ type Project struct {
 	EndDateRequestedBy                   *string              `json:"end_date_requested_by"`
 	Image                                *string              `json:"image"`
 	IsIndustry                           *bool                `json:"is_industry,omitempty"`
+	IsRemoved                            *bool                `json:"is_removed,omitempty"`
 	Kind                                 *KindEnum            `json:"kind,omitempty"`
 	MarketplaceResourceCount             *map[string]int      `json:"marketplace_resource_count,omitempty"`
 
@@ -23383,23 +23480,24 @@ type Resource struct {
 	ProjectDescription *string             `json:"project_description,omitempty"`
 
 	// ProjectEndDate The date is inclusive. Once reached, all project resource will be scheduled for termination.
-	ProjectEndDate            *openapi_types.Date `json:"project_end_date"`
-	ProjectEndDateRequestedBy *string             `json:"project_end_date_requested_by,omitempty"`
-	ProjectName               *string             `json:"project_name,omitempty"`
-	ProjectSlug               *string             `json:"project_slug,omitempty"`
-	ProjectUuid               *openapi_types.UUID `json:"project_uuid,omitempty"`
-	ProviderName              *string             `json:"provider_name,omitempty"`
-	ProviderSlug              *string             `json:"provider_slug,omitempty"`
-	ProviderUuid              *openapi_types.UUID `json:"provider_uuid,omitempty"`
-	Report                    *[]ReportSection    `json:"report,omitempty"`
-	ResourceType              *string             `json:"resource_type"`
-	ResourceUuid              *openapi_types.UUID `json:"resource_uuid"`
-	RestrictMemberAccess      *bool               `json:"restrict_member_access,omitempty"`
-	Scope                     *string             `json:"scope,omitempty"`
-	ServiceSettingsUuid       *openapi_types.UUID `json:"service_settings_uuid,omitempty"`
-	Slug                      *string             `json:"slug,omitempty"`
-	State                     *ResourceState      `json:"state,omitempty"`
-	Url                       *string             `json:"url,omitempty"`
+	ProjectEndDate            *openapi_types.Date            `json:"project_end_date"`
+	ProjectEndDateRequestedBy *string                        `json:"project_end_date_requested_by,omitempty"`
+	ProjectName               *string                        `json:"project_name,omitempty"`
+	ProjectSlug               *string                        `json:"project_slug,omitempty"`
+	ProjectUuid               *openapi_types.UUID            `json:"project_uuid,omitempty"`
+	ProviderName              *string                        `json:"provider_name,omitempty"`
+	ProviderSlug              *string                        `json:"provider_slug,omitempty"`
+	ProviderUuid              *openapi_types.UUID            `json:"provider_uuid,omitempty"`
+	RenewalDate               *map[string]openapi_types.Date `json:"renewal_date"`
+	Report                    *[]ReportSection               `json:"report,omitempty"`
+	ResourceType              *string                        `json:"resource_type"`
+	ResourceUuid              *openapi_types.UUID            `json:"resource_uuid"`
+	RestrictMemberAccess      *bool                          `json:"restrict_member_access,omitempty"`
+	Scope                     *string                        `json:"scope,omitempty"`
+	ServiceSettingsUuid       *openapi_types.UUID            `json:"service_settings_uuid,omitempty"`
+	Slug                      *string                        `json:"slug,omitempty"`
+	State                     *ResourceState                 `json:"state,omitempty"`
+	Url                       *string                        `json:"url,omitempty"`
 
 	// UserRequiresReconsent Check if the current user needs to re-consent for this resource's offering.
 	UserRequiresReconsent *bool               `json:"user_requires_reconsent,omitempty"`
@@ -28930,6 +29028,34 @@ type MarketplaceCourseAccountsCountParamsO string
 // MarketplaceCourseAccountsCountParamsState defines parameters for MarketplaceCourseAccountsCount.
 type MarketplaceCourseAccountsCountParamsState string
 
+// MarketplaceCustomerComponentUsagePoliciesListParams defines parameters for MarketplaceCustomerComponentUsagePoliciesList.
+type MarketplaceCustomerComponentUsagePoliciesListParams struct {
+	Customer     *string             `form:"customer,omitempty" json:"customer,omitempty"`
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize  *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Scope     *string             `form:"scope,omitempty" json:"scope,omitempty"`
+	ScopeUuid *openapi_types.UUID `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
+}
+
+// MarketplaceCustomerComponentUsagePoliciesCountParams defines parameters for MarketplaceCustomerComponentUsagePoliciesCount.
+type MarketplaceCustomerComponentUsagePoliciesCountParams struct {
+	Customer     *string             `form:"customer,omitempty" json:"customer,omitempty"`
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize  *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Scope     *string             `form:"scope,omitempty" json:"scope,omitempty"`
+	ScopeUuid *openapi_types.UUID `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
+}
+
 // MarketplaceCustomerEstimatedCostPoliciesListParams defines parameters for MarketplaceCustomerEstimatedCostPoliciesList.
 type MarketplaceCustomerEstimatedCostPoliciesListParams struct {
 	Customer     *string             `form:"customer,omitempty" json:"customer,omitempty"`
@@ -30025,6 +30151,9 @@ type MarketplaceProviderOfferingsListParams struct {
 	// UserHasConsent User Has Consent
 	UserHasConsent *bool `form:"user_has_consent,omitempty" json:"user_has_consent,omitempty"`
 
+	// UserHasOfferingUser User Has Offering User
+	UserHasOfferingUser *bool `form:"user_has_offering_user,omitempty" json:"user_has_offering_user,omitempty"`
+
 	// UuidList Comma-separated offering UUIDs
 	UuidList *string `form:"uuid_list,omitempty" json:"uuid_list,omitempty"`
 }
@@ -30103,6 +30232,9 @@ type MarketplaceProviderOfferingsCountParams struct {
 	// UserHasConsent User Has Consent
 	UserHasConsent *bool `form:"user_has_consent,omitempty" json:"user_has_consent,omitempty"`
 
+	// UserHasOfferingUser User Has Offering User
+	UserHasOfferingUser *bool `form:"user_has_offering_user,omitempty" json:"user_has_offering_user,omitempty"`
+
 	// UuidList Comma-separated offering UUIDs
 	UuidList *string `form:"uuid_list,omitempty" json:"uuid_list,omitempty"`
 }
@@ -30178,6 +30310,9 @@ type MarketplaceProviderOfferingsGroupsListParams struct {
 	// UserHasConsent User Has Consent
 	UserHasConsent *bool `form:"user_has_consent,omitempty" json:"user_has_consent,omitempty"`
 
+	// UserHasOfferingUser User Has Offering User
+	UserHasOfferingUser *bool `form:"user_has_offering_user,omitempty" json:"user_has_offering_user,omitempty"`
+
 	// UuidList Comma-separated offering UUIDs
 	UuidList *string `form:"uuid_list,omitempty" json:"uuid_list,omitempty"`
 }
@@ -30252,6 +30387,9 @@ type MarketplaceProviderOfferingsGroupsCountParams struct {
 
 	// UserHasConsent User Has Consent
 	UserHasConsent *bool `form:"user_has_consent,omitempty" json:"user_has_consent,omitempty"`
+
+	// UserHasOfferingUser User Has Offering User
+	UserHasOfferingUser *bool `form:"user_has_offering_user,omitempty" json:"user_has_offering_user,omitempty"`
 
 	// UuidList Comma-separated offering UUIDs
 	UuidList *string `form:"uuid_list,omitempty" json:"uuid_list,omitempty"`
@@ -30342,6 +30480,9 @@ type MarketplaceProviderOfferingsComponentStatsListParams struct {
 	// UserHasConsent User Has Consent
 	UserHasConsent *bool `form:"user_has_consent,omitempty" json:"user_has_consent,omitempty"`
 
+	// UserHasOfferingUser User Has Offering User
+	UserHasOfferingUser *bool `form:"user_has_offering_user,omitempty" json:"user_has_offering_user,omitempty"`
+
 	// UuidList Comma-separated offering UUIDs
 	UuidList *string `form:"uuid_list,omitempty" json:"uuid_list,omitempty"`
 }
@@ -30424,6 +30565,9 @@ type MarketplaceProviderOfferingsCostsListParams struct {
 	// UserHasConsent User Has Consent
 	UserHasConsent *bool `form:"user_has_consent,omitempty" json:"user_has_consent,omitempty"`
 
+	// UserHasOfferingUser User Has Offering User
+	UserHasOfferingUser *bool `form:"user_has_offering_user,omitempty" json:"user_has_offering_user,omitempty"`
+
 	// UuidList Comma-separated offering UUIDs
 	UuidList *string `form:"uuid_list,omitempty" json:"uuid_list,omitempty"`
 }
@@ -30498,6 +30642,9 @@ type MarketplaceProviderOfferingsCustomersListParams struct {
 
 	// UserHasConsent User Has Consent
 	UserHasConsent *bool `form:"user_has_consent,omitempty" json:"user_has_consent,omitempty"`
+
+	// UserHasOfferingUser User Has Offering User
+	UserHasOfferingUser *bool `form:"user_has_offering_user,omitempty" json:"user_has_offering_user,omitempty"`
 
 	// UuidList Comma-separated offering UUIDs
 	UuidList *string `form:"uuid_list,omitempty" json:"uuid_list,omitempty"`
@@ -30890,6 +31037,9 @@ type MarketplacePublicOfferingsListParams struct {
 	// UserHasConsent User Has Consent
 	UserHasConsent *bool `form:"user_has_consent,omitempty" json:"user_has_consent,omitempty"`
 
+	// UserHasOfferingUser User Has Offering User
+	UserHasOfferingUser *bool `form:"user_has_offering_user,omitempty" json:"user_has_offering_user,omitempty"`
+
 	// UuidList Comma-separated offering UUIDs
 	UuidList *string `form:"uuid_list,omitempty" json:"uuid_list,omitempty"`
 }
@@ -30967,6 +31117,9 @@ type MarketplacePublicOfferingsCountParams struct {
 
 	// UserHasConsent User Has Consent
 	UserHasConsent *bool `form:"user_has_consent,omitempty" json:"user_has_consent,omitempty"`
+
+	// UserHasOfferingUser User Has Offering User
+	UserHasOfferingUser *bool `form:"user_has_offering_user,omitempty" json:"user_has_offering_user,omitempty"`
 
 	// UuidList Comma-separated offering UUIDs
 	UuidList *string `form:"uuid_list,omitempty" json:"uuid_list,omitempty"`
@@ -31686,6 +31839,9 @@ type MarketplaceServiceProvidersOfferingsListParams struct {
 
 	// UserHasConsent User Has Consent
 	UserHasConsent *bool `form:"user_has_consent,omitempty" json:"user_has_consent,omitempty"`
+
+	// UserHasOfferingUser User Has Offering User
+	UserHasOfferingUser *bool `form:"user_has_offering_user,omitempty" json:"user_has_offering_user,omitempty"`
 
 	// UuidList Comma-separated offering UUIDs
 	UuidList *string `form:"uuid_list,omitempty" json:"uuid_list,omitempty"`
@@ -34342,6 +34498,9 @@ type ProjectsListParams struct {
 	Description          *string                    `form:"description,omitempty" json:"description,omitempty"`
 	Field                *[]ProjectsListParamsField `form:"field,omitempty" json:"field,omitempty"`
 
+	// IncludeTerminated Include soft-deleted (terminated) projects. Only available to staff and support users, or users with organizational roles who can see their terminated projects.
+	IncludeTerminated *bool `form:"include_terminated,omitempty" json:"include_terminated,omitempty"`
+
 	// Modified Modified after
 	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
 	Name      *string    `form:"name,omitempty" json:"name,omitempty"`
@@ -34390,6 +34549,9 @@ type ProjectsCountParams struct {
 	CustomerName         *string               `form:"customer_name,omitempty" json:"customer_name,omitempty"`
 	CustomerNativeName   *string               `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
 	Description          *string               `form:"description,omitempty" json:"description,omitempty"`
+
+	// IncludeTerminated Include soft-deleted (terminated) projects. Only available to staff and support users, or users with organizational roles who can see their terminated projects.
+	IncludeTerminated *bool `form:"include_terminated,omitempty" json:"include_terminated,omitempty"`
 
 	// Modified Modified after
 	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
@@ -37966,6 +38128,15 @@ type MarketplaceCourseAccountsCreateJSONRequestBody = CourseAccountRequest
 
 // MarketplaceCourseAccountsCreateBulkJSONRequestBody defines body for MarketplaceCourseAccountsCreateBulk for application/json ContentType.
 type MarketplaceCourseAccountsCreateBulkJSONRequestBody = CourseAccountsBulkCreateRequest
+
+// MarketplaceCustomerComponentUsagePoliciesCreateJSONRequestBody defines body for MarketplaceCustomerComponentUsagePoliciesCreate for application/json ContentType.
+type MarketplaceCustomerComponentUsagePoliciesCreateJSONRequestBody = CustomerComponentUsagePolicyRequest
+
+// MarketplaceCustomerComponentUsagePoliciesPartialUpdateJSONRequestBody defines body for MarketplaceCustomerComponentUsagePoliciesPartialUpdate for application/json ContentType.
+type MarketplaceCustomerComponentUsagePoliciesPartialUpdateJSONRequestBody = PatchedCustomerComponentUsagePolicyRequest
+
+// MarketplaceCustomerComponentUsagePoliciesUpdateJSONRequestBody defines body for MarketplaceCustomerComponentUsagePoliciesUpdate for application/json ContentType.
+type MarketplaceCustomerComponentUsagePoliciesUpdateJSONRequestBody = CustomerComponentUsagePolicyRequest
 
 // MarketplaceCustomerEstimatedCostPoliciesCreateJSONRequestBody defines body for MarketplaceCustomerEstimatedCostPoliciesCreate for application/json ContentType.
 type MarketplaceCustomerEstimatedCostPoliciesCreateJSONRequestBody = CustomerEstimatedCostPolicyRequest
@@ -47012,6 +47183,39 @@ type ClientInterface interface {
 
 	// MarketplaceCourseAccountsRetrieve request
 	MarketplaceCourseAccountsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceCustomerComponentUsagePoliciesList request
+	MarketplaceCustomerComponentUsagePoliciesList(ctx context.Context, params *MarketplaceCustomerComponentUsagePoliciesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceCustomerComponentUsagePoliciesCount request
+	MarketplaceCustomerComponentUsagePoliciesCount(ctx context.Context, params *MarketplaceCustomerComponentUsagePoliciesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceCustomerComponentUsagePoliciesCreateWithBody request with any body
+	MarketplaceCustomerComponentUsagePoliciesCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceCustomerComponentUsagePoliciesCreate(ctx context.Context, body MarketplaceCustomerComponentUsagePoliciesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceCustomerComponentUsagePoliciesActionsRetrieve request
+	MarketplaceCustomerComponentUsagePoliciesActionsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceCustomerComponentUsagePoliciesActionsCount request
+	MarketplaceCustomerComponentUsagePoliciesActionsCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceCustomerComponentUsagePoliciesDestroy request
+	MarketplaceCustomerComponentUsagePoliciesDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceCustomerComponentUsagePoliciesRetrieve request
+	MarketplaceCustomerComponentUsagePoliciesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceCustomerComponentUsagePoliciesPartialUpdateWithBody request with any body
+	MarketplaceCustomerComponentUsagePoliciesPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceCustomerComponentUsagePoliciesPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceCustomerComponentUsagePoliciesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceCustomerComponentUsagePoliciesUpdateWithBody request with any body
+	MarketplaceCustomerComponentUsagePoliciesUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceCustomerComponentUsagePoliciesUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceCustomerComponentUsagePoliciesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceCustomerEstimatedCostPoliciesList request
 	MarketplaceCustomerEstimatedCostPoliciesList(ctx context.Context, params *MarketplaceCustomerEstimatedCostPoliciesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -59256,6 +59460,150 @@ func (c *Client) MarketplaceCourseAccountsDestroy(ctx context.Context, uuid open
 
 func (c *Client) MarketplaceCourseAccountsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceCourseAccountsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceCustomerComponentUsagePoliciesList(ctx context.Context, params *MarketplaceCustomerComponentUsagePoliciesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceCustomerComponentUsagePoliciesListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceCustomerComponentUsagePoliciesCount(ctx context.Context, params *MarketplaceCustomerComponentUsagePoliciesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceCustomerComponentUsagePoliciesCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceCustomerComponentUsagePoliciesCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceCustomerComponentUsagePoliciesCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceCustomerComponentUsagePoliciesCreate(ctx context.Context, body MarketplaceCustomerComponentUsagePoliciesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceCustomerComponentUsagePoliciesCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceCustomerComponentUsagePoliciesActionsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceCustomerComponentUsagePoliciesActionsRetrieveRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceCustomerComponentUsagePoliciesActionsCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceCustomerComponentUsagePoliciesActionsCountRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceCustomerComponentUsagePoliciesDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceCustomerComponentUsagePoliciesDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceCustomerComponentUsagePoliciesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceCustomerComponentUsagePoliciesRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceCustomerComponentUsagePoliciesPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceCustomerComponentUsagePoliciesPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceCustomerComponentUsagePoliciesPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceCustomerComponentUsagePoliciesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceCustomerComponentUsagePoliciesPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceCustomerComponentUsagePoliciesUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceCustomerComponentUsagePoliciesUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceCustomerComponentUsagePoliciesUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceCustomerComponentUsagePoliciesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceCustomerComponentUsagePoliciesUpdateRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -117813,6 +118161,520 @@ func NewMarketplaceCourseAccountsRetrieveRequest(server string, uuid openapi_typ
 	return req, nil
 }
 
+// NewMarketplaceCustomerComponentUsagePoliciesListRequest generates requests for MarketplaceCustomerComponentUsagePoliciesList
+func NewMarketplaceCustomerComponentUsagePoliciesListRequest(server string, params *MarketplaceCustomerComponentUsagePoliciesListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-customer-component-usage-policies/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Customer != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer", runtime.ParamLocationQuery, *params.Customer); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer_uuid", runtime.ParamLocationQuery, *params.CustomerUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Scope != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope", runtime.ParamLocationQuery, *params.Scope); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ScopeUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope_uuid", runtime.ParamLocationQuery, *params.ScopeUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceCustomerComponentUsagePoliciesCountRequest generates requests for MarketplaceCustomerComponentUsagePoliciesCount
+func NewMarketplaceCustomerComponentUsagePoliciesCountRequest(server string, params *MarketplaceCustomerComponentUsagePoliciesCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-customer-component-usage-policies/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Customer != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer", runtime.ParamLocationQuery, *params.Customer); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer_uuid", runtime.ParamLocationQuery, *params.CustomerUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Scope != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope", runtime.ParamLocationQuery, *params.Scope); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ScopeUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope_uuid", runtime.ParamLocationQuery, *params.ScopeUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceCustomerComponentUsagePoliciesCreateRequest calls the generic MarketplaceCustomerComponentUsagePoliciesCreate builder with application/json body
+func NewMarketplaceCustomerComponentUsagePoliciesCreateRequest(server string, body MarketplaceCustomerComponentUsagePoliciesCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceCustomerComponentUsagePoliciesCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewMarketplaceCustomerComponentUsagePoliciesCreateRequestWithBody generates requests for MarketplaceCustomerComponentUsagePoliciesCreate with any type of body
+func NewMarketplaceCustomerComponentUsagePoliciesCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-customer-component-usage-policies/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceCustomerComponentUsagePoliciesActionsRetrieveRequest generates requests for MarketplaceCustomerComponentUsagePoliciesActionsRetrieve
+func NewMarketplaceCustomerComponentUsagePoliciesActionsRetrieveRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-customer-component-usage-policies/actions/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceCustomerComponentUsagePoliciesActionsCountRequest generates requests for MarketplaceCustomerComponentUsagePoliciesActionsCount
+func NewMarketplaceCustomerComponentUsagePoliciesActionsCountRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-customer-component-usage-policies/actions/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceCustomerComponentUsagePoliciesDestroyRequest generates requests for MarketplaceCustomerComponentUsagePoliciesDestroy
+func NewMarketplaceCustomerComponentUsagePoliciesDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-customer-component-usage-policies/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceCustomerComponentUsagePoliciesRetrieveRequest generates requests for MarketplaceCustomerComponentUsagePoliciesRetrieve
+func NewMarketplaceCustomerComponentUsagePoliciesRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-customer-component-usage-policies/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceCustomerComponentUsagePoliciesPartialUpdateRequest calls the generic MarketplaceCustomerComponentUsagePoliciesPartialUpdate builder with application/json body
+func NewMarketplaceCustomerComponentUsagePoliciesPartialUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceCustomerComponentUsagePoliciesPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceCustomerComponentUsagePoliciesPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceCustomerComponentUsagePoliciesPartialUpdateRequestWithBody generates requests for MarketplaceCustomerComponentUsagePoliciesPartialUpdate with any type of body
+func NewMarketplaceCustomerComponentUsagePoliciesPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-customer-component-usage-policies/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceCustomerComponentUsagePoliciesUpdateRequest calls the generic MarketplaceCustomerComponentUsagePoliciesUpdate builder with application/json body
+func NewMarketplaceCustomerComponentUsagePoliciesUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceCustomerComponentUsagePoliciesUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceCustomerComponentUsagePoliciesUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceCustomerComponentUsagePoliciesUpdateRequestWithBody generates requests for MarketplaceCustomerComponentUsagePoliciesUpdate with any type of body
+func NewMarketplaceCustomerComponentUsagePoliciesUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-customer-component-usage-policies/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewMarketplaceCustomerEstimatedCostPoliciesListRequest generates requests for MarketplaceCustomerEstimatedCostPoliciesList
 func NewMarketplaceCustomerEstimatedCostPoliciesListRequest(server string, params *MarketplaceCustomerEstimatedCostPoliciesListParams) (*http.Request, error) {
 	var err error
@@ -129846,6 +130708,22 @@ func NewMarketplaceProviderOfferingsListRequest(server string, params *Marketpla
 
 		}
 
+		if params.UserHasOfferingUser != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_has_offering_user", runtime.ParamLocationQuery, *params.UserHasOfferingUser); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.UuidList != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "uuid_list", runtime.ParamLocationQuery, *params.UuidList); err != nil {
@@ -130362,6 +131240,22 @@ func NewMarketplaceProviderOfferingsCountRequest(server string, params *Marketpl
 		if params.UserHasConsent != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_has_consent", runtime.ParamLocationQuery, *params.UserHasConsent); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UserHasOfferingUser != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_has_offering_user", runtime.ParamLocationQuery, *params.UserHasOfferingUser); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -130955,6 +131849,22 @@ func NewMarketplaceProviderOfferingsGroupsListRequest(server string, params *Mar
 
 		}
 
+		if params.UserHasOfferingUser != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_has_offering_user", runtime.ParamLocationQuery, *params.UserHasOfferingUser); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.UuidList != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "uuid_list", runtime.ParamLocationQuery, *params.UuidList); err != nil {
@@ -131471,6 +132381,22 @@ func NewMarketplaceProviderOfferingsGroupsCountRequest(server string, params *Ma
 		if params.UserHasConsent != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_has_consent", runtime.ParamLocationQuery, *params.UserHasConsent); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UserHasOfferingUser != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_has_offering_user", runtime.ParamLocationQuery, *params.UserHasOfferingUser); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -132304,6 +133230,22 @@ func NewMarketplaceProviderOfferingsComponentStatsListRequest(server string, uui
 
 		}
 
+		if params.UserHasOfferingUser != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_has_offering_user", runtime.ParamLocationQuery, *params.UserHasOfferingUser); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.UuidList != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "uuid_list", runtime.ParamLocationQuery, *params.UuidList); err != nil {
@@ -132888,6 +133830,22 @@ func NewMarketplaceProviderOfferingsCostsListRequest(server string, uuid openapi
 
 		}
 
+		if params.UserHasOfferingUser != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_has_offering_user", runtime.ParamLocationQuery, *params.UserHasOfferingUser); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.UuidList != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "uuid_list", runtime.ParamLocationQuery, *params.UuidList); err != nil {
@@ -133458,6 +134416,22 @@ func NewMarketplaceProviderOfferingsCustomersListRequest(server string, uuid ope
 		if params.UserHasConsent != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_has_consent", runtime.ParamLocationQuery, *params.UserHasConsent); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UserHasOfferingUser != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_has_offering_user", runtime.ParamLocationQuery, *params.UserHasOfferingUser); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -138621,6 +139595,22 @@ func NewMarketplacePublicOfferingsListRequest(server string, params *Marketplace
 
 		}
 
+		if params.UserHasOfferingUser != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_has_offering_user", runtime.ParamLocationQuery, *params.UserHasOfferingUser); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.UuidList != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "uuid_list", runtime.ParamLocationQuery, *params.UuidList); err != nil {
@@ -139137,6 +140127,22 @@ func NewMarketplacePublicOfferingsCountRequest(server string, params *Marketplac
 		if params.UserHasConsent != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_has_consent", runtime.ParamLocationQuery, *params.UserHasConsent); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UserHasOfferingUser != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_has_offering_user", runtime.ParamLocationQuery, *params.UserHasOfferingUser); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -146770,6 +147776,22 @@ func NewMarketplaceServiceProvidersOfferingsListRequest(server string, servicePr
 		if params.UserHasConsent != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_has_consent", runtime.ParamLocationQuery, *params.UserHasConsent); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UserHasOfferingUser != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_has_offering_user", runtime.ParamLocationQuery, *params.UserHasOfferingUser); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -178605,6 +179627,22 @@ func NewProjectsListRequest(server string, params *ProjectsListParams) (*http.Re
 
 		}
 
+		if params.IncludeTerminated != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "include_terminated", runtime.ParamLocationQuery, *params.IncludeTerminated); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Modified != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "modified", runtime.ParamLocationQuery, *params.Modified); err != nil {
@@ -178913,6 +179951,22 @@ func NewProjectsCountRequest(server string, params *ProjectsCountParams) (*http.
 		if params.Description != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "description", runtime.ParamLocationQuery, *params.Description); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IncludeTerminated != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "include_terminated", runtime.ParamLocationQuery, *params.IncludeTerminated); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -216944,6 +217998,39 @@ type ClientWithResponsesInterface interface {
 	// MarketplaceCourseAccountsRetrieveWithResponse request
 	MarketplaceCourseAccountsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceCourseAccountsRetrieveResponse, error)
 
+	// MarketplaceCustomerComponentUsagePoliciesListWithResponse request
+	MarketplaceCustomerComponentUsagePoliciesListWithResponse(ctx context.Context, params *MarketplaceCustomerComponentUsagePoliciesListParams, reqEditors ...RequestEditorFn) (*MarketplaceCustomerComponentUsagePoliciesListResponse, error)
+
+	// MarketplaceCustomerComponentUsagePoliciesCountWithResponse request
+	MarketplaceCustomerComponentUsagePoliciesCountWithResponse(ctx context.Context, params *MarketplaceCustomerComponentUsagePoliciesCountParams, reqEditors ...RequestEditorFn) (*MarketplaceCustomerComponentUsagePoliciesCountResponse, error)
+
+	// MarketplaceCustomerComponentUsagePoliciesCreateWithBodyWithResponse request with any body
+	MarketplaceCustomerComponentUsagePoliciesCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceCustomerComponentUsagePoliciesCreateResponse, error)
+
+	MarketplaceCustomerComponentUsagePoliciesCreateWithResponse(ctx context.Context, body MarketplaceCustomerComponentUsagePoliciesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceCustomerComponentUsagePoliciesCreateResponse, error)
+
+	// MarketplaceCustomerComponentUsagePoliciesActionsRetrieveWithResponse request
+	MarketplaceCustomerComponentUsagePoliciesActionsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*MarketplaceCustomerComponentUsagePoliciesActionsRetrieveResponse, error)
+
+	// MarketplaceCustomerComponentUsagePoliciesActionsCountWithResponse request
+	MarketplaceCustomerComponentUsagePoliciesActionsCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*MarketplaceCustomerComponentUsagePoliciesActionsCountResponse, error)
+
+	// MarketplaceCustomerComponentUsagePoliciesDestroyWithResponse request
+	MarketplaceCustomerComponentUsagePoliciesDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceCustomerComponentUsagePoliciesDestroyResponse, error)
+
+	// MarketplaceCustomerComponentUsagePoliciesRetrieveWithResponse request
+	MarketplaceCustomerComponentUsagePoliciesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceCustomerComponentUsagePoliciesRetrieveResponse, error)
+
+	// MarketplaceCustomerComponentUsagePoliciesPartialUpdateWithBodyWithResponse request with any body
+	MarketplaceCustomerComponentUsagePoliciesPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceCustomerComponentUsagePoliciesPartialUpdateResponse, error)
+
+	MarketplaceCustomerComponentUsagePoliciesPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceCustomerComponentUsagePoliciesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceCustomerComponentUsagePoliciesPartialUpdateResponse, error)
+
+	// MarketplaceCustomerComponentUsagePoliciesUpdateWithBodyWithResponse request with any body
+	MarketplaceCustomerComponentUsagePoliciesUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceCustomerComponentUsagePoliciesUpdateResponse, error)
+
+	MarketplaceCustomerComponentUsagePoliciesUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceCustomerComponentUsagePoliciesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceCustomerComponentUsagePoliciesUpdateResponse, error)
+
 	// MarketplaceCustomerEstimatedCostPoliciesListWithResponse request
 	MarketplaceCustomerEstimatedCostPoliciesListWithResponse(ctx context.Context, params *MarketplaceCustomerEstimatedCostPoliciesListParams, reqEditors ...RequestEditorFn) (*MarketplaceCustomerEstimatedCostPoliciesListResponse, error)
 
@@ -232009,6 +233096,201 @@ func (r MarketplaceCourseAccountsRetrieveResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceCourseAccountsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceCustomerComponentUsagePoliciesListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]CustomerComponentUsagePolicy
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceCustomerComponentUsagePoliciesListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceCustomerComponentUsagePoliciesListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceCustomerComponentUsagePoliciesCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceCustomerComponentUsagePoliciesCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceCustomerComponentUsagePoliciesCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceCustomerComponentUsagePoliciesCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *CustomerComponentUsagePolicy
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceCustomerComponentUsagePoliciesCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceCustomerComponentUsagePoliciesCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceCustomerComponentUsagePoliciesActionsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CustomerComponentUsagePolicy
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceCustomerComponentUsagePoliciesActionsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceCustomerComponentUsagePoliciesActionsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceCustomerComponentUsagePoliciesActionsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceCustomerComponentUsagePoliciesActionsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceCustomerComponentUsagePoliciesActionsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceCustomerComponentUsagePoliciesDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceCustomerComponentUsagePoliciesDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceCustomerComponentUsagePoliciesDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceCustomerComponentUsagePoliciesRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CustomerComponentUsagePolicy
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceCustomerComponentUsagePoliciesRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceCustomerComponentUsagePoliciesRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceCustomerComponentUsagePoliciesPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CustomerComponentUsagePolicy
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceCustomerComponentUsagePoliciesPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceCustomerComponentUsagePoliciesPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceCustomerComponentUsagePoliciesUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CustomerComponentUsagePolicy
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceCustomerComponentUsagePoliciesUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceCustomerComponentUsagePoliciesUpdateResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -262255,6 +263537,111 @@ func (c *ClientWithResponses) MarketplaceCourseAccountsRetrieveWithResponse(ctx 
 	return ParseMarketplaceCourseAccountsRetrieveResponse(rsp)
 }
 
+// MarketplaceCustomerComponentUsagePoliciesListWithResponse request returning *MarketplaceCustomerComponentUsagePoliciesListResponse
+func (c *ClientWithResponses) MarketplaceCustomerComponentUsagePoliciesListWithResponse(ctx context.Context, params *MarketplaceCustomerComponentUsagePoliciesListParams, reqEditors ...RequestEditorFn) (*MarketplaceCustomerComponentUsagePoliciesListResponse, error) {
+	rsp, err := c.MarketplaceCustomerComponentUsagePoliciesList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceCustomerComponentUsagePoliciesListResponse(rsp)
+}
+
+// MarketplaceCustomerComponentUsagePoliciesCountWithResponse request returning *MarketplaceCustomerComponentUsagePoliciesCountResponse
+func (c *ClientWithResponses) MarketplaceCustomerComponentUsagePoliciesCountWithResponse(ctx context.Context, params *MarketplaceCustomerComponentUsagePoliciesCountParams, reqEditors ...RequestEditorFn) (*MarketplaceCustomerComponentUsagePoliciesCountResponse, error) {
+	rsp, err := c.MarketplaceCustomerComponentUsagePoliciesCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceCustomerComponentUsagePoliciesCountResponse(rsp)
+}
+
+// MarketplaceCustomerComponentUsagePoliciesCreateWithBodyWithResponse request with arbitrary body returning *MarketplaceCustomerComponentUsagePoliciesCreateResponse
+func (c *ClientWithResponses) MarketplaceCustomerComponentUsagePoliciesCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceCustomerComponentUsagePoliciesCreateResponse, error) {
+	rsp, err := c.MarketplaceCustomerComponentUsagePoliciesCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceCustomerComponentUsagePoliciesCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceCustomerComponentUsagePoliciesCreateWithResponse(ctx context.Context, body MarketplaceCustomerComponentUsagePoliciesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceCustomerComponentUsagePoliciesCreateResponse, error) {
+	rsp, err := c.MarketplaceCustomerComponentUsagePoliciesCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceCustomerComponentUsagePoliciesCreateResponse(rsp)
+}
+
+// MarketplaceCustomerComponentUsagePoliciesActionsRetrieveWithResponse request returning *MarketplaceCustomerComponentUsagePoliciesActionsRetrieveResponse
+func (c *ClientWithResponses) MarketplaceCustomerComponentUsagePoliciesActionsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*MarketplaceCustomerComponentUsagePoliciesActionsRetrieveResponse, error) {
+	rsp, err := c.MarketplaceCustomerComponentUsagePoliciesActionsRetrieve(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceCustomerComponentUsagePoliciesActionsRetrieveResponse(rsp)
+}
+
+// MarketplaceCustomerComponentUsagePoliciesActionsCountWithResponse request returning *MarketplaceCustomerComponentUsagePoliciesActionsCountResponse
+func (c *ClientWithResponses) MarketplaceCustomerComponentUsagePoliciesActionsCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*MarketplaceCustomerComponentUsagePoliciesActionsCountResponse, error) {
+	rsp, err := c.MarketplaceCustomerComponentUsagePoliciesActionsCount(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceCustomerComponentUsagePoliciesActionsCountResponse(rsp)
+}
+
+// MarketplaceCustomerComponentUsagePoliciesDestroyWithResponse request returning *MarketplaceCustomerComponentUsagePoliciesDestroyResponse
+func (c *ClientWithResponses) MarketplaceCustomerComponentUsagePoliciesDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceCustomerComponentUsagePoliciesDestroyResponse, error) {
+	rsp, err := c.MarketplaceCustomerComponentUsagePoliciesDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceCustomerComponentUsagePoliciesDestroyResponse(rsp)
+}
+
+// MarketplaceCustomerComponentUsagePoliciesRetrieveWithResponse request returning *MarketplaceCustomerComponentUsagePoliciesRetrieveResponse
+func (c *ClientWithResponses) MarketplaceCustomerComponentUsagePoliciesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceCustomerComponentUsagePoliciesRetrieveResponse, error) {
+	rsp, err := c.MarketplaceCustomerComponentUsagePoliciesRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceCustomerComponentUsagePoliciesRetrieveResponse(rsp)
+}
+
+// MarketplaceCustomerComponentUsagePoliciesPartialUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceCustomerComponentUsagePoliciesPartialUpdateResponse
+func (c *ClientWithResponses) MarketplaceCustomerComponentUsagePoliciesPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceCustomerComponentUsagePoliciesPartialUpdateResponse, error) {
+	rsp, err := c.MarketplaceCustomerComponentUsagePoliciesPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceCustomerComponentUsagePoliciesPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceCustomerComponentUsagePoliciesPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceCustomerComponentUsagePoliciesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceCustomerComponentUsagePoliciesPartialUpdateResponse, error) {
+	rsp, err := c.MarketplaceCustomerComponentUsagePoliciesPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceCustomerComponentUsagePoliciesPartialUpdateResponse(rsp)
+}
+
+// MarketplaceCustomerComponentUsagePoliciesUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceCustomerComponentUsagePoliciesUpdateResponse
+func (c *ClientWithResponses) MarketplaceCustomerComponentUsagePoliciesUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceCustomerComponentUsagePoliciesUpdateResponse, error) {
+	rsp, err := c.MarketplaceCustomerComponentUsagePoliciesUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceCustomerComponentUsagePoliciesUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceCustomerComponentUsagePoliciesUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceCustomerComponentUsagePoliciesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceCustomerComponentUsagePoliciesUpdateResponse, error) {
+	rsp, err := c.MarketplaceCustomerComponentUsagePoliciesUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceCustomerComponentUsagePoliciesUpdateResponse(rsp)
+}
+
 // MarketplaceCustomerEstimatedCostPoliciesListWithResponse request returning *MarketplaceCustomerEstimatedCostPoliciesListResponse
 func (c *ClientWithResponses) MarketplaceCustomerEstimatedCostPoliciesListWithResponse(ctx context.Context, params *MarketplaceCustomerEstimatedCostPoliciesListParams, reqEditors ...RequestEditorFn) (*MarketplaceCustomerEstimatedCostPoliciesListResponse, error) {
 	rsp, err := c.MarketplaceCustomerEstimatedCostPoliciesList(ctx, params, reqEditors...)
@@ -286763,6 +288150,210 @@ func ParseMarketplaceCourseAccountsRetrieveResponse(rsp *http.Response) (*Market
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest CourseAccount
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceCustomerComponentUsagePoliciesListResponse parses an HTTP response from a MarketplaceCustomerComponentUsagePoliciesListWithResponse call
+func ParseMarketplaceCustomerComponentUsagePoliciesListResponse(rsp *http.Response) (*MarketplaceCustomerComponentUsagePoliciesListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceCustomerComponentUsagePoliciesListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []CustomerComponentUsagePolicy
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceCustomerComponentUsagePoliciesCountResponse parses an HTTP response from a MarketplaceCustomerComponentUsagePoliciesCountWithResponse call
+func ParseMarketplaceCustomerComponentUsagePoliciesCountResponse(rsp *http.Response) (*MarketplaceCustomerComponentUsagePoliciesCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceCustomerComponentUsagePoliciesCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceCustomerComponentUsagePoliciesCreateResponse parses an HTTP response from a MarketplaceCustomerComponentUsagePoliciesCreateWithResponse call
+func ParseMarketplaceCustomerComponentUsagePoliciesCreateResponse(rsp *http.Response) (*MarketplaceCustomerComponentUsagePoliciesCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceCustomerComponentUsagePoliciesCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest CustomerComponentUsagePolicy
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceCustomerComponentUsagePoliciesActionsRetrieveResponse parses an HTTP response from a MarketplaceCustomerComponentUsagePoliciesActionsRetrieveWithResponse call
+func ParseMarketplaceCustomerComponentUsagePoliciesActionsRetrieveResponse(rsp *http.Response) (*MarketplaceCustomerComponentUsagePoliciesActionsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceCustomerComponentUsagePoliciesActionsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CustomerComponentUsagePolicy
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceCustomerComponentUsagePoliciesActionsCountResponse parses an HTTP response from a MarketplaceCustomerComponentUsagePoliciesActionsCountWithResponse call
+func ParseMarketplaceCustomerComponentUsagePoliciesActionsCountResponse(rsp *http.Response) (*MarketplaceCustomerComponentUsagePoliciesActionsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceCustomerComponentUsagePoliciesActionsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceCustomerComponentUsagePoliciesDestroyResponse parses an HTTP response from a MarketplaceCustomerComponentUsagePoliciesDestroyWithResponse call
+func ParseMarketplaceCustomerComponentUsagePoliciesDestroyResponse(rsp *http.Response) (*MarketplaceCustomerComponentUsagePoliciesDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceCustomerComponentUsagePoliciesDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceCustomerComponentUsagePoliciesRetrieveResponse parses an HTTP response from a MarketplaceCustomerComponentUsagePoliciesRetrieveWithResponse call
+func ParseMarketplaceCustomerComponentUsagePoliciesRetrieveResponse(rsp *http.Response) (*MarketplaceCustomerComponentUsagePoliciesRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceCustomerComponentUsagePoliciesRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CustomerComponentUsagePolicy
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceCustomerComponentUsagePoliciesPartialUpdateResponse parses an HTTP response from a MarketplaceCustomerComponentUsagePoliciesPartialUpdateWithResponse call
+func ParseMarketplaceCustomerComponentUsagePoliciesPartialUpdateResponse(rsp *http.Response) (*MarketplaceCustomerComponentUsagePoliciesPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceCustomerComponentUsagePoliciesPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CustomerComponentUsagePolicy
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceCustomerComponentUsagePoliciesUpdateResponse parses an HTTP response from a MarketplaceCustomerComponentUsagePoliciesUpdateWithResponse call
+func ParseMarketplaceCustomerComponentUsagePoliciesUpdateResponse(rsp *http.Response) (*MarketplaceCustomerComponentUsagePoliciesUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceCustomerComponentUsagePoliciesUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CustomerComponentUsagePolicy
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
