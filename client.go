@@ -31680,6 +31680,7 @@ type MarketplaceServiceProvidersCustomerProjectsListParams struct {
 	CustomerNativeName   *string                                                       `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
 	Description          *string                                                       `form:"description,omitempty" json:"description,omitempty"`
 	Field                *[]MarketplaceServiceProvidersCustomerProjectsListParamsField `form:"field,omitempty" json:"field,omitempty"`
+	IsRemoved            *bool                                                         `form:"is_removed,omitempty" json:"is_removed,omitempty"`
 
 	// Modified Modified after
 	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
@@ -31949,6 +31950,7 @@ type MarketplaceServiceProvidersProjectsListParams struct {
 	CustomerNativeName   *string                                               `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
 	Description          *string                                               `form:"description,omitempty" json:"description,omitempty"`
 	Field                *[]MarketplaceServiceProvidersProjectsListParamsField `form:"field,omitempty" json:"field,omitempty"`
+	IsRemoved            *bool                                                 `form:"is_removed,omitempty" json:"is_removed,omitempty"`
 
 	// Modified Modified after
 	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
@@ -34500,6 +34502,7 @@ type ProjectsListParams struct {
 
 	// IncludeTerminated Include soft-deleted (terminated) projects. Only available to staff and support users, or users with organizational roles who can see their terminated projects.
 	IncludeTerminated *bool `form:"include_terminated,omitempty" json:"include_terminated,omitempty"`
+	IsRemoved         *bool `form:"is_removed,omitempty" json:"is_removed,omitempty"`
 
 	// Modified Modified after
 	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
@@ -34552,6 +34555,7 @@ type ProjectsCountParams struct {
 
 	// IncludeTerminated Include soft-deleted (terminated) projects. Only available to staff and support users, or users with organizational roles who can see their terminated projects.
 	IncludeTerminated *bool `form:"include_terminated,omitempty" json:"include_terminated,omitempty"`
+	IsRemoved         *bool `form:"is_removed,omitempty" json:"is_removed,omitempty"`
 
 	// Modified Modified after
 	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
@@ -146565,6 +146569,22 @@ func NewMarketplaceServiceProvidersCustomerProjectsListRequest(server string, se
 
 		}
 
+		if params.IsRemoved != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_removed", runtime.ParamLocationQuery, *params.IsRemoved); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Modified != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "modified", runtime.ParamLocationQuery, *params.Modified); err != nil {
@@ -148504,6 +148524,22 @@ func NewMarketplaceServiceProvidersProjectsListRequest(server string, servicePro
 		if params.Field != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "field", runtime.ParamLocationQuery, *params.Field); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsRemoved != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_removed", runtime.ParamLocationQuery, *params.IsRemoved); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -179643,6 +179679,22 @@ func NewProjectsListRequest(server string, params *ProjectsListParams) (*http.Re
 
 		}
 
+		if params.IsRemoved != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_removed", runtime.ParamLocationQuery, *params.IsRemoved); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Modified != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "modified", runtime.ParamLocationQuery, *params.Modified); err != nil {
@@ -179967,6 +180019,22 @@ func NewProjectsCountRequest(server string, params *ProjectsCountParams) (*http.
 		if params.IncludeTerminated != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "include_terminated", runtime.ParamLocationQuery, *params.IncludeTerminated); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsRemoved != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_removed", runtime.ParamLocationQuery, *params.IsRemoved); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
