@@ -15397,6 +15397,9 @@ type MergedPluginOptions struct {
 	// AutoApproveRemoteOrders If set to True, an order can be processed without approval
 	AutoApproveRemoteOrders *bool `json:"auto_approve_remote_orders,omitempty"`
 
+	// BackendIdDisplayLabel Label used by UI for showing value of the backend_id
+	BackendIdDisplayLabel *string `json:"backend_id_display_label,omitempty"`
+
 	// ConcealBillingData If set to True, pricing and components tab would be concealed.
 	ConcealBillingData *bool `json:"conceal_billing_data,omitempty"`
 
@@ -15426,6 +15429,9 @@ type MergedPluginOptions struct {
 
 	// HeappeUsername HEAppE username
 	HeappeUsername *string `json:"heappe_username,omitempty"`
+
+	// HighlightBackendIdDisplay Defines if backend_id should be shown more prominently by the UI
+	HighlightBackendIdDisplay *bool `json:"highlight_backend_id_display,omitempty"`
 
 	// HomedirPrefix GLAuth homedir prefix
 	HomedirPrefix *string `json:"homedir_prefix,omitempty"`
@@ -15534,6 +15540,9 @@ type MergedPluginOptionsRequest struct {
 	// AutoApproveRemoteOrders If set to True, an order can be processed without approval
 	AutoApproveRemoteOrders *bool `json:"auto_approve_remote_orders,omitempty"`
 
+	// BackendIdDisplayLabel Label used by UI for showing value of the backend_id
+	BackendIdDisplayLabel *string `json:"backend_id_display_label,omitempty"`
+
 	// ConcealBillingData If set to True, pricing and components tab would be concealed.
 	ConcealBillingData *bool `json:"conceal_billing_data,omitempty"`
 
@@ -15563,6 +15572,9 @@ type MergedPluginOptionsRequest struct {
 
 	// HeappeUsername HEAppE username
 	HeappeUsername *string `json:"heappe_username,omitempty"`
+
+	// HighlightBackendIdDisplay Defines if backend_id should be shown more prominently by the UI
+	HighlightBackendIdDisplay *bool `json:"highlight_backend_id_display,omitempty"`
 
 	// HomedirPrefix GLAuth homedir prefix
 	HomedirPrefix *string `json:"homedir_prefix,omitempty"`
