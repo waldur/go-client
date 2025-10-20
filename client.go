@@ -12712,6 +12712,7 @@ type ConstanceSettings struct {
 	ONBOARDINGARIREGISTERUSERNAME                  *string              `json:"ONBOARDING_ARIREGISTER_USERNAME,omitempty"`
 	ONBOARDINGVERIFICATIONEXPIRYHOURS              *int                 `json:"ONBOARDING_VERIFICATION_EXPIRY_HOURS,omitempty"`
 	POWEREDBYLOGO                                  *string              `json:"POWERED_BY_LOGO"`
+	PROJECTENDDATEMANDATORY                        *bool                `json:"PROJECT_END_DATE_MANDATORY,omitempty"`
 	PROPOSALREVIEWDURATION                         *int                 `json:"PROPOSAL_REVIEW_DURATION,omitempty"`
 	RANCHERUSERNAMEINPUTLABEL                      *string              `json:"RANCHER_USERNAME_INPUT_LABEL,omitempty"`
 	SCRIPTRUNMODE                                  *string              `json:"SCRIPT_RUN_MODE,omitempty"`
@@ -12857,6 +12858,7 @@ type ConstanceSettingsRequest struct {
 	ONBOARDINGARIREGISTERUSERNAME                  *string              `json:"ONBOARDING_ARIREGISTER_USERNAME,omitempty"`
 	ONBOARDINGVERIFICATIONEXPIRYHOURS              *int                 `json:"ONBOARDING_VERIFICATION_EXPIRY_HOURS,omitempty"`
 	POWEREDBYLOGO                                  *openapi_types.File  `json:"POWERED_BY_LOGO"`
+	PROJECTENDDATEMANDATORY                        *bool                `json:"PROJECT_END_DATE_MANDATORY,omitempty"`
 	PROPOSALREVIEWDURATION                         *int                 `json:"PROPOSAL_REVIEW_DURATION,omitempty"`
 	RANCHERUSERNAMEINPUTLABEL                      *string              `json:"RANCHER_USERNAME_INPUT_LABEL,omitempty"`
 	SCRIPTRUNMODE                                  *string              `json:"SCRIPT_RUN_MODE,omitempty"`
@@ -13002,6 +13004,7 @@ type ConstanceSettingsRequestForm struct {
 	ONBOARDINGARIREGISTERUSERNAME                  *string              `json:"ONBOARDING_ARIREGISTER_USERNAME,omitempty"`
 	ONBOARDINGVERIFICATIONEXPIRYHOURS              *int                 `json:"ONBOARDING_VERIFICATION_EXPIRY_HOURS,omitempty"`
 	POWEREDBYLOGO                                  *openapi_types.File  `json:"POWERED_BY_LOGO"`
+	PROJECTENDDATEMANDATORY                        *bool                `json:"PROJECT_END_DATE_MANDATORY,omitempty"`
 	PROPOSALREVIEWDURATION                         *int                 `json:"PROPOSAL_REVIEW_DURATION,omitempty"`
 	RANCHERUSERNAMEINPUTLABEL                      *string              `json:"RANCHER_USERNAME_INPUT_LABEL,omitempty"`
 	SCRIPTRUNMODE                                  *string              `json:"SCRIPT_RUN_MODE,omitempty"`
@@ -13147,6 +13150,7 @@ type ConstanceSettingsRequestMultipart struct {
 	ONBOARDINGARIREGISTERUSERNAME                  *string              `json:"ONBOARDING_ARIREGISTER_USERNAME,omitempty"`
 	ONBOARDINGVERIFICATIONEXPIRYHOURS              *int                 `json:"ONBOARDING_VERIFICATION_EXPIRY_HOURS,omitempty"`
 	POWEREDBYLOGO                                  *openapi_types.File  `json:"POWERED_BY_LOGO"`
+	PROJECTENDDATEMANDATORY                        *bool                `json:"PROJECT_END_DATE_MANDATORY,omitempty"`
 	PROPOSALREVIEWDURATION                         *int                 `json:"PROPOSAL_REVIEW_DURATION,omitempty"`
 	RANCHERUSERNAMEINPUTLABEL                      *string              `json:"RANCHER_USERNAME_INPUT_LABEL,omitempty"`
 	SCRIPTRUNMODE                                  *string              `json:"SCRIPT_RUN_MODE,omitempty"`
@@ -26303,8 +26307,11 @@ type BookingOfferingsRetrieveParamsField string
 // BookingResourcesListParams defines parameters for BookingResourcesList.
 type BookingResourcesListParams struct {
 	// BackendId Backend ID
-	BackendId             *string             `form:"backend_id,omitempty" json:"backend_id,omitempty"`
-	CategoryUuid          *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
+	BackendId    *string             `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	CategoryUuid *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
+
+	// ComponentCount Filter by exact number of components
+	ComponentCount        *float32            `form:"component_count,omitempty" json:"component_count,omitempty"`
 	ConnectedCustomerUuid *openapi_types.UUID `form:"connected_customer_uuid,omitempty" json:"connected_customer_uuid,omitempty"`
 
 	// Created Created after
@@ -26322,6 +26329,9 @@ type BookingResourcesListParams struct {
 
 	// LimitBased Filter by limit-based offerings
 	LimitBased *bool `form:"limit_based,omitempty" json:"limit_based,omitempty"`
+
+	// LimitComponentCount Filter by exact number of limit-based components
+	LimitComponentCount *float32 `form:"limit_component_count,omitempty" json:"limit_component_count,omitempty"`
 
 	// Modified Modified after
 	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
@@ -26392,8 +26402,11 @@ type BookingResourcesListParamsState string
 // BookingResourcesCountParams defines parameters for BookingResourcesCount.
 type BookingResourcesCountParams struct {
 	// BackendId Backend ID
-	BackendId             *string             `form:"backend_id,omitempty" json:"backend_id,omitempty"`
-	CategoryUuid          *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
+	BackendId    *string             `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	CategoryUuid *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
+
+	// ComponentCount Filter by exact number of components
+	ComponentCount        *float32            `form:"component_count,omitempty" json:"component_count,omitempty"`
 	ConnectedCustomerUuid *openapi_types.UUID `form:"connected_customer_uuid,omitempty" json:"connected_customer_uuid,omitempty"`
 
 	// Created Created after
@@ -26410,6 +26423,9 @@ type BookingResourcesCountParams struct {
 
 	// LimitBased Filter by limit-based offerings
 	LimitBased *bool `form:"limit_based,omitempty" json:"limit_based,omitempty"`
+
+	// LimitComponentCount Filter by exact number of limit-based components
+	LimitComponentCount *float32 `form:"limit_component_count,omitempty" json:"limit_component_count,omitempty"`
 
 	// Modified Modified after
 	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
@@ -30789,6 +30805,9 @@ type MarketplaceProviderResourcesListParams struct {
 	BackendId    *string             `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 	CategoryUuid *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
 
+	// ComponentCount Filter by exact number of components
+	ComponentCount *float32 `form:"component_count,omitempty" json:"component_count,omitempty"`
+
 	// Created Created after
 	Created      *time.Time                                     `form:"created,omitempty" json:"created,omitempty"`
 	Customer     *string                                        `form:"customer,omitempty" json:"customer,omitempty"`
@@ -30804,6 +30823,9 @@ type MarketplaceProviderResourcesListParams struct {
 
 	// LimitBased Filter by limit-based offerings
 	LimitBased *bool `form:"limit_based,omitempty" json:"limit_based,omitempty"`
+
+	// LimitComponentCount Filter by exact number of limit-based components
+	LimitComponentCount *float32 `form:"limit_component_count,omitempty" json:"limit_component_count,omitempty"`
 
 	// Modified Modified after
 	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
@@ -30877,6 +30899,9 @@ type MarketplaceProviderResourcesCountParams struct {
 	BackendId    *string             `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 	CategoryUuid *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
 
+	// ComponentCount Filter by exact number of components
+	ComponentCount *float32 `form:"component_count,omitempty" json:"component_count,omitempty"`
+
 	// Created Created after
 	Created      *time.Time          `form:"created,omitempty" json:"created,omitempty"`
 	Customer     *string             `form:"customer,omitempty" json:"customer,omitempty"`
@@ -30891,6 +30916,9 @@ type MarketplaceProviderResourcesCountParams struct {
 
 	// LimitBased Filter by limit-based offerings
 	LimitBased *bool `form:"limit_based,omitempty" json:"limit_based,omitempty"`
+
+	// LimitComponentCount Filter by exact number of limit-based components
+	LimitComponentCount *float32 `form:"limit_component_count,omitempty" json:"limit_component_count,omitempty"`
 
 	// Modified Modified after
 	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
@@ -31215,6 +31243,9 @@ type MarketplaceResourcesListParams struct {
 	BackendId    *string             `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 	CategoryUuid *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
 
+	// ComponentCount Filter by exact number of components
+	ComponentCount *float32 `form:"component_count,omitempty" json:"component_count,omitempty"`
+
 	// Created Created after
 	Created      *time.Time                             `form:"created,omitempty" json:"created,omitempty"`
 	Customer     *string                                `form:"customer,omitempty" json:"customer,omitempty"`
@@ -31230,6 +31261,9 @@ type MarketplaceResourcesListParams struct {
 
 	// LimitBased Filter by limit-based offerings
 	LimitBased *bool `form:"limit_based,omitempty" json:"limit_based,omitempty"`
+
+	// LimitComponentCount Filter by exact number of limit-based components
+	LimitComponentCount *float32 `form:"limit_component_count,omitempty" json:"limit_component_count,omitempty"`
 
 	// Modified Modified after
 	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
@@ -31303,6 +31337,9 @@ type MarketplaceResourcesCountParams struct {
 	BackendId    *string             `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 	CategoryUuid *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
 
+	// ComponentCount Filter by exact number of components
+	ComponentCount *float32 `form:"component_count,omitempty" json:"component_count,omitempty"`
+
 	// Created Created after
 	Created      *time.Time          `form:"created,omitempty" json:"created,omitempty"`
 	Customer     *string             `form:"customer,omitempty" json:"customer,omitempty"`
@@ -31317,6 +31354,9 @@ type MarketplaceResourcesCountParams struct {
 
 	// LimitBased Filter by limit-based offerings
 	LimitBased *bool `form:"limit_based,omitempty" json:"limit_based,omitempty"`
+
+	// LimitComponentCount Filter by exact number of limit-based components
+	LimitComponentCount *float32 `form:"limit_component_count,omitempty" json:"limit_component_count,omitempty"`
 
 	// Modified Modified after
 	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
@@ -89647,6 +89687,22 @@ func NewBookingResourcesListRequest(server string, params *BookingResourcesListP
 
 		}
 
+		if params.ComponentCount != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "component_count", runtime.ParamLocationQuery, *params.ComponentCount); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.ConnectedCustomerUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "connected_customer_uuid", runtime.ParamLocationQuery, *params.ConnectedCustomerUuid); err != nil {
@@ -89778,6 +89834,22 @@ func NewBookingResourcesListRequest(server string, params *BookingResourcesListP
 		if params.LimitBased != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "limit_based", runtime.ParamLocationQuery, *params.LimitBased); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.LimitComponentCount != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "limit_component_count", runtime.ParamLocationQuery, *params.LimitComponentCount); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -90288,6 +90360,22 @@ func NewBookingResourcesCountRequest(server string, params *BookingResourcesCoun
 
 		}
 
+		if params.ComponentCount != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "component_count", runtime.ParamLocationQuery, *params.ComponentCount); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.ConnectedCustomerUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "connected_customer_uuid", runtime.ParamLocationQuery, *params.ConnectedCustomerUuid); err != nil {
@@ -90403,6 +90491,22 @@ func NewBookingResourcesCountRequest(server string, params *BookingResourcesCoun
 		if params.LimitBased != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "limit_based", runtime.ParamLocationQuery, *params.LimitBased); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.LimitComponentCount != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "limit_component_count", runtime.ParamLocationQuery, *params.LimitComponentCount); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -136651,6 +136755,22 @@ func NewMarketplaceProviderResourcesListRequest(server string, params *Marketpla
 
 		}
 
+		if params.ComponentCount != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "component_count", runtime.ParamLocationQuery, *params.ComponentCount); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Created != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "created", runtime.ParamLocationQuery, *params.Created); err != nil {
@@ -136766,6 +136886,22 @@ func NewMarketplaceProviderResourcesListRequest(server string, params *Marketpla
 		if params.LimitBased != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "limit_based", runtime.ParamLocationQuery, *params.LimitBased); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.LimitComponentCount != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "limit_component_count", runtime.ParamLocationQuery, *params.LimitComponentCount); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -137276,6 +137412,22 @@ func NewMarketplaceProviderResourcesCountRequest(server string, params *Marketpl
 
 		}
 
+		if params.ComponentCount != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "component_count", runtime.ParamLocationQuery, *params.ComponentCount); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Created != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "created", runtime.ParamLocationQuery, *params.Created); err != nil {
@@ -137375,6 +137527,22 @@ func NewMarketplaceProviderResourcesCountRequest(server string, params *Marketpl
 		if params.LimitBased != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "limit_based", runtime.ParamLocationQuery, *params.LimitBased); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.LimitComponentCount != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "limit_component_count", runtime.ParamLocationQuery, *params.LimitComponentCount); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -141344,6 +141512,22 @@ func NewMarketplaceResourcesListRequest(server string, params *MarketplaceResour
 
 		}
 
+		if params.ComponentCount != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "component_count", runtime.ParamLocationQuery, *params.ComponentCount); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Created != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "created", runtime.ParamLocationQuery, *params.Created); err != nil {
@@ -141459,6 +141643,22 @@ func NewMarketplaceResourcesListRequest(server string, params *MarketplaceResour
 		if params.LimitBased != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "limit_based", runtime.ParamLocationQuery, *params.LimitBased); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.LimitComponentCount != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "limit_component_count", runtime.ParamLocationQuery, *params.LimitComponentCount); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -141969,6 +142169,22 @@ func NewMarketplaceResourcesCountRequest(server string, params *MarketplaceResou
 
 		}
 
+		if params.ComponentCount != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "component_count", runtime.ParamLocationQuery, *params.ComponentCount); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Created != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "created", runtime.ParamLocationQuery, *params.Created); err != nil {
@@ -142068,6 +142284,22 @@ func NewMarketplaceResourcesCountRequest(server string, params *MarketplaceResou
 		if params.LimitBased != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "limit_based", runtime.ParamLocationQuery, *params.LimitBased); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.LimitComponentCount != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "limit_component_count", runtime.ParamLocationQuery, *params.LimitComponentCount); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
