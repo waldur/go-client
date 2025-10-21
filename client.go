@@ -17185,7 +17185,7 @@ type OnboardingJustification struct {
 	User                    int                                     `json:"user"`
 
 	// UserJustification User's explanation for why they should be authorized
-	UserJustification  string                  `json:"user_justification"`
+	UserJustification  *string                 `json:"user_justification"`
 	Uuid               *openapi_types.UUID     `json:"uuid,omitempty"`
 	ValidatedAt        *time.Time              `json:"validated_at"`
 	ValidatedBy        *int                    `json:"validated_by"`
@@ -17196,7 +17196,7 @@ type OnboardingJustification struct {
 // OnboardingJustificationCreateRequest defines model for OnboardingJustificationCreateRequest.
 type OnboardingJustificationCreateRequest struct {
 	// UserJustification User's explanation for why they should be authorized
-	UserJustification string `json:"user_justification"`
+	UserJustification *string `json:"user_justification,omitempty"`
 
 	// VerificationUuid UUID of the OnboardingVerification to justify
 	VerificationUuid openapi_types.UUID `json:"verification_uuid"`
@@ -17236,8 +17236,8 @@ type OnboardingJustificationRequest struct {
 	User int `json:"user"`
 
 	// UserJustification User's explanation for why they should be authorized
-	UserJustification string `json:"user_justification"`
-	Verification      int    `json:"verification"`
+	UserJustification *string `json:"user_justification"`
+	Verification      int     `json:"verification"`
 }
 
 // OnboardingJustificationReviewRequest defines model for OnboardingJustificationReviewRequest.
@@ -20024,7 +20024,7 @@ type PatchedOnboardingJustificationRequest struct {
 	User *int `json:"user,omitempty"`
 
 	// UserJustification User's explanation for why they should be authorized
-	UserJustification *string `json:"user_justification,omitempty"`
+	UserJustification *string `json:"user_justification"`
 	Verification      *int    `json:"verification,omitempty"`
 }
 
