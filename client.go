@@ -6572,6 +6572,7 @@ const (
 	MarketplaceServiceProvidersProjectsListParamsFieldResourcesCount                       MarketplaceServiceProvidersProjectsListParamsField = "resources_count"
 	MarketplaceServiceProvidersProjectsListParamsFieldSlug                                 MarketplaceServiceProvidersProjectsListParamsField = "slug"
 	MarketplaceServiceProvidersProjectsListParamsFieldStartDate                            MarketplaceServiceProvidersProjectsListParamsField = "start_date"
+	MarketplaceServiceProvidersProjectsListParamsFieldTerminationMetadata                  MarketplaceServiceProvidersProjectsListParamsField = "termination_metadata"
 	MarketplaceServiceProvidersProjectsListParamsFieldType                                 MarketplaceServiceProvidersProjectsListParamsField = "type"
 	MarketplaceServiceProvidersProjectsListParamsFieldTypeName                             MarketplaceServiceProvidersProjectsListParamsField = "type_name"
 	MarketplaceServiceProvidersProjectsListParamsFieldTypeUuid                             MarketplaceServiceProvidersProjectsListParamsField = "type_uuid"
@@ -8427,6 +8428,7 @@ const (
 	ProjectsListParamsFieldResourcesCount                       ProjectsListParamsField = "resources_count"
 	ProjectsListParamsFieldSlug                                 ProjectsListParamsField = "slug"
 	ProjectsListParamsFieldStartDate                            ProjectsListParamsField = "start_date"
+	ProjectsListParamsFieldTerminationMetadata                  ProjectsListParamsField = "termination_metadata"
 	ProjectsListParamsFieldType                                 ProjectsListParamsField = "type"
 	ProjectsListParamsFieldTypeName                             ProjectsListParamsField = "type_name"
 	ProjectsListParamsFieldTypeUuid                             ProjectsListParamsField = "type_uuid"
@@ -8508,6 +8510,7 @@ const (
 	ProjectsRetrieveParamsFieldResourcesCount                       ProjectsRetrieveParamsField = "resources_count"
 	ProjectsRetrieveParamsFieldSlug                                 ProjectsRetrieveParamsField = "slug"
 	ProjectsRetrieveParamsFieldStartDate                            ProjectsRetrieveParamsField = "start_date"
+	ProjectsRetrieveParamsFieldTerminationMetadata                  ProjectsRetrieveParamsField = "termination_metadata"
 	ProjectsRetrieveParamsFieldType                                 ProjectsRetrieveParamsField = "type"
 	ProjectsRetrieveParamsFieldTypeName                             ProjectsRetrieveParamsField = "type_name"
 	ProjectsRetrieveParamsFieldTypeUuid                             ProjectsRetrieveParamsField = "type_uuid"
@@ -15415,6 +15418,9 @@ type MergedPluginOptions struct {
 	// EnableIssuesForMembershipChanges Enable issues for membership changes
 	EnableIssuesForMembershipChanges *bool `json:"enable_issues_for_membership_changes,omitempty"`
 
+	// EnablePurchaseOrderUpload If set to True, users will be able to upload purchase orders.
+	EnablePurchaseOrderUpload *bool `json:"enable_purchase_order_upload,omitempty"`
+
 	// FlavorsRegex Regular expression to limit flavors list
 	FlavorsRegex *string `json:"flavors_regex,omitempty"`
 
@@ -15490,11 +15496,11 @@ type MergedPluginOptions struct {
 	// OpenstackOfferingUuidList List of UUID of OpenStack offerings where tenant can be created
 	OpenstackOfferingUuidList *[]string `json:"openstack_offering_uuid_list,omitempty"`
 
-	// OrderSupportsCommentsAndMetadata If set to True, orders will support comments and metadata
-	OrderSupportsCommentsAndMetadata *bool `json:"order_supports_comments_and_metadata,omitempty"`
-
 	// ProjectPermanentDirectory HEAppE project permanent directory
 	ProjectPermanentDirectory *string `json:"project_permanent_directory,omitempty"`
+
+	// RequirePurchaseOrderUpload If set to True, users will be required to upload purchase orders.
+	RequirePurchaseOrderUpload *bool `json:"require_purchase_order_upload,omitempty"`
 
 	// RequiredTeamRoleForProvisioning Required user role in a project for provisioning of resources
 	RequiredTeamRoleForProvisioning *string `json:"required_team_role_for_provisioning,omitempty"`
@@ -15558,6 +15564,9 @@ type MergedPluginOptionsRequest struct {
 	// EnableIssuesForMembershipChanges Enable issues for membership changes
 	EnableIssuesForMembershipChanges *bool `json:"enable_issues_for_membership_changes,omitempty"`
 
+	// EnablePurchaseOrderUpload If set to True, users will be able to upload purchase orders.
+	EnablePurchaseOrderUpload *bool `json:"enable_purchase_order_upload,omitempty"`
+
 	// FlavorsRegex Regular expression to limit flavors list
 	FlavorsRegex *string `json:"flavors_regex,omitempty"`
 
@@ -15633,11 +15642,11 @@ type MergedPluginOptionsRequest struct {
 	// OpenstackOfferingUuidList List of UUID of OpenStack offerings where tenant can be created
 	OpenstackOfferingUuidList *[]string `json:"openstack_offering_uuid_list,omitempty"`
 
-	// OrderSupportsCommentsAndMetadata If set to True, orders will support comments and metadata
-	OrderSupportsCommentsAndMetadata *bool `json:"order_supports_comments_and_metadata,omitempty"`
-
 	// ProjectPermanentDirectory HEAppE project permanent directory
 	ProjectPermanentDirectory *string `json:"project_permanent_directory,omitempty"`
+
+	// RequirePurchaseOrderUpload If set to True, users will be required to upload purchase orders.
+	RequirePurchaseOrderUpload *bool `json:"require_purchase_order_upload,omitempty"`
 
 	// RequiredTeamRoleForProvisioning Required user role in a project for provisioning of resources
 	RequiredTeamRoleForProvisioning *string `json:"required_team_role_for_provisioning,omitempty"`
@@ -21038,19 +21047,20 @@ type Project struct {
 	MarketplaceResourceCount             *map[string]int      `json:"marketplace_resource_count,omitempty"`
 
 	// MaxServiceAccounts Maximum number of service accounts allowed
-	MaxServiceAccounts *int                     `json:"max_service_accounts"`
-	Name               *string                  `json:"name,omitempty"`
-	OecdFos2007Code    *Project_OecdFos2007Code `json:"oecd_fos_2007_code"`
-	OecdFos2007Label   *string                  `json:"oecd_fos_2007_label,omitempty"`
-	ProjectCredit      *float64                 `json:"project_credit"`
-	ResourcesCount     *int                     `json:"resources_count,omitempty"`
-	Slug               *string                  `json:"slug,omitempty"`
-	StartDate          *openapi_types.Date      `json:"start_date"`
-	Type               *string                  `json:"type"`
-	TypeName           *string                  `json:"type_name"`
-	TypeUuid           *openapi_types.UUID      `json:"type_uuid"`
-	Url                *string                  `json:"url,omitempty"`
-	Uuid               *openapi_types.UUID      `json:"uuid,omitempty"`
+	MaxServiceAccounts  *int                     `json:"max_service_accounts"`
+	Name                *string                  `json:"name,omitempty"`
+	OecdFos2007Code     *Project_OecdFos2007Code `json:"oecd_fos_2007_code"`
+	OecdFos2007Label    *string                  `json:"oecd_fos_2007_label,omitempty"`
+	ProjectCredit       *float64                 `json:"project_credit"`
+	ResourcesCount      *int                     `json:"resources_count,omitempty"`
+	Slug                *string                  `json:"slug,omitempty"`
+	StartDate           *openapi_types.Date      `json:"start_date"`
+	TerminationMetadata interface{}              `json:"termination_metadata"`
+	Type                *string                  `json:"type"`
+	TypeName            *string                  `json:"type_name"`
+	TypeUuid            *openapi_types.UUID      `json:"type_uuid"`
+	Url                 *string                  `json:"url,omitempty"`
+	Uuid                *openapi_types.UUID      `json:"uuid,omitempty"`
 }
 
 // Project_OecdFos2007Code defines model for Project.OecdFos2007Code.
@@ -21227,6 +21237,15 @@ type ProjectQuotas struct {
 	CustomerName         *string `json:"customer_name,omitempty"`
 	ProjectName          *string `json:"project_name,omitempty"`
 	Value                *int    `json:"value,omitempty"`
+}
+
+// ProjectRecoveryRequest defines model for ProjectRecoveryRequest.
+type ProjectRecoveryRequest struct {
+	// RestoreTeamMembers Whether to automatically restore team members who had access before project deletion (staff only)
+	RestoreTeamMembers *bool `json:"restore_team_members,omitempty"`
+
+	// SendInvitationsToPreviousMembers Whether to send invitations to users who had access before project deletion
+	SendInvitationsToPreviousMembers *bool `json:"send_invitations_to_previous_members,omitempty"`
 }
 
 // ProjectRequest defines model for ProjectRequest.
@@ -28866,11 +28885,13 @@ type MarketplaceCategoryHelpArticlesCountParams struct {
 
 // MarketplaceComponentUsagesListParams defines parameters for MarketplaceComponentUsagesList.
 type MarketplaceComponentUsagesListParams struct {
-	BillingPeriod *openapi_types.Date                          `form:"billing_period,omitempty" json:"billing_period,omitempty"`
-	CustomerUuid  *openapi_types.UUID                          `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	DateAfter     *openapi_types.Date                          `form:"date_after,omitempty" json:"date_after,omitempty"`
-	DateBefore    *openapi_types.Date                          `form:"date_before,omitempty" json:"date_before,omitempty"`
-	Field         *[]MarketplaceComponentUsagesListParamsField `form:"field,omitempty" json:"field,omitempty"`
+	BillingPeriod      *openapi_types.Date                          `form:"billing_period,omitempty" json:"billing_period,omitempty"`
+	BillingPeriodMonth *float32                                     `form:"billing_period_month,omitempty" json:"billing_period_month,omitempty"`
+	BillingPeriodYear  *float32                                     `form:"billing_period_year,omitempty" json:"billing_period_year,omitempty"`
+	CustomerUuid       *openapi_types.UUID                          `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+	DateAfter          *openapi_types.Date                          `form:"date_after,omitempty" json:"date_after,omitempty"`
+	DateBefore         *openapi_types.Date                          `form:"date_before,omitempty" json:"date_before,omitempty"`
+	Field              *[]MarketplaceComponentUsagesListParamsField `form:"field,omitempty" json:"field,omitempty"`
 
 	// O Ordering
 	//
@@ -28896,10 +28917,12 @@ type MarketplaceComponentUsagesListParamsO string
 
 // MarketplaceComponentUsagesCountParams defines parameters for MarketplaceComponentUsagesCount.
 type MarketplaceComponentUsagesCountParams struct {
-	BillingPeriod *openapi_types.Date `form:"billing_period,omitempty" json:"billing_period,omitempty"`
-	CustomerUuid  *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	DateAfter     *openapi_types.Date `form:"date_after,omitempty" json:"date_after,omitempty"`
-	DateBefore    *openapi_types.Date `form:"date_before,omitempty" json:"date_before,omitempty"`
+	BillingPeriod      *openapi_types.Date `form:"billing_period,omitempty" json:"billing_period,omitempty"`
+	BillingPeriodMonth *float32            `form:"billing_period_month,omitempty" json:"billing_period_month,omitempty"`
+	BillingPeriodYear  *float32            `form:"billing_period_year,omitempty" json:"billing_period_year,omitempty"`
+	CustomerUuid       *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+	DateAfter          *openapi_types.Date `form:"date_after,omitempty" json:"date_after,omitempty"`
+	DateBefore         *openapi_types.Date `form:"date_before,omitempty" json:"date_before,omitempty"`
 
 	// O Ordering
 	//
@@ -38999,6 +39022,9 @@ type ProjectsDeleteUserJSONRequestBody = UserRoleDeleteRequest
 
 // ProjectsMoveProjectJSONRequestBody defines body for ProjectsMoveProject for application/json ContentType.
 type ProjectsMoveProjectJSONRequestBody = MoveProjectRequest
+
+// ProjectsRecoverJSONRequestBody defines body for ProjectsRecover for application/json ContentType.
+type ProjectsRecoverJSONRequestBody = ProjectRecoveryRequest
 
 // ProjectsSubmitAnswersJSONRequestBody defines body for ProjectsSubmitAnswers for application/json ContentType.
 type ProjectsSubmitAnswersJSONRequestBody = ProjectsSubmitAnswersJSONBody
@@ -49868,6 +49894,11 @@ type ClientInterface interface {
 	ProjectsMoveProjectWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	ProjectsMoveProject(ctx context.Context, uuid openapi_types.UUID, body ProjectsMoveProjectJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProjectsRecoverWithBody request with any body
+	ProjectsRecoverWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ProjectsRecover(ctx context.Context, uuid openapi_types.UUID, body ProjectsRecoverJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProjectsStatsRetrieve request
 	ProjectsStatsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *ProjectsStatsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -71038,6 +71069,30 @@ func (c *Client) ProjectsMoveProjectWithBody(ctx context.Context, uuid openapi_t
 
 func (c *Client) ProjectsMoveProject(ctx context.Context, uuid openapi_types.UUID, body ProjectsMoveProjectJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProjectsMoveProjectRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProjectsRecoverWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProjectsRecoverRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProjectsRecover(ctx context.Context, uuid openapi_types.UUID, body ProjectsRecoverJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProjectsRecoverRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -116528,6 +116583,38 @@ func NewMarketplaceComponentUsagesListRequest(server string, params *Marketplace
 
 		}
 
+		if params.BillingPeriodMonth != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "billing_period_month", runtime.ParamLocationQuery, *params.BillingPeriodMonth); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.BillingPeriodYear != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "billing_period_year", runtime.ParamLocationQuery, *params.BillingPeriodYear); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.CustomerUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer_uuid", runtime.ParamLocationQuery, *params.CustomerUuid); err != nil {
@@ -116756,6 +116843,38 @@ func NewMarketplaceComponentUsagesCountRequest(server string, params *Marketplac
 		if params.BillingPeriod != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "billing_period", runtime.ParamLocationQuery, *params.BillingPeriod); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.BillingPeriodMonth != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "billing_period_month", runtime.ParamLocationQuery, *params.BillingPeriodMonth); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.BillingPeriodYear != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "billing_period_year", runtime.ParamLocationQuery, *params.BillingPeriodYear); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -181513,6 +181632,53 @@ func NewProjectsMoveProjectRequestWithBody(server string, uuid openapi_types.UUI
 	return req, nil
 }
 
+// NewProjectsRecoverRequest calls the generic ProjectsRecover builder with application/json body
+func NewProjectsRecoverRequest(server string, uuid openapi_types.UUID, body ProjectsRecoverJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewProjectsRecoverRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewProjectsRecoverRequestWithBody generates requests for ProjectsRecover with any type of body
+func NewProjectsRecoverRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/projects/%s/recover/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewProjectsStatsRetrieveRequest generates requests for ProjectsStatsRetrieve
 func NewProjectsStatsRetrieveRequest(server string, uuid openapi_types.UUID, params *ProjectsStatsRetrieveParams) (*http.Request, error) {
 	var err error
@@ -220939,6 +221105,11 @@ type ClientWithResponsesInterface interface {
 
 	ProjectsMoveProjectWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProjectsMoveProjectJSONRequestBody, reqEditors ...RequestEditorFn) (*ProjectsMoveProjectResponse, error)
 
+	// ProjectsRecoverWithBodyWithResponse request with any body
+	ProjectsRecoverWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProjectsRecoverResponse, error)
+
+	ProjectsRecoverWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProjectsRecoverJSONRequestBody, reqEditors ...RequestEditorFn) (*ProjectsRecoverResponse, error)
+
 	// ProjectsStatsRetrieveWithResponse request
 	ProjectsStatsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProjectsStatsRetrieveParams, reqEditors ...RequestEditorFn) (*ProjectsStatsRetrieveResponse, error)
 
@@ -226290,6 +226461,9 @@ type CallManagingOrganisationsAddUserResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON201      *UserRoleExpirationTime
+	JSON400      *struct {
+		NonFieldErrors *[]string `json:"non_field_errors,omitempty"`
+	}
 }
 
 // Status returns HTTPResponse.Status
@@ -228267,6 +228441,9 @@ type CustomersAddUserResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON201      *UserRoleExpirationTime
+	JSON400      *struct {
+		NonFieldErrors *[]string `json:"non_field_errors,omitempty"`
+	}
 }
 
 // Status returns HTTPResponse.Status
@@ -237143,6 +237320,9 @@ type MarketplaceProviderOfferingsAddUserResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON201      *UserRoleExpirationTime
+	JSON400      *struct {
+		NonFieldErrors *[]string `json:"non_field_errors,omitempty"`
+	}
 }
 
 // Status returns HTTPResponse.Status
@@ -240939,6 +241119,9 @@ type MarketplaceServiceProvidersAddUserResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON201      *UserRoleExpirationTime
+	JSON400      *struct {
+		NonFieldErrors *[]string `json:"non_field_errors,omitempty"`
+	}
 }
 
 // Status returns HTTPResponse.Status
@@ -248586,6 +248769,9 @@ type ProjectsAddUserResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON201      *UserRoleExpirationTime
+	JSON400      *struct {
+		NonFieldErrors *[]string `json:"non_field_errors,omitempty"`
+	}
 }
 
 // Status returns HTTPResponse.Status
@@ -248699,6 +248885,9 @@ type ProjectsMoveProjectResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *Project
+	JSON400      *struct {
+		NonFieldErrors *[]string `json:"non_field_errors,omitempty"`
+	}
 }
 
 // Status returns HTTPResponse.Status
@@ -248711,6 +248900,28 @@ func (r ProjectsMoveProjectResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r ProjectsMoveProjectResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ProjectsRecoverResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *Project
+}
+
+// Status returns HTTPResponse.Status
+func (r ProjectsRecoverResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProjectsRecoverResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -249157,6 +249368,9 @@ type ProposalProposalsAddUserResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON201      *UserRoleExpirationTime
+	JSON400      *struct {
+		NonFieldErrors *[]string `json:"non_field_errors,omitempty"`
+	}
 }
 
 // Status returns HTTPResponse.Status
@@ -249774,6 +249988,9 @@ type ProposalProtectedCallsAddUserResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON201      *UserRoleExpirationTime
+	JSON400      *struct {
+		NonFieldErrors *[]string `json:"non_field_errors,omitempty"`
+	}
 }
 
 // Status returns HTTPResponse.Status
@@ -272238,6 +272455,23 @@ func (c *ClientWithResponses) ProjectsMoveProjectWithResponse(ctx context.Contex
 	return ParseProjectsMoveProjectResponse(rsp)
 }
 
+// ProjectsRecoverWithBodyWithResponse request with arbitrary body returning *ProjectsRecoverResponse
+func (c *ClientWithResponses) ProjectsRecoverWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProjectsRecoverResponse, error) {
+	rsp, err := c.ProjectsRecoverWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProjectsRecoverResponse(rsp)
+}
+
+func (c *ClientWithResponses) ProjectsRecoverWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProjectsRecoverJSONRequestBody, reqEditors ...RequestEditorFn) (*ProjectsRecoverResponse, error) {
+	rsp, err := c.ProjectsRecover(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProjectsRecoverResponse(rsp)
+}
+
 // ProjectsStatsRetrieveWithResponse request returning *ProjectsStatsRetrieveResponse
 func (c *ClientWithResponses) ProjectsStatsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProjectsStatsRetrieveParams, reqEditors ...RequestEditorFn) (*ProjectsStatsRetrieveResponse, error) {
 	rsp, err := c.ProjectsStatsRetrieve(ctx, uuid, params, reqEditors...)
@@ -281021,6 +281255,15 @@ func ParseCallManagingOrganisationsAddUserResponse(rsp *http.Response) (*CallMan
 		}
 		response.JSON201 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest struct {
+			NonFieldErrors *[]string `json:"non_field_errors,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
 	}
 
 	return response, nil
@@ -283136,6 +283379,15 @@ func ParseCustomersAddUserResponse(rsp *http.Response) (*CustomersAddUserRespons
 			return nil, err
 		}
 		response.JSON201 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest struct {
+			NonFieldErrors *[]string `json:"non_field_errors,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
 
 	}
 
@@ -292324,6 +292576,15 @@ func ParseMarketplaceProviderOfferingsAddUserResponse(rsp *http.Response) (*Mark
 		}
 		response.JSON201 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest struct {
+			NonFieldErrors *[]string `json:"non_field_errors,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
 	}
 
 	return response, nil
@@ -296330,6 +296591,15 @@ func ParseMarketplaceServiceProvidersAddUserResponse(rsp *http.Response) (*Marke
 			return nil, err
 		}
 		response.JSON201 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest struct {
+			NonFieldErrors *[]string `json:"non_field_errors,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
 
 	}
 
@@ -304113,6 +304383,15 @@ func ParseProjectsAddUserResponse(rsp *http.Response) (*ProjectsAddUserResponse,
 		}
 		response.JSON201 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest struct {
+			NonFieldErrors *[]string `json:"non_field_errors,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
 	}
 
 	return response, nil
@@ -304249,6 +304528,41 @@ func ParseProjectsMoveProjectResponse(rsp *http.Response) (*ProjectsMoveProjectR
 	}
 
 	response := &ProjectsMoveProjectResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest Project
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest struct {
+			NonFieldErrors *[]string `json:"non_field_errors,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseProjectsRecoverResponse parses an HTTP response from a ProjectsRecoverWithResponse call
+func ParseProjectsRecoverResponse(rsp *http.Response) (*ProjectsRecoverResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProjectsRecoverResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -304757,6 +305071,15 @@ func ParseProposalProposalsAddUserResponse(rsp *http.Response) (*ProposalProposa
 			return nil, err
 		}
 		response.JSON201 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest struct {
+			NonFieldErrors *[]string `json:"non_field_errors,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
 
 	}
 
@@ -305465,6 +305788,15 @@ func ParseProposalProtectedCallsAddUserResponse(rsp *http.Response) (*ProposalPr
 			return nil, err
 		}
 		response.JSON201 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest struct {
+			NonFieldErrors *[]string `json:"non_field_errors,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
 
 	}
 
