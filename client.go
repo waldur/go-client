@@ -17176,8 +17176,10 @@ type OnboardingCompanyValidationRequestRequest struct {
 
 // OnboardingJustification defines model for OnboardingJustification.
 type OnboardingJustification struct {
-	Created  *time.Time `json:"created,omitempty"`
-	Modified *time.Time `json:"modified,omitempty"`
+	Created               *time.Time `json:"created,omitempty"`
+	LegalName             *string    `json:"legal_name,omitempty"`
+	LegalPersonIdentifier *string    `json:"legal_person_identifier,omitempty"`
+	Modified              *time.Time `json:"modified,omitempty"`
 
 	// StaffNotes Administrator notes on the review decision
 	StaffNotes              *string                                 `json:"staff_notes,omitempty"`
