@@ -4599,6 +4599,7 @@ const (
 	MarketplaceOrdersListParamsFieldState                      MarketplaceOrdersListParamsField = "state"
 	MarketplaceOrdersListParamsFieldTerminationComment         MarketplaceOrdersListParamsField = "termination_comment"
 	MarketplaceOrdersListParamsFieldType                       MarketplaceOrdersListParamsField = "type"
+	MarketplaceOrdersListParamsFieldUrl                        MarketplaceOrdersListParamsField = "url"
 	MarketplaceOrdersListParamsFieldUuid                       MarketplaceOrdersListParamsField = "uuid"
 )
 
@@ -4736,6 +4737,7 @@ const (
 	MarketplaceOrdersRetrieveParamsFieldState                      MarketplaceOrdersRetrieveParamsField = "state"
 	MarketplaceOrdersRetrieveParamsFieldTerminationComment         MarketplaceOrdersRetrieveParamsField = "termination_comment"
 	MarketplaceOrdersRetrieveParamsFieldType                       MarketplaceOrdersRetrieveParamsField = "type"
+	MarketplaceOrdersRetrieveParamsFieldUrl                        MarketplaceOrdersRetrieveParamsField = "url"
 	MarketplaceOrdersRetrieveParamsFieldUuid                       MarketplaceOrdersRetrieveParamsField = "uuid"
 )
 
@@ -11667,13 +11669,14 @@ type BaseComponentUsage struct {
 // BaseProviderPlan defines model for BaseProviderPlan.
 type BaseProviderPlan struct {
 	// Archived Forbids creation of new resources.
-	Archived     *bool               `json:"archived,omitempty"`
-	ArticleCode  *string             `json:"article_code,omitempty"`
-	BackendId    *string             `json:"backend_id,omitempty"`
-	Description  *string             `json:"description,omitempty"`
-	FuturePrices *map[string]float64 `json:"future_prices,omitempty"`
-	InitPrice    *float64            `json:"init_price,omitempty"`
-	IsActive     *bool               `json:"is_active,omitempty"`
+	Archived     *bool                  `json:"archived,omitempty"`
+	ArticleCode  *string                `json:"article_code,omitempty"`
+	BackendId    *string                `json:"backend_id,omitempty"`
+	Components   *[]NestedPlanComponent `json:"components,omitempty"`
+	Description  *string                `json:"description,omitempty"`
+	FuturePrices *map[string]float64    `json:"future_prices,omitempty"`
+	InitPrice    *float64               `json:"init_price,omitempty"`
+	IsActive     *bool                  `json:"is_active,omitempty"`
 
 	// MaxAmount Maximum number of plans that could be active. Plan is disabled when maximum amount is reached.
 	MaxAmount          *int                 `json:"max_amount"`
@@ -11709,13 +11712,14 @@ type BaseProviderPlanRequest struct {
 // BasePublicPlan defines model for BasePublicPlan.
 type BasePublicPlan struct {
 	// Archived Forbids creation of new resources.
-	Archived     *bool               `json:"archived,omitempty"`
-	ArticleCode  *string             `json:"article_code,omitempty"`
-	BackendId    *string             `json:"backend_id,omitempty"`
-	Description  *string             `json:"description,omitempty"`
-	FuturePrices *map[string]float64 `json:"future_prices,omitempty"`
-	InitPrice    *float64            `json:"init_price,omitempty"`
-	IsActive     *bool               `json:"is_active,omitempty"`
+	Archived     *bool                  `json:"archived,omitempty"`
+	ArticleCode  *string                `json:"article_code,omitempty"`
+	BackendId    *string                `json:"backend_id,omitempty"`
+	Components   *[]NestedPlanComponent `json:"components,omitempty"`
+	Description  *string                `json:"description,omitempty"`
+	FuturePrices *map[string]float64    `json:"future_prices,omitempty"`
+	InitPrice    *float64               `json:"init_price,omitempty"`
+	IsActive     *bool                  `json:"is_active,omitempty"`
 
 	// MaxAmount Maximum number of plans that could be active. Plan is disabled when maximum amount is reached.
 	MaxAmount          *int                 `json:"max_amount"`
@@ -13969,8 +13973,23 @@ type DigitalOceanSize struct {
 // DirectionEnum defines model for DirectionEnum.
 type DirectionEnum string
 
+// DiscountConfigRequest defines model for DiscountConfigRequest.
+type DiscountConfigRequest struct {
+	// DiscountRate Discount rate in percentage (0-100).
+	DiscountRate *int `json:"discount_rate"`
+
+	// DiscountThreshold Minimum quantity to be eligible for discount.
+	DiscountThreshold *int `json:"discount_threshold"`
+}
+
 // DiscountTypeEnum defines model for DiscountTypeEnum.
 type DiscountTypeEnum string
+
+// DiscountsUpdateRequest defines model for DiscountsUpdateRequest.
+type DiscountsUpdateRequest struct {
+	// Discounts Dictionary mapping component types to their discount configuration.
+	Discounts map[string]DiscountConfigRequest `json:"discounts"`
+}
 
 // DiskFormatEnum defines model for DiskFormatEnum.
 type DiskFormatEnum string
@@ -15406,6 +15425,9 @@ type MergedPluginOptions struct {
 	// ConcealBillingData If set to True, pricing and components tab would be concealed.
 	ConcealBillingData *bool `json:"conceal_billing_data,omitempty"`
 
+	// CreateOrdersOnResourceOptionChange If set to True, create orders when options of related resources are changed.
+	CreateOrdersOnResourceOptionChange *bool `json:"create_orders_on_resource_option_change,omitempty"`
+
 	// DefaultInternalNetworkMtu If set, it will be used as a default MTU for the first network in a tenant
 	DefaultInternalNetworkMtu *int `json:"default_internal_network_mtu,omitempty"`
 
@@ -15551,6 +15573,9 @@ type MergedPluginOptionsRequest struct {
 
 	// ConcealBillingData If set to True, pricing and components tab would be concealed.
 	ConcealBillingData *bool `json:"conceal_billing_data,omitempty"`
+
+	// CreateOrdersOnResourceOptionChange If set to True, create orders when options of related resources are changed.
+	CreateOrdersOnResourceOptionChange *bool `json:"create_orders_on_resource_option_change,omitempty"`
 
 	// DefaultInternalNetworkMtu If set, it will be used as a default MTU for the first network in a tenant
 	DefaultInternalNetworkMtu *int `json:"default_internal_network_mtu,omitempty"`
@@ -16131,6 +16156,28 @@ type NestedOfferingFile struct {
 	Created *time.Time `json:"created,omitempty"`
 	File    *string    `json:"file,omitempty"`
 	Name    *string    `json:"name,omitempty"`
+}
+
+// NestedPlanComponent defines model for NestedPlanComponent.
+type NestedPlanComponent struct {
+	Amount *int `json:"amount,omitempty"`
+
+	// DiscountRate Discount rate in percentage.
+	DiscountRate *int `json:"discount_rate"`
+
+	// DiscountThreshold Minimum amount to be eligible for discount.
+	DiscountThreshold *int    `json:"discount_threshold"`
+	FuturePrice       *string `json:"future_price"`
+
+	// MeasuredUnit Unit of measurement, for example, GB.
+	MeasuredUnit *string `json:"measured_unit,omitempty"`
+
+	// Name Display name for the measured unit, for example, Floating IP.
+	Name  *string `json:"name,omitempty"`
+	Price *string `json:"price,omitempty"`
+
+	// Type Unique internal name of the measured unit, for example floating_ip.
+	Type *string `json:"type,omitempty"`
 }
 
 // NestedPriceEstimate defines model for NestedPriceEstimate.
@@ -19288,6 +19335,7 @@ type OrderDetails struct {
 	State                      *OrderState         `json:"state,omitempty"`
 	TerminationComment         *string             `json:"termination_comment"`
 	Type                       *RequestTypes       `json:"type,omitempty"`
+	Url                        *string             `json:"url,omitempty"`
 	Uuid                       *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
@@ -20967,7 +21015,13 @@ type PlanComponent struct {
 
 	// ComponentName Display name for the measured unit, for example, Floating IP.
 	ComponentName *string `json:"component_name,omitempty"`
-	FuturePrice   *string `json:"future_price"`
+
+	// DiscountRate Discount rate in percentage.
+	DiscountRate *int `json:"discount_rate"`
+
+	// DiscountThreshold Minimum amount to be eligible for discount.
+	DiscountThreshold *int    `json:"discount_threshold"`
+	FuturePrice       *string `json:"future_price"`
 
 	// MeasuredUnit Unit of measurement, for example, GB.
 	MeasuredUnit *string      `json:"measured_unit,omitempty"`
@@ -21820,13 +21874,14 @@ type ProviderOfferingDetails_Country struct {
 // ProviderPlanDetails defines model for ProviderPlanDetails.
 type ProviderPlanDetails struct {
 	// Archived Forbids creation of new resources.
-	Archived     *bool               `json:"archived,omitempty"`
-	ArticleCode  *string             `json:"article_code,omitempty"`
-	BackendId    *string             `json:"backend_id,omitempty"`
-	Description  *string             `json:"description,omitempty"`
-	FuturePrices *map[string]float64 `json:"future_prices,omitempty"`
-	InitPrice    *float64            `json:"init_price,omitempty"`
-	IsActive     *bool               `json:"is_active,omitempty"`
+	Archived     *bool                  `json:"archived,omitempty"`
+	ArticleCode  *string                `json:"article_code,omitempty"`
+	BackendId    *string                `json:"backend_id,omitempty"`
+	Components   *[]NestedPlanComponent `json:"components,omitempty"`
+	Description  *string                `json:"description,omitempty"`
+	FuturePrices *map[string]float64    `json:"future_prices,omitempty"`
+	InitPrice    *float64               `json:"init_price,omitempty"`
+	IsActive     *bool                  `json:"is_active,omitempty"`
 
 	// MaxAmount Maximum number of plans that could be active. Plan is disabled when maximum amount is reached.
 	MaxAmount          *int                 `json:"max_amount"`
@@ -38333,6 +38388,9 @@ type MarketplacePlansPartialUpdateJSONRequestBody = PatchedProviderPlanDetailsRe
 // MarketplacePlansUpdateJSONRequestBody defines body for MarketplacePlansUpdate for application/json ContentType.
 type MarketplacePlansUpdateJSONRequestBody = ProviderPlanDetailsRequest
 
+// MarketplacePlansUpdateDiscountsJSONRequestBody defines body for MarketplacePlansUpdateDiscounts for application/json ContentType.
+type MarketplacePlansUpdateDiscountsJSONRequestBody = DiscountsUpdateRequest
+
 // MarketplacePlansUpdateOrganizationGroupsJSONRequestBody defines body for MarketplacePlansUpdateOrganizationGroups for application/json ContentType.
 type MarketplacePlansUpdateOrganizationGroupsJSONRequestBody = OrganizationGroupsRequest
 
@@ -47756,6 +47814,11 @@ type ClientInterface interface {
 
 	// MarketplacePlansDeleteOrganizationGroups request
 	MarketplacePlansDeleteOrganizationGroups(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplacePlansUpdateDiscountsWithBody request with any body
+	MarketplacePlansUpdateDiscountsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplacePlansUpdateDiscounts(ctx context.Context, uuid openapi_types.UUID, body MarketplacePlansUpdateDiscountsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplacePlansUpdateOrganizationGroupsWithBody request with any body
 	MarketplacePlansUpdateOrganizationGroupsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -61661,6 +61724,30 @@ func (c *Client) MarketplacePlansArchive(ctx context.Context, uuid openapi_types
 
 func (c *Client) MarketplacePlansDeleteOrganizationGroups(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplacePlansDeleteOrganizationGroupsRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplacePlansUpdateDiscountsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplacePlansUpdateDiscountsRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplacePlansUpdateDiscounts(ctx context.Context, uuid openapi_types.UUID, body MarketplacePlansUpdateDiscountsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplacePlansUpdateDiscountsRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -128737,6 +128824,53 @@ func NewMarketplacePlansDeleteOrganizationGroupsRequest(server string, uuid open
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewMarketplacePlansUpdateDiscountsRequest calls the generic MarketplacePlansUpdateDiscounts builder with application/json body
+func NewMarketplacePlansUpdateDiscountsRequest(server string, uuid openapi_types.UUID, body MarketplacePlansUpdateDiscountsJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplacePlansUpdateDiscountsRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplacePlansUpdateDiscountsRequestWithBody generates requests for MarketplacePlansUpdateDiscounts with any type of body
+func NewMarketplacePlansUpdateDiscountsRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-plans/%s/update_discounts/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -218967,6 +219101,11 @@ type ClientWithResponsesInterface interface {
 	// MarketplacePlansDeleteOrganizationGroupsWithResponse request
 	MarketplacePlansDeleteOrganizationGroupsWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplacePlansDeleteOrganizationGroupsResponse, error)
 
+	// MarketplacePlansUpdateDiscountsWithBodyWithResponse request with any body
+	MarketplacePlansUpdateDiscountsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplacePlansUpdateDiscountsResponse, error)
+
+	MarketplacePlansUpdateDiscountsWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplacePlansUpdateDiscountsJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplacePlansUpdateDiscountsResponse, error)
+
 	// MarketplacePlansUpdateOrganizationGroupsWithBodyWithResponse request with any body
 	MarketplacePlansUpdateOrganizationGroupsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplacePlansUpdateOrganizationGroupsResponse, error)
 
@@ -236554,6 +236693,27 @@ func (r MarketplacePlansDeleteOrganizationGroupsResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplacePlansDeleteOrganizationGroupsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplacePlansUpdateDiscountsResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplacePlansUpdateDiscountsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplacePlansUpdateDiscountsResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -265613,6 +265773,23 @@ func (c *ClientWithResponses) MarketplacePlansDeleteOrganizationGroupsWithRespon
 	return ParseMarketplacePlansDeleteOrganizationGroupsResponse(rsp)
 }
 
+// MarketplacePlansUpdateDiscountsWithBodyWithResponse request with arbitrary body returning *MarketplacePlansUpdateDiscountsResponse
+func (c *ClientWithResponses) MarketplacePlansUpdateDiscountsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplacePlansUpdateDiscountsResponse, error) {
+	rsp, err := c.MarketplacePlansUpdateDiscountsWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplacePlansUpdateDiscountsResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplacePlansUpdateDiscountsWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplacePlansUpdateDiscountsJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplacePlansUpdateDiscountsResponse, error) {
+	rsp, err := c.MarketplacePlansUpdateDiscounts(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplacePlansUpdateDiscountsResponse(rsp)
+}
+
 // MarketplacePlansUpdateOrganizationGroupsWithBodyWithResponse request with arbitrary body returning *MarketplacePlansUpdateOrganizationGroupsResponse
 func (c *ClientWithResponses) MarketplacePlansUpdateOrganizationGroupsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplacePlansUpdateOrganizationGroupsResponse, error) {
 	rsp, err := c.MarketplacePlansUpdateOrganizationGroupsWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -291778,6 +291955,22 @@ func ParseMarketplacePlansDeleteOrganizationGroupsResponse(rsp *http.Response) (
 	}
 
 	response := &MarketplacePlansDeleteOrganizationGroupsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplacePlansUpdateDiscountsResponse parses an HTTP response from a MarketplacePlansUpdateDiscountsWithResponse call
+func ParseMarketplacePlansUpdateDiscountsResponse(rsp *http.Response) (*MarketplacePlansUpdateDiscountsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplacePlansUpdateDiscountsResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
