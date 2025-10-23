@@ -10242,6 +10242,7 @@ const (
 	UsersListParamsFieldIdentityProviderName          UsersListParamsField = "identity_provider_name"
 	UsersListParamsFieldIdentitySource                UsersListParamsField = "identity_source"
 	UsersListParamsFieldImage                         UsersListParamsField = "image"
+	UsersListParamsFieldIpAddress                     UsersListParamsField = "ip_address"
 	UsersListParamsFieldIsActive                      UsersListParamsField = "is_active"
 	UsersListParamsFieldIsStaff                       UsersListParamsField = "is_staff"
 	UsersListParamsFieldIsSupport                     UsersListParamsField = "is_support"
@@ -10338,6 +10339,7 @@ const (
 	UsersMeRetrieveParamsFieldIdentityProviderName          UsersMeRetrieveParamsField = "identity_provider_name"
 	UsersMeRetrieveParamsFieldIdentitySource                UsersMeRetrieveParamsField = "identity_source"
 	UsersMeRetrieveParamsFieldImage                         UsersMeRetrieveParamsField = "image"
+	UsersMeRetrieveParamsFieldIpAddress                     UsersMeRetrieveParamsField = "ip_address"
 	UsersMeRetrieveParamsFieldIsActive                      UsersMeRetrieveParamsField = "is_active"
 	UsersMeRetrieveParamsFieldIsStaff                       UsersMeRetrieveParamsField = "is_staff"
 	UsersMeRetrieveParamsFieldIsSupport                     UsersMeRetrieveParamsField = "is_support"
@@ -10378,6 +10380,7 @@ const (
 	UsersRetrieveParamsFieldIdentityProviderName          UsersRetrieveParamsField = "identity_provider_name"
 	UsersRetrieveParamsFieldIdentitySource                UsersRetrieveParamsField = "identity_source"
 	UsersRetrieveParamsFieldImage                         UsersRetrieveParamsField = "image"
+	UsersRetrieveParamsFieldIpAddress                     UsersRetrieveParamsField = "ip_address"
 	UsersRetrieveParamsFieldIsActive                      UsersRetrieveParamsField = "is_active"
 	UsersRetrieveParamsFieldIsStaff                       UsersRetrieveParamsField = "is_staff"
 	UsersRetrieveParamsFieldIsSupport                     UsersRetrieveParamsField = "is_support"
@@ -12653,6 +12656,7 @@ type ConstanceSettings struct {
 	ATLASSIANUSERNAME                              *string              `json:"ATLASSIAN_USERNAME,omitempty"`
 	ATLASSIANUSEOLDAPI                             *bool                `json:"ATLASSIAN_USE_OLD_API,omitempty"`
 	ATLASSIANVERIFYSSL                             *bool                `json:"ATLASSIAN_VERIFY_SSL,omitempty"`
+	ATLASSIANWALDURBACKENDIDFIELD                  *string              `json:"ATLASSIAN_WALDUR_BACKEND_ID_FIELD,omitempty"`
 	AUTOAPPROVEUSERTOS                             *bool                `json:"AUTO_APPROVE_USER_TOS,omitempty"`
 	BRANDCOLOR                                     *string              `json:"BRAND_COLOR,omitempty"`
 	CALLMANAGEMENTHEROIMAGE                        *string              `json:"CALL_MANAGEMENT_HERO_IMAGE"`
@@ -12799,6 +12803,7 @@ type ConstanceSettingsRequest struct {
 	ATLASSIANUSERNAME                              *string              `json:"ATLASSIAN_USERNAME,omitempty"`
 	ATLASSIANUSEOLDAPI                             *bool                `json:"ATLASSIAN_USE_OLD_API,omitempty"`
 	ATLASSIANVERIFYSSL                             *bool                `json:"ATLASSIAN_VERIFY_SSL,omitempty"`
+	ATLASSIANWALDURBACKENDIDFIELD                  *string              `json:"ATLASSIAN_WALDUR_BACKEND_ID_FIELD,omitempty"`
 	AUTOAPPROVEUSERTOS                             *bool                `json:"AUTO_APPROVE_USER_TOS,omitempty"`
 	BRANDCOLOR                                     *string              `json:"BRAND_COLOR,omitempty"`
 	CALLMANAGEMENTHEROIMAGE                        *openapi_types.File  `json:"CALL_MANAGEMENT_HERO_IMAGE"`
@@ -12945,6 +12950,7 @@ type ConstanceSettingsRequestForm struct {
 	ATLASSIANUSERNAME                              *string              `json:"ATLASSIAN_USERNAME,omitempty"`
 	ATLASSIANUSEOLDAPI                             *bool                `json:"ATLASSIAN_USE_OLD_API,omitempty"`
 	ATLASSIANVERIFYSSL                             *bool                `json:"ATLASSIAN_VERIFY_SSL,omitempty"`
+	ATLASSIANWALDURBACKENDIDFIELD                  *string              `json:"ATLASSIAN_WALDUR_BACKEND_ID_FIELD,omitempty"`
 	AUTOAPPROVEUSERTOS                             *bool                `json:"AUTO_APPROVE_USER_TOS,omitempty"`
 	BRANDCOLOR                                     *string              `json:"BRAND_COLOR,omitempty"`
 	CALLMANAGEMENTHEROIMAGE                        *openapi_types.File  `json:"CALL_MANAGEMENT_HERO_IMAGE"`
@@ -13091,6 +13097,7 @@ type ConstanceSettingsRequestMultipart struct {
 	ATLASSIANUSERNAME                              *string              `json:"ATLASSIAN_USERNAME,omitempty"`
 	ATLASSIANUSEOLDAPI                             *bool                `json:"ATLASSIAN_USE_OLD_API,omitempty"`
 	ATLASSIANVERIFYSSL                             *bool                `json:"ATLASSIAN_VERIFY_SSL,omitempty"`
+	ATLASSIANWALDURBACKENDIDFIELD                  *string              `json:"ATLASSIAN_WALDUR_BACKEND_ID_FIELD,omitempty"`
 	AUTOAPPROVEUSERTOS                             *bool                `json:"AUTO_APPROVE_USER_TOS,omitempty"`
 	BRANDCOLOR                                     *string              `json:"BRAND_COLOR,omitempty"`
 	CALLMANAGEMENTHEROIMAGE                        *openapi_types.File  `json:"CALL_MANAGEMENT_HERO_IMAGE"`
@@ -24683,6 +24690,7 @@ type User struct {
 	// IdentitySource Indicates what identity provider was used.
 	IdentitySource *string `json:"identity_source,omitempty"`
 	Image          *string `json:"image"`
+	IpAddress      *string `json:"ip_address"`
 
 	// IsActive Designates whether this user should be treated as active. Unselect this instead of deleting accounts.
 	IsActive *bool `json:"is_active,omitempty"`
