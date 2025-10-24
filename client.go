@@ -4598,6 +4598,7 @@ const (
 	MarketplaceOrdersListParamsFieldResourceName               MarketplaceOrdersListParamsField = "resource_name"
 	MarketplaceOrdersListParamsFieldResourceType               MarketplaceOrdersListParamsField = "resource_type"
 	MarketplaceOrdersListParamsFieldResourceUuid               MarketplaceOrdersListParamsField = "resource_uuid"
+	MarketplaceOrdersListParamsFieldStartDate                  MarketplaceOrdersListParamsField = "start_date"
 	MarketplaceOrdersListParamsFieldState                      MarketplaceOrdersListParamsField = "state"
 	MarketplaceOrdersListParamsFieldTerminationComment         MarketplaceOrdersListParamsField = "termination_comment"
 	MarketplaceOrdersListParamsFieldType                       MarketplaceOrdersListParamsField = "type"
@@ -4738,6 +4739,7 @@ const (
 	MarketplaceOrdersRetrieveParamsFieldResourceName               MarketplaceOrdersRetrieveParamsField = "resource_name"
 	MarketplaceOrdersRetrieveParamsFieldResourceType               MarketplaceOrdersRetrieveParamsField = "resource_type"
 	MarketplaceOrdersRetrieveParamsFieldResourceUuid               MarketplaceOrdersRetrieveParamsField = "resource_uuid"
+	MarketplaceOrdersRetrieveParamsFieldStartDate                  MarketplaceOrdersRetrieveParamsField = "start_date"
 	MarketplaceOrdersRetrieveParamsFieldState                      MarketplaceOrdersRetrieveParamsField = "state"
 	MarketplaceOrdersRetrieveParamsFieldTerminationComment         MarketplaceOrdersRetrieveParamsField = "termination_comment"
 	MarketplaceOrdersRetrieveParamsFieldType                       MarketplaceOrdersRetrieveParamsField = "type"
@@ -19347,11 +19349,14 @@ type OrderDetails struct {
 	ResourceName               *string             `json:"resource_name,omitempty"`
 	ResourceType               *string             `json:"resource_type"`
 	ResourceUuid               *openapi_types.UUID `json:"resource_uuid"`
-	State                      *OrderState         `json:"state,omitempty"`
-	TerminationComment         *string             `json:"termination_comment"`
-	Type                       *RequestTypes       `json:"type,omitempty"`
-	Url                        *string             `json:"url,omitempty"`
-	Uuid                       *openapi_types.UUID `json:"uuid,omitempty"`
+
+	// StartDate Enables delayed processing of resource provisioning order.
+	StartDate          *openapi_types.Date `json:"start_date"`
+	State              *OrderState         `json:"state,omitempty"`
+	TerminationComment *string             `json:"termination_comment"`
+	Type               *RequestTypes       `json:"type,omitempty"`
+	Url                *string             `json:"url,omitempty"`
+	Uuid               *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // OrderSetStateErredRequest defines model for OrderSetStateErredRequest.
