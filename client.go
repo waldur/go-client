@@ -6552,42 +6552,6 @@ const (
 	MarketplaceServiceProvidersProjectServiceAccountsListParamsStateOK     MarketplaceServiceProvidersProjectServiceAccountsListParamsState = "OK"
 )
 
-// Defines values for MarketplaceServiceProvidersProjectsListParamsField.
-const (
-	MarketplaceServiceProvidersProjectsListParamsFieldBackendId                            MarketplaceServiceProvidersProjectsListParamsField = "backend_id"
-	MarketplaceServiceProvidersProjectsListParamsFieldBillingPriceEstimate                 MarketplaceServiceProvidersProjectsListParamsField = "billing_price_estimate"
-	MarketplaceServiceProvidersProjectsListParamsFieldCreated                              MarketplaceServiceProvidersProjectsListParamsField = "created"
-	MarketplaceServiceProvidersProjectsListParamsFieldCustomer                             MarketplaceServiceProvidersProjectsListParamsField = "customer"
-	MarketplaceServiceProvidersProjectsListParamsFieldCustomerAbbreviation                 MarketplaceServiceProvidersProjectsListParamsField = "customer_abbreviation"
-	MarketplaceServiceProvidersProjectsListParamsFieldCustomerDisplayBillingInfoInProjects MarketplaceServiceProvidersProjectsListParamsField = "customer_display_billing_info_in_projects"
-	MarketplaceServiceProvidersProjectsListParamsFieldCustomerName                         MarketplaceServiceProvidersProjectsListParamsField = "customer_name"
-	MarketplaceServiceProvidersProjectsListParamsFieldCustomerNativeName                   MarketplaceServiceProvidersProjectsListParamsField = "customer_native_name"
-	MarketplaceServiceProvidersProjectsListParamsFieldCustomerSlug                         MarketplaceServiceProvidersProjectsListParamsField = "customer_slug"
-	MarketplaceServiceProvidersProjectsListParamsFieldCustomerUuid                         MarketplaceServiceProvidersProjectsListParamsField = "customer_uuid"
-	MarketplaceServiceProvidersProjectsListParamsFieldDescription                          MarketplaceServiceProvidersProjectsListParamsField = "description"
-	MarketplaceServiceProvidersProjectsListParamsFieldEndDate                              MarketplaceServiceProvidersProjectsListParamsField = "end_date"
-	MarketplaceServiceProvidersProjectsListParamsFieldEndDateRequestedBy                   MarketplaceServiceProvidersProjectsListParamsField = "end_date_requested_by"
-	MarketplaceServiceProvidersProjectsListParamsFieldImage                                MarketplaceServiceProvidersProjectsListParamsField = "image"
-	MarketplaceServiceProvidersProjectsListParamsFieldIsIndustry                           MarketplaceServiceProvidersProjectsListParamsField = "is_industry"
-	MarketplaceServiceProvidersProjectsListParamsFieldIsRemoved                            MarketplaceServiceProvidersProjectsListParamsField = "is_removed"
-	MarketplaceServiceProvidersProjectsListParamsFieldKind                                 MarketplaceServiceProvidersProjectsListParamsField = "kind"
-	MarketplaceServiceProvidersProjectsListParamsFieldMarketplaceResourceCount             MarketplaceServiceProvidersProjectsListParamsField = "marketplace_resource_count"
-	MarketplaceServiceProvidersProjectsListParamsFieldMaxServiceAccounts                   MarketplaceServiceProvidersProjectsListParamsField = "max_service_accounts"
-	MarketplaceServiceProvidersProjectsListParamsFieldName                                 MarketplaceServiceProvidersProjectsListParamsField = "name"
-	MarketplaceServiceProvidersProjectsListParamsFieldOecdFos2007Code                      MarketplaceServiceProvidersProjectsListParamsField = "oecd_fos_2007_code"
-	MarketplaceServiceProvidersProjectsListParamsFieldOecdFos2007Label                     MarketplaceServiceProvidersProjectsListParamsField = "oecd_fos_2007_label"
-	MarketplaceServiceProvidersProjectsListParamsFieldProjectCredit                        MarketplaceServiceProvidersProjectsListParamsField = "project_credit"
-	MarketplaceServiceProvidersProjectsListParamsFieldResourcesCount                       MarketplaceServiceProvidersProjectsListParamsField = "resources_count"
-	MarketplaceServiceProvidersProjectsListParamsFieldSlug                                 MarketplaceServiceProvidersProjectsListParamsField = "slug"
-	MarketplaceServiceProvidersProjectsListParamsFieldStartDate                            MarketplaceServiceProvidersProjectsListParamsField = "start_date"
-	MarketplaceServiceProvidersProjectsListParamsFieldTerminationMetadata                  MarketplaceServiceProvidersProjectsListParamsField = "termination_metadata"
-	MarketplaceServiceProvidersProjectsListParamsFieldType                                 MarketplaceServiceProvidersProjectsListParamsField = "type"
-	MarketplaceServiceProvidersProjectsListParamsFieldTypeName                             MarketplaceServiceProvidersProjectsListParamsField = "type_name"
-	MarketplaceServiceProvidersProjectsListParamsFieldTypeUuid                             MarketplaceServiceProvidersProjectsListParamsField = "type_uuid"
-	MarketplaceServiceProvidersProjectsListParamsFieldUrl                                  MarketplaceServiceProvidersProjectsListParamsField = "url"
-	MarketplaceServiceProvidersProjectsListParamsFieldUuid                                 MarketplaceServiceProvidersProjectsListParamsField = "uuid"
-)
-
 // Defines values for MarketplaceServiceProvidersProjectsListParamsO.
 const (
 	MarketplaceServiceProvidersProjectsListParamsOCreated                   MarketplaceServiceProvidersProjectsListParamsO = "created"
@@ -8435,6 +8399,7 @@ const (
 	ProjectsListParamsFieldProjectCredit                        ProjectsListParamsField = "project_credit"
 	ProjectsListParamsFieldResourcesCount                       ProjectsListParamsField = "resources_count"
 	ProjectsListParamsFieldSlug                                 ProjectsListParamsField = "slug"
+	ProjectsListParamsFieldStaffNotes                           ProjectsListParamsField = "staff_notes"
 	ProjectsListParamsFieldStartDate                            ProjectsListParamsField = "start_date"
 	ProjectsListParamsFieldTerminationMetadata                  ProjectsListParamsField = "termination_metadata"
 	ProjectsListParamsFieldType                                 ProjectsListParamsField = "type"
@@ -8517,6 +8482,7 @@ const (
 	ProjectsRetrieveParamsFieldProjectCredit                        ProjectsRetrieveParamsField = "project_credit"
 	ProjectsRetrieveParamsFieldResourcesCount                       ProjectsRetrieveParamsField = "resources_count"
 	ProjectsRetrieveParamsFieldSlug                                 ProjectsRetrieveParamsField = "slug"
+	ProjectsRetrieveParamsFieldStaffNotes                           ProjectsRetrieveParamsField = "staff_notes"
 	ProjectsRetrieveParamsFieldStartDate                            ProjectsRetrieveParamsField = "start_date"
 	ProjectsRetrieveParamsFieldTerminationMetadata                  ProjectsRetrieveParamsField = "termination_metadata"
 	ProjectsRetrieveParamsFieldType                                 ProjectsRetrieveParamsField = "type"
@@ -20317,6 +20283,7 @@ type PatchedProjectRequest struct {
 	Name            *string                                `json:"name,omitempty"`
 	OecdFos2007Code *PatchedProjectRequest_OecdFos2007Code `json:"oecd_fos_2007_code"`
 	Slug            *string                                `json:"slug,omitempty"`
+	StaffNotes      *string                                `json:"staff_notes,omitempty"`
 	StartDate       *openapi_types.Date                    `json:"start_date"`
 	Type            *string                                `json:"type"`
 }
@@ -20338,6 +20305,7 @@ type PatchedProjectRequestForm struct {
 	Name            *string                                    `json:"name,omitempty"`
 	OecdFos2007Code *PatchedProjectRequestForm_OecdFos2007Code `json:"oecd_fos_2007_code"`
 	Slug            *string                                    `json:"slug,omitempty"`
+	StaffNotes      *string                                    `json:"staff_notes,omitempty"`
 	StartDate       *openapi_types.Date                        `json:"start_date"`
 	Type            *string                                    `json:"type"`
 }
@@ -20359,6 +20327,7 @@ type PatchedProjectRequestMultipart struct {
 	Name            *string                                         `json:"name,omitempty"`
 	OecdFos2007Code *PatchedProjectRequestMultipart_OecdFos2007Code `json:"oecd_fos_2007_code"`
 	Slug            *string                                         `json:"slug,omitempty"`
+	StaffNotes      *string                                         `json:"staff_notes,omitempty"`
 	StartDate       *openapi_types.Date                             `json:"start_date"`
 	Type            *string                                         `json:"type"`
 }
@@ -21128,6 +21097,7 @@ type Project struct {
 	ProjectCredit       *float64                 `json:"project_credit"`
 	ResourcesCount      *int                     `json:"resources_count,omitempty"`
 	Slug                *string                  `json:"slug,omitempty"`
+	StaffNotes          *string                  `json:"staff_notes,omitempty"`
 	StartDate           *openapi_types.Date      `json:"start_date"`
 	TerminationMetadata interface{}              `json:"termination_metadata"`
 	Type                *string                  `json:"type"`
@@ -21334,6 +21304,7 @@ type ProjectRequest struct {
 	Name            string                          `json:"name"`
 	OecdFos2007Code *ProjectRequest_OecdFos2007Code `json:"oecd_fos_2007_code"`
 	Slug            *string                         `json:"slug,omitempty"`
+	StaffNotes      *string                         `json:"staff_notes,omitempty"`
 	StartDate       *openapi_types.Date             `json:"start_date"`
 	Type            *string                         `json:"type"`
 }
@@ -21355,6 +21326,7 @@ type ProjectRequestForm struct {
 	Name            string                              `json:"name"`
 	OecdFos2007Code *ProjectRequestForm_OecdFos2007Code `json:"oecd_fos_2007_code"`
 	Slug            *string                             `json:"slug,omitempty"`
+	StaffNotes      *string                             `json:"staff_notes,omitempty"`
 	StartDate       *openapi_types.Date                 `json:"start_date"`
 	Type            *string                             `json:"type"`
 }
@@ -21376,6 +21348,7 @@ type ProjectRequestMultipart struct {
 	Name            string                                   `json:"name"`
 	OecdFos2007Code *ProjectRequestMultipart_OecdFos2007Code `json:"oecd_fos_2007_code"`
 	Slug            *string                                  `json:"slug,omitempty"`
+	StaffNotes      *string                                  `json:"staff_notes,omitempty"`
 	StartDate       *openapi_types.Date                      `json:"start_date"`
 	Type            *string                                  `json:"type"`
 }
@@ -24368,12 +24341,6 @@ type SetMtu struct {
 // SetMtuRequest defines model for SetMtuRequest.
 type SetMtuRequest struct {
 	Mtu int `json:"mtu"`
-}
-
-// SetOfferingsUsername defines model for SetOfferingsUsername.
-type SetOfferingsUsername struct {
-	UserUuid openapi_types.UUID `json:"user_uuid"`
-	Username string             `json:"username"`
 }
 
 // SetOfferingsUsernameRequest defines model for SetOfferingsUsernameRequest.
@@ -32097,13 +32064,12 @@ type MarketplaceServiceProvidersProjectsListParams struct {
 	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
 
 	// Customer Multiple values may be separated by commas.
-	Customer             *[]openapi_types.UUID                                 `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string                                               `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string                                               `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string                                               `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	Description          *string                                               `form:"description,omitempty" json:"description,omitempty"`
-	Field                *[]MarketplaceServiceProvidersProjectsListParamsField `form:"field,omitempty" json:"field,omitempty"`
-	IsRemoved            *bool                                                 `form:"is_removed,omitempty" json:"is_removed,omitempty"`
+	Customer             *[]openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+	CustomerAbbreviation *string               `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+	CustomerName         *string               `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+	CustomerNativeName   *string               `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+	Description          *string               `form:"description,omitempty" json:"description,omitempty"`
+	IsRemoved            *bool                 `form:"is_removed,omitempty" json:"is_removed,omitempty"`
 
 	// Modified Modified after
 	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
@@ -32124,9 +32090,6 @@ type MarketplaceServiceProvidersProjectsListParams struct {
 	Query *string `form:"query,omitempty" json:"query,omitempty"`
 	Slug  *string `form:"slug,omitempty" json:"slug,omitempty"`
 }
-
-// MarketplaceServiceProvidersProjectsListParamsField defines parameters for MarketplaceServiceProvidersProjectsList.
-type MarketplaceServiceProvidersProjectsListParamsField string
 
 // MarketplaceServiceProvidersProjectsListParamsO defines parameters for MarketplaceServiceProvidersProjectsList.
 type MarketplaceServiceProvidersProjectsListParamsO string
@@ -149041,22 +149004,6 @@ func NewMarketplaceServiceProvidersProjectsListRequest(server string, servicePro
 
 		}
 
-		if params.Field != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "field", runtime.ParamLocationQuery, *params.Field); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
 		if params.IsRemoved != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_removed", runtime.ParamLocationQuery, *params.IsRemoved); err != nil {
@@ -225800,7 +225747,7 @@ func (r BackendResourcesRetrieveResponse) StatusCode() int {
 type BackendResourcesImportResourceResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Resource
+	JSON201      *Resource
 }
 
 // Status returns HTTPResponse.Status
@@ -241477,7 +241424,6 @@ func (r MarketplaceServiceProvidersRobotAccountProjectsListResponse) StatusCode(
 type MarketplaceServiceProvidersSetOfferingsUsernameResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *SetOfferingsUsername
 }
 
 // Status returns HTTPResponse.Status
@@ -280618,12 +280564,12 @@ func ParseBackendResourcesImportResourceResponse(rsp *http.Response) (*BackendRe
 	}
 
 	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
 		var dest Resource
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.JSON201 = &dest
 
 	}
 
@@ -297003,16 +296949,6 @@ func ParseMarketplaceServiceProvidersSetOfferingsUsernameResponse(rsp *http.Resp
 	response := &MarketplaceServiceProvidersSetOfferingsUsernameResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest SetOfferingsUsername
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
 	}
 
 	return response, nil
