@@ -1149,14 +1149,15 @@ const (
 
 // Defines values for OrderState.
 const (
-	OrderStateCanceled        OrderState = "canceled"
-	OrderStateDone            OrderState = "done"
-	OrderStateErred           OrderState = "erred"
-	OrderStateExecuting       OrderState = "executing"
-	OrderStatePendingConsumer OrderState = "pending-consumer"
-	OrderStatePendingProject  OrderState = "pending-project"
-	OrderStatePendingProvider OrderState = "pending-provider"
-	OrderStateRejected        OrderState = "rejected"
+	OrderStateCanceled         OrderState = "canceled"
+	OrderStateDone             OrderState = "done"
+	OrderStateErred            OrderState = "erred"
+	OrderStateExecuting        OrderState = "executing"
+	OrderStatePendingConsumer  OrderState = "pending-consumer"
+	OrderStatePendingProject   OrderState = "pending-project"
+	OrderStatePendingProvider  OrderState = "pending-provider"
+	OrderStatePendingStartDate OrderState = "pending-start-date"
+	OrderStateRejected         OrderState = "rejected"
 )
 
 // Defines values for PaymentTypeEnum.
@@ -1260,6 +1261,7 @@ const (
 	RemoteResourceOrderRemoteStateEnumN6 RemoteResourceOrderRemoteStateEnum = 6
 	RemoteResourceOrderRemoteStateEnumN7 RemoteResourceOrderRemoteStateEnum = 7
 	RemoteResourceOrderRemoteStateEnumN8 RemoteResourceOrderRemoteStateEnum = 8
+	RemoteResourceOrderRemoteStateEnumN9 RemoteResourceOrderRemoteStateEnum = 9
 )
 
 // Defines values for RemoteResourceSyncStatusRemoteStateEnum.
@@ -4617,14 +4619,15 @@ const (
 
 // Defines values for MarketplaceOrdersListParamsState.
 const (
-	MarketplaceOrdersListParamsStateCanceled        MarketplaceOrdersListParamsState = "canceled"
-	MarketplaceOrdersListParamsStateDone            MarketplaceOrdersListParamsState = "done"
-	MarketplaceOrdersListParamsStateErred           MarketplaceOrdersListParamsState = "erred"
-	MarketplaceOrdersListParamsStateExecuting       MarketplaceOrdersListParamsState = "executing"
-	MarketplaceOrdersListParamsStatePendingConsumer MarketplaceOrdersListParamsState = "pending-consumer"
-	MarketplaceOrdersListParamsStatePendingProject  MarketplaceOrdersListParamsState = "pending-project"
-	MarketplaceOrdersListParamsStatePendingProvider MarketplaceOrdersListParamsState = "pending-provider"
-	MarketplaceOrdersListParamsStateRejected        MarketplaceOrdersListParamsState = "rejected"
+	MarketplaceOrdersListParamsStateCanceled         MarketplaceOrdersListParamsState = "canceled"
+	MarketplaceOrdersListParamsStateDone             MarketplaceOrdersListParamsState = "done"
+	MarketplaceOrdersListParamsStateErred            MarketplaceOrdersListParamsState = "erred"
+	MarketplaceOrdersListParamsStateExecuting        MarketplaceOrdersListParamsState = "executing"
+	MarketplaceOrdersListParamsStatePendingConsumer  MarketplaceOrdersListParamsState = "pending-consumer"
+	MarketplaceOrdersListParamsStatePendingProject   MarketplaceOrdersListParamsState = "pending-project"
+	MarketplaceOrdersListParamsStatePendingProvider  MarketplaceOrdersListParamsState = "pending-provider"
+	MarketplaceOrdersListParamsStatePendingStartDate MarketplaceOrdersListParamsState = "pending-start-date"
+	MarketplaceOrdersListParamsStateRejected         MarketplaceOrdersListParamsState = "rejected"
 )
 
 // Defines values for MarketplaceOrdersListParamsType.
@@ -4648,14 +4651,15 @@ const (
 
 // Defines values for MarketplaceOrdersCountParamsState.
 const (
-	MarketplaceOrdersCountParamsStateCanceled        MarketplaceOrdersCountParamsState = "canceled"
-	MarketplaceOrdersCountParamsStateDone            MarketplaceOrdersCountParamsState = "done"
-	MarketplaceOrdersCountParamsStateErred           MarketplaceOrdersCountParamsState = "erred"
-	MarketplaceOrdersCountParamsStateExecuting       MarketplaceOrdersCountParamsState = "executing"
-	MarketplaceOrdersCountParamsStatePendingConsumer MarketplaceOrdersCountParamsState = "pending-consumer"
-	MarketplaceOrdersCountParamsStatePendingProject  MarketplaceOrdersCountParamsState = "pending-project"
-	MarketplaceOrdersCountParamsStatePendingProvider MarketplaceOrdersCountParamsState = "pending-provider"
-	MarketplaceOrdersCountParamsStateRejected        MarketplaceOrdersCountParamsState = "rejected"
+	MarketplaceOrdersCountParamsStateCanceled         MarketplaceOrdersCountParamsState = "canceled"
+	MarketplaceOrdersCountParamsStateDone             MarketplaceOrdersCountParamsState = "done"
+	MarketplaceOrdersCountParamsStateErred            MarketplaceOrdersCountParamsState = "erred"
+	MarketplaceOrdersCountParamsStateExecuting        MarketplaceOrdersCountParamsState = "executing"
+	MarketplaceOrdersCountParamsStatePendingConsumer  MarketplaceOrdersCountParamsState = "pending-consumer"
+	MarketplaceOrdersCountParamsStatePendingProject   MarketplaceOrdersCountParamsState = "pending-project"
+	MarketplaceOrdersCountParamsStatePendingProvider  MarketplaceOrdersCountParamsState = "pending-provider"
+	MarketplaceOrdersCountParamsStatePendingStartDate MarketplaceOrdersCountParamsState = "pending-start-date"
+	MarketplaceOrdersCountParamsStateRejected         MarketplaceOrdersCountParamsState = "rejected"
 )
 
 // Defines values for MarketplaceOrdersCountParamsType.
@@ -12677,6 +12681,7 @@ type ConstanceSettings struct {
 	DOCSURL                                        *string              `json:"DOCS_URL,omitempty"`
 	ENABLEMOCKCOURSEACCOUNTBACKEND                 *bool                `json:"ENABLE_MOCK_COURSE_ACCOUNT_BACKEND,omitempty"`
 	ENABLEMOCKSERVICEACCOUNTBACKEND                *bool                `json:"ENABLE_MOCK_SERVICE_ACCOUNT_BACKEND,omitempty"`
+	ENABLEORDERSTARTDATE                           *bool                `json:"ENABLE_ORDER_START_DATE,omitempty"`
 	ENABLESTALERESOURCENOTIFICATIONS               *bool                `json:"ENABLE_STALE_RESOURCE_NOTIFICATIONS,omitempty"`
 	ENABLESTRICTCHECKACCEPTINGINVITATION           *bool                `json:"ENABLE_STRICT_CHECK_ACCEPTING_INVITATION,omitempty"`
 	ENFORCEUSERCONSENTFOROFFERINGS                 *bool                `json:"ENFORCE_USER_CONSENT_FOR_OFFERINGS,omitempty"`
@@ -12824,6 +12829,7 @@ type ConstanceSettingsRequest struct {
 	DOCSURL                                        *string              `json:"DOCS_URL,omitempty"`
 	ENABLEMOCKCOURSEACCOUNTBACKEND                 *bool                `json:"ENABLE_MOCK_COURSE_ACCOUNT_BACKEND,omitempty"`
 	ENABLEMOCKSERVICEACCOUNTBACKEND                *bool                `json:"ENABLE_MOCK_SERVICE_ACCOUNT_BACKEND,omitempty"`
+	ENABLEORDERSTARTDATE                           *bool                `json:"ENABLE_ORDER_START_DATE,omitempty"`
 	ENABLESTALERESOURCENOTIFICATIONS               *bool                `json:"ENABLE_STALE_RESOURCE_NOTIFICATIONS,omitempty"`
 	ENABLESTRICTCHECKACCEPTINGINVITATION           *bool                `json:"ENABLE_STRICT_CHECK_ACCEPTING_INVITATION,omitempty"`
 	ENFORCEUSERCONSENTFOROFFERINGS                 *bool                `json:"ENFORCE_USER_CONSENT_FOR_OFFERINGS,omitempty"`
@@ -12971,6 +12977,7 @@ type ConstanceSettingsRequestForm struct {
 	DOCSURL                                        *string              `json:"DOCS_URL,omitempty"`
 	ENABLEMOCKCOURSEACCOUNTBACKEND                 *bool                `json:"ENABLE_MOCK_COURSE_ACCOUNT_BACKEND,omitempty"`
 	ENABLEMOCKSERVICEACCOUNTBACKEND                *bool                `json:"ENABLE_MOCK_SERVICE_ACCOUNT_BACKEND,omitempty"`
+	ENABLEORDERSTARTDATE                           *bool                `json:"ENABLE_ORDER_START_DATE,omitempty"`
 	ENABLESTALERESOURCENOTIFICATIONS               *bool                `json:"ENABLE_STALE_RESOURCE_NOTIFICATIONS,omitempty"`
 	ENABLESTRICTCHECKACCEPTINGINVITATION           *bool                `json:"ENABLE_STRICT_CHECK_ACCEPTING_INVITATION,omitempty"`
 	ENFORCEUSERCONSENTFOROFFERINGS                 *bool                `json:"ENFORCE_USER_CONSENT_FOR_OFFERINGS,omitempty"`
@@ -13118,6 +13125,7 @@ type ConstanceSettingsRequestMultipart struct {
 	DOCSURL                                        *string              `json:"DOCS_URL,omitempty"`
 	ENABLEMOCKCOURSEACCOUNTBACKEND                 *bool                `json:"ENABLE_MOCK_COURSE_ACCOUNT_BACKEND,omitempty"`
 	ENABLEMOCKSERVICEACCOUNTBACKEND                *bool                `json:"ENABLE_MOCK_SERVICE_ACCOUNT_BACKEND,omitempty"`
+	ENABLEORDERSTARTDATE                           *bool                `json:"ENABLE_ORDER_START_DATE,omitempty"`
 	ENABLESTALERESOURCENOTIFICATIONS               *bool                `json:"ENABLE_STALE_RESOURCE_NOTIFICATIONS,omitempty"`
 	ENABLESTRICTCHECKACCEPTINGINVITATION           *bool                `json:"ENABLE_STRICT_CHECK_ACCEPTING_INVITATION,omitempty"`
 	ENFORCEUSERCONSENTFOROFFERINGS                 *bool                `json:"ENFORCE_USER_CONSENT_FOR_OFFERINGS,omitempty"`
