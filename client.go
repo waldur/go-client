@@ -2532,6 +2532,7 @@ const (
 	BookingOfferingsListParamsFieldParentDescription         BookingOfferingsListParamsField = "parent_description"
 	BookingOfferingsListParamsFieldParentName                BookingOfferingsListParamsField = "parent_name"
 	BookingOfferingsListParamsFieldParentUuid                BookingOfferingsListParamsField = "parent_uuid"
+	BookingOfferingsListParamsFieldPartitions                BookingOfferingsListParamsField = "partitions"
 	BookingOfferingsListParamsFieldPausedReason              BookingOfferingsListParamsField = "paused_reason"
 	BookingOfferingsListParamsFieldPlans                     BookingOfferingsListParamsField = "plans"
 	BookingOfferingsListParamsFieldPluginOptions             BookingOfferingsListParamsField = "plugin_options"
@@ -2550,6 +2551,7 @@ const (
 	BookingOfferingsListParamsFieldScreenshots               BookingOfferingsListParamsField = "screenshots"
 	BookingOfferingsListParamsFieldShared                    BookingOfferingsListParamsField = "shared"
 	BookingOfferingsListParamsFieldSlug                      BookingOfferingsListParamsField = "slug"
+	BookingOfferingsListParamsFieldSoftwareCatalogs          BookingOfferingsListParamsField = "software_catalogs"
 	BookingOfferingsListParamsFieldState                     BookingOfferingsListParamsField = "state"
 	BookingOfferingsListParamsFieldThumbnail                 BookingOfferingsListParamsField = "thumbnail"
 	BookingOfferingsListParamsFieldTotalCost                 BookingOfferingsListParamsField = "total_cost"
@@ -2599,6 +2601,7 @@ const (
 	BookingOfferingsRetrieveParamsFieldParentDescription         BookingOfferingsRetrieveParamsField = "parent_description"
 	BookingOfferingsRetrieveParamsFieldParentName                BookingOfferingsRetrieveParamsField = "parent_name"
 	BookingOfferingsRetrieveParamsFieldParentUuid                BookingOfferingsRetrieveParamsField = "parent_uuid"
+	BookingOfferingsRetrieveParamsFieldPartitions                BookingOfferingsRetrieveParamsField = "partitions"
 	BookingOfferingsRetrieveParamsFieldPausedReason              BookingOfferingsRetrieveParamsField = "paused_reason"
 	BookingOfferingsRetrieveParamsFieldPlans                     BookingOfferingsRetrieveParamsField = "plans"
 	BookingOfferingsRetrieveParamsFieldPluginOptions             BookingOfferingsRetrieveParamsField = "plugin_options"
@@ -2617,6 +2620,7 @@ const (
 	BookingOfferingsRetrieveParamsFieldScreenshots               BookingOfferingsRetrieveParamsField = "screenshots"
 	BookingOfferingsRetrieveParamsFieldShared                    BookingOfferingsRetrieveParamsField = "shared"
 	BookingOfferingsRetrieveParamsFieldSlug                      BookingOfferingsRetrieveParamsField = "slug"
+	BookingOfferingsRetrieveParamsFieldSoftwareCatalogs          BookingOfferingsRetrieveParamsField = "software_catalogs"
 	BookingOfferingsRetrieveParamsFieldState                     BookingOfferingsRetrieveParamsField = "state"
 	BookingOfferingsRetrieveParamsFieldThumbnail                 BookingOfferingsRetrieveParamsField = "thumbnail"
 	BookingOfferingsRetrieveParamsFieldTotalCost                 BookingOfferingsRetrieveParamsField = "total_cost"
@@ -4818,6 +4822,7 @@ const (
 	MarketplaceProviderOfferingsListParamsFieldParentDescription         MarketplaceProviderOfferingsListParamsField = "parent_description"
 	MarketplaceProviderOfferingsListParamsFieldParentName                MarketplaceProviderOfferingsListParamsField = "parent_name"
 	MarketplaceProviderOfferingsListParamsFieldParentUuid                MarketplaceProviderOfferingsListParamsField = "parent_uuid"
+	MarketplaceProviderOfferingsListParamsFieldPartitions                MarketplaceProviderOfferingsListParamsField = "partitions"
 	MarketplaceProviderOfferingsListParamsFieldPausedReason              MarketplaceProviderOfferingsListParamsField = "paused_reason"
 	MarketplaceProviderOfferingsListParamsFieldPlans                     MarketplaceProviderOfferingsListParamsField = "plans"
 	MarketplaceProviderOfferingsListParamsFieldPluginOptions             MarketplaceProviderOfferingsListParamsField = "plugin_options"
@@ -4838,6 +4843,7 @@ const (
 	MarketplaceProviderOfferingsListParamsFieldServiceAttributes         MarketplaceProviderOfferingsListParamsField = "service_attributes"
 	MarketplaceProviderOfferingsListParamsFieldShared                    MarketplaceProviderOfferingsListParamsField = "shared"
 	MarketplaceProviderOfferingsListParamsFieldSlug                      MarketplaceProviderOfferingsListParamsField = "slug"
+	MarketplaceProviderOfferingsListParamsFieldSoftwareCatalogs          MarketplaceProviderOfferingsListParamsField = "software_catalogs"
 	MarketplaceProviderOfferingsListParamsFieldState                     MarketplaceProviderOfferingsListParamsField = "state"
 	MarketplaceProviderOfferingsListParamsFieldThumbnail                 MarketplaceProviderOfferingsListParamsField = "thumbnail"
 	MarketplaceProviderOfferingsListParamsFieldTotalCost                 MarketplaceProviderOfferingsListParamsField = "total_cost"
@@ -4992,6 +4998,7 @@ const (
 	MarketplaceProviderOfferingsRetrieveParamsFieldParentDescription         MarketplaceProviderOfferingsRetrieveParamsField = "parent_description"
 	MarketplaceProviderOfferingsRetrieveParamsFieldParentName                MarketplaceProviderOfferingsRetrieveParamsField = "parent_name"
 	MarketplaceProviderOfferingsRetrieveParamsFieldParentUuid                MarketplaceProviderOfferingsRetrieveParamsField = "parent_uuid"
+	MarketplaceProviderOfferingsRetrieveParamsFieldPartitions                MarketplaceProviderOfferingsRetrieveParamsField = "partitions"
 	MarketplaceProviderOfferingsRetrieveParamsFieldPausedReason              MarketplaceProviderOfferingsRetrieveParamsField = "paused_reason"
 	MarketplaceProviderOfferingsRetrieveParamsFieldPlans                     MarketplaceProviderOfferingsRetrieveParamsField = "plans"
 	MarketplaceProviderOfferingsRetrieveParamsFieldPluginOptions             MarketplaceProviderOfferingsRetrieveParamsField = "plugin_options"
@@ -5012,6 +5019,7 @@ const (
 	MarketplaceProviderOfferingsRetrieveParamsFieldServiceAttributes         MarketplaceProviderOfferingsRetrieveParamsField = "service_attributes"
 	MarketplaceProviderOfferingsRetrieveParamsFieldShared                    MarketplaceProviderOfferingsRetrieveParamsField = "shared"
 	MarketplaceProviderOfferingsRetrieveParamsFieldSlug                      MarketplaceProviderOfferingsRetrieveParamsField = "slug"
+	MarketplaceProviderOfferingsRetrieveParamsFieldSoftwareCatalogs          MarketplaceProviderOfferingsRetrieveParamsField = "software_catalogs"
 	MarketplaceProviderOfferingsRetrieveParamsFieldState                     MarketplaceProviderOfferingsRetrieveParamsField = "state"
 	MarketplaceProviderOfferingsRetrieveParamsFieldThumbnail                 MarketplaceProviderOfferingsRetrieveParamsField = "thumbnail"
 	MarketplaceProviderOfferingsRetrieveParamsFieldTotalCost                 MarketplaceProviderOfferingsRetrieveParamsField = "total_cost"
@@ -5140,6 +5148,7 @@ const (
 	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldParentDescription         MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "parent_description"
 	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldParentName                MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "parent_name"
 	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldParentUuid                MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "parent_uuid"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldPartitions                MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "partitions"
 	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldPausedReason              MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "paused_reason"
 	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldPlans                     MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "plans"
 	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldPluginOptions             MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "plugin_options"
@@ -5160,6 +5169,7 @@ const (
 	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldServiceAttributes         MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "service_attributes"
 	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldShared                    MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "shared"
 	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldSlug                      MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "slug"
+	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldSoftwareCatalogs          MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "software_catalogs"
 	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldState                     MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "state"
 	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldThumbnail                 MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "thumbnail"
 	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldTotalCost                 MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "total_cost"
@@ -5210,6 +5220,7 @@ const (
 	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldParentDescription         MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "parent_description"
 	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldParentName                MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "parent_name"
 	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldParentUuid                MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "parent_uuid"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldPartitions                MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "partitions"
 	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldPausedReason              MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "paused_reason"
 	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldPlans                     MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "plans"
 	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldPluginOptions             MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "plugin_options"
@@ -5230,6 +5241,7 @@ const (
 	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldServiceAttributes         MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "service_attributes"
 	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldShared                    MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "shared"
 	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldSlug                      MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "slug"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldSoftwareCatalogs          MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "software_catalogs"
 	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldState                     MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "state"
 	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldThumbnail                 MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "thumbnail"
 	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldTotalCost                 MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "total_cost"
@@ -5280,6 +5292,7 @@ const (
 	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldParentDescription         MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "parent_description"
 	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldParentName                MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "parent_name"
 	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldParentUuid                MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "parent_uuid"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldPartitions                MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "partitions"
 	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldPausedReason              MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "paused_reason"
 	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldPlans                     MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "plans"
 	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldPluginOptions             MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "plugin_options"
@@ -5300,6 +5313,7 @@ const (
 	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldServiceAttributes         MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "service_attributes"
 	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldShared                    MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "shared"
 	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldSlug                      MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "slug"
+	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldSoftwareCatalogs          MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "software_catalogs"
 	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldState                     MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "state"
 	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldThumbnail                 MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "thumbnail"
 	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldTotalCost                 MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "total_cost"
@@ -5377,6 +5391,7 @@ const (
 	MarketplaceProviderOfferingsStatsRetrieveParamsFieldParentDescription         MarketplaceProviderOfferingsStatsRetrieveParamsField = "parent_description"
 	MarketplaceProviderOfferingsStatsRetrieveParamsFieldParentName                MarketplaceProviderOfferingsStatsRetrieveParamsField = "parent_name"
 	MarketplaceProviderOfferingsStatsRetrieveParamsFieldParentUuid                MarketplaceProviderOfferingsStatsRetrieveParamsField = "parent_uuid"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldPartitions                MarketplaceProviderOfferingsStatsRetrieveParamsField = "partitions"
 	MarketplaceProviderOfferingsStatsRetrieveParamsFieldPausedReason              MarketplaceProviderOfferingsStatsRetrieveParamsField = "paused_reason"
 	MarketplaceProviderOfferingsStatsRetrieveParamsFieldPlans                     MarketplaceProviderOfferingsStatsRetrieveParamsField = "plans"
 	MarketplaceProviderOfferingsStatsRetrieveParamsFieldPluginOptions             MarketplaceProviderOfferingsStatsRetrieveParamsField = "plugin_options"
@@ -5397,6 +5412,7 @@ const (
 	MarketplaceProviderOfferingsStatsRetrieveParamsFieldServiceAttributes         MarketplaceProviderOfferingsStatsRetrieveParamsField = "service_attributes"
 	MarketplaceProviderOfferingsStatsRetrieveParamsFieldShared                    MarketplaceProviderOfferingsStatsRetrieveParamsField = "shared"
 	MarketplaceProviderOfferingsStatsRetrieveParamsFieldSlug                      MarketplaceProviderOfferingsStatsRetrieveParamsField = "slug"
+	MarketplaceProviderOfferingsStatsRetrieveParamsFieldSoftwareCatalogs          MarketplaceProviderOfferingsStatsRetrieveParamsField = "software_catalogs"
 	MarketplaceProviderOfferingsStatsRetrieveParamsFieldState                     MarketplaceProviderOfferingsStatsRetrieveParamsField = "state"
 	MarketplaceProviderOfferingsStatsRetrieveParamsFieldThumbnail                 MarketplaceProviderOfferingsStatsRetrieveParamsField = "thumbnail"
 	MarketplaceProviderOfferingsStatsRetrieveParamsFieldTotalCost                 MarketplaceProviderOfferingsStatsRetrieveParamsField = "total_cost"
@@ -5447,6 +5463,7 @@ const (
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldParentDescription         MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "parent_description"
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldParentName                MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "parent_name"
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldParentUuid                MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "parent_uuid"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldPartitions                MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "partitions"
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldPausedReason              MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "paused_reason"
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldPlans                     MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "plans"
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldPluginOptions             MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "plugin_options"
@@ -5467,6 +5484,7 @@ const (
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldServiceAttributes         MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "service_attributes"
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldShared                    MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "shared"
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldSlug                      MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "slug"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldSoftwareCatalogs          MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "software_catalogs"
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldState                     MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "state"
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldThumbnail                 MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "thumbnail"
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldTotalCost                 MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "total_cost"
@@ -5800,6 +5818,7 @@ const (
 	MarketplacePublicOfferingsListParamsFieldParentDescription         MarketplacePublicOfferingsListParamsField = "parent_description"
 	MarketplacePublicOfferingsListParamsFieldParentName                MarketplacePublicOfferingsListParamsField = "parent_name"
 	MarketplacePublicOfferingsListParamsFieldParentUuid                MarketplacePublicOfferingsListParamsField = "parent_uuid"
+	MarketplacePublicOfferingsListParamsFieldPartitions                MarketplacePublicOfferingsListParamsField = "partitions"
 	MarketplacePublicOfferingsListParamsFieldPausedReason              MarketplacePublicOfferingsListParamsField = "paused_reason"
 	MarketplacePublicOfferingsListParamsFieldPlans                     MarketplacePublicOfferingsListParamsField = "plans"
 	MarketplacePublicOfferingsListParamsFieldPluginOptions             MarketplacePublicOfferingsListParamsField = "plugin_options"
@@ -5819,6 +5838,7 @@ const (
 	MarketplacePublicOfferingsListParamsFieldScreenshots               MarketplacePublicOfferingsListParamsField = "screenshots"
 	MarketplacePublicOfferingsListParamsFieldShared                    MarketplacePublicOfferingsListParamsField = "shared"
 	MarketplacePublicOfferingsListParamsFieldSlug                      MarketplacePublicOfferingsListParamsField = "slug"
+	MarketplacePublicOfferingsListParamsFieldSoftwareCatalogs          MarketplacePublicOfferingsListParamsField = "software_catalogs"
 	MarketplacePublicOfferingsListParamsFieldState                     MarketplacePublicOfferingsListParamsField = "state"
 	MarketplacePublicOfferingsListParamsFieldThumbnail                 MarketplacePublicOfferingsListParamsField = "thumbnail"
 	MarketplacePublicOfferingsListParamsFieldTotalCost                 MarketplacePublicOfferingsListParamsField = "total_cost"
@@ -5921,6 +5941,7 @@ const (
 	MarketplacePublicOfferingsRetrieveParamsFieldParentDescription         MarketplacePublicOfferingsRetrieveParamsField = "parent_description"
 	MarketplacePublicOfferingsRetrieveParamsFieldParentName                MarketplacePublicOfferingsRetrieveParamsField = "parent_name"
 	MarketplacePublicOfferingsRetrieveParamsFieldParentUuid                MarketplacePublicOfferingsRetrieveParamsField = "parent_uuid"
+	MarketplacePublicOfferingsRetrieveParamsFieldPartitions                MarketplacePublicOfferingsRetrieveParamsField = "partitions"
 	MarketplacePublicOfferingsRetrieveParamsFieldPausedReason              MarketplacePublicOfferingsRetrieveParamsField = "paused_reason"
 	MarketplacePublicOfferingsRetrieveParamsFieldPlans                     MarketplacePublicOfferingsRetrieveParamsField = "plans"
 	MarketplacePublicOfferingsRetrieveParamsFieldPluginOptions             MarketplacePublicOfferingsRetrieveParamsField = "plugin_options"
@@ -5940,6 +5961,7 @@ const (
 	MarketplacePublicOfferingsRetrieveParamsFieldScreenshots               MarketplacePublicOfferingsRetrieveParamsField = "screenshots"
 	MarketplacePublicOfferingsRetrieveParamsFieldShared                    MarketplacePublicOfferingsRetrieveParamsField = "shared"
 	MarketplacePublicOfferingsRetrieveParamsFieldSlug                      MarketplacePublicOfferingsRetrieveParamsField = "slug"
+	MarketplacePublicOfferingsRetrieveParamsFieldSoftwareCatalogs          MarketplacePublicOfferingsRetrieveParamsField = "software_catalogs"
 	MarketplacePublicOfferingsRetrieveParamsFieldState                     MarketplacePublicOfferingsRetrieveParamsField = "state"
 	MarketplacePublicOfferingsRetrieveParamsFieldThumbnail                 MarketplacePublicOfferingsRetrieveParamsField = "thumbnail"
 	MarketplacePublicOfferingsRetrieveParamsFieldTotalCost                 MarketplacePublicOfferingsRetrieveParamsField = "total_cost"
@@ -6691,6 +6713,106 @@ const (
 	N1 MarketplaceSiteAgentServicesCountParamsState = "1"
 	N2 MarketplaceSiteAgentServicesCountParamsState = "2"
 	N3 MarketplaceSiteAgentServicesCountParamsState = "3"
+)
+
+// Defines values for MarketplaceSoftwareCatalogsListParamsO.
+const (
+	MarketplaceSoftwareCatalogsListParamsOCreated       MarketplaceSoftwareCatalogsListParamsO = "created"
+	MarketplaceSoftwareCatalogsListParamsOMinusCreated  MarketplaceSoftwareCatalogsListParamsO = "-created"
+	MarketplaceSoftwareCatalogsListParamsOMinusModified MarketplaceSoftwareCatalogsListParamsO = "-modified"
+	MarketplaceSoftwareCatalogsListParamsOMinusName     MarketplaceSoftwareCatalogsListParamsO = "-name"
+	MarketplaceSoftwareCatalogsListParamsOMinusVersion  MarketplaceSoftwareCatalogsListParamsO = "-version"
+	MarketplaceSoftwareCatalogsListParamsOModified      MarketplaceSoftwareCatalogsListParamsO = "modified"
+	MarketplaceSoftwareCatalogsListParamsOName          MarketplaceSoftwareCatalogsListParamsO = "name"
+	MarketplaceSoftwareCatalogsListParamsOVersion       MarketplaceSoftwareCatalogsListParamsO = "version"
+)
+
+// Defines values for MarketplaceSoftwareCatalogsCountParamsO.
+const (
+	MarketplaceSoftwareCatalogsCountParamsOCreated       MarketplaceSoftwareCatalogsCountParamsO = "created"
+	MarketplaceSoftwareCatalogsCountParamsOMinusCreated  MarketplaceSoftwareCatalogsCountParamsO = "-created"
+	MarketplaceSoftwareCatalogsCountParamsOMinusModified MarketplaceSoftwareCatalogsCountParamsO = "-modified"
+	MarketplaceSoftwareCatalogsCountParamsOMinusName     MarketplaceSoftwareCatalogsCountParamsO = "-name"
+	MarketplaceSoftwareCatalogsCountParamsOMinusVersion  MarketplaceSoftwareCatalogsCountParamsO = "-version"
+	MarketplaceSoftwareCatalogsCountParamsOModified      MarketplaceSoftwareCatalogsCountParamsO = "modified"
+	MarketplaceSoftwareCatalogsCountParamsOName          MarketplaceSoftwareCatalogsCountParamsO = "name"
+	MarketplaceSoftwareCatalogsCountParamsOVersion       MarketplaceSoftwareCatalogsCountParamsO = "version"
+)
+
+// Defines values for MarketplaceSoftwarePackagesListParamsO.
+const (
+	MarketplaceSoftwarePackagesListParamsOCatalogName         MarketplaceSoftwarePackagesListParamsO = "catalog_name"
+	MarketplaceSoftwarePackagesListParamsOCatalogVersion      MarketplaceSoftwarePackagesListParamsO = "catalog_version"
+	MarketplaceSoftwarePackagesListParamsOCreated             MarketplaceSoftwarePackagesListParamsO = "created"
+	MarketplaceSoftwarePackagesListParamsOMinusCatalogName    MarketplaceSoftwarePackagesListParamsO = "-catalog_name"
+	MarketplaceSoftwarePackagesListParamsOMinusCatalogVersion MarketplaceSoftwarePackagesListParamsO = "-catalog_version"
+	MarketplaceSoftwarePackagesListParamsOMinusCreated        MarketplaceSoftwarePackagesListParamsO = "-created"
+	MarketplaceSoftwarePackagesListParamsOMinusModified       MarketplaceSoftwarePackagesListParamsO = "-modified"
+	MarketplaceSoftwarePackagesListParamsOMinusName           MarketplaceSoftwarePackagesListParamsO = "-name"
+	MarketplaceSoftwarePackagesListParamsOModified            MarketplaceSoftwarePackagesListParamsO = "modified"
+	MarketplaceSoftwarePackagesListParamsOName                MarketplaceSoftwarePackagesListParamsO = "name"
+)
+
+// Defines values for MarketplaceSoftwarePackagesCountParamsO.
+const (
+	MarketplaceSoftwarePackagesCountParamsOCatalogName         MarketplaceSoftwarePackagesCountParamsO = "catalog_name"
+	MarketplaceSoftwarePackagesCountParamsOCatalogVersion      MarketplaceSoftwarePackagesCountParamsO = "catalog_version"
+	MarketplaceSoftwarePackagesCountParamsOCreated             MarketplaceSoftwarePackagesCountParamsO = "created"
+	MarketplaceSoftwarePackagesCountParamsOMinusCatalogName    MarketplaceSoftwarePackagesCountParamsO = "-catalog_name"
+	MarketplaceSoftwarePackagesCountParamsOMinusCatalogVersion MarketplaceSoftwarePackagesCountParamsO = "-catalog_version"
+	MarketplaceSoftwarePackagesCountParamsOMinusCreated        MarketplaceSoftwarePackagesCountParamsO = "-created"
+	MarketplaceSoftwarePackagesCountParamsOMinusModified       MarketplaceSoftwarePackagesCountParamsO = "-modified"
+	MarketplaceSoftwarePackagesCountParamsOMinusName           MarketplaceSoftwarePackagesCountParamsO = "-name"
+	MarketplaceSoftwarePackagesCountParamsOModified            MarketplaceSoftwarePackagesCountParamsO = "modified"
+	MarketplaceSoftwarePackagesCountParamsOName                MarketplaceSoftwarePackagesCountParamsO = "name"
+)
+
+// Defines values for MarketplaceSoftwareTargetsListParamsO.
+const (
+	MarketplaceSoftwareTargetsListParamsOCpuFamily                 MarketplaceSoftwareTargetsListParamsO = "cpu_family"
+	MarketplaceSoftwareTargetsListParamsOCpuMicroarchitecture      MarketplaceSoftwareTargetsListParamsO = "cpu_microarchitecture"
+	MarketplaceSoftwareTargetsListParamsOCreated                   MarketplaceSoftwareTargetsListParamsO = "created"
+	MarketplaceSoftwareTargetsListParamsOMinusCpuFamily            MarketplaceSoftwareTargetsListParamsO = "-cpu_family"
+	MarketplaceSoftwareTargetsListParamsOMinusCpuMicroarchitecture MarketplaceSoftwareTargetsListParamsO = "-cpu_microarchitecture"
+	MarketplaceSoftwareTargetsListParamsOMinusCreated              MarketplaceSoftwareTargetsListParamsO = "-created"
+	MarketplaceSoftwareTargetsListParamsOMinusPackageName          MarketplaceSoftwareTargetsListParamsO = "-package_name"
+	MarketplaceSoftwareTargetsListParamsOPackageName               MarketplaceSoftwareTargetsListParamsO = "package_name"
+)
+
+// Defines values for MarketplaceSoftwareTargetsCountParamsO.
+const (
+	MarketplaceSoftwareTargetsCountParamsOCpuFamily                 MarketplaceSoftwareTargetsCountParamsO = "cpu_family"
+	MarketplaceSoftwareTargetsCountParamsOCpuMicroarchitecture      MarketplaceSoftwareTargetsCountParamsO = "cpu_microarchitecture"
+	MarketplaceSoftwareTargetsCountParamsOCreated                   MarketplaceSoftwareTargetsCountParamsO = "created"
+	MarketplaceSoftwareTargetsCountParamsOMinusCpuFamily            MarketplaceSoftwareTargetsCountParamsO = "-cpu_family"
+	MarketplaceSoftwareTargetsCountParamsOMinusCpuMicroarchitecture MarketplaceSoftwareTargetsCountParamsO = "-cpu_microarchitecture"
+	MarketplaceSoftwareTargetsCountParamsOMinusCreated              MarketplaceSoftwareTargetsCountParamsO = "-created"
+	MarketplaceSoftwareTargetsCountParamsOMinusPackageName          MarketplaceSoftwareTargetsCountParamsO = "-package_name"
+	MarketplaceSoftwareTargetsCountParamsOPackageName               MarketplaceSoftwareTargetsCountParamsO = "package_name"
+)
+
+// Defines values for MarketplaceSoftwareVersionsListParamsO.
+const (
+	MarketplaceSoftwareVersionsListParamsOCreated          MarketplaceSoftwareVersionsListParamsO = "created"
+	MarketplaceSoftwareVersionsListParamsOMinusCreated     MarketplaceSoftwareVersionsListParamsO = "-created"
+	MarketplaceSoftwareVersionsListParamsOMinusPackageName MarketplaceSoftwareVersionsListParamsO = "-package_name"
+	MarketplaceSoftwareVersionsListParamsOMinusReleaseDate MarketplaceSoftwareVersionsListParamsO = "-release_date"
+	MarketplaceSoftwareVersionsListParamsOMinusVersion     MarketplaceSoftwareVersionsListParamsO = "-version"
+	MarketplaceSoftwareVersionsListParamsOPackageName      MarketplaceSoftwareVersionsListParamsO = "package_name"
+	MarketplaceSoftwareVersionsListParamsOReleaseDate      MarketplaceSoftwareVersionsListParamsO = "release_date"
+	MarketplaceSoftwareVersionsListParamsOVersion          MarketplaceSoftwareVersionsListParamsO = "version"
+)
+
+// Defines values for MarketplaceSoftwareVersionsCountParamsO.
+const (
+	MarketplaceSoftwareVersionsCountParamsOCreated          MarketplaceSoftwareVersionsCountParamsO = "created"
+	MarketplaceSoftwareVersionsCountParamsOMinusCreated     MarketplaceSoftwareVersionsCountParamsO = "-created"
+	MarketplaceSoftwareVersionsCountParamsOMinusPackageName MarketplaceSoftwareVersionsCountParamsO = "-package_name"
+	MarketplaceSoftwareVersionsCountParamsOMinusReleaseDate MarketplaceSoftwareVersionsCountParamsO = "-release_date"
+	MarketplaceSoftwareVersionsCountParamsOMinusVersion     MarketplaceSoftwareVersionsCountParamsO = "-version"
+	MarketplaceSoftwareVersionsCountParamsOPackageName      MarketplaceSoftwareVersionsCountParamsO = "package_name"
+	MarketplaceSoftwareVersionsCountParamsOReleaseDate      MarketplaceSoftwareVersionsCountParamsO = "release_date"
+	MarketplaceSoftwareVersionsCountParamsOVersion          MarketplaceSoftwareVersionsCountParamsO = "version"
 )
 
 // Defines values for MarketplaceUserOfferingConsentsListParamsO.
@@ -12623,6 +12745,7 @@ type ConstanceSettings struct {
 	ATLASSIANSHAREDUSERNAME                        *bool                `json:"ATLASSIAN_SHARED_USERNAME,omitempty"`
 	ATLASSIANSLAFIELD                              *string              `json:"ATLASSIAN_SLA_FIELD,omitempty"`
 	ATLASSIANSUMMARYTEMPLATE                       *string              `json:"ATLASSIAN_SUMMARY_TEMPLATE,omitempty"`
+	ATLASSIANSUPPORTTYPEMAPPING                    *string              `json:"ATLASSIAN_SUPPORT_TYPE_MAPPING,omitempty"`
 	ATLASSIANTEMPLATEFIELD                         *string              `json:"ATLASSIAN_TEMPLATE_FIELD,omitempty"`
 	ATLASSIANTOKEN                                 *string              `json:"ATLASSIAN_TOKEN,omitempty"`
 	ATLASSIANUSERNAME                              *string              `json:"ATLASSIAN_USERNAME,omitempty"`
@@ -12771,6 +12894,7 @@ type ConstanceSettingsRequest struct {
 	ATLASSIANSHAREDUSERNAME                        *bool                `json:"ATLASSIAN_SHARED_USERNAME,omitempty"`
 	ATLASSIANSLAFIELD                              *string              `json:"ATLASSIAN_SLA_FIELD,omitempty"`
 	ATLASSIANSUMMARYTEMPLATE                       *string              `json:"ATLASSIAN_SUMMARY_TEMPLATE,omitempty"`
+	ATLASSIANSUPPORTTYPEMAPPING                    *string              `json:"ATLASSIAN_SUPPORT_TYPE_MAPPING,omitempty"`
 	ATLASSIANTEMPLATEFIELD                         *string              `json:"ATLASSIAN_TEMPLATE_FIELD,omitempty"`
 	ATLASSIANTOKEN                                 *string              `json:"ATLASSIAN_TOKEN,omitempty"`
 	ATLASSIANUSERNAME                              *string              `json:"ATLASSIAN_USERNAME,omitempty"`
@@ -12919,6 +13043,7 @@ type ConstanceSettingsRequestForm struct {
 	ATLASSIANSHAREDUSERNAME                        *bool                `json:"ATLASSIAN_SHARED_USERNAME,omitempty"`
 	ATLASSIANSLAFIELD                              *string              `json:"ATLASSIAN_SLA_FIELD,omitempty"`
 	ATLASSIANSUMMARYTEMPLATE                       *string              `json:"ATLASSIAN_SUMMARY_TEMPLATE,omitempty"`
+	ATLASSIANSUPPORTTYPEMAPPING                    *string              `json:"ATLASSIAN_SUPPORT_TYPE_MAPPING,omitempty"`
 	ATLASSIANTEMPLATEFIELD                         *string              `json:"ATLASSIAN_TEMPLATE_FIELD,omitempty"`
 	ATLASSIANTOKEN                                 *string              `json:"ATLASSIAN_TOKEN,omitempty"`
 	ATLASSIANUSERNAME                              *string              `json:"ATLASSIAN_USERNAME,omitempty"`
@@ -13067,6 +13192,7 @@ type ConstanceSettingsRequestMultipart struct {
 	ATLASSIANSHAREDUSERNAME                        *bool                `json:"ATLASSIAN_SHARED_USERNAME,omitempty"`
 	ATLASSIANSLAFIELD                              *string              `json:"ATLASSIAN_SLA_FIELD,omitempty"`
 	ATLASSIANSUMMARYTEMPLATE                       *string              `json:"ATLASSIAN_SUMMARY_TEMPLATE,omitempty"`
+	ATLASSIANSUPPORTTYPEMAPPING                    *string              `json:"ATLASSIAN_SUPPORT_TYPE_MAPPING,omitempty"`
 	ATLASSIANTEMPLATEFIELD                         *string              `json:"ATLASSIAN_TEMPLATE_FIELD,omitempty"`
 	ATLASSIANTOKEN                                 *string              `json:"ATLASSIAN_TOKEN,omitempty"`
 	ATLASSIANUSERNAME                              *string              `json:"ATLASSIAN_USERNAME,omitempty"`
@@ -16141,6 +16267,70 @@ type NestedOfferingFile struct {
 	Name    *string    `json:"name,omitempty"`
 }
 
+// NestedPartition defines model for NestedPartition.
+type NestedPartition struct {
+	// CpuBind Default task binding policy (SLURM cpu_bind)
+	CpuBind *int `json:"cpu_bind"`
+
+	// DefCpuPerGpu Default CPUs allocated per GPU
+	DefCpuPerGpu *int `json:"def_cpu_per_gpu"`
+
+	// DefMemPerCpu Default memory per CPU in MB
+	DefMemPerCpu *int64 `json:"def_mem_per_cpu"`
+
+	// DefMemPerGpu Default memory per GPU in MB
+	DefMemPerGpu *int64 `json:"def_mem_per_gpu"`
+
+	// DefMemPerNode Default memory per node in MB
+	DefMemPerNode *int64 `json:"def_mem_per_node"`
+
+	// DefaultTime Default time limit in minutes
+	DefaultTime *int `json:"default_time"`
+
+	// ExclusiveTopo Exclusive topology access required
+	ExclusiveTopo *bool `json:"exclusive_topo,omitempty"`
+
+	// ExclusiveUser Exclusive user access required
+	ExclusiveUser *bool `json:"exclusive_user,omitempty"`
+
+	// GraceTime Preemption grace time in seconds
+	GraceTime *int `json:"grace_time"`
+
+	// MaxCpusPerNode Maximum allocated CPUs per node
+	MaxCpusPerNode *int `json:"max_cpus_per_node"`
+
+	// MaxCpusPerSocket Maximum allocated CPUs per socket
+	MaxCpusPerSocket *int `json:"max_cpus_per_socket"`
+
+	// MaxMemPerCpu Maximum memory per CPU in MB
+	MaxMemPerCpu *int64 `json:"max_mem_per_cpu"`
+
+	// MaxMemPerNode Maximum memory per node in MB
+	MaxMemPerNode *int64 `json:"max_mem_per_node"`
+
+	// MaxNodes Maximum nodes per job
+	MaxNodes *int `json:"max_nodes"`
+
+	// MaxTime Maximum time limit in minutes
+	MaxTime *int `json:"max_time"`
+
+	// MinNodes Minimum nodes per job
+	MinNodes *int `json:"min_nodes"`
+
+	// PartitionName Name of the SLURM partition
+	PartitionName *string `json:"partition_name,omitempty"`
+
+	// PriorityTier Priority tier for scheduling and preemption
+	PriorityTier *int `json:"priority_tier"`
+
+	// Qos Quality of Service (QOS) name
+	Qos *string `json:"qos,omitempty"`
+
+	// ReqResv Require reservation for job allocation
+	ReqResv *bool               `json:"req_resv,omitempty"`
+	Uuid    *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
 // NestedPlanComponent defines model for NestedPlanComponent.
 type NestedPlanComponent struct {
 	Amount *int `json:"amount,omitempty"`
@@ -16311,6 +16501,46 @@ type NestedSecurityGroupRule_Protocol struct {
 	union json.RawMessage
 }
 
+// NestedSoftwareCatalog defines model for NestedSoftwareCatalog.
+type NestedSoftwareCatalog struct {
+	Catalog *struct {
+		Description *string `json:"description,omitempty"`
+		Name        *string `json:"name,omitempty"`
+		Uuid        *string `json:"uuid,omitempty"`
+		Version     *string `json:"version,omitempty"`
+	} `json:"catalog,omitempty"`
+
+	// EnabledCpuFamily List of enabled CPU families: ['x86_64', 'aarch64']
+	EnabledCpuFamily interface{} `json:"enabled_cpu_family,omitempty"`
+
+	// EnabledCpuMicroarchitectures List of enabled CPU microarchitectures: ['generic', 'zen3']
+	EnabledCpuMicroarchitectures interface{} `json:"enabled_cpu_microarchitectures,omitempty"`
+	PackageCount                 *int        `json:"package_count,omitempty"`
+	Partition                    *struct {
+		PartitionName *string `json:"partition_name,omitempty"`
+		PriorityTier  *int    `json:"priority_tier,omitempty"`
+		Qos           *string `json:"qos,omitempty"`
+		Uuid          *string `json:"uuid,omitempty"`
+	} `json:"partition,omitempty"`
+	Uuid *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// NestedSoftwareTarget defines model for NestedSoftwareTarget.
+type NestedSoftwareTarget struct {
+	CpuFamily            string              `json:"cpu_family"`
+	CpuMicroarchitecture string              `json:"cpu_microarchitecture"`
+	Path                 string              `json:"path"`
+	Uuid                 *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// NestedSoftwareVersion defines model for NestedSoftwareVersion.
+type NestedSoftwareVersion struct {
+	ReleaseDate *openapi_types.Date     `json:"release_date"`
+	Targets     *[]NestedSoftwareTarget `json:"targets,omitempty"`
+	Uuid        *openapi_types.UUID     `json:"uuid,omitempty"`
+	Version     string                  `json:"version"`
+}
+
 // NetworkRBACPolicy defines model for NetworkRBACPolicy.
 type NetworkRBACPolicy struct {
 	BackendId   *string    `json:"backend_id,omitempty"`
@@ -16443,6 +16673,7 @@ type Offering struct {
 	ParentDescription         *string               `json:"parent_description"`
 	ParentName                *string               `json:"parent_name"`
 	ParentUuid                *openapi_types.UUID   `json:"parent_uuid"`
+	Partitions                *[]NestedPartition    `json:"partitions,omitempty"`
 	PausedReason              *string               `json:"paused_reason,omitempty"`
 	Plans                     *[]BasePublicPlan     `json:"plans,omitempty"`
 	PluginOptions             *MergedPluginOptions  `json:"plugin_options,omitempty"`
@@ -16461,18 +16692,19 @@ type Offering struct {
 	Screenshots               *[]NestedScreenshot   `json:"screenshots,omitempty"`
 
 	// Shared Accessible to all customers.
-	Shared             *bool               `json:"shared,omitempty"`
-	Slug               *string             `json:"slug,omitempty"`
-	State              *OfferingState      `json:"state,omitempty"`
-	Thumbnail          *string             `json:"thumbnail"`
-	TotalCost          *int                `json:"total_cost"`
-	TotalCostEstimated *int                `json:"total_cost_estimated"`
-	TotalCustomers     *int                `json:"total_customers"`
-	Type               *string             `json:"type,omitempty"`
-	Url                *string             `json:"url,omitempty"`
-	UserHasConsent     *bool               `json:"user_has_consent,omitempty"`
-	Uuid               *openapi_types.UUID `json:"uuid,omitempty"`
-	VendorDetails      *string             `json:"vendor_details,omitempty"`
+	Shared             *bool                    `json:"shared,omitempty"`
+	Slug               *string                  `json:"slug,omitempty"`
+	SoftwareCatalogs   *[]NestedSoftwareCatalog `json:"software_catalogs,omitempty"`
+	State              *OfferingState           `json:"state,omitempty"`
+	Thumbnail          *string                  `json:"thumbnail"`
+	TotalCost          *int                     `json:"total_cost"`
+	TotalCostEstimated *int                     `json:"total_cost_estimated"`
+	TotalCustomers     *int                     `json:"total_customers"`
+	Type               *string                  `json:"type,omitempty"`
+	Url                *string                  `json:"url,omitempty"`
+	UserHasConsent     *bool                    `json:"user_has_consent,omitempty"`
+	Uuid               *openapi_types.UUID      `json:"uuid,omitempty"`
+	VendorDetails      *string                  `json:"vendor_details,omitempty"`
 }
 
 // Offering_Country defines model for Offering.Country.
@@ -16635,6 +16867,7 @@ type OfferingCreate struct {
 	ParentDescription         *string                 `json:"parent_description"`
 	ParentName                *string                 `json:"parent_name"`
 	ParentUuid                *openapi_types.UUID     `json:"parent_uuid"`
+	Partitions                *[]NestedPartition      `json:"partitions,omitempty"`
 	PausedReason              *string                 `json:"paused_reason,omitempty"`
 	Plans                     *[]BaseProviderPlan     `json:"plans,omitempty"`
 	PluginOptions             *MergedPluginOptions    `json:"plugin_options,omitempty"`
@@ -16655,17 +16888,18 @@ type OfferingCreate struct {
 	ServiceAttributes         *map[string]interface{} `json:"service_attributes,omitempty"`
 
 	// Shared Accessible to all customers.
-	Shared             *bool               `json:"shared,omitempty"`
-	Slug               *string             `json:"slug,omitempty"`
-	State              *OfferingState      `json:"state,omitempty"`
-	Thumbnail          *string             `json:"thumbnail"`
-	TotalCost          *int                `json:"total_cost"`
-	TotalCostEstimated *int                `json:"total_cost_estimated"`
-	TotalCustomers     *int                `json:"total_customers"`
-	Type               string              `json:"type"`
-	Url                *string             `json:"url,omitempty"`
-	Uuid               *openapi_types.UUID `json:"uuid,omitempty"`
-	VendorDetails      *string             `json:"vendor_details,omitempty"`
+	Shared             *bool                    `json:"shared,omitempty"`
+	Slug               *string                  `json:"slug,omitempty"`
+	SoftwareCatalogs   *[]NestedSoftwareCatalog `json:"software_catalogs,omitempty"`
+	State              *OfferingState           `json:"state,omitempty"`
+	Thumbnail          *string                  `json:"thumbnail"`
+	TotalCost          *int                     `json:"total_cost"`
+	TotalCostEstimated *int                     `json:"total_cost_estimated"`
+	TotalCustomers     *int                     `json:"total_customers"`
+	Type               string                   `json:"type"`
+	Url                *string                  `json:"url,omitempty"`
+	Uuid               *openapi_types.UUID      `json:"uuid,omitempty"`
+	VendorDetails      *string                  `json:"vendor_details,omitempty"`
 }
 
 // OfferingCreate_Country defines model for OfferingCreate.Country.
@@ -16938,6 +17172,138 @@ type OfferingOverviewUpdateRequest struct {
 	Slug              *string `json:"slug,omitempty"`
 }
 
+// OfferingPartition defines model for OfferingPartition.
+type OfferingPartition struct {
+	// CpuBind Default task binding policy (SLURM cpu_bind)
+	CpuBind *int       `json:"cpu_bind"`
+	Created *time.Time `json:"created,omitempty"`
+
+	// DefCpuPerGpu Default CPUs allocated per GPU
+	DefCpuPerGpu *int `json:"def_cpu_per_gpu"`
+
+	// DefMemPerCpu Default memory per CPU in MB
+	DefMemPerCpu *int64 `json:"def_mem_per_cpu"`
+
+	// DefMemPerGpu Default memory per GPU in MB
+	DefMemPerGpu *int64 `json:"def_mem_per_gpu"`
+
+	// DefMemPerNode Default memory per node in MB
+	DefMemPerNode *int64 `json:"def_mem_per_node"`
+
+	// DefaultTime Default time limit in minutes
+	DefaultTime *int `json:"default_time"`
+
+	// ExclusiveTopo Exclusive topology access required
+	ExclusiveTopo *bool `json:"exclusive_topo,omitempty"`
+
+	// ExclusiveUser Exclusive user access required
+	ExclusiveUser *bool `json:"exclusive_user,omitempty"`
+
+	// GraceTime Preemption grace time in seconds
+	GraceTime *int `json:"grace_time"`
+
+	// MaxCpusPerNode Maximum allocated CPUs per node
+	MaxCpusPerNode *int `json:"max_cpus_per_node"`
+
+	// MaxCpusPerSocket Maximum allocated CPUs per socket
+	MaxCpusPerSocket *int `json:"max_cpus_per_socket"`
+
+	// MaxMemPerCpu Maximum memory per CPU in MB
+	MaxMemPerCpu *int64 `json:"max_mem_per_cpu"`
+
+	// MaxMemPerNode Maximum memory per node in MB
+	MaxMemPerNode *int64 `json:"max_mem_per_node"`
+
+	// MaxNodes Maximum nodes per job
+	MaxNodes *int `json:"max_nodes"`
+
+	// MaxTime Maximum time limit in minutes
+	MaxTime *int `json:"max_time"`
+
+	// MinNodes Minimum nodes per job
+	MinNodes     *int               `json:"min_nodes"`
+	Modified     *time.Time         `json:"modified,omitempty"`
+	Offering     openapi_types.UUID `json:"offering"`
+	OfferingName *string            `json:"offering_name,omitempty"`
+
+	// PartitionName Name of the SLURM partition
+	PartitionName string `json:"partition_name"`
+
+	// PriorityTier Priority tier for scheduling and preemption
+	PriorityTier *int `json:"priority_tier"`
+
+	// Qos Quality of Service (QOS) name
+	Qos *string `json:"qos,omitempty"`
+
+	// ReqResv Require reservation for job allocation
+	ReqResv *bool               `json:"req_resv,omitempty"`
+	Uuid    *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// OfferingPartitionRequest defines model for OfferingPartitionRequest.
+type OfferingPartitionRequest struct {
+	// CpuBind Default task binding policy (SLURM cpu_bind)
+	CpuBind *int `json:"cpu_bind"`
+
+	// DefCpuPerGpu Default CPUs allocated per GPU
+	DefCpuPerGpu *int `json:"def_cpu_per_gpu"`
+
+	// DefMemPerCpu Default memory per CPU in MB
+	DefMemPerCpu *int64 `json:"def_mem_per_cpu"`
+
+	// DefMemPerGpu Default memory per GPU in MB
+	DefMemPerGpu *int64 `json:"def_mem_per_gpu"`
+
+	// DefMemPerNode Default memory per node in MB
+	DefMemPerNode *int64 `json:"def_mem_per_node"`
+
+	// DefaultTime Default time limit in minutes
+	DefaultTime *int `json:"default_time"`
+
+	// ExclusiveTopo Exclusive topology access required
+	ExclusiveTopo *bool `json:"exclusive_topo,omitempty"`
+
+	// ExclusiveUser Exclusive user access required
+	ExclusiveUser *bool `json:"exclusive_user,omitempty"`
+
+	// GraceTime Preemption grace time in seconds
+	GraceTime *int `json:"grace_time"`
+
+	// MaxCpusPerNode Maximum allocated CPUs per node
+	MaxCpusPerNode *int `json:"max_cpus_per_node"`
+
+	// MaxCpusPerSocket Maximum allocated CPUs per socket
+	MaxCpusPerSocket *int `json:"max_cpus_per_socket"`
+
+	// MaxMemPerCpu Maximum memory per CPU in MB
+	MaxMemPerCpu *int64 `json:"max_mem_per_cpu"`
+
+	// MaxMemPerNode Maximum memory per node in MB
+	MaxMemPerNode *int64 `json:"max_mem_per_node"`
+
+	// MaxNodes Maximum nodes per job
+	MaxNodes *int `json:"max_nodes"`
+
+	// MaxTime Maximum time limit in minutes
+	MaxTime *int `json:"max_time"`
+
+	// MinNodes Minimum nodes per job
+	MinNodes *int               `json:"min_nodes"`
+	Offering openapi_types.UUID `json:"offering"`
+
+	// PartitionName Name of the SLURM partition
+	PartitionName string `json:"partition_name"`
+
+	// PriorityTier Priority tier for scheduling and preemption
+	PriorityTier *int `json:"priority_tier"`
+
+	// Qos Quality of Service (QOS) name
+	Qos *string `json:"qos,omitempty"`
+
+	// ReqResv Require reservation for job allocation
+	ReqResv *bool `json:"req_resv,omitempty"`
+}
+
 // OfferingPauseRequest defines model for OfferingPauseRequest.
 type OfferingPauseRequest struct {
 	PausedReason *string `json:"paused_reason,omitempty"`
@@ -16991,6 +17357,39 @@ type OfferingReferral struct {
 // OfferingResourceOptionsUpdateRequest defines model for OfferingResourceOptionsUpdateRequest.
 type OfferingResourceOptionsUpdateRequest struct {
 	ResourceOptions OfferingOptionsRequest `json:"resource_options"`
+}
+
+// OfferingSoftwareCatalog defines model for OfferingSoftwareCatalog.
+type OfferingSoftwareCatalog struct {
+	Catalog        openapi_types.UUID `json:"catalog"`
+	CatalogName    *string            `json:"catalog_name,omitempty"`
+	CatalogVersion *string            `json:"catalog_version,omitempty"`
+	Created        *time.Time         `json:"created,omitempty"`
+
+	// EnabledCpuFamily List of enabled CPU families: ['x86_64', 'aarch64']
+	EnabledCpuFamily interface{} `json:"enabled_cpu_family,omitempty"`
+
+	// EnabledCpuMicroarchitectures List of enabled CPU microarchitectures: ['generic', 'zen3']
+	EnabledCpuMicroarchitectures interface{}         `json:"enabled_cpu_microarchitectures,omitempty"`
+	Modified                     *time.Time          `json:"modified,omitempty"`
+	Offering                     openapi_types.UUID  `json:"offering"`
+	OfferingName                 *string             `json:"offering_name,omitempty"`
+	Partition                    *openapi_types.UUID `json:"partition"`
+	PartitionName                *string             `json:"partition_name,omitempty"`
+	Uuid                         *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// OfferingSoftwareCatalogRequest defines model for OfferingSoftwareCatalogRequest.
+type OfferingSoftwareCatalogRequest struct {
+	Catalog openapi_types.UUID `json:"catalog"`
+
+	// EnabledCpuFamily List of enabled CPU families: ['x86_64', 'aarch64']
+	EnabledCpuFamily interface{} `json:"enabled_cpu_family,omitempty"`
+
+	// EnabledCpuMicroarchitectures List of enabled CPU microarchitectures: ['generic', 'zen3']
+	EnabledCpuMicroarchitectures interface{}         `json:"enabled_cpu_microarchitectures,omitempty"`
+	Offering                     openapi_types.UUID  `json:"offering"`
+	Partition                    *openapi_types.UUID `json:"partition"`
 }
 
 // OfferingState defines model for OfferingState.
@@ -20018,6 +20417,83 @@ type PatchedOfferingEstimatedCostPolicyRequest struct {
 	Scope              *string     `json:"scope,omitempty"`
 }
 
+// PatchedOfferingPartitionRequest defines model for PatchedOfferingPartitionRequest.
+type PatchedOfferingPartitionRequest struct {
+	// CpuBind Default task binding policy (SLURM cpu_bind)
+	CpuBind *int `json:"cpu_bind"`
+
+	// DefCpuPerGpu Default CPUs allocated per GPU
+	DefCpuPerGpu *int `json:"def_cpu_per_gpu"`
+
+	// DefMemPerCpu Default memory per CPU in MB
+	DefMemPerCpu *int64 `json:"def_mem_per_cpu"`
+
+	// DefMemPerGpu Default memory per GPU in MB
+	DefMemPerGpu *int64 `json:"def_mem_per_gpu"`
+
+	// DefMemPerNode Default memory per node in MB
+	DefMemPerNode *int64 `json:"def_mem_per_node"`
+
+	// DefaultTime Default time limit in minutes
+	DefaultTime *int `json:"default_time"`
+
+	// ExclusiveTopo Exclusive topology access required
+	ExclusiveTopo *bool `json:"exclusive_topo,omitempty"`
+
+	// ExclusiveUser Exclusive user access required
+	ExclusiveUser *bool `json:"exclusive_user,omitempty"`
+
+	// GraceTime Preemption grace time in seconds
+	GraceTime *int `json:"grace_time"`
+
+	// MaxCpusPerNode Maximum allocated CPUs per node
+	MaxCpusPerNode *int `json:"max_cpus_per_node"`
+
+	// MaxCpusPerSocket Maximum allocated CPUs per socket
+	MaxCpusPerSocket *int `json:"max_cpus_per_socket"`
+
+	// MaxMemPerCpu Maximum memory per CPU in MB
+	MaxMemPerCpu *int64 `json:"max_mem_per_cpu"`
+
+	// MaxMemPerNode Maximum memory per node in MB
+	MaxMemPerNode *int64 `json:"max_mem_per_node"`
+
+	// MaxNodes Maximum nodes per job
+	MaxNodes *int `json:"max_nodes"`
+
+	// MaxTime Maximum time limit in minutes
+	MaxTime *int `json:"max_time"`
+
+	// MinNodes Minimum nodes per job
+	MinNodes *int                `json:"min_nodes"`
+	Offering *openapi_types.UUID `json:"offering,omitempty"`
+
+	// PartitionName Name of the SLURM partition
+	PartitionName *string `json:"partition_name,omitempty"`
+
+	// PriorityTier Priority tier for scheduling and preemption
+	PriorityTier *int `json:"priority_tier"`
+
+	// Qos Quality of Service (QOS) name
+	Qos *string `json:"qos,omitempty"`
+
+	// ReqResv Require reservation for job allocation
+	ReqResv *bool `json:"req_resv,omitempty"`
+}
+
+// PatchedOfferingSoftwareCatalogUpdateRequest defines model for PatchedOfferingSoftwareCatalogUpdateRequest.
+type PatchedOfferingSoftwareCatalogUpdateRequest struct {
+	Catalog *openapi_types.UUID `json:"catalog,omitempty"`
+
+	// EnabledCpuFamily List of enabled CPU families: ['x86_64', 'aarch64']
+	EnabledCpuFamily interface{} `json:"enabled_cpu_family,omitempty"`
+
+	// EnabledCpuMicroarchitectures List of enabled CPU microarchitectures: ['generic', 'zen3']
+	EnabledCpuMicroarchitectures interface{}         `json:"enabled_cpu_microarchitectures,omitempty"`
+	OfferingCatalogUuid          *openapi_types.UUID `json:"offering_catalog_uuid,omitempty"`
+	Partition                    *openapi_types.UUID `json:"partition"`
+}
+
 // PatchedOfferingTermsOfServiceRequest defines model for PatchedOfferingTermsOfServiceRequest.
 type PatchedOfferingTermsOfServiceRequest struct {
 	IsActive *bool `json:"is_active,omitempty"`
@@ -20709,6 +21185,28 @@ type PatchedServiceProviderRequestMultipart struct {
 // PatchedSlurmAllocationRequest defines model for PatchedSlurmAllocationRequest.
 type PatchedSlurmAllocationRequest struct {
 	Description *string `json:"description,omitempty"`
+	Name        *string `json:"name,omitempty"`
+}
+
+// PatchedSoftwareCatalogRequest defines model for PatchedSoftwareCatalogRequest.
+type PatchedSoftwareCatalogRequest struct {
+	Description *string `json:"description,omitempty"`
+
+	// Name Catalog name (e.g., EESSI)
+	Name *string `json:"name,omitempty"`
+
+	// SourceUrl Catalog source URL
+	SourceUrl *string `json:"source_url,omitempty"`
+
+	// Version Catalog version (e.g., 2023.06)
+	Version *string `json:"version,omitempty"`
+}
+
+// PatchedSoftwarePackageRequest defines model for PatchedSoftwarePackageRequest.
+type PatchedSoftwarePackageRequest struct {
+	Catalog     *string `json:"catalog,omitempty"`
+	Description *string `json:"description,omitempty"`
+	Homepage    *string `json:"homepage,omitempty"`
 	Name        *string `json:"name,omitempty"`
 }
 
@@ -21826,6 +22324,7 @@ type ProviderOfferingDetails struct {
 	ParentDescription         *string                 `json:"parent_description"`
 	ParentName                *string                 `json:"parent_name"`
 	ParentUuid                *openapi_types.UUID     `json:"parent_uuid"`
+	Partitions                *[]NestedPartition      `json:"partitions,omitempty"`
 	PausedReason              *string                 `json:"paused_reason,omitempty"`
 	Plans                     *[]BaseProviderPlan     `json:"plans,omitempty"`
 	PluginOptions             *MergedPluginOptions    `json:"plugin_options,omitempty"`
@@ -21846,17 +22345,18 @@ type ProviderOfferingDetails struct {
 	ServiceAttributes         *map[string]interface{} `json:"service_attributes,omitempty"`
 
 	// Shared Accessible to all customers.
-	Shared             *bool               `json:"shared,omitempty"`
-	Slug               *string             `json:"slug,omitempty"`
-	State              *OfferingState      `json:"state,omitempty"`
-	Thumbnail          *string             `json:"thumbnail"`
-	TotalCost          *int                `json:"total_cost"`
-	TotalCostEstimated *int                `json:"total_cost_estimated"`
-	TotalCustomers     *int                `json:"total_customers"`
-	Type               *string             `json:"type,omitempty"`
-	Url                *string             `json:"url,omitempty"`
-	Uuid               *openapi_types.UUID `json:"uuid,omitempty"`
-	VendorDetails      *string             `json:"vendor_details,omitempty"`
+	Shared             *bool                    `json:"shared,omitempty"`
+	Slug               *string                  `json:"slug,omitempty"`
+	SoftwareCatalogs   *[]NestedSoftwareCatalog `json:"software_catalogs,omitempty"`
+	State              *OfferingState           `json:"state,omitempty"`
+	Thumbnail          *string                  `json:"thumbnail"`
+	TotalCost          *int                     `json:"total_cost"`
+	TotalCostEstimated *int                     `json:"total_cost_estimated"`
+	TotalCustomers     *int                     `json:"total_customers"`
+	Type               *string                  `json:"type,omitempty"`
+	Url                *string                  `json:"url,omitempty"`
+	Uuid               *openapi_types.UUID      `json:"uuid,omitempty"`
+	VendorDetails      *string                  `json:"vendor_details,omitempty"`
 }
 
 // ProviderOfferingDetails_Country defines model for ProviderOfferingDetails.Country.
@@ -22076,6 +22576,7 @@ type PublicOfferingDetails struct {
 	ParentDescription         *string              `json:"parent_description"`
 	ParentName                *string              `json:"parent_name"`
 	ParentUuid                *openapi_types.UUID  `json:"parent_uuid"`
+	Partitions                *[]NestedPartition   `json:"partitions,omitempty"`
 	PausedReason              *string              `json:"paused_reason,omitempty"`
 	Plans                     *[]BasePublicPlan    `json:"plans,omitempty"`
 	PluginOptions             *MergedPluginOptions `json:"plugin_options,omitempty"`
@@ -22095,18 +22596,19 @@ type PublicOfferingDetails struct {
 	Screenshots               *[]NestedScreenshot  `json:"screenshots,omitempty"`
 
 	// Shared Accessible to all customers.
-	Shared             *bool               `json:"shared,omitempty"`
-	Slug               *string             `json:"slug,omitempty"`
-	State              *OfferingState      `json:"state,omitempty"`
-	Thumbnail          *string             `json:"thumbnail"`
-	TotalCost          *int                `json:"total_cost"`
-	TotalCostEstimated *int                `json:"total_cost_estimated"`
-	TotalCustomers     *int                `json:"total_customers"`
-	Type               *string             `json:"type,omitempty"`
-	Url                *string             `json:"url,omitempty"`
-	UserHasConsent     *bool               `json:"user_has_consent,omitempty"`
-	Uuid               *openapi_types.UUID `json:"uuid,omitempty"`
-	VendorDetails      *string             `json:"vendor_details,omitempty"`
+	Shared             *bool                    `json:"shared,omitempty"`
+	Slug               *string                  `json:"slug,omitempty"`
+	SoftwareCatalogs   *[]NestedSoftwareCatalog `json:"software_catalogs,omitempty"`
+	State              *OfferingState           `json:"state,omitempty"`
+	Thumbnail          *string                  `json:"thumbnail"`
+	TotalCost          *int                     `json:"total_cost"`
+	TotalCostEstimated *int                     `json:"total_cost_estimated"`
+	TotalCustomers     *int                     `json:"total_customers"`
+	Type               *string                  `json:"type,omitempty"`
+	Url                *string                  `json:"url,omitempty"`
+	UserHasConsent     *bool                    `json:"user_has_consent,omitempty"`
+	Uuid               *openapi_types.UUID      `json:"uuid,omitempty"`
+	VendorDetails      *string                  `json:"vendor_details,omitempty"`
 }
 
 // PublicOfferingDetails_Country defines model for PublicOfferingDetails.Country.
@@ -23422,6 +23924,16 @@ type RemoveOfferingComponentRequest struct {
 	Uuid openapi_types.UUID `json:"uuid"`
 }
 
+// RemovePartitionRequest defines model for RemovePartitionRequest.
+type RemovePartitionRequest struct {
+	PartitionUuid openapi_types.UUID `json:"partition_uuid"`
+}
+
+// RemoveSoftwareCatalogRequest defines model for RemoveSoftwareCatalogRequest.
+type RemoveSoftwareCatalogRequest struct {
+	OfferingCatalogUuid openapi_types.UUID `json:"offering_catalog_uuid"`
+}
+
 // ReportSection defines model for ReportSection.
 type ReportSection struct {
 	Body   *string `json:"body,omitempty"`
@@ -24452,6 +24964,91 @@ type SmaxWebHookReceiver struct {
 // SmaxWebHookReceiverRequest defines model for SmaxWebHookReceiverRequest.
 type SmaxWebHookReceiverRequest struct {
 	Id string `json:"id"`
+}
+
+// SoftwareCatalog defines model for SoftwareCatalog.
+type SoftwareCatalog struct {
+	Created     *time.Time `json:"created,omitempty"`
+	Description *string    `json:"description,omitempty"`
+	Modified    *time.Time `json:"modified,omitempty"`
+
+	// Name Catalog name (e.g., EESSI)
+	Name         string `json:"name"`
+	PackageCount *int   `json:"package_count,omitempty"`
+
+	// SourceUrl Catalog source URL
+	SourceUrl *string             `json:"source_url,omitempty"`
+	Url       *string             `json:"url,omitempty"`
+	Uuid      *openapi_types.UUID `json:"uuid,omitempty"`
+
+	// Version Catalog version (e.g., 2023.06)
+	Version string `json:"version"`
+}
+
+// SoftwareCatalogRequest defines model for SoftwareCatalogRequest.
+type SoftwareCatalogRequest struct {
+	Description *string `json:"description,omitempty"`
+
+	// Name Catalog name (e.g., EESSI)
+	Name string `json:"name"`
+
+	// SourceUrl Catalog source URL
+	SourceUrl *string `json:"source_url,omitempty"`
+
+	// Version Catalog version (e.g., 2023.06)
+	Version string `json:"version"`
+}
+
+// SoftwareCatalogUUID defines model for SoftwareCatalogUUID.
+type SoftwareCatalogUUID struct {
+	Uuid openapi_types.UUID `json:"uuid"`
+}
+
+// SoftwarePackage defines model for SoftwarePackage.
+type SoftwarePackage struct {
+	Catalog        string                   `json:"catalog"`
+	CatalogName    *string                  `json:"catalog_name,omitempty"`
+	CatalogVersion *string                  `json:"catalog_version,omitempty"`
+	Created        *time.Time               `json:"created,omitempty"`
+	Description    *string                  `json:"description,omitempty"`
+	Homepage       *string                  `json:"homepage,omitempty"`
+	Modified       *time.Time               `json:"modified,omitempty"`
+	Name           string                   `json:"name"`
+	Url            *string                  `json:"url,omitempty"`
+	Uuid           *openapi_types.UUID      `json:"uuid,omitempty"`
+	VersionCount   *int                     `json:"version_count,omitempty"`
+	Versions       *[]NestedSoftwareVersion `json:"versions,omitempty"`
+}
+
+// SoftwarePackageRequest defines model for SoftwarePackageRequest.
+type SoftwarePackageRequest struct {
+	Catalog     string  `json:"catalog"`
+	Description *string `json:"description,omitempty"`
+	Homepage    *string `json:"homepage,omitempty"`
+	Name        string  `json:"name"`
+}
+
+// SoftwareTarget defines model for SoftwareTarget.
+type SoftwareTarget struct {
+	CpuFamily            *string             `json:"cpu_family,omitempty"`
+	CpuMicroarchitecture *string             `json:"cpu_microarchitecture,omitempty"`
+	Created              *time.Time          `json:"created,omitempty"`
+	Modified             *time.Time          `json:"modified,omitempty"`
+	Path                 *string             `json:"path,omitempty"`
+	Url                  *string             `json:"url,omitempty"`
+	Uuid                 *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// SoftwareVersion defines model for SoftwareVersion.
+type SoftwareVersion struct {
+	Created     *time.Time          `json:"created,omitempty"`
+	Modified    *time.Time          `json:"modified,omitempty"`
+	PackageName *string             `json:"package_name,omitempty"`
+	ReleaseDate *openapi_types.Date `json:"release_date"`
+	TargetCount *int                `json:"target_count,omitempty"`
+	Url         *string             `json:"url,omitempty"`
+	Uuid        *openapi_types.UUID `json:"uuid,omitempty"`
+	Version     *string             `json:"version,omitempty"`
 }
 
 // SshKey defines model for SshKey.
@@ -32368,6 +32965,232 @@ type MarketplaceSiteAgentServicesCountParams struct {
 // MarketplaceSiteAgentServicesCountParamsState defines parameters for MarketplaceSiteAgentServicesCount.
 type MarketplaceSiteAgentServicesCountParamsState string
 
+// MarketplaceSoftwareCatalogsListParams defines parameters for MarketplaceSoftwareCatalogsList.
+type MarketplaceSoftwareCatalogsListParams struct {
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// O Ordering
+	//
+	O *[]MarketplaceSoftwareCatalogsListParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Version  *string   `form:"version,omitempty" json:"version,omitempty"`
+}
+
+// MarketplaceSoftwareCatalogsListParamsO defines parameters for MarketplaceSoftwareCatalogsList.
+type MarketplaceSoftwareCatalogsListParamsO string
+
+// MarketplaceSoftwareCatalogsCountParams defines parameters for MarketplaceSoftwareCatalogsCount.
+type MarketplaceSoftwareCatalogsCountParams struct {
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// O Ordering
+	//
+	O *[]MarketplaceSoftwareCatalogsCountParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Version  *string   `form:"version,omitempty" json:"version,omitempty"`
+}
+
+// MarketplaceSoftwareCatalogsCountParamsO defines parameters for MarketplaceSoftwareCatalogsCount.
+type MarketplaceSoftwareCatalogsCountParamsO string
+
+// MarketplaceSoftwarePackagesListParams defines parameters for MarketplaceSoftwarePackagesList.
+type MarketplaceSoftwarePackagesListParams struct {
+	// CatalogName Filter packages by catalog name (case-insensitive partial match)
+	CatalogName *string `form:"catalog_name,omitempty" json:"catalog_name,omitempty"`
+
+	// CatalogUuid Filter packages from a specific software catalog
+	CatalogUuid *openapi_types.UUID `form:"catalog_uuid,omitempty" json:"catalog_uuid,omitempty"`
+
+	// CatalogVersion Filter packages by catalog version (case-insensitive partial match)
+	CatalogVersion *string `form:"catalog_version,omitempty" json:"catalog_version,omitempty"`
+
+	// CpuFamily Filter packages available for specific CPU family (e.g., x86_64, aarch64)
+	CpuFamily *string `form:"cpu_family,omitempty" json:"cpu_family,omitempty"`
+
+	// CpuMicroarchitecture Filter packages available for specific CPU microarchitecture (e.g., generic, zen2, haswell)
+	CpuMicroarchitecture *string `form:"cpu_microarchitecture,omitempty" json:"cpu_microarchitecture,omitempty"`
+
+	// Description Filter packages by description (case-insensitive partial match)
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// HasVersion Filter packages that have a specific version
+	HasVersion *string `form:"has_version,omitempty" json:"has_version,omitempty"`
+
+	// Name Filter packages by name (case-insensitive partial match)
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// O Ordering
+	//
+	O *[]MarketplaceSoftwarePackagesListParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// OfferingUuid Filter packages available for a specific offering
+	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Query Query packages by name, description, or version (case-insensitive partial match)
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
+}
+
+// MarketplaceSoftwarePackagesListParamsO defines parameters for MarketplaceSoftwarePackagesList.
+type MarketplaceSoftwarePackagesListParamsO string
+
+// MarketplaceSoftwarePackagesCountParams defines parameters for MarketplaceSoftwarePackagesCount.
+type MarketplaceSoftwarePackagesCountParams struct {
+	// CatalogName Filter packages by catalog name (case-insensitive partial match)
+	CatalogName *string `form:"catalog_name,omitempty" json:"catalog_name,omitempty"`
+
+	// CatalogUuid Filter packages from a specific software catalog
+	CatalogUuid *openapi_types.UUID `form:"catalog_uuid,omitempty" json:"catalog_uuid,omitempty"`
+
+	// CatalogVersion Filter packages by catalog version (case-insensitive partial match)
+	CatalogVersion *string `form:"catalog_version,omitempty" json:"catalog_version,omitempty"`
+
+	// CpuFamily Filter packages available for specific CPU family (e.g., x86_64, aarch64)
+	CpuFamily *string `form:"cpu_family,omitempty" json:"cpu_family,omitempty"`
+
+	// CpuMicroarchitecture Filter packages available for specific CPU microarchitecture (e.g., generic, zen2, haswell)
+	CpuMicroarchitecture *string `form:"cpu_microarchitecture,omitempty" json:"cpu_microarchitecture,omitempty"`
+
+	// Description Filter packages by description (case-insensitive partial match)
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// HasVersion Filter packages that have a specific version
+	HasVersion *string `form:"has_version,omitempty" json:"has_version,omitempty"`
+
+	// Name Filter packages by name (case-insensitive partial match)
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// O Ordering
+	//
+	O *[]MarketplaceSoftwarePackagesCountParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// OfferingUuid Filter packages available for a specific offering
+	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Query Query packages by name, description, or version (case-insensitive partial match)
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
+}
+
+// MarketplaceSoftwarePackagesCountParamsO defines parameters for MarketplaceSoftwarePackagesCount.
+type MarketplaceSoftwarePackagesCountParamsO string
+
+// MarketplaceSoftwareTargetsListParams defines parameters for MarketplaceSoftwareTargetsList.
+type MarketplaceSoftwareTargetsListParams struct {
+	CatalogUuid          *openapi_types.UUID `form:"catalog_uuid,omitempty" json:"catalog_uuid,omitempty"`
+	CpuFamily            *string             `form:"cpu_family,omitempty" json:"cpu_family,omitempty"`
+	CpuMicroarchitecture *string             `form:"cpu_microarchitecture,omitempty" json:"cpu_microarchitecture,omitempty"`
+
+	// O Ordering
+	//
+	O            *[]MarketplaceSoftwareTargetsListParamsO `form:"o,omitempty" json:"o,omitempty"`
+	OfferingUuid *openapi_types.UUID                      `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	PackageUuid  *openapi_types.UUID                      `form:"package_uuid,omitempty" json:"package_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize    *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Path        *string             `form:"path,omitempty" json:"path,omitempty"`
+	VersionUuid *openapi_types.UUID `form:"version_uuid,omitempty" json:"version_uuid,omitempty"`
+}
+
+// MarketplaceSoftwareTargetsListParamsO defines parameters for MarketplaceSoftwareTargetsList.
+type MarketplaceSoftwareTargetsListParamsO string
+
+// MarketplaceSoftwareTargetsCountParams defines parameters for MarketplaceSoftwareTargetsCount.
+type MarketplaceSoftwareTargetsCountParams struct {
+	CatalogUuid          *openapi_types.UUID `form:"catalog_uuid,omitempty" json:"catalog_uuid,omitempty"`
+	CpuFamily            *string             `form:"cpu_family,omitempty" json:"cpu_family,omitempty"`
+	CpuMicroarchitecture *string             `form:"cpu_microarchitecture,omitempty" json:"cpu_microarchitecture,omitempty"`
+
+	// O Ordering
+	//
+	O            *[]MarketplaceSoftwareTargetsCountParamsO `form:"o,omitempty" json:"o,omitempty"`
+	OfferingUuid *openapi_types.UUID                       `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	PackageUuid  *openapi_types.UUID                       `form:"package_uuid,omitempty" json:"package_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize    *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Path        *string             `form:"path,omitempty" json:"path,omitempty"`
+	VersionUuid *openapi_types.UUID `form:"version_uuid,omitempty" json:"version_uuid,omitempty"`
+}
+
+// MarketplaceSoftwareTargetsCountParamsO defines parameters for MarketplaceSoftwareTargetsCount.
+type MarketplaceSoftwareTargetsCountParamsO string
+
+// MarketplaceSoftwareVersionsListParams defines parameters for MarketplaceSoftwareVersionsList.
+type MarketplaceSoftwareVersionsListParams struct {
+	CatalogUuid          *openapi_types.UUID `form:"catalog_uuid,omitempty" json:"catalog_uuid,omitempty"`
+	CpuFamily            *string             `form:"cpu_family,omitempty" json:"cpu_family,omitempty"`
+	CpuMicroarchitecture *string             `form:"cpu_microarchitecture,omitempty" json:"cpu_microarchitecture,omitempty"`
+
+	// O Ordering
+	//
+	O            *[]MarketplaceSoftwareVersionsListParamsO `form:"o,omitempty" json:"o,omitempty"`
+	OfferingUuid *openapi_types.UUID                       `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	PackageName  *string                                   `form:"package_name,omitempty" json:"package_name,omitempty"`
+	PackageUuid  *openapi_types.UUID                       `form:"package_uuid,omitempty" json:"package_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Version  *string   `form:"version,omitempty" json:"version,omitempty"`
+}
+
+// MarketplaceSoftwareVersionsListParamsO defines parameters for MarketplaceSoftwareVersionsList.
+type MarketplaceSoftwareVersionsListParamsO string
+
+// MarketplaceSoftwareVersionsCountParams defines parameters for MarketplaceSoftwareVersionsCount.
+type MarketplaceSoftwareVersionsCountParams struct {
+	CatalogUuid          *openapi_types.UUID `form:"catalog_uuid,omitempty" json:"catalog_uuid,omitempty"`
+	CpuFamily            *string             `form:"cpu_family,omitempty" json:"cpu_family,omitempty"`
+	CpuMicroarchitecture *string             `form:"cpu_microarchitecture,omitempty" json:"cpu_microarchitecture,omitempty"`
+
+	// O Ordering
+	//
+	O            *[]MarketplaceSoftwareVersionsCountParamsO `form:"o,omitempty" json:"o,omitempty"`
+	OfferingUuid *openapi_types.UUID                        `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	PackageName  *string                                    `form:"package_name,omitempty" json:"package_name,omitempty"`
+	PackageUuid  *openapi_types.UUID                        `form:"package_uuid,omitempty" json:"package_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Version  *string   `form:"version,omitempty" json:"version,omitempty"`
+}
+
+// MarketplaceSoftwareVersionsCountParamsO defines parameters for MarketplaceSoftwareVersionsCount.
+type MarketplaceSoftwareVersionsCountParamsO string
+
 // MarketplaceStatsComponentUsagesListParams defines parameters for MarketplaceStatsComponentUsagesList.
 type MarketplaceStatsComponentUsagesListParams struct {
 	// Page A page number within the paginated result set.
@@ -38420,6 +39243,12 @@ type MarketplaceProviderOfferingsCreateMultipartRequestBody = OfferingCreateRequ
 // MarketplaceProviderOfferingsAddEndpointJSONRequestBody defines body for MarketplaceProviderOfferingsAddEndpoint for application/json ContentType.
 type MarketplaceProviderOfferingsAddEndpointJSONRequestBody = NestedEndpointRequest
 
+// MarketplaceProviderOfferingsAddPartitionJSONRequestBody defines body for MarketplaceProviderOfferingsAddPartition for application/json ContentType.
+type MarketplaceProviderOfferingsAddPartitionJSONRequestBody = OfferingPartitionRequest
+
+// MarketplaceProviderOfferingsAddSoftwareCatalogJSONRequestBody defines body for MarketplaceProviderOfferingsAddSoftwareCatalog for application/json ContentType.
+type MarketplaceProviderOfferingsAddSoftwareCatalogJSONRequestBody = OfferingSoftwareCatalogRequest
+
 // MarketplaceProviderOfferingsAddUserJSONRequestBody defines body for MarketplaceProviderOfferingsAddUser for application/json ContentType.
 type MarketplaceProviderOfferingsAddUserJSONRequestBody = UserRoleCreateRequest
 
@@ -38443,6 +39272,12 @@ type MarketplaceProviderOfferingsPauseJSONRequestBody = OfferingPauseRequest
 
 // MarketplaceProviderOfferingsRemoveOfferingComponentJSONRequestBody defines body for MarketplaceProviderOfferingsRemoveOfferingComponent for application/json ContentType.
 type MarketplaceProviderOfferingsRemoveOfferingComponentJSONRequestBody = RemoveOfferingComponentRequest
+
+// MarketplaceProviderOfferingsRemovePartitionJSONRequestBody defines body for MarketplaceProviderOfferingsRemovePartition for application/json ContentType.
+type MarketplaceProviderOfferingsRemovePartitionJSONRequestBody = RemovePartitionRequest
+
+// MarketplaceProviderOfferingsRemoveSoftwareCatalogJSONRequestBody defines body for MarketplaceProviderOfferingsRemoveSoftwareCatalog for application/json ContentType.
+type MarketplaceProviderOfferingsRemoveSoftwareCatalogJSONRequestBody = RemoveSoftwareCatalogRequest
 
 // MarketplaceProviderOfferingsSetBackendMetadataJSONRequestBody defines body for MarketplaceProviderOfferingsSetBackendMetadata for application/json ContentType.
 type MarketplaceProviderOfferingsSetBackendMetadataJSONRequestBody = OfferingBackendMetadataRequest
@@ -38483,8 +39318,14 @@ type MarketplaceProviderOfferingsUpdateOrganizationGroupsJSONRequestBody = Organ
 // MarketplaceProviderOfferingsUpdateOverviewJSONRequestBody defines body for MarketplaceProviderOfferingsUpdateOverview for application/json ContentType.
 type MarketplaceProviderOfferingsUpdateOverviewJSONRequestBody = OfferingOverviewUpdateRequest
 
+// MarketplaceProviderOfferingsUpdatePartitionPartialUpdateJSONRequestBody defines body for MarketplaceProviderOfferingsUpdatePartitionPartialUpdate for application/json ContentType.
+type MarketplaceProviderOfferingsUpdatePartitionPartialUpdateJSONRequestBody = PatchedOfferingPartitionRequest
+
 // MarketplaceProviderOfferingsUpdateResourceOptionsJSONRequestBody defines body for MarketplaceProviderOfferingsUpdateResourceOptions for application/json ContentType.
 type MarketplaceProviderOfferingsUpdateResourceOptionsJSONRequestBody = OfferingResourceOptionsUpdateRequest
+
+// MarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateJSONRequestBody defines body for MarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdate for application/json ContentType.
+type MarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateJSONRequestBody = PatchedOfferingSoftwareCatalogUpdateRequest
 
 // MarketplaceProviderOfferingsUpdateThumbnailJSONRequestBody defines body for MarketplaceProviderOfferingsUpdateThumbnail for application/json ContentType.
 type MarketplaceProviderOfferingsUpdateThumbnailJSONRequestBody = OfferingThumbnailRequest
@@ -38713,6 +39554,24 @@ type MarketplaceSiteAgentServicesRegisterProcessorJSONRequestBody = AgentProcess
 
 // MarketplaceSiteAgentServicesSetStatisticsJSONRequestBody defines body for MarketplaceSiteAgentServicesSetStatistics for application/json ContentType.
 type MarketplaceSiteAgentServicesSetStatisticsJSONRequestBody = AgentServiceStatisticsRequest
+
+// MarketplaceSoftwareCatalogsCreateJSONRequestBody defines body for MarketplaceSoftwareCatalogsCreate for application/json ContentType.
+type MarketplaceSoftwareCatalogsCreateJSONRequestBody = SoftwareCatalogRequest
+
+// MarketplaceSoftwareCatalogsPartialUpdateJSONRequestBody defines body for MarketplaceSoftwareCatalogsPartialUpdate for application/json ContentType.
+type MarketplaceSoftwareCatalogsPartialUpdateJSONRequestBody = PatchedSoftwareCatalogRequest
+
+// MarketplaceSoftwareCatalogsUpdateJSONRequestBody defines body for MarketplaceSoftwareCatalogsUpdate for application/json ContentType.
+type MarketplaceSoftwareCatalogsUpdateJSONRequestBody = SoftwareCatalogRequest
+
+// MarketplaceSoftwarePackagesCreateJSONRequestBody defines body for MarketplaceSoftwarePackagesCreate for application/json ContentType.
+type MarketplaceSoftwarePackagesCreateJSONRequestBody = SoftwarePackageRequest
+
+// MarketplaceSoftwarePackagesPartialUpdateJSONRequestBody defines body for MarketplaceSoftwarePackagesPartialUpdate for application/json ContentType.
+type MarketplaceSoftwarePackagesPartialUpdateJSONRequestBody = PatchedSoftwarePackageRequest
+
+// MarketplaceSoftwarePackagesUpdateJSONRequestBody defines body for MarketplaceSoftwarePackagesUpdate for application/json ContentType.
+type MarketplaceSoftwarePackagesUpdateJSONRequestBody = SoftwarePackageRequest
 
 // MarketplaceUserOfferingConsentsCreateJSONRequestBody defines body for MarketplaceUserOfferingConsentsCreate for application/json ContentType.
 type MarketplaceUserOfferingConsentsCreateJSONRequestBody = UserOfferingConsentCreateRequest
@@ -47937,6 +48796,16 @@ type ClientInterface interface {
 
 	MarketplaceProviderOfferingsAddEndpoint(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsAddEndpointJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceProviderOfferingsAddPartitionWithBody request with any body
+	MarketplaceProviderOfferingsAddPartitionWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceProviderOfferingsAddPartition(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsAddPartitionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProviderOfferingsAddSoftwareCatalogWithBody request with any body
+	MarketplaceProviderOfferingsAddSoftwareCatalogWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceProviderOfferingsAddSoftwareCatalog(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsAddSoftwareCatalogJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceProviderOfferingsAddUserWithBody request with any body
 	MarketplaceProviderOfferingsAddUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -48034,6 +48903,16 @@ type ClientInterface interface {
 
 	MarketplaceProviderOfferingsRemoveOfferingComponent(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsRemoveOfferingComponentJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceProviderOfferingsRemovePartitionWithBody request with any body
+	MarketplaceProviderOfferingsRemovePartitionWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceProviderOfferingsRemovePartition(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsRemovePartitionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProviderOfferingsRemoveSoftwareCatalogWithBody request with any body
+	MarketplaceProviderOfferingsRemoveSoftwareCatalogWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceProviderOfferingsRemoveSoftwareCatalog(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsRemoveSoftwareCatalogJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceProviderOfferingsSetBackendMetadataWithBody request with any body
 	MarketplaceProviderOfferingsSetBackendMetadataWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -48103,10 +48982,20 @@ type ClientInterface interface {
 
 	MarketplaceProviderOfferingsUpdateOverview(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateOverviewJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceProviderOfferingsUpdatePartitionPartialUpdateWithBody request with any body
+	MarketplaceProviderOfferingsUpdatePartitionPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceProviderOfferingsUpdatePartitionPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdatePartitionPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceProviderOfferingsUpdateResourceOptionsWithBody request with any body
 	MarketplaceProviderOfferingsUpdateResourceOptionsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	MarketplaceProviderOfferingsUpdateResourceOptions(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateResourceOptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateWithBody request with any body
+	MarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceProviderOfferingsUpdateThumbnailWithBody request with any body
 	MarketplaceProviderOfferingsUpdateThumbnailWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -48724,6 +49613,102 @@ type ClientInterface interface {
 	MarketplaceSiteAgentServicesSetStatisticsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	MarketplaceSiteAgentServicesSetStatistics(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSiteAgentServicesSetStatisticsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSoftwareCatalogsList request
+	MarketplaceSoftwareCatalogsList(ctx context.Context, params *MarketplaceSoftwareCatalogsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSoftwareCatalogsCount request
+	MarketplaceSoftwareCatalogsCount(ctx context.Context, params *MarketplaceSoftwareCatalogsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSoftwareCatalogsCreateWithBody request with any body
+	MarketplaceSoftwareCatalogsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceSoftwareCatalogsCreate(ctx context.Context, body MarketplaceSoftwareCatalogsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSoftwareCatalogsDestroy request
+	MarketplaceSoftwareCatalogsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSoftwareCatalogsRetrieve request
+	MarketplaceSoftwareCatalogsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSoftwareCatalogsPartialUpdateWithBody request with any body
+	MarketplaceSoftwareCatalogsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceSoftwareCatalogsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSoftwareCatalogsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSoftwareCatalogsUpdateWithBody request with any body
+	MarketplaceSoftwareCatalogsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceSoftwareCatalogsUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSoftwareCatalogsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSoftwarePackagesList request
+	MarketplaceSoftwarePackagesList(ctx context.Context, params *MarketplaceSoftwarePackagesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSoftwarePackagesCount request
+	MarketplaceSoftwarePackagesCount(ctx context.Context, params *MarketplaceSoftwarePackagesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSoftwarePackagesCreateWithBody request with any body
+	MarketplaceSoftwarePackagesCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceSoftwarePackagesCreate(ctx context.Context, body MarketplaceSoftwarePackagesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSoftwarePackagesDestroy request
+	MarketplaceSoftwarePackagesDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSoftwarePackagesRetrieve request
+	MarketplaceSoftwarePackagesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSoftwarePackagesPartialUpdateWithBody request with any body
+	MarketplaceSoftwarePackagesPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceSoftwarePackagesPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSoftwarePackagesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSoftwarePackagesUpdateWithBody request with any body
+	MarketplaceSoftwarePackagesUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceSoftwarePackagesUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSoftwarePackagesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSoftwareTargetsList request
+	MarketplaceSoftwareTargetsList(ctx context.Context, params *MarketplaceSoftwareTargetsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSoftwareTargetsCount request
+	MarketplaceSoftwareTargetsCount(ctx context.Context, params *MarketplaceSoftwareTargetsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSoftwareTargetsCreate request
+	MarketplaceSoftwareTargetsCreate(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSoftwareTargetsDestroy request
+	MarketplaceSoftwareTargetsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSoftwareTargetsRetrieve request
+	MarketplaceSoftwareTargetsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSoftwareTargetsPartialUpdate request
+	MarketplaceSoftwareTargetsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSoftwareTargetsUpdate request
+	MarketplaceSoftwareTargetsUpdate(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSoftwareVersionsList request
+	MarketplaceSoftwareVersionsList(ctx context.Context, params *MarketplaceSoftwareVersionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSoftwareVersionsCount request
+	MarketplaceSoftwareVersionsCount(ctx context.Context, params *MarketplaceSoftwareVersionsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSoftwareVersionsCreate request
+	MarketplaceSoftwareVersionsCreate(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSoftwareVersionsDestroy request
+	MarketplaceSoftwareVersionsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSoftwareVersionsRetrieve request
+	MarketplaceSoftwareVersionsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSoftwareVersionsPartialUpdate request
+	MarketplaceSoftwareVersionsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSoftwareVersionsUpdate request
+	MarketplaceSoftwareVersionsUpdate(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceStatsComponentUsagesList request
 	MarketplaceStatsComponentUsagesList(ctx context.Context, params *MarketplaceStatsComponentUsagesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -62330,6 +63315,54 @@ func (c *Client) MarketplaceProviderOfferingsAddEndpoint(ctx context.Context, uu
 	return c.Client.Do(req)
 }
 
+func (c *Client) MarketplaceProviderOfferingsAddPartitionWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsAddPartitionRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderOfferingsAddPartition(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsAddPartitionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsAddPartitionRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderOfferingsAddSoftwareCatalogWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsAddSoftwareCatalogRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderOfferingsAddSoftwareCatalog(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsAddSoftwareCatalogJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsAddSoftwareCatalogRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) MarketplaceProviderOfferingsAddUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProviderOfferingsAddUserRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
@@ -62750,6 +63783,54 @@ func (c *Client) MarketplaceProviderOfferingsRemoveOfferingComponent(ctx context
 	return c.Client.Do(req)
 }
 
+func (c *Client) MarketplaceProviderOfferingsRemovePartitionWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsRemovePartitionRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderOfferingsRemovePartition(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsRemovePartitionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsRemovePartitionRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderOfferingsRemoveSoftwareCatalogWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsRemoveSoftwareCatalogRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderOfferingsRemoveSoftwareCatalog(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsRemoveSoftwareCatalogJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsRemoveSoftwareCatalogRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) MarketplaceProviderOfferingsSetBackendMetadataWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProviderOfferingsSetBackendMetadataRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
@@ -63074,6 +64155,30 @@ func (c *Client) MarketplaceProviderOfferingsUpdateOverview(ctx context.Context,
 	return c.Client.Do(req)
 }
 
+func (c *Client) MarketplaceProviderOfferingsUpdatePartitionPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsUpdatePartitionPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderOfferingsUpdatePartitionPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdatePartitionPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsUpdatePartitionPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) MarketplaceProviderOfferingsUpdateResourceOptionsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProviderOfferingsUpdateResourceOptionsRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
@@ -63088,6 +64193,30 @@ func (c *Client) MarketplaceProviderOfferingsUpdateResourceOptionsWithBody(ctx c
 
 func (c *Client) MarketplaceProviderOfferingsUpdateResourceOptions(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateResourceOptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProviderOfferingsUpdateResourceOptionsRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -65836,6 +66965,414 @@ func (c *Client) MarketplaceSiteAgentServicesSetStatisticsWithBody(ctx context.C
 
 func (c *Client) MarketplaceSiteAgentServicesSetStatistics(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSiteAgentServicesSetStatisticsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceSiteAgentServicesSetStatisticsRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSoftwareCatalogsList(ctx context.Context, params *MarketplaceSoftwareCatalogsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSoftwareCatalogsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSoftwareCatalogsCount(ctx context.Context, params *MarketplaceSoftwareCatalogsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSoftwareCatalogsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSoftwareCatalogsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSoftwareCatalogsCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSoftwareCatalogsCreate(ctx context.Context, body MarketplaceSoftwareCatalogsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSoftwareCatalogsCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSoftwareCatalogsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSoftwareCatalogsDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSoftwareCatalogsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSoftwareCatalogsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSoftwareCatalogsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSoftwareCatalogsPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSoftwareCatalogsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSoftwareCatalogsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSoftwareCatalogsPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSoftwareCatalogsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSoftwareCatalogsUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSoftwareCatalogsUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSoftwareCatalogsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSoftwareCatalogsUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSoftwarePackagesList(ctx context.Context, params *MarketplaceSoftwarePackagesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSoftwarePackagesListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSoftwarePackagesCount(ctx context.Context, params *MarketplaceSoftwarePackagesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSoftwarePackagesCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSoftwarePackagesCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSoftwarePackagesCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSoftwarePackagesCreate(ctx context.Context, body MarketplaceSoftwarePackagesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSoftwarePackagesCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSoftwarePackagesDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSoftwarePackagesDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSoftwarePackagesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSoftwarePackagesRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSoftwarePackagesPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSoftwarePackagesPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSoftwarePackagesPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSoftwarePackagesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSoftwarePackagesPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSoftwarePackagesUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSoftwarePackagesUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSoftwarePackagesUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSoftwarePackagesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSoftwarePackagesUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSoftwareTargetsList(ctx context.Context, params *MarketplaceSoftwareTargetsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSoftwareTargetsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSoftwareTargetsCount(ctx context.Context, params *MarketplaceSoftwareTargetsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSoftwareTargetsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSoftwareTargetsCreate(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSoftwareTargetsCreateRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSoftwareTargetsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSoftwareTargetsDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSoftwareTargetsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSoftwareTargetsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSoftwareTargetsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSoftwareTargetsPartialUpdateRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSoftwareTargetsUpdate(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSoftwareTargetsUpdateRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSoftwareVersionsList(ctx context.Context, params *MarketplaceSoftwareVersionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSoftwareVersionsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSoftwareVersionsCount(ctx context.Context, params *MarketplaceSoftwareVersionsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSoftwareVersionsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSoftwareVersionsCreate(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSoftwareVersionsCreateRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSoftwareVersionsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSoftwareVersionsDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSoftwareVersionsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSoftwareVersionsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSoftwareVersionsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSoftwareVersionsPartialUpdateRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSoftwareVersionsUpdate(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSoftwareVersionsUpdateRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -132967,6 +134504,100 @@ func NewMarketplaceProviderOfferingsAddEndpointRequestWithBody(server string, uu
 	return req, nil
 }
 
+// NewMarketplaceProviderOfferingsAddPartitionRequest calls the generic MarketplaceProviderOfferingsAddPartition builder with application/json body
+func NewMarketplaceProviderOfferingsAddPartitionRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderOfferingsAddPartitionJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceProviderOfferingsAddPartitionRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceProviderOfferingsAddPartitionRequestWithBody generates requests for MarketplaceProviderOfferingsAddPartition with any type of body
+func NewMarketplaceProviderOfferingsAddPartitionRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-offerings/%s/add_partition/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceProviderOfferingsAddSoftwareCatalogRequest calls the generic MarketplaceProviderOfferingsAddSoftwareCatalog builder with application/json body
+func NewMarketplaceProviderOfferingsAddSoftwareCatalogRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderOfferingsAddSoftwareCatalogJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceProviderOfferingsAddSoftwareCatalogRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceProviderOfferingsAddSoftwareCatalogRequestWithBody generates requests for MarketplaceProviderOfferingsAddSoftwareCatalog with any type of body
+func NewMarketplaceProviderOfferingsAddSoftwareCatalogRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-offerings/%s/add_software_catalog/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewMarketplaceProviderOfferingsAddUserRequest calls the generic MarketplaceProviderOfferingsAddUser builder with application/json body
 func NewMarketplaceProviderOfferingsAddUserRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderOfferingsAddUserJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -136046,6 +137677,100 @@ func NewMarketplaceProviderOfferingsRemoveOfferingComponentRequestWithBody(serve
 	return req, nil
 }
 
+// NewMarketplaceProviderOfferingsRemovePartitionRequest calls the generic MarketplaceProviderOfferingsRemovePartition builder with application/json body
+func NewMarketplaceProviderOfferingsRemovePartitionRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderOfferingsRemovePartitionJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceProviderOfferingsRemovePartitionRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceProviderOfferingsRemovePartitionRequestWithBody generates requests for MarketplaceProviderOfferingsRemovePartition with any type of body
+func NewMarketplaceProviderOfferingsRemovePartitionRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-offerings/%s/remove_partition/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceProviderOfferingsRemoveSoftwareCatalogRequest calls the generic MarketplaceProviderOfferingsRemoveSoftwareCatalog builder with application/json body
+func NewMarketplaceProviderOfferingsRemoveSoftwareCatalogRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderOfferingsRemoveSoftwareCatalogJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceProviderOfferingsRemoveSoftwareCatalogRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceProviderOfferingsRemoveSoftwareCatalogRequestWithBody generates requests for MarketplaceProviderOfferingsRemoveSoftwareCatalog with any type of body
+func NewMarketplaceProviderOfferingsRemoveSoftwareCatalogRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-offerings/%s/remove_software_catalog/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewMarketplaceProviderOfferingsSetBackendMetadataRequest calls the generic MarketplaceProviderOfferingsSetBackendMetadata builder with application/json body
 func NewMarketplaceProviderOfferingsSetBackendMetadataRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderOfferingsSetBackendMetadataJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -136732,6 +138457,53 @@ func NewMarketplaceProviderOfferingsUpdateOverviewRequestWithBody(server string,
 	return req, nil
 }
 
+// NewMarketplaceProviderOfferingsUpdatePartitionPartialUpdateRequest calls the generic MarketplaceProviderOfferingsUpdatePartitionPartialUpdate builder with application/json body
+func NewMarketplaceProviderOfferingsUpdatePartitionPartialUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdatePartitionPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceProviderOfferingsUpdatePartitionPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceProviderOfferingsUpdatePartitionPartialUpdateRequestWithBody generates requests for MarketplaceProviderOfferingsUpdatePartitionPartialUpdate with any type of body
+func NewMarketplaceProviderOfferingsUpdatePartitionPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-offerings/%s/update_partition/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewMarketplaceProviderOfferingsUpdateResourceOptionsRequest calls the generic MarketplaceProviderOfferingsUpdateResourceOptions builder with application/json body
 func NewMarketplaceProviderOfferingsUpdateResourceOptionsRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateResourceOptionsJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -136770,6 +138542,53 @@ func NewMarketplaceProviderOfferingsUpdateResourceOptionsRequestWithBody(server 
 	}
 
 	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateRequest calls the generic MarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdate builder with application/json body
+func NewMarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateRequestWithBody generates requests for MarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdate with any type of body
+func NewMarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-offerings/%s/update_software_catalog/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
 	if err != nil {
 		return nil, err
 	}
@@ -152064,6 +153883,2216 @@ func NewMarketplaceSiteAgentServicesSetStatisticsRequestWithBody(server string, 
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceSoftwareCatalogsListRequest generates requests for MarketplaceSoftwareCatalogsList
+func NewMarketplaceSoftwareCatalogsListRequest(server string, params *MarketplaceSoftwareCatalogsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-software-catalogs/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name", runtime.ParamLocationQuery, *params.Name); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Version != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "version", runtime.ParamLocationQuery, *params.Version); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceSoftwareCatalogsCountRequest generates requests for MarketplaceSoftwareCatalogsCount
+func NewMarketplaceSoftwareCatalogsCountRequest(server string, params *MarketplaceSoftwareCatalogsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-software-catalogs/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name", runtime.ParamLocationQuery, *params.Name); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Version != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "version", runtime.ParamLocationQuery, *params.Version); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceSoftwareCatalogsCreateRequest calls the generic MarketplaceSoftwareCatalogsCreate builder with application/json body
+func NewMarketplaceSoftwareCatalogsCreateRequest(server string, body MarketplaceSoftwareCatalogsCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceSoftwareCatalogsCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewMarketplaceSoftwareCatalogsCreateRequestWithBody generates requests for MarketplaceSoftwareCatalogsCreate with any type of body
+func NewMarketplaceSoftwareCatalogsCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-software-catalogs/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceSoftwareCatalogsDestroyRequest generates requests for MarketplaceSoftwareCatalogsDestroy
+func NewMarketplaceSoftwareCatalogsDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-software-catalogs/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceSoftwareCatalogsRetrieveRequest generates requests for MarketplaceSoftwareCatalogsRetrieve
+func NewMarketplaceSoftwareCatalogsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-software-catalogs/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceSoftwareCatalogsPartialUpdateRequest calls the generic MarketplaceSoftwareCatalogsPartialUpdate builder with application/json body
+func NewMarketplaceSoftwareCatalogsPartialUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceSoftwareCatalogsPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceSoftwareCatalogsPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceSoftwareCatalogsPartialUpdateRequestWithBody generates requests for MarketplaceSoftwareCatalogsPartialUpdate with any type of body
+func NewMarketplaceSoftwareCatalogsPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-software-catalogs/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceSoftwareCatalogsUpdateRequest calls the generic MarketplaceSoftwareCatalogsUpdate builder with application/json body
+func NewMarketplaceSoftwareCatalogsUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceSoftwareCatalogsUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceSoftwareCatalogsUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceSoftwareCatalogsUpdateRequestWithBody generates requests for MarketplaceSoftwareCatalogsUpdate with any type of body
+func NewMarketplaceSoftwareCatalogsUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-software-catalogs/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceSoftwarePackagesListRequest generates requests for MarketplaceSoftwarePackagesList
+func NewMarketplaceSoftwarePackagesListRequest(server string, params *MarketplaceSoftwarePackagesListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-software-packages/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.CatalogName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "catalog_name", runtime.ParamLocationQuery, *params.CatalogName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CatalogUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "catalog_uuid", runtime.ParamLocationQuery, *params.CatalogUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CatalogVersion != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "catalog_version", runtime.ParamLocationQuery, *params.CatalogVersion); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CpuFamily != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "cpu_family", runtime.ParamLocationQuery, *params.CpuFamily); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CpuMicroarchitecture != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "cpu_microarchitecture", runtime.ParamLocationQuery, *params.CpuMicroarchitecture); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Description != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "description", runtime.ParamLocationQuery, *params.Description); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.HasVersion != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_version", runtime.ParamLocationQuery, *params.HasVersion); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name", runtime.ParamLocationQuery, *params.Name); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "query", runtime.ParamLocationQuery, *params.Query); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceSoftwarePackagesCountRequest generates requests for MarketplaceSoftwarePackagesCount
+func NewMarketplaceSoftwarePackagesCountRequest(server string, params *MarketplaceSoftwarePackagesCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-software-packages/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.CatalogName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "catalog_name", runtime.ParamLocationQuery, *params.CatalogName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CatalogUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "catalog_uuid", runtime.ParamLocationQuery, *params.CatalogUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CatalogVersion != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "catalog_version", runtime.ParamLocationQuery, *params.CatalogVersion); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CpuFamily != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "cpu_family", runtime.ParamLocationQuery, *params.CpuFamily); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CpuMicroarchitecture != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "cpu_microarchitecture", runtime.ParamLocationQuery, *params.CpuMicroarchitecture); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Description != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "description", runtime.ParamLocationQuery, *params.Description); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.HasVersion != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_version", runtime.ParamLocationQuery, *params.HasVersion); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name", runtime.ParamLocationQuery, *params.Name); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "query", runtime.ParamLocationQuery, *params.Query); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceSoftwarePackagesCreateRequest calls the generic MarketplaceSoftwarePackagesCreate builder with application/json body
+func NewMarketplaceSoftwarePackagesCreateRequest(server string, body MarketplaceSoftwarePackagesCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceSoftwarePackagesCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewMarketplaceSoftwarePackagesCreateRequestWithBody generates requests for MarketplaceSoftwarePackagesCreate with any type of body
+func NewMarketplaceSoftwarePackagesCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-software-packages/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceSoftwarePackagesDestroyRequest generates requests for MarketplaceSoftwarePackagesDestroy
+func NewMarketplaceSoftwarePackagesDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-software-packages/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceSoftwarePackagesRetrieveRequest generates requests for MarketplaceSoftwarePackagesRetrieve
+func NewMarketplaceSoftwarePackagesRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-software-packages/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceSoftwarePackagesPartialUpdateRequest calls the generic MarketplaceSoftwarePackagesPartialUpdate builder with application/json body
+func NewMarketplaceSoftwarePackagesPartialUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceSoftwarePackagesPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceSoftwarePackagesPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceSoftwarePackagesPartialUpdateRequestWithBody generates requests for MarketplaceSoftwarePackagesPartialUpdate with any type of body
+func NewMarketplaceSoftwarePackagesPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-software-packages/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceSoftwarePackagesUpdateRequest calls the generic MarketplaceSoftwarePackagesUpdate builder with application/json body
+func NewMarketplaceSoftwarePackagesUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceSoftwarePackagesUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceSoftwarePackagesUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceSoftwarePackagesUpdateRequestWithBody generates requests for MarketplaceSoftwarePackagesUpdate with any type of body
+func NewMarketplaceSoftwarePackagesUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-software-packages/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceSoftwareTargetsListRequest generates requests for MarketplaceSoftwareTargetsList
+func NewMarketplaceSoftwareTargetsListRequest(server string, params *MarketplaceSoftwareTargetsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-software-targets/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.CatalogUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "catalog_uuid", runtime.ParamLocationQuery, *params.CatalogUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CpuFamily != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "cpu_family", runtime.ParamLocationQuery, *params.CpuFamily); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CpuMicroarchitecture != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "cpu_microarchitecture", runtime.ParamLocationQuery, *params.CpuMicroarchitecture); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PackageUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "package_uuid", runtime.ParamLocationQuery, *params.PackageUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Path != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "path", runtime.ParamLocationQuery, *params.Path); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.VersionUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "version_uuid", runtime.ParamLocationQuery, *params.VersionUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceSoftwareTargetsCountRequest generates requests for MarketplaceSoftwareTargetsCount
+func NewMarketplaceSoftwareTargetsCountRequest(server string, params *MarketplaceSoftwareTargetsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-software-targets/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.CatalogUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "catalog_uuid", runtime.ParamLocationQuery, *params.CatalogUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CpuFamily != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "cpu_family", runtime.ParamLocationQuery, *params.CpuFamily); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CpuMicroarchitecture != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "cpu_microarchitecture", runtime.ParamLocationQuery, *params.CpuMicroarchitecture); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PackageUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "package_uuid", runtime.ParamLocationQuery, *params.PackageUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Path != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "path", runtime.ParamLocationQuery, *params.Path); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.VersionUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "version_uuid", runtime.ParamLocationQuery, *params.VersionUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceSoftwareTargetsCreateRequest generates requests for MarketplaceSoftwareTargetsCreate
+func NewMarketplaceSoftwareTargetsCreateRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-software-targets/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceSoftwareTargetsDestroyRequest generates requests for MarketplaceSoftwareTargetsDestroy
+func NewMarketplaceSoftwareTargetsDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-software-targets/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceSoftwareTargetsRetrieveRequest generates requests for MarketplaceSoftwareTargetsRetrieve
+func NewMarketplaceSoftwareTargetsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-software-targets/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceSoftwareTargetsPartialUpdateRequest generates requests for MarketplaceSoftwareTargetsPartialUpdate
+func NewMarketplaceSoftwareTargetsPartialUpdateRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-software-targets/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceSoftwareTargetsUpdateRequest generates requests for MarketplaceSoftwareTargetsUpdate
+func NewMarketplaceSoftwareTargetsUpdateRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-software-targets/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceSoftwareVersionsListRequest generates requests for MarketplaceSoftwareVersionsList
+func NewMarketplaceSoftwareVersionsListRequest(server string, params *MarketplaceSoftwareVersionsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-software-versions/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.CatalogUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "catalog_uuid", runtime.ParamLocationQuery, *params.CatalogUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CpuFamily != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "cpu_family", runtime.ParamLocationQuery, *params.CpuFamily); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CpuMicroarchitecture != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "cpu_microarchitecture", runtime.ParamLocationQuery, *params.CpuMicroarchitecture); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PackageName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "package_name", runtime.ParamLocationQuery, *params.PackageName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PackageUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "package_uuid", runtime.ParamLocationQuery, *params.PackageUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Version != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "version", runtime.ParamLocationQuery, *params.Version); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceSoftwareVersionsCountRequest generates requests for MarketplaceSoftwareVersionsCount
+func NewMarketplaceSoftwareVersionsCountRequest(server string, params *MarketplaceSoftwareVersionsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-software-versions/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.CatalogUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "catalog_uuid", runtime.ParamLocationQuery, *params.CatalogUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CpuFamily != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "cpu_family", runtime.ParamLocationQuery, *params.CpuFamily); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CpuMicroarchitecture != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "cpu_microarchitecture", runtime.ParamLocationQuery, *params.CpuMicroarchitecture); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PackageName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "package_name", runtime.ParamLocationQuery, *params.PackageName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PackageUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "package_uuid", runtime.ParamLocationQuery, *params.PackageUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Version != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "version", runtime.ParamLocationQuery, *params.Version); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceSoftwareVersionsCreateRequest generates requests for MarketplaceSoftwareVersionsCreate
+func NewMarketplaceSoftwareVersionsCreateRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-software-versions/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceSoftwareVersionsDestroyRequest generates requests for MarketplaceSoftwareVersionsDestroy
+func NewMarketplaceSoftwareVersionsDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-software-versions/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceSoftwareVersionsRetrieveRequest generates requests for MarketplaceSoftwareVersionsRetrieve
+func NewMarketplaceSoftwareVersionsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-software-versions/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceSoftwareVersionsPartialUpdateRequest generates requests for MarketplaceSoftwareVersionsPartialUpdate
+func NewMarketplaceSoftwareVersionsPartialUpdateRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-software-versions/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceSoftwareVersionsUpdateRequest generates requests for MarketplaceSoftwareVersionsUpdate
+func NewMarketplaceSoftwareVersionsUpdateRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-software-versions/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
 
 	return req, nil
 }
@@ -219207,6 +223236,16 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceProviderOfferingsAddEndpointWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsAddEndpointJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsAddEndpointResponse, error)
 
+	// MarketplaceProviderOfferingsAddPartitionWithBodyWithResponse request with any body
+	MarketplaceProviderOfferingsAddPartitionWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsAddPartitionResponse, error)
+
+	MarketplaceProviderOfferingsAddPartitionWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsAddPartitionJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsAddPartitionResponse, error)
+
+	// MarketplaceProviderOfferingsAddSoftwareCatalogWithBodyWithResponse request with any body
+	MarketplaceProviderOfferingsAddSoftwareCatalogWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsAddSoftwareCatalogResponse, error)
+
+	MarketplaceProviderOfferingsAddSoftwareCatalogWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsAddSoftwareCatalogJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsAddSoftwareCatalogResponse, error)
+
 	// MarketplaceProviderOfferingsAddUserWithBodyWithResponse request with any body
 	MarketplaceProviderOfferingsAddUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsAddUserResponse, error)
 
@@ -219304,6 +223343,16 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceProviderOfferingsRemoveOfferingComponentWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsRemoveOfferingComponentJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsRemoveOfferingComponentResponse, error)
 
+	// MarketplaceProviderOfferingsRemovePartitionWithBodyWithResponse request with any body
+	MarketplaceProviderOfferingsRemovePartitionWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsRemovePartitionResponse, error)
+
+	MarketplaceProviderOfferingsRemovePartitionWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsRemovePartitionJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsRemovePartitionResponse, error)
+
+	// MarketplaceProviderOfferingsRemoveSoftwareCatalogWithBodyWithResponse request with any body
+	MarketplaceProviderOfferingsRemoveSoftwareCatalogWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsRemoveSoftwareCatalogResponse, error)
+
+	MarketplaceProviderOfferingsRemoveSoftwareCatalogWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsRemoveSoftwareCatalogJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsRemoveSoftwareCatalogResponse, error)
+
 	// MarketplaceProviderOfferingsSetBackendMetadataWithBodyWithResponse request with any body
 	MarketplaceProviderOfferingsSetBackendMetadataWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsSetBackendMetadataResponse, error)
 
@@ -219373,10 +223422,20 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceProviderOfferingsUpdateOverviewWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateOverviewJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateOverviewResponse, error)
 
+	// MarketplaceProviderOfferingsUpdatePartitionPartialUpdateWithBodyWithResponse request with any body
+	MarketplaceProviderOfferingsUpdatePartitionPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdatePartitionPartialUpdateResponse, error)
+
+	MarketplaceProviderOfferingsUpdatePartitionPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdatePartitionPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdatePartitionPartialUpdateResponse, error)
+
 	// MarketplaceProviderOfferingsUpdateResourceOptionsWithBodyWithResponse request with any body
 	MarketplaceProviderOfferingsUpdateResourceOptionsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateResourceOptionsResponse, error)
 
 	MarketplaceProviderOfferingsUpdateResourceOptionsWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateResourceOptionsJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateResourceOptionsResponse, error)
+
+	// MarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateWithBodyWithResponse request with any body
+	MarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateResponse, error)
+
+	MarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateResponse, error)
 
 	// MarketplaceProviderOfferingsUpdateThumbnailWithBodyWithResponse request with any body
 	MarketplaceProviderOfferingsUpdateThumbnailWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateThumbnailResponse, error)
@@ -219994,6 +224053,102 @@ type ClientWithResponsesInterface interface {
 	MarketplaceSiteAgentServicesSetStatisticsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentServicesSetStatisticsResponse, error)
 
 	MarketplaceSiteAgentServicesSetStatisticsWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSiteAgentServicesSetStatisticsJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentServicesSetStatisticsResponse, error)
+
+	// MarketplaceSoftwareCatalogsListWithResponse request
+	MarketplaceSoftwareCatalogsListWithResponse(ctx context.Context, params *MarketplaceSoftwareCatalogsListParams, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareCatalogsListResponse, error)
+
+	// MarketplaceSoftwareCatalogsCountWithResponse request
+	MarketplaceSoftwareCatalogsCountWithResponse(ctx context.Context, params *MarketplaceSoftwareCatalogsCountParams, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareCatalogsCountResponse, error)
+
+	// MarketplaceSoftwareCatalogsCreateWithBodyWithResponse request with any body
+	MarketplaceSoftwareCatalogsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareCatalogsCreateResponse, error)
+
+	MarketplaceSoftwareCatalogsCreateWithResponse(ctx context.Context, body MarketplaceSoftwareCatalogsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareCatalogsCreateResponse, error)
+
+	// MarketplaceSoftwareCatalogsDestroyWithResponse request
+	MarketplaceSoftwareCatalogsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareCatalogsDestroyResponse, error)
+
+	// MarketplaceSoftwareCatalogsRetrieveWithResponse request
+	MarketplaceSoftwareCatalogsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareCatalogsRetrieveResponse, error)
+
+	// MarketplaceSoftwareCatalogsPartialUpdateWithBodyWithResponse request with any body
+	MarketplaceSoftwareCatalogsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareCatalogsPartialUpdateResponse, error)
+
+	MarketplaceSoftwareCatalogsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSoftwareCatalogsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareCatalogsPartialUpdateResponse, error)
+
+	// MarketplaceSoftwareCatalogsUpdateWithBodyWithResponse request with any body
+	MarketplaceSoftwareCatalogsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareCatalogsUpdateResponse, error)
+
+	MarketplaceSoftwareCatalogsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSoftwareCatalogsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareCatalogsUpdateResponse, error)
+
+	// MarketplaceSoftwarePackagesListWithResponse request
+	MarketplaceSoftwarePackagesListWithResponse(ctx context.Context, params *MarketplaceSoftwarePackagesListParams, reqEditors ...RequestEditorFn) (*MarketplaceSoftwarePackagesListResponse, error)
+
+	// MarketplaceSoftwarePackagesCountWithResponse request
+	MarketplaceSoftwarePackagesCountWithResponse(ctx context.Context, params *MarketplaceSoftwarePackagesCountParams, reqEditors ...RequestEditorFn) (*MarketplaceSoftwarePackagesCountResponse, error)
+
+	// MarketplaceSoftwarePackagesCreateWithBodyWithResponse request with any body
+	MarketplaceSoftwarePackagesCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSoftwarePackagesCreateResponse, error)
+
+	MarketplaceSoftwarePackagesCreateWithResponse(ctx context.Context, body MarketplaceSoftwarePackagesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSoftwarePackagesCreateResponse, error)
+
+	// MarketplaceSoftwarePackagesDestroyWithResponse request
+	MarketplaceSoftwarePackagesDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceSoftwarePackagesDestroyResponse, error)
+
+	// MarketplaceSoftwarePackagesRetrieveWithResponse request
+	MarketplaceSoftwarePackagesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceSoftwarePackagesRetrieveResponse, error)
+
+	// MarketplaceSoftwarePackagesPartialUpdateWithBodyWithResponse request with any body
+	MarketplaceSoftwarePackagesPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSoftwarePackagesPartialUpdateResponse, error)
+
+	MarketplaceSoftwarePackagesPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSoftwarePackagesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSoftwarePackagesPartialUpdateResponse, error)
+
+	// MarketplaceSoftwarePackagesUpdateWithBodyWithResponse request with any body
+	MarketplaceSoftwarePackagesUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSoftwarePackagesUpdateResponse, error)
+
+	MarketplaceSoftwarePackagesUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSoftwarePackagesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSoftwarePackagesUpdateResponse, error)
+
+	// MarketplaceSoftwareTargetsListWithResponse request
+	MarketplaceSoftwareTargetsListWithResponse(ctx context.Context, params *MarketplaceSoftwareTargetsListParams, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareTargetsListResponse, error)
+
+	// MarketplaceSoftwareTargetsCountWithResponse request
+	MarketplaceSoftwareTargetsCountWithResponse(ctx context.Context, params *MarketplaceSoftwareTargetsCountParams, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareTargetsCountResponse, error)
+
+	// MarketplaceSoftwareTargetsCreateWithResponse request
+	MarketplaceSoftwareTargetsCreateWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareTargetsCreateResponse, error)
+
+	// MarketplaceSoftwareTargetsDestroyWithResponse request
+	MarketplaceSoftwareTargetsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareTargetsDestroyResponse, error)
+
+	// MarketplaceSoftwareTargetsRetrieveWithResponse request
+	MarketplaceSoftwareTargetsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareTargetsRetrieveResponse, error)
+
+	// MarketplaceSoftwareTargetsPartialUpdateWithResponse request
+	MarketplaceSoftwareTargetsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareTargetsPartialUpdateResponse, error)
+
+	// MarketplaceSoftwareTargetsUpdateWithResponse request
+	MarketplaceSoftwareTargetsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareTargetsUpdateResponse, error)
+
+	// MarketplaceSoftwareVersionsListWithResponse request
+	MarketplaceSoftwareVersionsListWithResponse(ctx context.Context, params *MarketplaceSoftwareVersionsListParams, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareVersionsListResponse, error)
+
+	// MarketplaceSoftwareVersionsCountWithResponse request
+	MarketplaceSoftwareVersionsCountWithResponse(ctx context.Context, params *MarketplaceSoftwareVersionsCountParams, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareVersionsCountResponse, error)
+
+	// MarketplaceSoftwareVersionsCreateWithResponse request
+	MarketplaceSoftwareVersionsCreateWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareVersionsCreateResponse, error)
+
+	// MarketplaceSoftwareVersionsDestroyWithResponse request
+	MarketplaceSoftwareVersionsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareVersionsDestroyResponse, error)
+
+	// MarketplaceSoftwareVersionsRetrieveWithResponse request
+	MarketplaceSoftwareVersionsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareVersionsRetrieveResponse, error)
+
+	// MarketplaceSoftwareVersionsPartialUpdateWithResponse request
+	MarketplaceSoftwareVersionsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareVersionsPartialUpdateResponse, error)
+
+	// MarketplaceSoftwareVersionsUpdateWithResponse request
+	MarketplaceSoftwareVersionsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareVersionsUpdateResponse, error)
 
 	// MarketplaceStatsComponentUsagesListWithResponse request
 	MarketplaceStatsComponentUsagesListWithResponse(ctx context.Context, params *MarketplaceStatsComponentUsagesListParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsComponentUsagesListResponse, error)
@@ -237444,6 +241599,50 @@ func (r MarketplaceProviderOfferingsAddEndpointResponse) StatusCode() int {
 	return 0
 }
 
+type MarketplaceProviderOfferingsAddPartitionResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *OfferingPartition
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderOfferingsAddPartitionResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderOfferingsAddPartitionResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceProviderOfferingsAddSoftwareCatalogResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *SoftwareCatalogUUID
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderOfferingsAddSoftwareCatalogResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderOfferingsAddSoftwareCatalogResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type MarketplaceProviderOfferingsAddUserResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -238033,6 +242232,48 @@ func (r MarketplaceProviderOfferingsRemoveOfferingComponentResponse) StatusCode(
 	return 0
 }
 
+type MarketplaceProviderOfferingsRemovePartitionResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderOfferingsRemovePartitionResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderOfferingsRemovePartitionResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceProviderOfferingsRemoveSoftwareCatalogResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderOfferingsRemoveSoftwareCatalogResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderOfferingsRemoveSoftwareCatalogResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type MarketplaceProviderOfferingsSetBackendMetadataResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -238352,6 +242593,28 @@ func (r MarketplaceProviderOfferingsUpdateOverviewResponse) StatusCode() int {
 	return 0
 }
 
+type MarketplaceProviderOfferingsUpdatePartitionPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OfferingPartition
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderOfferingsUpdatePartitionPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderOfferingsUpdatePartitionPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type MarketplaceProviderOfferingsUpdateResourceOptionsResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -238367,6 +242630,28 @@ func (r MarketplaceProviderOfferingsUpdateResourceOptionsResponse) Status() stri
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceProviderOfferingsUpdateResourceOptionsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OfferingSoftwareCatalog
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -241831,6 +246116,614 @@ func (r MarketplaceSiteAgentServicesSetStatisticsResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceSiteAgentServicesSetStatisticsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSoftwareCatalogsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]SoftwareCatalog
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSoftwareCatalogsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSoftwareCatalogsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSoftwareCatalogsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSoftwareCatalogsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSoftwareCatalogsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSoftwareCatalogsCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *SoftwareCatalog
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSoftwareCatalogsCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSoftwareCatalogsCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSoftwareCatalogsDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSoftwareCatalogsDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSoftwareCatalogsDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSoftwareCatalogsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SoftwareCatalog
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSoftwareCatalogsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSoftwareCatalogsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSoftwareCatalogsPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SoftwareCatalog
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSoftwareCatalogsPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSoftwareCatalogsPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSoftwareCatalogsUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SoftwareCatalog
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSoftwareCatalogsUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSoftwareCatalogsUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSoftwarePackagesListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]SoftwarePackage
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSoftwarePackagesListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSoftwarePackagesListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSoftwarePackagesCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSoftwarePackagesCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSoftwarePackagesCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSoftwarePackagesCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *SoftwarePackage
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSoftwarePackagesCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSoftwarePackagesCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSoftwarePackagesDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSoftwarePackagesDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSoftwarePackagesDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSoftwarePackagesRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SoftwarePackage
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSoftwarePackagesRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSoftwarePackagesRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSoftwarePackagesPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SoftwarePackage
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSoftwarePackagesPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSoftwarePackagesPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSoftwarePackagesUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SoftwarePackage
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSoftwarePackagesUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSoftwarePackagesUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSoftwareTargetsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]SoftwareTarget
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSoftwareTargetsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSoftwareTargetsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSoftwareTargetsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSoftwareTargetsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSoftwareTargetsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSoftwareTargetsCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *SoftwareTarget
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSoftwareTargetsCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSoftwareTargetsCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSoftwareTargetsDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSoftwareTargetsDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSoftwareTargetsDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSoftwareTargetsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SoftwareTarget
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSoftwareTargetsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSoftwareTargetsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSoftwareTargetsPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SoftwareTarget
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSoftwareTargetsPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSoftwareTargetsPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSoftwareTargetsUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SoftwareTarget
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSoftwareTargetsUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSoftwareTargetsUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSoftwareVersionsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]SoftwareVersion
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSoftwareVersionsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSoftwareVersionsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSoftwareVersionsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSoftwareVersionsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSoftwareVersionsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSoftwareVersionsCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *SoftwareVersion
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSoftwareVersionsCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSoftwareVersionsCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSoftwareVersionsDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSoftwareVersionsDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSoftwareVersionsDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSoftwareVersionsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SoftwareVersion
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSoftwareVersionsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSoftwareVersionsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSoftwareVersionsPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SoftwareVersion
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSoftwareVersionsPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSoftwareVersionsPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSoftwareVersionsUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SoftwareVersion
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSoftwareVersionsUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSoftwareVersionsUpdateResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -266184,6 +271077,40 @@ func (c *ClientWithResponses) MarketplaceProviderOfferingsAddEndpointWithRespons
 	return ParseMarketplaceProviderOfferingsAddEndpointResponse(rsp)
 }
 
+// MarketplaceProviderOfferingsAddPartitionWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderOfferingsAddPartitionResponse
+func (c *ClientWithResponses) MarketplaceProviderOfferingsAddPartitionWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsAddPartitionResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsAddPartitionWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsAddPartitionResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceProviderOfferingsAddPartitionWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsAddPartitionJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsAddPartitionResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsAddPartition(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsAddPartitionResponse(rsp)
+}
+
+// MarketplaceProviderOfferingsAddSoftwareCatalogWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderOfferingsAddSoftwareCatalogResponse
+func (c *ClientWithResponses) MarketplaceProviderOfferingsAddSoftwareCatalogWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsAddSoftwareCatalogResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsAddSoftwareCatalogWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsAddSoftwareCatalogResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceProviderOfferingsAddSoftwareCatalogWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsAddSoftwareCatalogJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsAddSoftwareCatalogResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsAddSoftwareCatalog(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsAddSoftwareCatalogResponse(rsp)
+}
+
 // MarketplaceProviderOfferingsAddUserWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderOfferingsAddUserResponse
 func (c *ClientWithResponses) MarketplaceProviderOfferingsAddUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsAddUserResponse, error) {
 	rsp, err := c.MarketplaceProviderOfferingsAddUserWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -266491,6 +271418,40 @@ func (c *ClientWithResponses) MarketplaceProviderOfferingsRemoveOfferingComponen
 	return ParseMarketplaceProviderOfferingsRemoveOfferingComponentResponse(rsp)
 }
 
+// MarketplaceProviderOfferingsRemovePartitionWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderOfferingsRemovePartitionResponse
+func (c *ClientWithResponses) MarketplaceProviderOfferingsRemovePartitionWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsRemovePartitionResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsRemovePartitionWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsRemovePartitionResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceProviderOfferingsRemovePartitionWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsRemovePartitionJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsRemovePartitionResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsRemovePartition(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsRemovePartitionResponse(rsp)
+}
+
+// MarketplaceProviderOfferingsRemoveSoftwareCatalogWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderOfferingsRemoveSoftwareCatalogResponse
+func (c *ClientWithResponses) MarketplaceProviderOfferingsRemoveSoftwareCatalogWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsRemoveSoftwareCatalogResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsRemoveSoftwareCatalogWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsRemoveSoftwareCatalogResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceProviderOfferingsRemoveSoftwareCatalogWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsRemoveSoftwareCatalogJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsRemoveSoftwareCatalogResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsRemoveSoftwareCatalog(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsRemoveSoftwareCatalogResponse(rsp)
+}
+
 // MarketplaceProviderOfferingsSetBackendMetadataWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderOfferingsSetBackendMetadataResponse
 func (c *ClientWithResponses) MarketplaceProviderOfferingsSetBackendMetadataWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsSetBackendMetadataResponse, error) {
 	rsp, err := c.MarketplaceProviderOfferingsSetBackendMetadataWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -266722,6 +271683,23 @@ func (c *ClientWithResponses) MarketplaceProviderOfferingsUpdateOverviewWithResp
 	return ParseMarketplaceProviderOfferingsUpdateOverviewResponse(rsp)
 }
 
+// MarketplaceProviderOfferingsUpdatePartitionPartialUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderOfferingsUpdatePartitionPartialUpdateResponse
+func (c *ClientWithResponses) MarketplaceProviderOfferingsUpdatePartitionPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdatePartitionPartialUpdateResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsUpdatePartitionPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsUpdatePartitionPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceProviderOfferingsUpdatePartitionPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdatePartitionPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdatePartitionPartialUpdateResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsUpdatePartitionPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsUpdatePartitionPartialUpdateResponse(rsp)
+}
+
 // MarketplaceProviderOfferingsUpdateResourceOptionsWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderOfferingsUpdateResourceOptionsResponse
 func (c *ClientWithResponses) MarketplaceProviderOfferingsUpdateResourceOptionsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateResourceOptionsResponse, error) {
 	rsp, err := c.MarketplaceProviderOfferingsUpdateResourceOptionsWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -266737,6 +271715,23 @@ func (c *ClientWithResponses) MarketplaceProviderOfferingsUpdateResourceOptionsW
 		return nil, err
 	}
 	return ParseMarketplaceProviderOfferingsUpdateResourceOptionsResponse(rsp)
+}
+
+// MarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateResponse
+func (c *ClientWithResponses) MarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateResponse(rsp)
 }
 
 // MarketplaceProviderOfferingsUpdateThumbnailWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderOfferingsUpdateThumbnailResponse
@@ -268728,6 +273723,306 @@ func (c *ClientWithResponses) MarketplaceSiteAgentServicesSetStatisticsWithRespo
 		return nil, err
 	}
 	return ParseMarketplaceSiteAgentServicesSetStatisticsResponse(rsp)
+}
+
+// MarketplaceSoftwareCatalogsListWithResponse request returning *MarketplaceSoftwareCatalogsListResponse
+func (c *ClientWithResponses) MarketplaceSoftwareCatalogsListWithResponse(ctx context.Context, params *MarketplaceSoftwareCatalogsListParams, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareCatalogsListResponse, error) {
+	rsp, err := c.MarketplaceSoftwareCatalogsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSoftwareCatalogsListResponse(rsp)
+}
+
+// MarketplaceSoftwareCatalogsCountWithResponse request returning *MarketplaceSoftwareCatalogsCountResponse
+func (c *ClientWithResponses) MarketplaceSoftwareCatalogsCountWithResponse(ctx context.Context, params *MarketplaceSoftwareCatalogsCountParams, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareCatalogsCountResponse, error) {
+	rsp, err := c.MarketplaceSoftwareCatalogsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSoftwareCatalogsCountResponse(rsp)
+}
+
+// MarketplaceSoftwareCatalogsCreateWithBodyWithResponse request with arbitrary body returning *MarketplaceSoftwareCatalogsCreateResponse
+func (c *ClientWithResponses) MarketplaceSoftwareCatalogsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareCatalogsCreateResponse, error) {
+	rsp, err := c.MarketplaceSoftwareCatalogsCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSoftwareCatalogsCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceSoftwareCatalogsCreateWithResponse(ctx context.Context, body MarketplaceSoftwareCatalogsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareCatalogsCreateResponse, error) {
+	rsp, err := c.MarketplaceSoftwareCatalogsCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSoftwareCatalogsCreateResponse(rsp)
+}
+
+// MarketplaceSoftwareCatalogsDestroyWithResponse request returning *MarketplaceSoftwareCatalogsDestroyResponse
+func (c *ClientWithResponses) MarketplaceSoftwareCatalogsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareCatalogsDestroyResponse, error) {
+	rsp, err := c.MarketplaceSoftwareCatalogsDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSoftwareCatalogsDestroyResponse(rsp)
+}
+
+// MarketplaceSoftwareCatalogsRetrieveWithResponse request returning *MarketplaceSoftwareCatalogsRetrieveResponse
+func (c *ClientWithResponses) MarketplaceSoftwareCatalogsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareCatalogsRetrieveResponse, error) {
+	rsp, err := c.MarketplaceSoftwareCatalogsRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSoftwareCatalogsRetrieveResponse(rsp)
+}
+
+// MarketplaceSoftwareCatalogsPartialUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceSoftwareCatalogsPartialUpdateResponse
+func (c *ClientWithResponses) MarketplaceSoftwareCatalogsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareCatalogsPartialUpdateResponse, error) {
+	rsp, err := c.MarketplaceSoftwareCatalogsPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSoftwareCatalogsPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceSoftwareCatalogsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSoftwareCatalogsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareCatalogsPartialUpdateResponse, error) {
+	rsp, err := c.MarketplaceSoftwareCatalogsPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSoftwareCatalogsPartialUpdateResponse(rsp)
+}
+
+// MarketplaceSoftwareCatalogsUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceSoftwareCatalogsUpdateResponse
+func (c *ClientWithResponses) MarketplaceSoftwareCatalogsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareCatalogsUpdateResponse, error) {
+	rsp, err := c.MarketplaceSoftwareCatalogsUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSoftwareCatalogsUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceSoftwareCatalogsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSoftwareCatalogsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareCatalogsUpdateResponse, error) {
+	rsp, err := c.MarketplaceSoftwareCatalogsUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSoftwareCatalogsUpdateResponse(rsp)
+}
+
+// MarketplaceSoftwarePackagesListWithResponse request returning *MarketplaceSoftwarePackagesListResponse
+func (c *ClientWithResponses) MarketplaceSoftwarePackagesListWithResponse(ctx context.Context, params *MarketplaceSoftwarePackagesListParams, reqEditors ...RequestEditorFn) (*MarketplaceSoftwarePackagesListResponse, error) {
+	rsp, err := c.MarketplaceSoftwarePackagesList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSoftwarePackagesListResponse(rsp)
+}
+
+// MarketplaceSoftwarePackagesCountWithResponse request returning *MarketplaceSoftwarePackagesCountResponse
+func (c *ClientWithResponses) MarketplaceSoftwarePackagesCountWithResponse(ctx context.Context, params *MarketplaceSoftwarePackagesCountParams, reqEditors ...RequestEditorFn) (*MarketplaceSoftwarePackagesCountResponse, error) {
+	rsp, err := c.MarketplaceSoftwarePackagesCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSoftwarePackagesCountResponse(rsp)
+}
+
+// MarketplaceSoftwarePackagesCreateWithBodyWithResponse request with arbitrary body returning *MarketplaceSoftwarePackagesCreateResponse
+func (c *ClientWithResponses) MarketplaceSoftwarePackagesCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSoftwarePackagesCreateResponse, error) {
+	rsp, err := c.MarketplaceSoftwarePackagesCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSoftwarePackagesCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceSoftwarePackagesCreateWithResponse(ctx context.Context, body MarketplaceSoftwarePackagesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSoftwarePackagesCreateResponse, error) {
+	rsp, err := c.MarketplaceSoftwarePackagesCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSoftwarePackagesCreateResponse(rsp)
+}
+
+// MarketplaceSoftwarePackagesDestroyWithResponse request returning *MarketplaceSoftwarePackagesDestroyResponse
+func (c *ClientWithResponses) MarketplaceSoftwarePackagesDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceSoftwarePackagesDestroyResponse, error) {
+	rsp, err := c.MarketplaceSoftwarePackagesDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSoftwarePackagesDestroyResponse(rsp)
+}
+
+// MarketplaceSoftwarePackagesRetrieveWithResponse request returning *MarketplaceSoftwarePackagesRetrieveResponse
+func (c *ClientWithResponses) MarketplaceSoftwarePackagesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceSoftwarePackagesRetrieveResponse, error) {
+	rsp, err := c.MarketplaceSoftwarePackagesRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSoftwarePackagesRetrieveResponse(rsp)
+}
+
+// MarketplaceSoftwarePackagesPartialUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceSoftwarePackagesPartialUpdateResponse
+func (c *ClientWithResponses) MarketplaceSoftwarePackagesPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSoftwarePackagesPartialUpdateResponse, error) {
+	rsp, err := c.MarketplaceSoftwarePackagesPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSoftwarePackagesPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceSoftwarePackagesPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSoftwarePackagesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSoftwarePackagesPartialUpdateResponse, error) {
+	rsp, err := c.MarketplaceSoftwarePackagesPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSoftwarePackagesPartialUpdateResponse(rsp)
+}
+
+// MarketplaceSoftwarePackagesUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceSoftwarePackagesUpdateResponse
+func (c *ClientWithResponses) MarketplaceSoftwarePackagesUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSoftwarePackagesUpdateResponse, error) {
+	rsp, err := c.MarketplaceSoftwarePackagesUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSoftwarePackagesUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceSoftwarePackagesUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSoftwarePackagesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSoftwarePackagesUpdateResponse, error) {
+	rsp, err := c.MarketplaceSoftwarePackagesUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSoftwarePackagesUpdateResponse(rsp)
+}
+
+// MarketplaceSoftwareTargetsListWithResponse request returning *MarketplaceSoftwareTargetsListResponse
+func (c *ClientWithResponses) MarketplaceSoftwareTargetsListWithResponse(ctx context.Context, params *MarketplaceSoftwareTargetsListParams, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareTargetsListResponse, error) {
+	rsp, err := c.MarketplaceSoftwareTargetsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSoftwareTargetsListResponse(rsp)
+}
+
+// MarketplaceSoftwareTargetsCountWithResponse request returning *MarketplaceSoftwareTargetsCountResponse
+func (c *ClientWithResponses) MarketplaceSoftwareTargetsCountWithResponse(ctx context.Context, params *MarketplaceSoftwareTargetsCountParams, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareTargetsCountResponse, error) {
+	rsp, err := c.MarketplaceSoftwareTargetsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSoftwareTargetsCountResponse(rsp)
+}
+
+// MarketplaceSoftwareTargetsCreateWithResponse request returning *MarketplaceSoftwareTargetsCreateResponse
+func (c *ClientWithResponses) MarketplaceSoftwareTargetsCreateWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareTargetsCreateResponse, error) {
+	rsp, err := c.MarketplaceSoftwareTargetsCreate(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSoftwareTargetsCreateResponse(rsp)
+}
+
+// MarketplaceSoftwareTargetsDestroyWithResponse request returning *MarketplaceSoftwareTargetsDestroyResponse
+func (c *ClientWithResponses) MarketplaceSoftwareTargetsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareTargetsDestroyResponse, error) {
+	rsp, err := c.MarketplaceSoftwareTargetsDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSoftwareTargetsDestroyResponse(rsp)
+}
+
+// MarketplaceSoftwareTargetsRetrieveWithResponse request returning *MarketplaceSoftwareTargetsRetrieveResponse
+func (c *ClientWithResponses) MarketplaceSoftwareTargetsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareTargetsRetrieveResponse, error) {
+	rsp, err := c.MarketplaceSoftwareTargetsRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSoftwareTargetsRetrieveResponse(rsp)
+}
+
+// MarketplaceSoftwareTargetsPartialUpdateWithResponse request returning *MarketplaceSoftwareTargetsPartialUpdateResponse
+func (c *ClientWithResponses) MarketplaceSoftwareTargetsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareTargetsPartialUpdateResponse, error) {
+	rsp, err := c.MarketplaceSoftwareTargetsPartialUpdate(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSoftwareTargetsPartialUpdateResponse(rsp)
+}
+
+// MarketplaceSoftwareTargetsUpdateWithResponse request returning *MarketplaceSoftwareTargetsUpdateResponse
+func (c *ClientWithResponses) MarketplaceSoftwareTargetsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareTargetsUpdateResponse, error) {
+	rsp, err := c.MarketplaceSoftwareTargetsUpdate(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSoftwareTargetsUpdateResponse(rsp)
+}
+
+// MarketplaceSoftwareVersionsListWithResponse request returning *MarketplaceSoftwareVersionsListResponse
+func (c *ClientWithResponses) MarketplaceSoftwareVersionsListWithResponse(ctx context.Context, params *MarketplaceSoftwareVersionsListParams, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareVersionsListResponse, error) {
+	rsp, err := c.MarketplaceSoftwareVersionsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSoftwareVersionsListResponse(rsp)
+}
+
+// MarketplaceSoftwareVersionsCountWithResponse request returning *MarketplaceSoftwareVersionsCountResponse
+func (c *ClientWithResponses) MarketplaceSoftwareVersionsCountWithResponse(ctx context.Context, params *MarketplaceSoftwareVersionsCountParams, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareVersionsCountResponse, error) {
+	rsp, err := c.MarketplaceSoftwareVersionsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSoftwareVersionsCountResponse(rsp)
+}
+
+// MarketplaceSoftwareVersionsCreateWithResponse request returning *MarketplaceSoftwareVersionsCreateResponse
+func (c *ClientWithResponses) MarketplaceSoftwareVersionsCreateWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareVersionsCreateResponse, error) {
+	rsp, err := c.MarketplaceSoftwareVersionsCreate(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSoftwareVersionsCreateResponse(rsp)
+}
+
+// MarketplaceSoftwareVersionsDestroyWithResponse request returning *MarketplaceSoftwareVersionsDestroyResponse
+func (c *ClientWithResponses) MarketplaceSoftwareVersionsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareVersionsDestroyResponse, error) {
+	rsp, err := c.MarketplaceSoftwareVersionsDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSoftwareVersionsDestroyResponse(rsp)
+}
+
+// MarketplaceSoftwareVersionsRetrieveWithResponse request returning *MarketplaceSoftwareVersionsRetrieveResponse
+func (c *ClientWithResponses) MarketplaceSoftwareVersionsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareVersionsRetrieveResponse, error) {
+	rsp, err := c.MarketplaceSoftwareVersionsRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSoftwareVersionsRetrieveResponse(rsp)
+}
+
+// MarketplaceSoftwareVersionsPartialUpdateWithResponse request returning *MarketplaceSoftwareVersionsPartialUpdateResponse
+func (c *ClientWithResponses) MarketplaceSoftwareVersionsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareVersionsPartialUpdateResponse, error) {
+	rsp, err := c.MarketplaceSoftwareVersionsPartialUpdate(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSoftwareVersionsPartialUpdateResponse(rsp)
+}
+
+// MarketplaceSoftwareVersionsUpdateWithResponse request returning *MarketplaceSoftwareVersionsUpdateResponse
+func (c *ClientWithResponses) MarketplaceSoftwareVersionsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareVersionsUpdateResponse, error) {
+	rsp, err := c.MarketplaceSoftwareVersionsUpdate(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSoftwareVersionsUpdateResponse(rsp)
 }
 
 // MarketplaceStatsComponentUsagesListWithResponse request returning *MarketplaceStatsComponentUsagesListResponse
@@ -292715,6 +298010,58 @@ func ParseMarketplaceProviderOfferingsAddEndpointResponse(rsp *http.Response) (*
 	return response, nil
 }
 
+// ParseMarketplaceProviderOfferingsAddPartitionResponse parses an HTTP response from a MarketplaceProviderOfferingsAddPartitionWithResponse call
+func ParseMarketplaceProviderOfferingsAddPartitionResponse(rsp *http.Response) (*MarketplaceProviderOfferingsAddPartitionResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderOfferingsAddPartitionResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest OfferingPartition
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProviderOfferingsAddSoftwareCatalogResponse parses an HTTP response from a MarketplaceProviderOfferingsAddSoftwareCatalogWithResponse call
+func ParseMarketplaceProviderOfferingsAddSoftwareCatalogResponse(rsp *http.Response) (*MarketplaceProviderOfferingsAddSoftwareCatalogResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderOfferingsAddSoftwareCatalogResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest SoftwareCatalogUUID
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseMarketplaceProviderOfferingsAddUserResponse parses an HTTP response from a MarketplaceProviderOfferingsAddUserWithResponse call
 func ParseMarketplaceProviderOfferingsAddUserResponse(rsp *http.Response) (*MarketplaceProviderOfferingsAddUserResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -293346,6 +298693,38 @@ func ParseMarketplaceProviderOfferingsRemoveOfferingComponentResponse(rsp *http.
 	return response, nil
 }
 
+// ParseMarketplaceProviderOfferingsRemovePartitionResponse parses an HTTP response from a MarketplaceProviderOfferingsRemovePartitionWithResponse call
+func ParseMarketplaceProviderOfferingsRemovePartitionResponse(rsp *http.Response) (*MarketplaceProviderOfferingsRemovePartitionResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderOfferingsRemovePartitionResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProviderOfferingsRemoveSoftwareCatalogResponse parses an HTTP response from a MarketplaceProviderOfferingsRemoveSoftwareCatalogWithResponse call
+func ParseMarketplaceProviderOfferingsRemoveSoftwareCatalogResponse(rsp *http.Response) (*MarketplaceProviderOfferingsRemoveSoftwareCatalogResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderOfferingsRemoveSoftwareCatalogResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
 // ParseMarketplaceProviderOfferingsSetBackendMetadataResponse parses an HTTP response from a MarketplaceProviderOfferingsSetBackendMetadataWithResponse call
 func ParseMarketplaceProviderOfferingsSetBackendMetadataResponse(rsp *http.Response) (*MarketplaceProviderOfferingsSetBackendMetadataResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -293626,6 +299005,32 @@ func ParseMarketplaceProviderOfferingsUpdateOverviewResponse(rsp *http.Response)
 	return response, nil
 }
 
+// ParseMarketplaceProviderOfferingsUpdatePartitionPartialUpdateResponse parses an HTTP response from a MarketplaceProviderOfferingsUpdatePartitionPartialUpdateWithResponse call
+func ParseMarketplaceProviderOfferingsUpdatePartitionPartialUpdateResponse(rsp *http.Response) (*MarketplaceProviderOfferingsUpdatePartitionPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderOfferingsUpdatePartitionPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OfferingPartition
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseMarketplaceProviderOfferingsUpdateResourceOptionsResponse parses an HTTP response from a MarketplaceProviderOfferingsUpdateResourceOptionsWithResponse call
 func ParseMarketplaceProviderOfferingsUpdateResourceOptionsResponse(rsp *http.Response) (*MarketplaceProviderOfferingsUpdateResourceOptionsResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -293637,6 +299042,32 @@ func ParseMarketplaceProviderOfferingsUpdateResourceOptionsResponse(rsp *http.Re
 	response := &MarketplaceProviderOfferingsUpdateResourceOptionsResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateResponse parses an HTTP response from a MarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateWithResponse call
+func ParseMarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateResponse(rsp *http.Response) (*MarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OfferingSoftwareCatalog
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
@@ -297393,6 +302824,654 @@ func ParseMarketplaceSiteAgentServicesSetStatisticsResponse(rsp *http.Response) 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest AgentService
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSoftwareCatalogsListResponse parses an HTTP response from a MarketplaceSoftwareCatalogsListWithResponse call
+func ParseMarketplaceSoftwareCatalogsListResponse(rsp *http.Response) (*MarketplaceSoftwareCatalogsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSoftwareCatalogsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []SoftwareCatalog
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSoftwareCatalogsCountResponse parses an HTTP response from a MarketplaceSoftwareCatalogsCountWithResponse call
+func ParseMarketplaceSoftwareCatalogsCountResponse(rsp *http.Response) (*MarketplaceSoftwareCatalogsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSoftwareCatalogsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSoftwareCatalogsCreateResponse parses an HTTP response from a MarketplaceSoftwareCatalogsCreateWithResponse call
+func ParseMarketplaceSoftwareCatalogsCreateResponse(rsp *http.Response) (*MarketplaceSoftwareCatalogsCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSoftwareCatalogsCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest SoftwareCatalog
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSoftwareCatalogsDestroyResponse parses an HTTP response from a MarketplaceSoftwareCatalogsDestroyWithResponse call
+func ParseMarketplaceSoftwareCatalogsDestroyResponse(rsp *http.Response) (*MarketplaceSoftwareCatalogsDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSoftwareCatalogsDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSoftwareCatalogsRetrieveResponse parses an HTTP response from a MarketplaceSoftwareCatalogsRetrieveWithResponse call
+func ParseMarketplaceSoftwareCatalogsRetrieveResponse(rsp *http.Response) (*MarketplaceSoftwareCatalogsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSoftwareCatalogsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SoftwareCatalog
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSoftwareCatalogsPartialUpdateResponse parses an HTTP response from a MarketplaceSoftwareCatalogsPartialUpdateWithResponse call
+func ParseMarketplaceSoftwareCatalogsPartialUpdateResponse(rsp *http.Response) (*MarketplaceSoftwareCatalogsPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSoftwareCatalogsPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SoftwareCatalog
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSoftwareCatalogsUpdateResponse parses an HTTP response from a MarketplaceSoftwareCatalogsUpdateWithResponse call
+func ParseMarketplaceSoftwareCatalogsUpdateResponse(rsp *http.Response) (*MarketplaceSoftwareCatalogsUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSoftwareCatalogsUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SoftwareCatalog
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSoftwarePackagesListResponse parses an HTTP response from a MarketplaceSoftwarePackagesListWithResponse call
+func ParseMarketplaceSoftwarePackagesListResponse(rsp *http.Response) (*MarketplaceSoftwarePackagesListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSoftwarePackagesListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []SoftwarePackage
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSoftwarePackagesCountResponse parses an HTTP response from a MarketplaceSoftwarePackagesCountWithResponse call
+func ParseMarketplaceSoftwarePackagesCountResponse(rsp *http.Response) (*MarketplaceSoftwarePackagesCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSoftwarePackagesCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSoftwarePackagesCreateResponse parses an HTTP response from a MarketplaceSoftwarePackagesCreateWithResponse call
+func ParseMarketplaceSoftwarePackagesCreateResponse(rsp *http.Response) (*MarketplaceSoftwarePackagesCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSoftwarePackagesCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest SoftwarePackage
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSoftwarePackagesDestroyResponse parses an HTTP response from a MarketplaceSoftwarePackagesDestroyWithResponse call
+func ParseMarketplaceSoftwarePackagesDestroyResponse(rsp *http.Response) (*MarketplaceSoftwarePackagesDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSoftwarePackagesDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSoftwarePackagesRetrieveResponse parses an HTTP response from a MarketplaceSoftwarePackagesRetrieveWithResponse call
+func ParseMarketplaceSoftwarePackagesRetrieveResponse(rsp *http.Response) (*MarketplaceSoftwarePackagesRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSoftwarePackagesRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SoftwarePackage
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSoftwarePackagesPartialUpdateResponse parses an HTTP response from a MarketplaceSoftwarePackagesPartialUpdateWithResponse call
+func ParseMarketplaceSoftwarePackagesPartialUpdateResponse(rsp *http.Response) (*MarketplaceSoftwarePackagesPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSoftwarePackagesPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SoftwarePackage
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSoftwarePackagesUpdateResponse parses an HTTP response from a MarketplaceSoftwarePackagesUpdateWithResponse call
+func ParseMarketplaceSoftwarePackagesUpdateResponse(rsp *http.Response) (*MarketplaceSoftwarePackagesUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSoftwarePackagesUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SoftwarePackage
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSoftwareTargetsListResponse parses an HTTP response from a MarketplaceSoftwareTargetsListWithResponse call
+func ParseMarketplaceSoftwareTargetsListResponse(rsp *http.Response) (*MarketplaceSoftwareTargetsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSoftwareTargetsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []SoftwareTarget
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSoftwareTargetsCountResponse parses an HTTP response from a MarketplaceSoftwareTargetsCountWithResponse call
+func ParseMarketplaceSoftwareTargetsCountResponse(rsp *http.Response) (*MarketplaceSoftwareTargetsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSoftwareTargetsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSoftwareTargetsCreateResponse parses an HTTP response from a MarketplaceSoftwareTargetsCreateWithResponse call
+func ParseMarketplaceSoftwareTargetsCreateResponse(rsp *http.Response) (*MarketplaceSoftwareTargetsCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSoftwareTargetsCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest SoftwareTarget
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSoftwareTargetsDestroyResponse parses an HTTP response from a MarketplaceSoftwareTargetsDestroyWithResponse call
+func ParseMarketplaceSoftwareTargetsDestroyResponse(rsp *http.Response) (*MarketplaceSoftwareTargetsDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSoftwareTargetsDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSoftwareTargetsRetrieveResponse parses an HTTP response from a MarketplaceSoftwareTargetsRetrieveWithResponse call
+func ParseMarketplaceSoftwareTargetsRetrieveResponse(rsp *http.Response) (*MarketplaceSoftwareTargetsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSoftwareTargetsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SoftwareTarget
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSoftwareTargetsPartialUpdateResponse parses an HTTP response from a MarketplaceSoftwareTargetsPartialUpdateWithResponse call
+func ParseMarketplaceSoftwareTargetsPartialUpdateResponse(rsp *http.Response) (*MarketplaceSoftwareTargetsPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSoftwareTargetsPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SoftwareTarget
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSoftwareTargetsUpdateResponse parses an HTTP response from a MarketplaceSoftwareTargetsUpdateWithResponse call
+func ParseMarketplaceSoftwareTargetsUpdateResponse(rsp *http.Response) (*MarketplaceSoftwareTargetsUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSoftwareTargetsUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SoftwareTarget
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSoftwareVersionsListResponse parses an HTTP response from a MarketplaceSoftwareVersionsListWithResponse call
+func ParseMarketplaceSoftwareVersionsListResponse(rsp *http.Response) (*MarketplaceSoftwareVersionsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSoftwareVersionsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []SoftwareVersion
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSoftwareVersionsCountResponse parses an HTTP response from a MarketplaceSoftwareVersionsCountWithResponse call
+func ParseMarketplaceSoftwareVersionsCountResponse(rsp *http.Response) (*MarketplaceSoftwareVersionsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSoftwareVersionsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSoftwareVersionsCreateResponse parses an HTTP response from a MarketplaceSoftwareVersionsCreateWithResponse call
+func ParseMarketplaceSoftwareVersionsCreateResponse(rsp *http.Response) (*MarketplaceSoftwareVersionsCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSoftwareVersionsCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest SoftwareVersion
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSoftwareVersionsDestroyResponse parses an HTTP response from a MarketplaceSoftwareVersionsDestroyWithResponse call
+func ParseMarketplaceSoftwareVersionsDestroyResponse(rsp *http.Response) (*MarketplaceSoftwareVersionsDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSoftwareVersionsDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSoftwareVersionsRetrieveResponse parses an HTTP response from a MarketplaceSoftwareVersionsRetrieveWithResponse call
+func ParseMarketplaceSoftwareVersionsRetrieveResponse(rsp *http.Response) (*MarketplaceSoftwareVersionsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSoftwareVersionsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SoftwareVersion
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSoftwareVersionsPartialUpdateResponse parses an HTTP response from a MarketplaceSoftwareVersionsPartialUpdateWithResponse call
+func ParseMarketplaceSoftwareVersionsPartialUpdateResponse(rsp *http.Response) (*MarketplaceSoftwareVersionsPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSoftwareVersionsPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SoftwareVersion
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSoftwareVersionsUpdateResponse parses an HTTP response from a MarketplaceSoftwareVersionsUpdateWithResponse call
+func ParseMarketplaceSoftwareVersionsUpdateResponse(rsp *http.Response) (*MarketplaceSoftwareVersionsUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSoftwareVersionsUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SoftwareVersion
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
