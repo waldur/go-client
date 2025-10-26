@@ -27045,7 +27045,7 @@ type BookingResourcesListParams struct {
 	ProjectUuid        *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 	ProviderUuid       *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
 
-	// Query Search by resource UUID, name, backend ID, effective ID, IPs or hypervisor
+	// Query Search by resource UUID, name, slug, backend ID, effective ID, IPs or hypervisor
 	Query                *string `form:"query,omitempty" json:"query,omitempty"`
 	RestrictMemberAccess *bool   `form:"restrict_member_access,omitempty" json:"restrict_member_access,omitempty"`
 
@@ -27139,7 +27139,7 @@ type BookingResourcesCountParams struct {
 	ProjectUuid        *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 	ProviderUuid       *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
 
-	// Query Search by resource UUID, name, backend ID, effective ID, IPs or hypervisor
+	// Query Search by resource UUID, name, slug, backend ID, effective ID, IPs or hypervisor
 	Query                *string `form:"query,omitempty" json:"query,omitempty"`
 	RestrictMemberAccess *bool   `form:"restrict_member_access,omitempty" json:"restrict_member_access,omitempty"`
 
@@ -30491,7 +30491,7 @@ type MarketplaceOrdersListParams struct {
 	ProjectUuid        *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 	ProviderUuid       *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
 
-	// Query Search by order UUID, project name or resource name
+	// Query Search by order UUID, slug, project name or resource name
 	Query              *string                             `form:"query,omitempty" json:"query,omitempty"`
 	Resource           *string                             `form:"resource,omitempty" json:"resource,omitempty"`
 	ResourceUuid       *openapi_types.UUID                 `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
@@ -30544,7 +30544,7 @@ type MarketplaceOrdersCountParams struct {
 	ProjectUuid        *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 	ProviderUuid       *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
 
-	// Query Search by order UUID, project name or resource name
+	// Query Search by order UUID, slug, project name or resource name
 	Query              *string                              `form:"query,omitempty" json:"query,omitempty"`
 	Resource           *string                              `form:"resource,omitempty" json:"resource,omitempty"`
 	ResourceUuid       *openapi_types.UUID                  `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
@@ -30826,6 +30826,9 @@ type MarketplaceProviderOfferingsListParams struct {
 	// ProjectUuid Project UUID
 	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 
+	// Query Search by offering name, slug or description
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
 	// ResourceCustomerUuid Resource customer UUID
 	ResourceCustomerUuid *openapi_types.UUID `form:"resource_customer_uuid,omitempty" json:"resource_customer_uuid,omitempty"`
 
@@ -30907,6 +30910,9 @@ type MarketplaceProviderOfferingsCountParams struct {
 	// ProjectUuid Project UUID
 	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 
+	// Query Search by offering name, slug or description
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
 	// ResourceCustomerUuid Resource customer UUID
 	ResourceCustomerUuid *openapi_types.UUID `form:"resource_customer_uuid,omitempty" json:"resource_customer_uuid,omitempty"`
 
@@ -30985,6 +30991,9 @@ type MarketplaceProviderOfferingsGroupsListParams struct {
 	// ProjectUuid Project UUID
 	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 
+	// Query Search by offering name, slug or description
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
 	// ResourceCustomerUuid Resource customer UUID
 	ResourceCustomerUuid *openapi_types.UUID `form:"resource_customer_uuid,omitempty" json:"resource_customer_uuid,omitempty"`
 
@@ -31062,6 +31071,9 @@ type MarketplaceProviderOfferingsGroupsCountParams struct {
 
 	// ProjectUuid Project UUID
 	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// Query Search by offering name, slug or description
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
 
 	// ResourceCustomerUuid Resource customer UUID
 	ResourceCustomerUuid *openapi_types.UUID `form:"resource_customer_uuid,omitempty" json:"resource_customer_uuid,omitempty"`
@@ -31152,6 +31164,9 @@ type MarketplaceProviderOfferingsComponentStatsListParams struct {
 	// ProjectUuid Project UUID
 	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 
+	// Query Search by offering name, slug or description
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
 	// ResourceCustomerUuid Resource customer UUID
 	ResourceCustomerUuid *openapi_types.UUID `form:"resource_customer_uuid,omitempty" json:"resource_customer_uuid,omitempty"`
 
@@ -31237,6 +31252,9 @@ type MarketplaceProviderOfferingsCostsListParams struct {
 	// ProjectUuid Project UUID
 	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 
+	// Query Search by offering name, slug or description
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
 	// ResourceCustomerUuid Resource customer UUID
 	ResourceCustomerUuid *openapi_types.UUID `form:"resource_customer_uuid,omitempty" json:"resource_customer_uuid,omitempty"`
 
@@ -31317,6 +31335,9 @@ type MarketplaceProviderOfferingsCustomersListParams struct {
 
 	// ProjectUuid Project UUID
 	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// Query Search by offering name, slug or description
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
 
 	// ResourceCustomerUuid Resource customer UUID
 	ResourceCustomerUuid *openapi_types.UUID `form:"resource_customer_uuid,omitempty" json:"resource_customer_uuid,omitempty"`
@@ -31543,7 +31564,7 @@ type MarketplaceProviderResourcesListParams struct {
 	ProjectUuid        *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 	ProviderUuid       *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
 
-	// Query Search by resource UUID, name, backend ID, effective ID, IPs or hypervisor
+	// Query Search by resource UUID, name, slug, backend ID, effective ID, IPs or hypervisor
 	Query                *string `form:"query,omitempty" json:"query,omitempty"`
 	RestrictMemberAccess *bool   `form:"restrict_member_access,omitempty" json:"restrict_member_access,omitempty"`
 
@@ -31636,7 +31657,7 @@ type MarketplaceProviderResourcesCountParams struct {
 	ProjectUuid        *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 	ProviderUuid       *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
 
-	// Query Search by resource UUID, name, backend ID, effective ID, IPs or hypervisor
+	// Query Search by resource UUID, name, slug, backend ID, effective ID, IPs or hypervisor
 	Query                *string `form:"query,omitempty" json:"query,omitempty"`
 	RestrictMemberAccess *bool   `form:"restrict_member_access,omitempty" json:"restrict_member_access,omitempty"`
 
@@ -31724,6 +31745,9 @@ type MarketplacePublicOfferingsListParams struct {
 	// ProjectUuid Project UUID
 	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 
+	// Query Search by offering name, slug or description
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
 	// ResourceCustomerUuid Resource customer UUID
 	ResourceCustomerUuid *openapi_types.UUID `form:"resource_customer_uuid,omitempty" json:"resource_customer_uuid,omitempty"`
 
@@ -31804,6 +31828,9 @@ type MarketplacePublicOfferingsCountParams struct {
 
 	// ProjectUuid Project UUID
 	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// Query Search by offering name, slug or description
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
 
 	// ResourceCustomerUuid Resource customer UUID
 	ResourceCustomerUuid *openapi_types.UUID `form:"resource_customer_uuid,omitempty" json:"resource_customer_uuid,omitempty"`
@@ -31981,7 +32008,7 @@ type MarketplaceResourcesListParams struct {
 	ProjectUuid        *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 	ProviderUuid       *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
 
-	// Query Search by resource UUID, name, backend ID, effective ID, IPs or hypervisor
+	// Query Search by resource UUID, name, slug, backend ID, effective ID, IPs or hypervisor
 	Query                *string `form:"query,omitempty" json:"query,omitempty"`
 	RestrictMemberAccess *bool   `form:"restrict_member_access,omitempty" json:"restrict_member_access,omitempty"`
 
@@ -32074,7 +32101,7 @@ type MarketplaceResourcesCountParams struct {
 	ProjectUuid        *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 	ProviderUuid       *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
 
-	// Query Search by resource UUID, name, backend ID, effective ID, IPs or hypervisor
+	// Query Search by resource UUID, name, slug, backend ID, effective ID, IPs or hypervisor
 	Query                *string `form:"query,omitempty" json:"query,omitempty"`
 	RestrictMemberAccess *bool   `form:"restrict_member_access,omitempty" json:"restrict_member_access,omitempty"`
 
@@ -32414,7 +32441,7 @@ type MarketplaceServiceProvidersCustomerProjectsListParams struct {
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 
-	// Query Filter by name, UUID, backend ID or resource effective ID
+	// Query Filter by name, slug, UUID, backend ID or resource effective ID
 	Query *string `form:"query,omitempty" json:"query,omitempty"`
 	Slug  *string `form:"slug,omitempty" json:"slug,omitempty"`
 }
@@ -32539,6 +32566,9 @@ type MarketplaceServiceProvidersOfferingsListParams struct {
 
 	// ProjectUuid Project UUID
 	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// Query Search by offering name, slug or description
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
 
 	// ResourceCustomerUuid Resource customer UUID
 	ResourceCustomerUuid *openapi_types.UUID `form:"resource_customer_uuid,omitempty" json:"resource_customer_uuid,omitempty"`
@@ -32683,7 +32713,7 @@ type MarketplaceServiceProvidersProjectsListParams struct {
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 
-	// Query Filter by name, UUID, backend ID or resource effective ID
+	// Query Filter by name, slug, UUID, backend ID or resource effective ID
 	Query *string `form:"query,omitempty" json:"query,omitempty"`
 	Slug  *string `form:"slug,omitempty" json:"slug,omitempty"`
 }
@@ -35458,7 +35488,7 @@ type ProjectsListParams struct {
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 
-	// Query Filter by name, UUID, backend ID or resource effective ID
+	// Query Filter by name, slug, UUID, backend ID or resource effective ID
 	Query *string `form:"query,omitempty" json:"query,omitempty"`
 	Slug  *string `form:"slug,omitempty" json:"slug,omitempty"`
 }
@@ -35511,7 +35541,7 @@ type ProjectsCountParams struct {
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 
-	// Query Filter by name, UUID, backend ID or resource effective ID
+	// Query Filter by name, slug, UUID, backend ID or resource effective ID
 	Query *string `form:"query,omitempty" json:"query,omitempty"`
 	Slug  *string `form:"slug,omitempty" json:"slug,omitempty"`
 }
@@ -132476,6 +132506,22 @@ func NewMarketplaceProviderOfferingsListRequest(server string, params *Marketpla
 
 		}
 
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "query", runtime.ParamLocationQuery, *params.Query); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.ResourceCustomerUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "resource_customer_uuid", runtime.ParamLocationQuery, *params.ResourceCustomerUuid); err != nil {
@@ -133008,6 +133054,22 @@ func NewMarketplaceProviderOfferingsCountRequest(server string, params *Marketpl
 		if params.ProjectUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_uuid", runtime.ParamLocationQuery, *params.ProjectUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "query", runtime.ParamLocationQuery, *params.Query); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -133617,6 +133679,22 @@ func NewMarketplaceProviderOfferingsGroupsListRequest(server string, params *Mar
 
 		}
 
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "query", runtime.ParamLocationQuery, *params.Query); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.ResourceCustomerUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "resource_customer_uuid", runtime.ParamLocationQuery, *params.ResourceCustomerUuid); err != nil {
@@ -134149,6 +134227,22 @@ func NewMarketplaceProviderOfferingsGroupsCountRequest(server string, params *Ma
 		if params.ProjectUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_uuid", runtime.ParamLocationQuery, *params.ProjectUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "query", runtime.ParamLocationQuery, *params.Query); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -135076,6 +135170,22 @@ func NewMarketplaceProviderOfferingsComponentStatsListRequest(server string, uui
 
 		}
 
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "query", runtime.ParamLocationQuery, *params.Query); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.ResourceCustomerUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "resource_customer_uuid", runtime.ParamLocationQuery, *params.ResourceCustomerUuid); err != nil {
@@ -135663,6 +135773,22 @@ func NewMarketplaceProviderOfferingsCostsListRequest(server string, uuid openapi
 		if params.ProjectUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_uuid", runtime.ParamLocationQuery, *params.ProjectUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "query", runtime.ParamLocationQuery, *params.Query); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -136278,6 +136404,22 @@ func NewMarketplaceProviderOfferingsCustomersListRequest(server string, uuid ope
 		if params.ProjectUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_uuid", runtime.ParamLocationQuery, *params.ProjectUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "query", runtime.ParamLocationQuery, *params.Query); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -141709,6 +141851,22 @@ func NewMarketplacePublicOfferingsListRequest(server string, params *Marketplace
 
 		}
 
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "query", runtime.ParamLocationQuery, *params.Query); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.ResourceCustomerUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "resource_customer_uuid", runtime.ParamLocationQuery, *params.ResourceCustomerUuid); err != nil {
@@ -142241,6 +142399,22 @@ func NewMarketplacePublicOfferingsCountRequest(server string, params *Marketplac
 		if params.ProjectUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_uuid", runtime.ParamLocationQuery, *params.ProjectUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "query", runtime.ParamLocationQuery, *params.Query); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -149970,6 +150144,22 @@ func NewMarketplaceServiceProvidersOfferingsListRequest(server string, servicePr
 		if params.ProjectUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_uuid", runtime.ParamLocationQuery, *params.ProjectUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "query", runtime.ParamLocationQuery, *params.Query); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
