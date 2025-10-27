@@ -1677,6 +1677,7 @@ const (
 	AwsInstancesListParamsFieldCustomerAbbreviation             AwsInstancesListParamsField = "customer_abbreviation"
 	AwsInstancesListParamsFieldCustomerName                     AwsInstancesListParamsField = "customer_name"
 	AwsInstancesListParamsFieldCustomerNativeName               AwsInstancesListParamsField = "customer_native_name"
+	AwsInstancesListParamsFieldCustomerUuid                     AwsInstancesListParamsField = "customer_uuid"
 	AwsInstancesListParamsFieldDescription                      AwsInstancesListParamsField = "description"
 	AwsInstancesListParamsFieldDisk                             AwsInstancesListParamsField = "disk"
 	AwsInstancesListParamsFieldErrorMessage                     AwsInstancesListParamsField = "error_message"
@@ -1757,6 +1758,7 @@ const (
 	AwsInstancesRetrieveParamsFieldCustomerAbbreviation             AwsInstancesRetrieveParamsField = "customer_abbreviation"
 	AwsInstancesRetrieveParamsFieldCustomerName                     AwsInstancesRetrieveParamsField = "customer_name"
 	AwsInstancesRetrieveParamsFieldCustomerNativeName               AwsInstancesRetrieveParamsField = "customer_native_name"
+	AwsInstancesRetrieveParamsFieldCustomerUuid                     AwsInstancesRetrieveParamsField = "customer_uuid"
 	AwsInstancesRetrieveParamsFieldDescription                      AwsInstancesRetrieveParamsField = "description"
 	AwsInstancesRetrieveParamsFieldDisk                             AwsInstancesRetrieveParamsField = "disk"
 	AwsInstancesRetrieveParamsFieldErrorMessage                     AwsInstancesRetrieveParamsField = "error_message"
@@ -1812,6 +1814,7 @@ const (
 	AwsVolumesListParamsFieldCustomerAbbreviation             AwsVolumesListParamsField = "customer_abbreviation"
 	AwsVolumesListParamsFieldCustomerName                     AwsVolumesListParamsField = "customer_name"
 	AwsVolumesListParamsFieldCustomerNativeName               AwsVolumesListParamsField = "customer_native_name"
+	AwsVolumesListParamsFieldCustomerUuid                     AwsVolumesListParamsField = "customer_uuid"
 	AwsVolumesListParamsFieldDescription                      AwsVolumesListParamsField = "description"
 	AwsVolumesListParamsFieldDevice                           AwsVolumesListParamsField = "device"
 	AwsVolumesListParamsFieldErrorMessage                     AwsVolumesListParamsField = "error_message"
@@ -1856,6 +1859,7 @@ const (
 	AwsVolumesRetrieveParamsFieldCustomerAbbreviation             AwsVolumesRetrieveParamsField = "customer_abbreviation"
 	AwsVolumesRetrieveParamsFieldCustomerName                     AwsVolumesRetrieveParamsField = "customer_name"
 	AwsVolumesRetrieveParamsFieldCustomerNativeName               AwsVolumesRetrieveParamsField = "customer_native_name"
+	AwsVolumesRetrieveParamsFieldCustomerUuid                     AwsVolumesRetrieveParamsField = "customer_uuid"
 	AwsVolumesRetrieveParamsFieldDescription                      AwsVolumesRetrieveParamsField = "description"
 	AwsVolumesRetrieveParamsFieldDevice                           AwsVolumesRetrieveParamsField = "device"
 	AwsVolumesRetrieveParamsFieldErrorMessage                     AwsVolumesRetrieveParamsField = "error_message"
@@ -1900,6 +1904,7 @@ const (
 	AzurePublicIpsListParamsFieldCustomerAbbreviation             AzurePublicIpsListParamsField = "customer_abbreviation"
 	AzurePublicIpsListParamsFieldCustomerName                     AzurePublicIpsListParamsField = "customer_name"
 	AzurePublicIpsListParamsFieldCustomerNativeName               AzurePublicIpsListParamsField = "customer_native_name"
+	AzurePublicIpsListParamsFieldCustomerUuid                     AzurePublicIpsListParamsField = "customer_uuid"
 	AzurePublicIpsListParamsFieldDescription                      AzurePublicIpsListParamsField = "description"
 	AzurePublicIpsListParamsFieldErrorMessage                     AzurePublicIpsListParamsField = "error_message"
 	AzurePublicIpsListParamsFieldErrorTraceback                   AzurePublicIpsListParamsField = "error_traceback"
@@ -1964,6 +1969,7 @@ const (
 	AzurePublicIpsRetrieveParamsFieldCustomerAbbreviation             AzurePublicIpsRetrieveParamsField = "customer_abbreviation"
 	AzurePublicIpsRetrieveParamsFieldCustomerName                     AzurePublicIpsRetrieveParamsField = "customer_name"
 	AzurePublicIpsRetrieveParamsFieldCustomerNativeName               AzurePublicIpsRetrieveParamsField = "customer_native_name"
+	AzurePublicIpsRetrieveParamsFieldCustomerUuid                     AzurePublicIpsRetrieveParamsField = "customer_uuid"
 	AzurePublicIpsRetrieveParamsFieldDescription                      AzurePublicIpsRetrieveParamsField = "description"
 	AzurePublicIpsRetrieveParamsFieldErrorMessage                     AzurePublicIpsRetrieveParamsField = "error_message"
 	AzurePublicIpsRetrieveParamsFieldErrorTraceback                   AzurePublicIpsRetrieveParamsField = "error_traceback"
@@ -2004,6 +2010,7 @@ const (
 	AzureResourceGroupsListParamsFieldCustomerAbbreviation             AzureResourceGroupsListParamsField = "customer_abbreviation"
 	AzureResourceGroupsListParamsFieldCustomerName                     AzureResourceGroupsListParamsField = "customer_name"
 	AzureResourceGroupsListParamsFieldCustomerNativeName               AzureResourceGroupsListParamsField = "customer_native_name"
+	AzureResourceGroupsListParamsFieldCustomerUuid                     AzureResourceGroupsListParamsField = "customer_uuid"
 	AzureResourceGroupsListParamsFieldDescription                      AzureResourceGroupsListParamsField = "description"
 	AzureResourceGroupsListParamsFieldErrorMessage                     AzureResourceGroupsListParamsField = "error_message"
 	AzureResourceGroupsListParamsFieldErrorTraceback                   AzureResourceGroupsListParamsField = "error_traceback"
@@ -2043,6 +2050,7 @@ const (
 	AzureResourceGroupsRetrieveParamsFieldCustomerAbbreviation             AzureResourceGroupsRetrieveParamsField = "customer_abbreviation"
 	AzureResourceGroupsRetrieveParamsFieldCustomerName                     AzureResourceGroupsRetrieveParamsField = "customer_name"
 	AzureResourceGroupsRetrieveParamsFieldCustomerNativeName               AzureResourceGroupsRetrieveParamsField = "customer_native_name"
+	AzureResourceGroupsRetrieveParamsFieldCustomerUuid                     AzureResourceGroupsRetrieveParamsField = "customer_uuid"
 	AzureResourceGroupsRetrieveParamsFieldDescription                      AzureResourceGroupsRetrieveParamsField = "description"
 	AzureResourceGroupsRetrieveParamsFieldErrorMessage                     AzureResourceGroupsRetrieveParamsField = "error_message"
 	AzureResourceGroupsRetrieveParamsFieldErrorTraceback                   AzureResourceGroupsRetrieveParamsField = "error_traceback"
@@ -2084,6 +2092,7 @@ const (
 	AzureSqlDatabasesListParamsFieldCustomerAbbreviation             AzureSqlDatabasesListParamsField = "customer_abbreviation"
 	AzureSqlDatabasesListParamsFieldCustomerName                     AzureSqlDatabasesListParamsField = "customer_name"
 	AzureSqlDatabasesListParamsFieldCustomerNativeName               AzureSqlDatabasesListParamsField = "customer_native_name"
+	AzureSqlDatabasesListParamsFieldCustomerUuid                     AzureSqlDatabasesListParamsField = "customer_uuid"
 	AzureSqlDatabasesListParamsFieldDescription                      AzureSqlDatabasesListParamsField = "description"
 	AzureSqlDatabasesListParamsFieldErrorMessage                     AzureSqlDatabasesListParamsField = "error_message"
 	AzureSqlDatabasesListParamsFieldErrorTraceback                   AzureSqlDatabasesListParamsField = "error_traceback"
@@ -2154,6 +2163,7 @@ const (
 	AzureSqlDatabasesRetrieveParamsFieldCustomerAbbreviation             AzureSqlDatabasesRetrieveParamsField = "customer_abbreviation"
 	AzureSqlDatabasesRetrieveParamsFieldCustomerName                     AzureSqlDatabasesRetrieveParamsField = "customer_name"
 	AzureSqlDatabasesRetrieveParamsFieldCustomerNativeName               AzureSqlDatabasesRetrieveParamsField = "customer_native_name"
+	AzureSqlDatabasesRetrieveParamsFieldCustomerUuid                     AzureSqlDatabasesRetrieveParamsField = "customer_uuid"
 	AzureSqlDatabasesRetrieveParamsFieldDescription                      AzureSqlDatabasesRetrieveParamsField = "description"
 	AzureSqlDatabasesRetrieveParamsFieldErrorMessage                     AzureSqlDatabasesRetrieveParamsField = "error_message"
 	AzureSqlDatabasesRetrieveParamsFieldErrorTraceback                   AzureSqlDatabasesRetrieveParamsField = "error_traceback"
@@ -2198,6 +2208,7 @@ const (
 	AzureSqlServersListParamsFieldCustomerAbbreviation             AzureSqlServersListParamsField = "customer_abbreviation"
 	AzureSqlServersListParamsFieldCustomerName                     AzureSqlServersListParamsField = "customer_name"
 	AzureSqlServersListParamsFieldCustomerNativeName               AzureSqlServersListParamsField = "customer_native_name"
+	AzureSqlServersListParamsFieldCustomerUuid                     AzureSqlServersListParamsField = "customer_uuid"
 	AzureSqlServersListParamsFieldDescription                      AzureSqlServersListParamsField = "description"
 	AzureSqlServersListParamsFieldErrorMessage                     AzureSqlServersListParamsField = "error_message"
 	AzureSqlServersListParamsFieldErrorTraceback                   AzureSqlServersListParamsField = "error_traceback"
@@ -2268,6 +2279,7 @@ const (
 	AzureSqlServersRetrieveParamsFieldCustomerAbbreviation             AzureSqlServersRetrieveParamsField = "customer_abbreviation"
 	AzureSqlServersRetrieveParamsFieldCustomerName                     AzureSqlServersRetrieveParamsField = "customer_name"
 	AzureSqlServersRetrieveParamsFieldCustomerNativeName               AzureSqlServersRetrieveParamsField = "customer_native_name"
+	AzureSqlServersRetrieveParamsFieldCustomerUuid                     AzureSqlServersRetrieveParamsField = "customer_uuid"
 	AzureSqlServersRetrieveParamsFieldDescription                      AzureSqlServersRetrieveParamsField = "description"
 	AzureSqlServersRetrieveParamsFieldErrorMessage                     AzureSqlServersRetrieveParamsField = "error_message"
 	AzureSqlServersRetrieveParamsFieldErrorTraceback                   AzureSqlServersRetrieveParamsField = "error_traceback"
@@ -2315,6 +2327,7 @@ const (
 	AzureVirtualmachinesListParamsFieldCustomerAbbreviation             AzureVirtualmachinesListParamsField = "customer_abbreviation"
 	AzureVirtualmachinesListParamsFieldCustomerName                     AzureVirtualmachinesListParamsField = "customer_name"
 	AzureVirtualmachinesListParamsFieldCustomerNativeName               AzureVirtualmachinesListParamsField = "customer_native_name"
+	AzureVirtualmachinesListParamsFieldCustomerUuid                     AzureVirtualmachinesListParamsField = "customer_uuid"
 	AzureVirtualmachinesListParamsFieldDescription                      AzureVirtualmachinesListParamsField = "description"
 	AzureVirtualmachinesListParamsFieldDisk                             AzureVirtualmachinesListParamsField = "disk"
 	AzureVirtualmachinesListParamsFieldErrorMessage                     AzureVirtualmachinesListParamsField = "error_message"
@@ -2402,6 +2415,7 @@ const (
 	AzureVirtualmachinesRetrieveParamsFieldCustomerAbbreviation             AzureVirtualmachinesRetrieveParamsField = "customer_abbreviation"
 	AzureVirtualmachinesRetrieveParamsFieldCustomerName                     AzureVirtualmachinesRetrieveParamsField = "customer_name"
 	AzureVirtualmachinesRetrieveParamsFieldCustomerNativeName               AzureVirtualmachinesRetrieveParamsField = "customer_native_name"
+	AzureVirtualmachinesRetrieveParamsFieldCustomerUuid                     AzureVirtualmachinesRetrieveParamsField = "customer_uuid"
 	AzureVirtualmachinesRetrieveParamsFieldDescription                      AzureVirtualmachinesRetrieveParamsField = "description"
 	AzureVirtualmachinesRetrieveParamsFieldDisk                             AzureVirtualmachinesRetrieveParamsField = "disk"
 	AzureVirtualmachinesRetrieveParamsFieldErrorMessage                     AzureVirtualmachinesRetrieveParamsField = "error_message"
@@ -3239,6 +3253,7 @@ const (
 	DigitaloceanDropletsListParamsFieldCustomerAbbreviation             DigitaloceanDropletsListParamsField = "customer_abbreviation"
 	DigitaloceanDropletsListParamsFieldCustomerName                     DigitaloceanDropletsListParamsField = "customer_name"
 	DigitaloceanDropletsListParamsFieldCustomerNativeName               DigitaloceanDropletsListParamsField = "customer_native_name"
+	DigitaloceanDropletsListParamsFieldCustomerUuid                     DigitaloceanDropletsListParamsField = "customer_uuid"
 	DigitaloceanDropletsListParamsFieldDescription                      DigitaloceanDropletsListParamsField = "description"
 	DigitaloceanDropletsListParamsFieldDisk                             DigitaloceanDropletsListParamsField = "disk"
 	DigitaloceanDropletsListParamsFieldErrorMessage                     DigitaloceanDropletsListParamsField = "error_message"
@@ -3321,6 +3336,7 @@ const (
 	DigitaloceanDropletsRetrieveParamsFieldCustomerAbbreviation             DigitaloceanDropletsRetrieveParamsField = "customer_abbreviation"
 	DigitaloceanDropletsRetrieveParamsFieldCustomerName                     DigitaloceanDropletsRetrieveParamsField = "customer_name"
 	DigitaloceanDropletsRetrieveParamsFieldCustomerNativeName               DigitaloceanDropletsRetrieveParamsField = "customer_native_name"
+	DigitaloceanDropletsRetrieveParamsFieldCustomerUuid                     DigitaloceanDropletsRetrieveParamsField = "customer_uuid"
 	DigitaloceanDropletsRetrieveParamsFieldDescription                      DigitaloceanDropletsRetrieveParamsField = "description"
 	DigitaloceanDropletsRetrieveParamsFieldDisk                             DigitaloceanDropletsRetrieveParamsField = "disk"
 	DigitaloceanDropletsRetrieveParamsFieldErrorMessage                     DigitaloceanDropletsRetrieveParamsField = "error_message"
@@ -6848,6 +6864,7 @@ const (
 	OpenstackBackupsListParamsFieldCustomerAbbreviation             OpenstackBackupsListParamsField = "customer_abbreviation"
 	OpenstackBackupsListParamsFieldCustomerName                     OpenstackBackupsListParamsField = "customer_name"
 	OpenstackBackupsListParamsFieldCustomerNativeName               OpenstackBackupsListParamsField = "customer_native_name"
+	OpenstackBackupsListParamsFieldCustomerUuid                     OpenstackBackupsListParamsField = "customer_uuid"
 	OpenstackBackupsListParamsFieldDescription                      OpenstackBackupsListParamsField = "description"
 	OpenstackBackupsListParamsFieldErrorMessage                     OpenstackBackupsListParamsField = "error_message"
 	OpenstackBackupsListParamsFieldErrorTraceback                   OpenstackBackupsListParamsField = "error_traceback"
@@ -6920,6 +6937,7 @@ const (
 	OpenstackBackupsRetrieveParamsFieldCustomerAbbreviation             OpenstackBackupsRetrieveParamsField = "customer_abbreviation"
 	OpenstackBackupsRetrieveParamsFieldCustomerName                     OpenstackBackupsRetrieveParamsField = "customer_name"
 	OpenstackBackupsRetrieveParamsFieldCustomerNativeName               OpenstackBackupsRetrieveParamsField = "customer_native_name"
+	OpenstackBackupsRetrieveParamsFieldCustomerUuid                     OpenstackBackupsRetrieveParamsField = "customer_uuid"
 	OpenstackBackupsRetrieveParamsFieldDescription                      OpenstackBackupsRetrieveParamsField = "description"
 	OpenstackBackupsRetrieveParamsFieldErrorMessage                     OpenstackBackupsRetrieveParamsField = "error_message"
 	OpenstackBackupsRetrieveParamsFieldErrorTraceback                   OpenstackBackupsRetrieveParamsField = "error_traceback"
@@ -7029,6 +7047,7 @@ const (
 	OpenstackFloatingIpsListParamsFieldCustomerAbbreviation             OpenstackFloatingIpsListParamsField = "customer_abbreviation"
 	OpenstackFloatingIpsListParamsFieldCustomerName                     OpenstackFloatingIpsListParamsField = "customer_name"
 	OpenstackFloatingIpsListParamsFieldCustomerNativeName               OpenstackFloatingIpsListParamsField = "customer_native_name"
+	OpenstackFloatingIpsListParamsFieldCustomerUuid                     OpenstackFloatingIpsListParamsField = "customer_uuid"
 	OpenstackFloatingIpsListParamsFieldDescription                      OpenstackFloatingIpsListParamsField = "description"
 	OpenstackFloatingIpsListParamsFieldErrorMessage                     OpenstackFloatingIpsListParamsField = "error_message"
 	OpenstackFloatingIpsListParamsFieldErrorTraceback                   OpenstackFloatingIpsListParamsField = "error_traceback"
@@ -7103,6 +7122,7 @@ const (
 	OpenstackFloatingIpsRetrieveParamsFieldCustomerAbbreviation             OpenstackFloatingIpsRetrieveParamsField = "customer_abbreviation"
 	OpenstackFloatingIpsRetrieveParamsFieldCustomerName                     OpenstackFloatingIpsRetrieveParamsField = "customer_name"
 	OpenstackFloatingIpsRetrieveParamsFieldCustomerNativeName               OpenstackFloatingIpsRetrieveParamsField = "customer_native_name"
+	OpenstackFloatingIpsRetrieveParamsFieldCustomerUuid                     OpenstackFloatingIpsRetrieveParamsField = "customer_uuid"
 	OpenstackFloatingIpsRetrieveParamsFieldDescription                      OpenstackFloatingIpsRetrieveParamsField = "description"
 	OpenstackFloatingIpsRetrieveParamsFieldErrorMessage                     OpenstackFloatingIpsRetrieveParamsField = "error_message"
 	OpenstackFloatingIpsRetrieveParamsFieldErrorTraceback                   OpenstackFloatingIpsRetrieveParamsField = "error_traceback"
@@ -7157,6 +7177,7 @@ const (
 	OpenstackInstancesListParamsFieldCustomerAbbreviation             OpenstackInstancesListParamsField = "customer_abbreviation"
 	OpenstackInstancesListParamsFieldCustomerName                     OpenstackInstancesListParamsField = "customer_name"
 	OpenstackInstancesListParamsFieldCustomerNativeName               OpenstackInstancesListParamsField = "customer_native_name"
+	OpenstackInstancesListParamsFieldCustomerUuid                     OpenstackInstancesListParamsField = "customer_uuid"
 	OpenstackInstancesListParamsFieldDescription                      OpenstackInstancesListParamsField = "description"
 	OpenstackInstancesListParamsFieldDisk                             OpenstackInstancesListParamsField = "disk"
 	OpenstackInstancesListParamsFieldErrorMessage                     OpenstackInstancesListParamsField = "error_message"
@@ -7252,6 +7273,7 @@ const (
 	OpenstackInstancesRetrieveParamsFieldCustomerAbbreviation             OpenstackInstancesRetrieveParamsField = "customer_abbreviation"
 	OpenstackInstancesRetrieveParamsFieldCustomerName                     OpenstackInstancesRetrieveParamsField = "customer_name"
 	OpenstackInstancesRetrieveParamsFieldCustomerNativeName               OpenstackInstancesRetrieveParamsField = "customer_native_name"
+	OpenstackInstancesRetrieveParamsFieldCustomerUuid                     OpenstackInstancesRetrieveParamsField = "customer_uuid"
 	OpenstackInstancesRetrieveParamsFieldDescription                      OpenstackInstancesRetrieveParamsField = "description"
 	OpenstackInstancesRetrieveParamsFieldDisk                             OpenstackInstancesRetrieveParamsField = "disk"
 	OpenstackInstancesRetrieveParamsFieldErrorMessage                     OpenstackInstancesRetrieveParamsField = "error_message"
@@ -7353,6 +7375,7 @@ const (
 	OpenstackNetworksListParamsFieldCustomerAbbreviation             OpenstackNetworksListParamsField = "customer_abbreviation"
 	OpenstackNetworksListParamsFieldCustomerName                     OpenstackNetworksListParamsField = "customer_name"
 	OpenstackNetworksListParamsFieldCustomerNativeName               OpenstackNetworksListParamsField = "customer_native_name"
+	OpenstackNetworksListParamsFieldCustomerUuid                     OpenstackNetworksListParamsField = "customer_uuid"
 	OpenstackNetworksListParamsFieldDescription                      OpenstackNetworksListParamsField = "description"
 	OpenstackNetworksListParamsFieldErrorMessage                     OpenstackNetworksListParamsField = "error_message"
 	OpenstackNetworksListParamsFieldErrorTraceback                   OpenstackNetworksListParamsField = "error_traceback"
@@ -7424,6 +7447,7 @@ const (
 	OpenstackNetworksRetrieveParamsFieldCustomerAbbreviation             OpenstackNetworksRetrieveParamsField = "customer_abbreviation"
 	OpenstackNetworksRetrieveParamsFieldCustomerName                     OpenstackNetworksRetrieveParamsField = "customer_name"
 	OpenstackNetworksRetrieveParamsFieldCustomerNativeName               OpenstackNetworksRetrieveParamsField = "customer_native_name"
+	OpenstackNetworksRetrieveParamsFieldCustomerUuid                     OpenstackNetworksRetrieveParamsField = "customer_uuid"
 	OpenstackNetworksRetrieveParamsFieldDescription                      OpenstackNetworksRetrieveParamsField = "description"
 	OpenstackNetworksRetrieveParamsFieldErrorMessage                     OpenstackNetworksRetrieveParamsField = "error_message"
 	OpenstackNetworksRetrieveParamsFieldErrorTraceback                   OpenstackNetworksRetrieveParamsField = "error_traceback"
@@ -7473,6 +7497,7 @@ const (
 	OpenstackPortsListParamsFieldCustomerAbbreviation             OpenstackPortsListParamsField = "customer_abbreviation"
 	OpenstackPortsListParamsFieldCustomerName                     OpenstackPortsListParamsField = "customer_name"
 	OpenstackPortsListParamsFieldCustomerNativeName               OpenstackPortsListParamsField = "customer_native_name"
+	OpenstackPortsListParamsFieldCustomerUuid                     OpenstackPortsListParamsField = "customer_uuid"
 	OpenstackPortsListParamsFieldDescription                      OpenstackPortsListParamsField = "description"
 	OpenstackPortsListParamsFieldDeviceId                         OpenstackPortsListParamsField = "device_id"
 	OpenstackPortsListParamsFieldDeviceOwner                      OpenstackPortsListParamsField = "device_owner"
@@ -7539,6 +7564,7 @@ const (
 	OpenstackPortsRetrieveParamsFieldCustomerAbbreviation             OpenstackPortsRetrieveParamsField = "customer_abbreviation"
 	OpenstackPortsRetrieveParamsFieldCustomerName                     OpenstackPortsRetrieveParamsField = "customer_name"
 	OpenstackPortsRetrieveParamsFieldCustomerNativeName               OpenstackPortsRetrieveParamsField = "customer_native_name"
+	OpenstackPortsRetrieveParamsFieldCustomerUuid                     OpenstackPortsRetrieveParamsField = "customer_uuid"
 	OpenstackPortsRetrieveParamsFieldDescription                      OpenstackPortsRetrieveParamsField = "description"
 	OpenstackPortsRetrieveParamsFieldDeviceId                         OpenstackPortsRetrieveParamsField = "device_id"
 	OpenstackPortsRetrieveParamsFieldDeviceOwner                      OpenstackPortsRetrieveParamsField = "device_owner"
@@ -7591,6 +7617,7 @@ const (
 	OpenstackRoutersListParamsFieldCustomerAbbreviation             OpenstackRoutersListParamsField = "customer_abbreviation"
 	OpenstackRoutersListParamsFieldCustomerName                     OpenstackRoutersListParamsField = "customer_name"
 	OpenstackRoutersListParamsFieldCustomerNativeName               OpenstackRoutersListParamsField = "customer_native_name"
+	OpenstackRoutersListParamsFieldCustomerUuid                     OpenstackRoutersListParamsField = "customer_uuid"
 	OpenstackRoutersListParamsFieldDescription                      OpenstackRoutersListParamsField = "description"
 	OpenstackRoutersListParamsFieldErrorMessage                     OpenstackRoutersListParamsField = "error_message"
 	OpenstackRoutersListParamsFieldErrorTraceback                   OpenstackRoutersListParamsField = "error_traceback"
@@ -7636,6 +7663,7 @@ const (
 	OpenstackRoutersRetrieveParamsFieldCustomerAbbreviation             OpenstackRoutersRetrieveParamsField = "customer_abbreviation"
 	OpenstackRoutersRetrieveParamsFieldCustomerName                     OpenstackRoutersRetrieveParamsField = "customer_name"
 	OpenstackRoutersRetrieveParamsFieldCustomerNativeName               OpenstackRoutersRetrieveParamsField = "customer_native_name"
+	OpenstackRoutersRetrieveParamsFieldCustomerUuid                     OpenstackRoutersRetrieveParamsField = "customer_uuid"
 	OpenstackRoutersRetrieveParamsFieldDescription                      OpenstackRoutersRetrieveParamsField = "description"
 	OpenstackRoutersRetrieveParamsFieldErrorMessage                     OpenstackRoutersRetrieveParamsField = "error_message"
 	OpenstackRoutersRetrieveParamsFieldErrorTraceback                   OpenstackRoutersRetrieveParamsField = "error_traceback"
@@ -7681,6 +7709,7 @@ const (
 	OpenstackSecurityGroupsListParamsFieldCustomerAbbreviation             OpenstackSecurityGroupsListParamsField = "customer_abbreviation"
 	OpenstackSecurityGroupsListParamsFieldCustomerName                     OpenstackSecurityGroupsListParamsField = "customer_name"
 	OpenstackSecurityGroupsListParamsFieldCustomerNativeName               OpenstackSecurityGroupsListParamsField = "customer_native_name"
+	OpenstackSecurityGroupsListParamsFieldCustomerUuid                     OpenstackSecurityGroupsListParamsField = "customer_uuid"
 	OpenstackSecurityGroupsListParamsFieldDescription                      OpenstackSecurityGroupsListParamsField = "description"
 	OpenstackSecurityGroupsListParamsFieldErrorMessage                     OpenstackSecurityGroupsListParamsField = "error_message"
 	OpenstackSecurityGroupsListParamsFieldErrorTraceback                   OpenstackSecurityGroupsListParamsField = "error_traceback"
@@ -7747,6 +7776,7 @@ const (
 	OpenstackSecurityGroupsRetrieveParamsFieldCustomerAbbreviation             OpenstackSecurityGroupsRetrieveParamsField = "customer_abbreviation"
 	OpenstackSecurityGroupsRetrieveParamsFieldCustomerName                     OpenstackSecurityGroupsRetrieveParamsField = "customer_name"
 	OpenstackSecurityGroupsRetrieveParamsFieldCustomerNativeName               OpenstackSecurityGroupsRetrieveParamsField = "customer_native_name"
+	OpenstackSecurityGroupsRetrieveParamsFieldCustomerUuid                     OpenstackSecurityGroupsRetrieveParamsField = "customer_uuid"
 	OpenstackSecurityGroupsRetrieveParamsFieldDescription                      OpenstackSecurityGroupsRetrieveParamsField = "description"
 	OpenstackSecurityGroupsRetrieveParamsFieldErrorMessage                     OpenstackSecurityGroupsRetrieveParamsField = "error_message"
 	OpenstackSecurityGroupsRetrieveParamsFieldErrorTraceback                   OpenstackSecurityGroupsRetrieveParamsField = "error_traceback"
@@ -7789,6 +7819,7 @@ const (
 	OpenstackServerGroupsListParamsFieldCustomerAbbreviation             OpenstackServerGroupsListParamsField = "customer_abbreviation"
 	OpenstackServerGroupsListParamsFieldCustomerName                     OpenstackServerGroupsListParamsField = "customer_name"
 	OpenstackServerGroupsListParamsFieldCustomerNativeName               OpenstackServerGroupsListParamsField = "customer_native_name"
+	OpenstackServerGroupsListParamsFieldCustomerUuid                     OpenstackServerGroupsListParamsField = "customer_uuid"
 	OpenstackServerGroupsListParamsFieldDescription                      OpenstackServerGroupsListParamsField = "description"
 	OpenstackServerGroupsListParamsFieldDisplayName                      OpenstackServerGroupsListParamsField = "display_name"
 	OpenstackServerGroupsListParamsFieldErrorMessage                     OpenstackServerGroupsListParamsField = "error_message"
@@ -7857,6 +7888,7 @@ const (
 	OpenstackServerGroupsRetrieveParamsFieldCustomerAbbreviation             OpenstackServerGroupsRetrieveParamsField = "customer_abbreviation"
 	OpenstackServerGroupsRetrieveParamsFieldCustomerName                     OpenstackServerGroupsRetrieveParamsField = "customer_name"
 	OpenstackServerGroupsRetrieveParamsFieldCustomerNativeName               OpenstackServerGroupsRetrieveParamsField = "customer_native_name"
+	OpenstackServerGroupsRetrieveParamsFieldCustomerUuid                     OpenstackServerGroupsRetrieveParamsField = "customer_uuid"
 	OpenstackServerGroupsRetrieveParamsFieldDescription                      OpenstackServerGroupsRetrieveParamsField = "description"
 	OpenstackServerGroupsRetrieveParamsFieldDisplayName                      OpenstackServerGroupsRetrieveParamsField = "display_name"
 	OpenstackServerGroupsRetrieveParamsFieldErrorMessage                     OpenstackServerGroupsRetrieveParamsField = "error_message"
@@ -7903,6 +7935,7 @@ const (
 	OpenstackSnapshotsListParamsFieldCustomerAbbreviation             OpenstackSnapshotsListParamsField = "customer_abbreviation"
 	OpenstackSnapshotsListParamsFieldCustomerName                     OpenstackSnapshotsListParamsField = "customer_name"
 	OpenstackSnapshotsListParamsFieldCustomerNativeName               OpenstackSnapshotsListParamsField = "customer_native_name"
+	OpenstackSnapshotsListParamsFieldCustomerUuid                     OpenstackSnapshotsListParamsField = "customer_uuid"
 	OpenstackSnapshotsListParamsFieldDescription                      OpenstackSnapshotsListParamsField = "description"
 	OpenstackSnapshotsListParamsFieldErrorMessage                     OpenstackSnapshotsListParamsField = "error_message"
 	OpenstackSnapshotsListParamsFieldErrorTraceback                   OpenstackSnapshotsListParamsField = "error_traceback"
@@ -7975,6 +8008,7 @@ const (
 	OpenstackSnapshotsRetrieveParamsFieldCustomerAbbreviation             OpenstackSnapshotsRetrieveParamsField = "customer_abbreviation"
 	OpenstackSnapshotsRetrieveParamsFieldCustomerName                     OpenstackSnapshotsRetrieveParamsField = "customer_name"
 	OpenstackSnapshotsRetrieveParamsFieldCustomerNativeName               OpenstackSnapshotsRetrieveParamsField = "customer_native_name"
+	OpenstackSnapshotsRetrieveParamsFieldCustomerUuid                     OpenstackSnapshotsRetrieveParamsField = "customer_uuid"
 	OpenstackSnapshotsRetrieveParamsFieldDescription                      OpenstackSnapshotsRetrieveParamsField = "description"
 	OpenstackSnapshotsRetrieveParamsFieldErrorMessage                     OpenstackSnapshotsRetrieveParamsField = "error_message"
 	OpenstackSnapshotsRetrieveParamsFieldErrorTraceback                   OpenstackSnapshotsRetrieveParamsField = "error_traceback"
@@ -8023,6 +8057,7 @@ const (
 	OpenstackSubnetsListParamsFieldCustomerAbbreviation             OpenstackSubnetsListParamsField = "customer_abbreviation"
 	OpenstackSubnetsListParamsFieldCustomerName                     OpenstackSubnetsListParamsField = "customer_name"
 	OpenstackSubnetsListParamsFieldCustomerNativeName               OpenstackSubnetsListParamsField = "customer_native_name"
+	OpenstackSubnetsListParamsFieldCustomerUuid                     OpenstackSubnetsListParamsField = "customer_uuid"
 	OpenstackSubnetsListParamsFieldDescription                      OpenstackSubnetsListParamsField = "description"
 	OpenstackSubnetsListParamsFieldDisableGateway                   OpenstackSubnetsListParamsField = "disable_gateway"
 	OpenstackSubnetsListParamsFieldDnsNameservers                   OpenstackSubnetsListParamsField = "dns_nameservers"
@@ -8098,6 +8133,7 @@ const (
 	OpenstackSubnetsRetrieveParamsFieldCustomerAbbreviation             OpenstackSubnetsRetrieveParamsField = "customer_abbreviation"
 	OpenstackSubnetsRetrieveParamsFieldCustomerName                     OpenstackSubnetsRetrieveParamsField = "customer_name"
 	OpenstackSubnetsRetrieveParamsFieldCustomerNativeName               OpenstackSubnetsRetrieveParamsField = "customer_native_name"
+	OpenstackSubnetsRetrieveParamsFieldCustomerUuid                     OpenstackSubnetsRetrieveParamsField = "customer_uuid"
 	OpenstackSubnetsRetrieveParamsFieldDescription                      OpenstackSubnetsRetrieveParamsField = "description"
 	OpenstackSubnetsRetrieveParamsFieldDisableGateway                   OpenstackSubnetsRetrieveParamsField = "disable_gateway"
 	OpenstackSubnetsRetrieveParamsFieldDnsNameservers                   OpenstackSubnetsRetrieveParamsField = "dns_nameservers"
@@ -8148,6 +8184,7 @@ const (
 	OpenstackTenantsListParamsFieldCustomerAbbreviation             OpenstackTenantsListParamsField = "customer_abbreviation"
 	OpenstackTenantsListParamsFieldCustomerName                     OpenstackTenantsListParamsField = "customer_name"
 	OpenstackTenantsListParamsFieldCustomerNativeName               OpenstackTenantsListParamsField = "customer_native_name"
+	OpenstackTenantsListParamsFieldCustomerUuid                     OpenstackTenantsListParamsField = "customer_uuid"
 	OpenstackTenantsListParamsFieldDefaultVolumeTypeName            OpenstackTenantsListParamsField = "default_volume_type_name"
 	OpenstackTenantsListParamsFieldDescription                      OpenstackTenantsListParamsField = "description"
 	OpenstackTenantsListParamsFieldErrorMessage                     OpenstackTenantsListParamsField = "error_message"
@@ -8218,6 +8255,7 @@ const (
 	OpenstackTenantsRetrieveParamsFieldCustomerAbbreviation             OpenstackTenantsRetrieveParamsField = "customer_abbreviation"
 	OpenstackTenantsRetrieveParamsFieldCustomerName                     OpenstackTenantsRetrieveParamsField = "customer_name"
 	OpenstackTenantsRetrieveParamsFieldCustomerNativeName               OpenstackTenantsRetrieveParamsField = "customer_native_name"
+	OpenstackTenantsRetrieveParamsFieldCustomerUuid                     OpenstackTenantsRetrieveParamsField = "customer_uuid"
 	OpenstackTenantsRetrieveParamsFieldDefaultVolumeTypeName            OpenstackTenantsRetrieveParamsField = "default_volume_type_name"
 	OpenstackTenantsRetrieveParamsFieldDescription                      OpenstackTenantsRetrieveParamsField = "description"
 	OpenstackTenantsRetrieveParamsFieldErrorMessage                     OpenstackTenantsRetrieveParamsField = "error_message"
@@ -8292,6 +8330,7 @@ const (
 	OpenstackVolumesListParamsFieldCustomerAbbreviation             OpenstackVolumesListParamsField = "customer_abbreviation"
 	OpenstackVolumesListParamsFieldCustomerName                     OpenstackVolumesListParamsField = "customer_name"
 	OpenstackVolumesListParamsFieldCustomerNativeName               OpenstackVolumesListParamsField = "customer_native_name"
+	OpenstackVolumesListParamsFieldCustomerUuid                     OpenstackVolumesListParamsField = "customer_uuid"
 	OpenstackVolumesListParamsFieldDescription                      OpenstackVolumesListParamsField = "description"
 	OpenstackVolumesListParamsFieldDevice                           OpenstackVolumesListParamsField = "device"
 	OpenstackVolumesListParamsFieldErrorMessage                     OpenstackVolumesListParamsField = "error_message"
@@ -8375,6 +8414,7 @@ const (
 	OpenstackVolumesRetrieveParamsFieldCustomerAbbreviation             OpenstackVolumesRetrieveParamsField = "customer_abbreviation"
 	OpenstackVolumesRetrieveParamsFieldCustomerName                     OpenstackVolumesRetrieveParamsField = "customer_name"
 	OpenstackVolumesRetrieveParamsFieldCustomerNativeName               OpenstackVolumesRetrieveParamsField = "customer_native_name"
+	OpenstackVolumesRetrieveParamsFieldCustomerUuid                     OpenstackVolumesRetrieveParamsField = "customer_uuid"
 	OpenstackVolumesRetrieveParamsFieldDescription                      OpenstackVolumesRetrieveParamsField = "description"
 	OpenstackVolumesRetrieveParamsFieldDevice                           OpenstackVolumesRetrieveParamsField = "device"
 	OpenstackVolumesRetrieveParamsFieldErrorMessage                     OpenstackVolumesRetrieveParamsField = "error_message"
@@ -9145,6 +9185,7 @@ const (
 	RancherAppsListParamsFieldCustomerAbbreviation             RancherAppsListParamsField = "customer_abbreviation"
 	RancherAppsListParamsFieldCustomerName                     RancherAppsListParamsField = "customer_name"
 	RancherAppsListParamsFieldCustomerNativeName               RancherAppsListParamsField = "customer_native_name"
+	RancherAppsListParamsFieldCustomerUuid                     RancherAppsListParamsField = "customer_uuid"
 	RancherAppsListParamsFieldDescription                      RancherAppsListParamsField = "description"
 	RancherAppsListParamsFieldErrorMessage                     RancherAppsListParamsField = "error_message"
 	RancherAppsListParamsFieldErrorTraceback                   RancherAppsListParamsField = "error_traceback"
@@ -9218,6 +9259,7 @@ const (
 	RancherAppsRetrieveParamsFieldCustomerAbbreviation             RancherAppsRetrieveParamsField = "customer_abbreviation"
 	RancherAppsRetrieveParamsFieldCustomerName                     RancherAppsRetrieveParamsField = "customer_name"
 	RancherAppsRetrieveParamsFieldCustomerNativeName               RancherAppsRetrieveParamsField = "customer_native_name"
+	RancherAppsRetrieveParamsFieldCustomerUuid                     RancherAppsRetrieveParamsField = "customer_uuid"
 	RancherAppsRetrieveParamsFieldDescription                      RancherAppsRetrieveParamsField = "description"
 	RancherAppsRetrieveParamsFieldErrorMessage                     RancherAppsRetrieveParamsField = "error_message"
 	RancherAppsRetrieveParamsFieldErrorTraceback                   RancherAppsRetrieveParamsField = "error_traceback"
@@ -9266,6 +9308,7 @@ const (
 	RancherClustersListParamsFieldCustomerAbbreviation             RancherClustersListParamsField = "customer_abbreviation"
 	RancherClustersListParamsFieldCustomerName                     RancherClustersListParamsField = "customer_name"
 	RancherClustersListParamsFieldCustomerNativeName               RancherClustersListParamsField = "customer_native_name"
+	RancherClustersListParamsFieldCustomerUuid                     RancherClustersListParamsField = "customer_uuid"
 	RancherClustersListParamsFieldDescription                      RancherClustersListParamsField = "description"
 	RancherClustersListParamsFieldErrorMessage                     RancherClustersListParamsField = "error_message"
 	RancherClustersListParamsFieldErrorTraceback                   RancherClustersListParamsField = "error_traceback"
@@ -9341,6 +9384,7 @@ const (
 	RancherClustersRetrieveParamsFieldCustomerAbbreviation             RancherClustersRetrieveParamsField = "customer_abbreviation"
 	RancherClustersRetrieveParamsFieldCustomerName                     RancherClustersRetrieveParamsField = "customer_name"
 	RancherClustersRetrieveParamsFieldCustomerNativeName               RancherClustersRetrieveParamsField = "customer_native_name"
+	RancherClustersRetrieveParamsFieldCustomerUuid                     RancherClustersRetrieveParamsField = "customer_uuid"
 	RancherClustersRetrieveParamsFieldDescription                      RancherClustersRetrieveParamsField = "description"
 	RancherClustersRetrieveParamsFieldErrorMessage                     RancherClustersRetrieveParamsField = "error_message"
 	RancherClustersRetrieveParamsFieldErrorTraceback                   RancherClustersRetrieveParamsField = "error_traceback"
@@ -9391,6 +9435,7 @@ const (
 	RancherIngressesListParamsFieldCustomerAbbreviation             RancherIngressesListParamsField = "customer_abbreviation"
 	RancherIngressesListParamsFieldCustomerName                     RancherIngressesListParamsField = "customer_name"
 	RancherIngressesListParamsFieldCustomerNativeName               RancherIngressesListParamsField = "customer_native_name"
+	RancherIngressesListParamsFieldCustomerUuid                     RancherIngressesListParamsField = "customer_uuid"
 	RancherIngressesListParamsFieldDescription                      RancherIngressesListParamsField = "description"
 	RancherIngressesListParamsFieldErrorMessage                     RancherIngressesListParamsField = "error_message"
 	RancherIngressesListParamsFieldErrorTraceback                   RancherIngressesListParamsField = "error_traceback"
@@ -9459,6 +9504,7 @@ const (
 	RancherIngressesRetrieveParamsFieldCustomerAbbreviation             RancherIngressesRetrieveParamsField = "customer_abbreviation"
 	RancherIngressesRetrieveParamsFieldCustomerName                     RancherIngressesRetrieveParamsField = "customer_name"
 	RancherIngressesRetrieveParamsFieldCustomerNativeName               RancherIngressesRetrieveParamsField = "customer_native_name"
+	RancherIngressesRetrieveParamsFieldCustomerUuid                     RancherIngressesRetrieveParamsField = "customer_uuid"
 	RancherIngressesRetrieveParamsFieldDescription                      RancherIngressesRetrieveParamsField = "description"
 	RancherIngressesRetrieveParamsFieldErrorMessage                     RancherIngressesRetrieveParamsField = "error_message"
 	RancherIngressesRetrieveParamsFieldErrorTraceback                   RancherIngressesRetrieveParamsField = "error_traceback"
@@ -9503,6 +9549,7 @@ const (
 	RancherIngressesYamlRetrieveParamsFieldCustomerAbbreviation             RancherIngressesYamlRetrieveParamsField = "customer_abbreviation"
 	RancherIngressesYamlRetrieveParamsFieldCustomerName                     RancherIngressesYamlRetrieveParamsField = "customer_name"
 	RancherIngressesYamlRetrieveParamsFieldCustomerNativeName               RancherIngressesYamlRetrieveParamsField = "customer_native_name"
+	RancherIngressesYamlRetrieveParamsFieldCustomerUuid                     RancherIngressesYamlRetrieveParamsField = "customer_uuid"
 	RancherIngressesYamlRetrieveParamsFieldDescription                      RancherIngressesYamlRetrieveParamsField = "description"
 	RancherIngressesYamlRetrieveParamsFieldErrorMessage                     RancherIngressesYamlRetrieveParamsField = "error_message"
 	RancherIngressesYamlRetrieveParamsFieldErrorTraceback                   RancherIngressesYamlRetrieveParamsField = "error_traceback"
@@ -9584,6 +9631,7 @@ const (
 	RancherServicesListParamsFieldCustomerAbbreviation             RancherServicesListParamsField = "customer_abbreviation"
 	RancherServicesListParamsFieldCustomerName                     RancherServicesListParamsField = "customer_name"
 	RancherServicesListParamsFieldCustomerNativeName               RancherServicesListParamsField = "customer_native_name"
+	RancherServicesListParamsFieldCustomerUuid                     RancherServicesListParamsField = "customer_uuid"
 	RancherServicesListParamsFieldDescription                      RancherServicesListParamsField = "description"
 	RancherServicesListParamsFieldErrorMessage                     RancherServicesListParamsField = "error_message"
 	RancherServicesListParamsFieldErrorTraceback                   RancherServicesListParamsField = "error_traceback"
@@ -9652,6 +9700,7 @@ const (
 	RancherServicesRetrieveParamsFieldCustomerAbbreviation             RancherServicesRetrieveParamsField = "customer_abbreviation"
 	RancherServicesRetrieveParamsFieldCustomerName                     RancherServicesRetrieveParamsField = "customer_name"
 	RancherServicesRetrieveParamsFieldCustomerNativeName               RancherServicesRetrieveParamsField = "customer_native_name"
+	RancherServicesRetrieveParamsFieldCustomerUuid                     RancherServicesRetrieveParamsField = "customer_uuid"
 	RancherServicesRetrieveParamsFieldDescription                      RancherServicesRetrieveParamsField = "description"
 	RancherServicesRetrieveParamsFieldErrorMessage                     RancherServicesRetrieveParamsField = "error_message"
 	RancherServicesRetrieveParamsFieldErrorTraceback                   RancherServicesRetrieveParamsField = "error_traceback"
@@ -9696,6 +9745,7 @@ const (
 	RancherServicesYamlRetrieveParamsFieldCustomerAbbreviation             RancherServicesYamlRetrieveParamsField = "customer_abbreviation"
 	RancherServicesYamlRetrieveParamsFieldCustomerName                     RancherServicesYamlRetrieveParamsField = "customer_name"
 	RancherServicesYamlRetrieveParamsFieldCustomerNativeName               RancherServicesYamlRetrieveParamsField = "customer_native_name"
+	RancherServicesYamlRetrieveParamsFieldCustomerUuid                     RancherServicesYamlRetrieveParamsField = "customer_uuid"
 	RancherServicesYamlRetrieveParamsFieldDescription                      RancherServicesYamlRetrieveParamsField = "description"
 	RancherServicesYamlRetrieveParamsFieldErrorMessage                     RancherServicesYamlRetrieveParamsField = "error_message"
 	RancherServicesYamlRetrieveParamsFieldErrorTraceback                   RancherServicesYamlRetrieveParamsField = "error_traceback"
@@ -9893,6 +9943,7 @@ const (
 	SlurmAllocationsListParamsFieldCustomerAbbreviation             SlurmAllocationsListParamsField = "customer_abbreviation"
 	SlurmAllocationsListParamsFieldCustomerName                     SlurmAllocationsListParamsField = "customer_name"
 	SlurmAllocationsListParamsFieldCustomerNativeName               SlurmAllocationsListParamsField = "customer_native_name"
+	SlurmAllocationsListParamsFieldCustomerUuid                     SlurmAllocationsListParamsField = "customer_uuid"
 	SlurmAllocationsListParamsFieldDescription                      SlurmAllocationsListParamsField = "description"
 	SlurmAllocationsListParamsFieldErrorMessage                     SlurmAllocationsListParamsField = "error_message"
 	SlurmAllocationsListParamsFieldErrorTraceback                   SlurmAllocationsListParamsField = "error_traceback"
@@ -9964,6 +10015,7 @@ const (
 	SlurmAllocationsRetrieveParamsFieldCustomerAbbreviation             SlurmAllocationsRetrieveParamsField = "customer_abbreviation"
 	SlurmAllocationsRetrieveParamsFieldCustomerName                     SlurmAllocationsRetrieveParamsField = "customer_name"
 	SlurmAllocationsRetrieveParamsFieldCustomerNativeName               SlurmAllocationsRetrieveParamsField = "customer_native_name"
+	SlurmAllocationsRetrieveParamsFieldCustomerUuid                     SlurmAllocationsRetrieveParamsField = "customer_uuid"
 	SlurmAllocationsRetrieveParamsFieldDescription                      SlurmAllocationsRetrieveParamsField = "description"
 	SlurmAllocationsRetrieveParamsFieldErrorMessage                     SlurmAllocationsRetrieveParamsField = "error_message"
 	SlurmAllocationsRetrieveParamsFieldErrorTraceback                   SlurmAllocationsRetrieveParamsField = "error_traceback"
@@ -10009,6 +10061,7 @@ const (
 	SlurmJobsListParamsFieldCustomerAbbreviation        SlurmJobsListParamsField = "customer_abbreviation"
 	SlurmJobsListParamsFieldCustomerName                SlurmJobsListParamsField = "customer_name"
 	SlurmJobsListParamsFieldCustomerNativeName          SlurmJobsListParamsField = "customer_native_name"
+	SlurmJobsListParamsFieldCustomerUuid                SlurmJobsListParamsField = "customer_uuid"
 	SlurmJobsListParamsFieldDescription                 SlurmJobsListParamsField = "description"
 	SlurmJobsListParamsFieldErrorMessage                SlurmJobsListParamsField = "error_message"
 	SlurmJobsListParamsFieldErrorTraceback              SlurmJobsListParamsField = "error_traceback"
@@ -10043,6 +10096,7 @@ const (
 	SlurmJobsRetrieveParamsFieldCustomerAbbreviation        SlurmJobsRetrieveParamsField = "customer_abbreviation"
 	SlurmJobsRetrieveParamsFieldCustomerName                SlurmJobsRetrieveParamsField = "customer_name"
 	SlurmJobsRetrieveParamsFieldCustomerNativeName          SlurmJobsRetrieveParamsField = "customer_native_name"
+	SlurmJobsRetrieveParamsFieldCustomerUuid                SlurmJobsRetrieveParamsField = "customer_uuid"
 	SlurmJobsRetrieveParamsFieldDescription                 SlurmJobsRetrieveParamsField = "description"
 	SlurmJobsRetrieveParamsFieldErrorMessage                SlurmJobsRetrieveParamsField = "error_message"
 	SlurmJobsRetrieveParamsFieldErrorTraceback              SlurmJobsRetrieveParamsField = "error_traceback"
@@ -10506,6 +10560,7 @@ const (
 	VmwareDisksListParamsFieldCustomerAbbreviation             VmwareDisksListParamsField = "customer_abbreviation"
 	VmwareDisksListParamsFieldCustomerName                     VmwareDisksListParamsField = "customer_name"
 	VmwareDisksListParamsFieldCustomerNativeName               VmwareDisksListParamsField = "customer_native_name"
+	VmwareDisksListParamsFieldCustomerUuid                     VmwareDisksListParamsField = "customer_uuid"
 	VmwareDisksListParamsFieldDescription                      VmwareDisksListParamsField = "description"
 	VmwareDisksListParamsFieldErrorMessage                     VmwareDisksListParamsField = "error_message"
 	VmwareDisksListParamsFieldErrorTraceback                   VmwareDisksListParamsField = "error_traceback"
@@ -10572,6 +10627,7 @@ const (
 	VmwareDisksRetrieveParamsFieldCustomerAbbreviation             VmwareDisksRetrieveParamsField = "customer_abbreviation"
 	VmwareDisksRetrieveParamsFieldCustomerName                     VmwareDisksRetrieveParamsField = "customer_name"
 	VmwareDisksRetrieveParamsFieldCustomerNativeName               VmwareDisksRetrieveParamsField = "customer_native_name"
+	VmwareDisksRetrieveParamsFieldCustomerUuid                     VmwareDisksRetrieveParamsField = "customer_uuid"
 	VmwareDisksRetrieveParamsFieldDescription                      VmwareDisksRetrieveParamsField = "description"
 	VmwareDisksRetrieveParamsFieldErrorMessage                     VmwareDisksRetrieveParamsField = "error_message"
 	VmwareDisksRetrieveParamsFieldErrorTraceback                   VmwareDisksRetrieveParamsField = "error_traceback"
@@ -10614,6 +10670,7 @@ const (
 	VmwarePortsListParamsFieldCustomerAbbreviation             VmwarePortsListParamsField = "customer_abbreviation"
 	VmwarePortsListParamsFieldCustomerName                     VmwarePortsListParamsField = "customer_name"
 	VmwarePortsListParamsFieldCustomerNativeName               VmwarePortsListParamsField = "customer_native_name"
+	VmwarePortsListParamsFieldCustomerUuid                     VmwarePortsListParamsField = "customer_uuid"
 	VmwarePortsListParamsFieldDescription                      VmwarePortsListParamsField = "description"
 	VmwarePortsListParamsFieldErrorMessage                     VmwarePortsListParamsField = "error_message"
 	VmwarePortsListParamsFieldErrorTraceback                   VmwarePortsListParamsField = "error_traceback"
@@ -10682,6 +10739,7 @@ const (
 	VmwarePortsRetrieveParamsFieldCustomerAbbreviation             VmwarePortsRetrieveParamsField = "customer_abbreviation"
 	VmwarePortsRetrieveParamsFieldCustomerName                     VmwarePortsRetrieveParamsField = "customer_name"
 	VmwarePortsRetrieveParamsFieldCustomerNativeName               VmwarePortsRetrieveParamsField = "customer_native_name"
+	VmwarePortsRetrieveParamsFieldCustomerUuid                     VmwarePortsRetrieveParamsField = "customer_uuid"
 	VmwarePortsRetrieveParamsFieldDescription                      VmwarePortsRetrieveParamsField = "description"
 	VmwarePortsRetrieveParamsFieldErrorMessage                     VmwarePortsRetrieveParamsField = "error_message"
 	VmwarePortsRetrieveParamsFieldErrorTraceback                   VmwarePortsRetrieveParamsField = "error_traceback"
@@ -10730,6 +10788,7 @@ const (
 	VmwareVirtualMachineListParamsFieldCustomerAbbreviation             VmwareVirtualMachineListParamsField = "customer_abbreviation"
 	VmwareVirtualMachineListParamsFieldCustomerName                     VmwareVirtualMachineListParamsField = "customer_name"
 	VmwareVirtualMachineListParamsFieldCustomerNativeName               VmwareVirtualMachineListParamsField = "customer_native_name"
+	VmwareVirtualMachineListParamsFieldCustomerUuid                     VmwareVirtualMachineListParamsField = "customer_uuid"
 	VmwareVirtualMachineListParamsFieldDatastore                        VmwareVirtualMachineListParamsField = "datastore"
 	VmwareVirtualMachineListParamsFieldDatastoreName                    VmwareVirtualMachineListParamsField = "datastore_name"
 	VmwareVirtualMachineListParamsFieldDescription                      VmwareVirtualMachineListParamsField = "description"
@@ -10813,6 +10872,7 @@ const (
 	VmwareVirtualMachineRetrieveParamsFieldCustomerAbbreviation             VmwareVirtualMachineRetrieveParamsField = "customer_abbreviation"
 	VmwareVirtualMachineRetrieveParamsFieldCustomerName                     VmwareVirtualMachineRetrieveParamsField = "customer_name"
 	VmwareVirtualMachineRetrieveParamsFieldCustomerNativeName               VmwareVirtualMachineRetrieveParamsField = "customer_native_name"
+	VmwareVirtualMachineRetrieveParamsFieldCustomerUuid                     VmwareVirtualMachineRetrieveParamsField = "customer_uuid"
 	VmwareVirtualMachineRetrieveParamsFieldDatastore                        VmwareVirtualMachineRetrieveParamsField = "datastore"
 	VmwareVirtualMachineRetrieveParamsFieldDatastoreName                    VmwareVirtualMachineRetrieveParamsField = "datastore_name"
 	VmwareVirtualMachineRetrieveParamsFieldDescription                      VmwareVirtualMachineRetrieveParamsField = "description"
@@ -11137,13 +11197,14 @@ type AwsInstance struct {
 	BackendId *string `json:"backend_id,omitempty"`
 
 	// Cores Number of cores in a VM
-	Cores                *int       `json:"cores,omitempty"`
-	Created              *time.Time `json:"created,omitempty"`
-	Customer             *string    `json:"customer,omitempty"`
-	CustomerAbbreviation *string    `json:"customer_abbreviation,omitempty"`
-	CustomerName         *string    `json:"customer_name,omitempty"`
-	CustomerNativeName   *string    `json:"customer_native_name,omitempty"`
-	Description          *string    `json:"description,omitempty"`
+	Cores                *int                `json:"cores,omitempty"`
+	Created              *time.Time          `json:"created,omitempty"`
+	Customer             *string             `json:"customer,omitempty"`
+	CustomerAbbreviation *string             `json:"customer_abbreviation,omitempty"`
+	CustomerName         *string             `json:"customer_name,omitempty"`
+	CustomerNativeName   *string             `json:"customer_native_name,omitempty"`
+	CustomerUuid         *openapi_types.UUID `json:"customer_uuid,omitempty"`
+	Description          *string             `json:"description,omitempty"`
 
 	// Disk Disk size in MiB
 	Disk                             *int                    `json:"disk,omitempty"`
@@ -11253,6 +11314,7 @@ type AwsVolume struct {
 	CustomerAbbreviation             *string                 `json:"customer_abbreviation,omitempty"`
 	CustomerName                     *string                 `json:"customer_name,omitempty"`
 	CustomerNativeName               *string                 `json:"customer_native_name,omitempty"`
+	CustomerUuid                     *openapi_types.UUID     `json:"customer_uuid,omitempty"`
 	Description                      *string                 `json:"description,omitempty"`
 	Device                           *string                 `json:"device"`
 	ErrorMessage                     *string                 `json:"error_message,omitempty"`
@@ -11344,6 +11406,7 @@ type AzurePublicIP struct {
 	CustomerAbbreviation             *string                 `json:"customer_abbreviation,omitempty"`
 	CustomerName                     *string                 `json:"customer_name,omitempty"`
 	CustomerNativeName               *string                 `json:"customer_native_name,omitempty"`
+	CustomerUuid                     *openapi_types.UUID     `json:"customer_uuid,omitempty"`
 	Description                      *string                 `json:"description,omitempty"`
 	ErrorMessage                     *string                 `json:"error_message,omitempty"`
 	ErrorTraceback                   *string                 `json:"error_traceback,omitempty"`
@@ -11394,6 +11457,7 @@ type AzureResourceGroup struct {
 	CustomerAbbreviation             *string                 `json:"customer_abbreviation,omitempty"`
 	CustomerName                     *string                 `json:"customer_name,omitempty"`
 	CustomerNativeName               *string                 `json:"customer_native_name,omitempty"`
+	CustomerUuid                     *openapi_types.UUID     `json:"customer_uuid,omitempty"`
 	Description                      *string                 `json:"description,omitempty"`
 	ErrorMessage                     *string                 `json:"error_message,omitempty"`
 	ErrorTraceback                   *string                 `json:"error_traceback,omitempty"`
@@ -11454,6 +11518,7 @@ type AzureSqlDatabase struct {
 	CustomerAbbreviation             *string                 `json:"customer_abbreviation,omitempty"`
 	CustomerName                     *string                 `json:"customer_name,omitempty"`
 	CustomerNativeName               *string                 `json:"customer_native_name,omitempty"`
+	CustomerUuid                     *openapi_types.UUID     `json:"customer_uuid,omitempty"`
 	Description                      *string                 `json:"description,omitempty"`
 	ErrorMessage                     *string                 `json:"error_message,omitempty"`
 	ErrorTraceback                   *string                 `json:"error_traceback,omitempty"`
@@ -11521,6 +11586,7 @@ type AzureSqlServer struct {
 	CustomerAbbreviation             *string                 `json:"customer_abbreviation,omitempty"`
 	CustomerName                     *string                 `json:"customer_name,omitempty"`
 	CustomerNativeName               *string                 `json:"customer_native_name,omitempty"`
+	CustomerUuid                     *openapi_types.UUID     `json:"customer_uuid,omitempty"`
 	Description                      *string                 `json:"description,omitempty"`
 	ErrorMessage                     *string                 `json:"error_message,omitempty"`
 	ErrorTraceback                   *string                 `json:"error_traceback,omitempty"`
@@ -11573,13 +11639,14 @@ type AzureVirtualMachine struct {
 	BackendId *string `json:"backend_id,omitempty"`
 
 	// Cores Number of cores in a VM
-	Cores                *int       `json:"cores,omitempty"`
-	Created              *time.Time `json:"created,omitempty"`
-	Customer             *string    `json:"customer,omitempty"`
-	CustomerAbbreviation *string    `json:"customer_abbreviation,omitempty"`
-	CustomerName         *string    `json:"customer_name,omitempty"`
-	CustomerNativeName   *string    `json:"customer_native_name,omitempty"`
-	Description          *string    `json:"description,omitempty"`
+	Cores                *int                `json:"cores,omitempty"`
+	Created              *time.Time          `json:"created,omitempty"`
+	Customer             *string             `json:"customer,omitempty"`
+	CustomerAbbreviation *string             `json:"customer_abbreviation,omitempty"`
+	CustomerName         *string             `json:"customer_name,omitempty"`
+	CustomerNativeName   *string             `json:"customer_native_name,omitempty"`
+	CustomerUuid         *openapi_types.UUID `json:"customer_uuid,omitempty"`
+	Description          *string             `json:"description,omitempty"`
 
 	// Disk Disk size in MiB
 	Disk                             *int                    `json:"disk,omitempty"`
@@ -13950,13 +14017,14 @@ type DigitalOceanDroplet struct {
 	BackendId *string `json:"backend_id,omitempty"`
 
 	// Cores Number of cores in a VM
-	Cores                *int       `json:"cores,omitempty"`
-	Created              *time.Time `json:"created,omitempty"`
-	Customer             *string    `json:"customer,omitempty"`
-	CustomerAbbreviation *string    `json:"customer_abbreviation,omitempty"`
-	CustomerName         *string    `json:"customer_name,omitempty"`
-	CustomerNativeName   *string    `json:"customer_native_name,omitempty"`
-	Description          *string    `json:"description,omitempty"`
+	Cores                *int                `json:"cores,omitempty"`
+	Created              *time.Time          `json:"created,omitempty"`
+	Customer             *string             `json:"customer,omitempty"`
+	CustomerAbbreviation *string             `json:"customer_abbreviation,omitempty"`
+	CustomerName         *string             `json:"customer_name,omitempty"`
+	CustomerNativeName   *string             `json:"customer_native_name,omitempty"`
+	CustomerUuid         *openapi_types.UUID `json:"customer_uuid,omitempty"`
+	Description          *string             `json:"description,omitempty"`
 
 	// Disk Disk size in MiB
 	Disk                             *int                    `json:"disk,omitempty"`
@@ -14325,6 +14393,7 @@ type FirecrestJob struct {
 	CustomerAbbreviation        *string             `json:"customer_abbreviation,omitempty"`
 	CustomerName                *string             `json:"customer_name,omitempty"`
 	CustomerNativeName          *string             `json:"customer_native_name,omitempty"`
+	CustomerUuid                *openapi_types.UUID `json:"customer_uuid,omitempty"`
 	Description                 *string             `json:"description,omitempty"`
 	ErrorMessage                *string             `json:"error_message,omitempty"`
 	ErrorTraceback              *string             `json:"error_traceback,omitempty"`
@@ -17807,16 +17876,17 @@ type OpenStackBackendVolumes struct {
 
 // OpenStackBackup defines model for OpenStackBackup.
 type OpenStackBackup struct {
-	AccessUrl            *string    `json:"access_url"`
-	BackendId            *string    `json:"backend_id,omitempty"`
-	Created              *time.Time `json:"created,omitempty"`
-	Customer             *string    `json:"customer,omitempty"`
-	CustomerAbbreviation *string    `json:"customer_abbreviation,omitempty"`
-	CustomerName         *string    `json:"customer_name,omitempty"`
-	CustomerNativeName   *string    `json:"customer_native_name,omitempty"`
-	Description          *string    `json:"description,omitempty"`
-	ErrorMessage         *string    `json:"error_message,omitempty"`
-	ErrorTraceback       *string    `json:"error_traceback,omitempty"`
+	AccessUrl            *string             `json:"access_url"`
+	BackendId            *string             `json:"backend_id,omitempty"`
+	Created              *time.Time          `json:"created,omitempty"`
+	Customer             *string             `json:"customer,omitempty"`
+	CustomerAbbreviation *string             `json:"customer_abbreviation,omitempty"`
+	CustomerName         *string             `json:"customer_name,omitempty"`
+	CustomerNativeName   *string             `json:"customer_native_name,omitempty"`
+	CustomerUuid         *openapi_types.UUID `json:"customer_uuid,omitempty"`
+	Description          *string             `json:"description,omitempty"`
+	ErrorMessage         *string             `json:"error_message,omitempty"`
+	ErrorTraceback       *string             `json:"error_traceback,omitempty"`
 
 	// Instance Instance that this backup is created from
 	Instance                *string                         `json:"instance,omitempty"`
@@ -18004,15 +18074,16 @@ type OpenStackFloatingIP struct {
 	BackendId *string                      `json:"backend_id,omitempty"`
 
 	// BackendNetworkId ID of network in OpenStack where this floating IP is allocated
-	BackendNetworkId     *string    `json:"backend_network_id,omitempty"`
-	Created              *time.Time `json:"created,omitempty"`
-	Customer             *string    `json:"customer,omitempty"`
-	CustomerAbbreviation *string    `json:"customer_abbreviation,omitempty"`
-	CustomerName         *string    `json:"customer_name,omitempty"`
-	CustomerNativeName   *string    `json:"customer_native_name,omitempty"`
-	Description          *string    `json:"description,omitempty"`
-	ErrorMessage         *string    `json:"error_message,omitempty"`
-	ErrorTraceback       *string    `json:"error_traceback,omitempty"`
+	BackendNetworkId     *string             `json:"backend_network_id,omitempty"`
+	Created              *time.Time          `json:"created,omitempty"`
+	Customer             *string             `json:"customer,omitempty"`
+	CustomerAbbreviation *string             `json:"customer_abbreviation,omitempty"`
+	CustomerName         *string             `json:"customer_name,omitempty"`
+	CustomerNativeName   *string             `json:"customer_native_name,omitempty"`
+	CustomerUuid         *openapi_types.UUID `json:"customer_uuid,omitempty"`
+	Description          *string             `json:"description,omitempty"`
+	ErrorMessage         *string             `json:"error_message,omitempty"`
+	ErrorTraceback       *string             `json:"error_traceback,omitempty"`
 
 	// ExternalAddress Optional address that maps to floating IP's address in external networks
 	ExternalAddress                  *OpenStackFloatingIP_ExternalAddress `json:"external_address"`
@@ -18122,13 +18193,14 @@ type OpenStackInstance struct {
 	ConnectDirectlyToExternalNetwork *bool `json:"connect_directly_to_external_network,omitempty"`
 
 	// Cores Number of cores in a VM
-	Cores                *int       `json:"cores,omitempty"`
-	Created              *time.Time `json:"created,omitempty"`
-	Customer             *string    `json:"customer,omitempty"`
-	CustomerAbbreviation *string    `json:"customer_abbreviation,omitempty"`
-	CustomerName         *string    `json:"customer_name,omitempty"`
-	CustomerNativeName   *string    `json:"customer_native_name,omitempty"`
-	Description          *string    `json:"description,omitempty"`
+	Cores                *int                `json:"cores,omitempty"`
+	Created              *time.Time          `json:"created,omitempty"`
+	Customer             *string             `json:"customer,omitempty"`
+	CustomerAbbreviation *string             `json:"customer_abbreviation,omitempty"`
+	CustomerName         *string             `json:"customer_name,omitempty"`
+	CustomerNativeName   *string             `json:"customer_native_name,omitempty"`
+	CustomerUuid         *openapi_types.UUID `json:"customer_uuid,omitempty"`
+	Description          *string             `json:"description,omitempty"`
 
 	// Disk Disk size in MiB
 	Disk            *int      `json:"disk,omitempty"`
@@ -18437,16 +18509,17 @@ type OpenStackNestedVolume struct {
 
 // OpenStackNetwork defines model for OpenStackNetwork.
 type OpenStackNetwork struct {
-	AccessUrl            *string    `json:"access_url"`
-	BackendId            *string    `json:"backend_id,omitempty"`
-	Created              *time.Time `json:"created,omitempty"`
-	Customer             *string    `json:"customer,omitempty"`
-	CustomerAbbreviation *string    `json:"customer_abbreviation,omitempty"`
-	CustomerName         *string    `json:"customer_name,omitempty"`
-	CustomerNativeName   *string    `json:"customer_native_name,omitempty"`
-	Description          *string    `json:"description,omitempty"`
-	ErrorMessage         *string    `json:"error_message,omitempty"`
-	ErrorTraceback       *string    `json:"error_traceback,omitempty"`
+	AccessUrl            *string             `json:"access_url"`
+	BackendId            *string             `json:"backend_id,omitempty"`
+	Created              *time.Time          `json:"created,omitempty"`
+	Customer             *string             `json:"customer,omitempty"`
+	CustomerAbbreviation *string             `json:"customer_abbreviation,omitempty"`
+	CustomerName         *string             `json:"customer_name,omitempty"`
+	CustomerNativeName   *string             `json:"customer_native_name,omitempty"`
+	CustomerUuid         *openapi_types.UUID `json:"customer_uuid,omitempty"`
+	Description          *string             `json:"description,omitempty"`
+	ErrorMessage         *string             `json:"error_message,omitempty"`
+	ErrorTraceback       *string             `json:"error_traceback,omitempty"`
 
 	// IsExternal Defines whether this network is external (public) or internal (private)
 	IsExternal                       *bool                   `json:"is_external,omitempty"`
@@ -18507,13 +18580,14 @@ type OpenStackPort struct {
 	AllowedAddressPairs *[]OpenStackAllowedAddressPair `json:"allowed_address_pairs,omitempty"`
 
 	// BackendId Port ID in OpenStack
-	BackendId            *string    `json:"backend_id"`
-	Created              *time.Time `json:"created,omitempty"`
-	Customer             *string    `json:"customer,omitempty"`
-	CustomerAbbreviation *string    `json:"customer_abbreviation,omitempty"`
-	CustomerName         *string    `json:"customer_name,omitempty"`
-	CustomerNativeName   *string    `json:"customer_native_name,omitempty"`
-	Description          *string    `json:"description,omitempty"`
+	BackendId            *string             `json:"backend_id"`
+	Created              *time.Time          `json:"created,omitempty"`
+	Customer             *string             `json:"customer,omitempty"`
+	CustomerAbbreviation *string             `json:"customer_abbreviation,omitempty"`
+	CustomerName         *string             `json:"customer_name,omitempty"`
+	CustomerNativeName   *string             `json:"customer_native_name,omitempty"`
+	CustomerUuid         *openapi_types.UUID `json:"customer_uuid,omitempty"`
+	Description          *string             `json:"description,omitempty"`
 
 	// DeviceId ID of device (instance, router etc) to which this port is connected
 	DeviceId *string `json:"device_id"`
@@ -18631,6 +18705,7 @@ type OpenStackRouter struct {
 	CustomerAbbreviation             *string                 `json:"customer_abbreviation,omitempty"`
 	CustomerName                     *string                 `json:"customer_name,omitempty"`
 	CustomerNativeName               *string                 `json:"customer_native_name,omitempty"`
+	CustomerUuid                     *openapi_types.UUID     `json:"customer_uuid,omitempty"`
 	Description                      *string                 `json:"description,omitempty"`
 	ErrorMessage                     *string                 `json:"error_message,omitempty"`
 	ErrorTraceback                   *string                 `json:"error_traceback,omitempty"`
@@ -18697,6 +18772,7 @@ type OpenStackSecurityGroup struct {
 	CustomerAbbreviation             *string                             `json:"customer_abbreviation,omitempty"`
 	CustomerName                     *string                             `json:"customer_name,omitempty"`
 	CustomerNativeName               *string                             `json:"customer_native_name,omitempty"`
+	CustomerUuid                     *openapi_types.UUID                 `json:"customer_uuid,omitempty"`
 	Description                      *string                             `json:"description,omitempty"`
 	ErrorMessage                     *string                             `json:"error_message,omitempty"`
 	ErrorTraceback                   *string                             `json:"error_traceback,omitempty"`
@@ -18856,6 +18932,7 @@ type OpenStackServerGroup struct {
 	CustomerAbbreviation             *string                    `json:"customer_abbreviation,omitempty"`
 	CustomerName                     *string                    `json:"customer_name,omitempty"`
 	CustomerNativeName               *string                    `json:"customer_native_name,omitempty"`
+	CustomerUuid                     *openapi_types.UUID        `json:"customer_uuid,omitempty"`
 	Description                      *string                    `json:"description,omitempty"`
 	DisplayName                      *string                    `json:"display_name,omitempty"`
 	ErrorMessage                     *string                    `json:"error_message,omitempty"`
@@ -18924,17 +19001,18 @@ type OpenStackSnapshot struct {
 	ActionDetails interface{} `json:"action_details,omitempty"`
 
 	// BackendId Snapshot ID in the OpenStack backend
-	BackendId            *string    `json:"backend_id"`
-	Created              *time.Time `json:"created,omitempty"`
-	Customer             *string    `json:"customer,omitempty"`
-	CustomerAbbreviation *string    `json:"customer_abbreviation,omitempty"`
-	CustomerName         *string    `json:"customer_name,omitempty"`
-	CustomerNativeName   *string    `json:"customer_native_name,omitempty"`
-	Description          *string    `json:"description,omitempty"`
-	ErrorMessage         *string    `json:"error_message,omitempty"`
-	ErrorTraceback       *string    `json:"error_traceback,omitempty"`
-	IsLimitBased         *bool      `json:"is_limit_based"`
-	IsUsageBased         *bool      `json:"is_usage_based"`
+	BackendId            *string             `json:"backend_id"`
+	Created              *time.Time          `json:"created,omitempty"`
+	Customer             *string             `json:"customer,omitempty"`
+	CustomerAbbreviation *string             `json:"customer_abbreviation,omitempty"`
+	CustomerName         *string             `json:"customer_name,omitempty"`
+	CustomerNativeName   *string             `json:"customer_native_name,omitempty"`
+	CustomerUuid         *openapi_types.UUID `json:"customer_uuid,omitempty"`
+	Description          *string             `json:"description,omitempty"`
+	ErrorMessage         *string             `json:"error_message,omitempty"`
+	ErrorTraceback       *string             `json:"error_traceback,omitempty"`
+	IsLimitBased         *bool               `json:"is_limit_based"`
+	IsUsageBased         *bool               `json:"is_usage_based"`
 
 	// KeptUntil Guaranteed time of snapshot retention. If null - keep forever.
 	KeptUntil                        *time.Time                      `json:"kept_until"`
@@ -19062,6 +19140,7 @@ type OpenStackSubNet struct {
 	CustomerAbbreviation *string                          `json:"customer_abbreviation,omitempty"`
 	CustomerName         *string                          `json:"customer_name,omitempty"`
 	CustomerNativeName   *string                          `json:"customer_native_name,omitempty"`
+	CustomerUuid         *openapi_types.UUID              `json:"customer_uuid,omitempty"`
 	Description          *string                          `json:"description,omitempty"`
 
 	// DisableGateway If True, no gateway IP address will be allocated
@@ -19244,12 +19323,13 @@ type OpenStackTenant struct {
 	AvailabilityZone *string `json:"availability_zone,omitempty"`
 
 	// BackendId ID of tenant in the OpenStack backend
-	BackendId            *string    `json:"backend_id"`
-	Created              *time.Time `json:"created,omitempty"`
-	Customer             *string    `json:"customer,omitempty"`
-	CustomerAbbreviation *string    `json:"customer_abbreviation,omitempty"`
-	CustomerName         *string    `json:"customer_name,omitempty"`
-	CustomerNativeName   *string    `json:"customer_native_name,omitempty"`
+	BackendId            *string             `json:"backend_id"`
+	Created              *time.Time          `json:"created,omitempty"`
+	Customer             *string             `json:"customer,omitempty"`
+	CustomerAbbreviation *string             `json:"customer_abbreviation,omitempty"`
+	CustomerName         *string             `json:"customer_name,omitempty"`
+	CustomerNativeName   *string             `json:"customer_native_name,omitempty"`
+	CustomerUuid         *openapi_types.UUID `json:"customer_uuid,omitempty"`
 
 	// DefaultVolumeTypeName Volume type name to use when creating volumes.
 	DefaultVolumeTypeName *string `json:"default_volume_type_name,omitempty"`
@@ -19370,13 +19450,14 @@ type OpenStackVolume struct {
 	BackendId *string `json:"backend_id"`
 
 	// Bootable Indicates if this volume can be used to boot an instance
-	Bootable             *bool      `json:"bootable,omitempty"`
-	Created              *time.Time `json:"created,omitempty"`
-	Customer             *string    `json:"customer,omitempty"`
-	CustomerAbbreviation *string    `json:"customer_abbreviation,omitempty"`
-	CustomerName         *string    `json:"customer_name,omitempty"`
-	CustomerNativeName   *string    `json:"customer_native_name,omitempty"`
-	Description          *string    `json:"description,omitempty"`
+	Bootable             *bool               `json:"bootable,omitempty"`
+	Created              *time.Time          `json:"created,omitempty"`
+	Customer             *string             `json:"customer,omitempty"`
+	CustomerAbbreviation *string             `json:"customer_abbreviation,omitempty"`
+	CustomerName         *string             `json:"customer_name,omitempty"`
+	CustomerNativeName   *string             `json:"customer_native_name,omitempty"`
+	CustomerUuid         *openapi_types.UUID `json:"customer_uuid,omitempty"`
+	Description          *string             `json:"description,omitempty"`
 
 	// Device Name of volume as instance device e.g. /dev/vdb.
 	Device         *string `json:"device,omitempty"`
@@ -20417,8 +20498,8 @@ type PatchedOfferingEstimatedCostPolicyRequest struct {
 	Scope              *string     `json:"scope,omitempty"`
 }
 
-// PatchedOfferingPartitionRequest defines model for PatchedOfferingPartitionRequest.
-type PatchedOfferingPartitionRequest struct {
+// PatchedOfferingPartitionUpdateRequest defines model for PatchedOfferingPartitionUpdateRequest.
+type PatchedOfferingPartitionUpdateRequest struct {
 	// CpuBind Default task binding policy (SLURM cpu_bind)
 	CpuBind *int `json:"cpu_bind"`
 
@@ -20465,11 +20546,11 @@ type PatchedOfferingPartitionRequest struct {
 	MaxTime *int `json:"max_time"`
 
 	// MinNodes Minimum nodes per job
-	MinNodes *int                `json:"min_nodes"`
-	Offering *openapi_types.UUID `json:"offering,omitempty"`
+	MinNodes *int `json:"min_nodes"`
 
 	// PartitionName Name of the SLURM partition
-	PartitionName *string `json:"partition_name,omitempty"`
+	PartitionName *string             `json:"partition_name,omitempty"`
+	PartitionUuid *openapi_types.UUID `json:"partition_uuid,omitempty"`
 
 	// PriorityTier Priority tier for scheduling and preemption
 	PriorityTier *int `json:"priority_tier"`
@@ -22884,6 +22965,7 @@ type RancherApplication struct {
 	CustomerAbbreviation             *string                 `json:"customer_abbreviation,omitempty"`
 	CustomerName                     *string                 `json:"customer_name,omitempty"`
 	CustomerNativeName               *string                 `json:"customer_native_name,omitempty"`
+	CustomerUuid                     *openapi_types.UUID     `json:"customer_uuid,omitempty"`
 	Description                      *string                 `json:"description,omitempty"`
 	ErrorMessage                     *string                 `json:"error_message,omitempty"`
 	ErrorTraceback                   *string                 `json:"error_traceback,omitempty"`
@@ -23027,15 +23109,16 @@ type RancherCluster struct {
 	BackendId *string `json:"backend_id,omitempty"`
 
 	// Capacity Cluster capacity in the format {'cpu': '10', 'ram': '49125240Ki', 'pods': '330'}
-	Capacity             interface{} `json:"capacity,omitempty"`
-	Created              *time.Time  `json:"created,omitempty"`
-	Customer             *string     `json:"customer,omitempty"`
-	CustomerAbbreviation *string     `json:"customer_abbreviation,omitempty"`
-	CustomerName         *string     `json:"customer_name,omitempty"`
-	CustomerNativeName   *string     `json:"customer_native_name,omitempty"`
-	Description          *string     `json:"description,omitempty"`
-	ErrorMessage         *string     `json:"error_message,omitempty"`
-	ErrorTraceback       *string     `json:"error_traceback,omitempty"`
+	Capacity             interface{}         `json:"capacity,omitempty"`
+	Created              *time.Time          `json:"created,omitempty"`
+	Customer             *string             `json:"customer,omitempty"`
+	CustomerAbbreviation *string             `json:"customer_abbreviation,omitempty"`
+	CustomerName         *string             `json:"customer_name,omitempty"`
+	CustomerNativeName   *string             `json:"customer_native_name,omitempty"`
+	CustomerUuid         *openapi_types.UUID `json:"customer_uuid,omitempty"`
+	Description          *string             `json:"description,omitempty"`
+	ErrorMessage         *string             `json:"error_message,omitempty"`
+	ErrorTraceback       *string             `json:"error_traceback,omitempty"`
 
 	// InstallLonghorn Longhorn is a distributed block storage deployed on top of Kubernetes cluster
 	InstallLonghorn *bool `json:"install_longhorn,omitempty"`
@@ -23254,6 +23337,7 @@ type RancherIngress struct {
 	CustomerAbbreviation             *string                 `json:"customer_abbreviation,omitempty"`
 	CustomerName                     *string                 `json:"customer_name,omitempty"`
 	CustomerNativeName               *string                 `json:"customer_native_name,omitempty"`
+	CustomerUuid                     *openapi_types.UUID     `json:"customer_uuid,omitempty"`
 	Description                      *string                 `json:"description,omitempty"`
 	ErrorMessage                     *string                 `json:"error_message,omitempty"`
 	ErrorTraceback                   *string                 `json:"error_traceback,omitempty"`
@@ -23464,6 +23548,7 @@ type RancherService struct {
 	CustomerAbbreviation             *string                   `json:"customer_abbreviation,omitempty"`
 	CustomerName                     *string                   `json:"customer_name,omitempty"`
 	CustomerNativeName               *string                   `json:"customer_native_name,omitempty"`
+	CustomerUuid                     *openapi_types.UUID       `json:"customer_uuid,omitempty"`
 	Description                      *string                   `json:"description,omitempty"`
 	ErrorMessage                     *string                   `json:"error_message,omitempty"`
 	ErrorTraceback                   *string                   `json:"error_traceback,omitempty"`
@@ -23521,6 +23606,7 @@ type RancherServiceCreate struct {
 	CustomerAbbreviation             *string                         `json:"customer_abbreviation,omitempty"`
 	CustomerName                     *string                         `json:"customer_name,omitempty"`
 	CustomerNativeName               *string                         `json:"customer_native_name,omitempty"`
+	CustomerUuid                     *openapi_types.UUID             `json:"customer_uuid,omitempty"`
 	Description                      *string                         `json:"description,omitempty"`
 	ErrorMessage                     *string                         `json:"error_message,omitempty"`
 	ErrorTraceback                   *string                         `json:"error_traceback,omitempty"`
@@ -24872,6 +24958,7 @@ type SlurmAllocation struct {
 	CustomerAbbreviation             *string                 `json:"customer_abbreviation,omitempty"`
 	CustomerName                     *string                 `json:"customer_name,omitempty"`
 	CustomerNativeName               *string                 `json:"customer_native_name,omitempty"`
+	CustomerUuid                     *openapi_types.UUID     `json:"customer_uuid,omitempty"`
 	Description                      *string                 `json:"description,omitempty"`
 	ErrorMessage                     *string                 `json:"error_message,omitempty"`
 	ErrorTraceback                   *string                 `json:"error_traceback,omitempty"`
@@ -25663,6 +25750,7 @@ type VmwareDisk struct {
 	CustomerAbbreviation             *string                 `json:"customer_abbreviation,omitempty"`
 	CustomerName                     *string                 `json:"customer_name,omitempty"`
 	CustomerNativeName               *string                 `json:"customer_native_name,omitempty"`
+	CustomerUuid                     *openapi_types.UUID     `json:"customer_uuid,omitempty"`
 	Description                      *string                 `json:"description,omitempty"`
 	ErrorMessage                     *string                 `json:"error_message,omitempty"`
 	ErrorTraceback                   *string                 `json:"error_traceback,omitempty"`
@@ -25773,6 +25861,7 @@ type VmwarePort struct {
 	CustomerAbbreviation             *string                 `json:"customer_abbreviation,omitempty"`
 	CustomerName                     *string                 `json:"customer_name,omitempty"`
 	CustomerNativeName               *string                 `json:"customer_native_name,omitempty"`
+	CustomerUuid                     *openapi_types.UUID     `json:"customer_uuid,omitempty"`
 	Description                      *string                 `json:"description,omitempty"`
 	ErrorMessage                     *string                 `json:"error_message,omitempty"`
 	ErrorTraceback                   *string                 `json:"error_traceback,omitempty"`
@@ -25850,15 +25939,16 @@ type VmwareVirtualMachine struct {
 	Cores *int `json:"cores,omitempty"`
 
 	// CoresPerSocket Number of cores per socket in a VM
-	CoresPerSocket       *int       `json:"cores_per_socket,omitempty"`
-	Created              *time.Time `json:"created,omitempty"`
-	Customer             *string    `json:"customer,omitempty"`
-	CustomerAbbreviation *string    `json:"customer_abbreviation,omitempty"`
-	CustomerName         *string    `json:"customer_name,omitempty"`
-	CustomerNativeName   *string    `json:"customer_native_name,omitempty"`
-	Datastore            *string    `json:"datastore"`
-	DatastoreName        *string    `json:"datastore_name,omitempty"`
-	Description          *string    `json:"description,omitempty"`
+	CoresPerSocket       *int                `json:"cores_per_socket,omitempty"`
+	Created              *time.Time          `json:"created,omitempty"`
+	Customer             *string             `json:"customer,omitempty"`
+	CustomerAbbreviation *string             `json:"customer_abbreviation,omitempty"`
+	CustomerName         *string             `json:"customer_name,omitempty"`
+	CustomerNativeName   *string             `json:"customer_native_name,omitempty"`
+	CustomerUuid         *openapi_types.UUID `json:"customer_uuid,omitempty"`
+	Datastore            *string             `json:"datastore"`
+	DatastoreName        *string             `json:"datastore_name,omitempty"`
+	Description          *string             `json:"description,omitempty"`
 
 	// Disk Disk size in MiB
 	Disk                             *int                          `json:"disk,omitempty"`
@@ -39349,7 +39439,7 @@ type MarketplaceProviderOfferingsUpdateOrganizationGroupsJSONRequestBody = Organ
 type MarketplaceProviderOfferingsUpdateOverviewJSONRequestBody = OfferingOverviewUpdateRequest
 
 // MarketplaceProviderOfferingsUpdatePartitionPartialUpdateJSONRequestBody defines body for MarketplaceProviderOfferingsUpdatePartitionPartialUpdate for application/json ContentType.
-type MarketplaceProviderOfferingsUpdatePartitionPartialUpdateJSONRequestBody = PatchedOfferingPartitionRequest
+type MarketplaceProviderOfferingsUpdatePartitionPartialUpdateJSONRequestBody = PatchedOfferingPartitionUpdateRequest
 
 // MarketplaceProviderOfferingsUpdateResourceOptionsJSONRequestBody defines body for MarketplaceProviderOfferingsUpdateResourceOptions for application/json ContentType.
 type MarketplaceProviderOfferingsUpdateResourceOptionsJSONRequestBody = OfferingResourceOptionsUpdateRequest
