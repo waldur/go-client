@@ -21864,6 +21864,9 @@ type ProjectQuotas struct {
 
 // ProjectRecoveryRequest defines model for ProjectRecoveryRequest.
 type ProjectRecoveryRequest struct {
+	// EndDate End date for the recovered project
+	EndDate *openapi_types.Date `json:"end_date"`
+
 	// RestoreTeamMembers Whether to automatically restore team members who had access before project deletion (staff only)
 	RestoreTeamMembers *bool `json:"restore_team_members,omitempty"`
 
