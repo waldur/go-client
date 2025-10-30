@@ -15673,6 +15673,9 @@ type MergedPluginOptions struct {
 	// MaxResourceTerminationOffsetInDays Maximum resource termination offset in days
 	MaxResourceTerminationOffsetInDays *int `json:"max_resource_termination_offset_in_days,omitempty"`
 
+	// MaxSecurityGroups Default limit for number of security groups in OpenStack tenant
+	MaxSecurityGroups *int `json:"max_security_groups,omitempty"`
+
 	// MaxVolumes Default limit for number of volumes in OpenStack tenant
 	MaxVolumes *int `json:"max_volumes,omitempty"`
 
@@ -15821,6 +15824,9 @@ type MergedPluginOptionsRequest struct {
 
 	// MaxResourceTerminationOffsetInDays Maximum resource termination offset in days
 	MaxResourceTerminationOffsetInDays *int `json:"max_resource_termination_offset_in_days,omitempty"`
+
+	// MaxSecurityGroups Default limit for number of security groups in OpenStack tenant
+	MaxSecurityGroups *int `json:"max_security_groups,omitempty"`
 
 	// MaxVolumes Default limit for number of volumes in OpenStack tenant
 	MaxVolumes *int `json:"max_volumes,omitempty"`
