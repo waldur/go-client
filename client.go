@@ -25307,6 +25307,11 @@ type SupportUser struct {
 	Uuid        *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
+// SupportedCountriesResponse defines model for SupportedCountriesResponse.
+type SupportedCountriesResponse struct {
+	SupportedCountries []string `json:"supported_countries"`
+}
+
 // SyncStatusEnum defines model for SyncStatusEnum.
 type SyncStatusEnum string
 
@@ -250890,9 +250895,9 @@ func (r OnboardingVerificationsSubmitAnswersResponse) StatusCode() int {
 }
 
 type OnboardingSupportedCountriesRetrieveResponse struct {
-	Body                   []byte
-	HTTPResponse           *http.Response
-	JSONSupportedCountries *[]string
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SupportedCountriesResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -308455,12 +308460,12 @@ func ParseOnboardingSupportedCountriesRetrieveResponse(rsp *http.Response) (*Onb
 	}
 
 	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == supported_countries:
-		var dest []string
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SupportedCountriesResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSONSupportedCountries = &dest
+		response.JSON200 = &dest
 
 	}
 
