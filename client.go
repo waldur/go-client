@@ -19754,10 +19754,13 @@ type OrderCreate struct {
 	ResourceName       *string             `json:"resource_name,omitempty"`
 	ResourceType       *string             `json:"resource_type"`
 	ResourceUuid       *openapi_types.UUID `json:"resource_uuid"`
-	State              *OrderState         `json:"state,omitempty"`
-	Type               *RequestTypes       `json:"type,omitempty"`
-	Url                *string             `json:"url,omitempty"`
-	Uuid               *openapi_types.UUID `json:"uuid,omitempty"`
+
+	// StartDate Enables delayed processing of resource provisioning order.
+	StartDate *openapi_types.Date `json:"start_date"`
+	State     *OrderState         `json:"state,omitempty"`
+	Type      *RequestTypes       `json:"type,omitempty"`
+	Url       *string             `json:"url,omitempty"`
+	Uuid      *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // OrderCreateRequest defines model for OrderCreateRequest.
@@ -19772,7 +19775,10 @@ type OrderCreateRequest struct {
 	Plan           *string                        `json:"plan,omitempty"`
 	Project        string                         `json:"project"`
 	RequestComment *string                        `json:"request_comment"`
-	Type           *RequestTypes                  `json:"type,omitempty"`
+
+	// StartDate Enables delayed processing of resource provisioning order.
+	StartDate *openapi_types.Date `json:"start_date"`
+	Type      *RequestTypes       `json:"type,omitempty"`
 }
 
 // OrderCreateRequest_Attributes Attributes structure depends on the offering type specified in the parent object. Can also be a generic object for offerings without a specific attributes schema.
@@ -22244,7 +22250,7 @@ type ProposalReview struct {
 	ProposalSlug                          *string                  `json:"proposal_slug,omitempty"`
 	ProposalUuid                          *openapi_types.UUID      `json:"proposal_uuid,omitempty"`
 	ReviewEndDate                         *time.Time               `json:"review_end_date,omitempty"`
-	Reviewer                              string                   `json:"reviewer"`
+	Reviewer                              *string                  `json:"reviewer,omitempty"`
 	ReviewerFullName                      *string                  `json:"reviewer_full_name,omitempty"`
 	ReviewerUuid                          *openapi_types.UUID      `json:"reviewer_uuid,omitempty"`
 	RoundCutoffTime                       *time.Time               `json:"round_cutoff_time,omitempty"`
@@ -22272,7 +22278,7 @@ type ProposalReviewRequest struct {
 	CommentResourceRequests               *string `json:"comment_resource_requests"`
 	CommentTeam                           *string `json:"comment_team"`
 	Proposal                              string  `json:"proposal"`
-	Reviewer                              string  `json:"reviewer"`
+	Reviewer                              *string `json:"reviewer,omitempty"`
 	SummaryPrivateComment                 *string `json:"summary_private_comment,omitempty"`
 	SummaryPublicComment                  *string `json:"summary_public_comment,omitempty"`
 	SummaryScore                          *int    `json:"summary_score,omitempty"`
