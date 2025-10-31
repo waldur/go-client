@@ -1550,7 +1550,8 @@ const (
 
 // Defines values for ValidationMethodEnum.
 const (
-	Ariregister ValidationMethodEnum = "ariregister"
+	Ariregister        ValidationMethodEnum = "ariregister"
+	Wirtschaftscompass ValidationMethodEnum = "wirtschaftscompass"
 )
 
 // Defines values for VisibilityEnum.
@@ -10365,6 +10366,7 @@ const (
 	UsersListParamsFieldAffiliations                  UsersListParamsField = "affiliations"
 	UsersListParamsFieldAgreeWithPolicy               UsersListParamsField = "agree_with_policy"
 	UsersListParamsFieldAgreementDate                 UsersListParamsField = "agreement_date"
+	UsersListParamsFieldBirthDate                     UsersListParamsField = "birth_date"
 	UsersListParamsFieldCivilNumber                   UsersListParamsField = "civil_number"
 	UsersListParamsFieldDateJoined                    UsersListParamsField = "date_joined"
 	UsersListParamsFieldDescription                   UsersListParamsField = "description"
@@ -10462,6 +10464,7 @@ const (
 	UsersMeRetrieveParamsFieldAffiliations                  UsersMeRetrieveParamsField = "affiliations"
 	UsersMeRetrieveParamsFieldAgreeWithPolicy               UsersMeRetrieveParamsField = "agree_with_policy"
 	UsersMeRetrieveParamsFieldAgreementDate                 UsersMeRetrieveParamsField = "agreement_date"
+	UsersMeRetrieveParamsFieldBirthDate                     UsersMeRetrieveParamsField = "birth_date"
 	UsersMeRetrieveParamsFieldCivilNumber                   UsersMeRetrieveParamsField = "civil_number"
 	UsersMeRetrieveParamsFieldDateJoined                    UsersMeRetrieveParamsField = "date_joined"
 	UsersMeRetrieveParamsFieldDescription                   UsersMeRetrieveParamsField = "description"
@@ -10503,6 +10506,7 @@ const (
 	UsersRetrieveParamsFieldAffiliations                  UsersRetrieveParamsField = "affiliations"
 	UsersRetrieveParamsFieldAgreeWithPolicy               UsersRetrieveParamsField = "agree_with_policy"
 	UsersRetrieveParamsFieldAgreementDate                 UsersRetrieveParamsField = "agreement_date"
+	UsersRetrieveParamsFieldBirthDate                     UsersRetrieveParamsField = "birth_date"
 	UsersRetrieveParamsFieldCivilNumber                   UsersRetrieveParamsField = "civil_number"
 	UsersRetrieveParamsFieldDateJoined                    UsersRetrieveParamsField = "date_joined"
 	UsersRetrieveParamsFieldDescription                   UsersRetrieveParamsField = "description"
@@ -12874,6 +12878,8 @@ type ConstanceSettings struct {
 	ONBOARDINGARIREGISTERTIMEOUT                   *int                 `json:"ONBOARDING_ARIREGISTER_TIMEOUT,omitempty"`
 	ONBOARDINGARIREGISTERUSERNAME                  *string              `json:"ONBOARDING_ARIREGISTER_USERNAME,omitempty"`
 	ONBOARDINGVERIFICATIONEXPIRYHOURS              *int                 `json:"ONBOARDING_VERIFICATION_EXPIRY_HOURS,omitempty"`
+	ONBOARDINGWICOAPIURL                           *string              `json:"ONBOARDING_WICO_API_URL,omitempty"`
+	ONBOARDINGWICOTOKEN                            *string              `json:"ONBOARDING_WICO_TOKEN,omitempty"`
 	POWEREDBYLOGO                                  *string              `json:"POWERED_BY_LOGO"`
 	PROJECTENDDATEMANDATORY                        *bool                `json:"PROJECT_END_DATE_MANDATORY,omitempty"`
 	PROPOSALREVIEWDURATION                         *int                 `json:"PROPOSAL_REVIEW_DURATION,omitempty"`
@@ -13023,6 +13029,8 @@ type ConstanceSettingsRequest struct {
 	ONBOARDINGARIREGISTERTIMEOUT                   *int                 `json:"ONBOARDING_ARIREGISTER_TIMEOUT,omitempty"`
 	ONBOARDINGARIREGISTERUSERNAME                  *string              `json:"ONBOARDING_ARIREGISTER_USERNAME,omitempty"`
 	ONBOARDINGVERIFICATIONEXPIRYHOURS              *int                 `json:"ONBOARDING_VERIFICATION_EXPIRY_HOURS,omitempty"`
+	ONBOARDINGWICOAPIURL                           *string              `json:"ONBOARDING_WICO_API_URL,omitempty"`
+	ONBOARDINGWICOTOKEN                            *string              `json:"ONBOARDING_WICO_TOKEN,omitempty"`
 	POWEREDBYLOGO                                  *openapi_types.File  `json:"POWERED_BY_LOGO"`
 	PROJECTENDDATEMANDATORY                        *bool                `json:"PROJECT_END_DATE_MANDATORY,omitempty"`
 	PROPOSALREVIEWDURATION                         *int                 `json:"PROPOSAL_REVIEW_DURATION,omitempty"`
@@ -13172,6 +13180,8 @@ type ConstanceSettingsRequestForm struct {
 	ONBOARDINGARIREGISTERTIMEOUT                   *int                 `json:"ONBOARDING_ARIREGISTER_TIMEOUT,omitempty"`
 	ONBOARDINGARIREGISTERUSERNAME                  *string              `json:"ONBOARDING_ARIREGISTER_USERNAME,omitempty"`
 	ONBOARDINGVERIFICATIONEXPIRYHOURS              *int                 `json:"ONBOARDING_VERIFICATION_EXPIRY_HOURS,omitempty"`
+	ONBOARDINGWICOAPIURL                           *string              `json:"ONBOARDING_WICO_API_URL,omitempty"`
+	ONBOARDINGWICOTOKEN                            *string              `json:"ONBOARDING_WICO_TOKEN,omitempty"`
 	POWEREDBYLOGO                                  *openapi_types.File  `json:"POWERED_BY_LOGO"`
 	PROJECTENDDATEMANDATORY                        *bool                `json:"PROJECT_END_DATE_MANDATORY,omitempty"`
 	PROPOSALREVIEWDURATION                         *int                 `json:"PROPOSAL_REVIEW_DURATION,omitempty"`
@@ -13321,6 +13331,8 @@ type ConstanceSettingsRequestMultipart struct {
 	ONBOARDINGARIREGISTERTIMEOUT                   *int                 `json:"ONBOARDING_ARIREGISTER_TIMEOUT,omitempty"`
 	ONBOARDINGARIREGISTERUSERNAME                  *string              `json:"ONBOARDING_ARIREGISTER_USERNAME,omitempty"`
 	ONBOARDINGVERIFICATIONEXPIRYHOURS              *int                 `json:"ONBOARDING_VERIFICATION_EXPIRY_HOURS,omitempty"`
+	ONBOARDINGWICOAPIURL                           *string              `json:"ONBOARDING_WICO_API_URL,omitempty"`
+	ONBOARDINGWICOTOKEN                            *string              `json:"ONBOARDING_WICO_TOKEN,omitempty"`
 	POWEREDBYLOGO                                  *openapi_types.File  `json:"POWERED_BY_LOGO"`
 	PROJECTENDDATEMANDATORY                        *bool                `json:"PROJECT_END_DATE_MANDATORY,omitempty"`
 	PROPOSALREVIEWDURATION                         *int                 `json:"PROPOSAL_REVIEW_DURATION,omitempty"`
@@ -17676,7 +17688,7 @@ type OnboardingCompanyValidationRequestRequest struct {
 // OnboardingCountryChecklistConfiguration defines model for OnboardingCountryChecklistConfiguration.
 type OnboardingCountryChecklistConfiguration struct {
 	// Checklist Checklist to use for this country's onboarding
-	Checklist     int                 `json:"checklist"`
+	Checklist     string              `json:"checklist"`
 	ChecklistName *string             `json:"checklist_name,omitempty"`
 	ChecklistUuid *openapi_types.UUID `json:"checklist_uuid,omitempty"`
 
@@ -17687,13 +17699,14 @@ type OnboardingCountryChecklistConfiguration struct {
 	// IsActive Whether this country configuration is active
 	IsActive *bool               `json:"is_active,omitempty"`
 	Modified *time.Time          `json:"modified,omitempty"`
+	Url      *string             `json:"url,omitempty"`
 	Uuid     *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // OnboardingCountryChecklistConfigurationRequest defines model for OnboardingCountryChecklistConfigurationRequest.
 type OnboardingCountryChecklistConfigurationRequest struct {
 	// Checklist Checklist to use for this country's onboarding
-	Checklist int `json:"checklist"`
+	Checklist string `json:"checklist"`
 
 	// Country ISO country code (e.g., 'EE' for Estonia)
 	Country string `json:"country"`
@@ -17791,9 +17804,10 @@ type OnboardingQuestionMetadata struct {
 	Modified            *time.Time `json:"modified,omitempty"`
 
 	// Question Question this metadata applies to
-	Question            int                 `json:"question"`
+	Question            string              `json:"question"`
 	QuestionDescription *string             `json:"question_description,omitempty"`
 	QuestionUuid        *openapi_types.UUID `json:"question_uuid,omitempty"`
+	Url                 *string             `json:"url,omitempty"`
 	Uuid                *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
@@ -17806,7 +17820,7 @@ type OnboardingQuestionMetadataRequest struct {
 	MapsToCustomerField *string `json:"maps_to_customer_field,omitempty"`
 
 	// Question Question this metadata applies to
-	Question int `json:"question"`
+	Question string `json:"question"`
 }
 
 // OnboardingVerification defines model for OnboardingVerification.
@@ -20684,7 +20698,7 @@ type PatchedOfferingUserServiceProviderCommentRequest struct {
 // PatchedOnboardingCountryChecklistConfigurationRequest defines model for PatchedOnboardingCountryChecklistConfigurationRequest.
 type PatchedOnboardingCountryChecklistConfigurationRequest struct {
 	// Checklist Checklist to use for this country's onboarding
-	Checklist *int `json:"checklist,omitempty"`
+	Checklist *string `json:"checklist,omitempty"`
 
 	// Country ISO country code (e.g., 'EE' for Estonia)
 	Country *string `json:"country,omitempty"`
@@ -20711,7 +20725,7 @@ type PatchedOnboardingQuestionMetadataRequest struct {
 	MapsToCustomerField *string `json:"maps_to_customer_field,omitempty"`
 
 	// Question Question this metadata applies to
-	Question *int `json:"question,omitempty"`
+	Question *string `json:"question,omitempty"`
 }
 
 // PatchedOnboardingVerificationRequest defines model for PatchedOnboardingVerificationRequest.
@@ -21394,6 +21408,7 @@ type PatchedUserOfferingConsentRequest struct {
 type PatchedUserRequest struct {
 	// AgreeWithPolicy User must agree with the policy to register.
 	AgreeWithPolicy *bool               `json:"agree_with_policy,omitempty"`
+	BirthDate       *openapi_types.Date `json:"birth_date"`
 	Description     *string             `json:"description,omitempty"`
 	FirstName       *string             `json:"first_name,omitempty"`
 	Image           *openapi_types.File `json:"image"`
@@ -21428,6 +21443,7 @@ type PatchedUserRequest struct {
 type PatchedUserRequestForm struct {
 	// AgreeWithPolicy User must agree with the policy to register.
 	AgreeWithPolicy *bool               `json:"agree_with_policy,omitempty"`
+	BirthDate       *openapi_types.Date `json:"birth_date"`
 	Description     *string             `json:"description,omitempty"`
 	FirstName       *string             `json:"first_name,omitempty"`
 	Image           *openapi_types.File `json:"image"`
@@ -21462,6 +21478,7 @@ type PatchedUserRequestForm struct {
 type PatchedUserRequestMultipart struct {
 	// AgreeWithPolicy User must agree with the policy to register.
 	AgreeWithPolicy *bool               `json:"agree_with_policy,omitempty"`
+	BirthDate       *openapi_types.Date `json:"birth_date"`
 	Description     *string             `json:"description,omitempty"`
 	FirstName       *string             `json:"first_name,omitempty"`
 	Image           *openapi_types.File `json:"image"`
@@ -25428,6 +25445,7 @@ type User struct {
 
 	// AgreementDate Indicates when the user has agreed with the policy.
 	AgreementDate                 *time.Time           `json:"agreement_date"`
+	BirthDate                     *openapi_types.Date  `json:"birth_date"`
 	CivilNumber                   *string              `json:"civil_number"`
 	DateJoined                    *time.Time           `json:"date_joined,omitempty"`
 	Description                   *string              `json:"description,omitempty"`
@@ -25598,6 +25616,7 @@ type UserOfferingConsentRequest struct {
 type UserRequest struct {
 	// AgreeWithPolicy User must agree with the policy to register.
 	AgreeWithPolicy *bool               `json:"agree_with_policy,omitempty"`
+	BirthDate       *openapi_types.Date `json:"birth_date"`
 	Description     *string             `json:"description,omitempty"`
 	Email           openapi_types.Email `json:"email"`
 	FirstName       *string             `json:"first_name,omitempty"`
@@ -25633,6 +25652,7 @@ type UserRequest struct {
 type UserRequestForm struct {
 	// AgreeWithPolicy User must agree with the policy to register.
 	AgreeWithPolicy *bool               `json:"agree_with_policy,omitempty"`
+	BirthDate       *openapi_types.Date `json:"birth_date"`
 	Description     *string             `json:"description,omitempty"`
 	Email           openapi_types.Email `json:"email"`
 	FirstName       *string             `json:"first_name,omitempty"`
@@ -25668,6 +25688,7 @@ type UserRequestForm struct {
 type UserRequestMultipart struct {
 	// AgreeWithPolicy User must agree with the policy to register.
 	AgreeWithPolicy *bool               `json:"agree_with_policy,omitempty"`
+	BirthDate       *openapi_types.Date `json:"birth_date"`
 	Description     *string             `json:"description,omitempty"`
 	Email           openapi_types.Email `json:"email"`
 	FirstName       *string             `json:"first_name,omitempty"`
@@ -33844,6 +33865,9 @@ type NotificationMessagesCountParams struct {
 
 // OnboardingCountryConfigsListParams defines parameters for OnboardingCountryConfigsList.
 type OnboardingCountryConfigsListParams struct {
+	Country  *string `form:"country,omitempty" json:"country,omitempty"`
+	IsActive *bool   `form:"is_active,omitempty" json:"is_active,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
@@ -33853,6 +33877,9 @@ type OnboardingCountryConfigsListParams struct {
 
 // OnboardingCountryConfigsCountParams defines parameters for OnboardingCountryConfigsCount.
 type OnboardingCountryConfigsCountParams struct {
+	Country  *string `form:"country,omitempty" json:"country,omitempty"`
+	IsActive *bool   `form:"is_active,omitempty" json:"is_active,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
@@ -33880,20 +33907,32 @@ type OnboardingJustificationsCountParams struct {
 
 // OnboardingQuestionMetadataListParams defines parameters for OnboardingQuestionMetadataList.
 type OnboardingQuestionMetadataListParams struct {
+	// ChecklistUuid Checklist uuid
+	ChecklistUuid       *openapi_types.UUID `form:"checklist_uuid,omitempty" json:"checklist_uuid,omitempty"`
+	IntentField         *string             `form:"intent_field,omitempty" json:"intent_field,omitempty"`
+	MapsToCustomerField *string             `form:"maps_to_customer_field,omitempty" json:"maps_to_customer_field,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	QuestionUuid *openapi_types.UUID `form:"question_uuid,omitempty" json:"question_uuid,omitempty"`
 }
 
 // OnboardingQuestionMetadataCountParams defines parameters for OnboardingQuestionMetadataCount.
 type OnboardingQuestionMetadataCountParams struct {
+	// ChecklistUuid Checklist uuid
+	ChecklistUuid       *openapi_types.UUID `form:"checklist_uuid,omitempty" json:"checklist_uuid,omitempty"`
+	IntentField         *string             `form:"intent_field,omitempty" json:"intent_field,omitempty"`
+	MapsToCustomerField *string             `form:"maps_to_customer_field,omitempty" json:"maps_to_customer_field,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	QuestionUuid *openapi_types.UUID `form:"question_uuid,omitempty" json:"question_uuid,omitempty"`
 }
 
 // OnboardingVerificationsListParams defines parameters for OnboardingVerificationsList.
@@ -161309,6 +161348,38 @@ func NewOnboardingCountryConfigsListRequest(server string, params *OnboardingCou
 	if params != nil {
 		queryValues := queryURL.Query()
 
+		if params.Country != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "country", runtime.ParamLocationQuery, *params.Country); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsActive != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_active", runtime.ParamLocationQuery, *params.IsActive); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Page != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
@@ -161373,6 +161444,38 @@ func NewOnboardingCountryConfigsCountRequest(server string, params *OnboardingCo
 
 	if params != nil {
 		queryValues := queryURL.Query()
+
+		if params.Country != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "country", runtime.ParamLocationQuery, *params.Country); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsActive != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_active", runtime.ParamLocationQuery, *params.IsActive); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
 
 		if params.Page != nil {
 
@@ -162165,6 +162268,54 @@ func NewOnboardingQuestionMetadataListRequest(server string, params *OnboardingQ
 	if params != nil {
 		queryValues := queryURL.Query()
 
+		if params.ChecklistUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "checklist_uuid", runtime.ParamLocationQuery, *params.ChecklistUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IntentField != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "intent_field", runtime.ParamLocationQuery, *params.IntentField); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.MapsToCustomerField != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "maps_to_customer_field", runtime.ParamLocationQuery, *params.MapsToCustomerField); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Page != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
@@ -162184,6 +162335,22 @@ func NewOnboardingQuestionMetadataListRequest(server string, params *OnboardingQ
 		if params.PageSize != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.QuestionUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "question_uuid", runtime.ParamLocationQuery, *params.QuestionUuid); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -162230,6 +162397,54 @@ func NewOnboardingQuestionMetadataCountRequest(server string, params *Onboarding
 	if params != nil {
 		queryValues := queryURL.Query()
 
+		if params.ChecklistUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "checklist_uuid", runtime.ParamLocationQuery, *params.ChecklistUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IntentField != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "intent_field", runtime.ParamLocationQuery, *params.IntentField); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.MapsToCustomerField != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "maps_to_customer_field", runtime.ParamLocationQuery, *params.MapsToCustomerField); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Page != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
@@ -162249,6 +162464,22 @@ func NewOnboardingQuestionMetadataCountRequest(server string, params *Onboarding
 		if params.PageSize != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.QuestionUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "question_uuid", runtime.ParamLocationQuery, *params.QuestionUuid); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
