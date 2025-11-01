@@ -50641,6 +50641,18 @@ type ClientInterface interface {
 	// MediaRetrieve request
 	MediaRetrieve(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MetadataEventsRetrieve request
+	MetadataEventsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MetadataFeaturesRetrieve request
+	MetadataFeaturesRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MetadataPermissionsRetrieve request
+	MetadataPermissionsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MetadataSettingsRetrieve request
+	MetadataSettingsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// NotificationMessagesTemplatesList request
 	NotificationMessagesTemplatesList(ctx context.Context, params *NotificationMessagesTemplatesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -68885,6 +68897,54 @@ func (c *Client) MarketplaceUserOfferingConsentsRevoke(ctx context.Context, uuid
 
 func (c *Client) MediaRetrieve(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMediaRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MetadataEventsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMetadataEventsRetrieveRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MetadataFeaturesRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMetadataFeaturesRetrieveRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MetadataPermissionsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMetadataPermissionsRetrieveRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MetadataSettingsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMetadataSettingsRetrieveRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -160713,6 +160773,114 @@ func NewMediaRetrieveRequest(server string, uuid string) (*http.Request, error) 
 	return req, nil
 }
 
+// NewMetadataEventsRetrieveRequest generates requests for MetadataEventsRetrieve
+func NewMetadataEventsRetrieveRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/metadata/events/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMetadataFeaturesRetrieveRequest generates requests for MetadataFeaturesRetrieve
+func NewMetadataFeaturesRetrieveRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/metadata/features/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMetadataPermissionsRetrieveRequest generates requests for MetadataPermissionsRetrieve
+func NewMetadataPermissionsRetrieveRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/metadata/permissions/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMetadataSettingsRetrieveRequest generates requests for MetadataSettingsRetrieve
+func NewMetadataSettingsRetrieveRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/metadata/settings/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewNotificationMessagesTemplatesListRequest generates requests for NotificationMessagesTemplatesList
 func NewNotificationMessagesTemplatesListRequest(server string, params *NotificationMessagesTemplatesListParams) (*http.Request, error) {
 	var err error
@@ -226810,6 +226978,18 @@ type ClientWithResponsesInterface interface {
 	// MediaRetrieveWithResponse request
 	MediaRetrieveWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*MediaRetrieveResponse, error)
 
+	// MetadataEventsRetrieveWithResponse request
+	MetadataEventsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*MetadataEventsRetrieveResponse, error)
+
+	// MetadataFeaturesRetrieveWithResponse request
+	MetadataFeaturesRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*MetadataFeaturesRetrieveResponse, error)
+
+	// MetadataPermissionsRetrieveWithResponse request
+	MetadataPermissionsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*MetadataPermissionsRetrieveResponse, error)
+
+	// MetadataSettingsRetrieveWithResponse request
+	MetadataSettingsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*MetadataSettingsRetrieveResponse, error)
+
 	// NotificationMessagesTemplatesListWithResponse request
 	NotificationMessagesTemplatesListWithResponse(ctx context.Context, params *NotificationMessagesTemplatesListParams, reqEditors ...RequestEditorFn) (*NotificationMessagesTemplatesListResponse, error)
 
@@ -250435,6 +250615,106 @@ func (r MediaRetrieveResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MediaRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MetadataEventsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *struct {
+		EventGroups *map[string]interface{} `json:"event_groups,omitempty"`
+	}
+}
+
+// Status returns HTTPResponse.Status
+func (r MetadataEventsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MetadataEventsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MetadataFeaturesRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *struct {
+		FeatureEnums *map[string]interface{} `json:"feature_enums,omitempty"`
+		Features     *[]interface{}          `json:"features,omitempty"`
+	}
+}
+
+// Status returns HTTPResponse.Status
+func (r MetadataFeaturesRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MetadataFeaturesRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MetadataPermissionsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *struct {
+		PermissionDescriptions *[]interface{}          `json:"permission_descriptions,omitempty"`
+		PermissionMap          *map[string]interface{} `json:"permission_map,omitempty"`
+		Permissions            *map[string]interface{} `json:"permissions,omitempty"`
+		Roles                  *map[string]interface{} `json:"roles,omitempty"`
+	}
+}
+
+// Status returns HTTPResponse.Status
+func (r MetadataPermissionsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MetadataPermissionsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MetadataSettingsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *struct {
+		Settings *[]interface{} `json:"settings,omitempty"`
+	}
+}
+
+// Status returns HTTPResponse.Status
+func (r MetadataSettingsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MetadataSettingsRetrieveResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -277535,6 +277815,42 @@ func (c *ClientWithResponses) MediaRetrieveWithResponse(ctx context.Context, uui
 		return nil, err
 	}
 	return ParseMediaRetrieveResponse(rsp)
+}
+
+// MetadataEventsRetrieveWithResponse request returning *MetadataEventsRetrieveResponse
+func (c *ClientWithResponses) MetadataEventsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*MetadataEventsRetrieveResponse, error) {
+	rsp, err := c.MetadataEventsRetrieve(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMetadataEventsRetrieveResponse(rsp)
+}
+
+// MetadataFeaturesRetrieveWithResponse request returning *MetadataFeaturesRetrieveResponse
+func (c *ClientWithResponses) MetadataFeaturesRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*MetadataFeaturesRetrieveResponse, error) {
+	rsp, err := c.MetadataFeaturesRetrieve(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMetadataFeaturesRetrieveResponse(rsp)
+}
+
+// MetadataPermissionsRetrieveWithResponse request returning *MetadataPermissionsRetrieveResponse
+func (c *ClientWithResponses) MetadataPermissionsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*MetadataPermissionsRetrieveResponse, error) {
+	rsp, err := c.MetadataPermissionsRetrieve(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMetadataPermissionsRetrieveResponse(rsp)
+}
+
+// MetadataSettingsRetrieveWithResponse request returning *MetadataSettingsRetrieveResponse
+func (c *ClientWithResponses) MetadataSettingsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*MetadataSettingsRetrieveResponse, error) {
+	rsp, err := c.MetadataSettingsRetrieve(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMetadataSettingsRetrieveResponse(rsp)
 }
 
 // NotificationMessagesTemplatesListWithResponse request returning *NotificationMessagesTemplatesListResponse
@@ -307857,6 +308173,122 @@ func ParseMediaRetrieveResponse(rsp *http.Response) (*MediaRetrieveResponse, err
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest openapi_types.File
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMetadataEventsRetrieveResponse parses an HTTP response from a MetadataEventsRetrieveWithResponse call
+func ParseMetadataEventsRetrieveResponse(rsp *http.Response) (*MetadataEventsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MetadataEventsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest struct {
+			EventGroups *map[string]interface{} `json:"event_groups,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMetadataFeaturesRetrieveResponse parses an HTTP response from a MetadataFeaturesRetrieveWithResponse call
+func ParseMetadataFeaturesRetrieveResponse(rsp *http.Response) (*MetadataFeaturesRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MetadataFeaturesRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest struct {
+			FeatureEnums *map[string]interface{} `json:"feature_enums,omitempty"`
+			Features     *[]interface{}          `json:"features,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMetadataPermissionsRetrieveResponse parses an HTTP response from a MetadataPermissionsRetrieveWithResponse call
+func ParseMetadataPermissionsRetrieveResponse(rsp *http.Response) (*MetadataPermissionsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MetadataPermissionsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest struct {
+			PermissionDescriptions *[]interface{}          `json:"permission_descriptions,omitempty"`
+			PermissionMap          *map[string]interface{} `json:"permission_map,omitempty"`
+			Permissions            *map[string]interface{} `json:"permissions,omitempty"`
+			Roles                  *map[string]interface{} `json:"roles,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMetadataSettingsRetrieveResponse parses an HTTP response from a MetadataSettingsRetrieveWithResponse call
+func ParseMetadataSettingsRetrieveResponse(rsp *http.Response) (*MetadataSettingsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MetadataSettingsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest struct {
+			Settings *[]interface{} `json:"settings,omitempty"`
+		}
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
