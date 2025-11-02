@@ -1139,6 +1139,7 @@ const (
 // Defines values for OptionFieldTypeEnum.
 const (
 	OptionFieldTypeEnumBoolean                          OptionFieldTypeEnum = "boolean"
+	OptionFieldTypeEnumComponentMultiplier              OptionFieldTypeEnum = "component_multiplier"
 	OptionFieldTypeEnumConditionalCascade               OptionFieldTypeEnum = "conditional_cascade"
 	OptionFieldTypeEnumDate                             OptionFieldTypeEnum = "date"
 	OptionFieldTypeEnumHtmlText                         OptionFieldTypeEnum = "html_text"
@@ -13036,6 +13037,22 @@ type ComplianceOverview struct {
 	TotalProjects               *int     `json:"total_projects,omitempty"`
 }
 
+// ComponentMultiplierConfig defines model for ComponentMultiplierConfig.
+type ComponentMultiplierConfig struct {
+	ComponentType string `json:"component_type"`
+	Factor        int    `json:"factor"`
+	MaxLimit      *int   `json:"max_limit,omitempty"`
+	MinLimit      *int   `json:"min_limit,omitempty"`
+}
+
+// ComponentMultiplierConfigRequest defines model for ComponentMultiplierConfigRequest.
+type ComponentMultiplierConfigRequest struct {
+	ComponentType string `json:"component_type"`
+	Factor        int    `json:"factor"`
+	MaxLimit      *int   `json:"max_limit,omitempty"`
+	MinLimit      *int   `json:"min_limit,omitempty"`
+}
+
 // ComponentStats defines model for ComponentStats.
 type ComponentStats struct {
 	BillingType  *string             `json:"billing_type,omitempty"`
@@ -20064,28 +20081,30 @@ type OpenStackVolumeType struct {
 
 // OptionField defines model for OptionField.
 type OptionField struct {
-	CascadeConfig *CascadeConfig      `json:"cascade_config,omitempty"`
-	Choices       *[]string           `json:"choices,omitempty"`
-	Default       *string             `json:"default,omitempty"`
-	HelpText      *string             `json:"help_text,omitempty"`
-	Label         string              `json:"label"`
-	Max           *int                `json:"max,omitempty"`
-	Min           *int                `json:"min,omitempty"`
-	Required      *bool               `json:"required,omitempty"`
-	Type          OptionFieldTypeEnum `json:"type"`
+	CascadeConfig             *CascadeConfig             `json:"cascade_config,omitempty"`
+	Choices                   *[]string                  `json:"choices,omitempty"`
+	ComponentMultiplierConfig *ComponentMultiplierConfig `json:"component_multiplier_config,omitempty"`
+	Default                   *string                    `json:"default,omitempty"`
+	HelpText                  *string                    `json:"help_text,omitempty"`
+	Label                     string                     `json:"label"`
+	Max                       *int                       `json:"max,omitempty"`
+	Min                       *int                       `json:"min,omitempty"`
+	Required                  *bool                      `json:"required,omitempty"`
+	Type                      OptionFieldTypeEnum        `json:"type"`
 }
 
 // OptionFieldRequest defines model for OptionFieldRequest.
 type OptionFieldRequest struct {
-	CascadeConfig *CascadeConfigRequest `json:"cascade_config,omitempty"`
-	Choices       *[]string             `json:"choices,omitempty"`
-	Default       *string               `json:"default,omitempty"`
-	HelpText      *string               `json:"help_text,omitempty"`
-	Label         string                `json:"label"`
-	Max           *int                  `json:"max,omitempty"`
-	Min           *int                  `json:"min,omitempty"`
-	Required      *bool                 `json:"required,omitempty"`
-	Type          OptionFieldTypeEnum   `json:"type"`
+	CascadeConfig             *CascadeConfigRequest             `json:"cascade_config,omitempty"`
+	Choices                   *[]string                         `json:"choices,omitempty"`
+	ComponentMultiplierConfig *ComponentMultiplierConfigRequest `json:"component_multiplier_config,omitempty"`
+	Default                   *string                           `json:"default,omitempty"`
+	HelpText                  *string                           `json:"help_text,omitempty"`
+	Label                     string                            `json:"label"`
+	Max                       *int                              `json:"max,omitempty"`
+	Min                       *int                              `json:"min,omitempty"`
+	Required                  *bool                             `json:"required,omitempty"`
+	Type                      OptionFieldTypeEnum               `json:"type"`
 }
 
 // OptionFieldTypeEnum defines model for OptionFieldTypeEnum.
