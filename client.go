@@ -2993,6 +2993,24 @@ const (
 	CallManagingOrganisationsListUsersListParamsOUsername       CallManagingOrganisationsListUsersListParamsO = "username"
 )
 
+// Defines values for ChecklistsAdminQuestionsListParamsChecklistType.
+const (
+	ChecklistsAdminQuestionsListParamsChecklistTypeCustomerOnboarding ChecklistsAdminQuestionsListParamsChecklistType = "customer_onboarding"
+	ChecklistsAdminQuestionsListParamsChecklistTypeOfferingCompliance ChecklistsAdminQuestionsListParamsChecklistType = "offering_compliance"
+	ChecklistsAdminQuestionsListParamsChecklistTypeProjectCompliance  ChecklistsAdminQuestionsListParamsChecklistType = "project_compliance"
+	ChecklistsAdminQuestionsListParamsChecklistTypeProjectMetadata    ChecklistsAdminQuestionsListParamsChecklistType = "project_metadata"
+	ChecklistsAdminQuestionsListParamsChecklistTypeProposalCompliance ChecklistsAdminQuestionsListParamsChecklistType = "proposal_compliance"
+)
+
+// Defines values for ChecklistsAdminQuestionsCountParamsChecklistType.
+const (
+	ChecklistsAdminQuestionsCountParamsChecklistTypeCustomerOnboarding ChecklistsAdminQuestionsCountParamsChecklistType = "customer_onboarding"
+	ChecklistsAdminQuestionsCountParamsChecklistTypeOfferingCompliance ChecklistsAdminQuestionsCountParamsChecklistType = "offering_compliance"
+	ChecklistsAdminQuestionsCountParamsChecklistTypeProjectCompliance  ChecklistsAdminQuestionsCountParamsChecklistType = "project_compliance"
+	ChecklistsAdminQuestionsCountParamsChecklistTypeProjectMetadata    ChecklistsAdminQuestionsCountParamsChecklistType = "project_metadata"
+	ChecklistsAdminQuestionsCountParamsChecklistTypeProposalCompliance ChecklistsAdminQuestionsCountParamsChecklistType = "proposal_compliance"
+)
+
 // Defines values for ChecklistsAdminListParamsChecklistType.
 const (
 	ChecklistsAdminListParamsChecklistTypeCustomerOnboarding ChecklistsAdminListParamsChecklistType = "customer_onboarding"
@@ -18234,16 +18252,15 @@ type OnboardingJustificationReviewRequest struct {
 
 // OnboardingQuestionMetadata defines model for OnboardingQuestionMetadata.
 type OnboardingQuestionMetadata struct {
-	Created *time.Time `json:"created,omitempty"`
+	ChecklistName *string    `json:"checklist_name,omitempty"`
+	Created       *time.Time `json:"created,omitempty"`
 
 	// IntentField Type of intent/purpose field (e.g., 'intent', 'registration_purpose') - stays with verification
 	IntentField *string `json:"intent_field,omitempty"`
 
 	// MapsToCustomerField Customer model field name to map this answer to (e.g., 'registration_code', 'email', 'vat_code')
-	MapsToCustomerField *string    `json:"maps_to_customer_field,omitempty"`
-	Modified            *time.Time `json:"modified,omitempty"`
-
-	// Question Question this metadata applies to
+	MapsToCustomerField *string             `json:"maps_to_customer_field,omitempty"`
+	Modified            *time.Time          `json:"modified,omitempty"`
 	Question            string              `json:"question"`
 	QuestionDescription *string             `json:"question_description,omitempty"`
 	QuestionUuid        *openapi_types.UUID `json:"question_uuid,omitempty"`
@@ -18258,9 +18275,7 @@ type OnboardingQuestionMetadataRequest struct {
 
 	// MapsToCustomerField Customer model field name to map this answer to (e.g., 'registration_code', 'email', 'vat_code')
 	MapsToCustomerField *string `json:"maps_to_customer_field,omitempty"`
-
-	// Question Question this metadata applies to
-	Question string `json:"question"`
+	Question            string  `json:"question"`
 }
 
 // OnboardingVerification defines model for OnboardingVerification.
@@ -21167,9 +21182,7 @@ type PatchedOnboardingQuestionMetadataRequest struct {
 
 	// MapsToCustomerField Customer model field name to map this answer to (e.g., 'registration_code', 'email', 'vat_code')
 	MapsToCustomerField *string `json:"maps_to_customer_field,omitempty"`
-
-	// Question Question this metadata applies to
-	Question *string `json:"question,omitempty"`
+	Question            *string `json:"question,omitempty"`
 }
 
 // PatchedOnboardingVerificationRequest defines model for PatchedOnboardingVerificationRequest.
@@ -28098,7 +28111,10 @@ type ChecklistsAdminQuestionOptionsCountParams struct {
 
 // ChecklistsAdminQuestionsListParams defines parameters for ChecklistsAdminQuestionsList.
 type ChecklistsAdminQuestionsListParams struct {
-	ChecklistUuid *openapi_types.UUID `form:"checklist_uuid,omitempty" json:"checklist_uuid,omitempty"`
+	// ChecklistType Type of compliance this checklist addresses
+	//
+	ChecklistType *ChecklistsAdminQuestionsListParamsChecklistType `form:"checklist_type,omitempty" json:"checklist_type,omitempty"`
+	ChecklistUuid *openapi_types.UUID                              `form:"checklist_uuid,omitempty" json:"checklist_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -28106,10 +28122,16 @@ type ChecklistsAdminQuestionsListParams struct {
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 }
+
+// ChecklistsAdminQuestionsListParamsChecklistType defines parameters for ChecklistsAdminQuestionsList.
+type ChecklistsAdminQuestionsListParamsChecklistType string
 
 // ChecklistsAdminQuestionsCountParams defines parameters for ChecklistsAdminQuestionsCount.
 type ChecklistsAdminQuestionsCountParams struct {
-	ChecklistUuid *openapi_types.UUID `form:"checklist_uuid,omitempty" json:"checklist_uuid,omitempty"`
+	// ChecklistType Type of compliance this checklist addresses
+	//
+	ChecklistType *ChecklistsAdminQuestionsCountParamsChecklistType `form:"checklist_type,omitempty" json:"checklist_type,omitempty"`
+	ChecklistUuid *openapi_types.UUID                               `form:"checklist_uuid,omitempty" json:"checklist_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -28117,6 +28139,9 @@ type ChecklistsAdminQuestionsCountParams struct {
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 }
+
+// ChecklistsAdminQuestionsCountParamsChecklistType defines parameters for ChecklistsAdminQuestionsCount.
+type ChecklistsAdminQuestionsCountParamsChecklistType string
 
 // ChecklistsAdminListParams defines parameters for ChecklistsAdminList.
 type ChecklistsAdminListParams struct {
@@ -34379,8 +34404,9 @@ type OnboardingQuestionMetadataListParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	QuestionUuid *openapi_types.UUID `form:"question_uuid,omitempty" json:"question_uuid,omitempty"`
+	PageSize            *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	QuestionDescription *string             `form:"question_description,omitempty" json:"question_description,omitempty"`
+	QuestionUuid        *openapi_types.UUID `form:"question_uuid,omitempty" json:"question_uuid,omitempty"`
 }
 
 // OnboardingQuestionMetadataCountParams defines parameters for OnboardingQuestionMetadataCount.
@@ -34394,8 +34420,9 @@ type OnboardingQuestionMetadataCountParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	QuestionUuid *openapi_types.UUID `form:"question_uuid,omitempty" json:"question_uuid,omitempty"`
+	PageSize            *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	QuestionDescription *string             `form:"question_description,omitempty" json:"question_description,omitempty"`
+	QuestionUuid        *openapi_types.UUID `form:"question_uuid,omitempty" json:"question_uuid,omitempty"`
 }
 
 // OnboardingVerificationsListParams defines parameters for OnboardingVerificationsList.
@@ -97655,6 +97682,22 @@ func NewChecklistsAdminQuestionsListRequest(server string, params *ChecklistsAdm
 	if params != nil {
 		queryValues := queryURL.Query()
 
+		if params.ChecklistType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "checklist_type", runtime.ParamLocationQuery, *params.ChecklistType); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.ChecklistUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "checklist_uuid", runtime.ParamLocationQuery, *params.ChecklistUuid); err != nil {
@@ -97735,6 +97778,22 @@ func NewChecklistsAdminQuestionsCountRequest(server string, params *ChecklistsAd
 
 	if params != nil {
 		queryValues := queryURL.Query()
+
+		if params.ChecklistType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "checklist_type", runtime.ParamLocationQuery, *params.ChecklistType); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
 
 		if params.ChecklistUuid != nil {
 
@@ -163053,6 +163112,22 @@ func NewOnboardingQuestionMetadataListRequest(server string, params *OnboardingQ
 
 		}
 
+		if params.QuestionDescription != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "question_description", runtime.ParamLocationQuery, *params.QuestionDescription); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.QuestionUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "question_uuid", runtime.ParamLocationQuery, *params.QuestionUuid); err != nil {
@@ -163169,6 +163244,22 @@ func NewOnboardingQuestionMetadataCountRequest(server string, params *Onboarding
 		if params.PageSize != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.QuestionDescription != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "question_description", runtime.ParamLocationQuery, *params.QuestionDescription); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
