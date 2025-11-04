@@ -8312,14 +8312,46 @@ const (
 
 // Defines values for OpenstackPortsListParamsO.
 const (
-	OpenstackPortsListParamsOMinusNetworkName OpenstackPortsListParamsO = "-network_name"
-	OpenstackPortsListParamsONetworkName      OpenstackPortsListParamsO = "network_name"
+	OpenstackPortsListParamsOAdminStateUp      OpenstackPortsListParamsO = "admin_state_up"
+	OpenstackPortsListParamsOCreated           OpenstackPortsListParamsO = "created"
+	OpenstackPortsListParamsODeviceOwner       OpenstackPortsListParamsO = "device_owner"
+	OpenstackPortsListParamsOInstanceName      OpenstackPortsListParamsO = "instance_name"
+	OpenstackPortsListParamsOMacAddress        OpenstackPortsListParamsO = "mac_address"
+	OpenstackPortsListParamsOMinusAdminStateUp OpenstackPortsListParamsO = "-admin_state_up"
+	OpenstackPortsListParamsOMinusCreated      OpenstackPortsListParamsO = "-created"
+	OpenstackPortsListParamsOMinusDeviceOwner  OpenstackPortsListParamsO = "-device_owner"
+	OpenstackPortsListParamsOMinusInstanceName OpenstackPortsListParamsO = "-instance_name"
+	OpenstackPortsListParamsOMinusMacAddress   OpenstackPortsListParamsO = "-mac_address"
+	OpenstackPortsListParamsOMinusName         OpenstackPortsListParamsO = "-name"
+	OpenstackPortsListParamsOMinusNetworkName  OpenstackPortsListParamsO = "-network_name"
+	OpenstackPortsListParamsOMinusStatus       OpenstackPortsListParamsO = "-status"
+	OpenstackPortsListParamsOMinusSubnetName   OpenstackPortsListParamsO = "-subnet_name"
+	OpenstackPortsListParamsOName              OpenstackPortsListParamsO = "name"
+	OpenstackPortsListParamsONetworkName       OpenstackPortsListParamsO = "network_name"
+	OpenstackPortsListParamsOStatus            OpenstackPortsListParamsO = "status"
+	OpenstackPortsListParamsOSubnetName        OpenstackPortsListParamsO = "subnet_name"
 )
 
 // Defines values for OpenstackPortsCountParamsO.
 const (
-	OpenstackPortsCountParamsOMinusNetworkName OpenstackPortsCountParamsO = "-network_name"
-	OpenstackPortsCountParamsONetworkName      OpenstackPortsCountParamsO = "network_name"
+	OpenstackPortsCountParamsOAdminStateUp      OpenstackPortsCountParamsO = "admin_state_up"
+	OpenstackPortsCountParamsOCreated           OpenstackPortsCountParamsO = "created"
+	OpenstackPortsCountParamsODeviceOwner       OpenstackPortsCountParamsO = "device_owner"
+	OpenstackPortsCountParamsOInstanceName      OpenstackPortsCountParamsO = "instance_name"
+	OpenstackPortsCountParamsOMacAddress        OpenstackPortsCountParamsO = "mac_address"
+	OpenstackPortsCountParamsOMinusAdminStateUp OpenstackPortsCountParamsO = "-admin_state_up"
+	OpenstackPortsCountParamsOMinusCreated      OpenstackPortsCountParamsO = "-created"
+	OpenstackPortsCountParamsOMinusDeviceOwner  OpenstackPortsCountParamsO = "-device_owner"
+	OpenstackPortsCountParamsOMinusInstanceName OpenstackPortsCountParamsO = "-instance_name"
+	OpenstackPortsCountParamsOMinusMacAddress   OpenstackPortsCountParamsO = "-mac_address"
+	OpenstackPortsCountParamsOMinusName         OpenstackPortsCountParamsO = "-name"
+	OpenstackPortsCountParamsOMinusNetworkName  OpenstackPortsCountParamsO = "-network_name"
+	OpenstackPortsCountParamsOMinusStatus       OpenstackPortsCountParamsO = "-status"
+	OpenstackPortsCountParamsOMinusSubnetName   OpenstackPortsCountParamsO = "-subnet_name"
+	OpenstackPortsCountParamsOName              OpenstackPortsCountParamsO = "name"
+	OpenstackPortsCountParamsONetworkName       OpenstackPortsCountParamsO = "network_name"
+	OpenstackPortsCountParamsOStatus            OpenstackPortsCountParamsO = "status"
+	OpenstackPortsCountParamsOSubnetName        OpenstackPortsCountParamsO = "subnet_name"
 )
 
 // Defines values for OpenstackPortsRetrieveParamsField.
