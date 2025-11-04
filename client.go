@@ -8302,6 +8302,7 @@ const (
 	OpenstackPortsListParamsFieldServiceSettingsUuid              OpenstackPortsListParamsField = "service_settings_uuid"
 	OpenstackPortsListParamsFieldState                            OpenstackPortsListParamsField = "state"
 	OpenstackPortsListParamsFieldStatus                           OpenstackPortsListParamsField = "status"
+	OpenstackPortsListParamsFieldTargetTenant                     OpenstackPortsListParamsField = "target_tenant"
 	OpenstackPortsListParamsFieldTenant                           OpenstackPortsListParamsField = "tenant"
 	OpenstackPortsListParamsFieldTenantName                       OpenstackPortsListParamsField = "tenant_name"
 	OpenstackPortsListParamsFieldTenantUuid                       OpenstackPortsListParamsField = "tenant_uuid"
@@ -8369,6 +8370,7 @@ const (
 	OpenstackPortsRetrieveParamsFieldServiceSettingsUuid              OpenstackPortsRetrieveParamsField = "service_settings_uuid"
 	OpenstackPortsRetrieveParamsFieldState                            OpenstackPortsRetrieveParamsField = "state"
 	OpenstackPortsRetrieveParamsFieldStatus                           OpenstackPortsRetrieveParamsField = "status"
+	OpenstackPortsRetrieveParamsFieldTargetTenant                     OpenstackPortsRetrieveParamsField = "target_tenant"
 	OpenstackPortsRetrieveParamsFieldTenant                           OpenstackPortsRetrieveParamsField = "tenant"
 	OpenstackPortsRetrieveParamsFieldTenantName                       OpenstackPortsRetrieveParamsField = "tenant_name"
 	OpenstackPortsRetrieveParamsFieldTenantUuid                       OpenstackPortsRetrieveParamsField = "tenant_uuid"
@@ -19053,6 +19055,15 @@ type OpenStackCreateFloatingIPRequest_IpAddress struct {
 	union json.RawMessage
 }
 
+// OpenStackCreateInstancePortRequest defines model for OpenStackCreateInstancePortRequest.
+type OpenStackCreateInstancePortRequest struct {
+	FixedIps *[]OpenStackFixedIpRequest `json:"fixed_ips,omitempty"`
+	Port     *string                    `json:"port,omitempty"`
+
+	// Subnet Subnet to which this port belongs
+	Subnet *string `json:"subnet"`
+}
+
 // OpenStackCreatePortRequest defines model for OpenStackCreatePortRequest.
 type OpenStackCreatePortRequest struct {
 	FixedIps *[]OpenStackFixedIpRequest `json:"fixed_ips,omitempty"`
@@ -19060,6 +19071,9 @@ type OpenStackCreatePortRequest struct {
 
 	// Subnet Subnet to which this port belongs
 	Subnet *string `json:"subnet"`
+
+	// Tenant Target tenant for port creation. If not specified, uses subnet's tenant.
+	Tenant *string `json:"tenant,omitempty"`
 }
 
 // OpenStackDataVolumeRequest defines model for OpenStackDataVolumeRequest.
@@ -19389,7 +19403,7 @@ type OpenStackInstanceCreateOrderAttributes struct {
 	Name  string  `json:"name"`
 
 	// Ports Network ports to attach to the instance
-	Ports *[]OpenStackCreatePortRequest `json:"ports,omitempty"`
+	Ports *[]OpenStackCreateInstancePortRequest `json:"ports,omitempty"`
 
 	// SecurityGroups List of security groups to apply to the instance
 	SecurityGroups *[]OpenStackSecurityGroupHyperlinkRequest `json:"security_groups,omitempty"`
@@ -19754,6 +19768,9 @@ type OpenStackPortRequest struct {
 	// PortSecurityEnabled If True, security groups and rules will be applied to this port
 	PortSecurityEnabled *bool                                      `json:"port_security_enabled,omitempty"`
 	SecurityGroups      *[]OpenStackPortNestedSecurityGroupRequest `json:"security_groups,omitempty"`
+
+	// TargetTenant Target tenant for shared network port creation. If not specified, defaults to network's tenant.
+	TargetTenant *string `json:"target_tenant,omitempty"`
 }
 
 // OpenStackRouter defines model for OpenStackRouter.
@@ -21768,6 +21785,9 @@ type PatchedOpenStackPortRequest struct {
 	Description    *string                                    `json:"description,omitempty"`
 	Name           *string                                    `json:"name,omitempty"`
 	SecurityGroups *[]OpenStackPortNestedSecurityGroupRequest `json:"security_groups,omitempty"`
+
+	// TargetTenant Target tenant for shared network port creation. If not specified, defaults to network's tenant.
+	TargetTenant *string `json:"target_tenant,omitempty"`
 }
 
 // PatchedOpenStackSecurityGroupUpdateRequest defines model for PatchedOpenStackSecurityGroupUpdateRequest.
@@ -22306,15 +22326,16 @@ type PatchedRoleDetailsRequest struct {
 
 // PatchedRuleRequest defines model for PatchedRuleRequest.
 type PatchedRuleRequest struct {
-	Customer          *string                 `json:"customer,omitempty"`
-	Name              *string                 `json:"name,omitempty"`
-	Plan              *string                 `json:"plan"`
-	PlanAttributes    *map[string]interface{} `json:"plan_attributes,omitempty"`
-	PlanLimits        *map[string]interface{} `json:"plan_limits,omitempty"`
-	ProjectRole       *string                 `json:"project_role"`
-	ProjectRoleName   *string                 `json:"project_role_name"`
-	UserAffiliations  *[]string               `json:"user_affiliations,omitempty"`
-	UserEmailPatterns *[]string               `json:"user_email_patterns,omitempty"`
+	Customer                          *string                 `json:"customer"`
+	Name                              *string                 `json:"name,omitempty"`
+	Plan                              *string                 `json:"plan"`
+	PlanAttributes                    *map[string]interface{} `json:"plan_attributes,omitempty"`
+	PlanLimits                        *map[string]interface{} `json:"plan_limits,omitempty"`
+	ProjectRole                       *string                 `json:"project_role"`
+	ProjectRoleName                   *string                 `json:"project_role_name"`
+	UseUserOrganizationAsCustomerName *bool                   `json:"use_user_organization_as_customer_name,omitempty"`
+	UserAffiliations                  *[]string               `json:"user_affiliations,omitempty"`
+	UserEmailPatterns                 *[]string               `json:"user_email_patterns,omitempty"`
 }
 
 // PatchedScreenshotRequest defines model for PatchedScreenshotRequest.
@@ -25766,38 +25787,40 @@ type RoundStatus string
 
 // Rule defines model for Rule.
 type Rule struct {
-	CategoryTitle          *string                 `json:"category_title,omitempty"`
-	CategoryUrl            *string                 `json:"category_url,omitempty"`
-	Customer               string                  `json:"customer"`
-	CustomerName           *string                 `json:"customer_name,omitempty"`
-	CustomerUuid           *string                 `json:"customer_uuid,omitempty"`
-	Name                   string                  `json:"name"`
-	OfferingName           *string                 `json:"offering_name,omitempty"`
-	OfferingUuid           *openapi_types.UUID     `json:"offering_uuid,omitempty"`
-	Plan                   *string                 `json:"plan"`
-	PlanAttributes         *map[string]interface{} `json:"plan_attributes,omitempty"`
-	PlanLimits             *map[string]interface{} `json:"plan_limits,omitempty"`
-	PlanName               *string                 `json:"plan_name,omitempty"`
-	ProjectRole            *string                 `json:"project_role"`
-	ProjectRoleDescription *string                 `json:"project_role_description,omitempty"`
-	ProjectRoleDisplayName *string                 `json:"project_role_display_name,omitempty"`
-	Url                    *string                 `json:"url,omitempty"`
-	UserAffiliations       *[]string               `json:"user_affiliations,omitempty"`
-	UserEmailPatterns      *[]string               `json:"user_email_patterns,omitempty"`
-	Uuid                   *openapi_types.UUID     `json:"uuid,omitempty"`
+	CategoryTitle                     *string                 `json:"category_title,omitempty"`
+	CategoryUrl                       *string                 `json:"category_url,omitempty"`
+	Customer                          *string                 `json:"customer"`
+	CustomerName                      *string                 `json:"customer_name,omitempty"`
+	CustomerUuid                      *string                 `json:"customer_uuid,omitempty"`
+	Name                              string                  `json:"name"`
+	OfferingName                      *string                 `json:"offering_name,omitempty"`
+	OfferingUuid                      *openapi_types.UUID     `json:"offering_uuid,omitempty"`
+	Plan                              *string                 `json:"plan"`
+	PlanAttributes                    *map[string]interface{} `json:"plan_attributes,omitempty"`
+	PlanLimits                        *map[string]interface{} `json:"plan_limits,omitempty"`
+	PlanName                          *string                 `json:"plan_name,omitempty"`
+	ProjectRole                       *string                 `json:"project_role"`
+	ProjectRoleDescription            *string                 `json:"project_role_description,omitempty"`
+	ProjectRoleDisplayName            *string                 `json:"project_role_display_name,omitempty"`
+	Url                               *string                 `json:"url,omitempty"`
+	UseUserOrganizationAsCustomerName *bool                   `json:"use_user_organization_as_customer_name,omitempty"`
+	UserAffiliations                  *[]string               `json:"user_affiliations,omitempty"`
+	UserEmailPatterns                 *[]string               `json:"user_email_patterns,omitempty"`
+	Uuid                              *openapi_types.UUID     `json:"uuid,omitempty"`
 }
 
 // RuleRequest defines model for RuleRequest.
 type RuleRequest struct {
-	Customer          string                  `json:"customer"`
-	Name              string                  `json:"name"`
-	Plan              *string                 `json:"plan"`
-	PlanAttributes    *map[string]interface{} `json:"plan_attributes,omitempty"`
-	PlanLimits        *map[string]interface{} `json:"plan_limits,omitempty"`
-	ProjectRole       *string                 `json:"project_role"`
-	ProjectRoleName   *string                 `json:"project_role_name"`
-	UserAffiliations  *[]string               `json:"user_affiliations,omitempty"`
-	UserEmailPatterns *[]string               `json:"user_email_patterns,omitempty"`
+	Customer                          *string                 `json:"customer"`
+	Name                              string                  `json:"name"`
+	Plan                              *string                 `json:"plan"`
+	PlanAttributes                    *map[string]interface{} `json:"plan_attributes,omitempty"`
+	PlanLimits                        *map[string]interface{} `json:"plan_limits,omitempty"`
+	ProjectRole                       *string                 `json:"project_role"`
+	ProjectRoleName                   *string                 `json:"project_role_name"`
+	UseUserOrganizationAsCustomerName *bool                   `json:"use_user_organization_as_customer_name,omitempty"`
+	UserAffiliations                  *[]string               `json:"user_affiliations,omitempty"`
+	UserEmailPatterns                 *[]string               `json:"user_email_patterns,omitempty"`
 }
 
 // RuntimeStates defines model for RuntimeStates.
@@ -35716,11 +35739,20 @@ type OpenstackPortsListParams struct {
 	ExcludeSubnetUuids *string                          `form:"exclude_subnet_uuids,omitempty" json:"exclude_subnet_uuids,omitempty"`
 	Field              *[]OpenstackPortsListParamsField `form:"field,omitempty" json:"field,omitempty"`
 
+	// FixedIps Search by fixed IP
+	FixedIps *string `form:"fixed_ips,omitempty" json:"fixed_ips,omitempty"`
+
 	// HasDeviceOwner Has device owner
 	HasDeviceOwner *bool   `form:"has_device_owner,omitempty" json:"has_device_owner,omitempty"`
 	MacAddress     *string `form:"mac_address,omitempty" json:"mac_address,omitempty"`
 	Name           *string `form:"name,omitempty" json:"name,omitempty"`
 	NameExact      *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// NetworkName Search by network name
+	NetworkName *string `form:"network_name,omitempty" json:"network_name,omitempty"`
+
+	// NetworkUuid Search by network UUID
+	NetworkUuid *openapi_types.UUID `form:"network_uuid,omitempty" json:"network_uuid,omitempty"`
 
 	// O Ordering
 	//
@@ -35755,11 +35787,20 @@ type OpenstackPortsCountParams struct {
 	// ExcludeSubnetUuids Exclude Subnet UUIDs (comma-separated)
 	ExcludeSubnetUuids *string `form:"exclude_subnet_uuids,omitempty" json:"exclude_subnet_uuids,omitempty"`
 
+	// FixedIps Search by fixed IP
+	FixedIps *string `form:"fixed_ips,omitempty" json:"fixed_ips,omitempty"`
+
 	// HasDeviceOwner Has device owner
 	HasDeviceOwner *bool   `form:"has_device_owner,omitempty" json:"has_device_owner,omitempty"`
 	MacAddress     *string `form:"mac_address,omitempty" json:"mac_address,omitempty"`
 	Name           *string `form:"name,omitempty" json:"name,omitempty"`
 	NameExact      *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// NetworkName Search by network name
+	NetworkName *string `form:"network_name,omitempty" json:"network_name,omitempty"`
+
+	// NetworkUuid Search by network UUID
+	NetworkUuid *openapi_types.UUID `form:"network_uuid,omitempty" json:"network_uuid,omitempty"`
 
 	// O Ordering
 	//
@@ -173685,6 +173726,22 @@ func NewOpenstackPortsListRequest(server string, params *OpenstackPortsListParam
 
 		}
 
+		if params.FixedIps != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "fixed_ips", runtime.ParamLocationQuery, *params.FixedIps); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.HasDeviceOwner != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_device_owner", runtime.ParamLocationQuery, *params.HasDeviceOwner); err != nil {
@@ -173736,6 +173793,38 @@ func NewOpenstackPortsListRequest(server string, params *OpenstackPortsListParam
 		if params.NameExact != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name_exact", runtime.ParamLocationQuery, *params.NameExact); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.NetworkName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "network_name", runtime.ParamLocationQuery, *params.NetworkName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.NetworkUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "network_uuid", runtime.ParamLocationQuery, *params.NetworkUuid); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -173974,6 +174063,22 @@ func NewOpenstackPortsCountRequest(server string, params *OpenstackPortsCountPar
 
 		}
 
+		if params.FixedIps != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "fixed_ips", runtime.ParamLocationQuery, *params.FixedIps); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.HasDeviceOwner != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_device_owner", runtime.ParamLocationQuery, *params.HasDeviceOwner); err != nil {
@@ -174025,6 +174130,38 @@ func NewOpenstackPortsCountRequest(server string, params *OpenstackPortsCountPar
 		if params.NameExact != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name_exact", runtime.ParamLocationQuery, *params.NameExact); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.NetworkName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "network_name", runtime.ParamLocationQuery, *params.NetworkName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.NetworkUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "network_uuid", runtime.ParamLocationQuery, *params.NetworkUuid); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
