@@ -18728,10 +18728,11 @@ type OnboardingCountryChecklistConfiguration struct {
 	Created *time.Time `json:"created,omitempty"`
 
 	// IsActive Whether this country configuration is active
-	IsActive *bool               `json:"is_active,omitempty"`
-	Modified *time.Time          `json:"modified,omitempty"`
-	Url      *string             `json:"url,omitempty"`
-	Uuid     *openapi_types.UUID `json:"uuid,omitempty"`
+	IsActive  *bool               `json:"is_active,omitempty"`
+	Modified  *time.Time          `json:"modified,omitempty"`
+	Questions *[]QuestionAdmin    `json:"questions,omitempty"`
+	Url       *string             `json:"url,omitempty"`
+	Uuid      *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // OnboardingCountryChecklistConfigurationRequest defines model for OnboardingCountryChecklistConfigurationRequest.
@@ -23885,6 +23886,7 @@ type QueryRequest struct {
 type Question struct {
 	Description     *string            `json:"description,omitempty"`
 	QuestionOptions *[]QuestionOptions `json:"question_options,omitempty"`
+	Required        *bool              `json:"required,omitempty"`
 
 	// UserGuidance Additional guidance text visible to users when answering and reviewing
 	UserGuidance *string             `json:"user_guidance,omitempty"`
