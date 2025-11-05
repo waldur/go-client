@@ -15274,7 +15274,7 @@ type EventGroupsEnum string
 
 // EventMetadataResponse defines model for EventMetadataResponse.
 type EventMetadataResponse struct {
-	// EventGroups Map of event group keys to lists of event type enums
+	// EventGroups Map of event group keys to lists of event type enums from EventType
 	EventGroups map[string][]EventMetadataResponseEventGroups `json:"event_groups"`
 }
 
@@ -18718,6 +18718,9 @@ type OnboardingCompanyValidationRequestRequest struct {
 	// Country ISO country code (e.g., 'EE' for Estonia)
 	Country string `json:"country"`
 
+	// IsManualValidation Indicates if the validation is to be performed manually
+	IsManualValidation *bool `json:"is_manual_validation,omitempty"`
+
 	// LegalName Company name (optional)
 	LegalName *string `json:"legal_name,omitempty"`
 
@@ -18769,15 +18772,16 @@ type OnboardingJustification struct {
 	// StaffNotes Administrator notes on the review decision
 	StaffNotes              *string                                 `json:"staff_notes,omitempty"`
 	SupportingDocumentation *[]OnboardingJustificationDocumentation `json:"supporting_documentation,omitempty"`
-	User                    int                                     `json:"user"`
+	User                    *string                                 `json:"user,omitempty"`
 
 	// UserJustification User's explanation for why they should be authorized
 	UserJustification  *string                 `json:"user_justification"`
 	Uuid               *openapi_types.UUID     `json:"uuid,omitempty"`
 	ValidatedAt        *time.Time              `json:"validated_at"`
-	ValidatedBy        *int                    `json:"validated_by"`
+	ValidatedBy        *string                 `json:"validated_by"`
 	ValidationDecision *ValidationDecisionEnum `json:"validation_decision,omitempty"`
-	Verification       int                     `json:"verification"`
+	Verification       string                  `json:"verification"`
+	VerificationUuid   *openapi_types.UUID     `json:"verification_uuid,omitempty"`
 }
 
 // OnboardingJustificationCreateRequest defines model for OnboardingJustificationCreateRequest.
@@ -18820,11 +18824,9 @@ type OnboardingJustificationDocumentationRequestMultipart struct {
 
 // OnboardingJustificationRequest defines model for OnboardingJustificationRequest.
 type OnboardingJustificationRequest struct {
-	User int `json:"user"`
-
 	// UserJustification User's explanation for why they should be authorized
 	UserJustification *string `json:"user_justification"`
-	Verification      int     `json:"verification"`
+	Verification      string  `json:"verification"`
 }
 
 // OnboardingJustificationReviewRequest defines model for OnboardingJustificationReviewRequest.
@@ -21768,11 +21770,9 @@ type PatchedOnboardingCountryChecklistConfigurationRequest struct {
 
 // PatchedOnboardingJustificationRequest defines model for PatchedOnboardingJustificationRequest.
 type PatchedOnboardingJustificationRequest struct {
-	User *int `json:"user,omitempty"`
-
 	// UserJustification User's explanation for why they should be authorized
 	UserJustification *string `json:"user_justification"`
-	Verification      *int    `json:"verification,omitempty"`
+	Verification      *string `json:"verification,omitempty"`
 }
 
 // PatchedOnboardingQuestionMetadataRequest defines model for PatchedOnboardingQuestionMetadataRequest.
@@ -22705,10 +22705,10 @@ type PermissionMetadataResponse struct {
 	// PermissionMap Map of resource types to create permission enums
 	PermissionMap map[string]PermissionMetadataResponsePermissionMap `json:"permission_map"`
 
-	// Permissions Map of permission keys to permission enum values
+	// Permissions Map of permission keys to permission enum values from PermissionEnum
 	Permissions map[string]PermissionMetadataResponsePermissions `json:"permissions"`
 
-	// Roles Map of role keys to role enum values
+	// Roles Map of role keys to role enum values from RoleEnum
 	Roles map[string]PermissionMetadataResponseRoles `json:"roles"`
 }
 
