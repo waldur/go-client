@@ -1767,6 +1767,12 @@ const (
 	RancherCatalogScopeTypeProject RancherCatalogScopeType = "project"
 )
 
+// Defines values for RancherNodeRoleEnum.
+const (
+	RancherNodeRoleEnumAgent  RancherNodeRoleEnum = "agent"
+	RancherNodeRoleEnumServer RancherNodeRoleEnum = "server"
+)
+
 // Defines values for RancherRoleScopeType.
 const (
 	RancherRoleScopeTypeCluster RancherRoleScopeType = "cluster"
@@ -1842,12 +1848,6 @@ const (
 	RobotAccountStatesN4 RobotAccountStates = 4
 	RobotAccountStatesN5 RobotAccountStates = 5
 	RobotAccountStatesN6 RobotAccountStates = 6
-)
-
-// Defines values for RoleEnum.
-const (
-	RoleEnumAgent  RoleEnum = "agent"
-	RoleEnumServer RoleEnum = "server"
 )
 
 // Defines values for RoleType.
@@ -16459,7 +16459,7 @@ type ManagedRancherCreateNodeRequest struct {
 	DataVolumes      *[]DataVolumeRequest `json:"data_volumes,omitempty"`
 	Flavor           *string              `json:"flavor"`
 	Memory           *int                 `json:"memory,omitempty"`
-	Role             RoleEnum             `json:"role"`
+	Role             RancherNodeRoleEnum  `json:"role"`
 	SshPublicKey     *string              `json:"ssh_public_key,omitempty"`
 	Subnet           *string              `json:"subnet"`
 	SystemVolumeSize *int                 `json:"system_volume_size,omitempty"`
@@ -24434,17 +24434,17 @@ type RancherClusterTemplate struct {
 
 // RancherClusterTemplateNode defines model for RancherClusterTemplateNode.
 type RancherClusterTemplateNode struct {
-	MinRam              int      `json:"min_ram"`
-	MinVcpu             int      `json:"min_vcpu"`
-	PreferredVolumeType *string  `json:"preferred_volume_type,omitempty"`
-	Role                RoleEnum `json:"role"`
-	SystemVolumeSize    int      `json:"system_volume_size"`
+	MinRam              int                 `json:"min_ram"`
+	MinVcpu             int                 `json:"min_vcpu"`
+	PreferredVolumeType *string             `json:"preferred_volume_type,omitempty"`
+	Role                RancherNodeRoleEnum `json:"role"`
+	SystemVolumeSize    int                 `json:"system_volume_size"`
 }
 
 // RancherCreateNode defines model for RancherCreateNode.
 type RancherCreateNode struct {
 	Cluster string              `json:"cluster"`
-	Role    RoleEnum            `json:"role"`
+	Role    RancherNodeRoleEnum `json:"role"`
 	Uuid    *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
@@ -24455,7 +24455,7 @@ type RancherCreateNodeRequest struct {
 	DataVolumes      *[]DataVolumeRequest `json:"data_volumes,omitempty"`
 	Flavor           *string              `json:"flavor"`
 	Memory           *int                 `json:"memory,omitempty"`
-	Role             RoleEnum             `json:"role"`
+	Role             RancherNodeRoleEnum  `json:"role"`
 	SshPublicKey     *string              `json:"ssh_public_key,omitempty"`
 	Subnet           *string              `json:"subnet"`
 	SystemVolumeSize *int                 `json:"system_volume_size,omitempty"`
@@ -24617,11 +24617,11 @@ type RancherNestedNode struct {
 	RamAllocated *int `json:"ram_allocated"`
 
 	// RamTotal Total RAM in Mi.
-	RamTotal     *int                `json:"ram_total"`
-	Role         *RoleEnum           `json:"role,omitempty"`
-	RuntimeState *string             `json:"runtime_state,omitempty"`
-	Url          *string             `json:"url,omitempty"`
-	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
+	RamTotal     *int                 `json:"ram_total"`
+	Role         *RancherNodeRoleEnum `json:"role,omitempty"`
+	RuntimeState *string              `json:"runtime_state,omitempty"`
+	Url          *string              `json:"url,omitempty"`
+	Uuid         *openapi_types.UUID  `json:"uuid,omitempty"`
 }
 
 // RancherNestedPublicIP defines model for RancherNestedPublicIP.
@@ -24698,7 +24698,7 @@ type RancherNode struct {
 	// RamTotal Total RAM in Mi.
 	RamTotal            *int                `json:"ram_total"`
 	ResourceType        *string             `json:"resource_type,omitempty"`
-	Role                RoleEnum            `json:"role"`
+	Role                RancherNodeRoleEnum `json:"role"`
 	RuntimeState        *string             `json:"runtime_state,omitempty"`
 	ServiceSettingsName *string             `json:"service_settings_name,omitempty"`
 	ServiceSettingsUuid *openapi_types.UUID `json:"service_settings_uuid,omitempty"`
@@ -24706,6 +24706,9 @@ type RancherNode struct {
 	Url                 *string             `json:"url,omitempty"`
 	Uuid                *openapi_types.UUID `json:"uuid,omitempty"`
 }
+
+// RancherNodeRoleEnum defines model for RancherNodeRoleEnum.
+type RancherNodeRoleEnum string
 
 // RancherProject defines model for RancherProject.
 type RancherProject struct {
@@ -25775,9 +25778,6 @@ type RoleDetails struct {
 	UsersCount    *int                `json:"users_count,omitempty"`
 	Uuid          *openapi_types.UUID `json:"uuid,omitempty"`
 }
-
-// RoleEnum defines model for RoleEnum.
-type RoleEnum string
 
 // RoleModifyRequest defines model for RoleModifyRequest.
 type RoleModifyRequest struct {
