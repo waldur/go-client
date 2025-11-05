@@ -18521,12 +18521,15 @@ type OfferingStatsCounter struct {
 
 // OfferingTermsOfService defines model for OfferingTermsOfService.
 type OfferingTermsOfService struct {
-	Created        *time.Time          `json:"created,omitempty"`
-	HasUserConsent *bool               `json:"has_user_consent,omitempty"`
-	IsActive       *bool               `json:"is_active,omitempty"`
-	Modified       *time.Time          `json:"modified,omitempty"`
-	OfferingName   *string             `json:"offering_name,omitempty"`
-	OfferingUuid   *openapi_types.UUID `json:"offering_uuid,omitempty"`
+	Created *time.Time `json:"created,omitempty"`
+
+	// GracePeriodDays Number of days before outdated consents are automatically revoked. Only applies when requires_reconsent=True.
+	GracePeriodDays *int                `json:"grace_period_days,omitempty"`
+	HasUserConsent  *bool               `json:"has_user_consent,omitempty"`
+	IsActive        *bool               `json:"is_active,omitempty"`
+	Modified        *time.Time          `json:"modified,omitempty"`
+	OfferingName    *string             `json:"offering_name,omitempty"`
+	OfferingUuid    *openapi_types.UUID `json:"offering_uuid,omitempty"`
 
 	// RequiresReconsent If True, user will be asked to re-consent to the terms of service when the terms of service are updated.
 	RequiresReconsent  *bool               `json:"requires_reconsent,omitempty"`
@@ -18539,8 +18542,10 @@ type OfferingTermsOfService struct {
 
 // OfferingTermsOfServiceCreate defines model for OfferingTermsOfServiceCreate.
 type OfferingTermsOfServiceCreate struct {
-	IsActive *bool  `json:"is_active,omitempty"`
-	Offering string `json:"offering"`
+	// GracePeriodDays Number of days before outdated consents are automatically revoked. Only applies when requires_reconsent=True.
+	GracePeriodDays *int   `json:"grace_period_days,omitempty"`
+	IsActive        *bool  `json:"is_active,omitempty"`
+	Offering        string `json:"offering"`
 
 	// RequiresReconsent If True, user will be asked to re-consent to the terms of service when the terms of service are updated.
 	RequiresReconsent  *bool   `json:"requires_reconsent,omitempty"`
@@ -18551,8 +18556,10 @@ type OfferingTermsOfServiceCreate struct {
 
 // OfferingTermsOfServiceCreateRequest defines model for OfferingTermsOfServiceCreateRequest.
 type OfferingTermsOfServiceCreateRequest struct {
-	IsActive *bool  `json:"is_active,omitempty"`
-	Offering string `json:"offering"`
+	// GracePeriodDays Number of days before outdated consents are automatically revoked. Only applies when requires_reconsent=True.
+	GracePeriodDays *int   `json:"grace_period_days,omitempty"`
+	IsActive        *bool  `json:"is_active,omitempty"`
+	Offering        string `json:"offering"`
 
 	// RequiresReconsent If True, user will be asked to re-consent to the terms of service when the terms of service are updated.
 	RequiresReconsent  *bool   `json:"requires_reconsent,omitempty"`
@@ -18563,7 +18570,9 @@ type OfferingTermsOfServiceCreateRequest struct {
 
 // OfferingTermsOfServiceRequest defines model for OfferingTermsOfServiceRequest.
 type OfferingTermsOfServiceRequest struct {
-	IsActive *bool `json:"is_active,omitempty"`
+	// GracePeriodDays Number of days before outdated consents are automatically revoked. Only applies when requires_reconsent=True.
+	GracePeriodDays *int  `json:"grace_period_days,omitempty"`
+	IsActive        *bool `json:"is_active,omitempty"`
 
 	// RequiresReconsent If True, user will be asked to re-consent to the terms of service when the terms of service are updated.
 	RequiresReconsent  *bool   `json:"requires_reconsent,omitempty"`
@@ -21699,7 +21708,9 @@ type PatchedOfferingSoftwareCatalogUpdateRequest struct {
 
 // PatchedOfferingTermsOfServiceRequest defines model for PatchedOfferingTermsOfServiceRequest.
 type PatchedOfferingTermsOfServiceRequest struct {
-	IsActive *bool `json:"is_active,omitempty"`
+	// GracePeriodDays Number of days before outdated consents are automatically revoked. Only applies when requires_reconsent=True.
+	GracePeriodDays *int  `json:"grace_period_days,omitempty"`
+	IsActive        *bool `json:"is_active,omitempty"`
 
 	// RequiresReconsent If True, user will be asked to re-consent to the terms of service when the terms of service are updated.
 	RequiresReconsent  *bool   `json:"requires_reconsent,omitempty"`
