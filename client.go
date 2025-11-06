@@ -18571,14 +18571,10 @@ type OfferingTermsOfServiceCreateRequest struct {
 // OfferingTermsOfServiceRequest defines model for OfferingTermsOfServiceRequest.
 type OfferingTermsOfServiceRequest struct {
 	// GracePeriodDays Number of days before outdated consents are automatically revoked. Only applies when requires_reconsent=True.
-	GracePeriodDays *int  `json:"grace_period_days,omitempty"`
-	IsActive        *bool `json:"is_active,omitempty"`
-
-	// RequiresReconsent If True, user will be asked to re-consent to the terms of service when the terms of service are updated.
-	RequiresReconsent  *bool   `json:"requires_reconsent,omitempty"`
+	GracePeriodDays    *int    `json:"grace_period_days,omitempty"`
+	IsActive           *bool   `json:"is_active,omitempty"`
 	TermsOfService     *string `json:"terms_of_service,omitempty"`
 	TermsOfServiceLink *string `json:"terms_of_service_link,omitempty"`
-	Version            *string `json:"version,omitempty"`
 }
 
 // OfferingThumbnailRequest defines model for OfferingThumbnailRequest.
@@ -21711,14 +21707,10 @@ type PatchedOfferingSoftwareCatalogUpdateRequest struct {
 // PatchedOfferingTermsOfServiceRequest defines model for PatchedOfferingTermsOfServiceRequest.
 type PatchedOfferingTermsOfServiceRequest struct {
 	// GracePeriodDays Number of days before outdated consents are automatically revoked. Only applies when requires_reconsent=True.
-	GracePeriodDays *int  `json:"grace_period_days,omitempty"`
-	IsActive        *bool `json:"is_active,omitempty"`
-
-	// RequiresReconsent If True, user will be asked to re-consent to the terms of service when the terms of service are updated.
-	RequiresReconsent  *bool   `json:"requires_reconsent,omitempty"`
+	GracePeriodDays    *int    `json:"grace_period_days,omitempty"`
+	IsActive           *bool   `json:"is_active,omitempty"`
 	TermsOfService     *string `json:"terms_of_service,omitempty"`
 	TermsOfServiceLink *string `json:"terms_of_service_link,omitempty"`
-	Version            *string `json:"version,omitempty"`
 }
 
 // PatchedOfferingUsagePolicyRequest defines model for PatchedOfferingUsagePolicyRequest.
@@ -52493,6 +52485,9 @@ type ClientInterface interface {
 
 	ProjectsSubmitAnswers(ctx context.Context, uuid openapi_types.UUID, body ProjectsSubmitAnswersJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// ProjectsSyncUserRoles request
+	ProjectsSyncUserRoles(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// ProjectsUpdateUserWithBody request with any body
 	ProjectsUpdateUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -54027,9 +54022,6 @@ type ClientInterface interface {
 
 	// VmwareVirtualMachineWebConsoleRetrieve request
 	VmwareVirtualMachineWebConsoleRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// ProjectsSyncUserRoles request
-	ProjectsSyncUserRoles(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error)
 }
 
 func (c *Client) ApiAuthEduteamsCompleteRetrieve(ctx context.Context, params *ApiAuthEduteamsCompleteRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
@@ -74672,6 +74664,18 @@ func (c *Client) ProjectsSubmitAnswers(ctx context.Context, uuid openapi_types.U
 	return c.Client.Do(req)
 }
 
+func (c *Client) ProjectsSyncUserRoles(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProjectsSyncUserRolesRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) ProjectsUpdateUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProjectsUpdateUserRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
@@ -81334,18 +81338,6 @@ func (c *Client) VmwareVirtualMachineUnlink(ctx context.Context, uuid openapi_ty
 
 func (c *Client) VmwareVirtualMachineWebConsoleRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewVmwareVirtualMachineWebConsoleRetrieveRequest(c.Server, uuid)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) ProjectsSyncUserRoles(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewProjectsSyncUserRolesRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -189405,6 +189397,40 @@ func NewProjectsSubmitAnswersRequestWithBody(server string, uuid openapi_types.U
 	return req, nil
 }
 
+// NewProjectsSyncUserRolesRequest generates requests for ProjectsSyncUserRoles
+func NewProjectsSyncUserRolesRequest(server string, uuid string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/projects/%s/sync_user_roles/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewProjectsUpdateUserRequest calls the generic ProjectsUpdateUser builder with application/json body
 func NewProjectsUpdateUserRequest(server string, uuid openapi_types.UUID, body ProjectsUpdateUserJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -224199,40 +224225,6 @@ func NewVmwareVirtualMachineWebConsoleRetrieveRequest(server string, uuid openap
 	return req, nil
 }
 
-// NewProjectsSyncUserRolesRequest generates requests for ProjectsSyncUserRoles
-func NewProjectsSyncUserRolesRequest(server string, uuid string) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/projects/%s/sync_user_roles/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("POST", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
 func (c *Client) applyEditors(ctx context.Context, req *http.Request, additionalEditors []RequestEditorFn) error {
 	for _, r := range c.RequestEditors {
 		if err := r(ctx, req); err != nil {
@@ -228990,6 +228982,9 @@ type ClientWithResponsesInterface interface {
 
 	ProjectsSubmitAnswersWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProjectsSubmitAnswersJSONRequestBody, reqEditors ...RequestEditorFn) (*ProjectsSubmitAnswersResponse, error)
 
+	// ProjectsSyncUserRolesWithResponse request
+	ProjectsSyncUserRolesWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*ProjectsSyncUserRolesResponse, error)
+
 	// ProjectsUpdateUserWithBodyWithResponse request with any body
 	ProjectsUpdateUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProjectsUpdateUserResponse, error)
 
@@ -230524,9 +230519,6 @@ type ClientWithResponsesInterface interface {
 
 	// VmwareVirtualMachineWebConsoleRetrieveWithResponse request
 	VmwareVirtualMachineWebConsoleRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*VmwareVirtualMachineWebConsoleRetrieveResponse, error)
-
-	// ProjectsSyncUserRolesWithResponse request
-	ProjectsSyncUserRolesWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*ProjectsSyncUserRolesResponse, error)
 }
 
 type ApiAuthEduteamsCompleteRetrieveResponse struct {
@@ -258134,6 +258126,27 @@ func (r ProjectsSubmitAnswersResponse) StatusCode() int {
 	return 0
 }
 
+type ProjectsSyncUserRolesResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r ProjectsSyncUserRolesResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProjectsSyncUserRolesResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type ProjectsUpdateUserResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -267288,27 +267301,6 @@ func (r VmwareVirtualMachineWebConsoleRetrieveResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r VmwareVirtualMachineWebConsoleRetrieveResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type ProjectsSyncUserRolesResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// Status returns HTTPResponse.Status
-func (r ProjectsSyncUserRolesResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r ProjectsSyncUserRolesResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -282349,6 +282341,15 @@ func (c *ClientWithResponses) ProjectsSubmitAnswersWithResponse(ctx context.Cont
 	return ParseProjectsSubmitAnswersResponse(rsp)
 }
 
+// ProjectsSyncUserRolesWithResponse request returning *ProjectsSyncUserRolesResponse
+func (c *ClientWithResponses) ProjectsSyncUserRolesWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*ProjectsSyncUserRolesResponse, error) {
+	rsp, err := c.ProjectsSyncUserRoles(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProjectsSyncUserRolesResponse(rsp)
+}
+
 // ProjectsUpdateUserWithBodyWithResponse request with arbitrary body returning *ProjectsUpdateUserResponse
 func (c *ClientWithResponses) ProjectsUpdateUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProjectsUpdateUserResponse, error) {
 	rsp, err := c.ProjectsUpdateUserWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -287218,15 +287219,6 @@ func (c *ClientWithResponses) VmwareVirtualMachineWebConsoleRetrieveWithResponse
 		return nil, err
 	}
 	return ParseVmwareVirtualMachineWebConsoleRetrieveResponse(rsp)
-}
-
-// ProjectsSyncUserRolesWithResponse request returning *ProjectsSyncUserRolesResponse
-func (c *ClientWithResponses) ProjectsSyncUserRolesWithResponse(ctx context.Context, uuid string, reqEditors ...RequestEditorFn) (*ProjectsSyncUserRolesResponse, error) {
-	rsp, err := c.ProjectsSyncUserRoles(ctx, uuid, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseProjectsSyncUserRolesResponse(rsp)
 }
 
 // ParseApiAuthEduteamsCompleteRetrieveResponse parses an HTTP response from a ApiAuthEduteamsCompleteRetrieveWithResponse call
@@ -315910,6 +315902,22 @@ func ParseProjectsSubmitAnswersResponse(rsp *http.Response) (*ProjectsSubmitAnsw
 	return response, nil
 }
 
+// ParseProjectsSyncUserRolesResponse parses an HTTP response from a ProjectsSyncUserRolesWithResponse call
+func ParseProjectsSyncUserRolesResponse(rsp *http.Response) (*ProjectsSyncUserRolesResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProjectsSyncUserRolesResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
 // ParseProjectsUpdateUserResponse parses an HTTP response from a ProjectsUpdateUserWithResponse call
 func ParseProjectsUpdateUserResponse(rsp *http.Response) (*ProjectsUpdateUserResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -325368,22 +325376,6 @@ func ParseVmwareVirtualMachineWebConsoleRetrieveResponse(rsp *http.Response) (*V
 		}
 		response.JSON200 = &dest
 
-	}
-
-	return response, nil
-}
-
-// ParseProjectsSyncUserRolesResponse parses an HTTP response from a ProjectsSyncUserRolesWithResponse call
-func ParseProjectsSyncUserRolesResponse(rsp *http.Response) (*ProjectsSyncUserRolesResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &ProjectsSyncUserRolesResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
 	}
 
 	return response, nil
