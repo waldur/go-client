@@ -13834,6 +13834,7 @@ type ConstanceSettings struct {
 	CURRENCYNAME                                   *string              `json:"CURRENCY_NAME,omitempty"`
 	DEACTIVATEUSERIFNOROLES                        *bool                `json:"DEACTIVATE_USER_IF_NO_ROLES,omitempty"`
 	DEFAULTIDP                                     *string              `json:"DEFAULT_IDP,omitempty"`
+	DISABLEDOFFERINGTYPES                          *[]string            `json:"DISABLED_OFFERING_TYPES,omitempty"`
 	DISABLEDARKTHEME                               *bool                `json:"DISABLE_DARK_THEME,omitempty"`
 	DISABLESENDINGNOTIFICATIONSABOUTRESOURCEUPDATE *bool                `json:"DISABLE_SENDING_NOTIFICATIONS_ABOUT_RESOURCE_UPDATE,omitempty"`
 	DOCKERCLIENT                                   *string              `json:"DOCKER_CLIENT,omitempty"`
@@ -13985,6 +13986,7 @@ type ConstanceSettingsRequest struct {
 	CURRENCYNAME                                   *string              `json:"CURRENCY_NAME,omitempty"`
 	DEACTIVATEUSERIFNOROLES                        *bool                `json:"DEACTIVATE_USER_IF_NO_ROLES,omitempty"`
 	DEFAULTIDP                                     *string              `json:"DEFAULT_IDP,omitempty"`
+	DISABLEDOFFERINGTYPES                          *[]string            `json:"DISABLED_OFFERING_TYPES,omitempty"`
 	DISABLEDARKTHEME                               *bool                `json:"DISABLE_DARK_THEME,omitempty"`
 	DISABLESENDINGNOTIFICATIONSABOUTRESOURCEUPDATE *bool                `json:"DISABLE_SENDING_NOTIFICATIONS_ABOUT_RESOURCE_UPDATE,omitempty"`
 	DOCKERCLIENT                                   *string              `json:"DOCKER_CLIENT,omitempty"`
@@ -14136,6 +14138,7 @@ type ConstanceSettingsRequestForm struct {
 	CURRENCYNAME                                   *string              `json:"CURRENCY_NAME,omitempty"`
 	DEACTIVATEUSERIFNOROLES                        *bool                `json:"DEACTIVATE_USER_IF_NO_ROLES,omitempty"`
 	DEFAULTIDP                                     *string              `json:"DEFAULT_IDP,omitempty"`
+	DISABLEDOFFERINGTYPES                          *[]string            `json:"DISABLED_OFFERING_TYPES,omitempty"`
 	DISABLEDARKTHEME                               *bool                `json:"DISABLE_DARK_THEME,omitempty"`
 	DISABLESENDINGNOTIFICATIONSABOUTRESOURCEUPDATE *bool                `json:"DISABLE_SENDING_NOTIFICATIONS_ABOUT_RESOURCE_UPDATE,omitempty"`
 	DOCKERCLIENT                                   *string              `json:"DOCKER_CLIENT,omitempty"`
@@ -14287,6 +14290,7 @@ type ConstanceSettingsRequestMultipart struct {
 	CURRENCYNAME                                   *string              `json:"CURRENCY_NAME,omitempty"`
 	DEACTIVATEUSERIFNOROLES                        *bool                `json:"DEACTIVATE_USER_IF_NO_ROLES,omitempty"`
 	DEFAULTIDP                                     *string              `json:"DEFAULT_IDP,omitempty"`
+	DISABLEDOFFERINGTYPES                          *[]string            `json:"DISABLED_OFFERING_TYPES,omitempty"`
 	DISABLEDARKTHEME                               *bool                `json:"DISABLE_DARK_THEME,omitempty"`
 	DISABLESENDINGNOTIFICATIONSABOUTRESOURCEUPDATE *bool                `json:"DISABLE_SENDING_NOTIFICATIONS_ABOUT_RESOURCE_UPDATE,omitempty"`
 	DOCKERCLIENT                                   *string              `json:"DOCKER_CLIENT,omitempty"`
