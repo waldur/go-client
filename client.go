@@ -23243,6 +23243,12 @@ type ProposalApproveRequest struct {
 	AllocationComment *string `json:"allocation_comment,omitempty"`
 }
 
+// ProposalChecklistAnswerSubmitResponse defines model for ProposalChecklistAnswerSubmitResponse.
+type ProposalChecklistAnswerSubmitResponse struct {
+	Completion ChecklistCompletionReviewer `json:"completion"`
+	Detail     string                      `json:"detail"`
+}
+
 // ProposalDocumentation defines model for ProposalDocumentation.
 type ProposalDocumentation struct {
 	Created *time.Time `json:"created,omitempty"`
@@ -31749,6 +31755,18 @@ type MarketplaceOfferingUsersCountParamsO string
 // MarketplaceOfferingUsersCountParamsState defines parameters for MarketplaceOfferingUsersCount.
 type MarketplaceOfferingUsersCountParamsState string
 
+// MarketplaceOfferingUsersChecklistTemplateRetrieveParams defines parameters for MarketplaceOfferingUsersChecklistTemplateRetrieve.
+type MarketplaceOfferingUsersChecklistTemplateRetrieveParams struct {
+	// ParentUuid UUID of the parent object (e.g., customer UUID for new projects)
+	ParentUuid openapi_types.UUID `form:"parent_uuid" json:"parent_uuid"`
+}
+
+// MarketplaceOfferingUsersChecklistTemplateCountParams defines parameters for MarketplaceOfferingUsersChecklistTemplateCount.
+type MarketplaceOfferingUsersChecklistTemplateCountParams struct {
+	// ParentUuid UUID of the parent object (e.g., customer UUID for new projects)
+	ParentUuid openapi_types.UUID `form:"parent_uuid" json:"parent_uuid"`
+}
+
 // MarketplaceOfferingUsersRetrieveParams defines parameters for MarketplaceOfferingUsersRetrieve.
 type MarketplaceOfferingUsersRetrieveParams struct {
 	Field *[]MarketplaceOfferingUsersRetrieveParamsField `form:"field,omitempty" json:"field,omitempty"`
@@ -35076,6 +35094,18 @@ type OnboardingVerificationsCountParams struct {
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 }
 
+// OnboardingVerificationsChecklistTemplateRetrieveParams defines parameters for OnboardingVerificationsChecklistTemplateRetrieve.
+type OnboardingVerificationsChecklistTemplateRetrieveParams struct {
+	// ParentUuid UUID of the parent object (e.g., customer UUID for new projects)
+	ParentUuid openapi_types.UUID `form:"parent_uuid" json:"parent_uuid"`
+}
+
+// OnboardingVerificationsChecklistTemplateCountParams defines parameters for OnboardingVerificationsChecklistTemplateCount.
+type OnboardingVerificationsChecklistTemplateCountParams struct {
+	// ParentUuid UUID of the parent object (e.g., customer UUID for new projects)
+	ParentUuid openapi_types.UUID `form:"parent_uuid" json:"parent_uuid"`
+}
+
 // OnboardingVerificationsSubmitAnswersJSONBody defines parameters for OnboardingVerificationsSubmitAnswers.
 type OnboardingVerificationsSubmitAnswersJSONBody = []AnswerSubmitRequest
 
@@ -36951,6 +36981,18 @@ type ProjectsCountParams struct {
 // ProjectsCountParamsO defines parameters for ProjectsCount.
 type ProjectsCountParamsO string
 
+// ProjectsChecklistTemplateRetrieveParams defines parameters for ProjectsChecklistTemplateRetrieve.
+type ProjectsChecklistTemplateRetrieveParams struct {
+	// ParentUuid UUID of the parent object (e.g., customer UUID for new projects)
+	ParentUuid openapi_types.UUID `form:"parent_uuid" json:"parent_uuid"`
+}
+
+// ProjectsChecklistTemplateCountParams defines parameters for ProjectsChecklistTemplateCount.
+type ProjectsChecklistTemplateCountParams struct {
+	// ParentUuid UUID of the parent object (e.g., customer UUID for new projects)
+	ParentUuid openapi_types.UUID `form:"parent_uuid" json:"parent_uuid"`
+}
+
 // ProjectsOtherUsersListParams defines parameters for ProjectsOtherUsersList.
 type ProjectsOtherUsersListParams struct {
 	// AgreementDate Agreement date after
@@ -37193,6 +37235,18 @@ type ProposalProposalsCountParamsO string
 
 // ProposalProposalsCountParamsState defines parameters for ProposalProposalsCount.
 type ProposalProposalsCountParamsState string
+
+// ProposalProposalsChecklistTemplateRetrieveParams defines parameters for ProposalProposalsChecklistTemplateRetrieve.
+type ProposalProposalsChecklistTemplateRetrieveParams struct {
+	// ParentUuid UUID of the parent object (e.g., customer UUID for new projects)
+	ParentUuid openapi_types.UUID `form:"parent_uuid" json:"parent_uuid"`
+}
+
+// ProposalProposalsChecklistTemplateCountParams defines parameters for ProposalProposalsChecklistTemplateCount.
+type ProposalProposalsChecklistTemplateCountParams struct {
+	// ParentUuid UUID of the parent object (e.g., customer UUID for new projects)
+	ParentUuid openapi_types.UUID `form:"parent_uuid" json:"parent_uuid"`
+}
 
 // ProposalProposalsListUsersListParams defines parameters for ProposalProposalsListUsersList.
 type ProposalProposalsListUsersListParams struct {
@@ -49930,10 +49984,10 @@ type ClientInterface interface {
 	MarketplaceOfferingUsersCreate(ctx context.Context, body MarketplaceOfferingUsersCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceOfferingUsersChecklistTemplateRetrieve request
-	MarketplaceOfferingUsersChecklistTemplateRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+	MarketplaceOfferingUsersChecklistTemplateRetrieve(ctx context.Context, params *MarketplaceOfferingUsersChecklistTemplateRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceOfferingUsersChecklistTemplateCount request
-	MarketplaceOfferingUsersChecklistTemplateCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+	MarketplaceOfferingUsersChecklistTemplateCount(ctx context.Context, params *MarketplaceOfferingUsersChecklistTemplateCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceOfferingUsersDestroy request
 	MarketplaceOfferingUsersDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -51538,10 +51592,10 @@ type ClientInterface interface {
 	OnboardingVerificationsCreate(ctx context.Context, body OnboardingVerificationsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OnboardingVerificationsChecklistTemplateRetrieve request
-	OnboardingVerificationsChecklistTemplateRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+	OnboardingVerificationsChecklistTemplateRetrieve(ctx context.Context, params *OnboardingVerificationsChecklistTemplateRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OnboardingVerificationsChecklistTemplateCount request
-	OnboardingVerificationsChecklistTemplateCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+	OnboardingVerificationsChecklistTemplateCount(ctx context.Context, params *OnboardingVerificationsChecklistTemplateCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OnboardingVerificationsStartVerificationWithBody request with any body
 	OnboardingVerificationsStartVerificationWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -52432,10 +52486,10 @@ type ClientInterface interface {
 	ProjectsCreateWithFormdataBody(ctx context.Context, body ProjectsCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProjectsChecklistTemplateRetrieve request
-	ProjectsChecklistTemplateRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ProjectsChecklistTemplateRetrieve(ctx context.Context, params *ProjectsChecklistTemplateRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProjectsChecklistTemplateCount request
-	ProjectsChecklistTemplateCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ProjectsChecklistTemplateCount(ctx context.Context, params *ProjectsChecklistTemplateCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProjectsOtherUsersList request
 	ProjectsOtherUsersList(ctx context.Context, projectUuid openapi_types.UUID, params *ProjectsOtherUsersListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -52551,10 +52605,10 @@ type ClientInterface interface {
 	ProposalProposalsCreate(ctx context.Context, body ProposalProposalsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProposalProposalsChecklistTemplateRetrieve request
-	ProposalProposalsChecklistTemplateRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ProposalProposalsChecklistTemplateRetrieve(ctx context.Context, params *ProposalProposalsChecklistTemplateRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProposalProposalsChecklistTemplateCount request
-	ProposalProposalsChecklistTemplateCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ProposalProposalsChecklistTemplateCount(ctx context.Context, params *ProposalProposalsChecklistTemplateCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProposalProposalsDestroy request
 	ProposalProposalsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -63420,8 +63474,8 @@ func (c *Client) MarketplaceOfferingUsersCreate(ctx context.Context, body Market
 	return c.Client.Do(req)
 }
 
-func (c *Client) MarketplaceOfferingUsersChecklistTemplateRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceOfferingUsersChecklistTemplateRetrieveRequest(c.Server)
+func (c *Client) MarketplaceOfferingUsersChecklistTemplateRetrieve(ctx context.Context, params *MarketplaceOfferingUsersChecklistTemplateRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingUsersChecklistTemplateRetrieveRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -63432,8 +63486,8 @@ func (c *Client) MarketplaceOfferingUsersChecklistTemplateRetrieve(ctx context.C
 	return c.Client.Do(req)
 }
 
-func (c *Client) MarketplaceOfferingUsersChecklistTemplateCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceOfferingUsersChecklistTemplateCountRequest(c.Server)
+func (c *Client) MarketplaceOfferingUsersChecklistTemplateCount(ctx context.Context, params *MarketplaceOfferingUsersChecklistTemplateCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingUsersChecklistTemplateCountRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -70488,8 +70542,8 @@ func (c *Client) OnboardingVerificationsCreate(ctx context.Context, body Onboard
 	return c.Client.Do(req)
 }
 
-func (c *Client) OnboardingVerificationsChecklistTemplateRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOnboardingVerificationsChecklistTemplateRetrieveRequest(c.Server)
+func (c *Client) OnboardingVerificationsChecklistTemplateRetrieve(ctx context.Context, params *OnboardingVerificationsChecklistTemplateRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOnboardingVerificationsChecklistTemplateRetrieveRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -70500,8 +70554,8 @@ func (c *Client) OnboardingVerificationsChecklistTemplateRetrieve(ctx context.Co
 	return c.Client.Do(req)
 }
 
-func (c *Client) OnboardingVerificationsChecklistTemplateCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOnboardingVerificationsChecklistTemplateCountRequest(c.Server)
+func (c *Client) OnboardingVerificationsChecklistTemplateCount(ctx context.Context, params *OnboardingVerificationsChecklistTemplateCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOnboardingVerificationsChecklistTemplateCountRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -74400,8 +74454,8 @@ func (c *Client) ProjectsCreateWithFormdataBody(ctx context.Context, body Projec
 	return c.Client.Do(req)
 }
 
-func (c *Client) ProjectsChecklistTemplateRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewProjectsChecklistTemplateRetrieveRequest(c.Server)
+func (c *Client) ProjectsChecklistTemplateRetrieve(ctx context.Context, params *ProjectsChecklistTemplateRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProjectsChecklistTemplateRetrieveRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -74412,8 +74466,8 @@ func (c *Client) ProjectsChecklistTemplateRetrieve(ctx context.Context, reqEdito
 	return c.Client.Do(req)
 }
 
-func (c *Client) ProjectsChecklistTemplateCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewProjectsChecklistTemplateCountRequest(c.Server)
+func (c *Client) ProjectsChecklistTemplateCount(ctx context.Context, params *ProjectsChecklistTemplateCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProjectsChecklistTemplateCountRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -74928,8 +74982,8 @@ func (c *Client) ProposalProposalsCreate(ctx context.Context, body ProposalPropo
 	return c.Client.Do(req)
 }
 
-func (c *Client) ProposalProposalsChecklistTemplateRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewProposalProposalsChecklistTemplateRetrieveRequest(c.Server)
+func (c *Client) ProposalProposalsChecklistTemplateRetrieve(ctx context.Context, params *ProposalProposalsChecklistTemplateRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProposalsChecklistTemplateRetrieveRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -74940,8 +74994,8 @@ func (c *Client) ProposalProposalsChecklistTemplateRetrieve(ctx context.Context,
 	return c.Client.Do(req)
 }
 
-func (c *Client) ProposalProposalsChecklistTemplateCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewProposalProposalsChecklistTemplateCountRequest(c.Server)
+func (c *Client) ProposalProposalsChecklistTemplateCount(ctx context.Context, params *ProposalProposalsChecklistTemplateCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProposalsChecklistTemplateCountRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -128904,7 +128958,7 @@ func NewMarketplaceOfferingUsersCreateRequestWithBody(server string, contentType
 }
 
 // NewMarketplaceOfferingUsersChecklistTemplateRetrieveRequest generates requests for MarketplaceOfferingUsersChecklistTemplateRetrieve
-func NewMarketplaceOfferingUsersChecklistTemplateRetrieveRequest(server string) (*http.Request, error) {
+func NewMarketplaceOfferingUsersChecklistTemplateRetrieveRequest(server string, params *MarketplaceOfferingUsersChecklistTemplateRetrieveParams) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -128920,6 +128974,24 @@ func NewMarketplaceOfferingUsersChecklistTemplateRetrieveRequest(server string) 
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "parent_uuid", runtime.ParamLocationQuery, params.ParentUuid); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
 	}
 
 	req, err := http.NewRequest("GET", queryURL.String(), nil)
@@ -128931,7 +129003,7 @@ func NewMarketplaceOfferingUsersChecklistTemplateRetrieveRequest(server string) 
 }
 
 // NewMarketplaceOfferingUsersChecklistTemplateCountRequest generates requests for MarketplaceOfferingUsersChecklistTemplateCount
-func NewMarketplaceOfferingUsersChecklistTemplateCountRequest(server string) (*http.Request, error) {
+func NewMarketplaceOfferingUsersChecklistTemplateCountRequest(server string, params *MarketplaceOfferingUsersChecklistTemplateCountParams) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -128947,6 +129019,24 @@ func NewMarketplaceOfferingUsersChecklistTemplateCountRequest(server string) (*h
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "parent_uuid", runtime.ParamLocationQuery, params.ParentUuid); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
 	}
 
 	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
@@ -164403,7 +164493,7 @@ func NewOnboardingVerificationsCreateRequestWithBody(server string, contentType 
 }
 
 // NewOnboardingVerificationsChecklistTemplateRetrieveRequest generates requests for OnboardingVerificationsChecklistTemplateRetrieve
-func NewOnboardingVerificationsChecklistTemplateRetrieveRequest(server string) (*http.Request, error) {
+func NewOnboardingVerificationsChecklistTemplateRetrieveRequest(server string, params *OnboardingVerificationsChecklistTemplateRetrieveParams) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -164419,6 +164509,24 @@ func NewOnboardingVerificationsChecklistTemplateRetrieveRequest(server string) (
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "parent_uuid", runtime.ParamLocationQuery, params.ParentUuid); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
 	}
 
 	req, err := http.NewRequest("GET", queryURL.String(), nil)
@@ -164430,7 +164538,7 @@ func NewOnboardingVerificationsChecklistTemplateRetrieveRequest(server string) (
 }
 
 // NewOnboardingVerificationsChecklistTemplateCountRequest generates requests for OnboardingVerificationsChecklistTemplateCount
-func NewOnboardingVerificationsChecklistTemplateCountRequest(server string) (*http.Request, error) {
+func NewOnboardingVerificationsChecklistTemplateCountRequest(server string, params *OnboardingVerificationsChecklistTemplateCountParams) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -164446,6 +164554,24 @@ func NewOnboardingVerificationsChecklistTemplateCountRequest(server string) (*ht
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "parent_uuid", runtime.ParamLocationQuery, params.ParentUuid); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
 	}
 
 	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
@@ -188302,7 +188428,7 @@ func NewProjectsCreateRequestWithBody(server string, contentType string, body io
 }
 
 // NewProjectsChecklistTemplateRetrieveRequest generates requests for ProjectsChecklistTemplateRetrieve
-func NewProjectsChecklistTemplateRetrieveRequest(server string) (*http.Request, error) {
+func NewProjectsChecklistTemplateRetrieveRequest(server string, params *ProjectsChecklistTemplateRetrieveParams) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -188318,6 +188444,24 @@ func NewProjectsChecklistTemplateRetrieveRequest(server string) (*http.Request, 
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "parent_uuid", runtime.ParamLocationQuery, params.ParentUuid); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
 	}
 
 	req, err := http.NewRequest("GET", queryURL.String(), nil)
@@ -188329,7 +188473,7 @@ func NewProjectsChecklistTemplateRetrieveRequest(server string) (*http.Request, 
 }
 
 // NewProjectsChecklistTemplateCountRequest generates requests for ProjectsChecklistTemplateCount
-func NewProjectsChecklistTemplateCountRequest(server string) (*http.Request, error) {
+func NewProjectsChecklistTemplateCountRequest(server string, params *ProjectsChecklistTemplateCountParams) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -188345,6 +188489,24 @@ func NewProjectsChecklistTemplateCountRequest(server string) (*http.Request, err
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "parent_uuid", runtime.ParamLocationQuery, params.ParentUuid); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
 	}
 
 	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
@@ -190741,7 +190903,7 @@ func NewProposalProposalsCreateRequestWithBody(server string, contentType string
 }
 
 // NewProposalProposalsChecklistTemplateRetrieveRequest generates requests for ProposalProposalsChecklistTemplateRetrieve
-func NewProposalProposalsChecklistTemplateRetrieveRequest(server string) (*http.Request, error) {
+func NewProposalProposalsChecklistTemplateRetrieveRequest(server string, params *ProposalProposalsChecklistTemplateRetrieveParams) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -190757,6 +190919,24 @@ func NewProposalProposalsChecklistTemplateRetrieveRequest(server string) (*http.
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "parent_uuid", runtime.ParamLocationQuery, params.ParentUuid); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
 	}
 
 	req, err := http.NewRequest("GET", queryURL.String(), nil)
@@ -190768,7 +190948,7 @@ func NewProposalProposalsChecklistTemplateRetrieveRequest(server string) (*http.
 }
 
 // NewProposalProposalsChecklistTemplateCountRequest generates requests for ProposalProposalsChecklistTemplateCount
-func NewProposalProposalsChecklistTemplateCountRequest(server string) (*http.Request, error) {
+func NewProposalProposalsChecklistTemplateCountRequest(server string, params *ProposalProposalsChecklistTemplateCountParams) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -190784,6 +190964,24 @@ func NewProposalProposalsChecklistTemplateCountRequest(server string) (*http.Req
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "parent_uuid", runtime.ParamLocationQuery, params.ParentUuid); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
 	}
 
 	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
@@ -226503,10 +226701,10 @@ type ClientWithResponsesInterface interface {
 	MarketplaceOfferingUsersCreateWithResponse(ctx context.Context, body MarketplaceOfferingUsersCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersCreateResponse, error)
 
 	// MarketplaceOfferingUsersChecklistTemplateRetrieveWithResponse request
-	MarketplaceOfferingUsersChecklistTemplateRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersChecklistTemplateRetrieveResponse, error)
+	MarketplaceOfferingUsersChecklistTemplateRetrieveWithResponse(ctx context.Context, params *MarketplaceOfferingUsersChecklistTemplateRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersChecklistTemplateRetrieveResponse, error)
 
 	// MarketplaceOfferingUsersChecklistTemplateCountWithResponse request
-	MarketplaceOfferingUsersChecklistTemplateCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersChecklistTemplateCountResponse, error)
+	MarketplaceOfferingUsersChecklistTemplateCountWithResponse(ctx context.Context, params *MarketplaceOfferingUsersChecklistTemplateCountParams, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersChecklistTemplateCountResponse, error)
 
 	// MarketplaceOfferingUsersDestroyWithResponse request
 	MarketplaceOfferingUsersDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersDestroyResponse, error)
@@ -228111,10 +228309,10 @@ type ClientWithResponsesInterface interface {
 	OnboardingVerificationsCreateWithResponse(ctx context.Context, body OnboardingVerificationsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*OnboardingVerificationsCreateResponse, error)
 
 	// OnboardingVerificationsChecklistTemplateRetrieveWithResponse request
-	OnboardingVerificationsChecklistTemplateRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*OnboardingVerificationsChecklistTemplateRetrieveResponse, error)
+	OnboardingVerificationsChecklistTemplateRetrieveWithResponse(ctx context.Context, params *OnboardingVerificationsChecklistTemplateRetrieveParams, reqEditors ...RequestEditorFn) (*OnboardingVerificationsChecklistTemplateRetrieveResponse, error)
 
 	// OnboardingVerificationsChecklistTemplateCountWithResponse request
-	OnboardingVerificationsChecklistTemplateCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*OnboardingVerificationsChecklistTemplateCountResponse, error)
+	OnboardingVerificationsChecklistTemplateCountWithResponse(ctx context.Context, params *OnboardingVerificationsChecklistTemplateCountParams, reqEditors ...RequestEditorFn) (*OnboardingVerificationsChecklistTemplateCountResponse, error)
 
 	// OnboardingVerificationsStartVerificationWithBodyWithResponse request with any body
 	OnboardingVerificationsStartVerificationWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OnboardingVerificationsStartVerificationResponse, error)
@@ -229005,10 +229203,10 @@ type ClientWithResponsesInterface interface {
 	ProjectsCreateWithFormdataBodyWithResponse(ctx context.Context, body ProjectsCreateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ProjectsCreateResponse, error)
 
 	// ProjectsChecklistTemplateRetrieveWithResponse request
-	ProjectsChecklistTemplateRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ProjectsChecklistTemplateRetrieveResponse, error)
+	ProjectsChecklistTemplateRetrieveWithResponse(ctx context.Context, params *ProjectsChecklistTemplateRetrieveParams, reqEditors ...RequestEditorFn) (*ProjectsChecklistTemplateRetrieveResponse, error)
 
 	// ProjectsChecklistTemplateCountWithResponse request
-	ProjectsChecklistTemplateCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ProjectsChecklistTemplateCountResponse, error)
+	ProjectsChecklistTemplateCountWithResponse(ctx context.Context, params *ProjectsChecklistTemplateCountParams, reqEditors ...RequestEditorFn) (*ProjectsChecklistTemplateCountResponse, error)
 
 	// ProjectsOtherUsersListWithResponse request
 	ProjectsOtherUsersListWithResponse(ctx context.Context, projectUuid openapi_types.UUID, params *ProjectsOtherUsersListParams, reqEditors ...RequestEditorFn) (*ProjectsOtherUsersListResponse, error)
@@ -229124,10 +229322,10 @@ type ClientWithResponsesInterface interface {
 	ProposalProposalsCreateWithResponse(ctx context.Context, body ProposalProposalsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProposalsCreateResponse, error)
 
 	// ProposalProposalsChecklistTemplateRetrieveWithResponse request
-	ProposalProposalsChecklistTemplateRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ProposalProposalsChecklistTemplateRetrieveResponse, error)
+	ProposalProposalsChecklistTemplateRetrieveWithResponse(ctx context.Context, params *ProposalProposalsChecklistTemplateRetrieveParams, reqEditors ...RequestEditorFn) (*ProposalProposalsChecklistTemplateRetrieveResponse, error)
 
 	// ProposalProposalsChecklistTemplateCountWithResponse request
-	ProposalProposalsChecklistTemplateCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ProposalProposalsChecklistTemplateCountResponse, error)
+	ProposalProposalsChecklistTemplateCountWithResponse(ctx context.Context, params *ProposalProposalsChecklistTemplateCountParams, reqEditors ...RequestEditorFn) (*ProposalProposalsChecklistTemplateCountResponse, error)
 
 	// ProposalProposalsDestroyWithResponse request
 	ProposalProposalsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProposalsDestroyResponse, error)
@@ -243328,6 +243526,7 @@ type MarketplaceOfferingUsersChecklistTemplateRetrieveResponse struct {
 	HTTPResponse *http.Response
 	JSON200      *ChecklistTemplate
 	JSON400      *interface{}
+	JSON404      *interface{}
 }
 
 // Status returns HTTPResponse.Status
@@ -252653,6 +252852,7 @@ type OnboardingVerificationsChecklistTemplateRetrieveResponse struct {
 	HTTPResponse *http.Response
 	JSON200      *ChecklistTemplate
 	JSON400      *interface{}
+	JSON404      *interface{}
 }
 
 // Status returns HTTPResponse.Status
@@ -257879,6 +258079,7 @@ type ProjectsChecklistTemplateRetrieveResponse struct {
 	HTTPResponse *http.Response
 	JSON200      *ChecklistTemplate
 	JSON400      *interface{}
+	JSON404      *interface{}
 }
 
 // Status returns HTTPResponse.Status
@@ -258565,6 +258766,7 @@ type ProposalProposalsChecklistTemplateRetrieveResponse struct {
 	HTTPResponse *http.Response
 	JSON200      *ChecklistTemplate
 	JSON400      *interface{}
+	JSON404      *interface{}
 }
 
 // Status returns HTTPResponse.Status
@@ -259029,7 +259231,7 @@ func (r ProposalProposalsSubmitResponse) StatusCode() int {
 type ProposalProposalsSubmitAnswersResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *AnswerSubmitResponse
+	JSON200      *ProposalChecklistAnswerSubmitResponse
 	JSON400      *interface{}
 	JSON404      *interface{}
 }
@@ -274261,8 +274463,8 @@ func (c *ClientWithResponses) MarketplaceOfferingUsersCreateWithResponse(ctx con
 }
 
 // MarketplaceOfferingUsersChecklistTemplateRetrieveWithResponse request returning *MarketplaceOfferingUsersChecklistTemplateRetrieveResponse
-func (c *ClientWithResponses) MarketplaceOfferingUsersChecklistTemplateRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersChecklistTemplateRetrieveResponse, error) {
-	rsp, err := c.MarketplaceOfferingUsersChecklistTemplateRetrieve(ctx, reqEditors...)
+func (c *ClientWithResponses) MarketplaceOfferingUsersChecklistTemplateRetrieveWithResponse(ctx context.Context, params *MarketplaceOfferingUsersChecklistTemplateRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersChecklistTemplateRetrieveResponse, error) {
+	rsp, err := c.MarketplaceOfferingUsersChecklistTemplateRetrieve(ctx, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -274270,8 +274472,8 @@ func (c *ClientWithResponses) MarketplaceOfferingUsersChecklistTemplateRetrieveW
 }
 
 // MarketplaceOfferingUsersChecklistTemplateCountWithResponse request returning *MarketplaceOfferingUsersChecklistTemplateCountResponse
-func (c *ClientWithResponses) MarketplaceOfferingUsersChecklistTemplateCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersChecklistTemplateCountResponse, error) {
-	rsp, err := c.MarketplaceOfferingUsersChecklistTemplateCount(ctx, reqEditors...)
+func (c *ClientWithResponses) MarketplaceOfferingUsersChecklistTemplateCountWithResponse(ctx context.Context, params *MarketplaceOfferingUsersChecklistTemplateCountParams, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersChecklistTemplateCountResponse, error) {
+	rsp, err := c.MarketplaceOfferingUsersChecklistTemplateCount(ctx, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -279403,8 +279605,8 @@ func (c *ClientWithResponses) OnboardingVerificationsCreateWithResponse(ctx cont
 }
 
 // OnboardingVerificationsChecklistTemplateRetrieveWithResponse request returning *OnboardingVerificationsChecklistTemplateRetrieveResponse
-func (c *ClientWithResponses) OnboardingVerificationsChecklistTemplateRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*OnboardingVerificationsChecklistTemplateRetrieveResponse, error) {
-	rsp, err := c.OnboardingVerificationsChecklistTemplateRetrieve(ctx, reqEditors...)
+func (c *ClientWithResponses) OnboardingVerificationsChecklistTemplateRetrieveWithResponse(ctx context.Context, params *OnboardingVerificationsChecklistTemplateRetrieveParams, reqEditors ...RequestEditorFn) (*OnboardingVerificationsChecklistTemplateRetrieveResponse, error) {
+	rsp, err := c.OnboardingVerificationsChecklistTemplateRetrieve(ctx, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -279412,8 +279614,8 @@ func (c *ClientWithResponses) OnboardingVerificationsChecklistTemplateRetrieveWi
 }
 
 // OnboardingVerificationsChecklistTemplateCountWithResponse request returning *OnboardingVerificationsChecklistTemplateCountResponse
-func (c *ClientWithResponses) OnboardingVerificationsChecklistTemplateCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*OnboardingVerificationsChecklistTemplateCountResponse, error) {
-	rsp, err := c.OnboardingVerificationsChecklistTemplateCount(ctx, reqEditors...)
+func (c *ClientWithResponses) OnboardingVerificationsChecklistTemplateCountWithResponse(ctx context.Context, params *OnboardingVerificationsChecklistTemplateCountParams, reqEditors ...RequestEditorFn) (*OnboardingVerificationsChecklistTemplateCountResponse, error) {
+	rsp, err := c.OnboardingVerificationsChecklistTemplateCount(ctx, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -282253,8 +282455,8 @@ func (c *ClientWithResponses) ProjectsCreateWithFormdataBodyWithResponse(ctx con
 }
 
 // ProjectsChecklistTemplateRetrieveWithResponse request returning *ProjectsChecklistTemplateRetrieveResponse
-func (c *ClientWithResponses) ProjectsChecklistTemplateRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ProjectsChecklistTemplateRetrieveResponse, error) {
-	rsp, err := c.ProjectsChecklistTemplateRetrieve(ctx, reqEditors...)
+func (c *ClientWithResponses) ProjectsChecklistTemplateRetrieveWithResponse(ctx context.Context, params *ProjectsChecklistTemplateRetrieveParams, reqEditors ...RequestEditorFn) (*ProjectsChecklistTemplateRetrieveResponse, error) {
+	rsp, err := c.ProjectsChecklistTemplateRetrieve(ctx, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -282262,8 +282464,8 @@ func (c *ClientWithResponses) ProjectsChecklistTemplateRetrieveWithResponse(ctx 
 }
 
 // ProjectsChecklistTemplateCountWithResponse request returning *ProjectsChecklistTemplateCountResponse
-func (c *ClientWithResponses) ProjectsChecklistTemplateCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ProjectsChecklistTemplateCountResponse, error) {
-	rsp, err := c.ProjectsChecklistTemplateCount(ctx, reqEditors...)
+func (c *ClientWithResponses) ProjectsChecklistTemplateCountWithResponse(ctx context.Context, params *ProjectsChecklistTemplateCountParams, reqEditors ...RequestEditorFn) (*ProjectsChecklistTemplateCountResponse, error) {
+	rsp, err := c.ProjectsChecklistTemplateCount(ctx, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -282636,8 +282838,8 @@ func (c *ClientWithResponses) ProposalProposalsCreateWithResponse(ctx context.Co
 }
 
 // ProposalProposalsChecklistTemplateRetrieveWithResponse request returning *ProposalProposalsChecklistTemplateRetrieveResponse
-func (c *ClientWithResponses) ProposalProposalsChecklistTemplateRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ProposalProposalsChecklistTemplateRetrieveResponse, error) {
-	rsp, err := c.ProposalProposalsChecklistTemplateRetrieve(ctx, reqEditors...)
+func (c *ClientWithResponses) ProposalProposalsChecklistTemplateRetrieveWithResponse(ctx context.Context, params *ProposalProposalsChecklistTemplateRetrieveParams, reqEditors ...RequestEditorFn) (*ProposalProposalsChecklistTemplateRetrieveResponse, error) {
+	rsp, err := c.ProposalProposalsChecklistTemplateRetrieve(ctx, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -282645,8 +282847,8 @@ func (c *ClientWithResponses) ProposalProposalsChecklistTemplateRetrieveWithResp
 }
 
 // ProposalProposalsChecklistTemplateCountWithResponse request returning *ProposalProposalsChecklistTemplateCountResponse
-func (c *ClientWithResponses) ProposalProposalsChecklistTemplateCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ProposalProposalsChecklistTemplateCountResponse, error) {
-	rsp, err := c.ProposalProposalsChecklistTemplateCount(ctx, reqEditors...)
+func (c *ClientWithResponses) ProposalProposalsChecklistTemplateCountWithResponse(ctx context.Context, params *ProposalProposalsChecklistTemplateCountParams, reqEditors ...RequestEditorFn) (*ProposalProposalsChecklistTemplateCountResponse, error) {
+	rsp, err := c.ProposalProposalsChecklistTemplateCount(ctx, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -300596,6 +300798,13 @@ func ParseMarketplaceOfferingUsersChecklistTemplateRetrieveResponse(rsp *http.Re
 		}
 		response.JSON400 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
 	}
 
 	return response, nil
@@ -310339,6 +310548,13 @@ func ParseOnboardingVerificationsChecklistTemplateRetrieveResponse(rsp *http.Res
 		}
 		response.JSON400 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
 	}
 
 	return response, nil
@@ -315630,6 +315846,13 @@ func ParseProjectsChecklistTemplateRetrieveResponse(rsp *http.Response) (*Projec
 		}
 		response.JSON400 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
 	}
 
 	return response, nil
@@ -316413,6 +316636,13 @@ func ParseProposalProposalsChecklistTemplateRetrieveResponse(rsp *http.Response)
 		}
 		response.JSON400 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
 	}
 
 	return response, nil
@@ -316938,7 +317168,7 @@ func ParseProposalProposalsSubmitAnswersResponse(rsp *http.Response) (*ProposalP
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest AnswerSubmitResponse
+		var dest ProposalChecklistAnswerSubmitResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
