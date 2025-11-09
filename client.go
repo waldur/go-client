@@ -1311,13 +1311,14 @@ const (
 
 // Defines values for ObservableObjectTypeEnum.
 const (
-	ObservableObjectTypeEnumCourseAccount       ObservableObjectTypeEnum = "course_account"
-	ObservableObjectTypeEnumImportableResources ObservableObjectTypeEnum = "importable_resources"
-	ObservableObjectTypeEnumOfferingUser        ObservableObjectTypeEnum = "offering_user"
-	ObservableObjectTypeEnumOrder               ObservableObjectTypeEnum = "order"
-	ObservableObjectTypeEnumResource            ObservableObjectTypeEnum = "resource"
-	ObservableObjectTypeEnumServiceAccount      ObservableObjectTypeEnum = "service_account"
-	ObservableObjectTypeEnumUserRole            ObservableObjectTypeEnum = "user_role"
+	ObservableObjectTypeEnumCourseAccount          ObservableObjectTypeEnum = "course_account"
+	ObservableObjectTypeEnumImportableResources    ObservableObjectTypeEnum = "importable_resources"
+	ObservableObjectTypeEnumOfferingUser           ObservableObjectTypeEnum = "offering_user"
+	ObservableObjectTypeEnumOrder                  ObservableObjectTypeEnum = "order"
+	ObservableObjectTypeEnumResource               ObservableObjectTypeEnum = "resource"
+	ObservableObjectTypeEnumResourcePeriodicLimits ObservableObjectTypeEnum = "resource_periodic_limits"
+	ObservableObjectTypeEnumServiceAccount         ObservableObjectTypeEnum = "service_account"
+	ObservableObjectTypeEnumUserRole               ObservableObjectTypeEnum = "user_role"
 )
 
 // Defines values for OecdFos2007CodeEnum.
