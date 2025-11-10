@@ -5018,6 +5018,7 @@ const (
 	MarketplaceOfferingUsersListParamsFieldCreated                   MarketplaceOfferingUsersListParamsField = "created"
 	MarketplaceOfferingUsersListParamsFieldCustomerName              MarketplaceOfferingUsersListParamsField = "customer_name"
 	MarketplaceOfferingUsersListParamsFieldCustomerUuid              MarketplaceOfferingUsersListParamsField = "customer_uuid"
+	MarketplaceOfferingUsersListParamsFieldHasComplianceChecklist    MarketplaceOfferingUsersListParamsField = "has_compliance_checklist"
 	MarketplaceOfferingUsersListParamsFieldHasConsent                MarketplaceOfferingUsersListParamsField = "has_consent"
 	MarketplaceOfferingUsersListParamsFieldIsRestricted              MarketplaceOfferingUsersListParamsField = "is_restricted"
 	MarketplaceOfferingUsersListParamsFieldModified                  MarketplaceOfferingUsersListParamsField = "modified"
@@ -5091,6 +5092,7 @@ const (
 	MarketplaceOfferingUsersRetrieveParamsFieldCreated                   MarketplaceOfferingUsersRetrieveParamsField = "created"
 	MarketplaceOfferingUsersRetrieveParamsFieldCustomerName              MarketplaceOfferingUsersRetrieveParamsField = "customer_name"
 	MarketplaceOfferingUsersRetrieveParamsFieldCustomerUuid              MarketplaceOfferingUsersRetrieveParamsField = "customer_uuid"
+	MarketplaceOfferingUsersRetrieveParamsFieldHasComplianceChecklist    MarketplaceOfferingUsersRetrieveParamsField = "has_compliance_checklist"
 	MarketplaceOfferingUsersRetrieveParamsFieldHasConsent                MarketplaceOfferingUsersRetrieveParamsField = "has_consent"
 	MarketplaceOfferingUsersRetrieveParamsFieldIsRestricted              MarketplaceOfferingUsersRetrieveParamsField = "is_restricted"
 	MarketplaceOfferingUsersRetrieveParamsFieldModified                  MarketplaceOfferingUsersRetrieveParamsField = "modified"
@@ -18636,6 +18638,9 @@ type OfferingUser struct {
 	Created      *time.Time          `json:"created,omitempty"`
 	CustomerName *string             `json:"customer_name,omitempty"`
 	CustomerUuid *openapi_types.UUID `json:"customer_uuid,omitempty"`
+
+	// HasComplianceChecklist Check if the offering user has a connected compliance checklist completion.
+	HasComplianceChecklist *bool `json:"has_compliance_checklist,omitempty"`
 
 	// HasConsent Check if the user has active consent for this offering.
 	HasConsent *bool `json:"has_consent,omitempty"`
