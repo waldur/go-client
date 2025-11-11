@@ -1751,14 +1751,15 @@ const (
 
 // Defines values for QuestionTypeEnum.
 const (
-	QuestionTypeEnumBoolean      QuestionTypeEnum = "boolean"
-	QuestionTypeEnumDate         QuestionTypeEnum = "date"
-	QuestionTypeEnumFile         QuestionTypeEnum = "file"
-	QuestionTypeEnumMultiSelect  QuestionTypeEnum = "multi_select"
-	QuestionTypeEnumNumber       QuestionTypeEnum = "number"
-	QuestionTypeEnumSingleSelect QuestionTypeEnum = "single_select"
-	QuestionTypeEnumTextArea     QuestionTypeEnum = "text_area"
-	QuestionTypeEnumTextInput    QuestionTypeEnum = "text_input"
+	QuestionTypeEnumBoolean       QuestionTypeEnum = "boolean"
+	QuestionTypeEnumDate          QuestionTypeEnum = "date"
+	QuestionTypeEnumFile          QuestionTypeEnum = "file"
+	QuestionTypeEnumMultiSelect   QuestionTypeEnum = "multi_select"
+	QuestionTypeEnumMultipleFiles QuestionTypeEnum = "multiple_files"
+	QuestionTypeEnumNumber        QuestionTypeEnum = "number"
+	QuestionTypeEnumSingleSelect  QuestionTypeEnum = "single_select"
+	QuestionTypeEnumTextArea      QuestionTypeEnum = "text_area"
+	QuestionTypeEnumTextInput     QuestionTypeEnum = "text_input"
 )
 
 // Defines values for RancherCatalogScopeType.
@@ -22135,6 +22136,12 @@ type PatchedProviderPlanDetailsRequest struct {
 
 // PatchedQuestionAdminRequest defines model for PatchedQuestionAdminRequest.
 type PatchedQuestionAdminRequest struct {
+	// AllowedFileTypes List of allowed file extensions (e.g., ['.pdf', '.doc', '.docx']). If empty, all file types are allowed.
+	AllowedFileTypes interface{} `json:"allowed_file_types,omitempty"`
+
+	// AllowedMimeTypes List of allowed MIME types (e.g., ['application/pdf', 'application/msword']). If empty, MIME type validation is not enforced. When both extensions and MIME types are specified, files must match both criteria for security.
+	AllowedMimeTypes interface{} `json:"allowed_mime_types,omitempty"`
+
 	// AlwaysRequiresReview This question always requires review regardless of answer
 	AlwaysRequiresReview *bool `json:"always_requires_review,omitempty"`
 
@@ -22151,6 +22158,12 @@ type PatchedQuestionAdminRequest struct {
 
 	// GuidanceOperator Operator to use when comparing answer with guidance_answer_value
 	GuidanceOperator *PatchedQuestionAdminRequest_GuidanceOperator `json:"guidance_operator,omitempty"`
+
+	// MaxFileSizeMb Maximum file size in megabytes. If not set, no size limit is enforced.
+	MaxFileSizeMb *int `json:"max_file_size_mb"`
+
+	// MaxFilesCount Maximum number of files allowed for MULTIPLE_FILES type questions. If not set, no count limit is enforced.
+	MaxFilesCount *int `json:"max_files_count"`
 
 	// MaxValue Maximum value allowed for NUMBER type questions
 	MaxValue *string `json:"max_value"`
@@ -23914,6 +23927,12 @@ type Question struct {
 
 // QuestionAdmin defines model for QuestionAdmin.
 type QuestionAdmin struct {
+	// AllowedFileTypes List of allowed file extensions (e.g., ['.pdf', '.doc', '.docx']). If empty, all file types are allowed.
+	AllowedFileTypes interface{} `json:"allowed_file_types,omitempty"`
+
+	// AllowedMimeTypes List of allowed MIME types (e.g., ['application/pdf', 'application/msword']). If empty, MIME type validation is not enforced. When both extensions and MIME types are specified, files must match both criteria for security.
+	AllowedMimeTypes interface{} `json:"allowed_mime_types,omitempty"`
+
 	// AlwaysRequiresReview This question always requires review regardless of answer
 	AlwaysRequiresReview *bool `json:"always_requires_review,omitempty"`
 
@@ -23932,6 +23951,12 @@ type QuestionAdmin struct {
 
 	// GuidanceOperator Operator to use when comparing answer with guidance_answer_value
 	GuidanceOperator *QuestionAdmin_GuidanceOperator `json:"guidance_operator,omitempty"`
+
+	// MaxFileSizeMb Maximum file size in megabytes. If not set, no size limit is enforced.
+	MaxFileSizeMb *int `json:"max_file_size_mb"`
+
+	// MaxFilesCount Maximum number of files allowed for MULTIPLE_FILES type questions. If not set, no count limit is enforced.
+	MaxFilesCount *int `json:"max_files_count"`
 
 	// MaxValue Maximum value allowed for NUMBER type questions
 	MaxValue *string `json:"max_value"`
@@ -23967,6 +23992,12 @@ type QuestionAdmin_Operator struct {
 
 // QuestionAdminRequest defines model for QuestionAdminRequest.
 type QuestionAdminRequest struct {
+	// AllowedFileTypes List of allowed file extensions (e.g., ['.pdf', '.doc', '.docx']). If empty, all file types are allowed.
+	AllowedFileTypes interface{} `json:"allowed_file_types,omitempty"`
+
+	// AllowedMimeTypes List of allowed MIME types (e.g., ['application/pdf', 'application/msword']). If empty, MIME type validation is not enforced. When both extensions and MIME types are specified, files must match both criteria for security.
+	AllowedMimeTypes interface{} `json:"allowed_mime_types,omitempty"`
+
 	// AlwaysRequiresReview This question always requires review regardless of answer
 	AlwaysRequiresReview *bool `json:"always_requires_review,omitempty"`
 
@@ -23983,6 +24014,12 @@ type QuestionAdminRequest struct {
 
 	// GuidanceOperator Operator to use when comparing answer with guidance_answer_value
 	GuidanceOperator *QuestionAdminRequest_GuidanceOperator `json:"guidance_operator,omitempty"`
+
+	// MaxFileSizeMb Maximum file size in megabytes. If not set, no size limit is enforced.
+	MaxFileSizeMb *int `json:"max_file_size_mb"`
+
+	// MaxFilesCount Maximum number of files allowed for MULTIPLE_FILES type questions. If not set, no count limit is enforced.
+	MaxFilesCount *int `json:"max_files_count"`
 
 	// MaxValue Maximum value allowed for NUMBER type questions
 	MaxValue *string `json:"max_value"`
@@ -24088,8 +24125,19 @@ type QuestionTypeEnum string
 
 // QuestionWithAnswer defines model for QuestionWithAnswer.
 type QuestionWithAnswer struct {
-	Description    *string                 `json:"description,omitempty"`
-	ExistingAnswer *map[string]interface{} `json:"existing_answer"`
+	// AllowedFileTypes List of allowed file extensions (e.g., ['.pdf', '.doc', '.docx']). If empty, all file types are allowed.
+	AllowedFileTypes interface{} `json:"allowed_file_types,omitempty"`
+
+	// AllowedMimeTypes List of allowed MIME types (e.g., ['application/pdf', 'application/msword']). If empty, MIME type validation is not enforced. When both extensions and MIME types are specified, files must match both criteria for security.
+	AllowedMimeTypes interface{}             `json:"allowed_mime_types,omitempty"`
+	Description      *string                 `json:"description,omitempty"`
+	ExistingAnswer   *map[string]interface{} `json:"existing_answer"`
+
+	// MaxFileSizeMb Maximum file size in megabytes. If not set, no size limit is enforced.
+	MaxFileSizeMb *int `json:"max_file_size_mb"`
+
+	// MaxFilesCount Maximum number of files allowed for MULTIPLE_FILES type questions. If not set, no count limit is enforced.
+	MaxFilesCount *int `json:"max_files_count"`
 
 	// MaxValue Maximum value allowed for NUMBER type questions
 	MaxValue *string `json:"max_value"`
@@ -24108,10 +24156,22 @@ type QuestionWithAnswer struct {
 
 // QuestionWithAnswerReviewer defines model for QuestionWithAnswerReviewer.
 type QuestionWithAnswerReviewer struct {
+	// AllowedFileTypes List of allowed file extensions (e.g., ['.pdf', '.doc', '.docx']). If empty, all file types are allowed.
+	AllowedFileTypes interface{} `json:"allowed_file_types,omitempty"`
+
+	// AllowedMimeTypes List of allowed MIME types (e.g., ['application/pdf', 'application/msword']). If empty, MIME type validation is not enforced. When both extensions and MIME types are specified, files must match both criteria for security.
+	AllowedMimeTypes interface{} `json:"allowed_mime_types,omitempty"`
+
 	// AlwaysRequiresReview This question always requires review regardless of answer
 	AlwaysRequiresReview *bool                   `json:"always_requires_review,omitempty"`
 	Description          *string                 `json:"description,omitempty"`
 	ExistingAnswer       *map[string]interface{} `json:"existing_answer"`
+
+	// MaxFileSizeMb Maximum file size in megabytes. If not set, no size limit is enforced.
+	MaxFileSizeMb *int `json:"max_file_size_mb"`
+
+	// MaxFilesCount Maximum number of files allowed for MULTIPLE_FILES type questions. If not set, no count limit is enforced.
+	MaxFilesCount *int `json:"max_files_count"`
 
 	// MaxValue Maximum value allowed for NUMBER type questions
 	MaxValue *string `json:"max_value"`
