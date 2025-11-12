@@ -1269,6 +1269,13 @@ const (
 	LimitPeriodEnumTotal     LimitPeriodEnum = "total"
 )
 
+// Defines values for LimitTypeEnum.
+const (
+	GrpTRES     LimitTypeEnum = "GrpTRES"
+	GrpTRESMins LimitTypeEnum = "GrpTRESMins"
+	MaxTRESMins LimitTypeEnum = "MaxTRESMins"
+)
+
 // Defines values for MaintenanceAnnouncementStateEnum.
 const (
 	MaintenanceAnnouncementStateEnumCancelled  MaintenanceAnnouncementStateEnum = "Cancelled"
@@ -1747,6 +1754,12 @@ const (
 	PublicMaintenanceAnnouncementStateEnumCompleted  PublicMaintenanceAnnouncementStateEnum = "Completed"
 	PublicMaintenanceAnnouncementStateEnumInProgress PublicMaintenanceAnnouncementStateEnum = "In progress"
 	PublicMaintenanceAnnouncementStateEnumScheduled  PublicMaintenanceAnnouncementStateEnum = "Scheduled"
+)
+
+// Defines values for QosStrategyEnum.
+const (
+	Progressive QosStrategyEnum = "progressive"
+	Threshold   QosStrategyEnum = "threshold"
 )
 
 // Defines values for QuestionTypeEnum.
@@ -3666,6 +3679,7 @@ const (
 	CustomersListParamsFieldDisplayName                  CustomersListParamsField = "display_name"
 	CustomersListParamsFieldDomain                       CustomersListParamsField = "domain"
 	CustomersListParamsFieldEmail                        CustomersListParamsField = "email"
+	CustomersListParamsFieldGracePeriodDays              CustomersListParamsField = "grace_period_days"
 	CustomersListParamsFieldHomepage                     CustomersListParamsField = "homepage"
 	CustomersListParamsFieldImage                        CustomersListParamsField = "image"
 	CustomersListParamsFieldIsServiceProvider            CustomersListParamsField = "is_service_provider"
@@ -3752,6 +3766,7 @@ const (
 	CustomersRetrieveParamsFieldDisplayName                  CustomersRetrieveParamsField = "display_name"
 	CustomersRetrieveParamsFieldDomain                       CustomersRetrieveParamsField = "domain"
 	CustomersRetrieveParamsFieldEmail                        CustomersRetrieveParamsField = "email"
+	CustomersRetrieveParamsFieldGracePeriodDays              CustomersRetrieveParamsField = "grace_period_days"
 	CustomersRetrieveParamsFieldHomepage                     CustomersRetrieveParamsField = "homepage"
 	CustomersRetrieveParamsFieldImage                        CustomersRetrieveParamsField = "image"
 	CustomersRetrieveParamsFieldIsServiceProvider            CustomersRetrieveParamsField = "is_service_provider"
@@ -5787,6 +5802,7 @@ const (
 	MarketplaceProviderOfferingsListCustomerProjectsListParamsFieldDescription                          MarketplaceProviderOfferingsListCustomerProjectsListParamsField = "description"
 	MarketplaceProviderOfferingsListCustomerProjectsListParamsFieldEndDate                              MarketplaceProviderOfferingsListCustomerProjectsListParamsField = "end_date"
 	MarketplaceProviderOfferingsListCustomerProjectsListParamsFieldEndDateRequestedBy                   MarketplaceProviderOfferingsListCustomerProjectsListParamsField = "end_date_requested_by"
+	MarketplaceProviderOfferingsListCustomerProjectsListParamsFieldGracePeriodDays                      MarketplaceProviderOfferingsListCustomerProjectsListParamsField = "grace_period_days"
 	MarketplaceProviderOfferingsListCustomerProjectsListParamsFieldImage                                MarketplaceProviderOfferingsListCustomerProjectsListParamsField = "image"
 	MarketplaceProviderOfferingsListCustomerProjectsListParamsFieldIsIndustry                           MarketplaceProviderOfferingsListCustomerProjectsListParamsField = "is_industry"
 	MarketplaceProviderOfferingsListCustomerProjectsListParamsFieldIsRemoved                            MarketplaceProviderOfferingsListCustomerProjectsListParamsField = "is_removed"
@@ -7340,6 +7356,7 @@ const (
 	MarketplaceServiceProvidersProjectsListParamsFieldDescription                          MarketplaceServiceProvidersProjectsListParamsField = "description"
 	MarketplaceServiceProvidersProjectsListParamsFieldEndDate                              MarketplaceServiceProvidersProjectsListParamsField = "end_date"
 	MarketplaceServiceProvidersProjectsListParamsFieldEndDateRequestedBy                   MarketplaceServiceProvidersProjectsListParamsField = "end_date_requested_by"
+	MarketplaceServiceProvidersProjectsListParamsFieldGracePeriodDays                      MarketplaceServiceProvidersProjectsListParamsField = "grace_period_days"
 	MarketplaceServiceProvidersProjectsListParamsFieldImage                                MarketplaceServiceProvidersProjectsListParamsField = "image"
 	MarketplaceServiceProvidersProjectsListParamsFieldIsIndustry                           MarketplaceServiceProvidersProjectsListParamsField = "is_industry"
 	MarketplaceServiceProvidersProjectsListParamsFieldIsRemoved                            MarketplaceServiceProvidersProjectsListParamsField = "is_removed"
@@ -9349,6 +9366,7 @@ const (
 	ProjectsListParamsFieldDescription                          ProjectsListParamsField = "description"
 	ProjectsListParamsFieldEndDate                              ProjectsListParamsField = "end_date"
 	ProjectsListParamsFieldEndDateRequestedBy                   ProjectsListParamsField = "end_date_requested_by"
+	ProjectsListParamsFieldGracePeriodDays                      ProjectsListParamsField = "grace_period_days"
 	ProjectsListParamsFieldImage                                ProjectsListParamsField = "image"
 	ProjectsListParamsFieldIsIndustry                           ProjectsListParamsField = "is_industry"
 	ProjectsListParamsFieldIsRemoved                            ProjectsListParamsField = "is_removed"
@@ -9432,6 +9450,7 @@ const (
 	ProjectsRetrieveParamsFieldDescription                          ProjectsRetrieveParamsField = "description"
 	ProjectsRetrieveParamsFieldEndDate                              ProjectsRetrieveParamsField = "end_date"
 	ProjectsRetrieveParamsFieldEndDateRequestedBy                   ProjectsRetrieveParamsField = "end_date_requested_by"
+	ProjectsRetrieveParamsFieldGracePeriodDays                      ProjectsRetrieveParamsField = "grace_period_days"
 	ProjectsRetrieveParamsFieldImage                                ProjectsRetrieveParamsField = "image"
 	ProjectsRetrieveParamsFieldIsIndustry                           ProjectsRetrieveParamsField = "is_industry"
 	ProjectsRetrieveParamsFieldIsRemoved                            ProjectsRetrieveParamsField = "is_removed"
@@ -14627,11 +14646,14 @@ type Customer struct {
 	DisplayName                  *string              `json:"display_name,omitempty"`
 	Domain                       *string              `json:"domain,omitempty"`
 	Email                        *openapi_types.Email `json:"email,omitempty"`
-	Homepage                     *string              `json:"homepage,omitempty"`
-	Image                        *string              `json:"image"`
-	IsServiceProvider            *bool                `json:"is_service_provider,omitempty"`
-	Latitude                     *float64             `json:"latitude"`
-	Longitude                    *float64             `json:"longitude"`
+
+	// GracePeriodDays Number of extra days after project end date before resources are terminated
+	GracePeriodDays   *int     `json:"grace_period_days"`
+	Homepage          *string  `json:"homepage,omitempty"`
+	Image             *string  `json:"image"`
+	IsServiceProvider *bool    `json:"is_service_provider,omitempty"`
+	Latitude          *float64 `json:"latitude"`
+	Longitude         *float64 `json:"longitude"`
 
 	// MaxServiceAccounts Maximum number of service accounts allowed
 	MaxServiceAccounts *int    `json:"max_service_accounts"`
@@ -16297,6 +16319,9 @@ type LexisLinkRequest struct {
 
 // LimitPeriodEnum defines model for LimitPeriodEnum.
 type LimitPeriodEnum string
+
+// LimitTypeEnum defines model for LimitTypeEnum.
+type LimitTypeEnum string
 
 // LinkOpenstackRequest defines model for LinkOpenstackRequest.
 type LinkOpenstackRequest struct {
@@ -21988,10 +22013,13 @@ type PatchedProjectEstimatedCostPolicyRequest struct {
 
 // PatchedProjectRequest defines model for PatchedProjectRequest.
 type PatchedProjectRequest struct {
-	BackendId       *string                                `json:"backend_id,omitempty"`
-	Customer        *string                                `json:"customer,omitempty"`
-	Description     *string                                `json:"description,omitempty"`
-	EndDate         *openapi_types.Date                    `json:"end_date"`
+	BackendId   *string             `json:"backend_id,omitempty"`
+	Customer    *string             `json:"customer,omitempty"`
+	Description *string             `json:"description,omitempty"`
+	EndDate     *openapi_types.Date `json:"end_date"`
+
+	// GracePeriodDays Number of extra days after project end date before resources are terminated. Overrides customer-level setting.
+	GracePeriodDays *int                                   `json:"grace_period_days"`
 	Image           *openapi_types.File                    `json:"image"`
 	IsIndustry      *bool                                  `json:"is_industry,omitempty"`
 	Kind            *KindEnum                              `json:"kind,omitempty"`
@@ -22010,10 +22038,13 @@ type PatchedProjectRequest_OecdFos2007Code struct {
 
 // PatchedProjectRequestForm defines model for PatchedProjectRequestForm.
 type PatchedProjectRequestForm struct {
-	BackendId       *string                                    `json:"backend_id,omitempty"`
-	Customer        *string                                    `json:"customer,omitempty"`
-	Description     *string                                    `json:"description,omitempty"`
-	EndDate         *openapi_types.Date                        `json:"end_date"`
+	BackendId   *string             `json:"backend_id,omitempty"`
+	Customer    *string             `json:"customer,omitempty"`
+	Description *string             `json:"description,omitempty"`
+	EndDate     *openapi_types.Date `json:"end_date"`
+
+	// GracePeriodDays Number of extra days after project end date before resources are terminated. Overrides customer-level setting.
+	GracePeriodDays *int                                       `json:"grace_period_days"`
 	Image           *openapi_types.File                        `json:"image"`
 	IsIndustry      *bool                                      `json:"is_industry,omitempty"`
 	Kind            *KindEnum                                  `json:"kind,omitempty"`
@@ -22032,10 +22063,13 @@ type PatchedProjectRequestForm_OecdFos2007Code struct {
 
 // PatchedProjectRequestMultipart defines model for PatchedProjectRequestMultipart.
 type PatchedProjectRequestMultipart struct {
-	BackendId       *string                                         `json:"backend_id,omitempty"`
-	Customer        *string                                         `json:"customer,omitempty"`
-	Description     *string                                         `json:"description,omitempty"`
-	EndDate         *openapi_types.Date                             `json:"end_date"`
+	BackendId   *string             `json:"backend_id,omitempty"`
+	Customer    *string             `json:"customer,omitempty"`
+	Description *string             `json:"description,omitempty"`
+	EndDate     *openapi_types.Date `json:"end_date"`
+
+	// GracePeriodDays Number of extra days after project end date before resources are terminated. Overrides customer-level setting.
+	GracePeriodDays *int                                            `json:"grace_period_days"`
 	Image           *openapi_types.File                             `json:"image"`
 	IsIndustry      *bool                                           `json:"is_industry,omitempty"`
 	Kind            *KindEnum                                       `json:"kind,omitempty"`
@@ -22438,6 +22472,42 @@ type PatchedServiceProviderRequestMultipart struct {
 type PatchedSlurmAllocationRequest struct {
 	Description *string `json:"description,omitempty"`
 	Name        *string `json:"name,omitempty"`
+}
+
+// PatchedSlurmPeriodicUsagePolicyRequest defines model for PatchedSlurmPeriodicUsagePolicyRequest.
+type PatchedSlurmPeriodicUsagePolicyRequest struct {
+	Actions *string `json:"actions,omitempty"`
+
+	// CarryoverEnabled Enable unused allocation carryover to next period
+	CarryoverEnabled   *bool                                  `json:"carryover_enabled,omitempty"`
+	ComponentLimitsSet *[]NestedOfferingComponentLimitRequest `json:"component_limits_set,omitempty"`
+
+	// FairshareDecayHalfLife Fairshare decay half-life in days (matches SLURM PriorityDecayHalfLife)
+	FairshareDecayHalfLife *int `json:"fairshare_decay_half_life,omitempty"`
+
+	// GraceRatio Grace period ratio (0.2 = 20% overconsumption allowed)
+	GraceRatio *float64 `json:"grace_ratio,omitempty"`
+
+	// LimitType SLURM limit type to apply
+	LimitType *LimitTypeEnum `json:"limit_type,omitempty"`
+
+	// Options Fields for saving actions extra data. Keys are name of actions.
+	Options            interface{} `json:"options,omitempty"`
+	OrganizationGroups *[]string   `json:"organization_groups,omitempty"`
+	Period             *PeriodEnum `json:"period,omitempty"`
+
+	// QosStrategy QoS management strategy
+	QosStrategy *QosStrategyEnum `json:"qos_strategy,omitempty"`
+
+	// RawUsageReset Reset raw usage at period transitions (PriorityUsageResetPeriod=None)
+	RawUsageReset *bool   `json:"raw_usage_reset,omitempty"`
+	Scope         *string `json:"scope,omitempty"`
+
+	// TresBillingEnabled Use TRES billing units instead of raw TRES values
+	TresBillingEnabled *bool `json:"tres_billing_enabled,omitempty"`
+
+	// TresBillingWeights TRES billing weights (e.g., {"CPU": 0.015625, "Mem": 0.001953125, "GRES/gpu": 0.25})
+	TresBillingWeights interface{} `json:"tres_billing_weights,omitempty"`
 }
 
 // PatchedSoftwareCatalogRequest defines model for PatchedSoftwareCatalogRequest.
@@ -22860,11 +22930,14 @@ type Project struct {
 	Description                          *string              `json:"description,omitempty"`
 	EndDate                              *openapi_types.Date  `json:"end_date"`
 	EndDateRequestedBy                   *string              `json:"end_date_requested_by"`
-	Image                                *string              `json:"image"`
-	IsIndustry                           *bool                `json:"is_industry,omitempty"`
-	IsRemoved                            *bool                `json:"is_removed,omitempty"`
-	Kind                                 *KindEnum            `json:"kind,omitempty"`
-	MarketplaceResourceCount             *map[string]int      `json:"marketplace_resource_count,omitempty"`
+
+	// GracePeriodDays Number of extra days after project end date before resources are terminated. Overrides customer-level setting.
+	GracePeriodDays          *int            `json:"grace_period_days"`
+	Image                    *string         `json:"image"`
+	IsIndustry               *bool           `json:"is_industry,omitempty"`
+	IsRemoved                *bool           `json:"is_removed,omitempty"`
+	Kind                     *KindEnum       `json:"kind,omitempty"`
+	MarketplaceResourceCount *map[string]int `json:"marketplace_resource_count,omitempty"`
 
 	// MaxServiceAccounts Maximum number of service accounts allowed
 	MaxServiceAccounts  *int                     `json:"max_service_accounts"`
@@ -23074,10 +23147,13 @@ type ProjectRecoveryRequest struct {
 
 // ProjectRequest defines model for ProjectRequest.
 type ProjectRequest struct {
-	BackendId       *string                         `json:"backend_id,omitempty"`
-	Customer        string                          `json:"customer"`
-	Description     *string                         `json:"description,omitempty"`
-	EndDate         *openapi_types.Date             `json:"end_date"`
+	BackendId   *string             `json:"backend_id,omitempty"`
+	Customer    string              `json:"customer"`
+	Description *string             `json:"description,omitempty"`
+	EndDate     *openapi_types.Date `json:"end_date"`
+
+	// GracePeriodDays Number of extra days after project end date before resources are terminated. Overrides customer-level setting.
+	GracePeriodDays *int                            `json:"grace_period_days"`
 	Image           *openapi_types.File             `json:"image"`
 	IsIndustry      *bool                           `json:"is_industry,omitempty"`
 	Kind            *KindEnum                       `json:"kind,omitempty"`
@@ -23096,10 +23172,13 @@ type ProjectRequest_OecdFos2007Code struct {
 
 // ProjectRequestForm defines model for ProjectRequestForm.
 type ProjectRequestForm struct {
-	BackendId       *string                             `json:"backend_id,omitempty"`
-	Customer        string                              `json:"customer"`
-	Description     *string                             `json:"description,omitempty"`
-	EndDate         *openapi_types.Date                 `json:"end_date"`
+	BackendId   *string             `json:"backend_id,omitempty"`
+	Customer    string              `json:"customer"`
+	Description *string             `json:"description,omitempty"`
+	EndDate     *openapi_types.Date `json:"end_date"`
+
+	// GracePeriodDays Number of extra days after project end date before resources are terminated. Overrides customer-level setting.
+	GracePeriodDays *int                                `json:"grace_period_days"`
 	Image           *openapi_types.File                 `json:"image"`
 	IsIndustry      *bool                               `json:"is_industry,omitempty"`
 	Kind            *KindEnum                           `json:"kind,omitempty"`
@@ -23118,10 +23197,13 @@ type ProjectRequestForm_OecdFos2007Code struct {
 
 // ProjectRequestMultipart defines model for ProjectRequestMultipart.
 type ProjectRequestMultipart struct {
-	BackendId       *string                                  `json:"backend_id,omitempty"`
-	Customer        string                                   `json:"customer"`
-	Description     *string                                  `json:"description,omitempty"`
-	EndDate         *openapi_types.Date                      `json:"end_date"`
+	BackendId   *string             `json:"backend_id,omitempty"`
+	Customer    string              `json:"customer"`
+	Description *string             `json:"description,omitempty"`
+	EndDate     *openapi_types.Date `json:"end_date"`
+
+	// GracePeriodDays Number of extra days after project end date before resources are terminated. Overrides customer-level setting.
+	GracePeriodDays *int                                     `json:"grace_period_days"`
 	Image           *openapi_types.File                      `json:"image"`
 	IsIndustry      *bool                                    `json:"is_industry,omitempty"`
 	Kind            *KindEnum                                `json:"kind,omitempty"`
@@ -23908,6 +23990,9 @@ type PublicOfferingDetails_Country struct {
 type PullMarketplaceScriptResourceRequest struct {
 	ResourceUuid openapi_types.UUID `json:"resource_uuid"`
 }
+
+// QosStrategyEnum defines model for QosStrategyEnum.
+type QosStrategyEnum string
 
 // QueryRequest defines model for QueryRequest.
 type QueryRequest struct {
@@ -26304,6 +26389,88 @@ type SlurmAssociation struct {
 type SlurmInvoicesSlurmPackageCreateOrderAttributes struct {
 	Description *string `json:"description,omitempty"`
 	Name        string  `json:"name"`
+}
+
+// SlurmPeriodicUsagePolicy defines model for SlurmPeriodicUsagePolicy.
+type SlurmPeriodicUsagePolicy struct {
+	Actions string `json:"actions"`
+
+	// CarryoverEnabled Enable unused allocation carryover to next period
+	CarryoverEnabled   *bool                          `json:"carryover_enabled,omitempty"`
+	ComponentLimitsSet []NestedOfferingComponentLimit `json:"component_limits_set"`
+	Created            *time.Time                     `json:"created,omitempty"`
+	CreatedByFullName  *string                        `json:"created_by_full_name,omitempty"`
+	CreatedByUsername  *string                        `json:"created_by_username,omitempty"`
+
+	// FairshareDecayHalfLife Fairshare decay half-life in days (matches SLURM PriorityDecayHalfLife)
+	FairshareDecayHalfLife *int       `json:"fairshare_decay_half_life,omitempty"`
+	FiredDatetime          *time.Time `json:"fired_datetime,omitempty"`
+
+	// GraceRatio Grace period ratio (0.2 = 20% overconsumption allowed)
+	GraceRatio *float64 `json:"grace_ratio,omitempty"`
+	HasFired   *bool    `json:"has_fired,omitempty"`
+
+	// LimitType SLURM limit type to apply
+	LimitType *LimitTypeEnum `json:"limit_type,omitempty"`
+
+	// Options Fields for saving actions extra data. Keys are name of actions.
+	Options            interface{} `json:"options,omitempty"`
+	OrganizationGroups []string    `json:"organization_groups"`
+	Period             *PeriodEnum `json:"period,omitempty"`
+	PeriodName         *string     `json:"period_name,omitempty"`
+
+	// QosStrategy QoS management strategy
+	QosStrategy *QosStrategyEnum `json:"qos_strategy,omitempty"`
+
+	// RawUsageReset Reset raw usage at period transitions (PriorityUsageResetPeriod=None)
+	RawUsageReset *bool               `json:"raw_usage_reset,omitempty"`
+	Scope         string              `json:"scope"`
+	ScopeName     *string             `json:"scope_name,omitempty"`
+	ScopeUuid     *openapi_types.UUID `json:"scope_uuid,omitempty"`
+
+	// TresBillingEnabled Use TRES billing units instead of raw TRES values
+	TresBillingEnabled *bool `json:"tres_billing_enabled,omitempty"`
+
+	// TresBillingWeights TRES billing weights (e.g., {"CPU": 0.015625, "Mem": 0.001953125, "GRES/gpu": 0.25})
+	TresBillingWeights interface{}         `json:"tres_billing_weights,omitempty"`
+	Url                *string             `json:"url,omitempty"`
+	Uuid               *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// SlurmPeriodicUsagePolicyRequest defines model for SlurmPeriodicUsagePolicyRequest.
+type SlurmPeriodicUsagePolicyRequest struct {
+	Actions string `json:"actions"`
+
+	// CarryoverEnabled Enable unused allocation carryover to next period
+	CarryoverEnabled   *bool                                 `json:"carryover_enabled,omitempty"`
+	ComponentLimitsSet []NestedOfferingComponentLimitRequest `json:"component_limits_set"`
+
+	// FairshareDecayHalfLife Fairshare decay half-life in days (matches SLURM PriorityDecayHalfLife)
+	FairshareDecayHalfLife *int `json:"fairshare_decay_half_life,omitempty"`
+
+	// GraceRatio Grace period ratio (0.2 = 20% overconsumption allowed)
+	GraceRatio *float64 `json:"grace_ratio,omitempty"`
+
+	// LimitType SLURM limit type to apply
+	LimitType *LimitTypeEnum `json:"limit_type,omitempty"`
+
+	// Options Fields for saving actions extra data. Keys are name of actions.
+	Options            interface{} `json:"options,omitempty"`
+	OrganizationGroups []string    `json:"organization_groups"`
+	Period             *PeriodEnum `json:"period,omitempty"`
+
+	// QosStrategy QoS management strategy
+	QosStrategy *QosStrategyEnum `json:"qos_strategy,omitempty"`
+
+	// RawUsageReset Reset raw usage at period transitions (PriorityUsageResetPeriod=None)
+	RawUsageReset *bool  `json:"raw_usage_reset,omitempty"`
+	Scope         string `json:"scope"`
+
+	// TresBillingEnabled Use TRES billing units instead of raw TRES values
+	TresBillingEnabled *bool `json:"tres_billing_enabled,omitempty"`
+
+	// TresBillingWeights TRES billing weights (e.g., {"CPU": 0.015625, "Mem": 0.001953125, "GRES/gpu": 0.25})
+	TresBillingWeights interface{} `json:"tres_billing_weights,omitempty"`
 }
 
 // SmaxWebHookReceiver defines model for SmaxWebHookReceiver.
@@ -34404,6 +34571,28 @@ type MarketplaceSiteAgentServicesCountParams struct {
 // MarketplaceSiteAgentServicesCountParamsState defines parameters for MarketplaceSiteAgentServicesCount.
 type MarketplaceSiteAgentServicesCountParamsState string
 
+// MarketplaceSlurmPeriodicUsagePoliciesListParams defines parameters for MarketplaceSlurmPeriodicUsagePoliciesList.
+type MarketplaceSlurmPeriodicUsagePoliciesListParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize  *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Scope     *string             `form:"scope,omitempty" json:"scope,omitempty"`
+	ScopeUuid *openapi_types.UUID `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
+}
+
+// MarketplaceSlurmPeriodicUsagePoliciesCountParams defines parameters for MarketplaceSlurmPeriodicUsagePoliciesCount.
+type MarketplaceSlurmPeriodicUsagePoliciesCountParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize  *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Scope     *string             `form:"scope,omitempty" json:"scope,omitempty"`
+	ScopeUuid *openapi_types.UUID `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
+}
+
 // MarketplaceSoftwareCatalogsListParams defines parameters for MarketplaceSoftwareCatalogsList.
 type MarketplaceSoftwareCatalogsListParams struct {
 	Name *string `form:"name,omitempty" json:"name,omitempty"`
@@ -41119,6 +41308,15 @@ type MarketplaceSiteAgentServicesRegisterProcessorJSONRequestBody = AgentProcess
 
 // MarketplaceSiteAgentServicesSetStatisticsJSONRequestBody defines body for MarketplaceSiteAgentServicesSetStatistics for application/json ContentType.
 type MarketplaceSiteAgentServicesSetStatisticsJSONRequestBody = AgentServiceStatisticsRequest
+
+// MarketplaceSlurmPeriodicUsagePoliciesCreateJSONRequestBody defines body for MarketplaceSlurmPeriodicUsagePoliciesCreate for application/json ContentType.
+type MarketplaceSlurmPeriodicUsagePoliciesCreateJSONRequestBody = SlurmPeriodicUsagePolicyRequest
+
+// MarketplaceSlurmPeriodicUsagePoliciesPartialUpdateJSONRequestBody defines body for MarketplaceSlurmPeriodicUsagePoliciesPartialUpdate for application/json ContentType.
+type MarketplaceSlurmPeriodicUsagePoliciesPartialUpdateJSONRequestBody = PatchedSlurmPeriodicUsagePolicyRequest
+
+// MarketplaceSlurmPeriodicUsagePoliciesUpdateJSONRequestBody defines body for MarketplaceSlurmPeriodicUsagePoliciesUpdate for application/json ContentType.
+type MarketplaceSlurmPeriodicUsagePoliciesUpdateJSONRequestBody = SlurmPeriodicUsagePolicyRequest
 
 // MarketplaceSoftwareCatalogsCreateJSONRequestBody defines body for MarketplaceSoftwareCatalogsCreate for application/json ContentType.
 type MarketplaceSoftwareCatalogsCreateJSONRequestBody = SoftwareCatalogRequest
@@ -51204,6 +51402,39 @@ type ClientInterface interface {
 	MarketplaceSiteAgentServicesSetStatisticsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	MarketplaceSiteAgentServicesSetStatistics(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSiteAgentServicesSetStatisticsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSlurmPeriodicUsagePoliciesList request
+	MarketplaceSlurmPeriodicUsagePoliciesList(ctx context.Context, params *MarketplaceSlurmPeriodicUsagePoliciesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSlurmPeriodicUsagePoliciesCount request
+	MarketplaceSlurmPeriodicUsagePoliciesCount(ctx context.Context, params *MarketplaceSlurmPeriodicUsagePoliciesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSlurmPeriodicUsagePoliciesCreateWithBody request with any body
+	MarketplaceSlurmPeriodicUsagePoliciesCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceSlurmPeriodicUsagePoliciesCreate(ctx context.Context, body MarketplaceSlurmPeriodicUsagePoliciesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSlurmPeriodicUsagePoliciesActionsRetrieve request
+	MarketplaceSlurmPeriodicUsagePoliciesActionsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSlurmPeriodicUsagePoliciesActionsCount request
+	MarketplaceSlurmPeriodicUsagePoliciesActionsCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSlurmPeriodicUsagePoliciesDestroy request
+	MarketplaceSlurmPeriodicUsagePoliciesDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSlurmPeriodicUsagePoliciesRetrieve request
+	MarketplaceSlurmPeriodicUsagePoliciesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSlurmPeriodicUsagePoliciesPartialUpdateWithBody request with any body
+	MarketplaceSlurmPeriodicUsagePoliciesPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceSlurmPeriodicUsagePoliciesPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSlurmPeriodicUsagePoliciesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSlurmPeriodicUsagePoliciesUpdateWithBody request with any body
+	MarketplaceSlurmPeriodicUsagePoliciesUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceSlurmPeriodicUsagePoliciesUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSlurmPeriodicUsagePoliciesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceSoftwareCatalogsList request
 	MarketplaceSoftwareCatalogsList(ctx context.Context, params *MarketplaceSoftwareCatalogsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -68666,6 +68897,150 @@ func (c *Client) MarketplaceSiteAgentServicesSetStatisticsWithBody(ctx context.C
 
 func (c *Client) MarketplaceSiteAgentServicesSetStatistics(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSiteAgentServicesSetStatisticsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceSiteAgentServicesSetStatisticsRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSlurmPeriodicUsagePoliciesList(ctx context.Context, params *MarketplaceSlurmPeriodicUsagePoliciesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSlurmPeriodicUsagePoliciesListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSlurmPeriodicUsagePoliciesCount(ctx context.Context, params *MarketplaceSlurmPeriodicUsagePoliciesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSlurmPeriodicUsagePoliciesCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSlurmPeriodicUsagePoliciesCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSlurmPeriodicUsagePoliciesCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSlurmPeriodicUsagePoliciesCreate(ctx context.Context, body MarketplaceSlurmPeriodicUsagePoliciesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSlurmPeriodicUsagePoliciesCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSlurmPeriodicUsagePoliciesActionsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSlurmPeriodicUsagePoliciesActionsRetrieveRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSlurmPeriodicUsagePoliciesActionsCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSlurmPeriodicUsagePoliciesActionsCountRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSlurmPeriodicUsagePoliciesDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSlurmPeriodicUsagePoliciesDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSlurmPeriodicUsagePoliciesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSlurmPeriodicUsagePoliciesRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSlurmPeriodicUsagePoliciesPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSlurmPeriodicUsagePoliciesPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSlurmPeriodicUsagePoliciesPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSlurmPeriodicUsagePoliciesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSlurmPeriodicUsagePoliciesPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSlurmPeriodicUsagePoliciesUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSlurmPeriodicUsagePoliciesUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSlurmPeriodicUsagePoliciesUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSlurmPeriodicUsagePoliciesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSlurmPeriodicUsagePoliciesUpdateRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -156315,6 +156690,456 @@ func NewMarketplaceSiteAgentServicesSetStatisticsRequestWithBody(server string, 
 	return req, nil
 }
 
+// NewMarketplaceSlurmPeriodicUsagePoliciesListRequest generates requests for MarketplaceSlurmPeriodicUsagePoliciesList
+func NewMarketplaceSlurmPeriodicUsagePoliciesListRequest(server string, params *MarketplaceSlurmPeriodicUsagePoliciesListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-slurm-periodic-usage-policies/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Scope != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope", runtime.ParamLocationQuery, *params.Scope); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ScopeUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope_uuid", runtime.ParamLocationQuery, *params.ScopeUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceSlurmPeriodicUsagePoliciesCountRequest generates requests for MarketplaceSlurmPeriodicUsagePoliciesCount
+func NewMarketplaceSlurmPeriodicUsagePoliciesCountRequest(server string, params *MarketplaceSlurmPeriodicUsagePoliciesCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-slurm-periodic-usage-policies/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Scope != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope", runtime.ParamLocationQuery, *params.Scope); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ScopeUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope_uuid", runtime.ParamLocationQuery, *params.ScopeUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceSlurmPeriodicUsagePoliciesCreateRequest calls the generic MarketplaceSlurmPeriodicUsagePoliciesCreate builder with application/json body
+func NewMarketplaceSlurmPeriodicUsagePoliciesCreateRequest(server string, body MarketplaceSlurmPeriodicUsagePoliciesCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceSlurmPeriodicUsagePoliciesCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewMarketplaceSlurmPeriodicUsagePoliciesCreateRequestWithBody generates requests for MarketplaceSlurmPeriodicUsagePoliciesCreate with any type of body
+func NewMarketplaceSlurmPeriodicUsagePoliciesCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-slurm-periodic-usage-policies/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceSlurmPeriodicUsagePoliciesActionsRetrieveRequest generates requests for MarketplaceSlurmPeriodicUsagePoliciesActionsRetrieve
+func NewMarketplaceSlurmPeriodicUsagePoliciesActionsRetrieveRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-slurm-periodic-usage-policies/actions/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceSlurmPeriodicUsagePoliciesActionsCountRequest generates requests for MarketplaceSlurmPeriodicUsagePoliciesActionsCount
+func NewMarketplaceSlurmPeriodicUsagePoliciesActionsCountRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-slurm-periodic-usage-policies/actions/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceSlurmPeriodicUsagePoliciesDestroyRequest generates requests for MarketplaceSlurmPeriodicUsagePoliciesDestroy
+func NewMarketplaceSlurmPeriodicUsagePoliciesDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-slurm-periodic-usage-policies/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceSlurmPeriodicUsagePoliciesRetrieveRequest generates requests for MarketplaceSlurmPeriodicUsagePoliciesRetrieve
+func NewMarketplaceSlurmPeriodicUsagePoliciesRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-slurm-periodic-usage-policies/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceSlurmPeriodicUsagePoliciesPartialUpdateRequest calls the generic MarketplaceSlurmPeriodicUsagePoliciesPartialUpdate builder with application/json body
+func NewMarketplaceSlurmPeriodicUsagePoliciesPartialUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceSlurmPeriodicUsagePoliciesPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceSlurmPeriodicUsagePoliciesPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceSlurmPeriodicUsagePoliciesPartialUpdateRequestWithBody generates requests for MarketplaceSlurmPeriodicUsagePoliciesPartialUpdate with any type of body
+func NewMarketplaceSlurmPeriodicUsagePoliciesPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-slurm-periodic-usage-policies/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceSlurmPeriodicUsagePoliciesUpdateRequest calls the generic MarketplaceSlurmPeriodicUsagePoliciesUpdate builder with application/json body
+func NewMarketplaceSlurmPeriodicUsagePoliciesUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceSlurmPeriodicUsagePoliciesUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceSlurmPeriodicUsagePoliciesUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceSlurmPeriodicUsagePoliciesUpdateRequestWithBody generates requests for MarketplaceSlurmPeriodicUsagePoliciesUpdate with any type of body
+func NewMarketplaceSlurmPeriodicUsagePoliciesUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-slurm-periodic-usage-policies/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewMarketplaceSoftwareCatalogsListRequest generates requests for MarketplaceSoftwareCatalogsList
 func NewMarketplaceSoftwareCatalogsListRequest(server string, params *MarketplaceSoftwareCatalogsListParams) (*http.Request, error) {
 	var err error
@@ -227922,6 +228747,39 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceSiteAgentServicesSetStatisticsWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSiteAgentServicesSetStatisticsJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentServicesSetStatisticsResponse, error)
 
+	// MarketplaceSlurmPeriodicUsagePoliciesListWithResponse request
+	MarketplaceSlurmPeriodicUsagePoliciesListWithResponse(ctx context.Context, params *MarketplaceSlurmPeriodicUsagePoliciesListParams, reqEditors ...RequestEditorFn) (*MarketplaceSlurmPeriodicUsagePoliciesListResponse, error)
+
+	// MarketplaceSlurmPeriodicUsagePoliciesCountWithResponse request
+	MarketplaceSlurmPeriodicUsagePoliciesCountWithResponse(ctx context.Context, params *MarketplaceSlurmPeriodicUsagePoliciesCountParams, reqEditors ...RequestEditorFn) (*MarketplaceSlurmPeriodicUsagePoliciesCountResponse, error)
+
+	// MarketplaceSlurmPeriodicUsagePoliciesCreateWithBodyWithResponse request with any body
+	MarketplaceSlurmPeriodicUsagePoliciesCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSlurmPeriodicUsagePoliciesCreateResponse, error)
+
+	MarketplaceSlurmPeriodicUsagePoliciesCreateWithResponse(ctx context.Context, body MarketplaceSlurmPeriodicUsagePoliciesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSlurmPeriodicUsagePoliciesCreateResponse, error)
+
+	// MarketplaceSlurmPeriodicUsagePoliciesActionsRetrieveWithResponse request
+	MarketplaceSlurmPeriodicUsagePoliciesActionsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*MarketplaceSlurmPeriodicUsagePoliciesActionsRetrieveResponse, error)
+
+	// MarketplaceSlurmPeriodicUsagePoliciesActionsCountWithResponse request
+	MarketplaceSlurmPeriodicUsagePoliciesActionsCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*MarketplaceSlurmPeriodicUsagePoliciesActionsCountResponse, error)
+
+	// MarketplaceSlurmPeriodicUsagePoliciesDestroyWithResponse request
+	MarketplaceSlurmPeriodicUsagePoliciesDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceSlurmPeriodicUsagePoliciesDestroyResponse, error)
+
+	// MarketplaceSlurmPeriodicUsagePoliciesRetrieveWithResponse request
+	MarketplaceSlurmPeriodicUsagePoliciesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceSlurmPeriodicUsagePoliciesRetrieveResponse, error)
+
+	// MarketplaceSlurmPeriodicUsagePoliciesPartialUpdateWithBodyWithResponse request with any body
+	MarketplaceSlurmPeriodicUsagePoliciesPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSlurmPeriodicUsagePoliciesPartialUpdateResponse, error)
+
+	MarketplaceSlurmPeriodicUsagePoliciesPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSlurmPeriodicUsagePoliciesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSlurmPeriodicUsagePoliciesPartialUpdateResponse, error)
+
+	// MarketplaceSlurmPeriodicUsagePoliciesUpdateWithBodyWithResponse request with any body
+	MarketplaceSlurmPeriodicUsagePoliciesUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSlurmPeriodicUsagePoliciesUpdateResponse, error)
+
+	MarketplaceSlurmPeriodicUsagePoliciesUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSlurmPeriodicUsagePoliciesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSlurmPeriodicUsagePoliciesUpdateResponse, error)
+
 	// MarketplaceSoftwareCatalogsListWithResponse request
 	MarketplaceSoftwareCatalogsListWithResponse(ctx context.Context, params *MarketplaceSoftwareCatalogsListParams, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareCatalogsListResponse, error)
 
@@ -250093,6 +250951,201 @@ func (r MarketplaceSiteAgentServicesSetStatisticsResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceSiteAgentServicesSetStatisticsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSlurmPeriodicUsagePoliciesListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]SlurmPeriodicUsagePolicy
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSlurmPeriodicUsagePoliciesListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSlurmPeriodicUsagePoliciesListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSlurmPeriodicUsagePoliciesCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSlurmPeriodicUsagePoliciesCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSlurmPeriodicUsagePoliciesCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSlurmPeriodicUsagePoliciesCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *SlurmPeriodicUsagePolicy
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSlurmPeriodicUsagePoliciesCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSlurmPeriodicUsagePoliciesCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSlurmPeriodicUsagePoliciesActionsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SlurmPeriodicUsagePolicy
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSlurmPeriodicUsagePoliciesActionsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSlurmPeriodicUsagePoliciesActionsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSlurmPeriodicUsagePoliciesActionsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSlurmPeriodicUsagePoliciesActionsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSlurmPeriodicUsagePoliciesActionsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSlurmPeriodicUsagePoliciesDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSlurmPeriodicUsagePoliciesDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSlurmPeriodicUsagePoliciesDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSlurmPeriodicUsagePoliciesRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SlurmPeriodicUsagePolicy
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSlurmPeriodicUsagePoliciesRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSlurmPeriodicUsagePoliciesRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSlurmPeriodicUsagePoliciesPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SlurmPeriodicUsagePolicy
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSlurmPeriodicUsagePoliciesPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSlurmPeriodicUsagePoliciesPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSlurmPeriodicUsagePoliciesUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SlurmPeriodicUsagePolicy
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSlurmPeriodicUsagePoliciesUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSlurmPeriodicUsagePoliciesUpdateResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -278250,6 +279303,111 @@ func (c *ClientWithResponses) MarketplaceSiteAgentServicesSetStatisticsWithRespo
 		return nil, err
 	}
 	return ParseMarketplaceSiteAgentServicesSetStatisticsResponse(rsp)
+}
+
+// MarketplaceSlurmPeriodicUsagePoliciesListWithResponse request returning *MarketplaceSlurmPeriodicUsagePoliciesListResponse
+func (c *ClientWithResponses) MarketplaceSlurmPeriodicUsagePoliciesListWithResponse(ctx context.Context, params *MarketplaceSlurmPeriodicUsagePoliciesListParams, reqEditors ...RequestEditorFn) (*MarketplaceSlurmPeriodicUsagePoliciesListResponse, error) {
+	rsp, err := c.MarketplaceSlurmPeriodicUsagePoliciesList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSlurmPeriodicUsagePoliciesListResponse(rsp)
+}
+
+// MarketplaceSlurmPeriodicUsagePoliciesCountWithResponse request returning *MarketplaceSlurmPeriodicUsagePoliciesCountResponse
+func (c *ClientWithResponses) MarketplaceSlurmPeriodicUsagePoliciesCountWithResponse(ctx context.Context, params *MarketplaceSlurmPeriodicUsagePoliciesCountParams, reqEditors ...RequestEditorFn) (*MarketplaceSlurmPeriodicUsagePoliciesCountResponse, error) {
+	rsp, err := c.MarketplaceSlurmPeriodicUsagePoliciesCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSlurmPeriodicUsagePoliciesCountResponse(rsp)
+}
+
+// MarketplaceSlurmPeriodicUsagePoliciesCreateWithBodyWithResponse request with arbitrary body returning *MarketplaceSlurmPeriodicUsagePoliciesCreateResponse
+func (c *ClientWithResponses) MarketplaceSlurmPeriodicUsagePoliciesCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSlurmPeriodicUsagePoliciesCreateResponse, error) {
+	rsp, err := c.MarketplaceSlurmPeriodicUsagePoliciesCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSlurmPeriodicUsagePoliciesCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceSlurmPeriodicUsagePoliciesCreateWithResponse(ctx context.Context, body MarketplaceSlurmPeriodicUsagePoliciesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSlurmPeriodicUsagePoliciesCreateResponse, error) {
+	rsp, err := c.MarketplaceSlurmPeriodicUsagePoliciesCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSlurmPeriodicUsagePoliciesCreateResponse(rsp)
+}
+
+// MarketplaceSlurmPeriodicUsagePoliciesActionsRetrieveWithResponse request returning *MarketplaceSlurmPeriodicUsagePoliciesActionsRetrieveResponse
+func (c *ClientWithResponses) MarketplaceSlurmPeriodicUsagePoliciesActionsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*MarketplaceSlurmPeriodicUsagePoliciesActionsRetrieveResponse, error) {
+	rsp, err := c.MarketplaceSlurmPeriodicUsagePoliciesActionsRetrieve(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSlurmPeriodicUsagePoliciesActionsRetrieveResponse(rsp)
+}
+
+// MarketplaceSlurmPeriodicUsagePoliciesActionsCountWithResponse request returning *MarketplaceSlurmPeriodicUsagePoliciesActionsCountResponse
+func (c *ClientWithResponses) MarketplaceSlurmPeriodicUsagePoliciesActionsCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*MarketplaceSlurmPeriodicUsagePoliciesActionsCountResponse, error) {
+	rsp, err := c.MarketplaceSlurmPeriodicUsagePoliciesActionsCount(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSlurmPeriodicUsagePoliciesActionsCountResponse(rsp)
+}
+
+// MarketplaceSlurmPeriodicUsagePoliciesDestroyWithResponse request returning *MarketplaceSlurmPeriodicUsagePoliciesDestroyResponse
+func (c *ClientWithResponses) MarketplaceSlurmPeriodicUsagePoliciesDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceSlurmPeriodicUsagePoliciesDestroyResponse, error) {
+	rsp, err := c.MarketplaceSlurmPeriodicUsagePoliciesDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSlurmPeriodicUsagePoliciesDestroyResponse(rsp)
+}
+
+// MarketplaceSlurmPeriodicUsagePoliciesRetrieveWithResponse request returning *MarketplaceSlurmPeriodicUsagePoliciesRetrieveResponse
+func (c *ClientWithResponses) MarketplaceSlurmPeriodicUsagePoliciesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceSlurmPeriodicUsagePoliciesRetrieveResponse, error) {
+	rsp, err := c.MarketplaceSlurmPeriodicUsagePoliciesRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSlurmPeriodicUsagePoliciesRetrieveResponse(rsp)
+}
+
+// MarketplaceSlurmPeriodicUsagePoliciesPartialUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceSlurmPeriodicUsagePoliciesPartialUpdateResponse
+func (c *ClientWithResponses) MarketplaceSlurmPeriodicUsagePoliciesPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSlurmPeriodicUsagePoliciesPartialUpdateResponse, error) {
+	rsp, err := c.MarketplaceSlurmPeriodicUsagePoliciesPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSlurmPeriodicUsagePoliciesPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceSlurmPeriodicUsagePoliciesPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSlurmPeriodicUsagePoliciesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSlurmPeriodicUsagePoliciesPartialUpdateResponse, error) {
+	rsp, err := c.MarketplaceSlurmPeriodicUsagePoliciesPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSlurmPeriodicUsagePoliciesPartialUpdateResponse(rsp)
+}
+
+// MarketplaceSlurmPeriodicUsagePoliciesUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceSlurmPeriodicUsagePoliciesUpdateResponse
+func (c *ClientWithResponses) MarketplaceSlurmPeriodicUsagePoliciesUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSlurmPeriodicUsagePoliciesUpdateResponse, error) {
+	rsp, err := c.MarketplaceSlurmPeriodicUsagePoliciesUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSlurmPeriodicUsagePoliciesUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceSlurmPeriodicUsagePoliciesUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSlurmPeriodicUsagePoliciesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSlurmPeriodicUsagePoliciesUpdateResponse, error) {
+	rsp, err := c.MarketplaceSlurmPeriodicUsagePoliciesUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSlurmPeriodicUsagePoliciesUpdateResponse(rsp)
 }
 
 // MarketplaceSoftwareCatalogsListWithResponse request returning *MarketplaceSoftwareCatalogsListResponse
@@ -307656,6 +308814,210 @@ func ParseMarketplaceSiteAgentServicesSetStatisticsResponse(rsp *http.Response) 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest AgentService
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSlurmPeriodicUsagePoliciesListResponse parses an HTTP response from a MarketplaceSlurmPeriodicUsagePoliciesListWithResponse call
+func ParseMarketplaceSlurmPeriodicUsagePoliciesListResponse(rsp *http.Response) (*MarketplaceSlurmPeriodicUsagePoliciesListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSlurmPeriodicUsagePoliciesListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []SlurmPeriodicUsagePolicy
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSlurmPeriodicUsagePoliciesCountResponse parses an HTTP response from a MarketplaceSlurmPeriodicUsagePoliciesCountWithResponse call
+func ParseMarketplaceSlurmPeriodicUsagePoliciesCountResponse(rsp *http.Response) (*MarketplaceSlurmPeriodicUsagePoliciesCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSlurmPeriodicUsagePoliciesCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSlurmPeriodicUsagePoliciesCreateResponse parses an HTTP response from a MarketplaceSlurmPeriodicUsagePoliciesCreateWithResponse call
+func ParseMarketplaceSlurmPeriodicUsagePoliciesCreateResponse(rsp *http.Response) (*MarketplaceSlurmPeriodicUsagePoliciesCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSlurmPeriodicUsagePoliciesCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest SlurmPeriodicUsagePolicy
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSlurmPeriodicUsagePoliciesActionsRetrieveResponse parses an HTTP response from a MarketplaceSlurmPeriodicUsagePoliciesActionsRetrieveWithResponse call
+func ParseMarketplaceSlurmPeriodicUsagePoliciesActionsRetrieveResponse(rsp *http.Response) (*MarketplaceSlurmPeriodicUsagePoliciesActionsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSlurmPeriodicUsagePoliciesActionsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SlurmPeriodicUsagePolicy
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSlurmPeriodicUsagePoliciesActionsCountResponse parses an HTTP response from a MarketplaceSlurmPeriodicUsagePoliciesActionsCountWithResponse call
+func ParseMarketplaceSlurmPeriodicUsagePoliciesActionsCountResponse(rsp *http.Response) (*MarketplaceSlurmPeriodicUsagePoliciesActionsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSlurmPeriodicUsagePoliciesActionsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSlurmPeriodicUsagePoliciesDestroyResponse parses an HTTP response from a MarketplaceSlurmPeriodicUsagePoliciesDestroyWithResponse call
+func ParseMarketplaceSlurmPeriodicUsagePoliciesDestroyResponse(rsp *http.Response) (*MarketplaceSlurmPeriodicUsagePoliciesDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSlurmPeriodicUsagePoliciesDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSlurmPeriodicUsagePoliciesRetrieveResponse parses an HTTP response from a MarketplaceSlurmPeriodicUsagePoliciesRetrieveWithResponse call
+func ParseMarketplaceSlurmPeriodicUsagePoliciesRetrieveResponse(rsp *http.Response) (*MarketplaceSlurmPeriodicUsagePoliciesRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSlurmPeriodicUsagePoliciesRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SlurmPeriodicUsagePolicy
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSlurmPeriodicUsagePoliciesPartialUpdateResponse parses an HTTP response from a MarketplaceSlurmPeriodicUsagePoliciesPartialUpdateWithResponse call
+func ParseMarketplaceSlurmPeriodicUsagePoliciesPartialUpdateResponse(rsp *http.Response) (*MarketplaceSlurmPeriodicUsagePoliciesPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSlurmPeriodicUsagePoliciesPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SlurmPeriodicUsagePolicy
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSlurmPeriodicUsagePoliciesUpdateResponse parses an HTTP response from a MarketplaceSlurmPeriodicUsagePoliciesUpdateWithResponse call
+func ParseMarketplaceSlurmPeriodicUsagePoliciesUpdateResponse(rsp *http.Response) (*MarketplaceSlurmPeriodicUsagePoliciesUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSlurmPeriodicUsagePoliciesUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SlurmPeriodicUsagePolicy
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
