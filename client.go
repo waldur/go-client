@@ -2095,6 +2095,7 @@ const (
 // Defines values for ValidationMethodEnum.
 const (
 	Ariregister        ValidationMethodEnum = "ariregister"
+	Bolagsverket       ValidationMethodEnum = "bolagsverket"
 	Wirtschaftscompass ValidationMethodEnum = "wirtschaftscompass"
 )
 
@@ -13914,6 +13915,11 @@ type ConstanceSettings struct {
 	ONBOARDINGARIREGISTERPASSWORD                  *string              `json:"ONBOARDING_ARIREGISTER_PASSWORD,omitempty"`
 	ONBOARDINGARIREGISTERTIMEOUT                   *int                 `json:"ONBOARDING_ARIREGISTER_TIMEOUT,omitempty"`
 	ONBOARDINGARIREGISTERUSERNAME                  *string              `json:"ONBOARDING_ARIREGISTER_USERNAME,omitempty"`
+	ONBOARDINGBOLAGSVERKETAPIURL                   *string              `json:"ONBOARDING_BOLAGSVERKET_API_URL,omitempty"`
+	ONBOARDINGBOLAGSVERKETCLIENTID                 *string              `json:"ONBOARDING_BOLAGSVERKET_CLIENT_ID,omitempty"`
+	ONBOARDINGBOLAGSVERKETCLIENTSECRET             *string              `json:"ONBOARDING_BOLAGSVERKET_CLIENT_SECRET,omitempty"`
+	ONBOARDINGBOLAGSVERKETTOKENAPIURL              *string              `json:"ONBOARDING_BOLAGSVERKET_TOKEN_API_URL,omitempty"`
+	ONBOARDINGCOUNTRY                              *string              `json:"ONBOARDING_COUNTRY,omitempty"`
 	ONBOARDINGVERIFICATIONEXPIRYHOURS              *int                 `json:"ONBOARDING_VERIFICATION_EXPIRY_HOURS,omitempty"`
 	ONBOARDINGWICOAPIURL                           *string              `json:"ONBOARDING_WICO_API_URL,omitempty"`
 	ONBOARDINGWICOTOKEN                            *string              `json:"ONBOARDING_WICO_TOKEN,omitempty"`
@@ -14066,6 +14072,11 @@ type ConstanceSettingsRequest struct {
 	ONBOARDINGARIREGISTERPASSWORD                  *string              `json:"ONBOARDING_ARIREGISTER_PASSWORD,omitempty"`
 	ONBOARDINGARIREGISTERTIMEOUT                   *int                 `json:"ONBOARDING_ARIREGISTER_TIMEOUT,omitempty"`
 	ONBOARDINGARIREGISTERUSERNAME                  *string              `json:"ONBOARDING_ARIREGISTER_USERNAME,omitempty"`
+	ONBOARDINGBOLAGSVERKETAPIURL                   *string              `json:"ONBOARDING_BOLAGSVERKET_API_URL,omitempty"`
+	ONBOARDINGBOLAGSVERKETCLIENTID                 *string              `json:"ONBOARDING_BOLAGSVERKET_CLIENT_ID,omitempty"`
+	ONBOARDINGBOLAGSVERKETCLIENTSECRET             *string              `json:"ONBOARDING_BOLAGSVERKET_CLIENT_SECRET,omitempty"`
+	ONBOARDINGBOLAGSVERKETTOKENAPIURL              *string              `json:"ONBOARDING_BOLAGSVERKET_TOKEN_API_URL,omitempty"`
+	ONBOARDINGCOUNTRY                              *string              `json:"ONBOARDING_COUNTRY,omitempty"`
 	ONBOARDINGVERIFICATIONEXPIRYHOURS              *int                 `json:"ONBOARDING_VERIFICATION_EXPIRY_HOURS,omitempty"`
 	ONBOARDINGWICOAPIURL                           *string              `json:"ONBOARDING_WICO_API_URL,omitempty"`
 	ONBOARDINGWICOTOKEN                            *string              `json:"ONBOARDING_WICO_TOKEN,omitempty"`
@@ -14218,6 +14229,11 @@ type ConstanceSettingsRequestForm struct {
 	ONBOARDINGARIREGISTERPASSWORD                  *string              `json:"ONBOARDING_ARIREGISTER_PASSWORD,omitempty"`
 	ONBOARDINGARIREGISTERTIMEOUT                   *int                 `json:"ONBOARDING_ARIREGISTER_TIMEOUT,omitempty"`
 	ONBOARDINGARIREGISTERUSERNAME                  *string              `json:"ONBOARDING_ARIREGISTER_USERNAME,omitempty"`
+	ONBOARDINGBOLAGSVERKETAPIURL                   *string              `json:"ONBOARDING_BOLAGSVERKET_API_URL,omitempty"`
+	ONBOARDINGBOLAGSVERKETCLIENTID                 *string              `json:"ONBOARDING_BOLAGSVERKET_CLIENT_ID,omitempty"`
+	ONBOARDINGBOLAGSVERKETCLIENTSECRET             *string              `json:"ONBOARDING_BOLAGSVERKET_CLIENT_SECRET,omitempty"`
+	ONBOARDINGBOLAGSVERKETTOKENAPIURL              *string              `json:"ONBOARDING_BOLAGSVERKET_TOKEN_API_URL,omitempty"`
+	ONBOARDINGCOUNTRY                              *string              `json:"ONBOARDING_COUNTRY,omitempty"`
 	ONBOARDINGVERIFICATIONEXPIRYHOURS              *int                 `json:"ONBOARDING_VERIFICATION_EXPIRY_HOURS,omitempty"`
 	ONBOARDINGWICOAPIURL                           *string              `json:"ONBOARDING_WICO_API_URL,omitempty"`
 	ONBOARDINGWICOTOKEN                            *string              `json:"ONBOARDING_WICO_TOKEN,omitempty"`
@@ -14370,6 +14386,11 @@ type ConstanceSettingsRequestMultipart struct {
 	ONBOARDINGARIREGISTERPASSWORD                  *string              `json:"ONBOARDING_ARIREGISTER_PASSWORD,omitempty"`
 	ONBOARDINGARIREGISTERTIMEOUT                   *int                 `json:"ONBOARDING_ARIREGISTER_TIMEOUT,omitempty"`
 	ONBOARDINGARIREGISTERUSERNAME                  *string              `json:"ONBOARDING_ARIREGISTER_USERNAME,omitempty"`
+	ONBOARDINGBOLAGSVERKETAPIURL                   *string              `json:"ONBOARDING_BOLAGSVERKET_API_URL,omitempty"`
+	ONBOARDINGBOLAGSVERKETCLIENTID                 *string              `json:"ONBOARDING_BOLAGSVERKET_CLIENT_ID,omitempty"`
+	ONBOARDINGBOLAGSVERKETCLIENTSECRET             *string              `json:"ONBOARDING_BOLAGSVERKET_CLIENT_SECRET,omitempty"`
+	ONBOARDINGBOLAGSVERKETTOKENAPIURL              *string              `json:"ONBOARDING_BOLAGSVERKET_TOKEN_API_URL,omitempty"`
+	ONBOARDINGCOUNTRY                              *string              `json:"ONBOARDING_COUNTRY,omitempty"`
 	ONBOARDINGVERIFICATIONEXPIRYHOURS              *int                 `json:"ONBOARDING_VERIFICATION_EXPIRY_HOURS,omitempty"`
 	ONBOARDINGWICOAPIURL                           *string              `json:"ONBOARDING_WICO_API_URL,omitempty"`
 	ONBOARDINGWICOTOKEN                            *string              `json:"ONBOARDING_WICO_TOKEN,omitempty"`
@@ -18747,17 +18768,29 @@ type OfferingUserUpdateRestrictionRequest struct {
 
 // OnboardingCompanyValidationRequestRequest defines model for OnboardingCompanyValidationRequestRequest.
 type OnboardingCompanyValidationRequestRequest struct {
+	// BirthDate User's birth date (temporary workaround for Austrian validation)
+	BirthDate *openapi_types.Date `json:"birth_date"`
+
 	// Country ISO country code (e.g., 'EE' for Estonia)
 	Country string `json:"country"`
 
+	// FirstName User's first name (temporary workaround for Austrian validation)
+	FirstName *string `json:"first_name,omitempty"`
+
 	// IsManualValidation Indicates if the validation is to be performed manually
 	IsManualValidation *bool `json:"is_manual_validation,omitempty"`
+
+	// LastName User's last name (temporary workaround for Austrian validation)
+	LastName *string `json:"last_name,omitempty"`
 
 	// LegalName Company name (optional)
 	LegalName *string `json:"legal_name,omitempty"`
 
 	// LegalPersonIdentifier Official company registration code
 	LegalPersonIdentifier *string `json:"legal_person_identifier,omitempty"`
+
+	// PersonIdentifier Personal identifier (temporary workaround for Estonian civil_number)
+	PersonIdentifier *string `json:"person_identifier,omitempty"`
 }
 
 // OnboardingCountryChecklistConfiguration defines model for OnboardingCountryChecklistConfiguration.
