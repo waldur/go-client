@@ -14876,29 +14876,49 @@ type CustomerQuotas struct {
 // CustomerRequest defines model for CustomerRequest.
 type CustomerRequest struct {
 	Abbreviation *string `json:"abbreviation,omitempty"`
-	Address      *string `json:"address,omitempty"`
+
+	// AccessSubnets Enter a comma separated list of IPv4 or IPv6 CIDR addresses from where connection to self-service is allowed.
+	AccessSubnets       *string    `json:"access_subnets,omitempty"`
+	AccountingStartDate *time.Time `json:"accounting_start_date,omitempty"`
+	Address             *string    `json:"address,omitempty"`
+	AgreementNumber     *string    `json:"agreement_number,omitempty"`
+	Archived            *bool      `json:"archived,omitempty"`
 
 	// BackendId Organization identifier in another application.
-	BackendId      *string                  `json:"backend_id,omitempty"`
-	BankAccount    *string                  `json:"bank_account,omitempty"`
-	BankName       *string                  `json:"bank_name,omitempty"`
-	ContactDetails *string                  `json:"contact_details,omitempty"`
-	Country        *CustomerRequest_Country `json:"country,omitempty"`
-	Description    *string                  `json:"description,omitempty"`
-	Email          *openapi_types.Email     `json:"email,omitempty"`
-	Homepage       *string                  `json:"homepage,omitempty"`
-	Image          *openapi_types.File      `json:"image"`
-	Latitude       *float64                 `json:"latitude"`
-	Longitude      *float64                 `json:"longitude"`
-	Name           string                   `json:"name"`
-	NativeName     *string                  `json:"native_name,omitempty"`
+	BackendId                    *string                  `json:"backend_id,omitempty"`
+	BankAccount                  *string                  `json:"bank_account,omitempty"`
+	BankName                     *string                  `json:"bank_name,omitempty"`
+	Blocked                      *bool                    `json:"blocked,omitempty"`
+	ContactDetails               *string                  `json:"contact_details,omitempty"`
+	Country                      *CustomerRequest_Country `json:"country,omitempty"`
+	DefaultTaxPercent            *string                  `json:"default_tax_percent,omitempty"`
+	Description                  *string                  `json:"description,omitempty"`
+	DisplayBillingInfoInProjects *bool                    `json:"display_billing_info_in_projects,omitempty"`
+	Domain                       *string                  `json:"domain,omitempty"`
+	Email                        *openapi_types.Email     `json:"email,omitempty"`
+
+	// GracePeriodDays Number of extra days after project end date before resources are terminated
+	GracePeriodDays *int                `json:"grace_period_days"`
+	Homepage        *string             `json:"homepage,omitempty"`
+	Image           *openapi_types.File `json:"image"`
+	Latitude        *float64            `json:"latitude"`
+	Longitude       *float64            `json:"longitude"`
+
+	// MaxServiceAccounts Maximum number of service accounts allowed
+	MaxServiceAccounts *int    `json:"max_service_accounts"`
+	Name               string  `json:"name"`
+	NativeName         *string `json:"native_name,omitempty"`
 
 	// NotificationEmails Comma-separated list of notification email addresses
-	NotificationEmails *string `json:"notification_emails,omitempty"`
-	PhoneNumber        *string `json:"phone_number,omitempty"`
-	Postal             *string `json:"postal,omitempty"`
-	RegistrationCode   *string `json:"registration_code,omitempty"`
-	Slug               *string `json:"slug,omitempty"`
+	NotificationEmails       *string             `json:"notification_emails,omitempty"`
+	PhoneNumber              *string             `json:"phone_number,omitempty"`
+	Postal                   *string             `json:"postal,omitempty"`
+	ProjectMetadataChecklist *openapi_types.UUID `json:"project_metadata_checklist"`
+	RegistrationCode         *string             `json:"registration_code,omitempty"`
+	Slug                     *string             `json:"slug,omitempty"`
+
+	// SponsorNumber External ID of the sponsor covering the costs
+	SponsorNumber *int `json:"sponsor_number"`
 
 	// VatCode VAT number
 	VatCode *string `json:"vat_code,omitempty"`
@@ -14912,29 +14932,49 @@ type CustomerRequest_Country struct {
 // CustomerRequestForm defines model for CustomerRequestForm.
 type CustomerRequestForm struct {
 	Abbreviation *string `json:"abbreviation,omitempty"`
-	Address      *string `json:"address,omitempty"`
+
+	// AccessSubnets Enter a comma separated list of IPv4 or IPv6 CIDR addresses from where connection to self-service is allowed.
+	AccessSubnets       *string    `json:"access_subnets,omitempty"`
+	AccountingStartDate *time.Time `json:"accounting_start_date,omitempty"`
+	Address             *string    `json:"address,omitempty"`
+	AgreementNumber     *string    `json:"agreement_number,omitempty"`
+	Archived            *bool      `json:"archived,omitempty"`
 
 	// BackendId Organization identifier in another application.
-	BackendId      *string                      `json:"backend_id,omitempty"`
-	BankAccount    *string                      `json:"bank_account,omitempty"`
-	BankName       *string                      `json:"bank_name,omitempty"`
-	ContactDetails *string                      `json:"contact_details,omitempty"`
-	Country        *CustomerRequestForm_Country `json:"country,omitempty"`
-	Description    *string                      `json:"description,omitempty"`
-	Email          *openapi_types.Email         `json:"email,omitempty"`
-	Homepage       *string                      `json:"homepage,omitempty"`
-	Image          *openapi_types.File          `json:"image"`
-	Latitude       *float64                     `json:"latitude"`
-	Longitude      *float64                     `json:"longitude"`
-	Name           string                       `json:"name"`
-	NativeName     *string                      `json:"native_name,omitempty"`
+	BackendId                    *string                      `json:"backend_id,omitempty"`
+	BankAccount                  *string                      `json:"bank_account,omitempty"`
+	BankName                     *string                      `json:"bank_name,omitempty"`
+	Blocked                      *bool                        `json:"blocked,omitempty"`
+	ContactDetails               *string                      `json:"contact_details,omitempty"`
+	Country                      *CustomerRequestForm_Country `json:"country,omitempty"`
+	DefaultTaxPercent            *string                      `json:"default_tax_percent,omitempty"`
+	Description                  *string                      `json:"description,omitempty"`
+	DisplayBillingInfoInProjects *bool                        `json:"display_billing_info_in_projects,omitempty"`
+	Domain                       *string                      `json:"domain,omitempty"`
+	Email                        *openapi_types.Email         `json:"email,omitempty"`
+
+	// GracePeriodDays Number of extra days after project end date before resources are terminated
+	GracePeriodDays *int                `json:"grace_period_days"`
+	Homepage        *string             `json:"homepage,omitempty"`
+	Image           *openapi_types.File `json:"image"`
+	Latitude        *float64            `json:"latitude"`
+	Longitude       *float64            `json:"longitude"`
+
+	// MaxServiceAccounts Maximum number of service accounts allowed
+	MaxServiceAccounts *int    `json:"max_service_accounts"`
+	Name               string  `json:"name"`
+	NativeName         *string `json:"native_name,omitempty"`
 
 	// NotificationEmails Comma-separated list of notification email addresses
-	NotificationEmails *string `json:"notification_emails,omitempty"`
-	PhoneNumber        *string `json:"phone_number,omitempty"`
-	Postal             *string `json:"postal,omitempty"`
-	RegistrationCode   *string `json:"registration_code,omitempty"`
-	Slug               *string `json:"slug,omitempty"`
+	NotificationEmails       *string             `json:"notification_emails,omitempty"`
+	PhoneNumber              *string             `json:"phone_number,omitempty"`
+	Postal                   *string             `json:"postal,omitempty"`
+	ProjectMetadataChecklist *openapi_types.UUID `json:"project_metadata_checklist"`
+	RegistrationCode         *string             `json:"registration_code,omitempty"`
+	Slug                     *string             `json:"slug,omitempty"`
+
+	// SponsorNumber External ID of the sponsor covering the costs
+	SponsorNumber *int `json:"sponsor_number"`
 
 	// VatCode VAT number
 	VatCode *string `json:"vat_code,omitempty"`
@@ -14948,29 +14988,49 @@ type CustomerRequestForm_Country struct {
 // CustomerRequestMultipart defines model for CustomerRequestMultipart.
 type CustomerRequestMultipart struct {
 	Abbreviation *string `json:"abbreviation,omitempty"`
-	Address      *string `json:"address,omitempty"`
+
+	// AccessSubnets Enter a comma separated list of IPv4 or IPv6 CIDR addresses from where connection to self-service is allowed.
+	AccessSubnets       *string    `json:"access_subnets,omitempty"`
+	AccountingStartDate *time.Time `json:"accounting_start_date,omitempty"`
+	Address             *string    `json:"address,omitempty"`
+	AgreementNumber     *string    `json:"agreement_number,omitempty"`
+	Archived            *bool      `json:"archived,omitempty"`
 
 	// BackendId Organization identifier in another application.
-	BackendId      *string                           `json:"backend_id,omitempty"`
-	BankAccount    *string                           `json:"bank_account,omitempty"`
-	BankName       *string                           `json:"bank_name,omitempty"`
-	ContactDetails *string                           `json:"contact_details,omitempty"`
-	Country        *CustomerRequestMultipart_Country `json:"country,omitempty"`
-	Description    *string                           `json:"description,omitempty"`
-	Email          *openapi_types.Email              `json:"email,omitempty"`
-	Homepage       *string                           `json:"homepage,omitempty"`
-	Image          *openapi_types.File               `json:"image"`
-	Latitude       *float64                          `json:"latitude"`
-	Longitude      *float64                          `json:"longitude"`
-	Name           string                            `json:"name"`
-	NativeName     *string                           `json:"native_name,omitempty"`
+	BackendId                    *string                           `json:"backend_id,omitempty"`
+	BankAccount                  *string                           `json:"bank_account,omitempty"`
+	BankName                     *string                           `json:"bank_name,omitempty"`
+	Blocked                      *bool                             `json:"blocked,omitempty"`
+	ContactDetails               *string                           `json:"contact_details,omitempty"`
+	Country                      *CustomerRequestMultipart_Country `json:"country,omitempty"`
+	DefaultTaxPercent            *string                           `json:"default_tax_percent,omitempty"`
+	Description                  *string                           `json:"description,omitempty"`
+	DisplayBillingInfoInProjects *bool                             `json:"display_billing_info_in_projects,omitempty"`
+	Domain                       *string                           `json:"domain,omitempty"`
+	Email                        *openapi_types.Email              `json:"email,omitempty"`
+
+	// GracePeriodDays Number of extra days after project end date before resources are terminated
+	GracePeriodDays *int                `json:"grace_period_days"`
+	Homepage        *string             `json:"homepage,omitempty"`
+	Image           *openapi_types.File `json:"image"`
+	Latitude        *float64            `json:"latitude"`
+	Longitude       *float64            `json:"longitude"`
+
+	// MaxServiceAccounts Maximum number of service accounts allowed
+	MaxServiceAccounts *int    `json:"max_service_accounts"`
+	Name               string  `json:"name"`
+	NativeName         *string `json:"native_name,omitempty"`
 
 	// NotificationEmails Comma-separated list of notification email addresses
-	NotificationEmails *string `json:"notification_emails,omitempty"`
-	PhoneNumber        *string `json:"phone_number,omitempty"`
-	Postal             *string `json:"postal,omitempty"`
-	RegistrationCode   *string `json:"registration_code,omitempty"`
-	Slug               *string `json:"slug,omitempty"`
+	NotificationEmails       *string             `json:"notification_emails,omitempty"`
+	PhoneNumber              *string             `json:"phone_number,omitempty"`
+	Postal                   *string             `json:"postal,omitempty"`
+	ProjectMetadataChecklist *openapi_types.UUID `json:"project_metadata_checklist"`
+	RegistrationCode         *string             `json:"registration_code,omitempty"`
+	Slug                     *string             `json:"slug,omitempty"`
+
+	// SponsorNumber External ID of the sponsor covering the costs
+	SponsorNumber *int `json:"sponsor_number"`
 
 	// VatCode VAT number
 	VatCode *string `json:"vat_code,omitempty"`
@@ -21299,29 +21359,49 @@ type PatchedCustomerEstimatedCostPolicyRequest struct {
 // PatchedCustomerRequest defines model for PatchedCustomerRequest.
 type PatchedCustomerRequest struct {
 	Abbreviation *string `json:"abbreviation,omitempty"`
-	Address      *string `json:"address,omitempty"`
+
+	// AccessSubnets Enter a comma separated list of IPv4 or IPv6 CIDR addresses from where connection to self-service is allowed.
+	AccessSubnets       *string    `json:"access_subnets,omitempty"`
+	AccountingStartDate *time.Time `json:"accounting_start_date,omitempty"`
+	Address             *string    `json:"address,omitempty"`
+	AgreementNumber     *string    `json:"agreement_number,omitempty"`
+	Archived            *bool      `json:"archived,omitempty"`
 
 	// BackendId Organization identifier in another application.
-	BackendId      *string                         `json:"backend_id,omitempty"`
-	BankAccount    *string                         `json:"bank_account,omitempty"`
-	BankName       *string                         `json:"bank_name,omitempty"`
-	ContactDetails *string                         `json:"contact_details,omitempty"`
-	Country        *PatchedCustomerRequest_Country `json:"country,omitempty"`
-	Description    *string                         `json:"description,omitempty"`
-	Email          *openapi_types.Email            `json:"email,omitempty"`
-	Homepage       *string                         `json:"homepage,omitempty"`
-	Image          *openapi_types.File             `json:"image"`
-	Latitude       *float64                        `json:"latitude"`
-	Longitude      *float64                        `json:"longitude"`
-	Name           *string                         `json:"name,omitempty"`
-	NativeName     *string                         `json:"native_name,omitempty"`
+	BackendId                    *string                         `json:"backend_id,omitempty"`
+	BankAccount                  *string                         `json:"bank_account,omitempty"`
+	BankName                     *string                         `json:"bank_name,omitempty"`
+	Blocked                      *bool                           `json:"blocked,omitempty"`
+	ContactDetails               *string                         `json:"contact_details,omitempty"`
+	Country                      *PatchedCustomerRequest_Country `json:"country,omitempty"`
+	DefaultTaxPercent            *string                         `json:"default_tax_percent,omitempty"`
+	Description                  *string                         `json:"description,omitempty"`
+	DisplayBillingInfoInProjects *bool                           `json:"display_billing_info_in_projects,omitempty"`
+	Domain                       *string                         `json:"domain,omitempty"`
+	Email                        *openapi_types.Email            `json:"email,omitempty"`
+
+	// GracePeriodDays Number of extra days after project end date before resources are terminated
+	GracePeriodDays *int                `json:"grace_period_days"`
+	Homepage        *string             `json:"homepage,omitempty"`
+	Image           *openapi_types.File `json:"image"`
+	Latitude        *float64            `json:"latitude"`
+	Longitude       *float64            `json:"longitude"`
+
+	// MaxServiceAccounts Maximum number of service accounts allowed
+	MaxServiceAccounts *int    `json:"max_service_accounts"`
+	Name               *string `json:"name,omitempty"`
+	NativeName         *string `json:"native_name,omitempty"`
 
 	// NotificationEmails Comma-separated list of notification email addresses
-	NotificationEmails *string `json:"notification_emails,omitempty"`
-	PhoneNumber        *string `json:"phone_number,omitempty"`
-	Postal             *string `json:"postal,omitempty"`
-	RegistrationCode   *string `json:"registration_code,omitempty"`
-	Slug               *string `json:"slug,omitempty"`
+	NotificationEmails       *string             `json:"notification_emails,omitempty"`
+	PhoneNumber              *string             `json:"phone_number,omitempty"`
+	Postal                   *string             `json:"postal,omitempty"`
+	ProjectMetadataChecklist *openapi_types.UUID `json:"project_metadata_checklist"`
+	RegistrationCode         *string             `json:"registration_code,omitempty"`
+	Slug                     *string             `json:"slug,omitempty"`
+
+	// SponsorNumber External ID of the sponsor covering the costs
+	SponsorNumber *int `json:"sponsor_number"`
 
 	// VatCode VAT number
 	VatCode *string `json:"vat_code,omitempty"`
@@ -21335,29 +21415,49 @@ type PatchedCustomerRequest_Country struct {
 // PatchedCustomerRequestForm defines model for PatchedCustomerRequestForm.
 type PatchedCustomerRequestForm struct {
 	Abbreviation *string `json:"abbreviation,omitempty"`
-	Address      *string `json:"address,omitempty"`
+
+	// AccessSubnets Enter a comma separated list of IPv4 or IPv6 CIDR addresses from where connection to self-service is allowed.
+	AccessSubnets       *string    `json:"access_subnets,omitempty"`
+	AccountingStartDate *time.Time `json:"accounting_start_date,omitempty"`
+	Address             *string    `json:"address,omitempty"`
+	AgreementNumber     *string    `json:"agreement_number,omitempty"`
+	Archived            *bool      `json:"archived,omitempty"`
 
 	// BackendId Organization identifier in another application.
-	BackendId      *string                             `json:"backend_id,omitempty"`
-	BankAccount    *string                             `json:"bank_account,omitempty"`
-	BankName       *string                             `json:"bank_name,omitempty"`
-	ContactDetails *string                             `json:"contact_details,omitempty"`
-	Country        *PatchedCustomerRequestForm_Country `json:"country,omitempty"`
-	Description    *string                             `json:"description,omitempty"`
-	Email          *openapi_types.Email                `json:"email,omitempty"`
-	Homepage       *string                             `json:"homepage,omitempty"`
-	Image          *openapi_types.File                 `json:"image"`
-	Latitude       *float64                            `json:"latitude"`
-	Longitude      *float64                            `json:"longitude"`
-	Name           *string                             `json:"name,omitempty"`
-	NativeName     *string                             `json:"native_name,omitempty"`
+	BackendId                    *string                             `json:"backend_id,omitempty"`
+	BankAccount                  *string                             `json:"bank_account,omitempty"`
+	BankName                     *string                             `json:"bank_name,omitempty"`
+	Blocked                      *bool                               `json:"blocked,omitempty"`
+	ContactDetails               *string                             `json:"contact_details,omitempty"`
+	Country                      *PatchedCustomerRequestForm_Country `json:"country,omitempty"`
+	DefaultTaxPercent            *string                             `json:"default_tax_percent,omitempty"`
+	Description                  *string                             `json:"description,omitempty"`
+	DisplayBillingInfoInProjects *bool                               `json:"display_billing_info_in_projects,omitempty"`
+	Domain                       *string                             `json:"domain,omitempty"`
+	Email                        *openapi_types.Email                `json:"email,omitempty"`
+
+	// GracePeriodDays Number of extra days after project end date before resources are terminated
+	GracePeriodDays *int                `json:"grace_period_days"`
+	Homepage        *string             `json:"homepage,omitempty"`
+	Image           *openapi_types.File `json:"image"`
+	Latitude        *float64            `json:"latitude"`
+	Longitude       *float64            `json:"longitude"`
+
+	// MaxServiceAccounts Maximum number of service accounts allowed
+	MaxServiceAccounts *int    `json:"max_service_accounts"`
+	Name               *string `json:"name,omitempty"`
+	NativeName         *string `json:"native_name,omitempty"`
 
 	// NotificationEmails Comma-separated list of notification email addresses
-	NotificationEmails *string `json:"notification_emails,omitempty"`
-	PhoneNumber        *string `json:"phone_number,omitempty"`
-	Postal             *string `json:"postal,omitempty"`
-	RegistrationCode   *string `json:"registration_code,omitempty"`
-	Slug               *string `json:"slug,omitempty"`
+	NotificationEmails       *string             `json:"notification_emails,omitempty"`
+	PhoneNumber              *string             `json:"phone_number,omitempty"`
+	Postal                   *string             `json:"postal,omitempty"`
+	ProjectMetadataChecklist *openapi_types.UUID `json:"project_metadata_checklist"`
+	RegistrationCode         *string             `json:"registration_code,omitempty"`
+	Slug                     *string             `json:"slug,omitempty"`
+
+	// SponsorNumber External ID of the sponsor covering the costs
+	SponsorNumber *int `json:"sponsor_number"`
 
 	// VatCode VAT number
 	VatCode *string `json:"vat_code,omitempty"`
@@ -21371,29 +21471,49 @@ type PatchedCustomerRequestForm_Country struct {
 // PatchedCustomerRequestMultipart defines model for PatchedCustomerRequestMultipart.
 type PatchedCustomerRequestMultipart struct {
 	Abbreviation *string `json:"abbreviation,omitempty"`
-	Address      *string `json:"address,omitempty"`
+
+	// AccessSubnets Enter a comma separated list of IPv4 or IPv6 CIDR addresses from where connection to self-service is allowed.
+	AccessSubnets       *string    `json:"access_subnets,omitempty"`
+	AccountingStartDate *time.Time `json:"accounting_start_date,omitempty"`
+	Address             *string    `json:"address,omitempty"`
+	AgreementNumber     *string    `json:"agreement_number,omitempty"`
+	Archived            *bool      `json:"archived,omitempty"`
 
 	// BackendId Organization identifier in another application.
-	BackendId      *string                                  `json:"backend_id,omitempty"`
-	BankAccount    *string                                  `json:"bank_account,omitempty"`
-	BankName       *string                                  `json:"bank_name,omitempty"`
-	ContactDetails *string                                  `json:"contact_details,omitempty"`
-	Country        *PatchedCustomerRequestMultipart_Country `json:"country,omitempty"`
-	Description    *string                                  `json:"description,omitempty"`
-	Email          *openapi_types.Email                     `json:"email,omitempty"`
-	Homepage       *string                                  `json:"homepage,omitempty"`
-	Image          *openapi_types.File                      `json:"image"`
-	Latitude       *float64                                 `json:"latitude"`
-	Longitude      *float64                                 `json:"longitude"`
-	Name           *string                                  `json:"name,omitempty"`
-	NativeName     *string                                  `json:"native_name,omitempty"`
+	BackendId                    *string                                  `json:"backend_id,omitempty"`
+	BankAccount                  *string                                  `json:"bank_account,omitempty"`
+	BankName                     *string                                  `json:"bank_name,omitempty"`
+	Blocked                      *bool                                    `json:"blocked,omitempty"`
+	ContactDetails               *string                                  `json:"contact_details,omitempty"`
+	Country                      *PatchedCustomerRequestMultipart_Country `json:"country,omitempty"`
+	DefaultTaxPercent            *string                                  `json:"default_tax_percent,omitempty"`
+	Description                  *string                                  `json:"description,omitempty"`
+	DisplayBillingInfoInProjects *bool                                    `json:"display_billing_info_in_projects,omitempty"`
+	Domain                       *string                                  `json:"domain,omitempty"`
+	Email                        *openapi_types.Email                     `json:"email,omitempty"`
+
+	// GracePeriodDays Number of extra days after project end date before resources are terminated
+	GracePeriodDays *int                `json:"grace_period_days"`
+	Homepage        *string             `json:"homepage,omitempty"`
+	Image           *openapi_types.File `json:"image"`
+	Latitude        *float64            `json:"latitude"`
+	Longitude       *float64            `json:"longitude"`
+
+	// MaxServiceAccounts Maximum number of service accounts allowed
+	MaxServiceAccounts *int    `json:"max_service_accounts"`
+	Name               *string `json:"name,omitempty"`
+	NativeName         *string `json:"native_name,omitempty"`
 
 	// NotificationEmails Comma-separated list of notification email addresses
-	NotificationEmails *string `json:"notification_emails,omitempty"`
-	PhoneNumber        *string `json:"phone_number,omitempty"`
-	Postal             *string `json:"postal,omitempty"`
-	RegistrationCode   *string `json:"registration_code,omitempty"`
-	Slug               *string `json:"slug,omitempty"`
+	NotificationEmails       *string             `json:"notification_emails,omitempty"`
+	PhoneNumber              *string             `json:"phone_number,omitempty"`
+	Postal                   *string             `json:"postal,omitempty"`
+	ProjectMetadataChecklist *openapi_types.UUID `json:"project_metadata_checklist"`
+	RegistrationCode         *string             `json:"registration_code,omitempty"`
+	Slug                     *string             `json:"slug,omitempty"`
+
+	// SponsorNumber External ID of the sponsor covering the costs
+	SponsorNumber *int `json:"sponsor_number"`
 
 	// VatCode VAT number
 	VatCode *string `json:"vat_code,omitempty"`
