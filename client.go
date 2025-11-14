@@ -6343,7 +6343,9 @@ const (
 // Defines values for MarketplaceProviderResourcesListParamsO.
 const (
 	MarketplaceProviderResourcesListParamsOCreated          MarketplaceProviderResourcesListParamsO = "created"
+	MarketplaceProviderResourcesListParamsOEndDate          MarketplaceProviderResourcesListParamsO = "end_date"
 	MarketplaceProviderResourcesListParamsOMinusCreated     MarketplaceProviderResourcesListParamsO = "-created"
+	MarketplaceProviderResourcesListParamsOMinusEndDate     MarketplaceProviderResourcesListParamsO = "-end_date"
 	MarketplaceProviderResourcesListParamsOMinusName        MarketplaceProviderResourcesListParamsO = "-name"
 	MarketplaceProviderResourcesListParamsOMinusProjectName MarketplaceProviderResourcesListParamsO = "-project_name"
 	MarketplaceProviderResourcesListParamsOMinusState       MarketplaceProviderResourcesListParamsO = "-state"
@@ -6365,7 +6367,9 @@ const (
 // Defines values for MarketplaceProviderResourcesCountParamsO.
 const (
 	MarketplaceProviderResourcesCountParamsOCreated          MarketplaceProviderResourcesCountParamsO = "created"
+	MarketplaceProviderResourcesCountParamsOEndDate          MarketplaceProviderResourcesCountParamsO = "end_date"
 	MarketplaceProviderResourcesCountParamsOMinusCreated     MarketplaceProviderResourcesCountParamsO = "-created"
+	MarketplaceProviderResourcesCountParamsOMinusEndDate     MarketplaceProviderResourcesCountParamsO = "-end_date"
 	MarketplaceProviderResourcesCountParamsOMinusName        MarketplaceProviderResourcesCountParamsO = "-name"
 	MarketplaceProviderResourcesCountParamsOMinusProjectName MarketplaceProviderResourcesCountParamsO = "-project_name"
 	MarketplaceProviderResourcesCountParamsOMinusState       MarketplaceProviderResourcesCountParamsO = "-state"
@@ -6825,7 +6829,9 @@ const (
 // Defines values for MarketplaceResourcesListParamsO.
 const (
 	MarketplaceResourcesListParamsOCreated          MarketplaceResourcesListParamsO = "created"
+	MarketplaceResourcesListParamsOEndDate          MarketplaceResourcesListParamsO = "end_date"
 	MarketplaceResourcesListParamsOMinusCreated     MarketplaceResourcesListParamsO = "-created"
+	MarketplaceResourcesListParamsOMinusEndDate     MarketplaceResourcesListParamsO = "-end_date"
 	MarketplaceResourcesListParamsOMinusName        MarketplaceResourcesListParamsO = "-name"
 	MarketplaceResourcesListParamsOMinusProjectName MarketplaceResourcesListParamsO = "-project_name"
 	MarketplaceResourcesListParamsOMinusState       MarketplaceResourcesListParamsO = "-state"
@@ -6847,7 +6853,9 @@ const (
 // Defines values for MarketplaceResourcesCountParamsO.
 const (
 	MarketplaceResourcesCountParamsOCreated          MarketplaceResourcesCountParamsO = "created"
+	MarketplaceResourcesCountParamsOEndDate          MarketplaceResourcesCountParamsO = "end_date"
 	MarketplaceResourcesCountParamsOMinusCreated     MarketplaceResourcesCountParamsO = "-created"
+	MarketplaceResourcesCountParamsOMinusEndDate     MarketplaceResourcesCountParamsO = "-end_date"
 	MarketplaceResourcesCountParamsOMinusName        MarketplaceResourcesCountParamsO = "-name"
 	MarketplaceResourcesCountParamsOMinusProjectName MarketplaceResourcesCountParamsO = "-project_name"
 	MarketplaceResourcesCountParamsOMinusState       MarketplaceResourcesCountParamsO = "-state"
