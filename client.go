@@ -24815,13 +24815,63 @@ type QueryRequest struct {
 
 // Question defines model for Question.
 type Question struct {
-	Description     *string            `json:"description,omitempty"`
+	// AllowedFileTypes List of allowed file extensions (e.g., ['.pdf', '.doc', '.docx']). If empty, all file types are allowed.
+	AllowedFileTypes interface{} `json:"allowed_file_types,omitempty"`
+
+	// AllowedMimeTypes List of allowed MIME types (e.g., ['application/pdf', 'application/msword']). If empty, MIME type validation is not enforced. When both extensions and MIME types are specified, files must match both criteria for security.
+	AllowedMimeTypes interface{} `json:"allowed_mime_types,omitempty"`
+
+	// AlwaysRequiresReview This question always requires review regardless of answer
+	AlwaysRequiresReview *bool `json:"always_requires_review,omitempty"`
+
+	// AlwaysShowGuidance Show user guidance always, regardless of answer. If False, guidance is conditional on answer matching guidance_answer_value with guidance_operator
+	AlwaysShowGuidance *bool `json:"always_show_guidance,omitempty"`
+
+	// DependencyLogicOperator Defines how multiple dependencies are evaluated. AND: All dependencies must be satisfied. OR: At least one dependency must be satisfied.
+	DependencyLogicOperator *DependencyLogicOperatorEnum `json:"dependency_logic_operator,omitempty"`
+	Description             *string                      `json:"description,omitempty"`
+
+	// GuidanceAnswerValue Answer value that triggers display of user guidance.
+	GuidanceAnswerValue interface{} `json:"guidance_answer_value"`
+
+	// GuidanceOperator Operator to use when comparing answer with guidance_answer_value
+	GuidanceOperator *Question_GuidanceOperator `json:"guidance_operator,omitempty"`
+
+	// MaxFileSizeMb Maximum file size in megabytes. If not set, no size limit is enforced.
+	MaxFileSizeMb *int `json:"max_file_size_mb"`
+
+	// MaxFilesCount Maximum number of files allowed for MULTIPLE_FILES type questions. If not set, no count limit is enforced.
+	MaxFilesCount *int `json:"max_files_count"`
+
+	// MaxValue Maximum value allowed for NUMBER type questions
+	MaxValue *string `json:"max_value"`
+
+	// MinValue Minimum value allowed for NUMBER type questions
+	MinValue        *string            `json:"min_value"`
+	Operator        *Question_Operator `json:"operator,omitempty"`
+	Order           *int               `json:"order,omitempty"`
 	QuestionOptions *[]QuestionOptions `json:"question_options,omitempty"`
-	Required        *bool              `json:"required,omitempty"`
+
+	// QuestionType Type of question and expected answer format
+	QuestionType *QuestionTypeEnum `json:"question_type,omitempty"`
+	Required     *bool             `json:"required,omitempty"`
+
+	// ReviewAnswerValue Answer value that trigger review.
+	ReviewAnswerValue interface{} `json:"review_answer_value"`
 
 	// UserGuidance Additional guidance text visible to users when answering and reviewing
 	UserGuidance *string             `json:"user_guidance,omitempty"`
 	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// Question_GuidanceOperator Operator to use when comparing answer with guidance_answer_value
+type Question_GuidanceOperator struct {
+	union json.RawMessage
+}
+
+// Question_Operator defines model for Question.Operator.
+type Question_Operator struct {
+	union json.RawMessage
 }
 
 // QuestionAdmin defines model for QuestionAdmin.
@@ -26595,11 +26645,6 @@ type ResourcesLimits struct {
 	OrganizationGroupName *string             `json:"organization_group_name,omitempty"`
 	OrganizationGroupUuid *string             `json:"organization_group_uuid,omitempty"`
 	Value                 *int                `json:"value,omitempty"`
-}
-
-// ReviewComment defines model for ReviewComment.
-type ReviewComment struct {
-	Comment *string `json:"comment,omitempty"`
 }
 
 // ReviewCommentRequest defines model for ReviewCommentRequest.
@@ -30446,6 +30491,7 @@ type CustomersListUsersListParamsO string
 
 // CustomersStatsRetrieveParams defines parameters for CustomersStatsRetrieve.
 type CustomersStatsRetrieveParams struct {
+	// ForCurrentMonth If true, returns usage data for the current month only. Otherwise, returns total usage.
 	ForCurrentMonth *bool `form:"for_current_month,omitempty" json:"for_current_month,omitempty"`
 }
 
@@ -33238,11 +33284,12 @@ type MarketplaceProviderOfferingsListParams struct {
 	AccessibleViaCalls *bool `form:"accessible_via_calls,omitempty" json:"accessible_via_calls,omitempty"`
 
 	// AllowedCustomerUuid Allowed customer UUID
-	AllowedCustomerUuid *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
-	Attributes          *string             `form:"attributes,omitempty" json:"attributes,omitempty"`
-	Billable            *bool               `form:"billable,omitempty" json:"billable,omitempty"`
-	CategoryGroupUuid   *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
-	CategoryUuid        *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
+	AllowedCustomerUuid   *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
+	Attributes            *string             `form:"attributes,omitempty" json:"attributes,omitempty"`
+	Billable              *bool               `form:"billable,omitempty" json:"billable,omitempty"`
+	CanCreateOfferingUser *bool               `form:"can_create_offering_user,omitempty" json:"can_create_offering_user,omitempty"`
+	CategoryGroupUuid     *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
+	CategoryUuid          *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
 
 	// Created Created after
 	Created      *time.Time                                     `form:"created,omitempty" json:"created,omitempty"`
@@ -33323,11 +33370,12 @@ type MarketplaceProviderOfferingsCountParams struct {
 	AccessibleViaCalls *bool `form:"accessible_via_calls,omitempty" json:"accessible_via_calls,omitempty"`
 
 	// AllowedCustomerUuid Allowed customer UUID
-	AllowedCustomerUuid *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
-	Attributes          *string             `form:"attributes,omitempty" json:"attributes,omitempty"`
-	Billable            *bool               `form:"billable,omitempty" json:"billable,omitempty"`
-	CategoryGroupUuid   *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
-	CategoryUuid        *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
+	AllowedCustomerUuid   *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
+	Attributes            *string             `form:"attributes,omitempty" json:"attributes,omitempty"`
+	Billable              *bool               `form:"billable,omitempty" json:"billable,omitempty"`
+	CanCreateOfferingUser *bool               `form:"can_create_offering_user,omitempty" json:"can_create_offering_user,omitempty"`
+	CategoryGroupUuid     *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
+	CategoryUuid          *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
 
 	// Created Created after
 	Created      *time.Time          `form:"created,omitempty" json:"created,omitempty"`
@@ -33404,11 +33452,12 @@ type MarketplaceProviderOfferingsGroupsListParams struct {
 	AccessibleViaCalls *bool `form:"accessible_via_calls,omitempty" json:"accessible_via_calls,omitempty"`
 
 	// AllowedCustomerUuid Allowed customer UUID
-	AllowedCustomerUuid *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
-	Attributes          *string             `form:"attributes,omitempty" json:"attributes,omitempty"`
-	Billable            *bool               `form:"billable,omitempty" json:"billable,omitempty"`
-	CategoryGroupUuid   *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
-	CategoryUuid        *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
+	AllowedCustomerUuid   *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
+	Attributes            *string             `form:"attributes,omitempty" json:"attributes,omitempty"`
+	Billable              *bool               `form:"billable,omitempty" json:"billable,omitempty"`
+	CanCreateOfferingUser *bool               `form:"can_create_offering_user,omitempty" json:"can_create_offering_user,omitempty"`
+	CategoryGroupUuid     *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
+	CategoryUuid          *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
 
 	// Created Created after
 	Created      *time.Time          `form:"created,omitempty" json:"created,omitempty"`
@@ -33485,11 +33534,12 @@ type MarketplaceProviderOfferingsGroupsCountParams struct {
 	AccessibleViaCalls *bool `form:"accessible_via_calls,omitempty" json:"accessible_via_calls,omitempty"`
 
 	// AllowedCustomerUuid Allowed customer UUID
-	AllowedCustomerUuid *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
-	Attributes          *string             `form:"attributes,omitempty" json:"attributes,omitempty"`
-	Billable            *bool               `form:"billable,omitempty" json:"billable,omitempty"`
-	CategoryGroupUuid   *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
-	CategoryUuid        *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
+	AllowedCustomerUuid   *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
+	Attributes            *string             `form:"attributes,omitempty" json:"attributes,omitempty"`
+	Billable              *bool               `form:"billable,omitempty" json:"billable,omitempty"`
+	CanCreateOfferingUser *bool               `form:"can_create_offering_user,omitempty" json:"can_create_offering_user,omitempty"`
+	CategoryGroupUuid     *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
+	CategoryUuid          *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
 
 	// Created Created after
 	Created      *time.Time          `form:"created,omitempty" json:"created,omitempty"`
@@ -33574,11 +33624,12 @@ type MarketplaceProviderOfferingsComponentStatsListParams struct {
 	AccessibleViaCalls *bool `form:"accessible_via_calls,omitempty" json:"accessible_via_calls,omitempty"`
 
 	// AllowedCustomerUuid Allowed customer UUID
-	AllowedCustomerUuid *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
-	Attributes          *string             `form:"attributes,omitempty" json:"attributes,omitempty"`
-	Billable            *bool               `form:"billable,omitempty" json:"billable,omitempty"`
-	CategoryGroupUuid   *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
-	CategoryUuid        *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
+	AllowedCustomerUuid   *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
+	Attributes            *string             `form:"attributes,omitempty" json:"attributes,omitempty"`
+	Billable              *bool               `form:"billable,omitempty" json:"billable,omitempty"`
+	CanCreateOfferingUser *bool               `form:"can_create_offering_user,omitempty" json:"can_create_offering_user,omitempty"`
+	CategoryGroupUuid     *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
+	CategoryUuid          *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
 
 	// Created Created after
 	Created      *time.Time          `form:"created,omitempty" json:"created,omitempty"`
@@ -33662,11 +33713,12 @@ type MarketplaceProviderOfferingsCostsListParams struct {
 	AccountingIsRunning *bool `form:"accounting_is_running,omitempty" json:"accounting_is_running,omitempty"`
 
 	// AllowedCustomerUuid Allowed customer UUID
-	AllowedCustomerUuid *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
-	Attributes          *string             `form:"attributes,omitempty" json:"attributes,omitempty"`
-	Billable            *bool               `form:"billable,omitempty" json:"billable,omitempty"`
-	CategoryGroupUuid   *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
-	CategoryUuid        *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
+	AllowedCustomerUuid   *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
+	Attributes            *string             `form:"attributes,omitempty" json:"attributes,omitempty"`
+	Billable              *bool               `form:"billable,omitempty" json:"billable,omitempty"`
+	CanCreateOfferingUser *bool               `form:"can_create_offering_user,omitempty" json:"can_create_offering_user,omitempty"`
+	CategoryGroupUuid     *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
+	CategoryUuid          *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
 
 	// Created Created after
 	Created      *time.Time          `form:"created,omitempty" json:"created,omitempty"`
@@ -33749,11 +33801,12 @@ type MarketplaceProviderOfferingsCustomersListParams struct {
 	AccessibleViaCalls *bool `form:"accessible_via_calls,omitempty" json:"accessible_via_calls,omitempty"`
 
 	// AllowedCustomerUuid Allowed customer UUID
-	AllowedCustomerUuid *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
-	Attributes          *string             `form:"attributes,omitempty" json:"attributes,omitempty"`
-	Billable            *bool               `form:"billable,omitempty" json:"billable,omitempty"`
-	CategoryGroupUuid   *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
-	CategoryUuid        *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
+	AllowedCustomerUuid   *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
+	Attributes            *string             `form:"attributes,omitempty" json:"attributes,omitempty"`
+	Billable              *bool               `form:"billable,omitempty" json:"billable,omitempty"`
+	CanCreateOfferingUser *bool               `form:"can_create_offering_user,omitempty" json:"can_create_offering_user,omitempty"`
+	CategoryGroupUuid     *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
+	CategoryUuid          *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
 
 	// Created Created after
 	Created      *time.Time                                              `form:"created,omitempty" json:"created,omitempty"`
@@ -34176,11 +34229,12 @@ type MarketplacePublicOfferingsListParams struct {
 	AccessibleViaCalls *bool `form:"accessible_via_calls,omitempty" json:"accessible_via_calls,omitempty"`
 
 	// AllowedCustomerUuid Allowed customer UUID
-	AllowedCustomerUuid *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
-	Attributes          *string             `form:"attributes,omitempty" json:"attributes,omitempty"`
-	Billable            *bool               `form:"billable,omitempty" json:"billable,omitempty"`
-	CategoryGroupUuid   *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
-	CategoryUuid        *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
+	AllowedCustomerUuid   *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
+	Attributes            *string             `form:"attributes,omitempty" json:"attributes,omitempty"`
+	Billable              *bool               `form:"billable,omitempty" json:"billable,omitempty"`
+	CanCreateOfferingUser *bool               `form:"can_create_offering_user,omitempty" json:"can_create_offering_user,omitempty"`
+	CategoryGroupUuid     *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
+	CategoryUuid          *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
 
 	// Created Created after
 	Created      *time.Time                                   `form:"created,omitempty" json:"created,omitempty"`
@@ -34261,11 +34315,12 @@ type MarketplacePublicOfferingsCountParams struct {
 	AccessibleViaCalls *bool `form:"accessible_via_calls,omitempty" json:"accessible_via_calls,omitempty"`
 
 	// AllowedCustomerUuid Allowed customer UUID
-	AllowedCustomerUuid *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
-	Attributes          *string             `form:"attributes,omitempty" json:"attributes,omitempty"`
-	Billable            *bool               `form:"billable,omitempty" json:"billable,omitempty"`
-	CategoryGroupUuid   *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
-	CategoryUuid        *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
+	AllowedCustomerUuid   *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
+	Attributes            *string             `form:"attributes,omitempty" json:"attributes,omitempty"`
+	Billable              *bool               `form:"billable,omitempty" json:"billable,omitempty"`
+	CanCreateOfferingUser *bool               `form:"can_create_offering_user,omitempty" json:"can_create_offering_user,omitempty"`
+	CategoryGroupUuid     *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
+	CategoryUuid          *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
 
 	// Created Created after
 	Created      *time.Time          `form:"created,omitempty" json:"created,omitempty"`
@@ -34998,11 +35053,12 @@ type MarketplaceServiceProvidersOfferingsListParams struct {
 	AccessibleViaCalls *bool `form:"accessible_via_calls,omitempty" json:"accessible_via_calls,omitempty"`
 
 	// AllowedCustomerUuid Allowed customer UUID
-	AllowedCustomerUuid *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
-	Attributes          *string             `form:"attributes,omitempty" json:"attributes,omitempty"`
-	Billable            *bool               `form:"billable,omitempty" json:"billable,omitempty"`
-	CategoryGroupUuid   *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
-	CategoryUuid        *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
+	AllowedCustomerUuid   *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
+	Attributes            *string             `form:"attributes,omitempty" json:"attributes,omitempty"`
+	Billable              *bool               `form:"billable,omitempty" json:"billable,omitempty"`
+	CanCreateOfferingUser *bool               `form:"can_create_offering_user,omitempty" json:"can_create_offering_user,omitempty"`
+	CategoryGroupUuid     *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
+	CategoryUuid          *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
 
 	// Created Created after
 	Created      *time.Time                                             `form:"created,omitempty" json:"created,omitempty"`
@@ -36764,6 +36820,7 @@ type OpenportalUnmanagedProjectsListUsersListParamsO string
 
 // OpenportalUnmanagedProjectsStatsRetrieveParams defines parameters for OpenportalUnmanagedProjectsStatsRetrieve.
 type OpenportalUnmanagedProjectsStatsRetrieveParams struct {
+	// ForCurrentMonth If true, returns usage data for the current month only. Otherwise, returns total usage.
 	ForCurrentMonth *bool `form:"for_current_month,omitempty" json:"for_current_month,omitempty"`
 }
 
@@ -38771,6 +38828,7 @@ type ProjectsListUsersListParamsO string
 
 // ProjectsStatsRetrieveParams defines parameters for ProjectsStatsRetrieve.
 type ProjectsStatsRetrieveParams struct {
+	// ForCurrentMonth If true, returns usage data for the current month only. Otherwise, returns total usage.
 	ForCurrentMonth *bool `form:"for_current_month,omitempty" json:"for_current_month,omitempty"`
 }
 
@@ -48409,6 +48467,130 @@ func (t PublicOfferingDetails_Country) MarshalJSON() ([]byte, error) {
 }
 
 func (t *PublicOfferingDetails_Country) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsChecklistOperators returns the union data inside the Question_GuidanceOperator as a ChecklistOperators
+func (t Question_GuidanceOperator) AsChecklistOperators() (ChecklistOperators, error) {
+	var body ChecklistOperators
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromChecklistOperators overwrites any union data inside the Question_GuidanceOperator as the provided ChecklistOperators
+func (t *Question_GuidanceOperator) FromChecklistOperators(v ChecklistOperators) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeChecklistOperators performs a merge with any union data inside the Question_GuidanceOperator, using the provided ChecklistOperators
+func (t *Question_GuidanceOperator) MergeChecklistOperators(v ChecklistOperators) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsBlankEnum returns the union data inside the Question_GuidanceOperator as a BlankEnum
+func (t Question_GuidanceOperator) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the Question_GuidanceOperator as the provided BlankEnum
+func (t *Question_GuidanceOperator) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the Question_GuidanceOperator, using the provided BlankEnum
+func (t *Question_GuidanceOperator) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t Question_GuidanceOperator) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *Question_GuidanceOperator) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsChecklistOperators returns the union data inside the Question_Operator as a ChecklistOperators
+func (t Question_Operator) AsChecklistOperators() (ChecklistOperators, error) {
+	var body ChecklistOperators
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromChecklistOperators overwrites any union data inside the Question_Operator as the provided ChecklistOperators
+func (t *Question_Operator) FromChecklistOperators(v ChecklistOperators) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeChecklistOperators performs a merge with any union data inside the Question_Operator, using the provided ChecklistOperators
+func (t *Question_Operator) MergeChecklistOperators(v ChecklistOperators) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsBlankEnum returns the union data inside the Question_Operator as a BlankEnum
+func (t Question_Operator) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the Question_Operator as the provided BlankEnum
+func (t *Question_Operator) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the Question_Operator, using the provided BlankEnum
+func (t *Question_Operator) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t Question_Operator) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *Question_Operator) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -138032,6 +138214,22 @@ func NewMarketplaceProviderOfferingsListRequest(server string, params *Marketpla
 
 		}
 
+		if params.CanCreateOfferingUser != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "can_create_offering_user", runtime.ParamLocationQuery, *params.CanCreateOfferingUser); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.CategoryGroupUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "category_group_uuid", runtime.ParamLocationQuery, *params.CategoryGroupUuid); err != nil {
@@ -138596,6 +138794,22 @@ func NewMarketplaceProviderOfferingsCountRequest(server string, params *Marketpl
 		if params.Billable != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "billable", runtime.ParamLocationQuery, *params.Billable); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CanCreateOfferingUser != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "can_create_offering_user", runtime.ParamLocationQuery, *params.CanCreateOfferingUser); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -139221,6 +139435,22 @@ func NewMarketplaceProviderOfferingsGroupsListRequest(server string, params *Mar
 
 		}
 
+		if params.CanCreateOfferingUser != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "can_create_offering_user", runtime.ParamLocationQuery, *params.CanCreateOfferingUser); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.CategoryGroupUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "category_group_uuid", runtime.ParamLocationQuery, *params.CategoryGroupUuid); err != nil {
@@ -139769,6 +139999,22 @@ func NewMarketplaceProviderOfferingsGroupsCountRequest(server string, params *Ma
 		if params.Billable != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "billable", runtime.ParamLocationQuery, *params.Billable); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CanCreateOfferingUser != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "can_create_offering_user", runtime.ParamLocationQuery, *params.CanCreateOfferingUser); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -140696,6 +140942,22 @@ func NewMarketplaceProviderOfferingsComponentStatsListRequest(server string, uui
 
 		}
 
+		if params.CanCreateOfferingUser != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "can_create_offering_user", runtime.ParamLocationQuery, *params.CanCreateOfferingUser); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.CategoryGroupUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "category_group_uuid", runtime.ParamLocationQuery, *params.CategoryGroupUuid); err != nil {
@@ -141299,6 +141561,22 @@ func NewMarketplaceProviderOfferingsCostsListRequest(server string, uuid openapi
 		if params.Billable != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "billable", runtime.ParamLocationQuery, *params.Billable); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CanCreateOfferingUser != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "can_create_offering_user", runtime.ParamLocationQuery, *params.CanCreateOfferingUser); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -141946,6 +142224,22 @@ func NewMarketplaceProviderOfferingsCustomersListRequest(server string, uuid ope
 		if params.Billable != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "billable", runtime.ParamLocationQuery, *params.Billable); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CanCreateOfferingUser != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "can_create_offering_user", runtime.ParamLocationQuery, *params.CanCreateOfferingUser); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -147488,6 +147782,22 @@ func NewMarketplacePublicOfferingsListRequest(server string, params *Marketplace
 
 		}
 
+		if params.CanCreateOfferingUser != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "can_create_offering_user", runtime.ParamLocationQuery, *params.CanCreateOfferingUser); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.CategoryGroupUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "category_group_uuid", runtime.ParamLocationQuery, *params.CategoryGroupUuid); err != nil {
@@ -148052,6 +148362,22 @@ func NewMarketplacePublicOfferingsCountRequest(server string, params *Marketplac
 		if params.Billable != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "billable", runtime.ParamLocationQuery, *params.Billable); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CanCreateOfferingUser != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "can_create_offering_user", runtime.ParamLocationQuery, *params.CanCreateOfferingUser); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -155781,6 +156107,22 @@ func NewMarketplaceServiceProvidersOfferingsListRequest(server string, servicePr
 		if params.Billable != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "billable", runtime.ParamLocationQuery, *params.Billable); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CanCreateOfferingUser != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "can_create_offering_user", runtime.ParamLocationQuery, *params.CanCreateOfferingUser); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -246385,6 +246727,7 @@ func (r CallRoundsReviewersListResponse) StatusCode() int {
 type CeleryStatsRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *map[string]interface{}
 }
 
 // Status returns HTTPResponse.Status
@@ -279371,6 +279714,7 @@ func (r UserInvitationsAcceptResponse) StatusCode() int {
 type UserInvitationsCancelResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *interface{}
 }
 
 // Status returns HTTPResponse.Status
@@ -279543,7 +279887,6 @@ func (r UserPermissionRequestsRetrieveResponse) StatusCode() int {
 type UserPermissionRequestsApproveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *ReviewComment
 }
 
 // Status returns HTTPResponse.Status
@@ -279587,7 +279930,6 @@ func (r UserPermissionRequestsCancelRequestResponse) StatusCode() int {
 type UserPermissionRequestsRejectResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *ReviewComment
 }
 
 // Status returns HTTPResponse.Status
@@ -306394,6 +306736,16 @@ func ParseCeleryStatsRetrieveResponse(rsp *http.Response) (*CeleryStatsRetrieveR
 	response := &CeleryStatsRetrieveResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest map[string]interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
@@ -340837,6 +341189,16 @@ func ParseUserInvitationsCancelResponse(rsp *http.Response) (*UserInvitationsCan
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -341005,16 +341367,6 @@ func ParseUserPermissionRequestsApproveResponse(rsp *http.Response) (*UserPermis
 		HTTPResponse: rsp,
 	}
 
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ReviewComment
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
 	return response, nil
 }
 
@@ -341055,16 +341407,6 @@ func ParseUserPermissionRequestsRejectResponse(rsp *http.Response) (*UserPermiss
 	response := &UserPermissionRequestsRejectResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ReviewComment
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
 	}
 
 	return response, nil
