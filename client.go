@@ -9420,6 +9420,7 @@ const (
 	OpenstackTenantsListParamsFieldProjectUuid                      OpenstackTenantsListParamsField = "project_uuid"
 	OpenstackTenantsListParamsFieldQuotas                           OpenstackTenantsListParamsField = "quotas"
 	OpenstackTenantsListParamsFieldResourceType                     OpenstackTenantsListParamsField = "resource_type"
+	OpenstackTenantsListParamsFieldSecurityGroups                   OpenstackTenantsListParamsField = "security_groups"
 	OpenstackTenantsListParamsFieldServiceName                      OpenstackTenantsListParamsField = "service_name"
 	OpenstackTenantsListParamsFieldServiceSettings                  OpenstackTenantsListParamsField = "service_settings"
 	OpenstackTenantsListParamsFieldServiceSettingsErrorMessage      OpenstackTenantsListParamsField = "service_settings_error_message"
@@ -9488,6 +9489,7 @@ const (
 	OpenstackTenantsRetrieveParamsFieldProjectUuid                      OpenstackTenantsRetrieveParamsField = "project_uuid"
 	OpenstackTenantsRetrieveParamsFieldQuotas                           OpenstackTenantsRetrieveParamsField = "quotas"
 	OpenstackTenantsRetrieveParamsFieldResourceType                     OpenstackTenantsRetrieveParamsField = "resource_type"
+	OpenstackTenantsRetrieveParamsFieldSecurityGroups                   OpenstackTenantsRetrieveParamsField = "security_groups"
 	OpenstackTenantsRetrieveParamsFieldServiceName                      OpenstackTenantsRetrieveParamsField = "service_name"
 	OpenstackTenantsRetrieveParamsFieldServiceSettings                  OpenstackTenantsRetrieveParamsField = "service_settings"
 	OpenstackTenantsRetrieveParamsFieldServiceSettingsErrorMessage      OpenstackTenantsRetrieveParamsField = "service_settings_error_message"
@@ -18776,7 +18778,10 @@ type OfferingDescriptionUpdateRequest struct {
 
 // OfferingEstimatedCostPolicy defines model for OfferingEstimatedCostPolicy.
 type OfferingEstimatedCostPolicy struct {
-	Actions           string     `json:"actions"`
+	Actions string `json:"actions"`
+
+	// ApplyToAll If True, policy applies to all customers. Mutually exclusive with organization_groups.
+	ApplyToAll        *bool      `json:"apply_to_all,omitempty"`
 	Created           *time.Time `json:"created,omitempty"`
 	CreatedByFullName *string    `json:"created_by_full_name,omitempty"`
 	CreatedByUsername *string    `json:"created_by_username,omitempty"`
@@ -18786,7 +18791,7 @@ type OfferingEstimatedCostPolicy struct {
 
 	// Options Fields for saving actions extra data. Keys are name of actions.
 	Options            interface{}         `json:"options,omitempty"`
-	OrganizationGroups []string            `json:"organization_groups"`
+	OrganizationGroups *[]string           `json:"organization_groups,omitempty"`
 	Period             *PeriodEnum         `json:"period,omitempty"`
 	PeriodName         *string             `json:"period_name,omitempty"`
 	Scope              string              `json:"scope"`
@@ -18798,12 +18803,15 @@ type OfferingEstimatedCostPolicy struct {
 
 // OfferingEstimatedCostPolicyRequest defines model for OfferingEstimatedCostPolicyRequest.
 type OfferingEstimatedCostPolicyRequest struct {
-	Actions   string `json:"actions"`
-	LimitCost int    `json:"limit_cost"`
+	Actions string `json:"actions"`
+
+	// ApplyToAll If True, policy applies to all customers. Mutually exclusive with organization_groups.
+	ApplyToAll *bool `json:"apply_to_all,omitempty"`
+	LimitCost  int   `json:"limit_cost"`
 
 	// Options Fields for saving actions extra data. Keys are name of actions.
 	Options            interface{} `json:"options,omitempty"`
-	OrganizationGroups []string    `json:"organization_groups"`
+	OrganizationGroups *[]string   `json:"organization_groups,omitempty"`
 	Period             *PeriodEnum `json:"period,omitempty"`
 	Scope              string      `json:"scope"`
 }
@@ -19220,7 +19228,10 @@ type OfferingThumbnailRequestMultipart struct {
 
 // OfferingUsagePolicy defines model for OfferingUsagePolicy.
 type OfferingUsagePolicy struct {
-	Actions            string                         `json:"actions"`
+	Actions string `json:"actions"`
+
+	// ApplyToAll If True, policy applies to all customers. Mutually exclusive with organization_groups.
+	ApplyToAll         *bool                          `json:"apply_to_all,omitempty"`
 	ComponentLimitsSet []NestedOfferingComponentLimit `json:"component_limits_set"`
 	Created            *time.Time                     `json:"created,omitempty"`
 	CreatedByFullName  *string                        `json:"created_by_full_name,omitempty"`
@@ -19230,7 +19241,7 @@ type OfferingUsagePolicy struct {
 
 	// Options Fields for saving actions extra data. Keys are name of actions.
 	Options            interface{}         `json:"options,omitempty"`
-	OrganizationGroups []string            `json:"organization_groups"`
+	OrganizationGroups *[]string           `json:"organization_groups,omitempty"`
 	Period             *PeriodEnum         `json:"period,omitempty"`
 	PeriodName         *string             `json:"period_name,omitempty"`
 	Scope              string              `json:"scope"`
@@ -19242,12 +19253,15 @@ type OfferingUsagePolicy struct {
 
 // OfferingUsagePolicyRequest defines model for OfferingUsagePolicyRequest.
 type OfferingUsagePolicyRequest struct {
-	Actions            string                                `json:"actions"`
+	Actions string `json:"actions"`
+
+	// ApplyToAll If True, policy applies to all customers. Mutually exclusive with organization_groups.
+	ApplyToAll         *bool                                 `json:"apply_to_all,omitempty"`
 	ComponentLimitsSet []NestedOfferingComponentLimitRequest `json:"component_limits_set"`
 
 	// Options Fields for saving actions extra data. Keys are name of actions.
 	Options            interface{} `json:"options,omitempty"`
-	OrganizationGroups []string    `json:"organization_groups"`
+	OrganizationGroups *[]string   `json:"organization_groups,omitempty"`
 	Period             *PeriodEnum `json:"period,omitempty"`
 	Scope              string      `json:"scope"`
 }
@@ -21182,18 +21196,26 @@ type OpenStackTenantRequest struct {
 	AvailabilityZone *string `json:"availability_zone,omitempty"`
 
 	// DefaultVolumeTypeName Volume type name to use when creating volumes.
-	DefaultVolumeTypeName *string `json:"default_volume_type_name,omitempty"`
-	Description           *string `json:"description,omitempty"`
-	Name                  string  `json:"name"`
-	Project               string  `json:"project"`
-	ServiceSettings       string  `json:"service_settings"`
-	SubnetCidr            *string `json:"subnet_cidr,omitempty"`
+	DefaultVolumeTypeName *string                                `json:"default_volume_type_name,omitempty"`
+	Description           *string                                `json:"description,omitempty"`
+	Name                  string                                 `json:"name"`
+	Project               string                                 `json:"project"`
+	SecurityGroups        *[]OpenStackTenantSecurityGroupRequest `json:"security_groups,omitempty"`
+	ServiceSettings       string                                 `json:"service_settings"`
+	SubnetCidr            *string                                `json:"subnet_cidr,omitempty"`
 
 	// UserPassword Password of the tenant user
 	UserPassword *string `json:"user_password,omitempty"`
 
 	// UserUsername Username of the tenant user
 	UserUsername *string `json:"user_username,omitempty"`
+}
+
+// OpenStackTenantSecurityGroupRequest defines model for OpenStackTenantSecurityGroupRequest.
+type OpenStackTenantSecurityGroupRequest struct {
+	Description *string                                    `json:"description,omitempty"`
+	Name        string                                     `json:"name"`
+	Rules       *[]OpenStackSecurityGroupRuleCreateRequest `json:"rules,omitempty"`
 }
 
 // OpenStackVolume defines model for OpenStackVolume.
@@ -22326,8 +22348,11 @@ type PatchedNotificationTemplateDetailSerializersRequest struct {
 
 // PatchedOfferingEstimatedCostPolicyRequest defines model for PatchedOfferingEstimatedCostPolicyRequest.
 type PatchedOfferingEstimatedCostPolicyRequest struct {
-	Actions   *string `json:"actions,omitempty"`
-	LimitCost *int    `json:"limit_cost,omitempty"`
+	Actions *string `json:"actions,omitempty"`
+
+	// ApplyToAll If True, policy applies to all customers. Mutually exclusive with organization_groups.
+	ApplyToAll *bool `json:"apply_to_all,omitempty"`
+	LimitCost  *int  `json:"limit_cost,omitempty"`
 
 	// Options Fields for saving actions extra data. Keys are name of actions.
 	Options            interface{} `json:"options,omitempty"`
@@ -22424,7 +22449,10 @@ type PatchedOfferingTermsOfServiceRequest struct {
 
 // PatchedOfferingUsagePolicyRequest defines model for PatchedOfferingUsagePolicyRequest.
 type PatchedOfferingUsagePolicyRequest struct {
-	Actions            *string                                `json:"actions,omitempty"`
+	Actions *string `json:"actions,omitempty"`
+
+	// ApplyToAll If True, policy applies to all customers. Mutually exclusive with organization_groups.
+	ApplyToAll         *bool                                  `json:"apply_to_all,omitempty"`
 	ComponentLimitsSet *[]NestedOfferingComponentLimitRequest `json:"component_limits_set,omitempty"`
 
 	// Options Fields for saving actions extra data. Keys are name of actions.
@@ -22609,9 +22637,10 @@ type PatchedOpenStackTenantRequest struct {
 	AvailabilityZone *string `json:"availability_zone,omitempty"`
 
 	// DefaultVolumeTypeName Volume type name to use when creating volumes.
-	DefaultVolumeTypeName *string `json:"default_volume_type_name,omitempty"`
-	Description           *string `json:"description,omitempty"`
-	Name                  *string `json:"name,omitempty"`
+	DefaultVolumeTypeName *string                                `json:"default_volume_type_name,omitempty"`
+	Description           *string                                `json:"description,omitempty"`
+	Name                  *string                                `json:"name,omitempty"`
+	SecurityGroups        *[]OpenStackTenantSecurityGroupRequest `json:"security_groups,omitempty"`
 }
 
 // PatchedOpenStackVolumeRequest defines model for PatchedOpenStackVolumeRequest.
@@ -23197,6 +23226,9 @@ type PatchedSlurmAllocationRequest struct {
 // PatchedSlurmPeriodicUsagePolicyRequest defines model for PatchedSlurmPeriodicUsagePolicyRequest.
 type PatchedSlurmPeriodicUsagePolicyRequest struct {
 	Actions *string `json:"actions,omitempty"`
+
+	// ApplyToAll If True, policy applies to all customers. Mutually exclusive with organization_groups.
+	ApplyToAll *bool `json:"apply_to_all,omitempty"`
 
 	// CarryoverEnabled Enable unused allocation carryover to next period
 	CarryoverEnabled   *bool                                  `json:"carryover_enabled,omitempty"`
@@ -27327,6 +27359,9 @@ type SlurmInvoicesSlurmPackageCreateOrderAttributes struct {
 type SlurmPeriodicUsagePolicy struct {
 	Actions string `json:"actions"`
 
+	// ApplyToAll If True, policy applies to all customers. Mutually exclusive with organization_groups.
+	ApplyToAll *bool `json:"apply_to_all,omitempty"`
+
 	// CarryoverEnabled Enable unused allocation carryover to next period
 	CarryoverEnabled   *bool                          `json:"carryover_enabled,omitempty"`
 	ComponentLimitsSet []NestedOfferingComponentLimit `json:"component_limits_set"`
@@ -27347,7 +27382,7 @@ type SlurmPeriodicUsagePolicy struct {
 
 	// Options Fields for saving actions extra data. Keys are name of actions.
 	Options            interface{} `json:"options,omitempty"`
-	OrganizationGroups []string    `json:"organization_groups"`
+	OrganizationGroups *[]string   `json:"organization_groups,omitempty"`
 	Period             *PeriodEnum `json:"period,omitempty"`
 	PeriodName         *string     `json:"period_name,omitempty"`
 
@@ -27373,6 +27408,9 @@ type SlurmPeriodicUsagePolicy struct {
 type SlurmPeriodicUsagePolicyRequest struct {
 	Actions string `json:"actions"`
 
+	// ApplyToAll If True, policy applies to all customers. Mutually exclusive with organization_groups.
+	ApplyToAll *bool `json:"apply_to_all,omitempty"`
+
 	// CarryoverEnabled Enable unused allocation carryover to next period
 	CarryoverEnabled   *bool                                 `json:"carryover_enabled,omitempty"`
 	ComponentLimitsSet []NestedOfferingComponentLimitRequest `json:"component_limits_set"`
@@ -27388,7 +27426,7 @@ type SlurmPeriodicUsagePolicyRequest struct {
 
 	// Options Fields for saving actions extra data. Keys are name of actions.
 	Options            interface{} `json:"options,omitempty"`
-	OrganizationGroups []string    `json:"organization_groups"`
+	OrganizationGroups *[]string   `json:"organization_groups,omitempty"`
 	Period             *PeriodEnum `json:"period,omitempty"`
 
 	// QosStrategy QoS management strategy
