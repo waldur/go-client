@@ -246377,9 +246377,6 @@ type CallManagingOrganisationsAddUserResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON201      *UserRoleExpirationTime
-	JSON400      *struct {
-		NonFieldErrors *[]string `json:"non_field_errors,omitempty"`
-	}
 }
 
 // Status returns HTTPResponse.Status
@@ -248358,9 +248355,6 @@ type CustomersAddUserResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON201      *UserRoleExpirationTime
-	JSON400      *struct {
-		NonFieldErrors *[]string `json:"non_field_errors,omitempty"`
-	}
 }
 
 // Status returns HTTPResponse.Status
@@ -257303,9 +257297,6 @@ type MarketplaceProviderOfferingsAddUserResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON201      *UserRoleExpirationTime
-	JSON400      *struct {
-		NonFieldErrors *[]string `json:"non_field_errors,omitempty"`
-	}
 }
 
 // Status returns HTTPResponse.Status
@@ -261210,9 +261201,6 @@ type MarketplaceServiceProvidersAddUserResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON201      *UserRoleExpirationTime
-	JSON400      *struct {
-		NonFieldErrors *[]string `json:"non_field_errors,omitempty"`
-	}
 }
 
 // Status returns HTTPResponse.Status
@@ -266489,9 +266477,6 @@ type OpenportalUnmanagedProjectsAddUserResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON201      *UserRoleExpirationTime
-	JSON400      *struct {
-		NonFieldErrors *[]string `json:"non_field_errors,omitempty"`
-	}
 }
 
 // Status returns HTTPResponse.Status
@@ -272026,9 +272011,6 @@ type ProjectsAddUserResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON201      *UserRoleExpirationTime
-	JSON400      *struct {
-		NonFieldErrors *[]string `json:"non_field_errors,omitempty"`
-	}
 }
 
 // Status returns HTTPResponse.Status
@@ -272647,9 +272629,6 @@ type ProposalProposalsAddUserResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON201      *UserRoleExpirationTime
-	JSON400      *struct {
-		NonFieldErrors *[]string `json:"non_field_errors,omitempty"`
-	}
 }
 
 // Status returns HTTPResponse.Status
@@ -273267,9 +273246,6 @@ type ProposalProtectedCallsAddUserResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON201      *UserRoleExpirationTime
-	JSON400      *struct {
-		NonFieldErrors *[]string `json:"non_field_errors,omitempty"`
-	}
 }
 
 // Status returns HTTPResponse.Status
@@ -306361,15 +306337,6 @@ func ParseCallManagingOrganisationsAddUserResponse(rsp *http.Response) (*CallMan
 		}
 		response.JSON201 = &dest
 
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest struct {
-			NonFieldErrors *[]string `json:"non_field_errors,omitempty"`
-		}
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
 	}
 
 	return response, nil
@@ -308495,15 +308462,6 @@ func ParseCustomersAddUserResponse(rsp *http.Response) (*CustomersAddUserRespons
 			return nil, err
 		}
 		response.JSON201 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest struct {
-			NonFieldErrors *[]string `json:"non_field_errors,omitempty"`
-		}
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
 
 	}
 
@@ -317767,15 +317725,6 @@ func ParseMarketplaceProviderOfferingsAddUserResponse(rsp *http.Response) (*Mark
 		}
 		response.JSON201 = &dest
 
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest struct {
-			NonFieldErrors *[]string `json:"non_field_errors,omitempty"`
-		}
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
 	}
 
 	return response, nil
@@ -321892,15 +321841,6 @@ func ParseMarketplaceServiceProvidersAddUserResponse(rsp *http.Response) (*Marke
 			return nil, err
 		}
 		response.JSON201 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest struct {
-			NonFieldErrors *[]string `json:"non_field_errors,omitempty"`
-		}
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
 
 	}
 
@@ -327480,15 +327420,6 @@ func ParseOpenportalUnmanagedProjectsAddUserResponse(rsp *http.Response) (*Openp
 			return nil, err
 		}
 		response.JSON201 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest struct {
-			NonFieldErrors *[]string `json:"non_field_errors,omitempty"`
-		}
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
 
 	}
 
@@ -333121,15 +333052,6 @@ func ParseProjectsAddUserResponse(rsp *http.Response) (*ProjectsAddUserResponse,
 		}
 		response.JSON201 = &dest
 
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest struct {
-			NonFieldErrors *[]string `json:"non_field_errors,omitempty"`
-		}
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
 	}
 
 	return response, nil
@@ -333832,15 +333754,6 @@ func ParseProposalProposalsAddUserResponse(rsp *http.Response) (*ProposalProposa
 			return nil, err
 		}
 		response.JSON201 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest struct {
-			NonFieldErrors *[]string `json:"non_field_errors,omitempty"`
-		}
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
 
 	}
 
@@ -334549,15 +334462,6 @@ func ParseProposalProtectedCallsAddUserResponse(rsp *http.Response) (*ProposalPr
 			return nil, err
 		}
 		response.JSON201 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest struct {
-			NonFieldErrors *[]string `json:"non_field_errors,omitempty"`
-		}
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
 
 	}
 
