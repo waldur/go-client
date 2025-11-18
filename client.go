@@ -4826,6 +4826,33 @@ const (
 	MarketplaceCourseAccountsCountParamsStateOK     MarketplaceCourseAccountsCountParamsState = "OK"
 )
 
+// Defines values for MarketplaceCourseAccountsCreateBulkParamsO.
+const (
+	MarketplaceCourseAccountsCreateBulkParamsOCreated               MarketplaceCourseAccountsCreateBulkParamsO = "created"
+	MarketplaceCourseAccountsCreateBulkParamsOEmail                 MarketplaceCourseAccountsCreateBulkParamsO = "email"
+	MarketplaceCourseAccountsCreateBulkParamsOMinusCreated          MarketplaceCourseAccountsCreateBulkParamsO = "-created"
+	MarketplaceCourseAccountsCreateBulkParamsOMinusEmail            MarketplaceCourseAccountsCreateBulkParamsO = "-email"
+	MarketplaceCourseAccountsCreateBulkParamsOMinusModified         MarketplaceCourseAccountsCreateBulkParamsO = "-modified"
+	MarketplaceCourseAccountsCreateBulkParamsOMinusProjectEndDate   MarketplaceCourseAccountsCreateBulkParamsO = "-project_end_date"
+	MarketplaceCourseAccountsCreateBulkParamsOMinusProjectName      MarketplaceCourseAccountsCreateBulkParamsO = "-project_name"
+	MarketplaceCourseAccountsCreateBulkParamsOMinusProjectStartDate MarketplaceCourseAccountsCreateBulkParamsO = "-project_start_date"
+	MarketplaceCourseAccountsCreateBulkParamsOMinusState            MarketplaceCourseAccountsCreateBulkParamsO = "-state"
+	MarketplaceCourseAccountsCreateBulkParamsOMinusUsername         MarketplaceCourseAccountsCreateBulkParamsO = "-username"
+	MarketplaceCourseAccountsCreateBulkParamsOModified              MarketplaceCourseAccountsCreateBulkParamsO = "modified"
+	MarketplaceCourseAccountsCreateBulkParamsOProjectEndDate        MarketplaceCourseAccountsCreateBulkParamsO = "project_end_date"
+	MarketplaceCourseAccountsCreateBulkParamsOProjectName           MarketplaceCourseAccountsCreateBulkParamsO = "project_name"
+	MarketplaceCourseAccountsCreateBulkParamsOProjectStartDate      MarketplaceCourseAccountsCreateBulkParamsO = "project_start_date"
+	MarketplaceCourseAccountsCreateBulkParamsOState                 MarketplaceCourseAccountsCreateBulkParamsO = "state"
+	MarketplaceCourseAccountsCreateBulkParamsOUsername              MarketplaceCourseAccountsCreateBulkParamsO = "username"
+)
+
+// Defines values for MarketplaceCourseAccountsCreateBulkParamsState.
+const (
+	MarketplaceCourseAccountsCreateBulkParamsStateClosed MarketplaceCourseAccountsCreateBulkParamsState = "Closed"
+	MarketplaceCourseAccountsCreateBulkParamsStateErred  MarketplaceCourseAccountsCreateBulkParamsState = "Erred"
+	MarketplaceCourseAccountsCreateBulkParamsStateOK     MarketplaceCourseAccountsCreateBulkParamsState = "OK"
+)
+
 // Defines values for MarketplaceCustomerServiceAccountsListParamsState.
 const (
 	MarketplaceCustomerServiceAccountsListParamsStateClosed MarketplaceCustomerServiceAccountsListParamsState = "Closed"
@@ -5716,76 +5743,30 @@ const (
 	MarketplaceProviderOfferingsCustomersListParamsStatePaused   MarketplaceProviderOfferingsCustomersListParamsState = "Paused"
 )
 
-// Defines values for MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField.
+// Defines values for MarketplaceProviderOfferingsListCourseAccountsListParamsO.
 const (
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldAccessUrl                 MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "access_url"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldAttributes                MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "attributes"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldBackendId                 MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "backend_id"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldBackendMetadata           MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "backend_metadata"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldBillable                  MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "billable"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldCategory                  MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "category"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldCategoryTitle             MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "category_title"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldCategoryUuid              MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "category_uuid"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldCitationCount             MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "citation_count"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldComplianceChecklist       MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "compliance_checklist"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldComponents                MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "components"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldCountry                   MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "country"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldCreated                   MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "created"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldCustomer                  MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "customer"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldCustomerName              MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "customer_name"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldCustomerUuid              MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "customer_uuid"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldDataciteDoi               MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "datacite_doi"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldDescription               MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "description"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldEndpoints                 MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "endpoints"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldFiles                     MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "files"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldFullDescription           MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "full_description"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldGettingStarted            MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "getting_started"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldGoogleCalendarIsPublic    MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "google_calendar_is_public"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldGoogleCalendarLink        MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "google_calendar_link"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldHasComplianceRequirements MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "has_compliance_requirements"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldImage                     MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "image"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldIntegrationGuide          MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "integration_guide"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldIntegrationStatus         MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "integration_status"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldLatitude                  MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "latitude"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldLongitude                 MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "longitude"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldName                      MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "name"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldOptions                   MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "options"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldOrderCount                MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "order_count"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldOrganizationGroups        MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "organization_groups"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldParentDescription         MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "parent_description"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldParentName                MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "parent_name"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldParentUuid                MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "parent_uuid"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldPartitions                MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "partitions"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldPausedReason              MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "paused_reason"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldPlans                     MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "plans"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldPluginOptions             MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "plugin_options"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldPrivacyPolicyLink         MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "privacy_policy_link"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldProject                   MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "project"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldProjectName               MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "project_name"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldProjectUuid               MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "project_uuid"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldQuotas                    MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "quotas"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldResourceOptions           MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "resource_options"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldRoles                     MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "roles"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldScope                     MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "scope"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldScopeErrorMessage         MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "scope_error_message"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldScopeName                 MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "scope_name"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldScopeState                MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "scope_state"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldScopeUuid                 MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "scope_uuid"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldScreenshots               MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "screenshots"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldSecretOptions             MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "secret_options"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldServiceAttributes         MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "service_attributes"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldShared                    MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "shared"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldSlug                      MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "slug"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldSoftwareCatalogs          MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "software_catalogs"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldState                     MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "state"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldThumbnail                 MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "thumbnail"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldTotalCost                 MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "total_cost"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldTotalCostEstimated        MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "total_cost_estimated"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldTotalCustomers            MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "total_customers"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldType                      MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "type"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldUrl                       MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "url"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldUuid                      MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "uuid"
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsFieldVendorDetails             MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField = "vendor_details"
+	MarketplaceProviderOfferingsListCourseAccountsListParamsOCreated                 MarketplaceProviderOfferingsListCourseAccountsListParamsO = "created"
+	MarketplaceProviderOfferingsListCourseAccountsListParamsOMinusCreated            MarketplaceProviderOfferingsListCourseAccountsListParamsO = "-created"
+	MarketplaceProviderOfferingsListCourseAccountsListParamsOMinusName               MarketplaceProviderOfferingsListCourseAccountsListParamsO = "-name"
+	MarketplaceProviderOfferingsListCourseAccountsListParamsOMinusState              MarketplaceProviderOfferingsListCourseAccountsListParamsO = "-state"
+	MarketplaceProviderOfferingsListCourseAccountsListParamsOMinusTotalCost          MarketplaceProviderOfferingsListCourseAccountsListParamsO = "-total_cost"
+	MarketplaceProviderOfferingsListCourseAccountsListParamsOMinusTotalCostEstimated MarketplaceProviderOfferingsListCourseAccountsListParamsO = "-total_cost_estimated"
+	MarketplaceProviderOfferingsListCourseAccountsListParamsOMinusTotalCustomers     MarketplaceProviderOfferingsListCourseAccountsListParamsO = "-total_customers"
+	MarketplaceProviderOfferingsListCourseAccountsListParamsOMinusType               MarketplaceProviderOfferingsListCourseAccountsListParamsO = "-type"
+	MarketplaceProviderOfferingsListCourseAccountsListParamsOName                    MarketplaceProviderOfferingsListCourseAccountsListParamsO = "name"
+	MarketplaceProviderOfferingsListCourseAccountsListParamsOState                   MarketplaceProviderOfferingsListCourseAccountsListParamsO = "state"
+	MarketplaceProviderOfferingsListCourseAccountsListParamsOTotalCost               MarketplaceProviderOfferingsListCourseAccountsListParamsO = "total_cost"
+	MarketplaceProviderOfferingsListCourseAccountsListParamsOTotalCostEstimated      MarketplaceProviderOfferingsListCourseAccountsListParamsO = "total_cost_estimated"
+	MarketplaceProviderOfferingsListCourseAccountsListParamsOTotalCustomers          MarketplaceProviderOfferingsListCourseAccountsListParamsO = "total_customers"
+	MarketplaceProviderOfferingsListCourseAccountsListParamsOType                    MarketplaceProviderOfferingsListCourseAccountsListParamsO = "type"
+)
+
+// Defines values for MarketplaceProviderOfferingsListCourseAccountsListParamsState.
+const (
+	MarketplaceProviderOfferingsListCourseAccountsListParamsStateActive   MarketplaceProviderOfferingsListCourseAccountsListParamsState = "Active"
+	MarketplaceProviderOfferingsListCourseAccountsListParamsStateArchived MarketplaceProviderOfferingsListCourseAccountsListParamsState = "Archived"
+	MarketplaceProviderOfferingsListCourseAccountsListParamsStateDraft    MarketplaceProviderOfferingsListCourseAccountsListParamsState = "Draft"
+	MarketplaceProviderOfferingsListCourseAccountsListParamsStatePaused   MarketplaceProviderOfferingsListCourseAccountsListParamsState = "Paused"
 )
 
 // Defines values for MarketplaceProviderOfferingsListCustomerProjectsListParamsField.
@@ -5826,76 +5807,30 @@ const (
 	MarketplaceProviderOfferingsListCustomerProjectsListParamsFieldUuid                                 MarketplaceProviderOfferingsListCustomerProjectsListParamsField = "uuid"
 )
 
-// Defines values for MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField.
+// Defines values for MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsO.
 const (
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldAccessUrl                 MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "access_url"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldAttributes                MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "attributes"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldBackendId                 MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "backend_id"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldBackendMetadata           MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "backend_metadata"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldBillable                  MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "billable"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldCategory                  MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "category"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldCategoryTitle             MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "category_title"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldCategoryUuid              MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "category_uuid"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldCitationCount             MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "citation_count"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldComplianceChecklist       MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "compliance_checklist"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldComponents                MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "components"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldCountry                   MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "country"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldCreated                   MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "created"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldCustomer                  MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "customer"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldCustomerName              MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "customer_name"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldCustomerUuid              MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "customer_uuid"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldDataciteDoi               MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "datacite_doi"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldDescription               MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "description"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldEndpoints                 MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "endpoints"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldFiles                     MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "files"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldFullDescription           MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "full_description"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldGettingStarted            MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "getting_started"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldGoogleCalendarIsPublic    MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "google_calendar_is_public"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldGoogleCalendarLink        MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "google_calendar_link"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldHasComplianceRequirements MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "has_compliance_requirements"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldImage                     MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "image"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldIntegrationGuide          MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "integration_guide"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldIntegrationStatus         MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "integration_status"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldLatitude                  MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "latitude"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldLongitude                 MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "longitude"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldName                      MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "name"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldOptions                   MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "options"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldOrderCount                MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "order_count"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldOrganizationGroups        MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "organization_groups"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldParentDescription         MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "parent_description"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldParentName                MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "parent_name"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldParentUuid                MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "parent_uuid"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldPartitions                MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "partitions"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldPausedReason              MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "paused_reason"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldPlans                     MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "plans"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldPluginOptions             MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "plugin_options"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldPrivacyPolicyLink         MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "privacy_policy_link"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldProject                   MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "project"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldProjectName               MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "project_name"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldProjectUuid               MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "project_uuid"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldQuotas                    MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "quotas"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldResourceOptions           MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "resource_options"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldRoles                     MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "roles"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldScope                     MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "scope"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldScopeErrorMessage         MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "scope_error_message"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldScopeName                 MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "scope_name"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldScopeState                MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "scope_state"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldScopeUuid                 MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "scope_uuid"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldScreenshots               MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "screenshots"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldSecretOptions             MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "secret_options"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldServiceAttributes         MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "service_attributes"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldShared                    MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "shared"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldSlug                      MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "slug"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldSoftwareCatalogs          MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "software_catalogs"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldState                     MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "state"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldThumbnail                 MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "thumbnail"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldTotalCost                 MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "total_cost"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldTotalCostEstimated        MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "total_cost_estimated"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldTotalCustomers            MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "total_customers"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldType                      MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "type"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldUrl                       MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "url"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldUuid                      MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "uuid"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsFieldVendorDetails             MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField = "vendor_details"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsOCreated                 MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsO = "created"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsOMinusCreated            MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsO = "-created"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsOMinusName               MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsO = "-name"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsOMinusState              MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsO = "-state"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsOMinusTotalCost          MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsO = "-total_cost"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsOMinusTotalCostEstimated MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsO = "-total_cost_estimated"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsOMinusTotalCustomers     MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsO = "-total_customers"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsOMinusType               MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsO = "-type"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsOName                    MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsO = "name"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsOState                   MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsO = "state"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsOTotalCost               MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsO = "total_cost"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsOTotalCostEstimated      MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsO = "total_cost_estimated"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsOTotalCustomers          MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsO = "total_customers"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsOType                    MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsO = "type"
+)
+
+// Defines values for MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsState.
+const (
+	MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsStateActive   MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsState = "Active"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsStateArchived MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsState = "Archived"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsStateDraft    MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsState = "Draft"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsStatePaused   MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsState = "Paused"
 )
 
 // Defines values for MarketplaceProviderOfferingsListCustomerUsersListParamsField.
@@ -5940,76 +5875,30 @@ const (
 	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldUuid                          MarketplaceProviderOfferingsListCustomerUsersListParamsField = "uuid"
 )
 
-// Defines values for MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField.
+// Defines values for MarketplaceProviderOfferingsListProjectServiceAccountsListParamsO.
 const (
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldAccessUrl                 MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "access_url"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldAttributes                MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "attributes"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldBackendId                 MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "backend_id"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldBackendMetadata           MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "backend_metadata"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldBillable                  MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "billable"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldCategory                  MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "category"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldCategoryTitle             MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "category_title"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldCategoryUuid              MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "category_uuid"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldCitationCount             MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "citation_count"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldComplianceChecklist       MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "compliance_checklist"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldComponents                MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "components"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldCountry                   MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "country"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldCreated                   MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "created"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldCustomer                  MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "customer"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldCustomerName              MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "customer_name"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldCustomerUuid              MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "customer_uuid"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldDataciteDoi               MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "datacite_doi"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldDescription               MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "description"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldEndpoints                 MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "endpoints"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldFiles                     MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "files"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldFullDescription           MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "full_description"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldGettingStarted            MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "getting_started"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldGoogleCalendarIsPublic    MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "google_calendar_is_public"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldGoogleCalendarLink        MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "google_calendar_link"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldHasComplianceRequirements MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "has_compliance_requirements"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldImage                     MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "image"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldIntegrationGuide          MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "integration_guide"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldIntegrationStatus         MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "integration_status"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldLatitude                  MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "latitude"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldLongitude                 MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "longitude"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldName                      MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "name"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldOptions                   MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "options"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldOrderCount                MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "order_count"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldOrganizationGroups        MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "organization_groups"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldParentDescription         MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "parent_description"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldParentName                MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "parent_name"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldParentUuid                MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "parent_uuid"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldPartitions                MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "partitions"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldPausedReason              MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "paused_reason"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldPlans                     MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "plans"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldPluginOptions             MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "plugin_options"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldPrivacyPolicyLink         MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "privacy_policy_link"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldProject                   MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "project"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldProjectName               MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "project_name"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldProjectUuid               MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "project_uuid"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldQuotas                    MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "quotas"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldResourceOptions           MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "resource_options"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldRoles                     MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "roles"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldScope                     MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "scope"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldScopeErrorMessage         MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "scope_error_message"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldScopeName                 MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "scope_name"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldScopeState                MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "scope_state"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldScopeUuid                 MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "scope_uuid"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldScreenshots               MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "screenshots"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldSecretOptions             MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "secret_options"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldServiceAttributes         MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "service_attributes"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldShared                    MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "shared"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldSlug                      MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "slug"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldSoftwareCatalogs          MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "software_catalogs"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldState                     MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "state"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldThumbnail                 MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "thumbnail"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldTotalCost                 MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "total_cost"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldTotalCostEstimated        MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "total_cost_estimated"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldTotalCustomers            MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "total_customers"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldType                      MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "type"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldUrl                       MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "url"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldUuid                      MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "uuid"
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsFieldVendorDetails             MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField = "vendor_details"
+	MarketplaceProviderOfferingsListProjectServiceAccountsListParamsOCreated                 MarketplaceProviderOfferingsListProjectServiceAccountsListParamsO = "created"
+	MarketplaceProviderOfferingsListProjectServiceAccountsListParamsOMinusCreated            MarketplaceProviderOfferingsListProjectServiceAccountsListParamsO = "-created"
+	MarketplaceProviderOfferingsListProjectServiceAccountsListParamsOMinusName               MarketplaceProviderOfferingsListProjectServiceAccountsListParamsO = "-name"
+	MarketplaceProviderOfferingsListProjectServiceAccountsListParamsOMinusState              MarketplaceProviderOfferingsListProjectServiceAccountsListParamsO = "-state"
+	MarketplaceProviderOfferingsListProjectServiceAccountsListParamsOMinusTotalCost          MarketplaceProviderOfferingsListProjectServiceAccountsListParamsO = "-total_cost"
+	MarketplaceProviderOfferingsListProjectServiceAccountsListParamsOMinusTotalCostEstimated MarketplaceProviderOfferingsListProjectServiceAccountsListParamsO = "-total_cost_estimated"
+	MarketplaceProviderOfferingsListProjectServiceAccountsListParamsOMinusTotalCustomers     MarketplaceProviderOfferingsListProjectServiceAccountsListParamsO = "-total_customers"
+	MarketplaceProviderOfferingsListProjectServiceAccountsListParamsOMinusType               MarketplaceProviderOfferingsListProjectServiceAccountsListParamsO = "-type"
+	MarketplaceProviderOfferingsListProjectServiceAccountsListParamsOName                    MarketplaceProviderOfferingsListProjectServiceAccountsListParamsO = "name"
+	MarketplaceProviderOfferingsListProjectServiceAccountsListParamsOState                   MarketplaceProviderOfferingsListProjectServiceAccountsListParamsO = "state"
+	MarketplaceProviderOfferingsListProjectServiceAccountsListParamsOTotalCost               MarketplaceProviderOfferingsListProjectServiceAccountsListParamsO = "total_cost"
+	MarketplaceProviderOfferingsListProjectServiceAccountsListParamsOTotalCostEstimated      MarketplaceProviderOfferingsListProjectServiceAccountsListParamsO = "total_cost_estimated"
+	MarketplaceProviderOfferingsListProjectServiceAccountsListParamsOTotalCustomers          MarketplaceProviderOfferingsListProjectServiceAccountsListParamsO = "total_customers"
+	MarketplaceProviderOfferingsListProjectServiceAccountsListParamsOType                    MarketplaceProviderOfferingsListProjectServiceAccountsListParamsO = "type"
+)
+
+// Defines values for MarketplaceProviderOfferingsListProjectServiceAccountsListParamsState.
+const (
+	MarketplaceProviderOfferingsListProjectServiceAccountsListParamsStateActive   MarketplaceProviderOfferingsListProjectServiceAccountsListParamsState = "Active"
+	MarketplaceProviderOfferingsListProjectServiceAccountsListParamsStateArchived MarketplaceProviderOfferingsListProjectServiceAccountsListParamsState = "Archived"
+	MarketplaceProviderOfferingsListProjectServiceAccountsListParamsStateDraft    MarketplaceProviderOfferingsListProjectServiceAccountsListParamsState = "Draft"
+	MarketplaceProviderOfferingsListProjectServiceAccountsListParamsStatePaused   MarketplaceProviderOfferingsListProjectServiceAccountsListParamsState = "Paused"
 )
 
 // Defines values for MarketplaceProviderOfferingsListUsersListParamsField.
@@ -6114,78 +6003,6 @@ const (
 	MarketplaceProviderOfferingsOrdersListParamsFieldType                       MarketplaceProviderOfferingsOrdersListParamsField = "type"
 	MarketplaceProviderOfferingsOrdersListParamsFieldUrl                        MarketplaceProviderOfferingsOrdersListParamsField = "url"
 	MarketplaceProviderOfferingsOrdersListParamsFieldUuid                       MarketplaceProviderOfferingsOrdersListParamsField = "uuid"
-)
-
-// Defines values for MarketplaceProviderOfferingsStatsRetrieveParamsField.
-const (
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldAccessUrl                 MarketplaceProviderOfferingsStatsRetrieveParamsField = "access_url"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldAttributes                MarketplaceProviderOfferingsStatsRetrieveParamsField = "attributes"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldBackendId                 MarketplaceProviderOfferingsStatsRetrieveParamsField = "backend_id"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldBackendMetadata           MarketplaceProviderOfferingsStatsRetrieveParamsField = "backend_metadata"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldBillable                  MarketplaceProviderOfferingsStatsRetrieveParamsField = "billable"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldCategory                  MarketplaceProviderOfferingsStatsRetrieveParamsField = "category"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldCategoryTitle             MarketplaceProviderOfferingsStatsRetrieveParamsField = "category_title"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldCategoryUuid              MarketplaceProviderOfferingsStatsRetrieveParamsField = "category_uuid"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldCitationCount             MarketplaceProviderOfferingsStatsRetrieveParamsField = "citation_count"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldComplianceChecklist       MarketplaceProviderOfferingsStatsRetrieveParamsField = "compliance_checklist"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldComponents                MarketplaceProviderOfferingsStatsRetrieveParamsField = "components"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldCountry                   MarketplaceProviderOfferingsStatsRetrieveParamsField = "country"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldCreated                   MarketplaceProviderOfferingsStatsRetrieveParamsField = "created"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldCustomer                  MarketplaceProviderOfferingsStatsRetrieveParamsField = "customer"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldCustomerName              MarketplaceProviderOfferingsStatsRetrieveParamsField = "customer_name"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldCustomerUuid              MarketplaceProviderOfferingsStatsRetrieveParamsField = "customer_uuid"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldDataciteDoi               MarketplaceProviderOfferingsStatsRetrieveParamsField = "datacite_doi"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldDescription               MarketplaceProviderOfferingsStatsRetrieveParamsField = "description"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldEndpoints                 MarketplaceProviderOfferingsStatsRetrieveParamsField = "endpoints"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldFiles                     MarketplaceProviderOfferingsStatsRetrieveParamsField = "files"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldFullDescription           MarketplaceProviderOfferingsStatsRetrieveParamsField = "full_description"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldGettingStarted            MarketplaceProviderOfferingsStatsRetrieveParamsField = "getting_started"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldGoogleCalendarIsPublic    MarketplaceProviderOfferingsStatsRetrieveParamsField = "google_calendar_is_public"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldGoogleCalendarLink        MarketplaceProviderOfferingsStatsRetrieveParamsField = "google_calendar_link"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldHasComplianceRequirements MarketplaceProviderOfferingsStatsRetrieveParamsField = "has_compliance_requirements"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldImage                     MarketplaceProviderOfferingsStatsRetrieveParamsField = "image"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldIntegrationGuide          MarketplaceProviderOfferingsStatsRetrieveParamsField = "integration_guide"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldIntegrationStatus         MarketplaceProviderOfferingsStatsRetrieveParamsField = "integration_status"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldLatitude                  MarketplaceProviderOfferingsStatsRetrieveParamsField = "latitude"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldLongitude                 MarketplaceProviderOfferingsStatsRetrieveParamsField = "longitude"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldName                      MarketplaceProviderOfferingsStatsRetrieveParamsField = "name"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldOptions                   MarketplaceProviderOfferingsStatsRetrieveParamsField = "options"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldOrderCount                MarketplaceProviderOfferingsStatsRetrieveParamsField = "order_count"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldOrganizationGroups        MarketplaceProviderOfferingsStatsRetrieveParamsField = "organization_groups"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldParentDescription         MarketplaceProviderOfferingsStatsRetrieveParamsField = "parent_description"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldParentName                MarketplaceProviderOfferingsStatsRetrieveParamsField = "parent_name"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldParentUuid                MarketplaceProviderOfferingsStatsRetrieveParamsField = "parent_uuid"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldPartitions                MarketplaceProviderOfferingsStatsRetrieveParamsField = "partitions"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldPausedReason              MarketplaceProviderOfferingsStatsRetrieveParamsField = "paused_reason"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldPlans                     MarketplaceProviderOfferingsStatsRetrieveParamsField = "plans"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldPluginOptions             MarketplaceProviderOfferingsStatsRetrieveParamsField = "plugin_options"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldPrivacyPolicyLink         MarketplaceProviderOfferingsStatsRetrieveParamsField = "privacy_policy_link"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldProject                   MarketplaceProviderOfferingsStatsRetrieveParamsField = "project"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldProjectName               MarketplaceProviderOfferingsStatsRetrieveParamsField = "project_name"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldProjectUuid               MarketplaceProviderOfferingsStatsRetrieveParamsField = "project_uuid"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldQuotas                    MarketplaceProviderOfferingsStatsRetrieveParamsField = "quotas"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldResourceOptions           MarketplaceProviderOfferingsStatsRetrieveParamsField = "resource_options"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldRoles                     MarketplaceProviderOfferingsStatsRetrieveParamsField = "roles"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldScope                     MarketplaceProviderOfferingsStatsRetrieveParamsField = "scope"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldScopeErrorMessage         MarketplaceProviderOfferingsStatsRetrieveParamsField = "scope_error_message"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldScopeName                 MarketplaceProviderOfferingsStatsRetrieveParamsField = "scope_name"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldScopeState                MarketplaceProviderOfferingsStatsRetrieveParamsField = "scope_state"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldScopeUuid                 MarketplaceProviderOfferingsStatsRetrieveParamsField = "scope_uuid"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldScreenshots               MarketplaceProviderOfferingsStatsRetrieveParamsField = "screenshots"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldSecretOptions             MarketplaceProviderOfferingsStatsRetrieveParamsField = "secret_options"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldServiceAttributes         MarketplaceProviderOfferingsStatsRetrieveParamsField = "service_attributes"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldShared                    MarketplaceProviderOfferingsStatsRetrieveParamsField = "shared"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldSlug                      MarketplaceProviderOfferingsStatsRetrieveParamsField = "slug"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldSoftwareCatalogs          MarketplaceProviderOfferingsStatsRetrieveParamsField = "software_catalogs"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldState                     MarketplaceProviderOfferingsStatsRetrieveParamsField = "state"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldThumbnail                 MarketplaceProviderOfferingsStatsRetrieveParamsField = "thumbnail"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldTotalCost                 MarketplaceProviderOfferingsStatsRetrieveParamsField = "total_cost"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldTotalCostEstimated        MarketplaceProviderOfferingsStatsRetrieveParamsField = "total_cost_estimated"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldTotalCustomers            MarketplaceProviderOfferingsStatsRetrieveParamsField = "total_customers"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldType                      MarketplaceProviderOfferingsStatsRetrieveParamsField = "type"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldUrl                       MarketplaceProviderOfferingsStatsRetrieveParamsField = "url"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldUuid                      MarketplaceProviderOfferingsStatsRetrieveParamsField = "uuid"
-	MarketplaceProviderOfferingsStatsRetrieveParamsFieldVendorDetails             MarketplaceProviderOfferingsStatsRetrieveParamsField = "vendor_details"
 )
 
 // Defines values for MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField.
@@ -6466,86 +6283,6 @@ const (
 	MarketplaceProviderResourcesRetrieveParamsFieldUserRequiresReconsent     MarketplaceProviderResourcesRetrieveParamsField = "user_requires_reconsent"
 	MarketplaceProviderResourcesRetrieveParamsFieldUsername                  MarketplaceProviderResourcesRetrieveParamsField = "username"
 	MarketplaceProviderResourcesRetrieveParamsFieldUuid                      MarketplaceProviderResourcesRetrieveParamsField = "uuid"
-)
-
-// Defines values for MarketplaceProviderResourcesDetailsRetrieveParamsField.
-const (
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldAttributes                MarketplaceProviderResourcesDetailsRetrieveParamsField = "attributes"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldAvailableActions          MarketplaceProviderResourcesDetailsRetrieveParamsField = "available_actions"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldBackendId                 MarketplaceProviderResourcesDetailsRetrieveParamsField = "backend_id"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldBackendMetadata           MarketplaceProviderResourcesDetailsRetrieveParamsField = "backend_metadata"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldCanTerminate              MarketplaceProviderResourcesDetailsRetrieveParamsField = "can_terminate"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldCategoryIcon              MarketplaceProviderResourcesDetailsRetrieveParamsField = "category_icon"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldCategoryTitle             MarketplaceProviderResourcesDetailsRetrieveParamsField = "category_title"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldCategoryUuid              MarketplaceProviderResourcesDetailsRetrieveParamsField = "category_uuid"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldCreated                   MarketplaceProviderResourcesDetailsRetrieveParamsField = "created"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldCreationOrder             MarketplaceProviderResourcesDetailsRetrieveParamsField = "creation_order"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldCurrentUsages             MarketplaceProviderResourcesDetailsRetrieveParamsField = "current_usages"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldCustomerName              MarketplaceProviderResourcesDetailsRetrieveParamsField = "customer_name"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldCustomerSlug              MarketplaceProviderResourcesDetailsRetrieveParamsField = "customer_slug"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldCustomerUuid              MarketplaceProviderResourcesDetailsRetrieveParamsField = "customer_uuid"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldDescription               MarketplaceProviderResourcesDetailsRetrieveParamsField = "description"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldDownscaled                MarketplaceProviderResourcesDetailsRetrieveParamsField = "downscaled"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldEffectiveId               MarketplaceProviderResourcesDetailsRetrieveParamsField = "effective_id"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldEndDate                   MarketplaceProviderResourcesDetailsRetrieveParamsField = "end_date"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldEndDateRequestedBy        MarketplaceProviderResourcesDetailsRetrieveParamsField = "end_date_requested_by"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldEndpoints                 MarketplaceProviderResourcesDetailsRetrieveParamsField = "endpoints"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldErrorMessage              MarketplaceProviderResourcesDetailsRetrieveParamsField = "error_message"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldErrorTraceback            MarketplaceProviderResourcesDetailsRetrieveParamsField = "error_traceback"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldIsLimitBased              MarketplaceProviderResourcesDetailsRetrieveParamsField = "is_limit_based"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldIsUsageBased              MarketplaceProviderResourcesDetailsRetrieveParamsField = "is_usage_based"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldLastSync                  MarketplaceProviderResourcesDetailsRetrieveParamsField = "last_sync"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldLimitUsage                MarketplaceProviderResourcesDetailsRetrieveParamsField = "limit_usage"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldLimits                    MarketplaceProviderResourcesDetailsRetrieveParamsField = "limits"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldModified                  MarketplaceProviderResourcesDetailsRetrieveParamsField = "modified"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldName                      MarketplaceProviderResourcesDetailsRetrieveParamsField = "name"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldOffering                  MarketplaceProviderResourcesDetailsRetrieveParamsField = "offering"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldOfferingBillable          MarketplaceProviderResourcesDetailsRetrieveParamsField = "offering_billable"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldOfferingDescription       MarketplaceProviderResourcesDetailsRetrieveParamsField = "offering_description"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldOfferingImage             MarketplaceProviderResourcesDetailsRetrieveParamsField = "offering_image"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldOfferingName              MarketplaceProviderResourcesDetailsRetrieveParamsField = "offering_name"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldOfferingPluginOptions     MarketplaceProviderResourcesDetailsRetrieveParamsField = "offering_plugin_options"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldOfferingShared            MarketplaceProviderResourcesDetailsRetrieveParamsField = "offering_shared"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldOfferingSlug              MarketplaceProviderResourcesDetailsRetrieveParamsField = "offering_slug"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldOfferingThumbnail         MarketplaceProviderResourcesDetailsRetrieveParamsField = "offering_thumbnail"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldOfferingType              MarketplaceProviderResourcesDetailsRetrieveParamsField = "offering_type"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldOfferingUuid              MarketplaceProviderResourcesDetailsRetrieveParamsField = "offering_uuid"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldOptions                   MarketplaceProviderResourcesDetailsRetrieveParamsField = "options"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldOrderInProgress           MarketplaceProviderResourcesDetailsRetrieveParamsField = "order_in_progress"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldParentName                MarketplaceProviderResourcesDetailsRetrieveParamsField = "parent_name"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldParentOfferingName        MarketplaceProviderResourcesDetailsRetrieveParamsField = "parent_offering_name"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldParentOfferingSlug        MarketplaceProviderResourcesDetailsRetrieveParamsField = "parent_offering_slug"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldParentOfferingUuid        MarketplaceProviderResourcesDetailsRetrieveParamsField = "parent_offering_uuid"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldParentUuid                MarketplaceProviderResourcesDetailsRetrieveParamsField = "parent_uuid"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldPaused                    MarketplaceProviderResourcesDetailsRetrieveParamsField = "paused"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldPlan                      MarketplaceProviderResourcesDetailsRetrieveParamsField = "plan"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldPlanDescription           MarketplaceProviderResourcesDetailsRetrieveParamsField = "plan_description"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldPlanName                  MarketplaceProviderResourcesDetailsRetrieveParamsField = "plan_name"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldPlanUnit                  MarketplaceProviderResourcesDetailsRetrieveParamsField = "plan_unit"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldPlanUuid                  MarketplaceProviderResourcesDetailsRetrieveParamsField = "plan_uuid"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldProject                   MarketplaceProviderResourcesDetailsRetrieveParamsField = "project"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldProjectDescription        MarketplaceProviderResourcesDetailsRetrieveParamsField = "project_description"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldProjectEndDate            MarketplaceProviderResourcesDetailsRetrieveParamsField = "project_end_date"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldProjectEndDateRequestedBy MarketplaceProviderResourcesDetailsRetrieveParamsField = "project_end_date_requested_by"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldProjectName               MarketplaceProviderResourcesDetailsRetrieveParamsField = "project_name"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldProjectSlug               MarketplaceProviderResourcesDetailsRetrieveParamsField = "project_slug"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldProjectUuid               MarketplaceProviderResourcesDetailsRetrieveParamsField = "project_uuid"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldProviderName              MarketplaceProviderResourcesDetailsRetrieveParamsField = "provider_name"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldProviderSlug              MarketplaceProviderResourcesDetailsRetrieveParamsField = "provider_slug"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldProviderUuid              MarketplaceProviderResourcesDetailsRetrieveParamsField = "provider_uuid"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldRenewalDate               MarketplaceProviderResourcesDetailsRetrieveParamsField = "renewal_date"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldReport                    MarketplaceProviderResourcesDetailsRetrieveParamsField = "report"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldResourceType              MarketplaceProviderResourcesDetailsRetrieveParamsField = "resource_type"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldResourceUuid              MarketplaceProviderResourcesDetailsRetrieveParamsField = "resource_uuid"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldRestrictMemberAccess      MarketplaceProviderResourcesDetailsRetrieveParamsField = "restrict_member_access"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldScope                     MarketplaceProviderResourcesDetailsRetrieveParamsField = "scope"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldServiceSettingsUuid       MarketplaceProviderResourcesDetailsRetrieveParamsField = "service_settings_uuid"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldSlug                      MarketplaceProviderResourcesDetailsRetrieveParamsField = "slug"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldState                     MarketplaceProviderResourcesDetailsRetrieveParamsField = "state"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldUrl                       MarketplaceProviderResourcesDetailsRetrieveParamsField = "url"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldUserRequiresReconsent     MarketplaceProviderResourcesDetailsRetrieveParamsField = "user_requires_reconsent"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldUsername                  MarketplaceProviderResourcesDetailsRetrieveParamsField = "username"
-	MarketplaceProviderResourcesDetailsRetrieveParamsFieldUuid                      MarketplaceProviderResourcesDetailsRetrieveParamsField = "uuid"
 )
 
 // Defines values for MarketplacePublicOfferingsListParamsField.
@@ -6952,86 +6689,6 @@ const (
 	MarketplaceResourcesRetrieveParamsFieldUserRequiresReconsent     MarketplaceResourcesRetrieveParamsField = "user_requires_reconsent"
 	MarketplaceResourcesRetrieveParamsFieldUsername                  MarketplaceResourcesRetrieveParamsField = "username"
 	MarketplaceResourcesRetrieveParamsFieldUuid                      MarketplaceResourcesRetrieveParamsField = "uuid"
-)
-
-// Defines values for MarketplaceResourcesDetailsRetrieveParamsField.
-const (
-	MarketplaceResourcesDetailsRetrieveParamsFieldAttributes                MarketplaceResourcesDetailsRetrieveParamsField = "attributes"
-	MarketplaceResourcesDetailsRetrieveParamsFieldAvailableActions          MarketplaceResourcesDetailsRetrieveParamsField = "available_actions"
-	MarketplaceResourcesDetailsRetrieveParamsFieldBackendId                 MarketplaceResourcesDetailsRetrieveParamsField = "backend_id"
-	MarketplaceResourcesDetailsRetrieveParamsFieldBackendMetadata           MarketplaceResourcesDetailsRetrieveParamsField = "backend_metadata"
-	MarketplaceResourcesDetailsRetrieveParamsFieldCanTerminate              MarketplaceResourcesDetailsRetrieveParamsField = "can_terminate"
-	MarketplaceResourcesDetailsRetrieveParamsFieldCategoryIcon              MarketplaceResourcesDetailsRetrieveParamsField = "category_icon"
-	MarketplaceResourcesDetailsRetrieveParamsFieldCategoryTitle             MarketplaceResourcesDetailsRetrieveParamsField = "category_title"
-	MarketplaceResourcesDetailsRetrieveParamsFieldCategoryUuid              MarketplaceResourcesDetailsRetrieveParamsField = "category_uuid"
-	MarketplaceResourcesDetailsRetrieveParamsFieldCreated                   MarketplaceResourcesDetailsRetrieveParamsField = "created"
-	MarketplaceResourcesDetailsRetrieveParamsFieldCreationOrder             MarketplaceResourcesDetailsRetrieveParamsField = "creation_order"
-	MarketplaceResourcesDetailsRetrieveParamsFieldCurrentUsages             MarketplaceResourcesDetailsRetrieveParamsField = "current_usages"
-	MarketplaceResourcesDetailsRetrieveParamsFieldCustomerName              MarketplaceResourcesDetailsRetrieveParamsField = "customer_name"
-	MarketplaceResourcesDetailsRetrieveParamsFieldCustomerSlug              MarketplaceResourcesDetailsRetrieveParamsField = "customer_slug"
-	MarketplaceResourcesDetailsRetrieveParamsFieldCustomerUuid              MarketplaceResourcesDetailsRetrieveParamsField = "customer_uuid"
-	MarketplaceResourcesDetailsRetrieveParamsFieldDescription               MarketplaceResourcesDetailsRetrieveParamsField = "description"
-	MarketplaceResourcesDetailsRetrieveParamsFieldDownscaled                MarketplaceResourcesDetailsRetrieveParamsField = "downscaled"
-	MarketplaceResourcesDetailsRetrieveParamsFieldEffectiveId               MarketplaceResourcesDetailsRetrieveParamsField = "effective_id"
-	MarketplaceResourcesDetailsRetrieveParamsFieldEndDate                   MarketplaceResourcesDetailsRetrieveParamsField = "end_date"
-	MarketplaceResourcesDetailsRetrieveParamsFieldEndDateRequestedBy        MarketplaceResourcesDetailsRetrieveParamsField = "end_date_requested_by"
-	MarketplaceResourcesDetailsRetrieveParamsFieldEndpoints                 MarketplaceResourcesDetailsRetrieveParamsField = "endpoints"
-	MarketplaceResourcesDetailsRetrieveParamsFieldErrorMessage              MarketplaceResourcesDetailsRetrieveParamsField = "error_message"
-	MarketplaceResourcesDetailsRetrieveParamsFieldErrorTraceback            MarketplaceResourcesDetailsRetrieveParamsField = "error_traceback"
-	MarketplaceResourcesDetailsRetrieveParamsFieldIsLimitBased              MarketplaceResourcesDetailsRetrieveParamsField = "is_limit_based"
-	MarketplaceResourcesDetailsRetrieveParamsFieldIsUsageBased              MarketplaceResourcesDetailsRetrieveParamsField = "is_usage_based"
-	MarketplaceResourcesDetailsRetrieveParamsFieldLastSync                  MarketplaceResourcesDetailsRetrieveParamsField = "last_sync"
-	MarketplaceResourcesDetailsRetrieveParamsFieldLimitUsage                MarketplaceResourcesDetailsRetrieveParamsField = "limit_usage"
-	MarketplaceResourcesDetailsRetrieveParamsFieldLimits                    MarketplaceResourcesDetailsRetrieveParamsField = "limits"
-	MarketplaceResourcesDetailsRetrieveParamsFieldModified                  MarketplaceResourcesDetailsRetrieveParamsField = "modified"
-	MarketplaceResourcesDetailsRetrieveParamsFieldName                      MarketplaceResourcesDetailsRetrieveParamsField = "name"
-	MarketplaceResourcesDetailsRetrieveParamsFieldOffering                  MarketplaceResourcesDetailsRetrieveParamsField = "offering"
-	MarketplaceResourcesDetailsRetrieveParamsFieldOfferingBillable          MarketplaceResourcesDetailsRetrieveParamsField = "offering_billable"
-	MarketplaceResourcesDetailsRetrieveParamsFieldOfferingDescription       MarketplaceResourcesDetailsRetrieveParamsField = "offering_description"
-	MarketplaceResourcesDetailsRetrieveParamsFieldOfferingImage             MarketplaceResourcesDetailsRetrieveParamsField = "offering_image"
-	MarketplaceResourcesDetailsRetrieveParamsFieldOfferingName              MarketplaceResourcesDetailsRetrieveParamsField = "offering_name"
-	MarketplaceResourcesDetailsRetrieveParamsFieldOfferingPluginOptions     MarketplaceResourcesDetailsRetrieveParamsField = "offering_plugin_options"
-	MarketplaceResourcesDetailsRetrieveParamsFieldOfferingShared            MarketplaceResourcesDetailsRetrieveParamsField = "offering_shared"
-	MarketplaceResourcesDetailsRetrieveParamsFieldOfferingSlug              MarketplaceResourcesDetailsRetrieveParamsField = "offering_slug"
-	MarketplaceResourcesDetailsRetrieveParamsFieldOfferingThumbnail         MarketplaceResourcesDetailsRetrieveParamsField = "offering_thumbnail"
-	MarketplaceResourcesDetailsRetrieveParamsFieldOfferingType              MarketplaceResourcesDetailsRetrieveParamsField = "offering_type"
-	MarketplaceResourcesDetailsRetrieveParamsFieldOfferingUuid              MarketplaceResourcesDetailsRetrieveParamsField = "offering_uuid"
-	MarketplaceResourcesDetailsRetrieveParamsFieldOptions                   MarketplaceResourcesDetailsRetrieveParamsField = "options"
-	MarketplaceResourcesDetailsRetrieveParamsFieldOrderInProgress           MarketplaceResourcesDetailsRetrieveParamsField = "order_in_progress"
-	MarketplaceResourcesDetailsRetrieveParamsFieldParentName                MarketplaceResourcesDetailsRetrieveParamsField = "parent_name"
-	MarketplaceResourcesDetailsRetrieveParamsFieldParentOfferingName        MarketplaceResourcesDetailsRetrieveParamsField = "parent_offering_name"
-	MarketplaceResourcesDetailsRetrieveParamsFieldParentOfferingSlug        MarketplaceResourcesDetailsRetrieveParamsField = "parent_offering_slug"
-	MarketplaceResourcesDetailsRetrieveParamsFieldParentOfferingUuid        MarketplaceResourcesDetailsRetrieveParamsField = "parent_offering_uuid"
-	MarketplaceResourcesDetailsRetrieveParamsFieldParentUuid                MarketplaceResourcesDetailsRetrieveParamsField = "parent_uuid"
-	MarketplaceResourcesDetailsRetrieveParamsFieldPaused                    MarketplaceResourcesDetailsRetrieveParamsField = "paused"
-	MarketplaceResourcesDetailsRetrieveParamsFieldPlan                      MarketplaceResourcesDetailsRetrieveParamsField = "plan"
-	MarketplaceResourcesDetailsRetrieveParamsFieldPlanDescription           MarketplaceResourcesDetailsRetrieveParamsField = "plan_description"
-	MarketplaceResourcesDetailsRetrieveParamsFieldPlanName                  MarketplaceResourcesDetailsRetrieveParamsField = "plan_name"
-	MarketplaceResourcesDetailsRetrieveParamsFieldPlanUnit                  MarketplaceResourcesDetailsRetrieveParamsField = "plan_unit"
-	MarketplaceResourcesDetailsRetrieveParamsFieldPlanUuid                  MarketplaceResourcesDetailsRetrieveParamsField = "plan_uuid"
-	MarketplaceResourcesDetailsRetrieveParamsFieldProject                   MarketplaceResourcesDetailsRetrieveParamsField = "project"
-	MarketplaceResourcesDetailsRetrieveParamsFieldProjectDescription        MarketplaceResourcesDetailsRetrieveParamsField = "project_description"
-	MarketplaceResourcesDetailsRetrieveParamsFieldProjectEndDate            MarketplaceResourcesDetailsRetrieveParamsField = "project_end_date"
-	MarketplaceResourcesDetailsRetrieveParamsFieldProjectEndDateRequestedBy MarketplaceResourcesDetailsRetrieveParamsField = "project_end_date_requested_by"
-	MarketplaceResourcesDetailsRetrieveParamsFieldProjectName               MarketplaceResourcesDetailsRetrieveParamsField = "project_name"
-	MarketplaceResourcesDetailsRetrieveParamsFieldProjectSlug               MarketplaceResourcesDetailsRetrieveParamsField = "project_slug"
-	MarketplaceResourcesDetailsRetrieveParamsFieldProjectUuid               MarketplaceResourcesDetailsRetrieveParamsField = "project_uuid"
-	MarketplaceResourcesDetailsRetrieveParamsFieldProviderName              MarketplaceResourcesDetailsRetrieveParamsField = "provider_name"
-	MarketplaceResourcesDetailsRetrieveParamsFieldProviderSlug              MarketplaceResourcesDetailsRetrieveParamsField = "provider_slug"
-	MarketplaceResourcesDetailsRetrieveParamsFieldProviderUuid              MarketplaceResourcesDetailsRetrieveParamsField = "provider_uuid"
-	MarketplaceResourcesDetailsRetrieveParamsFieldRenewalDate               MarketplaceResourcesDetailsRetrieveParamsField = "renewal_date"
-	MarketplaceResourcesDetailsRetrieveParamsFieldReport                    MarketplaceResourcesDetailsRetrieveParamsField = "report"
-	MarketplaceResourcesDetailsRetrieveParamsFieldResourceType              MarketplaceResourcesDetailsRetrieveParamsField = "resource_type"
-	MarketplaceResourcesDetailsRetrieveParamsFieldResourceUuid              MarketplaceResourcesDetailsRetrieveParamsField = "resource_uuid"
-	MarketplaceResourcesDetailsRetrieveParamsFieldRestrictMemberAccess      MarketplaceResourcesDetailsRetrieveParamsField = "restrict_member_access"
-	MarketplaceResourcesDetailsRetrieveParamsFieldScope                     MarketplaceResourcesDetailsRetrieveParamsField = "scope"
-	MarketplaceResourcesDetailsRetrieveParamsFieldServiceSettingsUuid       MarketplaceResourcesDetailsRetrieveParamsField = "service_settings_uuid"
-	MarketplaceResourcesDetailsRetrieveParamsFieldSlug                      MarketplaceResourcesDetailsRetrieveParamsField = "slug"
-	MarketplaceResourcesDetailsRetrieveParamsFieldState                     MarketplaceResourcesDetailsRetrieveParamsField = "state"
-	MarketplaceResourcesDetailsRetrieveParamsFieldUrl                       MarketplaceResourcesDetailsRetrieveParamsField = "url"
-	MarketplaceResourcesDetailsRetrieveParamsFieldUserRequiresReconsent     MarketplaceResourcesDetailsRetrieveParamsField = "user_requires_reconsent"
-	MarketplaceResourcesDetailsRetrieveParamsFieldUsername                  MarketplaceResourcesDetailsRetrieveParamsField = "username"
-	MarketplaceResourcesDetailsRetrieveParamsFieldUuid                      MarketplaceResourcesDetailsRetrieveParamsField = "uuid"
 )
 
 // Defines values for MarketplaceRobotAccountsListParamsField.
@@ -12220,14 +11877,14 @@ const (
 
 // Defines values for VmwareVirtualMachineCountParamsState.
 const (
-	VmwareVirtualMachineCountParamsStateCREATING          VmwareVirtualMachineCountParamsState = "CREATING"
-	VmwareVirtualMachineCountParamsStateCREATIONSCHEDULED VmwareVirtualMachineCountParamsState = "CREATION_SCHEDULED"
-	VmwareVirtualMachineCountParamsStateDELETING          VmwareVirtualMachineCountParamsState = "DELETING"
-	VmwareVirtualMachineCountParamsStateDELETIONSCHEDULED VmwareVirtualMachineCountParamsState = "DELETION_SCHEDULED"
-	VmwareVirtualMachineCountParamsStateERRED             VmwareVirtualMachineCountParamsState = "ERRED"
-	VmwareVirtualMachineCountParamsStateOK                VmwareVirtualMachineCountParamsState = "OK"
-	VmwareVirtualMachineCountParamsStateUPDATESCHEDULED   VmwareVirtualMachineCountParamsState = "UPDATE_SCHEDULED"
-	VmwareVirtualMachineCountParamsStateUPDATING          VmwareVirtualMachineCountParamsState = "UPDATING"
+	CREATING          VmwareVirtualMachineCountParamsState = "CREATING"
+	CREATIONSCHEDULED VmwareVirtualMachineCountParamsState = "CREATION_SCHEDULED"
+	DELETING          VmwareVirtualMachineCountParamsState = "DELETING"
+	DELETIONSCHEDULED VmwareVirtualMachineCountParamsState = "DELETION_SCHEDULED"
+	ERRED             VmwareVirtualMachineCountParamsState = "ERRED"
+	OK                VmwareVirtualMachineCountParamsState = "OK"
+	UPDATESCHEDULED   VmwareVirtualMachineCountParamsState = "UPDATE_SCHEDULED"
+	UPDATING          VmwareVirtualMachineCountParamsState = "UPDATING"
 )
 
 // Defines values for VmwareVirtualMachineRetrieveParamsField.
@@ -15008,12 +14665,6 @@ type CourseAccount struct {
 	Uuid             *openapi_types.UUID  `json:"uuid,omitempty"`
 }
 
-// CourseAccountCreateNested defines model for CourseAccountCreateNested.
-type CourseAccountCreateNested struct {
-	Description *string              `json:"description,omitempty"`
-	Email       *openapi_types.Email `json:"email,omitempty"`
-}
-
 // CourseAccountCreateNestedRequest defines model for CourseAccountCreateNestedRequest.
 type CourseAccountCreateNestedRequest struct {
 	Description *string              `json:"description,omitempty"`
@@ -15025,12 +14676,6 @@ type CourseAccountRequest struct {
 	Description *string              `json:"description,omitempty"`
 	Email       *openapi_types.Email `json:"email,omitempty"`
 	Project     openapi_types.UUID   `json:"project"`
-}
-
-// CourseAccountsBulkCreate defines model for CourseAccountsBulkCreate.
-type CourseAccountsBulkCreate struct {
-	CourseAccounts []CourseAccountCreateNested `json:"course_accounts"`
-	Project        openapi_types.UUID          `json:"project"`
 }
 
 // CourseAccountsBulkCreateRequest defines model for CourseAccountsBulkCreateRequest.
@@ -18561,87 +18206,6 @@ type OfferingCountryStats struct {
 	Country string `json:"country"`
 }
 
-// OfferingCreate defines model for OfferingCreate.
-type OfferingCreate struct {
-	// AccessUrl Publicly accessible offering access URL
-	AccessUrl       *string     `json:"access_url,omitempty"`
-	Attributes      interface{} `json:"attributes,omitempty"`
-	BackendId       *string     `json:"backend_id,omitempty"`
-	BackendMetadata interface{} `json:"backend_metadata,omitempty"`
-
-	// Billable Purchase and usage is invoiced.
-	Billable      *bool               `json:"billable,omitempty"`
-	Category      string              `json:"category"`
-	CategoryTitle *string             `json:"category_title,omitempty"`
-	CategoryUuid  *openapi_types.UUID `json:"category_uuid,omitempty"`
-
-	// CitationCount Number of citations of a DOI
-	CitationCount             *int                    `json:"citation_count,omitempty"`
-	ComplianceChecklist       *string                 `json:"compliance_checklist"`
-	Components                *[]OfferingComponent    `json:"components,omitempty"`
-	Country                   *OfferingCreate_Country `json:"country,omitempty"`
-	Created                   *time.Time              `json:"created,omitempty"`
-	Customer                  *string                 `json:"customer"`
-	CustomerName              *string                 `json:"customer_name"`
-	CustomerUuid              *openapi_types.UUID     `json:"customer_uuid"`
-	DataciteDoi               *string                 `json:"datacite_doi,omitempty"`
-	Description               *string                 `json:"description,omitempty"`
-	Endpoints                 *[]NestedEndpoint       `json:"endpoints,omitempty"`
-	Files                     *[]NestedOfferingFile   `json:"files,omitempty"`
-	FullDescription           *string                 `json:"full_description,omitempty"`
-	GettingStarted            *string                 `json:"getting_started,omitempty"`
-	HasComplianceRequirements *bool                   `json:"has_compliance_requirements,omitempty"`
-	Image                     *string                 `json:"image"`
-	IntegrationGuide          *string                 `json:"integration_guide,omitempty"`
-	Latitude                  *float64                `json:"latitude"`
-	Longitude                 *float64                `json:"longitude"`
-	Name                      string                  `json:"name"`
-	Options                   *OfferingOptions        `json:"options,omitempty"`
-	OrderCount                *int                    `json:"order_count,omitempty"`
-	OrganizationGroups        *[]OrganizationGroup    `json:"organization_groups,omitempty"`
-	ParentDescription         *string                 `json:"parent_description"`
-	ParentName                *string                 `json:"parent_name"`
-	ParentUuid                *openapi_types.UUID     `json:"parent_uuid"`
-	Partitions                *[]NestedPartition      `json:"partitions,omitempty"`
-	PausedReason              *string                 `json:"paused_reason,omitempty"`
-	Plans                     *[]BaseProviderPlan     `json:"plans,omitempty"`
-	PluginOptions             *MergedPluginOptions    `json:"plugin_options,omitempty"`
-	PrivacyPolicyLink         *string                 `json:"privacy_policy_link,omitempty"`
-	Project                   *string                 `json:"project"`
-	ProjectName               *string                 `json:"project_name"`
-	ProjectUuid               *openapi_types.UUID     `json:"project_uuid"`
-	Quotas                    *[]Quota                `json:"quotas,omitempty"`
-	ResourceOptions           *OfferingOptions        `json:"resource_options,omitempty"`
-	Roles                     *[]NestedRole           `json:"roles,omitempty"`
-	Scope                     *string                 `json:"scope,omitempty"`
-	ScopeErrorMessage         *string                 `json:"scope_error_message"`
-	ScopeName                 *openapi_types.UUID     `json:"scope_name"`
-	ScopeState                *CoreStates             `json:"scope_state"`
-	ScopeUuid                 *openapi_types.UUID     `json:"scope_uuid"`
-	Screenshots               *[]NestedScreenshot     `json:"screenshots,omitempty"`
-	SecretOptions             *MergedSecretOptions    `json:"secret_options,omitempty"`
-	ServiceAttributes         *map[string]interface{} `json:"service_attributes,omitempty"`
-
-	// Shared Accessible to all customers.
-	Shared             *bool                    `json:"shared,omitempty"`
-	Slug               *string                  `json:"slug,omitempty"`
-	SoftwareCatalogs   *[]NestedSoftwareCatalog `json:"software_catalogs,omitempty"`
-	State              *OfferingState           `json:"state,omitempty"`
-	Thumbnail          *string                  `json:"thumbnail"`
-	TotalCost          *int                     `json:"total_cost"`
-	TotalCostEstimated *int                     `json:"total_cost_estimated"`
-	TotalCustomers     *int                     `json:"total_customers"`
-	Type               string                   `json:"type"`
-	Url                *string                  `json:"url,omitempty"`
-	Uuid               *openapi_types.UUID      `json:"uuid,omitempty"`
-	VendorDetails      *string                  `json:"vendor_details,omitempty"`
-}
-
-// OfferingCreate_Country defines model for OfferingCreate.Country.
-type OfferingCreate_Country struct {
-	union json.RawMessage
-}
-
 // OfferingCreateRequest defines model for OfferingCreateRequest.
 type OfferingCreateRequest struct {
 	// AccessUrl Publicly accessible offering access URL
@@ -21158,12 +20722,13 @@ type OpenStackTenantChangePasswordRequest struct {
 // OpenStackTenantCreateOrderAttributes defines model for OpenStackTenantCreateOrderAttributes.
 type OpenStackTenantCreateOrderAttributes struct {
 	// AvailabilityZone Optional availability group. Will be used for all instances provisioned in this tenant
-	AvailabilityZone            *string `json:"availability_zone,omitempty"`
-	Description                 *string `json:"description,omitempty"`
-	Name                        string  `json:"name"`
-	SkipConnectionExtnet        *bool   `json:"skip_connection_extnet,omitempty"`
-	SkipCreationOfDefaultRouter *bool   `json:"skip_creation_of_default_router,omitempty"`
-	SubnetCidr                  *string `json:"subnet_cidr,omitempty"`
+	AvailabilityZone            *string                                `json:"availability_zone,omitempty"`
+	Description                 *string                                `json:"description,omitempty"`
+	Name                        string                                 `json:"name"`
+	SecurityGroups              *[]OpenStackTenantSecurityGroupRequest `json:"security_groups,omitempty"`
+	SkipConnectionExtnet        *bool                                  `json:"skip_connection_extnet,omitempty"`
+	SkipCreationOfDefaultRouter *bool                                  `json:"skip_creation_of_default_router,omitempty"`
+	SubnetCidr                  *string                                `json:"subnet_cidr,omitempty"`
 }
 
 // OpenStackTenantQuota defines model for OpenStackTenantQuota.
@@ -21407,77 +20972,6 @@ type OrderAttachmentRequestMultipart struct {
 // OrderBackendIDRequest defines model for OrderBackendIDRequest.
 type OrderBackendIDRequest struct {
 	BackendId *string `json:"backend_id,omitempty"`
-}
-
-// OrderCreate defines model for OrderCreate.
-type OrderCreate struct {
-	Attachment                 *string             `json:"attachment"`
-	Attributes                 interface{}         `json:"attributes,omitempty"`
-	CallbackUrl                *string             `json:"callback_url"`
-	CategoryIcon               *string             `json:"category_icon,omitempty"`
-	CategoryTitle              *string             `json:"category_title,omitempty"`
-	CategoryUuid               *openapi_types.UUID `json:"category_uuid,omitempty"`
-	CompletedAt                *time.Time          `json:"completed_at"`
-	ConsumerReviewedAt         *time.Time          `json:"consumer_reviewed_at"`
-	ConsumerReviewedBy         *string             `json:"consumer_reviewed_by"`
-	ConsumerReviewedByFullName *string             `json:"consumer_reviewed_by_full_name"`
-
-	// ConsumerReviewedByUsername Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
-	ConsumerReviewedByUsername *string    `json:"consumer_reviewed_by_username"`
-	Cost                       *string    `json:"cost"`
-	Created                    *time.Time `json:"created,omitempty"`
-	CreatedBy                  *string    `json:"created_by,omitempty"`
-	CreatedByFullName          *string    `json:"created_by_full_name,omitempty"`
-
-	// CreatedByUsername Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
-	CreatedByUsername       *string             `json:"created_by_username,omitempty"`
-	CustomerName            *string             `json:"customer_name,omitempty"`
-	CustomerUuid            *openapi_types.UUID `json:"customer_uuid,omitempty"`
-	ErrorMessage            *string             `json:"error_message,omitempty"`
-	ErrorTraceback          *string             `json:"error_traceback,omitempty"`
-	Limits                  *map[string]int     `json:"limits,omitempty"`
-	MarketplaceResourceUuid *openapi_types.UUID `json:"marketplace_resource_uuid,omitempty"`
-	Modified                *time.Time          `json:"modified,omitempty"`
-	Offering                string              `json:"offering"`
-
-	// OfferingBillable Purchase and usage is invoiced.
-	OfferingBillable    *bool   `json:"offering_billable,omitempty"`
-	OfferingDescription *string `json:"offering_description,omitempty"`
-	OfferingImage       *string `json:"offering_image,omitempty"`
-	OfferingName        *string `json:"offering_name,omitempty"`
-
-	// OfferingPluginOptions Public data used by specific plugin, such as storage mode for OpenStack.
-	OfferingPluginOptions interface{} `json:"offering_plugin_options,omitempty"`
-
-	// OfferingShared Accessible to all customers.
-	OfferingShared     *bool               `json:"offering_shared,omitempty"`
-	OfferingThumbnail  *string             `json:"offering_thumbnail,omitempty"`
-	OfferingType       *string             `json:"offering_type,omitempty"`
-	OfferingUuid       *openapi_types.UUID `json:"offering_uuid,omitempty"`
-	Output             *string             `json:"output,omitempty"`
-	Plan               *string             `json:"plan,omitempty"`
-	PlanDescription    *string             `json:"plan_description"`
-	PlanName           *string             `json:"plan_name"`
-	PlanUnit           *BillingUnit        `json:"plan_unit"`
-	PlanUuid           *openapi_types.UUID `json:"plan_uuid"`
-	Project            string              `json:"project"`
-	ProjectDescription *string             `json:"project_description,omitempty"`
-	ProjectName        *string             `json:"project_name,omitempty"`
-	ProjectUuid        *openapi_types.UUID `json:"project_uuid,omitempty"`
-	ProviderName       *string             `json:"provider_name,omitempty"`
-	ProviderSlug       *string             `json:"provider_slug,omitempty"`
-	ProviderUuid       *openapi_types.UUID `json:"provider_uuid,omitempty"`
-	RequestComment     *string             `json:"request_comment"`
-	ResourceName       *string             `json:"resource_name,omitempty"`
-	ResourceType       *string             `json:"resource_type"`
-	ResourceUuid       *openapi_types.UUID `json:"resource_uuid"`
-
-	// StartDate Enables delayed processing of resource provisioning order.
-	StartDate *openapi_types.Date `json:"start_date"`
-	State     *OrderState         `json:"state,omitempty"`
-	Type      *RequestTypes       `json:"type,omitempty"`
-	Url       *string             `json:"url,omitempty"`
-	Uuid      *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // OrderCreateRequest defines model for OrderCreateRequest.
@@ -26599,12 +26093,6 @@ type ResourceSlugRequest struct {
 // ResourceState defines model for ResourceState.
 type ResourceState string
 
-// ResourceSuggestName defines model for ResourceSuggestName.
-type ResourceSuggestName struct {
-	Offering openapi_types.UUID `json:"offering"`
-	Project  openapi_types.UUID `json:"project"`
-}
-
 // ResourceSuggestNameRequest defines model for ResourceSuggestNameRequest.
 type ResourceSuggestNameRequest struct {
 	Offering openapi_types.UUID `json:"offering"`
@@ -27185,13 +26673,6 @@ type ServiceProviderRevenues struct {
 	Month *int `json:"month,omitempty"`
 	Total *int `json:"total,omitempty"`
 	Year  *int `json:"year,omitempty"`
-}
-
-// ServiceProviderSignature defines model for ServiceProviderSignature.
-type ServiceProviderSignature struct {
-	Customer openapi_types.UUID `json:"customer"`
-	Data     string             `json:"data"`
-	DryRun   *bool              `json:"dry_run,omitempty"`
 }
 
 // ServiceProviderSignatureRequest defines model for ServiceProviderSignatureRequest.
@@ -32247,6 +31728,34 @@ type MarketplaceCourseAccountsCountParamsO string
 // MarketplaceCourseAccountsCountParamsState defines parameters for MarketplaceCourseAccountsCount.
 type MarketplaceCourseAccountsCountParamsState string
 
+// MarketplaceCourseAccountsCreateBulkParams defines parameters for MarketplaceCourseAccountsCreateBulk.
+type MarketplaceCourseAccountsCreateBulkParams struct {
+	Email *string `form:"email,omitempty" json:"email,omitempty"`
+
+	// O Ordering
+	//
+	O *[]MarketplaceCourseAccountsCreateBulkParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize               *PageSize                                         `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ProjectEndDateAfter    *openapi_types.Date                               `form:"project_end_date_after,omitempty" json:"project_end_date_after,omitempty"`
+	ProjectEndDateBefore   *openapi_types.Date                               `form:"project_end_date_before,omitempty" json:"project_end_date_before,omitempty"`
+	ProjectStartDateAfter  *openapi_types.Date                               `form:"project_start_date_after,omitempty" json:"project_start_date_after,omitempty"`
+	ProjectStartDateBefore *openapi_types.Date                               `form:"project_start_date_before,omitempty" json:"project_start_date_before,omitempty"`
+	ProjectUuid            *openapi_types.UUID                               `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	State                  *[]MarketplaceCourseAccountsCreateBulkParamsState `form:"state,omitempty" json:"state,omitempty"`
+	Username               *string                                           `form:"username,omitempty" json:"username,omitempty"`
+}
+
+// MarketplaceCourseAccountsCreateBulkParamsO defines parameters for MarketplaceCourseAccountsCreateBulk.
+type MarketplaceCourseAccountsCreateBulkParamsO string
+
+// MarketplaceCourseAccountsCreateBulkParamsState defines parameters for MarketplaceCourseAccountsCreateBulk.
+type MarketplaceCourseAccountsCreateBulkParamsState string
+
 // MarketplaceCustomerComponentUsagePoliciesListParams defines parameters for MarketplaceCustomerComponentUsagePoliciesList.
 type MarketplaceCustomerComponentUsagePoliciesListParams struct {
 	Customer     *string             `form:"customer,omitempty" json:"customer,omitempty"`
@@ -32341,10 +31850,10 @@ type MarketplaceCustomerServiceAccountsCountParamsState string
 
 // MarketplaceGlobalCategoriesRetrieveParams defines parameters for MarketplaceGlobalCategoriesRetrieve.
 type MarketplaceGlobalCategoriesRetrieveParams struct {
-	// CustomerUuid UUID of the customer to filter resources by.
+	// CustomerUuid Filter counts by resources within a specific customer.
 	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
 
-	// ProjectUuid UUID of the project to filter resources by.
+	// ProjectUuid Filter counts by resources within a specific project.
 	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 }
 
@@ -33178,13 +32687,18 @@ type MarketplacePlansCountParams struct {
 
 // MarketplacePlansUsageStatsListParams defines parameters for MarketplacePlansUsageStatsList.
 type MarketplacePlansUsageStatsListParams struct {
-	CustomerProviderUuid *string `form:"customer_provider_uuid,omitempty" json:"customer_provider_uuid,omitempty"`
-	O                    *string `form:"o,omitempty" json:"o,omitempty"`
-	Offering             *string `form:"offering,omitempty" json:"offering,omitempty"`
+	// CustomerProviderUuid Filter by service provider's customer UUID.
+	CustomerProviderUuid *openapi_types.UUID `form:"customer_provider_uuid,omitempty" json:"customer_provider_uuid,omitempty"`
+
+	// O Ordering field. Available options: `usage`, `limit`, `remaining`, and their descending counterparts (e.g., `-usage`).
+	O        *string `form:"o,omitempty" json:"o,omitempty"`
+	Offering *string `form:"offering,omitempty" json:"offering,omitempty"`
 
 	// OfferingSlug Multiple values may be separated by commas.
 	OfferingSlug *[]string `form:"offering_slug,omitempty" json:"offering_slug,omitempty"`
-	OfferingUuid *string   `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// OfferingUuid Filter by offering UUID.
+	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -33196,13 +32710,18 @@ type MarketplacePlansUsageStatsListParams struct {
 
 // MarketplacePlansUsageStatsCountParams defines parameters for MarketplacePlansUsageStatsCount.
 type MarketplacePlansUsageStatsCountParams struct {
-	CustomerProviderUuid *string `form:"customer_provider_uuid,omitempty" json:"customer_provider_uuid,omitempty"`
-	O                    *string `form:"o,omitempty" json:"o,omitempty"`
-	Offering             *string `form:"offering,omitempty" json:"offering,omitempty"`
+	// CustomerProviderUuid Filter by service provider's customer UUID.
+	CustomerProviderUuid *openapi_types.UUID `form:"customer_provider_uuid,omitempty" json:"customer_provider_uuid,omitempty"`
+
+	// O Ordering field. Available options: `usage`, `limit`, `remaining`, and their descending counterparts (e.g., `-usage`).
+	O        *string `form:"o,omitempty" json:"o,omitempty"`
+	Offering *string `form:"offering,omitempty" json:"offering,omitempty"`
 
 	// OfferingSlug Multiple values may be separated by commas.
 	OfferingSlug *[]string `form:"offering_slug,omitempty" json:"offering_slug,omitempty"`
-	OfferingUuid *string   `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// OfferingUuid Filter by offering UUID.
+	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -33928,13 +33447,87 @@ type MarketplaceProviderOfferingsImportableResourcesListParams struct {
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 }
 
-// MarketplaceProviderOfferingsListCourseAccountsRetrieveParams defines parameters for MarketplaceProviderOfferingsListCourseAccountsRetrieve.
-type MarketplaceProviderOfferingsListCourseAccountsRetrieveParams struct {
-	Field *[]MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField `form:"field,omitempty" json:"field,omitempty"`
+// MarketplaceProviderOfferingsListCourseAccountsListParams defines parameters for MarketplaceProviderOfferingsListCourseAccountsList.
+type MarketplaceProviderOfferingsListCourseAccountsListParams struct {
+	// AccessibleViaCalls Accessible via calls
+	AccessibleViaCalls *bool `form:"accessible_via_calls,omitempty" json:"accessible_via_calls,omitempty"`
+
+	// AllowedCustomerUuid Allowed customer UUID
+	AllowedCustomerUuid   *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
+	Attributes            *string             `form:"attributes,omitempty" json:"attributes,omitempty"`
+	Billable              *bool               `form:"billable,omitempty" json:"billable,omitempty"`
+	CanCreateOfferingUser *bool               `form:"can_create_offering_user,omitempty" json:"can_create_offering_user,omitempty"`
+	CategoryGroupUuid     *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
+	CategoryUuid          *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
+
+	// Created Created after
+	Created      *time.Time          `form:"created,omitempty" json:"created,omitempty"`
+	Customer     *string             `form:"customer,omitempty" json:"customer,omitempty"`
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+	Description  *string             `form:"description,omitempty" json:"description,omitempty"`
+
+	// HasActiveTermsOfService Has Active Terms of Service
+	HasActiveTermsOfService *bool `form:"has_active_terms_of_service,omitempty" json:"has_active_terms_of_service,omitempty"`
+
+	// HasTermsOfService Has Terms of Service
+	HasTermsOfService *bool `form:"has_terms_of_service,omitempty" json:"has_terms_of_service,omitempty"`
+
+	// Keyword Keyword
+	Keyword *string `form:"keyword,omitempty" json:"keyword,omitempty"`
+
+	// Modified Modified after
+	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+	Name      *string    `form:"name,omitempty" json:"name,omitempty"`
+	NameExact *string    `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// O Ordering
+	//
+	O                     *[]MarketplaceProviderOfferingsListCourseAccountsListParamsO `form:"o,omitempty" json:"o,omitempty"`
+	OrganizationGroupUuid *[]openapi_types.UUID                                        `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize   *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ParentUuid *openapi_types.UUID `form:"parent_uuid,omitempty" json:"parent_uuid,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// Query Search by offering name, slug or description
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
+	// ResourceCustomerUuid Resource customer UUID
+	ResourceCustomerUuid *openapi_types.UUID `form:"resource_customer_uuid,omitempty" json:"resource_customer_uuid,omitempty"`
+
+	// ResourceProjectUuid Resource project UUID
+	ResourceProjectUuid *openapi_types.UUID `form:"resource_project_uuid,omitempty" json:"resource_project_uuid,omitempty"`
+
+	// ScopeUuid Scope UUID
+	ScopeUuid *string `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
+
+	// ServiceManagerUuid Service manager UUID
+	ServiceManagerUuid *openapi_types.UUID                                              `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
+	Shared             *bool                                                            `form:"shared,omitempty" json:"shared,omitempty"`
+	State              *[]MarketplaceProviderOfferingsListCourseAccountsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+	Type               *[]string                                                        `form:"type,omitempty" json:"type,omitempty"`
+
+	// UserHasConsent User Has Consent
+	UserHasConsent *bool `form:"user_has_consent,omitempty" json:"user_has_consent,omitempty"`
+
+	// UserHasOfferingUser User Has Offering User
+	UserHasOfferingUser *bool `form:"user_has_offering_user,omitempty" json:"user_has_offering_user,omitempty"`
+
+	// UuidList Comma-separated offering UUIDs
+	UuidList *string `form:"uuid_list,omitempty" json:"uuid_list,omitempty"`
 }
 
-// MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField defines parameters for MarketplaceProviderOfferingsListCourseAccountsRetrieve.
-type MarketplaceProviderOfferingsListCourseAccountsRetrieveParamsField string
+// MarketplaceProviderOfferingsListCourseAccountsListParamsO defines parameters for MarketplaceProviderOfferingsListCourseAccountsList.
+type MarketplaceProviderOfferingsListCourseAccountsListParamsO string
+
+// MarketplaceProviderOfferingsListCourseAccountsListParamsState defines parameters for MarketplaceProviderOfferingsListCourseAccountsList.
+type MarketplaceProviderOfferingsListCourseAccountsListParamsState string
 
 // MarketplaceProviderOfferingsListCustomerProjectsListParams defines parameters for MarketplaceProviderOfferingsListCustomerProjectsList.
 type MarketplaceProviderOfferingsListCustomerProjectsListParams struct {
@@ -33950,13 +33543,87 @@ type MarketplaceProviderOfferingsListCustomerProjectsListParams struct {
 // MarketplaceProviderOfferingsListCustomerProjectsListParamsField defines parameters for MarketplaceProviderOfferingsListCustomerProjectsList.
 type MarketplaceProviderOfferingsListCustomerProjectsListParamsField string
 
-// MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParams defines parameters for MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieve.
-type MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParams struct {
-	Field *[]MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField `form:"field,omitempty" json:"field,omitempty"`
+// MarketplaceProviderOfferingsListCustomerServiceAccountsListParams defines parameters for MarketplaceProviderOfferingsListCustomerServiceAccountsList.
+type MarketplaceProviderOfferingsListCustomerServiceAccountsListParams struct {
+	// AccessibleViaCalls Accessible via calls
+	AccessibleViaCalls *bool `form:"accessible_via_calls,omitempty" json:"accessible_via_calls,omitempty"`
+
+	// AllowedCustomerUuid Allowed customer UUID
+	AllowedCustomerUuid   *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
+	Attributes            *string             `form:"attributes,omitempty" json:"attributes,omitempty"`
+	Billable              *bool               `form:"billable,omitempty" json:"billable,omitempty"`
+	CanCreateOfferingUser *bool               `form:"can_create_offering_user,omitempty" json:"can_create_offering_user,omitempty"`
+	CategoryGroupUuid     *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
+	CategoryUuid          *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
+
+	// Created Created after
+	Created      *time.Time          `form:"created,omitempty" json:"created,omitempty"`
+	Customer     *string             `form:"customer,omitempty" json:"customer,omitempty"`
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+	Description  *string             `form:"description,omitempty" json:"description,omitempty"`
+
+	// HasActiveTermsOfService Has Active Terms of Service
+	HasActiveTermsOfService *bool `form:"has_active_terms_of_service,omitempty" json:"has_active_terms_of_service,omitempty"`
+
+	// HasTermsOfService Has Terms of Service
+	HasTermsOfService *bool `form:"has_terms_of_service,omitempty" json:"has_terms_of_service,omitempty"`
+
+	// Keyword Keyword
+	Keyword *string `form:"keyword,omitempty" json:"keyword,omitempty"`
+
+	// Modified Modified after
+	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+	Name      *string    `form:"name,omitempty" json:"name,omitempty"`
+	NameExact *string    `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// O Ordering
+	//
+	O                     *[]MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsO `form:"o,omitempty" json:"o,omitempty"`
+	OrganizationGroupUuid *[]openapi_types.UUID                                                 `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize   *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ParentUuid *openapi_types.UUID `form:"parent_uuid,omitempty" json:"parent_uuid,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// Query Search by offering name, slug or description
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
+	// ResourceCustomerUuid Resource customer UUID
+	ResourceCustomerUuid *openapi_types.UUID `form:"resource_customer_uuid,omitempty" json:"resource_customer_uuid,omitempty"`
+
+	// ResourceProjectUuid Resource project UUID
+	ResourceProjectUuid *openapi_types.UUID `form:"resource_project_uuid,omitempty" json:"resource_project_uuid,omitempty"`
+
+	// ScopeUuid Scope UUID
+	ScopeUuid *string `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
+
+	// ServiceManagerUuid Service manager UUID
+	ServiceManagerUuid *openapi_types.UUID                                                       `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
+	Shared             *bool                                                                     `form:"shared,omitempty" json:"shared,omitempty"`
+	State              *[]MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+	Type               *[]string                                                                 `form:"type,omitempty" json:"type,omitempty"`
+
+	// UserHasConsent User Has Consent
+	UserHasConsent *bool `form:"user_has_consent,omitempty" json:"user_has_consent,omitempty"`
+
+	// UserHasOfferingUser User Has Offering User
+	UserHasOfferingUser *bool `form:"user_has_offering_user,omitempty" json:"user_has_offering_user,omitempty"`
+
+	// UuidList Comma-separated offering UUIDs
+	UuidList *string `form:"uuid_list,omitempty" json:"uuid_list,omitempty"`
 }
 
-// MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField defines parameters for MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieve.
-type MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParamsField string
+// MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsO defines parameters for MarketplaceProviderOfferingsListCustomerServiceAccountsList.
+type MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsO string
+
+// MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsState defines parameters for MarketplaceProviderOfferingsListCustomerServiceAccountsList.
+type MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsState string
 
 // MarketplaceProviderOfferingsListCustomerUsersListParams defines parameters for MarketplaceProviderOfferingsListCustomerUsersList.
 type MarketplaceProviderOfferingsListCustomerUsersListParams struct {
@@ -33972,13 +33639,87 @@ type MarketplaceProviderOfferingsListCustomerUsersListParams struct {
 // MarketplaceProviderOfferingsListCustomerUsersListParamsField defines parameters for MarketplaceProviderOfferingsListCustomerUsersList.
 type MarketplaceProviderOfferingsListCustomerUsersListParamsField string
 
-// MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParams defines parameters for MarketplaceProviderOfferingsListProjectServiceAccountsRetrieve.
-type MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParams struct {
-	Field *[]MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField `form:"field,omitempty" json:"field,omitempty"`
+// MarketplaceProviderOfferingsListProjectServiceAccountsListParams defines parameters for MarketplaceProviderOfferingsListProjectServiceAccountsList.
+type MarketplaceProviderOfferingsListProjectServiceAccountsListParams struct {
+	// AccessibleViaCalls Accessible via calls
+	AccessibleViaCalls *bool `form:"accessible_via_calls,omitempty" json:"accessible_via_calls,omitempty"`
+
+	// AllowedCustomerUuid Allowed customer UUID
+	AllowedCustomerUuid   *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
+	Attributes            *string             `form:"attributes,omitempty" json:"attributes,omitempty"`
+	Billable              *bool               `form:"billable,omitempty" json:"billable,omitempty"`
+	CanCreateOfferingUser *bool               `form:"can_create_offering_user,omitempty" json:"can_create_offering_user,omitempty"`
+	CategoryGroupUuid     *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
+	CategoryUuid          *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
+
+	// Created Created after
+	Created      *time.Time          `form:"created,omitempty" json:"created,omitempty"`
+	Customer     *string             `form:"customer,omitempty" json:"customer,omitempty"`
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+	Description  *string             `form:"description,omitempty" json:"description,omitempty"`
+
+	// HasActiveTermsOfService Has Active Terms of Service
+	HasActiveTermsOfService *bool `form:"has_active_terms_of_service,omitempty" json:"has_active_terms_of_service,omitempty"`
+
+	// HasTermsOfService Has Terms of Service
+	HasTermsOfService *bool `form:"has_terms_of_service,omitempty" json:"has_terms_of_service,omitempty"`
+
+	// Keyword Keyword
+	Keyword *string `form:"keyword,omitempty" json:"keyword,omitempty"`
+
+	// Modified Modified after
+	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+	Name      *string    `form:"name,omitempty" json:"name,omitempty"`
+	NameExact *string    `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// O Ordering
+	//
+	O                     *[]MarketplaceProviderOfferingsListProjectServiceAccountsListParamsO `form:"o,omitempty" json:"o,omitempty"`
+	OrganizationGroupUuid *[]openapi_types.UUID                                                `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize   *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ParentUuid *openapi_types.UUID `form:"parent_uuid,omitempty" json:"parent_uuid,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// Query Search by offering name, slug or description
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
+	// ResourceCustomerUuid Resource customer UUID
+	ResourceCustomerUuid *openapi_types.UUID `form:"resource_customer_uuid,omitempty" json:"resource_customer_uuid,omitempty"`
+
+	// ResourceProjectUuid Resource project UUID
+	ResourceProjectUuid *openapi_types.UUID `form:"resource_project_uuid,omitempty" json:"resource_project_uuid,omitempty"`
+
+	// ScopeUuid Scope UUID
+	ScopeUuid *string `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
+
+	// ServiceManagerUuid Service manager UUID
+	ServiceManagerUuid *openapi_types.UUID                                                      `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
+	Shared             *bool                                                                    `form:"shared,omitempty" json:"shared,omitempty"`
+	State              *[]MarketplaceProviderOfferingsListProjectServiceAccountsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+	Type               *[]string                                                                `form:"type,omitempty" json:"type,omitempty"`
+
+	// UserHasConsent User Has Consent
+	UserHasConsent *bool `form:"user_has_consent,omitempty" json:"user_has_consent,omitempty"`
+
+	// UserHasOfferingUser User Has Offering User
+	UserHasOfferingUser *bool `form:"user_has_offering_user,omitempty" json:"user_has_offering_user,omitempty"`
+
+	// UuidList Comma-separated offering UUIDs
+	UuidList *string `form:"uuid_list,omitempty" json:"uuid_list,omitempty"`
 }
 
-// MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField defines parameters for MarketplaceProviderOfferingsListProjectServiceAccountsRetrieve.
-type MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParamsField string
+// MarketplaceProviderOfferingsListProjectServiceAccountsListParamsO defines parameters for MarketplaceProviderOfferingsListProjectServiceAccountsList.
+type MarketplaceProviderOfferingsListProjectServiceAccountsListParamsO string
+
+// MarketplaceProviderOfferingsListProjectServiceAccountsListParamsState defines parameters for MarketplaceProviderOfferingsListProjectServiceAccountsList.
+type MarketplaceProviderOfferingsListProjectServiceAccountsListParamsState string
 
 // MarketplaceProviderOfferingsListUsersListParams defines parameters for MarketplaceProviderOfferingsListUsersList.
 type MarketplaceProviderOfferingsListUsersListParams struct {
@@ -34038,14 +33779,6 @@ type MarketplaceProviderOfferingsOrdersListParams struct {
 
 // MarketplaceProviderOfferingsOrdersListParamsField defines parameters for MarketplaceProviderOfferingsOrdersList.
 type MarketplaceProviderOfferingsOrdersListParamsField string
-
-// MarketplaceProviderOfferingsStatsRetrieveParams defines parameters for MarketplaceProviderOfferingsStatsRetrieve.
-type MarketplaceProviderOfferingsStatsRetrieveParams struct {
-	Field *[]MarketplaceProviderOfferingsStatsRetrieveParamsField `form:"field,omitempty" json:"field,omitempty"`
-}
-
-// MarketplaceProviderOfferingsStatsRetrieveParamsField defines parameters for MarketplaceProviderOfferingsStatsRetrieve.
-type MarketplaceProviderOfferingsStatsRetrieveParamsField string
 
 // MarketplaceProviderOfferingsUpdateAttributesJSONBody defines parameters for MarketplaceProviderOfferingsUpdateAttributes.
 type MarketplaceProviderOfferingsUpdateAttributesJSONBody map[string]interface{}
@@ -34252,14 +33985,6 @@ type MarketplaceProviderResourcesRetrieveParams struct {
 
 // MarketplaceProviderResourcesRetrieveParamsField defines parameters for MarketplaceProviderResourcesRetrieve.
 type MarketplaceProviderResourcesRetrieveParamsField string
-
-// MarketplaceProviderResourcesDetailsRetrieveParams defines parameters for MarketplaceProviderResourcesDetailsRetrieve.
-type MarketplaceProviderResourcesDetailsRetrieveParams struct {
-	Field *[]MarketplaceProviderResourcesDetailsRetrieveParamsField `form:"field,omitempty" json:"field,omitempty"`
-}
-
-// MarketplaceProviderResourcesDetailsRetrieveParamsField defines parameters for MarketplaceProviderResourcesDetailsRetrieve.
-type MarketplaceProviderResourcesDetailsRetrieveParamsField string
 
 // MarketplacePublicOfferingsListParams defines parameters for MarketplacePublicOfferingsList.
 type MarketplacePublicOfferingsListParams struct {
@@ -34699,14 +34424,6 @@ type MarketplaceResourcesRetrieveParams struct {
 // MarketplaceResourcesRetrieveParamsField defines parameters for MarketplaceResourcesRetrieve.
 type MarketplaceResourcesRetrieveParamsField string
 
-// MarketplaceResourcesDetailsRetrieveParams defines parameters for MarketplaceResourcesDetailsRetrieve.
-type MarketplaceResourcesDetailsRetrieveParams struct {
-	Field *[]MarketplaceResourcesDetailsRetrieveParamsField `form:"field,omitempty" json:"field,omitempty"`
-}
-
-// MarketplaceResourcesDetailsRetrieveParamsField defines parameters for MarketplaceResourcesDetailsRetrieve.
-type MarketplaceResourcesDetailsRetrieveParamsField string
-
 // MarketplaceRobotAccountsListParams defines parameters for MarketplaceRobotAccountsList.
 type MarketplaceRobotAccountsListParams struct {
 	// Created Created after
@@ -34771,10 +34488,10 @@ type MarketplaceRobotAccountsRetrieveParamsField string
 
 // MarketplaceRuntimeStatesListParams defines parameters for MarketplaceRuntimeStatesList.
 type MarketplaceRuntimeStatesListParams struct {
-	// CategoryUuid UUID of the category to filter runtime states by.
+	// CategoryUuid Filter runtime states by resources belonging to a specific category.
 	CategoryUuid *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
 
-	// ProjectUuid UUID of the project to filter runtime states by.
+	// ProjectUuid Filter runtime states by resources within a specific project.
 	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 }
 
@@ -34926,10 +34643,10 @@ type ServiceProviderComplianceOverviewParams struct {
 
 // ServiceProviderOfferingUsersComplianceParams defines parameters for ServiceProviderOfferingUsersCompliance.
 type ServiceProviderOfferingUsersComplianceParams struct {
-	// ComplianceStatus Filter by compliance status: completed, pending, no_checklist
+	// ComplianceStatus Filter by compliance status: completed, pending, no_checklist.
 	ComplianceStatus *string `form:"compliance_status,omitempty" json:"compliance_status,omitempty"`
 
-	// OfferingUuid Filter by offering UUID
+	// OfferingUuid Filter by offering UUID.
 	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
@@ -35006,6 +34723,9 @@ type MarketplaceServiceProvidersCustomerProjectsListParams struct {
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ProjectCustomerUuid UUID of the customer to filter projects by.
+	ProjectCustomerUuid openapi_types.UUID `form:"project_customer_uuid" json:"project_customer_uuid"`
 
 	// Query Filter by name, slug, UUID, backend ID or resource effective ID
 	Query *string `form:"query,omitempty" json:"query,omitempty"`
@@ -35321,7 +35041,7 @@ type MarketplaceServiceProvidersUserCustomersListParams struct {
 	Query            *string `form:"query,omitempty" json:"query,omitempty"`
 	RegistrationCode *string `form:"registration_code,omitempty" json:"registration_code,omitempty"`
 
-	// UserUuid UUID of user to get related customers for
+	// UserUuid UUID of the user to get related customers for.
 	UserUuid openapi_types.UUID `form:"user_uuid" json:"user_uuid"`
 }
 
@@ -35453,6 +35173,7 @@ type MarketplaceServiceProvidersRevenueListParams struct {
 
 // MarketplaceServiceProvidersRobotAccountCustomersListParams defines parameters for MarketplaceServiceProvidersRobotAccountCustomersList.
 type MarketplaceServiceProvidersRobotAccountCustomersListParams struct {
+	// CustomerName Filter by customer name (case-insensitive partial match).
 	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
 
 	// Page A page number within the paginated result set.
@@ -35468,8 +35189,10 @@ type MarketplaceServiceProvidersRobotAccountProjectsListParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize    *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-	ProjectName *string   `form:"project_name,omitempty" json:"project_name,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ProjectName Filter by project name (case-insensitive partial match).
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
 }
 
 // MarketplaceSiteAgentIdentitiesListParams defines parameters for MarketplaceSiteAgentIdentitiesList.
@@ -44853,68 +44576,6 @@ func (t *OfferingComponentRequest_LimitPeriod) UnmarshalJSON(b []byte) error {
 	return err
 }
 
-// AsCountryEnum returns the union data inside the OfferingCreate_Country as a CountryEnum
-func (t OfferingCreate_Country) AsCountryEnum() (CountryEnum, error) {
-	var body CountryEnum
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromCountryEnum overwrites any union data inside the OfferingCreate_Country as the provided CountryEnum
-func (t *OfferingCreate_Country) FromCountryEnum(v CountryEnum) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeCountryEnum performs a merge with any union data inside the OfferingCreate_Country, using the provided CountryEnum
-func (t *OfferingCreate_Country) MergeCountryEnum(v CountryEnum) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsBlankEnum returns the union data inside the OfferingCreate_Country as a BlankEnum
-func (t OfferingCreate_Country) AsBlankEnum() (BlankEnum, error) {
-	var body BlankEnum
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromBlankEnum overwrites any union data inside the OfferingCreate_Country as the provided BlankEnum
-func (t *OfferingCreate_Country) FromBlankEnum(v BlankEnum) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeBlankEnum performs a merge with any union data inside the OfferingCreate_Country, using the provided BlankEnum
-func (t *OfferingCreate_Country) MergeBlankEnum(v BlankEnum) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t OfferingCreate_Country) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *OfferingCreate_Country) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
 // AsCountryEnum returns the union data inside the OfferingCreateRequest_Country as a CountryEnum
 func (t OfferingCreateRequest_Country) AsCountryEnum() (CountryEnum, error) {
 	var body CountryEnum
@@ -51757,9 +51418,9 @@ type ClientInterface interface {
 	MarketplaceCourseAccountsCreate(ctx context.Context, body MarketplaceCourseAccountsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceCourseAccountsCreateBulkWithBody request with any body
-	MarketplaceCourseAccountsCreateBulkWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	MarketplaceCourseAccountsCreateBulkWithBody(ctx context.Context, params *MarketplaceCourseAccountsCreateBulkParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	MarketplaceCourseAccountsCreateBulk(ctx context.Context, body MarketplaceCourseAccountsCreateBulkJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	MarketplaceCourseAccountsCreateBulk(ctx context.Context, params *MarketplaceCourseAccountsCreateBulkParams, body MarketplaceCourseAccountsCreateBulkJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceCourseAccountsDestroy request
 	MarketplaceCourseAccountsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -52459,20 +52120,20 @@ type ClientInterface interface {
 	// MarketplaceProviderOfferingsImportableResourcesList request
 	MarketplaceProviderOfferingsImportableResourcesList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsImportableResourcesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// MarketplaceProviderOfferingsListCourseAccountsRetrieve request
-	MarketplaceProviderOfferingsListCourseAccountsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListCourseAccountsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// MarketplaceProviderOfferingsListCourseAccountsList request
+	MarketplaceProviderOfferingsListCourseAccountsList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListCourseAccountsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceProviderOfferingsListCustomerProjectsList request
 	MarketplaceProviderOfferingsListCustomerProjectsList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListCustomerProjectsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieve request
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// MarketplaceProviderOfferingsListCustomerServiceAccountsList request
+	MarketplaceProviderOfferingsListCustomerServiceAccountsList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListCustomerServiceAccountsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceProviderOfferingsListCustomerUsersList request
 	MarketplaceProviderOfferingsListCustomerUsersList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListCustomerUsersListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// MarketplaceProviderOfferingsListProjectServiceAccountsRetrieve request
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// MarketplaceProviderOfferingsListProjectServiceAccountsList request
+	MarketplaceProviderOfferingsListProjectServiceAccountsList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListProjectServiceAccountsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceProviderOfferingsListUsersList request
 	MarketplaceProviderOfferingsListUsersList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListUsersListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -52517,7 +52178,7 @@ type ClientInterface interface {
 	MarketplaceProviderOfferingsSetBackendMetadata(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsSetBackendMetadataJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceProviderOfferingsStatsRetrieve request
-	MarketplaceProviderOfferingsStatsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsStatsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	MarketplaceProviderOfferingsStatsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceProviderOfferingsSync request
 	MarketplaceProviderOfferingsSync(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -52630,7 +52291,7 @@ type ClientInterface interface {
 	MarketplaceProviderResourcesUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceProviderResourcesDetailsRetrieve request
-	MarketplaceProviderResourcesDetailsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderResourcesDetailsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	MarketplaceProviderResourcesDetailsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceProviderResourcesGlauthUsersConfigRetrieve request
 	MarketplaceProviderResourcesGlauthUsersConfigRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -52837,7 +52498,7 @@ type ClientInterface interface {
 	MarketplaceResourcesUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceResourcesDetailsRetrieve request
-	MarketplaceResourcesDetailsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceResourcesDetailsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+	MarketplaceResourcesDetailsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceResourcesGlauthUsersConfigRetrieve request
 	MarketplaceResourcesGlauthUsersConfigRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -64587,8 +64248,8 @@ func (c *Client) MarketplaceCourseAccountsCreate(ctx context.Context, body Marke
 	return c.Client.Do(req)
 }
 
-func (c *Client) MarketplaceCourseAccountsCreateBulkWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceCourseAccountsCreateBulkRequestWithBody(c.Server, contentType, body)
+func (c *Client) MarketplaceCourseAccountsCreateBulkWithBody(ctx context.Context, params *MarketplaceCourseAccountsCreateBulkParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceCourseAccountsCreateBulkRequestWithBody(c.Server, params, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -64599,8 +64260,8 @@ func (c *Client) MarketplaceCourseAccountsCreateBulkWithBody(ctx context.Context
 	return c.Client.Do(req)
 }
 
-func (c *Client) MarketplaceCourseAccountsCreateBulk(ctx context.Context, body MarketplaceCourseAccountsCreateBulkJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceCourseAccountsCreateBulkRequest(c.Server, body)
+func (c *Client) MarketplaceCourseAccountsCreateBulk(ctx context.Context, params *MarketplaceCourseAccountsCreateBulkParams, body MarketplaceCourseAccountsCreateBulkJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceCourseAccountsCreateBulkRequest(c.Server, params, body)
 	if err != nil {
 		return nil, err
 	}
@@ -67647,8 +67308,8 @@ func (c *Client) MarketplaceProviderOfferingsImportableResourcesList(ctx context
 	return c.Client.Do(req)
 }
 
-func (c *Client) MarketplaceProviderOfferingsListCourseAccountsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListCourseAccountsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceProviderOfferingsListCourseAccountsRetrieveRequest(c.Server, uuid, params)
+func (c *Client) MarketplaceProviderOfferingsListCourseAccountsList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListCourseAccountsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsListCourseAccountsListRequest(c.Server, uuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -67671,8 +67332,8 @@ func (c *Client) MarketplaceProviderOfferingsListCustomerProjectsList(ctx contex
 	return c.Client.Do(req)
 }
 
-func (c *Client) MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveRequest(c.Server, uuid, params)
+func (c *Client) MarketplaceProviderOfferingsListCustomerServiceAccountsList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListCustomerServiceAccountsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsListCustomerServiceAccountsListRequest(c.Server, uuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -67695,8 +67356,8 @@ func (c *Client) MarketplaceProviderOfferingsListCustomerUsersList(ctx context.C
 	return c.Client.Do(req)
 }
 
-func (c *Client) MarketplaceProviderOfferingsListProjectServiceAccountsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceProviderOfferingsListProjectServiceAccountsRetrieveRequest(c.Server, uuid, params)
+func (c *Client) MarketplaceProviderOfferingsListProjectServiceAccountsList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListProjectServiceAccountsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsListProjectServiceAccountsListRequest(c.Server, uuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -67899,8 +67560,8 @@ func (c *Client) MarketplaceProviderOfferingsSetBackendMetadata(ctx context.Cont
 	return c.Client.Do(req)
 }
 
-func (c *Client) MarketplaceProviderOfferingsStatsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsStatsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceProviderOfferingsStatsRetrieveRequest(c.Server, uuid, params)
+func (c *Client) MarketplaceProviderOfferingsStatsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsStatsRetrieveRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -68427,8 +68088,8 @@ func (c *Client) MarketplaceProviderResourcesUpdate(ctx context.Context, uuid op
 	return c.Client.Do(req)
 }
 
-func (c *Client) MarketplaceProviderResourcesDetailsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderResourcesDetailsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceProviderResourcesDetailsRetrieveRequest(c.Server, uuid, params)
+func (c *Client) MarketplaceProviderResourcesDetailsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderResourcesDetailsRetrieveRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -69351,8 +69012,8 @@ func (c *Client) MarketplaceResourcesUpdate(ctx context.Context, uuid openapi_ty
 	return c.Client.Do(req)
 }
 
-func (c *Client) MarketplaceResourcesDetailsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceResourcesDetailsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceResourcesDetailsRetrieveRequest(c.Server, uuid, params)
+func (c *Client) MarketplaceResourcesDetailsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourcesDetailsRetrieveRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -125947,18 +125608,18 @@ func NewMarketplaceCourseAccountsCreateRequestWithBody(server string, contentTyp
 }
 
 // NewMarketplaceCourseAccountsCreateBulkRequest calls the generic MarketplaceCourseAccountsCreateBulk builder with application/json body
-func NewMarketplaceCourseAccountsCreateBulkRequest(server string, body MarketplaceCourseAccountsCreateBulkJSONRequestBody) (*http.Request, error) {
+func NewMarketplaceCourseAccountsCreateBulkRequest(server string, params *MarketplaceCourseAccountsCreateBulkParams, body MarketplaceCourseAccountsCreateBulkJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewMarketplaceCourseAccountsCreateBulkRequestWithBody(server, "application/json", bodyReader)
+	return NewMarketplaceCourseAccountsCreateBulkRequestWithBody(server, params, "application/json", bodyReader)
 }
 
 // NewMarketplaceCourseAccountsCreateBulkRequestWithBody generates requests for MarketplaceCourseAccountsCreateBulk with any type of body
-func NewMarketplaceCourseAccountsCreateBulkRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+func NewMarketplaceCourseAccountsCreateBulkRequestWithBody(server string, params *MarketplaceCourseAccountsCreateBulkParams, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -125974,6 +125635,188 @@ func NewMarketplaceCourseAccountsCreateBulkRequestWithBody(server string, conten
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Email != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "email", runtime.ParamLocationQuery, *params.Email); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectEndDateAfter != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_end_date_after", runtime.ParamLocationQuery, *params.ProjectEndDateAfter); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectEndDateBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_end_date_before", runtime.ParamLocationQuery, *params.ProjectEndDateBefore); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectStartDateAfter != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_start_date_after", runtime.ParamLocationQuery, *params.ProjectStartDateAfter); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectStartDateBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_start_date_before", runtime.ParamLocationQuery, *params.ProjectStartDateBefore); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_uuid", runtime.ParamLocationQuery, *params.ProjectUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "state", runtime.ParamLocationQuery, *params.State); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Username != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "username", runtime.ParamLocationQuery, *params.Username); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
 	}
 
 	req, err := http.NewRequest("POST", queryURL.String(), body)
@@ -143165,8 +143008,8 @@ func NewMarketplaceProviderOfferingsImportableResourcesListRequest(server string
 	return req, nil
 }
 
-// NewMarketplaceProviderOfferingsListCourseAccountsRetrieveRequest generates requests for MarketplaceProviderOfferingsListCourseAccountsRetrieve
-func NewMarketplaceProviderOfferingsListCourseAccountsRetrieveRequest(server string, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListCourseAccountsRetrieveParams) (*http.Request, error) {
+// NewMarketplaceProviderOfferingsListCourseAccountsListRequest generates requests for MarketplaceProviderOfferingsListCourseAccountsList
+func NewMarketplaceProviderOfferingsListCourseAccountsListRequest(server string, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListCourseAccountsListParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -143194,9 +143037,537 @@ func NewMarketplaceProviderOfferingsListCourseAccountsRetrieveRequest(server str
 	if params != nil {
 		queryValues := queryURL.Query()
 
-		if params.Field != nil {
+		if params.AccessibleViaCalls != nil {
 
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "field", runtime.ParamLocationQuery, *params.Field); err != nil {
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "accessible_via_calls", runtime.ParamLocationQuery, *params.AccessibleViaCalls); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.AllowedCustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "allowed_customer_uuid", runtime.ParamLocationQuery, *params.AllowedCustomerUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Attributes != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "attributes", runtime.ParamLocationQuery, *params.Attributes); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Billable != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "billable", runtime.ParamLocationQuery, *params.Billable); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CanCreateOfferingUser != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "can_create_offering_user", runtime.ParamLocationQuery, *params.CanCreateOfferingUser); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CategoryGroupUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "category_group_uuid", runtime.ParamLocationQuery, *params.CategoryGroupUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CategoryUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "category_uuid", runtime.ParamLocationQuery, *params.CategoryUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Created != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "created", runtime.ParamLocationQuery, *params.Created); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Customer != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer", runtime.ParamLocationQuery, *params.Customer); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer_uuid", runtime.ParamLocationQuery, *params.CustomerUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Description != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "description", runtime.ParamLocationQuery, *params.Description); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.HasActiveTermsOfService != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_active_terms_of_service", runtime.ParamLocationQuery, *params.HasActiveTermsOfService); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.HasTermsOfService != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_terms_of_service", runtime.ParamLocationQuery, *params.HasTermsOfService); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Keyword != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "keyword", runtime.ParamLocationQuery, *params.Keyword); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Modified != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "modified", runtime.ParamLocationQuery, *params.Modified); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name", runtime.ParamLocationQuery, *params.Name); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.NameExact != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name_exact", runtime.ParamLocationQuery, *params.NameExact); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OrganizationGroupUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "organization_group_uuid", runtime.ParamLocationQuery, *params.OrganizationGroupUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ParentUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "parent_uuid", runtime.ParamLocationQuery, *params.ParentUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_uuid", runtime.ParamLocationQuery, *params.ProjectUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "query", runtime.ParamLocationQuery, *params.Query); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ResourceCustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "resource_customer_uuid", runtime.ParamLocationQuery, *params.ResourceCustomerUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ResourceProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "resource_project_uuid", runtime.ParamLocationQuery, *params.ResourceProjectUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ScopeUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope_uuid", runtime.ParamLocationQuery, *params.ScopeUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ServiceManagerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "service_manager_uuid", runtime.ParamLocationQuery, *params.ServiceManagerUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Shared != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "shared", runtime.ParamLocationQuery, *params.Shared); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "state", runtime.ParamLocationQuery, *params.State); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Type != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "type", runtime.ParamLocationQuery, *params.Type); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UserHasConsent != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_has_consent", runtime.ParamLocationQuery, *params.UserHasConsent); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UserHasOfferingUser != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_has_offering_user", runtime.ParamLocationQuery, *params.UserHasOfferingUser); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UuidList != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "uuid_list", runtime.ParamLocationQuery, *params.UuidList); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -143309,8 +143680,8 @@ func NewMarketplaceProviderOfferingsListCustomerProjectsListRequest(server strin
 	return req, nil
 }
 
-// NewMarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveRequest generates requests for MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieve
-func NewMarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveRequest(server string, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParams) (*http.Request, error) {
+// NewMarketplaceProviderOfferingsListCustomerServiceAccountsListRequest generates requests for MarketplaceProviderOfferingsListCustomerServiceAccountsList
+func NewMarketplaceProviderOfferingsListCustomerServiceAccountsListRequest(server string, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListCustomerServiceAccountsListParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -143338,9 +143709,537 @@ func NewMarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveRequest(s
 	if params != nil {
 		queryValues := queryURL.Query()
 
-		if params.Field != nil {
+		if params.AccessibleViaCalls != nil {
 
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "field", runtime.ParamLocationQuery, *params.Field); err != nil {
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "accessible_via_calls", runtime.ParamLocationQuery, *params.AccessibleViaCalls); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.AllowedCustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "allowed_customer_uuid", runtime.ParamLocationQuery, *params.AllowedCustomerUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Attributes != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "attributes", runtime.ParamLocationQuery, *params.Attributes); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Billable != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "billable", runtime.ParamLocationQuery, *params.Billable); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CanCreateOfferingUser != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "can_create_offering_user", runtime.ParamLocationQuery, *params.CanCreateOfferingUser); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CategoryGroupUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "category_group_uuid", runtime.ParamLocationQuery, *params.CategoryGroupUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CategoryUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "category_uuid", runtime.ParamLocationQuery, *params.CategoryUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Created != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "created", runtime.ParamLocationQuery, *params.Created); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Customer != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer", runtime.ParamLocationQuery, *params.Customer); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer_uuid", runtime.ParamLocationQuery, *params.CustomerUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Description != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "description", runtime.ParamLocationQuery, *params.Description); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.HasActiveTermsOfService != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_active_terms_of_service", runtime.ParamLocationQuery, *params.HasActiveTermsOfService); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.HasTermsOfService != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_terms_of_service", runtime.ParamLocationQuery, *params.HasTermsOfService); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Keyword != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "keyword", runtime.ParamLocationQuery, *params.Keyword); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Modified != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "modified", runtime.ParamLocationQuery, *params.Modified); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name", runtime.ParamLocationQuery, *params.Name); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.NameExact != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name_exact", runtime.ParamLocationQuery, *params.NameExact); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OrganizationGroupUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "organization_group_uuid", runtime.ParamLocationQuery, *params.OrganizationGroupUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ParentUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "parent_uuid", runtime.ParamLocationQuery, *params.ParentUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_uuid", runtime.ParamLocationQuery, *params.ProjectUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "query", runtime.ParamLocationQuery, *params.Query); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ResourceCustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "resource_customer_uuid", runtime.ParamLocationQuery, *params.ResourceCustomerUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ResourceProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "resource_project_uuid", runtime.ParamLocationQuery, *params.ResourceProjectUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ScopeUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope_uuid", runtime.ParamLocationQuery, *params.ScopeUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ServiceManagerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "service_manager_uuid", runtime.ParamLocationQuery, *params.ServiceManagerUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Shared != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "shared", runtime.ParamLocationQuery, *params.Shared); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "state", runtime.ParamLocationQuery, *params.State); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Type != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "type", runtime.ParamLocationQuery, *params.Type); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UserHasConsent != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_has_consent", runtime.ParamLocationQuery, *params.UserHasConsent); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UserHasOfferingUser != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_has_offering_user", runtime.ParamLocationQuery, *params.UserHasOfferingUser); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UuidList != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "uuid_list", runtime.ParamLocationQuery, *params.UuidList); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -143453,8 +144352,8 @@ func NewMarketplaceProviderOfferingsListCustomerUsersListRequest(server string, 
 	return req, nil
 }
 
-// NewMarketplaceProviderOfferingsListProjectServiceAccountsRetrieveRequest generates requests for MarketplaceProviderOfferingsListProjectServiceAccountsRetrieve
-func NewMarketplaceProviderOfferingsListProjectServiceAccountsRetrieveRequest(server string, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParams) (*http.Request, error) {
+// NewMarketplaceProviderOfferingsListProjectServiceAccountsListRequest generates requests for MarketplaceProviderOfferingsListProjectServiceAccountsList
+func NewMarketplaceProviderOfferingsListProjectServiceAccountsListRequest(server string, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListProjectServiceAccountsListParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -143482,9 +144381,537 @@ func NewMarketplaceProviderOfferingsListProjectServiceAccountsRetrieveRequest(se
 	if params != nil {
 		queryValues := queryURL.Query()
 
-		if params.Field != nil {
+		if params.AccessibleViaCalls != nil {
 
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "field", runtime.ParamLocationQuery, *params.Field); err != nil {
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "accessible_via_calls", runtime.ParamLocationQuery, *params.AccessibleViaCalls); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.AllowedCustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "allowed_customer_uuid", runtime.ParamLocationQuery, *params.AllowedCustomerUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Attributes != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "attributes", runtime.ParamLocationQuery, *params.Attributes); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Billable != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "billable", runtime.ParamLocationQuery, *params.Billable); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CanCreateOfferingUser != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "can_create_offering_user", runtime.ParamLocationQuery, *params.CanCreateOfferingUser); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CategoryGroupUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "category_group_uuid", runtime.ParamLocationQuery, *params.CategoryGroupUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CategoryUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "category_uuid", runtime.ParamLocationQuery, *params.CategoryUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Created != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "created", runtime.ParamLocationQuery, *params.Created); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Customer != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer", runtime.ParamLocationQuery, *params.Customer); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer_uuid", runtime.ParamLocationQuery, *params.CustomerUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Description != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "description", runtime.ParamLocationQuery, *params.Description); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.HasActiveTermsOfService != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_active_terms_of_service", runtime.ParamLocationQuery, *params.HasActiveTermsOfService); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.HasTermsOfService != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_terms_of_service", runtime.ParamLocationQuery, *params.HasTermsOfService); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Keyword != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "keyword", runtime.ParamLocationQuery, *params.Keyword); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Modified != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "modified", runtime.ParamLocationQuery, *params.Modified); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name", runtime.ParamLocationQuery, *params.Name); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.NameExact != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name_exact", runtime.ParamLocationQuery, *params.NameExact); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OrganizationGroupUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "organization_group_uuid", runtime.ParamLocationQuery, *params.OrganizationGroupUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ParentUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "parent_uuid", runtime.ParamLocationQuery, *params.ParentUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_uuid", runtime.ParamLocationQuery, *params.ProjectUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "query", runtime.ParamLocationQuery, *params.Query); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ResourceCustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "resource_customer_uuid", runtime.ParamLocationQuery, *params.ResourceCustomerUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ResourceProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "resource_project_uuid", runtime.ParamLocationQuery, *params.ResourceProjectUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ScopeUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "scope_uuid", runtime.ParamLocationQuery, *params.ScopeUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ServiceManagerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "service_manager_uuid", runtime.ParamLocationQuery, *params.ServiceManagerUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Shared != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "shared", runtime.ParamLocationQuery, *params.Shared); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "state", runtime.ParamLocationQuery, *params.State); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Type != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "type", runtime.ParamLocationQuery, *params.Type); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UserHasConsent != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_has_consent", runtime.ParamLocationQuery, *params.UserHasConsent); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UserHasOfferingUser != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_has_offering_user", runtime.ParamLocationQuery, *params.UserHasOfferingUser); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UuidList != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "uuid_list", runtime.ParamLocationQuery, *params.UuidList); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -144187,7 +145614,7 @@ func NewMarketplaceProviderOfferingsSetBackendMetadataRequestWithBody(server str
 }
 
 // NewMarketplaceProviderOfferingsStatsRetrieveRequest generates requests for MarketplaceProviderOfferingsStatsRetrieve
-func NewMarketplaceProviderOfferingsStatsRetrieveRequest(server string, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsStatsRetrieveParams) (*http.Request, error) {
+func NewMarketplaceProviderOfferingsStatsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -144210,28 +145637,6 @@ func NewMarketplaceProviderOfferingsStatsRetrieveRequest(server string, uuid ope
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if params.Field != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "field", runtime.ParamLocationQuery, *params.Field); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
 	}
 
 	req, err := http.NewRequest("GET", queryURL.String(), nil)
@@ -146588,7 +147993,7 @@ func NewMarketplaceProviderResourcesUpdateRequestWithBody(server string, uuid op
 }
 
 // NewMarketplaceProviderResourcesDetailsRetrieveRequest generates requests for MarketplaceProviderResourcesDetailsRetrieve
-func NewMarketplaceProviderResourcesDetailsRetrieveRequest(server string, uuid openapi_types.UUID, params *MarketplaceProviderResourcesDetailsRetrieveParams) (*http.Request, error) {
+func NewMarketplaceProviderResourcesDetailsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -146611,28 +148016,6 @@ func NewMarketplaceProviderResourcesDetailsRetrieveRequest(server string, uuid o
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if params.Field != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "field", runtime.ParamLocationQuery, *params.Field); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
 	}
 
 	req, err := http.NewRequest("GET", queryURL.String(), nil)
@@ -151496,7 +152879,7 @@ func NewMarketplaceResourcesUpdateRequestWithBody(server string, uuid openapi_ty
 }
 
 // NewMarketplaceResourcesDetailsRetrieveRequest generates requests for MarketplaceResourcesDetailsRetrieve
-func NewMarketplaceResourcesDetailsRetrieveRequest(server string, uuid openapi_types.UUID, params *MarketplaceResourcesDetailsRetrieveParams) (*http.Request, error) {
+func NewMarketplaceResourcesDetailsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -151519,28 +152902,6 @@ func NewMarketplaceResourcesDetailsRetrieveRequest(server string, uuid openapi_t
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if params.Field != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "field", runtime.ParamLocationQuery, *params.Field); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
 	}
 
 	req, err := http.NewRequest("GET", queryURL.String(), nil)
@@ -155460,6 +156821,18 @@ func NewMarketplaceServiceProvidersCustomerProjectsListRequest(server string, se
 				}
 			}
 
+		}
+
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_customer_uuid", runtime.ParamLocationQuery, params.ProjectCustomerUuid); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
 		}
 
 		if params.Query != nil {
@@ -237845,9 +239218,9 @@ type ClientWithResponsesInterface interface {
 	MarketplaceCourseAccountsCreateWithResponse(ctx context.Context, body MarketplaceCourseAccountsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceCourseAccountsCreateResponse, error)
 
 	// MarketplaceCourseAccountsCreateBulkWithBodyWithResponse request with any body
-	MarketplaceCourseAccountsCreateBulkWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceCourseAccountsCreateBulkResponse, error)
+	MarketplaceCourseAccountsCreateBulkWithBodyWithResponse(ctx context.Context, params *MarketplaceCourseAccountsCreateBulkParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceCourseAccountsCreateBulkResponse, error)
 
-	MarketplaceCourseAccountsCreateBulkWithResponse(ctx context.Context, body MarketplaceCourseAccountsCreateBulkJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceCourseAccountsCreateBulkResponse, error)
+	MarketplaceCourseAccountsCreateBulkWithResponse(ctx context.Context, params *MarketplaceCourseAccountsCreateBulkParams, body MarketplaceCourseAccountsCreateBulkJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceCourseAccountsCreateBulkResponse, error)
 
 	// MarketplaceCourseAccountsDestroyWithResponse request
 	MarketplaceCourseAccountsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceCourseAccountsDestroyResponse, error)
@@ -238547,20 +239920,20 @@ type ClientWithResponsesInterface interface {
 	// MarketplaceProviderOfferingsImportableResourcesListWithResponse request
 	MarketplaceProviderOfferingsImportableResourcesListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsImportableResourcesListParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsImportableResourcesListResponse, error)
 
-	// MarketplaceProviderOfferingsListCourseAccountsRetrieveWithResponse request
-	MarketplaceProviderOfferingsListCourseAccountsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListCourseAccountsRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsListCourseAccountsRetrieveResponse, error)
+	// MarketplaceProviderOfferingsListCourseAccountsListWithResponse request
+	MarketplaceProviderOfferingsListCourseAccountsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListCourseAccountsListParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsListCourseAccountsListResponse, error)
 
 	// MarketplaceProviderOfferingsListCustomerProjectsListWithResponse request
 	MarketplaceProviderOfferingsListCustomerProjectsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListCustomerProjectsListParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsListCustomerProjectsListResponse, error)
 
-	// MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveWithResponse request
-	MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveResponse, error)
+	// MarketplaceProviderOfferingsListCustomerServiceAccountsListWithResponse request
+	MarketplaceProviderOfferingsListCustomerServiceAccountsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListCustomerServiceAccountsListParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsListCustomerServiceAccountsListResponse, error)
 
 	// MarketplaceProviderOfferingsListCustomerUsersListWithResponse request
 	MarketplaceProviderOfferingsListCustomerUsersListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListCustomerUsersListParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsListCustomerUsersListResponse, error)
 
-	// MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveWithResponse request
-	MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveResponse, error)
+	// MarketplaceProviderOfferingsListProjectServiceAccountsListWithResponse request
+	MarketplaceProviderOfferingsListProjectServiceAccountsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListProjectServiceAccountsListParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsListProjectServiceAccountsListResponse, error)
 
 	// MarketplaceProviderOfferingsListUsersListWithResponse request
 	MarketplaceProviderOfferingsListUsersListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListUsersListParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsListUsersListResponse, error)
@@ -238605,7 +239978,7 @@ type ClientWithResponsesInterface interface {
 	MarketplaceProviderOfferingsSetBackendMetadataWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsSetBackendMetadataJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsSetBackendMetadataResponse, error)
 
 	// MarketplaceProviderOfferingsStatsRetrieveWithResponse request
-	MarketplaceProviderOfferingsStatsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsStatsRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsStatsRetrieveResponse, error)
+	MarketplaceProviderOfferingsStatsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsStatsRetrieveResponse, error)
 
 	// MarketplaceProviderOfferingsSyncWithResponse request
 	MarketplaceProviderOfferingsSyncWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsSyncResponse, error)
@@ -238718,7 +240091,7 @@ type ClientWithResponsesInterface interface {
 	MarketplaceProviderResourcesUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesUpdateResponse, error)
 
 	// MarketplaceProviderResourcesDetailsRetrieveWithResponse request
-	MarketplaceProviderResourcesDetailsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderResourcesDetailsRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesDetailsRetrieveResponse, error)
+	MarketplaceProviderResourcesDetailsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesDetailsRetrieveResponse, error)
 
 	// MarketplaceProviderResourcesGlauthUsersConfigRetrieveWithResponse request
 	MarketplaceProviderResourcesGlauthUsersConfigRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesGlauthUsersConfigRetrieveResponse, error)
@@ -238925,7 +240298,7 @@ type ClientWithResponsesInterface interface {
 	MarketplaceResourcesUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourcesUpdateResponse, error)
 
 	// MarketplaceResourcesDetailsRetrieveWithResponse request
-	MarketplaceResourcesDetailsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceResourcesDetailsRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceResourcesDetailsRetrieveResponse, error)
+	MarketplaceResourcesDetailsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceResourcesDetailsRetrieveResponse, error)
 
 	// MarketplaceResourcesGlauthUsersConfigRetrieveWithResponse request
 	MarketplaceResourcesGlauthUsersConfigRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceResourcesGlauthUsersConfigRetrieveResponse, error)
@@ -245420,7 +246793,9 @@ func (r BackendResourceRequestsRetrieveResponse) StatusCode() int {
 type BackendResourceRequestsSetDoneResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *map[string]interface{}
+	JSON200      *struct {
+		Status *string `json:"status,omitempty"`
+	}
 }
 
 // Status returns HTTPResponse.Status
@@ -245442,7 +246817,9 @@ func (r BackendResourceRequestsSetDoneResponse) StatusCode() int {
 type BackendResourceRequestsSetErredResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *map[string]interface{}
+	JSON200      *struct {
+		Status *string `json:"status,omitempty"`
+	}
 }
 
 // Status returns HTTPResponse.Status
@@ -245464,7 +246841,9 @@ func (r BackendResourceRequestsSetErredResponse) StatusCode() int {
 type BackendResourceRequestsStartProcessingResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *map[string]interface{}
+	JSON200      *struct {
+		Status *string `json:"status,omitempty"`
+	}
 }
 
 // Status returns HTTPResponse.Status
@@ -253480,7 +254859,7 @@ func (r MarketplaceCourseAccountsCreateResponse) StatusCode() int {
 type MarketplaceCourseAccountsCreateBulkResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *CourseAccountsBulkCreate
+	JSON200      *[]CourseAccount
 }
 
 // Status returns HTTPResponse.Status
@@ -254109,7 +255488,7 @@ func (r MarketplaceCustomerServiceAccountsRotateApiKeyResponse) StatusCode() int
 type MarketplaceGlobalCategoriesRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *map[string]int
+	JSON200      *map[string]interface{}
 }
 
 // Status returns HTTPResponse.Status
@@ -255871,7 +257250,7 @@ func (r MarketplaceOrdersCountResponse) StatusCode() int {
 type MarketplaceOrdersCreateResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON201      *OrderCreate
+	JSON201      *OrderDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -255936,6 +257315,7 @@ func (r MarketplaceOrdersRetrieveResponse) StatusCode() int {
 type MarketplaceOrdersApproveByConsumerResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *string
 }
 
 // Status returns HTTPResponse.Status
@@ -255957,6 +257337,7 @@ func (r MarketplaceOrdersApproveByConsumerResponse) StatusCode() int {
 type MarketplaceOrdersApproveByProviderResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *string
 }
 
 // Status returns HTTPResponse.Status
@@ -256084,6 +257465,9 @@ func (r MarketplaceOrdersRejectByProviderResponse) StatusCode() int {
 type MarketplaceOrdersSetBackendIdResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *struct {
+		Status *string `json:"status,omitempty"`
+	}
 }
 
 // Status returns HTTPResponse.Status
@@ -257138,7 +258522,7 @@ func (r MarketplaceProviderOfferingsCountResponse) StatusCode() int {
 type MarketplaceProviderOfferingsCreateResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON201      *OfferingCreate
+	JSON201      *ProviderOfferingDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -257654,14 +259038,14 @@ func (r MarketplaceProviderOfferingsImportableResourcesListResponse) StatusCode(
 	return 0
 }
 
-type MarketplaceProviderOfferingsListCourseAccountsRetrieveResponse struct {
+type MarketplaceProviderOfferingsListCourseAccountsListResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *ProviderOfferingDetails
+	JSON200      *[]CourseAccount
 }
 
 // Status returns HTTPResponse.Status
-func (r MarketplaceProviderOfferingsListCourseAccountsRetrieveResponse) Status() string {
+func (r MarketplaceProviderOfferingsListCourseAccountsListResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -257669,7 +259053,7 @@ func (r MarketplaceProviderOfferingsListCourseAccountsRetrieveResponse) Status()
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceProviderOfferingsListCourseAccountsRetrieveResponse) StatusCode() int {
+func (r MarketplaceProviderOfferingsListCourseAccountsListResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -257698,14 +259082,14 @@ func (r MarketplaceProviderOfferingsListCustomerProjectsListResponse) StatusCode
 	return 0
 }
 
-type MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveResponse struct {
+type MarketplaceProviderOfferingsListCustomerServiceAccountsListResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *ProviderOfferingDetails
+	JSON200      *[]CustomerServiceAccount
 }
 
 // Status returns HTTPResponse.Status
-func (r MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveResponse) Status() string {
+func (r MarketplaceProviderOfferingsListCustomerServiceAccountsListResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -257713,7 +259097,7 @@ func (r MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveResponse)
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveResponse) StatusCode() int {
+func (r MarketplaceProviderOfferingsListCustomerServiceAccountsListResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -257742,14 +259126,14 @@ func (r MarketplaceProviderOfferingsListCustomerUsersListResponse) StatusCode() 
 	return 0
 }
 
-type MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveResponse struct {
+type MarketplaceProviderOfferingsListProjectServiceAccountsListResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *ProviderOfferingDetails
+	JSON200      *[]ProjectServiceAccount
 }
 
 // Status returns HTTPResponse.Status
-func (r MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveResponse) Status() string {
+func (r MarketplaceProviderOfferingsListProjectServiceAccountsListResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -257757,7 +259141,7 @@ func (r MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveResponse) 
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveResponse) StatusCode() int {
+func (r MarketplaceProviderOfferingsListProjectServiceAccountsListResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -257983,7 +259367,10 @@ func (r MarketplaceProviderOfferingsSetBackendMetadataResponse) StatusCode() int
 type MarketplaceProviderOfferingsStatsRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *ProviderOfferingDetails
+	JSON200      *struct {
+		CustomersCount *int `json:"customers_count,omitempty"`
+		ResourcesCount *int `json:"resources_count,omitempty"`
+	}
 }
 
 // Status returns HTTPResponse.Status
@@ -258133,7 +259520,6 @@ func (r MarketplaceProviderOfferingsUpdateDescriptionResponse) StatusCode() int 
 type MarketplaceProviderOfferingsUpdateImageResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *ProviderOfferingDetails
 }
 
 // Status returns HTTPResponse.Status
@@ -258520,7 +259906,7 @@ func (r MarketplaceProviderResourcesUpdateResponse) StatusCode() int {
 type MarketplaceProviderResourcesDetailsRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Resource
+	JSON200      *map[string]interface{}
 }
 
 // Status returns HTTPResponse.Status
@@ -258651,7 +260037,9 @@ func (r MarketplaceProviderResourcesPlanPeriodsListResponse) StatusCode() int {
 type MarketplaceProviderResourcesPullResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *map[string]string
+	JSON202      *struct {
+		Detail *string `json:"detail,omitempty"`
+	}
 }
 
 // Status returns HTTPResponse.Status
@@ -258780,6 +260168,9 @@ func (r MarketplaceProviderResourcesSetBackendMetadataResponse) StatusCode() int
 type MarketplaceProviderResourcesSetDownscaledResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *struct {
+		Status *string `json:"status,omitempty"`
+	}
 }
 
 // Status returns HTTPResponse.Status
@@ -258801,7 +260192,6 @@ func (r MarketplaceProviderResourcesSetDownscaledResponse) StatusCode() int {
 type MarketplaceProviderResourcesSetEndDateByProviderResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Resource
 }
 
 // Status returns HTTPResponse.Status
@@ -258866,6 +260256,9 @@ func (r MarketplaceProviderResourcesSetLimitsResponse) StatusCode() int {
 type MarketplaceProviderResourcesSetPausedResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *struct {
+		Status *string `json:"status,omitempty"`
+	}
 }
 
 // Status returns HTTPResponse.Status
@@ -258887,6 +260280,9 @@ func (r MarketplaceProviderResourcesSetPausedResponse) StatusCode() int {
 type MarketplaceProviderResourcesSetRestrictMemberAccessResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *struct {
+		Status *string `json:"status,omitempty"`
+	}
 }
 
 // Status returns HTTPResponse.Status
@@ -258908,6 +260304,9 @@ func (r MarketplaceProviderResourcesSetRestrictMemberAccessResponse) StatusCode(
 type MarketplaceProviderResourcesSetSlugResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *struct {
+		Status *string `json:"status,omitempty"`
+	}
 }
 
 // Status returns HTTPResponse.Status
@@ -259017,6 +260416,7 @@ type MarketplaceProviderResourcesUpdateOptionsResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *ResourceResponseStatus
+	JSON201      *OrderUUID
 }
 
 // Status returns HTTPResponse.Status
@@ -259060,7 +260460,6 @@ func (r MarketplaceProviderResourcesUpdateOptionsDirectResponse) StatusCode() in
 type MarketplacePublicApiCheckSignatureResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *ServiceProviderSignature
 }
 
 // Status returns HTTPResponse.Status
@@ -259082,7 +260481,6 @@ func (r MarketplacePublicApiCheckSignatureResponse) StatusCode() int {
 type MarketplacePublicApiSetUsageResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *ServiceProviderSignature
 }
 
 // Status returns HTTPResponse.Status
@@ -259582,7 +260980,9 @@ func (r MarketplaceResourcesCountResponse) StatusCode() int {
 type MarketplaceResourcesSuggestNameResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *ResourceSuggestName
+	JSON200      *struct {
+		Name *string `json:"name,omitempty"`
+	}
 }
 
 // Status returns HTTPResponse.Status
@@ -259670,7 +261070,7 @@ func (r MarketplaceResourcesUpdateResponse) StatusCode() int {
 type MarketplaceResourcesDetailsRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *Resource
+	JSON200      *map[string]interface{}
 }
 
 // Status returns HTTPResponse.Status
@@ -259801,7 +261201,9 @@ func (r MarketplaceResourcesPlanPeriodsListResponse) StatusCode() int {
 type MarketplaceResourcesPullResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *map[string]string
+	JSON202      *struct {
+		Detail *string `json:"detail,omitempty"`
+	}
 }
 
 // Status returns HTTPResponse.Status
@@ -259845,6 +261247,9 @@ func (r MarketplaceResourcesRenewResponse) StatusCode() int {
 type MarketplaceResourcesSetDownscaledResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *struct {
+		Status *string `json:"status,omitempty"`
+	}
 }
 
 // Status returns HTTPResponse.Status
@@ -259887,6 +261292,9 @@ func (r MarketplaceResourcesSetEndDateByStaffResponse) StatusCode() int {
 type MarketplaceResourcesSetPausedResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *struct {
+		Status *string `json:"status,omitempty"`
+	}
 }
 
 // Status returns HTTPResponse.Status
@@ -259908,6 +261316,9 @@ func (r MarketplaceResourcesSetPausedResponse) StatusCode() int {
 type MarketplaceResourcesSetRestrictMemberAccessResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *struct {
+		Status *string `json:"status,omitempty"`
+	}
 }
 
 // Status returns HTTPResponse.Status
@@ -259929,6 +261340,9 @@ func (r MarketplaceResourcesSetRestrictMemberAccessResponse) StatusCode() int {
 type MarketplaceResourcesSetSlugResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *struct {
+		Status *string `json:"status,omitempty"`
+	}
 }
 
 // Status returns HTTPResponse.Status
@@ -260060,6 +261474,7 @@ type MarketplaceResourcesUpdateOptionsResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *ResourceResponseStatus
+	JSON201      *OrderUUID
 }
 
 // Status returns HTTPResponse.Status
@@ -260257,6 +261672,7 @@ type MarketplaceRobotAccountsSetStateDeletedResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *RobotAccountDetails
+	JSON400      *StateTransitionError
 }
 
 // Status returns HTTPResponse.Status
@@ -260279,6 +261695,7 @@ type MarketplaceRobotAccountsSetStateErredResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *RobotAccountDetails
+	JSON400      *StateTransitionError
 }
 
 // Status returns HTTPResponse.Status
@@ -260301,6 +261718,7 @@ type MarketplaceRobotAccountsSetStateOkResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *RobotAccountDetails
+	JSON400      *StateTransitionError
 }
 
 // Status returns HTTPResponse.Status
@@ -260323,6 +261741,7 @@ type MarketplaceRobotAccountsSetStateRequestDeletionResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *RobotAccountDetails
+	JSON400      *StateTransitionError
 }
 
 // Status returns HTTPResponse.Status
@@ -287305,16 +288724,16 @@ func (c *ClientWithResponses) MarketplaceCourseAccountsCreateWithResponse(ctx co
 }
 
 // MarketplaceCourseAccountsCreateBulkWithBodyWithResponse request with arbitrary body returning *MarketplaceCourseAccountsCreateBulkResponse
-func (c *ClientWithResponses) MarketplaceCourseAccountsCreateBulkWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceCourseAccountsCreateBulkResponse, error) {
-	rsp, err := c.MarketplaceCourseAccountsCreateBulkWithBody(ctx, contentType, body, reqEditors...)
+func (c *ClientWithResponses) MarketplaceCourseAccountsCreateBulkWithBodyWithResponse(ctx context.Context, params *MarketplaceCourseAccountsCreateBulkParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceCourseAccountsCreateBulkResponse, error) {
+	rsp, err := c.MarketplaceCourseAccountsCreateBulkWithBody(ctx, params, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseMarketplaceCourseAccountsCreateBulkResponse(rsp)
 }
 
-func (c *ClientWithResponses) MarketplaceCourseAccountsCreateBulkWithResponse(ctx context.Context, body MarketplaceCourseAccountsCreateBulkJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceCourseAccountsCreateBulkResponse, error) {
-	rsp, err := c.MarketplaceCourseAccountsCreateBulk(ctx, body, reqEditors...)
+func (c *ClientWithResponses) MarketplaceCourseAccountsCreateBulkWithResponse(ctx context.Context, params *MarketplaceCourseAccountsCreateBulkParams, body MarketplaceCourseAccountsCreateBulkJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceCourseAccountsCreateBulkResponse, error) {
+	rsp, err := c.MarketplaceCourseAccountsCreateBulk(ctx, params, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -289537,13 +290956,13 @@ func (c *ClientWithResponses) MarketplaceProviderOfferingsImportableResourcesLis
 	return ParseMarketplaceProviderOfferingsImportableResourcesListResponse(rsp)
 }
 
-// MarketplaceProviderOfferingsListCourseAccountsRetrieveWithResponse request returning *MarketplaceProviderOfferingsListCourseAccountsRetrieveResponse
-func (c *ClientWithResponses) MarketplaceProviderOfferingsListCourseAccountsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListCourseAccountsRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsListCourseAccountsRetrieveResponse, error) {
-	rsp, err := c.MarketplaceProviderOfferingsListCourseAccountsRetrieve(ctx, uuid, params, reqEditors...)
+// MarketplaceProviderOfferingsListCourseAccountsListWithResponse request returning *MarketplaceProviderOfferingsListCourseAccountsListResponse
+func (c *ClientWithResponses) MarketplaceProviderOfferingsListCourseAccountsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListCourseAccountsListParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsListCourseAccountsListResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsListCourseAccountsList(ctx, uuid, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseMarketplaceProviderOfferingsListCourseAccountsRetrieveResponse(rsp)
+	return ParseMarketplaceProviderOfferingsListCourseAccountsListResponse(rsp)
 }
 
 // MarketplaceProviderOfferingsListCustomerProjectsListWithResponse request returning *MarketplaceProviderOfferingsListCustomerProjectsListResponse
@@ -289555,13 +290974,13 @@ func (c *ClientWithResponses) MarketplaceProviderOfferingsListCustomerProjectsLi
 	return ParseMarketplaceProviderOfferingsListCustomerProjectsListResponse(rsp)
 }
 
-// MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveWithResponse request returning *MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveResponse
-func (c *ClientWithResponses) MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveResponse, error) {
-	rsp, err := c.MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieve(ctx, uuid, params, reqEditors...)
+// MarketplaceProviderOfferingsListCustomerServiceAccountsListWithResponse request returning *MarketplaceProviderOfferingsListCustomerServiceAccountsListResponse
+func (c *ClientWithResponses) MarketplaceProviderOfferingsListCustomerServiceAccountsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListCustomerServiceAccountsListParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsListCustomerServiceAccountsListResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsListCustomerServiceAccountsList(ctx, uuid, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseMarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveResponse(rsp)
+	return ParseMarketplaceProviderOfferingsListCustomerServiceAccountsListResponse(rsp)
 }
 
 // MarketplaceProviderOfferingsListCustomerUsersListWithResponse request returning *MarketplaceProviderOfferingsListCustomerUsersListResponse
@@ -289573,13 +290992,13 @@ func (c *ClientWithResponses) MarketplaceProviderOfferingsListCustomerUsersListW
 	return ParseMarketplaceProviderOfferingsListCustomerUsersListResponse(rsp)
 }
 
-// MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveWithResponse request returning *MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveResponse
-func (c *ClientWithResponses) MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveResponse, error) {
-	rsp, err := c.MarketplaceProviderOfferingsListProjectServiceAccountsRetrieve(ctx, uuid, params, reqEditors...)
+// MarketplaceProviderOfferingsListProjectServiceAccountsListWithResponse request returning *MarketplaceProviderOfferingsListProjectServiceAccountsListResponse
+func (c *ClientWithResponses) MarketplaceProviderOfferingsListProjectServiceAccountsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListProjectServiceAccountsListParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsListProjectServiceAccountsListResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsListProjectServiceAccountsList(ctx, uuid, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseMarketplaceProviderOfferingsListProjectServiceAccountsRetrieveResponse(rsp)
+	return ParseMarketplaceProviderOfferingsListProjectServiceAccountsListResponse(rsp)
 }
 
 // MarketplaceProviderOfferingsListUsersListWithResponse request returning *MarketplaceProviderOfferingsListUsersListResponse
@@ -289721,8 +291140,8 @@ func (c *ClientWithResponses) MarketplaceProviderOfferingsSetBackendMetadataWith
 }
 
 // MarketplaceProviderOfferingsStatsRetrieveWithResponse request returning *MarketplaceProviderOfferingsStatsRetrieveResponse
-func (c *ClientWithResponses) MarketplaceProviderOfferingsStatsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsStatsRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsStatsRetrieveResponse, error) {
-	rsp, err := c.MarketplaceProviderOfferingsStatsRetrieve(ctx, uuid, params, reqEditors...)
+func (c *ClientWithResponses) MarketplaceProviderOfferingsStatsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsStatsRetrieveResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsStatsRetrieve(ctx, uuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -290098,8 +291517,8 @@ func (c *ClientWithResponses) MarketplaceProviderResourcesUpdateWithResponse(ctx
 }
 
 // MarketplaceProviderResourcesDetailsRetrieveWithResponse request returning *MarketplaceProviderResourcesDetailsRetrieveResponse
-func (c *ClientWithResponses) MarketplaceProviderResourcesDetailsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderResourcesDetailsRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesDetailsRetrieveResponse, error) {
-	rsp, err := c.MarketplaceProviderResourcesDetailsRetrieve(ctx, uuid, params, reqEditors...)
+func (c *ClientWithResponses) MarketplaceProviderResourcesDetailsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesDetailsRetrieveResponse, error) {
+	rsp, err := c.MarketplaceProviderResourcesDetailsRetrieve(ctx, uuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -290767,8 +292186,8 @@ func (c *ClientWithResponses) MarketplaceResourcesUpdateWithResponse(ctx context
 }
 
 // MarketplaceResourcesDetailsRetrieveWithResponse request returning *MarketplaceResourcesDetailsRetrieveResponse
-func (c *ClientWithResponses) MarketplaceResourcesDetailsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceResourcesDetailsRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceResourcesDetailsRetrieveResponse, error) {
-	rsp, err := c.MarketplaceResourcesDetailsRetrieve(ctx, uuid, params, reqEditors...)
+func (c *ClientWithResponses) MarketplaceResourcesDetailsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceResourcesDetailsRetrieveResponse, error) {
+	rsp, err := c.MarketplaceResourcesDetailsRetrieve(ctx, uuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -305353,7 +306772,9 @@ func ParseBackendResourceRequestsSetDoneResponse(rsp *http.Response) (*BackendRe
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest map[string]interface{}
+		var dest struct {
+			Status *string `json:"status,omitempty"`
+		}
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -305379,7 +306800,9 @@ func ParseBackendResourceRequestsSetErredResponse(rsp *http.Response) (*BackendR
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest map[string]interface{}
+		var dest struct {
+			Status *string `json:"status,omitempty"`
+		}
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -305405,7 +306828,9 @@ func ParseBackendResourceRequestsStartProcessingResponse(rsp *http.Response) (*B
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest map[string]interface{}
+		var dest struct {
+			Status *string `json:"status,omitempty"`
+		}
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -313785,7 +315210,7 @@ func ParseMarketplaceCourseAccountsCreateBulkResponse(rsp *http.Response) (*Mark
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest CourseAccountsBulkCreate
+		var dest []CourseAccount
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -314449,7 +315874,7 @@ func ParseMarketplaceGlobalCategoriesRetrieveResponse(rsp *http.Response) (*Mark
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest map[string]int
+		var dest map[string]interface{}
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -316319,7 +317744,7 @@ func ParseMarketplaceOrdersCreateResponse(rsp *http.Response) (*MarketplaceOrder
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest OrderCreate
+		var dest OrderDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -316385,6 +317810,16 @@ func ParseMarketplaceOrdersApproveByConsumerResponse(rsp *http.Response) (*Marke
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest string
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -316399,6 +317834,16 @@ func ParseMarketplaceOrdersApproveByProviderResponse(rsp *http.Response) (*Marke
 	response := &MarketplaceOrdersApproveByProviderResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest string
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
@@ -316505,6 +317950,18 @@ func ParseMarketplaceOrdersSetBackendIdResponse(rsp *http.Response) (*Marketplac
 	response := &MarketplaceOrdersSetBackendIdResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest struct {
+			Status *string `json:"status,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
@@ -317543,7 +319000,7 @@ func ParseMarketplaceProviderOfferingsCreateResponse(rsp *http.Response) (*Marke
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest OfferingCreate
+		var dest ProviderOfferingDetails
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -318062,22 +319519,22 @@ func ParseMarketplaceProviderOfferingsImportableResourcesListResponse(rsp *http.
 	return response, nil
 }
 
-// ParseMarketplaceProviderOfferingsListCourseAccountsRetrieveResponse parses an HTTP response from a MarketplaceProviderOfferingsListCourseAccountsRetrieveWithResponse call
-func ParseMarketplaceProviderOfferingsListCourseAccountsRetrieveResponse(rsp *http.Response) (*MarketplaceProviderOfferingsListCourseAccountsRetrieveResponse, error) {
+// ParseMarketplaceProviderOfferingsListCourseAccountsListResponse parses an HTTP response from a MarketplaceProviderOfferingsListCourseAccountsListWithResponse call
+func ParseMarketplaceProviderOfferingsListCourseAccountsListResponse(rsp *http.Response) (*MarketplaceProviderOfferingsListCourseAccountsListResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &MarketplaceProviderOfferingsListCourseAccountsRetrieveResponse{
+	response := &MarketplaceProviderOfferingsListCourseAccountsListResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ProviderOfferingDetails
+		var dest []CourseAccount
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -318114,22 +319571,22 @@ func ParseMarketplaceProviderOfferingsListCustomerProjectsListResponse(rsp *http
 	return response, nil
 }
 
-// ParseMarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveResponse parses an HTTP response from a MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveWithResponse call
-func ParseMarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveResponse(rsp *http.Response) (*MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveResponse, error) {
+// ParseMarketplaceProviderOfferingsListCustomerServiceAccountsListResponse parses an HTTP response from a MarketplaceProviderOfferingsListCustomerServiceAccountsListWithResponse call
+func ParseMarketplaceProviderOfferingsListCustomerServiceAccountsListResponse(rsp *http.Response) (*MarketplaceProviderOfferingsListCustomerServiceAccountsListResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &MarketplaceProviderOfferingsListCustomerServiceAccountsRetrieveResponse{
+	response := &MarketplaceProviderOfferingsListCustomerServiceAccountsListResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ProviderOfferingDetails
+		var dest []CustomerServiceAccount
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -318166,22 +319623,22 @@ func ParseMarketplaceProviderOfferingsListCustomerUsersListResponse(rsp *http.Re
 	return response, nil
 }
 
-// ParseMarketplaceProviderOfferingsListProjectServiceAccountsRetrieveResponse parses an HTTP response from a MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveWithResponse call
-func ParseMarketplaceProviderOfferingsListProjectServiceAccountsRetrieveResponse(rsp *http.Response) (*MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveResponse, error) {
+// ParseMarketplaceProviderOfferingsListProjectServiceAccountsListResponse parses an HTTP response from a MarketplaceProviderOfferingsListProjectServiceAccountsListWithResponse call
+func ParseMarketplaceProviderOfferingsListProjectServiceAccountsListResponse(rsp *http.Response) (*MarketplaceProviderOfferingsListProjectServiceAccountsListResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &MarketplaceProviderOfferingsListProjectServiceAccountsRetrieveResponse{
+	response := &MarketplaceProviderOfferingsListProjectServiceAccountsListResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ProviderOfferingDetails
+		var dest []ProjectServiceAccount
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -318427,7 +319884,10 @@ func ParseMarketplaceProviderOfferingsStatsRetrieveResponse(rsp *http.Response) 
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ProviderOfferingDetails
+		var dest struct {
+			CustomersCount *int `json:"customers_count,omitempty"`
+			ResourcesCount *int `json:"resources_count,omitempty"`
+		}
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -318565,16 +320025,6 @@ func ParseMarketplaceProviderOfferingsUpdateImageResponse(rsp *http.Response) (*
 	response := &MarketplaceProviderOfferingsUpdateImageResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ProviderOfferingDetails
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
 	}
 
 	return response, nil
@@ -318947,7 +320397,7 @@ func ParseMarketplaceProviderResourcesDetailsRetrieveResponse(rsp *http.Response
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Resource
+		var dest map[string]interface{}
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -319092,12 +320542,14 @@ func ParseMarketplaceProviderResourcesPullResponse(rsp *http.Response) (*Marketp
 	}
 
 	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest map[string]string
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest struct {
+			Detail *string `json:"detail,omitempty"`
+		}
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.JSON202 = &dest
 
 	}
 
@@ -319217,6 +320669,18 @@ func ParseMarketplaceProviderResourcesSetDownscaledResponse(rsp *http.Response) 
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest struct {
+			Status *string `json:"status,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -319231,16 +320695,6 @@ func ParseMarketplaceProviderResourcesSetEndDateByProviderResponse(rsp *http.Res
 	response := &MarketplaceProviderResourcesSetEndDateByProviderResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Resource
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
 	}
 
 	return response, nil
@@ -319301,6 +320755,18 @@ func ParseMarketplaceProviderResourcesSetPausedResponse(rsp *http.Response) (*Ma
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest struct {
+			Status *string `json:"status,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -319317,6 +320783,18 @@ func ParseMarketplaceProviderResourcesSetRestrictMemberAccessResponse(rsp *http.
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest struct {
+			Status *string `json:"status,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -319331,6 +320809,18 @@ func ParseMarketplaceProviderResourcesSetSlugResponse(rsp *http.Response) (*Mark
 	response := &MarketplaceProviderResourcesSetSlugResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest struct {
+			Status *string `json:"status,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
@@ -319451,6 +320941,13 @@ func ParseMarketplaceProviderResourcesUpdateOptionsResponse(rsp *http.Response) 
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest OrderUUID
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
 	}
 
 	return response, nil
@@ -319495,16 +320992,6 @@ func ParseMarketplacePublicApiCheckSignatureResponse(rsp *http.Response) (*Marke
 		HTTPResponse: rsp,
 	}
 
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ServiceProviderSignature
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
 	return response, nil
 }
 
@@ -319519,16 +321006,6 @@ func ParseMarketplacePublicApiSetUsageResponse(rsp *http.Response) (*Marketplace
 	response := &MarketplacePublicApiSetUsageResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ServiceProviderSignature
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
 	}
 
 	return response, nil
@@ -320061,7 +321538,9 @@ func ParseMarketplaceResourcesSuggestNameResponse(rsp *http.Response) (*Marketpl
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ResourceSuggestName
+		var dest struct {
+			Name *string `json:"name,omitempty"`
+		}
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -320165,7 +321644,7 @@ func ParseMarketplaceResourcesDetailsRetrieveResponse(rsp *http.Response) (*Mark
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest Resource
+		var dest map[string]interface{}
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -320310,12 +321789,14 @@ func ParseMarketplaceResourcesPullResponse(rsp *http.Response) (*MarketplaceReso
 	}
 
 	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest map[string]string
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest struct {
+			Detail *string `json:"detail,omitempty"`
+		}
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.JSON202 = &dest
 
 	}
 
@@ -320361,6 +321842,18 @@ func ParseMarketplaceResourcesSetDownscaledResponse(rsp *http.Response) (*Market
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest struct {
+			Status *string `json:"status,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -320393,6 +321886,18 @@ func ParseMarketplaceResourcesSetPausedResponse(rsp *http.Response) (*Marketplac
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest struct {
+			Status *string `json:"status,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -320409,6 +321914,18 @@ func ParseMarketplaceResourcesSetRestrictMemberAccessResponse(rsp *http.Response
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest struct {
+			Status *string `json:"status,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -320423,6 +321940,18 @@ func ParseMarketplaceResourcesSetSlugResponse(rsp *http.Response) (*MarketplaceR
 	response := &MarketplaceResourcesSetSlugResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest struct {
+			Status *string `json:"status,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
@@ -320568,6 +322097,13 @@ func ParseMarketplaceResourcesUpdateOptionsResponse(rsp *http.Response) (*Market
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest OrderUUID
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
 
 	}
 
@@ -320790,6 +322326,13 @@ func ParseMarketplaceRobotAccountsSetStateDeletedResponse(rsp *http.Response) (*
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest StateTransitionError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
 	}
 
 	return response, nil
@@ -320815,6 +322358,13 @@ func ParseMarketplaceRobotAccountsSetStateErredResponse(rsp *http.Response) (*Ma
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest StateTransitionError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
 
 	}
 
@@ -320842,6 +322392,13 @@ func ParseMarketplaceRobotAccountsSetStateOkResponse(rsp *http.Response) (*Marke
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest StateTransitionError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
 	}
 
 	return response, nil
@@ -320867,6 +322424,13 @@ func ParseMarketplaceRobotAccountsSetStateRequestDeletionResponse(rsp *http.Resp
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest StateTransitionError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
 
 	}
 
