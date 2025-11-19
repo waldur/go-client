@@ -20219,6 +20219,35 @@ type OpenStackSecurityGroupRuleCreateRequest_Protocol struct {
 	union json.RawMessage
 }
 
+// OpenStackSecurityGroupRuleUpdateByNameRequest defines model for OpenStackSecurityGroupRuleUpdateByNameRequest.
+type OpenStackSecurityGroupRuleUpdateByNameRequest struct {
+	// Cidr CIDR notation for the source/destination network address range
+	Cidr        *string `json:"cidr"`
+	Description *string `json:"description,omitempty"`
+
+	// Direction Traffic direction - either 'ingress' (incoming) or 'egress' (outgoing)
+	Direction *DirectionEnum `json:"direction,omitempty"`
+
+	// Ethertype IP protocol version - either 'IPv4' or 'IPv6'
+	Ethertype *EthertypeEnum `json:"ethertype,omitempty"`
+
+	// FromPort Starting port number in the range (1-65535)
+	FromPort *int `json:"from_port"`
+
+	// Protocol The network protocol (TCP, UDP, ICMP, or empty for any protocol)
+	Protocol        *OpenStackSecurityGroupRuleUpdateByNameRequest_Protocol `json:"protocol,omitempty"`
+	RemoteGroup     *string                                                 `json:"remote_group,omitempty"`
+	RemoteGroupName *string                                                 `json:"remote_group_name,omitempty"`
+
+	// ToPort Ending port number in the range (1-65535)
+	ToPort *int `json:"to_port"`
+}
+
+// OpenStackSecurityGroupRuleUpdateByNameRequest_Protocol The network protocol (TCP, UDP, ICMP, or empty for any protocol)
+type OpenStackSecurityGroupRuleUpdateByNameRequest_Protocol struct {
+	union json.RawMessage
+}
+
 // OpenStackSecurityGroupRuleUpdateRequest defines model for OpenStackSecurityGroupRuleUpdateRequest.
 type OpenStackSecurityGroupRuleUpdateRequest struct {
 	// Cidr CIDR notation for the source/destination network address range
@@ -27150,6 +27179,14 @@ type Tenant struct {
 	Name string              `json:"name"`
 	Url  *string             `json:"url,omitempty"`
 	Uuid *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// TenantSecurityGroupUpdateRequest defines model for TenantSecurityGroupUpdateRequest.
+type TenantSecurityGroupUpdateRequest struct {
+	Description *string                                          `json:"description,omitempty"`
+	Name        string                                           `json:"name"`
+	Rules       *[]OpenStackSecurityGroupRuleUpdateByNameRequest `json:"rules,omitempty"`
+	Uuid        *openapi_types.UUID                              `json:"uuid,omitempty"`
 }
 
 // TimeSeriesToSData defines model for TimeSeriesToSData.
@@ -37970,6 +38007,9 @@ type OpenstackTenantsBackendVolumesListParams struct {
 // OpenstackTenantsBackendVolumesListParamsState defines parameters for OpenstackTenantsBackendVolumesList.
 type OpenstackTenantsBackendVolumesListParamsState string
 
+// OpenstackTenantsPushSecurityGroupsJSONBody defines parameters for OpenstackTenantsPushSecurityGroups.
+type OpenstackTenantsPushSecurityGroupsJSONBody = []TenantSecurityGroupUpdateRequest
+
 // OpenstackVolumeAvailabilityZonesListParams defines parameters for OpenstackVolumeAvailabilityZonesList.
 type OpenstackVolumeAvailabilityZonesListParams struct {
 	Name      *string `form:"name,omitempty" json:"name,omitempty"`
@@ -42946,6 +42986,9 @@ type OpenstackTenantsCreateSecurityGroupJSONRequestBody = OpenStackSecurityGroup
 // OpenstackTenantsCreateServerGroupJSONRequestBody defines body for OpenstackTenantsCreateServerGroup for application/json ContentType.
 type OpenstackTenantsCreateServerGroupJSONRequestBody = OpenStackServerGroupRequest
 
+// OpenstackTenantsPushSecurityGroupsJSONRequestBody defines body for OpenstackTenantsPushSecurityGroups for application/json ContentType.
+type OpenstackTenantsPushSecurityGroupsJSONRequestBody = OpenstackTenantsPushSecurityGroupsJSONBody
+
 // OpenstackTenantsSetQuotasJSONRequestBody defines body for OpenstackTenantsSetQuotas for application/json ContentType.
 type OpenstackTenantsSetQuotasJSONRequestBody = OpenStackTenantQuotaRequest
 
@@ -45378,6 +45421,68 @@ func (t OpenStackSecurityGroupRuleCreateRequest_Protocol) MarshalJSON() ([]byte,
 }
 
 func (t *OpenStackSecurityGroupRuleCreateRequest_Protocol) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsProtocolEnum returns the union data inside the OpenStackSecurityGroupRuleUpdateByNameRequest_Protocol as a ProtocolEnum
+func (t OpenStackSecurityGroupRuleUpdateByNameRequest_Protocol) AsProtocolEnum() (ProtocolEnum, error) {
+	var body ProtocolEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromProtocolEnum overwrites any union data inside the OpenStackSecurityGroupRuleUpdateByNameRequest_Protocol as the provided ProtocolEnum
+func (t *OpenStackSecurityGroupRuleUpdateByNameRequest_Protocol) FromProtocolEnum(v ProtocolEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeProtocolEnum performs a merge with any union data inside the OpenStackSecurityGroupRuleUpdateByNameRequest_Protocol, using the provided ProtocolEnum
+func (t *OpenStackSecurityGroupRuleUpdateByNameRequest_Protocol) MergeProtocolEnum(v ProtocolEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsBlankEnum returns the union data inside the OpenStackSecurityGroupRuleUpdateByNameRequest_Protocol as a BlankEnum
+func (t OpenStackSecurityGroupRuleUpdateByNameRequest_Protocol) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the OpenStackSecurityGroupRuleUpdateByNameRequest_Protocol as the provided BlankEnum
+func (t *OpenStackSecurityGroupRuleUpdateByNameRequest_Protocol) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the OpenStackSecurityGroupRuleUpdateByNameRequest_Protocol, using the provided BlankEnum
+func (t *OpenStackSecurityGroupRuleUpdateByNameRequest_Protocol) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t OpenStackSecurityGroupRuleUpdateByNameRequest_Protocol) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *OpenStackSecurityGroupRuleUpdateByNameRequest_Protocol) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -54323,6 +54428,11 @@ type ClientInterface interface {
 
 	// OpenstackTenantsPullServerGroups request
 	OpenstackTenantsPullServerGroups(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenstackTenantsPushSecurityGroupsWithBody request with any body
+	OpenstackTenantsPushSecurityGroupsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackTenantsPushSecurityGroups(ctx context.Context, uuid openapi_types.UUID, body OpenstackTenantsPushSecurityGroupsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenstackTenantsSetQuotasWithBody request with any body
 	OpenstackTenantsSetQuotasWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -76982,6 +77092,30 @@ func (c *Client) OpenstackTenantsPullSecurityGroups(ctx context.Context, uuid op
 
 func (c *Client) OpenstackTenantsPullServerGroups(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenstackTenantsPullServerGroupsRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackTenantsPushSecurityGroupsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackTenantsPushSecurityGroupsRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackTenantsPushSecurityGroups(ctx context.Context, uuid openapi_types.UUID, body OpenstackTenantsPushSecurityGroupsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackTenantsPushSecurityGroupsRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -195301,6 +195435,53 @@ func NewOpenstackTenantsPullServerGroupsRequest(server string, uuid openapi_type
 	return req, nil
 }
 
+// NewOpenstackTenantsPushSecurityGroupsRequest calls the generic OpenstackTenantsPushSecurityGroups builder with application/json body
+func NewOpenstackTenantsPushSecurityGroupsRequest(server string, uuid openapi_types.UUID, body OpenstackTenantsPushSecurityGroupsJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackTenantsPushSecurityGroupsRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOpenstackTenantsPushSecurityGroupsRequestWithBody generates requests for OpenstackTenantsPushSecurityGroups with any type of body
+func NewOpenstackTenantsPushSecurityGroupsRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openstack-tenants/%s/push_security_groups/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewOpenstackTenantsSetQuotasRequest calls the generic OpenstackTenantsSetQuotas builder with application/json body
 func NewOpenstackTenantsSetQuotasRequest(server string, uuid openapi_types.UUID, body OpenstackTenantsSetQuotasJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -242124,6 +242305,11 @@ type ClientWithResponsesInterface interface {
 	// OpenstackTenantsPullServerGroupsWithResponse request
 	OpenstackTenantsPullServerGroupsWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackTenantsPullServerGroupsResponse, error)
 
+	// OpenstackTenantsPushSecurityGroupsWithBodyWithResponse request with any body
+	OpenstackTenantsPushSecurityGroupsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackTenantsPushSecurityGroupsResponse, error)
+
+	OpenstackTenantsPushSecurityGroupsWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackTenantsPushSecurityGroupsJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackTenantsPushSecurityGroupsResponse, error)
+
 	// OpenstackTenantsSetQuotasWithBodyWithResponse request with any body
 	OpenstackTenantsSetQuotasWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackTenantsSetQuotasResponse, error)
 
@@ -271863,6 +272049,27 @@ func (r OpenstackTenantsPullServerGroupsResponse) StatusCode() int {
 	return 0
 }
 
+type OpenstackTenantsPushSecurityGroupsResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenstackTenantsPushSecurityGroupsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenstackTenantsPushSecurityGroupsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type OpenstackTenantsSetQuotasResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -298000,6 +298207,23 @@ func (c *ClientWithResponses) OpenstackTenantsPullServerGroupsWithResponse(ctx c
 		return nil, err
 	}
 	return ParseOpenstackTenantsPullServerGroupsResponse(rsp)
+}
+
+// OpenstackTenantsPushSecurityGroupsWithBodyWithResponse request with arbitrary body returning *OpenstackTenantsPushSecurityGroupsResponse
+func (c *ClientWithResponses) OpenstackTenantsPushSecurityGroupsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackTenantsPushSecurityGroupsResponse, error) {
+	rsp, err := c.OpenstackTenantsPushSecurityGroupsWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackTenantsPushSecurityGroupsResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackTenantsPushSecurityGroupsWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackTenantsPushSecurityGroupsJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackTenantsPushSecurityGroupsResponse, error) {
+	rsp, err := c.OpenstackTenantsPushSecurityGroups(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackTenantsPushSecurityGroupsResponse(rsp)
 }
 
 // OpenstackTenantsSetQuotasWithBodyWithResponse request with arbitrary body returning *OpenstackTenantsSetQuotasResponse
@@ -332980,6 +333204,22 @@ func ParseOpenstackTenantsPullServerGroupsResponse(rsp *http.Response) (*Opensta
 		}
 		response.JSON200 = &dest
 
+	}
+
+	return response, nil
+}
+
+// ParseOpenstackTenantsPushSecurityGroupsResponse parses an HTTP response from a OpenstackTenantsPushSecurityGroupsWithResponse call
+func ParseOpenstackTenantsPushSecurityGroupsResponse(rsp *http.Response) (*OpenstackTenantsPushSecurityGroupsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenstackTenantsPushSecurityGroupsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
 	}
 
 	return response, nil
