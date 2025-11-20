@@ -14026,6 +14026,11 @@ type ConstanceSettings struct {
 	K8SNAMESPACE                                   *string              `json:"K8S_NAMESPACE,omitempty"`
 	KEYCLOAKICON                                   *string              `json:"KEYCLOAK_ICON"`
 	LANGUAGECHOICES                                *string              `json:"LANGUAGE_CHOICES,omitempty"`
+	LLMCHATENABLED                                 *bool                `json:"LLM_CHAT_ENABLED,omitempty"`
+	LLMINFERENCESAPITOKEN                          *string              `json:"LLM_INFERENCES_API_TOKEN,omitempty"`
+	LLMINFERENCESAPIURL                            *string              `json:"LLM_INFERENCES_API_URL,omitempty"`
+	LLMINFERENCESBACKENDTYPE                       *string              `json:"LLM_INFERENCES_BACKEND_TYPE,omitempty"`
+	LLMINFERENCESMODEL                             *string              `json:"LLM_INFERENCES_MODEL,omitempty"`
 	LOGINLOGO                                      *string              `json:"LOGIN_LOGO"`
 	MAINTENANCEANNOUNCEMENTNOTIFYBEFOREMINUTES     *int                 `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_BEFORE_MINUTES,omitempty"`
 	MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM            *[]string            `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_SYSTEM,omitempty"`
@@ -14183,6 +14188,11 @@ type ConstanceSettingsRequest struct {
 	K8SNAMESPACE                                   *string              `json:"K8S_NAMESPACE,omitempty"`
 	KEYCLOAKICON                                   *openapi_types.File  `json:"KEYCLOAK_ICON"`
 	LANGUAGECHOICES                                *string              `json:"LANGUAGE_CHOICES,omitempty"`
+	LLMCHATENABLED                                 *bool                `json:"LLM_CHAT_ENABLED,omitempty"`
+	LLMINFERENCESAPITOKEN                          *string              `json:"LLM_INFERENCES_API_TOKEN,omitempty"`
+	LLMINFERENCESAPIURL                            *string              `json:"LLM_INFERENCES_API_URL,omitempty"`
+	LLMINFERENCESBACKENDTYPE                       *string              `json:"LLM_INFERENCES_BACKEND_TYPE,omitempty"`
+	LLMINFERENCESMODEL                             *string              `json:"LLM_INFERENCES_MODEL,omitempty"`
 	LOGINLOGO                                      *openapi_types.File  `json:"LOGIN_LOGO"`
 	MAINTENANCEANNOUNCEMENTNOTIFYBEFOREMINUTES     *int                 `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_BEFORE_MINUTES,omitempty"`
 	MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM            *[]string            `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_SYSTEM,omitempty"`
@@ -14340,6 +14350,11 @@ type ConstanceSettingsRequestForm struct {
 	K8SNAMESPACE                                   *string              `json:"K8S_NAMESPACE,omitempty"`
 	KEYCLOAKICON                                   *openapi_types.File  `json:"KEYCLOAK_ICON"`
 	LANGUAGECHOICES                                *string              `json:"LANGUAGE_CHOICES,omitempty"`
+	LLMCHATENABLED                                 *bool                `json:"LLM_CHAT_ENABLED,omitempty"`
+	LLMINFERENCESAPITOKEN                          *string              `json:"LLM_INFERENCES_API_TOKEN,omitempty"`
+	LLMINFERENCESAPIURL                            *string              `json:"LLM_INFERENCES_API_URL,omitempty"`
+	LLMINFERENCESBACKENDTYPE                       *string              `json:"LLM_INFERENCES_BACKEND_TYPE,omitempty"`
+	LLMINFERENCESMODEL                             *string              `json:"LLM_INFERENCES_MODEL,omitempty"`
 	LOGINLOGO                                      *openapi_types.File  `json:"LOGIN_LOGO"`
 	MAINTENANCEANNOUNCEMENTNOTIFYBEFOREMINUTES     *int                 `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_BEFORE_MINUTES,omitempty"`
 	MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM            *[]string            `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_SYSTEM,omitempty"`
@@ -14497,6 +14512,11 @@ type ConstanceSettingsRequestMultipart struct {
 	K8SNAMESPACE                                   *string              `json:"K8S_NAMESPACE,omitempty"`
 	KEYCLOAKICON                                   *openapi_types.File  `json:"KEYCLOAK_ICON"`
 	LANGUAGECHOICES                                *string              `json:"LANGUAGE_CHOICES,omitempty"`
+	LLMCHATENABLED                                 *bool                `json:"LLM_CHAT_ENABLED,omitempty"`
+	LLMINFERENCESAPITOKEN                          *string              `json:"LLM_INFERENCES_API_TOKEN,omitempty"`
+	LLMINFERENCESAPIURL                            *string              `json:"LLM_INFERENCES_API_URL,omitempty"`
+	LLMINFERENCESBACKENDTYPE                       *string              `json:"LLM_INFERENCES_BACKEND_TYPE,omitempty"`
+	LLMINFERENCESMODEL                             *string              `json:"LLM_INFERENCES_MODEL,omitempty"`
 	LOGINLOGO                                      *openapi_types.File  `json:"LOGIN_LOGO"`
 	MAINTENANCEANNOUNCEMENTNOTIFYBEFOREMINUTES     *int                 `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_BEFORE_MINUTES,omitempty"`
 	MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM            *[]string            `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_SYSTEM,omitempty"`
