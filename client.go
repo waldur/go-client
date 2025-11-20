@@ -18938,29 +18938,17 @@ type OfferingUserUpdateRestrictionRequest struct {
 
 // OnboardingCompanyValidationRequestRequest defines model for OnboardingCompanyValidationRequestRequest.
 type OnboardingCompanyValidationRequestRequest struct {
-	// BirthDate User's birth date (temporary workaround for Austrian validation)
-	BirthDate *openapi_types.Date `json:"birth_date"`
-
 	// Country ISO country code (e.g., 'EE' for Estonia)
 	Country string `json:"country"`
 
-	// FirstName User's first name (temporary workaround for Austrian validation)
-	FirstName *string `json:"first_name,omitempty"`
-
 	// IsManualValidation Indicates if the validation is to be performed manually
 	IsManualValidation *bool `json:"is_manual_validation,omitempty"`
-
-	// LastName User's last name (temporary workaround for Austrian validation)
-	LastName *string `json:"last_name,omitempty"`
 
 	// LegalName Company name (optional)
 	LegalName *string `json:"legal_name,omitempty"`
 
 	// LegalPersonIdentifier Official company registration code
 	LegalPersonIdentifier *string `json:"legal_person_identifier,omitempty"`
-
-	// PersonIdentifier Personal identifier (temporary workaround for Estonian civil_number)
-	PersonIdentifier *string `json:"person_identifier,omitempty"`
 }
 
 // OnboardingCountryChecklistConfiguration defines model for OnboardingCountryChecklistConfiguration.
@@ -19096,6 +19084,21 @@ type OnboardingQuestionMetadataRequest struct {
 	// MapsToCustomerField Customer model field name to map this answer to (e.g., 'registration_code', 'email', 'vat_code')
 	MapsToCustomerField *string `json:"maps_to_customer_field,omitempty"`
 	Question            string  `json:"question"`
+}
+
+// OnboardingRunValidationRequestRequest defines model for OnboardingRunValidationRequestRequest.
+type OnboardingRunValidationRequestRequest struct {
+	// BirthDate User's birth date (temporary workaround for Austrian validation)
+	BirthDate *openapi_types.Date `json:"birth_date"`
+
+	// FirstName User's first name (temporary workaround for Austrian validation)
+	FirstName *string `json:"first_name,omitempty"`
+
+	// LastName User's last name (temporary workaround for Austrian validation)
+	LastName *string `json:"last_name,omitempty"`
+
+	// PersonIdentifier Personal identifier (temporary workaround for Estonian civil_number)
+	PersonIdentifier *string `json:"person_identifier,omitempty"`
 }
 
 // OnboardingVerification defines model for OnboardingVerification.
@@ -42730,6 +42733,9 @@ type OnboardingVerificationsPartialUpdateJSONRequestBody = PatchedOnboardingVeri
 // OnboardingVerificationsUpdateJSONRequestBody defines body for OnboardingVerificationsUpdate for application/json ContentType.
 type OnboardingVerificationsUpdateJSONRequestBody = OnboardingVerificationRequest
 
+// OnboardingVerificationsRunValidationJSONRequestBody defines body for OnboardingVerificationsRunValidation for application/json ContentType.
+type OnboardingVerificationsRunValidationJSONRequestBody = OnboardingRunValidationRequestRequest
+
 // OnboardingVerificationsSubmitAnswersJSONRequestBody defines body for OnboardingVerificationsSubmitAnswers for application/json ContentType.
 type OnboardingVerificationsSubmitAnswersJSONRequestBody = OnboardingVerificationsSubmitAnswersJSONBody
 
@@ -53524,8 +53530,10 @@ type ClientInterface interface {
 	// OnboardingVerificationsCreateCustomer request
 	OnboardingVerificationsCreateCustomer(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// OnboardingVerificationsRunValidation request
-	OnboardingVerificationsRunValidation(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// OnboardingVerificationsRunValidationWithBody request with any body
+	OnboardingVerificationsRunValidationWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OnboardingVerificationsRunValidation(ctx context.Context, uuid openapi_types.UUID, body OnboardingVerificationsRunValidationJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OnboardingVerificationsSubmitAnswersWithBody request with any body
 	OnboardingVerificationsSubmitAnswersWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -73066,8 +73074,20 @@ func (c *Client) OnboardingVerificationsCreateCustomer(ctx context.Context, uuid
 	return c.Client.Do(req)
 }
 
-func (c *Client) OnboardingVerificationsRunValidation(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOnboardingVerificationsRunValidationRequest(c.Server, uuid)
+func (c *Client) OnboardingVerificationsRunValidationWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOnboardingVerificationsRunValidationRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OnboardingVerificationsRunValidation(ctx context.Context, uuid openapi_types.UUID, body OnboardingVerificationsRunValidationJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOnboardingVerificationsRunValidationRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -171028,8 +171048,19 @@ func NewOnboardingVerificationsCreateCustomerRequest(server string, uuid openapi
 	return req, nil
 }
 
-// NewOnboardingVerificationsRunValidationRequest generates requests for OnboardingVerificationsRunValidation
-func NewOnboardingVerificationsRunValidationRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+// NewOnboardingVerificationsRunValidationRequest calls the generic OnboardingVerificationsRunValidation builder with application/json body
+func NewOnboardingVerificationsRunValidationRequest(server string, uuid openapi_types.UUID, body OnboardingVerificationsRunValidationJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOnboardingVerificationsRunValidationRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOnboardingVerificationsRunValidationRequestWithBody generates requests for OnboardingVerificationsRunValidation with any type of body
+func NewOnboardingVerificationsRunValidationRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -171054,10 +171085,12 @@ func NewOnboardingVerificationsRunValidationRequest(server string, uuid openapi_
 		return nil, err
 	}
 
-	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	req, err := http.NewRequest("POST", queryURL.String(), body)
 	if err != nil {
 		return nil, err
 	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -241400,8 +241433,10 @@ type ClientWithResponsesInterface interface {
 	// OnboardingVerificationsCreateCustomerWithResponse request
 	OnboardingVerificationsCreateCustomerWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OnboardingVerificationsCreateCustomerResponse, error)
 
-	// OnboardingVerificationsRunValidationWithResponse request
-	OnboardingVerificationsRunValidationWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OnboardingVerificationsRunValidationResponse, error)
+	// OnboardingVerificationsRunValidationWithBodyWithResponse request with any body
+	OnboardingVerificationsRunValidationWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OnboardingVerificationsRunValidationResponse, error)
+
+	OnboardingVerificationsRunValidationWithResponse(ctx context.Context, uuid openapi_types.UUID, body OnboardingVerificationsRunValidationJSONRequestBody, reqEditors ...RequestEditorFn) (*OnboardingVerificationsRunValidationResponse, error)
 
 	// OnboardingVerificationsSubmitAnswersWithBodyWithResponse request with any body
 	OnboardingVerificationsSubmitAnswersWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OnboardingVerificationsSubmitAnswersResponse, error)
@@ -295276,9 +295311,17 @@ func (c *ClientWithResponses) OnboardingVerificationsCreateCustomerWithResponse(
 	return ParseOnboardingVerificationsCreateCustomerResponse(rsp)
 }
 
-// OnboardingVerificationsRunValidationWithResponse request returning *OnboardingVerificationsRunValidationResponse
-func (c *ClientWithResponses) OnboardingVerificationsRunValidationWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OnboardingVerificationsRunValidationResponse, error) {
-	rsp, err := c.OnboardingVerificationsRunValidation(ctx, uuid, reqEditors...)
+// OnboardingVerificationsRunValidationWithBodyWithResponse request with arbitrary body returning *OnboardingVerificationsRunValidationResponse
+func (c *ClientWithResponses) OnboardingVerificationsRunValidationWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OnboardingVerificationsRunValidationResponse, error) {
+	rsp, err := c.OnboardingVerificationsRunValidationWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOnboardingVerificationsRunValidationResponse(rsp)
+}
+
+func (c *ClientWithResponses) OnboardingVerificationsRunValidationWithResponse(ctx context.Context, uuid openapi_types.UUID, body OnboardingVerificationsRunValidationJSONRequestBody, reqEditors ...RequestEditorFn) (*OnboardingVerificationsRunValidationResponse, error) {
+	rsp, err := c.OnboardingVerificationsRunValidation(ctx, uuid, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
