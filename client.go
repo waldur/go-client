@@ -26108,6 +26108,24 @@ type ResourcePlanPeriod struct {
 	Uuid       *openapi_types.UUID  `json:"uuid,omitempty"`
 }
 
+// ResourceReallocateLimitsRequest defines model for ResourceReallocateLimitsRequest.
+type ResourceReallocateLimitsRequest struct {
+	Limits  map[string]int                    `json:"limits"`
+	Targets []ResourceReallocateTargetRequest `json:"targets"`
+}
+
+// ResourceReallocateLimitsResponse defines model for ResourceReallocateLimitsResponse.
+type ResourceReallocateLimitsResponse struct {
+	SourceOrderUuid  *openapi_types.UUID   `json:"source_order_uuid,omitempty"`
+	TargetOrderUuids *[]openapi_types.UUID `json:"target_order_uuids,omitempty"`
+}
+
+// ResourceReallocateTargetRequest defines model for ResourceReallocateTargetRequest.
+type ResourceReallocateTargetRequest struct {
+	AllocatedLimits map[string]int     `json:"allocated_limits"`
+	ResourceUuid    openapi_types.UUID `json:"resource_uuid"`
+}
+
 // ResourceRenewRequest defines model for ResourceRenewRequest.
 type ResourceRenewRequest struct {
 	// ExtensionMonths Number of months to extend the subscription by.
@@ -42487,6 +42505,9 @@ type MarketplaceResourcesUpdateJSONRequestBody = ResourceUpdateRequest
 // MarketplaceResourcesMoveResourceJSONRequestBody defines body for MarketplaceResourcesMoveResource for application/json ContentType.
 type MarketplaceResourcesMoveResourceJSONRequestBody = MoveResourceRequest
 
+// MarketplaceResourcesReallocateLimitsJSONRequestBody defines body for MarketplaceResourcesReallocateLimits for application/json ContentType.
+type MarketplaceResourcesReallocateLimitsJSONRequestBody = ResourceReallocateLimitsRequest
+
 // MarketplaceResourcesRenewJSONRequestBody defines body for MarketplaceResourcesRenew for application/json ContentType.
 type MarketplaceResourcesRenewJSONRequestBody = ResourceRenewRequest
 
@@ -52656,6 +52677,11 @@ type ClientInterface interface {
 
 	// MarketplaceResourcesPull request
 	MarketplaceResourcesPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceResourcesReallocateLimitsWithBody request with any body
+	MarketplaceResourcesReallocateLimitsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceResourcesReallocateLimits(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesReallocateLimitsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceResourcesRenewWithBody request with any body
 	MarketplaceResourcesRenewWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -69242,6 +69268,30 @@ func (c *Client) MarketplaceResourcesPlanPeriodsList(ctx context.Context, uuid o
 
 func (c *Client) MarketplaceResourcesPull(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceResourcesPullRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceResourcesReallocateLimitsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourcesReallocateLimitsRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceResourcesReallocateLimits(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesReallocateLimitsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourcesReallocateLimitsRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -153305,6 +153355,53 @@ func NewMarketplaceResourcesPullRequest(server string, uuid openapi_types.UUID) 
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewMarketplaceResourcesReallocateLimitsRequest calls the generic MarketplaceResourcesReallocateLimits builder with application/json body
+func NewMarketplaceResourcesReallocateLimitsRequest(server string, uuid openapi_types.UUID, body MarketplaceResourcesReallocateLimitsJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceResourcesReallocateLimitsRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceResourcesReallocateLimitsRequestWithBody generates requests for MarketplaceResourcesReallocateLimits with any type of body
+func NewMarketplaceResourcesReallocateLimitsRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-resources/%s/reallocate_limits/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -240560,6 +240657,11 @@ type ClientWithResponsesInterface interface {
 	// MarketplaceResourcesPullWithResponse request
 	MarketplaceResourcesPullWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceResourcesPullResponse, error)
 
+	// MarketplaceResourcesReallocateLimitsWithBodyWithResponse request with any body
+	MarketplaceResourcesReallocateLimitsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourcesReallocateLimitsResponse, error)
+
+	MarketplaceResourcesReallocateLimitsWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesReallocateLimitsJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourcesReallocateLimitsResponse, error)
+
 	// MarketplaceResourcesRenewWithBodyWithResponse request with any body
 	MarketplaceResourcesRenewWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourcesRenewResponse, error)
 
@@ -261463,6 +261565,28 @@ func (r MarketplaceResourcesPullResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceResourcesPullResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceResourcesReallocateLimitsResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ResourceReallocateLimitsResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceResourcesReallocateLimitsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceResourcesReallocateLimitsResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -292524,6 +292648,23 @@ func (c *ClientWithResponses) MarketplaceResourcesPullWithResponse(ctx context.C
 	return ParseMarketplaceResourcesPullResponse(rsp)
 }
 
+// MarketplaceResourcesReallocateLimitsWithBodyWithResponse request with arbitrary body returning *MarketplaceResourcesReallocateLimitsResponse
+func (c *ClientWithResponses) MarketplaceResourcesReallocateLimitsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourcesReallocateLimitsResponse, error) {
+	rsp, err := c.MarketplaceResourcesReallocateLimitsWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourcesReallocateLimitsResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceResourcesReallocateLimitsWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesReallocateLimitsJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourcesReallocateLimitsResponse, error) {
+	rsp, err := c.MarketplaceResourcesReallocateLimits(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourcesReallocateLimitsResponse(rsp)
+}
+
 // MarketplaceResourcesRenewWithBodyWithResponse request with arbitrary body returning *MarketplaceResourcesRenewResponse
 func (c *ClientWithResponses) MarketplaceResourcesRenewWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourcesRenewResponse, error) {
 	rsp, err := c.MarketplaceResourcesRenewWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -322090,6 +322231,32 @@ func ParseMarketplaceResourcesPullResponse(rsp *http.Response) (*MarketplaceReso
 			return nil, err
 		}
 		response.JSON202 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceResourcesReallocateLimitsResponse parses an HTTP response from a MarketplaceResourcesReallocateLimitsWithResponse call
+func ParseMarketplaceResourcesReallocateLimitsResponse(rsp *http.Response) (*MarketplaceResourcesReallocateLimitsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceResourcesReallocateLimitsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ResourceReallocateLimitsResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
 
 	}
 
