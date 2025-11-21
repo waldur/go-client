@@ -16586,6 +16586,7 @@ type MaintenanceAnnouncement struct {
 
 	// ExternalReferenceUrl Optional reference to an external maintenance tracker
 	ExternalReferenceUrl *string `json:"external_reference_url,omitempty"`
+	InternalNotes        *string `json:"internal_notes,omitempty"`
 
 	// MaintenanceType Type of maintenance being performed
 	MaintenanceType *MaintenanceTypeEnum `json:"maintenance_type,omitempty"`
@@ -16662,6 +16663,7 @@ type MaintenanceAnnouncementOfferingTemplateRequest struct {
 type MaintenanceAnnouncementRequest struct {
 	// ExternalReferenceUrl Optional reference to an external maintenance tracker
 	ExternalReferenceUrl *string `json:"external_reference_url,omitempty"`
+	InternalNotes        *string `json:"internal_notes,omitempty"`
 
 	// MaintenanceType Type of maintenance being performed
 	MaintenanceType *MaintenanceTypeEnum `json:"maintenance_type,omitempty"`
@@ -21786,6 +21788,7 @@ type PatchedMaintenanceAnnouncementOfferingTemplateRequest struct {
 type PatchedMaintenanceAnnouncementRequest struct {
 	// ExternalReferenceUrl Optional reference to an external maintenance tracker
 	ExternalReferenceUrl *string `json:"external_reference_url,omitempty"`
+	InternalNotes        *string `json:"internal_notes,omitempty"`
 
 	// MaintenanceType Type of maintenance being performed
 	MaintenanceType *MaintenanceTypeEnum `json:"maintenance_type,omitempty"`
