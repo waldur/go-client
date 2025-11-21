@@ -5226,6 +5226,7 @@ const (
 	MarketplaceOrdersListParamsFieldResourceName               MarketplaceOrdersListParamsField = "resource_name"
 	MarketplaceOrdersListParamsFieldResourceType               MarketplaceOrdersListParamsField = "resource_type"
 	MarketplaceOrdersListParamsFieldResourceUuid               MarketplaceOrdersListParamsField = "resource_uuid"
+	MarketplaceOrdersListParamsFieldSlug                       MarketplaceOrdersListParamsField = "slug"
 	MarketplaceOrdersListParamsFieldStartDate                  MarketplaceOrdersListParamsField = "start_date"
 	MarketplaceOrdersListParamsFieldState                      MarketplaceOrdersListParamsField = "state"
 	MarketplaceOrdersListParamsFieldTerminationComment         MarketplaceOrdersListParamsField = "termination_comment"
@@ -5367,6 +5368,7 @@ const (
 	MarketplaceOrdersRetrieveParamsFieldResourceName               MarketplaceOrdersRetrieveParamsField = "resource_name"
 	MarketplaceOrdersRetrieveParamsFieldResourceType               MarketplaceOrdersRetrieveParamsField = "resource_type"
 	MarketplaceOrdersRetrieveParamsFieldResourceUuid               MarketplaceOrdersRetrieveParamsField = "resource_uuid"
+	MarketplaceOrdersRetrieveParamsFieldSlug                       MarketplaceOrdersRetrieveParamsField = "slug"
 	MarketplaceOrdersRetrieveParamsFieldStartDate                  MarketplaceOrdersRetrieveParamsField = "start_date"
 	MarketplaceOrdersRetrieveParamsFieldState                      MarketplaceOrdersRetrieveParamsField = "state"
 	MarketplaceOrdersRetrieveParamsFieldTerminationComment         MarketplaceOrdersRetrieveParamsField = "termination_comment"
@@ -5997,6 +5999,7 @@ const (
 	MarketplaceProviderOfferingsOrdersListParamsFieldResourceName               MarketplaceProviderOfferingsOrdersListParamsField = "resource_name"
 	MarketplaceProviderOfferingsOrdersListParamsFieldResourceType               MarketplaceProviderOfferingsOrdersListParamsField = "resource_type"
 	MarketplaceProviderOfferingsOrdersListParamsFieldResourceUuid               MarketplaceProviderOfferingsOrdersListParamsField = "resource_uuid"
+	MarketplaceProviderOfferingsOrdersListParamsFieldSlug                       MarketplaceProviderOfferingsOrdersListParamsField = "slug"
 	MarketplaceProviderOfferingsOrdersListParamsFieldStartDate                  MarketplaceProviderOfferingsOrdersListParamsField = "start_date"
 	MarketplaceProviderOfferingsOrdersListParamsFieldState                      MarketplaceProviderOfferingsOrdersListParamsField = "state"
 	MarketplaceProviderOfferingsOrdersListParamsFieldTerminationComment         MarketplaceProviderOfferingsOrdersListParamsField = "termination_comment"
@@ -9648,6 +9651,7 @@ const (
 	PromotionsCampaignsOrdersListParamsFieldResourceName               PromotionsCampaignsOrdersListParamsField = "resource_name"
 	PromotionsCampaignsOrdersListParamsFieldResourceType               PromotionsCampaignsOrdersListParamsField = "resource_type"
 	PromotionsCampaignsOrdersListParamsFieldResourceUuid               PromotionsCampaignsOrdersListParamsField = "resource_uuid"
+	PromotionsCampaignsOrdersListParamsFieldSlug                       PromotionsCampaignsOrdersListParamsField = "slug"
 	PromotionsCampaignsOrdersListParamsFieldStartDate                  PromotionsCampaignsOrdersListParamsField = "start_date"
 	PromotionsCampaignsOrdersListParamsFieldState                      PromotionsCampaignsOrdersListParamsField = "state"
 	PromotionsCampaignsOrdersListParamsFieldTerminationComment         PromotionsCampaignsOrdersListParamsField = "termination_comment"
@@ -21038,6 +21042,7 @@ type OrderCreateRequest struct {
 	Plan           *string                        `json:"plan,omitempty"`
 	Project        string                         `json:"project"`
 	RequestComment *string                        `json:"request_comment"`
+	Slug           *string                        `json:"slug,omitempty"`
 
 	// StartDate Enables delayed processing of resource provisioning order.
 	StartDate *openapi_types.Date `json:"start_date"`
@@ -21133,6 +21138,7 @@ type OrderDetails struct {
 	ResourceName               *string             `json:"resource_name,omitempty"`
 	ResourceType               *string             `json:"resource_type"`
 	ResourceUuid               *openapi_types.UUID `json:"resource_uuid"`
+	Slug                       *string             `json:"slug,omitempty"`
 
 	// StartDate Enables delayed processing of resource provisioning order.
 	StartDate          *openapi_types.Date `json:"start_date"`
