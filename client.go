@@ -13590,6 +13590,17 @@ type CategorySerializerForForNestedFieldsRequest struct {
 	Title string `json:"title"`
 }
 
+// CheckUniqueBackendIDRequest defines model for CheckUniqueBackendIDRequest.
+type CheckUniqueBackendIDRequest struct {
+	BackendId         string `json:"backend_id"`
+	CheckAllOfferings *bool  `json:"check_all_offerings,omitempty"`
+}
+
+// CheckUniqueBackendIDResponse defines model for CheckUniqueBackendIDResponse.
+type CheckUniqueBackendIDResponse struct {
+	IsUnique bool `json:"is_unique"`
+}
+
 // Checklist defines model for Checklist.
 type Checklist struct {
 	// Category Category of the checklist
@@ -13832,6 +13843,8 @@ type ComponentUsage struct {
 
 // ComponentUsageCreateRequest defines model for ComponentUsageCreateRequest.
 type ComponentUsageCreateRequest struct {
+	// Date Date for usage reporting (staff only). If not provided, current date is used.
+	Date       *time.Time                  `json:"date,omitempty"`
 	PlanPeriod *openapi_types.UUID         `json:"plan_period,omitempty"`
 	Resource   *openapi_types.UUID         `json:"resource,omitempty"`
 	Usages     []ComponentUsageItemRequest `json:"usages"`
@@ -13905,9 +13918,11 @@ type ComponentUserUsage struct {
 
 // ComponentUserUsageCreateRequest defines model for ComponentUserUsageCreateRequest.
 type ComponentUserUsageCreateRequest struct {
-	Usage    *string `json:"usage,omitempty"`
-	User     *string `json:"user,omitempty"`
-	Username string  `json:"username"`
+	// Date Date for usage reporting (staff only). If not provided, current date is used.
+	Date     *time.Time `json:"date,omitempty"`
+	Usage    *string    `json:"usage,omitempty"`
+	User     *string    `json:"user,omitempty"`
+	Username string     `json:"username"`
 }
 
 // ComponentUserUsageLimit defines model for ComponentUserUsageLimit.
@@ -42340,6 +42355,9 @@ type MarketplaceProviderOfferingsAddSoftwareCatalogJSONRequestBody = OfferingSof
 // MarketplaceProviderOfferingsAddUserJSONRequestBody defines body for MarketplaceProviderOfferingsAddUser for application/json ContentType.
 type MarketplaceProviderOfferingsAddUserJSONRequestBody = UserRoleCreateRequest
 
+// MarketplaceProviderOfferingsCheckUniqueBackendIdJSONRequestBody defines body for MarketplaceProviderOfferingsCheckUniqueBackendId for application/json ContentType.
+type MarketplaceProviderOfferingsCheckUniqueBackendIdJSONRequestBody = CheckUniqueBackendIDRequest
+
 // MarketplaceProviderOfferingsCreateOfferingComponentJSONRequestBody defines body for MarketplaceProviderOfferingsCreateOfferingComponent for application/json ContentType.
 type MarketplaceProviderOfferingsCreateOfferingComponentJSONRequestBody = OfferingComponentRequest
 
@@ -52233,6 +52251,11 @@ type ClientInterface interface {
 
 	// MarketplaceProviderOfferingsArchive request
 	MarketplaceProviderOfferingsArchive(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProviderOfferingsCheckUniqueBackendIdWithBody request with any body
+	MarketplaceProviderOfferingsCheckUniqueBackendIdWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceProviderOfferingsCheckUniqueBackendId(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsCheckUniqueBackendIdJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceProviderOfferingsComponentStatsList request
 	MarketplaceProviderOfferingsComponentStatsList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsComponentStatsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -67267,6 +67290,30 @@ func (c *Client) MarketplaceProviderOfferingsAddUser(ctx context.Context, uuid o
 
 func (c *Client) MarketplaceProviderOfferingsArchive(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProviderOfferingsArchiveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderOfferingsCheckUniqueBackendIdWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsCheckUniqueBackendIdRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderOfferingsCheckUniqueBackendId(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsCheckUniqueBackendIdJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsCheckUniqueBackendIdRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -140959,6 +141006,53 @@ func NewMarketplaceProviderOfferingsArchiveRequest(server string, uuid openapi_t
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewMarketplaceProviderOfferingsCheckUniqueBackendIdRequest calls the generic MarketplaceProviderOfferingsCheckUniqueBackendId builder with application/json body
+func NewMarketplaceProviderOfferingsCheckUniqueBackendIdRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderOfferingsCheckUniqueBackendIdJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceProviderOfferingsCheckUniqueBackendIdRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceProviderOfferingsCheckUniqueBackendIdRequestWithBody generates requests for MarketplaceProviderOfferingsCheckUniqueBackendId with any type of body
+func NewMarketplaceProviderOfferingsCheckUniqueBackendIdRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-offerings/%s/check_unique_backend_id/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -240213,6 +240307,11 @@ type ClientWithResponsesInterface interface {
 	// MarketplaceProviderOfferingsArchiveWithResponse request
 	MarketplaceProviderOfferingsArchiveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsArchiveResponse, error)
 
+	// MarketplaceProviderOfferingsCheckUniqueBackendIdWithBodyWithResponse request with any body
+	MarketplaceProviderOfferingsCheckUniqueBackendIdWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsCheckUniqueBackendIdResponse, error)
+
+	MarketplaceProviderOfferingsCheckUniqueBackendIdWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsCheckUniqueBackendIdJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsCheckUniqueBackendIdResponse, error)
+
 	// MarketplaceProviderOfferingsComponentStatsListWithResponse request
 	MarketplaceProviderOfferingsComponentStatsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsComponentStatsListParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsComponentStatsListResponse, error)
 
@@ -259105,6 +259204,28 @@ func (r MarketplaceProviderOfferingsArchiveResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceProviderOfferingsArchiveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceProviderOfferingsCheckUniqueBackendIdResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CheckUniqueBackendIDResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderOfferingsCheckUniqueBackendIdResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderOfferingsCheckUniqueBackendIdResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -291202,6 +291323,23 @@ func (c *ClientWithResponses) MarketplaceProviderOfferingsArchiveWithResponse(ct
 	return ParseMarketplaceProviderOfferingsArchiveResponse(rsp)
 }
 
+// MarketplaceProviderOfferingsCheckUniqueBackendIdWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderOfferingsCheckUniqueBackendIdResponse
+func (c *ClientWithResponses) MarketplaceProviderOfferingsCheckUniqueBackendIdWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsCheckUniqueBackendIdResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsCheckUniqueBackendIdWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsCheckUniqueBackendIdResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceProviderOfferingsCheckUniqueBackendIdWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsCheckUniqueBackendIdJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsCheckUniqueBackendIdResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsCheckUniqueBackendId(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsCheckUniqueBackendIdResponse(rsp)
+}
+
 // MarketplaceProviderOfferingsComponentStatsListWithResponse request returning *MarketplaceProviderOfferingsComponentStatsListResponse
 func (c *ClientWithResponses) MarketplaceProviderOfferingsComponentStatsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsComponentStatsListParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsComponentStatsListResponse, error) {
 	rsp, err := c.MarketplaceProviderOfferingsComponentStatsList(ctx, uuid, params, reqEditors...)
@@ -319678,6 +319816,32 @@ func ParseMarketplaceProviderOfferingsArchiveResponse(rsp *http.Response) (*Mark
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest DetailState
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProviderOfferingsCheckUniqueBackendIdResponse parses an HTTP response from a MarketplaceProviderOfferingsCheckUniqueBackendIdWithResponse call
+func ParseMarketplaceProviderOfferingsCheckUniqueBackendIdResponse(rsp *http.Response) (*MarketplaceProviderOfferingsCheckUniqueBackendIdResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderOfferingsCheckUniqueBackendIdResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CheckUniqueBackendIDResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
