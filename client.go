@@ -9883,6 +9883,40 @@ const (
 	ProposalProtectedCallsCountParamsStateDraft    ProposalProtectedCallsCountParamsState = "draft"
 )
 
+// Defines values for ProposalProtectedCallsAvailableComplianceChecklistsListParamsO.
+const (
+	ProposalProtectedCallsAvailableComplianceChecklistsListParamsOCreated                  ProposalProtectedCallsAvailableComplianceChecklistsListParamsO = "created"
+	ProposalProtectedCallsAvailableComplianceChecklistsListParamsOManagerCustomerName      ProposalProtectedCallsAvailableComplianceChecklistsListParamsO = "manager__customer__name"
+	ProposalProtectedCallsAvailableComplianceChecklistsListParamsOMinusCreated             ProposalProtectedCallsAvailableComplianceChecklistsListParamsO = "-created"
+	ProposalProtectedCallsAvailableComplianceChecklistsListParamsOMinusManagerCustomerName ProposalProtectedCallsAvailableComplianceChecklistsListParamsO = "-manager__customer__name"
+	ProposalProtectedCallsAvailableComplianceChecklistsListParamsOMinusName                ProposalProtectedCallsAvailableComplianceChecklistsListParamsO = "-name"
+	ProposalProtectedCallsAvailableComplianceChecklistsListParamsOName                     ProposalProtectedCallsAvailableComplianceChecklistsListParamsO = "name"
+)
+
+// Defines values for ProposalProtectedCallsAvailableComplianceChecklistsListParamsState.
+const (
+	ProposalProtectedCallsAvailableComplianceChecklistsListParamsStateActive   ProposalProtectedCallsAvailableComplianceChecklistsListParamsState = "active"
+	ProposalProtectedCallsAvailableComplianceChecklistsListParamsStateArchived ProposalProtectedCallsAvailableComplianceChecklistsListParamsState = "archived"
+	ProposalProtectedCallsAvailableComplianceChecklistsListParamsStateDraft    ProposalProtectedCallsAvailableComplianceChecklistsListParamsState = "draft"
+)
+
+// Defines values for ProposalProtectedCallsAvailableComplianceChecklistsCountParamsO.
+const (
+	ProposalProtectedCallsAvailableComplianceChecklistsCountParamsOCreated                  ProposalProtectedCallsAvailableComplianceChecklistsCountParamsO = "created"
+	ProposalProtectedCallsAvailableComplianceChecklistsCountParamsOManagerCustomerName      ProposalProtectedCallsAvailableComplianceChecklistsCountParamsO = "manager__customer__name"
+	ProposalProtectedCallsAvailableComplianceChecklistsCountParamsOMinusCreated             ProposalProtectedCallsAvailableComplianceChecklistsCountParamsO = "-created"
+	ProposalProtectedCallsAvailableComplianceChecklistsCountParamsOMinusManagerCustomerName ProposalProtectedCallsAvailableComplianceChecklistsCountParamsO = "-manager__customer__name"
+	ProposalProtectedCallsAvailableComplianceChecklistsCountParamsOMinusName                ProposalProtectedCallsAvailableComplianceChecklistsCountParamsO = "-name"
+	ProposalProtectedCallsAvailableComplianceChecklistsCountParamsOName                     ProposalProtectedCallsAvailableComplianceChecklistsCountParamsO = "name"
+)
+
+// Defines values for ProposalProtectedCallsAvailableComplianceChecklistsCountParamsState.
+const (
+	ProposalProtectedCallsAvailableComplianceChecklistsCountParamsStateActive   ProposalProtectedCallsAvailableComplianceChecklistsCountParamsState = "active"
+	ProposalProtectedCallsAvailableComplianceChecklistsCountParamsStateArchived ProposalProtectedCallsAvailableComplianceChecklistsCountParamsState = "archived"
+	ProposalProtectedCallsAvailableComplianceChecklistsCountParamsStateDraft    ProposalProtectedCallsAvailableComplianceChecklistsCountParamsState = "draft"
+)
+
 // Defines values for ProposalProtectedCallsRetrieveParamsField.
 const (
 	ProposalProtectedCallsRetrieveParamsFieldBackendId                           ProposalProtectedCallsRetrieveParamsField = "backend_id"
@@ -12297,6 +12331,17 @@ type AuthToken struct {
 
 	// UserUsername Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
 	UserUsername *string `json:"user_username,omitempty"`
+}
+
+// AvailableChecklist defines model for AvailableChecklist.
+type AvailableChecklist struct {
+	CategoryName   *string             `json:"category_name"`
+	CategoryUuid   *openapi_types.UUID `json:"category_uuid"`
+	ChecklistType  *string             `json:"checklist_type,omitempty"`
+	Description    *string             `json:"description,omitempty"`
+	Name           *string             `json:"name,omitempty"`
+	QuestionsCount *int                `json:"questions_count,omitempty"`
+	Uuid           *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // AwsImage defines model for AwsImage.
@@ -16225,10 +16270,12 @@ type InvoiceItemDetail struct {
 	Invoice string     `json:"invoice"`
 
 	// MeasuredUnit Unit of measurement, for example, GB.
-	MeasuredUnit *string `json:"measured_unit,omitempty"`
-	Name         *string `json:"name,omitempty"`
-	Quantity     *string `json:"quantity,omitempty"`
-	Resource     *string `json:"resource"`
+	MeasuredUnit          *string             `json:"measured_unit,omitempty"`
+	Name                  *string             `json:"name,omitempty"`
+	OfferingComponentType *string             `json:"offering_component_type"`
+	OfferingUuid          *openapi_types.UUID `json:"offering_uuid,omitempty"`
+	Quantity              *string             `json:"quantity,omitempty"`
+	Resource              *string             `json:"resource"`
 
 	// Start Date and time when item usage has started.
 	Start     *time.Time          `json:"start,omitempty"`
@@ -38972,6 +39019,70 @@ type ProposalProtectedCallsCountParamsO string
 // ProposalProtectedCallsCountParamsState defines parameters for ProposalProtectedCallsCount.
 type ProposalProtectedCallsCountParamsState string
 
+// ProposalProtectedCallsAvailableComplianceChecklistsListParams defines parameters for ProposalProtectedCallsAvailableComplianceChecklistsList.
+type ProposalProtectedCallsAvailableComplianceChecklistsListParams struct {
+	// ChecklistType Filter by checklist type (default: proposal_compliance)
+	ChecklistType   *string `form:"checklist_type,omitempty" json:"checklist_type,omitempty"`
+	Customer        *string `form:"customer,omitempty" json:"customer,omitempty"`
+	CustomerKeyword *string `form:"customer_keyword,omitempty" json:"customer_keyword,omitempty"`
+
+	// CustomerUuid Customer UUID to check permissions for. Required to verify user has CREATE_CALL permission on that customer's call managing organization.
+	CustomerUuid   string  `form:"customer_uuid" json:"customer_uuid"`
+	HasActiveRound *bool   `form:"has_active_round,omitempty" json:"has_active_round,omitempty"`
+	Name           *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// O Ordering
+	//
+	O                     *[]ProposalProtectedCallsAvailableComplianceChecklistsListParamsO `form:"o,omitempty" json:"o,omitempty"`
+	OfferingUuid          *openapi_types.UUID                                               `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	OfferingsProviderUuid *openapi_types.UUID                                               `form:"offerings_provider_uuid,omitempty" json:"offerings_provider_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize                                                             `form:"page_size,omitempty" json:"page_size,omitempty"`
+	State    *[]ProposalProtectedCallsAvailableComplianceChecklistsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+}
+
+// ProposalProtectedCallsAvailableComplianceChecklistsListParamsO defines parameters for ProposalProtectedCallsAvailableComplianceChecklistsList.
+type ProposalProtectedCallsAvailableComplianceChecklistsListParamsO string
+
+// ProposalProtectedCallsAvailableComplianceChecklistsListParamsState defines parameters for ProposalProtectedCallsAvailableComplianceChecklistsList.
+type ProposalProtectedCallsAvailableComplianceChecklistsListParamsState string
+
+// ProposalProtectedCallsAvailableComplianceChecklistsCountParams defines parameters for ProposalProtectedCallsAvailableComplianceChecklistsCount.
+type ProposalProtectedCallsAvailableComplianceChecklistsCountParams struct {
+	// ChecklistType Filter by checklist type (default: proposal_compliance)
+	ChecklistType   *string `form:"checklist_type,omitempty" json:"checklist_type,omitempty"`
+	Customer        *string `form:"customer,omitempty" json:"customer,omitempty"`
+	CustomerKeyword *string `form:"customer_keyword,omitempty" json:"customer_keyword,omitempty"`
+
+	// CustomerUuid Customer UUID to check permissions for. Required to verify user has CREATE_CALL permission on that customer's call managing organization.
+	CustomerUuid   string  `form:"customer_uuid" json:"customer_uuid"`
+	HasActiveRound *bool   `form:"has_active_round,omitempty" json:"has_active_round,omitempty"`
+	Name           *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// O Ordering
+	//
+	O                     *[]ProposalProtectedCallsAvailableComplianceChecklistsCountParamsO `form:"o,omitempty" json:"o,omitempty"`
+	OfferingUuid          *openapi_types.UUID                                                `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	OfferingsProviderUuid *openapi_types.UUID                                                `form:"offerings_provider_uuid,omitempty" json:"offerings_provider_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize                                                              `form:"page_size,omitempty" json:"page_size,omitempty"`
+	State    *[]ProposalProtectedCallsAvailableComplianceChecklistsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+}
+
+// ProposalProtectedCallsAvailableComplianceChecklistsCountParamsO defines parameters for ProposalProtectedCallsAvailableComplianceChecklistsCount.
+type ProposalProtectedCallsAvailableComplianceChecklistsCountParamsO string
+
+// ProposalProtectedCallsAvailableComplianceChecklistsCountParamsState defines parameters for ProposalProtectedCallsAvailableComplianceChecklistsCount.
+type ProposalProtectedCallsAvailableComplianceChecklistsCountParamsState string
+
 // ProposalProtectedCallsRetrieveParams defines parameters for ProposalProtectedCallsRetrieve.
 type ProposalProtectedCallsRetrieveParams struct {
 	Field *[]ProposalProtectedCallsRetrieveParamsField `form:"field,omitempty" json:"field,omitempty"`
@@ -55000,6 +55111,12 @@ type ClientInterface interface {
 	ProposalProtectedCallsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	ProposalProtectedCallsCreate(ctx context.Context, body ProposalProtectedCallsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProposalProtectedCallsAvailableComplianceChecklistsList request
+	ProposalProtectedCallsAvailableComplianceChecklistsList(ctx context.Context, params *ProposalProtectedCallsAvailableComplianceChecklistsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProposalProtectedCallsAvailableComplianceChecklistsCount request
+	ProposalProtectedCallsAvailableComplianceChecklistsCount(ctx context.Context, params *ProposalProtectedCallsAvailableComplianceChecklistsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProposalProtectedCallsDestroy request
 	ProposalProtectedCallsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -79398,6 +79515,30 @@ func (c *Client) ProposalProtectedCallsCreateWithBody(ctx context.Context, conte
 
 func (c *Client) ProposalProtectedCallsCreate(ctx context.Context, body ProposalProtectedCallsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProposalProtectedCallsCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProposalProtectedCallsAvailableComplianceChecklistsList(ctx context.Context, params *ProposalProtectedCallsAvailableComplianceChecklistsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProtectedCallsAvailableComplianceChecklistsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProposalProtectedCallsAvailableComplianceChecklistsCount(ctx context.Context, params *ProposalProtectedCallsAvailableComplianceChecklistsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProtectedCallsAvailableComplianceChecklistsCountRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -205888,6 +206029,448 @@ func NewProposalProtectedCallsCreateRequestWithBody(server string, contentType s
 	return req, nil
 }
 
+// NewProposalProtectedCallsAvailableComplianceChecklistsListRequest generates requests for ProposalProtectedCallsAvailableComplianceChecklistsList
+func NewProposalProtectedCallsAvailableComplianceChecklistsListRequest(server string, params *ProposalProtectedCallsAvailableComplianceChecklistsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/proposal-protected-calls/available_compliance_checklists/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.ChecklistType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "checklist_type", runtime.ParamLocationQuery, *params.ChecklistType); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Customer != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer", runtime.ParamLocationQuery, *params.Customer); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerKeyword != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer_keyword", runtime.ParamLocationQuery, *params.CustomerKeyword); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer_uuid", runtime.ParamLocationQuery, params.CustomerUuid); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
+		}
+
+		if params.HasActiveRound != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_active_round", runtime.ParamLocationQuery, *params.HasActiveRound); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name", runtime.ParamLocationQuery, *params.Name); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OfferingsProviderUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offerings_provider_uuid", runtime.ParamLocationQuery, *params.OfferingsProviderUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "state", runtime.ParamLocationQuery, *params.State); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewProposalProtectedCallsAvailableComplianceChecklistsCountRequest generates requests for ProposalProtectedCallsAvailableComplianceChecklistsCount
+func NewProposalProtectedCallsAvailableComplianceChecklistsCountRequest(server string, params *ProposalProtectedCallsAvailableComplianceChecklistsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/proposal-protected-calls/available_compliance_checklists/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.ChecklistType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "checklist_type", runtime.ParamLocationQuery, *params.ChecklistType); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Customer != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer", runtime.ParamLocationQuery, *params.Customer); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerKeyword != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer_keyword", runtime.ParamLocationQuery, *params.CustomerKeyword); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer_uuid", runtime.ParamLocationQuery, params.CustomerUuid); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
+		}
+
+		if params.HasActiveRound != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_active_round", runtime.ParamLocationQuery, *params.HasActiveRound); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name", runtime.ParamLocationQuery, *params.Name); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OfferingsProviderUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offerings_provider_uuid", runtime.ParamLocationQuery, *params.OfferingsProviderUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "state", runtime.ParamLocationQuery, *params.State); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewProposalProtectedCallsDestroyRequest generates requests for ProposalProtectedCallsDestroy
 func NewProposalProtectedCallsDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -243056,6 +243639,12 @@ type ClientWithResponsesInterface interface {
 
 	ProposalProtectedCallsCreateWithResponse(ctx context.Context, body ProposalProtectedCallsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsCreateResponse, error)
 
+	// ProposalProtectedCallsAvailableComplianceChecklistsListWithResponse request
+	ProposalProtectedCallsAvailableComplianceChecklistsListWithResponse(ctx context.Context, params *ProposalProtectedCallsAvailableComplianceChecklistsListParams, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsAvailableComplianceChecklistsListResponse, error)
+
+	// ProposalProtectedCallsAvailableComplianceChecklistsCountWithResponse request
+	ProposalProtectedCallsAvailableComplianceChecklistsCountWithResponse(ctx context.Context, params *ProposalProtectedCallsAvailableComplianceChecklistsCountParams, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsAvailableComplianceChecklistsCountResponse, error)
+
 	// ProposalProtectedCallsDestroyWithResponse request
 	ProposalProtectedCallsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsDestroyResponse, error)
 
@@ -275106,6 +275695,49 @@ func (r ProposalProtectedCallsCreateResponse) StatusCode() int {
 	return 0
 }
 
+type ProposalProtectedCallsAvailableComplianceChecklistsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]AvailableChecklist
+}
+
+// Status returns HTTPResponse.Status
+func (r ProposalProtectedCallsAvailableComplianceChecklistsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProposalProtectedCallsAvailableComplianceChecklistsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ProposalProtectedCallsAvailableComplianceChecklistsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r ProposalProtectedCallsAvailableComplianceChecklistsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProposalProtectedCallsAvailableComplianceChecklistsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type ProposalProtectedCallsDestroyResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -300124,6 +300756,24 @@ func (c *ClientWithResponses) ProposalProtectedCallsCreateWithResponse(ctx conte
 		return nil, err
 	}
 	return ParseProposalProtectedCallsCreateResponse(rsp)
+}
+
+// ProposalProtectedCallsAvailableComplianceChecklistsListWithResponse request returning *ProposalProtectedCallsAvailableComplianceChecklistsListResponse
+func (c *ClientWithResponses) ProposalProtectedCallsAvailableComplianceChecklistsListWithResponse(ctx context.Context, params *ProposalProtectedCallsAvailableComplianceChecklistsListParams, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsAvailableComplianceChecklistsListResponse, error) {
+	rsp, err := c.ProposalProtectedCallsAvailableComplianceChecklistsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProtectedCallsAvailableComplianceChecklistsListResponse(rsp)
+}
+
+// ProposalProtectedCallsAvailableComplianceChecklistsCountWithResponse request returning *ProposalProtectedCallsAvailableComplianceChecklistsCountResponse
+func (c *ClientWithResponses) ProposalProtectedCallsAvailableComplianceChecklistsCountWithResponse(ctx context.Context, params *ProposalProtectedCallsAvailableComplianceChecklistsCountParams, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsAvailableComplianceChecklistsCountResponse, error) {
+	rsp, err := c.ProposalProtectedCallsAvailableComplianceChecklistsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProtectedCallsAvailableComplianceChecklistsCountResponse(rsp)
 }
 
 // ProposalProtectedCallsDestroyWithResponse request returning *ProposalProtectedCallsDestroyResponse
@@ -336562,6 +337212,48 @@ func ParseProposalProtectedCallsCreateResponse(rsp *http.Response) (*ProposalPro
 		}
 		response.JSON201 = &dest
 
+	}
+
+	return response, nil
+}
+
+// ParseProposalProtectedCallsAvailableComplianceChecklistsListResponse parses an HTTP response from a ProposalProtectedCallsAvailableComplianceChecklistsListWithResponse call
+func ParseProposalProtectedCallsAvailableComplianceChecklistsListResponse(rsp *http.Response) (*ProposalProtectedCallsAvailableComplianceChecklistsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProposalProtectedCallsAvailableComplianceChecklistsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []AvailableChecklist
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseProposalProtectedCallsAvailableComplianceChecklistsCountResponse parses an HTTP response from a ProposalProtectedCallsAvailableComplianceChecklistsCountWithResponse call
+func ParseProposalProtectedCallsAvailableComplianceChecklistsCountResponse(rsp *http.Response) (*ProposalProtectedCallsAvailableComplianceChecklistsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProposalProtectedCallsAvailableComplianceChecklistsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
 	}
 
 	return response, nil
