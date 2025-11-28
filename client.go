@@ -28270,10 +28270,17 @@ type ApiAuthTaraCompleteRetrieveParams struct {
 
 // AccessSubnetsListParams defines parameters for AccessSubnetsList.
 type AccessSubnetsListParams struct {
-	Customer     *string             `form:"customer,omitempty" json:"customer,omitempty"`
+	// Customer Customer URL
+	Customer *string `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerUuid Customer UUID
 	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description  *string             `form:"description,omitempty" json:"description,omitempty"`
-	Inet         *string             `form:"inet,omitempty" json:"inet,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// Inet Inet
+	Inet *string `form:"inet,omitempty" json:"inet,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -28284,10 +28291,17 @@ type AccessSubnetsListParams struct {
 
 // AccessSubnetsCountParams defines parameters for AccessSubnetsCount.
 type AccessSubnetsCountParams struct {
-	Customer     *string             `form:"customer,omitempty" json:"customer,omitempty"`
+	// Customer Customer URL
+	Customer *string `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerUuid Customer UUID
 	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description  *string             `form:"description,omitempty" json:"description,omitempty"`
-	Inet         *string             `form:"inet,omitempty" json:"inet,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// Inet Inet
+	Inet *string `form:"inet,omitempty" json:"inet,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -28392,7 +28406,10 @@ type AutoprovisioningRulesCountParams struct {
 
 // AwsImagesListParams defines parameters for AwsImagesList.
 type AwsImagesListParams struct {
-	Name      *string `form:"name,omitempty" json:"name,omitempty"`
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
 	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
@@ -28405,7 +28422,10 @@ type AwsImagesListParams struct {
 
 // AwsImagesCountParams defines parameters for AwsImagesCount.
 type AwsImagesCountParams struct {
-	Name      *string `form:"name,omitempty" json:"name,omitempty"`
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
 	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
@@ -28418,33 +28438,65 @@ type AwsImagesCountParams struct {
 
 // AwsInstancesListParams defines parameters for AwsInstancesList.
 type AwsInstancesListParams struct {
+	// BackendId Backend ID
 	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool                          `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	Customer             *openapi_types.UUID            `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string                        `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string                        `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string                        `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID            `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string                        `form:"description,omitempty" json:"description,omitempty"`
-	ExternalIp           *string                        `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	Field                *[]AwsInstancesListParamsField `form:"field,omitempty" json:"field,omitempty"`
-	Name                 *string                        `form:"name,omitempty" json:"name,omitempty"`
-	NameExact            *string                        `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string                        `form:"description,omitempty" json:"description,omitempty"`
+	ExternalIp  *string                        `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+	Field       *[]AwsInstancesListParamsField `form:"field,omitempty" json:"field,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                      `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project             *openapi_types.UUID            `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName         *string                        `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid         *openapi_types.UUID            `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	ServiceSettingsName *string                        `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID            `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	State               *[]AwsInstancesListParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Uuid                *openapi_types.UUID            `form:"uuid,omitempty" json:"uuid,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]AwsInstancesListParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Uuid UUID
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // AwsInstancesListParamsField defines parameters for AwsInstancesList.
@@ -28455,32 +28507,64 @@ type AwsInstancesListParamsState string
 
 // AwsInstancesCountParams defines parameters for AwsInstancesCount.
 type AwsInstancesCountParams struct {
+	// BackendId Backend ID
 	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool               `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	Customer             *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string             `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string             `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string             `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string             `form:"description,omitempty" json:"description,omitempty"`
-	ExternalIp           *string             `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	Name                 *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact            *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+	ExternalIp  *string `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                       `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project             *openapi_types.UUID             `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName         *string                         `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid         *openapi_types.UUID             `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	ServiceSettingsName *string                         `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID             `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	State               *[]AwsInstancesCountParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Uuid                *openapi_types.UUID             `form:"uuid,omitempty" json:"uuid,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]AwsInstancesCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Uuid UUID
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // AwsInstancesCountParamsState defines parameters for AwsInstancesCount.
@@ -28496,7 +28580,10 @@ type AwsInstancesRetrieveParamsField string
 
 // AwsRegionsListParams defines parameters for AwsRegionsList.
 type AwsRegionsListParams struct {
-	Name      *string `form:"name,omitempty" json:"name,omitempty"`
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
 	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
@@ -28508,7 +28595,10 @@ type AwsRegionsListParams struct {
 
 // AwsRegionsCountParams defines parameters for AwsRegionsCount.
 type AwsRegionsCountParams struct {
-	Name      *string `form:"name,omitempty" json:"name,omitempty"`
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
 	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
@@ -28520,7 +28610,10 @@ type AwsRegionsCountParams struct {
 
 // AwsSizesListParams defines parameters for AwsSizesList.
 type AwsSizesListParams struct {
-	Name      *string `form:"name,omitempty" json:"name,omitempty"`
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
 	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
@@ -28533,7 +28626,10 @@ type AwsSizesListParams struct {
 
 // AwsSizesCountParams defines parameters for AwsSizesCount.
 type AwsSizesCountParams struct {
-	Name      *string `form:"name,omitempty" json:"name,omitempty"`
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
 	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
@@ -28579,15 +28675,23 @@ type AwsVolumesRetrieveParamsField string
 type AzureImagesListParams struct {
 	Location     *string             `form:"location,omitempty" json:"location,omitempty"`
 	LocationUuid *openapi_types.UUID `form:"location_uuid,omitempty" json:"location_uuid,omitempty"`
-	Name         *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact    *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Settings     *string             `form:"settings,omitempty" json:"settings,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Settings Settings URL
+	Settings *string `form:"settings,omitempty" json:"settings,omitempty"`
+
+	// SettingsUuid Settings UUID
 	SettingsUuid *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
 }
 
@@ -28595,79 +28699,137 @@ type AzureImagesListParams struct {
 type AzureImagesCountParams struct {
 	Location     *string             `form:"location,omitempty" json:"location,omitempty"`
 	LocationUuid *openapi_types.UUID `form:"location_uuid,omitempty" json:"location_uuid,omitempty"`
-	Name         *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact    *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Settings     *string             `form:"settings,omitempty" json:"settings,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Settings Settings URL
+	Settings *string `form:"settings,omitempty" json:"settings,omitempty"`
+
+	// SettingsUuid Settings UUID
 	SettingsUuid *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
 }
 
 // AzureLocationsListParams defines parameters for AzureLocationsList.
 type AzureLocationsListParams struct {
-	HasSizes  *bool   `form:"has_sizes,omitempty" json:"has_sizes,omitempty"`
-	Name      *string `form:"name,omitempty" json:"name,omitempty"`
+	HasSizes *bool `form:"has_sizes,omitempty" json:"has_sizes,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
 	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Settings     *string             `form:"settings,omitempty" json:"settings,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Settings Settings URL
+	Settings *string `form:"settings,omitempty" json:"settings,omitempty"`
+
+	// SettingsUuid Settings UUID
 	SettingsUuid *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
 }
 
 // AzureLocationsCountParams defines parameters for AzureLocationsCount.
 type AzureLocationsCountParams struct {
-	HasSizes  *bool   `form:"has_sizes,omitempty" json:"has_sizes,omitempty"`
-	Name      *string `form:"name,omitempty" json:"name,omitempty"`
+	HasSizes *bool `form:"has_sizes,omitempty" json:"has_sizes,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
 	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Settings     *string             `form:"settings,omitempty" json:"settings,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Settings Settings URL
+	Settings *string `form:"settings,omitempty" json:"settings,omitempty"`
+
+	// SettingsUuid Settings UUID
 	SettingsUuid *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
 }
 
 // AzurePublicIpsListParams defines parameters for AzurePublicIpsList.
 type AzurePublicIpsListParams struct {
+	// BackendId Backend ID
 	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool                            `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	Customer             *openapi_types.UUID              `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string                          `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string                          `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string                          `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID              `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string                          `form:"description,omitempty" json:"description,omitempty"`
-	ExternalIp           *string                          `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	Field                *[]AzurePublicIpsListParamsField `form:"field,omitempty" json:"field,omitempty"`
-	Name                 *string                          `form:"name,omitempty" json:"name,omitempty"`
-	NameExact            *string                          `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// ExternalIp External IP
+	ExternalIp *string                          `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+	Field      *[]AzurePublicIpsListParamsField `form:"field,omitempty" json:"field,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                        `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project             *openapi_types.UUID              `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName         *string                          `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid         *openapi_types.UUID              `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	ResourceGroup       *string                          `form:"resource_group,omitempty" json:"resource_group,omitempty"`
-	ResourceGroupUuid   *openapi_types.UUID              `form:"resource_group_uuid,omitempty" json:"resource_group_uuid,omitempty"`
-	ServiceSettingsName *string                          `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID              `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	State               *[]AzurePublicIpsListParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Uuid                *openapi_types.UUID              `form:"uuid,omitempty" json:"uuid,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid       *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	ResourceGroup     *string             `form:"resource_group,omitempty" json:"resource_group,omitempty"`
+	ResourceGroupUuid *openapi_types.UUID `form:"resource_group_uuid,omitempty" json:"resource_group_uuid,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]AzurePublicIpsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Uuid UUID
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // AzurePublicIpsListParamsField defines parameters for AzurePublicIpsList.
@@ -28678,34 +28840,68 @@ type AzurePublicIpsListParamsState string
 
 // AzurePublicIpsCountParams defines parameters for AzurePublicIpsCount.
 type AzurePublicIpsCountParams struct {
+	// BackendId Backend ID
 	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool               `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	Customer             *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string             `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string             `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string             `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string             `form:"description,omitempty" json:"description,omitempty"`
-	ExternalIp           *string             `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	Name                 *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact            *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// ExternalIp External IP
+	ExternalIp *string `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                         `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project             *openapi_types.UUID               `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName         *string                           `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid         *openapi_types.UUID               `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	ResourceGroup       *string                           `form:"resource_group,omitempty" json:"resource_group,omitempty"`
-	ResourceGroupUuid   *openapi_types.UUID               `form:"resource_group_uuid,omitempty" json:"resource_group_uuid,omitempty"`
-	ServiceSettingsName *string                           `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID               `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	State               *[]AzurePublicIpsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Uuid                *openapi_types.UUID               `form:"uuid,omitempty" json:"uuid,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid       *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	ResourceGroup     *string             `form:"resource_group,omitempty" json:"resource_group,omitempty"`
+	ResourceGroupUuid *openapi_types.UUID `form:"resource_group_uuid,omitempty" json:"resource_group_uuid,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]AzurePublicIpsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Uuid UUID
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // AzurePublicIpsCountParamsState defines parameters for AzurePublicIpsCount.
@@ -28754,15 +28950,23 @@ type AzureResourceGroupsRetrieveParamsField string
 type AzureSizesListParams struct {
 	Location     *string             `form:"location,omitempty" json:"location,omitempty"`
 	LocationUuid *openapi_types.UUID `form:"location_uuid,omitempty" json:"location_uuid,omitempty"`
-	Name         *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact    *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Settings     *string             `form:"settings,omitempty" json:"settings,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Settings Settings URL
+	Settings *string `form:"settings,omitempty" json:"settings,omitempty"`
+
+	// SettingsUuid Settings UUID
 	SettingsUuid *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
 	Zone         *int                `form:"zone,omitempty" json:"zone,omitempty"`
 }
@@ -28771,52 +28975,94 @@ type AzureSizesListParams struct {
 type AzureSizesCountParams struct {
 	Location     *string             `form:"location,omitempty" json:"location,omitempty"`
 	LocationUuid *openapi_types.UUID `form:"location_uuid,omitempty" json:"location_uuid,omitempty"`
-	Name         *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact    *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Settings     *string             `form:"settings,omitempty" json:"settings,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Settings Settings URL
+	Settings *string `form:"settings,omitempty" json:"settings,omitempty"`
+
+	// SettingsUuid Settings UUID
 	SettingsUuid *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
 	Zone         *int                `form:"zone,omitempty" json:"zone,omitempty"`
 }
 
 // AzureSqlDatabasesListParams defines parameters for AzureSqlDatabasesList.
 type AzureSqlDatabasesListParams struct {
+	// BackendId Backend ID
 	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool                               `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	Customer             *openapi_types.UUID                 `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string                             `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string                             `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string                             `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID                 `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string                             `form:"description,omitempty" json:"description,omitempty"`
-	ExternalIp           *string                             `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	Field                *[]AzureSqlDatabasesListParamsField `form:"field,omitempty" json:"field,omitempty"`
-	Name                 *string                             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact            *string                             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// ExternalIp External IP
+	ExternalIp *string                             `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+	Field      *[]AzureSqlDatabasesListParamsField `form:"field,omitempty" json:"field,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project             *openapi_types.UUID                 `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName         *string                             `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid         *openapi_types.UUID                 `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	ResourceGroup       *string                             `form:"resource_group,omitempty" json:"resource_group,omitempty"`
-	ResourceGroupUuid   *openapi_types.UUID                 `form:"resource_group_uuid,omitempty" json:"resource_group_uuid,omitempty"`
-	Server              *string                             `form:"server,omitempty" json:"server,omitempty"`
-	ServerUuid          *openapi_types.UUID                 `form:"server_uuid,omitempty" json:"server_uuid,omitempty"`
-	ServiceSettingsName *string                             `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID                 `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	State               *[]AzureSqlDatabasesListParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Uuid                *openapi_types.UUID                 `form:"uuid,omitempty" json:"uuid,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid       *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	ResourceGroup     *string             `form:"resource_group,omitempty" json:"resource_group,omitempty"`
+	ResourceGroupUuid *openapi_types.UUID `form:"resource_group_uuid,omitempty" json:"resource_group_uuid,omitempty"`
+	Server            *string             `form:"server,omitempty" json:"server,omitempty"`
+	ServerUuid        *openapi_types.UUID `form:"server_uuid,omitempty" json:"server_uuid,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]AzureSqlDatabasesListParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Uuid UUID
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // AzureSqlDatabasesListParamsField defines parameters for AzureSqlDatabasesList.
@@ -28827,36 +29073,70 @@ type AzureSqlDatabasesListParamsState string
 
 // AzureSqlDatabasesCountParams defines parameters for AzureSqlDatabasesCount.
 type AzureSqlDatabasesCountParams struct {
+	// BackendId Backend ID
 	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool               `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	Customer             *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string             `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string             `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string             `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string             `form:"description,omitempty" json:"description,omitempty"`
-	ExternalIp           *string             `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	Name                 *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact            *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// ExternalIp External IP
+	ExternalIp *string `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                            `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project             *openapi_types.UUID                  `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName         *string                              `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid         *openapi_types.UUID                  `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	ResourceGroup       *string                              `form:"resource_group,omitempty" json:"resource_group,omitempty"`
-	ResourceGroupUuid   *openapi_types.UUID                  `form:"resource_group_uuid,omitempty" json:"resource_group_uuid,omitempty"`
-	Server              *string                              `form:"server,omitempty" json:"server,omitempty"`
-	ServerUuid          *openapi_types.UUID                  `form:"server_uuid,omitempty" json:"server_uuid,omitempty"`
-	ServiceSettingsName *string                              `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID                  `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	State               *[]AzureSqlDatabasesCountParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Uuid                *openapi_types.UUID                  `form:"uuid,omitempty" json:"uuid,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid       *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	ResourceGroup     *string             `form:"resource_group,omitempty" json:"resource_group,omitempty"`
+	ResourceGroupUuid *openapi_types.UUID `form:"resource_group_uuid,omitempty" json:"resource_group_uuid,omitempty"`
+	Server            *string             `form:"server,omitempty" json:"server,omitempty"`
+	ServerUuid        *openapi_types.UUID `form:"server_uuid,omitempty" json:"server_uuid,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]AzureSqlDatabasesCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Uuid UUID
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // AzureSqlDatabasesCountParamsState defines parameters for AzureSqlDatabasesCount.
@@ -28872,35 +29152,69 @@ type AzureSqlDatabasesRetrieveParamsField string
 
 // AzureSqlServersListParams defines parameters for AzureSqlServersList.
 type AzureSqlServersListParams struct {
+	// BackendId Backend ID
 	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool                             `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	Customer             *openapi_types.UUID               `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string                           `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string                           `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string                           `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID               `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string                           `form:"description,omitempty" json:"description,omitempty"`
-	ExternalIp           *string                           `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	Field                *[]AzureSqlServersListParamsField `form:"field,omitempty" json:"field,omitempty"`
-	Name                 *string                           `form:"name,omitempty" json:"name,omitempty"`
-	NameExact            *string                           `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// ExternalIp External IP
+	ExternalIp *string                           `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+	Field      *[]AzureSqlServersListParamsField `form:"field,omitempty" json:"field,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                         `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project             *openapi_types.UUID               `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName         *string                           `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid         *openapi_types.UUID               `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	ResourceGroup       *string                           `form:"resource_group,omitempty" json:"resource_group,omitempty"`
-	ResourceGroupUuid   *openapi_types.UUID               `form:"resource_group_uuid,omitempty" json:"resource_group_uuid,omitempty"`
-	ServiceSettingsName *string                           `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID               `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	State               *[]AzureSqlServersListParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Uuid                *openapi_types.UUID               `form:"uuid,omitempty" json:"uuid,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid       *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	ResourceGroup     *string             `form:"resource_group,omitempty" json:"resource_group,omitempty"`
+	ResourceGroupUuid *openapi_types.UUID `form:"resource_group_uuid,omitempty" json:"resource_group_uuid,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]AzureSqlServersListParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Uuid UUID
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // AzureSqlServersListParamsField defines parameters for AzureSqlServersList.
@@ -28911,34 +29225,68 @@ type AzureSqlServersListParamsState string
 
 // AzureSqlServersCountParams defines parameters for AzureSqlServersCount.
 type AzureSqlServersCountParams struct {
+	// BackendId Backend ID
 	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool               `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	Customer             *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string             `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string             `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string             `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string             `form:"description,omitempty" json:"description,omitempty"`
-	ExternalIp           *string             `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	Name                 *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact            *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// ExternalIp External IP
+	ExternalIp *string `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                          `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project             *openapi_types.UUID                `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName         *string                            `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid         *openapi_types.UUID                `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	ResourceGroup       *string                            `form:"resource_group,omitempty" json:"resource_group,omitempty"`
-	ResourceGroupUuid   *openapi_types.UUID                `form:"resource_group_uuid,omitempty" json:"resource_group_uuid,omitempty"`
-	ServiceSettingsName *string                            `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID                `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	State               *[]AzureSqlServersCountParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Uuid                *openapi_types.UUID                `form:"uuid,omitempty" json:"uuid,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid       *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	ResourceGroup     *string             `form:"resource_group,omitempty" json:"resource_group,omitempty"`
+	ResourceGroupUuid *openapi_types.UUID `form:"resource_group_uuid,omitempty" json:"resource_group_uuid,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]AzureSqlServersCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Uuid UUID
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // AzureSqlServersCountParamsState defines parameters for AzureSqlServersCount.
@@ -28954,35 +29302,69 @@ type AzureSqlServersRetrieveParamsField string
 
 // AzureVirtualmachinesListParams defines parameters for AzureVirtualmachinesList.
 type AzureVirtualmachinesListParams struct {
+	// BackendId Backend ID
 	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool                                  `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	Customer             *openapi_types.UUID                    `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string                                `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string                                `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string                                `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID                    `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string                                `form:"description,omitempty" json:"description,omitempty"`
-	ExternalIp           *string                                `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	Field                *[]AzureVirtualmachinesListParamsField `form:"field,omitempty" json:"field,omitempty"`
-	Name                 *string                                `form:"name,omitempty" json:"name,omitempty"`
-	NameExact            *string                                `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// ExternalIp External IP
+	ExternalIp *string                                `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+	Field      *[]AzureVirtualmachinesListParamsField `form:"field,omitempty" json:"field,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                              `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project             *openapi_types.UUID                    `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName         *string                                `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid         *openapi_types.UUID                    `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	ResourceGroup       *string                                `form:"resource_group,omitempty" json:"resource_group,omitempty"`
-	ResourceGroupUuid   *openapi_types.UUID                    `form:"resource_group_uuid,omitempty" json:"resource_group_uuid,omitempty"`
-	ServiceSettingsName *string                                `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID                    `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	State               *[]AzureVirtualmachinesListParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Uuid                *openapi_types.UUID                    `form:"uuid,omitempty" json:"uuid,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid       *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	ResourceGroup     *string             `form:"resource_group,omitempty" json:"resource_group,omitempty"`
+	ResourceGroupUuid *openapi_types.UUID `form:"resource_group_uuid,omitempty" json:"resource_group_uuid,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]AzureVirtualmachinesListParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Uuid UUID
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // AzureVirtualmachinesListParamsField defines parameters for AzureVirtualmachinesList.
@@ -28993,34 +29375,68 @@ type AzureVirtualmachinesListParamsState string
 
 // AzureVirtualmachinesCountParams defines parameters for AzureVirtualmachinesCount.
 type AzureVirtualmachinesCountParams struct {
+	// BackendId Backend ID
 	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool               `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	Customer             *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string             `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string             `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string             `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string             `form:"description,omitempty" json:"description,omitempty"`
-	ExternalIp           *string             `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	Name                 *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact            *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// ExternalIp External IP
+	ExternalIp *string `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                               `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project             *openapi_types.UUID                     `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName         *string                                 `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid         *openapi_types.UUID                     `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	ResourceGroup       *string                                 `form:"resource_group,omitempty" json:"resource_group,omitempty"`
-	ResourceGroupUuid   *openapi_types.UUID                     `form:"resource_group_uuid,omitempty" json:"resource_group_uuid,omitempty"`
-	ServiceSettingsName *string                                 `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID                     `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	State               *[]AzureVirtualmachinesCountParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Uuid                *openapi_types.UUID                     `form:"uuid,omitempty" json:"uuid,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid       *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	ResourceGroup     *string             `form:"resource_group,omitempty" json:"resource_group,omitempty"`
+	ResourceGroupUuid *openapi_types.UUID `form:"resource_group_uuid,omitempty" json:"resource_group_uuid,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]AzureVirtualmachinesCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Uuid UUID
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // AzureVirtualmachinesCountParamsState defines parameters for AzureVirtualmachinesCount.
@@ -29119,9 +29535,13 @@ type BackendResourcesListParams struct {
 	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
 
 	// Modified Modified after
-	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
-	Name      *string    `form:"name,omitempty" json:"name,omitempty"`
-	NameExact *string    `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// O Ordering
 	//
@@ -29152,9 +29572,13 @@ type BackendResourcesCountParams struct {
 	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
 
 	// Modified Modified after
-	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
-	Name      *string    `form:"name,omitempty" json:"name,omitempty"`
-	NameExact *string    `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// O Ordering
 	//
@@ -29254,9 +29678,13 @@ type BookingResourcesListParams struct {
 	LimitComponentCount *float32 `form:"limit_component_count,omitempty" json:"limit_component_count,omitempty"`
 
 	// Modified Modified after
-	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
-	Name      *string    `form:"name,omitempty" json:"name,omitempty"`
-	NameExact *string    `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// O Ordering
 	//
@@ -29382,9 +29810,13 @@ type BookingResourcesCountParams struct {
 	LimitComponentCount *float32 `form:"limit_component_count,omitempty" json:"limit_component_count,omitempty"`
 
 	// Modified Modified after
-	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
-	Name      *string    `form:"name,omitempty" json:"name,omitempty"`
-	NameExact *string    `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// O Ordering
 	//
@@ -30044,21 +30476,32 @@ type CustomerQuotasCountParams struct {
 
 // CustomersListParams defines parameters for CustomersList.
 type CustomersListParams struct {
-	Abbreviation    *string                     `form:"abbreviation,omitempty" json:"abbreviation,omitempty"`
-	AgreementNumber *string                     `form:"agreement_number,omitempty" json:"agreement_number,omitempty"`
-	Archived        *bool                       `form:"archived,omitempty" json:"archived,omitempty"`
-	BackendId       *string                     `form:"backend_id,omitempty" json:"backend_id,omitempty"`
-	ContactDetails  *string                     `form:"contact_details,omitempty" json:"contact_details,omitempty"`
-	Field           *[]CustomersListParamsField `form:"field,omitempty" json:"field,omitempty"`
-	Name            *string                     `form:"name,omitempty" json:"name,omitempty"`
-	NameExact       *string                     `form:"name_exact,omitempty" json:"name_exact,omitempty"`
-	NativeName      *string                     `form:"native_name,omitempty" json:"native_name,omitempty"`
+	// Abbreviation Abbreviation
+	Abbreviation    *string `form:"abbreviation,omitempty" json:"abbreviation,omitempty"`
+	AgreementNumber *string `form:"agreement_number,omitempty" json:"agreement_number,omitempty"`
+	Archived        *bool   `form:"archived,omitempty" json:"archived,omitempty"`
+	BackendId       *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+
+	// ContactDetails Contact details
+	ContactDetails *string                     `form:"contact_details,omitempty" json:"contact_details,omitempty"`
+	Field          *[]CustomersListParamsField `form:"field,omitempty" json:"field,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// NativeName Native name
+	NativeName *string `form:"native_name,omitempty" json:"native_name,omitempty"`
 
 	// O Which field to use when ordering the results.
-	O                     *string `form:"o,omitempty" json:"o,omitempty"`
+	O *string `form:"o,omitempty" json:"o,omitempty"`
+
+	// OrganizationGroupName Organization group name
 	OrganizationGroupName *string `form:"organization_group_name,omitempty" json:"organization_group_name,omitempty"`
 
-	// OrganizationGroupUuid organization_group_uuid
+	// OrganizationGroupUuid Organization group UUID
 	OrganizationGroupUuid *[]openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
 
 	// OwnedByCurrentUser Return a list of customers where current user is owner.
@@ -30080,20 +30523,31 @@ type CustomersListParamsField string
 
 // CustomersCountParams defines parameters for CustomersCount.
 type CustomersCountParams struct {
+	// Abbreviation Abbreviation
 	Abbreviation    *string `form:"abbreviation,omitempty" json:"abbreviation,omitempty"`
 	AgreementNumber *string `form:"agreement_number,omitempty" json:"agreement_number,omitempty"`
 	Archived        *bool   `form:"archived,omitempty" json:"archived,omitempty"`
 	BackendId       *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
-	ContactDetails  *string `form:"contact_details,omitempty" json:"contact_details,omitempty"`
-	Name            *string `form:"name,omitempty" json:"name,omitempty"`
-	NameExact       *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
-	NativeName      *string `form:"native_name,omitempty" json:"native_name,omitempty"`
+
+	// ContactDetails Contact details
+	ContactDetails *string `form:"contact_details,omitempty" json:"contact_details,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// NativeName Native name
+	NativeName *string `form:"native_name,omitempty" json:"native_name,omitempty"`
 
 	// O Which field to use when ordering the results.
-	O                     *string `form:"o,omitempty" json:"o,omitempty"`
+	O *string `form:"o,omitempty" json:"o,omitempty"`
+
+	// OrganizationGroupName Organization group name
 	OrganizationGroupName *string `form:"organization_group_name,omitempty" json:"organization_group_name,omitempty"`
 
-	// OrganizationGroupUuid organization_group_uuid
+	// OrganizationGroupUuid Organization group UUID
 	OrganizationGroupUuid *[]openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
 
 	// OwnedByCurrentUser Return a list of customers where current user is owner.
@@ -30112,20 +30566,31 @@ type CustomersCountParams struct {
 
 // CustomersCountriesListParams defines parameters for CustomersCountriesList.
 type CustomersCountriesListParams struct {
+	// Abbreviation Abbreviation
 	Abbreviation    *string `form:"abbreviation,omitempty" json:"abbreviation,omitempty"`
 	AgreementNumber *string `form:"agreement_number,omitempty" json:"agreement_number,omitempty"`
 	Archived        *bool   `form:"archived,omitempty" json:"archived,omitempty"`
 	BackendId       *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
-	ContactDetails  *string `form:"contact_details,omitempty" json:"contact_details,omitempty"`
-	Name            *string `form:"name,omitempty" json:"name,omitempty"`
-	NameExact       *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
-	NativeName      *string `form:"native_name,omitempty" json:"native_name,omitempty"`
+
+	// ContactDetails Contact details
+	ContactDetails *string `form:"contact_details,omitempty" json:"contact_details,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// NativeName Native name
+	NativeName *string `form:"native_name,omitempty" json:"native_name,omitempty"`
 
 	// O Which field to use when ordering the results.
-	O                     *string `form:"o,omitempty" json:"o,omitempty"`
+	O *string `form:"o,omitempty" json:"o,omitempty"`
+
+	// OrganizationGroupName Organization group name
 	OrganizationGroupName *string `form:"organization_group_name,omitempty" json:"organization_group_name,omitempty"`
 
-	// OrganizationGroupUuid organization_group_uuid
+	// OrganizationGroupUuid Organization group UUID
 	OrganizationGroupUuid *[]openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
 
 	// OwnedByCurrentUser Return a list of customers where current user is owner.
@@ -30144,20 +30609,31 @@ type CustomersCountriesListParams struct {
 
 // CustomersCountriesCountParams defines parameters for CustomersCountriesCount.
 type CustomersCountriesCountParams struct {
+	// Abbreviation Abbreviation
 	Abbreviation    *string `form:"abbreviation,omitempty" json:"abbreviation,omitempty"`
 	AgreementNumber *string `form:"agreement_number,omitempty" json:"agreement_number,omitempty"`
 	Archived        *bool   `form:"archived,omitempty" json:"archived,omitempty"`
 	BackendId       *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
-	ContactDetails  *string `form:"contact_details,omitempty" json:"contact_details,omitempty"`
-	Name            *string `form:"name,omitempty" json:"name,omitempty"`
-	NameExact       *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
-	NativeName      *string `form:"native_name,omitempty" json:"native_name,omitempty"`
+
+	// ContactDetails Contact details
+	ContactDetails *string `form:"contact_details,omitempty" json:"contact_details,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// NativeName Native name
+	NativeName *string `form:"native_name,omitempty" json:"native_name,omitempty"`
 
 	// O Which field to use when ordering the results.
-	O                     *string `form:"o,omitempty" json:"o,omitempty"`
+	O *string `form:"o,omitempty" json:"o,omitempty"`
+
+	// OrganizationGroupName Organization group name
 	OrganizationGroupName *string `form:"organization_group_name,omitempty" json:"organization_group_name,omitempty"`
 
-	// OrganizationGroupUuid organization_group_uuid
+	// OrganizationGroupUuid Organization group UUID
 	OrganizationGroupUuid *[]openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
 
 	// OwnedByCurrentUser Return a list of customers where current user is owner.
@@ -30217,23 +30693,33 @@ type CustomersUsersListParams struct {
 	CivilNumber   *string    `form:"civil_number,omitempty" json:"civil_number,omitempty"`
 
 	// DateJoined Date joined after
-	DateJoined  *time.Time                       `form:"date_joined,omitempty" json:"date_joined,omitempty"`
-	Description *string                          `form:"description,omitempty" json:"description,omitempty"`
-	Email       *string                          `form:"email,omitempty" json:"email,omitempty"`
-	Field       *[]CustomersUsersListParamsField `form:"field,omitempty" json:"field,omitempty"`
+	DateJoined  *time.Time `form:"date_joined,omitempty" json:"date_joined,omitempty"`
+	Description *string    `form:"description,omitempty" json:"description,omitempty"`
+
+	// Email Email
+	Email *string                          `form:"email,omitempty" json:"email,omitempty"`
+	Field *[]CustomersUsersListParamsField `form:"field,omitempty" json:"field,omitempty"`
 
 	// FullName Full name
 	FullName *string `form:"full_name,omitempty" json:"full_name,omitempty"`
-	IsActive *bool   `form:"is_active,omitempty" json:"is_active,omitempty"`
+
+	// IsActive Is active
+	IsActive *bool `form:"is_active,omitempty" json:"is_active,omitempty"`
+
+	// JobTitle Job title
 	JobTitle *string `form:"job_title,omitempty" json:"job_title,omitempty"`
 
 	// Modified Date modified after
-	Modified   *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
-	NativeName *string    `form:"native_name,omitempty" json:"native_name,omitempty"`
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// NativeName Native name
+	NativeName *string `form:"native_name,omitempty" json:"native_name,omitempty"`
 
 	// O Ordering. Sort by a combination of first name, last name, and username.
-	O            *CustomersUsersListParamsO `form:"o,omitempty" json:"o,omitempty"`
-	Organization *string                    `form:"organization,omitempty" json:"organization,omitempty"`
+	O *CustomersUsersListParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// Organization Organization
+	Organization *string `form:"organization,omitempty" json:"organization,omitempty"`
 
 	// OrganizationRole Filter by one or more organization roles. Select a standard role or provide a custom role string. Can be specified multiple times.
 	OrganizationRole *[]CustomersUsersListParams_OrganizationRole_Item `form:"organization_role,omitempty" json:"organization_role,omitempty"`
@@ -30251,7 +30737,9 @@ type CustomersUsersListParams struct {
 
 	// UserKeyword User keyword
 	UserKeyword *string `form:"user_keyword,omitempty" json:"user_keyword,omitempty"`
-	Username    *string `form:"username,omitempty" json:"username,omitempty"`
+
+	// Username Username
+	Username *string `form:"username,omitempty" json:"username,omitempty"`
 }
 
 // CustomersUsersListParamsField defines parameters for CustomersUsersList.
@@ -30358,33 +30846,65 @@ type DailyQuotasRetrieveParams struct {
 
 // DigitaloceanDropletsListParams defines parameters for DigitaloceanDropletsList.
 type DigitaloceanDropletsListParams struct {
+	// BackendId Backend ID
 	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool                                  `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	Customer             *openapi_types.UUID                    `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string                                `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string                                `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string                                `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID                    `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string                                `form:"description,omitempty" json:"description,omitempty"`
-	ExternalIp           *string                                `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	Field                *[]DigitaloceanDropletsListParamsField `form:"field,omitempty" json:"field,omitempty"`
-	Name                 *string                                `form:"name,omitempty" json:"name,omitempty"`
-	NameExact            *string                                `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string                                `form:"description,omitempty" json:"description,omitempty"`
+	ExternalIp  *string                                `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+	Field       *[]DigitaloceanDropletsListParamsField `form:"field,omitempty" json:"field,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                              `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project             *openapi_types.UUID                    `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName         *string                                `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid         *openapi_types.UUID                    `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	ServiceSettingsName *string                                `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID                    `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	State               *[]DigitaloceanDropletsListParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Uuid                *openapi_types.UUID                    `form:"uuid,omitempty" json:"uuid,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]DigitaloceanDropletsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Uuid UUID
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // DigitaloceanDropletsListParamsField defines parameters for DigitaloceanDropletsList.
@@ -30395,32 +30915,64 @@ type DigitaloceanDropletsListParamsState string
 
 // DigitaloceanDropletsCountParams defines parameters for DigitaloceanDropletsCount.
 type DigitaloceanDropletsCountParams struct {
+	// BackendId Backend ID
 	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool               `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	Customer             *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string             `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string             `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string             `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string             `form:"description,omitempty" json:"description,omitempty"`
-	ExternalIp           *string             `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	Name                 *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact            *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+	ExternalIp  *string `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                               `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project             *openapi_types.UUID                     `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName         *string                                 `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid         *openapi_types.UUID                     `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	ServiceSettingsName *string                                 `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID                     `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	State               *[]DigitaloceanDropletsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Uuid                *openapi_types.UUID                     `form:"uuid,omitempty" json:"uuid,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]DigitaloceanDropletsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Uuid UUID
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // DigitaloceanDropletsCountParamsState defines parameters for DigitaloceanDropletsCount.
@@ -30437,8 +30989,12 @@ type DigitaloceanDropletsRetrieveParamsField string
 // DigitaloceanImagesListParams defines parameters for DigitaloceanImagesList.
 type DigitaloceanImagesListParams struct {
 	Distribution *string `form:"distribution,omitempty" json:"distribution,omitempty"`
-	Name         *string `form:"name,omitempty" json:"name,omitempty"`
-	NameExact    *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// O Ordering
 	//
@@ -30458,8 +31014,12 @@ type DigitaloceanImagesListParamsO string
 // DigitaloceanImagesCountParams defines parameters for DigitaloceanImagesCount.
 type DigitaloceanImagesCountParams struct {
 	Distribution *string `form:"distribution,omitempty" json:"distribution,omitempty"`
-	Name         *string `form:"name,omitempty" json:"name,omitempty"`
-	NameExact    *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// O Ordering
 	//
@@ -30478,7 +31038,10 @@ type DigitaloceanImagesCountParamsO string
 
 // DigitaloceanRegionsListParams defines parameters for DigitaloceanRegionsList.
 type DigitaloceanRegionsListParams struct {
-	Name      *string `form:"name,omitempty" json:"name,omitempty"`
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
 	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
@@ -30490,7 +31053,10 @@ type DigitaloceanRegionsListParams struct {
 
 // DigitaloceanRegionsCountParams defines parameters for DigitaloceanRegionsCount.
 type DigitaloceanRegionsCountParams struct {
-	Name      *string `form:"name,omitempty" json:"name,omitempty"`
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
 	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
@@ -30502,9 +31068,13 @@ type DigitaloceanRegionsCountParams struct {
 
 // DigitaloceanSizesListParams defines parameters for DigitaloceanSizesList.
 type DigitaloceanSizesListParams struct {
-	Cores     *int    `form:"cores,omitempty" json:"cores,omitempty"`
-	Disk      *int    `form:"disk,omitempty" json:"disk,omitempty"`
-	Name      *string `form:"name,omitempty" json:"name,omitempty"`
+	Cores *int `form:"cores,omitempty" json:"cores,omitempty"`
+	Disk  *int `form:"disk,omitempty" json:"disk,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
 	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
@@ -30517,9 +31087,13 @@ type DigitaloceanSizesListParams struct {
 
 // DigitaloceanSizesCountParams defines parameters for DigitaloceanSizesCount.
 type DigitaloceanSizesCountParams struct {
-	Cores     *int    `form:"cores,omitempty" json:"cores,omitempty"`
-	Disk      *int    `form:"disk,omitempty" json:"disk,omitempty"`
-	Name      *string `form:"name,omitempty" json:"name,omitempty"`
+	Cores *int `form:"cores,omitempty" json:"cores,omitempty"`
+	Disk  *int `form:"disk,omitempty" json:"disk,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
 	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
@@ -30755,20 +31329,31 @@ type FeatureValuesJSONBody map[string]interface{}
 
 // FinancialReportsListParams defines parameters for FinancialReportsList.
 type FinancialReportsListParams struct {
+	// Abbreviation Abbreviation
 	Abbreviation    *string `form:"abbreviation,omitempty" json:"abbreviation,omitempty"`
 	AgreementNumber *string `form:"agreement_number,omitempty" json:"agreement_number,omitempty"`
 	Archived        *bool   `form:"archived,omitempty" json:"archived,omitempty"`
 	BackendId       *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
-	ContactDetails  *string `form:"contact_details,omitempty" json:"contact_details,omitempty"`
-	Name            *string `form:"name,omitempty" json:"name,omitempty"`
-	NameExact       *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
-	NativeName      *string `form:"native_name,omitempty" json:"native_name,omitempty"`
+
+	// ContactDetails Contact details
+	ContactDetails *string `form:"contact_details,omitempty" json:"contact_details,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// NativeName Native name
+	NativeName *string `form:"native_name,omitempty" json:"native_name,omitempty"`
 
 	// O Which field to use when ordering the results.
-	O                     *string `form:"o,omitempty" json:"o,omitempty"`
+	O *string `form:"o,omitempty" json:"o,omitempty"`
+
+	// OrganizationGroupName Organization group name
 	OrganizationGroupName *string `form:"organization_group_name,omitempty" json:"organization_group_name,omitempty"`
 
-	// OrganizationGroupUuid organization_group_uuid
+	// OrganizationGroupUuid Organization group UUID
 	OrganizationGroupUuid *[]openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
 
 	// OwnedByCurrentUser Return a list of customers where current user is owner.
@@ -30787,20 +31372,31 @@ type FinancialReportsListParams struct {
 
 // FinancialReportsCountParams defines parameters for FinancialReportsCount.
 type FinancialReportsCountParams struct {
+	// Abbreviation Abbreviation
 	Abbreviation    *string `form:"abbreviation,omitempty" json:"abbreviation,omitempty"`
 	AgreementNumber *string `form:"agreement_number,omitempty" json:"agreement_number,omitempty"`
 	Archived        *bool   `form:"archived,omitempty" json:"archived,omitempty"`
 	BackendId       *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
-	ContactDetails  *string `form:"contact_details,omitempty" json:"contact_details,omitempty"`
-	Name            *string `form:"name,omitempty" json:"name,omitempty"`
-	NameExact       *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
-	NativeName      *string `form:"native_name,omitempty" json:"native_name,omitempty"`
+
+	// ContactDetails Contact details
+	ContactDetails *string `form:"contact_details,omitempty" json:"contact_details,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// NativeName Native name
+	NativeName *string `form:"native_name,omitempty" json:"native_name,omitempty"`
 
 	// O Which field to use when ordering the results.
-	O                     *string `form:"o,omitempty" json:"o,omitempty"`
+	O *string `form:"o,omitempty" json:"o,omitempty"`
+
+	// OrganizationGroupName Organization group name
 	OrganizationGroupName *string `form:"organization_group_name,omitempty" json:"organization_group_name,omitempty"`
 
-	// OrganizationGroupUuid organization_group_uuid
+	// OrganizationGroupUuid Organization group UUID
 	OrganizationGroupUuid *[]openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
 
 	// OwnedByCurrentUser Return a list of customers where current user is owner.
@@ -31384,9 +31980,13 @@ type KeysListParams struct {
 	IsShared          *bool                  `form:"is_shared,omitempty" json:"is_shared,omitempty"`
 
 	// Modified Modified after
-	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
-	Name      *string    `form:"name,omitempty" json:"name,omitempty"`
-	NameExact *string    `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// O Ordering
 	//
@@ -31396,9 +31996,13 @@ type KeysListParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// UserUuid User UUID
 	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
-	Uuid     *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
+
+	// Uuid UUID
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // KeysListParamsField defines parameters for KeysList.
@@ -31417,9 +32021,13 @@ type KeysCountParams struct {
 	IsShared          *bool      `form:"is_shared,omitempty" json:"is_shared,omitempty"`
 
 	// Modified Modified after
-	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
-	Name      *string    `form:"name,omitempty" json:"name,omitempty"`
-	NameExact *string    `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// O Ordering
 	//
@@ -31429,9 +32037,13 @@ type KeysCountParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// UserUuid User UUID
 	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
-	Uuid     *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
+
+	// Uuid UUID
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // KeysCountParamsO defines parameters for KeysCount.
@@ -33568,9 +34180,13 @@ type MarketplaceProviderOfferingsListParams struct {
 	Keyword *string `form:"keyword,omitempty" json:"keyword,omitempty"`
 
 	// Modified Modified after
-	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
-	Name      *string    `form:"name,omitempty" json:"name,omitempty"`
-	NameExact *string    `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// O Ordering
 	//
@@ -33678,9 +34294,13 @@ type MarketplaceProviderOfferingsCountParams struct {
 	Keyword *string `form:"keyword,omitempty" json:"keyword,omitempty"`
 
 	// Modified Modified after
-	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
-	Name      *string    `form:"name,omitempty" json:"name,omitempty"`
-	NameExact *string    `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// O Ordering
 	//
@@ -33785,9 +34405,13 @@ type MarketplaceProviderOfferingsGroupsListParams struct {
 	Keyword *string `form:"keyword,omitempty" json:"keyword,omitempty"`
 
 	// Modified Modified after
-	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
-	Name      *string    `form:"name,omitempty" json:"name,omitempty"`
-	NameExact *string    `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// O Ordering
 	//
@@ -33892,9 +34516,13 @@ type MarketplaceProviderOfferingsGroupsCountParams struct {
 	Keyword *string `form:"keyword,omitempty" json:"keyword,omitempty"`
 
 	// Modified Modified after
-	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
-	Name      *string    `form:"name,omitempty" json:"name,omitempty"`
-	NameExact *string    `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// O Ordering
 	//
@@ -34010,9 +34638,13 @@ type MarketplaceProviderOfferingsComponentStatsListParams struct {
 	Keyword *string `form:"keyword,omitempty" json:"keyword,omitempty"`
 
 	// Modified Modified after
-	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
-	Name      *string    `form:"name,omitempty" json:"name,omitempty"`
-	NameExact *string    `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// O Ordering
 	//
@@ -34124,9 +34756,13 @@ type MarketplaceProviderOfferingsCostsListParams struct {
 	Keyword *string `form:"keyword,omitempty" json:"keyword,omitempty"`
 
 	// Modified Modified after
-	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
-	Name      *string    `form:"name,omitempty" json:"name,omitempty"`
-	NameExact *string    `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// O Ordering
 	//
@@ -34235,9 +34871,13 @@ type MarketplaceProviderOfferingsCustomersListParams struct {
 	Keyword *string `form:"keyword,omitempty" json:"keyword,omitempty"`
 
 	// Modified Modified after
-	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
-	Name      *string    `form:"name,omitempty" json:"name,omitempty"`
-	NameExact *string    `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// O Ordering
 	//
@@ -34354,9 +34994,13 @@ type MarketplaceProviderOfferingsListCourseAccountsListParams struct {
 	Keyword *string `form:"keyword,omitempty" json:"keyword,omitempty"`
 
 	// Modified Modified after
-	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
-	Name      *string    `form:"name,omitempty" json:"name,omitempty"`
-	NameExact *string    `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// O Ordering
 	//
@@ -34475,9 +35119,13 @@ type MarketplaceProviderOfferingsListCustomerServiceAccountsListParams struct {
 	Keyword *string `form:"keyword,omitempty" json:"keyword,omitempty"`
 
 	// Modified Modified after
-	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
-	Name      *string    `form:"name,omitempty" json:"name,omitempty"`
-	NameExact *string    `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// O Ordering
 	//
@@ -34596,9 +35244,13 @@ type MarketplaceProviderOfferingsListProjectServiceAccountsListParams struct {
 	Keyword *string `form:"keyword,omitempty" json:"keyword,omitempty"`
 
 	// Modified Modified after
-	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
-	Name      *string    `form:"name,omitempty" json:"name,omitempty"`
-	NameExact *string    `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// O Ordering
 	//
@@ -34770,9 +35422,13 @@ type MarketplaceProviderResourcesListParams struct {
 	LimitComponentCount *float32 `form:"limit_component_count,omitempty" json:"limit_component_count,omitempty"`
 
 	// Modified Modified after
-	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
-	Name      *string    `form:"name,omitempty" json:"name,omitempty"`
-	NameExact *string    `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// O Ordering
 	//
@@ -34897,9 +35553,13 @@ type MarketplaceProviderResourcesCountParams struct {
 	LimitComponentCount *float32 `form:"limit_component_count,omitempty" json:"limit_component_count,omitempty"`
 
 	// Modified Modified after
-	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
-	Name      *string    `form:"name,omitempty" json:"name,omitempty"`
-	NameExact *string    `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// O Ordering
 	//
@@ -35037,9 +35697,13 @@ type MarketplacePublicOfferingsListParams struct {
 	Keyword *string `form:"keyword,omitempty" json:"keyword,omitempty"`
 
 	// Modified Modified after
-	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
-	Name      *string    `form:"name,omitempty" json:"name,omitempty"`
-	NameExact *string    `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// O Ordering
 	//
@@ -35147,9 +35811,13 @@ type MarketplacePublicOfferingsCountParams struct {
 	Keyword *string `form:"keyword,omitempty" json:"keyword,omitempty"`
 
 	// Modified Modified after
-	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
-	Name      *string    `form:"name,omitempty" json:"name,omitempty"`
-	NameExact *string    `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// O Ordering
 	//
@@ -35221,7 +35889,10 @@ type MarketplacePublicOfferingsRetrieveParamsField string
 
 // MarketplaceRelatedCustomersListParams defines parameters for MarketplaceRelatedCustomersList.
 type MarketplaceRelatedCustomersListParams struct {
-	Name      *string `form:"name,omitempty" json:"name,omitempty"`
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
 	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
@@ -35251,7 +35922,10 @@ type MarketplaceRemoteSynchronisationsCountParams struct {
 
 // MarketplaceResourceOfferingsListParams defines parameters for MarketplaceResourceOfferingsList.
 type MarketplaceResourceOfferingsListParams struct {
-	Name      *string `form:"name,omitempty" json:"name,omitempty"`
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
 	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
@@ -35346,9 +36020,13 @@ type MarketplaceResourcesListParams struct {
 	LimitComponentCount *float32 `form:"limit_component_count,omitempty" json:"limit_component_count,omitempty"`
 
 	// Modified Modified after
-	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
-	Name      *string    `form:"name,omitempty" json:"name,omitempty"`
-	NameExact *string    `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// O Ordering
 	//
@@ -35473,9 +36151,13 @@ type MarketplaceResourcesCountParams struct {
 	LimitComponentCount *float32 `form:"limit_component_count,omitempty" json:"limit_component_count,omitempty"`
 
 	// Modified Modified after
-	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
-	Name      *string    `form:"name,omitempty" json:"name,omitempty"`
-	NameExact *string    `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// O Ordering
 	//
@@ -35898,18 +36580,32 @@ type MarketplaceServiceProvidersCustomerProjectsListParams struct {
 	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
 
 	// Customer Multiple values may be separated by commas.
-	Customer             *[]openapi_types.UUID                                         `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string                                                       `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string                                                       `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string                                                       `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	Description          *string                                                       `form:"description,omitempty" json:"description,omitempty"`
-	Field                *[]MarketplaceServiceProvidersCustomerProjectsListParamsField `form:"field,omitempty" json:"field,omitempty"`
-	IsRemoved            *bool                                                         `form:"is_removed,omitempty" json:"is_removed,omitempty"`
+	Customer *[]openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// Description Description
+	Description *string                                                       `form:"description,omitempty" json:"description,omitempty"`
+	Field       *[]MarketplaceServiceProvidersCustomerProjectsListParamsField `form:"field,omitempty" json:"field,omitempty"`
+
+	// IsRemoved Is removed
+	IsRemoved *bool `form:"is_removed,omitempty" json:"is_removed,omitempty"`
 
 	// Modified Modified after
-	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
-	Name      *string    `form:"name,omitempty" json:"name,omitempty"`
-	NameExact *string    `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// O Ordering
 	//
@@ -35926,7 +36622,9 @@ type MarketplaceServiceProvidersCustomerProjectsListParams struct {
 
 	// Query Filter by name, slug, UUID, backend ID or resource effective ID
 	Query *string `form:"query,omitempty" json:"query,omitempty"`
-	Slug  *string `form:"slug,omitempty" json:"slug,omitempty"`
+
+	// Slug Slug
+	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
 }
 
 // MarketplaceServiceProvidersCustomerProjectsListParamsField defines parameters for MarketplaceServiceProvidersCustomerProjectsList.
@@ -35937,18 +36635,29 @@ type MarketplaceServiceProvidersCustomerProjectsListParamsO string
 
 // MarketplaceServiceProvidersCustomersListParams defines parameters for MarketplaceServiceProvidersCustomersList.
 type MarketplaceServiceProvidersCustomersListParams struct {
-	Abbreviation          *string                                                `form:"abbreviation,omitempty" json:"abbreviation,omitempty"`
-	AgreementNumber       *string                                                `form:"agreement_number,omitempty" json:"agreement_number,omitempty"`
-	Archived              *bool                                                  `form:"archived,omitempty" json:"archived,omitempty"`
-	BackendId             *string                                                `form:"backend_id,omitempty" json:"backend_id,omitempty"`
-	ContactDetails        *string                                                `form:"contact_details,omitempty" json:"contact_details,omitempty"`
-	Field                 *[]MarketplaceServiceProvidersCustomersListParamsField `form:"field,omitempty" json:"field,omitempty"`
-	Name                  *string                                                `form:"name,omitempty" json:"name,omitempty"`
-	NameExact             *string                                                `form:"name_exact,omitempty" json:"name_exact,omitempty"`
-	NativeName            *string                                                `form:"native_name,omitempty" json:"native_name,omitempty"`
-	OrganizationGroupName *string                                                `form:"organization_group_name,omitempty" json:"organization_group_name,omitempty"`
+	// Abbreviation Abbreviation
+	Abbreviation    *string `form:"abbreviation,omitempty" json:"abbreviation,omitempty"`
+	AgreementNumber *string `form:"agreement_number,omitempty" json:"agreement_number,omitempty"`
+	Archived        *bool   `form:"archived,omitempty" json:"archived,omitempty"`
+	BackendId       *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
-	// OrganizationGroupUuid organization_group_uuid
+	// ContactDetails Contact details
+	ContactDetails *string                                                `form:"contact_details,omitempty" json:"contact_details,omitempty"`
+	Field          *[]MarketplaceServiceProvidersCustomersListParamsField `form:"field,omitempty" json:"field,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// NativeName Native name
+	NativeName *string `form:"native_name,omitempty" json:"native_name,omitempty"`
+
+	// OrganizationGroupName Organization group name
+	OrganizationGroupName *string `form:"organization_group_name,omitempty" json:"organization_group_name,omitempty"`
+
+	// OrganizationGroupUuid Organization group UUID
 	OrganizationGroupUuid *[]openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
 
 	// OwnedByCurrentUser Return a list of customers where current user is owner.
@@ -35979,9 +36688,13 @@ type MarketplaceServiceProvidersKeysListParams struct {
 	IsShared          *bool                                             `form:"is_shared,omitempty" json:"is_shared,omitempty"`
 
 	// Modified Modified after
-	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
-	Name      *string    `form:"name,omitempty" json:"name,omitempty"`
-	NameExact *string    `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// O Ordering
 	//
@@ -35991,9 +36704,13 @@ type MarketplaceServiceProvidersKeysListParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// UserUuid User UUID
 	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
-	Uuid     *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
+
+	// Uuid UUID
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // MarketplaceServiceProvidersKeysListParamsField defines parameters for MarketplaceServiceProvidersKeysList.
@@ -36046,9 +36763,13 @@ type MarketplaceServiceProvidersOfferingsListParams struct {
 	Keyword *string `form:"keyword,omitempty" json:"keyword,omitempty"`
 
 	// Modified Modified after
-	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
-	Name      *string    `form:"name,omitempty" json:"name,omitempty"`
-	NameExact *string    `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// O Ordering
 	//
@@ -36210,18 +36931,32 @@ type MarketplaceServiceProvidersProjectsListParams struct {
 	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
 
 	// Customer Multiple values may be separated by commas.
-	Customer             *[]openapi_types.UUID                                 `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string                                               `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string                                               `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string                                               `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	Description          *string                                               `form:"description,omitempty" json:"description,omitempty"`
-	Field                *[]MarketplaceServiceProvidersProjectsListParamsField `form:"field,omitempty" json:"field,omitempty"`
-	IsRemoved            *bool                                                 `form:"is_removed,omitempty" json:"is_removed,omitempty"`
+	Customer *[]openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// Description Description
+	Description *string                                               `form:"description,omitempty" json:"description,omitempty"`
+	Field       *[]MarketplaceServiceProvidersProjectsListParamsField `form:"field,omitempty" json:"field,omitempty"`
+
+	// IsRemoved Is removed
+	IsRemoved *bool `form:"is_removed,omitempty" json:"is_removed,omitempty"`
 
 	// Modified Modified after
-	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
-	Name      *string    `form:"name,omitempty" json:"name,omitempty"`
-	NameExact *string    `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// O Ordering
 	//
@@ -36235,7 +36970,9 @@ type MarketplaceServiceProvidersProjectsListParams struct {
 
 	// Query Filter by name, slug, UUID, backend ID or resource effective ID
 	Query *string `form:"query,omitempty" json:"query,omitempty"`
-	Slug  *string `form:"slug,omitempty" json:"slug,omitempty"`
+
+	// Slug Slug
+	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
 }
 
 // MarketplaceServiceProvidersProjectsListParamsField defines parameters for MarketplaceServiceProvidersProjectsList.
@@ -36246,18 +36983,29 @@ type MarketplaceServiceProvidersProjectsListParamsO string
 
 // MarketplaceServiceProvidersUserCustomersListParams defines parameters for MarketplaceServiceProvidersUserCustomersList.
 type MarketplaceServiceProvidersUserCustomersListParams struct {
-	Abbreviation          *string                                                    `form:"abbreviation,omitempty" json:"abbreviation,omitempty"`
-	AgreementNumber       *string                                                    `form:"agreement_number,omitempty" json:"agreement_number,omitempty"`
-	Archived              *bool                                                      `form:"archived,omitempty" json:"archived,omitempty"`
-	BackendId             *string                                                    `form:"backend_id,omitempty" json:"backend_id,omitempty"`
-	ContactDetails        *string                                                    `form:"contact_details,omitempty" json:"contact_details,omitempty"`
-	Field                 *[]MarketplaceServiceProvidersUserCustomersListParamsField `form:"field,omitempty" json:"field,omitempty"`
-	Name                  *string                                                    `form:"name,omitempty" json:"name,omitempty"`
-	NameExact             *string                                                    `form:"name_exact,omitempty" json:"name_exact,omitempty"`
-	NativeName            *string                                                    `form:"native_name,omitempty" json:"native_name,omitempty"`
-	OrganizationGroupName *string                                                    `form:"organization_group_name,omitempty" json:"organization_group_name,omitempty"`
+	// Abbreviation Abbreviation
+	Abbreviation    *string `form:"abbreviation,omitempty" json:"abbreviation,omitempty"`
+	AgreementNumber *string `form:"agreement_number,omitempty" json:"agreement_number,omitempty"`
+	Archived        *bool   `form:"archived,omitempty" json:"archived,omitempty"`
+	BackendId       *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
-	// OrganizationGroupUuid organization_group_uuid
+	// ContactDetails Contact details
+	ContactDetails *string                                                    `form:"contact_details,omitempty" json:"contact_details,omitempty"`
+	Field          *[]MarketplaceServiceProvidersUserCustomersListParamsField `form:"field,omitempty" json:"field,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// NativeName Native name
+	NativeName *string `form:"native_name,omitempty" json:"native_name,omitempty"`
+
+	// OrganizationGroupName Organization group name
+	OrganizationGroupName *string `form:"organization_group_name,omitempty" json:"organization_group_name,omitempty"`
+
+	// OrganizationGroupUuid Organization group UUID
 	OrganizationGroupUuid *[]openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
 
 	// OwnedByCurrentUser Return a list of customers where current user is owner.
@@ -36283,31 +37031,47 @@ type MarketplaceServiceProvidersUserCustomersListParamsField string
 // MarketplaceServiceProvidersUsersListParams defines parameters for MarketplaceServiceProvidersUsersList.
 type MarketplaceServiceProvidersUsersListParams struct {
 	// AgreementDate Agreement date after
-	AgreementDate *time.Time          `form:"agreement_date,omitempty" json:"agreement_date,omitempty"`
-	CivilNumber   *string             `form:"civil_number,omitempty" json:"civil_number,omitempty"`
-	CustomerUuid  *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+	AgreementDate *time.Time `form:"agreement_date,omitempty" json:"agreement_date,omitempty"`
+	CivilNumber   *string    `form:"civil_number,omitempty" json:"civil_number,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
 
 	// DateJoined Date joined after
-	DateJoined  *time.Time                                         `form:"date_joined,omitempty" json:"date_joined,omitempty"`
-	Description *string                                            `form:"description,omitempty" json:"description,omitempty"`
-	Email       *string                                            `form:"email,omitempty" json:"email,omitempty"`
-	Field       *[]MarketplaceServiceProvidersUsersListParamsField `form:"field,omitempty" json:"field,omitempty"`
+	DateJoined  *time.Time `form:"date_joined,omitempty" json:"date_joined,omitempty"`
+	Description *string    `form:"description,omitempty" json:"description,omitempty"`
+
+	// Email Email
+	Email *string                                            `form:"email,omitempty" json:"email,omitempty"`
+	Field *[]MarketplaceServiceProvidersUsersListParamsField `form:"field,omitempty" json:"field,omitempty"`
 
 	// FullName Full name
-	FullName  *string `form:"full_name,omitempty" json:"full_name,omitempty"`
-	IsActive  *bool   `form:"is_active,omitempty" json:"is_active,omitempty"`
-	IsStaff   *bool   `form:"is_staff,omitempty" json:"is_staff,omitempty"`
-	IsSupport *bool   `form:"is_support,omitempty" json:"is_support,omitempty"`
-	JobTitle  *string `form:"job_title,omitempty" json:"job_title,omitempty"`
+	FullName *string `form:"full_name,omitempty" json:"full_name,omitempty"`
+
+	// IsActive Is active
+	IsActive *bool `form:"is_active,omitempty" json:"is_active,omitempty"`
+
+	// IsStaff Is staff
+	IsStaff *bool `form:"is_staff,omitempty" json:"is_staff,omitempty"`
+
+	// IsSupport Is support
+	IsSupport *bool `form:"is_support,omitempty" json:"is_support,omitempty"`
+
+	// JobTitle Job title
+	JobTitle *string `form:"job_title,omitempty" json:"job_title,omitempty"`
 
 	// Modified Date modified after
-	Modified   *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
-	NativeName *string    `form:"native_name,omitempty" json:"native_name,omitempty"`
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// NativeName Native name
+	NativeName *string `form:"native_name,omitempty" json:"native_name,omitempty"`
 
 	// O Ordering
 	//
-	O            *[]MarketplaceServiceProvidersUsersListParamsO `form:"o,omitempty" json:"o,omitempty"`
-	Organization *string                                        `form:"organization,omitempty" json:"organization,omitempty"`
+	O *[]MarketplaceServiceProvidersUsersListParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// Organization Organization
+	Organization *string `form:"organization,omitempty" json:"organization,omitempty"`
 
 	// OrganizationRoles Organization roles
 	OrganizationRoles *string `form:"organization_roles,omitempty" json:"organization_roles,omitempty"`
@@ -36320,8 +37084,10 @@ type MarketplaceServiceProvidersUsersListParams struct {
 	PhoneNumber *string   `form:"phone_number,omitempty" json:"phone_number,omitempty"`
 
 	// ProjectRoles Project roles
-	ProjectRoles *string             `form:"project_roles,omitempty" json:"project_roles,omitempty"`
-	ProjectUuid  *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	ProjectRoles *string `form:"project_roles,omitempty" json:"project_roles,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 
 	// Query Filter by first name, last name, civil number, username or email
 	Query              *string `form:"query,omitempty" json:"query,omitempty"`
@@ -36329,7 +37095,9 @@ type MarketplaceServiceProvidersUsersListParams struct {
 
 	// UserKeyword User keyword
 	UserKeyword *string `form:"user_keyword,omitempty" json:"user_keyword,omitempty"`
-	Username    *string `form:"username,omitempty" json:"username,omitempty"`
+
+	// Username Username (exact)
+	Username *string `form:"username,omitempty" json:"username,omitempty"`
 
 	// UsernameList Comma-separated usernames
 	UsernameList *string `form:"username_list,omitempty" json:"username_list,omitempty"`
@@ -37169,41 +37937,65 @@ type MarketplaceUserOfferingConsentsCountParamsO string
 
 // NotificationMessagesTemplatesListParams defines parameters for NotificationMessagesTemplatesList.
 type NotificationMessagesTemplatesListParams struct {
-	IsOverridden *bool   `form:"is_overridden,omitempty" json:"is_overridden,omitempty"`
-	Name         *string `form:"name,omitempty" json:"name,omitempty"`
-	NameExact    *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	// IsOverridden Is overridden
+	IsOverridden *bool `form:"is_overridden,omitempty" json:"is_overridden,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize  *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Path      *string   `form:"path,omitempty" json:"path,omitempty"`
-	PathExact *string   `form:"path_exact,omitempty" json:"path_exact,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Path Path
+	Path *string `form:"path,omitempty" json:"path,omitempty"`
+
+	// PathExact Path (exact)
+	PathExact *string `form:"path_exact,omitempty" json:"path_exact,omitempty"`
 }
 
 // NotificationMessagesTemplatesCountParams defines parameters for NotificationMessagesTemplatesCount.
 type NotificationMessagesTemplatesCountParams struct {
-	IsOverridden *bool   `form:"is_overridden,omitempty" json:"is_overridden,omitempty"`
-	Name         *string `form:"name,omitempty" json:"name,omitempty"`
-	NameExact    *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	// IsOverridden Is overridden
+	IsOverridden *bool `form:"is_overridden,omitempty" json:"is_overridden,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize  *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Path      *string   `form:"path,omitempty" json:"path,omitempty"`
-	PathExact *string   `form:"path_exact,omitempty" json:"path_exact,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Path Path
+	Path *string `form:"path,omitempty" json:"path,omitempty"`
+
+	// PathExact Path (exact)
+	PathExact *string `form:"path_exact,omitempty" json:"path_exact,omitempty"`
 }
 
 // NotificationMessagesListParams defines parameters for NotificationMessagesList.
 type NotificationMessagesListParams struct {
-	Description  *string `form:"description,omitempty" json:"description,omitempty"`
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// IsOverridden Is overridden
 	IsOverridden *bool   `form:"is_overridden,omitempty" json:"is_overridden,omitempty"`
 	Key          *string `form:"key,omitempty" json:"key,omitempty"`
-	Name         *string `form:"name,omitempty" json:"name,omitempty"`
-	NameExact    *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -37217,11 +38009,17 @@ type NotificationMessagesListParams struct {
 
 // NotificationMessagesCountParams defines parameters for NotificationMessagesCount.
 type NotificationMessagesCountParams struct {
-	Description  *string `form:"description,omitempty" json:"description,omitempty"`
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// IsOverridden Is overridden
 	IsOverridden *bool   `form:"is_overridden,omitempty" json:"is_overridden,omitempty"`
 	Key          *string `form:"key,omitempty" json:"key,omitempty"`
-	Name         *string `form:"name,omitempty" json:"name,omitempty"`
-	NameExact    *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -37374,34 +38172,68 @@ type OpenportalAllocationUserUsageCountParams struct {
 
 // OpenportalAllocationsListParams defines parameters for OpenportalAllocationsList.
 type OpenportalAllocationsListParams struct {
+	// BackendId Backend ID
 	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool                                   `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	Customer             *openapi_types.UUID                     `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string                                 `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string                                 `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string                                 `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID                     `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string                                 `form:"description,omitempty" json:"description,omitempty"`
-	ExternalIp           *string                                 `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	Field                *[]OpenportalAllocationsListParamsField `form:"field,omitempty" json:"field,omitempty"`
-	IsActive             *bool                                   `form:"is_active,omitempty" json:"is_active,omitempty"`
-	Name                 *string                                 `form:"name,omitempty" json:"name,omitempty"`
-	NameExact            *string                                 `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// ExternalIp External IP
+	ExternalIp *string                                 `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+	Field      *[]OpenportalAllocationsListParamsField `form:"field,omitempty" json:"field,omitempty"`
+	IsActive   *bool                                   `form:"is_active,omitempty" json:"is_active,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                               `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project             *openapi_types.UUID                     `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName         *string                                 `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid         *openapi_types.UUID                     `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	ServiceSettingsName *string                                 `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID                     `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	State               *[]OpenportalAllocationsListParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Uuid                *openapi_types.UUID                     `form:"uuid,omitempty" json:"uuid,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]OpenportalAllocationsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Uuid UUID
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenportalAllocationsListParamsField defines parameters for OpenportalAllocationsList.
@@ -37412,33 +38244,67 @@ type OpenportalAllocationsListParamsState string
 
 // OpenportalAllocationsCountParams defines parameters for OpenportalAllocationsCount.
 type OpenportalAllocationsCountParams struct {
+	// BackendId Backend ID
 	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool               `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	Customer             *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string             `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string             `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string             `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string             `form:"description,omitempty" json:"description,omitempty"`
-	ExternalIp           *string             `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	IsActive             *bool               `form:"is_active,omitempty" json:"is_active,omitempty"`
-	Name                 *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact            *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// ExternalIp External IP
+	ExternalIp *string `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+	IsActive   *bool   `form:"is_active,omitempty" json:"is_active,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                                `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project             *openapi_types.UUID                      `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName         *string                                  `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid         *openapi_types.UUID                      `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	ServiceSettingsName *string                                  `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID                      `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	State               *[]OpenportalAllocationsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Uuid                *openapi_types.UUID                      `form:"uuid,omitempty" json:"uuid,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]OpenportalAllocationsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Uuid UUID
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenportalAllocationsCountParamsState defines parameters for OpenportalAllocationsCount.
@@ -37566,34 +38432,68 @@ type OpenportalProjectinfoCountParams struct {
 
 // OpenportalRemoteAllocationsListParams defines parameters for OpenportalRemoteAllocationsList.
 type OpenportalRemoteAllocationsListParams struct {
+	// BackendId Backend ID
 	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool                                         `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	Customer             *openapi_types.UUID                           `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string                                       `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string                                       `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string                                       `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID                           `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string                                       `form:"description,omitempty" json:"description,omitempty"`
-	ExternalIp           *string                                       `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	Field                *[]OpenportalRemoteAllocationsListParamsField `form:"field,omitempty" json:"field,omitempty"`
-	IsActive             *bool                                         `form:"is_active,omitempty" json:"is_active,omitempty"`
-	Name                 *string                                       `form:"name,omitempty" json:"name,omitempty"`
-	NameExact            *string                                       `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// ExternalIp External IP
+	ExternalIp *string                                       `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+	Field      *[]OpenportalRemoteAllocationsListParamsField `form:"field,omitempty" json:"field,omitempty"`
+	IsActive   *bool                                         `form:"is_active,omitempty" json:"is_active,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                                     `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project             *openapi_types.UUID                           `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName         *string                                       `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid         *openapi_types.UUID                           `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	ServiceSettingsName *string                                       `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID                           `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	State               *[]OpenportalRemoteAllocationsListParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Uuid                *openapi_types.UUID                           `form:"uuid,omitempty" json:"uuid,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]OpenportalRemoteAllocationsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Uuid UUID
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenportalRemoteAllocationsListParamsField defines parameters for OpenportalRemoteAllocationsList.
@@ -37604,33 +38504,67 @@ type OpenportalRemoteAllocationsListParamsState string
 
 // OpenportalRemoteAllocationsCountParams defines parameters for OpenportalRemoteAllocationsCount.
 type OpenportalRemoteAllocationsCountParams struct {
+	// BackendId Backend ID
 	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool               `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	Customer             *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string             `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string             `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string             `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string             `form:"description,omitempty" json:"description,omitempty"`
-	ExternalIp           *string             `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	IsActive             *bool               `form:"is_active,omitempty" json:"is_active,omitempty"`
-	Name                 *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact            *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// ExternalIp External IP
+	ExternalIp *string `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+	IsActive   *bool   `form:"is_active,omitempty" json:"is_active,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                                      `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project             *openapi_types.UUID                            `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName         *string                                        `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid         *openapi_types.UUID                            `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	ServiceSettingsName *string                                        `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID                            `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	State               *[]OpenportalRemoteAllocationsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Uuid                *openapi_types.UUID                            `form:"uuid,omitempty" json:"uuid,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]OpenportalRemoteAllocationsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Uuid UUID
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenportalRemoteAllocationsCountParamsState defines parameters for OpenportalRemoteAllocationsCount.
@@ -37685,21 +38619,35 @@ type OpenportalUnmanagedProjectsListParams struct {
 	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
 
 	// Customer Multiple values may be separated by commas.
-	Customer             *[]openapi_types.UUID                         `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string                                       `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string                                       `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string                                       `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	Description          *string                                       `form:"description,omitempty" json:"description,omitempty"`
-	Field                *[]OpenportalUnmanagedProjectsListParamsField `form:"field,omitempty" json:"field,omitempty"`
+	Customer *[]openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// Description Description
+	Description *string                                       `form:"description,omitempty" json:"description,omitempty"`
+	Field       *[]OpenportalUnmanagedProjectsListParamsField `form:"field,omitempty" json:"field,omitempty"`
 
 	// IncludeTerminated Include soft-deleted (terminated) projects. Only available to staff and support users, or users with organizational roles who can see their terminated projects.
 	IncludeTerminated *bool `form:"include_terminated,omitempty" json:"include_terminated,omitempty"`
-	IsRemoved         *bool `form:"is_removed,omitempty" json:"is_removed,omitempty"`
+
+	// IsRemoved Is removed
+	IsRemoved *bool `form:"is_removed,omitempty" json:"is_removed,omitempty"`
 
 	// Modified Modified after
-	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
-	Name      *string    `form:"name,omitempty" json:"name,omitempty"`
-	NameExact *string    `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// O Ordering
 	//
@@ -37713,7 +38661,9 @@ type OpenportalUnmanagedProjectsListParams struct {
 
 	// Query Filter by name, slug, UUID, backend ID or resource effective ID
 	Query *string `form:"query,omitempty" json:"query,omitempty"`
-	Slug  *string `form:"slug,omitempty" json:"slug,omitempty"`
+
+	// Slug Slug
+	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
 }
 
 // OpenportalUnmanagedProjectsListParamsField defines parameters for OpenportalUnmanagedProjectsList.
@@ -37739,20 +38689,34 @@ type OpenportalUnmanagedProjectsCountParams struct {
 	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
 
 	// Customer Multiple values may be separated by commas.
-	Customer             *[]openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string               `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string               `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string               `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	Description          *string               `form:"description,omitempty" json:"description,omitempty"`
+	Customer *[]openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
 
 	// IncludeTerminated Include soft-deleted (terminated) projects. Only available to staff and support users, or users with organizational roles who can see their terminated projects.
 	IncludeTerminated *bool `form:"include_terminated,omitempty" json:"include_terminated,omitempty"`
-	IsRemoved         *bool `form:"is_removed,omitempty" json:"is_removed,omitempty"`
+
+	// IsRemoved Is removed
+	IsRemoved *bool `form:"is_removed,omitempty" json:"is_removed,omitempty"`
 
 	// Modified Modified after
-	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
-	Name      *string    `form:"name,omitempty" json:"name,omitempty"`
-	NameExact *string    `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// O Ordering
 	//
@@ -37766,7 +38730,9 @@ type OpenportalUnmanagedProjectsCountParams struct {
 
 	// Query Filter by name, slug, UUID, backend ID or resource effective ID
 	Query *string `form:"query,omitempty" json:"query,omitempty"`
-	Slug  *string `form:"slug,omitempty" json:"slug,omitempty"`
+
+	// Slug Slug
+	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
 }
 
 // OpenportalUnmanagedProjectsCountParamsO defines parameters for OpenportalUnmanagedProjectsCount.
@@ -37870,37 +38836,79 @@ type OpenportalUserinfoCountParams struct {
 
 // OpenstackBackupsListParams defines parameters for OpenstackBackupsList.
 type OpenstackBackupsListParams struct {
+	// BackendId Backend ID
 	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool                              `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	Customer             *openapi_types.UUID                `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string                            `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string                            `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string                            `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID                `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string                            `form:"description,omitempty" json:"description,omitempty"`
-	ExternalIp           *string                            `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	Field                *[]OpenstackBackupsListParamsField `form:"field,omitempty" json:"field,omitempty"`
-	Instance             *string                            `form:"instance,omitempty" json:"instance,omitempty"`
-	InstanceUuid         *openapi_types.UUID                `form:"instance_uuid,omitempty" json:"instance_uuid,omitempty"`
-	Name                 *string                            `form:"name,omitempty" json:"name,omitempty"`
-	NameExact            *string                            `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// ExternalIp External IP
+	ExternalIp *string                            `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+	Field      *[]OpenstackBackupsListParamsField `form:"field,omitempty" json:"field,omitempty"`
+
+	// Instance Instance URL
+	Instance *string `form:"instance,omitempty" json:"instance,omitempty"`
+
+	// InstanceUuid Instance UUID
+	InstanceUuid *openapi_types.UUID `form:"instance_uuid,omitempty" json:"instance_uuid,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                          `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project             *openapi_types.UUID                `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName         *string                            `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid         *openapi_types.UUID                `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	ServiceSettingsName *string                            `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID                `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	State               *[]OpenstackBackupsListParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Tenant              *string                            `form:"tenant,omitempty" json:"tenant,omitempty"`
-	TenantUuid          *openapi_types.UUID                `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
-	Uuid                *openapi_types.UUID                `form:"uuid,omitempty" json:"uuid,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]OpenstackBackupsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Tenant Tenant URL
+	Tenant *string `form:"tenant,omitempty" json:"tenant,omitempty"`
+
+	// TenantUuid Tenant UUID
+	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
+
+	// Uuid UUID
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenstackBackupsListParamsField defines parameters for OpenstackBackupsList.
@@ -37911,36 +38919,78 @@ type OpenstackBackupsListParamsState string
 
 // OpenstackBackupsCountParams defines parameters for OpenstackBackupsCount.
 type OpenstackBackupsCountParams struct {
+	// BackendId Backend ID
 	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool               `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	Customer             *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string             `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string             `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string             `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string             `form:"description,omitempty" json:"description,omitempty"`
-	ExternalIp           *string             `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	Instance             *string             `form:"instance,omitempty" json:"instance,omitempty"`
-	InstanceUuid         *openapi_types.UUID `form:"instance_uuid,omitempty" json:"instance_uuid,omitempty"`
-	Name                 *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact            *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// ExternalIp External IP
+	ExternalIp *string `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+
+	// Instance Instance URL
+	Instance *string `form:"instance,omitempty" json:"instance,omitempty"`
+
+	// InstanceUuid Instance UUID
+	InstanceUuid *openapi_types.UUID `form:"instance_uuid,omitempty" json:"instance_uuid,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project             *openapi_types.UUID                 `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName         *string                             `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid         *openapi_types.UUID                 `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	ServiceSettingsName *string                             `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID                 `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	State               *[]OpenstackBackupsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Tenant              *string                             `form:"tenant,omitempty" json:"tenant,omitempty"`
-	TenantUuid          *openapi_types.UUID                 `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
-	Uuid                *openapi_types.UUID                 `form:"uuid,omitempty" json:"uuid,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]OpenstackBackupsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Tenant Tenant URL
+	Tenant *string `form:"tenant,omitempty" json:"tenant,omitempty"`
+
+	// TenantUuid Tenant UUID
+	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
+
+	// Uuid UUID
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenstackBackupsCountParamsState defines parameters for OpenstackBackupsCount.
@@ -37956,34 +39006,50 @@ type OpenstackBackupsRetrieveParamsField string
 
 // OpenstackFlavorsListParams defines parameters for OpenstackFlavorsList.
 type OpenstackFlavorsListParams struct {
-	Cores      *int                               `form:"cores,omitempty" json:"cores,omitempty"`
-	CoresGte   *int                               `form:"cores__gte,omitempty" json:"cores__gte,omitempty"`
-	CoresLte   *int                               `form:"cores__lte,omitempty" json:"cores__lte,omitempty"`
-	Disk       *int                               `form:"disk,omitempty" json:"disk,omitempty"`
-	DiskGte    *int                               `form:"disk__gte,omitempty" json:"disk__gte,omitempty"`
-	DiskLte    *int                               `form:"disk__lte,omitempty" json:"disk__lte,omitempty"`
-	Field      *[]OpenstackFlavorsListParamsField `form:"field,omitempty" json:"field,omitempty"`
-	Name       *string                            `form:"name,omitempty" json:"name,omitempty"`
-	NameExact  *string                            `form:"name_exact,omitempty" json:"name_exact,omitempty"`
-	NameIregex *string                            `form:"name_iregex,omitempty" json:"name_iregex,omitempty"`
+	Cores    *int                               `form:"cores,omitempty" json:"cores,omitempty"`
+	CoresGte *int                               `form:"cores__gte,omitempty" json:"cores__gte,omitempty"`
+	CoresLte *int                               `form:"cores__lte,omitempty" json:"cores__lte,omitempty"`
+	Disk     *int                               `form:"disk,omitempty" json:"disk,omitempty"`
+	DiskGte  *int                               `form:"disk__gte,omitempty" json:"disk__gte,omitempty"`
+	DiskLte  *int                               `form:"disk__lte,omitempty" json:"disk__lte,omitempty"`
+	Field    *[]OpenstackFlavorsListParamsField `form:"field,omitempty" json:"field,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// NameIregex Name (regex)
+	NameIregex *string `form:"name_iregex,omitempty" json:"name_iregex,omitempty"`
 
 	// O Ordering
 	//
-	O            *[]OpenstackFlavorsListParamsO `form:"o,omitempty" json:"o,omitempty"`
-	OfferingUuid *openapi_types.UUID            `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	O *[]OpenstackFlavorsListParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// OfferingUuid Offering UUID
+	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Ram          *int                `form:"ram,omitempty" json:"ram,omitempty"`
-	RamGte       *int                `form:"ram__gte,omitempty" json:"ram__gte,omitempty"`
-	RamLte       *int                `form:"ram__lte,omitempty" json:"ram__lte,omitempty"`
-	Settings     *string             `form:"settings,omitempty" json:"settings,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Ram      *int      `form:"ram,omitempty" json:"ram,omitempty"`
+	RamGte   *int      `form:"ram__gte,omitempty" json:"ram__gte,omitempty"`
+	RamLte   *int      `form:"ram__lte,omitempty" json:"ram__lte,omitempty"`
+
+	// Settings Settings URL
+	Settings *string `form:"settings,omitempty" json:"settings,omitempty"`
+
+	// SettingsUuid Settings UUID
 	SettingsUuid *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
-	Tenant       *string             `form:"tenant,omitempty" json:"tenant,omitempty"`
-	TenantUuid   *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
+
+	// Tenant Tenant URL
+	Tenant *string `form:"tenant,omitempty" json:"tenant,omitempty"`
+
+	// TenantUuid Tenant UUID
+	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
 }
 
 // OpenstackFlavorsListParamsField defines parameters for OpenstackFlavorsList.
@@ -37994,33 +39060,49 @@ type OpenstackFlavorsListParamsO string
 
 // OpenstackFlavorsCountParams defines parameters for OpenstackFlavorsCount.
 type OpenstackFlavorsCountParams struct {
-	Cores      *int    `form:"cores,omitempty" json:"cores,omitempty"`
-	CoresGte   *int    `form:"cores__gte,omitempty" json:"cores__gte,omitempty"`
-	CoresLte   *int    `form:"cores__lte,omitempty" json:"cores__lte,omitempty"`
-	Disk       *int    `form:"disk,omitempty" json:"disk,omitempty"`
-	DiskGte    *int    `form:"disk__gte,omitempty" json:"disk__gte,omitempty"`
-	DiskLte    *int    `form:"disk__lte,omitempty" json:"disk__lte,omitempty"`
-	Name       *string `form:"name,omitempty" json:"name,omitempty"`
-	NameExact  *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	Cores    *int `form:"cores,omitempty" json:"cores,omitempty"`
+	CoresGte *int `form:"cores__gte,omitempty" json:"cores__gte,omitempty"`
+	CoresLte *int `form:"cores__lte,omitempty" json:"cores__lte,omitempty"`
+	Disk     *int `form:"disk,omitempty" json:"disk,omitempty"`
+	DiskGte  *int `form:"disk__gte,omitempty" json:"disk__gte,omitempty"`
+	DiskLte  *int `form:"disk__lte,omitempty" json:"disk__lte,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// NameIregex Name (regex)
 	NameIregex *string `form:"name_iregex,omitempty" json:"name_iregex,omitempty"`
 
 	// O Ordering
 	//
-	O            *[]OpenstackFlavorsCountParamsO `form:"o,omitempty" json:"o,omitempty"`
-	OfferingUuid *openapi_types.UUID             `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	O *[]OpenstackFlavorsCountParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// OfferingUuid Offering UUID
+	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Ram          *int                `form:"ram,omitempty" json:"ram,omitempty"`
-	RamGte       *int                `form:"ram__gte,omitempty" json:"ram__gte,omitempty"`
-	RamLte       *int                `form:"ram__lte,omitempty" json:"ram__lte,omitempty"`
-	Settings     *string             `form:"settings,omitempty" json:"settings,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Ram      *int      `form:"ram,omitempty" json:"ram,omitempty"`
+	RamGte   *int      `form:"ram__gte,omitempty" json:"ram__gte,omitempty"`
+	RamLte   *int      `form:"ram__lte,omitempty" json:"ram__lte,omitempty"`
+
+	// Settings Settings URL
+	Settings *string `form:"settings,omitempty" json:"settings,omitempty"`
+
+	// SettingsUuid Settings UUID
 	SettingsUuid *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
-	Tenant       *string             `form:"tenant,omitempty" json:"tenant,omitempty"`
-	TenantUuid   *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
+
+	// Tenant Tenant URL
+	Tenant *string `form:"tenant,omitempty" json:"tenant,omitempty"`
+
+	// TenantUuid Tenant UUID
+	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
 }
 
 // OpenstackFlavorsCountParamsO defines parameters for OpenstackFlavorsCount.
@@ -38044,38 +39126,79 @@ type OpenstackFlavorsRetrieveParamsField string
 
 // OpenstackFloatingIpsListParams defines parameters for OpenstackFloatingIpsList.
 type OpenstackFloatingIpsListParams struct {
-	Address   *string `form:"address,omitempty" json:"address,omitempty"`
+	Address *string `form:"address,omitempty" json:"address,omitempty"`
+
+	// BackendId Backend ID
 	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool                                  `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	Customer             *openapi_types.UUID                    `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string                                `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string                                `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string                                `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID                    `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string                                `form:"description,omitempty" json:"description,omitempty"`
-	ExternalIp           *string                                `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	Field                *[]OpenstackFloatingIpsListParamsField `form:"field,omitempty" json:"field,omitempty"`
-	Free                 *bool                                  `form:"free,omitempty" json:"free,omitempty"`
-	Name                 *string                                `form:"name,omitempty" json:"name,omitempty"`
-	NameExact            *string                                `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// ExternalIp External IP
+	ExternalIp *string                                `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+	Field      *[]OpenstackFloatingIpsListParamsField `form:"field,omitempty" json:"field,omitempty"`
+
+	// Free Is free
+	Free *bool `form:"free,omitempty" json:"free,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                              `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project             *openapi_types.UUID                    `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName         *string                                `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid         *openapi_types.UUID                    `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	RuntimeState        *string                                `form:"runtime_state,omitempty" json:"runtime_state,omitempty"`
-	ServiceSettingsName *string                                `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID                    `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	State               *[]OpenstackFloatingIpsListParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Tenant              *string                                `form:"tenant,omitempty" json:"tenant,omitempty"`
-	TenantUuid          *openapi_types.UUID                    `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
-	Uuid                *openapi_types.UUID                    `form:"uuid,omitempty" json:"uuid,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid  *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	RuntimeState *string             `form:"runtime_state,omitempty" json:"runtime_state,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]OpenstackFloatingIpsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Tenant Tenant URL
+	Tenant *string `form:"tenant,omitempty" json:"tenant,omitempty"`
+
+	// TenantUuid Tenant UUID
+	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
+
+	// Uuid UUID
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenstackFloatingIpsListParamsField defines parameters for OpenstackFloatingIpsList.
@@ -38086,37 +39209,78 @@ type OpenstackFloatingIpsListParamsState string
 
 // OpenstackFloatingIpsCountParams defines parameters for OpenstackFloatingIpsCount.
 type OpenstackFloatingIpsCountParams struct {
-	Address   *string `form:"address,omitempty" json:"address,omitempty"`
+	Address *string `form:"address,omitempty" json:"address,omitempty"`
+
+	// BackendId Backend ID
 	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool               `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	Customer             *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string             `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string             `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string             `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string             `form:"description,omitempty" json:"description,omitempty"`
-	ExternalIp           *string             `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	Free                 *bool               `form:"free,omitempty" json:"free,omitempty"`
-	Name                 *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact            *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// ExternalIp External IP
+	ExternalIp *string `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+
+	// Free Is free
+	Free *bool `form:"free,omitempty" json:"free,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                               `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project             *openapi_types.UUID                     `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName         *string                                 `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid         *openapi_types.UUID                     `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	RuntimeState        *string                                 `form:"runtime_state,omitempty" json:"runtime_state,omitempty"`
-	ServiceSettingsName *string                                 `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID                     `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	State               *[]OpenstackFloatingIpsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Tenant              *string                                 `form:"tenant,omitempty" json:"tenant,omitempty"`
-	TenantUuid          *openapi_types.UUID                     `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
-	Uuid                *openapi_types.UUID                     `form:"uuid,omitempty" json:"uuid,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid  *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	RuntimeState *string             `form:"runtime_state,omitempty" json:"runtime_state,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]OpenstackFloatingIpsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Tenant Tenant URL
+	Tenant *string `form:"tenant,omitempty" json:"tenant,omitempty"`
+
+	// TenantUuid Tenant UUID
+	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
+
+	// Uuid UUID
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenstackFloatingIpsCountParamsState defines parameters for OpenstackFloatingIpsCount.
@@ -38132,107 +39296,197 @@ type OpenstackFloatingIpsRetrieveParamsField string
 
 // OpenstackImagesListParams defines parameters for OpenstackImagesList.
 type OpenstackImagesListParams struct {
-	Name         *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact    *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// OfferingUuid Offering UUID
 	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Settings     *string             `form:"settings,omitempty" json:"settings,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Settings Settings URL
+	Settings *string `form:"settings,omitempty" json:"settings,omitempty"`
+
+	// SettingsUuid Settings UUID
 	SettingsUuid *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
-	Tenant       *string             `form:"tenant,omitempty" json:"tenant,omitempty"`
-	TenantUuid   *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
+
+	// Tenant Tenant URL
+	Tenant *string `form:"tenant,omitempty" json:"tenant,omitempty"`
+
+	// TenantUuid Tenant UUID
+	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
 }
 
 // OpenstackImagesCountParams defines parameters for OpenstackImagesCount.
 type OpenstackImagesCountParams struct {
-	Name         *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact    *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// OfferingUuid Offering UUID
 	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Settings     *string             `form:"settings,omitempty" json:"settings,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Settings Settings URL
+	Settings *string `form:"settings,omitempty" json:"settings,omitempty"`
+
+	// SettingsUuid Settings UUID
 	SettingsUuid *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
-	Tenant       *string             `form:"tenant,omitempty" json:"tenant,omitempty"`
-	TenantUuid   *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
+
+	// Tenant Tenant URL
+	Tenant *string `form:"tenant,omitempty" json:"tenant,omitempty"`
+
+	// TenantUuid Tenant UUID
+	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
 }
 
 // OpenstackInstanceAvailabilityZonesListParams defines parameters for OpenstackInstanceAvailabilityZonesList.
 type OpenstackInstanceAvailabilityZonesListParams struct {
-	Name      *string `form:"name,omitempty" json:"name,omitempty"`
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
 	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Settings     *string             `form:"settings,omitempty" json:"settings,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Settings Settings URL
+	Settings *string `form:"settings,omitempty" json:"settings,omitempty"`
+
+	// SettingsUuid Settings UUID
 	SettingsUuid *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
-	Tenant       *string             `form:"tenant,omitempty" json:"tenant,omitempty"`
-	TenantUuid   *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
+
+	// Tenant Tenant URL
+	Tenant *string `form:"tenant,omitempty" json:"tenant,omitempty"`
+
+	// TenantUuid Tenant UUID
+	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
 }
 
 // OpenstackInstanceAvailabilityZonesCountParams defines parameters for OpenstackInstanceAvailabilityZonesCount.
 type OpenstackInstanceAvailabilityZonesCountParams struct {
-	Name      *string `form:"name,omitempty" json:"name,omitempty"`
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
 	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Settings     *string             `form:"settings,omitempty" json:"settings,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Settings Settings URL
+	Settings *string `form:"settings,omitempty" json:"settings,omitempty"`
+
+	// SettingsUuid Settings UUID
 	SettingsUuid *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
-	Tenant       *string             `form:"tenant,omitempty" json:"tenant,omitempty"`
-	TenantUuid   *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
+
+	// Tenant Tenant URL
+	Tenant *string `form:"tenant,omitempty" json:"tenant,omitempty"`
+
+	// TenantUuid Tenant UUID
+	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
 }
 
 // OpenstackInstancesListParams defines parameters for OpenstackInstancesList.
 type OpenstackInstancesListParams struct {
-	AttachVolumeUuid     *openapi_types.UUID `form:"attach_volume_uuid,omitempty" json:"attach_volume_uuid,omitempty"`
-	AvailabilityZoneName *string             `form:"availability_zone_name,omitempty" json:"availability_zone_name,omitempty"`
-	BackendId            *string             `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	// AttachVolumeUuid Filter for attachment to volume UUID
+	AttachVolumeUuid *openapi_types.UUID `form:"attach_volume_uuid,omitempty" json:"attach_volume_uuid,omitempty"`
+
+	// AvailabilityZoneName Availability zone name
+	AvailabilityZoneName *string `form:"availability_zone_name,omitempty" json:"availability_zone_name,omitempty"`
+
+	// BackendId Backend ID
+	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool                                `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	Customer             *openapi_types.UUID                  `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string                              `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string                              `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string                              `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID                  `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string                              `form:"description,omitempty" json:"description,omitempty"`
-	ExternalIp           *string                              `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	Field                *[]OpenstackInstancesListParamsField `form:"field,omitempty" json:"field,omitempty"`
-	Name                 *string                              `form:"name,omitempty" json:"name,omitempty"`
-	NameExact            *string                              `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// ExternalIp External IP
+	ExternalIp *string                              `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+	Field      *[]OpenstackInstancesListParamsField `form:"field,omitempty" json:"field,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize    *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project     *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName *string             `form:"project_name,omitempty" json:"project_name,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
 	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 
 	// Query Search by name, internal IP, or external IP
-	Query               *string                              `form:"query,omitempty" json:"query,omitempty"`
-	RuntimeState        *string                              `form:"runtime_state,omitempty" json:"runtime_state,omitempty"`
-	ServiceSettingsName *string                              `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID                  `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	State               *[]OpenstackInstancesListParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Tenant              *string                              `form:"tenant,omitempty" json:"tenant,omitempty"`
-	TenantUuid          *openapi_types.UUID                  `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
-	Uuid                *openapi_types.UUID                  `form:"uuid,omitempty" json:"uuid,omitempty"`
+	Query        *string `form:"query,omitempty" json:"query,omitempty"`
+	RuntimeState *string `form:"runtime_state,omitempty" json:"runtime_state,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]OpenstackInstancesListParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Tenant Tenant URL
+	Tenant *string `form:"tenant,omitempty" json:"tenant,omitempty"`
+
+	// TenantUuid Tenant UUID
+	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
+
+	// Uuid UUID
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenstackInstancesListParamsField defines parameters for OpenstackInstancesList.
@@ -38243,40 +39497,82 @@ type OpenstackInstancesListParamsState string
 
 // OpenstackInstancesCountParams defines parameters for OpenstackInstancesCount.
 type OpenstackInstancesCountParams struct {
-	AttachVolumeUuid     *openapi_types.UUID `form:"attach_volume_uuid,omitempty" json:"attach_volume_uuid,omitempty"`
-	AvailabilityZoneName *string             `form:"availability_zone_name,omitempty" json:"availability_zone_name,omitempty"`
-	BackendId            *string             `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	// AttachVolumeUuid Filter for attachment to volume UUID
+	AttachVolumeUuid *openapi_types.UUID `form:"attach_volume_uuid,omitempty" json:"attach_volume_uuid,omitempty"`
+
+	// AvailabilityZoneName Availability zone name
+	AvailabilityZoneName *string `form:"availability_zone_name,omitempty" json:"availability_zone_name,omitempty"`
+
+	// BackendId Backend ID
+	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool               `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	Customer             *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string             `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string             `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string             `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string             `form:"description,omitempty" json:"description,omitempty"`
-	ExternalIp           *string             `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	Name                 *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact            *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// ExternalIp External IP
+	ExternalIp *string `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize    *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project     *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName *string             `form:"project_name,omitempty" json:"project_name,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
 	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 
 	// Query Search by name, internal IP, or external IP
-	Query               *string                               `form:"query,omitempty" json:"query,omitempty"`
-	RuntimeState        *string                               `form:"runtime_state,omitempty" json:"runtime_state,omitempty"`
-	ServiceSettingsName *string                               `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID                   `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	State               *[]OpenstackInstancesCountParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Tenant              *string                               `form:"tenant,omitempty" json:"tenant,omitempty"`
-	TenantUuid          *openapi_types.UUID                   `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
-	Uuid                *openapi_types.UUID                   `form:"uuid,omitempty" json:"uuid,omitempty"`
+	Query        *string `form:"query,omitempty" json:"query,omitempty"`
+	RuntimeState *string `form:"runtime_state,omitempty" json:"runtime_state,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]OpenstackInstancesCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Tenant Tenant URL
+	Tenant *string `form:"tenant,omitempty" json:"tenant,omitempty"`
+
+	// TenantUuid Tenant UUID
+	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
+
+	// Uuid UUID
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenstackInstancesCountParamsState defines parameters for OpenstackInstancesCount.
@@ -38315,32 +39611,66 @@ type OpenstackInstancesPortsListParams struct {
 
 // OpenstackMarketplaceTenantsListParams defines parameters for OpenstackMarketplaceTenantsList.
 type OpenstackMarketplaceTenantsListParams struct {
+	// BackendId Backend ID
 	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool               `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	Customer             *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string             `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string             `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string             `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string             `form:"description,omitempty" json:"description,omitempty"`
-	ExternalIp           *string             `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	Name                 *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact            *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// ExternalIp External IP
+	ExternalIp *string `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                                     `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project             *openapi_types.UUID                           `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName         *string                                       `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid         *openapi_types.UUID                           `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	ServiceSettingsName *string                                       `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID                           `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	State               *[]OpenstackMarketplaceTenantsListParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Uuid                *openapi_types.UUID                           `form:"uuid,omitempty" json:"uuid,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]OpenstackMarketplaceTenantsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Uuid UUID
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenstackMarketplaceTenantsListParamsState defines parameters for OpenstackMarketplaceTenantsList.
@@ -38348,32 +39678,66 @@ type OpenstackMarketplaceTenantsListParamsState string
 
 // OpenstackMarketplaceTenantsCountParams defines parameters for OpenstackMarketplaceTenantsCount.
 type OpenstackMarketplaceTenantsCountParams struct {
+	// BackendId Backend ID
 	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool               `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	Customer             *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string             `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string             `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string             `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string             `form:"description,omitempty" json:"description,omitempty"`
-	ExternalIp           *string             `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	Name                 *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact            *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// ExternalIp External IP
+	ExternalIp *string `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                                      `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project             *openapi_types.UUID                            `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName         *string                                        `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid         *openapi_types.UUID                            `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	ServiceSettingsName *string                                        `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID                            `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	State               *[]OpenstackMarketplaceTenantsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Uuid                *openapi_types.UUID                            `form:"uuid,omitempty" json:"uuid,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]OpenstackMarketplaceTenantsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Uuid UUID
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenstackMarketplaceTenantsCountParamsState defines parameters for OpenstackMarketplaceTenantsCount.
@@ -38408,7 +39772,10 @@ type OpenstackMigrationsCountParams struct {
 
 // OpenstackNetworkRbacPoliciesListParams defines parameters for OpenstackNetworkRbacPoliciesList.
 type OpenstackNetworkRbacPoliciesListParams struct {
-	Network     *string             `form:"network,omitempty" json:"network,omitempty"`
+	// Network Network URL
+	Network *string `form:"network,omitempty" json:"network,omitempty"`
+
+	// NetworkUuid Network UUID
 	NetworkUuid *openapi_types.UUID `form:"network_uuid,omitempty" json:"network_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
@@ -38419,11 +39786,19 @@ type OpenstackNetworkRbacPoliciesListParams struct {
 
 	// PolicyType Type of access granted - either shared access or external network access
 	//
-	PolicyType       *OpenstackNetworkRbacPoliciesListParamsPolicyType `form:"policy_type,omitempty" json:"policy_type,omitempty"`
-	TargetTenant     *string                                           `form:"target_tenant,omitempty" json:"target_tenant,omitempty"`
-	TargetTenantUuid *openapi_types.UUID                               `form:"target_tenant_uuid,omitempty" json:"target_tenant_uuid,omitempty"`
-	Tenant           *string                                           `form:"tenant,omitempty" json:"tenant,omitempty"`
-	TenantUuid       *openapi_types.UUID                               `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
+	PolicyType *OpenstackNetworkRbacPoliciesListParamsPolicyType `form:"policy_type,omitempty" json:"policy_type,omitempty"`
+
+	// TargetTenant Target tenant URL
+	TargetTenant *string `form:"target_tenant,omitempty" json:"target_tenant,omitempty"`
+
+	// TargetTenantUuid Target tenant UUID
+	TargetTenantUuid *openapi_types.UUID `form:"target_tenant_uuid,omitempty" json:"target_tenant_uuid,omitempty"`
+
+	// Tenant Tenant URL
+	Tenant *string `form:"tenant,omitempty" json:"tenant,omitempty"`
+
+	// TenantUuid Tenant UUID
+	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
 }
 
 // OpenstackNetworkRbacPoliciesListParamsPolicyType defines parameters for OpenstackNetworkRbacPoliciesList.
@@ -38431,7 +39806,10 @@ type OpenstackNetworkRbacPoliciesListParamsPolicyType string
 
 // OpenstackNetworkRbacPoliciesCountParams defines parameters for OpenstackNetworkRbacPoliciesCount.
 type OpenstackNetworkRbacPoliciesCountParams struct {
-	Network     *string             `form:"network,omitempty" json:"network,omitempty"`
+	// Network Network URL
+	Network *string `form:"network,omitempty" json:"network,omitempty"`
+
+	// NetworkUuid Network UUID
 	NetworkUuid *openapi_types.UUID `form:"network_uuid,omitempty" json:"network_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
@@ -38442,11 +39820,19 @@ type OpenstackNetworkRbacPoliciesCountParams struct {
 
 	// PolicyType Type of access granted - either shared access or external network access
 	//
-	PolicyType       *OpenstackNetworkRbacPoliciesCountParamsPolicyType `form:"policy_type,omitempty" json:"policy_type,omitempty"`
-	TargetTenant     *string                                            `form:"target_tenant,omitempty" json:"target_tenant,omitempty"`
-	TargetTenantUuid *openapi_types.UUID                                `form:"target_tenant_uuid,omitempty" json:"target_tenant_uuid,omitempty"`
-	Tenant           *string                                            `form:"tenant,omitempty" json:"tenant,omitempty"`
-	TenantUuid       *openapi_types.UUID                                `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
+	PolicyType *OpenstackNetworkRbacPoliciesCountParamsPolicyType `form:"policy_type,omitempty" json:"policy_type,omitempty"`
+
+	// TargetTenant Target tenant URL
+	TargetTenant *string `form:"target_tenant,omitempty" json:"target_tenant,omitempty"`
+
+	// TargetTenantUuid Target tenant UUID
+	TargetTenantUuid *openapi_types.UUID `form:"target_tenant_uuid,omitempty" json:"target_tenant_uuid,omitempty"`
+
+	// Tenant Tenant URL
+	Tenant *string `form:"tenant,omitempty" json:"tenant,omitempty"`
+
+	// TenantUuid Tenant UUID
+	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
 }
 
 // OpenstackNetworkRbacPoliciesCountParamsPolicyType defines parameters for OpenstackNetworkRbacPoliciesCount.
@@ -38454,39 +39840,71 @@ type OpenstackNetworkRbacPoliciesCountParamsPolicyType string
 
 // OpenstackNetworksListParams defines parameters for OpenstackNetworksList.
 type OpenstackNetworksListParams struct {
+	// BackendId Backend ID
 	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool               `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	Customer             *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string             `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string             `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string             `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string             `form:"description,omitempty" json:"description,omitempty"`
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
 
 	// DirectOnly Direct only
-	DirectOnly *bool                               `form:"direct_only,omitempty" json:"direct_only,omitempty"`
+	DirectOnly *bool `form:"direct_only,omitempty" json:"direct_only,omitempty"`
+
+	// ExternalIp External IP
 	ExternalIp *string                             `form:"external_ip,omitempty" json:"external_ip,omitempty"`
 	Field      *[]OpenstackNetworksListParamsField `form:"field,omitempty" json:"field,omitempty"`
 	IsExternal *bool                               `form:"is_external,omitempty" json:"is_external,omitempty"`
-	Name       *string                             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact  *string                             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize    *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project     *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName *string             `form:"project_name,omitempty" json:"project_name,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
 	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 
 	// RbacOnly RBAC only
-	RbacOnly            *bool                               `form:"rbac_only,omitempty" json:"rbac_only,omitempty"`
-	ServiceSettingsName *string                             `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID                 `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	State               *[]OpenstackNetworksListParamsState `form:"state,omitempty" json:"state,omitempty"`
+	RbacOnly *bool `form:"rbac_only,omitempty" json:"rbac_only,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]OpenstackNetworksListParamsState `form:"state,omitempty" json:"state,omitempty"`
 
 	// Tenant Tenant URL
 	Tenant *string `form:"tenant,omitempty" json:"tenant,omitempty"`
@@ -38494,7 +39912,9 @@ type OpenstackNetworksListParams struct {
 	// TenantUuid Tenant UUID
 	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
 	Type       *string             `form:"type,omitempty" json:"type,omitempty"`
-	Uuid       *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
+
+	// Uuid UUID
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenstackNetworksListParamsField defines parameters for OpenstackNetworksList.
@@ -38505,38 +39925,70 @@ type OpenstackNetworksListParamsState string
 
 // OpenstackNetworksCountParams defines parameters for OpenstackNetworksCount.
 type OpenstackNetworksCountParams struct {
+	// BackendId Backend ID
 	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool               `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	Customer             *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string             `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string             `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string             `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string             `form:"description,omitempty" json:"description,omitempty"`
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
 
 	// DirectOnly Direct only
-	DirectOnly *bool   `form:"direct_only,omitempty" json:"direct_only,omitempty"`
+	DirectOnly *bool `form:"direct_only,omitempty" json:"direct_only,omitempty"`
+
+	// ExternalIp External IP
 	ExternalIp *string `form:"external_ip,omitempty" json:"external_ip,omitempty"`
 	IsExternal *bool   `form:"is_external,omitempty" json:"is_external,omitempty"`
-	Name       *string `form:"name,omitempty" json:"name,omitempty"`
-	NameExact  *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize    *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project     *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName *string             `form:"project_name,omitempty" json:"project_name,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
 	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 
 	// RbacOnly RBAC only
-	RbacOnly            *bool                                `form:"rbac_only,omitempty" json:"rbac_only,omitempty"`
-	ServiceSettingsName *string                              `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID                  `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	State               *[]OpenstackNetworksCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+	RbacOnly *bool `form:"rbac_only,omitempty" json:"rbac_only,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]OpenstackNetworksCountParamsState `form:"state,omitempty" json:"state,omitempty"`
 
 	// Tenant Tenant URL
 	Tenant *string `form:"tenant,omitempty" json:"tenant,omitempty"`
@@ -38544,7 +39996,9 @@ type OpenstackNetworksCountParams struct {
 	// TenantUuid Tenant UUID
 	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
 	Type       *string             `form:"type,omitempty" json:"type,omitempty"`
-	Uuid       *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
+
+	// Uuid UUID
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenstackNetworksCountParamsState defines parameters for OpenstackNetworksCount.
@@ -38575,8 +40029,12 @@ type OpenstackPortsListParams struct {
 	// HasDeviceOwner Has device owner
 	HasDeviceOwner *bool   `form:"has_device_owner,omitempty" json:"has_device_owner,omitempty"`
 	MacAddress     *string `form:"mac_address,omitempty" json:"mac_address,omitempty"`
-	Name           *string `form:"name,omitempty" json:"name,omitempty"`
-	NameExact      *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// NetworkName Search by network name
 	NetworkName *string `form:"network_name,omitempty" json:"network_name,omitempty"`
@@ -38595,9 +40053,13 @@ type OpenstackPortsListParams struct {
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 
 	// Query Search by name, MAC address or backend ID
-	Query      *string             `form:"query,omitempty" json:"query,omitempty"`
-	Status     *string             `form:"status,omitempty" json:"status,omitempty"`
-	Tenant     *string             `form:"tenant,omitempty" json:"tenant,omitempty"`
+	Query  *string `form:"query,omitempty" json:"query,omitempty"`
+	Status *string `form:"status,omitempty" json:"status,omitempty"`
+
+	// Tenant Tenant URL
+	Tenant *string `form:"tenant,omitempty" json:"tenant,omitempty"`
+
+	// TenantUuid Tenant UUID
 	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
 }
 
@@ -38623,8 +40085,12 @@ type OpenstackPortsCountParams struct {
 	// HasDeviceOwner Has device owner
 	HasDeviceOwner *bool   `form:"has_device_owner,omitempty" json:"has_device_owner,omitempty"`
 	MacAddress     *string `form:"mac_address,omitempty" json:"mac_address,omitempty"`
-	Name           *string `form:"name,omitempty" json:"name,omitempty"`
-	NameExact      *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// NetworkName Search by network name
 	NetworkName *string `form:"network_name,omitempty" json:"network_name,omitempty"`
@@ -38643,9 +40109,13 @@ type OpenstackPortsCountParams struct {
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 
 	// Query Search by name, MAC address or backend ID
-	Query      *string             `form:"query,omitempty" json:"query,omitempty"`
-	Status     *string             `form:"status,omitempty" json:"status,omitempty"`
-	Tenant     *string             `form:"tenant,omitempty" json:"tenant,omitempty"`
+	Query  *string `form:"query,omitempty" json:"query,omitempty"`
+	Status *string `form:"status,omitempty" json:"status,omitempty"`
+
+	// Tenant Tenant URL
+	Tenant *string `form:"tenant,omitempty" json:"tenant,omitempty"`
+
+	// TenantUuid Tenant UUID
 	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
 }
 
@@ -38662,16 +40132,24 @@ type OpenstackPortsRetrieveParamsField string
 
 // OpenstackRoutersListParams defines parameters for OpenstackRoutersList.
 type OpenstackRoutersListParams struct {
-	Field     *[]OpenstackRoutersListParamsField `form:"field,omitempty" json:"field,omitempty"`
-	Name      *string                            `form:"name,omitempty" json:"name,omitempty"`
-	NameExact *string                            `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	Field *[]OpenstackRoutersListParamsField `form:"field,omitempty" json:"field,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize   *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Tenant     *string             `form:"tenant,omitempty" json:"tenant,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Tenant Tenant URL
+	Tenant *string `form:"tenant,omitempty" json:"tenant,omitempty"`
+
+	// TenantUuid Tenant UUID
 	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
 }
 
@@ -38680,15 +40158,22 @@ type OpenstackRoutersListParamsField string
 
 // OpenstackRoutersCountParams defines parameters for OpenstackRoutersCount.
 type OpenstackRoutersCountParams struct {
-	Name      *string `form:"name,omitempty" json:"name,omitempty"`
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
 	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize   *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Tenant     *string             `form:"tenant,omitempty" json:"tenant,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Tenant Tenant URL
+	Tenant *string `form:"tenant,omitempty" json:"tenant,omitempty"`
+
+	// TenantUuid Tenant UUID
 	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
 }
 
@@ -38702,38 +40187,76 @@ type OpenstackRoutersRetrieveParamsField string
 
 // OpenstackSecurityGroupsListParams defines parameters for OpenstackSecurityGroupsList.
 type OpenstackSecurityGroupsListParams struct {
+	// BackendId Backend ID
 	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool                                     `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	Customer             *openapi_types.UUID                       `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string                                   `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string                                   `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string                                   `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID                       `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string                                   `form:"description,omitempty" json:"description,omitempty"`
-	ExternalIp           *string                                   `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	Field                *[]OpenstackSecurityGroupsListParamsField `form:"field,omitempty" json:"field,omitempty"`
-	Name                 *string                                   `form:"name,omitempty" json:"name,omitempty"`
-	NameExact            *string                                   `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// ExternalIp External IP
+	ExternalIp *string                                   `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+	Field      *[]OpenstackSecurityGroupsListParamsField `form:"field,omitempty" json:"field,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize    *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project     *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName *string             `form:"project_name,omitempty" json:"project_name,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
 	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 
 	// Query Search by name or description
-	Query               *string                                   `form:"query,omitempty" json:"query,omitempty"`
-	ServiceSettingsName *string                                   `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID                       `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	State               *[]OpenstackSecurityGroupsListParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Tenant              *string                                   `form:"tenant,omitempty" json:"tenant,omitempty"`
-	TenantUuid          *openapi_types.UUID                       `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
-	Uuid                *openapi_types.UUID                       `form:"uuid,omitempty" json:"uuid,omitempty"`
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]OpenstackSecurityGroupsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Tenant Tenant URL
+	Tenant *string `form:"tenant,omitempty" json:"tenant,omitempty"`
+
+	// TenantUuid Tenant UUID
+	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
+
+	// Uuid UUID
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenstackSecurityGroupsListParamsField defines parameters for OpenstackSecurityGroupsList.
@@ -38744,37 +40267,75 @@ type OpenstackSecurityGroupsListParamsState string
 
 // OpenstackSecurityGroupsCountParams defines parameters for OpenstackSecurityGroupsCount.
 type OpenstackSecurityGroupsCountParams struct {
+	// BackendId Backend ID
 	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool               `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	Customer             *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string             `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string             `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string             `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string             `form:"description,omitempty" json:"description,omitempty"`
-	ExternalIp           *string             `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	Name                 *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact            *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// ExternalIp External IP
+	ExternalIp *string `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize    *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project     *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName *string             `form:"project_name,omitempty" json:"project_name,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
 	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 
 	// Query Search by name or description
-	Query               *string                                    `form:"query,omitempty" json:"query,omitempty"`
-	ServiceSettingsName *string                                    `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID                        `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	State               *[]OpenstackSecurityGroupsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Tenant              *string                                    `form:"tenant,omitempty" json:"tenant,omitempty"`
-	TenantUuid          *openapi_types.UUID                        `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
-	Uuid                *openapi_types.UUID                        `form:"uuid,omitempty" json:"uuid,omitempty"`
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]OpenstackSecurityGroupsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Tenant Tenant URL
+	Tenant *string `form:"tenant,omitempty" json:"tenant,omitempty"`
+
+	// TenantUuid Tenant UUID
+	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
+
+	// Uuid UUID
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenstackSecurityGroupsCountParamsState defines parameters for OpenstackSecurityGroupsCount.
@@ -38793,35 +40354,73 @@ type OpenstackSecurityGroupsSetRulesJSONBody = []OpenStackSecurityGroupRuleUpdat
 
 // OpenstackServerGroupsListParams defines parameters for OpenstackServerGroupsList.
 type OpenstackServerGroupsListParams struct {
+	// BackendId Backend ID
 	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool                                   `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	Customer             *openapi_types.UUID                     `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string                                 `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string                                 `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string                                 `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID                     `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string                                 `form:"description,omitempty" json:"description,omitempty"`
-	ExternalIp           *string                                 `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	Field                *[]OpenstackServerGroupsListParamsField `form:"field,omitempty" json:"field,omitempty"`
-	Name                 *string                                 `form:"name,omitempty" json:"name,omitempty"`
-	NameExact            *string                                 `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// ExternalIp External IP
+	ExternalIp *string                                 `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+	Field      *[]OpenstackServerGroupsListParamsField `form:"field,omitempty" json:"field,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                               `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project             *openapi_types.UUID                     `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName         *string                                 `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid         *openapi_types.UUID                     `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	ServiceSettingsName *string                                 `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID                     `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	State               *[]OpenstackServerGroupsListParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Tenant              *string                                 `form:"tenant,omitempty" json:"tenant,omitempty"`
-	TenantUuid          *openapi_types.UUID                     `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
-	Uuid                *openapi_types.UUID                     `form:"uuid,omitempty" json:"uuid,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]OpenstackServerGroupsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Tenant Tenant URL
+	Tenant *string `form:"tenant,omitempty" json:"tenant,omitempty"`
+
+	// TenantUuid Tenant UUID
+	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
+
+	// Uuid UUID
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenstackServerGroupsListParamsField defines parameters for OpenstackServerGroupsList.
@@ -38832,34 +40431,72 @@ type OpenstackServerGroupsListParamsState string
 
 // OpenstackServerGroupsCountParams defines parameters for OpenstackServerGroupsCount.
 type OpenstackServerGroupsCountParams struct {
+	// BackendId Backend ID
 	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool               `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	Customer             *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string             `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string             `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string             `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string             `form:"description,omitempty" json:"description,omitempty"`
-	ExternalIp           *string             `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	Name                 *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact            *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// ExternalIp External IP
+	ExternalIp *string `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                                `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project             *openapi_types.UUID                      `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName         *string                                  `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid         *openapi_types.UUID                      `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	ServiceSettingsName *string                                  `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID                      `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	State               *[]OpenstackServerGroupsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Tenant              *string                                  `form:"tenant,omitempty" json:"tenant,omitempty"`
-	TenantUuid          *openapi_types.UUID                      `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
-	Uuid                *openapi_types.UUID                      `form:"uuid,omitempty" json:"uuid,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]OpenstackServerGroupsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Tenant Tenant URL
+	Tenant *string `form:"tenant,omitempty" json:"tenant,omitempty"`
+
+	// TenantUuid Tenant UUID
+	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
+
+	// Uuid UUID
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenstackServerGroupsCountParamsState defines parameters for OpenstackServerGroupsCount.
@@ -38875,40 +40512,86 @@ type OpenstackServerGroupsRetrieveParamsField string
 
 // OpenstackSnapshotsListParams defines parameters for OpenstackSnapshotsList.
 type OpenstackSnapshotsListParams struct {
-	BackendId  *string             `form:"backend_id,omitempty" json:"backend_id,omitempty"`
-	Backup     *string             `form:"backup,omitempty" json:"backup,omitempty"`
+	// BackendId Backend ID
+	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+
+	// Backup Backup URL
+	Backup *string `form:"backup,omitempty" json:"backup,omitempty"`
+
+	// BackupUuid Backup UUID
 	BackupUuid *openapi_types.UUID `form:"backup_uuid,omitempty" json:"backup_uuid,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool                                `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	Customer             *openapi_types.UUID                  `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string                              `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string                              `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string                              `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID                  `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string                              `form:"description,omitempty" json:"description,omitempty"`
-	ExternalIp           *string                              `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	Field                *[]OpenstackSnapshotsListParamsField `form:"field,omitempty" json:"field,omitempty"`
-	Name                 *string                              `form:"name,omitempty" json:"name,omitempty"`
-	NameExact            *string                              `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// ExternalIp External IP
+	ExternalIp *string                              `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+	Field      *[]OpenstackSnapshotsListParamsField `form:"field,omitempty" json:"field,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                            `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project             *openapi_types.UUID                  `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName         *string                              `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid         *openapi_types.UUID                  `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	RuntimeState        *string                              `form:"runtime_state,omitempty" json:"runtime_state,omitempty"`
-	ServiceSettingsName *string                              `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID                  `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	SourceVolume        *string                              `form:"source_volume,omitempty" json:"source_volume,omitempty"`
-	SourceVolumeUuid    *openapi_types.UUID                  `form:"source_volume_uuid,omitempty" json:"source_volume_uuid,omitempty"`
-	State               *[]OpenstackSnapshotsListParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Tenant              *string                              `form:"tenant,omitempty" json:"tenant,omitempty"`
-	TenantUuid          *openapi_types.UUID                  `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
-	Uuid                *openapi_types.UUID                  `form:"uuid,omitempty" json:"uuid,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid  *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	RuntimeState *string             `form:"runtime_state,omitempty" json:"runtime_state,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// SourceVolume Source volume URL
+	SourceVolume *string `form:"source_volume,omitempty" json:"source_volume,omitempty"`
+
+	// SourceVolumeUuid Source volume UUID
+	SourceVolumeUuid *openapi_types.UUID `form:"source_volume_uuid,omitempty" json:"source_volume_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]OpenstackSnapshotsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Tenant Tenant URL
+	Tenant *string `form:"tenant,omitempty" json:"tenant,omitempty"`
+
+	// TenantUuid Tenant UUID
+	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
+
+	// Uuid UUID
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenstackSnapshotsListParamsField defines parameters for OpenstackSnapshotsList.
@@ -38919,39 +40602,85 @@ type OpenstackSnapshotsListParamsState string
 
 // OpenstackSnapshotsCountParams defines parameters for OpenstackSnapshotsCount.
 type OpenstackSnapshotsCountParams struct {
-	BackendId  *string             `form:"backend_id,omitempty" json:"backend_id,omitempty"`
-	Backup     *string             `form:"backup,omitempty" json:"backup,omitempty"`
+	// BackendId Backend ID
+	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+
+	// Backup Backup URL
+	Backup *string `form:"backup,omitempty" json:"backup,omitempty"`
+
+	// BackupUuid Backup UUID
 	BackupUuid *openapi_types.UUID `form:"backup_uuid,omitempty" json:"backup_uuid,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool               `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	Customer             *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string             `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string             `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string             `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string             `form:"description,omitempty" json:"description,omitempty"`
-	ExternalIp           *string             `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	Name                 *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact            *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// ExternalIp External IP
+	ExternalIp *string `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                             `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project             *openapi_types.UUID                   `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName         *string                               `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid         *openapi_types.UUID                   `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	RuntimeState        *string                               `form:"runtime_state,omitempty" json:"runtime_state,omitempty"`
-	ServiceSettingsName *string                               `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID                   `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	SourceVolume        *string                               `form:"source_volume,omitempty" json:"source_volume,omitempty"`
-	SourceVolumeUuid    *openapi_types.UUID                   `form:"source_volume_uuid,omitempty" json:"source_volume_uuid,omitempty"`
-	State               *[]OpenstackSnapshotsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Tenant              *string                               `form:"tenant,omitempty" json:"tenant,omitempty"`
-	TenantUuid          *openapi_types.UUID                   `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
-	Uuid                *openapi_types.UUID                   `form:"uuid,omitempty" json:"uuid,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid  *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	RuntimeState *string             `form:"runtime_state,omitempty" json:"runtime_state,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// SourceVolume Source volume URL
+	SourceVolume *string `form:"source_volume,omitempty" json:"source_volume,omitempty"`
+
+	// SourceVolumeUuid Source volume UUID
+	SourceVolumeUuid *openapi_types.UUID `form:"source_volume_uuid,omitempty" json:"source_volume_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]OpenstackSnapshotsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Tenant Tenant URL
+	Tenant *string `form:"tenant,omitempty" json:"tenant,omitempty"`
+
+	// TenantUuid Tenant UUID
+	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
+
+	// Uuid UUID
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenstackSnapshotsCountParamsState defines parameters for OpenstackSnapshotsCount.
@@ -38976,49 +40705,87 @@ type OpenstackSnapshotsRestorationsListParams struct {
 
 // OpenstackSubnetsListParams defines parameters for OpenstackSubnetsList.
 type OpenstackSubnetsListParams struct {
+	// BackendId Backend ID
 	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool               `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	Customer             *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string             `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string             `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string             `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string             `form:"description,omitempty" json:"description,omitempty"`
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
 
 	// DirectOnly Direct only
-	DirectOnly  *bool                              `form:"direct_only,omitempty" json:"direct_only,omitempty"`
-	EnableDhcp  *bool                              `form:"enable_dhcp,omitempty" json:"enable_dhcp,omitempty"`
-	ExternalIp  *string                            `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	Field       *[]OpenstackSubnetsListParamsField `form:"field,omitempty" json:"field,omitempty"`
-	IpVersion   *int                               `form:"ip_version,omitempty" json:"ip_version,omitempty"`
-	Name        *string                            `form:"name,omitempty" json:"name,omitempty"`
-	NameExact   *string                            `form:"name_exact,omitempty" json:"name_exact,omitempty"`
-	Network     *string                            `form:"network,omitempty" json:"network,omitempty"`
-	NetworkUuid *openapi_types.UUID                `form:"network_uuid,omitempty" json:"network_uuid,omitempty"`
+	DirectOnly *bool `form:"direct_only,omitempty" json:"direct_only,omitempty"`
+	EnableDhcp *bool `form:"enable_dhcp,omitempty" json:"enable_dhcp,omitempty"`
+
+	// ExternalIp External IP
+	ExternalIp *string                            `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+	Field      *[]OpenstackSubnetsListParamsField `form:"field,omitempty" json:"field,omitempty"`
+	IpVersion  *int                               `form:"ip_version,omitempty" json:"ip_version,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// Network Network URL
+	Network *string `form:"network,omitempty" json:"network,omitempty"`
+
+	// NetworkUuid Network UUID
+	NetworkUuid *openapi_types.UUID `form:"network_uuid,omitempty" json:"network_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize    *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project     *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName *string             `form:"project_name,omitempty" json:"project_name,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
 	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 
 	// RbacOnly RBAC only
-	RbacOnly            *bool                              `form:"rbac_only,omitempty" json:"rbac_only,omitempty"`
-	ServiceSettingsName *string                            `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID                `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	State               *[]OpenstackSubnetsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+	RbacOnly *bool `form:"rbac_only,omitempty" json:"rbac_only,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]OpenstackSubnetsListParamsState `form:"state,omitempty" json:"state,omitempty"`
 
 	// Tenant Tenant URL
 	Tenant *string `form:"tenant,omitempty" json:"tenant,omitempty"`
 
 	// TenantUuid Tenant UUID
 	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
-	Uuid       *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
+
+	// Uuid UUID
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenstackSubnetsListParamsField defines parameters for OpenstackSubnetsList.
@@ -39029,48 +40796,86 @@ type OpenstackSubnetsListParamsState string
 
 // OpenstackSubnetsCountParams defines parameters for OpenstackSubnetsCount.
 type OpenstackSubnetsCountParams struct {
+	// BackendId Backend ID
 	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool               `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	Customer             *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string             `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string             `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string             `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string             `form:"description,omitempty" json:"description,omitempty"`
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
 
 	// DirectOnly Direct only
-	DirectOnly  *bool               `form:"direct_only,omitempty" json:"direct_only,omitempty"`
-	EnableDhcp  *bool               `form:"enable_dhcp,omitempty" json:"enable_dhcp,omitempty"`
-	ExternalIp  *string             `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	IpVersion   *int                `form:"ip_version,omitempty" json:"ip_version,omitempty"`
-	Name        *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact   *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
-	Network     *string             `form:"network,omitempty" json:"network,omitempty"`
+	DirectOnly *bool `form:"direct_only,omitempty" json:"direct_only,omitempty"`
+	EnableDhcp *bool `form:"enable_dhcp,omitempty" json:"enable_dhcp,omitempty"`
+
+	// ExternalIp External IP
+	ExternalIp *string `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+	IpVersion  *int    `form:"ip_version,omitempty" json:"ip_version,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// Network Network URL
+	Network *string `form:"network,omitempty" json:"network,omitempty"`
+
+	// NetworkUuid Network UUID
 	NetworkUuid *openapi_types.UUID `form:"network_uuid,omitempty" json:"network_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize    *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project     *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName *string             `form:"project_name,omitempty" json:"project_name,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
 	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 
 	// RbacOnly RBAC only
-	RbacOnly            *bool                               `form:"rbac_only,omitempty" json:"rbac_only,omitempty"`
-	ServiceSettingsName *string                             `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID                 `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	State               *[]OpenstackSubnetsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+	RbacOnly *bool `form:"rbac_only,omitempty" json:"rbac_only,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]OpenstackSubnetsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
 
 	// Tenant Tenant URL
 	Tenant *string `form:"tenant,omitempty" json:"tenant,omitempty"`
 
 	// TenantUuid Tenant UUID
 	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
-	Uuid       *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
+
+	// Uuid UUID
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenstackSubnetsCountParamsState defines parameters for OpenstackSubnetsCount.
@@ -39086,33 +40891,67 @@ type OpenstackSubnetsRetrieveParamsField string
 
 // OpenstackTenantsListParams defines parameters for OpenstackTenantsList.
 type OpenstackTenantsListParams struct {
+	// BackendId Backend ID
 	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool                              `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	Customer             *openapi_types.UUID                `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string                            `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string                            `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string                            `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID                `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string                            `form:"description,omitempty" json:"description,omitempty"`
-	ExternalIp           *string                            `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	Field                *[]OpenstackTenantsListParamsField `form:"field,omitempty" json:"field,omitempty"`
-	Name                 *string                            `form:"name,omitempty" json:"name,omitempty"`
-	NameExact            *string                            `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// ExternalIp External IP
+	ExternalIp *string                            `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+	Field      *[]OpenstackTenantsListParamsField `form:"field,omitempty" json:"field,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                          `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project             *openapi_types.UUID                `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName         *string                            `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid         *openapi_types.UUID                `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	ServiceSettingsName *string                            `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID                `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	State               *[]OpenstackTenantsListParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Uuid                *openapi_types.UUID                `form:"uuid,omitempty" json:"uuid,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]OpenstackTenantsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Uuid UUID
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenstackTenantsListParamsField defines parameters for OpenstackTenantsList.
@@ -39123,32 +40962,66 @@ type OpenstackTenantsListParamsState string
 
 // OpenstackTenantsCountParams defines parameters for OpenstackTenantsCount.
 type OpenstackTenantsCountParams struct {
+	// BackendId Backend ID
 	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool               `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	Customer             *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string             `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string             `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string             `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string             `form:"description,omitempty" json:"description,omitempty"`
-	ExternalIp           *string             `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	Name                 *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact            *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// ExternalIp External IP
+	ExternalIp *string `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project             *openapi_types.UUID                 `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName         *string                             `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid         *openapi_types.UUID                 `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	ServiceSettingsName *string                             `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID                 `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	State               *[]OpenstackTenantsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Uuid                *openapi_types.UUID                 `form:"uuid,omitempty" json:"uuid,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]OpenstackTenantsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Uuid UUID
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenstackTenantsCountParamsState defines parameters for OpenstackTenantsCount.
@@ -39164,32 +41037,66 @@ type OpenstackTenantsRetrieveParamsField string
 
 // OpenstackTenantsBackendInstancesListParams defines parameters for OpenstackTenantsBackendInstancesList.
 type OpenstackTenantsBackendInstancesListParams struct {
+	// BackendId Backend ID
 	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool               `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	Customer             *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string             `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string             `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string             `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string             `form:"description,omitempty" json:"description,omitempty"`
-	ExternalIp           *string             `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	Name                 *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact            *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// ExternalIp External IP
+	ExternalIp *string `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                                          `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project             *openapi_types.UUID                                `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName         *string                                            `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid         *openapi_types.UUID                                `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	ServiceSettingsName *string                                            `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID                                `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	State               *[]OpenstackTenantsBackendInstancesListParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Uuid                *openapi_types.UUID                                `form:"uuid,omitempty" json:"uuid,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]OpenstackTenantsBackendInstancesListParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Uuid UUID
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenstackTenantsBackendInstancesListParamsState defines parameters for OpenstackTenantsBackendInstancesList.
@@ -39197,32 +41104,66 @@ type OpenstackTenantsBackendInstancesListParamsState string
 
 // OpenstackTenantsBackendVolumesListParams defines parameters for OpenstackTenantsBackendVolumesList.
 type OpenstackTenantsBackendVolumesListParams struct {
+	// BackendId Backend ID
 	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool               `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	Customer             *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string             `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string             `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string             `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string             `form:"description,omitempty" json:"description,omitempty"`
-	ExternalIp           *string             `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	Name                 *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact            *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// ExternalIp External IP
+	ExternalIp *string `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                                        `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project             *openapi_types.UUID                              `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName         *string                                          `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid         *openapi_types.UUID                              `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	ServiceSettingsName *string                                          `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID                              `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	State               *[]OpenstackTenantsBackendVolumesListParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Uuid                *openapi_types.UUID                              `form:"uuid,omitempty" json:"uuid,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]OpenstackTenantsBackendVolumesListParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Uuid UUID
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenstackTenantsBackendVolumesListParamsState defines parameters for OpenstackTenantsBackendVolumesList.
@@ -39233,108 +41174,206 @@ type OpenstackTenantsPushSecurityGroupsJSONBody = []TenantSecurityGroupUpdateReq
 
 // OpenstackVolumeAvailabilityZonesListParams defines parameters for OpenstackVolumeAvailabilityZonesList.
 type OpenstackVolumeAvailabilityZonesListParams struct {
-	Name      *string `form:"name,omitempty" json:"name,omitempty"`
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
 	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Settings     *string             `form:"settings,omitempty" json:"settings,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Settings Settings URL
+	Settings *string `form:"settings,omitempty" json:"settings,omitempty"`
+
+	// SettingsUuid Settings UUID
 	SettingsUuid *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
-	Tenant       *string             `form:"tenant,omitempty" json:"tenant,omitempty"`
-	TenantUuid   *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
+
+	// Tenant Tenant URL
+	Tenant *string `form:"tenant,omitempty" json:"tenant,omitempty"`
+
+	// TenantUuid Tenant UUID
+	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
 }
 
 // OpenstackVolumeAvailabilityZonesCountParams defines parameters for OpenstackVolumeAvailabilityZonesCount.
 type OpenstackVolumeAvailabilityZonesCountParams struct {
-	Name      *string `form:"name,omitempty" json:"name,omitempty"`
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
 	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Settings     *string             `form:"settings,omitempty" json:"settings,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Settings Settings URL
+	Settings *string `form:"settings,omitempty" json:"settings,omitempty"`
+
+	// SettingsUuid Settings UUID
 	SettingsUuid *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
-	Tenant       *string             `form:"tenant,omitempty" json:"tenant,omitempty"`
-	TenantUuid   *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
+
+	// Tenant Tenant URL
+	Tenant *string `form:"tenant,omitempty" json:"tenant,omitempty"`
+
+	// TenantUuid Tenant UUID
+	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
 }
 
 // OpenstackVolumeTypesListParams defines parameters for OpenstackVolumeTypesList.
 type OpenstackVolumeTypesListParams struct {
-	Name         *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact    *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// OfferingUuid Offering UUID
 	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Settings     *string             `form:"settings,omitempty" json:"settings,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Settings Settings URL
+	Settings *string `form:"settings,omitempty" json:"settings,omitempty"`
+
+	// SettingsUuid Settings UUID
 	SettingsUuid *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
-	Tenant       *string             `form:"tenant,omitempty" json:"tenant,omitempty"`
-	TenantUuid   *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
+
+	// Tenant Tenant URL
+	Tenant *string `form:"tenant,omitempty" json:"tenant,omitempty"`
+
+	// TenantUuid Tenant UUID
+	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
 }
 
 // OpenstackVolumeTypesCountParams defines parameters for OpenstackVolumeTypesCount.
 type OpenstackVolumeTypesCountParams struct {
-	Name         *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact    *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// OfferingUuid Offering UUID
 	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Settings     *string             `form:"settings,omitempty" json:"settings,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Settings Settings URL
+	Settings *string `form:"settings,omitempty" json:"settings,omitempty"`
+
+	// SettingsUuid Settings UUID
 	SettingsUuid *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
-	Tenant       *string             `form:"tenant,omitempty" json:"tenant,omitempty"`
-	TenantUuid   *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
+
+	// Tenant Tenant URL
+	Tenant *string `form:"tenant,omitempty" json:"tenant,omitempty"`
+
+	// TenantUuid Tenant UUID
+	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
 }
 
 // OpenstackVolumesListParams defines parameters for OpenstackVolumesList.
 type OpenstackVolumesListParams struct {
-	AttachInstanceUuid   *openapi_types.UUID `form:"attach_instance_uuid,omitempty" json:"attach_instance_uuid,omitempty"`
-	AvailabilityZoneName *string             `form:"availability_zone_name,omitempty" json:"availability_zone_name,omitempty"`
-	BackendId            *string             `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	// AttachInstanceUuid Filter for attachment to instance UUID
+	AttachInstanceUuid *openapi_types.UUID `form:"attach_instance_uuid,omitempty" json:"attach_instance_uuid,omitempty"`
+
+	// AvailabilityZoneName Availability zone name
+	AvailabilityZoneName *string `form:"availability_zone_name,omitempty" json:"availability_zone_name,omitempty"`
+
+	// BackendId Backend ID
+	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool                              `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	Customer             *openapi_types.UUID                `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string                            `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string                            `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string                            `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID                `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string                            `form:"description,omitempty" json:"description,omitempty"`
-	ExternalIp           *string                            `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	Field                *[]OpenstackVolumesListParamsField `form:"field,omitempty" json:"field,omitempty"`
-	Instance             *string                            `form:"instance,omitempty" json:"instance,omitempty"`
-	InstanceUuid         *openapi_types.UUID                `form:"instance_uuid,omitempty" json:"instance_uuid,omitempty"`
-	Name                 *string                            `form:"name,omitempty" json:"name,omitempty"`
-	NameExact            *string                            `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// ExternalIp External IP
+	ExternalIp *string                            `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+	Field      *[]OpenstackVolumesListParamsField `form:"field,omitempty" json:"field,omitempty"`
+
+	// Instance Instance URL
+	Instance *string `form:"instance,omitempty" json:"instance,omitempty"`
+
+	// InstanceUuid Instance UUID
+	InstanceUuid *openapi_types.UUID `form:"instance_uuid,omitempty" json:"instance_uuid,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                          `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project             *openapi_types.UUID                `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName         *string                            `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid         *openapi_types.UUID                `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	RuntimeState        *string                            `form:"runtime_state,omitempty" json:"runtime_state,omitempty"`
-	ServiceSettingsName *string                            `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID                `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	Snapshot            *string                            `form:"snapshot,omitempty" json:"snapshot,omitempty"`
-	SnapshotUuid        *openapi_types.UUID                `form:"snapshot_uuid,omitempty" json:"snapshot_uuid,omitempty"`
-	State               *[]OpenstackVolumesListParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Tenant              *string                            `form:"tenant,omitempty" json:"tenant,omitempty"`
-	TenantUuid          *openapi_types.UUID                `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
-	Uuid                *openapi_types.UUID                `form:"uuid,omitempty" json:"uuid,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid  *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	RuntimeState *string             `form:"runtime_state,omitempty" json:"runtime_state,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// Snapshot Snapshot URL
+	Snapshot *string `form:"snapshot,omitempty" json:"snapshot,omitempty"`
+
+	// SnapshotUuid Snapshot UUID
+	SnapshotUuid *openapi_types.UUID `form:"snapshot_uuid,omitempty" json:"snapshot_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]OpenstackVolumesListParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Tenant Tenant URL
+	Tenant *string `form:"tenant,omitempty" json:"tenant,omitempty"`
+
+	// TenantUuid Tenant UUID
+	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
+
+	// Uuid UUID
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenstackVolumesListParamsField defines parameters for OpenstackVolumesList.
@@ -39345,41 +41384,91 @@ type OpenstackVolumesListParamsState string
 
 // OpenstackVolumesCountParams defines parameters for OpenstackVolumesCount.
 type OpenstackVolumesCountParams struct {
-	AttachInstanceUuid   *openapi_types.UUID `form:"attach_instance_uuid,omitempty" json:"attach_instance_uuid,omitempty"`
-	AvailabilityZoneName *string             `form:"availability_zone_name,omitempty" json:"availability_zone_name,omitempty"`
-	BackendId            *string             `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	// AttachInstanceUuid Filter for attachment to instance UUID
+	AttachInstanceUuid *openapi_types.UUID `form:"attach_instance_uuid,omitempty" json:"attach_instance_uuid,omitempty"`
+
+	// AvailabilityZoneName Availability zone name
+	AvailabilityZoneName *string `form:"availability_zone_name,omitempty" json:"availability_zone_name,omitempty"`
+
+	// BackendId Backend ID
+	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool               `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	Customer             *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string             `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string             `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string             `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string             `form:"description,omitempty" json:"description,omitempty"`
-	ExternalIp           *string             `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	Instance             *string             `form:"instance,omitempty" json:"instance,omitempty"`
-	InstanceUuid         *openapi_types.UUID `form:"instance_uuid,omitempty" json:"instance_uuid,omitempty"`
-	Name                 *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact            *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// ExternalIp External IP
+	ExternalIp *string `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+
+	// Instance Instance URL
+	Instance *string `form:"instance,omitempty" json:"instance,omitempty"`
+
+	// InstanceUuid Instance UUID
+	InstanceUuid *openapi_types.UUID `form:"instance_uuid,omitempty" json:"instance_uuid,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project             *openapi_types.UUID                 `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName         *string                             `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid         *openapi_types.UUID                 `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	RuntimeState        *string                             `form:"runtime_state,omitempty" json:"runtime_state,omitempty"`
-	ServiceSettingsName *string                             `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID                 `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	Snapshot            *string                             `form:"snapshot,omitempty" json:"snapshot,omitempty"`
-	SnapshotUuid        *openapi_types.UUID                 `form:"snapshot_uuid,omitempty" json:"snapshot_uuid,omitempty"`
-	State               *[]OpenstackVolumesCountParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Tenant              *string                             `form:"tenant,omitempty" json:"tenant,omitempty"`
-	TenantUuid          *openapi_types.UUID                 `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
-	Uuid                *openapi_types.UUID                 `form:"uuid,omitempty" json:"uuid,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid  *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	RuntimeState *string             `form:"runtime_state,omitempty" json:"runtime_state,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// Snapshot Snapshot URL
+	Snapshot *string `form:"snapshot,omitempty" json:"snapshot,omitempty"`
+
+	// SnapshotUuid Snapshot UUID
+	SnapshotUuid *openapi_types.UUID `form:"snapshot_uuid,omitempty" json:"snapshot_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]OpenstackVolumesCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Tenant Tenant URL
+	Tenant *string `form:"tenant,omitempty" json:"tenant,omitempty"`
+
+	// TenantUuid Tenant UUID
+	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
+
+	// Uuid UUID
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // OpenstackVolumesCountParamsState defines parameters for OpenstackVolumesCount.
@@ -39395,7 +41484,10 @@ type OpenstackVolumesRetrieveParamsField string
 
 // OrganizationGroupsListParams defines parameters for OrganizationGroupsList.
 type OrganizationGroupsListParams struct {
-	Name      *string `form:"name,omitempty" json:"name,omitempty"`
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
 	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// O Which field to use when ordering the results.
@@ -39405,13 +41497,18 @@ type OrganizationGroupsListParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Parent   *openapi_types.UUID `form:"parent,omitempty" json:"parent,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Parent Parent UUID
+	Parent *openapi_types.UUID `form:"parent,omitempty" json:"parent,omitempty"`
 }
 
 // OrganizationGroupsCountParams defines parameters for OrganizationGroupsCount.
 type OrganizationGroupsCountParams struct {
-	Name      *string `form:"name,omitempty" json:"name,omitempty"`
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
 	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// O Which field to use when ordering the results.
@@ -39421,8 +41518,10 @@ type OrganizationGroupsCountParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Parent   *openapi_types.UUID `form:"parent,omitempty" json:"parent,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Parent Parent UUID
+	Parent *openapi_types.UUID `form:"parent,omitempty" json:"parent,omitempty"`
 }
 
 // PaymentProfilesListParams defines parameters for PaymentProfilesList.
@@ -39617,7 +41716,10 @@ type ProjectQuotasCountParams struct {
 
 // ProjectTypesListParams defines parameters for ProjectTypesList.
 type ProjectTypesListParams struct {
-	Name      *string `form:"name,omitempty" json:"name,omitempty"`
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
 	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
@@ -39629,7 +41731,10 @@ type ProjectTypesListParams struct {
 
 // ProjectTypesCountParams defines parameters for ProjectTypesCount.
 type ProjectTypesCountParams struct {
-	Name      *string `form:"name,omitempty" json:"name,omitempty"`
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
 	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
@@ -39656,21 +41761,35 @@ type ProjectsListParams struct {
 	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
 
 	// Customer Multiple values may be separated by commas.
-	Customer             *[]openapi_types.UUID      `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string                    `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string                    `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string                    `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	Description          *string                    `form:"description,omitempty" json:"description,omitempty"`
-	Field                *[]ProjectsListParamsField `form:"field,omitempty" json:"field,omitempty"`
+	Customer *[]openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// Description Description
+	Description *string                    `form:"description,omitempty" json:"description,omitempty"`
+	Field       *[]ProjectsListParamsField `form:"field,omitempty" json:"field,omitempty"`
 
 	// IncludeTerminated Include soft-deleted (terminated) projects. Only available to staff and support users, or users with organizational roles who can see their terminated projects.
 	IncludeTerminated *bool `form:"include_terminated,omitempty" json:"include_terminated,omitempty"`
-	IsRemoved         *bool `form:"is_removed,omitempty" json:"is_removed,omitempty"`
+
+	// IsRemoved Is removed
+	IsRemoved *bool `form:"is_removed,omitempty" json:"is_removed,omitempty"`
 
 	// Modified Modified after
-	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
-	Name      *string    `form:"name,omitempty" json:"name,omitempty"`
-	NameExact *string    `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// O Ordering
 	//
@@ -39684,7 +41803,9 @@ type ProjectsListParams struct {
 
 	// Query Filter by name, slug, UUID, backend ID or resource effective ID
 	Query *string `form:"query,omitempty" json:"query,omitempty"`
-	Slug  *string `form:"slug,omitempty" json:"slug,omitempty"`
+
+	// Slug Slug
+	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
 }
 
 // ProjectsListParamsField defines parameters for ProjectsList.
@@ -39710,20 +41831,34 @@ type ProjectsCountParams struct {
 	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
 
 	// Customer Multiple values may be separated by commas.
-	Customer             *[]openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string               `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string               `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string               `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	Description          *string               `form:"description,omitempty" json:"description,omitempty"`
+	Customer *[]openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
 
 	// IncludeTerminated Include soft-deleted (terminated) projects. Only available to staff and support users, or users with organizational roles who can see their terminated projects.
 	IncludeTerminated *bool `form:"include_terminated,omitempty" json:"include_terminated,omitempty"`
-	IsRemoved         *bool `form:"is_removed,omitempty" json:"is_removed,omitempty"`
+
+	// IsRemoved Is removed
+	IsRemoved *bool `form:"is_removed,omitempty" json:"is_removed,omitempty"`
 
 	// Modified Modified after
-	Modified  *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
-	Name      *string    `form:"name,omitempty" json:"name,omitempty"`
-	NameExact *string    `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// O Ordering
 	//
@@ -39737,7 +41872,9 @@ type ProjectsCountParams struct {
 
 	// Query Filter by name, slug, UUID, backend ID or resource effective ID
 	Query *string `form:"query,omitempty" json:"query,omitempty"`
-	Slug  *string `form:"slug,omitempty" json:"slug,omitempty"`
+
+	// Slug Slug
+	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
 }
 
 // ProjectsCountParamsO defines parameters for ProjectsCount.
@@ -39764,20 +41901,30 @@ type ProjectsOtherUsersListParams struct {
 	// DateJoined Date joined after
 	DateJoined  *time.Time `form:"date_joined,omitempty" json:"date_joined,omitempty"`
 	Description *string    `form:"description,omitempty" json:"description,omitempty"`
-	Email       *string    `form:"email,omitempty" json:"email,omitempty"`
+
+	// Email Email
+	Email *string `form:"email,omitempty" json:"email,omitempty"`
 
 	// FullName Full name
 	FullName *string `form:"full_name,omitempty" json:"full_name,omitempty"`
-	IsActive *bool   `form:"is_active,omitempty" json:"is_active,omitempty"`
+
+	// IsActive Is active
+	IsActive *bool `form:"is_active,omitempty" json:"is_active,omitempty"`
+
+	// JobTitle Job title
 	JobTitle *string `form:"job_title,omitempty" json:"job_title,omitempty"`
 
 	// Modified Date modified after
-	Modified   *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
-	NativeName *string    `form:"native_name,omitempty" json:"native_name,omitempty"`
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// NativeName Native name
+	NativeName *string `form:"native_name,omitempty" json:"native_name,omitempty"`
 
 	// O Ordering. Sort by a combination of first name, last name, and username.
-	O            *ProjectsOtherUsersListParamsO `form:"o,omitempty" json:"o,omitempty"`
-	Organization *string                        `form:"organization,omitempty" json:"organization,omitempty"`
+	O *ProjectsOtherUsersListParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// Organization Organization
+	Organization *string `form:"organization,omitempty" json:"organization,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -39789,7 +41936,9 @@ type ProjectsOtherUsersListParams struct {
 
 	// UserKeyword User keyword
 	UserKeyword *string `form:"user_keyword,omitempty" json:"user_keyword,omitempty"`
-	Username    *string `form:"username,omitempty" json:"username,omitempty"`
+
+	// Username Username
+	Username *string `form:"username,omitempty" json:"username,omitempty"`
 }
 
 // ProjectsOtherUsersListParamsO defines parameters for ProjectsOtherUsersList.
@@ -40704,36 +42853,68 @@ type RabbitmqUserStatsListParams struct {
 
 // RancherAppsListParams defines parameters for RancherAppsList.
 type RancherAppsListParams struct {
+	// BackendId Backend ID
 	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool                         `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	ClusterUuid          *openapi_types.UUID           `form:"cluster_uuid,omitempty" json:"cluster_uuid,omitempty"`
-	Customer             *openapi_types.UUID           `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string                       `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string                       `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string                       `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID           `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string                       `form:"description,omitempty" json:"description,omitempty"`
-	ExternalIp           *string                       `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	Field                *[]RancherAppsListParamsField `form:"field,omitempty" json:"field,omitempty"`
-	Name                 *string                       `form:"name,omitempty" json:"name,omitempty"`
-	NameExact            *string                       `form:"name_exact,omitempty" json:"name_exact,omitempty"`
-	NamespaceUuid        *openapi_types.UUID           `form:"namespace_uuid,omitempty" json:"namespace_uuid,omitempty"`
+	CanManage   *bool               `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+	ClusterUuid *openapi_types.UUID `form:"cluster_uuid,omitempty" json:"cluster_uuid,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// ExternalIp External IP
+	ExternalIp *string                       `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+	Field      *[]RancherAppsListParamsField `form:"field,omitempty" json:"field,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact     *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	NamespaceUuid *openapi_types.UUID `form:"namespace_uuid,omitempty" json:"namespace_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                     `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project             *openapi_types.UUID           `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName         *string                       `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid         *openapi_types.UUID           `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	ServiceSettingsName *string                       `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID           `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	State               *[]RancherAppsListParamsState `form:"state,omitempty" json:"state,omitempty"`
-	TemplateUuid        *openapi_types.UUID           `form:"template_uuid,omitempty" json:"template_uuid,omitempty"`
-	Uuid                *openapi_types.UUID           `form:"uuid,omitempty" json:"uuid,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string             `form:"project_name,omitempty" json:"project_name,omitempty"`
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State State
+	//
+	State        *[]RancherAppsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+	TemplateUuid *openapi_types.UUID           `form:"template_uuid,omitempty" json:"template_uuid,omitempty"`
+
+	// Uuid UUID
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // RancherAppsListParamsField defines parameters for RancherAppsList.
@@ -40744,35 +42925,67 @@ type RancherAppsListParamsState string
 
 // RancherAppsCountParams defines parameters for RancherAppsCount.
 type RancherAppsCountParams struct {
+	// BackendId Backend ID
 	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool               `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	ClusterUuid          *openapi_types.UUID `form:"cluster_uuid,omitempty" json:"cluster_uuid,omitempty"`
-	Customer             *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string             `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string             `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string             `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string             `form:"description,omitempty" json:"description,omitempty"`
-	ExternalIp           *string             `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	Name                 *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact            *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
-	NamespaceUuid        *openapi_types.UUID `form:"namespace_uuid,omitempty" json:"namespace_uuid,omitempty"`
+	CanManage   *bool               `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+	ClusterUuid *openapi_types.UUID `form:"cluster_uuid,omitempty" json:"cluster_uuid,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// ExternalIp External IP
+	ExternalIp *string `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact     *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	NamespaceUuid *openapi_types.UUID `form:"namespace_uuid,omitempty" json:"namespace_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                      `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project             *openapi_types.UUID            `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName         *string                        `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid         *openapi_types.UUID            `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	ServiceSettingsName *string                        `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID            `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	State               *[]RancherAppsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
-	TemplateUuid        *openapi_types.UUID            `form:"template_uuid,omitempty" json:"template_uuid,omitempty"`
-	Uuid                *openapi_types.UUID            `form:"uuid,omitempty" json:"uuid,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string             `form:"project_name,omitempty" json:"project_name,omitempty"`
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State State
+	//
+	State        *[]RancherAppsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+	TemplateUuid *openapi_types.UUID            `form:"template_uuid,omitempty" json:"template_uuid,omitempty"`
+
+	// Uuid UUID
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // RancherAppsCountParamsState defines parameters for RancherAppsCount.
@@ -40807,8 +43020,12 @@ type RancherCatalogsCountParams struct {
 // RancherClusterSecurityGroupsListParams defines parameters for RancherClusterSecurityGroupsList.
 type RancherClusterSecurityGroupsListParams struct {
 	ClusterUuid *openapi_types.UUID `form:"cluster_uuid,omitempty" json:"cluster_uuid,omitempty"`
-	Name        *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact   *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -40820,8 +43037,12 @@ type RancherClusterSecurityGroupsListParams struct {
 // RancherClusterSecurityGroupsCountParams defines parameters for RancherClusterSecurityGroupsCount.
 type RancherClusterSecurityGroupsCountParams struct {
 	ClusterUuid *openapi_types.UUID `form:"cluster_uuid,omitempty" json:"cluster_uuid,omitempty"`
-	Name        *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact   *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -40850,33 +43071,67 @@ type RancherClusterTemplatesCountParams struct {
 
 // RancherClustersListParams defines parameters for RancherClustersList.
 type RancherClustersListParams struct {
+	// BackendId Backend ID
 	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool                             `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	Customer             *openapi_types.UUID               `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string                           `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string                           `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string                           `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID               `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string                           `form:"description,omitempty" json:"description,omitempty"`
-	ExternalIp           *string                           `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	Field                *[]RancherClustersListParamsField `form:"field,omitempty" json:"field,omitempty"`
-	Name                 *string                           `form:"name,omitempty" json:"name,omitempty"`
-	NameExact            *string                           `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// ExternalIp External IP
+	ExternalIp *string                           `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+	Field      *[]RancherClustersListParamsField `form:"field,omitempty" json:"field,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                         `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project             *openapi_types.UUID               `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName         *string                           `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid         *openapi_types.UUID               `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	ServiceSettingsName *string                           `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID               `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	State               *[]RancherClustersListParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Uuid                *openapi_types.UUID               `form:"uuid,omitempty" json:"uuid,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]RancherClustersListParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Uuid UUID
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // RancherClustersListParamsField defines parameters for RancherClustersList.
@@ -40887,32 +43142,66 @@ type RancherClustersListParamsState string
 
 // RancherClustersCountParams defines parameters for RancherClustersCount.
 type RancherClustersCountParams struct {
+	// BackendId Backend ID
 	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool               `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	Customer             *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string             `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string             `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string             `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string             `form:"description,omitempty" json:"description,omitempty"`
-	ExternalIp           *string             `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	Name                 *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact            *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// ExternalIp External IP
+	ExternalIp *string `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                          `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project             *openapi_types.UUID                `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName         *string                            `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid         *openapi_types.UUID                `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	ServiceSettingsName *string                            `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID                `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	State               *[]RancherClustersCountParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Uuid                *openapi_types.UUID                `form:"uuid,omitempty" json:"uuid,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]RancherClustersCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Uuid UUID
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // RancherClustersCountParamsState defines parameters for RancherClustersCount.
@@ -40928,8 +43217,12 @@ type RancherClustersRetrieveParamsField string
 
 // RancherHpasListParams defines parameters for RancherHpasList.
 type RancherHpasListParams struct {
-	ClusterUuid   *openapi_types.UUID `form:"cluster_uuid,omitempty" json:"cluster_uuid,omitempty"`
-	Name          *string             `form:"name,omitempty" json:"name,omitempty"`
+	ClusterUuid *openapi_types.UUID `form:"cluster_uuid,omitempty" json:"cluster_uuid,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
 	NameExact     *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 	NamespaceUuid *openapi_types.UUID `form:"namespace_uuid,omitempty" json:"namespace_uuid,omitempty"`
 
@@ -40937,17 +43230,25 @@ type RancherHpasListParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	ProjectUuid  *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	Settings     *string             `form:"settings,omitempty" json:"settings,omitempty"`
+	PageSize    *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// Settings Settings URL
+	Settings *string `form:"settings,omitempty" json:"settings,omitempty"`
+
+	// SettingsUuid Settings UUID
 	SettingsUuid *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
 	WorkloadUuid *openapi_types.UUID `form:"workload_uuid,omitempty" json:"workload_uuid,omitempty"`
 }
 
 // RancherHpasCountParams defines parameters for RancherHpasCount.
 type RancherHpasCountParams struct {
-	ClusterUuid   *openapi_types.UUID `form:"cluster_uuid,omitempty" json:"cluster_uuid,omitempty"`
-	Name          *string             `form:"name,omitempty" json:"name,omitempty"`
+	ClusterUuid *openapi_types.UUID `form:"cluster_uuid,omitempty" json:"cluster_uuid,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
 	NameExact     *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 	NamespaceUuid *openapi_types.UUID `form:"namespace_uuid,omitempty" json:"namespace_uuid,omitempty"`
 
@@ -40955,45 +43256,83 @@ type RancherHpasCountParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	ProjectUuid  *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	Settings     *string             `form:"settings,omitempty" json:"settings,omitempty"`
+	PageSize    *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// Settings Settings URL
+	Settings *string `form:"settings,omitempty" json:"settings,omitempty"`
+
+	// SettingsUuid Settings UUID
 	SettingsUuid *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
 	WorkloadUuid *openapi_types.UUID `form:"workload_uuid,omitempty" json:"workload_uuid,omitempty"`
 }
 
 // RancherIngressesListParams defines parameters for RancherIngressesList.
 type RancherIngressesListParams struct {
+	// BackendId Backend ID
 	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool                              `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	ClusterUuid          *openapi_types.UUID                `form:"cluster_uuid,omitempty" json:"cluster_uuid,omitempty"`
-	Customer             *openapi_types.UUID                `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string                            `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string                            `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string                            `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID                `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string                            `form:"description,omitempty" json:"description,omitempty"`
-	ExternalIp           *string                            `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	Field                *[]RancherIngressesListParamsField `form:"field,omitempty" json:"field,omitempty"`
-	Name                 *string                            `form:"name,omitempty" json:"name,omitempty"`
-	NameExact            *string                            `form:"name_exact,omitempty" json:"name_exact,omitempty"`
-	NamespaceUuid        *openapi_types.UUID                `form:"namespace_uuid,omitempty" json:"namespace_uuid,omitempty"`
+	CanManage   *bool               `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+	ClusterUuid *openapi_types.UUID `form:"cluster_uuid,omitempty" json:"cluster_uuid,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// ExternalIp External IP
+	ExternalIp *string                            `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+	Field      *[]RancherIngressesListParamsField `form:"field,omitempty" json:"field,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact     *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	NamespaceUuid *openapi_types.UUID `form:"namespace_uuid,omitempty" json:"namespace_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                          `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project             *openapi_types.UUID                `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName         *string                            `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid         *openapi_types.UUID                `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	RancherProjectUuid  *openapi_types.UUID                `form:"rancher_project_uuid,omitempty" json:"rancher_project_uuid,omitempty"`
-	ServiceSettingsName *string                            `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID                `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	State               *[]RancherIngressesListParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Uuid                *openapi_types.UUID                `form:"uuid,omitempty" json:"uuid,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid        *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	RancherProjectUuid *openapi_types.UUID `form:"rancher_project_uuid,omitempty" json:"rancher_project_uuid,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]RancherIngressesListParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Uuid UUID
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // RancherIngressesListParamsField defines parameters for RancherIngressesList.
@@ -41004,35 +43343,69 @@ type RancherIngressesListParamsState string
 
 // RancherIngressesCountParams defines parameters for RancherIngressesCount.
 type RancherIngressesCountParams struct {
+	// BackendId Backend ID
 	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool               `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	ClusterUuid          *openapi_types.UUID `form:"cluster_uuid,omitempty" json:"cluster_uuid,omitempty"`
-	Customer             *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string             `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string             `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string             `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string             `form:"description,omitempty" json:"description,omitempty"`
-	ExternalIp           *string             `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	Name                 *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact            *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
-	NamespaceUuid        *openapi_types.UUID `form:"namespace_uuid,omitempty" json:"namespace_uuid,omitempty"`
+	CanManage   *bool               `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+	ClusterUuid *openapi_types.UUID `form:"cluster_uuid,omitempty" json:"cluster_uuid,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// ExternalIp External IP
+	ExternalIp *string `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact     *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	NamespaceUuid *openapi_types.UUID `form:"namespace_uuid,omitempty" json:"namespace_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project             *openapi_types.UUID                 `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName         *string                             `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid         *openapi_types.UUID                 `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	RancherProjectUuid  *openapi_types.UUID                 `form:"rancher_project_uuid,omitempty" json:"rancher_project_uuid,omitempty"`
-	ServiceSettingsName *string                             `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID                 `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	State               *[]RancherIngressesCountParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Uuid                *openapi_types.UUID                 `form:"uuid,omitempty" json:"uuid,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid        *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	RancherProjectUuid *openapi_types.UUID `form:"rancher_project_uuid,omitempty" json:"rancher_project_uuid,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]RancherIngressesCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Uuid UUID
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // RancherIngressesCountParamsState defines parameters for RancherIngressesCount.
@@ -41057,8 +43430,12 @@ type RancherIngressesYamlRetrieveParamsField string
 // RancherNamespacesListParams defines parameters for RancherNamespacesList.
 type RancherNamespacesListParams struct {
 	ClusterUuid *openapi_types.UUID `form:"cluster_uuid,omitempty" json:"cluster_uuid,omitempty"`
-	Name        *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact   *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// O Ordering
 	//
@@ -41068,9 +43445,13 @@ type RancherNamespacesListParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	ProjectUuid  *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	Settings     *string             `form:"settings,omitempty" json:"settings,omitempty"`
+	PageSize    *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// Settings Settings URL
+	Settings *string `form:"settings,omitempty" json:"settings,omitempty"`
+
+	// SettingsUuid Settings UUID
 	SettingsUuid *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
 }
 
@@ -41080,8 +43461,12 @@ type RancherNamespacesListParamsO string
 // RancherNamespacesCountParams defines parameters for RancherNamespacesCount.
 type RancherNamespacesCountParams struct {
 	ClusterUuid *openapi_types.UUID `form:"cluster_uuid,omitempty" json:"cluster_uuid,omitempty"`
-	Name        *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact   *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// O Ordering
 	//
@@ -41091,9 +43476,13 @@ type RancherNamespacesCountParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	ProjectUuid  *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	Settings     *string             `form:"settings,omitempty" json:"settings,omitempty"`
+	PageSize    *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// Settings Settings URL
+	Settings *string `form:"settings,omitempty" json:"settings,omitempty"`
+
+	// SettingsUuid Settings UUID
 	SettingsUuid *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
 }
 
@@ -41130,30 +43519,46 @@ type RancherNodesConsoleLogRetrieveParams struct {
 // RancherProjectsListParams defines parameters for RancherProjectsList.
 type RancherProjectsListParams struct {
 	ClusterUuid *openapi_types.UUID `form:"cluster_uuid,omitempty" json:"cluster_uuid,omitempty"`
-	Name        *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact   *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Settings     *string             `form:"settings,omitempty" json:"settings,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Settings Settings URL
+	Settings *string `form:"settings,omitempty" json:"settings,omitempty"`
+
+	// SettingsUuid Settings UUID
 	SettingsUuid *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
 }
 
 // RancherProjectsCountParams defines parameters for RancherProjectsCount.
 type RancherProjectsCountParams struct {
 	ClusterUuid *openapi_types.UUID `form:"cluster_uuid,omitempty" json:"cluster_uuid,omitempty"`
-	Name        *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact   *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Settings     *string             `form:"settings,omitempty" json:"settings,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Settings Settings URL
+	Settings *string `form:"settings,omitempty" json:"settings,omitempty"`
+
+	// SettingsUuid Settings UUID
 	SettingsUuid *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
 }
 
@@ -41199,36 +43604,70 @@ type RancherRoleTemplatesCountParamsO string
 
 // RancherServicesListParams defines parameters for RancherServicesList.
 type RancherServicesListParams struct {
+	// BackendId Backend ID
 	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool                             `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	ClusterUuid          *openapi_types.UUID               `form:"cluster_uuid,omitempty" json:"cluster_uuid,omitempty"`
-	Customer             *openapi_types.UUID               `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string                           `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string                           `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string                           `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID               `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string                           `form:"description,omitempty" json:"description,omitempty"`
-	ExternalIp           *string                           `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	Field                *[]RancherServicesListParamsField `form:"field,omitempty" json:"field,omitempty"`
-	Name                 *string                           `form:"name,omitempty" json:"name,omitempty"`
-	NameExact            *string                           `form:"name_exact,omitempty" json:"name_exact,omitempty"`
-	NamespaceUuid        *openapi_types.UUID               `form:"namespace_uuid,omitempty" json:"namespace_uuid,omitempty"`
+	CanManage   *bool               `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+	ClusterUuid *openapi_types.UUID `form:"cluster_uuid,omitempty" json:"cluster_uuid,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// ExternalIp External IP
+	ExternalIp *string                           `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+	Field      *[]RancherServicesListParamsField `form:"field,omitempty" json:"field,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact     *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	NamespaceUuid *openapi_types.UUID `form:"namespace_uuid,omitempty" json:"namespace_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                         `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project             *openapi_types.UUID               `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName         *string                           `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid         *openapi_types.UUID               `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	RancherProjectUuid  *openapi_types.UUID               `form:"rancher_project_uuid,omitempty" json:"rancher_project_uuid,omitempty"`
-	ServiceSettingsName *string                           `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID               `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	State               *[]RancherServicesListParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Uuid                *openapi_types.UUID               `form:"uuid,omitempty" json:"uuid,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid        *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	RancherProjectUuid *openapi_types.UUID `form:"rancher_project_uuid,omitempty" json:"rancher_project_uuid,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]RancherServicesListParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Uuid UUID
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // RancherServicesListParamsField defines parameters for RancherServicesList.
@@ -41239,35 +43678,69 @@ type RancherServicesListParamsState string
 
 // RancherServicesCountParams defines parameters for RancherServicesCount.
 type RancherServicesCountParams struct {
+	// BackendId Backend ID
 	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool               `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	ClusterUuid          *openapi_types.UUID `form:"cluster_uuid,omitempty" json:"cluster_uuid,omitempty"`
-	Customer             *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string             `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string             `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string             `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string             `form:"description,omitempty" json:"description,omitempty"`
-	ExternalIp           *string             `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	Name                 *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact            *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
-	NamespaceUuid        *openapi_types.UUID `form:"namespace_uuid,omitempty" json:"namespace_uuid,omitempty"`
+	CanManage   *bool               `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+	ClusterUuid *openapi_types.UUID `form:"cluster_uuid,omitempty" json:"cluster_uuid,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// ExternalIp External IP
+	ExternalIp *string `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact     *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	NamespaceUuid *openapi_types.UUID `form:"namespace_uuid,omitempty" json:"namespace_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                          `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project             *openapi_types.UUID                `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName         *string                            `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid         *openapi_types.UUID                `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	RancherProjectUuid  *openapi_types.UUID                `form:"rancher_project_uuid,omitempty" json:"rancher_project_uuid,omitempty"`
-	ServiceSettingsName *string                            `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID                `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	State               *[]RancherServicesCountParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Uuid                *openapi_types.UUID                `form:"uuid,omitempty" json:"uuid,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid        *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	RancherProjectUuid *openapi_types.UUID `form:"rancher_project_uuid,omitempty" json:"rancher_project_uuid,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]RancherServicesCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Uuid UUID
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // RancherServicesCountParamsState defines parameters for RancherServicesCount.
@@ -41293,8 +43766,12 @@ type RancherServicesYamlRetrieveParamsField string
 type RancherTemplatesListParams struct {
 	CatalogUuid *openapi_types.UUID `form:"catalog_uuid,omitempty" json:"catalog_uuid,omitempty"`
 	ClusterUuid *openapi_types.UUID `form:"cluster_uuid,omitempty" json:"cluster_uuid,omitempty"`
-	Name        *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact   *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// O Ordering
 	//
@@ -41304,9 +43781,13 @@ type RancherTemplatesListParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	ProjectUuid  *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	Settings     *string             `form:"settings,omitempty" json:"settings,omitempty"`
+	PageSize    *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// Settings Settings URL
+	Settings *string `form:"settings,omitempty" json:"settings,omitempty"`
+
+	// SettingsUuid Settings UUID
 	SettingsUuid *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
 }
 
@@ -41317,8 +43798,12 @@ type RancherTemplatesListParamsO string
 type RancherTemplatesCountParams struct {
 	CatalogUuid *openapi_types.UUID `form:"catalog_uuid,omitempty" json:"catalog_uuid,omitempty"`
 	ClusterUuid *openapi_types.UUID `form:"cluster_uuid,omitempty" json:"cluster_uuid,omitempty"`
-	Name        *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact   *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// O Ordering
 	//
@@ -41328,9 +43813,13 @@ type RancherTemplatesCountParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	ProjectUuid  *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	Settings     *string             `form:"settings,omitempty" json:"settings,omitempty"`
+	PageSize    *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// Settings Settings URL
+	Settings *string `form:"settings,omitempty" json:"settings,omitempty"`
+
+	// SettingsUuid Settings UUID
 	SettingsUuid *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
 }
 
@@ -41377,8 +43866,12 @@ type RancherUsersCountParams struct {
 
 // RancherWorkloadsListParams defines parameters for RancherWorkloadsList.
 type RancherWorkloadsListParams struct {
-	ClusterUuid   *openapi_types.UUID `form:"cluster_uuid,omitempty" json:"cluster_uuid,omitempty"`
-	Name          *string             `form:"name,omitempty" json:"name,omitempty"`
+	ClusterUuid *openapi_types.UUID `form:"cluster_uuid,omitempty" json:"cluster_uuid,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
 	NameExact     *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 	NamespaceUuid *openapi_types.UUID `form:"namespace_uuid,omitempty" json:"namespace_uuid,omitempty"`
 
@@ -41390,9 +43883,13 @@ type RancherWorkloadsListParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	ProjectUuid  *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	Settings     *string             `form:"settings,omitempty" json:"settings,omitempty"`
+	PageSize    *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// Settings Settings URL
+	Settings *string `form:"settings,omitempty" json:"settings,omitempty"`
+
+	// SettingsUuid Settings UUID
 	SettingsUuid *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
 }
 
@@ -41401,8 +43898,12 @@ type RancherWorkloadsListParamsO string
 
 // RancherWorkloadsCountParams defines parameters for RancherWorkloadsCount.
 type RancherWorkloadsCountParams struct {
-	ClusterUuid   *openapi_types.UUID `form:"cluster_uuid,omitempty" json:"cluster_uuid,omitempty"`
-	Name          *string             `form:"name,omitempty" json:"name,omitempty"`
+	ClusterUuid *openapi_types.UUID `form:"cluster_uuid,omitempty" json:"cluster_uuid,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
 	NameExact     *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 	NamespaceUuid *openapi_types.UUID `form:"namespace_uuid,omitempty" json:"namespace_uuid,omitempty"`
 
@@ -41414,9 +43915,13 @@ type RancherWorkloadsCountParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	ProjectUuid  *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	Settings     *string             `form:"settings,omitempty" json:"settings,omitempty"`
+	PageSize    *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// Settings Settings URL
+	Settings *string `form:"settings,omitempty" json:"settings,omitempty"`
+
+	// SettingsUuid Settings UUID
 	SettingsUuid *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
 }
 
@@ -41501,11 +44006,18 @@ type RolesRetrieveParamsField string
 
 // ServiceSettingsListParams defines parameters for ServiceSettingsList.
 type ServiceSettingsListParams struct {
-	Customer     *openapi_types.UUID               `form:"customer,omitempty" json:"customer,omitempty"`
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerUuid Customer UUID
 	CustomerUuid *openapi_types.UUID               `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
 	Field        *[]ServiceSettingsListParamsField `form:"field,omitempty" json:"field,omitempty"`
-	Name         *string                           `form:"name,omitempty" json:"name,omitempty"`
-	NameExact    *string                           `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// O Which field to use when ordering the results.
 	O *string `form:"o,omitempty" json:"o,omitempty"`
@@ -41517,10 +44029,15 @@ type ServiceSettingsListParams struct {
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 
 	// ScopeUuid Scope UUID
-	ScopeUuid *string                           `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
-	Shared    *bool                             `form:"shared,omitempty" json:"shared,omitempty"`
-	State     *[]ServiceSettingsListParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Type      *string                           `form:"type,omitempty" json:"type,omitempty"`
+	ScopeUuid *string `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
+	Shared    *bool   `form:"shared,omitempty" json:"shared,omitempty"`
+
+	// State State
+	//
+	State *[]ServiceSettingsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Type Type
+	Type *string `form:"type,omitempty" json:"type,omitempty"`
 }
 
 // ServiceSettingsListParamsField defines parameters for ServiceSettingsList.
@@ -41531,10 +44048,17 @@ type ServiceSettingsListParamsState string
 
 // ServiceSettingsCountParams defines parameters for ServiceSettingsCount.
 type ServiceSettingsCountParams struct {
-	Customer     *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerUuid Customer UUID
 	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Name         *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact    *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// O Which field to use when ordering the results.
 	O *string `form:"o,omitempty" json:"o,omitempty"`
@@ -41546,10 +44070,15 @@ type ServiceSettingsCountParams struct {
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 
 	// ScopeUuid Scope UUID
-	ScopeUuid *string                            `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
-	Shared    *bool                              `form:"shared,omitempty" json:"shared,omitempty"`
-	State     *[]ServiceSettingsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Type      *string                            `form:"type,omitempty" json:"type,omitempty"`
+	ScopeUuid *string `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
+	Shared    *bool   `form:"shared,omitempty" json:"shared,omitempty"`
+
+	// State State
+	//
+	State *[]ServiceSettingsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Type Type
+	Type *string `form:"type,omitempty" json:"type,omitempty"`
 }
 
 // ServiceSettingsCountParamsState defines parameters for ServiceSettingsCount.
@@ -41597,34 +44126,68 @@ type SlurmAllocationUserUsageCountParams struct {
 
 // SlurmAllocationsListParams defines parameters for SlurmAllocationsList.
 type SlurmAllocationsListParams struct {
+	// BackendId Backend ID
 	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool                              `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	Customer             *openapi_types.UUID                `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string                            `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string                            `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string                            `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID                `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string                            `form:"description,omitempty" json:"description,omitempty"`
-	ExternalIp           *string                            `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	Field                *[]SlurmAllocationsListParamsField `form:"field,omitempty" json:"field,omitempty"`
-	IsActive             *bool                              `form:"is_active,omitempty" json:"is_active,omitempty"`
-	Name                 *string                            `form:"name,omitempty" json:"name,omitempty"`
-	NameExact            *string                            `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// ExternalIp External IP
+	ExternalIp *string                            `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+	Field      *[]SlurmAllocationsListParamsField `form:"field,omitempty" json:"field,omitempty"`
+	IsActive   *bool                              `form:"is_active,omitempty" json:"is_active,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                          `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project             *openapi_types.UUID                `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName         *string                            `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid         *openapi_types.UUID                `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	ServiceSettingsName *string                            `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID                `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	State               *[]SlurmAllocationsListParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Uuid                *openapi_types.UUID                `form:"uuid,omitempty" json:"uuid,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]SlurmAllocationsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Uuid UUID
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // SlurmAllocationsListParamsField defines parameters for SlurmAllocationsList.
@@ -41635,33 +44198,67 @@ type SlurmAllocationsListParamsState string
 
 // SlurmAllocationsCountParams defines parameters for SlurmAllocationsCount.
 type SlurmAllocationsCountParams struct {
+	// BackendId Backend ID
 	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool               `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	Customer             *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string             `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string             `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string             `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string             `form:"description,omitempty" json:"description,omitempty"`
-	ExternalIp           *string             `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	IsActive             *bool               `form:"is_active,omitempty" json:"is_active,omitempty"`
-	Name                 *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact            *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// ExternalIp External IP
+	ExternalIp *string `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+	IsActive   *bool   `form:"is_active,omitempty" json:"is_active,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project             *openapi_types.UUID                 `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName         *string                             `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid         *openapi_types.UUID                 `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	ServiceSettingsName *string                             `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID                 `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	State               *[]SlurmAllocationsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Uuid                *openapi_types.UUID                 `form:"uuid,omitempty" json:"uuid,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]SlurmAllocationsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Uuid UUID
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // SlurmAllocationsCountParamsState defines parameters for SlurmAllocationsCount.
@@ -41974,7 +44571,10 @@ type SupportIssuesCountParamsO string
 
 // SupportPrioritiesListParams defines parameters for SupportPrioritiesList.
 type SupportPrioritiesListParams struct {
-	Name      *string `form:"name,omitempty" json:"name,omitempty"`
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
 	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
@@ -41986,7 +44586,10 @@ type SupportPrioritiesListParams struct {
 
 // SupportPrioritiesCountParams defines parameters for SupportPrioritiesCount.
 type SupportPrioritiesCountParams struct {
-	Name      *string `form:"name,omitempty" json:"name,omitempty"`
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
 	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
@@ -42330,31 +44933,47 @@ type UserPermissionsCountParamsO string
 // UsersListParams defines parameters for UsersList.
 type UsersListParams struct {
 	// AgreementDate Agreement date after
-	AgreementDate *time.Time          `form:"agreement_date,omitempty" json:"agreement_date,omitempty"`
-	CivilNumber   *string             `form:"civil_number,omitempty" json:"civil_number,omitempty"`
-	CustomerUuid  *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+	AgreementDate *time.Time `form:"agreement_date,omitempty" json:"agreement_date,omitempty"`
+	CivilNumber   *string    `form:"civil_number,omitempty" json:"civil_number,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
 
 	// DateJoined Date joined after
-	DateJoined  *time.Time              `form:"date_joined,omitempty" json:"date_joined,omitempty"`
-	Description *string                 `form:"description,omitempty" json:"description,omitempty"`
-	Email       *string                 `form:"email,omitempty" json:"email,omitempty"`
-	Field       *[]UsersListParamsField `form:"field,omitempty" json:"field,omitempty"`
+	DateJoined  *time.Time `form:"date_joined,omitempty" json:"date_joined,omitempty"`
+	Description *string    `form:"description,omitempty" json:"description,omitempty"`
+
+	// Email Email
+	Email *string                 `form:"email,omitempty" json:"email,omitempty"`
+	Field *[]UsersListParamsField `form:"field,omitempty" json:"field,omitempty"`
 
 	// FullName Full name
-	FullName  *string `form:"full_name,omitempty" json:"full_name,omitempty"`
-	IsActive  *bool   `form:"is_active,omitempty" json:"is_active,omitempty"`
-	IsStaff   *bool   `form:"is_staff,omitempty" json:"is_staff,omitempty"`
-	IsSupport *bool   `form:"is_support,omitempty" json:"is_support,omitempty"`
-	JobTitle  *string `form:"job_title,omitempty" json:"job_title,omitempty"`
+	FullName *string `form:"full_name,omitempty" json:"full_name,omitempty"`
+
+	// IsActive Is active
+	IsActive *bool `form:"is_active,omitempty" json:"is_active,omitempty"`
+
+	// IsStaff Is staff
+	IsStaff *bool `form:"is_staff,omitempty" json:"is_staff,omitempty"`
+
+	// IsSupport Is support
+	IsSupport *bool `form:"is_support,omitempty" json:"is_support,omitempty"`
+
+	// JobTitle Job title
+	JobTitle *string `form:"job_title,omitempty" json:"job_title,omitempty"`
 
 	// Modified Date modified after
-	Modified   *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
-	NativeName *string    `form:"native_name,omitempty" json:"native_name,omitempty"`
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// NativeName Native name
+	NativeName *string `form:"native_name,omitempty" json:"native_name,omitempty"`
 
 	// O Ordering
 	//
-	O            *[]UsersListParamsO `form:"o,omitempty" json:"o,omitempty"`
-	Organization *string             `form:"organization,omitempty" json:"organization,omitempty"`
+	O *[]UsersListParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// Organization Organization
+	Organization *string `form:"organization,omitempty" json:"organization,omitempty"`
 
 	// OrganizationRoles Organization roles
 	OrganizationRoles *string `form:"organization_roles,omitempty" json:"organization_roles,omitempty"`
@@ -42367,8 +44986,10 @@ type UsersListParams struct {
 	PhoneNumber *string   `form:"phone_number,omitempty" json:"phone_number,omitempty"`
 
 	// ProjectRoles Project roles
-	ProjectRoles *string             `form:"project_roles,omitempty" json:"project_roles,omitempty"`
-	ProjectUuid  *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	ProjectRoles *string `form:"project_roles,omitempty" json:"project_roles,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 
 	// Query Filter by first name, last name, civil number, username or email
 	Query              *string `form:"query,omitempty" json:"query,omitempty"`
@@ -42376,7 +44997,9 @@ type UsersListParams struct {
 
 	// UserKeyword User keyword
 	UserKeyword *string `form:"user_keyword,omitempty" json:"user_keyword,omitempty"`
-	Username    *string `form:"username,omitempty" json:"username,omitempty"`
+
+	// Username Username (exact)
+	Username *string `form:"username,omitempty" json:"username,omitempty"`
 
 	// UsernameList Comma-separated usernames
 	UsernameList *string `form:"username_list,omitempty" json:"username_list,omitempty"`
@@ -42391,30 +45014,46 @@ type UsersListParamsO string
 // UsersCountParams defines parameters for UsersCount.
 type UsersCountParams struct {
 	// AgreementDate Agreement date after
-	AgreementDate *time.Time          `form:"agreement_date,omitempty" json:"agreement_date,omitempty"`
-	CivilNumber   *string             `form:"civil_number,omitempty" json:"civil_number,omitempty"`
-	CustomerUuid  *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+	AgreementDate *time.Time `form:"agreement_date,omitempty" json:"agreement_date,omitempty"`
+	CivilNumber   *string    `form:"civil_number,omitempty" json:"civil_number,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
 
 	// DateJoined Date joined after
 	DateJoined  *time.Time `form:"date_joined,omitempty" json:"date_joined,omitempty"`
 	Description *string    `form:"description,omitempty" json:"description,omitempty"`
-	Email       *string    `form:"email,omitempty" json:"email,omitempty"`
+
+	// Email Email
+	Email *string `form:"email,omitempty" json:"email,omitempty"`
 
 	// FullName Full name
-	FullName  *string `form:"full_name,omitempty" json:"full_name,omitempty"`
-	IsActive  *bool   `form:"is_active,omitempty" json:"is_active,omitempty"`
-	IsStaff   *bool   `form:"is_staff,omitempty" json:"is_staff,omitempty"`
-	IsSupport *bool   `form:"is_support,omitempty" json:"is_support,omitempty"`
-	JobTitle  *string `form:"job_title,omitempty" json:"job_title,omitempty"`
+	FullName *string `form:"full_name,omitempty" json:"full_name,omitempty"`
+
+	// IsActive Is active
+	IsActive *bool `form:"is_active,omitempty" json:"is_active,omitempty"`
+
+	// IsStaff Is staff
+	IsStaff *bool `form:"is_staff,omitempty" json:"is_staff,omitempty"`
+
+	// IsSupport Is support
+	IsSupport *bool `form:"is_support,omitempty" json:"is_support,omitempty"`
+
+	// JobTitle Job title
+	JobTitle *string `form:"job_title,omitempty" json:"job_title,omitempty"`
 
 	// Modified Date modified after
-	Modified   *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
-	NativeName *string    `form:"native_name,omitempty" json:"native_name,omitempty"`
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// NativeName Native name
+	NativeName *string `form:"native_name,omitempty" json:"native_name,omitempty"`
 
 	// O Ordering
 	//
-	O            *[]UsersCountParamsO `form:"o,omitempty" json:"o,omitempty"`
-	Organization *string              `form:"organization,omitempty" json:"organization,omitempty"`
+	O *[]UsersCountParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// Organization Organization
+	Organization *string `form:"organization,omitempty" json:"organization,omitempty"`
 
 	// OrganizationRoles Organization roles
 	OrganizationRoles *string `form:"organization_roles,omitempty" json:"organization_roles,omitempty"`
@@ -42427,8 +45066,10 @@ type UsersCountParams struct {
 	PhoneNumber *string   `form:"phone_number,omitempty" json:"phone_number,omitempty"`
 
 	// ProjectRoles Project roles
-	ProjectRoles *string             `form:"project_roles,omitempty" json:"project_roles,omitempty"`
-	ProjectUuid  *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	ProjectRoles *string `form:"project_roles,omitempty" json:"project_roles,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 
 	// Query Filter by first name, last name, civil number, username or email
 	Query              *string `form:"query,omitempty" json:"query,omitempty"`
@@ -42436,7 +45077,9 @@ type UsersCountParams struct {
 
 	// UserKeyword User keyword
 	UserKeyword *string `form:"user_keyword,omitempty" json:"user_keyword,omitempty"`
-	Username    *string `form:"username,omitempty" json:"username,omitempty"`
+
+	// Username Username (exact)
+	Username *string `form:"username,omitempty" json:"username,omitempty"`
 
 	// UsernameList Comma-separated usernames
 	UsernameList *string `form:"username_list,omitempty" json:"username_list,omitempty"`
@@ -42465,15 +45108,23 @@ type UsersRetrieveParamsField string
 type VmwareClustersListParams struct {
 	// CustomerUuid Customer UUID
 	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Name         *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact    *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Settings     *string             `form:"settings,omitempty" json:"settings,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Settings Settings URL
+	Settings *string `form:"settings,omitempty" json:"settings,omitempty"`
+
+	// SettingsUuid Settings UUID
 	SettingsUuid *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
 }
 
@@ -42481,15 +45132,23 @@ type VmwareClustersListParams struct {
 type VmwareClustersCountParams struct {
 	// CustomerUuid Customer UUID
 	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Name         *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact    *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Settings     *string             `form:"settings,omitempty" json:"settings,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Settings Settings URL
+	Settings *string `form:"settings,omitempty" json:"settings,omitempty"`
+
+	// SettingsUuid Settings UUID
 	SettingsUuid *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
 }
 
@@ -42497,15 +45156,23 @@ type VmwareClustersCountParams struct {
 type VmwareDatastoresListParams struct {
 	// CustomerUuid Customer UUID
 	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Name         *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact    *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Settings     *string             `form:"settings,omitempty" json:"settings,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Settings Settings URL
+	Settings *string `form:"settings,omitempty" json:"settings,omitempty"`
+
+	// SettingsUuid Settings UUID
 	SettingsUuid *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
 }
 
@@ -42513,49 +45180,91 @@ type VmwareDatastoresListParams struct {
 type VmwareDatastoresCountParams struct {
 	// CustomerUuid Customer UUID
 	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Name         *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact    *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Settings     *string             `form:"settings,omitempty" json:"settings,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Settings Settings URL
+	Settings *string `form:"settings,omitempty" json:"settings,omitempty"`
+
+	// SettingsUuid Settings UUID
 	SettingsUuid *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
 }
 
 // VmwareDisksListParams defines parameters for VmwareDisksList.
 type VmwareDisksListParams struct {
+	// BackendId Backend ID
 	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool                         `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	Customer             *openapi_types.UUID           `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string                       `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string                       `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string                       `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID           `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string                       `form:"description,omitempty" json:"description,omitempty"`
-	ExternalIp           *string                       `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	Field                *[]VmwareDisksListParamsField `form:"field,omitempty" json:"field,omitempty"`
-	Name                 *string                       `form:"name,omitempty" json:"name,omitempty"`
-	NameExact            *string                       `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// ExternalIp External IP
+	ExternalIp *string                       `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+	Field      *[]VmwareDisksListParamsField `form:"field,omitempty" json:"field,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                     `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project             *openapi_types.UUID           `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName         *string                       `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid         *openapi_types.UUID           `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	ServiceSettingsName *string                       `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID           `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	State               *[]VmwareDisksListParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Uuid                *openapi_types.UUID           `form:"uuid,omitempty" json:"uuid,omitempty"`
-	Vm                  *string                       `form:"vm,omitempty" json:"vm,omitempty"`
-	VmUuid              *openapi_types.UUID           `form:"vm_uuid,omitempty" json:"vm_uuid,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]VmwareDisksListParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Uuid UUID
+	Uuid   *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
+	Vm     *string             `form:"vm,omitempty" json:"vm,omitempty"`
+	VmUuid *openapi_types.UUID `form:"vm_uuid,omitempty" json:"vm_uuid,omitempty"`
 }
 
 // VmwareDisksListParamsField defines parameters for VmwareDisksList.
@@ -42566,34 +45275,68 @@ type VmwareDisksListParamsState string
 
 // VmwareDisksCountParams defines parameters for VmwareDisksCount.
 type VmwareDisksCountParams struct {
+	// BackendId Backend ID
 	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool               `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	Customer             *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string             `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string             `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string             `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string             `form:"description,omitempty" json:"description,omitempty"`
-	ExternalIp           *string             `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	Name                 *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact            *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// ExternalIp External IP
+	ExternalIp *string `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                      `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project             *openapi_types.UUID            `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName         *string                        `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid         *openapi_types.UUID            `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	ServiceSettingsName *string                        `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID            `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	State               *[]VmwareDisksCountParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Uuid                *openapi_types.UUID            `form:"uuid,omitempty" json:"uuid,omitempty"`
-	Vm                  *string                        `form:"vm,omitempty" json:"vm,omitempty"`
-	VmUuid              *openapi_types.UUID            `form:"vm_uuid,omitempty" json:"vm_uuid,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]VmwareDisksCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Uuid UUID
+	Uuid   *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
+	Vm     *string             `form:"vm,omitempty" json:"vm,omitempty"`
+	VmUuid *openapi_types.UUID `form:"vm_uuid,omitempty" json:"vm_uuid,omitempty"`
 }
 
 // VmwareDisksCountParamsState defines parameters for VmwareDisksCount.
@@ -42611,15 +45354,23 @@ type VmwareDisksRetrieveParamsField string
 type VmwareFoldersListParams struct {
 	// CustomerUuid Customer UUID
 	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Name         *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact    *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Settings     *string             `form:"settings,omitempty" json:"settings,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Settings Settings URL
+	Settings *string `form:"settings,omitempty" json:"settings,omitempty"`
+
+	// SettingsUuid Settings UUID
 	SettingsUuid *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
 }
 
@@ -42627,15 +45378,23 @@ type VmwareFoldersListParams struct {
 type VmwareFoldersCountParams struct {
 	// CustomerUuid Customer UUID
 	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Name         *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact    *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Settings     *string             `form:"settings,omitempty" json:"settings,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Settings Settings URL
+	Settings *string `form:"settings,omitempty" json:"settings,omitempty"`
+
+	// SettingsUuid Settings UUID
 	SettingsUuid *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
 }
 
@@ -42646,15 +45405,23 @@ type VmwareNetworksListParams struct {
 
 	// CustomerUuid Customer UUID
 	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Name         *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact    *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Settings     *string             `form:"settings,omitempty" json:"settings,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Settings Settings URL
+	Settings *string `form:"settings,omitempty" json:"settings,omitempty"`
+
+	// SettingsUuid Settings UUID
 	SettingsUuid *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
 }
 
@@ -42665,51 +45432,93 @@ type VmwareNetworksCountParams struct {
 
 	// CustomerUuid Customer UUID
 	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Name         *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact    *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Settings     *string             `form:"settings,omitempty" json:"settings,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Settings Settings URL
+	Settings *string `form:"settings,omitempty" json:"settings,omitempty"`
+
+	// SettingsUuid Settings UUID
 	SettingsUuid *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
 }
 
 // VmwarePortsListParams defines parameters for VmwarePortsList.
 type VmwarePortsListParams struct {
+	// BackendId Backend ID
 	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool                         `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	Customer             *openapi_types.UUID           `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string                       `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string                       `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string                       `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID           `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string                       `form:"description,omitempty" json:"description,omitempty"`
-	ExternalIp           *string                       `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	Field                *[]VmwarePortsListParamsField `form:"field,omitempty" json:"field,omitempty"`
-	Name                 *string                       `form:"name,omitempty" json:"name,omitempty"`
-	NameExact            *string                       `form:"name_exact,omitempty" json:"name_exact,omitempty"`
-	Network              *string                       `form:"network,omitempty" json:"network,omitempty"`
-	NetworkUuid          *openapi_types.UUID           `form:"network_uuid,omitempty" json:"network_uuid,omitempty"`
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// ExternalIp External IP
+	ExternalIp *string                       `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+	Field      *[]VmwarePortsListParamsField `form:"field,omitempty" json:"field,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact   *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	Network     *string             `form:"network,omitempty" json:"network,omitempty"`
+	NetworkUuid *openapi_types.UUID `form:"network_uuid,omitempty" json:"network_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                     `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project             *openapi_types.UUID           `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName         *string                       `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid         *openapi_types.UUID           `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	ServiceSettingsName *string                       `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID           `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	State               *[]VmwarePortsListParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Uuid                *openapi_types.UUID           `form:"uuid,omitempty" json:"uuid,omitempty"`
-	Vm                  *string                       `form:"vm,omitempty" json:"vm,omitempty"`
-	VmUuid              *openapi_types.UUID           `form:"vm_uuid,omitempty" json:"vm_uuid,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]VmwarePortsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Uuid UUID
+	Uuid   *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
+	Vm     *string             `form:"vm,omitempty" json:"vm,omitempty"`
+	VmUuid *openapi_types.UUID `form:"vm_uuid,omitempty" json:"vm_uuid,omitempty"`
 }
 
 // VmwarePortsListParamsField defines parameters for VmwarePortsList.
@@ -42720,36 +45529,70 @@ type VmwarePortsListParamsState string
 
 // VmwarePortsCountParams defines parameters for VmwarePortsCount.
 type VmwarePortsCountParams struct {
+	// BackendId Backend ID
 	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool               `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	Customer             *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string             `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string             `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string             `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string             `form:"description,omitempty" json:"description,omitempty"`
-	ExternalIp           *string             `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	Name                 *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact            *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
-	Network              *string             `form:"network,omitempty" json:"network,omitempty"`
-	NetworkUuid          *openapi_types.UUID `form:"network_uuid,omitempty" json:"network_uuid,omitempty"`
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// ExternalIp External IP
+	ExternalIp *string `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact   *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	Network     *string             `form:"network,omitempty" json:"network,omitempty"`
+	NetworkUuid *openapi_types.UUID `form:"network_uuid,omitempty" json:"network_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                      `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project             *openapi_types.UUID            `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName         *string                        `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid         *openapi_types.UUID            `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	ServiceSettingsName *string                        `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID            `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	State               *[]VmwarePortsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Uuid                *openapi_types.UUID            `form:"uuid,omitempty" json:"uuid,omitempty"`
-	Vm                  *string                        `form:"vm,omitempty" json:"vm,omitempty"`
-	VmUuid              *openapi_types.UUID            `form:"vm_uuid,omitempty" json:"vm_uuid,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]VmwarePortsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Uuid UUID
+	Uuid   *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
+	Vm     *string             `form:"vm,omitempty" json:"vm,omitempty"`
+	VmUuid *openapi_types.UUID `form:"vm_uuid,omitempty" json:"vm_uuid,omitempty"`
 }
 
 // VmwarePortsCountParamsState defines parameters for VmwarePortsCount.
@@ -42765,62 +45608,110 @@ type VmwarePortsRetrieveParamsField string
 
 // VmwareTemplatesListParams defines parameters for VmwareTemplatesList.
 type VmwareTemplatesListParams struct {
-	Name      *string `form:"name,omitempty" json:"name,omitempty"`
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
 	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Settings     *string             `form:"settings,omitempty" json:"settings,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Settings Settings URL
+	Settings *string `form:"settings,omitempty" json:"settings,omitempty"`
+
+	// SettingsUuid Settings UUID
 	SettingsUuid *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
 }
 
 // VmwareTemplatesCountParams defines parameters for VmwareTemplatesCount.
 type VmwareTemplatesCountParams struct {
-	Name      *string `form:"name,omitempty" json:"name,omitempty"`
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
 	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Settings     *string             `form:"settings,omitempty" json:"settings,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Settings Settings URL
+	Settings *string `form:"settings,omitempty" json:"settings,omitempty"`
+
+	// SettingsUuid Settings UUID
 	SettingsUuid *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
 }
 
 // VmwareVirtualMachineListParams defines parameters for VmwareVirtualMachineList.
 type VmwareVirtualMachineListParams struct {
+	// BackendId Backend ID
 	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool                                  `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	Customer             *openapi_types.UUID                    `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string                                `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string                                `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string                                `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID                    `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string                                `form:"description,omitempty" json:"description,omitempty"`
-	ExternalIp           *string                                `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	Field                *[]VmwareVirtualMachineListParamsField `form:"field,omitempty" json:"field,omitempty"`
-	Name                 *string                                `form:"name,omitempty" json:"name,omitempty"`
-	NameExact            *string                                `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// ExternalIp External IP
+	ExternalIp *string                                `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+	Field      *[]VmwareVirtualMachineListParamsField `form:"field,omitempty" json:"field,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                              `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project             *openapi_types.UUID                    `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName         *string                                `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid         *openapi_types.UUID                    `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	RuntimeState        *string                                `form:"runtime_state,omitempty" json:"runtime_state,omitempty"`
-	ServiceSettingsName *string                                `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID                    `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	State               *[]VmwareVirtualMachineListParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Uuid                *openapi_types.UUID                    `form:"uuid,omitempty" json:"uuid,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid  *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	RuntimeState *string             `form:"runtime_state,omitempty" json:"runtime_state,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]VmwareVirtualMachineListParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Uuid UUID
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // VmwareVirtualMachineListParamsField defines parameters for VmwareVirtualMachineList.
@@ -42831,33 +45722,67 @@ type VmwareVirtualMachineListParamsState string
 
 // VmwareVirtualMachineCountParams defines parameters for VmwareVirtualMachineCount.
 type VmwareVirtualMachineCountParams struct {
+	// BackendId Backend ID
 	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
 
 	// CanManage Can manage
-	CanManage            *bool               `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-	Customer             *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerAbbreviation *string             `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-	CustomerName         *string             `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-	CustomerNativeName   *string             `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-	CustomerUuid         *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description          *string             `form:"description,omitempty" json:"description,omitempty"`
-	ExternalIp           *string             `form:"external_ip,omitempty" json:"external_ip,omitempty"`
-	Name                 *string             `form:"name,omitempty" json:"name,omitempty"`
-	NameExact            *string             `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// Customer Customer UUID
+	Customer *openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// ExternalIp External IP
+	ExternalIp *string `form:"external_ip,omitempty" json:"external_ip,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize                               `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project             *openapi_types.UUID                     `form:"project,omitempty" json:"project,omitempty"`
-	ProjectName         *string                                 `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid         *openapi_types.UUID                     `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	RuntimeState        *string                                 `form:"runtime_state,omitempty" json:"runtime_state,omitempty"`
-	ServiceSettingsName *string                                 `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
-	ServiceSettingsUuid *openapi_types.UUID                     `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
-	State               *[]VmwareVirtualMachineCountParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Uuid                *openapi_types.UUID                     `form:"uuid,omitempty" json:"uuid,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project UUID
+	Project *openapi_types.UUID `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid  *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	RuntimeState *string             `form:"runtime_state,omitempty" json:"runtime_state,omitempty"`
+
+	// ServiceSettingsName Service settings name
+	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
+
+	// ServiceSettingsUuid Service settings UUID
+	ServiceSettingsUuid *openapi_types.UUID `form:"service_settings_uuid,omitempty" json:"service_settings_uuid,omitempty"`
+
+	// State State
+	//
+	State *[]VmwareVirtualMachineCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Uuid UUID
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // VmwareVirtualMachineCountParamsState defines parameters for VmwareVirtualMachineCount.
