@@ -3299,6 +3299,19 @@ const (
 	BookingResourcesListParamsOType           BookingResourcesListParamsO = "type"
 )
 
+// Defines values for BookingResourcesListParamsOrderState.
+const (
+	BookingResourcesListParamsOrderStateCanceled         BookingResourcesListParamsOrderState = "canceled"
+	BookingResourcesListParamsOrderStateDone             BookingResourcesListParamsOrderState = "done"
+	BookingResourcesListParamsOrderStateErred            BookingResourcesListParamsOrderState = "erred"
+	BookingResourcesListParamsOrderStateExecuting        BookingResourcesListParamsOrderState = "executing"
+	BookingResourcesListParamsOrderStatePendingConsumer  BookingResourcesListParamsOrderState = "pending-consumer"
+	BookingResourcesListParamsOrderStatePendingProject   BookingResourcesListParamsOrderState = "pending-project"
+	BookingResourcesListParamsOrderStatePendingProvider  BookingResourcesListParamsOrderState = "pending-provider"
+	BookingResourcesListParamsOrderStatePendingStartDate BookingResourcesListParamsOrderState = "pending-start-date"
+	BookingResourcesListParamsOrderStateRejected         BookingResourcesListParamsOrderState = "rejected"
+)
+
 // Defines values for BookingResourcesListParamsState.
 const (
 	BookingResourcesListParamsStateCreating    BookingResourcesListParamsState = "Creating"
@@ -3319,6 +3332,19 @@ const (
 	BookingResourcesCountParamsOName           BookingResourcesCountParamsO = "name"
 	BookingResourcesCountParamsOSchedules      BookingResourcesCountParamsO = "schedules"
 	BookingResourcesCountParamsOType           BookingResourcesCountParamsO = "type"
+)
+
+// Defines values for BookingResourcesCountParamsOrderState.
+const (
+	BookingResourcesCountParamsOrderStateCanceled         BookingResourcesCountParamsOrderState = "canceled"
+	BookingResourcesCountParamsOrderStateDone             BookingResourcesCountParamsOrderState = "done"
+	BookingResourcesCountParamsOrderStateErred            BookingResourcesCountParamsOrderState = "erred"
+	BookingResourcesCountParamsOrderStateExecuting        BookingResourcesCountParamsOrderState = "executing"
+	BookingResourcesCountParamsOrderStatePendingConsumer  BookingResourcesCountParamsOrderState = "pending-consumer"
+	BookingResourcesCountParamsOrderStatePendingProject   BookingResourcesCountParamsOrderState = "pending-project"
+	BookingResourcesCountParamsOrderStatePendingProvider  BookingResourcesCountParamsOrderState = "pending-provider"
+	BookingResourcesCountParamsOrderStatePendingStartDate BookingResourcesCountParamsOrderState = "pending-start-date"
+	BookingResourcesCountParamsOrderStateRejected         BookingResourcesCountParamsOrderState = "rejected"
 )
 
 // Defines values for BookingResourcesCountParamsState.
@@ -6174,6 +6200,19 @@ const (
 	MarketplaceProviderResourcesListParamsOState            MarketplaceProviderResourcesListParamsO = "state"
 )
 
+// Defines values for MarketplaceProviderResourcesListParamsOrderState.
+const (
+	MarketplaceProviderResourcesListParamsOrderStateCanceled         MarketplaceProviderResourcesListParamsOrderState = "canceled"
+	MarketplaceProviderResourcesListParamsOrderStateDone             MarketplaceProviderResourcesListParamsOrderState = "done"
+	MarketplaceProviderResourcesListParamsOrderStateErred            MarketplaceProviderResourcesListParamsOrderState = "erred"
+	MarketplaceProviderResourcesListParamsOrderStateExecuting        MarketplaceProviderResourcesListParamsOrderState = "executing"
+	MarketplaceProviderResourcesListParamsOrderStatePendingConsumer  MarketplaceProviderResourcesListParamsOrderState = "pending-consumer"
+	MarketplaceProviderResourcesListParamsOrderStatePendingProject   MarketplaceProviderResourcesListParamsOrderState = "pending-project"
+	MarketplaceProviderResourcesListParamsOrderStatePendingProvider  MarketplaceProviderResourcesListParamsOrderState = "pending-provider"
+	MarketplaceProviderResourcesListParamsOrderStatePendingStartDate MarketplaceProviderResourcesListParamsOrderState = "pending-start-date"
+	MarketplaceProviderResourcesListParamsOrderStateRejected         MarketplaceProviderResourcesListParamsOrderState = "rejected"
+)
+
 // Defines values for MarketplaceProviderResourcesListParamsState.
 const (
 	MarketplaceProviderResourcesListParamsStateCreating    MarketplaceProviderResourcesListParamsState = "Creating"
@@ -6196,6 +6235,19 @@ const (
 	MarketplaceProviderResourcesCountParamsOName             MarketplaceProviderResourcesCountParamsO = "name"
 	MarketplaceProviderResourcesCountParamsOProjectName      MarketplaceProviderResourcesCountParamsO = "project_name"
 	MarketplaceProviderResourcesCountParamsOState            MarketplaceProviderResourcesCountParamsO = "state"
+)
+
+// Defines values for MarketplaceProviderResourcesCountParamsOrderState.
+const (
+	MarketplaceProviderResourcesCountParamsOrderStateCanceled         MarketplaceProviderResourcesCountParamsOrderState = "canceled"
+	MarketplaceProviderResourcesCountParamsOrderStateDone             MarketplaceProviderResourcesCountParamsOrderState = "done"
+	MarketplaceProviderResourcesCountParamsOrderStateErred            MarketplaceProviderResourcesCountParamsOrderState = "erred"
+	MarketplaceProviderResourcesCountParamsOrderStateExecuting        MarketplaceProviderResourcesCountParamsOrderState = "executing"
+	MarketplaceProviderResourcesCountParamsOrderStatePendingConsumer  MarketplaceProviderResourcesCountParamsOrderState = "pending-consumer"
+	MarketplaceProviderResourcesCountParamsOrderStatePendingProject   MarketplaceProviderResourcesCountParamsOrderState = "pending-project"
+	MarketplaceProviderResourcesCountParamsOrderStatePendingProvider  MarketplaceProviderResourcesCountParamsOrderState = "pending-provider"
+	MarketplaceProviderResourcesCountParamsOrderStatePendingStartDate MarketplaceProviderResourcesCountParamsOrderState = "pending-start-date"
+	MarketplaceProviderResourcesCountParamsOrderStateRejected         MarketplaceProviderResourcesCountParamsOrderState = "rejected"
 )
 
 // Defines values for MarketplaceProviderResourcesCountParamsState.
@@ -6580,6 +6632,19 @@ const (
 	MarketplaceResourcesListParamsOState            MarketplaceResourcesListParamsO = "state"
 )
 
+// Defines values for MarketplaceResourcesListParamsOrderState.
+const (
+	MarketplaceResourcesListParamsOrderStateCanceled         MarketplaceResourcesListParamsOrderState = "canceled"
+	MarketplaceResourcesListParamsOrderStateDone             MarketplaceResourcesListParamsOrderState = "done"
+	MarketplaceResourcesListParamsOrderStateErred            MarketplaceResourcesListParamsOrderState = "erred"
+	MarketplaceResourcesListParamsOrderStateExecuting        MarketplaceResourcesListParamsOrderState = "executing"
+	MarketplaceResourcesListParamsOrderStatePendingConsumer  MarketplaceResourcesListParamsOrderState = "pending-consumer"
+	MarketplaceResourcesListParamsOrderStatePendingProject   MarketplaceResourcesListParamsOrderState = "pending-project"
+	MarketplaceResourcesListParamsOrderStatePendingProvider  MarketplaceResourcesListParamsOrderState = "pending-provider"
+	MarketplaceResourcesListParamsOrderStatePendingStartDate MarketplaceResourcesListParamsOrderState = "pending-start-date"
+	MarketplaceResourcesListParamsOrderStateRejected         MarketplaceResourcesListParamsOrderState = "rejected"
+)
+
 // Defines values for MarketplaceResourcesListParamsState.
 const (
 	MarketplaceResourcesListParamsStateCreating    MarketplaceResourcesListParamsState = "Creating"
@@ -6602,6 +6667,19 @@ const (
 	MarketplaceResourcesCountParamsOName             MarketplaceResourcesCountParamsO = "name"
 	MarketplaceResourcesCountParamsOProjectName      MarketplaceResourcesCountParamsO = "project_name"
 	MarketplaceResourcesCountParamsOState            MarketplaceResourcesCountParamsO = "state"
+)
+
+// Defines values for MarketplaceResourcesCountParamsOrderState.
+const (
+	MarketplaceResourcesCountParamsOrderStateCanceled         MarketplaceResourcesCountParamsOrderState = "canceled"
+	MarketplaceResourcesCountParamsOrderStateDone             MarketplaceResourcesCountParamsOrderState = "done"
+	MarketplaceResourcesCountParamsOrderStateErred            MarketplaceResourcesCountParamsOrderState = "erred"
+	MarketplaceResourcesCountParamsOrderStateExecuting        MarketplaceResourcesCountParamsOrderState = "executing"
+	MarketplaceResourcesCountParamsOrderStatePendingConsumer  MarketplaceResourcesCountParamsOrderState = "pending-consumer"
+	MarketplaceResourcesCountParamsOrderStatePendingProject   MarketplaceResourcesCountParamsOrderState = "pending-project"
+	MarketplaceResourcesCountParamsOrderStatePendingProvider  MarketplaceResourcesCountParamsOrderState = "pending-provider"
+	MarketplaceResourcesCountParamsOrderStatePendingStartDate MarketplaceResourcesCountParamsOrderState = "pending-start-date"
+	MarketplaceResourcesCountParamsOrderStateRejected         MarketplaceResourcesCountParamsOrderState = "rejected"
 )
 
 // Defines values for MarketplaceResourcesCountParamsState.
@@ -11915,14 +11993,14 @@ const (
 
 // Defines values for VmwareVirtualMachineCountParamsState.
 const (
-	CREATING          VmwareVirtualMachineCountParamsState = "CREATING"
-	CREATIONSCHEDULED VmwareVirtualMachineCountParamsState = "CREATION_SCHEDULED"
-	DELETING          VmwareVirtualMachineCountParamsState = "DELETING"
-	DELETIONSCHEDULED VmwareVirtualMachineCountParamsState = "DELETION_SCHEDULED"
-	ERRED             VmwareVirtualMachineCountParamsState = "ERRED"
-	OK                VmwareVirtualMachineCountParamsState = "OK"
-	UPDATESCHEDULED   VmwareVirtualMachineCountParamsState = "UPDATE_SCHEDULED"
-	UPDATING          VmwareVirtualMachineCountParamsState = "UPDATING"
+	VmwareVirtualMachineCountParamsStateCREATING          VmwareVirtualMachineCountParamsState = "CREATING"
+	VmwareVirtualMachineCountParamsStateCREATIONSCHEDULED VmwareVirtualMachineCountParamsState = "CREATION_SCHEDULED"
+	VmwareVirtualMachineCountParamsStateDELETING          VmwareVirtualMachineCountParamsState = "DELETING"
+	VmwareVirtualMachineCountParamsStateDELETIONSCHEDULED VmwareVirtualMachineCountParamsState = "DELETION_SCHEDULED"
+	VmwareVirtualMachineCountParamsStateERRED             VmwareVirtualMachineCountParamsState = "ERRED"
+	VmwareVirtualMachineCountParamsStateOK                VmwareVirtualMachineCountParamsState = "OK"
+	VmwareVirtualMachineCountParamsStateUPDATESCHEDULED   VmwareVirtualMachineCountParamsState = "UPDATE_SCHEDULED"
+	VmwareVirtualMachineCountParamsStateUPDATING          VmwareVirtualMachineCountParamsState = "UPDATING"
 )
 
 // Defines values for VmwareVirtualMachineRetrieveParamsField.
@@ -28969,8 +29047,10 @@ type BackendResourceRequestsListParams struct {
 
 	// O Ordering
 	//
-	O            *[]BackendResourceRequestsListParamsO `form:"o,omitempty" json:"o,omitempty"`
-	OfferingUuid *openapi_types.UUID                   `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	O *[]BackendResourceRequestsListParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// OfferingUuid Offering UUID
+	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -28979,8 +29059,11 @@ type BackendResourceRequestsListParams struct {
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 
 	// Started Created after
-	Started *time.Time                                `form:"started,omitempty" json:"started,omitempty"`
-	State   *[]BackendResourceRequestsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+	Started *time.Time `form:"started,omitempty" json:"started,omitempty"`
+
+	// State Backend resource request state
+	//
+	State *[]BackendResourceRequestsListParamsState `form:"state,omitempty" json:"state,omitempty"`
 }
 
 // BackendResourceRequestsListParamsO defines parameters for BackendResourceRequestsList.
@@ -29002,8 +29085,10 @@ type BackendResourceRequestsCountParams struct {
 
 	// O Ordering
 	//
-	O            *[]BackendResourceRequestsCountParamsO `form:"o,omitempty" json:"o,omitempty"`
-	OfferingUuid *openapi_types.UUID                    `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	O *[]BackendResourceRequestsCountParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// OfferingUuid Offering UUID
+	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -29012,8 +29097,11 @@ type BackendResourceRequestsCountParams struct {
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 
 	// Started Created after
-	Started *time.Time                                 `form:"started,omitempty" json:"started,omitempty"`
-	State   *[]BackendResourceRequestsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+	Started *time.Time `form:"started,omitempty" json:"started,omitempty"`
+
+	// State Backend resource request state
+	//
+	State *[]BackendResourceRequestsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
 }
 
 // BackendResourceRequestsCountParamsO defines parameters for BackendResourceRequestsCount.
@@ -29037,14 +29125,18 @@ type BackendResourcesListParams struct {
 
 	// O Ordering
 	//
-	O            *[]BackendResourcesListParamsO `form:"o,omitempty" json:"o,omitempty"`
-	OfferingUuid *openapi_types.UUID            `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	O *[]BackendResourcesListParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// OfferingUuid Offering UUID
+	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize    *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ProjectUuid Project UUID
 	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 }
 
@@ -29066,14 +29158,18 @@ type BackendResourcesCountParams struct {
 
 	// O Ordering
 	//
-	O            *[]BackendResourcesCountParamsO `form:"o,omitempty" json:"o,omitempty"`
-	OfferingUuid *openapi_types.UUID             `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	O *[]BackendResourcesCountParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// OfferingUuid Offering UUID
+	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize    *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ProjectUuid Project UUID
 	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 }
 
@@ -29123,7 +29219,9 @@ type BookingOfferingsRetrieveParamsField string
 // BookingResourcesListParams defines parameters for BookingResourcesList.
 type BookingResourcesListParams struct {
 	// BackendId Backend ID
-	BackendId    *string             `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+
+	// CategoryUuid Category UUID
 	CategoryUuid *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
 
 	// ComponentCount Filter by exact number of components
@@ -29131,11 +29229,17 @@ type BookingResourcesListParams struct {
 	ConnectedCustomerUuid *openapi_types.UUID `form:"connected_customer_uuid,omitempty" json:"connected_customer_uuid,omitempty"`
 
 	// Created Created after
-	Created      *time.Time                         `form:"created,omitempty" json:"created,omitempty"`
-	Customer     *string                            `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerUuid *openapi_types.UUID                `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Downscaled   *bool                              `form:"downscaled,omitempty" json:"downscaled,omitempty"`
-	Field        *[]BookingResourcesListParamsField `form:"field,omitempty" json:"field,omitempty"`
+	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
+
+	// Customer Customer URL
+	Customer *string `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Downscaled Downscaled
+	Downscaled *bool                              `form:"downscaled,omitempty" json:"downscaled,omitempty"`
+	Field      *[]BookingResourcesListParamsField `form:"field,omitempty" json:"field,omitempty"`
 
 	// HasTerminateDate Has termination date
 	HasTerminateDate *bool `form:"has_terminate_date,omitempty" json:"has_terminate_date,omitempty"`
@@ -29156,16 +29260,20 @@ type BookingResourcesListParams struct {
 
 	// O Ordering
 	//
-	O                *[]BookingResourcesListParamsO `form:"o,omitempty" json:"o,omitempty"`
-	Offering         *string                        `form:"offering,omitempty" json:"offering,omitempty"`
-	OfferingBillable *bool                          `form:"offering_billable,omitempty" json:"offering_billable,omitempty"`
+	O        *[]BookingResourcesListParamsO `form:"o,omitempty" json:"o,omitempty"`
+	Offering *string                        `form:"offering,omitempty" json:"offering,omitempty"`
+
+	// OfferingBillable Offering billable
+	OfferingBillable *bool `form:"offering_billable,omitempty" json:"offering_billable,omitempty"`
 
 	// OfferingShared Offering shared
 	OfferingShared *bool `form:"offering_shared,omitempty" json:"offering_shared,omitempty"`
 
 	// OfferingSlug Multiple values may be separated by commas.
 	OfferingSlug *[]string `form:"offering_slug,omitempty" json:"offering_slug,omitempty"`
-	OfferingType *string   `form:"offering_type,omitempty" json:"offering_type,omitempty"`
+
+	// OfferingType Offering type
+	OfferingType *string `form:"offering_type,omitempty" json:"offering_type,omitempty"`
 
 	// OfferingUuid Multiple values may be separated by commas.
 	OfferingUuid *[]openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
@@ -29176,28 +29284,47 @@ type BookingResourcesListParams struct {
 	// OnlyUsageBased Filter resources with only usage-based components
 	OnlyUsageBased *bool `form:"only_usage_based,omitempty" json:"only_usage_based,omitempty"`
 
+	// OrderState Order state
+	//
+	OrderState *[]BookingResourcesListParamsOrderState `form:"order_state,omitempty" json:"order_state,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
 	PageSize           *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
 	ParentOfferingUuid *openapi_types.UUID `form:"parent_offering_uuid,omitempty" json:"parent_offering_uuid,omitempty"`
-	Paused             *bool               `form:"paused,omitempty" json:"paused,omitempty"`
-	PlanUuid           *openapi_types.UUID `form:"plan_uuid,omitempty" json:"plan_uuid,omitempty"`
-	ProjectName        *string             `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid        *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	ProviderUuid       *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
+
+	// Paused Paused
+	Paused *bool `form:"paused,omitempty" json:"paused,omitempty"`
+
+	// PlanUuid Plan UUID
+	PlanUuid *openapi_types.UUID `form:"plan_uuid,omitempty" json:"plan_uuid,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ProviderUuid Provider UUID
+	ProviderUuid *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
 
 	// Query Search by resource UUID, name, slug, backend ID, effective ID, IPs or hypervisor
-	Query                *string `form:"query,omitempty" json:"query,omitempty"`
-	RestrictMemberAccess *bool   `form:"restrict_member_access,omitempty" json:"restrict_member_access,omitempty"`
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
+	// RestrictMemberAccess Restrict member access
+	RestrictMemberAccess *bool `form:"restrict_member_access,omitempty" json:"restrict_member_access,omitempty"`
 
 	// RuntimeState Runtime state
 	RuntimeState *string `form:"runtime_state,omitempty" json:"runtime_state,omitempty"`
 
-	// ServiceManagerUuid Service Manager UUID
-	ServiceManagerUuid *openapi_types.UUID                `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
-	State              *[]BookingResourcesListParamsState `form:"state,omitempty" json:"state,omitempty"`
+	// ServiceManagerUuid Service manager UUID
+	ServiceManagerUuid *openapi_types.UUID `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
+
+	// State Resource state
+	//
+	State *[]BookingResourcesListParamsState `form:"state,omitempty" json:"state,omitempty"`
 
 	// UsageBased Filter by usage-based offerings
 	UsageBased *bool `form:"usage_based,omitempty" json:"usage_based,omitempty"`
@@ -29212,13 +29339,18 @@ type BookingResourcesListParamsField string
 // BookingResourcesListParamsO defines parameters for BookingResourcesList.
 type BookingResourcesListParamsO string
 
+// BookingResourcesListParamsOrderState defines parameters for BookingResourcesList.
+type BookingResourcesListParamsOrderState string
+
 // BookingResourcesListParamsState defines parameters for BookingResourcesList.
 type BookingResourcesListParamsState string
 
 // BookingResourcesCountParams defines parameters for BookingResourcesCount.
 type BookingResourcesCountParams struct {
 	// BackendId Backend ID
-	BackendId    *string             `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+
+	// CategoryUuid Category UUID
 	CategoryUuid *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
 
 	// ComponentCount Filter by exact number of components
@@ -29226,10 +29358,16 @@ type BookingResourcesCountParams struct {
 	ConnectedCustomerUuid *openapi_types.UUID `form:"connected_customer_uuid,omitempty" json:"connected_customer_uuid,omitempty"`
 
 	// Created Created after
-	Created      *time.Time          `form:"created,omitempty" json:"created,omitempty"`
-	Customer     *string             `form:"customer,omitempty" json:"customer,omitempty"`
+	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
+
+	// Customer Customer URL
+	Customer *string `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerUuid Customer UUID
 	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Downscaled   *bool               `form:"downscaled,omitempty" json:"downscaled,omitempty"`
+
+	// Downscaled Downscaled
+	Downscaled *bool `form:"downscaled,omitempty" json:"downscaled,omitempty"`
 
 	// HasTerminateDate Has termination date
 	HasTerminateDate *bool `form:"has_terminate_date,omitempty" json:"has_terminate_date,omitempty"`
@@ -29250,16 +29388,20 @@ type BookingResourcesCountParams struct {
 
 	// O Ordering
 	//
-	O                *[]BookingResourcesCountParamsO `form:"o,omitempty" json:"o,omitempty"`
-	Offering         *string                         `form:"offering,omitempty" json:"offering,omitempty"`
-	OfferingBillable *bool                           `form:"offering_billable,omitempty" json:"offering_billable,omitempty"`
+	O        *[]BookingResourcesCountParamsO `form:"o,omitempty" json:"o,omitempty"`
+	Offering *string                         `form:"offering,omitempty" json:"offering,omitempty"`
+
+	// OfferingBillable Offering billable
+	OfferingBillable *bool `form:"offering_billable,omitempty" json:"offering_billable,omitempty"`
 
 	// OfferingShared Offering shared
 	OfferingShared *bool `form:"offering_shared,omitempty" json:"offering_shared,omitempty"`
 
 	// OfferingSlug Multiple values may be separated by commas.
 	OfferingSlug *[]string `form:"offering_slug,omitempty" json:"offering_slug,omitempty"`
-	OfferingType *string   `form:"offering_type,omitempty" json:"offering_type,omitempty"`
+
+	// OfferingType Offering type
+	OfferingType *string `form:"offering_type,omitempty" json:"offering_type,omitempty"`
 
 	// OfferingUuid Multiple values may be separated by commas.
 	OfferingUuid *[]openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
@@ -29270,28 +29412,47 @@ type BookingResourcesCountParams struct {
 	// OnlyUsageBased Filter resources with only usage-based components
 	OnlyUsageBased *bool `form:"only_usage_based,omitempty" json:"only_usage_based,omitempty"`
 
+	// OrderState Order state
+	//
+	OrderState *[]BookingResourcesCountParamsOrderState `form:"order_state,omitempty" json:"order_state,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
 	PageSize           *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
 	ParentOfferingUuid *openapi_types.UUID `form:"parent_offering_uuid,omitempty" json:"parent_offering_uuid,omitempty"`
-	Paused             *bool               `form:"paused,omitempty" json:"paused,omitempty"`
-	PlanUuid           *openapi_types.UUID `form:"plan_uuid,omitempty" json:"plan_uuid,omitempty"`
-	ProjectName        *string             `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid        *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	ProviderUuid       *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
+
+	// Paused Paused
+	Paused *bool `form:"paused,omitempty" json:"paused,omitempty"`
+
+	// PlanUuid Plan UUID
+	PlanUuid *openapi_types.UUID `form:"plan_uuid,omitempty" json:"plan_uuid,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ProviderUuid Provider UUID
+	ProviderUuid *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
 
 	// Query Search by resource UUID, name, slug, backend ID, effective ID, IPs or hypervisor
-	Query                *string `form:"query,omitempty" json:"query,omitempty"`
-	RestrictMemberAccess *bool   `form:"restrict_member_access,omitempty" json:"restrict_member_access,omitempty"`
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
+	// RestrictMemberAccess Restrict member access
+	RestrictMemberAccess *bool `form:"restrict_member_access,omitempty" json:"restrict_member_access,omitempty"`
 
 	// RuntimeState Runtime state
 	RuntimeState *string `form:"runtime_state,omitempty" json:"runtime_state,omitempty"`
 
-	// ServiceManagerUuid Service Manager UUID
-	ServiceManagerUuid *openapi_types.UUID                 `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
-	State              *[]BookingResourcesCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+	// ServiceManagerUuid Service manager UUID
+	ServiceManagerUuid *openapi_types.UUID `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
+
+	// State Resource state
+	//
+	State *[]BookingResourcesCountParamsState `form:"state,omitempty" json:"state,omitempty"`
 
 	// UsageBased Filter by usage-based offerings
 	UsageBased *bool `form:"usage_based,omitempty" json:"usage_based,omitempty"`
@@ -29302,6 +29463,9 @@ type BookingResourcesCountParams struct {
 
 // BookingResourcesCountParamsO defines parameters for BookingResourcesCount.
 type BookingResourcesCountParamsO string
+
+// BookingResourcesCountParamsOrderState defines parameters for BookingResourcesCount.
+type BookingResourcesCountParamsOrderState string
 
 // BookingResourcesCountParamsState defines parameters for BookingResourcesCount.
 type BookingResourcesCountParamsState string
@@ -29700,8 +29864,11 @@ type ChecklistsAdminChecklistQuestionsParamsChecklistTypeIn string
 
 // ComponentUserUsageLimitsListParams defines parameters for ComponentUserUsageLimitsList.
 type ComponentUserUsageLimitsListParams struct {
-	ComponentType *string             `form:"component_type,omitempty" json:"component_type,omitempty"`
-	OfferingUuid  *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	// ComponentType Component type
+	ComponentType *string `form:"component_type,omitempty" json:"component_type,omitempty"`
+
+	// OfferingUuid Offering UUID
+	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -29710,15 +29877,22 @@ type ComponentUserUsageLimitsListParams struct {
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 
 	// Resource Resource URL
-	Resource     *string             `form:"resource,omitempty" json:"resource,omitempty"`
+	Resource *string `form:"resource,omitempty" json:"resource,omitempty"`
+
+	// ResourceUuid Resource UUID
 	ResourceUuid *openapi_types.UUID `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
-	Username     *string             `form:"username,omitempty" json:"username,omitempty"`
+
+	// Username Username
+	Username *string `form:"username,omitempty" json:"username,omitempty"`
 }
 
 // ComponentUserUsageLimitsCountParams defines parameters for ComponentUserUsageLimitsCount.
 type ComponentUserUsageLimitsCountParams struct {
-	ComponentType *string             `form:"component_type,omitempty" json:"component_type,omitempty"`
-	OfferingUuid  *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	// ComponentType Component type
+	ComponentType *string `form:"component_type,omitempty" json:"component_type,omitempty"`
+
+	// OfferingUuid Offering UUID
+	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -29727,9 +29901,13 @@ type ComponentUserUsageLimitsCountParams struct {
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 
 	// Resource Resource URL
-	Resource     *string             `form:"resource,omitempty" json:"resource,omitempty"`
+	Resource *string `form:"resource,omitempty" json:"resource,omitempty"`
+
+	// ResourceUuid Resource UUID
 	ResourceUuid *openapi_types.UUID `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
-	Username     *string             `form:"username,omitempty" json:"username,omitempty"`
+
+	// Username Username
+	Username *string `form:"username,omitempty" json:"username,omitempty"`
 }
 
 // CustomerCreditsListParams defines parameters for CustomerCreditsList.
@@ -31321,19 +31499,26 @@ type MaintenanceAnnouncementOfferingsCountParams struct {
 
 // MaintenanceAnnouncementTemplateOfferingsListParams defines parameters for MaintenanceAnnouncementTemplateOfferingsList.
 type MaintenanceAnnouncementTemplateOfferingsListParams struct {
-	ImpactLevel             *int                `form:"impact_level,omitempty" json:"impact_level,omitempty"`
+	// ImpactLevel Impact level
+	ImpactLevel *int `form:"impact_level,omitempty" json:"impact_level,omitempty"`
+
+	// MaintenanceTemplateUuid Maintenance template UUID
 	MaintenanceTemplateUuid *openapi_types.UUID `form:"maintenance_template_uuid,omitempty" json:"maintenance_template_uuid,omitempty"`
 
 	// O Ordering
 	//
-	O            *[]MaintenanceAnnouncementTemplateOfferingsListParamsO `form:"o,omitempty" json:"o,omitempty"`
-	OfferingUuid *openapi_types.UUID                                    `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	O *[]MaintenanceAnnouncementTemplateOfferingsListParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// OfferingUuid Offering UUID
+	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ServiceProviderUuid Service provider UUID
 	ServiceProviderUuid *openapi_types.UUID `form:"service_provider_uuid,omitempty" json:"service_provider_uuid,omitempty"`
 }
 
@@ -31342,19 +31527,26 @@ type MaintenanceAnnouncementTemplateOfferingsListParamsO string
 
 // MaintenanceAnnouncementTemplateOfferingsCountParams defines parameters for MaintenanceAnnouncementTemplateOfferingsCount.
 type MaintenanceAnnouncementTemplateOfferingsCountParams struct {
-	ImpactLevel             *int                `form:"impact_level,omitempty" json:"impact_level,omitempty"`
+	// ImpactLevel Impact level
+	ImpactLevel *int `form:"impact_level,omitempty" json:"impact_level,omitempty"`
+
+	// MaintenanceTemplateUuid Maintenance template UUID
 	MaintenanceTemplateUuid *openapi_types.UUID `form:"maintenance_template_uuid,omitempty" json:"maintenance_template_uuid,omitempty"`
 
 	// O Ordering
 	//
-	O            *[]MaintenanceAnnouncementTemplateOfferingsCountParamsO `form:"o,omitempty" json:"o,omitempty"`
-	OfferingUuid *openapi_types.UUID                                     `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	O *[]MaintenanceAnnouncementTemplateOfferingsCountParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// OfferingUuid Offering UUID
+	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ServiceProviderUuid Service provider UUID
 	ServiceProviderUuid *openapi_types.UUID `form:"service_provider_uuid,omitempty" json:"service_provider_uuid,omitempty"`
 }
 
@@ -31363,6 +31555,7 @@ type MaintenanceAnnouncementTemplateOfferingsCountParamsO string
 
 // MaintenanceAnnouncementsTemplateListParams defines parameters for MaintenanceAnnouncementsTemplateList.
 type MaintenanceAnnouncementsTemplateListParams struct {
+	// MaintenanceType Maintenance type
 	MaintenanceType *int `form:"maintenance_type,omitempty" json:"maintenance_type,omitempty"`
 
 	// O Ordering
@@ -31373,7 +31566,9 @@ type MaintenanceAnnouncementsTemplateListParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ServiceProviderUuid Service provider UUID
 	ServiceProviderUuid *openapi_types.UUID `form:"service_provider_uuid,omitempty" json:"service_provider_uuid,omitempty"`
 }
 
@@ -31382,6 +31577,7 @@ type MaintenanceAnnouncementsTemplateListParamsO string
 
 // MaintenanceAnnouncementsTemplateCountParams defines parameters for MaintenanceAnnouncementsTemplateCount.
 type MaintenanceAnnouncementsTemplateCountParams struct {
+	// MaintenanceType Maintenance type
 	MaintenanceType *int `form:"maintenance_type,omitempty" json:"maintenance_type,omitempty"`
 
 	// O Ordering
@@ -31392,7 +31588,9 @@ type MaintenanceAnnouncementsTemplateCountParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize            *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ServiceProviderUuid Service provider UUID
 	ServiceProviderUuid *openapi_types.UUID `form:"service_provider_uuid,omitempty" json:"service_provider_uuid,omitempty"`
 }
 
@@ -31401,6 +31599,7 @@ type MaintenanceAnnouncementsTemplateCountParamsO string
 
 // MaintenanceAnnouncementsListParams defines parameters for MaintenanceAnnouncementsList.
 type MaintenanceAnnouncementsListParams struct {
+	// MaintenanceType Maintenance type
 	MaintenanceType *int `form:"maintenance_type,omitempty" json:"maintenance_type,omitempty"`
 
 	// O Ordering
@@ -31411,13 +31610,26 @@ type MaintenanceAnnouncementsListParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize             *PageSize                                  `form:"page_size,omitempty" json:"page_size,omitempty"`
-	ScheduledEndAfter    *time.Time                                 `form:"scheduled_end_after,omitempty" json:"scheduled_end_after,omitempty"`
-	ScheduledEndBefore   *time.Time                                 `form:"scheduled_end_before,omitempty" json:"scheduled_end_before,omitempty"`
-	ScheduledStartAfter  *time.Time                                 `form:"scheduled_start_after,omitempty" json:"scheduled_start_after,omitempty"`
-	ScheduledStartBefore *time.Time                                 `form:"scheduled_start_before,omitempty" json:"scheduled_start_before,omitempty"`
-	ServiceProviderUuid  *openapi_types.UUID                        `form:"service_provider_uuid,omitempty" json:"service_provider_uuid,omitempty"`
-	State                *[]MaintenanceAnnouncementsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ScheduledEndAfter Scheduled end after
+	ScheduledEndAfter *time.Time `form:"scheduled_end_after,omitempty" json:"scheduled_end_after,omitempty"`
+
+	// ScheduledEndBefore Scheduled end before
+	ScheduledEndBefore *time.Time `form:"scheduled_end_before,omitempty" json:"scheduled_end_before,omitempty"`
+
+	// ScheduledStartAfter Scheduled start after
+	ScheduledStartAfter *time.Time `form:"scheduled_start_after,omitempty" json:"scheduled_start_after,omitempty"`
+
+	// ScheduledStartBefore Scheduled start before
+	ScheduledStartBefore *time.Time `form:"scheduled_start_before,omitempty" json:"scheduled_start_before,omitempty"`
+
+	// ServiceProviderUuid Service provider UUID
+	ServiceProviderUuid *openapi_types.UUID `form:"service_provider_uuid,omitempty" json:"service_provider_uuid,omitempty"`
+
+	// State Maintenance state
+	//
+	State *[]MaintenanceAnnouncementsListParamsState `form:"state,omitempty" json:"state,omitempty"`
 }
 
 // MaintenanceAnnouncementsListParamsO defines parameters for MaintenanceAnnouncementsList.
@@ -31428,6 +31640,7 @@ type MaintenanceAnnouncementsListParamsState string
 
 // MaintenanceAnnouncementsCountParams defines parameters for MaintenanceAnnouncementsCount.
 type MaintenanceAnnouncementsCountParams struct {
+	// MaintenanceType Maintenance type
 	MaintenanceType *int `form:"maintenance_type,omitempty" json:"maintenance_type,omitempty"`
 
 	// O Ordering
@@ -31438,13 +31651,26 @@ type MaintenanceAnnouncementsCountParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize             *PageSize                                   `form:"page_size,omitempty" json:"page_size,omitempty"`
-	ScheduledEndAfter    *time.Time                                  `form:"scheduled_end_after,omitempty" json:"scheduled_end_after,omitempty"`
-	ScheduledEndBefore   *time.Time                                  `form:"scheduled_end_before,omitempty" json:"scheduled_end_before,omitempty"`
-	ScheduledStartAfter  *time.Time                                  `form:"scheduled_start_after,omitempty" json:"scheduled_start_after,omitempty"`
-	ScheduledStartBefore *time.Time                                  `form:"scheduled_start_before,omitempty" json:"scheduled_start_before,omitempty"`
-	ServiceProviderUuid  *openapi_types.UUID                         `form:"service_provider_uuid,omitempty" json:"service_provider_uuid,omitempty"`
-	State                *[]MaintenanceAnnouncementsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ScheduledEndAfter Scheduled end after
+	ScheduledEndAfter *time.Time `form:"scheduled_end_after,omitempty" json:"scheduled_end_after,omitempty"`
+
+	// ScheduledEndBefore Scheduled end before
+	ScheduledEndBefore *time.Time `form:"scheduled_end_before,omitempty" json:"scheduled_end_before,omitempty"`
+
+	// ScheduledStartAfter Scheduled start after
+	ScheduledStartAfter *time.Time `form:"scheduled_start_after,omitempty" json:"scheduled_start_after,omitempty"`
+
+	// ScheduledStartBefore Scheduled start before
+	ScheduledStartBefore *time.Time `form:"scheduled_start_before,omitempty" json:"scheduled_start_before,omitempty"`
+
+	// ServiceProviderUuid Service provider UUID
+	ServiceProviderUuid *openapi_types.UUID `form:"service_provider_uuid,omitempty" json:"service_provider_uuid,omitempty"`
+
+	// State Maintenance state
+	//
+	State *[]MaintenanceAnnouncementsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
 }
 
 // MaintenanceAnnouncementsCountParamsO defines parameters for MaintenanceAnnouncementsCount.
@@ -31493,20 +31719,30 @@ type MarketplaceCategoriesListParams struct {
 	//
 	CustomersOfferingsState *[]MarketplaceCategoriesListParamsCustomersOfferingsState `form:"customers_offerings_state,omitempty" json:"customers_offerings_state,omitempty"`
 	Field                   *[]MarketplaceCategoriesListParamsField                   `form:"field,omitempty" json:"field,omitempty"`
-	GroupUuid               *openapi_types.UUID                                       `form:"group_uuid,omitempty" json:"group_uuid,omitempty"`
+
+	// GroupUuid Category group UUID
+	GroupUuid *openapi_types.UUID `form:"group_uuid,omitempty" json:"group_uuid,omitempty"`
 
 	// HasShared Has shared
-	HasShared    *bool   `form:"has_shared,omitempty" json:"has_shared,omitempty"`
+	HasShared *bool `form:"has_shared,omitempty" json:"has_shared,omitempty"`
+
+	// OfferingName Offering name contains
 	OfferingName *string `form:"offering_name,omitempty" json:"offering_name,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize             *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ResourceCustomerUuid Resource customer UUID
 	ResourceCustomerUuid *openapi_types.UUID `form:"resource_customer_uuid,omitempty" json:"resource_customer_uuid,omitempty"`
-	ResourceProjectUuid  *openapi_types.UUID `form:"resource_project_uuid,omitempty" json:"resource_project_uuid,omitempty"`
-	Title                *string             `form:"title,omitempty" json:"title,omitempty"`
+
+	// ResourceProjectUuid Resource project UUID
+	ResourceProjectUuid *openapi_types.UUID `form:"resource_project_uuid,omitempty" json:"resource_project_uuid,omitempty"`
+
+	// Title Title contains
+	Title *string `form:"title,omitempty" json:"title,omitempty"`
 }
 
 // MarketplaceCategoriesListParamsCustomersOfferingsState defines parameters for MarketplaceCategoriesList.
@@ -31523,20 +31759,30 @@ type MarketplaceCategoriesCountParams struct {
 	// CustomersOfferingsState Customers offerings state
 	//
 	CustomersOfferingsState *[]MarketplaceCategoriesCountParamsCustomersOfferingsState `form:"customers_offerings_state,omitempty" json:"customers_offerings_state,omitempty"`
-	GroupUuid               *openapi_types.UUID                                        `form:"group_uuid,omitempty" json:"group_uuid,omitempty"`
+
+	// GroupUuid Category group UUID
+	GroupUuid *openapi_types.UUID `form:"group_uuid,omitempty" json:"group_uuid,omitempty"`
 
 	// HasShared Has shared
-	HasShared    *bool   `form:"has_shared,omitempty" json:"has_shared,omitempty"`
+	HasShared *bool `form:"has_shared,omitempty" json:"has_shared,omitempty"`
+
+	// OfferingName Offering name contains
 	OfferingName *string `form:"offering_name,omitempty" json:"offering_name,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize             *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ResourceCustomerUuid Resource customer UUID
 	ResourceCustomerUuid *openapi_types.UUID `form:"resource_customer_uuid,omitempty" json:"resource_customer_uuid,omitempty"`
-	ResourceProjectUuid  *openapi_types.UUID `form:"resource_project_uuid,omitempty" json:"resource_project_uuid,omitempty"`
-	Title                *string             `form:"title,omitempty" json:"title,omitempty"`
+
+	// ResourceProjectUuid Resource project UUID
+	ResourceProjectUuid *openapi_types.UUID `form:"resource_project_uuid,omitempty" json:"resource_project_uuid,omitempty"`
+
+	// Title Title contains
+	Title *string `form:"title,omitempty" json:"title,omitempty"`
 }
 
 // MarketplaceCategoriesCountParamsCustomersOfferingsState defines parameters for MarketplaceCategoriesCount.
@@ -31552,6 +31798,7 @@ type MarketplaceCategoriesRetrieveParamsField string
 
 // MarketplaceCategoryColumnsListParams defines parameters for MarketplaceCategoryColumnsList.
 type MarketplaceCategoryColumnsListParams struct {
+	// CategoryUuid Category UUID
 	CategoryUuid *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
@@ -31559,11 +31806,14 @@ type MarketplaceCategoryColumnsListParams struct {
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Title    *string   `form:"title,omitempty" json:"title,omitempty"`
+
+	// Title Title contains
+	Title *string `form:"title,omitempty" json:"title,omitempty"`
 }
 
 // MarketplaceCategoryColumnsCountParams defines parameters for MarketplaceCategoryColumnsCount.
 type MarketplaceCategoryColumnsCountParams struct {
+	// CategoryUuid Category UUID
 	CategoryUuid *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
@@ -31571,12 +31821,17 @@ type MarketplaceCategoryColumnsCountParams struct {
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Title    *string   `form:"title,omitempty" json:"title,omitempty"`
+
+	// Title Title contains
+	Title *string `form:"title,omitempty" json:"title,omitempty"`
 }
 
 // MarketplaceCategoryComponentUsagesListParams defines parameters for MarketplaceCategoryComponentUsagesList.
 type MarketplaceCategoryComponentUsagesListParams struct {
-	DateAfter  *openapi_types.Date                                  `form:"date_after,omitempty" json:"date_after,omitempty"`
+	// DateAfter Date after or equal to
+	DateAfter *openapi_types.Date `form:"date_after,omitempty" json:"date_after,omitempty"`
+
+	// DateBefore Date before or equal to
 	DateBefore *openapi_types.Date                                  `form:"date_before,omitempty" json:"date_before,omitempty"`
 	Field      *[]MarketplaceCategoryComponentUsagesListParamsField `form:"field,omitempty" json:"field,omitempty"`
 
@@ -31592,7 +31847,10 @@ type MarketplaceCategoryComponentUsagesListParamsField string
 
 // MarketplaceCategoryComponentUsagesCountParams defines parameters for MarketplaceCategoryComponentUsagesCount.
 type MarketplaceCategoryComponentUsagesCountParams struct {
-	DateAfter  *openapi_types.Date `form:"date_after,omitempty" json:"date_after,omitempty"`
+	// DateAfter Date after or equal to
+	DateAfter *openapi_types.Date `form:"date_after,omitempty" json:"date_after,omitempty"`
+
+	// DateBefore Date before or equal to
 	DateBefore *openapi_types.Date `form:"date_before,omitempty" json:"date_before,omitempty"`
 
 	// Page A page number within the paginated result set.
@@ -31681,28 +31939,48 @@ type MarketplaceCategoryHelpArticlesCountParams struct {
 
 // MarketplaceComponentUsagesListParams defines parameters for MarketplaceComponentUsagesList.
 type MarketplaceComponentUsagesListParams struct {
-	BillingPeriod      *openapi_types.Date                          `form:"billing_period,omitempty" json:"billing_period,omitempty"`
-	BillingPeriodMonth *float32                                     `form:"billing_period_month,omitempty" json:"billing_period_month,omitempty"`
-	BillingPeriodYear  *float32                                     `form:"billing_period_year,omitempty" json:"billing_period_year,omitempty"`
-	CustomerUuid       *openapi_types.UUID                          `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	DateAfter          *openapi_types.Date                          `form:"date_after,omitempty" json:"date_after,omitempty"`
-	DateBefore         *openapi_types.Date                          `form:"date_before,omitempty" json:"date_before,omitempty"`
-	Field              *[]MarketplaceComponentUsagesListParamsField `form:"field,omitempty" json:"field,omitempty"`
+	BillingPeriod *openapi_types.Date `form:"billing_period,omitempty" json:"billing_period,omitempty"`
+
+	// BillingPeriodMonth Billing period month
+	BillingPeriodMonth *float32 `form:"billing_period_month,omitempty" json:"billing_period_month,omitempty"`
+
+	// BillingPeriodYear Billing period year
+	BillingPeriodYear *float32 `form:"billing_period_year,omitempty" json:"billing_period_year,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// DateAfter Date after or equal to
+	DateAfter *openapi_types.Date `form:"date_after,omitempty" json:"date_after,omitempty"`
+
+	// DateBefore Date before or equal to
+	DateBefore *openapi_types.Date                          `form:"date_before,omitempty" json:"date_before,omitempty"`
+	Field      *[]MarketplaceComponentUsagesListParamsField `form:"field,omitempty" json:"field,omitempty"`
 
 	// O Ordering
 	//
-	O            *[]MarketplaceComponentUsagesListParamsO `form:"o,omitempty" json:"o,omitempty"`
-	OfferingUuid *openapi_types.UUID                      `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	O *[]MarketplaceComponentUsagesListParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// OfferingUuid Offering UUID
+	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	ProjectUuid  *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	Resource     *string             `form:"resource,omitempty" json:"resource,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// Resource Resource URL
+	Resource *string `form:"resource,omitempty" json:"resource,omitempty"`
+
+	// ResourceUuid Resource UUID
 	ResourceUuid *openapi_types.UUID `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
-	Type         *string             `form:"type,omitempty" json:"type,omitempty"`
+
+	// Type Component type
+	Type *string `form:"type,omitempty" json:"type,omitempty"`
 }
 
 // MarketplaceComponentUsagesListParamsField defines parameters for MarketplaceComponentUsagesList.
@@ -31713,27 +31991,47 @@ type MarketplaceComponentUsagesListParamsO string
 
 // MarketplaceComponentUsagesCountParams defines parameters for MarketplaceComponentUsagesCount.
 type MarketplaceComponentUsagesCountParams struct {
-	BillingPeriod      *openapi_types.Date `form:"billing_period,omitempty" json:"billing_period,omitempty"`
-	BillingPeriodMonth *float32            `form:"billing_period_month,omitempty" json:"billing_period_month,omitempty"`
-	BillingPeriodYear  *float32            `form:"billing_period_year,omitempty" json:"billing_period_year,omitempty"`
-	CustomerUuid       *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	DateAfter          *openapi_types.Date `form:"date_after,omitempty" json:"date_after,omitempty"`
-	DateBefore         *openapi_types.Date `form:"date_before,omitempty" json:"date_before,omitempty"`
+	BillingPeriod *openapi_types.Date `form:"billing_period,omitempty" json:"billing_period,omitempty"`
+
+	// BillingPeriodMonth Billing period month
+	BillingPeriodMonth *float32 `form:"billing_period_month,omitempty" json:"billing_period_month,omitempty"`
+
+	// BillingPeriodYear Billing period year
+	BillingPeriodYear *float32 `form:"billing_period_year,omitempty" json:"billing_period_year,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// DateAfter Date after or equal to
+	DateAfter *openapi_types.Date `form:"date_after,omitempty" json:"date_after,omitempty"`
+
+	// DateBefore Date before or equal to
+	DateBefore *openapi_types.Date `form:"date_before,omitempty" json:"date_before,omitempty"`
 
 	// O Ordering
 	//
-	O            *[]MarketplaceComponentUsagesCountParamsO `form:"o,omitempty" json:"o,omitempty"`
-	OfferingUuid *openapi_types.UUID                       `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	O *[]MarketplaceComponentUsagesCountParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// OfferingUuid Offering UUID
+	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	ProjectUuid  *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	Resource     *string             `form:"resource,omitempty" json:"resource,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// Resource Resource URL
+	Resource *string `form:"resource,omitempty" json:"resource,omitempty"`
+
+	// ResourceUuid Resource UUID
 	ResourceUuid *openapi_types.UUID `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
-	Type         *string             `form:"type,omitempty" json:"type,omitempty"`
+
+	// Type Component type
+	Type *string `form:"type,omitempty" json:"type,omitempty"`
 }
 
 // MarketplaceComponentUsagesCountParamsO defines parameters for MarketplaceComponentUsagesCount.
@@ -31749,31 +32047,50 @@ type MarketplaceComponentUsagesRetrieveParamsField string
 
 // MarketplaceComponentUserUsagesListParams defines parameters for MarketplaceComponentUserUsagesList.
 type MarketplaceComponentUserUsagesListParams struct {
-	BillingPeriodMonth          *float32                                         `form:"billing_period_month,omitempty" json:"billing_period_month,omitempty"`
-	BillingPeriodYear           *float32                                         `form:"billing_period_year,omitempty" json:"billing_period_year,omitempty"`
-	ComponentUsageBillingPeriod *openapi_types.Date                              `form:"component_usage__billing_period,omitempty" json:"component_usage__billing_period,omitempty"`
-	CustomerUuid                *openapi_types.UUID                              `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	DateAfter                   *openapi_types.Date                              `form:"date_after,omitempty" json:"date_after,omitempty"`
-	DateBefore                  *openapi_types.Date                              `form:"date_before,omitempty" json:"date_before,omitempty"`
-	Field                       *[]MarketplaceComponentUserUsagesListParamsField `form:"field,omitempty" json:"field,omitempty"`
+	// BillingPeriodMonth Billing period month
+	BillingPeriodMonth *float32 `form:"billing_period_month,omitempty" json:"billing_period_month,omitempty"`
+
+	// BillingPeriodYear Billing period year
+	BillingPeriodYear           *float32            `form:"billing_period_year,omitempty" json:"billing_period_year,omitempty"`
+	ComponentUsageBillingPeriod *openapi_types.Date `form:"component_usage__billing_period,omitempty" json:"component_usage__billing_period,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// DateAfter Date after or equal to
+	DateAfter *openapi_types.Date `form:"date_after,omitempty" json:"date_after,omitempty"`
+
+	// DateBefore Date before or equal .google/docsto
+	DateBefore *openapi_types.Date                              `form:"date_before,omitempty" json:"date_before,omitempty"`
+	Field      *[]MarketplaceComponentUserUsagesListParamsField `form:"field,omitempty" json:"field,omitempty"`
 
 	// O Ordering
 	//
-	O            *[]MarketplaceComponentUserUsagesListParamsO `form:"o,omitempty" json:"o,omitempty"`
-	OfferingUuid *openapi_types.UUID                          `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	O *[]MarketplaceComponentUserUsagesListParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// OfferingUuid Offering UUID
+	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize    *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ProjectUuid Project UUID
 	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 
 	// Resource Resource URL
-	Resource     *string             `form:"resource,omitempty" json:"resource,omitempty"`
+	Resource *string `form:"resource,omitempty" json:"resource,omitempty"`
+
+	// ResourceUuid Resource UUID
 	ResourceUuid *openapi_types.UUID `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
-	Type         *string             `form:"type,omitempty" json:"type,omitempty"`
-	Username     *string             `form:"username,omitempty" json:"username,omitempty"`
+
+	// Type Component type
+	Type *string `form:"type,omitempty" json:"type,omitempty"`
+
+	// Username Username contains
+	Username *string `form:"username,omitempty" json:"username,omitempty"`
 }
 
 // MarketplaceComponentUserUsagesListParamsField defines parameters for MarketplaceComponentUserUsagesList.
@@ -31784,30 +32101,49 @@ type MarketplaceComponentUserUsagesListParamsO string
 
 // MarketplaceComponentUserUsagesCountParams defines parameters for MarketplaceComponentUserUsagesCount.
 type MarketplaceComponentUserUsagesCountParams struct {
-	BillingPeriodMonth          *float32            `form:"billing_period_month,omitempty" json:"billing_period_month,omitempty"`
+	// BillingPeriodMonth Billing period month
+	BillingPeriodMonth *float32 `form:"billing_period_month,omitempty" json:"billing_period_month,omitempty"`
+
+	// BillingPeriodYear Billing period year
 	BillingPeriodYear           *float32            `form:"billing_period_year,omitempty" json:"billing_period_year,omitempty"`
 	ComponentUsageBillingPeriod *openapi_types.Date `form:"component_usage__billing_period,omitempty" json:"component_usage__billing_period,omitempty"`
-	CustomerUuid                *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	DateAfter                   *openapi_types.Date `form:"date_after,omitempty" json:"date_after,omitempty"`
-	DateBefore                  *openapi_types.Date `form:"date_before,omitempty" json:"date_before,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// DateAfter Date after or equal to
+	DateAfter *openapi_types.Date `form:"date_after,omitempty" json:"date_after,omitempty"`
+
+	// DateBefore Date before or equal .google/docsto
+	DateBefore *openapi_types.Date `form:"date_before,omitempty" json:"date_before,omitempty"`
 
 	// O Ordering
 	//
-	O            *[]MarketplaceComponentUserUsagesCountParamsO `form:"o,omitempty" json:"o,omitempty"`
-	OfferingUuid *openapi_types.UUID                           `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	O *[]MarketplaceComponentUserUsagesCountParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// OfferingUuid Offering UUID
+	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize    *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ProjectUuid Project UUID
 	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 
 	// Resource Resource URL
-	Resource     *string             `form:"resource,omitempty" json:"resource,omitempty"`
+	Resource *string `form:"resource,omitempty" json:"resource,omitempty"`
+
+	// ResourceUuid Resource UUID
 	ResourceUuid *openapi_types.UUID `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
-	Type         *string             `form:"type,omitempty" json:"type,omitempty"`
-	Username     *string             `form:"username,omitempty" json:"username,omitempty"`
+
+	// Type Component type
+	Type *string `form:"type,omitempty" json:"type,omitempty"`
+
+	// Username Username contains
+	Username *string `form:"username,omitempty" json:"username,omitempty"`
 }
 
 // MarketplaceComponentUserUsagesCountParamsO defines parameters for MarketplaceComponentUserUsagesCount.
@@ -31823,6 +32159,7 @@ type MarketplaceComponentUserUsagesRetrieveParamsField string
 
 // MarketplaceCourseAccountsListParams defines parameters for MarketplaceCourseAccountsList.
 type MarketplaceCourseAccountsListParams struct {
+	// Email Email contains
 	Email *string `form:"email,omitempty" json:"email,omitempty"`
 
 	// O Ordering
@@ -31833,14 +32170,29 @@ type MarketplaceCourseAccountsListParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize               *PageSize                                   `form:"page_size,omitempty" json:"page_size,omitempty"`
-	ProjectEndDateAfter    *openapi_types.Date                         `form:"project_end_date_after,omitempty" json:"project_end_date_after,omitempty"`
-	ProjectEndDateBefore   *openapi_types.Date                         `form:"project_end_date_before,omitempty" json:"project_end_date_before,omitempty"`
-	ProjectStartDateAfter  *openapi_types.Date                         `form:"project_start_date_after,omitempty" json:"project_start_date_after,omitempty"`
-	ProjectStartDateBefore *openapi_types.Date                         `form:"project_start_date_before,omitempty" json:"project_start_date_before,omitempty"`
-	ProjectUuid            *openapi_types.UUID                         `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	State                  *[]MarketplaceCourseAccountsListParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Username               *string                                     `form:"username,omitempty" json:"username,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ProjectEndDateAfter Project end date range
+	ProjectEndDateAfter *openapi_types.Date `form:"project_end_date_after,omitempty" json:"project_end_date_after,omitempty"`
+
+	// ProjectEndDateBefore Project end date range
+	ProjectEndDateBefore *openapi_types.Date `form:"project_end_date_before,omitempty" json:"project_end_date_before,omitempty"`
+
+	// ProjectStartDateAfter Project start date range
+	ProjectStartDateAfter *openapi_types.Date `form:"project_start_date_after,omitempty" json:"project_start_date_after,omitempty"`
+
+	// ProjectStartDateBefore Project start date range
+	ProjectStartDateBefore *openapi_types.Date `form:"project_start_date_before,omitempty" json:"project_start_date_before,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// State Course account state
+	//
+	State *[]MarketplaceCourseAccountsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Username Username
+	Username *string `form:"username,omitempty" json:"username,omitempty"`
 }
 
 // MarketplaceCourseAccountsListParamsO defines parameters for MarketplaceCourseAccountsList.
@@ -31851,6 +32203,7 @@ type MarketplaceCourseAccountsListParamsState string
 
 // MarketplaceCourseAccountsCountParams defines parameters for MarketplaceCourseAccountsCount.
 type MarketplaceCourseAccountsCountParams struct {
+	// Email Email contains
 	Email *string `form:"email,omitempty" json:"email,omitempty"`
 
 	// O Ordering
@@ -31861,14 +32214,29 @@ type MarketplaceCourseAccountsCountParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize               *PageSize                                    `form:"page_size,omitempty" json:"page_size,omitempty"`
-	ProjectEndDateAfter    *openapi_types.Date                          `form:"project_end_date_after,omitempty" json:"project_end_date_after,omitempty"`
-	ProjectEndDateBefore   *openapi_types.Date                          `form:"project_end_date_before,omitempty" json:"project_end_date_before,omitempty"`
-	ProjectStartDateAfter  *openapi_types.Date                          `form:"project_start_date_after,omitempty" json:"project_start_date_after,omitempty"`
-	ProjectStartDateBefore *openapi_types.Date                          `form:"project_start_date_before,omitempty" json:"project_start_date_before,omitempty"`
-	ProjectUuid            *openapi_types.UUID                          `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	State                  *[]MarketplaceCourseAccountsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Username               *string                                      `form:"username,omitempty" json:"username,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ProjectEndDateAfter Project end date range
+	ProjectEndDateAfter *openapi_types.Date `form:"project_end_date_after,omitempty" json:"project_end_date_after,omitempty"`
+
+	// ProjectEndDateBefore Project end date range
+	ProjectEndDateBefore *openapi_types.Date `form:"project_end_date_before,omitempty" json:"project_end_date_before,omitempty"`
+
+	// ProjectStartDateAfter Project start date range
+	ProjectStartDateAfter *openapi_types.Date `form:"project_start_date_after,omitempty" json:"project_start_date_after,omitempty"`
+
+	// ProjectStartDateBefore Project start date range
+	ProjectStartDateBefore *openapi_types.Date `form:"project_start_date_before,omitempty" json:"project_start_date_before,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// State Course account state
+	//
+	State *[]MarketplaceCourseAccountsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Username Username
+	Username *string `form:"username,omitempty" json:"username,omitempty"`
 }
 
 // MarketplaceCourseAccountsCountParamsO defines parameters for MarketplaceCourseAccountsCount.
@@ -31879,6 +32247,7 @@ type MarketplaceCourseAccountsCountParamsState string
 
 // MarketplaceCourseAccountsCreateBulkParams defines parameters for MarketplaceCourseAccountsCreateBulk.
 type MarketplaceCourseAccountsCreateBulkParams struct {
+	// Email Email contains
 	Email *string `form:"email,omitempty" json:"email,omitempty"`
 
 	// O Ordering
@@ -31889,14 +32258,29 @@ type MarketplaceCourseAccountsCreateBulkParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize               *PageSize                                         `form:"page_size,omitempty" json:"page_size,omitempty"`
-	ProjectEndDateAfter    *openapi_types.Date                               `form:"project_end_date_after,omitempty" json:"project_end_date_after,omitempty"`
-	ProjectEndDateBefore   *openapi_types.Date                               `form:"project_end_date_before,omitempty" json:"project_end_date_before,omitempty"`
-	ProjectStartDateAfter  *openapi_types.Date                               `form:"project_start_date_after,omitempty" json:"project_start_date_after,omitempty"`
-	ProjectStartDateBefore *openapi_types.Date                               `form:"project_start_date_before,omitempty" json:"project_start_date_before,omitempty"`
-	ProjectUuid            *openapi_types.UUID                               `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	State                  *[]MarketplaceCourseAccountsCreateBulkParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Username               *string                                           `form:"username,omitempty" json:"username,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ProjectEndDateAfter Project end date range
+	ProjectEndDateAfter *openapi_types.Date `form:"project_end_date_after,omitempty" json:"project_end_date_after,omitempty"`
+
+	// ProjectEndDateBefore Project end date range
+	ProjectEndDateBefore *openapi_types.Date `form:"project_end_date_before,omitempty" json:"project_end_date_before,omitempty"`
+
+	// ProjectStartDateAfter Project start date range
+	ProjectStartDateAfter *openapi_types.Date `form:"project_start_date_after,omitempty" json:"project_start_date_after,omitempty"`
+
+	// ProjectStartDateBefore Project start date range
+	ProjectStartDateBefore *openapi_types.Date `form:"project_start_date_before,omitempty" json:"project_start_date_before,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// State Course account state
+	//
+	State *[]MarketplaceCourseAccountsCreateBulkParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Username Username
+	Username *string `form:"username,omitempty" json:"username,omitempty"`
 }
 
 // MarketplaceCourseAccountsCreateBulkParamsO defines parameters for MarketplaceCourseAccountsCreateBulk.
@@ -31963,17 +32347,27 @@ type MarketplaceCustomerEstimatedCostPoliciesCountParams struct {
 
 // MarketplaceCustomerServiceAccountsListParams defines parameters for MarketplaceCustomerServiceAccountsList.
 type MarketplaceCustomerServiceAccountsListParams struct {
-	Customer     *string             `form:"customer,omitempty" json:"customer,omitempty"`
+	// Customer Customer URL
+	Customer *string `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerUuid Customer UUID
 	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Email        *string             `form:"email,omitempty" json:"email,omitempty"`
+
+	// Email Email contains
+	Email *string `form:"email,omitempty" json:"email,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize *PageSize                                            `form:"page_size,omitempty" json:"page_size,omitempty"`
-	State    *[]MarketplaceCustomerServiceAccountsListParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Username *string                                              `form:"username,omitempty" json:"username,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// State Service account state
+	//
+	State *[]MarketplaceCustomerServiceAccountsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Username Username
+	Username *string `form:"username,omitempty" json:"username,omitempty"`
 }
 
 // MarketplaceCustomerServiceAccountsListParamsState defines parameters for MarketplaceCustomerServiceAccountsList.
@@ -31981,17 +32375,27 @@ type MarketplaceCustomerServiceAccountsListParamsState string
 
 // MarketplaceCustomerServiceAccountsCountParams defines parameters for MarketplaceCustomerServiceAccountsCount.
 type MarketplaceCustomerServiceAccountsCountParams struct {
-	Customer     *string             `form:"customer,omitempty" json:"customer,omitempty"`
+	// Customer Customer URL
+	Customer *string `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerUuid Customer UUID
 	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Email        *string             `form:"email,omitempty" json:"email,omitempty"`
+
+	// Email Email contains
+	Email *string `form:"email,omitempty" json:"email,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize *PageSize                                             `form:"page_size,omitempty" json:"page_size,omitempty"`
-	State    *[]MarketplaceCustomerServiceAccountsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Username *string                                               `form:"username,omitempty" json:"username,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// State Service account state
+	//
+	State *[]MarketplaceCustomerServiceAccountsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Username Username
+	Username *string `form:"username,omitempty" json:"username,omitempty"`
 }
 
 // MarketplaceCustomerServiceAccountsCountParamsState defines parameters for MarketplaceCustomerServiceAccountsCount.
@@ -32008,7 +32412,10 @@ type MarketplaceGlobalCategoriesRetrieveParams struct {
 
 // MarketplaceIntegrationStatusesListParams defines parameters for MarketplaceIntegrationStatusesList.
 type MarketplaceIntegrationStatusesListParams struct {
-	AgentType    *string `form:"agent_type,omitempty" json:"agent_type,omitempty"`
+	// AgentType Agent type
+	AgentType *string `form:"agent_type,omitempty" json:"agent_type,omitempty"`
+
+	// CustomerUuid Customer UUID
 	CustomerUuid *string `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
 
 	// O Ordering
@@ -32026,9 +32433,12 @@ type MarketplaceIntegrationStatusesListParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize           *PageSize                                         `form:"page_size,omitempty" json:"page_size,omitempty"`
-	ParentOfferingUuid *openapi_types.UUID                               `form:"parent_offering_uuid,omitempty" json:"parent_offering_uuid,omitempty"`
-	Status             *[]MarketplaceIntegrationStatusesListParamsStatus `form:"status,omitempty" json:"status,omitempty"`
+	PageSize           *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ParentOfferingUuid *openapi_types.UUID `form:"parent_offering_uuid,omitempty" json:"parent_offering_uuid,omitempty"`
+
+	// Status Integration status
+	//
+	Status *[]MarketplaceIntegrationStatusesListParamsStatus `form:"status,omitempty" json:"status,omitempty"`
 }
 
 // MarketplaceIntegrationStatusesListParamsO defines parameters for MarketplaceIntegrationStatusesList.
@@ -32039,7 +32449,10 @@ type MarketplaceIntegrationStatusesListParamsStatus string
 
 // MarketplaceIntegrationStatusesCountParams defines parameters for MarketplaceIntegrationStatusesCount.
 type MarketplaceIntegrationStatusesCountParams struct {
-	AgentType    *string `form:"agent_type,omitempty" json:"agent_type,omitempty"`
+	// AgentType Agent type
+	AgentType *string `form:"agent_type,omitempty" json:"agent_type,omitempty"`
+
+	// CustomerUuid Customer UUID
 	CustomerUuid *string `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
 
 	// O Ordering
@@ -32057,9 +32470,12 @@ type MarketplaceIntegrationStatusesCountParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize           *PageSize                                          `form:"page_size,omitempty" json:"page_size,omitempty"`
-	ParentOfferingUuid *openapi_types.UUID                                `form:"parent_offering_uuid,omitempty" json:"parent_offering_uuid,omitempty"`
-	Status             *[]MarketplaceIntegrationStatusesCountParamsStatus `form:"status,omitempty" json:"status,omitempty"`
+	PageSize           *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ParentOfferingUuid *openapi_types.UUID `form:"parent_offering_uuid,omitempty" json:"parent_offering_uuid,omitempty"`
+
+	// Status Integration status
+	//
+	Status *[]MarketplaceIntegrationStatusesCountParamsStatus `form:"status,omitempty" json:"status,omitempty"`
 }
 
 // MarketplaceIntegrationStatusesCountParamsO defines parameters for MarketplaceIntegrationStatusesCount.
@@ -32381,21 +32797,30 @@ type MarketplaceOfferingReferralsCountParamsO string
 
 // MarketplaceOfferingTermsOfServiceListParams defines parameters for MarketplaceOfferingTermsOfServiceList.
 type MarketplaceOfferingTermsOfServiceListParams struct {
+	// IsActive Is active
 	IsActive *bool `form:"is_active,omitempty" json:"is_active,omitempty"`
 
 	// O Ordering
 	//
-	O            *[]MarketplaceOfferingTermsOfServiceListParamsO `form:"o,omitempty" json:"o,omitempty"`
-	Offering     *string                                         `form:"offering,omitempty" json:"offering,omitempty"`
-	OfferingUuid *openapi_types.UUID                             `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	O *[]MarketplaceOfferingTermsOfServiceListParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// Offering Offering URL
+	Offering *string `form:"offering,omitempty" json:"offering,omitempty"`
+
+	// OfferingUuid Offering UUID
+	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize          *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-	RequiresReconsent *bool     `form:"requires_reconsent,omitempty" json:"requires_reconsent,omitempty"`
-	Version           *string   `form:"version,omitempty" json:"version,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// RequiresReconsent Requires reconsent
+	RequiresReconsent *bool `form:"requires_reconsent,omitempty" json:"requires_reconsent,omitempty"`
+
+	// Version Version
+	Version *string `form:"version,omitempty" json:"version,omitempty"`
 }
 
 // MarketplaceOfferingTermsOfServiceListParamsO defines parameters for MarketplaceOfferingTermsOfServiceList.
@@ -32403,21 +32828,30 @@ type MarketplaceOfferingTermsOfServiceListParamsO string
 
 // MarketplaceOfferingTermsOfServiceCountParams defines parameters for MarketplaceOfferingTermsOfServiceCount.
 type MarketplaceOfferingTermsOfServiceCountParams struct {
+	// IsActive Is active
 	IsActive *bool `form:"is_active,omitempty" json:"is_active,omitempty"`
 
 	// O Ordering
 	//
-	O            *[]MarketplaceOfferingTermsOfServiceCountParamsO `form:"o,omitempty" json:"o,omitempty"`
-	Offering     *string                                          `form:"offering,omitempty" json:"offering,omitempty"`
-	OfferingUuid *openapi_types.UUID                              `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	O *[]MarketplaceOfferingTermsOfServiceCountParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// Offering Offering URL
+	Offering *string `form:"offering,omitempty" json:"offering,omitempty"`
+
+	// OfferingUuid Offering UUID
+	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize          *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-	RequiresReconsent *bool     `form:"requires_reconsent,omitempty" json:"requires_reconsent,omitempty"`
-	Version           *string   `form:"version,omitempty" json:"version,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// RequiresReconsent Requires reconsent
+	RequiresReconsent *bool `form:"requires_reconsent,omitempty" json:"requires_reconsent,omitempty"`
+
+	// Version Version
+	Version *string `form:"version,omitempty" json:"version,omitempty"`
 }
 
 // MarketplaceOfferingTermsOfServiceCountParamsO defines parameters for MarketplaceOfferingTermsOfServiceCount.
@@ -32546,7 +32980,9 @@ type MarketplaceOfferingUsersListParams struct {
 	Field   *[]MarketplaceOfferingUsersListParamsField `form:"field,omitempty" json:"field,omitempty"`
 
 	// HasConsent User Has Consent
-	HasConsent   *bool `form:"has_consent,omitempty" json:"has_consent,omitempty"`
+	HasConsent *bool `form:"has_consent,omitempty" json:"has_consent,omitempty"`
+
+	// IsRestricted Is restricted
 	IsRestricted *bool `form:"is_restricted,omitempty" json:"is_restricted,omitempty"`
 
 	// Modified Modified after
@@ -32569,13 +33005,22 @@ type MarketplaceOfferingUsersListParams struct {
 	// PageSize Number of results to return per page.
 	PageSize           *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
 	ParentOfferingUuid *openapi_types.UUID `form:"parent_offering_uuid,omitempty" json:"parent_offering_uuid,omitempty"`
-	ProviderUuid       *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
+
+	// ProviderUuid Provider UUID
+	ProviderUuid *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
 
 	// Query Search by offering name, username or user name
-	Query        *string                                    `form:"query,omitempty" json:"query,omitempty"`
-	State        *[]MarketplaceOfferingUsersListParamsState `form:"state,omitempty" json:"state,omitempty"`
-	UserUsername *string                                    `form:"user_username,omitempty" json:"user_username,omitempty"`
-	UserUuid     *openapi_types.UUID                        `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
+	// State Offering user state
+	//
+	State *[]MarketplaceOfferingUsersListParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// UserUsername User username
+	UserUsername *string `form:"user_username,omitempty" json:"user_username,omitempty"`
+
+	// UserUuid User UUID
+	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
 }
 
 // MarketplaceOfferingUsersListParamsField defines parameters for MarketplaceOfferingUsersList.
@@ -32593,7 +33038,9 @@ type MarketplaceOfferingUsersCountParams struct {
 	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
 
 	// HasConsent User Has Consent
-	HasConsent   *bool `form:"has_consent,omitempty" json:"has_consent,omitempty"`
+	HasConsent *bool `form:"has_consent,omitempty" json:"has_consent,omitempty"`
+
+	// IsRestricted Is restricted
 	IsRestricted *bool `form:"is_restricted,omitempty" json:"is_restricted,omitempty"`
 
 	// Modified Modified after
@@ -32616,13 +33063,22 @@ type MarketplaceOfferingUsersCountParams struct {
 	// PageSize Number of results to return per page.
 	PageSize           *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
 	ParentOfferingUuid *openapi_types.UUID `form:"parent_offering_uuid,omitempty" json:"parent_offering_uuid,omitempty"`
-	ProviderUuid       *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
+
+	// ProviderUuid Provider UUID
+	ProviderUuid *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
 
 	// Query Search by offering name, username or user name
-	Query        *string                                     `form:"query,omitempty" json:"query,omitempty"`
-	State        *[]MarketplaceOfferingUsersCountParamsState `form:"state,omitempty" json:"state,omitempty"`
-	UserUsername *string                                     `form:"user_username,omitempty" json:"user_username,omitempty"`
-	UserUuid     *openapi_types.UUID                         `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
+	// State Offering user state
+	//
+	State *[]MarketplaceOfferingUsersCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// UserUsername User username
+	UserUsername *string `form:"user_username,omitempty" json:"user_username,omitempty"`
+
+	// UserUuid User UUID
+	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
 }
 
 // MarketplaceOfferingUsersCountParamsO defines parameters for MarketplaceOfferingUsersCount.
@@ -32656,12 +33112,19 @@ type MarketplaceOfferingUsersSubmitAnswersJSONBody = []AnswerSubmitRequest
 
 // MarketplaceOrdersListParams defines parameters for MarketplaceOrdersList.
 type MarketplaceOrdersListParams struct {
-	CanApproveAsConsumer *bool               `form:"can_approve_as_consumer,omitempty" json:"can_approve_as_consumer,omitempty"`
-	CanApproveAsProvider *bool               `form:"can_approve_as_provider,omitempty" json:"can_approve_as_provider,omitempty"`
-	CategoryUuid         *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
+	// CanApproveAsConsumer Can approve as consumer
+	CanApproveAsConsumer *bool `form:"can_approve_as_consumer,omitempty" json:"can_approve_as_consumer,omitempty"`
+
+	// CanApproveAsProvider Can approve as provider
+	CanApproveAsProvider *bool `form:"can_approve_as_provider,omitempty" json:"can_approve_as_provider,omitempty"`
+
+	// CategoryUuid Category UUID
+	CategoryUuid *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
 
 	// Created Created after
-	Created      *time.Time                          `form:"created,omitempty" json:"created,omitempty"`
+	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
+
+	// CustomerUuid Customer UUID
 	CustomerUuid *openapi_types.UUID                 `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
 	Field        *[]MarketplaceOrdersListParamsField `form:"field,omitempty" json:"field,omitempty"`
 
@@ -32674,8 +33137,12 @@ type MarketplaceOrdersListParams struct {
 	Offering *string                         `form:"offering,omitempty" json:"offering,omitempty"`
 
 	// OfferingSlug Multiple values may be separated by commas.
-	OfferingSlug *[]string           `form:"offering_slug,omitempty" json:"offering_slug,omitempty"`
-	OfferingType *[]string           `form:"offering_type,omitempty" json:"offering_type,omitempty"`
+	OfferingSlug *[]string `form:"offering_slug,omitempty" json:"offering_slug,omitempty"`
+
+	// OfferingType Offering type
+	OfferingType *[]string `form:"offering_type,omitempty" json:"offering_type,omitempty"`
+
+	// OfferingUuid Offering UUID
 	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
@@ -32684,16 +33151,32 @@ type MarketplaceOrdersListParams struct {
 	// PageSize Number of results to return per page.
 	PageSize           *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
 	ParentOfferingUuid *openapi_types.UUID `form:"parent_offering_uuid,omitempty" json:"parent_offering_uuid,omitempty"`
-	ProjectUuid        *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	ProviderUuid       *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ProviderUuid Provider UUID
+	ProviderUuid *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
 
 	// Query Search by order UUID, slug, project name or resource name
-	Query              *string                             `form:"query,omitempty" json:"query,omitempty"`
-	Resource           *string                             `form:"resource,omitempty" json:"resource,omitempty"`
-	ResourceUuid       *openapi_types.UUID                 `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
-	ServiceManagerUuid *openapi_types.UUID                 `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
-	State              *[]MarketplaceOrdersListParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Type               *[]MarketplaceOrdersListParamsType  `form:"type,omitempty" json:"type,omitempty"`
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
+	// Resource Resource URL
+	Resource *string `form:"resource,omitempty" json:"resource,omitempty"`
+
+	// ResourceUuid Resource UUID
+	ResourceUuid *openapi_types.UUID `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
+
+	// ServiceManagerUuid Service manager UUID
+	ServiceManagerUuid *openapi_types.UUID `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
+
+	// State Order state
+	//
+	State *[]MarketplaceOrdersListParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Type Order type
+	//
+	Type *[]MarketplaceOrdersListParamsType `form:"type,omitempty" json:"type,omitempty"`
 }
 
 // MarketplaceOrdersListParamsField defines parameters for MarketplaceOrdersList.
@@ -32710,12 +33193,19 @@ type MarketplaceOrdersListParamsType string
 
 // MarketplaceOrdersCountParams defines parameters for MarketplaceOrdersCount.
 type MarketplaceOrdersCountParams struct {
-	CanApproveAsConsumer *bool               `form:"can_approve_as_consumer,omitempty" json:"can_approve_as_consumer,omitempty"`
-	CanApproveAsProvider *bool               `form:"can_approve_as_provider,omitempty" json:"can_approve_as_provider,omitempty"`
-	CategoryUuid         *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
+	// CanApproveAsConsumer Can approve as consumer
+	CanApproveAsConsumer *bool `form:"can_approve_as_consumer,omitempty" json:"can_approve_as_consumer,omitempty"`
+
+	// CanApproveAsProvider Can approve as provider
+	CanApproveAsProvider *bool `form:"can_approve_as_provider,omitempty" json:"can_approve_as_provider,omitempty"`
+
+	// CategoryUuid Category UUID
+	CategoryUuid *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
 
 	// Created Created after
-	Created      *time.Time          `form:"created,omitempty" json:"created,omitempty"`
+	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
+
+	// CustomerUuid Customer UUID
 	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
 
 	// Modified Modified after
@@ -32727,8 +33217,12 @@ type MarketplaceOrdersCountParams struct {
 	Offering *string                          `form:"offering,omitempty" json:"offering,omitempty"`
 
 	// OfferingSlug Multiple values may be separated by commas.
-	OfferingSlug *[]string           `form:"offering_slug,omitempty" json:"offering_slug,omitempty"`
-	OfferingType *[]string           `form:"offering_type,omitempty" json:"offering_type,omitempty"`
+	OfferingSlug *[]string `form:"offering_slug,omitempty" json:"offering_slug,omitempty"`
+
+	// OfferingType Offering type
+	OfferingType *[]string `form:"offering_type,omitempty" json:"offering_type,omitempty"`
+
+	// OfferingUuid Offering UUID
 	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
@@ -32737,16 +33231,32 @@ type MarketplaceOrdersCountParams struct {
 	// PageSize Number of results to return per page.
 	PageSize           *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
 	ParentOfferingUuid *openapi_types.UUID `form:"parent_offering_uuid,omitempty" json:"parent_offering_uuid,omitempty"`
-	ProjectUuid        *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	ProviderUuid       *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ProviderUuid Provider UUID
+	ProviderUuid *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
 
 	// Query Search by order UUID, slug, project name or resource name
-	Query              *string                              `form:"query,omitempty" json:"query,omitempty"`
-	Resource           *string                              `form:"resource,omitempty" json:"resource,omitempty"`
-	ResourceUuid       *openapi_types.UUID                  `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
-	ServiceManagerUuid *openapi_types.UUID                  `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
-	State              *[]MarketplaceOrdersCountParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Type               *[]MarketplaceOrdersCountParamsType  `form:"type,omitempty" json:"type,omitempty"`
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
+	// Resource Resource URL
+	Resource *string `form:"resource,omitempty" json:"resource,omitempty"`
+
+	// ResourceUuid Resource UUID
+	ResourceUuid *openapi_types.UUID `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
+
+	// ServiceManagerUuid Service manager UUID
+	ServiceManagerUuid *openapi_types.UUID `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
+
+	// State Order state
+	//
+	State *[]MarketplaceOrdersCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Type Order type
+	//
+	Type *[]MarketplaceOrdersCountParamsType `form:"type,omitempty" json:"type,omitempty"`
 }
 
 // MarketplaceOrdersCountParamsO defines parameters for MarketplaceOrdersCount.
@@ -32768,6 +33278,7 @@ type MarketplaceOrdersRetrieveParamsField string
 
 // MarketplacePlanComponentsListParams defines parameters for MarketplacePlanComponentsList.
 type MarketplacePlanComponentsListParams struct {
+	// Archived Archived
 	Archived *bool `form:"archived,omitempty" json:"archived,omitempty"`
 
 	// OfferingUuid Offering UUID
@@ -32781,11 +33292,14 @@ type MarketplacePlanComponentsListParams struct {
 
 	// PlanUuid Plan UUID
 	PlanUuid *openapi_types.UUID `form:"plan_uuid,omitempty" json:"plan_uuid,omitempty"`
-	Shared   *bool               `form:"shared,omitempty" json:"shared,omitempty"`
+
+	// Shared Shared
+	Shared *bool `form:"shared,omitempty" json:"shared,omitempty"`
 }
 
 // MarketplacePlanComponentsCountParams defines parameters for MarketplacePlanComponentsCount.
 type MarketplacePlanComponentsCountParams struct {
+	// Archived Archived
 	Archived *bool `form:"archived,omitempty" json:"archived,omitempty"`
 
 	// OfferingUuid Offering UUID
@@ -32799,7 +33313,9 @@ type MarketplacePlanComponentsCountParams struct {
 
 	// PlanUuid Plan UUID
 	PlanUuid *openapi_types.UUID `form:"plan_uuid,omitempty" json:"plan_uuid,omitempty"`
-	Shared   *bool               `form:"shared,omitempty" json:"shared,omitempty"`
+
+	// Shared Shared
+	Shared *bool `form:"shared,omitempty" json:"shared,omitempty"`
 }
 
 // MarketplacePlansListParams defines parameters for MarketplacePlansList.
@@ -32807,7 +33323,9 @@ type MarketplacePlansListParams struct {
 	Offering *string `form:"offering,omitempty" json:"offering,omitempty"`
 
 	// OfferingSlug Multiple values may be separated by commas.
-	OfferingSlug *[]string           `form:"offering_slug,omitempty" json:"offering_slug,omitempty"`
+	OfferingSlug *[]string `form:"offering_slug,omitempty" json:"offering_slug,omitempty"`
+
+	// OfferingUuid Offering UUID
 	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
@@ -32823,7 +33341,9 @@ type MarketplacePlansCountParams struct {
 	Offering *string `form:"offering,omitempty" json:"offering,omitempty"`
 
 	// OfferingSlug Multiple values may be separated by commas.
-	OfferingSlug *[]string           `form:"offering_slug,omitempty" json:"offering_slug,omitempty"`
+	OfferingSlug *[]string `form:"offering_slug,omitempty" json:"offering_slug,omitempty"`
+
+	// OfferingUuid Offering UUID
 	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
@@ -32914,17 +33434,27 @@ type MarketplaceProjectEstimatedCostPoliciesCountParams struct {
 
 // MarketplaceProjectServiceAccountsListParams defines parameters for MarketplaceProjectServiceAccountsList.
 type MarketplaceProjectServiceAccountsListParams struct {
+	// Email Email contains
 	Email *string `form:"email,omitempty" json:"email,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize    *PageSize                                           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project     *string                                             `form:"project,omitempty" json:"project,omitempty"`
-	ProjectUuid *openapi_types.UUID                                 `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	State       *[]MarketplaceProjectServiceAccountsListParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Username    *string                                             `form:"username,omitempty" json:"username,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project URL
+	Project *string `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// State Service account state
+	//
+	State *[]MarketplaceProjectServiceAccountsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Username Username
+	Username *string `form:"username,omitempty" json:"username,omitempty"`
 }
 
 // MarketplaceProjectServiceAccountsListParamsState defines parameters for MarketplaceProjectServiceAccountsList.
@@ -32932,17 +33462,27 @@ type MarketplaceProjectServiceAccountsListParamsState string
 
 // MarketplaceProjectServiceAccountsCountParams defines parameters for MarketplaceProjectServiceAccountsCount.
 type MarketplaceProjectServiceAccountsCountParams struct {
+	// Email Email contains
 	Email *string `form:"email,omitempty" json:"email,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize    *PageSize                                            `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project     *string                                              `form:"project,omitempty" json:"project,omitempty"`
-	ProjectUuid *openapi_types.UUID                                  `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	State       *[]MarketplaceProjectServiceAccountsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Username    *string                                              `form:"username,omitempty" json:"username,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project URL
+	Project *string `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// State Service account state
+	//
+	State *[]MarketplaceProjectServiceAccountsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Username Username
+	Username *string `form:"username,omitempty" json:"username,omitempty"`
 }
 
 // MarketplaceProjectServiceAccountsCountParamsState defines parameters for MarketplaceProjectServiceAccountsCount.
@@ -32990,19 +33530,33 @@ type MarketplaceProviderOfferingsListParams struct {
 	AccessibleViaCalls *bool `form:"accessible_via_calls,omitempty" json:"accessible_via_calls,omitempty"`
 
 	// AllowedCustomerUuid Allowed customer UUID
-	AllowedCustomerUuid   *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
-	Attributes            *string             `form:"attributes,omitempty" json:"attributes,omitempty"`
-	Billable              *bool               `form:"billable,omitempty" json:"billable,omitempty"`
-	CanCreateOfferingUser *bool               `form:"can_create_offering_user,omitempty" json:"can_create_offering_user,omitempty"`
-	CategoryGroupUuid     *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
-	CategoryUuid          *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
+	AllowedCustomerUuid *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
+
+	// Attributes Offering attributes (JSON)
+	Attributes *string `form:"attributes,omitempty" json:"attributes,omitempty"`
+
+	// Billable Billable
+	Billable              *bool `form:"billable,omitempty" json:"billable,omitempty"`
+	CanCreateOfferingUser *bool `form:"can_create_offering_user,omitempty" json:"can_create_offering_user,omitempty"`
+
+	// CategoryGroupUuid Category group UUID
+	CategoryGroupUuid *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
+
+	// CategoryUuid Category UUID
+	CategoryUuid *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
 
 	// Created Created after
-	Created      *time.Time                                     `form:"created,omitempty" json:"created,omitempty"`
-	Customer     *string                                        `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerUuid *openapi_types.UUID                            `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description  *string                                        `form:"description,omitempty" json:"description,omitempty"`
-	Field        *[]MarketplaceProviderOfferingsListParamsField `form:"field,omitempty" json:"field,omitempty"`
+	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
+
+	// Customer Customer URL
+	Customer *string `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description contains
+	Description *string                                        `form:"description,omitempty" json:"description,omitempty"`
+	Field       *[]MarketplaceProviderOfferingsListParamsField `form:"field,omitempty" json:"field,omitempty"`
 
 	// HasActiveTermsOfService Has Active Terms of Service
 	HasActiveTermsOfService *bool `form:"has_active_terms_of_service,omitempty" json:"has_active_terms_of_service,omitempty"`
@@ -33020,14 +33574,18 @@ type MarketplaceProviderOfferingsListParams struct {
 
 	// O Ordering
 	//
-	O                     *[]MarketplaceProviderOfferingsListParamsO `form:"o,omitempty" json:"o,omitempty"`
-	OrganizationGroupUuid *[]openapi_types.UUID                      `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
+	O *[]MarketplaceProviderOfferingsListParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// OrganizationGroupUuid Organization group UUID
+	OrganizationGroupUuid *[]openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize   *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ParentUuid Parent offering UUID
 	ParentUuid *openapi_types.UUID `form:"parent_uuid,omitempty" json:"parent_uuid,omitempty"`
 
 	// ProjectUuid Project UUID
@@ -33046,10 +33604,17 @@ type MarketplaceProviderOfferingsListParams struct {
 	ScopeUuid *string `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
 
 	// ServiceManagerUuid Service manager UUID
-	ServiceManagerUuid *openapi_types.UUID                            `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
-	Shared             *bool                                          `form:"shared,omitempty" json:"shared,omitempty"`
-	State              *[]MarketplaceProviderOfferingsListParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Type               *[]string                                      `form:"type,omitempty" json:"type,omitempty"`
+	ServiceManagerUuid *openapi_types.UUID `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
+
+	// Shared Shared
+	Shared *bool `form:"shared,omitempty" json:"shared,omitempty"`
+
+	// State Offering state
+	//
+	State *[]MarketplaceProviderOfferingsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Type Offering type
+	Type *[]string `form:"type,omitempty" json:"type,omitempty"`
 
 	// UserHasConsent User Has Consent
 	UserHasConsent *bool `form:"user_has_consent,omitempty" json:"user_has_consent,omitempty"`
@@ -33076,18 +33641,32 @@ type MarketplaceProviderOfferingsCountParams struct {
 	AccessibleViaCalls *bool `form:"accessible_via_calls,omitempty" json:"accessible_via_calls,omitempty"`
 
 	// AllowedCustomerUuid Allowed customer UUID
-	AllowedCustomerUuid   *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
-	Attributes            *string             `form:"attributes,omitempty" json:"attributes,omitempty"`
-	Billable              *bool               `form:"billable,omitempty" json:"billable,omitempty"`
-	CanCreateOfferingUser *bool               `form:"can_create_offering_user,omitempty" json:"can_create_offering_user,omitempty"`
-	CategoryGroupUuid     *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
-	CategoryUuid          *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
+	AllowedCustomerUuid *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
+
+	// Attributes Offering attributes (JSON)
+	Attributes *string `form:"attributes,omitempty" json:"attributes,omitempty"`
+
+	// Billable Billable
+	Billable              *bool `form:"billable,omitempty" json:"billable,omitempty"`
+	CanCreateOfferingUser *bool `form:"can_create_offering_user,omitempty" json:"can_create_offering_user,omitempty"`
+
+	// CategoryGroupUuid Category group UUID
+	CategoryGroupUuid *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
+
+	// CategoryUuid Category UUID
+	CategoryUuid *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
 
 	// Created Created after
-	Created      *time.Time          `form:"created,omitempty" json:"created,omitempty"`
-	Customer     *string             `form:"customer,omitempty" json:"customer,omitempty"`
+	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
+
+	// Customer Customer URL
+	Customer *string `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerUuid Customer UUID
 	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description  *string             `form:"description,omitempty" json:"description,omitempty"`
+
+	// Description Description contains
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
 
 	// HasActiveTermsOfService Has Active Terms of Service
 	HasActiveTermsOfService *bool `form:"has_active_terms_of_service,omitempty" json:"has_active_terms_of_service,omitempty"`
@@ -33105,14 +33684,18 @@ type MarketplaceProviderOfferingsCountParams struct {
 
 	// O Ordering
 	//
-	O                     *[]MarketplaceProviderOfferingsCountParamsO `form:"o,omitempty" json:"o,omitempty"`
-	OrganizationGroupUuid *[]openapi_types.UUID                       `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
+	O *[]MarketplaceProviderOfferingsCountParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// OrganizationGroupUuid Organization group UUID
+	OrganizationGroupUuid *[]openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize   *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ParentUuid Parent offering UUID
 	ParentUuid *openapi_types.UUID `form:"parent_uuid,omitempty" json:"parent_uuid,omitempty"`
 
 	// ProjectUuid Project UUID
@@ -33131,10 +33714,17 @@ type MarketplaceProviderOfferingsCountParams struct {
 	ScopeUuid *string `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
 
 	// ServiceManagerUuid Service manager UUID
-	ServiceManagerUuid *openapi_types.UUID                             `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
-	Shared             *bool                                           `form:"shared,omitempty" json:"shared,omitempty"`
-	State              *[]MarketplaceProviderOfferingsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Type               *[]string                                       `form:"type,omitempty" json:"type,omitempty"`
+	ServiceManagerUuid *openapi_types.UUID `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
+
+	// Shared Shared
+	Shared *bool `form:"shared,omitempty" json:"shared,omitempty"`
+
+	// State Offering state
+	//
+	State *[]MarketplaceProviderOfferingsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Type Offering type
+	Type *[]string `form:"type,omitempty" json:"type,omitempty"`
 
 	// UserHasConsent User Has Consent
 	UserHasConsent *bool `form:"user_has_consent,omitempty" json:"user_has_consent,omitempty"`
@@ -33158,18 +33748,32 @@ type MarketplaceProviderOfferingsGroupsListParams struct {
 	AccessibleViaCalls *bool `form:"accessible_via_calls,omitempty" json:"accessible_via_calls,omitempty"`
 
 	// AllowedCustomerUuid Allowed customer UUID
-	AllowedCustomerUuid   *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
-	Attributes            *string             `form:"attributes,omitempty" json:"attributes,omitempty"`
-	Billable              *bool               `form:"billable,omitempty" json:"billable,omitempty"`
-	CanCreateOfferingUser *bool               `form:"can_create_offering_user,omitempty" json:"can_create_offering_user,omitempty"`
-	CategoryGroupUuid     *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
-	CategoryUuid          *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
+	AllowedCustomerUuid *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
+
+	// Attributes Offering attributes (JSON)
+	Attributes *string `form:"attributes,omitempty" json:"attributes,omitempty"`
+
+	// Billable Billable
+	Billable              *bool `form:"billable,omitempty" json:"billable,omitempty"`
+	CanCreateOfferingUser *bool `form:"can_create_offering_user,omitempty" json:"can_create_offering_user,omitempty"`
+
+	// CategoryGroupUuid Category group UUID
+	CategoryGroupUuid *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
+
+	// CategoryUuid Category UUID
+	CategoryUuid *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
 
 	// Created Created after
-	Created      *time.Time          `form:"created,omitempty" json:"created,omitempty"`
-	Customer     *string             `form:"customer,omitempty" json:"customer,omitempty"`
+	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
+
+	// Customer Customer URL
+	Customer *string `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerUuid Customer UUID
 	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description  *string             `form:"description,omitempty" json:"description,omitempty"`
+
+	// Description Description contains
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
 
 	// HasActiveTermsOfService Has Active Terms of Service
 	HasActiveTermsOfService *bool `form:"has_active_terms_of_service,omitempty" json:"has_active_terms_of_service,omitempty"`
@@ -33187,14 +33791,18 @@ type MarketplaceProviderOfferingsGroupsListParams struct {
 
 	// O Ordering
 	//
-	O                     *[]MarketplaceProviderOfferingsGroupsListParamsO `form:"o,omitempty" json:"o,omitempty"`
-	OrganizationGroupUuid *[]openapi_types.UUID                            `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
+	O *[]MarketplaceProviderOfferingsGroupsListParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// OrganizationGroupUuid Organization group UUID
+	OrganizationGroupUuid *[]openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize   *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ParentUuid Parent offering UUID
 	ParentUuid *openapi_types.UUID `form:"parent_uuid,omitempty" json:"parent_uuid,omitempty"`
 
 	// ProjectUuid Project UUID
@@ -33213,10 +33821,17 @@ type MarketplaceProviderOfferingsGroupsListParams struct {
 	ScopeUuid *string `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
 
 	// ServiceManagerUuid Service manager UUID
-	ServiceManagerUuid *openapi_types.UUID                                  `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
-	Shared             *bool                                                `form:"shared,omitempty" json:"shared,omitempty"`
-	State              *[]MarketplaceProviderOfferingsGroupsListParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Type               *[]string                                            `form:"type,omitempty" json:"type,omitempty"`
+	ServiceManagerUuid *openapi_types.UUID `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
+
+	// Shared Shared
+	Shared *bool `form:"shared,omitempty" json:"shared,omitempty"`
+
+	// State Offering state
+	//
+	State *[]MarketplaceProviderOfferingsGroupsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Type Offering type
+	Type *[]string `form:"type,omitempty" json:"type,omitempty"`
 
 	// UserHasConsent User Has Consent
 	UserHasConsent *bool `form:"user_has_consent,omitempty" json:"user_has_consent,omitempty"`
@@ -33240,18 +33855,32 @@ type MarketplaceProviderOfferingsGroupsCountParams struct {
 	AccessibleViaCalls *bool `form:"accessible_via_calls,omitempty" json:"accessible_via_calls,omitempty"`
 
 	// AllowedCustomerUuid Allowed customer UUID
-	AllowedCustomerUuid   *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
-	Attributes            *string             `form:"attributes,omitempty" json:"attributes,omitempty"`
-	Billable              *bool               `form:"billable,omitempty" json:"billable,omitempty"`
-	CanCreateOfferingUser *bool               `form:"can_create_offering_user,omitempty" json:"can_create_offering_user,omitempty"`
-	CategoryGroupUuid     *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
-	CategoryUuid          *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
+	AllowedCustomerUuid *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
+
+	// Attributes Offering attributes (JSON)
+	Attributes *string `form:"attributes,omitempty" json:"attributes,omitempty"`
+
+	// Billable Billable
+	Billable              *bool `form:"billable,omitempty" json:"billable,omitempty"`
+	CanCreateOfferingUser *bool `form:"can_create_offering_user,omitempty" json:"can_create_offering_user,omitempty"`
+
+	// CategoryGroupUuid Category group UUID
+	CategoryGroupUuid *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
+
+	// CategoryUuid Category UUID
+	CategoryUuid *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
 
 	// Created Created after
-	Created      *time.Time          `form:"created,omitempty" json:"created,omitempty"`
-	Customer     *string             `form:"customer,omitempty" json:"customer,omitempty"`
+	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
+
+	// Customer Customer URL
+	Customer *string `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerUuid Customer UUID
 	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description  *string             `form:"description,omitempty" json:"description,omitempty"`
+
+	// Description Description contains
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
 
 	// HasActiveTermsOfService Has Active Terms of Service
 	HasActiveTermsOfService *bool `form:"has_active_terms_of_service,omitempty" json:"has_active_terms_of_service,omitempty"`
@@ -33269,14 +33898,18 @@ type MarketplaceProviderOfferingsGroupsCountParams struct {
 
 	// O Ordering
 	//
-	O                     *[]MarketplaceProviderOfferingsGroupsCountParamsO `form:"o,omitempty" json:"o,omitempty"`
-	OrganizationGroupUuid *[]openapi_types.UUID                             `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
+	O *[]MarketplaceProviderOfferingsGroupsCountParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// OrganizationGroupUuid Organization group UUID
+	OrganizationGroupUuid *[]openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize   *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ParentUuid Parent offering UUID
 	ParentUuid *openapi_types.UUID `form:"parent_uuid,omitempty" json:"parent_uuid,omitempty"`
 
 	// ProjectUuid Project UUID
@@ -33295,10 +33928,17 @@ type MarketplaceProviderOfferingsGroupsCountParams struct {
 	ScopeUuid *string `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
 
 	// ServiceManagerUuid Service manager UUID
-	ServiceManagerUuid *openapi_types.UUID                                   `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
-	Shared             *bool                                                 `form:"shared,omitempty" json:"shared,omitempty"`
-	State              *[]MarketplaceProviderOfferingsGroupsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Type               *[]string                                             `form:"type,omitempty" json:"type,omitempty"`
+	ServiceManagerUuid *openapi_types.UUID `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
+
+	// Shared Shared
+	Shared *bool `form:"shared,omitempty" json:"shared,omitempty"`
+
+	// State Offering state
+	//
+	State *[]MarketplaceProviderOfferingsGroupsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Type Offering type
+	Type *[]string `form:"type,omitempty" json:"type,omitempty"`
 
 	// UserHasConsent User Has Consent
 	UserHasConsent *bool `form:"user_has_consent,omitempty" json:"user_has_consent,omitempty"`
@@ -33330,18 +33970,32 @@ type MarketplaceProviderOfferingsComponentStatsListParams struct {
 	AccessibleViaCalls *bool `form:"accessible_via_calls,omitempty" json:"accessible_via_calls,omitempty"`
 
 	// AllowedCustomerUuid Allowed customer UUID
-	AllowedCustomerUuid   *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
-	Attributes            *string             `form:"attributes,omitempty" json:"attributes,omitempty"`
-	Billable              *bool               `form:"billable,omitempty" json:"billable,omitempty"`
-	CanCreateOfferingUser *bool               `form:"can_create_offering_user,omitempty" json:"can_create_offering_user,omitempty"`
-	CategoryGroupUuid     *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
-	CategoryUuid          *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
+	AllowedCustomerUuid *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
+
+	// Attributes Offering attributes (JSON)
+	Attributes *string `form:"attributes,omitempty" json:"attributes,omitempty"`
+
+	// Billable Billable
+	Billable              *bool `form:"billable,omitempty" json:"billable,omitempty"`
+	CanCreateOfferingUser *bool `form:"can_create_offering_user,omitempty" json:"can_create_offering_user,omitempty"`
+
+	// CategoryGroupUuid Category group UUID
+	CategoryGroupUuid *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
+
+	// CategoryUuid Category UUID
+	CategoryUuid *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
 
 	// Created Created after
-	Created      *time.Time          `form:"created,omitempty" json:"created,omitempty"`
-	Customer     *string             `form:"customer,omitempty" json:"customer,omitempty"`
+	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
+
+	// Customer Customer URL
+	Customer *string `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerUuid Customer UUID
 	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description  *string             `form:"description,omitempty" json:"description,omitempty"`
+
+	// Description Description contains
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
 
 	// End End date in format YYYY-MM.
 	End *string `form:"end,omitempty" json:"end,omitempty"`
@@ -33362,14 +34016,18 @@ type MarketplaceProviderOfferingsComponentStatsListParams struct {
 
 	// O Ordering
 	//
-	O                     *[]MarketplaceProviderOfferingsComponentStatsListParamsO `form:"o,omitempty" json:"o,omitempty"`
-	OrganizationGroupUuid *[]openapi_types.UUID                                    `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
+	O *[]MarketplaceProviderOfferingsComponentStatsListParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// OrganizationGroupUuid Organization group UUID
+	OrganizationGroupUuid *[]openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize   *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ParentUuid Parent offering UUID
 	ParentUuid *openapi_types.UUID `form:"parent_uuid,omitempty" json:"parent_uuid,omitempty"`
 
 	// ProjectUuid Project UUID
@@ -33389,12 +34047,19 @@ type MarketplaceProviderOfferingsComponentStatsListParams struct {
 
 	// ServiceManagerUuid Service manager UUID
 	ServiceManagerUuid *openapi_types.UUID `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
-	Shared             *bool               `form:"shared,omitempty" json:"shared,omitempty"`
+
+	// Shared Shared
+	Shared *bool `form:"shared,omitempty" json:"shared,omitempty"`
 
 	// Start Start date in format YYYY-MM.
-	Start *string                                                      `form:"start,omitempty" json:"start,omitempty"`
+	Start *string `form:"start,omitempty" json:"start,omitempty"`
+
+	// State Offering state
+	//
 	State *[]MarketplaceProviderOfferingsComponentStatsListParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Type  *[]string                                                    `form:"type,omitempty" json:"type,omitempty"`
+
+	// Type Offering type
+	Type *[]string `form:"type,omitempty" json:"type,omitempty"`
 
 	// UserHasConsent User Has Consent
 	UserHasConsent *bool `form:"user_has_consent,omitempty" json:"user_has_consent,omitempty"`
@@ -33419,18 +34084,32 @@ type MarketplaceProviderOfferingsCostsListParams struct {
 	AccountingIsRunning *bool `form:"accounting_is_running,omitempty" json:"accounting_is_running,omitempty"`
 
 	// AllowedCustomerUuid Allowed customer UUID
-	AllowedCustomerUuid   *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
-	Attributes            *string             `form:"attributes,omitempty" json:"attributes,omitempty"`
-	Billable              *bool               `form:"billable,omitempty" json:"billable,omitempty"`
-	CanCreateOfferingUser *bool               `form:"can_create_offering_user,omitempty" json:"can_create_offering_user,omitempty"`
-	CategoryGroupUuid     *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
-	CategoryUuid          *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
+	AllowedCustomerUuid *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
+
+	// Attributes Offering attributes (JSON)
+	Attributes *string `form:"attributes,omitempty" json:"attributes,omitempty"`
+
+	// Billable Billable
+	Billable              *bool `form:"billable,omitempty" json:"billable,omitempty"`
+	CanCreateOfferingUser *bool `form:"can_create_offering_user,omitempty" json:"can_create_offering_user,omitempty"`
+
+	// CategoryGroupUuid Category group UUID
+	CategoryGroupUuid *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
+
+	// CategoryUuid Category UUID
+	CategoryUuid *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
 
 	// Created Created after
-	Created      *time.Time          `form:"created,omitempty" json:"created,omitempty"`
-	Customer     *string             `form:"customer,omitempty" json:"customer,omitempty"`
+	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
+
+	// Customer Customer URL
+	Customer *string `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerUuid Customer UUID
 	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description  *string             `form:"description,omitempty" json:"description,omitempty"`
+
+	// Description Description contains
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
 
 	// End End date in format YYYY-MM.
 	End *string `form:"end,omitempty" json:"end,omitempty"`
@@ -33451,14 +34130,18 @@ type MarketplaceProviderOfferingsCostsListParams struct {
 
 	// O Ordering
 	//
-	O                     *[]MarketplaceProviderOfferingsCostsListParamsO `form:"o,omitempty" json:"o,omitempty"`
-	OrganizationGroupUuid *[]openapi_types.UUID                           `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
+	O *[]MarketplaceProviderOfferingsCostsListParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// OrganizationGroupUuid Organization group UUID
+	OrganizationGroupUuid *[]openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize   *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ParentUuid Parent offering UUID
 	ParentUuid *openapi_types.UUID `form:"parent_uuid,omitempty" json:"parent_uuid,omitempty"`
 
 	// ProjectUuid Project UUID
@@ -33478,12 +34161,19 @@ type MarketplaceProviderOfferingsCostsListParams struct {
 
 	// ServiceManagerUuid Service manager UUID
 	ServiceManagerUuid *openapi_types.UUID `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
-	Shared             *bool               `form:"shared,omitempty" json:"shared,omitempty"`
+
+	// Shared Shared
+	Shared *bool `form:"shared,omitempty" json:"shared,omitempty"`
 
 	// Start Start date in format YYYY-MM.
-	Start *string                                             `form:"start,omitempty" json:"start,omitempty"`
+	Start *string `form:"start,omitempty" json:"start,omitempty"`
+
+	// State Offering state
+	//
 	State *[]MarketplaceProviderOfferingsCostsListParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Type  *[]string                                           `form:"type,omitempty" json:"type,omitempty"`
+
+	// Type Offering type
+	Type *[]string `form:"type,omitempty" json:"type,omitempty"`
 
 	// UserHasConsent User Has Consent
 	UserHasConsent *bool `form:"user_has_consent,omitempty" json:"user_has_consent,omitempty"`
@@ -33507,19 +34197,33 @@ type MarketplaceProviderOfferingsCustomersListParams struct {
 	AccessibleViaCalls *bool `form:"accessible_via_calls,omitempty" json:"accessible_via_calls,omitempty"`
 
 	// AllowedCustomerUuid Allowed customer UUID
-	AllowedCustomerUuid   *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
-	Attributes            *string             `form:"attributes,omitempty" json:"attributes,omitempty"`
-	Billable              *bool               `form:"billable,omitempty" json:"billable,omitempty"`
-	CanCreateOfferingUser *bool               `form:"can_create_offering_user,omitempty" json:"can_create_offering_user,omitempty"`
-	CategoryGroupUuid     *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
-	CategoryUuid          *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
+	AllowedCustomerUuid *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
+
+	// Attributes Offering attributes (JSON)
+	Attributes *string `form:"attributes,omitempty" json:"attributes,omitempty"`
+
+	// Billable Billable
+	Billable              *bool `form:"billable,omitempty" json:"billable,omitempty"`
+	CanCreateOfferingUser *bool `form:"can_create_offering_user,omitempty" json:"can_create_offering_user,omitempty"`
+
+	// CategoryGroupUuid Category group UUID
+	CategoryGroupUuid *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
+
+	// CategoryUuid Category UUID
+	CategoryUuid *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
 
 	// Created Created after
-	Created      *time.Time                                              `form:"created,omitempty" json:"created,omitempty"`
-	Customer     *string                                                 `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerUuid *openapi_types.UUID                                     `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description  *string                                                 `form:"description,omitempty" json:"description,omitempty"`
-	Field        *[]MarketplaceProviderOfferingsCustomersListParamsField `form:"field,omitempty" json:"field,omitempty"`
+	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
+
+	// Customer Customer URL
+	Customer *string `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description contains
+	Description *string                                                 `form:"description,omitempty" json:"description,omitempty"`
+	Field       *[]MarketplaceProviderOfferingsCustomersListParamsField `form:"field,omitempty" json:"field,omitempty"`
 
 	// HasActiveTermsOfService Has Active Terms of Service
 	HasActiveTermsOfService *bool `form:"has_active_terms_of_service,omitempty" json:"has_active_terms_of_service,omitempty"`
@@ -33537,14 +34241,18 @@ type MarketplaceProviderOfferingsCustomersListParams struct {
 
 	// O Ordering
 	//
-	O                     *[]MarketplaceProviderOfferingsCustomersListParamsO `form:"o,omitempty" json:"o,omitempty"`
-	OrganizationGroupUuid *[]openapi_types.UUID                               `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
+	O *[]MarketplaceProviderOfferingsCustomersListParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// OrganizationGroupUuid Organization group UUID
+	OrganizationGroupUuid *[]openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize   *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ParentUuid Parent offering UUID
 	ParentUuid *openapi_types.UUID `form:"parent_uuid,omitempty" json:"parent_uuid,omitempty"`
 
 	// ProjectUuid Project UUID
@@ -33563,10 +34271,17 @@ type MarketplaceProviderOfferingsCustomersListParams struct {
 	ScopeUuid *string `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
 
 	// ServiceManagerUuid Service manager UUID
-	ServiceManagerUuid *openapi_types.UUID                                     `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
-	Shared             *bool                                                   `form:"shared,omitempty" json:"shared,omitempty"`
-	State              *[]MarketplaceProviderOfferingsCustomersListParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Type               *[]string                                               `form:"type,omitempty" json:"type,omitempty"`
+	ServiceManagerUuid *openapi_types.UUID `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
+
+	// Shared Shared
+	Shared *bool `form:"shared,omitempty" json:"shared,omitempty"`
+
+	// State Offering state
+	//
+	State *[]MarketplaceProviderOfferingsCustomersListParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Type Offering type
+	Type *[]string `form:"type,omitempty" json:"type,omitempty"`
 
 	// UserHasConsent User Has Consent
 	UserHasConsent *bool `form:"user_has_consent,omitempty" json:"user_has_consent,omitempty"`
@@ -33602,18 +34317,32 @@ type MarketplaceProviderOfferingsListCourseAccountsListParams struct {
 	AccessibleViaCalls *bool `form:"accessible_via_calls,omitempty" json:"accessible_via_calls,omitempty"`
 
 	// AllowedCustomerUuid Allowed customer UUID
-	AllowedCustomerUuid   *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
-	Attributes            *string             `form:"attributes,omitempty" json:"attributes,omitempty"`
-	Billable              *bool               `form:"billable,omitempty" json:"billable,omitempty"`
-	CanCreateOfferingUser *bool               `form:"can_create_offering_user,omitempty" json:"can_create_offering_user,omitempty"`
-	CategoryGroupUuid     *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
-	CategoryUuid          *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
+	AllowedCustomerUuid *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
+
+	// Attributes Offering attributes (JSON)
+	Attributes *string `form:"attributes,omitempty" json:"attributes,omitempty"`
+
+	// Billable Billable
+	Billable              *bool `form:"billable,omitempty" json:"billable,omitempty"`
+	CanCreateOfferingUser *bool `form:"can_create_offering_user,omitempty" json:"can_create_offering_user,omitempty"`
+
+	// CategoryGroupUuid Category group UUID
+	CategoryGroupUuid *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
+
+	// CategoryUuid Category UUID
+	CategoryUuid *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
 
 	// Created Created after
-	Created      *time.Time          `form:"created,omitempty" json:"created,omitempty"`
-	Customer     *string             `form:"customer,omitempty" json:"customer,omitempty"`
+	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
+
+	// Customer Customer URL
+	Customer *string `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerUuid Customer UUID
 	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description  *string             `form:"description,omitempty" json:"description,omitempty"`
+
+	// Description Description contains
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
 
 	// HasActiveTermsOfService Has Active Terms of Service
 	HasActiveTermsOfService *bool `form:"has_active_terms_of_service,omitempty" json:"has_active_terms_of_service,omitempty"`
@@ -33631,14 +34360,18 @@ type MarketplaceProviderOfferingsListCourseAccountsListParams struct {
 
 	// O Ordering
 	//
-	O                     *[]MarketplaceProviderOfferingsListCourseAccountsListParamsO `form:"o,omitempty" json:"o,omitempty"`
-	OrganizationGroupUuid *[]openapi_types.UUID                                        `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
+	O *[]MarketplaceProviderOfferingsListCourseAccountsListParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// OrganizationGroupUuid Organization group UUID
+	OrganizationGroupUuid *[]openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize   *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ParentUuid Parent offering UUID
 	ParentUuid *openapi_types.UUID `form:"parent_uuid,omitempty" json:"parent_uuid,omitempty"`
 
 	// ProjectUuid Project UUID
@@ -33657,10 +34390,17 @@ type MarketplaceProviderOfferingsListCourseAccountsListParams struct {
 	ScopeUuid *string `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
 
 	// ServiceManagerUuid Service manager UUID
-	ServiceManagerUuid *openapi_types.UUID                                              `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
-	Shared             *bool                                                            `form:"shared,omitempty" json:"shared,omitempty"`
-	State              *[]MarketplaceProviderOfferingsListCourseAccountsListParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Type               *[]string                                                        `form:"type,omitempty" json:"type,omitempty"`
+	ServiceManagerUuid *openapi_types.UUID `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
+
+	// Shared Shared
+	Shared *bool `form:"shared,omitempty" json:"shared,omitempty"`
+
+	// State Offering state
+	//
+	State *[]MarketplaceProviderOfferingsListCourseAccountsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Type Offering type
+	Type *[]string `form:"type,omitempty" json:"type,omitempty"`
 
 	// UserHasConsent User Has Consent
 	UserHasConsent *bool `form:"user_has_consent,omitempty" json:"user_has_consent,omitempty"`
@@ -33698,18 +34438,32 @@ type MarketplaceProviderOfferingsListCustomerServiceAccountsListParams struct {
 	AccessibleViaCalls *bool `form:"accessible_via_calls,omitempty" json:"accessible_via_calls,omitempty"`
 
 	// AllowedCustomerUuid Allowed customer UUID
-	AllowedCustomerUuid   *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
-	Attributes            *string             `form:"attributes,omitempty" json:"attributes,omitempty"`
-	Billable              *bool               `form:"billable,omitempty" json:"billable,omitempty"`
-	CanCreateOfferingUser *bool               `form:"can_create_offering_user,omitempty" json:"can_create_offering_user,omitempty"`
-	CategoryGroupUuid     *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
-	CategoryUuid          *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
+	AllowedCustomerUuid *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
+
+	// Attributes Offering attributes (JSON)
+	Attributes *string `form:"attributes,omitempty" json:"attributes,omitempty"`
+
+	// Billable Billable
+	Billable              *bool `form:"billable,omitempty" json:"billable,omitempty"`
+	CanCreateOfferingUser *bool `form:"can_create_offering_user,omitempty" json:"can_create_offering_user,omitempty"`
+
+	// CategoryGroupUuid Category group UUID
+	CategoryGroupUuid *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
+
+	// CategoryUuid Category UUID
+	CategoryUuid *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
 
 	// Created Created after
-	Created      *time.Time          `form:"created,omitempty" json:"created,omitempty"`
-	Customer     *string             `form:"customer,omitempty" json:"customer,omitempty"`
+	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
+
+	// Customer Customer URL
+	Customer *string `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerUuid Customer UUID
 	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description  *string             `form:"description,omitempty" json:"description,omitempty"`
+
+	// Description Description contains
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
 
 	// HasActiveTermsOfService Has Active Terms of Service
 	HasActiveTermsOfService *bool `form:"has_active_terms_of_service,omitempty" json:"has_active_terms_of_service,omitempty"`
@@ -33727,14 +34481,18 @@ type MarketplaceProviderOfferingsListCustomerServiceAccountsListParams struct {
 
 	// O Ordering
 	//
-	O                     *[]MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsO `form:"o,omitempty" json:"o,omitempty"`
-	OrganizationGroupUuid *[]openapi_types.UUID                                                 `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
+	O *[]MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// OrganizationGroupUuid Organization group UUID
+	OrganizationGroupUuid *[]openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize   *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ParentUuid Parent offering UUID
 	ParentUuid *openapi_types.UUID `form:"parent_uuid,omitempty" json:"parent_uuid,omitempty"`
 
 	// ProjectUuid Project UUID
@@ -33753,10 +34511,17 @@ type MarketplaceProviderOfferingsListCustomerServiceAccountsListParams struct {
 	ScopeUuid *string `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
 
 	// ServiceManagerUuid Service manager UUID
-	ServiceManagerUuid *openapi_types.UUID                                                       `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
-	Shared             *bool                                                                     `form:"shared,omitempty" json:"shared,omitempty"`
-	State              *[]MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Type               *[]string                                                                 `form:"type,omitempty" json:"type,omitempty"`
+	ServiceManagerUuid *openapi_types.UUID `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
+
+	// Shared Shared
+	Shared *bool `form:"shared,omitempty" json:"shared,omitempty"`
+
+	// State Offering state
+	//
+	State *[]MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Type Offering type
+	Type *[]string `form:"type,omitempty" json:"type,omitempty"`
 
 	// UserHasConsent User Has Consent
 	UserHasConsent *bool `form:"user_has_consent,omitempty" json:"user_has_consent,omitempty"`
@@ -33794,18 +34559,32 @@ type MarketplaceProviderOfferingsListProjectServiceAccountsListParams struct {
 	AccessibleViaCalls *bool `form:"accessible_via_calls,omitempty" json:"accessible_via_calls,omitempty"`
 
 	// AllowedCustomerUuid Allowed customer UUID
-	AllowedCustomerUuid   *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
-	Attributes            *string             `form:"attributes,omitempty" json:"attributes,omitempty"`
-	Billable              *bool               `form:"billable,omitempty" json:"billable,omitempty"`
-	CanCreateOfferingUser *bool               `form:"can_create_offering_user,omitempty" json:"can_create_offering_user,omitempty"`
-	CategoryGroupUuid     *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
-	CategoryUuid          *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
+	AllowedCustomerUuid *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
+
+	// Attributes Offering attributes (JSON)
+	Attributes *string `form:"attributes,omitempty" json:"attributes,omitempty"`
+
+	// Billable Billable
+	Billable              *bool `form:"billable,omitempty" json:"billable,omitempty"`
+	CanCreateOfferingUser *bool `form:"can_create_offering_user,omitempty" json:"can_create_offering_user,omitempty"`
+
+	// CategoryGroupUuid Category group UUID
+	CategoryGroupUuid *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
+
+	// CategoryUuid Category UUID
+	CategoryUuid *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
 
 	// Created Created after
-	Created      *time.Time          `form:"created,omitempty" json:"created,omitempty"`
-	Customer     *string             `form:"customer,omitempty" json:"customer,omitempty"`
+	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
+
+	// Customer Customer URL
+	Customer *string `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerUuid Customer UUID
 	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description  *string             `form:"description,omitempty" json:"description,omitempty"`
+
+	// Description Description contains
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
 
 	// HasActiveTermsOfService Has Active Terms of Service
 	HasActiveTermsOfService *bool `form:"has_active_terms_of_service,omitempty" json:"has_active_terms_of_service,omitempty"`
@@ -33823,14 +34602,18 @@ type MarketplaceProviderOfferingsListProjectServiceAccountsListParams struct {
 
 	// O Ordering
 	//
-	O                     *[]MarketplaceProviderOfferingsListProjectServiceAccountsListParamsO `form:"o,omitempty" json:"o,omitempty"`
-	OrganizationGroupUuid *[]openapi_types.UUID                                                `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
+	O *[]MarketplaceProviderOfferingsListProjectServiceAccountsListParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// OrganizationGroupUuid Organization group UUID
+	OrganizationGroupUuid *[]openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize   *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ParentUuid Parent offering UUID
 	ParentUuid *openapi_types.UUID `form:"parent_uuid,omitempty" json:"parent_uuid,omitempty"`
 
 	// ProjectUuid Project UUID
@@ -33849,10 +34632,17 @@ type MarketplaceProviderOfferingsListProjectServiceAccountsListParams struct {
 	ScopeUuid *string `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
 
 	// ServiceManagerUuid Service manager UUID
-	ServiceManagerUuid *openapi_types.UUID                                                      `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
-	Shared             *bool                                                                    `form:"shared,omitempty" json:"shared,omitempty"`
-	State              *[]MarketplaceProviderOfferingsListProjectServiceAccountsListParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Type               *[]string                                                                `form:"type,omitempty" json:"type,omitempty"`
+	ServiceManagerUuid *openapi_types.UUID `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
+
+	// Shared Shared
+	Shared *bool `form:"shared,omitempty" json:"shared,omitempty"`
+
+	// State Offering state
+	//
+	State *[]MarketplaceProviderOfferingsListProjectServiceAccountsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Type Offering type
+	Type *[]string `form:"type,omitempty" json:"type,omitempty"`
 
 	// UserHasConsent User Has Consent
 	UserHasConsent *bool `form:"user_has_consent,omitempty" json:"user_has_consent,omitempty"`
@@ -33946,18 +34736,26 @@ type MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField string
 // MarketplaceProviderResourcesListParams defines parameters for MarketplaceProviderResourcesList.
 type MarketplaceProviderResourcesListParams struct {
 	// BackendId Backend ID
-	BackendId    *string             `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+
+	// CategoryUuid Category UUID
 	CategoryUuid *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
 
 	// ComponentCount Filter by exact number of components
 	ComponentCount *float32 `form:"component_count,omitempty" json:"component_count,omitempty"`
 
 	// Created Created after
-	Created      *time.Time                                     `form:"created,omitempty" json:"created,omitempty"`
-	Customer     *string                                        `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerUuid *openapi_types.UUID                            `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Downscaled   *bool                                          `form:"downscaled,omitempty" json:"downscaled,omitempty"`
-	Field        *[]MarketplaceProviderResourcesListParamsField `form:"field,omitempty" json:"field,omitempty"`
+	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
+
+	// Customer Customer URL
+	Customer *string `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Downscaled Downscaled
+	Downscaled *bool                                          `form:"downscaled,omitempty" json:"downscaled,omitempty"`
+	Field      *[]MarketplaceProviderResourcesListParamsField `form:"field,omitempty" json:"field,omitempty"`
 
 	// HasTerminateDate Has termination date
 	HasTerminateDate *bool `form:"has_terminate_date,omitempty" json:"has_terminate_date,omitempty"`
@@ -33978,16 +34776,20 @@ type MarketplaceProviderResourcesListParams struct {
 
 	// O Ordering
 	//
-	O                *[]MarketplaceProviderResourcesListParamsO `form:"o,omitempty" json:"o,omitempty"`
-	Offering         *string                                    `form:"offering,omitempty" json:"offering,omitempty"`
-	OfferingBillable *bool                                      `form:"offering_billable,omitempty" json:"offering_billable,omitempty"`
+	O        *[]MarketplaceProviderResourcesListParamsO `form:"o,omitempty" json:"o,omitempty"`
+	Offering *string                                    `form:"offering,omitempty" json:"offering,omitempty"`
+
+	// OfferingBillable Offering billable
+	OfferingBillable *bool `form:"offering_billable,omitempty" json:"offering_billable,omitempty"`
 
 	// OfferingShared Offering shared
 	OfferingShared *bool `form:"offering_shared,omitempty" json:"offering_shared,omitempty"`
 
 	// OfferingSlug Multiple values may be separated by commas.
 	OfferingSlug *[]string `form:"offering_slug,omitempty" json:"offering_slug,omitempty"`
-	OfferingType *string   `form:"offering_type,omitempty" json:"offering_type,omitempty"`
+
+	// OfferingType Offering type
+	OfferingType *string `form:"offering_type,omitempty" json:"offering_type,omitempty"`
 
 	// OfferingUuid Multiple values may be separated by commas.
 	OfferingUuid *[]openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
@@ -33998,28 +34800,47 @@ type MarketplaceProviderResourcesListParams struct {
 	// OnlyUsageBased Filter resources with only usage-based components
 	OnlyUsageBased *bool `form:"only_usage_based,omitempty" json:"only_usage_based,omitempty"`
 
+	// OrderState Order state
+	//
+	OrderState *[]MarketplaceProviderResourcesListParamsOrderState `form:"order_state,omitempty" json:"order_state,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
 	PageSize           *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
 	ParentOfferingUuid *openapi_types.UUID `form:"parent_offering_uuid,omitempty" json:"parent_offering_uuid,omitempty"`
-	Paused             *bool               `form:"paused,omitempty" json:"paused,omitempty"`
-	PlanUuid           *openapi_types.UUID `form:"plan_uuid,omitempty" json:"plan_uuid,omitempty"`
-	ProjectName        *string             `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid        *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	ProviderUuid       *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
+
+	// Paused Paused
+	Paused *bool `form:"paused,omitempty" json:"paused,omitempty"`
+
+	// PlanUuid Plan UUID
+	PlanUuid *openapi_types.UUID `form:"plan_uuid,omitempty" json:"plan_uuid,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ProviderUuid Provider UUID
+	ProviderUuid *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
 
 	// Query Search by resource UUID, name, slug, backend ID, effective ID, IPs or hypervisor
-	Query                *string `form:"query,omitempty" json:"query,omitempty"`
-	RestrictMemberAccess *bool   `form:"restrict_member_access,omitempty" json:"restrict_member_access,omitempty"`
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
+	// RestrictMemberAccess Restrict member access
+	RestrictMemberAccess *bool `form:"restrict_member_access,omitempty" json:"restrict_member_access,omitempty"`
 
 	// RuntimeState Runtime state
 	RuntimeState *string `form:"runtime_state,omitempty" json:"runtime_state,omitempty"`
 
-	// ServiceManagerUuid Service Manager UUID
-	ServiceManagerUuid *openapi_types.UUID                            `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
-	State              *[]MarketplaceProviderResourcesListParamsState `form:"state,omitempty" json:"state,omitempty"`
+	// ServiceManagerUuid Service manager UUID
+	ServiceManagerUuid *openapi_types.UUID `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
+
+	// State Resource state
+	//
+	State *[]MarketplaceProviderResourcesListParamsState `form:"state,omitempty" json:"state,omitempty"`
 
 	// UsageBased Filter by usage-based offerings
 	UsageBased *bool `form:"usage_based,omitempty" json:"usage_based,omitempty"`
@@ -34034,23 +34855,34 @@ type MarketplaceProviderResourcesListParamsField string
 // MarketplaceProviderResourcesListParamsO defines parameters for MarketplaceProviderResourcesList.
 type MarketplaceProviderResourcesListParamsO string
 
+// MarketplaceProviderResourcesListParamsOrderState defines parameters for MarketplaceProviderResourcesList.
+type MarketplaceProviderResourcesListParamsOrderState string
+
 // MarketplaceProviderResourcesListParamsState defines parameters for MarketplaceProviderResourcesList.
 type MarketplaceProviderResourcesListParamsState string
 
 // MarketplaceProviderResourcesCountParams defines parameters for MarketplaceProviderResourcesCount.
 type MarketplaceProviderResourcesCountParams struct {
 	// BackendId Backend ID
-	BackendId    *string             `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+
+	// CategoryUuid Category UUID
 	CategoryUuid *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
 
 	// ComponentCount Filter by exact number of components
 	ComponentCount *float32 `form:"component_count,omitempty" json:"component_count,omitempty"`
 
 	// Created Created after
-	Created      *time.Time          `form:"created,omitempty" json:"created,omitempty"`
-	Customer     *string             `form:"customer,omitempty" json:"customer,omitempty"`
+	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
+
+	// Customer Customer URL
+	Customer *string `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerUuid Customer UUID
 	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Downscaled   *bool               `form:"downscaled,omitempty" json:"downscaled,omitempty"`
+
+	// Downscaled Downscaled
+	Downscaled *bool `form:"downscaled,omitempty" json:"downscaled,omitempty"`
 
 	// HasTerminateDate Has termination date
 	HasTerminateDate *bool `form:"has_terminate_date,omitempty" json:"has_terminate_date,omitempty"`
@@ -34071,16 +34903,20 @@ type MarketplaceProviderResourcesCountParams struct {
 
 	// O Ordering
 	//
-	O                *[]MarketplaceProviderResourcesCountParamsO `form:"o,omitempty" json:"o,omitempty"`
-	Offering         *string                                     `form:"offering,omitempty" json:"offering,omitempty"`
-	OfferingBillable *bool                                       `form:"offering_billable,omitempty" json:"offering_billable,omitempty"`
+	O        *[]MarketplaceProviderResourcesCountParamsO `form:"o,omitempty" json:"o,omitempty"`
+	Offering *string                                     `form:"offering,omitempty" json:"offering,omitempty"`
+
+	// OfferingBillable Offering billable
+	OfferingBillable *bool `form:"offering_billable,omitempty" json:"offering_billable,omitempty"`
 
 	// OfferingShared Offering shared
 	OfferingShared *bool `form:"offering_shared,omitempty" json:"offering_shared,omitempty"`
 
 	// OfferingSlug Multiple values may be separated by commas.
 	OfferingSlug *[]string `form:"offering_slug,omitempty" json:"offering_slug,omitempty"`
-	OfferingType *string   `form:"offering_type,omitempty" json:"offering_type,omitempty"`
+
+	// OfferingType Offering type
+	OfferingType *string `form:"offering_type,omitempty" json:"offering_type,omitempty"`
 
 	// OfferingUuid Multiple values may be separated by commas.
 	OfferingUuid *[]openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
@@ -34091,28 +34927,47 @@ type MarketplaceProviderResourcesCountParams struct {
 	// OnlyUsageBased Filter resources with only usage-based components
 	OnlyUsageBased *bool `form:"only_usage_based,omitempty" json:"only_usage_based,omitempty"`
 
+	// OrderState Order state
+	//
+	OrderState *[]MarketplaceProviderResourcesCountParamsOrderState `form:"order_state,omitempty" json:"order_state,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
 	PageSize           *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
 	ParentOfferingUuid *openapi_types.UUID `form:"parent_offering_uuid,omitempty" json:"parent_offering_uuid,omitempty"`
-	Paused             *bool               `form:"paused,omitempty" json:"paused,omitempty"`
-	PlanUuid           *openapi_types.UUID `form:"plan_uuid,omitempty" json:"plan_uuid,omitempty"`
-	ProjectName        *string             `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid        *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	ProviderUuid       *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
+
+	// Paused Paused
+	Paused *bool `form:"paused,omitempty" json:"paused,omitempty"`
+
+	// PlanUuid Plan UUID
+	PlanUuid *openapi_types.UUID `form:"plan_uuid,omitempty" json:"plan_uuid,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ProviderUuid Provider UUID
+	ProviderUuid *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
 
 	// Query Search by resource UUID, name, slug, backend ID, effective ID, IPs or hypervisor
-	Query                *string `form:"query,omitempty" json:"query,omitempty"`
-	RestrictMemberAccess *bool   `form:"restrict_member_access,omitempty" json:"restrict_member_access,omitempty"`
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
+	// RestrictMemberAccess Restrict member access
+	RestrictMemberAccess *bool `form:"restrict_member_access,omitempty" json:"restrict_member_access,omitempty"`
 
 	// RuntimeState Runtime state
 	RuntimeState *string `form:"runtime_state,omitempty" json:"runtime_state,omitempty"`
 
-	// ServiceManagerUuid Service Manager UUID
-	ServiceManagerUuid *openapi_types.UUID                             `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
-	State              *[]MarketplaceProviderResourcesCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+	// ServiceManagerUuid Service manager UUID
+	ServiceManagerUuid *openapi_types.UUID `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
+
+	// State Resource state
+	//
+	State *[]MarketplaceProviderResourcesCountParamsState `form:"state,omitempty" json:"state,omitempty"`
 
 	// UsageBased Filter by usage-based offerings
 	UsageBased *bool `form:"usage_based,omitempty" json:"usage_based,omitempty"`
@@ -34123,6 +34978,9 @@ type MarketplaceProviderResourcesCountParams struct {
 
 // MarketplaceProviderResourcesCountParamsO defines parameters for MarketplaceProviderResourcesCount.
 type MarketplaceProviderResourcesCountParamsO string
+
+// MarketplaceProviderResourcesCountParamsOrderState defines parameters for MarketplaceProviderResourcesCount.
+type MarketplaceProviderResourcesCountParamsOrderState string
 
 // MarketplaceProviderResourcesCountParamsState defines parameters for MarketplaceProviderResourcesCount.
 type MarketplaceProviderResourcesCountParamsState string
@@ -34141,19 +34999,33 @@ type MarketplacePublicOfferingsListParams struct {
 	AccessibleViaCalls *bool `form:"accessible_via_calls,omitempty" json:"accessible_via_calls,omitempty"`
 
 	// AllowedCustomerUuid Allowed customer UUID
-	AllowedCustomerUuid   *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
-	Attributes            *string             `form:"attributes,omitempty" json:"attributes,omitempty"`
-	Billable              *bool               `form:"billable,omitempty" json:"billable,omitempty"`
-	CanCreateOfferingUser *bool               `form:"can_create_offering_user,omitempty" json:"can_create_offering_user,omitempty"`
-	CategoryGroupUuid     *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
-	CategoryUuid          *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
+	AllowedCustomerUuid *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
+
+	// Attributes Offering attributes (JSON)
+	Attributes *string `form:"attributes,omitempty" json:"attributes,omitempty"`
+
+	// Billable Billable
+	Billable              *bool `form:"billable,omitempty" json:"billable,omitempty"`
+	CanCreateOfferingUser *bool `form:"can_create_offering_user,omitempty" json:"can_create_offering_user,omitempty"`
+
+	// CategoryGroupUuid Category group UUID
+	CategoryGroupUuid *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
+
+	// CategoryUuid Category UUID
+	CategoryUuid *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
 
 	// Created Created after
-	Created      *time.Time                                   `form:"created,omitempty" json:"created,omitempty"`
-	Customer     *string                                      `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerUuid *openapi_types.UUID                          `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description  *string                                      `form:"description,omitempty" json:"description,omitempty"`
-	Field        *[]MarketplacePublicOfferingsListParamsField `form:"field,omitempty" json:"field,omitempty"`
+	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
+
+	// Customer Customer URL
+	Customer *string `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description contains
+	Description *string                                      `form:"description,omitempty" json:"description,omitempty"`
+	Field       *[]MarketplacePublicOfferingsListParamsField `form:"field,omitempty" json:"field,omitempty"`
 
 	// HasActiveTermsOfService Has Active Terms of Service
 	HasActiveTermsOfService *bool `form:"has_active_terms_of_service,omitempty" json:"has_active_terms_of_service,omitempty"`
@@ -34171,14 +35043,18 @@ type MarketplacePublicOfferingsListParams struct {
 
 	// O Ordering
 	//
-	O                     *[]MarketplacePublicOfferingsListParamsO `form:"o,omitempty" json:"o,omitempty"`
-	OrganizationGroupUuid *[]openapi_types.UUID                    `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
+	O *[]MarketplacePublicOfferingsListParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// OrganizationGroupUuid Organization group UUID
+	OrganizationGroupUuid *[]openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize   *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ParentUuid Parent offering UUID
 	ParentUuid *openapi_types.UUID `form:"parent_uuid,omitempty" json:"parent_uuid,omitempty"`
 
 	// ProjectUuid Project UUID
@@ -34197,10 +35073,17 @@ type MarketplacePublicOfferingsListParams struct {
 	ScopeUuid *string `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
 
 	// ServiceManagerUuid Service manager UUID
-	ServiceManagerUuid *openapi_types.UUID                          `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
-	Shared             *bool                                        `form:"shared,omitempty" json:"shared,omitempty"`
-	State              *[]MarketplacePublicOfferingsListParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Type               *[]string                                    `form:"type,omitempty" json:"type,omitempty"`
+	ServiceManagerUuid *openapi_types.UUID `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
+
+	// Shared Shared
+	Shared *bool `form:"shared,omitempty" json:"shared,omitempty"`
+
+	// State Offering state
+	//
+	State *[]MarketplacePublicOfferingsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Type Offering type
+	Type *[]string `form:"type,omitempty" json:"type,omitempty"`
 
 	// UserHasConsent User Has Consent
 	UserHasConsent *bool `form:"user_has_consent,omitempty" json:"user_has_consent,omitempty"`
@@ -34227,18 +35110,32 @@ type MarketplacePublicOfferingsCountParams struct {
 	AccessibleViaCalls *bool `form:"accessible_via_calls,omitempty" json:"accessible_via_calls,omitempty"`
 
 	// AllowedCustomerUuid Allowed customer UUID
-	AllowedCustomerUuid   *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
-	Attributes            *string             `form:"attributes,omitempty" json:"attributes,omitempty"`
-	Billable              *bool               `form:"billable,omitempty" json:"billable,omitempty"`
-	CanCreateOfferingUser *bool               `form:"can_create_offering_user,omitempty" json:"can_create_offering_user,omitempty"`
-	CategoryGroupUuid     *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
-	CategoryUuid          *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
+	AllowedCustomerUuid *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
+
+	// Attributes Offering attributes (JSON)
+	Attributes *string `form:"attributes,omitempty" json:"attributes,omitempty"`
+
+	// Billable Billable
+	Billable              *bool `form:"billable,omitempty" json:"billable,omitempty"`
+	CanCreateOfferingUser *bool `form:"can_create_offering_user,omitempty" json:"can_create_offering_user,omitempty"`
+
+	// CategoryGroupUuid Category group UUID
+	CategoryGroupUuid *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
+
+	// CategoryUuid Category UUID
+	CategoryUuid *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
 
 	// Created Created after
-	Created      *time.Time          `form:"created,omitempty" json:"created,omitempty"`
-	Customer     *string             `form:"customer,omitempty" json:"customer,omitempty"`
+	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
+
+	// Customer Customer URL
+	Customer *string `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerUuid Customer UUID
 	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description  *string             `form:"description,omitempty" json:"description,omitempty"`
+
+	// Description Description contains
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
 
 	// HasActiveTermsOfService Has Active Terms of Service
 	HasActiveTermsOfService *bool `form:"has_active_terms_of_service,omitempty" json:"has_active_terms_of_service,omitempty"`
@@ -34256,14 +35153,18 @@ type MarketplacePublicOfferingsCountParams struct {
 
 	// O Ordering
 	//
-	O                     *[]MarketplacePublicOfferingsCountParamsO `form:"o,omitempty" json:"o,omitempty"`
-	OrganizationGroupUuid *[]openapi_types.UUID                     `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
+	O *[]MarketplacePublicOfferingsCountParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// OrganizationGroupUuid Organization group UUID
+	OrganizationGroupUuid *[]openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize   *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ParentUuid Parent offering UUID
 	ParentUuid *openapi_types.UUID `form:"parent_uuid,omitempty" json:"parent_uuid,omitempty"`
 
 	// ProjectUuid Project UUID
@@ -34282,10 +35183,17 @@ type MarketplacePublicOfferingsCountParams struct {
 	ScopeUuid *string `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
 
 	// ServiceManagerUuid Service manager UUID
-	ServiceManagerUuid *openapi_types.UUID                           `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
-	Shared             *bool                                         `form:"shared,omitempty" json:"shared,omitempty"`
-	State              *[]MarketplacePublicOfferingsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Type               *[]string                                     `form:"type,omitempty" json:"type,omitempty"`
+	ServiceManagerUuid *openapi_types.UUID `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
+
+	// Shared Shared
+	Shared *bool `form:"shared,omitempty" json:"shared,omitempty"`
+
+	// State Offering state
+	//
+	State *[]MarketplacePublicOfferingsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Type Offering type
+	Type *[]string `form:"type,omitempty" json:"type,omitempty"`
 
 	// UserHasConsent User Has Consent
 	UserHasConsent *bool `form:"user_has_consent,omitempty" json:"user_has_consent,omitempty"`
@@ -34359,12 +35267,22 @@ type MarketplaceResourceUsersListParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Resource     *string             `form:"resource,omitempty" json:"resource,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Resource Resource URL
+	Resource *string `form:"resource,omitempty" json:"resource,omitempty"`
+
+	// ResourceUuid Resource UUID
 	ResourceUuid *openapi_types.UUID `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
-	RoleName     *string             `form:"role_name,omitempty" json:"role_name,omitempty"`
-	RoleUuid     *openapi_types.UUID `form:"role_uuid,omitempty" json:"role_uuid,omitempty"`
-	UserUuid     *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
+
+	// RoleName Role name
+	RoleName *string `form:"role_name,omitempty" json:"role_name,omitempty"`
+
+	// RoleUuid Role UUID
+	RoleUuid *openapi_types.UUID `form:"role_uuid,omitempty" json:"role_uuid,omitempty"`
+
+	// UserUuid User UUID
+	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
 }
 
 // MarketplaceResourceUsersCountParams defines parameters for MarketplaceResourceUsersCount.
@@ -34373,29 +35291,47 @@ type MarketplaceResourceUsersCountParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Resource     *string             `form:"resource,omitempty" json:"resource,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Resource Resource URL
+	Resource *string `form:"resource,omitempty" json:"resource,omitempty"`
+
+	// ResourceUuid Resource UUID
 	ResourceUuid *openapi_types.UUID `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
-	RoleName     *string             `form:"role_name,omitempty" json:"role_name,omitempty"`
-	RoleUuid     *openapi_types.UUID `form:"role_uuid,omitempty" json:"role_uuid,omitempty"`
-	UserUuid     *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
+
+	// RoleName Role name
+	RoleName *string `form:"role_name,omitempty" json:"role_name,omitempty"`
+
+	// RoleUuid Role UUID
+	RoleUuid *openapi_types.UUID `form:"role_uuid,omitempty" json:"role_uuid,omitempty"`
+
+	// UserUuid User UUID
+	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
 }
 
 // MarketplaceResourcesListParams defines parameters for MarketplaceResourcesList.
 type MarketplaceResourcesListParams struct {
 	// BackendId Backend ID
-	BackendId    *string             `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+
+	// CategoryUuid Category UUID
 	CategoryUuid *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
 
 	// ComponentCount Filter by exact number of components
 	ComponentCount *float32 `form:"component_count,omitempty" json:"component_count,omitempty"`
 
 	// Created Created after
-	Created      *time.Time                             `form:"created,omitempty" json:"created,omitempty"`
-	Customer     *string                                `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerUuid *openapi_types.UUID                    `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Downscaled   *bool                                  `form:"downscaled,omitempty" json:"downscaled,omitempty"`
-	Field        *[]MarketplaceResourcesListParamsField `form:"field,omitempty" json:"field,omitempty"`
+	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
+
+	// Customer Customer URL
+	Customer *string `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Downscaled Downscaled
+	Downscaled *bool                                  `form:"downscaled,omitempty" json:"downscaled,omitempty"`
+	Field      *[]MarketplaceResourcesListParamsField `form:"field,omitempty" json:"field,omitempty"`
 
 	// HasTerminateDate Has termination date
 	HasTerminateDate *bool `form:"has_terminate_date,omitempty" json:"has_terminate_date,omitempty"`
@@ -34416,16 +35352,20 @@ type MarketplaceResourcesListParams struct {
 
 	// O Ordering
 	//
-	O                *[]MarketplaceResourcesListParamsO `form:"o,omitempty" json:"o,omitempty"`
-	Offering         *string                            `form:"offering,omitempty" json:"offering,omitempty"`
-	OfferingBillable *bool                              `form:"offering_billable,omitempty" json:"offering_billable,omitempty"`
+	O        *[]MarketplaceResourcesListParamsO `form:"o,omitempty" json:"o,omitempty"`
+	Offering *string                            `form:"offering,omitempty" json:"offering,omitempty"`
+
+	// OfferingBillable Offering billable
+	OfferingBillable *bool `form:"offering_billable,omitempty" json:"offering_billable,omitempty"`
 
 	// OfferingShared Offering shared
 	OfferingShared *bool `form:"offering_shared,omitempty" json:"offering_shared,omitempty"`
 
 	// OfferingSlug Multiple values may be separated by commas.
 	OfferingSlug *[]string `form:"offering_slug,omitempty" json:"offering_slug,omitempty"`
-	OfferingType *string   `form:"offering_type,omitempty" json:"offering_type,omitempty"`
+
+	// OfferingType Offering type
+	OfferingType *string `form:"offering_type,omitempty" json:"offering_type,omitempty"`
 
 	// OfferingUuid Multiple values may be separated by commas.
 	OfferingUuid *[]openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
@@ -34436,28 +35376,47 @@ type MarketplaceResourcesListParams struct {
 	// OnlyUsageBased Filter resources with only usage-based components
 	OnlyUsageBased *bool `form:"only_usage_based,omitempty" json:"only_usage_based,omitempty"`
 
+	// OrderState Order state
+	//
+	OrderState *[]MarketplaceResourcesListParamsOrderState `form:"order_state,omitempty" json:"order_state,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
 	PageSize           *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
 	ParentOfferingUuid *openapi_types.UUID `form:"parent_offering_uuid,omitempty" json:"parent_offering_uuid,omitempty"`
-	Paused             *bool               `form:"paused,omitempty" json:"paused,omitempty"`
-	PlanUuid           *openapi_types.UUID `form:"plan_uuid,omitempty" json:"plan_uuid,omitempty"`
-	ProjectName        *string             `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid        *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	ProviderUuid       *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
+
+	// Paused Paused
+	Paused *bool `form:"paused,omitempty" json:"paused,omitempty"`
+
+	// PlanUuid Plan UUID
+	PlanUuid *openapi_types.UUID `form:"plan_uuid,omitempty" json:"plan_uuid,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ProviderUuid Provider UUID
+	ProviderUuid *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
 
 	// Query Search by resource UUID, name, slug, backend ID, effective ID, IPs or hypervisor
-	Query                *string `form:"query,omitempty" json:"query,omitempty"`
-	RestrictMemberAccess *bool   `form:"restrict_member_access,omitempty" json:"restrict_member_access,omitempty"`
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
+	// RestrictMemberAccess Restrict member access
+	RestrictMemberAccess *bool `form:"restrict_member_access,omitempty" json:"restrict_member_access,omitempty"`
 
 	// RuntimeState Runtime state
 	RuntimeState *string `form:"runtime_state,omitempty" json:"runtime_state,omitempty"`
 
-	// ServiceManagerUuid Service Manager UUID
-	ServiceManagerUuid *openapi_types.UUID                    `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
-	State              *[]MarketplaceResourcesListParamsState `form:"state,omitempty" json:"state,omitempty"`
+	// ServiceManagerUuid Service manager UUID
+	ServiceManagerUuid *openapi_types.UUID `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
+
+	// State Resource state
+	//
+	State *[]MarketplaceResourcesListParamsState `form:"state,omitempty" json:"state,omitempty"`
 
 	// UsageBased Filter by usage-based offerings
 	UsageBased *bool `form:"usage_based,omitempty" json:"usage_based,omitempty"`
@@ -34472,23 +35431,34 @@ type MarketplaceResourcesListParamsField string
 // MarketplaceResourcesListParamsO defines parameters for MarketplaceResourcesList.
 type MarketplaceResourcesListParamsO string
 
+// MarketplaceResourcesListParamsOrderState defines parameters for MarketplaceResourcesList.
+type MarketplaceResourcesListParamsOrderState string
+
 // MarketplaceResourcesListParamsState defines parameters for MarketplaceResourcesList.
 type MarketplaceResourcesListParamsState string
 
 // MarketplaceResourcesCountParams defines parameters for MarketplaceResourcesCount.
 type MarketplaceResourcesCountParams struct {
 	// BackendId Backend ID
-	BackendId    *string             `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+
+	// CategoryUuid Category UUID
 	CategoryUuid *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
 
 	// ComponentCount Filter by exact number of components
 	ComponentCount *float32 `form:"component_count,omitempty" json:"component_count,omitempty"`
 
 	// Created Created after
-	Created      *time.Time          `form:"created,omitempty" json:"created,omitempty"`
-	Customer     *string             `form:"customer,omitempty" json:"customer,omitempty"`
+	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
+
+	// Customer Customer URL
+	Customer *string `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerUuid Customer UUID
 	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Downscaled   *bool               `form:"downscaled,omitempty" json:"downscaled,omitempty"`
+
+	// Downscaled Downscaled
+	Downscaled *bool `form:"downscaled,omitempty" json:"downscaled,omitempty"`
 
 	// HasTerminateDate Has termination date
 	HasTerminateDate *bool `form:"has_terminate_date,omitempty" json:"has_terminate_date,omitempty"`
@@ -34509,16 +35479,20 @@ type MarketplaceResourcesCountParams struct {
 
 	// O Ordering
 	//
-	O                *[]MarketplaceResourcesCountParamsO `form:"o,omitempty" json:"o,omitempty"`
-	Offering         *string                             `form:"offering,omitempty" json:"offering,omitempty"`
-	OfferingBillable *bool                               `form:"offering_billable,omitempty" json:"offering_billable,omitempty"`
+	O        *[]MarketplaceResourcesCountParamsO `form:"o,omitempty" json:"o,omitempty"`
+	Offering *string                             `form:"offering,omitempty" json:"offering,omitempty"`
+
+	// OfferingBillable Offering billable
+	OfferingBillable *bool `form:"offering_billable,omitempty" json:"offering_billable,omitempty"`
 
 	// OfferingShared Offering shared
 	OfferingShared *bool `form:"offering_shared,omitempty" json:"offering_shared,omitempty"`
 
 	// OfferingSlug Multiple values may be separated by commas.
 	OfferingSlug *[]string `form:"offering_slug,omitempty" json:"offering_slug,omitempty"`
-	OfferingType *string   `form:"offering_type,omitempty" json:"offering_type,omitempty"`
+
+	// OfferingType Offering type
+	OfferingType *string `form:"offering_type,omitempty" json:"offering_type,omitempty"`
 
 	// OfferingUuid Multiple values may be separated by commas.
 	OfferingUuid *[]openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
@@ -34529,28 +35503,47 @@ type MarketplaceResourcesCountParams struct {
 	// OnlyUsageBased Filter resources with only usage-based components
 	OnlyUsageBased *bool `form:"only_usage_based,omitempty" json:"only_usage_based,omitempty"`
 
+	// OrderState Order state
+	//
+	OrderState *[]MarketplaceResourcesCountParamsOrderState `form:"order_state,omitempty" json:"order_state,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
 	PageSize           *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
 	ParentOfferingUuid *openapi_types.UUID `form:"parent_offering_uuid,omitempty" json:"parent_offering_uuid,omitempty"`
-	Paused             *bool               `form:"paused,omitempty" json:"paused,omitempty"`
-	PlanUuid           *openapi_types.UUID `form:"plan_uuid,omitempty" json:"plan_uuid,omitempty"`
-	ProjectName        *string             `form:"project_name,omitempty" json:"project_name,omitempty"`
-	ProjectUuid        *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	ProviderUuid       *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
+
+	// Paused Paused
+	Paused *bool `form:"paused,omitempty" json:"paused,omitempty"`
+
+	// PlanUuid Plan UUID
+	PlanUuid *openapi_types.UUID `form:"plan_uuid,omitempty" json:"plan_uuid,omitempty"`
+
+	// ProjectName Project name
+	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ProviderUuid Provider UUID
+	ProviderUuid *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
 
 	// Query Search by resource UUID, name, slug, backend ID, effective ID, IPs or hypervisor
-	Query                *string `form:"query,omitempty" json:"query,omitempty"`
-	RestrictMemberAccess *bool   `form:"restrict_member_access,omitempty" json:"restrict_member_access,omitempty"`
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
+	// RestrictMemberAccess Restrict member access
+	RestrictMemberAccess *bool `form:"restrict_member_access,omitempty" json:"restrict_member_access,omitempty"`
 
 	// RuntimeState Runtime state
 	RuntimeState *string `form:"runtime_state,omitempty" json:"runtime_state,omitempty"`
 
-	// ServiceManagerUuid Service Manager UUID
-	ServiceManagerUuid *openapi_types.UUID                     `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
-	State              *[]MarketplaceResourcesCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+	// ServiceManagerUuid Service manager UUID
+	ServiceManagerUuid *openapi_types.UUID `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
+
+	// State Resource state
+	//
+	State *[]MarketplaceResourcesCountParamsState `form:"state,omitempty" json:"state,omitempty"`
 
 	// UsageBased Filter by usage-based offerings
 	UsageBased *bool `form:"usage_based,omitempty" json:"usage_based,omitempty"`
@@ -34561,6 +35554,9 @@ type MarketplaceResourcesCountParams struct {
 
 // MarketplaceResourcesCountParamsO defines parameters for MarketplaceResourcesCount.
 type MarketplaceResourcesCountParamsO string
+
+// MarketplaceResourcesCountParamsOrderState defines parameters for MarketplaceResourcesCount.
+type MarketplaceResourcesCountParamsOrderState string
 
 // MarketplaceResourcesCountParamsState defines parameters for MarketplaceResourcesCount.
 type MarketplaceResourcesCountParamsState string
@@ -34576,7 +35572,9 @@ type MarketplaceResourcesRetrieveParamsField string
 // MarketplaceRobotAccountsListParams defines parameters for MarketplaceRobotAccountsList.
 type MarketplaceRobotAccountsListParams struct {
 	// Created Created after
-	Created      *time.Time                                 `form:"created,omitempty" json:"created,omitempty"`
+	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
+
+	// CustomerUuid Customer UUID
 	CustomerUuid *openapi_types.UUID                        `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
 	Field        *[]MarketplaceRobotAccountsListParamsField `form:"field,omitempty" json:"field,omitempty"`
 
@@ -34587,13 +35585,24 @@ type MarketplaceRobotAccountsListParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize     *PageSize                                `form:"page_size,omitempty" json:"page_size,omitempty"`
-	ProjectUuid  *openapi_types.UUID                      `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	ProviderUuid *openapi_types.UUID                      `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
-	Resource     *string                                  `form:"resource,omitempty" json:"resource,omitempty"`
-	ResourceUuid *openapi_types.UUID                      `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
-	State        *MarketplaceRobotAccountsListParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Type         *string                                  `form:"type,omitempty" json:"type,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ProviderUuid Provider UUID
+	ProviderUuid *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
+
+	// Resource Resource URL
+	Resource *string `form:"resource,omitempty" json:"resource,omitempty"`
+
+	// ResourceUuid Resource UUID
+	ResourceUuid *openapi_types.UUID `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
+
+	// State Robot account state
+	//
+	State *MarketplaceRobotAccountsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+	Type  *string                                  `form:"type,omitempty" json:"type,omitempty"`
 }
 
 // MarketplaceRobotAccountsListParamsField defines parameters for MarketplaceRobotAccountsList.
@@ -34605,7 +35614,9 @@ type MarketplaceRobotAccountsListParamsState int
 // MarketplaceRobotAccountsCountParams defines parameters for MarketplaceRobotAccountsCount.
 type MarketplaceRobotAccountsCountParams struct {
 	// Created Created after
-	Created      *time.Time          `form:"created,omitempty" json:"created,omitempty"`
+	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
+
+	// CustomerUuid Customer UUID
 	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
 
 	// Modified Modified after
@@ -34615,13 +35626,24 @@ type MarketplaceRobotAccountsCountParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize     *PageSize                                 `form:"page_size,omitempty" json:"page_size,omitempty"`
-	ProjectUuid  *openapi_types.UUID                       `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	ProviderUuid *openapi_types.UUID                       `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
-	Resource     *string                                   `form:"resource,omitempty" json:"resource,omitempty"`
-	ResourceUuid *openapi_types.UUID                       `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
-	State        *MarketplaceRobotAccountsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Type         *string                                   `form:"type,omitempty" json:"type,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ProviderUuid Provider UUID
+	ProviderUuid *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
+
+	// Resource Resource URL
+	Resource *string `form:"resource,omitempty" json:"resource,omitempty"`
+
+	// ResourceUuid Resource UUID
+	ResourceUuid *openapi_types.UUID `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
+
+	// State Robot account state
+	//
+	State *MarketplaceRobotAccountsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+	Type  *string                                   `form:"type,omitempty" json:"type,omitempty"`
 }
 
 // MarketplaceRobotAccountsCountParamsState defines parameters for MarketplaceRobotAccountsCount.
@@ -34730,10 +35752,15 @@ type MarketplaceSectionsCountParams struct {
 
 // MarketplaceServiceProvidersListParams defines parameters for MarketplaceServiceProvidersList.
 type MarketplaceServiceProvidersListParams struct {
-	Customer        *string                                       `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerKeyword *string                                       `form:"customer_keyword,omitempty" json:"customer_keyword,omitempty"`
-	CustomerUuid    *openapi_types.UUID                           `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Field           *[]MarketplaceServiceProvidersListParamsField `form:"field,omitempty" json:"field,omitempty"`
+	// Customer Customer URL
+	Customer *string `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerKeyword Customer keyword (name, abbreviation or native name)
+	CustomerKeyword *string `form:"customer_keyword,omitempty" json:"customer_keyword,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID                           `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+	Field        *[]MarketplaceServiceProvidersListParamsField `form:"field,omitempty" json:"field,omitempty"`
 
 	// O Ordering
 	//
@@ -34754,9 +35781,14 @@ type MarketplaceServiceProvidersListParamsO string
 
 // MarketplaceServiceProvidersCountParams defines parameters for MarketplaceServiceProvidersCount.
 type MarketplaceServiceProvidersCountParams struct {
-	Customer        *string             `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerKeyword *string             `form:"customer_keyword,omitempty" json:"customer_keyword,omitempty"`
-	CustomerUuid    *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+	// Customer Customer URL
+	Customer *string `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerKeyword Customer keyword (name, abbreviation or native name)
+	CustomerKeyword *string `form:"customer_keyword,omitempty" json:"customer_keyword,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
 
 	// O Ordering
 	//
@@ -34807,6 +35839,7 @@ type ServiceProviderOfferingUsersComplianceParams struct {
 
 // MarketplaceServiceProvidersCourseAccountsListParams defines parameters for MarketplaceServiceProvidersCourseAccountsList.
 type MarketplaceServiceProvidersCourseAccountsListParams struct {
+	// Email Email contains
 	Email *string `form:"email,omitempty" json:"email,omitempty"`
 
 	// O Ordering
@@ -34817,14 +35850,29 @@ type MarketplaceServiceProvidersCourseAccountsListParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize               *PageSize                                                   `form:"page_size,omitempty" json:"page_size,omitempty"`
-	ProjectEndDateAfter    *openapi_types.Date                                         `form:"project_end_date_after,omitempty" json:"project_end_date_after,omitempty"`
-	ProjectEndDateBefore   *openapi_types.Date                                         `form:"project_end_date_before,omitempty" json:"project_end_date_before,omitempty"`
-	ProjectStartDateAfter  *openapi_types.Date                                         `form:"project_start_date_after,omitempty" json:"project_start_date_after,omitempty"`
-	ProjectStartDateBefore *openapi_types.Date                                         `form:"project_start_date_before,omitempty" json:"project_start_date_before,omitempty"`
-	ProjectUuid            *openapi_types.UUID                                         `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	State                  *[]MarketplaceServiceProvidersCourseAccountsListParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Username               *string                                                     `form:"username,omitempty" json:"username,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ProjectEndDateAfter Project end date range
+	ProjectEndDateAfter *openapi_types.Date `form:"project_end_date_after,omitempty" json:"project_end_date_after,omitempty"`
+
+	// ProjectEndDateBefore Project end date range
+	ProjectEndDateBefore *openapi_types.Date `form:"project_end_date_before,omitempty" json:"project_end_date_before,omitempty"`
+
+	// ProjectStartDateAfter Project start date range
+	ProjectStartDateAfter *openapi_types.Date `form:"project_start_date_after,omitempty" json:"project_start_date_after,omitempty"`
+
+	// ProjectStartDateBefore Project start date range
+	ProjectStartDateBefore *openapi_types.Date `form:"project_start_date_before,omitempty" json:"project_start_date_before,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// State Course account state
+	//
+	State *[]MarketplaceServiceProvidersCourseAccountsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Username Username
+	Username *string `form:"username,omitempty" json:"username,omitempty"`
 }
 
 // MarketplaceServiceProvidersCourseAccountsListParamsO defines parameters for MarketplaceServiceProvidersCourseAccountsList.
@@ -34960,19 +36008,33 @@ type MarketplaceServiceProvidersOfferingsListParams struct {
 	AccessibleViaCalls *bool `form:"accessible_via_calls,omitempty" json:"accessible_via_calls,omitempty"`
 
 	// AllowedCustomerUuid Allowed customer UUID
-	AllowedCustomerUuid   *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
-	Attributes            *string             `form:"attributes,omitempty" json:"attributes,omitempty"`
-	Billable              *bool               `form:"billable,omitempty" json:"billable,omitempty"`
-	CanCreateOfferingUser *bool               `form:"can_create_offering_user,omitempty" json:"can_create_offering_user,omitempty"`
-	CategoryGroupUuid     *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
-	CategoryUuid          *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
+	AllowedCustomerUuid *openapi_types.UUID `form:"allowed_customer_uuid,omitempty" json:"allowed_customer_uuid,omitempty"`
+
+	// Attributes Offering attributes (JSON)
+	Attributes *string `form:"attributes,omitempty" json:"attributes,omitempty"`
+
+	// Billable Billable
+	Billable              *bool `form:"billable,omitempty" json:"billable,omitempty"`
+	CanCreateOfferingUser *bool `form:"can_create_offering_user,omitempty" json:"can_create_offering_user,omitempty"`
+
+	// CategoryGroupUuid Category group UUID
+	CategoryGroupUuid *openapi_types.UUID `form:"category_group_uuid,omitempty" json:"category_group_uuid,omitempty"`
+
+	// CategoryUuid Category UUID
+	CategoryUuid *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
 
 	// Created Created after
-	Created      *time.Time                                             `form:"created,omitempty" json:"created,omitempty"`
-	Customer     *string                                                `form:"customer,omitempty" json:"customer,omitempty"`
-	CustomerUuid *openapi_types.UUID                                    `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	Description  *string                                                `form:"description,omitempty" json:"description,omitempty"`
-	Field        *[]MarketplaceServiceProvidersOfferingsListParamsField `form:"field,omitempty" json:"field,omitempty"`
+	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
+
+	// Customer Customer URL
+	Customer *string `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Description Description contains
+	Description *string                                                `form:"description,omitempty" json:"description,omitempty"`
+	Field       *[]MarketplaceServiceProvidersOfferingsListParamsField `form:"field,omitempty" json:"field,omitempty"`
 
 	// HasActiveTermsOfService Has Active Terms of Service
 	HasActiveTermsOfService *bool `form:"has_active_terms_of_service,omitempty" json:"has_active_terms_of_service,omitempty"`
@@ -34990,14 +36052,18 @@ type MarketplaceServiceProvidersOfferingsListParams struct {
 
 	// O Ordering
 	//
-	O                     *[]MarketplaceServiceProvidersOfferingsListParamsO `form:"o,omitempty" json:"o,omitempty"`
-	OrganizationGroupUuid *[]openapi_types.UUID                              `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
+	O *[]MarketplaceServiceProvidersOfferingsListParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// OrganizationGroupUuid Organization group UUID
+	OrganizationGroupUuid *[]openapi_types.UUID `form:"organization_group_uuid,omitempty" json:"organization_group_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize   *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ParentUuid Parent offering UUID
 	ParentUuid *openapi_types.UUID `form:"parent_uuid,omitempty" json:"parent_uuid,omitempty"`
 
 	// ProjectUuid Project UUID
@@ -35016,10 +36082,17 @@ type MarketplaceServiceProvidersOfferingsListParams struct {
 	ScopeUuid *string `form:"scope_uuid,omitempty" json:"scope_uuid,omitempty"`
 
 	// ServiceManagerUuid Service manager UUID
-	ServiceManagerUuid *openapi_types.UUID                                    `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
-	Shared             *bool                                                  `form:"shared,omitempty" json:"shared,omitempty"`
-	State              *[]MarketplaceServiceProvidersOfferingsListParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Type               *[]string                                              `form:"type,omitempty" json:"type,omitempty"`
+	ServiceManagerUuid *openapi_types.UUID `form:"service_manager_uuid,omitempty" json:"service_manager_uuid,omitempty"`
+
+	// Shared Shared
+	Shared *bool `form:"shared,omitempty" json:"shared,omitempty"`
+
+	// State Offering state
+	//
+	State *[]MarketplaceServiceProvidersOfferingsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Type Offering type
+	Type *[]string `form:"type,omitempty" json:"type,omitempty"`
 
 	// UserHasConsent User Has Consent
 	UserHasConsent *bool `form:"user_has_consent,omitempty" json:"user_has_consent,omitempty"`
@@ -35094,17 +36167,27 @@ type MarketplaceServiceProvidersProjectPermissionsListParamsO string
 
 // MarketplaceServiceProvidersProjectServiceAccountsListParams defines parameters for MarketplaceServiceProvidersProjectServiceAccountsList.
 type MarketplaceServiceProvidersProjectServiceAccountsListParams struct {
+	// Email Email contains
 	Email *string `form:"email,omitempty" json:"email,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize    *PageSize                                                           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	Project     *string                                                             `form:"project,omitempty" json:"project,omitempty"`
-	ProjectUuid *openapi_types.UUID                                                 `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	State       *[]MarketplaceServiceProvidersProjectServiceAccountsListParamsState `form:"state,omitempty" json:"state,omitempty"`
-	Username    *string                                                             `form:"username,omitempty" json:"username,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Project Project URL
+	Project *string `form:"project,omitempty" json:"project,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// State Service account state
+	//
+	State *[]MarketplaceServiceProvidersProjectServiceAccountsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Username Username
+	Username *string `form:"username,omitempty" json:"username,omitempty"`
 }
 
 // MarketplaceServiceProvidersProjectServiceAccountsListParamsState defines parameters for MarketplaceServiceProvidersProjectServiceAccountsList.
@@ -36012,23 +37095,36 @@ type MarketplaceStatsTotalCostOfActiveResourcesPerOfferingCountParams struct {
 
 // MarketplaceUserOfferingConsentsListParams defines parameters for MarketplaceUserOfferingConsentsList.
 type MarketplaceUserOfferingConsentsListParams struct {
+	// HasConsent Has consent
 	HasConsent *bool `form:"has_consent,omitempty" json:"has_consent,omitempty"`
 
 	// O Ordering
 	//
-	O            *[]MarketplaceUserOfferingConsentsListParamsO `form:"o,omitempty" json:"o,omitempty"`
-	Offering     *string                                       `form:"offering,omitempty" json:"offering,omitempty"`
-	OfferingUuid *openapi_types.UUID                           `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	O *[]MarketplaceUserOfferingConsentsListParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// Offering Offering URL
+	Offering *string `form:"offering,omitempty" json:"offering,omitempty"`
+
+	// OfferingUuid Offering UUID
+	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize          *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	RequiresReconsent *bool               `form:"requires_reconsent,omitempty" json:"requires_reconsent,omitempty"`
-	User              *string             `form:"user,omitempty" json:"user,omitempty"`
-	UserUuid          *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
-	Version           *string             `form:"version,omitempty" json:"version,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// RequiresReconsent Requires reconsent
+	RequiresReconsent *bool `form:"requires_reconsent,omitempty" json:"requires_reconsent,omitempty"`
+
+	// User User URL
+	User *string `form:"user,omitempty" json:"user,omitempty"`
+
+	// UserUuid User UUID
+	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
+
+	// Version Version
+	Version *string `form:"version,omitempty" json:"version,omitempty"`
 }
 
 // MarketplaceUserOfferingConsentsListParamsO defines parameters for MarketplaceUserOfferingConsentsList.
@@ -36036,23 +37132,36 @@ type MarketplaceUserOfferingConsentsListParamsO string
 
 // MarketplaceUserOfferingConsentsCountParams defines parameters for MarketplaceUserOfferingConsentsCount.
 type MarketplaceUserOfferingConsentsCountParams struct {
+	// HasConsent Has consent
 	HasConsent *bool `form:"has_consent,omitempty" json:"has_consent,omitempty"`
 
 	// O Ordering
 	//
-	O            *[]MarketplaceUserOfferingConsentsCountParamsO `form:"o,omitempty" json:"o,omitempty"`
-	Offering     *string                                        `form:"offering,omitempty" json:"offering,omitempty"`
-	OfferingUuid *openapi_types.UUID                            `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	O *[]MarketplaceUserOfferingConsentsCountParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// Offering Offering URL
+	Offering *string `form:"offering,omitempty" json:"offering,omitempty"`
+
+	// OfferingUuid Offering UUID
+	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize          *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
-	RequiresReconsent *bool               `form:"requires_reconsent,omitempty" json:"requires_reconsent,omitempty"`
-	User              *string             `form:"user,omitempty" json:"user,omitempty"`
-	UserUuid          *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
-	Version           *string             `form:"version,omitempty" json:"version,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// RequiresReconsent Requires reconsent
+	RequiresReconsent *bool `form:"requires_reconsent,omitempty" json:"requires_reconsent,omitempty"`
+
+	// User User URL
+	User *string `form:"user,omitempty" json:"user,omitempty"`
+
+	// UserUuid User UUID
+	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
+
+	// Version Version
+	Version *string `form:"version,omitempty" json:"version,omitempty"`
 }
 
 // MarketplaceUserOfferingConsentsCountParamsO defines parameters for MarketplaceUserOfferingConsentsCount.
@@ -39442,20 +40551,29 @@ type ProposalReviewsCountParamsState string
 
 // ProviderInvoiceItemsListParams defines parameters for ProviderInvoiceItemsList.
 type ProviderInvoiceItemsListParams struct {
+	// CustomerUuid Customer UUID
 	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	InvoiceMonth *int                `form:"invoice_month,omitempty" json:"invoice_month,omitempty"`
-	InvoiceYear  *int                `form:"invoice_year,omitempty" json:"invoice_year,omitempty"`
+
+	// InvoiceMonth Invoice month
+	InvoiceMonth *int `form:"invoice_month,omitempty" json:"invoice_month,omitempty"`
+
+	// InvoiceYear Invoice year
+	InvoiceYear *int `form:"invoice_year,omitempty" json:"invoice_year,omitempty"`
 
 	// O Ordering
 	//
-	O            *[]ProviderInvoiceItemsListParamsO `form:"o,omitempty" json:"o,omitempty"`
-	OfferingUuid *openapi_types.UUID                `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	O *[]ProviderInvoiceItemsListParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// OfferingUuid Offering UUID
+	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize    *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ProjectUuid Project UUID
 	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 }
 
@@ -39464,20 +40582,29 @@ type ProviderInvoiceItemsListParamsO string
 
 // ProviderInvoiceItemsCountParams defines parameters for ProviderInvoiceItemsCount.
 type ProviderInvoiceItemsCountParams struct {
+	// CustomerUuid Customer UUID
 	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
-	InvoiceMonth *int                `form:"invoice_month,omitempty" json:"invoice_month,omitempty"`
-	InvoiceYear  *int                `form:"invoice_year,omitempty" json:"invoice_year,omitempty"`
+
+	// InvoiceMonth Invoice month
+	InvoiceMonth *int `form:"invoice_month,omitempty" json:"invoice_month,omitempty"`
+
+	// InvoiceYear Invoice year
+	InvoiceYear *int `form:"invoice_year,omitempty" json:"invoice_year,omitempty"`
 
 	// O Ordering
 	//
-	O            *[]ProviderInvoiceItemsCountParamsO `form:"o,omitempty" json:"o,omitempty"`
-	OfferingUuid *openapi_types.UUID                 `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	O *[]ProviderInvoiceItemsCountParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// OfferingUuid Offering UUID
+	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize    *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ProjectUuid Project UUID
 	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 }
 
@@ -39486,6 +40613,7 @@ type ProviderInvoiceItemsCountParamsO string
 
 // PublicMaintenanceAnnouncementsListParams defines parameters for PublicMaintenanceAnnouncementsList.
 type PublicMaintenanceAnnouncementsListParams struct {
+	// MaintenanceType Maintenance type
 	MaintenanceType *int `form:"maintenance_type,omitempty" json:"maintenance_type,omitempty"`
 
 	// O Ordering
@@ -39496,13 +40624,26 @@ type PublicMaintenanceAnnouncementsListParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize             *PageSize                                        `form:"page_size,omitempty" json:"page_size,omitempty"`
-	ScheduledEndAfter    *time.Time                                       `form:"scheduled_end_after,omitempty" json:"scheduled_end_after,omitempty"`
-	ScheduledEndBefore   *time.Time                                       `form:"scheduled_end_before,omitempty" json:"scheduled_end_before,omitempty"`
-	ScheduledStartAfter  *time.Time                                       `form:"scheduled_start_after,omitempty" json:"scheduled_start_after,omitempty"`
-	ScheduledStartBefore *time.Time                                       `form:"scheduled_start_before,omitempty" json:"scheduled_start_before,omitempty"`
-	ServiceProviderUuid  *openapi_types.UUID                              `form:"service_provider_uuid,omitempty" json:"service_provider_uuid,omitempty"`
-	State                *[]PublicMaintenanceAnnouncementsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ScheduledEndAfter Scheduled end after
+	ScheduledEndAfter *time.Time `form:"scheduled_end_after,omitempty" json:"scheduled_end_after,omitempty"`
+
+	// ScheduledEndBefore Scheduled end before
+	ScheduledEndBefore *time.Time `form:"scheduled_end_before,omitempty" json:"scheduled_end_before,omitempty"`
+
+	// ScheduledStartAfter Scheduled start after
+	ScheduledStartAfter *time.Time `form:"scheduled_start_after,omitempty" json:"scheduled_start_after,omitempty"`
+
+	// ScheduledStartBefore Scheduled start before
+	ScheduledStartBefore *time.Time `form:"scheduled_start_before,omitempty" json:"scheduled_start_before,omitempty"`
+
+	// ServiceProviderUuid Service provider UUID
+	ServiceProviderUuid *openapi_types.UUID `form:"service_provider_uuid,omitempty" json:"service_provider_uuid,omitempty"`
+
+	// State Maintenance state
+	//
+	State *[]PublicMaintenanceAnnouncementsListParamsState `form:"state,omitempty" json:"state,omitempty"`
 }
 
 // PublicMaintenanceAnnouncementsListParamsO defines parameters for PublicMaintenanceAnnouncementsList.
@@ -39513,6 +40654,7 @@ type PublicMaintenanceAnnouncementsListParamsState string
 
 // PublicMaintenanceAnnouncementsCountParams defines parameters for PublicMaintenanceAnnouncementsCount.
 type PublicMaintenanceAnnouncementsCountParams struct {
+	// MaintenanceType Maintenance type
 	MaintenanceType *int `form:"maintenance_type,omitempty" json:"maintenance_type,omitempty"`
 
 	// O Ordering
@@ -39523,13 +40665,26 @@ type PublicMaintenanceAnnouncementsCountParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize             *PageSize                                         `form:"page_size,omitempty" json:"page_size,omitempty"`
-	ScheduledEndAfter    *time.Time                                        `form:"scheduled_end_after,omitempty" json:"scheduled_end_after,omitempty"`
-	ScheduledEndBefore   *time.Time                                        `form:"scheduled_end_before,omitempty" json:"scheduled_end_before,omitempty"`
-	ScheduledStartAfter  *time.Time                                        `form:"scheduled_start_after,omitempty" json:"scheduled_start_after,omitempty"`
-	ScheduledStartBefore *time.Time                                        `form:"scheduled_start_before,omitempty" json:"scheduled_start_before,omitempty"`
-	ServiceProviderUuid  *openapi_types.UUID                               `form:"service_provider_uuid,omitempty" json:"service_provider_uuid,omitempty"`
-	State                *[]PublicMaintenanceAnnouncementsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ScheduledEndAfter Scheduled end after
+	ScheduledEndAfter *time.Time `form:"scheduled_end_after,omitempty" json:"scheduled_end_after,omitempty"`
+
+	// ScheduledEndBefore Scheduled end before
+	ScheduledEndBefore *time.Time `form:"scheduled_end_before,omitempty" json:"scheduled_end_before,omitempty"`
+
+	// ScheduledStartAfter Scheduled start after
+	ScheduledStartAfter *time.Time `form:"scheduled_start_after,omitempty" json:"scheduled_start_after,omitempty"`
+
+	// ScheduledStartBefore Scheduled start before
+	ScheduledStartBefore *time.Time `form:"scheduled_start_before,omitempty" json:"scheduled_start_before,omitempty"`
+
+	// ServiceProviderUuid Service provider UUID
+	ServiceProviderUuid *openapi_types.UUID `form:"service_provider_uuid,omitempty" json:"service_provider_uuid,omitempty"`
+
+	// State Maintenance state
+	//
+	State *[]PublicMaintenanceAnnouncementsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
 }
 
 // PublicMaintenanceAnnouncementsCountParamsO defines parameters for PublicMaintenanceAnnouncementsCount.
@@ -97826,6 +98981,22 @@ func NewBookingResourcesListRequest(server string, params *BookingResourcesListP
 
 		}
 
+		if params.OrderState != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "order_state", runtime.ParamLocationQuery, *params.OrderState); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Page != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
@@ -98470,6 +99641,22 @@ func NewBookingResourcesCountRequest(server string, params *BookingResourcesCoun
 		if params.OnlyUsageBased != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "only_usage_based", runtime.ParamLocationQuery, *params.OnlyUsageBased); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OrderState != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "order_state", runtime.ParamLocationQuery, *params.OrderState); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -147418,6 +148605,22 @@ func NewMarketplaceProviderResourcesListRequest(server string, params *Marketpla
 
 		}
 
+		if params.OrderState != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "order_state", runtime.ParamLocationQuery, *params.OrderState); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Page != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
@@ -148046,6 +149249,22 @@ func NewMarketplaceProviderResourcesCountRequest(server string, params *Marketpl
 		if params.OnlyUsageBased != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "only_usage_based", runtime.ParamLocationQuery, *params.OnlyUsageBased); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OrderState != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "order_state", runtime.ParamLocationQuery, *params.OrderState); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -152264,6 +153483,22 @@ func NewMarketplaceResourcesListRequest(server string, params *MarketplaceResour
 
 		}
 
+		if params.OrderState != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "order_state", runtime.ParamLocationQuery, *params.OrderState); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Page != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
@@ -152892,6 +154127,22 @@ func NewMarketplaceResourcesCountRequest(server string, params *MarketplaceResou
 		if params.OnlyUsageBased != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "only_usage_based", runtime.ParamLocationQuery, *params.OnlyUsageBased); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OrderState != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "order_state", runtime.ParamLocationQuery, *params.OrderState); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
