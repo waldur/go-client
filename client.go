@@ -463,6 +463,7 @@ const (
 const (
 	DryRunTypeEnumCreate    DryRunTypeEnum = "Create"
 	DryRunTypeEnumPull      DryRunTypeEnum = "Pull"
+	DryRunTypeEnumRestore   DryRunTypeEnum = "Restore"
 	DryRunTypeEnumTerminate DryRunTypeEnum = "Terminate"
 	DryRunTypeEnumUpdate    DryRunTypeEnum = "Update"
 )
@@ -1828,6 +1829,7 @@ const (
 // Defines values for RequestTypes.
 const (
 	RequestTypesCreate    RequestTypes = "Create"
+	RequestTypesRestore   RequestTypes = "Restore"
 	RequestTypesTerminate RequestTypes = "Terminate"
 	RequestTypesUpdate    RequestTypes = "Update"
 )
@@ -5289,6 +5291,7 @@ const (
 // Defines values for MarketplaceOrdersListParamsType.
 const (
 	MarketplaceOrdersListParamsTypeCreate    MarketplaceOrdersListParamsType = "Create"
+	MarketplaceOrdersListParamsTypeRestore   MarketplaceOrdersListParamsType = "Restore"
 	MarketplaceOrdersListParamsTypeTerminate MarketplaceOrdersListParamsType = "Terminate"
 	MarketplaceOrdersListParamsTypeUpdate    MarketplaceOrdersListParamsType = "Update"
 )
@@ -5321,6 +5324,7 @@ const (
 // Defines values for MarketplaceOrdersCountParamsType.
 const (
 	MarketplaceOrdersCountParamsTypeCreate    MarketplaceOrdersCountParamsType = "Create"
+	MarketplaceOrdersCountParamsTypeRestore   MarketplaceOrdersCountParamsType = "Restore"
 	MarketplaceOrdersCountParamsTypeTerminate MarketplaceOrdersCountParamsType = "Terminate"
 	MarketplaceOrdersCountParamsTypeUpdate    MarketplaceOrdersCountParamsType = "Update"
 )
@@ -17071,6 +17075,9 @@ type MergedPluginOptions struct {
 	// BackendIdDisplayLabel Label used by UI for showing value of the backend_id
 	BackendIdDisplayLabel *string `json:"backend_id_display_label,omitempty"`
 
+	// CanRestoreResource If set to True, resource can be restored.
+	CanRestoreResource *bool `json:"can_restore_resource,omitempty"`
+
 	// ConcealBillingData If set to True, pricing and components tab would be concealed.
 	ConcealBillingData *bool `json:"conceal_billing_data,omitempty"`
 
@@ -17222,6 +17229,9 @@ type MergedPluginOptionsRequest struct {
 
 	// BackendIdDisplayLabel Label used by UI for showing value of the backend_id
 	BackendIdDisplayLabel *string `json:"backend_id_display_label,omitempty"`
+
+	// CanRestoreResource If set to True, resource can be restored.
+	CanRestoreResource *bool `json:"can_restore_resource,omitempty"`
 
 	// ConcealBillingData If set to True, pricing and components tab would be concealed.
 	ConcealBillingData *bool `json:"conceal_billing_data,omitempty"`
@@ -26281,6 +26291,19 @@ type ResourceRenewRequest struct {
 // ResourceReportRequest defines model for ResourceReportRequest.
 type ResourceReportRequest struct {
 	Report []ReportSectionRequest `json:"report"`
+}
+
+// ResourceRequest defines model for ResourceRequest.
+type ResourceRequest struct {
+	Downscaled *bool `json:"downscaled,omitempty"`
+
+	// EndDate The date is inclusive. Once reached, a resource will be scheduled for termination.
+	EndDate  *openapi_types.Date `json:"end_date"`
+	Name     string              `json:"name"`
+	Offering string              `json:"offering"`
+	Paused   *bool               `json:"paused,omitempty"`
+	Plan     *string             `json:"plan,omitempty"`
+	Slug     *string             `json:"slug,omitempty"`
 }
 
 // ResourceResponseStatus defines model for ResourceResponseStatus.
@@ -46663,6 +46686,9 @@ type MarketplaceProviderResourcesUpdateJSONRequestBody = ResourceUpdateRequest
 // MarketplaceProviderResourcesMoveResourceJSONRequestBody defines body for MarketplaceProviderResourcesMoveResource for application/json ContentType.
 type MarketplaceProviderResourcesMoveResourceJSONRequestBody = MoveResourceRequest
 
+// MarketplaceProviderResourcesRestoreJSONRequestBody defines body for MarketplaceProviderResourcesRestore for application/json ContentType.
+type MarketplaceProviderResourcesRestoreJSONRequestBody = ResourceRequest
+
 // MarketplaceProviderResourcesSetAsErredJSONRequestBody defines body for MarketplaceProviderResourcesSetAsErred for application/json ContentType.
 type MarketplaceProviderResourcesSetAsErredJSONRequestBody = ResourceSetStateErredRequest
 
@@ -46740,6 +46766,9 @@ type MarketplaceResourcesReallocateLimitsJSONRequestBody = ResourceReallocateLim
 
 // MarketplaceResourcesRenewJSONRequestBody defines body for MarketplaceResourcesRenew for application/json ContentType.
 type MarketplaceResourcesRenewJSONRequestBody = ResourceRenewRequest
+
+// MarketplaceResourcesRestoreJSONRequestBody defines body for MarketplaceResourcesRestore for application/json ContentType.
+type MarketplaceResourcesRestoreJSONRequestBody = ResourceRequest
 
 // MarketplaceResourcesSetDownscaledJSONRequestBody defines body for MarketplaceResourcesSetDownscaled for application/json ContentType.
 type MarketplaceResourcesSetDownscaledJSONRequestBody = ResourceDownscaledRequest
@@ -56709,6 +56738,11 @@ type ClientInterface interface {
 	// MarketplaceProviderResourcesRefreshLastSync request
 	MarketplaceProviderResourcesRefreshLastSync(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceProviderResourcesRestoreWithBody request with any body
+	MarketplaceProviderResourcesRestoreWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceProviderResourcesRestore(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesRestoreJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceProviderResourcesSetAsErredWithBody request with any body
 	MarketplaceProviderResourcesSetAsErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -56922,6 +56956,11 @@ type ClientInterface interface {
 	MarketplaceResourcesRenewWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	MarketplaceResourcesRenew(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesRenewJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceResourcesRestoreWithBody request with any body
+	MarketplaceResourcesRestoreWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceResourcesRestore(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesRestoreJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceResourcesSetDownscaledWithBody request with any body
 	MarketplaceResourcesSetDownscaledWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -72631,6 +72670,30 @@ func (c *Client) MarketplaceProviderResourcesRefreshLastSync(ctx context.Context
 	return c.Client.Do(req)
 }
 
+func (c *Client) MarketplaceProviderResourcesRestoreWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderResourcesRestoreRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderResourcesRestore(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesRestoreJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderResourcesRestoreRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) MarketplaceProviderResourcesSetAsErredWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProviderResourcesSetAsErredRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
@@ -73581,6 +73644,30 @@ func (c *Client) MarketplaceResourcesRenewWithBody(ctx context.Context, uuid ope
 
 func (c *Client) MarketplaceResourcesRenew(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesRenewJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceResourcesRenewRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceResourcesRestoreWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourcesRestoreRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceResourcesRestore(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesRestoreJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourcesRestoreRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -152971,6 +153058,53 @@ func NewMarketplaceProviderResourcesRefreshLastSyncRequest(server string, uuid o
 	return req, nil
 }
 
+// NewMarketplaceProviderResourcesRestoreRequest calls the generic MarketplaceProviderResourcesRestore builder with application/json body
+func NewMarketplaceProviderResourcesRestoreRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderResourcesRestoreJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceProviderResourcesRestoreRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceProviderResourcesRestoreRequestWithBody generates requests for MarketplaceProviderResourcesRestore with any type of body
+func NewMarketplaceProviderResourcesRestoreRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-resources/%s/restore/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewMarketplaceProviderResourcesSetAsErredRequest calls the generic MarketplaceProviderResourcesSetAsErred builder with application/json body
 func NewMarketplaceProviderResourcesSetAsErredRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetAsErredJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -157962,6 +158096,53 @@ func NewMarketplaceResourcesRenewRequestWithBody(server string, uuid openapi_typ
 	}
 
 	operationPath := fmt.Sprintf("/api/marketplace-resources/%s/renew/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceResourcesRestoreRequest calls the generic MarketplaceResourcesRestore builder with application/json body
+func NewMarketplaceResourcesRestoreRequest(server string, uuid openapi_types.UUID, body MarketplaceResourcesRestoreJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceResourcesRestoreRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceResourcesRestoreRequestWithBody generates requests for MarketplaceResourcesRestore with any type of body
+func NewMarketplaceResourcesRestoreRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-resources/%s/restore/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -245428,6 +245609,11 @@ type ClientWithResponsesInterface interface {
 	// MarketplaceProviderResourcesRefreshLastSyncWithResponse request
 	MarketplaceProviderResourcesRefreshLastSyncWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesRefreshLastSyncResponse, error)
 
+	// MarketplaceProviderResourcesRestoreWithBodyWithResponse request with any body
+	MarketplaceProviderResourcesRestoreWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesRestoreResponse, error)
+
+	MarketplaceProviderResourcesRestoreWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesRestoreJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesRestoreResponse, error)
+
 	// MarketplaceProviderResourcesSetAsErredWithBodyWithResponse request with any body
 	MarketplaceProviderResourcesSetAsErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetAsErredResponse, error)
 
@@ -245641,6 +245827,11 @@ type ClientWithResponsesInterface interface {
 	MarketplaceResourcesRenewWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourcesRenewResponse, error)
 
 	MarketplaceResourcesRenewWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesRenewJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourcesRenewResponse, error)
+
+	// MarketplaceResourcesRestoreWithBodyWithResponse request with any body
+	MarketplaceResourcesRestoreWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourcesRestoreResponse, error)
+
+	MarketplaceResourcesRestoreWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesRestoreJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourcesRestoreResponse, error)
 
 	// MarketplaceResourcesSetDownscaledWithBodyWithResponse request with any body
 	MarketplaceResourcesSetDownscaledWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourcesSetDownscaledResponse, error)
@@ -265431,6 +265622,28 @@ func (r MarketplaceProviderResourcesRefreshLastSyncResponse) StatusCode() int {
 	return 0
 }
 
+type MarketplaceProviderResourcesRestoreResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *Resource
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderResourcesRestoreResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderResourcesRestoreResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type MarketplaceProviderResourcesSetAsErredResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -266612,6 +266825,28 @@ func (r MarketplaceResourcesRenewResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceResourcesRenewResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceResourcesRestoreResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *Resource
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceResourcesRestoreResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceResourcesRestoreResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -297051,6 +297286,23 @@ func (c *ClientWithResponses) MarketplaceProviderResourcesRefreshLastSyncWithRes
 	return ParseMarketplaceProviderResourcesRefreshLastSyncResponse(rsp)
 }
 
+// MarketplaceProviderResourcesRestoreWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderResourcesRestoreResponse
+func (c *ClientWithResponses) MarketplaceProviderResourcesRestoreWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesRestoreResponse, error) {
+	rsp, err := c.MarketplaceProviderResourcesRestoreWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderResourcesRestoreResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceProviderResourcesRestoreWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesRestoreJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesRestoreResponse, error) {
+	rsp, err := c.MarketplaceProviderResourcesRestore(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderResourcesRestoreResponse(rsp)
+}
+
 // MarketplaceProviderResourcesSetAsErredWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderResourcesSetAsErredResponse
 func (c *ClientWithResponses) MarketplaceProviderResourcesSetAsErredWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetAsErredResponse, error) {
 	rsp, err := c.MarketplaceProviderResourcesSetAsErredWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -297743,6 +297995,23 @@ func (c *ClientWithResponses) MarketplaceResourcesRenewWithResponse(ctx context.
 		return nil, err
 	}
 	return ParseMarketplaceResourcesRenewResponse(rsp)
+}
+
+// MarketplaceResourcesRestoreWithBodyWithResponse request with arbitrary body returning *MarketplaceResourcesRestoreResponse
+func (c *ClientWithResponses) MarketplaceResourcesRestoreWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourcesRestoreResponse, error) {
+	rsp, err := c.MarketplaceResourcesRestoreWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourcesRestoreResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceResourcesRestoreWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesRestoreJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourcesRestoreResponse, error) {
+	rsp, err := c.MarketplaceResourcesRestore(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourcesRestoreResponse(rsp)
 }
 
 // MarketplaceResourcesSetDownscaledWithBodyWithResponse request with arbitrary body returning *MarketplaceResourcesSetDownscaledResponse
@@ -326113,6 +326382,32 @@ func ParseMarketplaceProviderResourcesRefreshLastSyncResponse(rsp *http.Response
 	return response, nil
 }
 
+// ParseMarketplaceProviderResourcesRestoreResponse parses an HTTP response from a MarketplaceProviderResourcesRestoreWithResponse call
+func ParseMarketplaceProviderResourcesRestoreResponse(rsp *http.Response) (*MarketplaceProviderResourcesRestoreResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderResourcesRestoreResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest Resource
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseMarketplaceProviderResourcesSetAsErredResponse parses an HTTP response from a MarketplaceProviderResourcesSetAsErredWithResponse call
 func ParseMarketplaceProviderResourcesSetAsErredResponse(rsp *http.Response) (*MarketplaceProviderResourcesSetAsErredResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -327386,6 +327681,32 @@ func ParseMarketplaceResourcesRenewResponse(rsp *http.Response) (*MarketplaceRes
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest OrderUUID
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceResourcesRestoreResponse parses an HTTP response from a MarketplaceResourcesRestoreWithResponse call
+func ParseMarketplaceResourcesRestoreResponse(rsp *http.Response) (*MarketplaceResourcesRestoreResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceResourcesRestoreResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest Resource
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
