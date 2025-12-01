@@ -115,6 +115,13 @@ const (
 	CascadeStepTypeEnumSelectStringMulti CascadeStepTypeEnum = "select_string_multi"
 )
 
+// Defines values for CatalogTypeEnum.
+const (
+	BinaryRuntime  CatalogTypeEnum = "binary_runtime"
+	PackageManager CatalogTypeEnum = "package_manager"
+	SourcePackage  CatalogTypeEnum = "source_package"
+)
+
 // Defines values for ChecklistOperators.
 const (
 	Contains  ChecklistOperators = "contains"
@@ -3067,6 +3074,7 @@ const (
 	BookingOfferingsListParamsFieldBackendId                 BookingOfferingsListParamsField = "backend_id"
 	BookingOfferingsListParamsFieldBackendMetadata           BookingOfferingsListParamsField = "backend_metadata"
 	BookingOfferingsListParamsFieldBillable                  BookingOfferingsListParamsField = "billable"
+	BookingOfferingsListParamsFieldBillingTypeClassification BookingOfferingsListParamsField = "billing_type_classification"
 	BookingOfferingsListParamsFieldCategory                  BookingOfferingsListParamsField = "category"
 	BookingOfferingsListParamsFieldCategoryTitle             BookingOfferingsListParamsField = "category_title"
 	BookingOfferingsListParamsFieldCategoryUuid              BookingOfferingsListParamsField = "category_uuid"
@@ -3138,6 +3146,7 @@ const (
 	BookingOfferingsRetrieveParamsFieldBackendId                 BookingOfferingsRetrieveParamsField = "backend_id"
 	BookingOfferingsRetrieveParamsFieldBackendMetadata           BookingOfferingsRetrieveParamsField = "backend_metadata"
 	BookingOfferingsRetrieveParamsFieldBillable                  BookingOfferingsRetrieveParamsField = "billable"
+	BookingOfferingsRetrieveParamsFieldBillingTypeClassification BookingOfferingsRetrieveParamsField = "billing_type_classification"
 	BookingOfferingsRetrieveParamsFieldCategory                  BookingOfferingsRetrieveParamsField = "category"
 	BookingOfferingsRetrieveParamsFieldCategoryTitle             BookingOfferingsRetrieveParamsField = "category_title"
 	BookingOfferingsRetrieveParamsFieldCategoryUuid              BookingOfferingsRetrieveParamsField = "category_uuid"
@@ -5446,6 +5455,7 @@ const (
 	MarketplaceProviderOfferingsListParamsFieldBackendId                 MarketplaceProviderOfferingsListParamsField = "backend_id"
 	MarketplaceProviderOfferingsListParamsFieldBackendMetadata           MarketplaceProviderOfferingsListParamsField = "backend_metadata"
 	MarketplaceProviderOfferingsListParamsFieldBillable                  MarketplaceProviderOfferingsListParamsField = "billable"
+	MarketplaceProviderOfferingsListParamsFieldBillingTypeClassification MarketplaceProviderOfferingsListParamsField = "billing_type_classification"
 	MarketplaceProviderOfferingsListParamsFieldCategory                  MarketplaceProviderOfferingsListParamsField = "category"
 	MarketplaceProviderOfferingsListParamsFieldCategoryTitle             MarketplaceProviderOfferingsListParamsField = "category_title"
 	MarketplaceProviderOfferingsListParamsFieldCategoryUuid              MarketplaceProviderOfferingsListParamsField = "category_uuid"
@@ -5622,6 +5632,7 @@ const (
 	MarketplaceProviderOfferingsRetrieveParamsFieldBackendId                 MarketplaceProviderOfferingsRetrieveParamsField = "backend_id"
 	MarketplaceProviderOfferingsRetrieveParamsFieldBackendMetadata           MarketplaceProviderOfferingsRetrieveParamsField = "backend_metadata"
 	MarketplaceProviderOfferingsRetrieveParamsFieldBillable                  MarketplaceProviderOfferingsRetrieveParamsField = "billable"
+	MarketplaceProviderOfferingsRetrieveParamsFieldBillingTypeClassification MarketplaceProviderOfferingsRetrieveParamsField = "billing_type_classification"
 	MarketplaceProviderOfferingsRetrieveParamsFieldCategory                  MarketplaceProviderOfferingsRetrieveParamsField = "category"
 	MarketplaceProviderOfferingsRetrieveParamsFieldCategoryTitle             MarketplaceProviderOfferingsRetrieveParamsField = "category_title"
 	MarketplaceProviderOfferingsRetrieveParamsFieldCategoryUuid              MarketplaceProviderOfferingsRetrieveParamsField = "category_uuid"
@@ -6045,6 +6056,7 @@ const (
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldBackendId                 MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "backend_id"
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldBackendMetadata           MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "backend_metadata"
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldBillable                  MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "billable"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldBillingTypeClassification MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "billing_type_classification"
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldCategory                  MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "category"
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldCategoryTitle             MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "category_title"
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldCategoryUuid              MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "category_uuid"
@@ -6351,6 +6363,7 @@ const (
 	MarketplacePublicOfferingsListParamsFieldBackendId                 MarketplacePublicOfferingsListParamsField = "backend_id"
 	MarketplacePublicOfferingsListParamsFieldBackendMetadata           MarketplacePublicOfferingsListParamsField = "backend_metadata"
 	MarketplacePublicOfferingsListParamsFieldBillable                  MarketplacePublicOfferingsListParamsField = "billable"
+	MarketplacePublicOfferingsListParamsFieldBillingTypeClassification MarketplacePublicOfferingsListParamsField = "billing_type_classification"
 	MarketplacePublicOfferingsListParamsFieldCategory                  MarketplacePublicOfferingsListParamsField = "category"
 	MarketplacePublicOfferingsListParamsFieldCategoryTitle             MarketplacePublicOfferingsListParamsField = "category_title"
 	MarketplacePublicOfferingsListParamsFieldCategoryUuid              MarketplacePublicOfferingsListParamsField = "category_uuid"
@@ -6476,6 +6489,7 @@ const (
 	MarketplacePublicOfferingsRetrieveParamsFieldBackendId                 MarketplacePublicOfferingsRetrieveParamsField = "backend_id"
 	MarketplacePublicOfferingsRetrieveParamsFieldBackendMetadata           MarketplacePublicOfferingsRetrieveParamsField = "backend_metadata"
 	MarketplacePublicOfferingsRetrieveParamsFieldBillable                  MarketplacePublicOfferingsRetrieveParamsField = "billable"
+	MarketplacePublicOfferingsRetrieveParamsFieldBillingTypeClassification MarketplacePublicOfferingsRetrieveParamsField = "billing_type_classification"
 	MarketplacePublicOfferingsRetrieveParamsFieldCategory                  MarketplacePublicOfferingsRetrieveParamsField = "category"
 	MarketplacePublicOfferingsRetrieveParamsFieldCategoryTitle             MarketplacePublicOfferingsRetrieveParamsField = "category_title"
 	MarketplacePublicOfferingsRetrieveParamsFieldCategoryUuid              MarketplacePublicOfferingsRetrieveParamsField = "category_uuid"
@@ -13548,6 +13562,9 @@ type CascadeStepRequest struct {
 // CascadeStepTypeEnum defines model for CascadeStepTypeEnum.
 type CascadeStepTypeEnum string
 
+// CatalogTypeEnum defines model for CatalogTypeEnum.
+type CatalogTypeEnum string
+
 // CategoryColumn defines model for CategoryColumn.
 type CategoryColumn struct {
 	// Attribute Resource attribute is rendered as table cell.
@@ -14233,6 +14250,16 @@ type ConstanceSettings struct {
 	SMAXTENANTID                                   *string              `json:"SMAX_TENANT_ID,omitempty"`
 	SMAXTIMESTOPULL                                *int                 `json:"SMAX_TIMES_TO_PULL,omitempty"`
 	SMAXVERIFYSSL                                  *bool                `json:"SMAX_VERIFY_SSL,omitempty"`
+	SOFTWARECATALOGCLEANUPENABLED                  *bool                `json:"SOFTWARE_CATALOG_CLEANUP_ENABLED,omitempty"`
+	SOFTWARECATALOGEESSIAPIURL                     *string              `json:"SOFTWARE_CATALOG_EESSI_API_URL,omitempty"`
+	SOFTWARECATALOGEESSIINCLUDEEXTENSIONS          *bool                `json:"SOFTWARE_CATALOG_EESSI_INCLUDE_EXTENSIONS,omitempty"`
+	SOFTWARECATALOGEESSIUPDATEENABLED              *bool                `json:"SOFTWARE_CATALOG_EESSI_UPDATE_ENABLED,omitempty"`
+	SOFTWARECATALOGEESSIVERSION                    *string              `json:"SOFTWARE_CATALOG_EESSI_VERSION,omitempty"`
+	SOFTWARECATALOGRETENTIONDAYS                   *int                 `json:"SOFTWARE_CATALOG_RETENTION_DAYS,omitempty"`
+	SOFTWARECATALOGSPACKDATAURL                    *string              `json:"SOFTWARE_CATALOG_SPACK_DATA_URL,omitempty"`
+	SOFTWARECATALOGSPACKUPDATEENABLED              *bool                `json:"SOFTWARE_CATALOG_SPACK_UPDATE_ENABLED,omitempty"`
+	SOFTWARECATALOGSPACKVERSION                    *string              `json:"SOFTWARE_CATALOG_SPACK_VERSION,omitempty"`
+	SOFTWARECATALOGUPDATEEXISTINGPACKAGES          *bool                `json:"SOFTWARE_CATALOG_UPDATE_EXISTING_PACKAGES,omitempty"`
 	SUPPORTPORTALURL                               *string              `json:"SUPPORT_PORTAL_URL,omitempty"`
 	TELEMETRYURL                                   *string              `json:"TELEMETRY_URL,omitempty"`
 	TELEMETRYVERSION                               *int                 `json:"TELEMETRY_VERSION,omitempty"`
@@ -14395,6 +14422,16 @@ type ConstanceSettingsRequest struct {
 	SMAXTENANTID                                   *string              `json:"SMAX_TENANT_ID,omitempty"`
 	SMAXTIMESTOPULL                                *int                 `json:"SMAX_TIMES_TO_PULL,omitempty"`
 	SMAXVERIFYSSL                                  *bool                `json:"SMAX_VERIFY_SSL,omitempty"`
+	SOFTWARECATALOGCLEANUPENABLED                  *bool                `json:"SOFTWARE_CATALOG_CLEANUP_ENABLED,omitempty"`
+	SOFTWARECATALOGEESSIAPIURL                     *string              `json:"SOFTWARE_CATALOG_EESSI_API_URL,omitempty"`
+	SOFTWARECATALOGEESSIINCLUDEEXTENSIONS          *bool                `json:"SOFTWARE_CATALOG_EESSI_INCLUDE_EXTENSIONS,omitempty"`
+	SOFTWARECATALOGEESSIUPDATEENABLED              *bool                `json:"SOFTWARE_CATALOG_EESSI_UPDATE_ENABLED,omitempty"`
+	SOFTWARECATALOGEESSIVERSION                    *string              `json:"SOFTWARE_CATALOG_EESSI_VERSION,omitempty"`
+	SOFTWARECATALOGRETENTIONDAYS                   *int                 `json:"SOFTWARE_CATALOG_RETENTION_DAYS,omitempty"`
+	SOFTWARECATALOGSPACKDATAURL                    *string              `json:"SOFTWARE_CATALOG_SPACK_DATA_URL,omitempty"`
+	SOFTWARECATALOGSPACKUPDATEENABLED              *bool                `json:"SOFTWARE_CATALOG_SPACK_UPDATE_ENABLED,omitempty"`
+	SOFTWARECATALOGSPACKVERSION                    *string              `json:"SOFTWARE_CATALOG_SPACK_VERSION,omitempty"`
+	SOFTWARECATALOGUPDATEEXISTINGPACKAGES          *bool                `json:"SOFTWARE_CATALOG_UPDATE_EXISTING_PACKAGES,omitempty"`
 	SUPPORTPORTALURL                               *string              `json:"SUPPORT_PORTAL_URL,omitempty"`
 	TELEMETRYURL                                   *string              `json:"TELEMETRY_URL,omitempty"`
 	TELEMETRYVERSION                               *int                 `json:"TELEMETRY_VERSION,omitempty"`
@@ -14557,6 +14594,16 @@ type ConstanceSettingsRequestForm struct {
 	SMAXTENANTID                                   *string              `json:"SMAX_TENANT_ID,omitempty"`
 	SMAXTIMESTOPULL                                *int                 `json:"SMAX_TIMES_TO_PULL,omitempty"`
 	SMAXVERIFYSSL                                  *bool                `json:"SMAX_VERIFY_SSL,omitempty"`
+	SOFTWARECATALOGCLEANUPENABLED                  *bool                `json:"SOFTWARE_CATALOG_CLEANUP_ENABLED,omitempty"`
+	SOFTWARECATALOGEESSIAPIURL                     *string              `json:"SOFTWARE_CATALOG_EESSI_API_URL,omitempty"`
+	SOFTWARECATALOGEESSIINCLUDEEXTENSIONS          *bool                `json:"SOFTWARE_CATALOG_EESSI_INCLUDE_EXTENSIONS,omitempty"`
+	SOFTWARECATALOGEESSIUPDATEENABLED              *bool                `json:"SOFTWARE_CATALOG_EESSI_UPDATE_ENABLED,omitempty"`
+	SOFTWARECATALOGEESSIVERSION                    *string              `json:"SOFTWARE_CATALOG_EESSI_VERSION,omitempty"`
+	SOFTWARECATALOGRETENTIONDAYS                   *int                 `json:"SOFTWARE_CATALOG_RETENTION_DAYS,omitempty"`
+	SOFTWARECATALOGSPACKDATAURL                    *string              `json:"SOFTWARE_CATALOG_SPACK_DATA_URL,omitempty"`
+	SOFTWARECATALOGSPACKUPDATEENABLED              *bool                `json:"SOFTWARE_CATALOG_SPACK_UPDATE_ENABLED,omitempty"`
+	SOFTWARECATALOGSPACKVERSION                    *string              `json:"SOFTWARE_CATALOG_SPACK_VERSION,omitempty"`
+	SOFTWARECATALOGUPDATEEXISTINGPACKAGES          *bool                `json:"SOFTWARE_CATALOG_UPDATE_EXISTING_PACKAGES,omitempty"`
 	SUPPORTPORTALURL                               *string              `json:"SUPPORT_PORTAL_URL,omitempty"`
 	TELEMETRYURL                                   *string              `json:"TELEMETRY_URL,omitempty"`
 	TELEMETRYVERSION                               *int                 `json:"TELEMETRY_VERSION,omitempty"`
@@ -14719,6 +14766,16 @@ type ConstanceSettingsRequestMultipart struct {
 	SMAXTENANTID                                   *string              `json:"SMAX_TENANT_ID,omitempty"`
 	SMAXTIMESTOPULL                                *int                 `json:"SMAX_TIMES_TO_PULL,omitempty"`
 	SMAXVERIFYSSL                                  *bool                `json:"SMAX_VERIFY_SSL,omitempty"`
+	SOFTWARECATALOGCLEANUPENABLED                  *bool                `json:"SOFTWARE_CATALOG_CLEANUP_ENABLED,omitempty"`
+	SOFTWARECATALOGEESSIAPIURL                     *string              `json:"SOFTWARE_CATALOG_EESSI_API_URL,omitempty"`
+	SOFTWARECATALOGEESSIINCLUDEEXTENSIONS          *bool                `json:"SOFTWARE_CATALOG_EESSI_INCLUDE_EXTENSIONS,omitempty"`
+	SOFTWARECATALOGEESSIUPDATEENABLED              *bool                `json:"SOFTWARE_CATALOG_EESSI_UPDATE_ENABLED,omitempty"`
+	SOFTWARECATALOGEESSIVERSION                    *string              `json:"SOFTWARE_CATALOG_EESSI_VERSION,omitempty"`
+	SOFTWARECATALOGRETENTIONDAYS                   *int                 `json:"SOFTWARE_CATALOG_RETENTION_DAYS,omitempty"`
+	SOFTWARECATALOGSPACKDATAURL                    *string              `json:"SOFTWARE_CATALOG_SPACK_DATA_URL,omitempty"`
+	SOFTWARECATALOGSPACKUPDATEENABLED              *bool                `json:"SOFTWARE_CATALOG_SPACK_UPDATE_ENABLED,omitempty"`
+	SOFTWARECATALOGSPACKVERSION                    *string              `json:"SOFTWARE_CATALOG_SPACK_VERSION,omitempty"`
+	SOFTWARECATALOGUPDATEEXISTINGPACKAGES          *bool                `json:"SOFTWARE_CATALOG_UPDATE_EXISTING_PACKAGES,omitempty"`
 	SUPPORTPORTALURL                               *string              `json:"SUPPORT_PORTAL_URL,omitempty"`
 	TELEMETRYURL                                   *string              `json:"TELEMETRY_URL,omitempty"`
 	TELEMETRYVERSION                               *int                 `json:"TELEMETRY_VERSION,omitempty"`
@@ -18083,10 +18140,21 @@ type NestedSoftwareCatalog struct {
 
 // NestedSoftwareTarget defines model for NestedSoftwareTarget.
 type NestedSoftwareTarget struct {
-	CpuFamily            string              `json:"cpu_family"`
-	CpuMicroarchitecture string              `json:"cpu_microarchitecture"`
-	Path                 string              `json:"path"`
-	Uuid                 *openapi_types.UUID `json:"uuid,omitempty"`
+	// Location Target location (CVMFS path, download URL, etc.)
+	Location *string `json:"location,omitempty"`
+
+	// Metadata Target-specific metadata (build options, system requirements, etc.)
+	Metadata interface{} `json:"metadata,omitempty"`
+
+	// TargetName Target identifier (x86_64/generic, linux, variant_name, etc.)
+	TargetName *string `json:"target_name,omitempty"`
+
+	// TargetSubtype Target subtype (microarchitecture, distribution, etc.)
+	TargetSubtype *string `json:"target_subtype,omitempty"`
+
+	// TargetType Type of target (architecture, platform, variant, etc.)
+	TargetType *string             `json:"target_type,omitempty"`
+	Uuid       *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // NestedSoftwareVersion defines model for NestedSoftwareVersion.
@@ -18196,10 +18264,14 @@ type Offering struct {
 	BackendMetadata interface{}             `json:"backend_metadata,omitempty"`
 
 	// Billable Purchase and usage is invoiced.
-	Billable      *bool               `json:"billable,omitempty"`
-	Category      *string             `json:"category,omitempty"`
-	CategoryTitle *string             `json:"category_title,omitempty"`
-	CategoryUuid  *openapi_types.UUID `json:"category_uuid,omitempty"`
+	Billable *bool `json:"billable,omitempty"`
+
+	// BillingTypeClassification Classify offering components by billing type.
+	// Returns 'limit_only', 'usage_only', or 'mixed'.
+	BillingTypeClassification *string             `json:"billing_type_classification,omitempty"`
+	Category                  *string             `json:"category,omitempty"`
+	CategoryTitle             *string             `json:"category_title,omitempty"`
+	CategoryUuid              *openapi_types.UUID `json:"category_uuid,omitempty"`
 
 	// CitationCount Number of citations of a DOI
 	CitationCount             *int                  `json:"citation_count,omitempty"`
@@ -22969,24 +23041,48 @@ type PatchedSlurmPeriodicUsagePolicyRequest struct {
 
 // PatchedSoftwareCatalogRequest defines model for PatchedSoftwareCatalogRequest.
 type PatchedSoftwareCatalogRequest struct {
-	Description *string `json:"description,omitempty"`
+	// AutoUpdateEnabled Whether to automatically update this catalog via scheduled tasks
+	AutoUpdateEnabled *bool `json:"auto_update_enabled,omitempty"`
 
-	// Name Catalog name (e.g., EESSI)
+	// CatalogType Type of software catalog
+	CatalogType *CatalogTypeEnum `json:"catalog_type,omitempty"`
+	Description *string          `json:"description,omitempty"`
+
+	// Metadata Catalog-specific metadata (architecture maps, API endpoints, etc.)
+	Metadata interface{} `json:"metadata,omitempty"`
+
+	// Name Catalog name (e.g., EESSI, Spack)
 	Name *string `json:"name,omitempty"`
 
 	// SourceUrl Catalog source URL
-	SourceUrl *string `json:"source_url,omitempty"`
+	SourceUrl    *string `json:"source_url,omitempty"`
+	UpdateErrors *string `json:"update_errors,omitempty"`
 
-	// Version Catalog version (e.g., 2023.06)
+	// Version Catalog version (e.g., 2023.06, 0.21.0)
 	Version *string `json:"version,omitempty"`
 }
 
 // PatchedSoftwarePackageRequest defines model for PatchedSoftwarePackageRequest.
 type PatchedSoftwarePackageRequest struct {
-	Catalog     *string `json:"catalog,omitempty"`
-	Description *string `json:"description,omitempty"`
-	Homepage    *string `json:"homepage,omitempty"`
-	Name        *string `json:"name,omitempty"`
+	Catalog *string `json:"catalog,omitempty"`
+
+	// Categories Package categories (e.g., ['bio', 'hpc', 'build-tools'])
+	Categories  interface{} `json:"categories,omitempty"`
+	Description *string     `json:"description,omitempty"`
+	Homepage    *string     `json:"homepage"`
+
+	// IsExtension Whether this package is an extension of another package
+	IsExtension *bool `json:"is_extension,omitempty"`
+
+	// Licenses Software licenses (e.g., ['GPL-3.0', 'MIT'])
+	Licenses interface{} `json:"licenses,omitempty"`
+
+	// Maintainers Package maintainers
+	Maintainers interface{} `json:"maintainers,omitempty"`
+	Name        *string     `json:"name,omitempty"`
+
+	// ParentSoftware Parent package for extensions (e.g., Python package within Python)
+	ParentSoftware *string `json:"parent_software"`
 }
 
 // PatchedTemplateRequest defines model for PatchedTemplateRequest.
@@ -24208,10 +24304,14 @@ type ProviderOfferingDetails struct {
 	BackendMetadata interface{}             `json:"backend_metadata,omitempty"`
 
 	// Billable Purchase and usage is invoiced.
-	Billable      *bool               `json:"billable,omitempty"`
-	Category      *string             `json:"category,omitempty"`
-	CategoryTitle *string             `json:"category_title,omitempty"`
-	CategoryUuid  *openapi_types.UUID `json:"category_uuid,omitempty"`
+	Billable *bool `json:"billable,omitempty"`
+
+	// BillingTypeClassification Classify offering components by billing type.
+	// Returns 'limit_only', 'usage_only', or 'mixed'.
+	BillingTypeClassification *string             `json:"billing_type_classification,omitempty"`
+	Category                  *string             `json:"category,omitempty"`
+	CategoryTitle             *string             `json:"category_title,omitempty"`
+	CategoryUuid              *openapi_types.UUID `json:"category_uuid,omitempty"`
 
 	// CitationCount Number of citations of a DOI
 	CitationCount          *int                             `json:"citation_count,omitempty"`
@@ -24461,10 +24561,14 @@ type PublicOfferingDetails struct {
 	BackendMetadata interface{}             `json:"backend_metadata,omitempty"`
 
 	// Billable Purchase and usage is invoiced.
-	Billable      *bool               `json:"billable,omitempty"`
-	Category      *string             `json:"category,omitempty"`
-	CategoryTitle *string             `json:"category_title,omitempty"`
-	CategoryUuid  *openapi_types.UUID `json:"category_uuid,omitempty"`
+	Billable *bool `json:"billable,omitempty"`
+
+	// BillingTypeClassification Classify offering components by billing type.
+	// Returns 'limit_only', 'usage_only', or 'mixed'.
+	BillingTypeClassification *string             `json:"billing_type_classification,omitempty"`
+	Category                  *string             `json:"category,omitempty"`
+	CategoryTitle             *string             `json:"category_title,omitempty"`
+	CategoryUuid              *openapi_types.UUID `json:"category_uuid,omitempty"`
 
 	// CitationCount Number of citations of a DOI
 	CitationCount          *int                           `json:"citation_count,omitempty"`
@@ -27178,34 +27282,55 @@ type SmaxWebHookReceiverRequest struct {
 
 // SoftwareCatalog defines model for SoftwareCatalog.
 type SoftwareCatalog struct {
-	Created     *time.Time `json:"created,omitempty"`
-	Description *string    `json:"description,omitempty"`
-	Modified    *time.Time `json:"modified,omitempty"`
+	// AutoUpdateEnabled Whether to automatically update this catalog via scheduled tasks
+	AutoUpdateEnabled *bool `json:"auto_update_enabled,omitempty"`
 
-	// Name Catalog name (e.g., EESSI)
+	// CatalogType Type of software catalog
+	CatalogType          *CatalogTypeEnum `json:"catalog_type,omitempty"`
+	CatalogTypeDisplay   *string          `json:"catalog_type_display,omitempty"`
+	Created              *time.Time       `json:"created,omitempty"`
+	Description          *string          `json:"description,omitempty"`
+	LastSuccessfulUpdate *time.Time       `json:"last_successful_update"`
+	LastUpdateAttempt    *time.Time       `json:"last_update_attempt"`
+
+	// Metadata Catalog-specific metadata (architecture maps, API endpoints, etc.)
+	Metadata interface{} `json:"metadata,omitempty"`
+	Modified *time.Time  `json:"modified,omitempty"`
+
+	// Name Catalog name (e.g., EESSI, Spack)
 	Name         string `json:"name"`
 	PackageCount *int   `json:"package_count,omitempty"`
 
 	// SourceUrl Catalog source URL
-	SourceUrl *string             `json:"source_url,omitempty"`
-	Url       *string             `json:"url,omitempty"`
-	Uuid      *openapi_types.UUID `json:"uuid,omitempty"`
+	SourceUrl    *string             `json:"source_url,omitempty"`
+	UpdateErrors *string             `json:"update_errors,omitempty"`
+	Url          *string             `json:"url,omitempty"`
+	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
 
-	// Version Catalog version (e.g., 2023.06)
+	// Version Catalog version (e.g., 2023.06, 0.21.0)
 	Version string `json:"version"`
 }
 
 // SoftwareCatalogRequest defines model for SoftwareCatalogRequest.
 type SoftwareCatalogRequest struct {
-	Description *string `json:"description,omitempty"`
+	// AutoUpdateEnabled Whether to automatically update this catalog via scheduled tasks
+	AutoUpdateEnabled *bool `json:"auto_update_enabled,omitempty"`
 
-	// Name Catalog name (e.g., EESSI)
+	// CatalogType Type of software catalog
+	CatalogType *CatalogTypeEnum `json:"catalog_type,omitempty"`
+	Description *string          `json:"description,omitempty"`
+
+	// Metadata Catalog-specific metadata (architecture maps, API endpoints, etc.)
+	Metadata interface{} `json:"metadata,omitempty"`
+
+	// Name Catalog name (e.g., EESSI, Spack)
 	Name string `json:"name"`
 
 	// SourceUrl Catalog source URL
-	SourceUrl *string `json:"source_url,omitempty"`
+	SourceUrl    *string `json:"source_url,omitempty"`
+	UpdateErrors *string `json:"update_errors,omitempty"`
 
-	// Version Catalog version (e.g., 2023.06)
+	// Version Catalog version (e.g., 2023.06, 0.21.0)
 	Version string `json:"version"`
 }
 
@@ -27216,14 +27341,32 @@ type SoftwareCatalogUUID struct {
 
 // SoftwarePackage defines model for SoftwarePackage.
 type SoftwarePackage struct {
-	Catalog        string                   `json:"catalog"`
-	CatalogName    *string                  `json:"catalog_name,omitempty"`
-	CatalogVersion *string                  `json:"catalog_version,omitempty"`
-	Created        *time.Time               `json:"created,omitempty"`
-	Description    *string                  `json:"description,omitempty"`
-	Homepage       *string                  `json:"homepage,omitempty"`
-	Modified       *time.Time               `json:"modified,omitempty"`
-	Name           string                   `json:"name"`
+	Catalog            string  `json:"catalog"`
+	CatalogName        *string `json:"catalog_name,omitempty"`
+	CatalogType        *string `json:"catalog_type,omitempty"`
+	CatalogTypeDisplay *string `json:"catalog_type_display,omitempty"`
+	CatalogVersion     *string `json:"catalog_version,omitempty"`
+
+	// Categories Package categories (e.g., ['bio', 'hpc', 'build-tools'])
+	Categories     interface{} `json:"categories,omitempty"`
+	Created        *time.Time  `json:"created,omitempty"`
+	Description    *string     `json:"description,omitempty"`
+	ExtensionCount *int        `json:"extension_count,omitempty"`
+	Homepage       *string     `json:"homepage"`
+
+	// IsExtension Whether this package is an extension of another package
+	IsExtension *bool `json:"is_extension,omitempty"`
+
+	// Licenses Software licenses (e.g., ['GPL-3.0', 'MIT'])
+	Licenses interface{} `json:"licenses,omitempty"`
+
+	// Maintainers Package maintainers
+	Maintainers interface{} `json:"maintainers,omitempty"`
+	Modified    *time.Time  `json:"modified,omitempty"`
+	Name        string      `json:"name"`
+
+	// ParentSoftware Parent package for extensions (e.g., Python package within Python)
+	ParentSoftware *string                  `json:"parent_software"`
 	Url            *string                  `json:"url,omitempty"`
 	Uuid           *openapi_types.UUID      `json:"uuid,omitempty"`
 	VersionCount   *int                     `json:"version_count,omitempty"`
@@ -27232,26 +27375,60 @@ type SoftwarePackage struct {
 
 // SoftwarePackageRequest defines model for SoftwarePackageRequest.
 type SoftwarePackageRequest struct {
-	Catalog     string  `json:"catalog"`
-	Description *string `json:"description,omitempty"`
-	Homepage    *string `json:"homepage,omitempty"`
-	Name        string  `json:"name"`
+	Catalog string `json:"catalog"`
+
+	// Categories Package categories (e.g., ['bio', 'hpc', 'build-tools'])
+	Categories  interface{} `json:"categories,omitempty"`
+	Description *string     `json:"description,omitempty"`
+	Homepage    *string     `json:"homepage"`
+
+	// IsExtension Whether this package is an extension of another package
+	IsExtension *bool `json:"is_extension,omitempty"`
+
+	// Licenses Software licenses (e.g., ['GPL-3.0', 'MIT'])
+	Licenses interface{} `json:"licenses,omitempty"`
+
+	// Maintainers Package maintainers
+	Maintainers interface{} `json:"maintainers,omitempty"`
+	Name        string      `json:"name"`
+
+	// ParentSoftware Parent package for extensions (e.g., Python package within Python)
+	ParentSoftware *string `json:"parent_software"`
 }
 
 // SoftwareTarget defines model for SoftwareTarget.
 type SoftwareTarget struct {
-	CpuFamily            *string             `json:"cpu_family,omitempty"`
-	CpuMicroarchitecture *string             `json:"cpu_microarchitecture,omitempty"`
-	Created              *time.Time          `json:"created,omitempty"`
-	Modified             *time.Time          `json:"modified,omitempty"`
-	Path                 *string             `json:"path,omitempty"`
-	Url                  *string             `json:"url,omitempty"`
-	Uuid                 *openapi_types.UUID `json:"uuid,omitempty"`
+	Created *time.Time `json:"created,omitempty"`
+
+	// Location Target location (CVMFS path, download URL, etc.)
+	Location *string `json:"location,omitempty"`
+
+	// Metadata Target-specific metadata (build options, system requirements, etc.)
+	Metadata interface{} `json:"metadata,omitempty"`
+	Modified *time.Time  `json:"modified,omitempty"`
+
+	// TargetName Target identifier (x86_64/generic, linux, variant_name, etc.)
+	TargetName *string `json:"target_name,omitempty"`
+
+	// TargetSubtype Target subtype (microarchitecture, distribution, etc.)
+	TargetSubtype *string `json:"target_subtype,omitempty"`
+
+	// TargetType Type of target (architecture, platform, variant, etc.)
+	TargetType *string             `json:"target_type,omitempty"`
+	Url        *string             `json:"url,omitempty"`
+	Uuid       *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // SoftwareVersion defines model for SoftwareVersion.
 type SoftwareVersion struct {
-	Created     *time.Time          `json:"created,omitempty"`
+	CatalogType *string    `json:"catalog_type,omitempty"`
+	Created     *time.Time `json:"created,omitempty"`
+
+	// Dependencies Package dependencies (format varies by catalog type)
+	Dependencies interface{} `json:"dependencies,omitempty"`
+
+	// Metadata Version-specific metadata (toolchains, build info, modules, etc.)
+	Metadata    interface{}         `json:"metadata,omitempty"`
 	Modified    *time.Time          `json:"modified,omitempty"`
 	PackageName *string             `json:"package_name,omitempty"`
 	ReleaseDate *openapi_types.Date `json:"release_date"`
