@@ -759,6 +759,8 @@ const (
 	EventMetadataResponseEventGroupsUserDeletionSucceeded                            EventMetadataResponseEventGroups = "user_deletion_succeeded"
 	EventMetadataResponseEventGroupsUserDetailsUpdateSucceeded                       EventMetadataResponseEventGroups = "user_details_update_succeeded"
 	EventMetadataResponseEventGroupsUserHasBeenCreatedByStaff                        EventMetadataResponseEventGroups = "user_has_been_created_by_staff"
+	EventMetadataResponseEventGroupsUserInvitationDeleted                            EventMetadataResponseEventGroups = "user_invitation_deleted"
+	EventMetadataResponseEventGroupsUserInvitationUpdated                            EventMetadataResponseEventGroups = "user_invitation_updated"
 	EventMetadataResponseEventGroupsUserPasswordUpdated                              EventMetadataResponseEventGroups = "user_password_updated"
 	EventMetadataResponseEventGroupsUserPasswordUpdatedByStaff                       EventMetadataResponseEventGroups = "user_password_updated_by_staff"
 	EventMetadataResponseEventGroupsUserUpdateSucceeded                              EventMetadataResponseEventGroups = "user_update_succeeded"
@@ -1021,6 +1023,8 @@ const (
 	EventTypesEnumUserDeletionSucceeded                            EventTypesEnum = "user_deletion_succeeded"
 	EventTypesEnumUserDetailsUpdateSucceeded                       EventTypesEnum = "user_details_update_succeeded"
 	EventTypesEnumUserHasBeenCreatedByStaff                        EventTypesEnum = "user_has_been_created_by_staff"
+	EventTypesEnumUserInvitationDeleted                            EventTypesEnum = "user_invitation_deleted"
+	EventTypesEnumUserInvitationUpdated                            EventTypesEnum = "user_invitation_updated"
 	EventTypesEnumUserPasswordUpdated                              EventTypesEnum = "user_password_updated"
 	EventTypesEnumUserPasswordUpdatedByStaff                       EventTypesEnum = "user_password_updated_by_staff"
 	EventTypesEnumUserUpdateSucceeded                              EventTypesEnum = "user_update_succeeded"
@@ -16305,6 +16309,20 @@ type InvitationState string
 // InvitationStateEnum defines model for InvitationStateEnum.
 type InvitationStateEnum string
 
+// InvitationUpdate defines model for InvitationUpdate.
+type InvitationUpdate struct {
+	// Email Invitation link will be sent to this email. Note that user can accept invitation with different email.
+	Email openapi_types.Email `json:"email"`
+	Role  *openapi_types.UUID `json:"role,omitempty"`
+}
+
+// InvitationUpdateRequest defines model for InvitationUpdateRequest.
+type InvitationUpdateRequest struct {
+	// Email Invitation link will be sent to this email. Note that user can accept invitation with different email.
+	Email openapi_types.Email `json:"email"`
+	Role  *openapi_types.UUID `json:"role,omitempty"`
+}
+
 // Invoice defines model for Invoice.
 type Invoice struct {
 	BackendId       *string             `json:"backend_id,omitempty"`
@@ -21934,6 +21952,13 @@ type PatchedIdentityProviderRequest struct {
 	// UserField The field in Waldur User model to be used for looking up the user
 	UserField *string `json:"user_field,omitempty"`
 	VerifySsl *bool   `json:"verify_ssl,omitempty"`
+}
+
+// PatchedInvitationUpdateRequest defines model for PatchedInvitationUpdateRequest.
+type PatchedInvitationUpdateRequest struct {
+	// Email Invitation link will be sent to this email. Note that user can accept invitation with different email.
+	Email *openapi_types.Email `json:"email,omitempty"`
+	Role  *openapi_types.UUID  `json:"role,omitempty"`
 }
 
 // PatchedInvoiceItemUpdateRequest defines model for PatchedInvoiceItemUpdateRequest.
@@ -30563,6 +30588,7 @@ type CustomerCreditsListParams struct {
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Query    *string   `form:"query,omitempty" json:"query,omitempty"`
 }
 
 // CustomerCreditsListParamsO defines parameters for CustomerCreditsList.
@@ -30583,6 +30609,7 @@ type CustomerCreditsCountParams struct {
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Query    *string   `form:"query,omitempty" json:"query,omitempty"`
 }
 
 // CustomerCreditsCountParamsO defines parameters for CustomerCreditsCount.
@@ -30603,6 +30630,7 @@ type CustomerCreditsConsumptionsListParams struct {
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Query    *string   `form:"query,omitempty" json:"query,omitempty"`
 }
 
 // CustomerCreditsConsumptionsListParamsO defines parameters for CustomerCreditsConsumptionsList.
@@ -41833,6 +41861,7 @@ type ProjectCreditsListParams struct {
 	PageSize    *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
 	ProjectName *string             `form:"project_name,omitempty" json:"project_name,omitempty"`
 	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	Query       *string             `form:"query,omitempty" json:"query,omitempty"`
 }
 
 // ProjectCreditsListParamsO defines parameters for ProjectCreditsList.
@@ -41855,6 +41884,7 @@ type ProjectCreditsCountParams struct {
 	PageSize    *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
 	ProjectName *string             `form:"project_name,omitempty" json:"project_name,omitempty"`
 	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	Query       *string             `form:"query,omitempty" json:"query,omitempty"`
 }
 
 // ProjectCreditsCountParamsO defines parameters for ProjectCreditsCount.
@@ -47966,6 +47996,12 @@ type UserInvitationsApproveJSONRequestBody = TokenRequest
 
 // UserInvitationsRejectJSONRequestBody defines body for UserInvitationsReject for application/json ContentType.
 type UserInvitationsRejectJSONRequestBody = TokenRequest
+
+// UserInvitationsPartialUpdateJSONRequestBody defines body for UserInvitationsPartialUpdate for application/json ContentType.
+type UserInvitationsPartialUpdateJSONRequestBody = PatchedInvitationUpdateRequest
+
+// UserInvitationsUpdateJSONRequestBody defines body for UserInvitationsUpdate for application/json ContentType.
+type UserInvitationsUpdateJSONRequestBody = InvitationUpdateRequest
 
 // UserPermissionRequestsApproveJSONRequestBody defines body for UserPermissionRequestsApprove for application/json ContentType.
 type UserPermissionRequestsApproveJSONRequestBody = ReviewCommentRequest
@@ -60533,8 +60569,21 @@ type ClientInterface interface {
 
 	UserInvitationsReject(ctx context.Context, body UserInvitationsRejectJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// UserInvitationsDestroy request
+	UserInvitationsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// UserInvitationsRetrieve request
 	UserInvitationsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// UserInvitationsPartialUpdateWithBody request with any body
+	UserInvitationsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	UserInvitationsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body UserInvitationsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// UserInvitationsUpdateWithBody request with any body
+	UserInvitationsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	UserInvitationsUpdate(ctx context.Context, uuid openapi_types.UUID, body UserInvitationsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UserInvitationsAccept request
 	UserInvitationsAccept(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -88711,8 +88760,68 @@ func (c *Client) UserInvitationsReject(ctx context.Context, body UserInvitations
 	return c.Client.Do(req)
 }
 
+func (c *Client) UserInvitationsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUserInvitationsDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) UserInvitationsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewUserInvitationsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UserInvitationsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUserInvitationsPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UserInvitationsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body UserInvitationsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUserInvitationsPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UserInvitationsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUserInvitationsUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UserInvitationsUpdate(ctx context.Context, uuid openapi_types.UUID, body UserInvitationsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUserInvitationsUpdateRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -108443,6 +108552,22 @@ func NewCustomerCreditsListRequest(server string, params *CustomerCreditsListPar
 
 		}
 
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "query", runtime.ParamLocationQuery, *params.Query); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		queryURL.RawQuery = queryValues.Encode()
 	}
 
@@ -108559,6 +108684,22 @@ func NewCustomerCreditsCountRequest(server string, params *CustomerCreditsCountP
 		if params.PageSize != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "query", runtime.ParamLocationQuery, *params.Query); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -108991,6 +109132,22 @@ func NewCustomerCreditsConsumptionsListRequest(server string, uuid openapi_types
 		if params.PageSize != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "query", runtime.ParamLocationQuery, *params.Query); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -204609,6 +204766,22 @@ func NewProjectCreditsListRequest(server string, params *ProjectCreditsListParam
 
 		}
 
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "query", runtime.ParamLocationQuery, *params.Query); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		queryURL.RawQuery = queryValues.Encode()
 	}
 
@@ -204757,6 +204930,22 @@ func NewProjectCreditsCountRequest(server string, params *ProjectCreditsCountPar
 		if params.ProjectUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_uuid", runtime.ParamLocationQuery, *params.ProjectUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "query", runtime.ParamLocationQuery, *params.Query); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -235050,6 +235239,40 @@ func NewUserInvitationsRejectRequestWithBody(server string, contentType string, 
 	return req, nil
 }
 
+// NewUserInvitationsDestroyRequest generates requests for UserInvitationsDestroy
+func NewUserInvitationsDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/user-invitations/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewUserInvitationsRetrieveRequest generates requests for UserInvitationsRetrieve
 func NewUserInvitationsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -235080,6 +235303,100 @@ func NewUserInvitationsRetrieveRequest(server string, uuid openapi_types.UUID) (
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewUserInvitationsPartialUpdateRequest calls the generic UserInvitationsPartialUpdate builder with application/json body
+func NewUserInvitationsPartialUpdateRequest(server string, uuid openapi_types.UUID, body UserInvitationsPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewUserInvitationsPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewUserInvitationsPartialUpdateRequestWithBody generates requests for UserInvitationsPartialUpdate with any type of body
+func NewUserInvitationsPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/user-invitations/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewUserInvitationsUpdateRequest calls the generic UserInvitationsUpdate builder with application/json body
+func NewUserInvitationsUpdateRequest(server string, uuid openapi_types.UUID, body UserInvitationsUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewUserInvitationsUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewUserInvitationsUpdateRequestWithBody generates requests for UserInvitationsUpdate with any type of body
+func NewUserInvitationsUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/user-invitations/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -249404,8 +249721,21 @@ type ClientWithResponsesInterface interface {
 
 	UserInvitationsRejectWithResponse(ctx context.Context, body UserInvitationsRejectJSONRequestBody, reqEditors ...RequestEditorFn) (*UserInvitationsRejectResponse, error)
 
+	// UserInvitationsDestroyWithResponse request
+	UserInvitationsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*UserInvitationsDestroyResponse, error)
+
 	// UserInvitationsRetrieveWithResponse request
 	UserInvitationsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*UserInvitationsRetrieveResponse, error)
+
+	// UserInvitationsPartialUpdateWithBodyWithResponse request with any body
+	UserInvitationsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UserInvitationsPartialUpdateResponse, error)
+
+	UserInvitationsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body UserInvitationsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*UserInvitationsPartialUpdateResponse, error)
+
+	// UserInvitationsUpdateWithBodyWithResponse request with any body
+	UserInvitationsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UserInvitationsUpdateResponse, error)
+
+	UserInvitationsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body UserInvitationsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*UserInvitationsUpdateResponse, error)
 
 	// UserInvitationsAcceptWithResponse request
 	UserInvitationsAcceptWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*UserInvitationsAcceptResponse, error)
@@ -286951,6 +287281,27 @@ func (r UserInvitationsRejectResponse) StatusCode() int {
 	return 0
 }
 
+type UserInvitationsDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r UserInvitationsDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r UserInvitationsDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type UserInvitationsRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -286967,6 +287318,50 @@ func (r UserInvitationsRetrieveResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r UserInvitationsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type UserInvitationsPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *InvitationUpdate
+}
+
+// Status returns HTTPResponse.Status
+func (r UserInvitationsPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r UserInvitationsPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type UserInvitationsUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *InvitationUpdate
+}
+
+// Status returns HTTPResponse.Status
+func (r UserInvitationsUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r UserInvitationsUpdateResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -309013,6 +309408,15 @@ func (c *ClientWithResponses) UserInvitationsRejectWithResponse(ctx context.Cont
 	return ParseUserInvitationsRejectResponse(rsp)
 }
 
+// UserInvitationsDestroyWithResponse request returning *UserInvitationsDestroyResponse
+func (c *ClientWithResponses) UserInvitationsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*UserInvitationsDestroyResponse, error) {
+	rsp, err := c.UserInvitationsDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUserInvitationsDestroyResponse(rsp)
+}
+
 // UserInvitationsRetrieveWithResponse request returning *UserInvitationsRetrieveResponse
 func (c *ClientWithResponses) UserInvitationsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*UserInvitationsRetrieveResponse, error) {
 	rsp, err := c.UserInvitationsRetrieve(ctx, uuid, reqEditors...)
@@ -309020,6 +309424,40 @@ func (c *ClientWithResponses) UserInvitationsRetrieveWithResponse(ctx context.Co
 		return nil, err
 	}
 	return ParseUserInvitationsRetrieveResponse(rsp)
+}
+
+// UserInvitationsPartialUpdateWithBodyWithResponse request with arbitrary body returning *UserInvitationsPartialUpdateResponse
+func (c *ClientWithResponses) UserInvitationsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UserInvitationsPartialUpdateResponse, error) {
+	rsp, err := c.UserInvitationsPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUserInvitationsPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) UserInvitationsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body UserInvitationsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*UserInvitationsPartialUpdateResponse, error) {
+	rsp, err := c.UserInvitationsPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUserInvitationsPartialUpdateResponse(rsp)
+}
+
+// UserInvitationsUpdateWithBodyWithResponse request with arbitrary body returning *UserInvitationsUpdateResponse
+func (c *ClientWithResponses) UserInvitationsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UserInvitationsUpdateResponse, error) {
+	rsp, err := c.UserInvitationsUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUserInvitationsUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) UserInvitationsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body UserInvitationsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*UserInvitationsUpdateResponse, error) {
+	rsp, err := c.UserInvitationsUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUserInvitationsUpdateResponse(rsp)
 }
 
 // UserInvitationsAcceptWithResponse request returning *UserInvitationsAcceptResponse
@@ -348763,6 +349201,22 @@ func ParseUserInvitationsRejectResponse(rsp *http.Response) (*UserInvitationsRej
 	return response, nil
 }
 
+// ParseUserInvitationsDestroyResponse parses an HTTP response from a UserInvitationsDestroyWithResponse call
+func ParseUserInvitationsDestroyResponse(rsp *http.Response) (*UserInvitationsDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &UserInvitationsDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
 // ParseUserInvitationsRetrieveResponse parses an HTTP response from a UserInvitationsRetrieveWithResponse call
 func ParseUserInvitationsRetrieveResponse(rsp *http.Response) (*UserInvitationsRetrieveResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -348779,6 +349233,58 @@ func ParseUserInvitationsRetrieveResponse(rsp *http.Response) (*UserInvitationsR
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest Invitation
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseUserInvitationsPartialUpdateResponse parses an HTTP response from a UserInvitationsPartialUpdateWithResponse call
+func ParseUserInvitationsPartialUpdateResponse(rsp *http.Response) (*UserInvitationsPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &UserInvitationsPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest InvitationUpdate
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseUserInvitationsUpdateResponse parses an HTTP response from a UserInvitationsUpdateWithResponse call
+func ParseUserInvitationsUpdateResponse(rsp *http.Response) (*UserInvitationsUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &UserInvitationsUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest InvitationUpdate
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
