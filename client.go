@@ -26416,11 +26416,47 @@ type ResourceReallocateTargetRequest struct {
 
 // ResourceRenewRequest defines model for ResourceRenewRequest.
 type ResourceRenewRequest struct {
+	// Attachment Optional PDF attachment for the renewal request.
+	Attachment *openapi_types.File `json:"attachment,omitempty"`
+
 	// ExtensionMonths Number of months to extend the subscription by.
 	ExtensionMonths int `json:"extension_months"`
 
 	// Limits Optional new limits for the resource. Supports upgrades only.
 	Limits *map[string]int `json:"limits,omitempty"`
+
+	// RequestComment Optional comment for the renewal request.
+	RequestComment *string `json:"request_comment,omitempty"`
+}
+
+// ResourceRenewRequestForm defines model for ResourceRenewRequestForm.
+type ResourceRenewRequestForm struct {
+	// Attachment Optional PDF attachment for the renewal request.
+	Attachment *openapi_types.File `json:"attachment,omitempty"`
+
+	// ExtensionMonths Number of months to extend the subscription by.
+	ExtensionMonths int `json:"extension_months"`
+
+	// Limits Optional new limits for the resource. Supports upgrades only.
+	Limits *map[string]int `json:"limits,omitempty"`
+
+	// RequestComment Optional comment for the renewal request.
+	RequestComment *string `json:"request_comment,omitempty"`
+}
+
+// ResourceRenewRequestMultipart defines model for ResourceRenewRequestMultipart.
+type ResourceRenewRequestMultipart struct {
+	// Attachment Optional PDF attachment for the renewal request.
+	Attachment *openapi_types.File `json:"attachment,omitempty"`
+
+	// ExtensionMonths Number of months to extend the subscription by.
+	ExtensionMonths int `json:"extension_months"`
+
+	// Limits Optional new limits for the resource. Supports upgrades only.
+	Limits *map[string]int `json:"limits,omitempty"`
+
+	// RequestComment Optional comment for the renewal request.
+	RequestComment *string `json:"request_comment,omitempty"`
 }
 
 // ResourceReportRequest defines model for ResourceReportRequest.
@@ -46980,6 +47016,12 @@ type MarketplaceResourcesReallocateLimitsJSONRequestBody = ResourceReallocateLim
 // MarketplaceResourcesRenewJSONRequestBody defines body for MarketplaceResourcesRenew for application/json ContentType.
 type MarketplaceResourcesRenewJSONRequestBody = ResourceRenewRequest
 
+// MarketplaceResourcesRenewFormdataRequestBody defines body for MarketplaceResourcesRenew for application/x-www-form-urlencoded ContentType.
+type MarketplaceResourcesRenewFormdataRequestBody = ResourceRenewRequestForm
+
+// MarketplaceResourcesRenewMultipartRequestBody defines body for MarketplaceResourcesRenew for multipart/form-data ContentType.
+type MarketplaceResourcesRenewMultipartRequestBody = ResourceRenewRequestMultipart
+
 // MarketplaceResourcesRestoreJSONRequestBody defines body for MarketplaceResourcesRestore for application/json ContentType.
 type MarketplaceResourcesRestoreJSONRequestBody = ResourceRequest
 
@@ -57175,6 +57217,8 @@ type ClientInterface interface {
 	MarketplaceResourcesRenewWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	MarketplaceResourcesRenew(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesRenewJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceResourcesRenewWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesRenewFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceResourcesRestoreWithBody request with any body
 	MarketplaceResourcesRestoreWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -73876,6 +73920,18 @@ func (c *Client) MarketplaceResourcesRenewWithBody(ctx context.Context, uuid ope
 
 func (c *Client) MarketplaceResourcesRenew(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesRenewJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceResourcesRenewRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceResourcesRenewWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesRenewFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourcesRenewRequestWithFormdataBody(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -158417,6 +158473,17 @@ func NewMarketplaceResourcesRenewRequest(server string, uuid openapi_types.UUID,
 	}
 	bodyReader = bytes.NewReader(buf)
 	return NewMarketplaceResourcesRenewRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceResourcesRenewRequestWithFormdataBody calls the generic MarketplaceResourcesRenew builder with application/x-www-form-urlencoded body
+func NewMarketplaceResourcesRenewRequestWithFormdataBody(server string, uuid openapi_types.UUID, body MarketplaceResourcesRenewFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewMarketplaceResourcesRenewRequestWithBody(server, uuid, "application/x-www-form-urlencoded", bodyReader)
 }
 
 // NewMarketplaceResourcesRenewRequestWithBody generates requests for MarketplaceResourcesRenew with any type of body
@@ -246328,6 +246395,8 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceResourcesRenewWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesRenewJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourcesRenewResponse, error)
 
+	MarketplaceResourcesRenewWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesRenewFormdataRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourcesRenewResponse, error)
+
 	// MarketplaceResourcesRestoreWithBodyWithResponse request with any body
 	MarketplaceResourcesRestoreWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourcesRestoreResponse, error)
 
@@ -298569,6 +298638,14 @@ func (c *ClientWithResponses) MarketplaceResourcesRenewWithBodyWithResponse(ctx 
 
 func (c *ClientWithResponses) MarketplaceResourcesRenewWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesRenewJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourcesRenewResponse, error) {
 	rsp, err := c.MarketplaceResourcesRenew(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourcesRenewResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceResourcesRenewWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesRenewFormdataRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourcesRenewResponse, error) {
+	rsp, err := c.MarketplaceResourcesRenewWithFormdataBody(ctx, uuid, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
