@@ -1870,12 +1870,12 @@ const (
 
 // Defines values for RobotAccountStates.
 const (
-	RobotAccountStatesN1 RobotAccountStates = 1
-	RobotAccountStatesN2 RobotAccountStates = 2
-	RobotAccountStatesN3 RobotAccountStates = 3
-	RobotAccountStatesN4 RobotAccountStates = 4
-	RobotAccountStatesN5 RobotAccountStates = 5
-	RobotAccountStatesN6 RobotAccountStates = 6
+	RobotAccountStatesCreating          RobotAccountStates = "Creating"
+	RobotAccountStatesDeleted           RobotAccountStates = "Deleted"
+	RobotAccountStatesError             RobotAccountStates = "Error"
+	RobotAccountStatesOK                RobotAccountStates = "OK"
+	RobotAccountStatesRequested         RobotAccountStates = "Requested"
+	RobotAccountStatesRequestedDeletion RobotAccountStates = "Requested deletion"
 )
 
 // Defines values for RoleType.
@@ -7284,9 +7284,9 @@ const (
 
 // Defines values for MarketplaceSiteAgentServicesCountParamsState.
 const (
-	N1 MarketplaceSiteAgentServicesCountParamsState = "1"
-	N2 MarketplaceSiteAgentServicesCountParamsState = "2"
-	N3 MarketplaceSiteAgentServicesCountParamsState = "3"
+	MarketplaceSiteAgentServicesCountParamsStateN1 MarketplaceSiteAgentServicesCountParamsState = "1"
+	MarketplaceSiteAgentServicesCountParamsStateN2 MarketplaceSiteAgentServicesCountParamsState = "2"
+	MarketplaceSiteAgentServicesCountParamsStateN3 MarketplaceSiteAgentServicesCountParamsState = "3"
 )
 
 // Defines values for MarketplaceSoftwareCatalogsListParamsO.
@@ -12015,14 +12015,14 @@ const (
 
 // Defines values for VmwareVirtualMachineCountParamsState.
 const (
-	VmwareVirtualMachineCountParamsStateCREATING          VmwareVirtualMachineCountParamsState = "CREATING"
-	VmwareVirtualMachineCountParamsStateCREATIONSCHEDULED VmwareVirtualMachineCountParamsState = "CREATION_SCHEDULED"
-	VmwareVirtualMachineCountParamsStateDELETING          VmwareVirtualMachineCountParamsState = "DELETING"
-	VmwareVirtualMachineCountParamsStateDELETIONSCHEDULED VmwareVirtualMachineCountParamsState = "DELETION_SCHEDULED"
-	VmwareVirtualMachineCountParamsStateERRED             VmwareVirtualMachineCountParamsState = "ERRED"
-	VmwareVirtualMachineCountParamsStateOK                VmwareVirtualMachineCountParamsState = "OK"
-	VmwareVirtualMachineCountParamsStateUPDATESCHEDULED   VmwareVirtualMachineCountParamsState = "UPDATE_SCHEDULED"
-	VmwareVirtualMachineCountParamsStateUPDATING          VmwareVirtualMachineCountParamsState = "UPDATING"
+	CREATING          VmwareVirtualMachineCountParamsState = "CREATING"
+	CREATIONSCHEDULED VmwareVirtualMachineCountParamsState = "CREATION_SCHEDULED"
+	DELETING          VmwareVirtualMachineCountParamsState = "DELETING"
+	DELETIONSCHEDULED VmwareVirtualMachineCountParamsState = "DELETION_SCHEDULED"
+	ERRED             VmwareVirtualMachineCountParamsState = "ERRED"
+	OK                VmwareVirtualMachineCountParamsState = "OK"
+	UPDATESCHEDULED   VmwareVirtualMachineCountParamsState = "UPDATE_SCHEDULED"
+	UPDATING          VmwareVirtualMachineCountParamsState = "UPDATING"
 )
 
 // Defines values for VmwareVirtualMachineRetrieveParamsField.
@@ -26731,7 +26731,7 @@ type RobotAccountRequest struct {
 }
 
 // RobotAccountStates defines model for RobotAccountStates.
-type RobotAccountStates int
+type RobotAccountStates string
 
 // RoleDescription defines model for RoleDescription.
 type RoleDescription struct {
