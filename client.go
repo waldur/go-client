@@ -5247,6 +5247,7 @@ const (
 	MarketplaceOrdersListParamsFieldOldCostEstimate            MarketplaceOrdersListParamsField = "old_cost_estimate"
 	MarketplaceOrdersListParamsFieldOldPlanName                MarketplaceOrdersListParamsField = "old_plan_name"
 	MarketplaceOrdersListParamsFieldOldPlanUuid                MarketplaceOrdersListParamsField = "old_plan_uuid"
+	MarketplaceOrdersListParamsFieldOrderSubtype               MarketplaceOrdersListParamsField = "order_subtype"
 	MarketplaceOrdersListParamsFieldOutput                     MarketplaceOrdersListParamsField = "output"
 	MarketplaceOrdersListParamsFieldPlan                       MarketplaceOrdersListParamsField = "plan"
 	MarketplaceOrdersListParamsFieldPlanDescription            MarketplaceOrdersListParamsField = "plan_description"
@@ -5391,6 +5392,7 @@ const (
 	MarketplaceOrdersRetrieveParamsFieldOldCostEstimate            MarketplaceOrdersRetrieveParamsField = "old_cost_estimate"
 	MarketplaceOrdersRetrieveParamsFieldOldPlanName                MarketplaceOrdersRetrieveParamsField = "old_plan_name"
 	MarketplaceOrdersRetrieveParamsFieldOldPlanUuid                MarketplaceOrdersRetrieveParamsField = "old_plan_uuid"
+	MarketplaceOrdersRetrieveParamsFieldOrderSubtype               MarketplaceOrdersRetrieveParamsField = "order_subtype"
 	MarketplaceOrdersRetrieveParamsFieldOutput                     MarketplaceOrdersRetrieveParamsField = "output"
 	MarketplaceOrdersRetrieveParamsFieldPlan                       MarketplaceOrdersRetrieveParamsField = "plan"
 	MarketplaceOrdersRetrieveParamsFieldPlanDescription            MarketplaceOrdersRetrieveParamsField = "plan_description"
@@ -6024,6 +6026,7 @@ const (
 	MarketplaceProviderOfferingsOrdersListParamsFieldOldCostEstimate            MarketplaceProviderOfferingsOrdersListParamsField = "old_cost_estimate"
 	MarketplaceProviderOfferingsOrdersListParamsFieldOldPlanName                MarketplaceProviderOfferingsOrdersListParamsField = "old_plan_name"
 	MarketplaceProviderOfferingsOrdersListParamsFieldOldPlanUuid                MarketplaceProviderOfferingsOrdersListParamsField = "old_plan_uuid"
+	MarketplaceProviderOfferingsOrdersListParamsFieldOrderSubtype               MarketplaceProviderOfferingsOrdersListParamsField = "order_subtype"
 	MarketplaceProviderOfferingsOrdersListParamsFieldOutput                     MarketplaceProviderOfferingsOrdersListParamsField = "output"
 	MarketplaceProviderOfferingsOrdersListParamsFieldPlan                       MarketplaceProviderOfferingsOrdersListParamsField = "plan"
 	MarketplaceProviderOfferingsOrdersListParamsFieldPlanDescription            MarketplaceProviderOfferingsOrdersListParamsField = "plan_description"
@@ -9731,6 +9734,7 @@ const (
 	PromotionsCampaignsOrdersListParamsFieldOldCostEstimate            PromotionsCampaignsOrdersListParamsField = "old_cost_estimate"
 	PromotionsCampaignsOrdersListParamsFieldOldPlanName                PromotionsCampaignsOrdersListParamsField = "old_plan_name"
 	PromotionsCampaignsOrdersListParamsFieldOldPlanUuid                PromotionsCampaignsOrdersListParamsField = "old_plan_uuid"
+	PromotionsCampaignsOrdersListParamsFieldOrderSubtype               PromotionsCampaignsOrdersListParamsField = "order_subtype"
 	PromotionsCampaignsOrdersListParamsFieldOutput                     PromotionsCampaignsOrdersListParamsField = "output"
 	PromotionsCampaignsOrdersListParamsFieldPlan                       PromotionsCampaignsOrdersListParamsField = "plan"
 	PromotionsCampaignsOrdersListParamsFieldPlanDescription            PromotionsCampaignsOrdersListParamsField = "plan_description"
@@ -21700,6 +21704,7 @@ type OrderDetails struct {
 	OldCostEstimate    *float64            `json:"old_cost_estimate,omitempty"`
 	OldPlanName        *string             `json:"old_plan_name"`
 	OldPlanUuid        *openapi_types.UUID `json:"old_plan_uuid"`
+	OrderSubtype       *string             `json:"order_subtype"`
 	Output             *string             `json:"output,omitempty"`
 	Plan               *string             `json:"plan,omitempty"`
 	PlanDescription    *string             `json:"plan_description"`
