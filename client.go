@@ -15792,6 +15792,198 @@ type EventTypesEnum string
 // ExecutionStateEnum defines model for ExecutionStateEnum.
 type ExecutionStateEnum string
 
+// ExportComponentData defines model for ExportComponentData.
+type ExportComponentData struct {
+	ArticleCode  string   `json:"article_code"`
+	BackendId    string   `json:"backend_id"`
+	BillingType  string   `json:"billing_type"`
+	Description  string   `json:"description"`
+	LimitAmount  *int     `json:"limit_amount"`
+	LimitPeriod  *string  `json:"limit_period"`
+	MeasuredUnit string   `json:"measured_unit"`
+	Name         string   `json:"name"`
+	Type         string   `json:"type"`
+	UnitFactor   *float64 `json:"unit_factor"`
+}
+
+// ExportComponentDataRequest defines model for ExportComponentDataRequest.
+type ExportComponentDataRequest struct {
+	ArticleCode  string   `json:"article_code"`
+	BackendId    string   `json:"backend_id"`
+	BillingType  string   `json:"billing_type"`
+	Description  string   `json:"description"`
+	LimitAmount  *int     `json:"limit_amount"`
+	LimitPeriod  *string  `json:"limit_period"`
+	MeasuredUnit string   `json:"measured_unit"`
+	Name         string   `json:"name"`
+	Type         string   `json:"type"`
+	UnitFactor   *float64 `json:"unit_factor"`
+}
+
+// ExportEndpointData defines model for ExportEndpointData.
+type ExportEndpointData struct {
+	Name string `json:"name"`
+	Url  string `json:"url"`
+}
+
+// ExportEndpointDataRequest defines model for ExportEndpointDataRequest.
+type ExportEndpointDataRequest struct {
+	Name string `json:"name"`
+	Url  string `json:"url"`
+}
+
+// ExportFileData defines model for ExportFileData.
+type ExportFileData struct {
+	ContentType string `json:"content_type"`
+	FileContent string `json:"file_content"`
+	Filename    string `json:"filename"`
+	Name        string `json:"name"`
+}
+
+// ExportFileDataRequest defines model for ExportFileDataRequest.
+type ExportFileDataRequest struct {
+	ContentType string `json:"content_type"`
+	FileContent string `json:"file_content"`
+	Filename    string `json:"filename"`
+	Name        string `json:"name"`
+}
+
+// ExportOfferingData defines model for ExportOfferingData.
+type ExportOfferingData struct {
+	AccessUrl        string      `json:"access_url"`
+	Attributes       interface{} `json:"attributes,omitempty"`
+	Billable         bool        `json:"billable"`
+	CategoryName     *string     `json:"category_name"`
+	Country          string      `json:"country"`
+	Description      string      `json:"description"`
+	FullDescription  string      `json:"full_description"`
+	GettingStarted   string      `json:"getting_started"`
+	IntegrationGuide string      `json:"integration_guide"`
+	Latitude         *float64    `json:"latitude"`
+	Longitude        *float64    `json:"longitude"`
+	Name             string      `json:"name"`
+	Options          interface{} `json:"options,omitempty"`
+	PausedReason     string      `json:"paused_reason"`
+	Shared           bool        `json:"shared"`
+	State            string      `json:"state"`
+	Type             string      `json:"type"`
+	VendorDetails    string      `json:"vendor_details"`
+}
+
+// ExportOfferingDataRequest defines model for ExportOfferingDataRequest.
+type ExportOfferingDataRequest struct {
+	AccessUrl        string      `json:"access_url"`
+	Attributes       interface{} `json:"attributes,omitempty"`
+	Billable         bool        `json:"billable"`
+	CategoryName     *string     `json:"category_name"`
+	Country          string      `json:"country"`
+	Description      string      `json:"description"`
+	FullDescription  string      `json:"full_description"`
+	GettingStarted   string      `json:"getting_started"`
+	IntegrationGuide string      `json:"integration_guide"`
+	Latitude         *float64    `json:"latitude"`
+	Longitude        *float64    `json:"longitude"`
+	Name             string      `json:"name"`
+	Options          interface{} `json:"options,omitempty"`
+	PausedReason     string      `json:"paused_reason"`
+	Shared           bool        `json:"shared"`
+	State            string      `json:"state"`
+	Type             string      `json:"type"`
+	VendorDetails    string      `json:"vendor_details"`
+}
+
+// ExportOrganizationGroupData defines model for ExportOrganizationGroupData.
+type ExportOrganizationGroupData struct {
+	Name       string  `json:"name"`
+	ParentName *string `json:"parent_name"`
+}
+
+// ExportOrganizationGroupDataRequest defines model for ExportOrganizationGroupDataRequest.
+type ExportOrganizationGroupDataRequest struct {
+	Name       string  `json:"name"`
+	ParentName *string `json:"parent_name"`
+}
+
+// ExportPlanComponentData defines model for ExportPlanComponentData.
+type ExportPlanComponentData struct {
+	Amount        int      `json:"amount"`
+	ComponentType *string  `json:"component_type"`
+	FuturePrice   *float64 `json:"future_price"`
+	Price         float64  `json:"price"`
+}
+
+// ExportPlanComponentDataRequest defines model for ExportPlanComponentDataRequest.
+type ExportPlanComponentDataRequest struct {
+	Amount        int      `json:"amount"`
+	ComponentType *string  `json:"component_type"`
+	FuturePrice   *float64 `json:"future_price"`
+	Price         float64  `json:"price"`
+}
+
+// ExportPlanData defines model for ExportPlanData.
+type ExportPlanData struct {
+	Archived    bool                      `json:"archived"`
+	ArticleCode string                    `json:"article_code"`
+	BackendId   string                    `json:"backend_id"`
+	Components  []ExportPlanComponentData `json:"components"`
+	Description string                    `json:"description"`
+	MaxAmount   *int                      `json:"max_amount"`
+	Name        string                    `json:"name"`
+	Unit        string                    `json:"unit"`
+	UnitPrice   float64                   `json:"unit_price"`
+}
+
+// ExportPlanDataRequest defines model for ExportPlanDataRequest.
+type ExportPlanDataRequest struct {
+	Archived    bool                             `json:"archived"`
+	ArticleCode string                           `json:"article_code"`
+	BackendId   string                           `json:"backend_id"`
+	Components  []ExportPlanComponentDataRequest `json:"components"`
+	Description string                           `json:"description"`
+	MaxAmount   *int                             `json:"max_amount"`
+	Name        string                           `json:"name"`
+	Unit        string                           `json:"unit"`
+	UnitPrice   float64                          `json:"unit_price"`
+}
+
+// ExportScreenshotData defines model for ExportScreenshotData.
+type ExportScreenshotData struct {
+	ContentType   string `json:"content_type"`
+	Description   string `json:"description"`
+	ImageContent  string `json:"image_content"`
+	ImageFilename string `json:"image_filename"`
+	Name          string `json:"name"`
+}
+
+// ExportScreenshotDataRequest defines model for ExportScreenshotDataRequest.
+type ExportScreenshotDataRequest struct {
+	ContentType   string `json:"content_type"`
+	Description   string `json:"description"`
+	ImageContent  string `json:"image_content"`
+	ImageFilename string `json:"image_filename"`
+	Name          string `json:"name"`
+}
+
+// ExportTermsOfServiceData defines model for ExportTermsOfServiceData.
+type ExportTermsOfServiceData struct {
+	GracePeriodDays    *int   `json:"grace_period_days"`
+	IsActive           bool   `json:"is_active"`
+	RequiresReconsent  bool   `json:"requires_reconsent"`
+	TermsOfService     string `json:"terms_of_service"`
+	TermsOfServiceLink string `json:"terms_of_service_link"`
+	Version            string `json:"version"`
+}
+
+// ExportTermsOfServiceDataRequest defines model for ExportTermsOfServiceDataRequest.
+type ExportTermsOfServiceDataRequest struct {
+	GracePeriodDays    *int   `json:"grace_period_days"`
+	IsActive           bool   `json:"is_active"`
+	RequiresReconsent  bool   `json:"requires_reconsent"`
+	TermsOfService     string `json:"terms_of_service"`
+	TermsOfServiceLink string `json:"terms_of_service_link"`
+	Version            string `json:"version"`
+}
+
 // ExternalLink defines model for ExternalLink.
 type ExternalLink struct {
 	Created     *time.Time          `json:"created,omitempty"`
@@ -18657,6 +18849,36 @@ type OfferingEstimatedCostPolicyRequest struct {
 	Scope              string      `json:"scope"`
 }
 
+// OfferingExportData defines model for OfferingExportData.
+type OfferingExportData struct {
+	Components         *[]ExportComponentData         `json:"components,omitempty"`
+	Endpoints          *[]ExportEndpointData          `json:"endpoints,omitempty"`
+	Files              *[]ExportFileData              `json:"files,omitempty"`
+	Offering           ExportOfferingData             `json:"offering"`
+	OrganizationGroups *[]ExportOrganizationGroupData `json:"organization_groups,omitempty"`
+	Plans              *[]ExportPlanData              `json:"plans,omitempty"`
+	PluginOptions      interface{}                    `json:"plugin_options,omitempty"`
+	ResourceOptions    interface{}                    `json:"resource_options,omitempty"`
+	Screenshots        *[]ExportScreenshotData        `json:"screenshots,omitempty"`
+	SecretOptions      interface{}                    `json:"secret_options,omitempty"`
+	TermsOfService     *[]ExportTermsOfServiceData    `json:"terms_of_service,omitempty"`
+}
+
+// OfferingExportDataRequest defines model for OfferingExportDataRequest.
+type OfferingExportDataRequest struct {
+	Components         *[]ExportComponentDataRequest         `json:"components,omitempty"`
+	Endpoints          *[]ExportEndpointDataRequest          `json:"endpoints,omitempty"`
+	Files              *[]ExportFileDataRequest              `json:"files,omitempty"`
+	Offering           ExportOfferingDataRequest             `json:"offering"`
+	OrganizationGroups *[]ExportOrganizationGroupDataRequest `json:"organization_groups,omitempty"`
+	Plans              *[]ExportPlanDataRequest              `json:"plans,omitempty"`
+	PluginOptions      interface{}                           `json:"plugin_options,omitempty"`
+	ResourceOptions    interface{}                           `json:"resource_options,omitempty"`
+	Screenshots        *[]ExportScreenshotDataRequest        `json:"screenshots,omitempty"`
+	SecretOptions      interface{}                           `json:"secret_options,omitempty"`
+	TermsOfService     *[]ExportTermsOfServiceDataRequest    `json:"terms_of_service,omitempty"`
+}
+
 // OfferingExportParametersRequest defines model for OfferingExportParametersRequest.
 type OfferingExportParametersRequest struct {
 	// IncludeAttributes Include offering attributes in export
@@ -18698,8 +18920,9 @@ type OfferingExportParametersRequest struct {
 
 // OfferingExportResponse defines model for OfferingExportResponse.
 type OfferingExportResponse struct {
-	ExportData      interface{} `json:"export_data"`
-	ExportTimestamp time.Time   `json:"export_timestamp"`
+	// ExportData Complete export data containing the offering structure
+	ExportData      OfferingExportData `json:"export_data"`
+	ExportTimestamp time.Time          `json:"export_timestamp"`
 
 	// ExportedComponents List of exported component types
 	ExportedComponents []string           `json:"exported_components"`
@@ -18796,7 +19019,7 @@ type OfferingImportParametersRequest struct {
 	ImportTermsOfService *bool `json:"import_terms_of_service,omitempty"`
 
 	// OfferingData The exported offering data to import
-	OfferingData interface{} `json:"offering_data"`
+	OfferingData OfferingExportDataRequest `json:"offering_data"`
 
 	// OverwriteExisting Overwrite existing offering if one with the same name exists
 	OverwriteExisting *bool `json:"overwrite_existing,omitempty"`
