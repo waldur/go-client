@@ -2109,6 +2109,7 @@ const (
 const (
 	Ariregister        ValidationMethodEnum = "ariregister"
 	Bolagsverket       ValidationMethodEnum = "bolagsverket"
+	Breg               ValidationMethodEnum = "breg"
 	Wirtschaftscompass ValidationMethodEnum = "wirtschaftscompass"
 )
 
@@ -14222,6 +14223,7 @@ type ConstanceSettings struct {
 	ONBOARDINGBOLAGSVERKETCLIENTID                 *string              `json:"ONBOARDING_BOLAGSVERKET_CLIENT_ID,omitempty"`
 	ONBOARDINGBOLAGSVERKETCLIENTSECRET             *string              `json:"ONBOARDING_BOLAGSVERKET_CLIENT_SECRET,omitempty"`
 	ONBOARDINGBOLAGSVERKETTOKENAPIURL              *string              `json:"ONBOARDING_BOLAGSVERKET_TOKEN_API_URL,omitempty"`
+	ONBOARDINGBREGAPIURL                           *string              `json:"ONBOARDING_BREG_API_URL,omitempty"`
 	ONBOARDINGCOUNTRY                              *string              `json:"ONBOARDING_COUNTRY,omitempty"`
 	ONBOARDINGVERIFICATIONEXPIRYHOURS              *int                 `json:"ONBOARDING_VERIFICATION_EXPIRY_HOURS,omitempty"`
 	ONBOARDINGWICOAPIURL                           *string              `json:"ONBOARDING_WICO_API_URL,omitempty"`
@@ -14394,6 +14396,7 @@ type ConstanceSettingsRequest struct {
 	ONBOARDINGBOLAGSVERKETCLIENTID                 *string              `json:"ONBOARDING_BOLAGSVERKET_CLIENT_ID,omitempty"`
 	ONBOARDINGBOLAGSVERKETCLIENTSECRET             *string              `json:"ONBOARDING_BOLAGSVERKET_CLIENT_SECRET,omitempty"`
 	ONBOARDINGBOLAGSVERKETTOKENAPIURL              *string              `json:"ONBOARDING_BOLAGSVERKET_TOKEN_API_URL,omitempty"`
+	ONBOARDINGBREGAPIURL                           *string              `json:"ONBOARDING_BREG_API_URL,omitempty"`
 	ONBOARDINGCOUNTRY                              *string              `json:"ONBOARDING_COUNTRY,omitempty"`
 	ONBOARDINGVERIFICATIONEXPIRYHOURS              *int                 `json:"ONBOARDING_VERIFICATION_EXPIRY_HOURS,omitempty"`
 	ONBOARDINGWICOAPIURL                           *string              `json:"ONBOARDING_WICO_API_URL,omitempty"`
@@ -14566,6 +14569,7 @@ type ConstanceSettingsRequestForm struct {
 	ONBOARDINGBOLAGSVERKETCLIENTID                 *string              `json:"ONBOARDING_BOLAGSVERKET_CLIENT_ID,omitempty"`
 	ONBOARDINGBOLAGSVERKETCLIENTSECRET             *string              `json:"ONBOARDING_BOLAGSVERKET_CLIENT_SECRET,omitempty"`
 	ONBOARDINGBOLAGSVERKETTOKENAPIURL              *string              `json:"ONBOARDING_BOLAGSVERKET_TOKEN_API_URL,omitempty"`
+	ONBOARDINGBREGAPIURL                           *string              `json:"ONBOARDING_BREG_API_URL,omitempty"`
 	ONBOARDINGCOUNTRY                              *string              `json:"ONBOARDING_COUNTRY,omitempty"`
 	ONBOARDINGVERIFICATIONEXPIRYHOURS              *int                 `json:"ONBOARDING_VERIFICATION_EXPIRY_HOURS,omitempty"`
 	ONBOARDINGWICOAPIURL                           *string              `json:"ONBOARDING_WICO_API_URL,omitempty"`
@@ -14738,6 +14742,7 @@ type ConstanceSettingsRequestMultipart struct {
 	ONBOARDINGBOLAGSVERKETCLIENTID                 *string              `json:"ONBOARDING_BOLAGSVERKET_CLIENT_ID,omitempty"`
 	ONBOARDINGBOLAGSVERKETCLIENTSECRET             *string              `json:"ONBOARDING_BOLAGSVERKET_CLIENT_SECRET,omitempty"`
 	ONBOARDINGBOLAGSVERKETTOKENAPIURL              *string              `json:"ONBOARDING_BOLAGSVERKET_TOKEN_API_URL,omitempty"`
+	ONBOARDINGBREGAPIURL                           *string              `json:"ONBOARDING_BREG_API_URL,omitempty"`
 	ONBOARDINGCOUNTRY                              *string              `json:"ONBOARDING_COUNTRY,omitempty"`
 	ONBOARDINGVERIFICATIONEXPIRYHOURS              *int                 `json:"ONBOARDING_VERIFICATION_EXPIRY_HOURS,omitempty"`
 	ONBOARDINGWICOAPIURL                           *string              `json:"ONBOARDING_WICO_API_URL,omitempty"`
@@ -18652,6 +18657,56 @@ type OfferingEstimatedCostPolicyRequest struct {
 	Scope              string      `json:"scope"`
 }
 
+// OfferingExportParametersRequest defines model for OfferingExportParametersRequest.
+type OfferingExportParametersRequest struct {
+	// IncludeAttributes Include offering attributes in export
+	IncludeAttributes *bool `json:"include_attributes,omitempty"`
+
+	// IncludeComponents Include offering components in export
+	IncludeComponents *bool `json:"include_components,omitempty"`
+
+	// IncludeEndpoints Include offering access endpoints in export
+	IncludeEndpoints *bool `json:"include_endpoints,omitempty"`
+
+	// IncludeFiles Include offering files in export
+	IncludeFiles *bool `json:"include_files,omitempty"`
+
+	// IncludeOptions Include offering options in export
+	IncludeOptions *bool `json:"include_options,omitempty"`
+
+	// IncludeOrganizationGroups Include organization groups associations in export
+	IncludeOrganizationGroups *bool `json:"include_organization_groups,omitempty"`
+
+	// IncludePlans Include offering plans in export
+	IncludePlans *bool `json:"include_plans,omitempty"`
+
+	// IncludePluginOptions Include plugin options in export
+	IncludePluginOptions *bool `json:"include_plugin_options,omitempty"`
+
+	// IncludeResourceOptions Include resource options in export
+	IncludeResourceOptions *bool `json:"include_resource_options,omitempty"`
+
+	// IncludeScreenshots Include offering screenshots in export
+	IncludeScreenshots *bool `json:"include_screenshots,omitempty"`
+
+	// IncludeSecretOptions Include secret options in export (WARNING: sensitive data)
+	IncludeSecretOptions *bool `json:"include_secret_options,omitempty"`
+
+	// IncludeTermsOfService Include terms of service configurations in export
+	IncludeTermsOfService *bool `json:"include_terms_of_service,omitempty"`
+}
+
+// OfferingExportResponse defines model for OfferingExportResponse.
+type OfferingExportResponse struct {
+	ExportData      interface{} `json:"export_data"`
+	ExportTimestamp time.Time   `json:"export_timestamp"`
+
+	// ExportedComponents List of exported component types
+	ExportedComponents []string           `json:"exported_components"`
+	OfferingName       string             `json:"offering_name"`
+	OfferingUuid       openapi_types.UUID `json:"offering_uuid"`
+}
+
 // OfferingFile defines model for OfferingFile.
 type OfferingFile struct {
 	Created  *time.Time          `json:"created,omitempty"`
@@ -18703,6 +18758,67 @@ type OfferingImageRequestForm struct {
 // OfferingImageRequestMultipart defines model for OfferingImageRequestMultipart.
 type OfferingImageRequestMultipart struct {
 	Image openapi_types.File `json:"image"`
+}
+
+// OfferingImportParametersRequest defines model for OfferingImportParametersRequest.
+type OfferingImportParametersRequest struct {
+	// Category Target category name for imported offering. If not provided, uses category from export data
+	Category *string `json:"category"`
+
+	// Customer Target customer for imported offering. If not provided, uses current user's customer
+	Customer *openapi_types.UUID `json:"customer"`
+
+	// ImportComponents Import offering components
+	ImportComponents *bool `json:"import_components,omitempty"`
+
+	// ImportEndpoints Import offering access endpoints
+	ImportEndpoints *bool `json:"import_endpoints,omitempty"`
+
+	// ImportFiles Import offering files
+	ImportFiles *bool `json:"import_files,omitempty"`
+
+	// ImportOrganizationGroups Import organization groups associations (may fail if groups don't exist)
+	ImportOrganizationGroups *bool `json:"import_organization_groups,omitempty"`
+
+	// ImportPlans Import offering plans
+	ImportPlans *bool `json:"import_plans,omitempty"`
+
+	// ImportPluginOptions Import plugin options
+	ImportPluginOptions *bool `json:"import_plugin_options,omitempty"`
+
+	// ImportScreenshots Import offering screenshots
+	ImportScreenshots *bool `json:"import_screenshots,omitempty"`
+
+	// ImportSecretOptions Import secret options (WARNING: will overwrite existing secrets)
+	ImportSecretOptions *bool `json:"import_secret_options,omitempty"`
+
+	// ImportTermsOfService Import terms of service configurations
+	ImportTermsOfService *bool `json:"import_terms_of_service,omitempty"`
+
+	// OfferingData The exported offering data to import
+	OfferingData interface{} `json:"offering_data"`
+
+	// OverwriteExisting Overwrite existing offering if one with the same name exists
+	OverwriteExisting *bool `json:"overwrite_existing,omitempty"`
+
+	// PreserveState Preserve offering state from export, otherwise set to 'Draft'
+	PreserveState *bool `json:"preserve_state,omitempty"`
+
+	// Project Target project for imported offering (optional)
+	Project *openapi_types.UUID `json:"project"`
+}
+
+// OfferingImportResponse defines model for OfferingImportResponse.
+type OfferingImportResponse struct {
+	ImportTimestamp time.Time `json:"import_timestamp"`
+
+	// ImportedComponents List of imported component types
+	ImportedComponents   []string           `json:"imported_components"`
+	ImportedOfferingName string             `json:"imported_offering_name"`
+	ImportedOfferingUuid openapi_types.UUID `json:"imported_offering_uuid"`
+
+	// Warnings List of warnings encountered during import
+	Warnings *[]string `json:"warnings,omitempty"`
 }
 
 // OfferingIntegrationUpdateRequest defines model for OfferingIntegrationUpdateRequest.
@@ -21358,7 +21474,7 @@ type OrderDetails struct {
 	OfferingThumbnail  *string             `json:"offering_thumbnail,omitempty"`
 	OfferingType       *string             `json:"offering_type,omitempty"`
 	OfferingUuid       *openapi_types.UUID `json:"offering_uuid,omitempty"`
-	OldCostEstimate    *string             `json:"old_cost_estimate"`
+	OldCostEstimate    *float64            `json:"old_cost_estimate,omitempty"`
 	OldPlanName        *string             `json:"old_plan_name"`
 	OldPlanUuid        *openapi_types.UUID `json:"old_plan_uuid"`
 	Output             *string             `json:"output,omitempty"`
@@ -46824,6 +46940,9 @@ type MarketplaceProviderOfferingsCreateFormdataRequestBody = OfferingCreateReque
 // MarketplaceProviderOfferingsCreateMultipartRequestBody defines body for MarketplaceProviderOfferingsCreate for multipart/form-data ContentType.
 type MarketplaceProviderOfferingsCreateMultipartRequestBody = OfferingCreateRequestMultipart
 
+// MarketplaceProviderOfferingsImportOfferingJSONRequestBody defines body for MarketplaceProviderOfferingsImportOffering for application/json ContentType.
+type MarketplaceProviderOfferingsImportOfferingJSONRequestBody = OfferingImportParametersRequest
+
 // MarketplaceProviderOfferingsAddEndpointJSONRequestBody defines body for MarketplaceProviderOfferingsAddEndpoint for application/json ContentType.
 type MarketplaceProviderOfferingsAddEndpointJSONRequestBody = NestedEndpointRequest
 
@@ -46847,6 +46966,9 @@ type MarketplaceProviderOfferingsDeleteEndpointJSONRequestBody = EndpointUUIDReq
 
 // MarketplaceProviderOfferingsDeleteUserJSONRequestBody defines body for MarketplaceProviderOfferingsDeleteUser for application/json ContentType.
 type MarketplaceProviderOfferingsDeleteUserJSONRequestBody = UserRoleDeleteRequest
+
+// MarketplaceProviderOfferingsExportOfferingJSONRequestBody defines body for MarketplaceProviderOfferingsExportOffering for application/json ContentType.
+type MarketplaceProviderOfferingsExportOfferingJSONRequestBody = OfferingExportParametersRequest
 
 // MarketplaceProviderOfferingsImportResourceJSONRequestBody defines body for MarketplaceProviderOfferingsImportResource for application/json ContentType.
 type MarketplaceProviderOfferingsImportResourceJSONRequestBody = ImportResourceRequest
@@ -56719,6 +56841,11 @@ type ClientInterface interface {
 	// MarketplaceProviderOfferingsGroupsCount request
 	MarketplaceProviderOfferingsGroupsCount(ctx context.Context, params *MarketplaceProviderOfferingsGroupsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceProviderOfferingsImportOfferingWithBody request with any body
+	MarketplaceProviderOfferingsImportOfferingWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceProviderOfferingsImportOffering(ctx context.Context, body MarketplaceProviderOfferingsImportOfferingJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceProviderOfferingsDestroy request
 	MarketplaceProviderOfferingsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -56791,6 +56918,11 @@ type ClientInterface interface {
 
 	// MarketplaceProviderOfferingsDraft request
 	MarketplaceProviderOfferingsDraft(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProviderOfferingsExportOfferingWithBody request with any body
+	MarketplaceProviderOfferingsExportOfferingWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceProviderOfferingsExportOffering(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsExportOfferingJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceProviderOfferingsGlauthUsersConfigRetrieve request
 	MarketplaceProviderOfferingsGlauthUsersConfigRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -71686,6 +71818,30 @@ func (c *Client) MarketplaceProviderOfferingsGroupsCount(ctx context.Context, pa
 	return c.Client.Do(req)
 }
 
+func (c *Client) MarketplaceProviderOfferingsImportOfferingWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsImportOfferingRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderOfferingsImportOffering(ctx context.Context, body MarketplaceProviderOfferingsImportOfferingJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsImportOfferingRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) MarketplaceProviderOfferingsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProviderOfferingsDestroyRequest(c.Server, uuid)
 	if err != nil {
@@ -72000,6 +72156,30 @@ func (c *Client) MarketplaceProviderOfferingsDeleteUser(ctx context.Context, uui
 
 func (c *Client) MarketplaceProviderOfferingsDraft(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProviderOfferingsDraftRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderOfferingsExportOfferingWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsExportOfferingRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderOfferingsExportOffering(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsExportOfferingJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsExportOfferingRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -145450,6 +145630,46 @@ func NewMarketplaceProviderOfferingsGroupsCountRequest(server string, params *Ma
 	return req, nil
 }
 
+// NewMarketplaceProviderOfferingsImportOfferingRequest calls the generic MarketplaceProviderOfferingsImportOffering builder with application/json body
+func NewMarketplaceProviderOfferingsImportOfferingRequest(server string, body MarketplaceProviderOfferingsImportOfferingJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceProviderOfferingsImportOfferingRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewMarketplaceProviderOfferingsImportOfferingRequestWithBody generates requests for MarketplaceProviderOfferingsImportOffering with any type of body
+func NewMarketplaceProviderOfferingsImportOfferingRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-offerings/import_offering/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewMarketplaceProviderOfferingsDestroyRequest generates requests for MarketplaceProviderOfferingsDestroy
 func NewMarketplaceProviderOfferingsDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -147964,6 +148184,53 @@ func NewMarketplaceProviderOfferingsDraftRequest(server string, uuid openapi_typ
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewMarketplaceProviderOfferingsExportOfferingRequest calls the generic MarketplaceProviderOfferingsExportOffering builder with application/json body
+func NewMarketplaceProviderOfferingsExportOfferingRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderOfferingsExportOfferingJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceProviderOfferingsExportOfferingRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceProviderOfferingsExportOfferingRequestWithBody generates requests for MarketplaceProviderOfferingsExportOffering with any type of body
+func NewMarketplaceProviderOfferingsExportOfferingRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-offerings/%s/export_offering/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -245896,6 +246163,11 @@ type ClientWithResponsesInterface interface {
 	// MarketplaceProviderOfferingsGroupsCountWithResponse request
 	MarketplaceProviderOfferingsGroupsCountWithResponse(ctx context.Context, params *MarketplaceProviderOfferingsGroupsCountParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsGroupsCountResponse, error)
 
+	// MarketplaceProviderOfferingsImportOfferingWithBodyWithResponse request with any body
+	MarketplaceProviderOfferingsImportOfferingWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsImportOfferingResponse, error)
+
+	MarketplaceProviderOfferingsImportOfferingWithResponse(ctx context.Context, body MarketplaceProviderOfferingsImportOfferingJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsImportOfferingResponse, error)
+
 	// MarketplaceProviderOfferingsDestroyWithResponse request
 	MarketplaceProviderOfferingsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsDestroyResponse, error)
 
@@ -245968,6 +246240,11 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceProviderOfferingsDraftWithResponse request
 	MarketplaceProviderOfferingsDraftWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsDraftResponse, error)
+
+	// MarketplaceProviderOfferingsExportOfferingWithBodyWithResponse request with any body
+	MarketplaceProviderOfferingsExportOfferingWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsExportOfferingResponse, error)
+
+	MarketplaceProviderOfferingsExportOfferingWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsExportOfferingJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsExportOfferingResponse, error)
 
 	// MarketplaceProviderOfferingsGlauthUsersConfigRetrieveWithResponse request
 	MarketplaceProviderOfferingsGlauthUsersConfigRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsGlauthUsersConfigRetrieveResponse, error)
@@ -264687,6 +264964,28 @@ func (r MarketplaceProviderOfferingsGroupsCountResponse) StatusCode() int {
 	return 0
 }
 
+type MarketplaceProviderOfferingsImportOfferingResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OfferingImportResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderOfferingsImportOfferingResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderOfferingsImportOfferingResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type MarketplaceProviderOfferingsDestroyResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -265092,6 +265391,28 @@ func (r MarketplaceProviderOfferingsDraftResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceProviderOfferingsDraftResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceProviderOfferingsExportOfferingResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OfferingExportResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderOfferingsExportOfferingResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderOfferingsExportOfferingResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -297023,6 +297344,23 @@ func (c *ClientWithResponses) MarketplaceProviderOfferingsGroupsCountWithRespons
 	return ParseMarketplaceProviderOfferingsGroupsCountResponse(rsp)
 }
 
+// MarketplaceProviderOfferingsImportOfferingWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderOfferingsImportOfferingResponse
+func (c *ClientWithResponses) MarketplaceProviderOfferingsImportOfferingWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsImportOfferingResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsImportOfferingWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsImportOfferingResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceProviderOfferingsImportOfferingWithResponse(ctx context.Context, body MarketplaceProviderOfferingsImportOfferingJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsImportOfferingResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsImportOffering(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsImportOfferingResponse(rsp)
+}
+
 // MarketplaceProviderOfferingsDestroyWithResponse request returning *MarketplaceProviderOfferingsDestroyResponse
 func (c *ClientWithResponses) MarketplaceProviderOfferingsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsDestroyResponse, error) {
 	rsp, err := c.MarketplaceProviderOfferingsDestroy(ctx, uuid, reqEditors...)
@@ -297256,6 +297594,23 @@ func (c *ClientWithResponses) MarketplaceProviderOfferingsDraftWithResponse(ctx 
 		return nil, err
 	}
 	return ParseMarketplaceProviderOfferingsDraftResponse(rsp)
+}
+
+// MarketplaceProviderOfferingsExportOfferingWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderOfferingsExportOfferingResponse
+func (c *ClientWithResponses) MarketplaceProviderOfferingsExportOfferingWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsExportOfferingResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsExportOfferingWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsExportOfferingResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceProviderOfferingsExportOfferingWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsExportOfferingJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsExportOfferingResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsExportOffering(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsExportOfferingResponse(rsp)
 }
 
 // MarketplaceProviderOfferingsGlauthUsersConfigRetrieveWithResponse request returning *MarketplaceProviderOfferingsGlauthUsersConfigRetrieveResponse
@@ -325535,6 +325890,32 @@ func ParseMarketplaceProviderOfferingsGroupsCountResponse(rsp *http.Response) (*
 	return response, nil
 }
 
+// ParseMarketplaceProviderOfferingsImportOfferingResponse parses an HTTP response from a MarketplaceProviderOfferingsImportOfferingWithResponse call
+func ParseMarketplaceProviderOfferingsImportOfferingResponse(rsp *http.Response) (*MarketplaceProviderOfferingsImportOfferingResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderOfferingsImportOfferingResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OfferingImportResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseMarketplaceProviderOfferingsDestroyResponse parses an HTTP response from a MarketplaceProviderOfferingsDestroyWithResponse call
 func ParseMarketplaceProviderOfferingsDestroyResponse(rsp *http.Response) (*MarketplaceProviderOfferingsDestroyResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -325949,6 +326330,32 @@ func ParseMarketplaceProviderOfferingsDraftResponse(rsp *http.Response) (*Market
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest DetailState
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProviderOfferingsExportOfferingResponse parses an HTTP response from a MarketplaceProviderOfferingsExportOfferingWithResponse call
+func ParseMarketplaceProviderOfferingsExportOfferingResponse(rsp *http.Response) (*MarketplaceProviderOfferingsExportOfferingResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderOfferingsExportOfferingResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OfferingExportResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
