@@ -1389,10 +1389,11 @@ const (
 
 // Defines values for OfferingState.
 const (
-	OfferingStateActive   OfferingState = "Active"
-	OfferingStateArchived OfferingState = "Archived"
-	OfferingStateDraft    OfferingState = "Draft"
-	OfferingStatePaused   OfferingState = "Paused"
+	OfferingStateActive      OfferingState = "Active"
+	OfferingStateArchived    OfferingState = "Archived"
+	OfferingStateDraft       OfferingState = "Draft"
+	OfferingStatePaused      OfferingState = "Paused"
+	OfferingStateUnavailable OfferingState = "Unavailable"
 )
 
 // Defines values for OfferingUserState.
@@ -4590,6 +4591,7 @@ const (
 	MarketplaceCategoriesListParamsCustomersOfferingsStateN2 MarketplaceCategoriesListParamsCustomersOfferingsState = "2"
 	MarketplaceCategoriesListParamsCustomersOfferingsStateN3 MarketplaceCategoriesListParamsCustomersOfferingsState = "3"
 	MarketplaceCategoriesListParamsCustomersOfferingsStateN4 MarketplaceCategoriesListParamsCustomersOfferingsState = "4"
+	MarketplaceCategoriesListParamsCustomersOfferingsStateN5 MarketplaceCategoriesListParamsCustomersOfferingsState = "5"
 )
 
 // Defines values for MarketplaceCategoriesListParamsField.
@@ -4617,6 +4619,7 @@ const (
 	MarketplaceCategoriesCountParamsCustomersOfferingsStateN2 MarketplaceCategoriesCountParamsCustomersOfferingsState = "2"
 	MarketplaceCategoriesCountParamsCustomersOfferingsStateN3 MarketplaceCategoriesCountParamsCustomersOfferingsState = "3"
 	MarketplaceCategoriesCountParamsCustomersOfferingsStateN4 MarketplaceCategoriesCountParamsCustomersOfferingsState = "4"
+	MarketplaceCategoriesCountParamsCustomersOfferingsStateN5 MarketplaceCategoriesCountParamsCustomersOfferingsState = "5"
 )
 
 // Defines values for MarketplaceCategoriesRetrieveParamsField.
@@ -5548,10 +5551,11 @@ const (
 
 // Defines values for MarketplaceProviderOfferingsListParamsState.
 const (
-	MarketplaceProviderOfferingsListParamsStateActive   MarketplaceProviderOfferingsListParamsState = "Active"
-	MarketplaceProviderOfferingsListParamsStateArchived MarketplaceProviderOfferingsListParamsState = "Archived"
-	MarketplaceProviderOfferingsListParamsStateDraft    MarketplaceProviderOfferingsListParamsState = "Draft"
-	MarketplaceProviderOfferingsListParamsStatePaused   MarketplaceProviderOfferingsListParamsState = "Paused"
+	MarketplaceProviderOfferingsListParamsStateActive      MarketplaceProviderOfferingsListParamsState = "Active"
+	MarketplaceProviderOfferingsListParamsStateArchived    MarketplaceProviderOfferingsListParamsState = "Archived"
+	MarketplaceProviderOfferingsListParamsStateDraft       MarketplaceProviderOfferingsListParamsState = "Draft"
+	MarketplaceProviderOfferingsListParamsStatePaused      MarketplaceProviderOfferingsListParamsState = "Paused"
+	MarketplaceProviderOfferingsListParamsStateUnavailable MarketplaceProviderOfferingsListParamsState = "Unavailable"
 )
 
 // Defines values for MarketplaceProviderOfferingsCountParamsO.
@@ -5574,10 +5578,11 @@ const (
 
 // Defines values for MarketplaceProviderOfferingsCountParamsState.
 const (
-	MarketplaceProviderOfferingsCountParamsStateActive   MarketplaceProviderOfferingsCountParamsState = "Active"
-	MarketplaceProviderOfferingsCountParamsStateArchived MarketplaceProviderOfferingsCountParamsState = "Archived"
-	MarketplaceProviderOfferingsCountParamsStateDraft    MarketplaceProviderOfferingsCountParamsState = "Draft"
-	MarketplaceProviderOfferingsCountParamsStatePaused   MarketplaceProviderOfferingsCountParamsState = "Paused"
+	MarketplaceProviderOfferingsCountParamsStateActive      MarketplaceProviderOfferingsCountParamsState = "Active"
+	MarketplaceProviderOfferingsCountParamsStateArchived    MarketplaceProviderOfferingsCountParamsState = "Archived"
+	MarketplaceProviderOfferingsCountParamsStateDraft       MarketplaceProviderOfferingsCountParamsState = "Draft"
+	MarketplaceProviderOfferingsCountParamsStatePaused      MarketplaceProviderOfferingsCountParamsState = "Paused"
+	MarketplaceProviderOfferingsCountParamsStateUnavailable MarketplaceProviderOfferingsCountParamsState = "Unavailable"
 )
 
 // Defines values for MarketplaceProviderOfferingsGroupsListParamsO.
@@ -5600,10 +5605,11 @@ const (
 
 // Defines values for MarketplaceProviderOfferingsGroupsListParamsState.
 const (
-	MarketplaceProviderOfferingsGroupsListParamsStateActive   MarketplaceProviderOfferingsGroupsListParamsState = "Active"
-	MarketplaceProviderOfferingsGroupsListParamsStateArchived MarketplaceProviderOfferingsGroupsListParamsState = "Archived"
-	MarketplaceProviderOfferingsGroupsListParamsStateDraft    MarketplaceProviderOfferingsGroupsListParamsState = "Draft"
-	MarketplaceProviderOfferingsGroupsListParamsStatePaused   MarketplaceProviderOfferingsGroupsListParamsState = "Paused"
+	MarketplaceProviderOfferingsGroupsListParamsStateActive      MarketplaceProviderOfferingsGroupsListParamsState = "Active"
+	MarketplaceProviderOfferingsGroupsListParamsStateArchived    MarketplaceProviderOfferingsGroupsListParamsState = "Archived"
+	MarketplaceProviderOfferingsGroupsListParamsStateDraft       MarketplaceProviderOfferingsGroupsListParamsState = "Draft"
+	MarketplaceProviderOfferingsGroupsListParamsStatePaused      MarketplaceProviderOfferingsGroupsListParamsState = "Paused"
+	MarketplaceProviderOfferingsGroupsListParamsStateUnavailable MarketplaceProviderOfferingsGroupsListParamsState = "Unavailable"
 )
 
 // Defines values for MarketplaceProviderOfferingsGroupsCountParamsO.
@@ -5626,10 +5632,11 @@ const (
 
 // Defines values for MarketplaceProviderOfferingsGroupsCountParamsState.
 const (
-	MarketplaceProviderOfferingsGroupsCountParamsStateActive   MarketplaceProviderOfferingsGroupsCountParamsState = "Active"
-	MarketplaceProviderOfferingsGroupsCountParamsStateArchived MarketplaceProviderOfferingsGroupsCountParamsState = "Archived"
-	MarketplaceProviderOfferingsGroupsCountParamsStateDraft    MarketplaceProviderOfferingsGroupsCountParamsState = "Draft"
-	MarketplaceProviderOfferingsGroupsCountParamsStatePaused   MarketplaceProviderOfferingsGroupsCountParamsState = "Paused"
+	MarketplaceProviderOfferingsGroupsCountParamsStateActive      MarketplaceProviderOfferingsGroupsCountParamsState = "Active"
+	MarketplaceProviderOfferingsGroupsCountParamsStateArchived    MarketplaceProviderOfferingsGroupsCountParamsState = "Archived"
+	MarketplaceProviderOfferingsGroupsCountParamsStateDraft       MarketplaceProviderOfferingsGroupsCountParamsState = "Draft"
+	MarketplaceProviderOfferingsGroupsCountParamsStatePaused      MarketplaceProviderOfferingsGroupsCountParamsState = "Paused"
+	MarketplaceProviderOfferingsGroupsCountParamsStateUnavailable MarketplaceProviderOfferingsGroupsCountParamsState = "Unavailable"
 )
 
 // Defines values for MarketplaceProviderOfferingsRetrieveParamsField.
@@ -5725,10 +5732,11 @@ const (
 
 // Defines values for MarketplaceProviderOfferingsComponentStatsListParamsState.
 const (
-	MarketplaceProviderOfferingsComponentStatsListParamsStateActive   MarketplaceProviderOfferingsComponentStatsListParamsState = "Active"
-	MarketplaceProviderOfferingsComponentStatsListParamsStateArchived MarketplaceProviderOfferingsComponentStatsListParamsState = "Archived"
-	MarketplaceProviderOfferingsComponentStatsListParamsStateDraft    MarketplaceProviderOfferingsComponentStatsListParamsState = "Draft"
-	MarketplaceProviderOfferingsComponentStatsListParamsStatePaused   MarketplaceProviderOfferingsComponentStatsListParamsState = "Paused"
+	MarketplaceProviderOfferingsComponentStatsListParamsStateActive      MarketplaceProviderOfferingsComponentStatsListParamsState = "Active"
+	MarketplaceProviderOfferingsComponentStatsListParamsStateArchived    MarketplaceProviderOfferingsComponentStatsListParamsState = "Archived"
+	MarketplaceProviderOfferingsComponentStatsListParamsStateDraft       MarketplaceProviderOfferingsComponentStatsListParamsState = "Draft"
+	MarketplaceProviderOfferingsComponentStatsListParamsStatePaused      MarketplaceProviderOfferingsComponentStatsListParamsState = "Paused"
+	MarketplaceProviderOfferingsComponentStatsListParamsStateUnavailable MarketplaceProviderOfferingsComponentStatsListParamsState = "Unavailable"
 )
 
 // Defines values for MarketplaceProviderOfferingsCostsListParamsO.
@@ -5751,10 +5759,11 @@ const (
 
 // Defines values for MarketplaceProviderOfferingsCostsListParamsState.
 const (
-	MarketplaceProviderOfferingsCostsListParamsStateActive   MarketplaceProviderOfferingsCostsListParamsState = "Active"
-	MarketplaceProviderOfferingsCostsListParamsStateArchived MarketplaceProviderOfferingsCostsListParamsState = "Archived"
-	MarketplaceProviderOfferingsCostsListParamsStateDraft    MarketplaceProviderOfferingsCostsListParamsState = "Draft"
-	MarketplaceProviderOfferingsCostsListParamsStatePaused   MarketplaceProviderOfferingsCostsListParamsState = "Paused"
+	MarketplaceProviderOfferingsCostsListParamsStateActive      MarketplaceProviderOfferingsCostsListParamsState = "Active"
+	MarketplaceProviderOfferingsCostsListParamsStateArchived    MarketplaceProviderOfferingsCostsListParamsState = "Archived"
+	MarketplaceProviderOfferingsCostsListParamsStateDraft       MarketplaceProviderOfferingsCostsListParamsState = "Draft"
+	MarketplaceProviderOfferingsCostsListParamsStatePaused      MarketplaceProviderOfferingsCostsListParamsState = "Paused"
+	MarketplaceProviderOfferingsCostsListParamsStateUnavailable MarketplaceProviderOfferingsCostsListParamsState = "Unavailable"
 )
 
 // Defines values for MarketplaceProviderOfferingsCustomersListParamsField.
@@ -5787,10 +5796,11 @@ const (
 
 // Defines values for MarketplaceProviderOfferingsCustomersListParamsState.
 const (
-	MarketplaceProviderOfferingsCustomersListParamsStateActive   MarketplaceProviderOfferingsCustomersListParamsState = "Active"
-	MarketplaceProviderOfferingsCustomersListParamsStateArchived MarketplaceProviderOfferingsCustomersListParamsState = "Archived"
-	MarketplaceProviderOfferingsCustomersListParamsStateDraft    MarketplaceProviderOfferingsCustomersListParamsState = "Draft"
-	MarketplaceProviderOfferingsCustomersListParamsStatePaused   MarketplaceProviderOfferingsCustomersListParamsState = "Paused"
+	MarketplaceProviderOfferingsCustomersListParamsStateActive      MarketplaceProviderOfferingsCustomersListParamsState = "Active"
+	MarketplaceProviderOfferingsCustomersListParamsStateArchived    MarketplaceProviderOfferingsCustomersListParamsState = "Archived"
+	MarketplaceProviderOfferingsCustomersListParamsStateDraft       MarketplaceProviderOfferingsCustomersListParamsState = "Draft"
+	MarketplaceProviderOfferingsCustomersListParamsStatePaused      MarketplaceProviderOfferingsCustomersListParamsState = "Paused"
+	MarketplaceProviderOfferingsCustomersListParamsStateUnavailable MarketplaceProviderOfferingsCustomersListParamsState = "Unavailable"
 )
 
 // Defines values for MarketplaceProviderOfferingsListCourseAccountsListParamsO.
@@ -5813,10 +5823,11 @@ const (
 
 // Defines values for MarketplaceProviderOfferingsListCourseAccountsListParamsState.
 const (
-	MarketplaceProviderOfferingsListCourseAccountsListParamsStateActive   MarketplaceProviderOfferingsListCourseAccountsListParamsState = "Active"
-	MarketplaceProviderOfferingsListCourseAccountsListParamsStateArchived MarketplaceProviderOfferingsListCourseAccountsListParamsState = "Archived"
-	MarketplaceProviderOfferingsListCourseAccountsListParamsStateDraft    MarketplaceProviderOfferingsListCourseAccountsListParamsState = "Draft"
-	MarketplaceProviderOfferingsListCourseAccountsListParamsStatePaused   MarketplaceProviderOfferingsListCourseAccountsListParamsState = "Paused"
+	MarketplaceProviderOfferingsListCourseAccountsListParamsStateActive      MarketplaceProviderOfferingsListCourseAccountsListParamsState = "Active"
+	MarketplaceProviderOfferingsListCourseAccountsListParamsStateArchived    MarketplaceProviderOfferingsListCourseAccountsListParamsState = "Archived"
+	MarketplaceProviderOfferingsListCourseAccountsListParamsStateDraft       MarketplaceProviderOfferingsListCourseAccountsListParamsState = "Draft"
+	MarketplaceProviderOfferingsListCourseAccountsListParamsStatePaused      MarketplaceProviderOfferingsListCourseAccountsListParamsState = "Paused"
+	MarketplaceProviderOfferingsListCourseAccountsListParamsStateUnavailable MarketplaceProviderOfferingsListCourseAccountsListParamsState = "Unavailable"
 )
 
 // Defines values for MarketplaceProviderOfferingsListCustomerProjectsListParamsField.
@@ -5877,10 +5888,11 @@ const (
 
 // Defines values for MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsState.
 const (
-	MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsStateActive   MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsState = "Active"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsStateArchived MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsState = "Archived"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsStateDraft    MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsState = "Draft"
-	MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsStatePaused   MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsState = "Paused"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsStateActive      MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsState = "Active"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsStateArchived    MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsState = "Archived"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsStateDraft       MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsState = "Draft"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsStatePaused      MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsState = "Paused"
+	MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsStateUnavailable MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsState = "Unavailable"
 )
 
 // Defines values for MarketplaceProviderOfferingsListCustomerUsersListParamsField.
@@ -5945,10 +5957,11 @@ const (
 
 // Defines values for MarketplaceProviderOfferingsListProjectServiceAccountsListParamsState.
 const (
-	MarketplaceProviderOfferingsListProjectServiceAccountsListParamsStateActive   MarketplaceProviderOfferingsListProjectServiceAccountsListParamsState = "Active"
-	MarketplaceProviderOfferingsListProjectServiceAccountsListParamsStateArchived MarketplaceProviderOfferingsListProjectServiceAccountsListParamsState = "Archived"
-	MarketplaceProviderOfferingsListProjectServiceAccountsListParamsStateDraft    MarketplaceProviderOfferingsListProjectServiceAccountsListParamsState = "Draft"
-	MarketplaceProviderOfferingsListProjectServiceAccountsListParamsStatePaused   MarketplaceProviderOfferingsListProjectServiceAccountsListParamsState = "Paused"
+	MarketplaceProviderOfferingsListProjectServiceAccountsListParamsStateActive      MarketplaceProviderOfferingsListProjectServiceAccountsListParamsState = "Active"
+	MarketplaceProviderOfferingsListProjectServiceAccountsListParamsStateArchived    MarketplaceProviderOfferingsListProjectServiceAccountsListParamsState = "Archived"
+	MarketplaceProviderOfferingsListProjectServiceAccountsListParamsStateDraft       MarketplaceProviderOfferingsListProjectServiceAccountsListParamsState = "Draft"
+	MarketplaceProviderOfferingsListProjectServiceAccountsListParamsStatePaused      MarketplaceProviderOfferingsListProjectServiceAccountsListParamsState = "Paused"
+	MarketplaceProviderOfferingsListProjectServiceAccountsListParamsStateUnavailable MarketplaceProviderOfferingsListProjectServiceAccountsListParamsState = "Unavailable"
 )
 
 // Defines values for MarketplaceProviderOfferingsListUsersListParamsField.
@@ -6458,10 +6471,11 @@ const (
 
 // Defines values for MarketplacePublicOfferingsListParamsState.
 const (
-	MarketplacePublicOfferingsListParamsStateActive   MarketplacePublicOfferingsListParamsState = "Active"
-	MarketplacePublicOfferingsListParamsStateArchived MarketplacePublicOfferingsListParamsState = "Archived"
-	MarketplacePublicOfferingsListParamsStateDraft    MarketplacePublicOfferingsListParamsState = "Draft"
-	MarketplacePublicOfferingsListParamsStatePaused   MarketplacePublicOfferingsListParamsState = "Paused"
+	MarketplacePublicOfferingsListParamsStateActive      MarketplacePublicOfferingsListParamsState = "Active"
+	MarketplacePublicOfferingsListParamsStateArchived    MarketplacePublicOfferingsListParamsState = "Archived"
+	MarketplacePublicOfferingsListParamsStateDraft       MarketplacePublicOfferingsListParamsState = "Draft"
+	MarketplacePublicOfferingsListParamsStatePaused      MarketplacePublicOfferingsListParamsState = "Paused"
+	MarketplacePublicOfferingsListParamsStateUnavailable MarketplacePublicOfferingsListParamsState = "Unavailable"
 )
 
 // Defines values for MarketplacePublicOfferingsCountParamsO.
@@ -6484,10 +6498,11 @@ const (
 
 // Defines values for MarketplacePublicOfferingsCountParamsState.
 const (
-	MarketplacePublicOfferingsCountParamsStateActive   MarketplacePublicOfferingsCountParamsState = "Active"
-	MarketplacePublicOfferingsCountParamsStateArchived MarketplacePublicOfferingsCountParamsState = "Archived"
-	MarketplacePublicOfferingsCountParamsStateDraft    MarketplacePublicOfferingsCountParamsState = "Draft"
-	MarketplacePublicOfferingsCountParamsStatePaused   MarketplacePublicOfferingsCountParamsState = "Paused"
+	MarketplacePublicOfferingsCountParamsStateActive      MarketplacePublicOfferingsCountParamsState = "Active"
+	MarketplacePublicOfferingsCountParamsStateArchived    MarketplacePublicOfferingsCountParamsState = "Archived"
+	MarketplacePublicOfferingsCountParamsStateDraft       MarketplacePublicOfferingsCountParamsState = "Draft"
+	MarketplacePublicOfferingsCountParamsStatePaused      MarketplacePublicOfferingsCountParamsState = "Paused"
+	MarketplacePublicOfferingsCountParamsStateUnavailable MarketplacePublicOfferingsCountParamsState = "Unavailable"
 )
 
 // Defines values for MarketplacePublicOfferingsRetrieveParamsField.
@@ -7059,10 +7074,11 @@ const (
 
 // Defines values for MarketplaceServiceProvidersOfferingsListParamsState.
 const (
-	MarketplaceServiceProvidersOfferingsListParamsStateActive   MarketplaceServiceProvidersOfferingsListParamsState = "Active"
-	MarketplaceServiceProvidersOfferingsListParamsStateArchived MarketplaceServiceProvidersOfferingsListParamsState = "Archived"
-	MarketplaceServiceProvidersOfferingsListParamsStateDraft    MarketplaceServiceProvidersOfferingsListParamsState = "Draft"
-	MarketplaceServiceProvidersOfferingsListParamsStatePaused   MarketplaceServiceProvidersOfferingsListParamsState = "Paused"
+	MarketplaceServiceProvidersOfferingsListParamsStateActive      MarketplaceServiceProvidersOfferingsListParamsState = "Active"
+	MarketplaceServiceProvidersOfferingsListParamsStateArchived    MarketplaceServiceProvidersOfferingsListParamsState = "Archived"
+	MarketplaceServiceProvidersOfferingsListParamsStateDraft       MarketplaceServiceProvidersOfferingsListParamsState = "Draft"
+	MarketplaceServiceProvidersOfferingsListParamsStatePaused      MarketplaceServiceProvidersOfferingsListParamsState = "Paused"
+	MarketplaceServiceProvidersOfferingsListParamsStateUnavailable MarketplaceServiceProvidersOfferingsListParamsState = "Unavailable"
 )
 
 // Defines values for MarketplaceServiceProvidersProjectPermissionsListParamsField.
@@ -57181,6 +57197,12 @@ type ClientInterface interface {
 	// MarketplaceProviderOfferingsListUsersList request
 	MarketplaceProviderOfferingsListUsersList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListUsersListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceProviderOfferingsMakeAvailable request
+	MarketplaceProviderOfferingsMakeAvailable(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProviderOfferingsMakeUnavailable request
+	MarketplaceProviderOfferingsMakeUnavailable(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceProviderOfferingsMoveOfferingWithBody request with any body
 	MarketplaceProviderOfferingsMoveOfferingWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -72528,6 +72550,30 @@ func (c *Client) MarketplaceProviderOfferingsListProjectServiceAccountsList(ctx 
 
 func (c *Client) MarketplaceProviderOfferingsListUsersList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListUsersListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProviderOfferingsListUsersListRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderOfferingsMakeAvailable(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsMakeAvailableRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderOfferingsMakeUnavailable(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsMakeUnavailableRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -150769,6 +150815,74 @@ func NewMarketplaceProviderOfferingsListUsersListRequest(server string, uuid ope
 	}
 
 	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceProviderOfferingsMakeAvailableRequest generates requests for MarketplaceProviderOfferingsMakeAvailable
+func NewMarketplaceProviderOfferingsMakeAvailableRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-offerings/%s/make_available/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceProviderOfferingsMakeUnavailableRequest generates requests for MarketplaceProviderOfferingsMakeUnavailable
+func NewMarketplaceProviderOfferingsMakeUnavailableRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-offerings/%s/make_unavailable/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
@@ -246503,6 +246617,12 @@ type ClientWithResponsesInterface interface {
 	// MarketplaceProviderOfferingsListUsersListWithResponse request
 	MarketplaceProviderOfferingsListUsersListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsListUsersListParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsListUsersListResponse, error)
 
+	// MarketplaceProviderOfferingsMakeAvailableWithResponse request
+	MarketplaceProviderOfferingsMakeAvailableWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsMakeAvailableResponse, error)
+
+	// MarketplaceProviderOfferingsMakeUnavailableWithResponse request
+	MarketplaceProviderOfferingsMakeUnavailableWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsMakeUnavailableResponse, error)
+
 	// MarketplaceProviderOfferingsMoveOfferingWithBodyWithResponse request with any body
 	MarketplaceProviderOfferingsMoveOfferingWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsMoveOfferingResponse, error)
 
@@ -265838,6 +265958,50 @@ func (r MarketplaceProviderOfferingsListUsersListResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceProviderOfferingsListUsersListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceProviderOfferingsMakeAvailableResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *DetailState
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderOfferingsMakeAvailableResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderOfferingsMakeAvailableResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceProviderOfferingsMakeUnavailableResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *DetailState
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderOfferingsMakeUnavailableResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderOfferingsMakeUnavailableResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -297930,6 +298094,24 @@ func (c *ClientWithResponses) MarketplaceProviderOfferingsListUsersListWithRespo
 	return ParseMarketplaceProviderOfferingsListUsersListResponse(rsp)
 }
 
+// MarketplaceProviderOfferingsMakeAvailableWithResponse request returning *MarketplaceProviderOfferingsMakeAvailableResponse
+func (c *ClientWithResponses) MarketplaceProviderOfferingsMakeAvailableWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsMakeAvailableResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsMakeAvailable(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsMakeAvailableResponse(rsp)
+}
+
+// MarketplaceProviderOfferingsMakeUnavailableWithResponse request returning *MarketplaceProviderOfferingsMakeUnavailableResponse
+func (c *ClientWithResponses) MarketplaceProviderOfferingsMakeUnavailableWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsMakeUnavailableResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsMakeUnavailable(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsMakeUnavailableResponse(rsp)
+}
+
 // MarketplaceProviderOfferingsMoveOfferingWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderOfferingsMoveOfferingResponse
 func (c *ClientWithResponses) MarketplaceProviderOfferingsMoveOfferingWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsMoveOfferingResponse, error) {
 	rsp, err := c.MarketplaceProviderOfferingsMoveOfferingWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -326808,6 +326990,58 @@ func ParseMarketplaceProviderOfferingsListUsersListResponse(rsp *http.Response) 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest []UserRoleDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProviderOfferingsMakeAvailableResponse parses an HTTP response from a MarketplaceProviderOfferingsMakeAvailableWithResponse call
+func ParseMarketplaceProviderOfferingsMakeAvailableResponse(rsp *http.Response) (*MarketplaceProviderOfferingsMakeAvailableResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderOfferingsMakeAvailableResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest DetailState
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProviderOfferingsMakeUnavailableResponse parses an HTTP response from a MarketplaceProviderOfferingsMakeUnavailableWithResponse call
+func ParseMarketplaceProviderOfferingsMakeUnavailableResponse(rsp *http.Response) (*MarketplaceProviderOfferingsMakeUnavailableResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderOfferingsMakeUnavailableResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest DetailState
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
