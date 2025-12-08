@@ -3738,7 +3738,6 @@ const (
 	CustomersListParamsFieldPhoneNumber                  CustomersListParamsField = "phone_number"
 	CustomersListParamsFieldPostal                       CustomersListParamsField = "postal"
 	CustomersListParamsFieldProjectMetadataChecklist     CustomersListParamsField = "project_metadata_checklist"
-	CustomersListParamsFieldProjects                     CustomersListParamsField = "projects"
 	CustomersListParamsFieldProjectsCount                CustomersListParamsField = "projects_count"
 	CustomersListParamsFieldRegistrationCode             CustomersListParamsField = "registration_code"
 	CustomersListParamsFieldServiceProvider              CustomersListParamsField = "service_provider"
@@ -3825,7 +3824,6 @@ const (
 	CustomersRetrieveParamsFieldPhoneNumber                  CustomersRetrieveParamsField = "phone_number"
 	CustomersRetrieveParamsFieldPostal                       CustomersRetrieveParamsField = "postal"
 	CustomersRetrieveParamsFieldProjectMetadataChecklist     CustomersRetrieveParamsField = "project_metadata_checklist"
-	CustomersRetrieveParamsFieldProjects                     CustomersRetrieveParamsField = "projects"
 	CustomersRetrieveParamsFieldProjectsCount                CustomersRetrieveParamsField = "projects_count"
 	CustomersRetrieveParamsFieldRegistrationCode             CustomersRetrieveParamsField = "registration_code"
 	CustomersRetrieveParamsFieldServiceProvider              CustomersRetrieveParamsField = "service_provider"
@@ -15059,7 +15057,6 @@ type Customer struct {
 	PhoneNumber              *string              `json:"phone_number,omitempty"`
 	Postal                   *string              `json:"postal,omitempty"`
 	ProjectMetadataChecklist *openapi_types.UUID  `json:"project_metadata_checklist"`
-	Projects                 *[]PermissionProject `json:"projects,omitempty"`
 	ProjectsCount            *int                 `json:"projects_count,omitempty"`
 	RegistrationCode         *string              `json:"registration_code,omitempty"`
 	ServiceProvider          *string              `json:"service_provider"`
@@ -23756,17 +23753,6 @@ type PermissionMetadataResponsePermissions string
 
 // PermissionMetadataResponseRoles defines model for PermissionMetadataResponse.Roles.
 type PermissionMetadataResponseRoles string
-
-// PermissionProject defines model for PermissionProject.
-type PermissionProject struct {
-	// EndDate The date is inclusive. Once reached, all project resource will be scheduled for termination.
-	EndDate       *openapi_types.Date `json:"end_date"`
-	Image         *string             `json:"image"`
-	Name          *string             `json:"name,omitempty"`
-	ResourceCount *int                `json:"resource_count,omitempty"`
-	Url           *string             `json:"url,omitempty"`
-	Uuid          *openapi_types.UUID `json:"uuid,omitempty"`
-}
 
 // PermissionRequest defines model for PermissionRequest.
 type PermissionRequest struct {
