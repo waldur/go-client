@@ -19711,14 +19711,20 @@ type OnboardingRunValidationRequestRequest struct {
 
 // OnboardingVerification defines model for OnboardingVerification.
 type OnboardingVerification struct {
+	// CanCustomerBeCreated Boolean indicating if a customer can be created from this verification
+	CanCustomerBeCreated *bool `json:"can_customer_be_created,omitempty"`
+
 	// Country ISO country code (e.g., 'EE' for Estonia)
 	Country string     `json:"country"`
 	Created *time.Time `json:"created,omitempty"`
 
 	// Customer Customer created after successful validation
-	Customer       *int    `json:"customer"`
-	ErrorMessage   *string `json:"error_message,omitempty"`
-	ErrorTraceback *string `json:"error_traceback,omitempty"`
+	Customer *int `json:"customer"`
+
+	// CustomerCreationErrorMessage Reason why customer cannot be created (null if can be created)
+	CustomerCreationErrorMessage *string `json:"customer_creation_error_message"`
+	ErrorMessage                 *string `json:"error_message,omitempty"`
+	ErrorTraceback               *string `json:"error_traceback,omitempty"`
 
 	// ExpiresAt When this verification expires
 	ExpiresAt *time.Time `json:"expires_at"`
