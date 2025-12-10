@@ -1444,6 +1444,7 @@ const (
 	OptionFieldTypeEnumHtmlText                         OptionFieldTypeEnum = "html_text"
 	OptionFieldTypeEnumInteger                          OptionFieldTypeEnum = "integer"
 	OptionFieldTypeEnumMoney                            OptionFieldTypeEnum = "money"
+	OptionFieldTypeEnumMultiDatacenterK8sConfig         OptionFieldTypeEnum = "multi_datacenter_k8s_config"
 	OptionFieldTypeEnumSelectMultipleOpenstackInstances OptionFieldTypeEnum = "select_multiple_openstack_instances"
 	OptionFieldTypeEnumSelectMultipleOpenstackTenants   OptionFieldTypeEnum = "select_multiple_openstack_tenants"
 	OptionFieldTypeEnumSelectOpenstackInstance          OptionFieldTypeEnum = "select_openstack_instance"
