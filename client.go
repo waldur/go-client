@@ -122,6 +122,22 @@ const (
 	SourcePackage  CatalogTypeEnum = "source_package"
 )
 
+// Defines values for CategoryEnum.
+const (
+	CategoryEnumApprove   CategoryEnum = "approve"
+	CategoryEnumBackup    CategoryEnum = "backup"
+	CategoryEnumConfigure CategoryEnum = "configure"
+	CategoryEnumContact   CategoryEnum = "contact"
+	CategoryEnumEscalate  CategoryEnum = "escalate"
+	CategoryEnumExtend    CategoryEnum = "extend"
+	CategoryEnumMigrate   CategoryEnum = "migrate"
+	CategoryEnumMonitor   CategoryEnum = "monitor"
+	CategoryEnumReject    CategoryEnum = "reject"
+	CategoryEnumRepair    CategoryEnum = "repair"
+	CategoryEnumTerminate CategoryEnum = "terminate"
+	CategoryEnumView      CategoryEnum = "view"
+)
+
 // Defines values for ChecklistOperators.
 const (
 	Contains  ChecklistOperators = "contains"
@@ -1923,6 +1939,15 @@ const (
 	ServiceSettingsStateEnumUPDATING          ServiceSettingsStateEnum = "UPDATING"
 )
 
+// Defines values for SeverityEnum.
+const (
+	SeverityEnumCritical SeverityEnum = "critical"
+	SeverityEnumHigh     SeverityEnum = "high"
+	SeverityEnumLow      SeverityEnum = "low"
+	SeverityEnumMedium   SeverityEnum = "medium"
+	SeverityEnumSafe     SeverityEnum = "safe"
+)
+
 // Defines values for StorageModeEnum.
 const (
 	Dynamic StorageModeEnum = "dynamic"
@@ -1934,6 +1959,13 @@ const (
 	InSync     SyncStatusEnum = "in_sync"
 	OutOfSync  SyncStatusEnum = "out_of_sync"
 	SyncFailed SyncStatusEnum = "sync_failed"
+)
+
+// Defines values for UrgencyEnum.
+const (
+	UrgencyEnumHigh   UrgencyEnum = "high"
+	UrgencyEnumLow    UrgencyEnum = "low"
+	UrgencyEnumMedium UrgencyEnum = "medium"
 )
 
 // Defines values for UsernameGenerationPolicyEnum.
@@ -5339,10 +5371,10 @@ const (
 
 // Defines values for MarketplaceOrdersCountParamsType.
 const (
-	MarketplaceOrdersCountParamsTypeCreate    MarketplaceOrdersCountParamsType = "Create"
-	MarketplaceOrdersCountParamsTypeRestore   MarketplaceOrdersCountParamsType = "Restore"
-	MarketplaceOrdersCountParamsTypeTerminate MarketplaceOrdersCountParamsType = "Terminate"
-	MarketplaceOrdersCountParamsTypeUpdate    MarketplaceOrdersCountParamsType = "Update"
+	Create    MarketplaceOrdersCountParamsType = "Create"
+	Restore   MarketplaceOrdersCountParamsType = "Restore"
+	Terminate MarketplaceOrdersCountParamsType = "Terminate"
+	Update    MarketplaceOrdersCountParamsType = "Update"
 )
 
 // Defines values for MarketplaceOrdersRetrieveParamsField.
@@ -11414,6 +11446,13 @@ const (
 	SupportIssuesCountParamsOType                 SupportIssuesCountParamsO = "type"
 )
 
+// Defines values for UserActionsListParamsUrgency.
+const (
+	High   UserActionsListParamsUrgency = "high"
+	Low    UserActionsListParamsUrgency = "low"
+	Medium UserActionsListParamsUrgency = "medium"
+)
+
 // Defines values for UserAgreementsListParamsAgreementType.
 const (
 	UserAgreementsListParamsAgreementTypePP  UserAgreementsListParamsAgreementType = "PP"
@@ -13695,6 +13734,9 @@ type CategoryComponentsRequest struct {
 	Type string `json:"type"`
 }
 
+// CategoryEnum defines model for CategoryEnum.
+type CategoryEnum string
+
 // CategoryGroup defines model for CategoryGroup.
 type CategoryGroup struct {
 	Description *string             `json:"description,omitempty"`
@@ -14830,6 +14872,19 @@ type CoreAuthToken struct {
 
 // CoreStates defines model for CoreStates.
 type CoreStates string
+
+// CorrectiveAction defines model for CorrectiveAction.
+type CorrectiveAction struct {
+	ApiEndpoint          *bool                   `json:"api_endpoint,omitempty"`
+	Category             CategoryEnum            `json:"category"`
+	ConfirmationRequired *bool                   `json:"confirmation_required,omitempty"`
+	Label                string                  `json:"label"`
+	Metadata             *map[string]interface{} `json:"metadata,omitempty"`
+	Method               *string                 `json:"method,omitempty"`
+	PermissionsRequired  *[]string               `json:"permissions_required,omitempty"`
+	Severity             SeverityEnum            `json:"severity"`
+	Url                  string                  `json:"url"`
+}
 
 // CostsForPeriod defines model for CostsForPeriod.
 type CostsForPeriod struct {
@@ -27505,6 +27560,9 @@ type SettingsMetadataResponse struct {
 	Settings []map[string]interface{} `json:"settings"`
 }
 
+// SeverityEnum defines model for SeverityEnum.
+type SeverityEnum string
+
 // SlurmAllocation defines model for SlurmAllocation.
 type SlurmAllocation struct {
 	AccessUrl                        *string                 `json:"access_url"`
@@ -28064,6 +28122,9 @@ type UpdateOfferingComponentRequest_LimitPeriod struct {
 	union json.RawMessage
 }
 
+// UrgencyEnum defines model for UrgencyEnum.
+type UrgencyEnum string
+
 // User defines model for User.
 type User struct {
 	// Affiliations Person's affiliation within organization such as student, faculty, staff.
@@ -28122,6 +28183,65 @@ type User struct {
 	// Username Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
 	Username *string             `json:"username,omitempty"`
 	Uuid     *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// UserAction defines model for UserAction.
+type UserAction struct {
+	// ActionType Type of action, e.g. 'pending_order', 'expiring_resource'
+	ActionType            string              `json:"action_type"`
+	ActionUrl             *string             `json:"action_url,omitempty"`
+	CorrectiveActions     *[]CorrectiveAction `json:"corrective_actions,omitempty"`
+	Created               *time.Time          `json:"created,omitempty"`
+	DaysUntilDue          *int                `json:"days_until_due"`
+	Description           string              `json:"description"`
+	DueDate               *time.Time          `json:"due_date"`
+	IsEffectivelySilenced *bool               `json:"is_effectively_silenced,omitempty"`
+	IsSilenced            *bool               `json:"is_silenced,omitempty"`
+	IsTemporarilySilenced *bool               `json:"is_temporarily_silenced,omitempty"`
+	Metadata              *string             `json:"metadata,omitempty"`
+	Modified              *time.Time          `json:"modified,omitempty"`
+	RelatedObjectName     *string             `json:"related_object_name,omitempty"`
+	RelatedObjectType     *string             `json:"related_object_type,omitempty"`
+	SilencedUntil         *time.Time          `json:"silenced_until"`
+	Title                 string              `json:"title"`
+	Urgency               UrgencyEnum         `json:"urgency"`
+	Uuid                  *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// UserActionExecution defines model for UserActionExecution.
+type UserActionExecution struct {
+	CorrectiveActionLabel string     `json:"corrective_action_label"`
+	ErrorMessage          *string    `json:"error_message,omitempty"`
+	ExecutedAt            *time.Time `json:"executed_at,omitempty"`
+	ExecutionMetadata     *string    `json:"execution_metadata,omitempty"`
+	Id                    *int       `json:"id,omitempty"`
+	Success               *bool      `json:"success,omitempty"`
+}
+
+// UserActionProvider defines model for UserActionProvider.
+type UserActionProvider struct {
+	ActionType          string     `json:"action_type"`
+	AppName             string     `json:"app_name"`
+	Id                  *int       `json:"id,omitempty"`
+	IsEnabled           *bool      `json:"is_enabled,omitempty"`
+	LastExecution       *time.Time `json:"last_execution"`
+	LastExecutionStatus *string    `json:"last_execution_status,omitempty"`
+	ProviderClass       string     `json:"provider_class"`
+	Schedule            *string    `json:"schedule,omitempty"`
+}
+
+// UserActionRequest defines model for UserActionRequest.
+type UserActionRequest struct {
+	// ActionType Type of action, e.g. 'pending_order', 'expiring_resource'
+	ActionType    string      `json:"action_type"`
+	ActionUrl     *string     `json:"action_url,omitempty"`
+	Description   string      `json:"description"`
+	DueDate       *time.Time  `json:"due_date"`
+	IsSilenced    *bool       `json:"is_silenced,omitempty"`
+	Metadata      *string     `json:"metadata,omitempty"`
+	SilencedUntil *time.Time  `json:"silenced_until"`
+	Title         string      `json:"title"`
+	Urgency       UrgencyEnum `json:"urgency"`
 }
 
 // UserAgreement defines model for UserAgreement.
@@ -45285,6 +45405,51 @@ type SupportUsersCountParams struct {
 	User     *int      `form:"user,omitempty" json:"user,omitempty"`
 }
 
+// UserActionExecutionsListParams defines parameters for UserActionExecutionsList.
+type UserActionExecutionsListParams struct {
+	// O Which field to use when ordering the results.
+	O *string `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// UserActionProvidersListParams defines parameters for UserActionProvidersList.
+type UserActionProvidersListParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// UserActionsListParams defines parameters for UserActionsList.
+type UserActionsListParams struct {
+	ActionType      *string    `form:"action_type,omitempty" json:"action_type,omitempty"`
+	CreatedAfter    *time.Time `form:"created_after,omitempty" json:"created_after,omitempty"`
+	CreatedBefore   *time.Time `form:"created_before,omitempty" json:"created_before,omitempty"`
+	DueWithinDays   *float32   `form:"due_within_days,omitempty" json:"due_within_days,omitempty"`
+	IncludeSilenced *bool      `form:"include_silenced,omitempty" json:"include_silenced,omitempty"`
+	IsSilenced      *bool      `form:"is_silenced,omitempty" json:"is_silenced,omitempty"`
+
+	// O Which field to use when ordering the results.
+	O       *string `form:"o,omitempty" json:"o,omitempty"`
+	Overdue *bool   `form:"overdue,omitempty" json:"overdue,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize                     `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Urgency  *UserActionsListParamsUrgency `form:"urgency,omitempty" json:"urgency,omitempty"`
+}
+
+// UserActionsListParamsUrgency defines parameters for UserActionsList.
+type UserActionsListParamsUrgency string
+
 // UserAgreementsListParams defines parameters for UserAgreementsList.
 type UserAgreementsListParams struct {
 	AgreementType *UserAgreementsListParamsAgreementType `form:"agreement_type,omitempty" json:"agreement_type,omitempty"`
@@ -48381,6 +48546,18 @@ type SupportTemplatesCreateAttachmentsJSONRequestBody = CreateAttachmentsRequest
 
 // SupportTemplatesDeleteAttachmentsJSONRequestBody defines body for SupportTemplatesDeleteAttachments for application/json ContentType.
 type SupportTemplatesDeleteAttachmentsJSONRequestBody = DeleteAttachmentsRequest
+
+// UserActionsBulkSilenceJSONRequestBody defines body for UserActionsBulkSilence for application/json ContentType.
+type UserActionsBulkSilenceJSONRequestBody = UserActionRequest
+
+// UserActionsExecuteActionJSONRequestBody defines body for UserActionsExecuteAction for application/json ContentType.
+type UserActionsExecuteActionJSONRequestBody = UserActionRequest
+
+// UserActionsSilenceJSONRequestBody defines body for UserActionsSilence for application/json ContentType.
+type UserActionsSilenceJSONRequestBody = UserActionRequest
+
+// UserActionsUnsilenceJSONRequestBody defines body for UserActionsUnsilence for application/json ContentType.
+type UserActionsUnsilenceJSONRequestBody = UserActionRequest
 
 // UserAgreementsCreateJSONRequestBody defines body for UserAgreementsCreate for application/json ContentType.
 type UserAgreementsCreateJSONRequestBody = UserAgreementRequest
@@ -60921,6 +61098,47 @@ type ClientInterface interface {
 
 	// SyncIssues request
 	SyncIssues(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// UserActionExecutionsList request
+	UserActionExecutionsList(ctx context.Context, params *UserActionExecutionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// UserActionExecutionsRetrieve request
+	UserActionExecutionsRetrieve(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// UserActionProvidersList request
+	UserActionProvidersList(ctx context.Context, params *UserActionProvidersListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// UserActionProvidersRetrieve request
+	UserActionProvidersRetrieve(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// UserActionsList request
+	UserActionsList(ctx context.Context, params *UserActionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// UserActionsBulkSilenceWithBody request with any body
+	UserActionsBulkSilenceWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	UserActionsBulkSilence(ctx context.Context, body UserActionsBulkSilenceJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// UserActionsSummaryRetrieve request
+	UserActionsSummaryRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// UserActionsRetrieve request
+	UserActionsRetrieve(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// UserActionsExecuteActionWithBody request with any body
+	UserActionsExecuteActionWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	UserActionsExecuteAction(ctx context.Context, id int, body UserActionsExecuteActionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// UserActionsSilenceWithBody request with any body
+	UserActionsSilenceWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	UserActionsSilence(ctx context.Context, id int, body UserActionsSilenceJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// UserActionsUnsilenceWithBody request with any body
+	UserActionsUnsilenceWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	UserActionsUnsilence(ctx context.Context, id int, body UserActionsUnsilenceJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UserAgreementsList request
 	UserAgreementsList(ctx context.Context, params *UserAgreementsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -88946,6 +89164,186 @@ func (c *Client) SyncIssuesRetrieve(ctx context.Context, reqEditors ...RequestEd
 
 func (c *Client) SyncIssues(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewSyncIssuesRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UserActionExecutionsList(ctx context.Context, params *UserActionExecutionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUserActionExecutionsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UserActionExecutionsRetrieve(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUserActionExecutionsRetrieveRequest(c.Server, id)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UserActionProvidersList(ctx context.Context, params *UserActionProvidersListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUserActionProvidersListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UserActionProvidersRetrieve(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUserActionProvidersRetrieveRequest(c.Server, id)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UserActionsList(ctx context.Context, params *UserActionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUserActionsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UserActionsBulkSilenceWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUserActionsBulkSilenceRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UserActionsBulkSilence(ctx context.Context, body UserActionsBulkSilenceJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUserActionsBulkSilenceRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UserActionsSummaryRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUserActionsSummaryRetrieveRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UserActionsRetrieve(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUserActionsRetrieveRequest(c.Server, id)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UserActionsExecuteActionWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUserActionsExecuteActionRequestWithBody(c.Server, id, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UserActionsExecuteAction(ctx context.Context, id int, body UserActionsExecuteActionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUserActionsExecuteActionRequest(c.Server, id, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UserActionsSilenceWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUserActionsSilenceRequestWithBody(c.Server, id, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UserActionsSilence(ctx context.Context, id int, body UserActionsSilenceJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUserActionsSilenceRequest(c.Server, id, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UserActionsUnsilenceWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUserActionsUnsilenceRequestWithBody(c.Server, id, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UserActionsUnsilence(ctx context.Context, id int, body UserActionsUnsilenceJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUserActionsUnsilenceRequest(c.Server, id, body)
 	if err != nil {
 		return nil, err
 	}
@@ -234379,6 +234777,671 @@ func NewSyncIssuesRequest(server string) (*http.Request, error) {
 	return req, nil
 }
 
+// NewUserActionExecutionsListRequest generates requests for UserActionExecutionsList
+func NewUserActionExecutionsListRequest(server string, params *UserActionExecutionsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/user-action-executions/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewUserActionExecutionsRetrieveRequest generates requests for UserActionExecutionsRetrieve
+func NewUserActionExecutionsRetrieveRequest(server string, id int) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/user-action-executions/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewUserActionProvidersListRequest generates requests for UserActionProvidersList
+func NewUserActionProvidersListRequest(server string, params *UserActionProvidersListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/user-action-providers/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewUserActionProvidersRetrieveRequest generates requests for UserActionProvidersRetrieve
+func NewUserActionProvidersRetrieveRequest(server string, id int) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/user-action-providers/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewUserActionsListRequest generates requests for UserActionsList
+func NewUserActionsListRequest(server string, params *UserActionsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/user-actions/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.ActionType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "action_type", runtime.ParamLocationQuery, *params.ActionType); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CreatedAfter != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "created_after", runtime.ParamLocationQuery, *params.CreatedAfter); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CreatedBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "created_before", runtime.ParamLocationQuery, *params.CreatedBefore); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.DueWithinDays != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "due_within_days", runtime.ParamLocationQuery, *params.DueWithinDays); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IncludeSilenced != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "include_silenced", runtime.ParamLocationQuery, *params.IncludeSilenced); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsSilenced != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_silenced", runtime.ParamLocationQuery, *params.IsSilenced); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Overdue != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "overdue", runtime.ParamLocationQuery, *params.Overdue); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Urgency != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "urgency", runtime.ParamLocationQuery, *params.Urgency); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewUserActionsBulkSilenceRequest calls the generic UserActionsBulkSilence builder with application/json body
+func NewUserActionsBulkSilenceRequest(server string, body UserActionsBulkSilenceJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewUserActionsBulkSilenceRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewUserActionsBulkSilenceRequestWithBody generates requests for UserActionsBulkSilence with any type of body
+func NewUserActionsBulkSilenceRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/user-actions/bulk_silence/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewUserActionsSummaryRetrieveRequest generates requests for UserActionsSummaryRetrieve
+func NewUserActionsSummaryRetrieveRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/user-actions/summary/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewUserActionsRetrieveRequest generates requests for UserActionsRetrieve
+func NewUserActionsRetrieveRequest(server string, id int) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/user-actions/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewUserActionsExecuteActionRequest calls the generic UserActionsExecuteAction builder with application/json body
+func NewUserActionsExecuteActionRequest(server string, id int, body UserActionsExecuteActionJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewUserActionsExecuteActionRequestWithBody(server, id, "application/json", bodyReader)
+}
+
+// NewUserActionsExecuteActionRequestWithBody generates requests for UserActionsExecuteAction with any type of body
+func NewUserActionsExecuteActionRequestWithBody(server string, id int, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/user-actions/%s/execute_action/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewUserActionsSilenceRequest calls the generic UserActionsSilence builder with application/json body
+func NewUserActionsSilenceRequest(server string, id int, body UserActionsSilenceJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewUserActionsSilenceRequestWithBody(server, id, "application/json", bodyReader)
+}
+
+// NewUserActionsSilenceRequestWithBody generates requests for UserActionsSilence with any type of body
+func NewUserActionsSilenceRequestWithBody(server string, id int, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/user-actions/%s/silence/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewUserActionsUnsilenceRequest calls the generic UserActionsUnsilence builder with application/json body
+func NewUserActionsUnsilenceRequest(server string, id int, body UserActionsUnsilenceJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewUserActionsUnsilenceRequestWithBody(server, id, "application/json", bodyReader)
+}
+
+// NewUserActionsUnsilenceRequestWithBody generates requests for UserActionsUnsilence with any type of body
+func NewUserActionsUnsilenceRequestWithBody(server string, id int, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/user-actions/%s/unsilence/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewUserAgreementsListRequest generates requests for UserAgreementsList
 func NewUserAgreementsListRequest(server string, params *UserAgreementsListParams) (*http.Request, error) {
 	var err error
@@ -250341,6 +251404,47 @@ type ClientWithResponsesInterface interface {
 
 	// SyncIssuesWithResponse request
 	SyncIssuesWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*SyncIssuesResponse, error)
+
+	// UserActionExecutionsListWithResponse request
+	UserActionExecutionsListWithResponse(ctx context.Context, params *UserActionExecutionsListParams, reqEditors ...RequestEditorFn) (*UserActionExecutionsListResponse, error)
+
+	// UserActionExecutionsRetrieveWithResponse request
+	UserActionExecutionsRetrieveWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*UserActionExecutionsRetrieveResponse, error)
+
+	// UserActionProvidersListWithResponse request
+	UserActionProvidersListWithResponse(ctx context.Context, params *UserActionProvidersListParams, reqEditors ...RequestEditorFn) (*UserActionProvidersListResponse, error)
+
+	// UserActionProvidersRetrieveWithResponse request
+	UserActionProvidersRetrieveWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*UserActionProvidersRetrieveResponse, error)
+
+	// UserActionsListWithResponse request
+	UserActionsListWithResponse(ctx context.Context, params *UserActionsListParams, reqEditors ...RequestEditorFn) (*UserActionsListResponse, error)
+
+	// UserActionsBulkSilenceWithBodyWithResponse request with any body
+	UserActionsBulkSilenceWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UserActionsBulkSilenceResponse, error)
+
+	UserActionsBulkSilenceWithResponse(ctx context.Context, body UserActionsBulkSilenceJSONRequestBody, reqEditors ...RequestEditorFn) (*UserActionsBulkSilenceResponse, error)
+
+	// UserActionsSummaryRetrieveWithResponse request
+	UserActionsSummaryRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*UserActionsSummaryRetrieveResponse, error)
+
+	// UserActionsRetrieveWithResponse request
+	UserActionsRetrieveWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*UserActionsRetrieveResponse, error)
+
+	// UserActionsExecuteActionWithBodyWithResponse request with any body
+	UserActionsExecuteActionWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UserActionsExecuteActionResponse, error)
+
+	UserActionsExecuteActionWithResponse(ctx context.Context, id int, body UserActionsExecuteActionJSONRequestBody, reqEditors ...RequestEditorFn) (*UserActionsExecuteActionResponse, error)
+
+	// UserActionsSilenceWithBodyWithResponse request with any body
+	UserActionsSilenceWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UserActionsSilenceResponse, error)
+
+	UserActionsSilenceWithResponse(ctx context.Context, id int, body UserActionsSilenceJSONRequestBody, reqEditors ...RequestEditorFn) (*UserActionsSilenceResponse, error)
+
+	// UserActionsUnsilenceWithBodyWithResponse request with any body
+	UserActionsUnsilenceWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UserActionsUnsilenceResponse, error)
+
+	UserActionsUnsilenceWithResponse(ctx context.Context, id int, body UserActionsUnsilenceJSONRequestBody, reqEditors ...RequestEditorFn) (*UserActionsUnsilenceResponse, error)
 
 	// UserAgreementsListWithResponse request
 	UserAgreementsListWithResponse(ctx context.Context, params *UserAgreementsListParams, reqEditors ...RequestEditorFn) (*UserAgreementsListResponse, error)
@@ -287650,6 +288754,248 @@ func (r SyncIssuesResponse) StatusCode() int {
 	return 0
 }
 
+type UserActionExecutionsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]UserActionExecution
+}
+
+// Status returns HTTPResponse.Status
+func (r UserActionExecutionsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r UserActionExecutionsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type UserActionExecutionsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *UserActionExecution
+}
+
+// Status returns HTTPResponse.Status
+func (r UserActionExecutionsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r UserActionExecutionsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type UserActionProvidersListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]UserActionProvider
+}
+
+// Status returns HTTPResponse.Status
+func (r UserActionProvidersListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r UserActionProvidersListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type UserActionProvidersRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *UserActionProvider
+}
+
+// Status returns HTTPResponse.Status
+func (r UserActionProvidersRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r UserActionProvidersRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type UserActionsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]UserAction
+}
+
+// Status returns HTTPResponse.Status
+func (r UserActionsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r UserActionsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type UserActionsBulkSilenceResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *UserAction
+}
+
+// Status returns HTTPResponse.Status
+func (r UserActionsBulkSilenceResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r UserActionsBulkSilenceResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type UserActionsSummaryRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *UserAction
+}
+
+// Status returns HTTPResponse.Status
+func (r UserActionsSummaryRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r UserActionsSummaryRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type UserActionsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *UserAction
+}
+
+// Status returns HTTPResponse.Status
+func (r UserActionsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r UserActionsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type UserActionsExecuteActionResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *UserAction
+}
+
+// Status returns HTTPResponse.Status
+func (r UserActionsExecuteActionResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r UserActionsExecuteActionResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type UserActionsSilenceResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *UserAction
+}
+
+// Status returns HTTPResponse.Status
+func (r UserActionsSilenceResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r UserActionsSilenceResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type UserActionsUnsilenceResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *UserAction
+}
+
+// Status returns HTTPResponse.Status
+func (r UserActionsUnsilenceResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r UserActionsUnsilenceResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type UserAgreementsListResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -310019,6 +311365,137 @@ func (c *ClientWithResponses) SyncIssuesWithResponse(ctx context.Context, reqEdi
 		return nil, err
 	}
 	return ParseSyncIssuesResponse(rsp)
+}
+
+// UserActionExecutionsListWithResponse request returning *UserActionExecutionsListResponse
+func (c *ClientWithResponses) UserActionExecutionsListWithResponse(ctx context.Context, params *UserActionExecutionsListParams, reqEditors ...RequestEditorFn) (*UserActionExecutionsListResponse, error) {
+	rsp, err := c.UserActionExecutionsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUserActionExecutionsListResponse(rsp)
+}
+
+// UserActionExecutionsRetrieveWithResponse request returning *UserActionExecutionsRetrieveResponse
+func (c *ClientWithResponses) UserActionExecutionsRetrieveWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*UserActionExecutionsRetrieveResponse, error) {
+	rsp, err := c.UserActionExecutionsRetrieve(ctx, id, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUserActionExecutionsRetrieveResponse(rsp)
+}
+
+// UserActionProvidersListWithResponse request returning *UserActionProvidersListResponse
+func (c *ClientWithResponses) UserActionProvidersListWithResponse(ctx context.Context, params *UserActionProvidersListParams, reqEditors ...RequestEditorFn) (*UserActionProvidersListResponse, error) {
+	rsp, err := c.UserActionProvidersList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUserActionProvidersListResponse(rsp)
+}
+
+// UserActionProvidersRetrieveWithResponse request returning *UserActionProvidersRetrieveResponse
+func (c *ClientWithResponses) UserActionProvidersRetrieveWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*UserActionProvidersRetrieveResponse, error) {
+	rsp, err := c.UserActionProvidersRetrieve(ctx, id, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUserActionProvidersRetrieveResponse(rsp)
+}
+
+// UserActionsListWithResponse request returning *UserActionsListResponse
+func (c *ClientWithResponses) UserActionsListWithResponse(ctx context.Context, params *UserActionsListParams, reqEditors ...RequestEditorFn) (*UserActionsListResponse, error) {
+	rsp, err := c.UserActionsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUserActionsListResponse(rsp)
+}
+
+// UserActionsBulkSilenceWithBodyWithResponse request with arbitrary body returning *UserActionsBulkSilenceResponse
+func (c *ClientWithResponses) UserActionsBulkSilenceWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UserActionsBulkSilenceResponse, error) {
+	rsp, err := c.UserActionsBulkSilenceWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUserActionsBulkSilenceResponse(rsp)
+}
+
+func (c *ClientWithResponses) UserActionsBulkSilenceWithResponse(ctx context.Context, body UserActionsBulkSilenceJSONRequestBody, reqEditors ...RequestEditorFn) (*UserActionsBulkSilenceResponse, error) {
+	rsp, err := c.UserActionsBulkSilence(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUserActionsBulkSilenceResponse(rsp)
+}
+
+// UserActionsSummaryRetrieveWithResponse request returning *UserActionsSummaryRetrieveResponse
+func (c *ClientWithResponses) UserActionsSummaryRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*UserActionsSummaryRetrieveResponse, error) {
+	rsp, err := c.UserActionsSummaryRetrieve(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUserActionsSummaryRetrieveResponse(rsp)
+}
+
+// UserActionsRetrieveWithResponse request returning *UserActionsRetrieveResponse
+func (c *ClientWithResponses) UserActionsRetrieveWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*UserActionsRetrieveResponse, error) {
+	rsp, err := c.UserActionsRetrieve(ctx, id, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUserActionsRetrieveResponse(rsp)
+}
+
+// UserActionsExecuteActionWithBodyWithResponse request with arbitrary body returning *UserActionsExecuteActionResponse
+func (c *ClientWithResponses) UserActionsExecuteActionWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UserActionsExecuteActionResponse, error) {
+	rsp, err := c.UserActionsExecuteActionWithBody(ctx, id, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUserActionsExecuteActionResponse(rsp)
+}
+
+func (c *ClientWithResponses) UserActionsExecuteActionWithResponse(ctx context.Context, id int, body UserActionsExecuteActionJSONRequestBody, reqEditors ...RequestEditorFn) (*UserActionsExecuteActionResponse, error) {
+	rsp, err := c.UserActionsExecuteAction(ctx, id, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUserActionsExecuteActionResponse(rsp)
+}
+
+// UserActionsSilenceWithBodyWithResponse request with arbitrary body returning *UserActionsSilenceResponse
+func (c *ClientWithResponses) UserActionsSilenceWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UserActionsSilenceResponse, error) {
+	rsp, err := c.UserActionsSilenceWithBody(ctx, id, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUserActionsSilenceResponse(rsp)
+}
+
+func (c *ClientWithResponses) UserActionsSilenceWithResponse(ctx context.Context, id int, body UserActionsSilenceJSONRequestBody, reqEditors ...RequestEditorFn) (*UserActionsSilenceResponse, error) {
+	rsp, err := c.UserActionsSilence(ctx, id, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUserActionsSilenceResponse(rsp)
+}
+
+// UserActionsUnsilenceWithBodyWithResponse request with arbitrary body returning *UserActionsUnsilenceResponse
+func (c *ClientWithResponses) UserActionsUnsilenceWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UserActionsUnsilenceResponse, error) {
+	rsp, err := c.UserActionsUnsilenceWithBody(ctx, id, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUserActionsUnsilenceResponse(rsp)
+}
+
+func (c *ClientWithResponses) UserActionsUnsilenceWithResponse(ctx context.Context, id int, body UserActionsUnsilenceJSONRequestBody, reqEditors ...RequestEditorFn) (*UserActionsUnsilenceResponse, error) {
+	rsp, err := c.UserActionsUnsilence(ctx, id, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUserActionsUnsilenceResponse(rsp)
 }
 
 // UserAgreementsListWithResponse request returning *UserAgreementsListResponse
@@ -349716,6 +351193,292 @@ func ParseSyncIssuesResponse(rsp *http.Response) (*SyncIssuesResponse, error) {
 	response := &SyncIssuesResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseUserActionExecutionsListResponse parses an HTTP response from a UserActionExecutionsListWithResponse call
+func ParseUserActionExecutionsListResponse(rsp *http.Response) (*UserActionExecutionsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &UserActionExecutionsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []UserActionExecution
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseUserActionExecutionsRetrieveResponse parses an HTTP response from a UserActionExecutionsRetrieveWithResponse call
+func ParseUserActionExecutionsRetrieveResponse(rsp *http.Response) (*UserActionExecutionsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &UserActionExecutionsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest UserActionExecution
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseUserActionProvidersListResponse parses an HTTP response from a UserActionProvidersListWithResponse call
+func ParseUserActionProvidersListResponse(rsp *http.Response) (*UserActionProvidersListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &UserActionProvidersListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []UserActionProvider
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseUserActionProvidersRetrieveResponse parses an HTTP response from a UserActionProvidersRetrieveWithResponse call
+func ParseUserActionProvidersRetrieveResponse(rsp *http.Response) (*UserActionProvidersRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &UserActionProvidersRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest UserActionProvider
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseUserActionsListResponse parses an HTTP response from a UserActionsListWithResponse call
+func ParseUserActionsListResponse(rsp *http.Response) (*UserActionsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &UserActionsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []UserAction
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseUserActionsBulkSilenceResponse parses an HTTP response from a UserActionsBulkSilenceWithResponse call
+func ParseUserActionsBulkSilenceResponse(rsp *http.Response) (*UserActionsBulkSilenceResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &UserActionsBulkSilenceResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest UserAction
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseUserActionsSummaryRetrieveResponse parses an HTTP response from a UserActionsSummaryRetrieveWithResponse call
+func ParseUserActionsSummaryRetrieveResponse(rsp *http.Response) (*UserActionsSummaryRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &UserActionsSummaryRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest UserAction
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseUserActionsRetrieveResponse parses an HTTP response from a UserActionsRetrieveWithResponse call
+func ParseUserActionsRetrieveResponse(rsp *http.Response) (*UserActionsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &UserActionsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest UserAction
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseUserActionsExecuteActionResponse parses an HTTP response from a UserActionsExecuteActionWithResponse call
+func ParseUserActionsExecuteActionResponse(rsp *http.Response) (*UserActionsExecuteActionResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &UserActionsExecuteActionResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest UserAction
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseUserActionsSilenceResponse parses an HTTP response from a UserActionsSilenceWithResponse call
+func ParseUserActionsSilenceResponse(rsp *http.Response) (*UserActionsSilenceResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &UserActionsSilenceResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest UserAction
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseUserActionsUnsilenceResponse parses an HTTP response from a UserActionsUnsilenceWithResponse call
+func ParseUserActionsUnsilenceResponse(rsp *http.Response) (*UserActionsUnsilenceResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &UserActionsUnsilenceResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest UserAction
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
