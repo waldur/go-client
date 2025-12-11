@@ -14053,7 +14053,7 @@ type ComponentUsage struct {
 
 // ComponentUsageCreateRequest defines model for ComponentUsageCreateRequest.
 type ComponentUsageCreateRequest struct {
-	// Date Date for usage reporting (staff only). If not provided, current date is used.
+	// Date Date for usage reporting (staff and service providers for limit-based components). If not provided, current date is used.
 	Date       *time.Time                  `json:"date,omitempty"`
 	PlanPeriod *openapi_types.UUID         `json:"plan_period,omitempty"`
 	Resource   *openapi_types.UUID         `json:"resource,omitempty"`
@@ -14128,7 +14128,7 @@ type ComponentUserUsage struct {
 
 // ComponentUserUsageCreateRequest defines model for ComponentUserUsageCreateRequest.
 type ComponentUserUsageCreateRequest struct {
-	// Date Date for usage reporting (staff only). If not provided, current date is used.
+	// Date Date for usage reporting (staff and service providers for limit-based components). If not provided, current date is used.
 	Date     *time.Time `json:"date,omitempty"`
 	Usage    *string    `json:"usage,omitempty"`
 	User     *string    `json:"user,omitempty"`
@@ -19056,6 +19056,51 @@ type OfferingImageRequestMultipart struct {
 	Image openapi_types.File `json:"image"`
 }
 
+// OfferingImportParameters defines model for OfferingImportParameters.
+type OfferingImportParameters struct {
+	// Category Target category name for imported offering. If not provided, uses category from export data
+	Category *string `json:"category"`
+
+	// Customer Target customer for imported offering. If not provided, uses current user's customer
+	Customer *openapi_types.UUID `json:"customer"`
+
+	// ImportComponents Import offering components
+	ImportComponents *bool `json:"import_components,omitempty"`
+
+	// ImportEndpoints Import offering access endpoints
+	ImportEndpoints *bool `json:"import_endpoints,omitempty"`
+
+	// ImportFiles Import offering files
+	ImportFiles *bool `json:"import_files,omitempty"`
+
+	// ImportOrganizationGroups Import organization groups associations (may fail if groups don't exist)
+	ImportOrganizationGroups *bool `json:"import_organization_groups,omitempty"`
+
+	// ImportPlans Import offering plans
+	ImportPlans *bool `json:"import_plans,omitempty"`
+
+	// ImportPluginOptions Import plugin options
+	ImportPluginOptions *bool `json:"import_plugin_options,omitempty"`
+
+	// ImportScreenshots Import offering screenshots
+	ImportScreenshots *bool `json:"import_screenshots,omitempty"`
+
+	// ImportSecretOptions Import secret options (WARNING: will overwrite existing secrets)
+	ImportSecretOptions *bool `json:"import_secret_options,omitempty"`
+
+	// ImportTermsOfService Import terms of service configurations
+	ImportTermsOfService *bool `json:"import_terms_of_service,omitempty"`
+
+	// OfferingData The exported offering data to import
+	OfferingData OfferingExportData `json:"offering_data"`
+
+	// OverwriteExisting Overwrite existing offering if one with the same name exists
+	OverwriteExisting *bool `json:"overwrite_existing,omitempty"`
+
+	// Project Target project for imported offering (optional)
+	Project *openapi_types.UUID `json:"project"`
+}
+
 // OfferingImportParametersRequest defines model for OfferingImportParametersRequest.
 type OfferingImportParametersRequest struct {
 	// Category Target category name for imported offering. If not provided, uses category from export data
@@ -19097,24 +19142,8 @@ type OfferingImportParametersRequest struct {
 	// OverwriteExisting Overwrite existing offering if one with the same name exists
 	OverwriteExisting *bool `json:"overwrite_existing,omitempty"`
 
-	// PreserveState Preserve offering state from export, otherwise set to 'Draft'
-	PreserveState *bool `json:"preserve_state,omitempty"`
-
 	// Project Target project for imported offering (optional)
 	Project *openapi_types.UUID `json:"project"`
-}
-
-// OfferingImportResponse defines model for OfferingImportResponse.
-type OfferingImportResponse struct {
-	ImportTimestamp time.Time `json:"import_timestamp"`
-
-	// ImportedComponents List of imported component types
-	ImportedComponents   []string           `json:"imported_components"`
-	ImportedOfferingName string             `json:"imported_offering_name"`
-	ImportedOfferingUuid openapi_types.UUID `json:"imported_offering_uuid"`
-
-	// Warnings List of warnings encountered during import
-	Warnings *[]string `json:"warnings,omitempty"`
 }
 
 // OfferingIntegrationUpdateRequest defines model for OfferingIntegrationUpdateRequest.
@@ -266412,7 +266441,7 @@ func (r MarketplaceProviderOfferingsGroupsCountResponse) StatusCode() int {
 type MarketplaceProviderOfferingsImportOfferingResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *OfferingImportResponse
+	JSON200      *OfferingImportParameters
 }
 
 // Status returns HTTPResponse.Status
@@ -327785,7 +327814,7 @@ func ParseMarketplaceProviderOfferingsImportOfferingResponse(rsp *http.Response)
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest OfferingImportResponse
+		var dest OfferingImportParameters
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
