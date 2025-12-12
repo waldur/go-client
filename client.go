@@ -14089,10 +14089,17 @@ type ComponentUsageCreateRequest struct {
 
 // ComponentUsageItemRequest defines model for ComponentUsageItemRequest.
 type ComponentUsageItemRequest struct {
-	Amount      string  `json:"amount"`
+	// Amount Usage amount
+	Amount string `json:"amount"`
+
+	// Description Optional description of usage
 	Description *string `json:"description,omitempty"`
-	Recurring   *bool   `json:"recurring,omitempty"`
-	Type        string  `json:"type"`
+
+	// Recurring Whether this usage is recurring
+	Recurring *bool `json:"recurring,omitempty"`
+
+	// Type Type of the component
+	Type string `json:"type"`
 }
 
 // ComponentUsagesPerMonthStats defines model for ComponentUsagesPerMonthStats.
@@ -15847,11 +15854,13 @@ type EmailLog struct {
 
 // EndpointUUID defines model for EndpointUUID.
 type EndpointUUID struct {
+	// Uuid UUID of the access endpoint
 	Uuid openapi_types.UUID `json:"uuid"`
 }
 
 // EndpointUUIDRequest defines model for EndpointUUIDRequest.
 type EndpointUUIDRequest struct {
+	// Uuid UUID of the access endpoint
 	Uuid openapi_types.UUID `json:"uuid"`
 }
 
@@ -16600,10 +16609,17 @@ type ImportResourceRequest struct {
 
 // ImportableResource defines model for ImportableResource.
 type ImportableResource struct {
-	BackendId   string `json:"backend_id"`
+	// BackendId Backend identifier of the resource
+	BackendId string `json:"backend_id"`
+
+	// Description Description of the resource
 	Description string `json:"description"`
-	Name        string `json:"name"`
-	Type        string `json:"type"`
+
+	// Name Name of the resource
+	Name string `json:"name"`
+
+	// Type Type of the resource
+	Type string `json:"type"`
 }
 
 // InstanceFlavorChangeRequest defines model for InstanceFlavorChangeRequest.
@@ -18370,7 +18386,9 @@ type NestedCustomerUsagePolicyComponentRequest struct {
 
 // NestedEndpoint defines model for NestedEndpoint.
 type NestedEndpoint struct {
-	Name *string             `json:"name,omitempty"`
+	Name *string `json:"name,omitempty"`
+
+	// Url URL of the access endpoint
 	Url  *string             `json:"url,omitempty"`
 	Uuid *openapi_types.UUID `json:"uuid,omitempty"`
 }
@@ -18378,7 +18396,9 @@ type NestedEndpoint struct {
 // NestedEndpointRequest defines model for NestedEndpointRequest.
 type NestedEndpointRequest struct {
 	Name string `json:"name"`
-	Url  string `json:"url"`
+
+	// Url URL of the access endpoint
+	Url string `json:"url"`
 }
 
 // NestedFeedback defines model for NestedFeedback.
@@ -19618,7 +19638,10 @@ type OfferingPermission struct {
 
 // OfferingReference defines model for OfferingReference.
 type OfferingReference struct {
-	OfferingName *string             `json:"offering_name,omitempty"`
+	// OfferingName Name of the offering
+	OfferingName *string `json:"offering_name,omitempty"`
+
+	// OfferingUuid UUID of the offering
 	OfferingUuid *openapi_types.UUID `json:"offering_uuid,omitempty"`
 }
 
@@ -22117,6 +22140,7 @@ type OrderState string
 
 // OrderUUID defines model for OrderUUID.
 type OrderUUID struct {
+	// OrderUuid UUID of the created or updated order
 	OrderUuid *openapi_types.UUID `json:"order_uuid,omitempty"`
 }
 
@@ -24234,10 +24258,17 @@ type PlanUsageResponse struct {
 
 // PluginComponent defines model for PluginComponent.
 type PluginComponent struct {
-	BillingType  BillingTypeEnum `json:"billing_type"`
-	MeasuredUnit string          `json:"measured_unit"`
-	Name         string          `json:"name"`
-	Type         string          `json:"type"`
+	// BillingType Billing type for the component
+	BillingType BillingTypeEnum `json:"billing_type"`
+
+	// MeasuredUnit Unit of measurement for the component
+	MeasuredUnit string `json:"measured_unit"`
+
+	// Name Display name of the component
+	Name string `json:"name"`
+
+	// Type Type identifier of the component
+	Type string `json:"type"`
 }
 
 // PluginOfferingType defines model for PluginOfferingType.
@@ -26993,6 +27024,7 @@ type RemoteSynchronisationRequest struct {
 
 // RemoveOfferingComponentRequest defines model for RemoveOfferingComponentRequest.
 type RemoveOfferingComponentRequest struct {
+	// Uuid UUID of the component to remove
 	Uuid openapi_types.UUID `json:"uuid"`
 }
 
@@ -27256,7 +27288,10 @@ type ResourceReallocateLimitsRequest struct {
 
 // ResourceReallocateLimitsResponse defines model for ResourceReallocateLimitsResponse.
 type ResourceReallocateLimitsResponse struct {
-	SourceOrderUuid  *openapi_types.UUID   `json:"source_order_uuid,omitempty"`
+	// SourceOrderUuid UUID of the source order for limit reallocation
+	SourceOrderUuid *openapi_types.UUID `json:"source_order_uuid,omitempty"`
+
+	// TargetOrderUuids List of UUIDs for target orders receiving the reallocated limits
 	TargetOrderUuids *[]openapi_types.UUID `json:"target_order_uuids,omitempty"`
 }
 
@@ -27999,8 +28034,11 @@ type SetMtuRequest struct {
 
 // SetOfferingsUsernameRequest defines model for SetOfferingsUsernameRequest.
 type SetOfferingsUsernameRequest struct {
+	// UserUuid UUID of the user
 	UserUuid openapi_types.UUID `json:"user_uuid"`
-	Username string             `json:"username"`
+
+	// Username Username for offering access
+	Username string `json:"username"`
 }
 
 // SettingsMetadataResponse defines model for SettingsMetadataResponse.
@@ -28274,6 +28312,7 @@ type SoftwareCatalogRequest struct {
 
 // SoftwareCatalogUUID defines model for SoftwareCatalogUUID.
 type SoftwareCatalogUUID struct {
+	// Uuid UUID of the software catalog
 	Uuid openapi_types.UUID `json:"uuid"`
 }
 
