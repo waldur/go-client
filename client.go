@@ -13367,9 +13367,11 @@ type BookingResource struct {
 	Scope                     *string                        `json:"scope,omitempty"`
 	ServiceSettingsUuid       *openapi_types.UUID            `json:"service_settings_uuid,omitempty"`
 	Slots                     *[]BookingSlot                 `json:"slots,omitempty"`
-	Slug                      *string                        `json:"slug,omitempty"`
-	State                     *ResourceState                 `json:"state,omitempty"`
-	Url                       *string                        `json:"url,omitempty"`
+
+	// Slug URL-friendly identifier. Only editable by staff users.
+	Slug  *string        `json:"slug,omitempty"`
+	State *ResourceState `json:"state,omitempty"`
+	Url   *string        `json:"url,omitempty"`
 
 	// UserRequiresReconsent Check if the current user needs to re-consent for this resource's offering.
 	UserRequiresReconsent *bool               `json:"user_requires_reconsent,omitempty"`
@@ -14893,6 +14895,7 @@ type ContainerFormatEnum string
 
 // CoreAuthToken defines model for CoreAuthToken.
 type CoreAuthToken struct {
+	// Token Authentication token for API access
 	Token *string `json:"token,omitempty"`
 }
 
@@ -15017,6 +15020,7 @@ type CourseAccountsBulkCreateRequest struct {
 
 // CreateAttachmentsRequest defines model for CreateAttachmentsRequest.
 type CreateAttachmentsRequest struct {
+	// Attachments List of files to attach
 	Attachments []openapi_types.File `json:"attachments"`
 }
 
@@ -15106,17 +15110,23 @@ type Customer struct {
 	Blocked                      *bool                `json:"blocked,omitempty"`
 	CallManagingOrganizationUuid *string              `json:"call_managing_organization_uuid"`
 	ContactDetails               *string              `json:"contact_details,omitempty"`
-	Country                      *Customer_Country    `json:"country,omitempty"`
-	CountryName                  *string              `json:"country_name,omitempty"`
-	Created                      *time.Time           `json:"created,omitempty"`
-	CustomerCredit               *float64             `json:"customer_credit"`
-	CustomerUnallocatedCredit    *float64             `json:"customer_unallocated_credit"`
-	DefaultTaxPercent            *string              `json:"default_tax_percent,omitempty"`
-	Description                  *string              `json:"description,omitempty"`
-	DisplayBillingInfoInProjects *bool                `json:"display_billing_info_in_projects,omitempty"`
-	DisplayName                  *string              `json:"display_name,omitempty"`
-	Domain                       *string              `json:"domain,omitempty"`
-	Email                        *openapi_types.Email `json:"email,omitempty"`
+
+	// Country Country code (ISO 3166-1 alpha-2)
+	Country *Customer_Country `json:"country,omitempty"`
+
+	// CountryName Human-readable country name
+	CountryName                  *string    `json:"country_name,omitempty"`
+	Created                      *time.Time `json:"created,omitempty"`
+	CustomerCredit               *float64   `json:"customer_credit"`
+	CustomerUnallocatedCredit    *float64   `json:"customer_unallocated_credit"`
+	DefaultTaxPercent            *string    `json:"default_tax_percent,omitempty"`
+	Description                  *string    `json:"description,omitempty"`
+	DisplayBillingInfoInProjects *bool      `json:"display_billing_info_in_projects,omitempty"`
+
+	// DisplayName Display name of the organization (includes native name if available)
+	DisplayName *string              `json:"display_name,omitempty"`
+	Domain      *string              `json:"domain,omitempty"`
+	Email       *openapi_types.Email `json:"email,omitempty"`
 
 	// GracePeriodDays Number of extra days after project end date before resources are terminated
 	GracePeriodDays   *int     `json:"grace_period_days"`
@@ -15132,29 +15142,39 @@ type Customer struct {
 	NativeName         *string `json:"native_name,omitempty"`
 
 	// NotificationEmails Comma-separated list of notification email addresses
-	NotificationEmails       *string              `json:"notification_emails,omitempty"`
-	OrganizationGroups       *[]OrganizationGroup `json:"organization_groups,omitempty"`
-	PaymentProfiles          *[]PaymentProfile    `json:"payment_profiles,omitempty"`
-	PhoneNumber              *string              `json:"phone_number,omitempty"`
-	Postal                   *string              `json:"postal,omitempty"`
-	ProjectMetadataChecklist *openapi_types.UUID  `json:"project_metadata_checklist"`
-	ProjectsCount            *int                 `json:"projects_count,omitempty"`
-	RegistrationCode         *string              `json:"registration_code,omitempty"`
-	ServiceProvider          *string              `json:"service_provider"`
-	ServiceProviderUuid      *openapi_types.UUID  `json:"service_provider_uuid"`
-	Slug                     *string              `json:"slug,omitempty"`
+	NotificationEmails *string `json:"notification_emails,omitempty"`
+
+	// OrganizationGroups Organization groups this customer belongs to
+	OrganizationGroups *[]OrganizationGroup `json:"organization_groups,omitempty"`
+	PaymentProfiles    *[]PaymentProfile    `json:"payment_profiles,omitempty"`
+	PhoneNumber        *string              `json:"phone_number,omitempty"`
+	Postal             *string              `json:"postal,omitempty"`
+
+	// ProjectMetadataChecklist Checklist to be used for project metadata validation in this organization
+	ProjectMetadataChecklist *openapi_types.UUID `json:"project_metadata_checklist"`
+
+	// ProjectsCount Number of projects in this organization
+	ProjectsCount       *int                `json:"projects_count,omitempty"`
+	RegistrationCode    *string             `json:"registration_code,omitempty"`
+	ServiceProvider     *string             `json:"service_provider"`
+	ServiceProviderUuid *openapi_types.UUID `json:"service_provider_uuid"`
+
+	// Slug URL-friendly identifier. Only editable by staff users.
+	Slug *string `json:"slug,omitempty"`
 
 	// SponsorNumber External ID of the sponsor covering the costs
-	SponsorNumber *int                `json:"sponsor_number"`
-	Url           *string             `json:"url,omitempty"`
-	UsersCount    *int                `json:"users_count,omitempty"`
-	Uuid          *openapi_types.UUID `json:"uuid,omitempty"`
+	SponsorNumber *int    `json:"sponsor_number"`
+	Url           *string `json:"url,omitempty"`
+
+	// UsersCount Number of users with access to this organization
+	UsersCount *int                `json:"users_count,omitempty"`
+	Uuid       *openapi_types.UUID `json:"uuid,omitempty"`
 
 	// VatCode VAT number
 	VatCode *string `json:"vat_code,omitempty"`
 }
 
-// Customer_Country defines model for Customer.Country.
+// Customer_Country Country code (ISO 3166-1 alpha-2)
 type Customer_Country struct {
 	union json.RawMessage
 }
@@ -15334,11 +15354,13 @@ type CustomerRequest struct {
 	Archived            *bool      `json:"archived,omitempty"`
 
 	// BackendId Organization identifier in another application.
-	BackendId                    *string                  `json:"backend_id,omitempty"`
-	BankAccount                  *string                  `json:"bank_account,omitempty"`
-	BankName                     *string                  `json:"bank_name,omitempty"`
-	Blocked                      *bool                    `json:"blocked,omitempty"`
-	ContactDetails               *string                  `json:"contact_details,omitempty"`
+	BackendId      *string `json:"backend_id,omitempty"`
+	BankAccount    *string `json:"bank_account,omitempty"`
+	BankName       *string `json:"bank_name,omitempty"`
+	Blocked        *bool   `json:"blocked,omitempty"`
+	ContactDetails *string `json:"contact_details,omitempty"`
+
+	// Country Country code (ISO 3166-1 alpha-2)
 	Country                      *CustomerRequest_Country `json:"country,omitempty"`
 	DefaultTaxPercent            *string                  `json:"default_tax_percent,omitempty"`
 	Description                  *string                  `json:"description,omitempty"`
@@ -15359,12 +15381,16 @@ type CustomerRequest struct {
 	NativeName         *string `json:"native_name,omitempty"`
 
 	// NotificationEmails Comma-separated list of notification email addresses
-	NotificationEmails       *string             `json:"notification_emails,omitempty"`
-	PhoneNumber              *string             `json:"phone_number,omitempty"`
-	Postal                   *string             `json:"postal,omitempty"`
+	NotificationEmails *string `json:"notification_emails,omitempty"`
+	PhoneNumber        *string `json:"phone_number,omitempty"`
+	Postal             *string `json:"postal,omitempty"`
+
+	// ProjectMetadataChecklist Checklist to be used for project metadata validation in this organization
 	ProjectMetadataChecklist *openapi_types.UUID `json:"project_metadata_checklist"`
 	RegistrationCode         *string             `json:"registration_code,omitempty"`
-	Slug                     *string             `json:"slug,omitempty"`
+
+	// Slug URL-friendly identifier. Only editable by staff users.
+	Slug *string `json:"slug,omitempty"`
 
 	// SponsorNumber External ID of the sponsor covering the costs
 	SponsorNumber *int `json:"sponsor_number"`
@@ -15373,7 +15399,7 @@ type CustomerRequest struct {
 	VatCode *string `json:"vat_code,omitempty"`
 }
 
-// CustomerRequest_Country defines model for CustomerRequest.Country.
+// CustomerRequest_Country Country code (ISO 3166-1 alpha-2)
 type CustomerRequest_Country struct {
 	union json.RawMessage
 }
@@ -15390,11 +15416,13 @@ type CustomerRequestForm struct {
 	Archived            *bool      `json:"archived,omitempty"`
 
 	// BackendId Organization identifier in another application.
-	BackendId                    *string                      `json:"backend_id,omitempty"`
-	BankAccount                  *string                      `json:"bank_account,omitempty"`
-	BankName                     *string                      `json:"bank_name,omitempty"`
-	Blocked                      *bool                        `json:"blocked,omitempty"`
-	ContactDetails               *string                      `json:"contact_details,omitempty"`
+	BackendId      *string `json:"backend_id,omitempty"`
+	BankAccount    *string `json:"bank_account,omitempty"`
+	BankName       *string `json:"bank_name,omitempty"`
+	Blocked        *bool   `json:"blocked,omitempty"`
+	ContactDetails *string `json:"contact_details,omitempty"`
+
+	// Country Country code (ISO 3166-1 alpha-2)
 	Country                      *CustomerRequestForm_Country `json:"country,omitempty"`
 	DefaultTaxPercent            *string                      `json:"default_tax_percent,omitempty"`
 	Description                  *string                      `json:"description,omitempty"`
@@ -15415,12 +15443,16 @@ type CustomerRequestForm struct {
 	NativeName         *string `json:"native_name,omitempty"`
 
 	// NotificationEmails Comma-separated list of notification email addresses
-	NotificationEmails       *string             `json:"notification_emails,omitempty"`
-	PhoneNumber              *string             `json:"phone_number,omitempty"`
-	Postal                   *string             `json:"postal,omitempty"`
+	NotificationEmails *string `json:"notification_emails,omitempty"`
+	PhoneNumber        *string `json:"phone_number,omitempty"`
+	Postal             *string `json:"postal,omitempty"`
+
+	// ProjectMetadataChecklist Checklist to be used for project metadata validation in this organization
 	ProjectMetadataChecklist *openapi_types.UUID `json:"project_metadata_checklist"`
 	RegistrationCode         *string             `json:"registration_code,omitempty"`
-	Slug                     *string             `json:"slug,omitempty"`
+
+	// Slug URL-friendly identifier. Only editable by staff users.
+	Slug *string `json:"slug,omitempty"`
 
 	// SponsorNumber External ID of the sponsor covering the costs
 	SponsorNumber *int `json:"sponsor_number"`
@@ -15429,7 +15461,7 @@ type CustomerRequestForm struct {
 	VatCode *string `json:"vat_code,omitempty"`
 }
 
-// CustomerRequestForm_Country defines model for CustomerRequestForm.Country.
+// CustomerRequestForm_Country Country code (ISO 3166-1 alpha-2)
 type CustomerRequestForm_Country struct {
 	union json.RawMessage
 }
@@ -15446,11 +15478,13 @@ type CustomerRequestMultipart struct {
 	Archived            *bool      `json:"archived,omitempty"`
 
 	// BackendId Organization identifier in another application.
-	BackendId                    *string                           `json:"backend_id,omitempty"`
-	BankAccount                  *string                           `json:"bank_account,omitempty"`
-	BankName                     *string                           `json:"bank_name,omitempty"`
-	Blocked                      *bool                             `json:"blocked,omitempty"`
-	ContactDetails               *string                           `json:"contact_details,omitempty"`
+	BackendId      *string `json:"backend_id,omitempty"`
+	BankAccount    *string `json:"bank_account,omitempty"`
+	BankName       *string `json:"bank_name,omitempty"`
+	Blocked        *bool   `json:"blocked,omitempty"`
+	ContactDetails *string `json:"contact_details,omitempty"`
+
+	// Country Country code (ISO 3166-1 alpha-2)
 	Country                      *CustomerRequestMultipart_Country `json:"country,omitempty"`
 	DefaultTaxPercent            *string                           `json:"default_tax_percent,omitempty"`
 	Description                  *string                           `json:"description,omitempty"`
@@ -15471,12 +15505,16 @@ type CustomerRequestMultipart struct {
 	NativeName         *string `json:"native_name,omitempty"`
 
 	// NotificationEmails Comma-separated list of notification email addresses
-	NotificationEmails       *string             `json:"notification_emails,omitempty"`
-	PhoneNumber              *string             `json:"phone_number,omitempty"`
-	Postal                   *string             `json:"postal,omitempty"`
+	NotificationEmails *string `json:"notification_emails,omitempty"`
+	PhoneNumber        *string `json:"phone_number,omitempty"`
+	Postal             *string `json:"postal,omitempty"`
+
+	// ProjectMetadataChecklist Checklist to be used for project metadata validation in this organization
 	ProjectMetadataChecklist *openapi_types.UUID `json:"project_metadata_checklist"`
 	RegistrationCode         *string             `json:"registration_code,omitempty"`
-	Slug                     *string             `json:"slug,omitempty"`
+
+	// Slug URL-friendly identifier. Only editable by staff users.
+	Slug *string `json:"slug,omitempty"`
 
 	// SponsorNumber External ID of the sponsor covering the costs
 	SponsorNumber *int `json:"sponsor_number"`
@@ -15485,7 +15523,7 @@ type CustomerRequestMultipart struct {
 	VatCode *string `json:"vat_code,omitempty"`
 }
 
-// CustomerRequestMultipart_Country defines model for CustomerRequestMultipart.Country.
+// CustomerRequestMultipart_Country Country code (ISO 3166-1 alpha-2)
 type CustomerRequestMultipart_Country struct {
 	union json.RawMessage
 }
@@ -16325,32 +16363,59 @@ type GoogleCredentials struct {
 // GroupInvitation defines model for GroupInvitation.
 type GroupInvitation struct {
 	// AutoCreateProject Create project and grant project permissions instead of customer permissions
-	AutoCreateProject *bool               `json:"auto_create_project,omitempty"`
-	Created           *time.Time          `json:"created,omitempty"`
-	CreatedByFullName *string             `json:"created_by_full_name,omitempty"`
-	CreatedByImage    *string             `json:"created_by_image,omitempty"`
-	CreatedByUsername *string             `json:"created_by_username,omitempty"`
-	CustomerName      *string             `json:"customer_name,omitempty"`
-	CustomerUuid      *openapi_types.UUID `json:"customer_uuid,omitempty"`
-	Expires           *time.Time          `json:"expires,omitempty"`
-	IsActive          *bool               `json:"is_active,omitempty"`
+	AutoCreateProject *bool      `json:"auto_create_project,omitempty"`
+	Created           *time.Time `json:"created,omitempty"`
+
+	// CreatedByFullName Full name of the user who created this invitation
+	CreatedByFullName *string `json:"created_by_full_name,omitempty"`
+
+	// CreatedByImage Profile image of the user who created this invitation
+	CreatedByImage *string `json:"created_by_image,omitempty"`
+
+	// CreatedByUsername Username of the user who created this invitation
+	CreatedByUsername *string `json:"created_by_username,omitempty"`
+
+	// CustomerName Name of the customer organization
+	CustomerName *string `json:"customer_name,omitempty"`
+
+	// CustomerUuid UUID of the customer organization
+	CustomerUuid *openapi_types.UUID `json:"customer_uuid,omitempty"`
+
+	// Expires Expiration date and time of the invitation
+	Expires  *time.Time `json:"expires,omitempty"`
+	IsActive *bool      `json:"is_active,omitempty"`
 
 	// IsPublic Allow non-authenticated users to see and accept this invitation. Only staff can create public invitations.
 	IsPublic *bool `json:"is_public,omitempty"`
 
 	// ProjectNameTemplate Template for project name. Supports {username}, {email}, {full_name} variables
-	ProjectNameTemplate *string             `json:"project_name_template"`
-	ProjectRole         *openapi_types.UUID `json:"project_role"`
-	Role                openapi_types.UUID  `json:"role"`
-	RoleDescription     *string             `json:"role_description,omitempty"`
-	RoleName            *string             `json:"role_name,omitempty"`
+	ProjectNameTemplate *string `json:"project_name_template"`
 
-	// ScopeDescription Get the description field from the scope if it exists.
-	// Returns empty string if scope doesn't have a description field.
-	ScopeDescription  *string             `json:"scope_description,omitempty"`
-	ScopeImage        *string             `json:"scope_image"`
-	ScopeName         *string             `json:"scope_name,omitempty"`
-	ScopeType         *string             `json:"scope_type"`
+	// ProjectRole UUID of the project role to grant if auto_create_project is enabled
+	ProjectRole *openapi_types.UUID `json:"project_role"`
+
+	// Role UUID of the role to grant to the invited user
+	Role openapi_types.UUID `json:"role"`
+
+	// RoleDescription Description of the role being granted
+	RoleDescription *string `json:"role_description,omitempty"`
+
+	// RoleName Name of the role being granted (e.g., 'PROJECT.ADMIN')
+	RoleName *string `json:"role_name,omitempty"`
+
+	// ScopeDescription Description of the invitation scope
+	ScopeDescription *string `json:"scope_description,omitempty"`
+
+	// ScopeImage Image URL of the invitation scope (Customer or Project)
+	ScopeImage *string `json:"scope_image"`
+
+	// ScopeName Name of the invitation scope
+	ScopeName *string `json:"scope_name,omitempty"`
+
+	// ScopeType Type of the invitation scope (e.g., 'customer', 'project')
+	ScopeType *string `json:"scope_type"`
+
+	// ScopeUuid UUID of the invitation scope (Customer or Project)
 	ScopeUuid         *openapi_types.UUID `json:"scope_uuid,omitempty"`
 	Url               *string             `json:"url,omitempty"`
 	UserAffiliations  interface{}         `json:"user_affiliations,omitempty"`
@@ -16367,12 +16432,18 @@ type GroupInvitationRequest struct {
 	IsPublic *bool `json:"is_public,omitempty"`
 
 	// ProjectNameTemplate Template for project name. Supports {username}, {email}, {full_name} variables
-	ProjectNameTemplate *string             `json:"project_name_template"`
-	ProjectRole         *openapi_types.UUID `json:"project_role"`
-	Role                openapi_types.UUID  `json:"role"`
-	Scope               *string             `json:"scope,omitempty"`
-	UserAffiliations    interface{}         `json:"user_affiliations,omitempty"`
-	UserEmailPatterns   interface{}         `json:"user_email_patterns,omitempty"`
+	ProjectNameTemplate *string `json:"project_name_template"`
+
+	// ProjectRole UUID of the project role to grant if auto_create_project is enabled
+	ProjectRole *openapi_types.UUID `json:"project_role"`
+
+	// Role UUID of the role to grant to the invited user
+	Role openapi_types.UUID `json:"role"`
+
+	// Scope URL of the scope (Customer or Project) for this invitation
+	Scope             *string     `json:"scope,omitempty"`
+	UserAffiliations  interface{} `json:"user_affiliations,omitempty"`
+	UserEmailPatterns interface{} `json:"user_email_patterns,omitempty"`
 }
 
 // GuestOsEnum defines model for GuestOsEnum.
@@ -16560,44 +16631,70 @@ type IntegrationStatusDetails struct {
 // Invitation defines model for Invitation.
 type Invitation struct {
 	// CivilNumber Civil number of invited user. If civil number is not defined any user can accept invitation.
-	CivilNumber       *string             `json:"civil_number,omitempty"`
-	Created           *time.Time          `json:"created,omitempty"`
-	CreatedByFullName *string             `json:"created_by_full_name,omitempty"`
-	CreatedByImage    *string             `json:"created_by_image,omitempty"`
-	CreatedByUsername *string             `json:"created_by_username,omitempty"`
-	CustomerName      *string             `json:"customer_name,omitempty"`
-	CustomerUuid      *openapi_types.UUID `json:"customer_uuid,omitempty"`
+	CivilNumber *string    `json:"civil_number,omitempty"`
+	Created     *time.Time `json:"created,omitempty"`
+
+	// CreatedByFullName Full name of the user who created this invitation
+	CreatedByFullName *string `json:"created_by_full_name,omitempty"`
+
+	// CreatedByImage Profile image of the user who created this invitation
+	CreatedByImage *string `json:"created_by_image,omitempty"`
+
+	// CreatedByUsername Username of the user who created this invitation
+	CreatedByUsername *string `json:"created_by_username,omitempty"`
+
+	// CustomerName Name of the customer organization
+	CustomerName *string `json:"customer_name,omitempty"`
+
+	// CustomerUuid UUID of the customer organization
+	CustomerUuid *openapi_types.UUID `json:"customer_uuid,omitempty"`
 
 	// Email Invitation link will be sent to this email. Note that user can accept invitation with different email.
-	Email               openapi_types.Email `json:"email"`
-	ErrorMessage        *string             `json:"error_message,omitempty"`
-	ExecutionState      *ExecutionStateEnum `json:"execution_state,omitempty"`
-	Expires             *time.Time          `json:"expires,omitempty"`
-	ExtraInvitationText *string             `json:"extra_invitation_text,omitempty"`
-	FullName            *string             `json:"full_name,omitempty"`
-	JobTitle            *string             `json:"job_title,omitempty"`
-	NativeName          *string             `json:"native_name,omitempty"`
-	Organization        *string             `json:"organization,omitempty"`
-	PhoneNumber         *string             `json:"phone_number,omitempty"`
-	Role                openapi_types.UUID  `json:"role"`
-	RoleDescription     *string             `json:"role_description,omitempty"`
-	RoleName            *string             `json:"role_name,omitempty"`
+	Email          openapi_types.Email `json:"email"`
+	ErrorMessage   *string             `json:"error_message,omitempty"`
+	ExecutionState *ExecutionStateEnum `json:"execution_state,omitempty"`
 
-	// ScopeDescription Get the description field from the scope if it exists.
-	// Returns empty string if scope doesn't have a description field.
-	ScopeDescription *string              `json:"scope_description,omitempty"`
-	ScopeName        *string              `json:"scope_name,omitempty"`
-	ScopeType        *string              `json:"scope_type"`
-	ScopeUuid        *openapi_types.UUID  `json:"scope_uuid,omitempty"`
-	State            *InvitationStateEnum `json:"state,omitempty"`
-	Url              *string              `json:"url,omitempty"`
-	Uuid             *openapi_types.UUID  `json:"uuid,omitempty"`
+	// Expires Expiration date and time of the invitation
+	Expires             *time.Time `json:"expires,omitempty"`
+	ExtraInvitationText *string    `json:"extra_invitation_text,omitempty"`
+	FullName            *string    `json:"full_name,omitempty"`
+	JobTitle            *string    `json:"job_title,omitempty"`
+	NativeName          *string    `json:"native_name,omitempty"`
+	Organization        *string    `json:"organization,omitempty"`
+	PhoneNumber         *string    `json:"phone_number,omitempty"`
+
+	// Role UUID of the role to grant to the invited user
+	Role openapi_types.UUID `json:"role"`
+
+	// RoleDescription Description of the role being granted
+	RoleDescription *string `json:"role_description,omitempty"`
+
+	// RoleName Name of the role being granted (e.g., 'PROJECT.ADMIN')
+	RoleName *string `json:"role_name,omitempty"`
+
+	// ScopeDescription Description of the invitation scope
+	ScopeDescription *string `json:"scope_description,omitempty"`
+
+	// ScopeName Name of the invitation scope
+	ScopeName *string `json:"scope_name,omitempty"`
+
+	// ScopeType Type of the invitation scope (e.g., 'customer', 'project')
+	ScopeType *string `json:"scope_type"`
+
+	// ScopeUuid UUID of the invitation scope (Customer or Project)
+	ScopeUuid *openapi_types.UUID  `json:"scope_uuid,omitempty"`
+	State     *InvitationStateEnum `json:"state,omitempty"`
+	Url       *string              `json:"url,omitempty"`
+	Uuid      *openapi_types.UUID  `json:"uuid,omitempty"`
 }
 
 // InvitationCheck defines model for InvitationCheck.
 type InvitationCheck struct {
-	CivilNumberRequired *bool               `json:"civil_number_required,omitempty"`
-	Email               openapi_types.Email `json:"email"`
+	// CivilNumberRequired Whether civil number verification is required
+	CivilNumberRequired *bool `json:"civil_number_required,omitempty"`
+
+	// Email Email address to check for existing invitations
+	Email openapi_types.Email `json:"email"`
 }
 
 // InvitationRequest defines model for InvitationRequest.
@@ -16613,8 +16710,12 @@ type InvitationRequest struct {
 	NativeName          *string             `json:"native_name,omitempty"`
 	Organization        *string             `json:"organization,omitempty"`
 	PhoneNumber         *string             `json:"phone_number,omitempty"`
-	Role                openapi_types.UUID  `json:"role"`
-	Scope               *string             `json:"scope,omitempty"`
+
+	// Role UUID of the role to grant to the invited user
+	Role openapi_types.UUID `json:"role"`
+
+	// Scope URL of the scope (Customer or Project) for this invitation
+	Scope *string `json:"scope,omitempty"`
 }
 
 // InvitationState defines model for InvitationState.
@@ -16627,14 +16728,18 @@ type InvitationStateEnum string
 type InvitationUpdate struct {
 	// Email Invitation link will be sent to this email. Note that user can accept invitation with different email.
 	Email openapi_types.Email `json:"email"`
-	Role  *openapi_types.UUID `json:"role,omitempty"`
+
+	// Role UUID of the new role to assign. Must be compatible with the invitation scope.
+	Role *openapi_types.UUID `json:"role,omitempty"`
 }
 
 // InvitationUpdateRequest defines model for InvitationUpdateRequest.
 type InvitationUpdateRequest struct {
 	// Email Invitation link will be sent to this email. Note that user can accept invitation with different email.
 	Email openapi_types.Email `json:"email"`
-	Role  *openapi_types.UUID `json:"role,omitempty"`
+
+	// Role UUID of the new role to assign. Must be compatible with the invitation scope.
+	Role *openapi_types.UUID `json:"role,omitempty"`
 }
 
 // Invoice defines model for Invoice.
@@ -16721,11 +16826,13 @@ type InvoiceItem struct {
 
 // InvoiceItemCompensation defines model for InvoiceItemCompensation.
 type InvoiceItemCompensation struct {
+	// OfferingComponentName Name of the offering component for compensation
 	OfferingComponentName string `json:"offering_component_name"`
 }
 
 // InvoiceItemCompensationRequest defines model for InvoiceItemCompensationRequest.
 type InvoiceItemCompensationRequest struct {
+	// OfferingComponentName Name of the offering component for compensation
 	OfferingComponentName string `json:"offering_component_name"`
 }
 
@@ -16757,19 +16864,44 @@ type InvoiceItemDetail struct {
 
 // InvoiceItemDetails defines model for InvoiceItemDetails.
 type InvoiceItemDetails struct {
-	OfferingComponentName *string                `json:"offering_component_name,omitempty"`
-	OfferingComponentType *string                `json:"offering_component_type,omitempty"`
-	OfferingName          *string                `json:"offering_name,omitempty"`
-	OfferingType          *string                `json:"offering_type,omitempty"`
-	OfferingUuid          *openapi_types.UUID    `json:"offering_uuid,omitempty"`
-	PlanComponentId       *int                   `json:"plan_component_id,omitempty"`
-	PlanName              *string                `json:"plan_name,omitempty"`
-	PlanUuid              *openapi_types.UUID    `json:"plan_uuid,omitempty"`
-	ResourceLimitPeriods  *[]ResourceLimitPeriod `json:"resource_limit_periods,omitempty"`
-	ResourceName          *string                `json:"resource_name,omitempty"`
-	ResourceUuid          *openapi_types.UUID    `json:"resource_uuid,omitempty"`
-	ServiceProviderName   *string                `json:"service_provider_name,omitempty"`
-	ServiceProviderUuid   *openapi_types.UUID    `json:"service_provider_uuid,omitempty"`
+	// OfferingComponentName Name of the offering component
+	OfferingComponentName *string `json:"offering_component_name,omitempty"`
+
+	// OfferingComponentType Type of the offering component
+	OfferingComponentType *string `json:"offering_component_type,omitempty"`
+
+	// OfferingName Name of the offering
+	OfferingName *string `json:"offering_name,omitempty"`
+
+	// OfferingType Type of the offering
+	OfferingType *string `json:"offering_type,omitempty"`
+
+	// OfferingUuid UUID of the offering
+	OfferingUuid *openapi_types.UUID `json:"offering_uuid,omitempty"`
+
+	// PlanComponentId ID of the plan component
+	PlanComponentId *int `json:"plan_component_id,omitempty"`
+
+	// PlanName Name of the pricing plan
+	PlanName *string `json:"plan_name,omitempty"`
+
+	// PlanUuid UUID of the pricing plan
+	PlanUuid *openapi_types.UUID `json:"plan_uuid,omitempty"`
+
+	// ResourceLimitPeriods List of resource limit periods for this invoice item
+	ResourceLimitPeriods *[]ResourceLimitPeriod `json:"resource_limit_periods,omitempty"`
+
+	// ResourceName Name of the marketplace resource
+	ResourceName *string `json:"resource_name,omitempty"`
+
+	// ResourceUuid UUID of the marketplace resource
+	ResourceUuid *openapi_types.UUID `json:"resource_uuid,omitempty"`
+
+	// ServiceProviderName Name of the service provider
+	ServiceProviderName *string `json:"service_provider_name,omitempty"`
+
+	// ServiceProviderUuid UUID of the service provider
+	ServiceProviderUuid *openapi_types.UUID `json:"service_provider_uuid,omitempty"`
 }
 
 // InvoiceItemMigrateTo defines model for InvoiceItemMigrateTo.
@@ -16784,6 +16916,7 @@ type InvoiceItemMigrateToRequest struct {
 
 // InvoiceItemTotalPrice defines model for InvoiceItemTotalPrice.
 type InvoiceItemTotalPrice struct {
+	// TotalPrice Total price for the invoice item
 	TotalPrice string `json:"total_price"`
 }
 
@@ -16922,28 +17055,34 @@ type IssueTypeEnum string
 
 // JiraChangelog defines model for JiraChangelog.
 type JiraChangelog struct {
+	// Items List of changelog items
 	Items []interface{} `json:"items"`
 }
 
 // JiraChangelogRequest defines model for JiraChangelogRequest.
 type JiraChangelogRequest struct {
+	// Items List of changelog items
 	Items []interface{} `json:"items"`
 }
 
 // JiraComment defines model for JiraComment.
 type JiraComment struct {
+	// Id Jira comment ID
 	Id string `json:"id"`
 }
 
 // JiraCommentRequest defines model for JiraCommentRequest.
 type JiraCommentRequest struct {
+	// Id Jira comment ID
 	Id string `json:"id"`
 }
 
 // JiraIssue defines model for JiraIssue.
 type JiraIssue struct {
 	Fields JiraIssueFields `json:"fields"`
-	Key    string          `json:"key"`
+
+	// Key Jira issue key
+	Key string `json:"key"`
 }
 
 // JiraIssueFields defines model for JiraIssueFields.
@@ -16960,22 +17099,34 @@ type JiraIssueFieldsRequest struct {
 
 // JiraIssueProject defines model for JiraIssueProject.
 type JiraIssueProject struct {
-	Id   string `json:"id"`
-	Key  string `json:"key"`
+	// Id Jira field ID
+	Id string `json:"id"`
+
+	// Key Jira project key
+	Key string `json:"key"`
+
+	// Name Jira field name
 	Name string `json:"name"`
 }
 
 // JiraIssueProjectRequest defines model for JiraIssueProjectRequest.
 type JiraIssueProjectRequest struct {
-	Id   string `json:"id"`
-	Key  string `json:"key"`
+	// Id Jira field ID
+	Id string `json:"id"`
+
+	// Key Jira project key
+	Key string `json:"key"`
+
+	// Name Jira field name
 	Name string `json:"name"`
 }
 
 // JiraIssueRequest defines model for JiraIssueRequest.
 type JiraIssueRequest struct {
 	Fields JiraIssueFieldsRequest `json:"fields"`
-	Key    string                 `json:"key"`
+
+	// Key Jira issue key
+	Key string `json:"key"`
 }
 
 // K8sDefaultConfiguration defines model for K8sDefaultConfiguration.
@@ -17135,6 +17286,7 @@ type LinkToInvoiceRequest struct {
 
 // Logout defines model for Logout.
 type Logout struct {
+	// LogoutUrl URL to redirect to after logout
 	LogoutUrl *string `json:"logout_url,omitempty"`
 }
 
@@ -18231,10 +18383,16 @@ type NestedEndpointRequest struct {
 
 // NestedFeedback defines model for NestedFeedback.
 type NestedFeedback struct {
-	Comment          *string `json:"comment,omitempty"`
-	Evaluation       *int    `json:"evaluation,omitempty"`
-	EvaluationNumber *int    `json:"evaluation_number,omitempty"`
-	State            *string `json:"state,omitempty"`
+	Comment *string `json:"comment,omitempty"`
+
+	// Evaluation Customer satisfaction rating (1-5 stars)
+	Evaluation *int `json:"evaluation,omitempty"`
+
+	// EvaluationNumber Numeric value of the rating
+	EvaluationNumber *int `json:"evaluation_number,omitempty"`
+
+	// State Current state of the feedback
+	State *string `json:"state,omitempty"`
 }
 
 // NestedOfferingComponentLimit defines model for NestedOfferingComponentLimit.
@@ -18624,7 +18782,10 @@ type ObservableObjectTypeEnum string
 
 // ObtainAuthTokenRequest defines model for ObtainAuthTokenRequest.
 type ObtainAuthTokenRequest struct {
+	// Password Password for authentication
 	Password string `json:"password"`
+
+	// Username Username for authentication
 	Username string `json:"username"`
 }
 
@@ -18650,9 +18811,11 @@ type Offering struct {
 	CategoryUuid              *openapi_types.UUID `json:"category_uuid,omitempty"`
 
 	// CitationCount Number of citations of a DOI
-	CitationCount             *int                  `json:"citation_count,omitempty"`
-	ComplianceChecklist       *string               `json:"compliance_checklist"`
-	Components                *[]OfferingComponent  `json:"components,omitempty"`
+	CitationCount       *int                 `json:"citation_count,omitempty"`
+	ComplianceChecklist *string              `json:"compliance_checklist"`
+	Components          *[]OfferingComponent `json:"components,omitempty"`
+
+	// Country Country code (ISO 3166-1 alpha-2)
 	Country                   *Offering_Country     `json:"country,omitempty"`
 	Created                   *time.Time            `json:"created,omitempty"`
 	Customer                  *string               `json:"customer"`
@@ -18691,12 +18854,14 @@ type Offering struct {
 	Scope                     *string               `json:"scope,omitempty"`
 	ScopeErrorMessage         *string               `json:"scope_error_message"`
 	ScopeName                 *openapi_types.UUID   `json:"scope_name"`
-	ScopeState                *CoreStates           `json:"scope_state"`
+	ScopeState                *Offering_ScopeState  `json:"scope_state"`
 	ScopeUuid                 *openapi_types.UUID   `json:"scope_uuid"`
 	Screenshots               *[]NestedScreenshot   `json:"screenshots,omitempty"`
 
 	// Shared Accessible to all customers.
-	Shared             *bool                    `json:"shared,omitempty"`
+	Shared *bool `json:"shared,omitempty"`
+
+	// Slug URL-friendly identifier. Only editable by staff users.
 	Slug               *string                  `json:"slug,omitempty"`
 	SoftwareCatalogs   *[]NestedSoftwareCatalog `json:"software_catalogs,omitempty"`
 	State              *OfferingState           `json:"state,omitempty"`
@@ -18711,8 +18876,13 @@ type Offering struct {
 	VendorDetails      *string                  `json:"vendor_details,omitempty"`
 }
 
-// Offering_Country defines model for Offering.Country.
+// Offering_Country Country code (ISO 3166-1 alpha-2)
 type Offering_Country struct {
+	union json.RawMessage
+}
+
+// Offering_ScopeState defines model for Offering.ScopeState.
+type Offering_ScopeState struct {
 	union json.RawMessage
 }
 
@@ -18839,36 +19009,40 @@ type OfferingCreateRequest struct {
 	BackendMetadata interface{} `json:"backend_metadata,omitempty"`
 
 	// Billable Purchase and usage is invoiced.
-	Billable            *bool                                     `json:"billable,omitempty"`
-	Category            string                                    `json:"category"`
-	ComplianceChecklist *string                                   `json:"compliance_checklist"`
-	Components          *[]OfferingComponentRequest               `json:"components,omitempty"`
-	Country             *OfferingCreateRequest_Country            `json:"country,omitempty"`
-	Customer            *string                                   `json:"customer"`
-	DataciteDoi         *string                                   `json:"datacite_doi,omitempty"`
-	Description         *string                                   `json:"description,omitempty"`
-	FullDescription     *string                                   `json:"full_description,omitempty"`
-	GettingStarted      *string                                   `json:"getting_started,omitempty"`
-	Image               *openapi_types.File                       `json:"image"`
-	IntegrationGuide    *string                                   `json:"integration_guide,omitempty"`
-	Latitude            *float64                                  `json:"latitude"`
-	Limits              *map[string]OfferingComponentLimitRequest `json:"limits,omitempty"`
-	Longitude           *float64                                  `json:"longitude"`
-	Name                string                                    `json:"name"`
-	Options             *OfferingOptionsRequest                   `json:"options,omitempty"`
-	Plans               *[]BaseProviderPlanRequest                `json:"plans,omitempty"`
-	PrivacyPolicyLink   *string                                   `json:"privacy_policy_link,omitempty"`
-	ResourceOptions     *OfferingOptionsRequest                   `json:"resource_options,omitempty"`
+	Billable            *bool                       `json:"billable,omitempty"`
+	Category            string                      `json:"category"`
+	ComplianceChecklist *string                     `json:"compliance_checklist"`
+	Components          *[]OfferingComponentRequest `json:"components,omitempty"`
+
+	// Country Country code (ISO 3166-1 alpha-2)
+	Country           *OfferingCreateRequest_Country            `json:"country,omitempty"`
+	Customer          *string                                   `json:"customer"`
+	DataciteDoi       *string                                   `json:"datacite_doi,omitempty"`
+	Description       *string                                   `json:"description,omitempty"`
+	FullDescription   *string                                   `json:"full_description,omitempty"`
+	GettingStarted    *string                                   `json:"getting_started,omitempty"`
+	Image             *openapi_types.File                       `json:"image"`
+	IntegrationGuide  *string                                   `json:"integration_guide,omitempty"`
+	Latitude          *float64                                  `json:"latitude"`
+	Limits            *map[string]OfferingComponentLimitRequest `json:"limits,omitempty"`
+	Longitude         *float64                                  `json:"longitude"`
+	Name              string                                    `json:"name"`
+	Options           *OfferingOptionsRequest                   `json:"options,omitempty"`
+	Plans             *[]BaseProviderPlanRequest                `json:"plans,omitempty"`
+	PrivacyPolicyLink *string                                   `json:"privacy_policy_link,omitempty"`
+	ResourceOptions   *OfferingOptionsRequest                   `json:"resource_options,omitempty"`
 
 	// Shared Accessible to all customers.
-	Shared        *bool               `json:"shared,omitempty"`
+	Shared *bool `json:"shared,omitempty"`
+
+	// Slug URL-friendly identifier. Only editable by staff users.
 	Slug          *string             `json:"slug,omitempty"`
 	Thumbnail     *openapi_types.File `json:"thumbnail"`
 	Type          string              `json:"type"`
 	VendorDetails *string             `json:"vendor_details,omitempty"`
 }
 
-// OfferingCreateRequest_Country defines model for OfferingCreateRequest.Country.
+// OfferingCreateRequest_Country Country code (ISO 3166-1 alpha-2)
 type OfferingCreateRequest_Country struct {
 	union json.RawMessage
 }
@@ -18882,36 +19056,40 @@ type OfferingCreateRequestForm struct {
 	BackendMetadata interface{} `json:"backend_metadata,omitempty"`
 
 	// Billable Purchase and usage is invoiced.
-	Billable            *bool                                     `json:"billable,omitempty"`
-	Category            string                                    `json:"category"`
-	ComplianceChecklist *string                                   `json:"compliance_checklist"`
-	Components          *[]OfferingComponentRequest               `json:"components,omitempty"`
-	Country             *OfferingCreateRequestForm_Country        `json:"country,omitempty"`
-	Customer            *string                                   `json:"customer"`
-	DataciteDoi         *string                                   `json:"datacite_doi,omitempty"`
-	Description         *string                                   `json:"description,omitempty"`
-	FullDescription     *string                                   `json:"full_description,omitempty"`
-	GettingStarted      *string                                   `json:"getting_started,omitempty"`
-	Image               *openapi_types.File                       `json:"image"`
-	IntegrationGuide    *string                                   `json:"integration_guide,omitempty"`
-	Latitude            *float64                                  `json:"latitude"`
-	Limits              *map[string]OfferingComponentLimitRequest `json:"limits,omitempty"`
-	Longitude           *float64                                  `json:"longitude"`
-	Name                string                                    `json:"name"`
-	Options             *OfferingOptionsRequest                   `json:"options,omitempty"`
-	Plans               *[]BaseProviderPlanRequest                `json:"plans,omitempty"`
-	PrivacyPolicyLink   *string                                   `json:"privacy_policy_link,omitempty"`
-	ResourceOptions     *OfferingOptionsRequest                   `json:"resource_options,omitempty"`
+	Billable            *bool                       `json:"billable,omitempty"`
+	Category            string                      `json:"category"`
+	ComplianceChecklist *string                     `json:"compliance_checklist"`
+	Components          *[]OfferingComponentRequest `json:"components,omitempty"`
+
+	// Country Country code (ISO 3166-1 alpha-2)
+	Country           *OfferingCreateRequestForm_Country        `json:"country,omitempty"`
+	Customer          *string                                   `json:"customer"`
+	DataciteDoi       *string                                   `json:"datacite_doi,omitempty"`
+	Description       *string                                   `json:"description,omitempty"`
+	FullDescription   *string                                   `json:"full_description,omitempty"`
+	GettingStarted    *string                                   `json:"getting_started,omitempty"`
+	Image             *openapi_types.File                       `json:"image"`
+	IntegrationGuide  *string                                   `json:"integration_guide,omitempty"`
+	Latitude          *float64                                  `json:"latitude"`
+	Limits            *map[string]OfferingComponentLimitRequest `json:"limits,omitempty"`
+	Longitude         *float64                                  `json:"longitude"`
+	Name              string                                    `json:"name"`
+	Options           *OfferingOptionsRequest                   `json:"options,omitempty"`
+	Plans             *[]BaseProviderPlanRequest                `json:"plans,omitempty"`
+	PrivacyPolicyLink *string                                   `json:"privacy_policy_link,omitempty"`
+	ResourceOptions   *OfferingOptionsRequest                   `json:"resource_options,omitempty"`
 
 	// Shared Accessible to all customers.
-	Shared        *bool               `json:"shared,omitempty"`
+	Shared *bool `json:"shared,omitempty"`
+
+	// Slug URL-friendly identifier. Only editable by staff users.
 	Slug          *string             `json:"slug,omitempty"`
 	Thumbnail     *openapi_types.File `json:"thumbnail"`
 	Type          string              `json:"type"`
 	VendorDetails *string             `json:"vendor_details,omitempty"`
 }
 
-// OfferingCreateRequestForm_Country defines model for OfferingCreateRequestForm.Country.
+// OfferingCreateRequestForm_Country Country code (ISO 3166-1 alpha-2)
 type OfferingCreateRequestForm_Country struct {
 	union json.RawMessage
 }
@@ -18925,36 +19103,40 @@ type OfferingCreateRequestMultipart struct {
 	BackendMetadata interface{} `json:"backend_metadata,omitempty"`
 
 	// Billable Purchase and usage is invoiced.
-	Billable            *bool                                     `json:"billable,omitempty"`
-	Category            string                                    `json:"category"`
-	ComplianceChecklist *string                                   `json:"compliance_checklist"`
-	Components          *[]OfferingComponentRequest               `json:"components,omitempty"`
-	Country             *OfferingCreateRequestMultipart_Country   `json:"country,omitempty"`
-	Customer            *string                                   `json:"customer"`
-	DataciteDoi         *string                                   `json:"datacite_doi,omitempty"`
-	Description         *string                                   `json:"description,omitempty"`
-	FullDescription     *string                                   `json:"full_description,omitempty"`
-	GettingStarted      *string                                   `json:"getting_started,omitempty"`
-	Image               *openapi_types.File                       `json:"image"`
-	IntegrationGuide    *string                                   `json:"integration_guide,omitempty"`
-	Latitude            *float64                                  `json:"latitude"`
-	Limits              *map[string]OfferingComponentLimitRequest `json:"limits,omitempty"`
-	Longitude           *float64                                  `json:"longitude"`
-	Name                string                                    `json:"name"`
-	Options             *OfferingOptionsRequest                   `json:"options,omitempty"`
-	Plans               *[]BaseProviderPlanRequest                `json:"plans,omitempty"`
-	PrivacyPolicyLink   *string                                   `json:"privacy_policy_link,omitempty"`
-	ResourceOptions     *OfferingOptionsRequest                   `json:"resource_options,omitempty"`
+	Billable            *bool                       `json:"billable,omitempty"`
+	Category            string                      `json:"category"`
+	ComplianceChecklist *string                     `json:"compliance_checklist"`
+	Components          *[]OfferingComponentRequest `json:"components,omitempty"`
+
+	// Country Country code (ISO 3166-1 alpha-2)
+	Country           *OfferingCreateRequestMultipart_Country   `json:"country,omitempty"`
+	Customer          *string                                   `json:"customer"`
+	DataciteDoi       *string                                   `json:"datacite_doi,omitempty"`
+	Description       *string                                   `json:"description,omitempty"`
+	FullDescription   *string                                   `json:"full_description,omitempty"`
+	GettingStarted    *string                                   `json:"getting_started,omitempty"`
+	Image             *openapi_types.File                       `json:"image"`
+	IntegrationGuide  *string                                   `json:"integration_guide,omitempty"`
+	Latitude          *float64                                  `json:"latitude"`
+	Limits            *map[string]OfferingComponentLimitRequest `json:"limits,omitempty"`
+	Longitude         *float64                                  `json:"longitude"`
+	Name              string                                    `json:"name"`
+	Options           *OfferingOptionsRequest                   `json:"options,omitempty"`
+	Plans             *[]BaseProviderPlanRequest                `json:"plans,omitempty"`
+	PrivacyPolicyLink *string                                   `json:"privacy_policy_link,omitempty"`
+	ResourceOptions   *OfferingOptionsRequest                   `json:"resource_options,omitempty"`
 
 	// Shared Accessible to all customers.
-	Shared        *bool               `json:"shared,omitempty"`
+	Shared *bool `json:"shared,omitempty"`
+
+	// Slug URL-friendly identifier. Only editable by staff users.
 	Slug          *string             `json:"slug,omitempty"`
 	Thumbnail     *openapi_types.File `json:"thumbnail"`
 	Type          string              `json:"type"`
 	VendorDetails *string             `json:"vendor_details,omitempty"`
 }
 
-// OfferingCreateRequestMultipart_Country defines model for OfferingCreateRequestMultipart.Country.
+// OfferingCreateRequestMultipart_Country Country code (ISO 3166-1 alpha-2)
 type OfferingCreateRequestMultipart_Country struct {
 	union json.RawMessage
 }
@@ -19269,7 +19451,9 @@ type OfferingOverviewUpdateRequest struct {
 	IntegrationGuide  *string `json:"integration_guide,omitempty"`
 	Name              string  `json:"name"`
 	PrivacyPolicyLink *string `json:"privacy_policy_link,omitempty"`
-	Slug              *string `json:"slug,omitempty"`
+
+	// Slug URL-friendly identifier. Only editable by staff users.
+	Slug *string `json:"slug,omitempty"`
 }
 
 // OfferingPartition defines model for OfferingPartition.
@@ -21812,7 +21996,9 @@ type OrderCreateRequest struct {
 	Plan           *string                        `json:"plan,omitempty"`
 	Project        string                         `json:"project"`
 	RequestComment *string                        `json:"request_comment"`
-	Slug           *string                        `json:"slug,omitempty"`
+
+	// Slug URL-friendly identifier. Only editable by staff users.
+	Slug *string `json:"slug,omitempty"`
 
 	// StartDate Enables delayed processing of resource provisioning order.
 	StartDate *openapi_types.Date `json:"start_date"`
@@ -21936,13 +22122,18 @@ type OrderUUID struct {
 
 // OrganizationGroup defines model for OrganizationGroup.
 type OrganizationGroup struct {
-	CustomersCount *int                `json:"customers_count,omitempty"`
-	Name           *string             `json:"name,omitempty"`
-	Parent         *string             `json:"parent"`
-	ParentName     *string             `json:"parent_name,omitempty"`
-	ParentUuid     *openapi_types.UUID `json:"parent_uuid,omitempty"`
-	Url            *string             `json:"url,omitempty"`
-	Uuid           *openapi_types.UUID `json:"uuid,omitempty"`
+	// CustomersCount Number of customers in this organization group
+	CustomersCount *int    `json:"customers_count,omitempty"`
+	Name           *string `json:"name,omitempty"`
+	Parent         *string `json:"parent"`
+
+	// ParentName Name of the parent organization group
+	ParentName *string `json:"parent_name,omitempty"`
+
+	// ParentUuid UUID of the parent organization group
+	ParentUuid *openapi_types.UUID `json:"parent_uuid,omitempty"`
+	Url        *string             `json:"url,omitempty"`
+	Uuid       *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // OrganizationGroupRequest defines model for OrganizationGroupRequest.
@@ -22233,11 +22424,13 @@ type PatchedCustomerRequest struct {
 	Archived            *bool      `json:"archived,omitempty"`
 
 	// BackendId Organization identifier in another application.
-	BackendId                    *string                         `json:"backend_id,omitempty"`
-	BankAccount                  *string                         `json:"bank_account,omitempty"`
-	BankName                     *string                         `json:"bank_name,omitempty"`
-	Blocked                      *bool                           `json:"blocked,omitempty"`
-	ContactDetails               *string                         `json:"contact_details,omitempty"`
+	BackendId      *string `json:"backend_id,omitempty"`
+	BankAccount    *string `json:"bank_account,omitempty"`
+	BankName       *string `json:"bank_name,omitempty"`
+	Blocked        *bool   `json:"blocked,omitempty"`
+	ContactDetails *string `json:"contact_details,omitempty"`
+
+	// Country Country code (ISO 3166-1 alpha-2)
 	Country                      *PatchedCustomerRequest_Country `json:"country,omitempty"`
 	DefaultTaxPercent            *string                         `json:"default_tax_percent,omitempty"`
 	Description                  *string                         `json:"description,omitempty"`
@@ -22258,12 +22451,16 @@ type PatchedCustomerRequest struct {
 	NativeName         *string `json:"native_name,omitempty"`
 
 	// NotificationEmails Comma-separated list of notification email addresses
-	NotificationEmails       *string             `json:"notification_emails,omitempty"`
-	PhoneNumber              *string             `json:"phone_number,omitempty"`
-	Postal                   *string             `json:"postal,omitempty"`
+	NotificationEmails *string `json:"notification_emails,omitempty"`
+	PhoneNumber        *string `json:"phone_number,omitempty"`
+	Postal             *string `json:"postal,omitempty"`
+
+	// ProjectMetadataChecklist Checklist to be used for project metadata validation in this organization
 	ProjectMetadataChecklist *openapi_types.UUID `json:"project_metadata_checklist"`
 	RegistrationCode         *string             `json:"registration_code,omitempty"`
-	Slug                     *string             `json:"slug,omitempty"`
+
+	// Slug URL-friendly identifier. Only editable by staff users.
+	Slug *string `json:"slug,omitempty"`
 
 	// SponsorNumber External ID of the sponsor covering the costs
 	SponsorNumber *int `json:"sponsor_number"`
@@ -22272,7 +22469,7 @@ type PatchedCustomerRequest struct {
 	VatCode *string `json:"vat_code,omitempty"`
 }
 
-// PatchedCustomerRequest_Country defines model for PatchedCustomerRequest.Country.
+// PatchedCustomerRequest_Country Country code (ISO 3166-1 alpha-2)
 type PatchedCustomerRequest_Country struct {
 	union json.RawMessage
 }
@@ -22289,11 +22486,13 @@ type PatchedCustomerRequestForm struct {
 	Archived            *bool      `json:"archived,omitempty"`
 
 	// BackendId Organization identifier in another application.
-	BackendId                    *string                             `json:"backend_id,omitempty"`
-	BankAccount                  *string                             `json:"bank_account,omitempty"`
-	BankName                     *string                             `json:"bank_name,omitempty"`
-	Blocked                      *bool                               `json:"blocked,omitempty"`
-	ContactDetails               *string                             `json:"contact_details,omitempty"`
+	BackendId      *string `json:"backend_id,omitempty"`
+	BankAccount    *string `json:"bank_account,omitempty"`
+	BankName       *string `json:"bank_name,omitempty"`
+	Blocked        *bool   `json:"blocked,omitempty"`
+	ContactDetails *string `json:"contact_details,omitempty"`
+
+	// Country Country code (ISO 3166-1 alpha-2)
 	Country                      *PatchedCustomerRequestForm_Country `json:"country,omitempty"`
 	DefaultTaxPercent            *string                             `json:"default_tax_percent,omitempty"`
 	Description                  *string                             `json:"description,omitempty"`
@@ -22314,12 +22513,16 @@ type PatchedCustomerRequestForm struct {
 	NativeName         *string `json:"native_name,omitempty"`
 
 	// NotificationEmails Comma-separated list of notification email addresses
-	NotificationEmails       *string             `json:"notification_emails,omitempty"`
-	PhoneNumber              *string             `json:"phone_number,omitempty"`
-	Postal                   *string             `json:"postal,omitempty"`
+	NotificationEmails *string `json:"notification_emails,omitempty"`
+	PhoneNumber        *string `json:"phone_number,omitempty"`
+	Postal             *string `json:"postal,omitempty"`
+
+	// ProjectMetadataChecklist Checklist to be used for project metadata validation in this organization
 	ProjectMetadataChecklist *openapi_types.UUID `json:"project_metadata_checklist"`
 	RegistrationCode         *string             `json:"registration_code,omitempty"`
-	Slug                     *string             `json:"slug,omitempty"`
+
+	// Slug URL-friendly identifier. Only editable by staff users.
+	Slug *string `json:"slug,omitempty"`
 
 	// SponsorNumber External ID of the sponsor covering the costs
 	SponsorNumber *int `json:"sponsor_number"`
@@ -22328,7 +22531,7 @@ type PatchedCustomerRequestForm struct {
 	VatCode *string `json:"vat_code,omitempty"`
 }
 
-// PatchedCustomerRequestForm_Country defines model for PatchedCustomerRequestForm.Country.
+// PatchedCustomerRequestForm_Country Country code (ISO 3166-1 alpha-2)
 type PatchedCustomerRequestForm_Country struct {
 	union json.RawMessage
 }
@@ -22345,11 +22548,13 @@ type PatchedCustomerRequestMultipart struct {
 	Archived            *bool      `json:"archived,omitempty"`
 
 	// BackendId Organization identifier in another application.
-	BackendId                    *string                                  `json:"backend_id,omitempty"`
-	BankAccount                  *string                                  `json:"bank_account,omitempty"`
-	BankName                     *string                                  `json:"bank_name,omitempty"`
-	Blocked                      *bool                                    `json:"blocked,omitempty"`
-	ContactDetails               *string                                  `json:"contact_details,omitempty"`
+	BackendId      *string `json:"backend_id,omitempty"`
+	BankAccount    *string `json:"bank_account,omitempty"`
+	BankName       *string `json:"bank_name,omitempty"`
+	Blocked        *bool   `json:"blocked,omitempty"`
+	ContactDetails *string `json:"contact_details,omitempty"`
+
+	// Country Country code (ISO 3166-1 alpha-2)
 	Country                      *PatchedCustomerRequestMultipart_Country `json:"country,omitempty"`
 	DefaultTaxPercent            *string                                  `json:"default_tax_percent,omitempty"`
 	Description                  *string                                  `json:"description,omitempty"`
@@ -22370,12 +22575,16 @@ type PatchedCustomerRequestMultipart struct {
 	NativeName         *string `json:"native_name,omitempty"`
 
 	// NotificationEmails Comma-separated list of notification email addresses
-	NotificationEmails       *string             `json:"notification_emails,omitempty"`
-	PhoneNumber              *string             `json:"phone_number,omitempty"`
-	Postal                   *string             `json:"postal,omitempty"`
+	NotificationEmails *string `json:"notification_emails,omitempty"`
+	PhoneNumber        *string `json:"phone_number,omitempty"`
+	Postal             *string `json:"postal,omitempty"`
+
+	// ProjectMetadataChecklist Checklist to be used for project metadata validation in this organization
 	ProjectMetadataChecklist *openapi_types.UUID `json:"project_metadata_checklist"`
 	RegistrationCode         *string             `json:"registration_code,omitempty"`
-	Slug                     *string             `json:"slug,omitempty"`
+
+	// Slug URL-friendly identifier. Only editable by staff users.
+	Slug *string `json:"slug,omitempty"`
 
 	// SponsorNumber External ID of the sponsor covering the costs
 	SponsorNumber *int `json:"sponsor_number"`
@@ -22384,7 +22593,7 @@ type PatchedCustomerRequestMultipart struct {
 	VatCode *string `json:"vat_code,omitempty"`
 }
 
-// PatchedCustomerRequestMultipart_Country defines model for PatchedCustomerRequestMultipart.Country.
+// PatchedCustomerRequestMultipart_Country Country code (ISO 3166-1 alpha-2)
 type PatchedCustomerRequestMultipart_Country struct {
 	union json.RawMessage
 }
@@ -22487,7 +22696,9 @@ type PatchedIdentityProviderRequest struct {
 type PatchedInvitationUpdateRequest struct {
 	// Email Invitation link will be sent to this email. Note that user can accept invitation with different email.
 	Email *openapi_types.Email `json:"email,omitempty"`
-	Role  *openapi_types.UUID  `json:"role,omitempty"`
+
+	// Role UUID of the new role to assign. Must be compatible with the invitation scope.
+	Role *openapi_types.UUID `json:"role,omitempty"`
 }
 
 // PatchedInvoiceItemUpdateRequest defines model for PatchedInvoiceItemUpdateRequest.
@@ -23056,10 +23267,14 @@ type PatchedProjectInfoRequest struct {
 
 // PatchedProjectRequest defines model for PatchedProjectRequest.
 type PatchedProjectRequest struct {
-	BackendId   *string             `json:"backend_id,omitempty"`
-	Customer    *string             `json:"customer,omitempty"`
-	Description *string             `json:"description,omitempty"`
-	EndDate     *openapi_types.Date `json:"end_date"`
+	BackendId *string `json:"backend_id,omitempty"`
+	Customer  *string `json:"customer,omitempty"`
+
+	// Description Project description (HTML content will be sanitized)
+	Description *string `json:"description,omitempty"`
+
+	// EndDate Project end date. Setting this field requires DELETE_PROJECT permission.
+	EndDate *openapi_types.Date `json:"end_date"`
 
 	// GracePeriodDays Number of extra days after project end date before resources are terminated. Overrides customer-level setting.
 	GracePeriodDays *int                                   `json:"grace_period_days"`
@@ -23068,10 +23283,16 @@ type PatchedProjectRequest struct {
 	Kind            *KindEnum                              `json:"kind,omitempty"`
 	Name            *string                                `json:"name,omitempty"`
 	OecdFos2007Code *PatchedProjectRequest_OecdFos2007Code `json:"oecd_fos_2007_code"`
-	Slug            *string                                `json:"slug,omitempty"`
-	StaffNotes      *string                                `json:"staff_notes,omitempty"`
-	StartDate       *openapi_types.Date                    `json:"start_date"`
-	Type            *string                                `json:"type"`
+
+	// Slug URL-friendly identifier. Only editable by staff users.
+	Slug *string `json:"slug,omitempty"`
+
+	// StaffNotes Internal notes visible only to staff and support users (HTML content will be sanitized)
+	StaffNotes *string `json:"staff_notes,omitempty"`
+
+	// StartDate Project start date. Cannot be edited after the start date has arrived.
+	StartDate *openapi_types.Date `json:"start_date"`
+	Type      *string             `json:"type"`
 }
 
 // PatchedProjectRequest_OecdFos2007Code defines model for PatchedProjectRequest.OecdFos2007Code.
@@ -23081,10 +23302,14 @@ type PatchedProjectRequest_OecdFos2007Code struct {
 
 // PatchedProjectRequestForm defines model for PatchedProjectRequestForm.
 type PatchedProjectRequestForm struct {
-	BackendId   *string             `json:"backend_id,omitempty"`
-	Customer    *string             `json:"customer,omitempty"`
-	Description *string             `json:"description,omitempty"`
-	EndDate     *openapi_types.Date `json:"end_date"`
+	BackendId *string `json:"backend_id,omitempty"`
+	Customer  *string `json:"customer,omitempty"`
+
+	// Description Project description (HTML content will be sanitized)
+	Description *string `json:"description,omitempty"`
+
+	// EndDate Project end date. Setting this field requires DELETE_PROJECT permission.
+	EndDate *openapi_types.Date `json:"end_date"`
 
 	// GracePeriodDays Number of extra days after project end date before resources are terminated. Overrides customer-level setting.
 	GracePeriodDays *int                                       `json:"grace_period_days"`
@@ -23093,10 +23318,16 @@ type PatchedProjectRequestForm struct {
 	Kind            *KindEnum                                  `json:"kind,omitempty"`
 	Name            *string                                    `json:"name,omitempty"`
 	OecdFos2007Code *PatchedProjectRequestForm_OecdFos2007Code `json:"oecd_fos_2007_code"`
-	Slug            *string                                    `json:"slug,omitempty"`
-	StaffNotes      *string                                    `json:"staff_notes,omitempty"`
-	StartDate       *openapi_types.Date                        `json:"start_date"`
-	Type            *string                                    `json:"type"`
+
+	// Slug URL-friendly identifier. Only editable by staff users.
+	Slug *string `json:"slug,omitempty"`
+
+	// StaffNotes Internal notes visible only to staff and support users (HTML content will be sanitized)
+	StaffNotes *string `json:"staff_notes,omitempty"`
+
+	// StartDate Project start date. Cannot be edited after the start date has arrived.
+	StartDate *openapi_types.Date `json:"start_date"`
+	Type      *string             `json:"type"`
 }
 
 // PatchedProjectRequestForm_OecdFos2007Code defines model for PatchedProjectRequestForm.OecdFos2007Code.
@@ -23106,10 +23337,14 @@ type PatchedProjectRequestForm_OecdFos2007Code struct {
 
 // PatchedProjectRequestMultipart defines model for PatchedProjectRequestMultipart.
 type PatchedProjectRequestMultipart struct {
-	BackendId   *string             `json:"backend_id,omitempty"`
-	Customer    *string             `json:"customer,omitempty"`
-	Description *string             `json:"description,omitempty"`
-	EndDate     *openapi_types.Date `json:"end_date"`
+	BackendId *string `json:"backend_id,omitempty"`
+	Customer  *string `json:"customer,omitempty"`
+
+	// Description Project description (HTML content will be sanitized)
+	Description *string `json:"description,omitempty"`
+
+	// EndDate Project end date. Setting this field requires DELETE_PROJECT permission.
+	EndDate *openapi_types.Date `json:"end_date"`
 
 	// GracePeriodDays Number of extra days after project end date before resources are terminated. Overrides customer-level setting.
 	GracePeriodDays *int                                            `json:"grace_period_days"`
@@ -23118,10 +23353,16 @@ type PatchedProjectRequestMultipart struct {
 	Kind            *KindEnum                                       `json:"kind,omitempty"`
 	Name            *string                                         `json:"name,omitempty"`
 	OecdFos2007Code *PatchedProjectRequestMultipart_OecdFos2007Code `json:"oecd_fos_2007_code"`
-	Slug            *string                                         `json:"slug,omitempty"`
-	StaffNotes      *string                                         `json:"staff_notes,omitempty"`
-	StartDate       *openapi_types.Date                             `json:"start_date"`
-	Type            *string                                         `json:"type"`
+
+	// Slug URL-friendly identifier. Only editable by staff users.
+	Slug *string `json:"slug,omitempty"`
+
+	// StaffNotes Internal notes visible only to staff and support users (HTML content will be sanitized)
+	StaffNotes *string `json:"staff_notes,omitempty"`
+
+	// StartDate Project start date. Cannot be edited after the start date has arrived.
+	StartDate *openapi_types.Date `json:"start_date"`
+	Type      *string             `json:"type"`
 }
 
 // PatchedProjectRequestMultipart_OecdFos2007Code defines model for PatchedProjectRequestMultipart.OecdFos2007Code.
@@ -23206,8 +23447,10 @@ type PatchedProtectedCallRequest struct {
 	ReviewerIdentityVisibleToSubmitters *bool `json:"reviewer_identity_visible_to_submitters,omitempty"`
 
 	// ReviewsVisibleToSubmitters Whether proposal submitters can see review comments and scores
-	ReviewsVisibleToSubmitters *bool   `json:"reviews_visible_to_submitters,omitempty"`
-	Slug                       *string `json:"slug,omitempty"`
+	ReviewsVisibleToSubmitters *bool `json:"reviews_visible_to_submitters,omitempty"`
+
+	// Slug URL-friendly identifier. Only editable by staff users.
+	Slug *string `json:"slug,omitempty"`
 }
 
 // PatchedProtectedRoundRequest defines model for PatchedProtectedRoundRequest.
@@ -23690,7 +23933,9 @@ type PatchedUserRequest struct {
 	Organization         *string `json:"organization,omitempty"`
 	PhoneNumber          *string `json:"phone_number,omitempty"`
 	PreferredLanguage    *string `json:"preferred_language,omitempty"`
-	Slug                 *string `json:"slug,omitempty"`
+
+	// Slug URL-friendly identifier. Only editable by staff users.
+	Slug *string `json:"slug,omitempty"`
 
 	// TokenLifetime Token lifetime in seconds.
 	TokenLifetime *int `json:"token_lifetime"`
@@ -23725,7 +23970,9 @@ type PatchedUserRequestForm struct {
 	Organization         *string `json:"organization,omitempty"`
 	PhoneNumber          *string `json:"phone_number,omitempty"`
 	PreferredLanguage    *string `json:"preferred_language,omitempty"`
-	Slug                 *string `json:"slug,omitempty"`
+
+	// Slug URL-friendly identifier. Only editable by staff users.
+	Slug *string `json:"slug,omitempty"`
 
 	// TokenLifetime Token lifetime in seconds.
 	TokenLifetime *int `json:"token_lifetime"`
@@ -23760,7 +24007,9 @@ type PatchedUserRequestMultipart struct {
 	Organization         *string `json:"organization,omitempty"`
 	PhoneNumber          *string `json:"phone_number,omitempty"`
 	PreferredLanguage    *string `json:"preferred_language,omitempty"`
-	Slug                 *string `json:"slug,omitempty"`
+
+	// Slug URL-friendly identifier. Only editable by staff users.
+	Slug *string `json:"slug,omitempty"`
 
 	// TokenLifetime Token lifetime in seconds.
 	TokenLifetime *int `json:"token_lifetime"`
@@ -24030,9 +24279,13 @@ type Project struct {
 	CustomerNativeName                   *string              `json:"customer_native_name,omitempty"`
 	CustomerSlug                         *string              `json:"customer_slug,omitempty"`
 	CustomerUuid                         *openapi_types.UUID  `json:"customer_uuid,omitempty"`
-	Description                          *string              `json:"description,omitempty"`
-	EndDate                              *openapi_types.Date  `json:"end_date"`
-	EndDateRequestedBy                   *string              `json:"end_date_requested_by"`
+
+	// Description Project description (HTML content will be sanitized)
+	Description *string `json:"description,omitempty"`
+
+	// EndDate Project end date. Setting this field requires DELETE_PROJECT permission.
+	EndDate            *openapi_types.Date `json:"end_date"`
+	EndDateRequestedBy *string             `json:"end_date_requested_by"`
 
 	// GracePeriodDays Number of extra days after project end date before resources are terminated. Overrides customer-level setting.
 	GracePeriodDays          *int            `json:"grace_period_days"`
@@ -24043,21 +24296,33 @@ type Project struct {
 	MarketplaceResourceCount *map[string]int `json:"marketplace_resource_count,omitempty"`
 
 	// MaxServiceAccounts Maximum number of service accounts allowed
-	MaxServiceAccounts  *int                     `json:"max_service_accounts"`
-	Name                *string                  `json:"name,omitempty"`
-	OecdFos2007Code     *Project_OecdFos2007Code `json:"oecd_fos_2007_code"`
-	OecdFos2007Label    *string                  `json:"oecd_fos_2007_label,omitempty"`
-	ProjectCredit       *float64                 `json:"project_credit"`
-	ResourcesCount      *int                     `json:"resources_count,omitempty"`
-	Slug                *string                  `json:"slug,omitempty"`
-	StaffNotes          *string                  `json:"staff_notes,omitempty"`
-	StartDate           *openapi_types.Date      `json:"start_date"`
-	TerminationMetadata interface{}              `json:"termination_metadata"`
-	Type                *string                  `json:"type"`
-	TypeName            *string                  `json:"type_name"`
-	TypeUuid            *openapi_types.UUID      `json:"type_uuid"`
-	Url                 *string                  `json:"url,omitempty"`
-	Uuid                *openapi_types.UUID      `json:"uuid,omitempty"`
+	MaxServiceAccounts *int                     `json:"max_service_accounts"`
+	Name               *string                  `json:"name,omitempty"`
+	OecdFos2007Code    *Project_OecdFos2007Code `json:"oecd_fos_2007_code"`
+
+	// OecdFos2007Label Human-readable label for the OECD FOS 2007 classification code
+	OecdFos2007Label *string  `json:"oecd_fos_2007_label,omitempty"`
+	ProjectCredit    *float64 `json:"project_credit"`
+
+	// ResourcesCount Number of active resources in this project
+	ResourcesCount *int `json:"resources_count,omitempty"`
+
+	// Slug URL-friendly identifier. Only editable by staff users.
+	Slug *string `json:"slug,omitempty"`
+
+	// StaffNotes Internal notes visible only to staff and support users (HTML content will be sanitized)
+	StaffNotes *string `json:"staff_notes,omitempty"`
+
+	// StartDate Project start date. Cannot be edited after the start date has arrived.
+	StartDate *openapi_types.Date `json:"start_date"`
+
+	// TerminationMetadata Metadata about project termination (read-only)
+	TerminationMetadata interface{}         `json:"termination_metadata"`
+	Type                *string             `json:"type"`
+	TypeName            *string             `json:"type_name"`
+	TypeUuid            *openapi_types.UUID `json:"type_uuid"`
+	Url                 *string             `json:"url,omitempty"`
+	Uuid                *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // Project_OecdFos2007Code defines model for Project.OecdFos2007Code.
@@ -24276,10 +24541,14 @@ type ProjectRecoveryRequest struct {
 
 // ProjectRequest defines model for ProjectRequest.
 type ProjectRequest struct {
-	BackendId   *string             `json:"backend_id,omitempty"`
-	Customer    string              `json:"customer"`
-	Description *string             `json:"description,omitempty"`
-	EndDate     *openapi_types.Date `json:"end_date"`
+	BackendId *string `json:"backend_id,omitempty"`
+	Customer  string  `json:"customer"`
+
+	// Description Project description (HTML content will be sanitized)
+	Description *string `json:"description,omitempty"`
+
+	// EndDate Project end date. Setting this field requires DELETE_PROJECT permission.
+	EndDate *openapi_types.Date `json:"end_date"`
 
 	// GracePeriodDays Number of extra days after project end date before resources are terminated. Overrides customer-level setting.
 	GracePeriodDays *int                            `json:"grace_period_days"`
@@ -24288,10 +24557,16 @@ type ProjectRequest struct {
 	Kind            *KindEnum                       `json:"kind,omitempty"`
 	Name            string                          `json:"name"`
 	OecdFos2007Code *ProjectRequest_OecdFos2007Code `json:"oecd_fos_2007_code"`
-	Slug            *string                         `json:"slug,omitempty"`
-	StaffNotes      *string                         `json:"staff_notes,omitempty"`
-	StartDate       *openapi_types.Date             `json:"start_date"`
-	Type            *string                         `json:"type"`
+
+	// Slug URL-friendly identifier. Only editable by staff users.
+	Slug *string `json:"slug,omitempty"`
+
+	// StaffNotes Internal notes visible only to staff and support users (HTML content will be sanitized)
+	StaffNotes *string `json:"staff_notes,omitempty"`
+
+	// StartDate Project start date. Cannot be edited after the start date has arrived.
+	StartDate *openapi_types.Date `json:"start_date"`
+	Type      *string             `json:"type"`
 }
 
 // ProjectRequest_OecdFos2007Code defines model for ProjectRequest.OecdFos2007Code.
@@ -24301,10 +24576,14 @@ type ProjectRequest_OecdFos2007Code struct {
 
 // ProjectRequestForm defines model for ProjectRequestForm.
 type ProjectRequestForm struct {
-	BackendId   *string             `json:"backend_id,omitempty"`
-	Customer    string              `json:"customer"`
-	Description *string             `json:"description,omitempty"`
-	EndDate     *openapi_types.Date `json:"end_date"`
+	BackendId *string `json:"backend_id,omitempty"`
+	Customer  string  `json:"customer"`
+
+	// Description Project description (HTML content will be sanitized)
+	Description *string `json:"description,omitempty"`
+
+	// EndDate Project end date. Setting this field requires DELETE_PROJECT permission.
+	EndDate *openapi_types.Date `json:"end_date"`
 
 	// GracePeriodDays Number of extra days after project end date before resources are terminated. Overrides customer-level setting.
 	GracePeriodDays *int                                `json:"grace_period_days"`
@@ -24313,10 +24592,16 @@ type ProjectRequestForm struct {
 	Kind            *KindEnum                           `json:"kind,omitempty"`
 	Name            string                              `json:"name"`
 	OecdFos2007Code *ProjectRequestForm_OecdFos2007Code `json:"oecd_fos_2007_code"`
-	Slug            *string                             `json:"slug,omitempty"`
-	StaffNotes      *string                             `json:"staff_notes,omitempty"`
-	StartDate       *openapi_types.Date                 `json:"start_date"`
-	Type            *string                             `json:"type"`
+
+	// Slug URL-friendly identifier. Only editable by staff users.
+	Slug *string `json:"slug,omitempty"`
+
+	// StaffNotes Internal notes visible only to staff and support users (HTML content will be sanitized)
+	StaffNotes *string `json:"staff_notes,omitempty"`
+
+	// StartDate Project start date. Cannot be edited after the start date has arrived.
+	StartDate *openapi_types.Date `json:"start_date"`
+	Type      *string             `json:"type"`
 }
 
 // ProjectRequestForm_OecdFos2007Code defines model for ProjectRequestForm.OecdFos2007Code.
@@ -24326,10 +24611,14 @@ type ProjectRequestForm_OecdFos2007Code struct {
 
 // ProjectRequestMultipart defines model for ProjectRequestMultipart.
 type ProjectRequestMultipart struct {
-	BackendId   *string             `json:"backend_id,omitempty"`
-	Customer    string              `json:"customer"`
-	Description *string             `json:"description,omitempty"`
-	EndDate     *openapi_types.Date `json:"end_date"`
+	BackendId *string `json:"backend_id,omitempty"`
+	Customer  string  `json:"customer"`
+
+	// Description Project description (HTML content will be sanitized)
+	Description *string `json:"description,omitempty"`
+
+	// EndDate Project end date. Setting this field requires DELETE_PROJECT permission.
+	EndDate *openapi_types.Date `json:"end_date"`
 
 	// GracePeriodDays Number of extra days after project end date before resources are terminated. Overrides customer-level setting.
 	GracePeriodDays *int                                     `json:"grace_period_days"`
@@ -24338,10 +24627,16 @@ type ProjectRequestMultipart struct {
 	Kind            *KindEnum                                `json:"kind,omitempty"`
 	Name            string                                   `json:"name"`
 	OecdFos2007Code *ProjectRequestMultipart_OecdFos2007Code `json:"oecd_fos_2007_code"`
-	Slug            *string                                  `json:"slug,omitempty"`
-	StaffNotes      *string                                  `json:"staff_notes,omitempty"`
-	StartDate       *openapi_types.Date                      `json:"start_date"`
-	Type            *string                                  `json:"type"`
+
+	// Slug URL-friendly identifier. Only editable by staff users.
+	Slug *string `json:"slug,omitempty"`
+
+	// StaffNotes Internal notes visible only to staff and support users (HTML content will be sanitized)
+	StaffNotes *string `json:"staff_notes,omitempty"`
+
+	// StartDate Project start date. Cannot be edited after the start date has arrived.
+	StartDate *openapi_types.Date `json:"start_date"`
+	Type      *string             `json:"type"`
 }
 
 // ProjectRequestMultipart_OecdFos2007Code defines model for ProjectRequestMultipart.OecdFos2007Code.
@@ -24715,13 +25010,15 @@ type ProtectedCall struct {
 	ReviewerIdentityVisibleToSubmitters *bool `json:"reviewer_identity_visible_to_submitters,omitempty"`
 
 	// ReviewsVisibleToSubmitters Whether proposal submitters can see review comments and scores
-	ReviewsVisibleToSubmitters *bool               `json:"reviews_visible_to_submitters,omitempty"`
-	Rounds                     *[]NestedRound      `json:"rounds,omitempty"`
-	Slug                       *string             `json:"slug,omitempty"`
-	StartDate                  *time.Time          `json:"start_date,omitempty"`
-	State                      *CallStates         `json:"state,omitempty"`
-	Url                        *string             `json:"url,omitempty"`
-	Uuid                       *openapi_types.UUID `json:"uuid,omitempty"`
+	ReviewsVisibleToSubmitters *bool          `json:"reviews_visible_to_submitters,omitempty"`
+	Rounds                     *[]NestedRound `json:"rounds,omitempty"`
+
+	// Slug URL-friendly identifier. Only editable by staff users.
+	Slug      *string             `json:"slug,omitempty"`
+	StartDate *time.Time          `json:"start_date,omitempty"`
+	State     *CallStates         `json:"state,omitempty"`
+	Url       *string             `json:"url,omitempty"`
+	Uuid      *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // ProtectedCallRequest defines model for ProtectedCallRequest.
@@ -24742,8 +25039,10 @@ type ProtectedCallRequest struct {
 	ReviewerIdentityVisibleToSubmitters *bool `json:"reviewer_identity_visible_to_submitters,omitempty"`
 
 	// ReviewsVisibleToSubmitters Whether proposal submitters can see review comments and scores
-	ReviewsVisibleToSubmitters *bool   `json:"reviews_visible_to_submitters,omitempty"`
-	Slug                       *string `json:"slug,omitempty"`
+	ReviewsVisibleToSubmitters *bool `json:"reviews_visible_to_submitters,omitempty"`
+
+	// Slug URL-friendly identifier. Only editable by staff users.
+	Slug *string `json:"slug,omitempty"`
 }
 
 // ProtectedProposalList defines model for ProtectedProposalList.
@@ -24813,11 +25112,13 @@ type ProviderOffering struct {
 	ResourceOptions interface{}          `json:"resource_options,omitempty"`
 	ResourcesCount  *int                 `json:"resources_count,omitempty"`
 	SecretOptions   *MergedSecretOptions `json:"secret_options,omitempty"`
-	Slug            *string              `json:"slug,omitempty"`
-	State           *OfferingState       `json:"state,omitempty"`
-	Thumbnail       *string              `json:"thumbnail"`
-	Type            *string              `json:"type,omitempty"`
-	Uuid            *openapi_types.UUID  `json:"uuid,omitempty"`
+
+	// Slug URL-friendly identifier. Only editable by staff users.
+	Slug      *string             `json:"slug,omitempty"`
+	State     *OfferingState      `json:"state,omitempty"`
+	Thumbnail *string             `json:"thumbnail"`
+	Type      *string             `json:"type,omitempty"`
+	Uuid      *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // ProviderOfferingCosts defines model for ProviderOfferingCosts.
@@ -24857,9 +25158,11 @@ type ProviderOfferingDetails struct {
 	CategoryUuid              *openapi_types.UUID `json:"category_uuid,omitempty"`
 
 	// CitationCount Number of citations of a DOI
-	CitationCount          *int                             `json:"citation_count,omitempty"`
-	ComplianceChecklist    *string                          `json:"compliance_checklist"`
-	Components             *[]OfferingComponent             `json:"components,omitempty"`
+	CitationCount       *int                 `json:"citation_count,omitempty"`
+	ComplianceChecklist *string              `json:"compliance_checklist"`
+	Components          *[]OfferingComponent `json:"components,omitempty"`
+
+	// Country Country code (ISO 3166-1 alpha-2)
 	Country                *ProviderOfferingDetails_Country `json:"country,omitempty"`
 	Created                *time.Time                       `json:"created,omitempty"`
 	Customer               *string                          `json:"customer"`
@@ -24874,42 +25177,44 @@ type ProviderOfferingDetails struct {
 	GoogleCalendarIsPublic *bool                            `json:"google_calendar_is_public"`
 
 	// GoogleCalendarLink Get the Google Calendar link for an offering.
-	GoogleCalendarLink        *string                 `json:"google_calendar_link"`
-	HasComplianceRequirements *bool                   `json:"has_compliance_requirements,omitempty"`
-	Image                     *string                 `json:"image"`
-	IntegrationGuide          *string                 `json:"integration_guide,omitempty"`
-	IntegrationStatus         *[]IntegrationStatus    `json:"integration_status"`
-	Latitude                  *float64                `json:"latitude"`
-	Longitude                 *float64                `json:"longitude"`
-	Name                      *string                 `json:"name,omitempty"`
-	Options                   *OfferingOptions        `json:"options,omitempty"`
-	OrderCount                *int                    `json:"order_count,omitempty"`
-	OrganizationGroups        *[]OrganizationGroup    `json:"organization_groups,omitempty"`
-	ParentDescription         *string                 `json:"parent_description"`
-	ParentName                *string                 `json:"parent_name"`
-	ParentUuid                *openapi_types.UUID     `json:"parent_uuid"`
-	Partitions                *[]NestedPartition      `json:"partitions,omitempty"`
-	PausedReason              *string                 `json:"paused_reason,omitempty"`
-	Plans                     *[]BaseProviderPlan     `json:"plans,omitempty"`
-	PluginOptions             *MergedPluginOptions    `json:"plugin_options,omitempty"`
-	PrivacyPolicyLink         *string                 `json:"privacy_policy_link,omitempty"`
-	Project                   *string                 `json:"project"`
-	ProjectName               *string                 `json:"project_name"`
-	ProjectUuid               *openapi_types.UUID     `json:"project_uuid"`
-	Quotas                    *[]Quota                `json:"quotas,omitempty"`
-	ResourceOptions           *OfferingOptions        `json:"resource_options,omitempty"`
-	Roles                     *[]NestedRole           `json:"roles,omitempty"`
-	Scope                     *string                 `json:"scope,omitempty"`
-	ScopeErrorMessage         *string                 `json:"scope_error_message"`
-	ScopeName                 *openapi_types.UUID     `json:"scope_name"`
-	ScopeState                *CoreStates             `json:"scope_state"`
-	ScopeUuid                 *openapi_types.UUID     `json:"scope_uuid"`
-	Screenshots               *[]NestedScreenshot     `json:"screenshots,omitempty"`
-	SecretOptions             *MergedSecretOptions    `json:"secret_options,omitempty"`
-	ServiceAttributes         *map[string]interface{} `json:"service_attributes,omitempty"`
+	GoogleCalendarLink        *string                             `json:"google_calendar_link"`
+	HasComplianceRequirements *bool                               `json:"has_compliance_requirements,omitempty"`
+	Image                     *string                             `json:"image"`
+	IntegrationGuide          *string                             `json:"integration_guide,omitempty"`
+	IntegrationStatus         *[]IntegrationStatus                `json:"integration_status"`
+	Latitude                  *float64                            `json:"latitude"`
+	Longitude                 *float64                            `json:"longitude"`
+	Name                      *string                             `json:"name,omitempty"`
+	Options                   *OfferingOptions                    `json:"options,omitempty"`
+	OrderCount                *int                                `json:"order_count,omitempty"`
+	OrganizationGroups        *[]OrganizationGroup                `json:"organization_groups,omitempty"`
+	ParentDescription         *string                             `json:"parent_description"`
+	ParentName                *string                             `json:"parent_name"`
+	ParentUuid                *openapi_types.UUID                 `json:"parent_uuid"`
+	Partitions                *[]NestedPartition                  `json:"partitions,omitempty"`
+	PausedReason              *string                             `json:"paused_reason,omitempty"`
+	Plans                     *[]BaseProviderPlan                 `json:"plans,omitempty"`
+	PluginOptions             *MergedPluginOptions                `json:"plugin_options,omitempty"`
+	PrivacyPolicyLink         *string                             `json:"privacy_policy_link,omitempty"`
+	Project                   *string                             `json:"project"`
+	ProjectName               *string                             `json:"project_name"`
+	ProjectUuid               *openapi_types.UUID                 `json:"project_uuid"`
+	Quotas                    *[]Quota                            `json:"quotas,omitempty"`
+	ResourceOptions           *OfferingOptions                    `json:"resource_options,omitempty"`
+	Roles                     *[]NestedRole                       `json:"roles,omitempty"`
+	Scope                     *string                             `json:"scope,omitempty"`
+	ScopeErrorMessage         *string                             `json:"scope_error_message"`
+	ScopeName                 *openapi_types.UUID                 `json:"scope_name"`
+	ScopeState                *ProviderOfferingDetails_ScopeState `json:"scope_state"`
+	ScopeUuid                 *openapi_types.UUID                 `json:"scope_uuid"`
+	Screenshots               *[]NestedScreenshot                 `json:"screenshots,omitempty"`
+	SecretOptions             *MergedSecretOptions                `json:"secret_options,omitempty"`
+	ServiceAttributes         *map[string]interface{}             `json:"service_attributes,omitempty"`
 
 	// Shared Accessible to all customers.
-	Shared             *bool                    `json:"shared,omitempty"`
+	Shared *bool `json:"shared,omitempty"`
+
+	// Slug URL-friendly identifier. Only editable by staff users.
 	Slug               *string                  `json:"slug,omitempty"`
 	SoftwareCatalogs   *[]NestedSoftwareCatalog `json:"software_catalogs,omitempty"`
 	State              *OfferingState           `json:"state,omitempty"`
@@ -24923,8 +25228,13 @@ type ProviderOfferingDetails struct {
 	VendorDetails      *string                  `json:"vendor_details,omitempty"`
 }
 
-// ProviderOfferingDetails_Country defines model for ProviderOfferingDetails.Country.
+// ProviderOfferingDetails_Country Country code (ISO 3166-1 alpha-2)
 type ProviderOfferingDetails_Country struct {
+	union json.RawMessage
+}
+
+// ProviderOfferingDetails_ScopeState defines model for ProviderOfferingDetails.ScopeState.
+type ProviderOfferingDetails_ScopeState struct {
 	union json.RawMessage
 }
 
@@ -25054,13 +25364,15 @@ type PublicCall struct {
 	ReviewerIdentityVisibleToSubmitters *bool `json:"reviewer_identity_visible_to_submitters,omitempty"`
 
 	// ReviewsVisibleToSubmitters Whether proposal submitters can see review comments and scores. If False, submitters only see final approval/rejection status.
-	ReviewsVisibleToSubmitters *bool               `json:"reviews_visible_to_submitters,omitempty"`
-	Rounds                     *[]NestedRound      `json:"rounds,omitempty"`
-	Slug                       *string             `json:"slug,omitempty"`
-	StartDate                  *time.Time          `json:"start_date,omitempty"`
-	State                      *CallStates         `json:"state,omitempty"`
-	Url                        *string             `json:"url,omitempty"`
-	Uuid                       *openapi_types.UUID `json:"uuid,omitempty"`
+	ReviewsVisibleToSubmitters *bool          `json:"reviews_visible_to_submitters,omitempty"`
+	Rounds                     *[]NestedRound `json:"rounds,omitempty"`
+
+	// Slug URL-friendly identifier. Only editable by staff users.
+	Slug      *string             `json:"slug,omitempty"`
+	StartDate *time.Time          `json:"start_date,omitempty"`
+	State     *CallStates         `json:"state,omitempty"`
+	Url       *string             `json:"url,omitempty"`
+	Uuid      *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // PublicMaintenanceAnnouncement defines model for PublicMaintenanceAnnouncement.
@@ -25114,9 +25426,11 @@ type PublicOfferingDetails struct {
 	CategoryUuid              *openapi_types.UUID `json:"category_uuid,omitempty"`
 
 	// CitationCount Number of citations of a DOI
-	CitationCount          *int                           `json:"citation_count,omitempty"`
-	ComplianceChecklist    *string                        `json:"compliance_checklist"`
-	Components             *[]OfferingComponent           `json:"components,omitempty"`
+	CitationCount       *int                 `json:"citation_count,omitempty"`
+	ComplianceChecklist *string              `json:"compliance_checklist"`
+	Components          *[]OfferingComponent `json:"components,omitempty"`
+
+	// Country Country code (ISO 3166-1 alpha-2)
 	Country                *PublicOfferingDetails_Country `json:"country,omitempty"`
 	Created                *time.Time                     `json:"created,omitempty"`
 	Customer               *string                        `json:"customer"`
@@ -25131,40 +25445,42 @@ type PublicOfferingDetails struct {
 	GoogleCalendarIsPublic *bool                          `json:"google_calendar_is_public"`
 
 	// GoogleCalendarLink Get the Google Calendar link for an offering.
-	GoogleCalendarLink        *string              `json:"google_calendar_link"`
-	HasComplianceRequirements *bool                `json:"has_compliance_requirements,omitempty"`
-	Image                     *string              `json:"image"`
-	IntegrationGuide          *string              `json:"integration_guide,omitempty"`
-	Latitude                  *float64             `json:"latitude"`
-	Longitude                 *float64             `json:"longitude"`
-	Name                      *string              `json:"name,omitempty"`
-	Options                   *OfferingOptions     `json:"options,omitempty"`
-	OrderCount                *int                 `json:"order_count,omitempty"`
-	OrganizationGroups        *[]OrganizationGroup `json:"organization_groups,omitempty"`
-	ParentDescription         *string              `json:"parent_description"`
-	ParentName                *string              `json:"parent_name"`
-	ParentUuid                *openapi_types.UUID  `json:"parent_uuid"`
-	Partitions                *[]NestedPartition   `json:"partitions,omitempty"`
-	PausedReason              *string              `json:"paused_reason,omitempty"`
-	Plans                     *[]BasePublicPlan    `json:"plans,omitempty"`
-	PluginOptions             *MergedPluginOptions `json:"plugin_options,omitempty"`
-	PrivacyPolicyLink         *string              `json:"privacy_policy_link,omitempty"`
-	Project                   *string              `json:"project"`
-	ProjectName               *string              `json:"project_name"`
-	ProjectUuid               *openapi_types.UUID  `json:"project_uuid"`
-	PromotionCampaigns        *[]NestedCampaign    `json:"promotion_campaigns,omitempty"`
-	Quotas                    *[]Quota             `json:"quotas,omitempty"`
-	ResourceOptions           *OfferingOptions     `json:"resource_options,omitempty"`
-	Roles                     *[]NestedRole        `json:"roles,omitempty"`
-	Scope                     *string              `json:"scope,omitempty"`
-	ScopeErrorMessage         *string              `json:"scope_error_message"`
-	ScopeName                 *openapi_types.UUID  `json:"scope_name"`
-	ScopeState                *CoreStates          `json:"scope_state"`
-	ScopeUuid                 *openapi_types.UUID  `json:"scope_uuid"`
-	Screenshots               *[]NestedScreenshot  `json:"screenshots,omitempty"`
+	GoogleCalendarLink        *string                           `json:"google_calendar_link"`
+	HasComplianceRequirements *bool                             `json:"has_compliance_requirements,omitempty"`
+	Image                     *string                           `json:"image"`
+	IntegrationGuide          *string                           `json:"integration_guide,omitempty"`
+	Latitude                  *float64                          `json:"latitude"`
+	Longitude                 *float64                          `json:"longitude"`
+	Name                      *string                           `json:"name,omitempty"`
+	Options                   *OfferingOptions                  `json:"options,omitempty"`
+	OrderCount                *int                              `json:"order_count,omitempty"`
+	OrganizationGroups        *[]OrganizationGroup              `json:"organization_groups,omitempty"`
+	ParentDescription         *string                           `json:"parent_description"`
+	ParentName                *string                           `json:"parent_name"`
+	ParentUuid                *openapi_types.UUID               `json:"parent_uuid"`
+	Partitions                *[]NestedPartition                `json:"partitions,omitempty"`
+	PausedReason              *string                           `json:"paused_reason,omitempty"`
+	Plans                     *[]BasePublicPlan                 `json:"plans,omitempty"`
+	PluginOptions             *MergedPluginOptions              `json:"plugin_options,omitempty"`
+	PrivacyPolicyLink         *string                           `json:"privacy_policy_link,omitempty"`
+	Project                   *string                           `json:"project"`
+	ProjectName               *string                           `json:"project_name"`
+	ProjectUuid               *openapi_types.UUID               `json:"project_uuid"`
+	PromotionCampaigns        *[]NestedCampaign                 `json:"promotion_campaigns,omitempty"`
+	Quotas                    *[]Quota                          `json:"quotas,omitempty"`
+	ResourceOptions           *OfferingOptions                  `json:"resource_options,omitempty"`
+	Roles                     *[]NestedRole                     `json:"roles,omitempty"`
+	Scope                     *string                           `json:"scope,omitempty"`
+	ScopeErrorMessage         *string                           `json:"scope_error_message"`
+	ScopeName                 *openapi_types.UUID               `json:"scope_name"`
+	ScopeState                *PublicOfferingDetails_ScopeState `json:"scope_state"`
+	ScopeUuid                 *openapi_types.UUID               `json:"scope_uuid"`
+	Screenshots               *[]NestedScreenshot               `json:"screenshots,omitempty"`
 
 	// Shared Accessible to all customers.
-	Shared             *bool                    `json:"shared,omitempty"`
+	Shared *bool `json:"shared,omitempty"`
+
+	// Slug URL-friendly identifier. Only editable by staff users.
 	Slug               *string                  `json:"slug,omitempty"`
 	SoftwareCatalogs   *[]NestedSoftwareCatalog `json:"software_catalogs,omitempty"`
 	State              *OfferingState           `json:"state,omitempty"`
@@ -25179,8 +25495,13 @@ type PublicOfferingDetails struct {
 	VendorDetails      *string                  `json:"vendor_details,omitempty"`
 }
 
-// PublicOfferingDetails_Country defines model for PublicOfferingDetails.Country.
+// PublicOfferingDetails_Country Country code (ISO 3166-1 alpha-2)
 type PublicOfferingDetails_Country struct {
+	union json.RawMessage
+}
+
+// PublicOfferingDetails_ScopeState defines model for PublicOfferingDetails.ScopeState.
+type PublicOfferingDetails_ScopeState struct {
 	union json.RawMessage
 }
 
@@ -25194,6 +25515,7 @@ type QosStrategyEnum string
 
 // QueryRequest defines model for QueryRequest.
 type QueryRequest struct {
+	// Query Search query string
 	Query string `json:"query"`
 }
 
@@ -26686,13 +27008,19 @@ type RemoveSoftwareCatalogRequest struct {
 
 // ReportSection defines model for ReportSection.
 type ReportSection struct {
-	Body   *string `json:"body,omitempty"`
+	// Body Section body content
+	Body *string `json:"body,omitempty"`
+
+	// Header Section header text
 	Header *string `json:"header,omitempty"`
 }
 
 // ReportSectionRequest defines model for ReportSectionRequest.
 type ReportSectionRequest struct {
-	Body   string `json:"body"`
+	// Body Section body content
+	Body string `json:"body"`
+
+	// Header Section header text
 	Header string `json:"header"`
 }
 
@@ -26843,9 +27171,11 @@ type Resource struct {
 	RestrictMemberAccess      *bool                          `json:"restrict_member_access,omitempty"`
 	Scope                     *string                        `json:"scope,omitempty"`
 	ServiceSettingsUuid       *openapi_types.UUID            `json:"service_settings_uuid,omitempty"`
-	Slug                      *string                        `json:"slug,omitempty"`
-	State                     *ResourceState                 `json:"state,omitempty"`
-	Url                       *string                        `json:"url,omitempty"`
+
+	// Slug URL-friendly identifier. Only editable by staff users.
+	Slug  *string        `json:"slug,omitempty"`
+	State *ResourceState `json:"state,omitempty"`
+	Url   *string        `json:"url,omitempty"`
 
 	// UserRequiresReconsent Check if the current user needs to re-consent for this resource's offering.
 	UserRequiresReconsent *bool               `json:"user_requires_reconsent,omitempty"`
@@ -26876,11 +27206,20 @@ type ResourceEndDateByProviderRequest struct {
 
 // ResourceLimitPeriod defines model for ResourceLimitPeriod.
 type ResourceLimitPeriod struct {
-	BillingPeriods *int    `json:"billing_periods,omitempty"`
-	End            *string `json:"end,omitempty"`
-	Quantity       *int    `json:"quantity,omitempty"`
-	Start          *string `json:"start,omitempty"`
-	Total          *string `json:"total,omitempty"`
+	// BillingPeriods Number of billing periods
+	BillingPeriods *int `json:"billing_periods,omitempty"`
+
+	// End End date of the resource limit period
+	End *string `json:"end,omitempty"`
+
+	// Quantity Quantity of resources consumed during this period
+	Quantity *int `json:"quantity,omitempty"`
+
+	// Start Start date of the resource limit period
+	Start *string `json:"start,omitempty"`
+
+	// Total Total amount for this period
+	Total *string `json:"total,omitempty"`
 }
 
 // ResourceOffering defines model for ResourceOffering.
@@ -26987,7 +27326,9 @@ type ResourceRequest struct {
 	Offering string              `json:"offering"`
 	Paused   *bool               `json:"paused,omitempty"`
 	Plan     *string             `json:"plan,omitempty"`
-	Slug     *string             `json:"slug,omitempty"`
+
+	// Slug URL-friendly identifier. Only editable by staff users.
+	Slug *string `json:"slug,omitempty"`
 }
 
 // ResourceResponseStatus defines model for ResourceResponseStatus.
@@ -27095,6 +27436,7 @@ type ResourcesLimits struct {
 
 // ReviewCommentRequest defines model for ReviewCommentRequest.
 type ReviewCommentRequest struct {
+	// Comment Optional comment for review
 	Comment *string `json:"comment,omitempty"`
 }
 
@@ -27528,6 +27870,7 @@ type ServiceProvider struct {
 
 // ServiceProviderApiSecretCode defines model for ServiceProviderApiSecretCode.
 type ServiceProviderApiSecretCode struct {
+	// ApiSecretCode API secret code for authenticating service provider requests
 	ApiSecretCode *string `json:"api_secret_code,omitempty"`
 }
 
@@ -28119,10 +28462,17 @@ type SyncStatusEnum string
 
 // TableSize defines model for TableSize.
 type TableSize struct {
-	DataSize     *int    `json:"data_size,omitempty"`
-	ExternalSize *int    `json:"external_size,omitempty"`
-	TableName    *string `json:"table_name,omitempty"`
-	TotalSize    *int    `json:"total_size,omitempty"`
+	// DataSize Size of the actual data in bytes
+	DataSize *int `json:"data_size,omitempty"`
+
+	// ExternalSize Size of external data (e.g., TOAST) in bytes
+	ExternalSize *int `json:"external_size,omitempty"`
+
+	// TableName Name of the database table
+	TableName *string `json:"table_name,omitempty"`
+
+	// TotalSize Total size of the table in bytes
+	TotalSize *int `json:"total_size,omitempty"`
 }
 
 // Template defines model for Template.
@@ -28195,6 +28545,7 @@ type ToSConsentDashboard struct {
 
 // TokenRequest defines model for TokenRequest.
 type TokenRequest struct {
+	// Token Authentication token for invitation acceptance
 	Token string `json:"token"`
 }
 
@@ -28306,11 +28657,13 @@ type User struct {
 	PreferredLanguage    *string       `json:"preferred_language,omitempty"`
 
 	// RegistrationMethod Indicates what registration method was used.
-	RegistrationMethod *string    `json:"registration_method,omitempty"`
-	RequestedEmail     *string    `json:"requested_email"`
-	Slug               *string    `json:"slug,omitempty"`
-	Token              *string    `json:"token,omitempty"`
-	TokenExpiresAt     *time.Time `json:"token_expires_at"`
+	RegistrationMethod *string `json:"registration_method,omitempty"`
+	RequestedEmail     *string `json:"requested_email"`
+
+	// Slug URL-friendly identifier. Only editable by staff users.
+	Slug           *string    `json:"slug,omitempty"`
+	Token          *string    `json:"token,omitempty"`
+	TokenExpiresAt *time.Time `json:"token_expires_at"`
 
 	// TokenLifetime Token lifetime in seconds.
 	TokenLifetime *int    `json:"token_lifetime"`
@@ -28529,7 +28882,9 @@ type UserRequest struct {
 	Organization         *string `json:"organization,omitempty"`
 	PhoneNumber          *string `json:"phone_number,omitempty"`
 	PreferredLanguage    *string `json:"preferred_language,omitempty"`
-	Slug                 *string `json:"slug,omitempty"`
+
+	// Slug URL-friendly identifier. Only editable by staff users.
+	Slug *string `json:"slug,omitempty"`
 
 	// TokenLifetime Token lifetime in seconds.
 	TokenLifetime *int `json:"token_lifetime"`
@@ -28565,7 +28920,9 @@ type UserRequestForm struct {
 	Organization         *string `json:"organization,omitempty"`
 	PhoneNumber          *string `json:"phone_number,omitempty"`
 	PreferredLanguage    *string `json:"preferred_language,omitempty"`
-	Slug                 *string `json:"slug,omitempty"`
+
+	// Slug URL-friendly identifier. Only editable by staff users.
+	Slug *string `json:"slug,omitempty"`
 
 	// TokenLifetime Token lifetime in seconds.
 	TokenLifetime *int `json:"token_lifetime"`
@@ -28601,7 +28958,9 @@ type UserRequestMultipart struct {
 	Organization         *string `json:"organization,omitempty"`
 	PhoneNumber          *string `json:"phone_number,omitempty"`
 	PreferredLanguage    *string `json:"preferred_language,omitempty"`
-	Slug                 *string `json:"slug,omitempty"`
+
+	// Slug URL-friendly identifier. Only editable by staff users.
+	Slug *string `json:"slug,omitempty"`
 
 	// TokenLifetime Token lifetime in seconds.
 	TokenLifetime *int `json:"token_lifetime"`
@@ -28699,26 +29058,46 @@ type VisibilityEnum string
 
 // VisibleInvitationDetails defines model for VisibleInvitationDetails.
 type VisibleInvitationDetails struct {
-	CreatedByFullName *string             `json:"created_by_full_name,omitempty"`
-	CreatedByImage    *string             `json:"created_by_image,omitempty"`
-	CreatedByUsername *string             `json:"created_by_username,omitempty"`
-	CustomerName      *string             `json:"customer_name,omitempty"`
-	CustomerUuid      *openapi_types.UUID `json:"customer_uuid,omitempty"`
+	// CreatedByFullName Full name of the user who created this invitation
+	CreatedByFullName *string `json:"created_by_full_name,omitempty"`
+
+	// CreatedByImage Profile image of the user who created this invitation
+	CreatedByImage *string `json:"created_by_image,omitempty"`
+
+	// CreatedByUsername Username of the user who created this invitation
+	CreatedByUsername *string `json:"created_by_username,omitempty"`
+
+	// CustomerName Name of the customer organization
+	CustomerName *string `json:"customer_name,omitempty"`
+
+	// CustomerUuid UUID of the customer organization
+	CustomerUuid *openapi_types.UUID `json:"customer_uuid,omitempty"`
 
 	// Email Invitation link will be sent to this email. Note that user can accept invitation with different email.
-	Email           openapi_types.Email `json:"email"`
-	ErrorMessage    *string             `json:"error_message,omitempty"`
-	ExecutionState  *ExecutionStateEnum `json:"execution_state,omitempty"`
-	RoleDescription *string             `json:"role_description,omitempty"`
-	RoleName        *string             `json:"role_name,omitempty"`
+	Email          openapi_types.Email `json:"email"`
+	ErrorMessage   *string             `json:"error_message,omitempty"`
+	ExecutionState *ExecutionStateEnum `json:"execution_state,omitempty"`
 
-	// ScopeDescription Get the description field from the scope if it exists.
-	// Returns empty string if scope doesn't have a description field.
-	ScopeDescription *string             `json:"scope_description,omitempty"`
-	ScopeName        *string             `json:"scope_name,omitempty"`
-	ScopeType        *string             `json:"scope_type"`
-	ScopeUuid        *openapi_types.UUID `json:"scope_uuid,omitempty"`
-	State            *InvitationState    `json:"state,omitempty"`
+	// RoleDescription Description of the role being granted
+	RoleDescription *string `json:"role_description,omitempty"`
+
+	// RoleName Name of the role being granted (e.g., 'PROJECT.ADMIN')
+	RoleName *string `json:"role_name,omitempty"`
+
+	// ScopeDescription Description of the invitation scope
+	ScopeDescription *string `json:"scope_description,omitempty"`
+
+	// ScopeName Name of the invitation scope
+	ScopeName *string `json:"scope_name,omitempty"`
+
+	// ScopeType Type of the invitation scope (e.g., 'customer', 'project')
+	ScopeType *string `json:"scope_type"`
+
+	// ScopeUuid UUID of the invitation scope (Customer or Project)
+	ScopeUuid *openapi_types.UUID `json:"scope_uuid,omitempty"`
+
+	// State Current state of the invitation (e.g., 'pending', 'accepted', 'rejected')
+	State *InvitationState `json:"state,omitempty"`
 }
 
 // VmwareCluster defines model for VmwareCluster.
@@ -49723,6 +50102,68 @@ func (t *Offering_Country) UnmarshalJSON(b []byte) error {
 	return err
 }
 
+// AsCoreStates returns the union data inside the Offering_ScopeState as a CoreStates
+func (t Offering_ScopeState) AsCoreStates() (CoreStates, error) {
+	var body CoreStates
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromCoreStates overwrites any union data inside the Offering_ScopeState as the provided CoreStates
+func (t *Offering_ScopeState) FromCoreStates(v CoreStates) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeCoreStates performs a merge with any union data inside the Offering_ScopeState, using the provided CoreStates
+func (t *Offering_ScopeState) MergeCoreStates(v CoreStates) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the Offering_ScopeState as a NullEnum
+func (t Offering_ScopeState) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the Offering_ScopeState as the provided NullEnum
+func (t *Offering_ScopeState) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the Offering_ScopeState, using the provided NullEnum
+func (t *Offering_ScopeState) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t Offering_ScopeState) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *Offering_ScopeState) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsLimitPeriodEnum returns the union data inside the OfferingComponent_LimitPeriod as a LimitPeriodEnum
 func (t OfferingComponent_LimitPeriod) AsLimitPeriodEnum() (LimitPeriodEnum, error) {
 	var body LimitPeriodEnum
@@ -53493,6 +53934,68 @@ func (t *ProviderOfferingDetails_Country) UnmarshalJSON(b []byte) error {
 	return err
 }
 
+// AsCoreStates returns the union data inside the ProviderOfferingDetails_ScopeState as a CoreStates
+func (t ProviderOfferingDetails_ScopeState) AsCoreStates() (CoreStates, error) {
+	var body CoreStates
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromCoreStates overwrites any union data inside the ProviderOfferingDetails_ScopeState as the provided CoreStates
+func (t *ProviderOfferingDetails_ScopeState) FromCoreStates(v CoreStates) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeCoreStates performs a merge with any union data inside the ProviderOfferingDetails_ScopeState, using the provided CoreStates
+func (t *ProviderOfferingDetails_ScopeState) MergeCoreStates(v CoreStates) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the ProviderOfferingDetails_ScopeState as a NullEnum
+func (t ProviderOfferingDetails_ScopeState) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the ProviderOfferingDetails_ScopeState as the provided NullEnum
+func (t *ProviderOfferingDetails_ScopeState) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the ProviderOfferingDetails_ScopeState, using the provided NullEnum
+func (t *ProviderOfferingDetails_ScopeState) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t ProviderOfferingDetails_ScopeState) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *ProviderOfferingDetails_ScopeState) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsCountryEnum returns the union data inside the PublicOfferingDetails_Country as a CountryEnum
 func (t PublicOfferingDetails_Country) AsCountryEnum() (CountryEnum, error) {
 	var body CountryEnum
@@ -53551,6 +54054,68 @@ func (t PublicOfferingDetails_Country) MarshalJSON() ([]byte, error) {
 }
 
 func (t *PublicOfferingDetails_Country) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsCoreStates returns the union data inside the PublicOfferingDetails_ScopeState as a CoreStates
+func (t PublicOfferingDetails_ScopeState) AsCoreStates() (CoreStates, error) {
+	var body CoreStates
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromCoreStates overwrites any union data inside the PublicOfferingDetails_ScopeState as the provided CoreStates
+func (t *PublicOfferingDetails_ScopeState) FromCoreStates(v CoreStates) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeCoreStates performs a merge with any union data inside the PublicOfferingDetails_ScopeState, using the provided CoreStates
+func (t *PublicOfferingDetails_ScopeState) MergeCoreStates(v CoreStates) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the PublicOfferingDetails_ScopeState as a NullEnum
+func (t PublicOfferingDetails_ScopeState) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the PublicOfferingDetails_ScopeState as the provided NullEnum
+func (t *PublicOfferingDetails_ScopeState) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the PublicOfferingDetails_ScopeState, using the provided NullEnum
+func (t *PublicOfferingDetails_ScopeState) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t PublicOfferingDetails_ScopeState) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *PublicOfferingDetails_ScopeState) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
