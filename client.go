@@ -13846,12 +13846,16 @@ type CategorySerializerForForNestedFieldsRequest struct {
 
 // CheckUniqueBackendIDRequest defines model for CheckUniqueBackendIDRequest.
 type CheckUniqueBackendIDRequest struct {
-	BackendId         string `json:"backend_id"`
-	CheckAllOfferings *bool  `json:"check_all_offerings,omitempty"`
+	// BackendId Backend identifier to check
+	BackendId string `json:"backend_id"`
+
+	// CheckAllOfferings Check across all offerings
+	CheckAllOfferings *bool `json:"check_all_offerings,omitempty"`
 }
 
 // CheckUniqueBackendIDResponse defines model for CheckUniqueBackendIDResponse.
 type CheckUniqueBackendIDResponse struct {
+	// IsUnique Whether the backend ID is unique
 	IsUnique bool `json:"is_unique"`
 }
 
@@ -14098,10 +14102,16 @@ type ComponentUsage struct {
 // ComponentUsageCreateRequest defines model for ComponentUsageCreateRequest.
 type ComponentUsageCreateRequest struct {
 	// Date Date for usage reporting (staff and service providers for limit-based components). If not provided, current date is used.
-	Date       *time.Time                  `json:"date,omitempty"`
-	PlanPeriod *openapi_types.UUID         `json:"plan_period,omitempty"`
-	Resource   *openapi_types.UUID         `json:"resource,omitempty"`
-	Usages     []ComponentUsageItemRequest `json:"usages"`
+	Date *time.Time `json:"date,omitempty"`
+
+	// PlanPeriod UUID of the specific resource plan period for usage reporting
+	PlanPeriod *openapi_types.UUID `json:"plan_period,omitempty"`
+
+	// Resource UUID of the resource for usage reporting (required if plan_period not provided)
+	Resource *openapi_types.UUID `json:"resource,omitempty"`
+
+	// Usages List of component usage items to report
+	Usages []ComponentUsageItemRequest `json:"usages"`
 }
 
 // ComponentUsageItemRequest defines model for ComponentUsageItemRequest.
@@ -15022,9 +15032,14 @@ type CountProjectsOfServiceProvidersGroupedByOecd struct {
 
 // CountStats defines model for CountStats.
 type CountStats struct {
-	Count *int    `json:"count,omitempty"`
-	Name  *string `json:"name,omitempty"`
-	Uuid  *string `json:"uuid,omitempty"`
+	// Count Count value from the record
+	Count *int `json:"count,omitempty"`
+
+	// Name Name from the record
+	Name *string `json:"name,omitempty"`
+
+	// Uuid UUID from the record
+	Uuid *string `json:"uuid,omitempty"`
 }
 
 // CountUniqueUsersConnectedWithActiveResourcesOfServiceProvider defines model for CountUniqueUsersConnectedWithActiveResourcesOfServiceProvider.
@@ -15390,11 +15405,20 @@ type CustomerEstimatedCostPolicyRequest struct {
 
 // CustomerIndustryFlagStats defines model for CustomerIndustryFlagStats.
 type CustomerIndustryFlagStats struct {
+	// Abbreviation Customer abbreviation from the record
 	Abbreviation *string `json:"abbreviation,omitempty"`
-	Count        *int    `json:"count,omitempty"`
-	IsIndustry   string  `json:"is_industry"`
-	Name         *string `json:"name,omitempty"`
-	Uuid         *string `json:"uuid,omitempty"`
+
+	// Count Count value from the record
+	Count *int `json:"count,omitempty"`
+
+	// IsIndustry Industry classification flag
+	IsIndustry string `json:"is_industry"`
+
+	// Name Name from the record
+	Name *string `json:"name,omitempty"`
+
+	// Uuid UUID from the record
+	Uuid *string `json:"uuid,omitempty"`
 }
 
 // CustomerMemberCount defines model for CustomerMemberCount.
@@ -15417,11 +15441,18 @@ type CustomerMemberCount struct {
 
 // CustomerOecdCodeStats defines model for CustomerOecdCodeStats.
 type CustomerOecdCodeStats struct {
+	// Abbreviation Customer abbreviation from the record
 	Abbreviation *string `json:"abbreviation,omitempty"`
-	Count        *int    `json:"count,omitempty"`
-	Name         *string `json:"name,omitempty"`
-	Oecd         string  `json:"oecd"`
-	Uuid         *string `json:"uuid,omitempty"`
+
+	// Count Count value from the record
+	Count *int `json:"count,omitempty"`
+
+	// Name Name from the record
+	Name *string `json:"name,omitempty"`
+	Oecd string  `json:"oecd"`
+
+	// Uuid UUID from the record
+	Uuid *string `json:"uuid,omitempty"`
 }
 
 // CustomerPermissionReview defines model for CustomerPermissionReview.
@@ -16701,10 +16732,14 @@ type ImpactLevelEnum int
 
 // ImportResourceRequest defines model for ImportResourceRequest.
 type ImportResourceRequest struct {
-	AdditionalDetails interface{}         `json:"additional_details"`
-	BackendId         string              `json:"backend_id"`
-	Plan              *openapi_types.UUID `json:"plan,omitempty"`
-	Project           openapi_types.UUID  `json:"project"`
+	AdditionalDetails interface{} `json:"additional_details"`
+
+	// BackendId Backend identifier of the resource
+	BackendId string              `json:"backend_id"`
+	Plan      *openapi_types.UUID `json:"plan,omitempty"`
+
+	// Project Target project for the resource
+	Project openapi_types.UUID `json:"project"`
 }
 
 // ImportableResource defines model for ImportableResource.
@@ -17686,10 +17721,17 @@ type MarketplaceCategoryRequestMultipart struct {
 
 // MarketplaceCustomerStats defines model for MarketplaceCustomerStats.
 type MarketplaceCustomerStats struct {
+	// Abbreviation Customer abbreviation from the record
 	Abbreviation *string `json:"abbreviation,omitempty"`
-	Count        *int    `json:"count,omitempty"`
-	Name         *string `json:"name,omitempty"`
-	Uuid         *string `json:"uuid,omitempty"`
+
+	// Count Count value from the record
+	Count *int `json:"count,omitempty"`
+
+	// Name Name from the record
+	Name *string `json:"name,omitempty"`
+
+	// Uuid UUID from the record
+	Uuid *string `json:"uuid,omitempty"`
 }
 
 // MarketplaceOpenPortalCreateOrderAttributes defines model for MarketplaceOpenPortalCreateOrderAttributes.
@@ -17831,17 +17873,37 @@ type MergedPluginOptions struct {
 	IsResourceTerminationDateRequired *bool `json:"is_resource_termination_date_required,omitempty"`
 
 	// LatestDateForResourceTermination If set, it will be used as a latest date for resource termination
-	LatestDateForResourceTermination               *openapi_types.Date `json:"latest_date_for_resource_termination,omitempty"`
-	ManagedRancherLoadBalancerDataVolumeSizeGb     *int                `json:"managed_rancher_load_balancer_data_volume_size_gb,omitempty"`
-	ManagedRancherLoadBalancerDataVolumeTypeName   *string             `json:"managed_rancher_load_balancer_data_volume_type_name,omitempty"`
-	ManagedRancherLoadBalancerFlavorName           *string             `json:"managed_rancher_load_balancer_flavor_name,omitempty"`
-	ManagedRancherLoadBalancerSystemVolumeSizeGb   *int                `json:"managed_rancher_load_balancer_system_volume_size_gb,omitempty"`
-	ManagedRancherLoadBalancerSystemVolumeTypeName *string             `json:"managed_rancher_load_balancer_system_volume_type_name,omitempty"`
-	ManagedRancherServerDataVolumeSizeGb           *int                `json:"managed_rancher_server_data_volume_size_gb,omitempty"`
-	ManagedRancherServerDataVolumeTypeName         *string             `json:"managed_rancher_server_data_volume_type_name,omitempty"`
-	ManagedRancherServerFlavorName                 *string             `json:"managed_rancher_server_flavor_name,omitempty"`
-	ManagedRancherServerSystemVolumeSizeGb         *int                `json:"managed_rancher_server_system_volume_size_gb,omitempty"`
-	ManagedRancherServerSystemVolumeTypeName       *string             `json:"managed_rancher_server_system_volume_type_name,omitempty"`
+	LatestDateForResourceTermination *openapi_types.Date `json:"latest_date_for_resource_termination,omitempty"`
+
+	// ManagedRancherLoadBalancerDataVolumeSizeGb Data volume size in GB for managed Rancher load balancer
+	ManagedRancherLoadBalancerDataVolumeSizeGb *int `json:"managed_rancher_load_balancer_data_volume_size_gb,omitempty"`
+
+	// ManagedRancherLoadBalancerDataVolumeTypeName Data volume type name for managed Rancher load balancer
+	ManagedRancherLoadBalancerDataVolumeTypeName *string `json:"managed_rancher_load_balancer_data_volume_type_name,omitempty"`
+
+	// ManagedRancherLoadBalancerFlavorName Flavor name for managed Rancher load balancer
+	ManagedRancherLoadBalancerFlavorName *string `json:"managed_rancher_load_balancer_flavor_name,omitempty"`
+
+	// ManagedRancherLoadBalancerSystemVolumeSizeGb System volume size in GB for managed Rancher load balancer
+	ManagedRancherLoadBalancerSystemVolumeSizeGb *int `json:"managed_rancher_load_balancer_system_volume_size_gb,omitempty"`
+
+	// ManagedRancherLoadBalancerSystemVolumeTypeName System volume type name for managed Rancher load balancer
+	ManagedRancherLoadBalancerSystemVolumeTypeName *string `json:"managed_rancher_load_balancer_system_volume_type_name,omitempty"`
+
+	// ManagedRancherServerDataVolumeSizeGb Data volume size in GB for managed Rancher server
+	ManagedRancherServerDataVolumeSizeGb *int `json:"managed_rancher_server_data_volume_size_gb,omitempty"`
+
+	// ManagedRancherServerDataVolumeTypeName Data volume type name for managed Rancher server
+	ManagedRancherServerDataVolumeTypeName *string `json:"managed_rancher_server_data_volume_type_name,omitempty"`
+
+	// ManagedRancherServerFlavorName Flavor name for managed Rancher server instances
+	ManagedRancherServerFlavorName *string `json:"managed_rancher_server_flavor_name,omitempty"`
+
+	// ManagedRancherServerSystemVolumeSizeGb System volume size in GB for managed Rancher server
+	ManagedRancherServerSystemVolumeSizeGb *int `json:"managed_rancher_server_system_volume_size_gb,omitempty"`
+
+	// ManagedRancherServerSystemVolumeTypeName System volume type name for managed Rancher server
+	ManagedRancherServerSystemVolumeTypeName *string `json:"managed_rancher_server_system_volume_type_name,omitempty"`
 
 	// ManagedRancherTenantMaxCpu Max number of vCPUs for tenants
 	ManagedRancherTenantMaxCpu *int `json:"managed_rancher_tenant_max_cpu,omitempty"`
@@ -17850,8 +17912,12 @@ type MergedPluginOptions struct {
 	ManagedRancherTenantMaxDisk *int `json:"managed_rancher_tenant_max_disk,omitempty"`
 
 	// ManagedRancherTenantMaxRam Max number of RAM for tenants (GB)
-	ManagedRancherTenantMaxRam               *int    `json:"managed_rancher_tenant_max_ram,omitempty"`
-	ManagedRancherWorkerSystemVolumeSizeGb   *int    `json:"managed_rancher_worker_system_volume_size_gb,omitempty"`
+	ManagedRancherTenantMaxRam *int `json:"managed_rancher_tenant_max_ram,omitempty"`
+
+	// ManagedRancherWorkerSystemVolumeSizeGb System volume size in GB for managed Rancher worker nodes
+	ManagedRancherWorkerSystemVolumeSizeGb *int `json:"managed_rancher_worker_system_volume_size_gb,omitempty"`
+
+	// ManagedRancherWorkerSystemVolumeTypeName System volume type name for managed Rancher worker nodes
 	ManagedRancherWorkerSystemVolumeTypeName *string `json:"managed_rancher_worker_system_volume_type_name,omitempty"`
 
 	// MaxInstances Default limit for number of instances in OpenStack tenant
@@ -17989,17 +18055,37 @@ type MergedPluginOptionsRequest struct {
 	IsResourceTerminationDateRequired *bool `json:"is_resource_termination_date_required,omitempty"`
 
 	// LatestDateForResourceTermination If set, it will be used as a latest date for resource termination
-	LatestDateForResourceTermination               *openapi_types.Date `json:"latest_date_for_resource_termination,omitempty"`
-	ManagedRancherLoadBalancerDataVolumeSizeGb     *int                `json:"managed_rancher_load_balancer_data_volume_size_gb,omitempty"`
-	ManagedRancherLoadBalancerDataVolumeTypeName   *string             `json:"managed_rancher_load_balancer_data_volume_type_name,omitempty"`
-	ManagedRancherLoadBalancerFlavorName           *string             `json:"managed_rancher_load_balancer_flavor_name,omitempty"`
-	ManagedRancherLoadBalancerSystemVolumeSizeGb   *int                `json:"managed_rancher_load_balancer_system_volume_size_gb,omitempty"`
-	ManagedRancherLoadBalancerSystemVolumeTypeName *string             `json:"managed_rancher_load_balancer_system_volume_type_name,omitempty"`
-	ManagedRancherServerDataVolumeSizeGb           *int                `json:"managed_rancher_server_data_volume_size_gb,omitempty"`
-	ManagedRancherServerDataVolumeTypeName         *string             `json:"managed_rancher_server_data_volume_type_name,omitempty"`
-	ManagedRancherServerFlavorName                 *string             `json:"managed_rancher_server_flavor_name,omitempty"`
-	ManagedRancherServerSystemVolumeSizeGb         *int                `json:"managed_rancher_server_system_volume_size_gb,omitempty"`
-	ManagedRancherServerSystemVolumeTypeName       *string             `json:"managed_rancher_server_system_volume_type_name,omitempty"`
+	LatestDateForResourceTermination *openapi_types.Date `json:"latest_date_for_resource_termination,omitempty"`
+
+	// ManagedRancherLoadBalancerDataVolumeSizeGb Data volume size in GB for managed Rancher load balancer
+	ManagedRancherLoadBalancerDataVolumeSizeGb *int `json:"managed_rancher_load_balancer_data_volume_size_gb,omitempty"`
+
+	// ManagedRancherLoadBalancerDataVolumeTypeName Data volume type name for managed Rancher load balancer
+	ManagedRancherLoadBalancerDataVolumeTypeName *string `json:"managed_rancher_load_balancer_data_volume_type_name,omitempty"`
+
+	// ManagedRancherLoadBalancerFlavorName Flavor name for managed Rancher load balancer
+	ManagedRancherLoadBalancerFlavorName *string `json:"managed_rancher_load_balancer_flavor_name,omitempty"`
+
+	// ManagedRancherLoadBalancerSystemVolumeSizeGb System volume size in GB for managed Rancher load balancer
+	ManagedRancherLoadBalancerSystemVolumeSizeGb *int `json:"managed_rancher_load_balancer_system_volume_size_gb,omitempty"`
+
+	// ManagedRancherLoadBalancerSystemVolumeTypeName System volume type name for managed Rancher load balancer
+	ManagedRancherLoadBalancerSystemVolumeTypeName *string `json:"managed_rancher_load_balancer_system_volume_type_name,omitempty"`
+
+	// ManagedRancherServerDataVolumeSizeGb Data volume size in GB for managed Rancher server
+	ManagedRancherServerDataVolumeSizeGb *int `json:"managed_rancher_server_data_volume_size_gb,omitempty"`
+
+	// ManagedRancherServerDataVolumeTypeName Data volume type name for managed Rancher server
+	ManagedRancherServerDataVolumeTypeName *string `json:"managed_rancher_server_data_volume_type_name,omitempty"`
+
+	// ManagedRancherServerFlavorName Flavor name for managed Rancher server instances
+	ManagedRancherServerFlavorName *string `json:"managed_rancher_server_flavor_name,omitempty"`
+
+	// ManagedRancherServerSystemVolumeSizeGb System volume size in GB for managed Rancher server
+	ManagedRancherServerSystemVolumeSizeGb *int `json:"managed_rancher_server_system_volume_size_gb,omitempty"`
+
+	// ManagedRancherServerSystemVolumeTypeName System volume type name for managed Rancher server
+	ManagedRancherServerSystemVolumeTypeName *string `json:"managed_rancher_server_system_volume_type_name,omitempty"`
 
 	// ManagedRancherTenantMaxCpu Max number of vCPUs for tenants
 	ManagedRancherTenantMaxCpu *int `json:"managed_rancher_tenant_max_cpu,omitempty"`
@@ -18008,8 +18094,12 @@ type MergedPluginOptionsRequest struct {
 	ManagedRancherTenantMaxDisk *int `json:"managed_rancher_tenant_max_disk,omitempty"`
 
 	// ManagedRancherTenantMaxRam Max number of RAM for tenants (GB)
-	ManagedRancherTenantMaxRam               *int    `json:"managed_rancher_tenant_max_ram,omitempty"`
-	ManagedRancherWorkerSystemVolumeSizeGb   *int    `json:"managed_rancher_worker_system_volume_size_gb,omitempty"`
+	ManagedRancherTenantMaxRam *int `json:"managed_rancher_tenant_max_ram,omitempty"`
+
+	// ManagedRancherWorkerSystemVolumeSizeGb System volume size in GB for managed Rancher worker nodes
+	ManagedRancherWorkerSystemVolumeSizeGb *int `json:"managed_rancher_worker_system_volume_size_gb,omitempty"`
+
+	// ManagedRancherWorkerSystemVolumeTypeName System volume type name for managed Rancher worker nodes
 	ManagedRancherWorkerSystemVolumeTypeName *string `json:"managed_rancher_worker_system_volume_type_name,omitempty"`
 
 	// MaxInstances Default limit for number of instances in OpenStack tenant
@@ -18085,7 +18175,9 @@ type MergedSecretOptions struct {
 	BackendUrl         *string `json:"backend_url,omitempty"`
 
 	// BaseImageName Base image name
-	BaseImageName     *string `json:"base_image_name,omitempty"`
+	BaseImageName *string `json:"base_image_name,omitempty"`
+
+	// CloudInitTemplate Cloud-init template for Rancher cluster node initialization
 	CloudInitTemplate *string `json:"cloud_init_template,omitempty"`
 
 	// Create Script for resource creation
@@ -18134,13 +18226,17 @@ type MergedSecretOptions struct {
 	KeycloakUsername *string `json:"keycloak_username,omitempty"`
 
 	// Language Script language: Python or Bash
-	Language                                    *string `json:"language,omitempty"`
+	Language *string `json:"language,omitempty"`
+
+	// ManagedRancherLoadBalancerCloudInitTemplate Cloud-init template for managed Rancher load balancer initialization
 	ManagedRancherLoadBalancerCloudInitTemplate *string `json:"managed_rancher_load_balancer_cloud_init_template,omitempty"`
 
 	// NodeDiskDriver OpenStack disk driver for Rancher nodes
-	NodeDiskDriver             *NodeDiskDriverEnum `json:"node_disk_driver,omitempty"`
-	OpenstackApiTlsCertificate *string             `json:"openstack_api_tls_certificate,omitempty"`
-	Password                   *string             `json:"password,omitempty"`
+	NodeDiskDriver *NodeDiskDriverEnum `json:"node_disk_driver,omitempty"`
+
+	// OpenstackApiTlsCertificate TLS certificate for OpenStack API connection verification
+	OpenstackApiTlsCertificate *string `json:"openstack_api_tls_certificate,omitempty"`
+	Password                   *string `json:"password,omitempty"`
 
 	// PrivateRegistryPassword Password for accessing a private registry
 	PrivateRegistryPassword *string `json:"private_registry_password,omitempty"`
@@ -18196,7 +18292,9 @@ type MergedSecretOptionsRequest struct {
 	BackendUrl         *string `json:"backend_url,omitempty"`
 
 	// BaseImageName Base image name
-	BaseImageName     *string `json:"base_image_name,omitempty"`
+	BaseImageName *string `json:"base_image_name,omitempty"`
+
+	// CloudInitTemplate Cloud-init template for Rancher cluster node initialization
 	CloudInitTemplate *string `json:"cloud_init_template,omitempty"`
 
 	// Create Script for resource creation
@@ -18245,13 +18343,17 @@ type MergedSecretOptionsRequest struct {
 	KeycloakUsername *string `json:"keycloak_username,omitempty"`
 
 	// Language Script language: Python or Bash
-	Language                                    *string `json:"language,omitempty"`
+	Language *string `json:"language,omitempty"`
+
+	// ManagedRancherLoadBalancerCloudInitTemplate Cloud-init template for managed Rancher load balancer initialization
 	ManagedRancherLoadBalancerCloudInitTemplate *string `json:"managed_rancher_load_balancer_cloud_init_template,omitempty"`
 
 	// NodeDiskDriver OpenStack disk driver for Rancher nodes
-	NodeDiskDriver             *NodeDiskDriverEnum `json:"node_disk_driver,omitempty"`
-	OpenstackApiTlsCertificate *string             `json:"openstack_api_tls_certificate,omitempty"`
-	Password                   *string             `json:"password,omitempty"`
+	NodeDiskDriver *NodeDiskDriverEnum `json:"node_disk_driver,omitempty"`
+
+	// OpenstackApiTlsCertificate TLS certificate for OpenStack API connection verification
+	OpenstackApiTlsCertificate *string `json:"openstack_api_tls_certificate,omitempty"`
+	Password                   *string `json:"password,omitempty"`
 
 	// PrivateRegistryPassword Password for accessing a private registry
 	PrivateRegistryPassword *string `json:"private_registry_password,omitempty"`
@@ -18360,8 +18462,11 @@ type MinimalConsumptionLogicEnum string
 
 // MoveOfferingRequest defines model for MoveOfferingRequest.
 type MoveOfferingRequest struct {
-	Customer            string `json:"customer"`
-	PreservePermissions bool   `json:"preserve_permissions"`
+	// Customer Target customer URL with service provider profile where the offering should be moved
+	Customer string `json:"customer"`
+
+	// PreservePermissions Whether to preserve existing permissions when moving the offering
+	PreservePermissions bool `json:"preserve_permissions"`
 }
 
 // MoveProjectRequest defines model for MoveProjectRequest.
@@ -18372,6 +18477,7 @@ type MoveProjectRequest struct {
 
 // MoveResourceRequest defines model for MoveResourceRequest.
 type MoveResourceRequest struct {
+	// Project Target project URL where the resource should be moved
 	Project *ProjectHyperlinkRequest `json:"project,omitempty"`
 }
 
@@ -20045,12 +20151,16 @@ type OfferingUserState string
 
 // OfferingUserStateTransitionRequest defines model for OfferingUserStateTransitionRequest.
 type OfferingUserStateTransitionRequest struct {
-	Comment    *string `json:"comment,omitempty"`
+	// Comment Comment explaining the state transition
+	Comment *string `json:"comment,omitempty"`
+
+	// CommentUrl URL reference related to the state transition comment
 	CommentUrl *string `json:"comment_url,omitempty"`
 }
 
 // OfferingUserUpdateRestrictionRequest defines model for OfferingUserUpdateRestrictionRequest.
 type OfferingUserUpdateRestrictionRequest struct {
+	// IsRestricted Whether the offering user should be restricted from accessing resources
 	IsRestricted bool `json:"is_restricted"`
 }
 
@@ -24383,13 +24493,23 @@ type PlanComponent struct {
 type PlanUsageResponse struct {
 	CustomerProviderName *string             `json:"customer_provider_name,omitempty"`
 	CustomerProviderUuid *openapi_types.UUID `json:"customer_provider_uuid,omitempty"`
-	Limit                *int                `json:"limit,omitempty"`
-	OfferingName         *string             `json:"offering_name,omitempty"`
-	OfferingUuid         *openapi_types.UUID `json:"offering_uuid,omitempty"`
-	PlanName             *string             `json:"plan_name,omitempty"`
-	PlanUuid             *openapi_types.UUID `json:"plan_uuid,omitempty"`
-	Remaining            *int                `json:"remaining,omitempty"`
-	Usage                *int                `json:"usage,omitempty"`
+
+	// Limit Usage limit
+	Limit        *int                `json:"limit,omitempty"`
+	OfferingName *string             `json:"offering_name,omitempty"`
+	OfferingUuid *openapi_types.UUID `json:"offering_uuid,omitempty"`
+
+	// PlanName Name of the plan
+	PlanName *string `json:"plan_name,omitempty"`
+
+	// PlanUuid UUID of the plan
+	PlanUuid *openapi_types.UUID `json:"plan_uuid,omitempty"`
+
+	// Remaining Remaining usage
+	Remaining *int `json:"remaining,omitempty"`
+
+	// Usage Current usage count
+	Usage *int `json:"usage,omitempty"`
 }
 
 // PluginComponent defines model for PluginComponent.
@@ -24935,21 +25055,25 @@ type ProjectUser_OfferingUserState struct {
 
 // ProjectsLimitsGroupedByIndustryFlag defines model for ProjectsLimitsGroupedByIndustryFlag.
 type ProjectsLimitsGroupedByIndustryFlag struct {
+	// Limits Nested dictionary of resource limits by category and component type
 	Limits map[string]map[string]string `json:"limits"`
 }
 
 // ProjectsLimitsGroupedByOecd defines model for ProjectsLimitsGroupedByOecd.
 type ProjectsLimitsGroupedByOecd struct {
+	// Limits Nested dictionary of resource limits by category and component type
 	Limits map[string]map[string]string `json:"limits"`
 }
 
 // ProjectsUsagesGroupedByIndustryFlag defines model for ProjectsUsagesGroupedByIndustryFlag.
 type ProjectsUsagesGroupedByIndustryFlag struct {
+	// Usages Nested dictionary of usage values by category and component type
 	Usages map[string]map[string]string `json:"usages"`
 }
 
 // ProjectsUsagesGroupedByOecd defines model for ProjectsUsagesGroupedByOecd.
 type ProjectsUsagesGroupedByOecd struct {
+	// Usages Nested dictionary of usage values by category and component type
 	Usages map[string]map[string]string `json:"usages"`
 }
 
@@ -26035,6 +26159,7 @@ type Quota struct {
 
 // QuotasUpdateRequest defines model for QuotasUpdateRequest.
 type QuotasUpdateRequest struct {
+	// Quotas Dictionary of quotas to update
 	Quotas map[string]int `json:"quotas"`
 }
 
@@ -27513,6 +27638,7 @@ type ResourceRequest struct {
 
 // ResourceResponseStatus defines model for ResourceResponseStatus.
 type ResourceResponseStatus struct {
+	// Status Status of the resource response
 	Status *string `json:"status,omitempty"`
 }
 
@@ -27523,6 +27649,7 @@ type ResourceRestrictMemberAccessRequest struct {
 
 // ResourceSetLimitsRequest defines model for ResourceSetLimitsRequest.
 type ResourceSetLimitsRequest struct {
+	// Limits Dictionary mapping component types to their new limit values
 	Limits interface{} `json:"limits"`
 }
 
@@ -27553,6 +27680,7 @@ type ResourceSwitchPlanRequest struct {
 
 // ResourceTerminateRequest defines model for ResourceTerminateRequest.
 type ResourceTerminateRequest struct {
+	// Attributes Optional attributes/parameters to pass to the termination operation
 	Attributes interface{} `json:"attributes,omitempty"`
 }
 
@@ -27606,12 +27734,23 @@ type ResourceUserRequest struct {
 
 // ResourcesLimits defines model for ResourcesLimits.
 type ResourcesLimits struct {
-	Name                  *string             `json:"name,omitempty"`
-	OfferingCountry       *string             `json:"offering_country,omitempty"`
-	OfferingUuid          *openapi_types.UUID `json:"offering_uuid,omitempty"`
-	OrganizationGroupName *string             `json:"organization_group_name,omitempty"`
-	OrganizationGroupUuid *string             `json:"organization_group_uuid,omitempty"`
-	Value                 *int                `json:"value,omitempty"`
+	// Name Name of the limit
+	Name *string `json:"name,omitempty"`
+
+	// OfferingCountry Country of the offering
+	OfferingCountry *string `json:"offering_country,omitempty"`
+
+	// OfferingUuid UUID of the offering
+	OfferingUuid *openapi_types.UUID `json:"offering_uuid,omitempty"`
+
+	// OrganizationGroupName Name of the organization group
+	OrganizationGroupName *string `json:"organization_group_name,omitempty"`
+
+	// OrganizationGroupUuid UUID of the organization group
+	OrganizationGroupUuid *string `json:"organization_group_uuid,omitempty"`
+
+	// Value Limit value
+	Value *int `json:"value,omitempty"`
 }
 
 // ReviewCommentRequest defines model for ReviewCommentRequest.
@@ -28134,9 +28273,14 @@ type ServiceProviderRevenues struct {
 
 // ServiceProviderSignatureRequest defines model for ServiceProviderSignatureRequest.
 type ServiceProviderSignatureRequest struct {
+	// Customer Service provider customer UUID
 	Customer openapi_types.UUID `json:"customer"`
-	Data     string             `json:"data"`
-	DryRun   *bool              `json:"dry_run,omitempty"`
+
+	// Data JWT-encoded data signed with the service provider's API secret code
+	Data string `json:"data"`
+
+	// DryRun If true, validates the signature without executing the operation
+	DryRun *bool `json:"dry_run,omitempty"`
 }
 
 // ServiceProviderStatistics defines model for ServiceProviderStatistics.
@@ -28640,7 +28784,10 @@ type SubmitRequestResponse struct {
 
 // SubresourceOffering defines model for SubresourceOffering.
 type SubresourceOffering struct {
-	Type *string             `json:"type,omitempty"`
+	// Type Type of the offering
+	Type *string `json:"type,omitempty"`
+
+	// Uuid UUID of the offering
 	Uuid *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
@@ -28744,15 +28891,26 @@ type TimeSeriesToSData struct {
 
 // ToSConsentDashboard defines model for ToSConsentDashboard.
 type ToSConsentDashboard struct {
-	AcceptedConsentsCount   *int                 `json:"accepted_consents_count,omitempty"`
-	ActiveUsersCount        *int                 `json:"active_users_count,omitempty"`
-	ActiveUsersOverTime     *[]TimeSeriesToSData `json:"active_users_over_time,omitempty"`
-	ActiveUsersPercentage   *float64             `json:"active_users_percentage,omitempty"`
+	// AcceptedConsentsCount Number of accepted consents
+	AcceptedConsentsCount *int `json:"accepted_consents_count,omitempty"`
+
+	// ActiveUsersCount Number of active users
+	ActiveUsersCount    *int                 `json:"active_users_count,omitempty"`
+	ActiveUsersOverTime *[]TimeSeriesToSData `json:"active_users_over_time,omitempty"`
+
+	// ActiveUsersPercentage Percentage of active users
+	ActiveUsersPercentage *float64 `json:"active_users_percentage,omitempty"`
+
+	// RevokedConsentsCount Number of revoked consents
 	RevokedConsentsCount    *int                 `json:"revoked_consents_count,omitempty"`
 	RevokedConsentsOverTime *[]TimeSeriesToSData `json:"revoked_consents_over_time,omitempty"`
 	TosVersionAdoption      *[]VersionAdoption   `json:"tos_version_adoption,omitempty"`
-	TotalConsentsCount      *int                 `json:"total_consents_count,omitempty"`
-	TotalUsersCount         *int                 `json:"total_users_count,omitempty"`
+
+	// TotalConsentsCount Total number of consents
+	TotalConsentsCount *int `json:"total_consents_count,omitempty"`
+
+	// TotalUsersCount Total number of users
+	TotalUsersCount *int `json:"total_users_count,omitempty"`
 }
 
 // TokenRequest defines model for TokenRequest.
@@ -29261,8 +29419,11 @@ type Version struct {
 
 // VersionAdoption defines model for VersionAdoption.
 type VersionAdoption struct {
-	UsersCount *int    `json:"users_count,omitempty"`
-	Version    *string `json:"version,omitempty"`
+	// UsersCount Number of users on this version
+	UsersCount *int `json:"users_count,omitempty"`
+
+	// Version Version identifier
+	Version *string `json:"version,omitempty"`
 }
 
 // VisibilityEnum defines model for VisibilityEnum.
