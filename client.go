@@ -21597,16 +21597,7 @@ type OpenStackTenantRequest struct {
 	DefaultVolumeTypeName *string                                `json:"default_volume_type_name,omitempty"`
 	Description           *string                                `json:"description,omitempty"`
 	Name                  string                                 `json:"name"`
-	Project               string                                 `json:"project"`
 	SecurityGroups        *[]OpenStackTenantSecurityGroupRequest `json:"security_groups,omitempty"`
-	ServiceSettings       string                                 `json:"service_settings"`
-	SubnetCidr            *string                                `json:"subnet_cidr,omitempty"`
-
-	// UserPassword Password of the tenant user
-	UserPassword *string `json:"user_password,omitempty"`
-
-	// UserUsername Username of the tenant user
-	UserUsername *string `json:"user_username,omitempty"`
 }
 
 // OpenStackTenantSecurityGroupRequest defines model for OpenStackTenantSecurityGroupRequest.
@@ -48239,9 +48230,6 @@ type OpenstackSubnetsPartialUpdateJSONRequestBody = PatchedOpenStackSubNetReques
 // OpenstackSubnetsUpdateJSONRequestBody defines body for OpenstackSubnetsUpdate for application/json ContentType.
 type OpenstackSubnetsUpdateJSONRequestBody = OpenStackSubNetRequest
 
-// OpenstackTenantsCreateJSONRequestBody defines body for OpenstackTenantsCreate for application/json ContentType.
-type OpenstackTenantsCreateJSONRequestBody = OpenStackTenantRequest
-
 // OpenstackTenantsPartialUpdateJSONRequestBody defines body for OpenstackTenantsPartialUpdate for application/json ContentType.
 type OpenstackTenantsPartialUpdateJSONRequestBody = PatchedOpenStackTenantRequest
 
@@ -59695,14 +59683,6 @@ type ClientInterface interface {
 
 	// OpenstackTenantsCount request
 	OpenstackTenantsCount(ctx context.Context, params *OpenstackTenantsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// OpenstackTenantsCreateWithBody request with any body
-	OpenstackTenantsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	OpenstackTenantsCreate(ctx context.Context, body OpenstackTenantsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// OpenstackTenantsDestroy request
-	OpenstackTenantsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenstackTenantsRetrieve request
 	OpenstackTenantsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *OpenstackTenantsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -82403,42 +82383,6 @@ func (c *Client) OpenstackTenantsList(ctx context.Context, params *OpenstackTena
 
 func (c *Client) OpenstackTenantsCount(ctx context.Context, params *OpenstackTenantsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenstackTenantsCountRequest(c.Server, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) OpenstackTenantsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOpenstackTenantsCreateRequestWithBody(c.Server, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) OpenstackTenantsCreate(ctx context.Context, body OpenstackTenantsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOpenstackTenantsCreateRequest(c.Server, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) OpenstackTenantsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOpenstackTenantsDestroyRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -200629,80 +200573,6 @@ func NewOpenstackTenantsCountRequest(server string, params *OpenstackTenantsCoun
 	return req, nil
 }
 
-// NewOpenstackTenantsCreateRequest calls the generic OpenstackTenantsCreate builder with application/json body
-func NewOpenstackTenantsCreateRequest(server string, body OpenstackTenantsCreateJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewOpenstackTenantsCreateRequestWithBody(server, "application/json", bodyReader)
-}
-
-// NewOpenstackTenantsCreateRequestWithBody generates requests for OpenstackTenantsCreate with any type of body
-func NewOpenstackTenantsCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/openstack-tenants/")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("POST", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewOpenstackTenantsDestroyRequest generates requests for OpenstackTenantsDestroy
-func NewOpenstackTenantsDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/openstack-tenants/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
 // NewOpenstackTenantsRetrieveRequest generates requests for OpenstackTenantsRetrieve
 func NewOpenstackTenantsRetrieveRequest(server string, uuid openapi_types.UUID, params *OpenstackTenantsRetrieveParams) (*http.Request, error) {
 	var err error
@@ -250486,14 +250356,6 @@ type ClientWithResponsesInterface interface {
 	// OpenstackTenantsCountWithResponse request
 	OpenstackTenantsCountWithResponse(ctx context.Context, params *OpenstackTenantsCountParams, reqEditors ...RequestEditorFn) (*OpenstackTenantsCountResponse, error)
 
-	// OpenstackTenantsCreateWithBodyWithResponse request with any body
-	OpenstackTenantsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackTenantsCreateResponse, error)
-
-	OpenstackTenantsCreateWithResponse(ctx context.Context, body OpenstackTenantsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackTenantsCreateResponse, error)
-
-	// OpenstackTenantsDestroyWithResponse request
-	OpenstackTenantsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackTenantsDestroyResponse, error)
-
 	// OpenstackTenantsRetrieveWithResponse request
 	OpenstackTenantsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *OpenstackTenantsRetrieveParams, reqEditors ...RequestEditorFn) (*OpenstackTenantsRetrieveResponse, error)
 
@@ -280177,49 +280039,6 @@ func (r OpenstackTenantsCountResponse) StatusCode() int {
 	return 0
 }
 
-type OpenstackTenantsCreateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON201      *OpenStackTenant
-}
-
-// Status returns HTTPResponse.Status
-func (r OpenstackTenantsCreateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r OpenstackTenantsCreateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type OpenstackTenantsDestroyResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// Status returns HTTPResponse.Status
-func (r OpenstackTenantsDestroyResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r OpenstackTenantsDestroyResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
 type OpenstackTenantsRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -307089,32 +306908,6 @@ func (c *ClientWithResponses) OpenstackTenantsCountWithResponse(ctx context.Cont
 		return nil, err
 	}
 	return ParseOpenstackTenantsCountResponse(rsp)
-}
-
-// OpenstackTenantsCreateWithBodyWithResponse request with arbitrary body returning *OpenstackTenantsCreateResponse
-func (c *ClientWithResponses) OpenstackTenantsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackTenantsCreateResponse, error) {
-	rsp, err := c.OpenstackTenantsCreateWithBody(ctx, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseOpenstackTenantsCreateResponse(rsp)
-}
-
-func (c *ClientWithResponses) OpenstackTenantsCreateWithResponse(ctx context.Context, body OpenstackTenantsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackTenantsCreateResponse, error) {
-	rsp, err := c.OpenstackTenantsCreate(ctx, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseOpenstackTenantsCreateResponse(rsp)
-}
-
-// OpenstackTenantsDestroyWithResponse request returning *OpenstackTenantsDestroyResponse
-func (c *ClientWithResponses) OpenstackTenantsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackTenantsDestroyResponse, error) {
-	rsp, err := c.OpenstackTenantsDestroy(ctx, uuid, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseOpenstackTenantsDestroyResponse(rsp)
 }
 
 // OpenstackTenantsRetrieveWithResponse request returning *OpenstackTenantsRetrieveResponse
@@ -342346,48 +342139,6 @@ func ParseOpenstackTenantsCountResponse(rsp *http.Response) (*OpenstackTenantsCo
 	}
 
 	response := &OpenstackTenantsCountResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	return response, nil
-}
-
-// ParseOpenstackTenantsCreateResponse parses an HTTP response from a OpenstackTenantsCreateWithResponse call
-func ParseOpenstackTenantsCreateResponse(rsp *http.Response) (*OpenstackTenantsCreateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &OpenstackTenantsCreateResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest OpenStackTenant
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON201 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseOpenstackTenantsDestroyResponse parses an HTTP response from a OpenstackTenantsDestroyWithResponse call
-func ParseOpenstackTenantsDestroyResponse(rsp *http.Response) (*OpenstackTenantsDestroyResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &OpenstackTenantsDestroyResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
