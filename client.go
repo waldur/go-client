@@ -14104,31 +14104,58 @@ type ComponentUsageItemRequest struct {
 
 // ComponentUsagesPerMonthStats defines model for ComponentUsagesPerMonthStats.
 type ComponentUsagesPerMonthStats struct {
-	ComponentType         string             `json:"component_type"`
-	Month                 int                `json:"month"`
-	OfferingCountry       *string            `json:"offering_country,omitempty"`
-	OfferingUuid          openapi_types.UUID `json:"offering_uuid"`
-	OrganizationGroupName *string            `json:"organization_group_name,omitempty"`
-	OrganizationGroupUuid *string            `json:"organization_group_uuid,omitempty"`
-	Usage                 string             `json:"usage"`
-	Year                  int                `json:"year"`
+	// ComponentType Type of the component
+	ComponentType string `json:"component_type"`
+	Month         int    `json:"month"`
+
+	// OfferingCountry Country of the offering
+	OfferingCountry *string `json:"offering_country,omitempty"`
+
+	// OfferingUuid UUID of the offering
+	OfferingUuid openapi_types.UUID `json:"offering_uuid"`
+
+	// OrganizationGroupName Name of the organization group
+	OrganizationGroupName *string `json:"organization_group_name,omitempty"`
+
+	// OrganizationGroupUuid UUID of the organization group
+	OrganizationGroupUuid *string `json:"organization_group_uuid,omitempty"`
+
+	// Usage Total usage amount
+	Usage string `json:"usage"`
+	Year  int    `json:"year"`
 }
 
 // ComponentUsagesPerProject defines model for ComponentUsagesPerProject.
 type ComponentUsagesPerProject struct {
-	ComponentType string             `json:"component_type"`
-	ProjectUuid   openapi_types.UUID `json:"project_uuid"`
-	Usage         *int               `json:"usage,omitempty"`
+	// ComponentType Type of the component
+	ComponentType string `json:"component_type"`
+
+	// ProjectUuid UUID of the project
+	ProjectUuid openapi_types.UUID `json:"project_uuid"`
+
+	// Usage Total usage for the component
+	Usage *int `json:"usage,omitempty"`
 }
 
 // ComponentUsagesStats defines model for ComponentUsagesStats.
 type ComponentUsagesStats struct {
-	ComponentType         string             `json:"component_type"`
-	OfferingCountry       *string            `json:"offering_country,omitempty"`
-	OfferingUuid          openapi_types.UUID `json:"offering_uuid"`
-	OrganizationGroupName *string            `json:"organization_group_name,omitempty"`
-	OrganizationGroupUuid *string            `json:"organization_group_uuid,omitempty"`
-	Usage                 string             `json:"usage"`
+	// ComponentType Type of the component
+	ComponentType string `json:"component_type"`
+
+	// OfferingCountry Country of the offering
+	OfferingCountry *string `json:"offering_country,omitempty"`
+
+	// OfferingUuid UUID of the offering
+	OfferingUuid openapi_types.UUID `json:"offering_uuid"`
+
+	// OrganizationGroupName Name of the organization group
+	OrganizationGroupName *string `json:"organization_group_name,omitempty"`
+
+	// OrganizationGroupUuid UUID of the organization group
+	OrganizationGroupUuid *string `json:"organization_group_uuid,omitempty"`
+
+	// Usage Total usage amount
+	Usage string `json:"usage"`
 }
 
 // ComponentUserUsage defines model for ComponentUserUsage.
@@ -14931,23 +14958,45 @@ type CostsForPeriod struct {
 
 // CountProjectsOfServiceProviders defines model for CountProjectsOfServiceProviders.
 type CountProjectsOfServiceProviders struct {
-	Count                         *int                `json:"count,omitempty"`
-	CustomerName                  *string             `json:"customer_name,omitempty"`
-	CustomerOrganizationGroupName *string             `json:"customer_organization_group_name,omitempty"`
-	CustomerOrganizationGroupUuid *string             `json:"customer_organization_group_uuid,omitempty"`
-	CustomerUuid                  *openapi_types.UUID `json:"customer_uuid,omitempty"`
-	ServiceProviderUuid           *openapi_types.UUID `json:"service_provider_uuid,omitempty"`
+	// Count Count value
+	Count *int `json:"count,omitempty"`
+
+	// CustomerName Name of the customer
+	CustomerName *string `json:"customer_name,omitempty"`
+
+	// CustomerOrganizationGroupName Name of the customer's organization group
+	CustomerOrganizationGroupName *string `json:"customer_organization_group_name,omitempty"`
+
+	// CustomerOrganizationGroupUuid UUID of the customer's organization group
+	CustomerOrganizationGroupUuid *string `json:"customer_organization_group_uuid,omitempty"`
+
+	// CustomerUuid UUID of the customer
+	CustomerUuid *openapi_types.UUID `json:"customer_uuid,omitempty"`
+
+	// ServiceProviderUuid UUID of the service provider
+	ServiceProviderUuid *openapi_types.UUID `json:"service_provider_uuid,omitempty"`
 }
 
 // CountProjectsOfServiceProvidersGroupedByOecd defines model for CountProjectsOfServiceProvidersGroupedByOecd.
 type CountProjectsOfServiceProvidersGroupedByOecd struct {
-	Count                         *int                `json:"count,omitempty"`
-	CustomerName                  *string             `json:"customer_name,omitempty"`
-	CustomerOrganizationGroupName *string             `json:"customer_organization_group_name,omitempty"`
-	CustomerOrganizationGroupUuid *string             `json:"customer_organization_group_uuid,omitempty"`
-	CustomerUuid                  *openapi_types.UUID `json:"customer_uuid,omitempty"`
-	OecdFos2007Name               *string             `json:"oecd_fos_2007_name,omitempty"`
-	ServiceProviderUuid           *openapi_types.UUID `json:"service_provider_uuid,omitempty"`
+	// Count Count value
+	Count *int `json:"count,omitempty"`
+
+	// CustomerName Name of the customer
+	CustomerName *string `json:"customer_name,omitempty"`
+
+	// CustomerOrganizationGroupName Name of the customer's organization group
+	CustomerOrganizationGroupName *string `json:"customer_organization_group_name,omitempty"`
+
+	// CustomerOrganizationGroupUuid UUID of the customer's organization group
+	CustomerOrganizationGroupUuid *string `json:"customer_organization_group_uuid,omitempty"`
+
+	// CustomerUuid UUID of the customer
+	CustomerUuid    *openapi_types.UUID `json:"customer_uuid,omitempty"`
+	OecdFos2007Name *string             `json:"oecd_fos_2007_name,omitempty"`
+
+	// ServiceProviderUuid UUID of the service provider
+	ServiceProviderUuid *openapi_types.UUID `json:"service_provider_uuid,omitempty"`
 }
 
 // CountStats defines model for CountStats.
@@ -14959,19 +15008,35 @@ type CountStats struct {
 
 // CountUniqueUsersConnectedWithActiveResourcesOfServiceProvider defines model for CountUniqueUsersConnectedWithActiveResourcesOfServiceProvider.
 type CountUniqueUsersConnectedWithActiveResourcesOfServiceProvider struct {
-	CountUsers   *int                `json:"count_users,omitempty"`
-	CustomerName *string             `json:"customer_name,omitempty"`
+	// CountUsers Number of unique users
+	CountUsers *int `json:"count_users,omitempty"`
+
+	// CustomerName Name of the customer
+	CustomerName *string `json:"customer_name,omitempty"`
+
+	// CustomerUuid UUID of the customer
 	CustomerUuid *openapi_types.UUID `json:"customer_uuid,omitempty"`
 }
 
 // CountUsersOfServiceProviders defines model for CountUsersOfServiceProviders.
 type CountUsersOfServiceProviders struct {
-	Count                         *int                `json:"count,omitempty"`
-	CustomerName                  *string             `json:"customer_name,omitempty"`
-	CustomerOrganizationGroupName *string             `json:"customer_organization_group_name,omitempty"`
-	CustomerOrganizationGroupUuid *string             `json:"customer_organization_group_uuid,omitempty"`
-	CustomerUuid                  *openapi_types.UUID `json:"customer_uuid,omitempty"`
-	ServiceProviderUuid           *openapi_types.UUID `json:"service_provider_uuid,omitempty"`
+	// Count Count value
+	Count *int `json:"count,omitempty"`
+
+	// CustomerName Name of the customer
+	CustomerName *string `json:"customer_name,omitempty"`
+
+	// CustomerOrganizationGroupName Name of the customer's organization group
+	CustomerOrganizationGroupName *string `json:"customer_organization_group_name,omitempty"`
+
+	// CustomerOrganizationGroupUuid UUID of the customer's organization group
+	CustomerOrganizationGroupUuid *string `json:"customer_organization_group_uuid,omitempty"`
+
+	// CustomerUuid UUID of the customer
+	CustomerUuid *openapi_types.UUID `json:"customer_uuid,omitempty"`
+
+	// ServiceProviderUuid UUID of the service provider
+	ServiceProviderUuid *openapi_types.UUID `json:"service_provider_uuid,omitempty"`
 }
 
 // Country defines model for Country.
@@ -16229,8 +16294,13 @@ type FinancialReportEmailRequest struct {
 
 // Fingerprint defines model for Fingerprint.
 type Fingerprint struct {
-	Md5    *string `json:"md5,omitempty"`
+	// Md5 MD5 fingerprint of SSH key
+	Md5 *string `json:"md5,omitempty"`
+
+	// Sha256 SHA256 fingerprint of SSH key
 	Sha256 *string `json:"sha256,omitempty"`
+
+	// Sha512 SHA512 fingerprint of SSH key
 	Sha512 *string `json:"sha512,omitempty"`
 }
 
@@ -18956,9 +19026,14 @@ type OfferingComponent_LimitPeriod struct {
 
 // OfferingComponentLimitRequest defines model for OfferingComponentLimitRequest.
 type OfferingComponentLimitRequest struct {
-	Max               int `json:"max"`
+	// Max Maximum allowed value
+	Max int `json:"max"`
+
+	// MaxAvailableLimit Maximum available limit across all resources
 	MaxAvailableLimit int `json:"max_available_limit"`
-	Min               int `json:"min"`
+
+	// Min Minimum allowed value
+	Min int `json:"min"`
 }
 
 // OfferingComponentRequest defines model for OfferingComponentRequest.
@@ -19010,13 +19085,19 @@ type OfferingComponentStat struct {
 
 // OfferingCost defines model for OfferingCost.
 type OfferingCost struct {
-	Cost         float64            `json:"cost"`
+	// Cost Total cost for the offering
+	Cost float64 `json:"cost"`
+
+	// OfferingUuid UUID of the offering
 	OfferingUuid openapi_types.UUID `json:"offering_uuid"`
 }
 
 // OfferingCountryStats defines model for OfferingCountryStats.
 type OfferingCountryStats struct {
-	Count   int    `json:"count"`
+	// Count Number of offerings in this country
+	Count int `json:"count"`
+
+	// Country Country code of the offering
 	Country string `json:"country"`
 }
 
@@ -19704,18 +19785,34 @@ type OfferingState string
 
 // OfferingStats defines model for OfferingStats.
 type OfferingStats struct {
-	Count   int    `json:"count"`
+	// Count Number of resources for the offering
+	Count int `json:"count"`
+
+	// Country Country of the offering
 	Country string `json:"country"`
-	Name    string `json:"name"`
-	Uuid    string `json:"uuid"`
+
+	// Name Name of the offering
+	Name string `json:"name"`
+
+	// Uuid UUID of the offering
+	Uuid string `json:"uuid"`
 }
 
 // OfferingStatsCounter defines model for OfferingStatsCounter.
 type OfferingStatsCounter struct {
-	CategoryTitle       string             `json:"category_title"`
-	CategoryUuid        openapi_types.UUID `json:"category_uuid"`
-	Count               int                `json:"count"`
-	ServiceProviderName string             `json:"service_provider_name"`
+	// CategoryTitle Title of the category
+	CategoryTitle string `json:"category_title"`
+
+	// CategoryUuid UUID of the category
+	CategoryUuid openapi_types.UUID `json:"category_uuid"`
+
+	// Count Number of offerings
+	Count int `json:"count"`
+
+	// ServiceProviderName Name of the service provider
+	ServiceProviderName string `json:"service_provider_name"`
+
+	// ServiceProviderUuid UUID of the service provider
 	ServiceProviderUuid openapi_types.UUID `json:"service_provider_uuid"`
 }
 
@@ -27035,6 +27132,7 @@ type RemovePartitionRequest struct {
 
 // RemoveSoftwareCatalogRequest defines model for RemoveSoftwareCatalogRequest.
 type RemoveSoftwareCatalogRequest struct {
+	// OfferingCatalogUuid UUID of the offering catalog to remove
 	OfferingCatalogUuid openapi_types.UUID `json:"offering_catalog_uuid"`
 }
 
@@ -27778,7 +27876,10 @@ type RuleRequest struct {
 
 // RuntimeStates defines model for RuntimeStates.
 type RuntimeStates struct {
+	// Label Human-readable label for the runtime state
 	Label *string `json:"label,omitempty"`
+
+	// Value Value of the runtime state
 	Value *string `json:"value,omitempty"`
 }
 
@@ -27974,9 +28075,14 @@ type ServiceProviderRequestMultipart struct {
 
 // ServiceProviderRevenues defines model for ServiceProviderRevenues.
 type ServiceProviderRevenues struct {
+	// Month Invoice month
 	Month *int `json:"month,omitempty"`
+
+	// Total Total revenue amount
 	Total *int `json:"total,omitempty"`
-	Year  *int `json:"year,omitempty"`
+
+	// Year Invoice year
+	Year *int `json:"year,omitempty"`
 }
 
 // ServiceProviderSignatureRequest defines model for ServiceProviderSignatureRequest.
@@ -28565,8 +28671,11 @@ type TenantSecurityGroupUpdateRequest struct {
 
 // TimeSeriesToSData defines model for TimeSeriesToSData.
 type TimeSeriesToSData struct {
-	Count *int                `json:"count,omitempty"`
-	Date  *openapi_types.Date `json:"date,omitempty"`
+	// Count Count for the date
+	Count *int `json:"count,omitempty"`
+
+	// Date Date of the data point
+	Date *openapi_types.Date `json:"date,omitempty"`
 }
 
 // ToSConsentDashboard defines model for ToSConsentDashboard.
