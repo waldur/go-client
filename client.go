@@ -1451,6 +1451,7 @@ const (
 	OptionFieldTypeEnumSelectOpenstackTenant            OptionFieldTypeEnum = "select_openstack_tenant"
 	OptionFieldTypeEnumSelectString                     OptionFieldTypeEnum = "select_string"
 	OptionFieldTypeEnumSelectStringMulti                OptionFieldTypeEnum = "select_string_multi"
+	OptionFieldTypeEnumSingleDatacenterK8sConfig        OptionFieldTypeEnum = "single_datacenter_k8s_config"
 	OptionFieldTypeEnumString                           OptionFieldTypeEnum = "string"
 	OptionFieldTypeEnumText                             OptionFieldTypeEnum = "text"
 	OptionFieldTypeEnumTime                             OptionFieldTypeEnum = "time"
@@ -3295,6 +3296,7 @@ const (
 	BookingResourcesListParamsFieldOfferingPluginOptions      BookingResourcesListParamsField = "offering_plugin_options"
 	BookingResourcesListParamsFieldOfferingShared             BookingResourcesListParamsField = "offering_shared"
 	BookingResourcesListParamsFieldOfferingSlug               BookingResourcesListParamsField = "offering_slug"
+	BookingResourcesListParamsFieldOfferingState              BookingResourcesListParamsField = "offering_state"
 	BookingResourcesListParamsFieldOfferingThumbnail          BookingResourcesListParamsField = "offering_thumbnail"
 	BookingResourcesListParamsFieldOfferingType               BookingResourcesListParamsField = "offering_type"
 	BookingResourcesListParamsFieldOfferingUuid               BookingResourcesListParamsField = "offering_uuid"
@@ -3452,6 +3454,7 @@ const (
 	BookingResourcesRetrieveParamsFieldOfferingPluginOptions      BookingResourcesRetrieveParamsField = "offering_plugin_options"
 	BookingResourcesRetrieveParamsFieldOfferingShared             BookingResourcesRetrieveParamsField = "offering_shared"
 	BookingResourcesRetrieveParamsFieldOfferingSlug               BookingResourcesRetrieveParamsField = "offering_slug"
+	BookingResourcesRetrieveParamsFieldOfferingState              BookingResourcesRetrieveParamsField = "offering_state"
 	BookingResourcesRetrieveParamsFieldOfferingThumbnail          BookingResourcesRetrieveParamsField = "offering_thumbnail"
 	BookingResourcesRetrieveParamsFieldOfferingType               BookingResourcesRetrieveParamsField = "offering_type"
 	BookingResourcesRetrieveParamsFieldOfferingUuid               BookingResourcesRetrieveParamsField = "offering_uuid"
@@ -4495,6 +4498,7 @@ const (
 	ManagedRancherClusterResourcesListParamsFieldOfferingPluginOptions     ManagedRancherClusterResourcesListParamsField = "offering_plugin_options"
 	ManagedRancherClusterResourcesListParamsFieldOfferingShared            ManagedRancherClusterResourcesListParamsField = "offering_shared"
 	ManagedRancherClusterResourcesListParamsFieldOfferingSlug              ManagedRancherClusterResourcesListParamsField = "offering_slug"
+	ManagedRancherClusterResourcesListParamsFieldOfferingState             ManagedRancherClusterResourcesListParamsField = "offering_state"
 	ManagedRancherClusterResourcesListParamsFieldOfferingThumbnail         ManagedRancherClusterResourcesListParamsField = "offering_thumbnail"
 	ManagedRancherClusterResourcesListParamsFieldOfferingType              ManagedRancherClusterResourcesListParamsField = "offering_type"
 	ManagedRancherClusterResourcesListParamsFieldOfferingUuid              ManagedRancherClusterResourcesListParamsField = "offering_uuid"
@@ -4575,6 +4579,7 @@ const (
 	ManagedRancherClusterResourcesRetrieveParamsFieldOfferingPluginOptions     ManagedRancherClusterResourcesRetrieveParamsField = "offering_plugin_options"
 	ManagedRancherClusterResourcesRetrieveParamsFieldOfferingShared            ManagedRancherClusterResourcesRetrieveParamsField = "offering_shared"
 	ManagedRancherClusterResourcesRetrieveParamsFieldOfferingSlug              ManagedRancherClusterResourcesRetrieveParamsField = "offering_slug"
+	ManagedRancherClusterResourcesRetrieveParamsFieldOfferingState             ManagedRancherClusterResourcesRetrieveParamsField = "offering_state"
 	ManagedRancherClusterResourcesRetrieveParamsFieldOfferingThumbnail         ManagedRancherClusterResourcesRetrieveParamsField = "offering_thumbnail"
 	ManagedRancherClusterResourcesRetrieveParamsFieldOfferingType              ManagedRancherClusterResourcesRetrieveParamsField = "offering_type"
 	ManagedRancherClusterResourcesRetrieveParamsFieldOfferingUuid              ManagedRancherClusterResourcesRetrieveParamsField = "offering_uuid"
@@ -6213,6 +6218,7 @@ const (
 	MarketplaceProviderResourcesListParamsFieldOfferingPluginOptions     MarketplaceProviderResourcesListParamsField = "offering_plugin_options"
 	MarketplaceProviderResourcesListParamsFieldOfferingShared            MarketplaceProviderResourcesListParamsField = "offering_shared"
 	MarketplaceProviderResourcesListParamsFieldOfferingSlug              MarketplaceProviderResourcesListParamsField = "offering_slug"
+	MarketplaceProviderResourcesListParamsFieldOfferingState             MarketplaceProviderResourcesListParamsField = "offering_state"
 	MarketplaceProviderResourcesListParamsFieldOfferingThumbnail         MarketplaceProviderResourcesListParamsField = "offering_thumbnail"
 	MarketplaceProviderResourcesListParamsFieldOfferingType              MarketplaceProviderResourcesListParamsField = "offering_type"
 	MarketplaceProviderResourcesListParamsFieldOfferingUuid              MarketplaceProviderResourcesListParamsField = "offering_uuid"
@@ -6367,6 +6373,7 @@ const (
 	MarketplaceProviderResourcesRetrieveParamsFieldOfferingPluginOptions     MarketplaceProviderResourcesRetrieveParamsField = "offering_plugin_options"
 	MarketplaceProviderResourcesRetrieveParamsFieldOfferingShared            MarketplaceProviderResourcesRetrieveParamsField = "offering_shared"
 	MarketplaceProviderResourcesRetrieveParamsFieldOfferingSlug              MarketplaceProviderResourcesRetrieveParamsField = "offering_slug"
+	MarketplaceProviderResourcesRetrieveParamsFieldOfferingState             MarketplaceProviderResourcesRetrieveParamsField = "offering_state"
 	MarketplaceProviderResourcesRetrieveParamsFieldOfferingThumbnail         MarketplaceProviderResourcesRetrieveParamsField = "offering_thumbnail"
 	MarketplaceProviderResourcesRetrieveParamsFieldOfferingType              MarketplaceProviderResourcesRetrieveParamsField = "offering_type"
 	MarketplaceProviderResourcesRetrieveParamsFieldOfferingUuid              MarketplaceProviderResourcesRetrieveParamsField = "offering_uuid"
@@ -6649,6 +6656,7 @@ const (
 	MarketplaceResourcesListParamsFieldOfferingPluginOptions     MarketplaceResourcesListParamsField = "offering_plugin_options"
 	MarketplaceResourcesListParamsFieldOfferingShared            MarketplaceResourcesListParamsField = "offering_shared"
 	MarketplaceResourcesListParamsFieldOfferingSlug              MarketplaceResourcesListParamsField = "offering_slug"
+	MarketplaceResourcesListParamsFieldOfferingState             MarketplaceResourcesListParamsField = "offering_state"
 	MarketplaceResourcesListParamsFieldOfferingThumbnail         MarketplaceResourcesListParamsField = "offering_thumbnail"
 	MarketplaceResourcesListParamsFieldOfferingType              MarketplaceResourcesListParamsField = "offering_type"
 	MarketplaceResourcesListParamsFieldOfferingUuid              MarketplaceResourcesListParamsField = "offering_uuid"
@@ -6803,6 +6811,7 @@ const (
 	MarketplaceResourcesRetrieveParamsFieldOfferingPluginOptions     MarketplaceResourcesRetrieveParamsField = "offering_plugin_options"
 	MarketplaceResourcesRetrieveParamsFieldOfferingShared            MarketplaceResourcesRetrieveParamsField = "offering_shared"
 	MarketplaceResourcesRetrieveParamsFieldOfferingSlug              MarketplaceResourcesRetrieveParamsField = "offering_slug"
+	MarketplaceResourcesRetrieveParamsFieldOfferingState             MarketplaceResourcesRetrieveParamsField = "offering_state"
 	MarketplaceResourcesRetrieveParamsFieldOfferingThumbnail         MarketplaceResourcesRetrieveParamsField = "offering_thumbnail"
 	MarketplaceResourcesRetrieveParamsFieldOfferingType              MarketplaceResourcesRetrieveParamsField = "offering_type"
 	MarketplaceResourcesRetrieveParamsFieldOfferingUuid              MarketplaceResourcesRetrieveParamsField = "offering_uuid"
@@ -9851,6 +9860,7 @@ const (
 	PromotionsCampaignsResourcesListParamsFieldOfferingPluginOptions     PromotionsCampaignsResourcesListParamsField = "offering_plugin_options"
 	PromotionsCampaignsResourcesListParamsFieldOfferingShared            PromotionsCampaignsResourcesListParamsField = "offering_shared"
 	PromotionsCampaignsResourcesListParamsFieldOfferingSlug              PromotionsCampaignsResourcesListParamsField = "offering_slug"
+	PromotionsCampaignsResourcesListParamsFieldOfferingState             PromotionsCampaignsResourcesListParamsField = "offering_state"
 	PromotionsCampaignsResourcesListParamsFieldOfferingThumbnail         PromotionsCampaignsResourcesListParamsField = "offering_thumbnail"
 	PromotionsCampaignsResourcesListParamsFieldOfferingType              PromotionsCampaignsResourcesListParamsField = "offering_type"
 	PromotionsCampaignsResourcesListParamsFieldOfferingUuid              PromotionsCampaignsResourcesListParamsField = "offering_uuid"
@@ -11449,9 +11459,16 @@ const (
 
 // Defines values for UserActionsListParamsUrgency.
 const (
-	High   UserActionsListParamsUrgency = "high"
-	Low    UserActionsListParamsUrgency = "low"
-	Medium UserActionsListParamsUrgency = "medium"
+	UserActionsListParamsUrgencyHigh   UserActionsListParamsUrgency = "high"
+	UserActionsListParamsUrgencyLow    UserActionsListParamsUrgency = "low"
+	UserActionsListParamsUrgencyMedium UserActionsListParamsUrgency = "medium"
+)
+
+// Defines values for UserActionsCountParamsUrgency.
+const (
+	UserActionsCountParamsUrgencyHigh   UserActionsCountParamsUrgency = "high"
+	UserActionsCountParamsUrgencyLow    UserActionsCountParamsUrgency = "low"
+	UserActionsCountParamsUrgencyMedium UserActionsCountParamsUrgency = "medium"
 )
 
 // Defines values for UserAgreementsListParamsAgreementType.
@@ -13313,6 +13330,7 @@ type BookingResource struct {
 	// OfferingShared Accessible to all customers.
 	OfferingShared     *bool               `json:"offering_shared,omitempty"`
 	OfferingSlug       *string             `json:"offering_slug,omitempty"`
+	OfferingState      *ResourceState      `json:"offering_state,omitempty"`
 	OfferingThumbnail  *string             `json:"offering_thumbnail,omitempty"`
 	OfferingType       *string             `json:"offering_type,omitempty"`
 	OfferingUuid       *openapi_types.UUID `json:"offering_uuid,omitempty"`
@@ -13389,6 +13407,13 @@ type BroadcastMessageRequest struct {
 
 // BroadcastMessageStateEnum defines model for BroadcastMessageStateEnum.
 type BroadcastMessageStateEnum string
+
+// BulkSilenceResponse defines model for BulkSilenceResponse.
+type BulkSilenceResponse struct {
+	Count        int    `json:"count"`
+	DurationDays *int   `json:"duration_days"`
+	Status       string `json:"status"`
+}
 
 // CallAttachDocumentsRequest defines model for CallAttachDocumentsRequest.
 type CallAttachDocumentsRequest struct {
@@ -15862,6 +15887,25 @@ type EventSubscriptionRequest struct {
 // EventTypesEnum defines model for EventTypesEnum.
 type EventTypesEnum string
 
+// ExecuteActionErrorResponse defines model for ExecuteActionErrorResponse.
+type ExecuteActionErrorResponse struct {
+	Error string `json:"error"`
+}
+
+// ExecuteActionRequest defines model for ExecuteActionRequest.
+type ExecuteActionRequest struct {
+	// ActionLabel Label of the corrective action to execute
+	ActionLabel string `json:"action_label"`
+}
+
+// ExecuteActionResponse defines model for ExecuteActionResponse.
+type ExecuteActionResponse struct {
+	Action      string                  `json:"action"`
+	Message     *string                 `json:"message,omitempty"`
+	Metadata    *map[string]interface{} `json:"metadata,omitempty"`
+	RedirectUrl *string                 `json:"redirect_url,omitempty"`
+}
+
 // ExecutionStateEnum defines model for ExecutionStateEnum.
 type ExecutionStateEnum string
 
@@ -16932,6 +16976,44 @@ type JiraIssueProjectRequest struct {
 type JiraIssueRequest struct {
 	Fields JiraIssueFieldsRequest `json:"fields"`
 	Key    string                 `json:"key"`
+}
+
+// K8sDefaultConfiguration defines model for K8sDefaultConfiguration.
+type K8sDefaultConfiguration struct {
+	// AvailableKubernetesVersions Comma-separated list of Kubernetes versions (e.g., 1.32.0,1.33.0,1.34.0)
+	AvailableKubernetesVersions   *string `json:"available_kubernetes_versions,omitempty"`
+	DefaultControllerEtcdDiskGb   *int    `json:"default_controller_etcd_disk_gb,omitempty"`
+	DefaultControllerRamGb        *int    `json:"default_controller_ram_gb,omitempty"`
+	DefaultControllerSystemDiskGb *int    `json:"default_controller_system_disk_gb,omitempty"`
+	DefaultControllerVcpus        *int    `json:"default_controller_vcpus,omitempty"`
+	DefaultLbLogsDiskGb           *int    `json:"default_lb_logs_disk_gb,omitempty"`
+	DefaultLbRamGb                *int    `json:"default_lb_ram_gb,omitempty"`
+	DefaultLbSystemDiskGb         *int    `json:"default_lb_system_disk_gb,omitempty"`
+	DefaultLbVcpus                *int    `json:"default_lb_vcpus,omitempty"`
+	DefaultStorageDataDiskGb      *int    `json:"default_storage_data_disk_gb,omitempty"`
+	DefaultStorageSanDiskGb       *int    `json:"default_storage_san_disk_gb,omitempty"`
+	DefaultWorkerDataDiskGb       *int    `json:"default_worker_data_disk_gb,omitempty"`
+	MinimalWorkerRamGb            *int    `json:"minimal_worker_ram_gb,omitempty"`
+	MinimalWorkerVcpus            *int    `json:"minimal_worker_vcpus,omitempty"`
+}
+
+// K8sDefaultConfigurationRequest defines model for K8sDefaultConfigurationRequest.
+type K8sDefaultConfigurationRequest struct {
+	// AvailableKubernetesVersions Comma-separated list of Kubernetes versions (e.g., 1.32.0,1.33.0,1.34.0)
+	AvailableKubernetesVersions   *string `json:"available_kubernetes_versions,omitempty"`
+	DefaultControllerEtcdDiskGb   *int    `json:"default_controller_etcd_disk_gb,omitempty"`
+	DefaultControllerRamGb        *int    `json:"default_controller_ram_gb,omitempty"`
+	DefaultControllerSystemDiskGb *int    `json:"default_controller_system_disk_gb,omitempty"`
+	DefaultControllerVcpus        *int    `json:"default_controller_vcpus,omitempty"`
+	DefaultLbLogsDiskGb           *int    `json:"default_lb_logs_disk_gb,omitempty"`
+	DefaultLbRamGb                *int    `json:"default_lb_ram_gb,omitempty"`
+	DefaultLbSystemDiskGb         *int    `json:"default_lb_system_disk_gb,omitempty"`
+	DefaultLbVcpus                *int    `json:"default_lb_vcpus,omitempty"`
+	DefaultStorageDataDiskGb      *int    `json:"default_storage_data_disk_gb,omitempty"`
+	DefaultStorageSanDiskGb       *int    `json:"default_storage_san_disk_gb,omitempty"`
+	DefaultWorkerDataDiskGb       *int    `json:"default_worker_data_disk_gb,omitempty"`
+	MinimalWorkerRamGb            *int    `json:"minimal_worker_ram_gb,omitempty"`
+	MinimalWorkerVcpus            *int    `json:"minimal_worker_vcpus,omitempty"`
 }
 
 // KeycloakGroup defines model for KeycloakGroup.
@@ -21675,6 +21757,7 @@ type OptionField struct {
 	Choices                   *[]string                  `json:"choices,omitempty"`
 	ComponentMultiplierConfig *ComponentMultiplierConfig `json:"component_multiplier_config,omitempty"`
 	Default                   *string                    `json:"default,omitempty"`
+	DefaultConfigs            *K8sDefaultConfiguration   `json:"default_configs,omitempty"`
 	HelpText                  *string                    `json:"help_text,omitempty"`
 	Label                     string                     `json:"label"`
 	Max                       *int                       `json:"max,omitempty"`
@@ -21689,6 +21772,7 @@ type OptionFieldRequest struct {
 	Choices                   *[]string                         `json:"choices,omitempty"`
 	ComponentMultiplierConfig *ComponentMultiplierConfigRequest `json:"component_multiplier_config,omitempty"`
 	Default                   *string                           `json:"default,omitempty"`
+	DefaultConfigs            *K8sDefaultConfigurationRequest   `json:"default_configs,omitempty"`
 	HelpText                  *string                           `json:"help_text,omitempty"`
 	Label                     string                            `json:"label"`
 	Max                       *int                              `json:"max,omitempty"`
@@ -26732,6 +26816,7 @@ type Resource struct {
 	// OfferingShared Accessible to all customers.
 	OfferingShared     *bool               `json:"offering_shared,omitempty"`
 	OfferingSlug       *string             `json:"offering_slug,omitempty"`
+	OfferingState      *ResourceState      `json:"offering_state,omitempty"`
 	OfferingThumbnail  *string             `json:"offering_thumbnail,omitempty"`
 	OfferingType       *string             `json:"offering_type,omitempty"`
 	OfferingUuid       *openapi_types.UUID `json:"offering_uuid,omitempty"`
@@ -27593,6 +27678,18 @@ type SettingsMetadataResponse struct {
 // SeverityEnum defines model for SeverityEnum.
 type SeverityEnum string
 
+// SilenceActionRequest defines model for SilenceActionRequest.
+type SilenceActionRequest struct {
+	// DurationDays Duration in days to silence the action. If not provided, silences permanently.
+	DurationDays *int `json:"duration_days,omitempty"`
+}
+
+// SilenceActionResponse defines model for SilenceActionResponse.
+type SilenceActionResponse struct {
+	DurationDays *int   `json:"duration_days"`
+	Status       string `json:"status"`
+}
+
 // SlurmAllocation defines model for SlurmAllocation.
 type SlurmAllocation struct {
 	AccessUrl                        *string                 `json:"access_url"`
@@ -28116,6 +28213,24 @@ type TotalCustomerCost struct {
 	Total *float64 `json:"total,omitempty"`
 }
 
+// UnsilenceActionResponse defines model for UnsilenceActionResponse.
+type UnsilenceActionResponse struct {
+	Status string `json:"status"`
+}
+
+// UpdateActionsRequest defines model for UpdateActionsRequest.
+type UpdateActionsRequest struct {
+	// ProviderActionType Optional provider action type to update. If not provided, updates all providers.
+	ProviderActionType *string `json:"provider_action_type"`
+}
+
+// UpdateActionsResponse defines model for UpdateActionsResponse.
+type UpdateActionsResponse struct {
+	Message            string  `json:"message"`
+	ProviderActionType *string `json:"provider_action_type"`
+	Status             string  `json:"status"`
+}
+
 // UpdateOfferingComponentRequest defines model for UpdateOfferingComponentRequest.
 type UpdateOfferingComponentRequest struct {
 	ArticleCode        *string                                     `json:"article_code,omitempty"`
@@ -28260,18 +28375,12 @@ type UserActionProvider struct {
 	Schedule            *string    `json:"schedule,omitempty"`
 }
 
-// UserActionRequest defines model for UserActionRequest.
-type UserActionRequest struct {
-	// ActionType Type of action, e.g. 'pending_order', 'expiring_resource'
-	ActionType    string      `json:"action_type"`
-	ActionUrl     *string     `json:"action_url,omitempty"`
-	Description   string      `json:"description"`
-	DueDate       *time.Time  `json:"due_date"`
-	IsSilenced    *bool       `json:"is_silenced,omitempty"`
-	Metadata      *string     `json:"metadata,omitempty"`
-	SilencedUntil *time.Time  `json:"silenced_until"`
-	Title         string      `json:"title"`
-	Urgency       UrgencyEnum `json:"urgency"`
+// UserActionSummary defines model for UserActionSummary.
+type UserActionSummary struct {
+	ByType    map[string]interface{} `json:"by_type"`
+	ByUrgency map[string]interface{} `json:"by_urgency"`
+	Overdue   int                    `json:"overdue"`
+	Total     int                    `json:"total"`
 }
 
 // UserAgreement defines model for UserAgreement.
@@ -45447,8 +45556,29 @@ type UserActionExecutionsListParams struct {
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 }
 
+// UserActionExecutionsCountParams defines parameters for UserActionExecutionsCount.
+type UserActionExecutionsCountParams struct {
+	// O Which field to use when ordering the results.
+	O *string `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
 // UserActionProvidersListParams defines parameters for UserActionProvidersList.
 type UserActionProvidersListParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// UserActionProvidersCountParams defines parameters for UserActionProvidersCount.
+type UserActionProvidersCountParams struct {
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
@@ -45479,6 +45609,30 @@ type UserActionsListParams struct {
 
 // UserActionsListParamsUrgency defines parameters for UserActionsList.
 type UserActionsListParamsUrgency string
+
+// UserActionsCountParams defines parameters for UserActionsCount.
+type UserActionsCountParams struct {
+	ActionType      *string    `form:"action_type,omitempty" json:"action_type,omitempty"`
+	CreatedAfter    *time.Time `form:"created_after,omitempty" json:"created_after,omitempty"`
+	CreatedBefore   *time.Time `form:"created_before,omitempty" json:"created_before,omitempty"`
+	DueWithinDays   *float32   `form:"due_within_days,omitempty" json:"due_within_days,omitempty"`
+	IncludeSilenced *bool      `form:"include_silenced,omitempty" json:"include_silenced,omitempty"`
+	IsSilenced      *bool      `form:"is_silenced,omitempty" json:"is_silenced,omitempty"`
+
+	// O Which field to use when ordering the results.
+	O       *string `form:"o,omitempty" json:"o,omitempty"`
+	Overdue *bool   `form:"overdue,omitempty" json:"overdue,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize                      `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Urgency  *UserActionsCountParamsUrgency `form:"urgency,omitempty" json:"urgency,omitempty"`
+}
+
+// UserActionsCountParamsUrgency defines parameters for UserActionsCount.
+type UserActionsCountParamsUrgency string
 
 // UserAgreementsListParams defines parameters for UserAgreementsList.
 type UserAgreementsListParams struct {
@@ -48578,16 +48732,16 @@ type SupportTemplatesCreateAttachmentsJSONRequestBody = CreateAttachmentsRequest
 type SupportTemplatesDeleteAttachmentsJSONRequestBody = DeleteAttachmentsRequest
 
 // UserActionsBulkSilenceJSONRequestBody defines body for UserActionsBulkSilence for application/json ContentType.
-type UserActionsBulkSilenceJSONRequestBody = UserActionRequest
+type UserActionsBulkSilenceJSONRequestBody = SilenceActionRequest
+
+// UserActionsUpdateActionsJSONRequestBody defines body for UserActionsUpdateActions for application/json ContentType.
+type UserActionsUpdateActionsJSONRequestBody = UpdateActionsRequest
 
 // UserActionsExecuteActionJSONRequestBody defines body for UserActionsExecuteAction for application/json ContentType.
-type UserActionsExecuteActionJSONRequestBody = UserActionRequest
+type UserActionsExecuteActionJSONRequestBody = ExecuteActionRequest
 
 // UserActionsSilenceJSONRequestBody defines body for UserActionsSilence for application/json ContentType.
-type UserActionsSilenceJSONRequestBody = UserActionRequest
-
-// UserActionsUnsilenceJSONRequestBody defines body for UserActionsUnsilence for application/json ContentType.
-type UserActionsUnsilenceJSONRequestBody = UserActionRequest
+type UserActionsSilenceJSONRequestBody = SilenceActionRequest
 
 // UserAgreementsCreateJSONRequestBody defines body for UserAgreementsCreate for application/json ContentType.
 type UserAgreementsCreateJSONRequestBody = UserAgreementRequest
@@ -61132,17 +61286,26 @@ type ClientInterface interface {
 	// UserActionExecutionsList request
 	UserActionExecutionsList(ctx context.Context, params *UserActionExecutionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// UserActionExecutionsCount request
+	UserActionExecutionsCount(ctx context.Context, params *UserActionExecutionsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// UserActionExecutionsRetrieve request
 	UserActionExecutionsRetrieve(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UserActionProvidersList request
 	UserActionProvidersList(ctx context.Context, params *UserActionProvidersListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// UserActionProvidersCount request
+	UserActionProvidersCount(ctx context.Context, params *UserActionProvidersCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// UserActionProvidersRetrieve request
 	UserActionProvidersRetrieve(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UserActionsList request
 	UserActionsList(ctx context.Context, params *UserActionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// UserActionsCount request
+	UserActionsCount(ctx context.Context, params *UserActionsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UserActionsBulkSilenceWithBody request with any body
 	UserActionsBulkSilenceWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -61151,6 +61314,14 @@ type ClientInterface interface {
 
 	// UserActionsSummaryRetrieve request
 	UserActionsSummaryRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// UserActionsSummaryCount request
+	UserActionsSummaryCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// UserActionsUpdateActionsWithBody request with any body
+	UserActionsUpdateActionsWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	UserActionsUpdateActions(ctx context.Context, body UserActionsUpdateActionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UserActionsRetrieve request
 	UserActionsRetrieve(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -61165,10 +61336,8 @@ type ClientInterface interface {
 
 	UserActionsSilence(ctx context.Context, id int, body UserActionsSilenceJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// UserActionsUnsilenceWithBody request with any body
-	UserActionsUnsilenceWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	UserActionsUnsilence(ctx context.Context, id int, body UserActionsUnsilenceJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// UserActionsUnsilence request
+	UserActionsUnsilence(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UserAgreementsList request
 	UserAgreementsList(ctx context.Context, params *UserAgreementsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -89216,6 +89385,18 @@ func (c *Client) UserActionExecutionsList(ctx context.Context, params *UserActio
 	return c.Client.Do(req)
 }
 
+func (c *Client) UserActionExecutionsCount(ctx context.Context, params *UserActionExecutionsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUserActionExecutionsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) UserActionExecutionsRetrieve(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewUserActionExecutionsRetrieveRequest(c.Server, id)
 	if err != nil {
@@ -89240,6 +89421,18 @@ func (c *Client) UserActionProvidersList(ctx context.Context, params *UserAction
 	return c.Client.Do(req)
 }
 
+func (c *Client) UserActionProvidersCount(ctx context.Context, params *UserActionProvidersCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUserActionProvidersCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) UserActionProvidersRetrieve(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewUserActionProvidersRetrieveRequest(c.Server, id)
 	if err != nil {
@@ -89254,6 +89447,18 @@ func (c *Client) UserActionProvidersRetrieve(ctx context.Context, id int, reqEdi
 
 func (c *Client) UserActionsList(ctx context.Context, params *UserActionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewUserActionsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UserActionsCount(ctx context.Context, params *UserActionsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUserActionsCountRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -89290,6 +89495,42 @@ func (c *Client) UserActionsBulkSilence(ctx context.Context, body UserActionsBul
 
 func (c *Client) UserActionsSummaryRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewUserActionsSummaryRetrieveRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UserActionsSummaryCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUserActionsSummaryCountRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UserActionsUpdateActionsWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUserActionsUpdateActionsRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UserActionsUpdateActions(ctx context.Context, body UserActionsUpdateActionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUserActionsUpdateActionsRequest(c.Server, body)
 	if err != nil {
 		return nil, err
 	}
@@ -89360,20 +89601,8 @@ func (c *Client) UserActionsSilence(ctx context.Context, id int, body UserAction
 	return c.Client.Do(req)
 }
 
-func (c *Client) UserActionsUnsilenceWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUserActionsUnsilenceRequestWithBody(c.Server, id, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) UserActionsUnsilence(ctx context.Context, id int, body UserActionsUnsilenceJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUserActionsUnsilenceRequest(c.Server, id, body)
+func (c *Client) UserActionsUnsilence(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUserActionsUnsilenceRequest(c.Server, id)
 	if err != nil {
 		return nil, err
 	}
@@ -234888,6 +235117,87 @@ func NewUserActionExecutionsListRequest(server string, params *UserActionExecuti
 	return req, nil
 }
 
+// NewUserActionExecutionsCountRequest generates requests for UserActionExecutionsCount
+func NewUserActionExecutionsCountRequest(server string, params *UserActionExecutionsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/user-action-executions/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewUserActionExecutionsRetrieveRequest generates requests for UserActionExecutionsRetrieve
 func NewUserActionExecutionsRetrieveRequest(server string, id int) (*http.Request, error) {
 	var err error
@@ -234980,6 +235290,71 @@ func NewUserActionProvidersListRequest(server string, params *UserActionProvider
 	}
 
 	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewUserActionProvidersCountRequest generates requests for UserActionProvidersCount
+func NewUserActionProvidersCountRequest(server string, params *UserActionProvidersCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/user-action-providers/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
@@ -235230,6 +235605,215 @@ func NewUserActionsListRequest(server string, params *UserActionsListParams) (*h
 	return req, nil
 }
 
+// NewUserActionsCountRequest generates requests for UserActionsCount
+func NewUserActionsCountRequest(server string, params *UserActionsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/user-actions/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.ActionType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "action_type", runtime.ParamLocationQuery, *params.ActionType); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CreatedAfter != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "created_after", runtime.ParamLocationQuery, *params.CreatedAfter); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CreatedBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "created_before", runtime.ParamLocationQuery, *params.CreatedBefore); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.DueWithinDays != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "due_within_days", runtime.ParamLocationQuery, *params.DueWithinDays); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IncludeSilenced != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "include_silenced", runtime.ParamLocationQuery, *params.IncludeSilenced); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsSilenced != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_silenced", runtime.ParamLocationQuery, *params.IsSilenced); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Overdue != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "overdue", runtime.ParamLocationQuery, *params.Overdue); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Urgency != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "urgency", runtime.ParamLocationQuery, *params.Urgency); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewUserActionsBulkSilenceRequest calls the generic UserActionsBulkSilence builder with application/json body
 func NewUserActionsBulkSilenceRequest(server string, body UserActionsBulkSilenceJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -235293,6 +235877,73 @@ func NewUserActionsSummaryRetrieveRequest(server string) (*http.Request, error) 
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewUserActionsSummaryCountRequest generates requests for UserActionsSummaryCount
+func NewUserActionsSummaryCountRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/user-actions/summary/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewUserActionsUpdateActionsRequest calls the generic UserActionsUpdateActions builder with application/json body
+func NewUserActionsUpdateActionsRequest(server string, body UserActionsUpdateActionsJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewUserActionsUpdateActionsRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewUserActionsUpdateActionsRequestWithBody generates requests for UserActionsUpdateActions with any type of body
+func NewUserActionsUpdateActionsRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/user-actions/update_actions/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -235425,19 +236076,8 @@ func NewUserActionsSilenceRequestWithBody(server string, id int, contentType str
 	return req, nil
 }
 
-// NewUserActionsUnsilenceRequest calls the generic UserActionsUnsilence builder with application/json body
-func NewUserActionsUnsilenceRequest(server string, id int, body UserActionsUnsilenceJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewUserActionsUnsilenceRequestWithBody(server, id, "application/json", bodyReader)
-}
-
-// NewUserActionsUnsilenceRequestWithBody generates requests for UserActionsUnsilence with any type of body
-func NewUserActionsUnsilenceRequestWithBody(server string, id int, contentType string, body io.Reader) (*http.Request, error) {
+// NewUserActionsUnsilenceRequest generates requests for UserActionsUnsilence
+func NewUserActionsUnsilenceRequest(server string, id int) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -235462,12 +236102,10 @@ func NewUserActionsUnsilenceRequestWithBody(server string, id int, contentType s
 		return nil, err
 	}
 
-	req, err := http.NewRequest("POST", queryURL.String(), body)
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
-
-	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -251438,17 +252076,26 @@ type ClientWithResponsesInterface interface {
 	// UserActionExecutionsListWithResponse request
 	UserActionExecutionsListWithResponse(ctx context.Context, params *UserActionExecutionsListParams, reqEditors ...RequestEditorFn) (*UserActionExecutionsListResponse, error)
 
+	// UserActionExecutionsCountWithResponse request
+	UserActionExecutionsCountWithResponse(ctx context.Context, params *UserActionExecutionsCountParams, reqEditors ...RequestEditorFn) (*UserActionExecutionsCountResponse, error)
+
 	// UserActionExecutionsRetrieveWithResponse request
 	UserActionExecutionsRetrieveWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*UserActionExecutionsRetrieveResponse, error)
 
 	// UserActionProvidersListWithResponse request
 	UserActionProvidersListWithResponse(ctx context.Context, params *UserActionProvidersListParams, reqEditors ...RequestEditorFn) (*UserActionProvidersListResponse, error)
 
+	// UserActionProvidersCountWithResponse request
+	UserActionProvidersCountWithResponse(ctx context.Context, params *UserActionProvidersCountParams, reqEditors ...RequestEditorFn) (*UserActionProvidersCountResponse, error)
+
 	// UserActionProvidersRetrieveWithResponse request
 	UserActionProvidersRetrieveWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*UserActionProvidersRetrieveResponse, error)
 
 	// UserActionsListWithResponse request
 	UserActionsListWithResponse(ctx context.Context, params *UserActionsListParams, reqEditors ...RequestEditorFn) (*UserActionsListResponse, error)
+
+	// UserActionsCountWithResponse request
+	UserActionsCountWithResponse(ctx context.Context, params *UserActionsCountParams, reqEditors ...RequestEditorFn) (*UserActionsCountResponse, error)
 
 	// UserActionsBulkSilenceWithBodyWithResponse request with any body
 	UserActionsBulkSilenceWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UserActionsBulkSilenceResponse, error)
@@ -251457,6 +252104,14 @@ type ClientWithResponsesInterface interface {
 
 	// UserActionsSummaryRetrieveWithResponse request
 	UserActionsSummaryRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*UserActionsSummaryRetrieveResponse, error)
+
+	// UserActionsSummaryCountWithResponse request
+	UserActionsSummaryCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*UserActionsSummaryCountResponse, error)
+
+	// UserActionsUpdateActionsWithBodyWithResponse request with any body
+	UserActionsUpdateActionsWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UserActionsUpdateActionsResponse, error)
+
+	UserActionsUpdateActionsWithResponse(ctx context.Context, body UserActionsUpdateActionsJSONRequestBody, reqEditors ...RequestEditorFn) (*UserActionsUpdateActionsResponse, error)
 
 	// UserActionsRetrieveWithResponse request
 	UserActionsRetrieveWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*UserActionsRetrieveResponse, error)
@@ -251471,10 +252126,8 @@ type ClientWithResponsesInterface interface {
 
 	UserActionsSilenceWithResponse(ctx context.Context, id int, body UserActionsSilenceJSONRequestBody, reqEditors ...RequestEditorFn) (*UserActionsSilenceResponse, error)
 
-	// UserActionsUnsilenceWithBodyWithResponse request with any body
-	UserActionsUnsilenceWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UserActionsUnsilenceResponse, error)
-
-	UserActionsUnsilenceWithResponse(ctx context.Context, id int, body UserActionsUnsilenceJSONRequestBody, reqEditors ...RequestEditorFn) (*UserActionsUnsilenceResponse, error)
+	// UserActionsUnsilenceWithResponse request
+	UserActionsUnsilenceWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*UserActionsUnsilenceResponse, error)
 
 	// UserAgreementsListWithResponse request
 	UserAgreementsListWithResponse(ctx context.Context, params *UserAgreementsListParams, reqEditors ...RequestEditorFn) (*UserAgreementsListResponse, error)
@@ -288806,6 +289459,27 @@ func (r UserActionExecutionsListResponse) StatusCode() int {
 	return 0
 }
 
+type UserActionExecutionsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r UserActionExecutionsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r UserActionExecutionsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type UserActionExecutionsRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -288844,6 +289518,27 @@ func (r UserActionProvidersListResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r UserActionProvidersListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type UserActionProvidersCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r UserActionProvidersCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r UserActionProvidersCountResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -288894,10 +289589,31 @@ func (r UserActionsListResponse) StatusCode() int {
 	return 0
 }
 
+type UserActionsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r UserActionsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r UserActionsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type UserActionsBulkSilenceResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *UserAction
+	JSON200      *BulkSilenceResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -288919,7 +289635,7 @@ func (r UserActionsBulkSilenceResponse) StatusCode() int {
 type UserActionsSummaryRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *UserAction
+	JSON200      *UserActionSummary
 }
 
 // Status returns HTTPResponse.Status
@@ -288932,6 +289648,49 @@ func (r UserActionsSummaryRetrieveResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r UserActionsSummaryRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type UserActionsSummaryCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r UserActionsSummaryCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r UserActionsSummaryCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type UserActionsUpdateActionsResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON202      *UpdateActionsResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r UserActionsUpdateActionsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r UserActionsUpdateActionsResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -288963,7 +289722,9 @@ func (r UserActionsRetrieveResponse) StatusCode() int {
 type UserActionsExecuteActionResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *UserAction
+	JSON200      *ExecuteActionResponse
+	JSON404      *ExecuteActionErrorResponse
+	JSON500      *ExecuteActionErrorResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -288985,7 +289746,7 @@ func (r UserActionsExecuteActionResponse) StatusCode() int {
 type UserActionsSilenceResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *UserAction
+	JSON200      *SilenceActionResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -289007,7 +289768,7 @@ func (r UserActionsSilenceResponse) StatusCode() int {
 type UserActionsUnsilenceResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *UserAction
+	JSON200      *UnsilenceActionResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -311406,6 +312167,15 @@ func (c *ClientWithResponses) UserActionExecutionsListWithResponse(ctx context.C
 	return ParseUserActionExecutionsListResponse(rsp)
 }
 
+// UserActionExecutionsCountWithResponse request returning *UserActionExecutionsCountResponse
+func (c *ClientWithResponses) UserActionExecutionsCountWithResponse(ctx context.Context, params *UserActionExecutionsCountParams, reqEditors ...RequestEditorFn) (*UserActionExecutionsCountResponse, error) {
+	rsp, err := c.UserActionExecutionsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUserActionExecutionsCountResponse(rsp)
+}
+
 // UserActionExecutionsRetrieveWithResponse request returning *UserActionExecutionsRetrieveResponse
 func (c *ClientWithResponses) UserActionExecutionsRetrieveWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*UserActionExecutionsRetrieveResponse, error) {
 	rsp, err := c.UserActionExecutionsRetrieve(ctx, id, reqEditors...)
@@ -311424,6 +312194,15 @@ func (c *ClientWithResponses) UserActionProvidersListWithResponse(ctx context.Co
 	return ParseUserActionProvidersListResponse(rsp)
 }
 
+// UserActionProvidersCountWithResponse request returning *UserActionProvidersCountResponse
+func (c *ClientWithResponses) UserActionProvidersCountWithResponse(ctx context.Context, params *UserActionProvidersCountParams, reqEditors ...RequestEditorFn) (*UserActionProvidersCountResponse, error) {
+	rsp, err := c.UserActionProvidersCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUserActionProvidersCountResponse(rsp)
+}
+
 // UserActionProvidersRetrieveWithResponse request returning *UserActionProvidersRetrieveResponse
 func (c *ClientWithResponses) UserActionProvidersRetrieveWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*UserActionProvidersRetrieveResponse, error) {
 	rsp, err := c.UserActionProvidersRetrieve(ctx, id, reqEditors...)
@@ -311440,6 +312219,15 @@ func (c *ClientWithResponses) UserActionsListWithResponse(ctx context.Context, p
 		return nil, err
 	}
 	return ParseUserActionsListResponse(rsp)
+}
+
+// UserActionsCountWithResponse request returning *UserActionsCountResponse
+func (c *ClientWithResponses) UserActionsCountWithResponse(ctx context.Context, params *UserActionsCountParams, reqEditors ...RequestEditorFn) (*UserActionsCountResponse, error) {
+	rsp, err := c.UserActionsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUserActionsCountResponse(rsp)
 }
 
 // UserActionsBulkSilenceWithBodyWithResponse request with arbitrary body returning *UserActionsBulkSilenceResponse
@@ -311466,6 +312254,32 @@ func (c *ClientWithResponses) UserActionsSummaryRetrieveWithResponse(ctx context
 		return nil, err
 	}
 	return ParseUserActionsSummaryRetrieveResponse(rsp)
+}
+
+// UserActionsSummaryCountWithResponse request returning *UserActionsSummaryCountResponse
+func (c *ClientWithResponses) UserActionsSummaryCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*UserActionsSummaryCountResponse, error) {
+	rsp, err := c.UserActionsSummaryCount(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUserActionsSummaryCountResponse(rsp)
+}
+
+// UserActionsUpdateActionsWithBodyWithResponse request with arbitrary body returning *UserActionsUpdateActionsResponse
+func (c *ClientWithResponses) UserActionsUpdateActionsWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UserActionsUpdateActionsResponse, error) {
+	rsp, err := c.UserActionsUpdateActionsWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUserActionsUpdateActionsResponse(rsp)
+}
+
+func (c *ClientWithResponses) UserActionsUpdateActionsWithResponse(ctx context.Context, body UserActionsUpdateActionsJSONRequestBody, reqEditors ...RequestEditorFn) (*UserActionsUpdateActionsResponse, error) {
+	rsp, err := c.UserActionsUpdateActions(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUserActionsUpdateActionsResponse(rsp)
 }
 
 // UserActionsRetrieveWithResponse request returning *UserActionsRetrieveResponse
@@ -311511,17 +312325,9 @@ func (c *ClientWithResponses) UserActionsSilenceWithResponse(ctx context.Context
 	return ParseUserActionsSilenceResponse(rsp)
 }
 
-// UserActionsUnsilenceWithBodyWithResponse request with arbitrary body returning *UserActionsUnsilenceResponse
-func (c *ClientWithResponses) UserActionsUnsilenceWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UserActionsUnsilenceResponse, error) {
-	rsp, err := c.UserActionsUnsilenceWithBody(ctx, id, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseUserActionsUnsilenceResponse(rsp)
-}
-
-func (c *ClientWithResponses) UserActionsUnsilenceWithResponse(ctx context.Context, id int, body UserActionsUnsilenceJSONRequestBody, reqEditors ...RequestEditorFn) (*UserActionsUnsilenceResponse, error) {
-	rsp, err := c.UserActionsUnsilence(ctx, id, body, reqEditors...)
+// UserActionsUnsilenceWithResponse request returning *UserActionsUnsilenceResponse
+func (c *ClientWithResponses) UserActionsUnsilenceWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*UserActionsUnsilenceResponse, error) {
+	rsp, err := c.UserActionsUnsilence(ctx, id, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -351254,6 +352060,22 @@ func ParseUserActionExecutionsListResponse(rsp *http.Response) (*UserActionExecu
 	return response, nil
 }
 
+// ParseUserActionExecutionsCountResponse parses an HTTP response from a UserActionExecutionsCountWithResponse call
+func ParseUserActionExecutionsCountResponse(rsp *http.Response) (*UserActionExecutionsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &UserActionExecutionsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
 // ParseUserActionExecutionsRetrieveResponse parses an HTTP response from a UserActionExecutionsRetrieveWithResponse call
 func ParseUserActionExecutionsRetrieveResponse(rsp *http.Response) (*UserActionExecutionsRetrieveResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -351301,6 +352123,22 @@ func ParseUserActionProvidersListResponse(rsp *http.Response) (*UserActionProvid
 		}
 		response.JSON200 = &dest
 
+	}
+
+	return response, nil
+}
+
+// ParseUserActionProvidersCountResponse parses an HTTP response from a UserActionProvidersCountWithResponse call
+func ParseUserActionProvidersCountResponse(rsp *http.Response) (*UserActionProvidersCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &UserActionProvidersCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
 	}
 
 	return response, nil
@@ -351358,6 +352196,22 @@ func ParseUserActionsListResponse(rsp *http.Response) (*UserActionsListResponse,
 	return response, nil
 }
 
+// ParseUserActionsCountResponse parses an HTTP response from a UserActionsCountWithResponse call
+func ParseUserActionsCountResponse(rsp *http.Response) (*UserActionsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &UserActionsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
 // ParseUserActionsBulkSilenceResponse parses an HTTP response from a UserActionsBulkSilenceWithResponse call
 func ParseUserActionsBulkSilenceResponse(rsp *http.Response) (*UserActionsBulkSilenceResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -351373,7 +352227,7 @@ func ParseUserActionsBulkSilenceResponse(rsp *http.Response) (*UserActionsBulkSi
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest UserAction
+		var dest BulkSilenceResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -351399,11 +352253,53 @@ func ParseUserActionsSummaryRetrieveResponse(rsp *http.Response) (*UserActionsSu
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest UserAction
+		var dest UserActionSummary
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseUserActionsSummaryCountResponse parses an HTTP response from a UserActionsSummaryCountWithResponse call
+func ParseUserActionsSummaryCountResponse(rsp *http.Response) (*UserActionsSummaryCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &UserActionsSummaryCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseUserActionsUpdateActionsResponse parses an HTTP response from a UserActionsUpdateActionsWithResponse call
+func ParseUserActionsUpdateActionsResponse(rsp *http.Response) (*UserActionsUpdateActionsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &UserActionsUpdateActionsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest UpdateActionsResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
 
 	}
 
@@ -351451,11 +352347,25 @@ func ParseUserActionsExecuteActionResponse(rsp *http.Response) (*UserActionsExec
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest UserAction
+		var dest ExecuteActionResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest ExecuteActionErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest ExecuteActionErrorResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON500 = &dest
 
 	}
 
@@ -351477,7 +352387,7 @@ func ParseUserActionsSilenceResponse(rsp *http.Response) (*UserActionsSilenceRes
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest UserAction
+		var dest SilenceActionResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -351503,7 +352413,7 @@ func ParseUserActionsUnsilenceResponse(rsp *http.Response) (*UserActionsUnsilenc
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest UserAction
+		var dest UnsilenceActionResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
