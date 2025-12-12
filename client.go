@@ -3290,6 +3290,7 @@ const (
 	BookingResourcesListParamsFieldName                       BookingResourcesListParamsField = "name"
 	BookingResourcesListParamsFieldOffering                   BookingResourcesListParamsField = "offering"
 	BookingResourcesListParamsFieldOfferingBillable           BookingResourcesListParamsField = "offering_billable"
+	BookingResourcesListParamsFieldOfferingComponents         BookingResourcesListParamsField = "offering_components"
 	BookingResourcesListParamsFieldOfferingDescription        BookingResourcesListParamsField = "offering_description"
 	BookingResourcesListParamsFieldOfferingImage              BookingResourcesListParamsField = "offering_image"
 	BookingResourcesListParamsFieldOfferingName               BookingResourcesListParamsField = "offering_name"
@@ -3448,6 +3449,7 @@ const (
 	BookingResourcesRetrieveParamsFieldName                       BookingResourcesRetrieveParamsField = "name"
 	BookingResourcesRetrieveParamsFieldOffering                   BookingResourcesRetrieveParamsField = "offering"
 	BookingResourcesRetrieveParamsFieldOfferingBillable           BookingResourcesRetrieveParamsField = "offering_billable"
+	BookingResourcesRetrieveParamsFieldOfferingComponents         BookingResourcesRetrieveParamsField = "offering_components"
 	BookingResourcesRetrieveParamsFieldOfferingDescription        BookingResourcesRetrieveParamsField = "offering_description"
 	BookingResourcesRetrieveParamsFieldOfferingImage              BookingResourcesRetrieveParamsField = "offering_image"
 	BookingResourcesRetrieveParamsFieldOfferingName               BookingResourcesRetrieveParamsField = "offering_name"
@@ -4492,6 +4494,7 @@ const (
 	ManagedRancherClusterResourcesListParamsFieldName                      ManagedRancherClusterResourcesListParamsField = "name"
 	ManagedRancherClusterResourcesListParamsFieldOffering                  ManagedRancherClusterResourcesListParamsField = "offering"
 	ManagedRancherClusterResourcesListParamsFieldOfferingBillable          ManagedRancherClusterResourcesListParamsField = "offering_billable"
+	ManagedRancherClusterResourcesListParamsFieldOfferingComponents        ManagedRancherClusterResourcesListParamsField = "offering_components"
 	ManagedRancherClusterResourcesListParamsFieldOfferingDescription       ManagedRancherClusterResourcesListParamsField = "offering_description"
 	ManagedRancherClusterResourcesListParamsFieldOfferingImage             ManagedRancherClusterResourcesListParamsField = "offering_image"
 	ManagedRancherClusterResourcesListParamsFieldOfferingName              ManagedRancherClusterResourcesListParamsField = "offering_name"
@@ -4573,6 +4576,7 @@ const (
 	ManagedRancherClusterResourcesRetrieveParamsFieldName                      ManagedRancherClusterResourcesRetrieveParamsField = "name"
 	ManagedRancherClusterResourcesRetrieveParamsFieldOffering                  ManagedRancherClusterResourcesRetrieveParamsField = "offering"
 	ManagedRancherClusterResourcesRetrieveParamsFieldOfferingBillable          ManagedRancherClusterResourcesRetrieveParamsField = "offering_billable"
+	ManagedRancherClusterResourcesRetrieveParamsFieldOfferingComponents        ManagedRancherClusterResourcesRetrieveParamsField = "offering_components"
 	ManagedRancherClusterResourcesRetrieveParamsFieldOfferingDescription       ManagedRancherClusterResourcesRetrieveParamsField = "offering_description"
 	ManagedRancherClusterResourcesRetrieveParamsFieldOfferingImage             ManagedRancherClusterResourcesRetrieveParamsField = "offering_image"
 	ManagedRancherClusterResourcesRetrieveParamsFieldOfferingName              ManagedRancherClusterResourcesRetrieveParamsField = "offering_name"
@@ -6212,6 +6216,7 @@ const (
 	MarketplaceProviderResourcesListParamsFieldName                      MarketplaceProviderResourcesListParamsField = "name"
 	MarketplaceProviderResourcesListParamsFieldOffering                  MarketplaceProviderResourcesListParamsField = "offering"
 	MarketplaceProviderResourcesListParamsFieldOfferingBillable          MarketplaceProviderResourcesListParamsField = "offering_billable"
+	MarketplaceProviderResourcesListParamsFieldOfferingComponents        MarketplaceProviderResourcesListParamsField = "offering_components"
 	MarketplaceProviderResourcesListParamsFieldOfferingDescription       MarketplaceProviderResourcesListParamsField = "offering_description"
 	MarketplaceProviderResourcesListParamsFieldOfferingImage             MarketplaceProviderResourcesListParamsField = "offering_image"
 	MarketplaceProviderResourcesListParamsFieldOfferingName              MarketplaceProviderResourcesListParamsField = "offering_name"
@@ -6367,6 +6372,7 @@ const (
 	MarketplaceProviderResourcesRetrieveParamsFieldName                      MarketplaceProviderResourcesRetrieveParamsField = "name"
 	MarketplaceProviderResourcesRetrieveParamsFieldOffering                  MarketplaceProviderResourcesRetrieveParamsField = "offering"
 	MarketplaceProviderResourcesRetrieveParamsFieldOfferingBillable          MarketplaceProviderResourcesRetrieveParamsField = "offering_billable"
+	MarketplaceProviderResourcesRetrieveParamsFieldOfferingComponents        MarketplaceProviderResourcesRetrieveParamsField = "offering_components"
 	MarketplaceProviderResourcesRetrieveParamsFieldOfferingDescription       MarketplaceProviderResourcesRetrieveParamsField = "offering_description"
 	MarketplaceProviderResourcesRetrieveParamsFieldOfferingImage             MarketplaceProviderResourcesRetrieveParamsField = "offering_image"
 	MarketplaceProviderResourcesRetrieveParamsFieldOfferingName              MarketplaceProviderResourcesRetrieveParamsField = "offering_name"
@@ -6650,6 +6656,7 @@ const (
 	MarketplaceResourcesListParamsFieldName                      MarketplaceResourcesListParamsField = "name"
 	MarketplaceResourcesListParamsFieldOffering                  MarketplaceResourcesListParamsField = "offering"
 	MarketplaceResourcesListParamsFieldOfferingBillable          MarketplaceResourcesListParamsField = "offering_billable"
+	MarketplaceResourcesListParamsFieldOfferingComponents        MarketplaceResourcesListParamsField = "offering_components"
 	MarketplaceResourcesListParamsFieldOfferingDescription       MarketplaceResourcesListParamsField = "offering_description"
 	MarketplaceResourcesListParamsFieldOfferingImage             MarketplaceResourcesListParamsField = "offering_image"
 	MarketplaceResourcesListParamsFieldOfferingName              MarketplaceResourcesListParamsField = "offering_name"
@@ -6805,6 +6812,7 @@ const (
 	MarketplaceResourcesRetrieveParamsFieldName                      MarketplaceResourcesRetrieveParamsField = "name"
 	MarketplaceResourcesRetrieveParamsFieldOffering                  MarketplaceResourcesRetrieveParamsField = "offering"
 	MarketplaceResourcesRetrieveParamsFieldOfferingBillable          MarketplaceResourcesRetrieveParamsField = "offering_billable"
+	MarketplaceResourcesRetrieveParamsFieldOfferingComponents        MarketplaceResourcesRetrieveParamsField = "offering_components"
 	MarketplaceResourcesRetrieveParamsFieldOfferingDescription       MarketplaceResourcesRetrieveParamsField = "offering_description"
 	MarketplaceResourcesRetrieveParamsFieldOfferingImage             MarketplaceResourcesRetrieveParamsField = "offering_image"
 	MarketplaceResourcesRetrieveParamsFieldOfferingName              MarketplaceResourcesRetrieveParamsField = "offering_name"
@@ -9854,6 +9862,7 @@ const (
 	PromotionsCampaignsResourcesListParamsFieldName                      PromotionsCampaignsResourcesListParamsField = "name"
 	PromotionsCampaignsResourcesListParamsFieldOffering                  PromotionsCampaignsResourcesListParamsField = "offering"
 	PromotionsCampaignsResourcesListParamsFieldOfferingBillable          PromotionsCampaignsResourcesListParamsField = "offering_billable"
+	PromotionsCampaignsResourcesListParamsFieldOfferingComponents        PromotionsCampaignsResourcesListParamsField = "offering_components"
 	PromotionsCampaignsResourcesListParamsFieldOfferingDescription       PromotionsCampaignsResourcesListParamsField = "offering_description"
 	PromotionsCampaignsResourcesListParamsFieldOfferingImage             PromotionsCampaignsResourcesListParamsField = "offering_image"
 	PromotionsCampaignsResourcesListParamsFieldOfferingName              PromotionsCampaignsResourcesListParamsField = "offering_name"
@@ -13075,10 +13084,17 @@ type BackendIdRequest struct {
 
 // BackendMetadata defines model for BackendMetadata.
 type BackendMetadata struct {
-	Action       *string `json:"action,omitempty"`
+	// Action Current action being performed
+	Action *string `json:"action,omitempty"`
+
+	// InstanceName Name of the backend instance
 	InstanceName *string `json:"instance_name"`
+
+	// RuntimeState Runtime state of the backend resource
 	RuntimeState *string `json:"runtime_state,omitempty"`
-	State        *string `json:"state,omitempty"`
+
+	// State Backend resource state
+	State *string `json:"state,omitempty"`
 }
 
 // BackendResource defines model for BackendResource.
@@ -13319,10 +13335,11 @@ type BookingResource struct {
 	Offering           *string             `json:"offering,omitempty"`
 
 	// OfferingBillable Purchase and usage is invoiced.
-	OfferingBillable    *bool   `json:"offering_billable,omitempty"`
-	OfferingDescription *string `json:"offering_description,omitempty"`
-	OfferingImage       *string `json:"offering_image,omitempty"`
-	OfferingName        *string `json:"offering_name,omitempty"`
+	OfferingBillable    *bool                `json:"offering_billable,omitempty"`
+	OfferingComponents  *[]OfferingComponent `json:"offering_components,omitempty"`
+	OfferingDescription *string              `json:"offering_description,omitempty"`
+	OfferingImage       *string              `json:"offering_image,omitempty"`
+	OfferingName        *string              `json:"offering_name,omitempty"`
 
 	// OfferingPluginOptions Public data used by specific plugin, such as storage mode for OpenStack.
 	OfferingPluginOptions interface{} `json:"offering_plugin_options,omitempty"`
@@ -14106,7 +14123,9 @@ type ComponentUsageItemRequest struct {
 type ComponentUsagesPerMonthStats struct {
 	// ComponentType Type of the component
 	ComponentType string `json:"component_type"`
-	Month         int    `json:"month"`
+
+	// Month Month of the billing period
+	Month int `json:"month"`
 
 	// OfferingCountry Country of the offering
 	OfferingCountry *string `json:"offering_country,omitempty"`
@@ -14122,7 +14141,9 @@ type ComponentUsagesPerMonthStats struct {
 
 	// Usage Total usage amount
 	Usage string `json:"usage"`
-	Year  int    `json:"year"`
+
+	// Year Year of the billing period
+	Year int `json:"year"`
 }
 
 // ComponentUsagesPerProject defines model for ComponentUsagesPerProject.
@@ -15378,11 +15399,20 @@ type CustomerIndustryFlagStats struct {
 
 // CustomerMemberCount defines model for CustomerMemberCount.
 type CustomerMemberCount struct {
-	Abbreviation *string             `json:"abbreviation,omitempty"`
-	Count        *int                `json:"count,omitempty"`
-	HasResources *bool               `json:"has_resources,omitempty"`
-	Name         *string             `json:"name,omitempty"`
-	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
+	// Abbreviation Abbreviation of the customer
+	Abbreviation *string `json:"abbreviation,omitempty"`
+
+	// Count Number of members
+	Count *int `json:"count,omitempty"`
+
+	// HasResources Whether the customer has resources
+	HasResources *bool `json:"has_resources,omitempty"`
+
+	// Name Name of the customer
+	Name *string `json:"name,omitempty"`
+
+	// Uuid UUID of the customer
+	Uuid *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // CustomerOecdCodeStats defines model for CustomerOecdCodeStats.
@@ -18347,7 +18377,10 @@ type MoveResourceRequest struct {
 
 // NameUUID defines model for NameUUID.
 type NameUUID struct {
-	Name *string             `json:"name,omitempty"`
+	// Name Name of the entity
+	Name *string `json:"name,omitempty"`
+
+	// Uuid UUID of the entity
 	Uuid *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
@@ -19359,13 +19392,19 @@ type OfferingExportParametersRequest struct {
 // OfferingExportResponse defines model for OfferingExportResponse.
 type OfferingExportResponse struct {
 	// ExportData Complete export data containing the offering structure
-	ExportData      OfferingExportData `json:"export_data"`
-	ExportTimestamp time.Time          `json:"export_timestamp"`
+	ExportData OfferingExportData `json:"export_data"`
+
+	// ExportTimestamp Timestamp when the export was completed
+	ExportTimestamp time.Time `json:"export_timestamp"`
 
 	// ExportedComponents List of exported component types
-	ExportedComponents []string           `json:"exported_components"`
-	OfferingName       string             `json:"offering_name"`
-	OfferingUuid       openapi_types.UUID `json:"offering_uuid"`
+	ExportedComponents []string `json:"exported_components"`
+
+	// OfferingName Name of the exported offering
+	OfferingName string `json:"offering_name"`
+
+	// OfferingUuid UUID of the exported offering
+	OfferingUuid openapi_types.UUID `json:"offering_uuid"`
 }
 
 // OfferingFile defines model for OfferingFile.
@@ -25251,10 +25290,17 @@ type ProviderOffering struct {
 
 // ProviderOfferingCosts defines model for ProviderOfferingCosts.
 type ProviderOfferingCosts struct {
-	Period *string  `json:"period,omitempty"`
-	Price  *float64 `json:"price,omitempty"`
-	Tax    *float64 `json:"tax,omitempty"`
-	Total  *float64 `json:"total,omitempty"`
+	// Period Billing period (YYYY-MM)
+	Period *string `json:"period,omitempty"`
+
+	// Price Price amount excluding tax
+	Price *float64 `json:"price,omitempty"`
+
+	// Tax Tax amount
+	Tax *float64 `json:"tax,omitempty"`
+
+	// Total Total amount including tax
+	Total *float64 `json:"total,omitempty"`
 }
 
 // ProviderOfferingCustomer defines model for ProviderOfferingCustomer.
@@ -27254,10 +27300,11 @@ type Resource struct {
 	Offering           *string             `json:"offering,omitempty"`
 
 	// OfferingBillable Purchase and usage is invoiced.
-	OfferingBillable    *bool   `json:"offering_billable,omitempty"`
-	OfferingDescription *string `json:"offering_description,omitempty"`
-	OfferingImage       *string `json:"offering_image,omitempty"`
-	OfferingName        *string `json:"offering_name,omitempty"`
+	OfferingBillable    *bool                `json:"offering_billable,omitempty"`
+	OfferingComponents  *[]OfferingComponent `json:"offering_components,omitempty"`
+	OfferingDescription *string              `json:"offering_description,omitempty"`
+	OfferingImage       *string              `json:"offering_image,omitempty"`
+	OfferingName        *string              `json:"offering_name,omitempty"`
 
 	// OfferingPluginOptions Public data used by specific plugin, such as storage mode for OpenStack.
 	OfferingPluginOptions interface{} `json:"offering_plugin_options,omitempty"`
@@ -28094,15 +28141,32 @@ type ServiceProviderSignatureRequest struct {
 
 // ServiceProviderStatistics defines model for ServiceProviderStatistics.
 type ServiceProviderStatistics struct {
+	// ActiveAndPausedOfferings Number of active and paused offerings
 	ActiveAndPausedOfferings *int `json:"active_and_paused_offerings,omitempty"`
-	ActiveCampaigns          *int `json:"active_campaigns,omitempty"`
-	ActiveResources          *int `json:"active_resources,omitempty"`
-	CurrentCustomers         *int `json:"current_customers,omitempty"`
-	CustomersNumberChange    *int `json:"customers_number_change,omitempty"`
-	ErredResources           *int `json:"erred_resources,omitempty"`
-	PendingOrders            *int `json:"pending_orders,omitempty"`
-	ResourcesNumberChange    *int `json:"resources_number_change,omitempty"`
-	UnresolvedTickets        *int `json:"unresolved_tickets,omitempty"`
+
+	// ActiveCampaigns Number of active campaigns
+	ActiveCampaigns *int `json:"active_campaigns,omitempty"`
+
+	// ActiveResources Number of active resources
+	ActiveResources *int `json:"active_resources,omitempty"`
+
+	// CurrentCustomers Number of current customers
+	CurrentCustomers *int `json:"current_customers,omitempty"`
+
+	// CustomersNumberChange Change in number of customers
+	CustomersNumberChange *int `json:"customers_number_change,omitempty"`
+
+	// ErredResources Number of resources in error state
+	ErredResources *int `json:"erred_resources,omitempty"`
+
+	// PendingOrders Number of pending orders
+	PendingOrders *int `json:"pending_orders,omitempty"`
+
+	// ResourcesNumberChange Change in number of resources
+	ResourcesNumberChange *int `json:"resources_number_change,omitempty"`
+
+	// UnresolvedTickets Number of unresolved support tickets
+	UnresolvedTickets *int `json:"unresolved_tickets,omitempty"`
 }
 
 // ServiceSettings defines model for ServiceSettings.
