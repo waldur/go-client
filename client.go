@@ -1412,6 +1412,15 @@ const (
 	OfferingStateUnavailable OfferingState = "Unavailable"
 )
 
+// Defines values for OfferingStateEnum.
+const (
+	OfferingStateEnumN1 OfferingStateEnum = 1
+	OfferingStateEnumN2 OfferingStateEnum = 2
+	OfferingStateEnumN3 OfferingStateEnum = 3
+	OfferingStateEnumN4 OfferingStateEnum = 4
+	OfferingStateEnumN5 OfferingStateEnum = 5
+)
+
 // Defines values for OfferingUserState.
 const (
 	OfferingUserStateCreating                    OfferingUserState = "Creating"
@@ -7352,9 +7361,9 @@ const (
 
 // Defines values for MarketplaceSiteAgentServicesCountParamsState.
 const (
-	MarketplaceSiteAgentServicesCountParamsStateN1 MarketplaceSiteAgentServicesCountParamsState = "1"
-	MarketplaceSiteAgentServicesCountParamsStateN2 MarketplaceSiteAgentServicesCountParamsState = "2"
-	MarketplaceSiteAgentServicesCountParamsStateN3 MarketplaceSiteAgentServicesCountParamsState = "3"
+	N1 MarketplaceSiteAgentServicesCountParamsState = "1"
+	N2 MarketplaceSiteAgentServicesCountParamsState = "2"
+	N3 MarketplaceSiteAgentServicesCountParamsState = "3"
 )
 
 // Defines values for MarketplaceSoftwareCatalogsListParamsO.
@@ -13347,7 +13356,7 @@ type BookingResource struct {
 	// OfferingShared Accessible to all customers.
 	OfferingShared     *bool               `json:"offering_shared,omitempty"`
 	OfferingSlug       *string             `json:"offering_slug,omitempty"`
-	OfferingState      *ResourceState      `json:"offering_state,omitempty"`
+	OfferingState      *OfferingStateEnum  `json:"offering_state,omitempty"`
 	OfferingThumbnail  *string             `json:"offering_thumbnail,omitempty"`
 	OfferingType       *string             `json:"offering_type,omitempty"`
 	OfferingUuid       *openapi_types.UUID `json:"offering_uuid,omitempty"`
@@ -19906,6 +19915,9 @@ type OfferingSoftwareCatalogRequest struct {
 
 // OfferingState defines model for OfferingState.
 type OfferingState string
+
+// OfferingStateEnum defines model for OfferingStateEnum.
+type OfferingStateEnum int
 
 // OfferingStats defines model for OfferingStats.
 type OfferingStats struct {
@@ -27416,7 +27428,7 @@ type Resource struct {
 	// OfferingShared Accessible to all customers.
 	OfferingShared     *bool               `json:"offering_shared,omitempty"`
 	OfferingSlug       *string             `json:"offering_slug,omitempty"`
-	OfferingState      *ResourceState      `json:"offering_state,omitempty"`
+	OfferingState      *OfferingStateEnum  `json:"offering_state,omitempty"`
 	OfferingThumbnail  *string             `json:"offering_thumbnail,omitempty"`
 	OfferingType       *string             `json:"offering_type,omitempty"`
 	OfferingUuid       *openapi_types.UUID `json:"offering_uuid,omitempty"`
@@ -31262,11 +31274,8 @@ type BookingResourcesListParams struct {
 	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
 
 	// Downscaled Downscaled
-	Downscaled *bool `form:"downscaled,omitempty" json:"downscaled,omitempty"`
-
-	// ExcludePendingTransitional Exclude transitional resources with early pending orders
-	ExcludePendingTransitional *bool                              `form:"exclude_pending_transitional,omitempty" json:"exclude_pending_transitional,omitempty"`
-	Field                      *[]BookingResourcesListParamsField `form:"field,omitempty" json:"field,omitempty"`
+	Downscaled *bool                              `form:"downscaled,omitempty" json:"downscaled,omitempty"`
+	Field      *[]BookingResourcesListParamsField `form:"field,omitempty" json:"field,omitempty"`
 
 	// HasTerminateDate Has termination date
 	HasTerminateDate *bool `form:"has_terminate_date,omitempty" json:"has_terminate_date,omitempty"`
@@ -31360,6 +31369,9 @@ type BookingResourcesListParams struct {
 	// UsageBased Filter by usage-based offerings
 	UsageBased *bool `form:"usage_based,omitempty" json:"usage_based,omitempty"`
 
+	// VisibleToProviders Include only resources visible to service providers
+	VisibleToProviders *bool `form:"visible_to_providers,omitempty" json:"visible_to_providers,omitempty"`
+
 	// VisibleToUsername Visible to username
 	VisibleToUsername *string `form:"visible_to_username,omitempty" json:"visible_to_username,omitempty"`
 }
@@ -31399,9 +31411,6 @@ type BookingResourcesCountParams struct {
 
 	// Downscaled Downscaled
 	Downscaled *bool `form:"downscaled,omitempty" json:"downscaled,omitempty"`
-
-	// ExcludePendingTransitional Exclude transitional resources with early pending orders
-	ExcludePendingTransitional *bool `form:"exclude_pending_transitional,omitempty" json:"exclude_pending_transitional,omitempty"`
 
 	// HasTerminateDate Has termination date
 	HasTerminateDate *bool `form:"has_terminate_date,omitempty" json:"has_terminate_date,omitempty"`
@@ -31494,6 +31503,9 @@ type BookingResourcesCountParams struct {
 
 	// UsageBased Filter by usage-based offerings
 	UsageBased *bool `form:"usage_based,omitempty" json:"usage_based,omitempty"`
+
+	// VisibleToProviders Include only resources visible to service providers
+	VisibleToProviders *bool `form:"visible_to_providers,omitempty" json:"visible_to_providers,omitempty"`
 
 	// VisibleToUsername Visible to username
 	VisibleToUsername *string `form:"visible_to_username,omitempty" json:"visible_to_username,omitempty"`
@@ -37015,11 +37027,8 @@ type MarketplaceProviderResourcesListParams struct {
 	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
 
 	// Downscaled Downscaled
-	Downscaled *bool `form:"downscaled,omitempty" json:"downscaled,omitempty"`
-
-	// ExcludePendingTransitional Exclude transitional resources with early pending orders
-	ExcludePendingTransitional *bool                                          `form:"exclude_pending_transitional,omitempty" json:"exclude_pending_transitional,omitempty"`
-	Field                      *[]MarketplaceProviderResourcesListParamsField `form:"field,omitempty" json:"field,omitempty"`
+	Downscaled *bool                                          `form:"downscaled,omitempty" json:"downscaled,omitempty"`
+	Field      *[]MarketplaceProviderResourcesListParamsField `form:"field,omitempty" json:"field,omitempty"`
 
 	// HasTerminateDate Has termination date
 	HasTerminateDate *bool `form:"has_terminate_date,omitempty" json:"has_terminate_date,omitempty"`
@@ -37113,6 +37122,9 @@ type MarketplaceProviderResourcesListParams struct {
 	// UsageBased Filter by usage-based offerings
 	UsageBased *bool `form:"usage_based,omitempty" json:"usage_based,omitempty"`
 
+	// VisibleToProviders Include only resources visible to service providers
+	VisibleToProviders *bool `form:"visible_to_providers,omitempty" json:"visible_to_providers,omitempty"`
+
 	// VisibleToUsername Visible to username
 	VisibleToUsername *string `form:"visible_to_username,omitempty" json:"visible_to_username,omitempty"`
 }
@@ -37151,9 +37163,6 @@ type MarketplaceProviderResourcesCountParams struct {
 
 	// Downscaled Downscaled
 	Downscaled *bool `form:"downscaled,omitempty" json:"downscaled,omitempty"`
-
-	// ExcludePendingTransitional Exclude transitional resources with early pending orders
-	ExcludePendingTransitional *bool `form:"exclude_pending_transitional,omitempty" json:"exclude_pending_transitional,omitempty"`
 
 	// HasTerminateDate Has termination date
 	HasTerminateDate *bool `form:"has_terminate_date,omitempty" json:"has_terminate_date,omitempty"`
@@ -37246,6 +37255,9 @@ type MarketplaceProviderResourcesCountParams struct {
 
 	// UsageBased Filter by usage-based offerings
 	UsageBased *bool `form:"usage_based,omitempty" json:"usage_based,omitempty"`
+
+	// VisibleToProviders Include only resources visible to service providers
+	VisibleToProviders *bool `form:"visible_to_providers,omitempty" json:"visible_to_providers,omitempty"`
 
 	// VisibleToUsername Visible to username
 	VisibleToUsername *string `form:"visible_to_username,omitempty" json:"visible_to_username,omitempty"`
@@ -37619,11 +37631,8 @@ type MarketplaceResourcesListParams struct {
 	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
 
 	// Downscaled Downscaled
-	Downscaled *bool `form:"downscaled,omitempty" json:"downscaled,omitempty"`
-
-	// ExcludePendingTransitional Exclude transitional resources with early pending orders
-	ExcludePendingTransitional *bool                                  `form:"exclude_pending_transitional,omitempty" json:"exclude_pending_transitional,omitempty"`
-	Field                      *[]MarketplaceResourcesListParamsField `form:"field,omitempty" json:"field,omitempty"`
+	Downscaled *bool                                  `form:"downscaled,omitempty" json:"downscaled,omitempty"`
+	Field      *[]MarketplaceResourcesListParamsField `form:"field,omitempty" json:"field,omitempty"`
 
 	// HasTerminateDate Has termination date
 	HasTerminateDate *bool `form:"has_terminate_date,omitempty" json:"has_terminate_date,omitempty"`
@@ -37717,6 +37726,9 @@ type MarketplaceResourcesListParams struct {
 	// UsageBased Filter by usage-based offerings
 	UsageBased *bool `form:"usage_based,omitempty" json:"usage_based,omitempty"`
 
+	// VisibleToProviders Include only resources visible to service providers
+	VisibleToProviders *bool `form:"visible_to_providers,omitempty" json:"visible_to_providers,omitempty"`
+
 	// VisibleToUsername Visible to username
 	VisibleToUsername *string `form:"visible_to_username,omitempty" json:"visible_to_username,omitempty"`
 }
@@ -37755,9 +37767,6 @@ type MarketplaceResourcesCountParams struct {
 
 	// Downscaled Downscaled
 	Downscaled *bool `form:"downscaled,omitempty" json:"downscaled,omitempty"`
-
-	// ExcludePendingTransitional Exclude transitional resources with early pending orders
-	ExcludePendingTransitional *bool `form:"exclude_pending_transitional,omitempty" json:"exclude_pending_transitional,omitempty"`
 
 	// HasTerminateDate Has termination date
 	HasTerminateDate *bool `form:"has_terminate_date,omitempty" json:"has_terminate_date,omitempty"`
@@ -37850,6 +37859,9 @@ type MarketplaceResourcesCountParams struct {
 
 	// UsageBased Filter by usage-based offerings
 	UsageBased *bool `form:"usage_based,omitempty" json:"usage_based,omitempty"`
+
+	// VisibleToProviders Include only resources visible to service providers
+	VisibleToProviders *bool `form:"visible_to_providers,omitempty" json:"visible_to_providers,omitempty"`
 
 	// VisibleToUsername Visible to username
 	VisibleToUsername *string `form:"visible_to_username,omitempty" json:"visible_to_username,omitempty"`
@@ -104098,22 +104110,6 @@ func NewBookingResourcesListRequest(server string, params *BookingResourcesListP
 
 		}
 
-		if params.ExcludePendingTransitional != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "exclude_pending_transitional", runtime.ParamLocationQuery, *params.ExcludePendingTransitional); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
 		if params.Field != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "field", runtime.ParamLocationQuery, *params.Field); err != nil {
@@ -104626,6 +104622,22 @@ func NewBookingResourcesListRequest(server string, params *BookingResourcesListP
 
 		}
 
+		if params.VisibleToProviders != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "visible_to_providers", runtime.ParamLocationQuery, *params.VisibleToProviders); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.VisibleToUsername != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "visible_to_username", runtime.ParamLocationQuery, *params.VisibleToUsername); err != nil {
@@ -104790,22 +104802,6 @@ func NewBookingResourcesCountRequest(server string, params *BookingResourcesCoun
 		if params.Downscaled != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "downscaled", runtime.ParamLocationQuery, *params.Downscaled); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.ExcludePendingTransitional != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "exclude_pending_transitional", runtime.ParamLocationQuery, *params.ExcludePendingTransitional); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -105302,6 +105298,22 @@ func NewBookingResourcesCountRequest(server string, params *BookingResourcesCoun
 		if params.UsageBased != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "usage_based", runtime.ParamLocationQuery, *params.UsageBased); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.VisibleToProviders != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "visible_to_providers", runtime.ParamLocationQuery, *params.VisibleToProviders); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -154024,22 +154036,6 @@ func NewMarketplaceProviderResourcesListRequest(server string, params *Marketpla
 
 		}
 
-		if params.ExcludePendingTransitional != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "exclude_pending_transitional", runtime.ParamLocationQuery, *params.ExcludePendingTransitional); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
 		if params.Field != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "field", runtime.ParamLocationQuery, *params.Field); err != nil {
@@ -154552,6 +154548,22 @@ func NewMarketplaceProviderResourcesListRequest(server string, params *Marketpla
 
 		}
 
+		if params.VisibleToProviders != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "visible_to_providers", runtime.ParamLocationQuery, *params.VisibleToProviders); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.VisibleToUsername != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "visible_to_username", runtime.ParamLocationQuery, *params.VisibleToUsername); err != nil {
@@ -154700,22 +154712,6 @@ func NewMarketplaceProviderResourcesCountRequest(server string, params *Marketpl
 		if params.Downscaled != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "downscaled", runtime.ParamLocationQuery, *params.Downscaled); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.ExcludePendingTransitional != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "exclude_pending_transitional", runtime.ParamLocationQuery, *params.ExcludePendingTransitional); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -155212,6 +155208,22 @@ func NewMarketplaceProviderResourcesCountRequest(server string, params *Marketpl
 		if params.UsageBased != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "usage_based", runtime.ParamLocationQuery, *params.UsageBased); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.VisibleToProviders != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "visible_to_providers", runtime.ParamLocationQuery, *params.VisibleToProviders); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -158981,22 +158993,6 @@ func NewMarketplaceResourcesListRequest(server string, params *MarketplaceResour
 
 		}
 
-		if params.ExcludePendingTransitional != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "exclude_pending_transitional", runtime.ParamLocationQuery, *params.ExcludePendingTransitional); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
 		if params.Field != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "field", runtime.ParamLocationQuery, *params.Field); err != nil {
@@ -159509,6 +159505,22 @@ func NewMarketplaceResourcesListRequest(server string, params *MarketplaceResour
 
 		}
 
+		if params.VisibleToProviders != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "visible_to_providers", runtime.ParamLocationQuery, *params.VisibleToProviders); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.VisibleToUsername != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "visible_to_username", runtime.ParamLocationQuery, *params.VisibleToUsername); err != nil {
@@ -159657,22 +159669,6 @@ func NewMarketplaceResourcesCountRequest(server string, params *MarketplaceResou
 		if params.Downscaled != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "downscaled", runtime.ParamLocationQuery, *params.Downscaled); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.ExcludePendingTransitional != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "exclude_pending_transitional", runtime.ParamLocationQuery, *params.ExcludePendingTransitional); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -160169,6 +160165,22 @@ func NewMarketplaceResourcesCountRequest(server string, params *MarketplaceResou
 		if params.UsageBased != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "usage_based", runtime.ParamLocationQuery, *params.UsageBased); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.VisibleToProviders != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "visible_to_providers", runtime.ParamLocationQuery, *params.VisibleToProviders); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
