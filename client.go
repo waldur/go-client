@@ -13844,6 +13844,12 @@ type CategorySerializerForForNestedFieldsRequest struct {
 	Title string `json:"title"`
 }
 
+// ChatRequestRequest defines model for ChatRequestRequest.
+type ChatRequestRequest struct {
+	// Input User input text for the chat model.
+	Input string `json:"input"`
+}
+
 // CheckUniqueBackendIDRequest defines model for CheckUniqueBackendIDRequest.
 type CheckUniqueBackendIDRequest struct {
 	// BackendId Backend identifier to check
@@ -47683,6 +47689,9 @@ type CallProposalProjectRoleMappingsPartialUpdateJSONRequestBody = PatchedPropos
 // CallProposalProjectRoleMappingsUpdateJSONRequestBody defines body for CallProposalProjectRoleMappingsUpdate for application/json ContentType.
 type CallProposalProjectRoleMappingsUpdateJSONRequestBody = ProposalProjectRoleMappingRequest
 
+// ChatStreamJSONRequestBody defines body for ChatStream for application/json ContentType.
+type ChatStreamJSONRequestBody = ChatRequestRequest
+
 // ChecklistsAdminCategoriesCreateJSONRequestBody defines body for ChecklistsAdminCategoriesCreate for application/json ContentType.
 type ChecklistsAdminCategoriesCreateJSONRequestBody = ChecklistCategoryRequest
 
@@ -56559,6 +56568,14 @@ type ClientInterface interface {
 
 	// CeleryStatsRetrieve request
 	CeleryStatsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChatInvoke request
+	ChatInvoke(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChatStreamWithBody request with any body
+	ChatStreamWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ChatStream(ctx context.Context, body ChatStreamJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ChecklistsAdminCategoriesList request
 	ChecklistsAdminCategoriesList(ctx context.Context, params *ChecklistsAdminCategoriesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -65582,6 +65599,42 @@ func (c *Client) CallRoundsReviewersList(ctx context.Context, uuid openapi_types
 
 func (c *Client) CeleryStatsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCeleryStatsRetrieveRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChatInvoke(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatInvokeRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChatStreamWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatStreamRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChatStream(ctx context.Context, body ChatStreamJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatStreamRequest(c.Server, body)
 	if err != nil {
 		return nil, err
 	}
@@ -107910,6 +107963,73 @@ func NewCeleryStatsRetrieveRequest(server string) (*http.Request, error) {
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewChatInvokeRequest generates requests for ChatInvoke
+func NewChatInvokeRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/chat/invoke/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewChatStreamRequest calls the generic ChatStream builder with application/json body
+func NewChatStreamRequest(server string, body ChatStreamJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewChatStreamRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewChatStreamRequestWithBody generates requests for ChatStream with any type of body
+func NewChatStreamRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/chat/stream/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -247232,6 +247352,14 @@ type ClientWithResponsesInterface interface {
 	// CeleryStatsRetrieveWithResponse request
 	CeleryStatsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*CeleryStatsRetrieveResponse, error)
 
+	// ChatInvokeWithResponse request
+	ChatInvokeWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ChatInvokeResponse, error)
+
+	// ChatStreamWithBodyWithResponse request with any body
+	ChatStreamWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatStreamResponse, error)
+
+	ChatStreamWithResponse(ctx context.Context, body ChatStreamJSONRequestBody, reqEditors ...RequestEditorFn) (*ChatStreamResponse, error)
+
 	// ChecklistsAdminCategoriesListWithResponse request
 	ChecklistsAdminCategoriesListWithResponse(ctx context.Context, params *ChecklistsAdminCategoriesListParams, reqEditors ...RequestEditorFn) (*ChecklistsAdminCategoriesListResponse, error)
 
@@ -257434,6 +257562,49 @@ func (r CeleryStatsRetrieveResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r CeleryStatsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChatInvokeResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *string
+}
+
+// Status returns HTTPResponse.Status
+func (r ChatInvokeResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChatInvokeResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChatStreamResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r ChatStreamResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChatStreamResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -294930,6 +295101,32 @@ func (c *ClientWithResponses) CeleryStatsRetrieveWithResponse(ctx context.Contex
 	return ParseCeleryStatsRetrieveResponse(rsp)
 }
 
+// ChatInvokeWithResponse request returning *ChatInvokeResponse
+func (c *ClientWithResponses) ChatInvokeWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ChatInvokeResponse, error) {
+	rsp, err := c.ChatInvoke(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChatInvokeResponse(rsp)
+}
+
+// ChatStreamWithBodyWithResponse request with arbitrary body returning *ChatStreamResponse
+func (c *ClientWithResponses) ChatStreamWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatStreamResponse, error) {
+	rsp, err := c.ChatStreamWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChatStreamResponse(rsp)
+}
+
+func (c *ClientWithResponses) ChatStreamWithResponse(ctx context.Context, body ChatStreamJSONRequestBody, reqEditors ...RequestEditorFn) (*ChatStreamResponse, error) {
+	rsp, err := c.ChatStream(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChatStreamResponse(rsp)
+}
+
 // ChecklistsAdminCategoriesListWithResponse request returning *ChecklistsAdminCategoriesListResponse
 func (c *ClientWithResponses) ChecklistsAdminCategoriesListWithResponse(ctx context.Context, params *ChecklistsAdminCategoriesListParams, reqEditors ...RequestEditorFn) (*ChecklistsAdminCategoriesListResponse, error) {
 	rsp, err := c.ChecklistsAdminCategoriesList(ctx, params, reqEditors...)
@@ -318432,6 +318629,48 @@ func ParseCeleryStatsRetrieveResponse(rsp *http.Response) (*CeleryStatsRetrieveR
 		}
 		response.JSON200 = &dest
 
+	}
+
+	return response, nil
+}
+
+// ParseChatInvokeResponse parses an HTTP response from a ChatInvokeWithResponse call
+func ParseChatInvokeResponse(rsp *http.Response) (*ChatInvokeResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChatInvokeResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest string
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseChatStreamResponse parses an HTTP response from a ChatStreamWithResponse call
+func ParseChatStreamResponse(rsp *http.Response) (*ChatStreamResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChatStreamResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
 	}
 
 	return response, nil
