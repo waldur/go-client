@@ -1412,15 +1412,6 @@ const (
 	OfferingStateUnavailable OfferingState = "Unavailable"
 )
 
-// Defines values for OfferingStateEnum.
-const (
-	OfferingStateEnumN1 OfferingStateEnum = 1
-	OfferingStateEnumN2 OfferingStateEnum = 2
-	OfferingStateEnumN3 OfferingStateEnum = 3
-	OfferingStateEnumN4 OfferingStateEnum = 4
-	OfferingStateEnumN5 OfferingStateEnum = 5
-)
-
 // Defines values for OfferingUserState.
 const (
 	OfferingUserStateCreating                    OfferingUserState = "Creating"
@@ -7361,9 +7352,9 @@ const (
 
 // Defines values for MarketplaceSiteAgentServicesCountParamsState.
 const (
-	N1 MarketplaceSiteAgentServicesCountParamsState = "1"
-	N2 MarketplaceSiteAgentServicesCountParamsState = "2"
-	N3 MarketplaceSiteAgentServicesCountParamsState = "3"
+	MarketplaceSiteAgentServicesCountParamsStateN1 MarketplaceSiteAgentServicesCountParamsState = "1"
+	MarketplaceSiteAgentServicesCountParamsStateN2 MarketplaceSiteAgentServicesCountParamsState = "2"
+	MarketplaceSiteAgentServicesCountParamsStateN3 MarketplaceSiteAgentServicesCountParamsState = "3"
 )
 
 // Defines values for MarketplaceSoftwareCatalogsListParamsO.
@@ -13356,7 +13347,7 @@ type BookingResource struct {
 	// OfferingShared Accessible to all customers.
 	OfferingShared     *bool               `json:"offering_shared,omitempty"`
 	OfferingSlug       *string             `json:"offering_slug,omitempty"`
-	OfferingState      *OfferingStateEnum  `json:"offering_state,omitempty"`
+	OfferingState      *OfferingState      `json:"offering_state,omitempty"`
 	OfferingThumbnail  *string             `json:"offering_thumbnail,omitempty"`
 	OfferingType       *string             `json:"offering_type,omitempty"`
 	OfferingUuid       *openapi_types.UUID `json:"offering_uuid,omitempty"`
@@ -14439,6 +14430,7 @@ type ConstanceSettings struct {
 	TELEMETRYVERSION                               *int                 `json:"TELEMETRY_VERSION,omitempty"`
 	THUMBNAILSIZE                                  *string              `json:"THUMBNAIL_SIZE,omitempty"`
 	USERTABLECOLUMNS                               *string              `json:"USER_TABLE_COLUMNS,omitempty"`
+	WALDURAUTHSOCIALROLECLAIM                      *string              `json:"WALDUR_AUTH_SOCIAL_ROLE_CLAIM,omitempty"`
 	WALDURSUPPORTACTIVEBACKENDTYPE                 *string              `json:"WALDUR_SUPPORT_ACTIVE_BACKEND_TYPE,omitempty"`
 	WALDURSUPPORTDISPLAYREQUESTTYPE                *bool                `json:"WALDUR_SUPPORT_DISPLAY_REQUEST_TYPE,omitempty"`
 	WALDURSUPPORTENABLED                           *bool                `json:"WALDUR_SUPPORT_ENABLED,omitempty"`
@@ -14612,6 +14604,7 @@ type ConstanceSettingsRequest struct {
 	TELEMETRYVERSION                               *int                 `json:"TELEMETRY_VERSION,omitempty"`
 	THUMBNAILSIZE                                  *string              `json:"THUMBNAIL_SIZE,omitempty"`
 	USERTABLECOLUMNS                               *string              `json:"USER_TABLE_COLUMNS,omitempty"`
+	WALDURAUTHSOCIALROLECLAIM                      *string              `json:"WALDUR_AUTH_SOCIAL_ROLE_CLAIM,omitempty"`
 	WALDURSUPPORTACTIVEBACKENDTYPE                 *string              `json:"WALDUR_SUPPORT_ACTIVE_BACKEND_TYPE,omitempty"`
 	WALDURSUPPORTDISPLAYREQUESTTYPE                *bool                `json:"WALDUR_SUPPORT_DISPLAY_REQUEST_TYPE,omitempty"`
 	WALDURSUPPORTENABLED                           *bool                `json:"WALDUR_SUPPORT_ENABLED,omitempty"`
@@ -14785,6 +14778,7 @@ type ConstanceSettingsRequestForm struct {
 	TELEMETRYVERSION                               *int                 `json:"TELEMETRY_VERSION,omitempty"`
 	THUMBNAILSIZE                                  *string              `json:"THUMBNAIL_SIZE,omitempty"`
 	USERTABLECOLUMNS                               *string              `json:"USER_TABLE_COLUMNS,omitempty"`
+	WALDURAUTHSOCIALROLECLAIM                      *string              `json:"WALDUR_AUTH_SOCIAL_ROLE_CLAIM,omitempty"`
 	WALDURSUPPORTACTIVEBACKENDTYPE                 *string              `json:"WALDUR_SUPPORT_ACTIVE_BACKEND_TYPE,omitempty"`
 	WALDURSUPPORTDISPLAYREQUESTTYPE                *bool                `json:"WALDUR_SUPPORT_DISPLAY_REQUEST_TYPE,omitempty"`
 	WALDURSUPPORTENABLED                           *bool                `json:"WALDUR_SUPPORT_ENABLED,omitempty"`
@@ -14958,6 +14952,7 @@ type ConstanceSettingsRequestMultipart struct {
 	TELEMETRYVERSION                               *int                 `json:"TELEMETRY_VERSION,omitempty"`
 	THUMBNAILSIZE                                  *string              `json:"THUMBNAIL_SIZE,omitempty"`
 	USERTABLECOLUMNS                               *string              `json:"USER_TABLE_COLUMNS,omitempty"`
+	WALDURAUTHSOCIALROLECLAIM                      *string              `json:"WALDUR_AUTH_SOCIAL_ROLE_CLAIM,omitempty"`
 	WALDURSUPPORTACTIVEBACKENDTYPE                 *string              `json:"WALDUR_SUPPORT_ACTIVE_BACKEND_TYPE,omitempty"`
 	WALDURSUPPORTDISPLAYREQUESTTYPE                *bool                `json:"WALDUR_SUPPORT_DISPLAY_REQUEST_TYPE,omitempty"`
 	WALDURSUPPORTENABLED                           *bool                `json:"WALDUR_SUPPORT_ENABLED,omitempty"`
@@ -19915,9 +19910,6 @@ type OfferingSoftwareCatalogRequest struct {
 
 // OfferingState defines model for OfferingState.
 type OfferingState string
-
-// OfferingStateEnum defines model for OfferingStateEnum.
-type OfferingStateEnum int
 
 // OfferingStats defines model for OfferingStats.
 type OfferingStats struct {
@@ -27428,7 +27420,7 @@ type Resource struct {
 	// OfferingShared Accessible to all customers.
 	OfferingShared     *bool               `json:"offering_shared,omitempty"`
 	OfferingSlug       *string             `json:"offering_slug,omitempty"`
-	OfferingState      *OfferingStateEnum  `json:"offering_state,omitempty"`
+	OfferingState      *OfferingState      `json:"offering_state,omitempty"`
 	OfferingThumbnail  *string             `json:"offering_thumbnail,omitempty"`
 	OfferingType       *string             `json:"offering_type,omitempty"`
 	OfferingUuid       *openapi_types.UUID `json:"offering_uuid,omitempty"`
