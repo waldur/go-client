@@ -20203,19 +20203,26 @@ type OnboardingJustification struct {
 	LegalPersonIdentifier *string    `json:"legal_person_identifier,omitempty"`
 	Modified              *time.Time `json:"modified,omitempty"`
 
+	// OnboardingMetadata Onboarding-specific data like intents, purposes extracted from checklist answers
+	OnboardingMetadata *map[string]interface{} `json:"onboarding_metadata,omitempty"`
+
 	// StaffNotes Administrator notes on the review decision
 	StaffNotes              *string                                 `json:"staff_notes,omitempty"`
 	SupportingDocumentation *[]OnboardingJustificationDocumentation `json:"supporting_documentation,omitempty"`
 	User                    *string                                 `json:"user,omitempty"`
+	UserFullName            *string                                 `json:"user_full_name,omitempty"`
 
 	// UserJustification User's explanation for why they should be authorized
-	UserJustification  *string                 `json:"user_justification"`
-	Uuid               *openapi_types.UUID     `json:"uuid,omitempty"`
-	ValidatedAt        *time.Time              `json:"validated_at"`
-	ValidatedBy        *string                 `json:"validated_by"`
-	ValidationDecision *ValidationDecisionEnum `json:"validation_decision,omitempty"`
-	Verification       string                  `json:"verification"`
-	VerificationUuid   *openapi_types.UUID     `json:"verification_uuid,omitempty"`
+	UserJustification *string `json:"user_justification"`
+
+	// UserSubmittedCustomerData Customer-related data submitted by the user via checklist answers
+	UserSubmittedCustomerData *map[string]interface{} `json:"user_submitted_customer_data,omitempty"`
+	Uuid                      *openapi_types.UUID     `json:"uuid,omitempty"`
+	ValidatedAt               *time.Time              `json:"validated_at"`
+	ValidatedBy               *string                 `json:"validated_by"`
+	ValidationDecision        *ValidationDecisionEnum `json:"validation_decision,omitempty"`
+	Verification              string                  `json:"verification"`
+	VerificationUuid          *openapi_types.UUID     `json:"verification_uuid,omitempty"`
 }
 
 // OnboardingJustificationCreateRequest defines model for OnboardingJustificationCreateRequest.
@@ -20322,7 +20329,7 @@ type OnboardingVerification struct {
 	Created *time.Time `json:"created,omitempty"`
 
 	// Customer Customer created after successful validation
-	Customer *int `json:"customer"`
+	Customer *string `json:"customer"`
 
 	// CustomerCreationErrorMessage Reason why customer cannot be created (null if can be created)
 	CustomerCreationErrorMessage *string `json:"customer_creation_error_message"`
@@ -20347,7 +20354,8 @@ type OnboardingVerification struct {
 	Status      *OnboardingVerificationStatusEnum `json:"status,omitempty"`
 
 	// User User requesting company onboarding
-	User int `json:"user"`
+	User         *string `json:"user,omitempty"`
+	UserFullName *string `json:"user_full_name,omitempty"`
 
 	// UserSubmittedCustomerData Get customer data submitted by the user during onboarding.
 	UserSubmittedCustomerData *map[string]interface{} `json:"user_submitted_customer_data,omitempty"`
@@ -20379,9 +20387,6 @@ type OnboardingVerificationRequest struct {
 
 	// LegalPersonIdentifier Official company registration code (required for automatic validation)
 	LegalPersonIdentifier *string `json:"legal_person_identifier,omitempty"`
-
-	// User User requesting company onboarding
-	User int `json:"user"`
 }
 
 // OnboardingVerificationStatusEnum defines model for OnboardingVerificationStatusEnum.
@@ -23322,9 +23327,6 @@ type PatchedOnboardingVerificationRequest struct {
 
 	// LegalPersonIdentifier Official company registration code (required for automatic validation)
 	LegalPersonIdentifier *string `json:"legal_person_identifier,omitempty"`
-
-	// User User requesting company onboarding
-	User *int `json:"user,omitempty"`
 }
 
 // PatchedOpenStackBackupRequest defines model for PatchedOpenStackBackupRequest.
@@ -39687,6 +39689,12 @@ type OnboardingJustificationsListParams struct {
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// UserUuid User UUID
+	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
+
+	// VerificationUuid Verification UUID
+	VerificationUuid *openapi_types.UUID `form:"verification_uuid,omitempty" json:"verification_uuid,omitempty"`
 }
 
 // OnboardingJustificationsCountParams defines parameters for OnboardingJustificationsCount.
@@ -39696,6 +39704,12 @@ type OnboardingJustificationsCountParams struct {
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// UserUuid User UUID
+	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
+
+	// VerificationUuid Verification UUID
+	VerificationUuid *openapi_types.UUID `form:"verification_uuid,omitempty" json:"verification_uuid,omitempty"`
 }
 
 // OnboardingQuestionMetadataListParams defines parameters for OnboardingQuestionMetadataList.
@@ -39732,20 +39746,36 @@ type OnboardingQuestionMetadataCountParams struct {
 
 // OnboardingVerificationsListParams defines parameters for OnboardingVerificationsList.
 type OnboardingVerificationsListParams struct {
+	Country               *string `form:"country,omitempty" json:"country,omitempty"`
+	LegalName             *string `form:"legal_name,omitempty" json:"legal_name,omitempty"`
+	LegalPersonIdentifier *string `form:"legal_person_identifier,omitempty" json:"legal_person_identifier,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Status   *string   `form:"status,omitempty" json:"status,omitempty"`
+
+	// UserUuid User UUID
+	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
 }
 
 // OnboardingVerificationsCountParams defines parameters for OnboardingVerificationsCount.
 type OnboardingVerificationsCountParams struct {
+	Country               *string `form:"country,omitempty" json:"country,omitempty"`
+	LegalName             *string `form:"legal_name,omitempty" json:"legal_name,omitempty"`
+	LegalPersonIdentifier *string `form:"legal_person_identifier,omitempty" json:"legal_person_identifier,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Status   *string   `form:"status,omitempty" json:"status,omitempty"`
+
+	// UserUuid User UUID
+	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
 }
 
 // OnboardingVerificationsChecklistTemplateRetrieveParams defines parameters for OnboardingVerificationsChecklistTemplateRetrieve.
@@ -176978,6 +177008,38 @@ func NewOnboardingJustificationsListRequest(server string, params *OnboardingJus
 
 		}
 
+		if params.UserUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_uuid", runtime.ParamLocationQuery, *params.UserUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.VerificationUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "verification_uuid", runtime.ParamLocationQuery, *params.VerificationUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		queryURL.RawQuery = queryValues.Encode()
 	}
 
@@ -177030,6 +177092,38 @@ func NewOnboardingJustificationsCountRequest(server string, params *OnboardingJu
 		if params.PageSize != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UserUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_uuid", runtime.ParamLocationQuery, *params.UserUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.VerificationUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "verification_uuid", runtime.ParamLocationQuery, *params.VerificationUuid); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -177962,6 +178056,54 @@ func NewOnboardingVerificationsListRequest(server string, params *OnboardingVeri
 	if params != nil {
 		queryValues := queryURL.Query()
 
+		if params.Country != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "country", runtime.ParamLocationQuery, *params.Country); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.LegalName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "legal_name", runtime.ParamLocationQuery, *params.LegalName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.LegalPersonIdentifier != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "legal_person_identifier", runtime.ParamLocationQuery, *params.LegalPersonIdentifier); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Page != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
@@ -177981,6 +178123,38 @@ func NewOnboardingVerificationsListRequest(server string, params *OnboardingVeri
 		if params.PageSize != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Status != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "status", runtime.ParamLocationQuery, *params.Status); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UserUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_uuid", runtime.ParamLocationQuery, *params.UserUuid); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -178027,6 +178201,54 @@ func NewOnboardingVerificationsCountRequest(server string, params *OnboardingVer
 	if params != nil {
 		queryValues := queryURL.Query()
 
+		if params.Country != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "country", runtime.ParamLocationQuery, *params.Country); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.LegalName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "legal_name", runtime.ParamLocationQuery, *params.LegalName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.LegalPersonIdentifier != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "legal_person_identifier", runtime.ParamLocationQuery, *params.LegalPersonIdentifier); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Page != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
@@ -178046,6 +178268,38 @@ func NewOnboardingVerificationsCountRequest(server string, params *OnboardingVer
 		if params.PageSize != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Status != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "status", runtime.ParamLocationQuery, *params.Status); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UserUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_uuid", runtime.ParamLocationQuery, *params.UserUuid); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
