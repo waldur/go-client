@@ -17843,6 +17843,9 @@ type MergedPluginOptions struct {
 	// DeploymentMode Rancher deployment mode
 	DeploymentMode *DeploymentModeEnum `json:"deployment_mode,omitempty"`
 
+	// EnableDisplayOfOrderActionsForServiceProvider Enable display of order actions for service provider
+	EnableDisplayOfOrderActionsForServiceProvider *bool `json:"enable_display_of_order_actions_for_service_provider,omitempty"`
+
 	// EnableIssuesForMembershipChanges Enable issues for membership changes
 	EnableIssuesForMembershipChanges *bool `json:"enable_issues_for_membership_changes,omitempty"`
 
@@ -18024,6 +18027,9 @@ type MergedPluginOptionsRequest struct {
 
 	// DeploymentMode Rancher deployment mode
 	DeploymentMode *DeploymentModeEnum `json:"deployment_mode,omitempty"`
+
+	// EnableDisplayOfOrderActionsForServiceProvider Enable display of order actions for service provider
+	EnableDisplayOfOrderActionsForServiceProvider *bool `json:"enable_display_of_order_actions_for_service_provider,omitempty"`
 
 	// EnableIssuesForMembershipChanges Enable issues for membership changes
 	EnableIssuesForMembershipChanges *bool `json:"enable_issues_for_membership_changes,omitempty"`
