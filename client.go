@@ -35397,6 +35397,9 @@ type MarketplaceOrdersListParams struct {
 	// Resource Resource URL
 	Resource *string `form:"resource,omitempty" json:"resource,omitempty"`
 
+	// ResourceName Resource name
+	ResourceName *string `form:"resource_name,omitempty" json:"resource_name,omitempty"`
+
 	// ResourceUuid Resource UUID
 	ResourceUuid *openapi_types.UUID `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
 
@@ -35476,6 +35479,9 @@ type MarketplaceOrdersCountParams struct {
 
 	// Resource Resource URL
 	Resource *string `form:"resource,omitempty" json:"resource,omitempty"`
+
+	// ResourceName Resource name
+	ResourceName *string `form:"resource_name,omitempty" json:"resource_name,omitempty"`
 
 	// ResourceUuid Resource UUID
 	ResourceUuid *openapi_types.UUID `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
@@ -141232,6 +141238,22 @@ func NewMarketplaceOrdersListRequest(server string, params *MarketplaceOrdersLis
 
 		}
 
+		if params.ResourceName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "resource_name", runtime.ParamLocationQuery, *params.ResourceName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.ResourceUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "resource_uuid", runtime.ParamLocationQuery, *params.ResourceUuid); err != nil {
@@ -141604,6 +141626,22 @@ func NewMarketplaceOrdersCountRequest(server string, params *MarketplaceOrdersCo
 		if params.Resource != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "resource", runtime.ParamLocationQuery, *params.Resource); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ResourceName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "resource_name", runtime.ParamLocationQuery, *params.ResourceName); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
