@@ -27542,6 +27542,42 @@ type ResourcePlanPeriod struct {
 	Uuid       *openapi_types.UUID  `json:"uuid,omitempty"`
 }
 
+// ResourceProvisioningStats defines model for ResourceProvisioningStats.
+type ResourceProvisioningStats struct {
+	// AvgPendingDuration Average duration in seconds from Creation to Executing state
+	AvgPendingDuration *float64 `json:"avg_pending_duration,omitempty"`
+
+	// AvgProvisioningDuration Average duration in seconds from Executing to Terminal state
+	AvgProvisioningDuration *float64 `json:"avg_provisioning_duration,omitempty"`
+
+	// OfferingName Name of the offering
+	OfferingName *string `json:"offering_name,omitempty"`
+
+	// OfferingUuid UUID of the offering
+	OfferingUuid *openapi_types.UUID `json:"offering_uuid,omitempty"`
+
+	// ProvisioningCount Total finished provisioning attempts (DONE + ERRED)
+	ProvisioningCount *int `json:"provisioning_count,omitempty"`
+
+	// ProvisioningErrorCount Total failed provisioning attempts (ERRED)
+	ProvisioningErrorCount *int `json:"provisioning_error_count,omitempty"`
+
+	// ProvisioningInProgressCount Total currently in-progress provisioning attempts
+	ProvisioningInProgressCount *int `json:"provisioning_in_progress_count,omitempty"`
+
+	// ProvisioningSuccessCount Total successful provisioning attempts (DONE)
+	ProvisioningSuccessCount *int `json:"provisioning_success_count,omitempty"`
+
+	// ProvisioningSuccessRate Rate of successful provisioning (0.0 to 1.0)
+	ProvisioningSuccessRate *float64 `json:"provisioning_success_rate,omitempty"`
+
+	// ServiceProviderName Name of the service provider
+	ServiceProviderName *string `json:"service_provider_name,omitempty"`
+
+	// ServiceProviderUuid UUID of the service provider
+	ServiceProviderUuid *openapi_types.UUID `json:"service_provider_uuid,omitempty"`
+}
+
 // ResourceReallocateLimitsRequest defines model for ResourceReallocateLimitsRequest.
 type ResourceReallocateLimitsRequest struct {
 	Limits  map[string]int                    `json:"limits"`
@@ -39468,6 +39504,30 @@ type MarketplaceStatsOrganizationResourceCountListParams struct {
 
 // MarketplaceStatsOrganizationResourceCountCountParams defines parameters for MarketplaceStatsOrganizationResourceCountCount.
 type MarketplaceStatsOrganizationResourceCountCountParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// MarketplaceStatsResourceProvisioningStatsListParams defines parameters for MarketplaceStatsResourceProvisioningStatsList.
+type MarketplaceStatsResourceProvisioningStatsListParams struct {
+	// LastMinutes Filter by last N minutes. Default is 60.
+	LastMinutes *int `form:"last_minutes,omitempty" json:"last_minutes,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// MarketplaceStatsResourceProvisioningStatsCountParams defines parameters for MarketplaceStatsResourceProvisioningStatsCount.
+type MarketplaceStatsResourceProvisioningStatsCountParams struct {
+	// LastMinutes Filter by last N minutes. Default is 60.
+	LastMinutes *int `form:"last_minutes,omitempty" json:"last_minutes,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
@@ -59535,6 +59595,12 @@ type ClientInterface interface {
 	// MarketplaceStatsProjectsUsagesGroupedByOecdCount request
 	MarketplaceStatsProjectsUsagesGroupedByOecdCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceStatsResourceProvisioningStatsList request
+	MarketplaceStatsResourceProvisioningStatsList(ctx context.Context, params *MarketplaceStatsResourceProvisioningStatsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceStatsResourceProvisioningStatsCount request
+	MarketplaceStatsResourceProvisioningStatsCount(ctx context.Context, params *MarketplaceStatsResourceProvisioningStatsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceStatsResourcesLimitsList request
 	MarketplaceStatsResourcesLimitsList(ctx context.Context, params *MarketplaceStatsResourcesLimitsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -78424,6 +78490,30 @@ func (c *Client) MarketplaceStatsProjectsUsagesGroupedByOecdRetrieve(ctx context
 
 func (c *Client) MarketplaceStatsProjectsUsagesGroupedByOecdCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceStatsProjectsUsagesGroupedByOecdCountRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceStatsResourceProvisioningStatsList(ctx context.Context, params *MarketplaceStatsResourceProvisioningStatsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceStatsResourceProvisioningStatsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceStatsResourceProvisioningStatsCount(ctx context.Context, params *MarketplaceStatsResourceProvisioningStatsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceStatsResourceProvisioningStatsCountRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -174458,6 +174548,168 @@ func NewMarketplaceStatsProjectsUsagesGroupedByOecdCountRequest(server string) (
 	return req, nil
 }
 
+// NewMarketplaceStatsResourceProvisioningStatsListRequest generates requests for MarketplaceStatsResourceProvisioningStatsList
+func NewMarketplaceStatsResourceProvisioningStatsListRequest(server string, params *MarketplaceStatsResourceProvisioningStatsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-stats/resource_provisioning_stats/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.LastMinutes != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "last_minutes", runtime.ParamLocationQuery, *params.LastMinutes); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceStatsResourceProvisioningStatsCountRequest generates requests for MarketplaceStatsResourceProvisioningStatsCount
+func NewMarketplaceStatsResourceProvisioningStatsCountRequest(server string, params *MarketplaceStatsResourceProvisioningStatsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-stats/resource_provisioning_stats/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.LastMinutes != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "last_minutes", runtime.ParamLocationQuery, *params.LastMinutes); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewMarketplaceStatsResourcesLimitsListRequest generates requests for MarketplaceStatsResourcesLimitsList
 func NewMarketplaceStatsResourcesLimitsListRequest(server string, params *MarketplaceStatsResourcesLimitsListParams) (*http.Request, error) {
 	var err error
@@ -250574,6 +250826,12 @@ type ClientWithResponsesInterface interface {
 	// MarketplaceStatsProjectsUsagesGroupedByOecdCountWithResponse request
 	MarketplaceStatsProjectsUsagesGroupedByOecdCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*MarketplaceStatsProjectsUsagesGroupedByOecdCountResponse, error)
 
+	// MarketplaceStatsResourceProvisioningStatsListWithResponse request
+	MarketplaceStatsResourceProvisioningStatsListWithResponse(ctx context.Context, params *MarketplaceStatsResourceProvisioningStatsListParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsResourceProvisioningStatsListResponse, error)
+
+	// MarketplaceStatsResourceProvisioningStatsCountWithResponse request
+	MarketplaceStatsResourceProvisioningStatsCountWithResponse(ctx context.Context, params *MarketplaceStatsResourceProvisioningStatsCountParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsResourceProvisioningStatsCountResponse, error)
+
 	// MarketplaceStatsResourcesLimitsListWithResponse request
 	MarketplaceStatsResourcesLimitsListWithResponse(ctx context.Context, params *MarketplaceStatsResourcesLimitsListParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsResourcesLimitsListResponse, error)
 
@@ -274842,6 +275100,49 @@ func (r MarketplaceStatsProjectsUsagesGroupedByOecdCountResponse) Status() strin
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceStatsProjectsUsagesGroupedByOecdCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceStatsResourceProvisioningStatsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]ResourceProvisioningStats
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceStatsResourceProvisioningStatsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceStatsResourceProvisioningStatsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceStatsResourceProvisioningStatsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceStatsResourceProvisioningStatsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceStatsResourceProvisioningStatsCountResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -304705,6 +305006,24 @@ func (c *ClientWithResponses) MarketplaceStatsProjectsUsagesGroupedByOecdCountWi
 		return nil, err
 	}
 	return ParseMarketplaceStatsProjectsUsagesGroupedByOecdCountResponse(rsp)
+}
+
+// MarketplaceStatsResourceProvisioningStatsListWithResponse request returning *MarketplaceStatsResourceProvisioningStatsListResponse
+func (c *ClientWithResponses) MarketplaceStatsResourceProvisioningStatsListWithResponse(ctx context.Context, params *MarketplaceStatsResourceProvisioningStatsListParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsResourceProvisioningStatsListResponse, error) {
+	rsp, err := c.MarketplaceStatsResourceProvisioningStatsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceStatsResourceProvisioningStatsListResponse(rsp)
+}
+
+// MarketplaceStatsResourceProvisioningStatsCountWithResponse request returning *MarketplaceStatsResourceProvisioningStatsCountResponse
+func (c *ClientWithResponses) MarketplaceStatsResourceProvisioningStatsCountWithResponse(ctx context.Context, params *MarketplaceStatsResourceProvisioningStatsCountParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsResourceProvisioningStatsCountResponse, error) {
+	rsp, err := c.MarketplaceStatsResourceProvisioningStatsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceStatsResourceProvisioningStatsCountResponse(rsp)
 }
 
 // MarketplaceStatsResourcesLimitsListWithResponse request returning *MarketplaceStatsResourcesLimitsListResponse
@@ -336787,6 +337106,48 @@ func ParseMarketplaceStatsProjectsUsagesGroupedByOecdCountResponse(rsp *http.Res
 	}
 
 	response := &MarketplaceStatsProjectsUsagesGroupedByOecdCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceStatsResourceProvisioningStatsListResponse parses an HTTP response from a MarketplaceStatsResourceProvisioningStatsListWithResponse call
+func ParseMarketplaceStatsResourceProvisioningStatsListResponse(rsp *http.Response) (*MarketplaceStatsResourceProvisioningStatsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceStatsResourceProvisioningStatsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []ResourceProvisioningStats
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceStatsResourceProvisioningStatsCountResponse parses an HTTP response from a MarketplaceStatsResourceProvisioningStatsCountWithResponse call
+func ParseMarketplaceStatsResourceProvisioningStatsCountResponse(rsp *http.Response) (*MarketplaceStatsResourceProvisioningStatsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceStatsResourceProvisioningStatsCountResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
