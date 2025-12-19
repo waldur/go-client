@@ -14986,8 +14986,9 @@ type CorrectiveAction struct {
 	Metadata             *map[string]interface{} `json:"metadata,omitempty"`
 	Method               *string                 `json:"method,omitempty"`
 	PermissionsRequired  *[]string               `json:"permissions_required,omitempty"`
+	RouteName            *string                 `json:"route_name"`
+	RouteParams          *map[string]interface{} `json:"route_params,omitempty"`
 	Severity             SeverityEnum            `json:"severity"`
-	Url                  string                  `json:"url"`
 }
 
 // CostsForPeriod defines model for CostsForPeriod.
@@ -29039,7 +29040,6 @@ type User struct {
 type UserAction struct {
 	// ActionType Type of action, e.g. 'pending_order', 'expiring_resource'
 	ActionType            string              `json:"action_type"`
-	ActionUrl             *string             `json:"action_url,omitempty"`
 	CorrectiveActions     *[]CorrectiveAction `json:"corrective_actions,omitempty"`
 	Created               *time.Time          `json:"created,omitempty"`
 	DaysUntilDue          *int                `json:"days_until_due"`
@@ -29048,14 +29048,25 @@ type UserAction struct {
 	IsEffectivelySilenced *bool               `json:"is_effectively_silenced,omitempty"`
 	IsSilenced            *bool               `json:"is_silenced,omitempty"`
 	IsTemporarilySilenced *bool               `json:"is_temporarily_silenced,omitempty"`
-	Metadata              *string             `json:"metadata,omitempty"`
 	Modified              *time.Time          `json:"modified,omitempty"`
+	OfferingName          *string             `json:"offering_name,omitempty"`
+	OfferingType          *string             `json:"offering_type,omitempty"`
+	OrganizationName      *string             `json:"organization_name,omitempty"`
+	OrganizationUuid      *openapi_types.UUID `json:"organization_uuid"`
+	ProjectName           *string             `json:"project_name,omitempty"`
+	ProjectUuid           *openapi_types.UUID `json:"project_uuid"`
 	RelatedObjectName     *string             `json:"related_object_name,omitempty"`
 	RelatedObjectType     *string             `json:"related_object_type,omitempty"`
-	SilencedUntil         *time.Time          `json:"silenced_until"`
-	Title                 string              `json:"title"`
-	Urgency               UrgencyEnum         `json:"urgency"`
-	Uuid                  *openapi_types.UUID `json:"uuid,omitempty"`
+
+	// RouteName UI-Router state name for navigation
+	RouteName *string `json:"route_name,omitempty"`
+
+	// RouteParams Parameters for route navigation
+	RouteParams   *string             `json:"route_params,omitempty"`
+	SilencedUntil *time.Time          `json:"silenced_until"`
+	Title         string              `json:"title"`
+	Urgency       UrgencyEnum         `json:"urgency"`
+	Uuid          *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // UserActionExecution defines model for UserActionExecution.
@@ -62278,20 +62289,20 @@ type ClientInterface interface {
 	UserActionsUpdateActions(ctx context.Context, body UserActionsUpdateActionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UserActionsRetrieve request
-	UserActionsRetrieve(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UserActionsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UserActionsExecuteActionWithBody request with any body
-	UserActionsExecuteActionWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UserActionsExecuteActionWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	UserActionsExecuteAction(ctx context.Context, id int, body UserActionsExecuteActionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UserActionsExecuteAction(ctx context.Context, uuid openapi_types.UUID, body UserActionsExecuteActionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UserActionsSilenceWithBody request with any body
-	UserActionsSilenceWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UserActionsSilenceWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	UserActionsSilence(ctx context.Context, id int, body UserActionsSilenceJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UserActionsSilence(ctx context.Context, uuid openapi_types.UUID, body UserActionsSilenceJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UserActionsUnsilence request
-	UserActionsUnsilence(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UserActionsUnsilence(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UserAgreementsList request
 	UserAgreementsList(ctx context.Context, params *UserAgreementsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -90495,8 +90506,8 @@ func (c *Client) UserActionsUpdateActions(ctx context.Context, body UserActionsU
 	return c.Client.Do(req)
 }
 
-func (c *Client) UserActionsRetrieve(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUserActionsRetrieveRequest(c.Server, id)
+func (c *Client) UserActionsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUserActionsRetrieveRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -90507,8 +90518,8 @@ func (c *Client) UserActionsRetrieve(ctx context.Context, id int, reqEditors ...
 	return c.Client.Do(req)
 }
 
-func (c *Client) UserActionsExecuteActionWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUserActionsExecuteActionRequestWithBody(c.Server, id, contentType, body)
+func (c *Client) UserActionsExecuteActionWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUserActionsExecuteActionRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -90519,8 +90530,8 @@ func (c *Client) UserActionsExecuteActionWithBody(ctx context.Context, id int, c
 	return c.Client.Do(req)
 }
 
-func (c *Client) UserActionsExecuteAction(ctx context.Context, id int, body UserActionsExecuteActionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUserActionsExecuteActionRequest(c.Server, id, body)
+func (c *Client) UserActionsExecuteAction(ctx context.Context, uuid openapi_types.UUID, body UserActionsExecuteActionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUserActionsExecuteActionRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -90531,8 +90542,8 @@ func (c *Client) UserActionsExecuteAction(ctx context.Context, id int, body User
 	return c.Client.Do(req)
 }
 
-func (c *Client) UserActionsSilenceWithBody(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUserActionsSilenceRequestWithBody(c.Server, id, contentType, body)
+func (c *Client) UserActionsSilenceWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUserActionsSilenceRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -90543,8 +90554,8 @@ func (c *Client) UserActionsSilenceWithBody(ctx context.Context, id int, content
 	return c.Client.Do(req)
 }
 
-func (c *Client) UserActionsSilence(ctx context.Context, id int, body UserActionsSilenceJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUserActionsSilenceRequest(c.Server, id, body)
+func (c *Client) UserActionsSilence(ctx context.Context, uuid openapi_types.UUID, body UserActionsSilenceJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUserActionsSilenceRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -90555,8 +90566,8 @@ func (c *Client) UserActionsSilence(ctx context.Context, id int, body UserAction
 	return c.Client.Do(req)
 }
 
-func (c *Client) UserActionsUnsilence(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUserActionsUnsilenceRequest(c.Server, id)
+func (c *Client) UserActionsUnsilence(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUserActionsUnsilenceRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -237152,12 +237163,12 @@ func NewUserActionsUpdateActionsRequestWithBody(server string, contentType strin
 }
 
 // NewUserActionsRetrieveRequest generates requests for UserActionsRetrieve
-func NewUserActionsRetrieveRequest(server string, id int) (*http.Request, error) {
+func NewUserActionsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -237186,23 +237197,23 @@ func NewUserActionsRetrieveRequest(server string, id int) (*http.Request, error)
 }
 
 // NewUserActionsExecuteActionRequest calls the generic UserActionsExecuteAction builder with application/json body
-func NewUserActionsExecuteActionRequest(server string, id int, body UserActionsExecuteActionJSONRequestBody) (*http.Request, error) {
+func NewUserActionsExecuteActionRequest(server string, uuid openapi_types.UUID, body UserActionsExecuteActionJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewUserActionsExecuteActionRequestWithBody(server, id, "application/json", bodyReader)
+	return NewUserActionsExecuteActionRequestWithBody(server, uuid, "application/json", bodyReader)
 }
 
 // NewUserActionsExecuteActionRequestWithBody generates requests for UserActionsExecuteAction with any type of body
-func NewUserActionsExecuteActionRequestWithBody(server string, id int, contentType string, body io.Reader) (*http.Request, error) {
+func NewUserActionsExecuteActionRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -237233,23 +237244,23 @@ func NewUserActionsExecuteActionRequestWithBody(server string, id int, contentTy
 }
 
 // NewUserActionsSilenceRequest calls the generic UserActionsSilence builder with application/json body
-func NewUserActionsSilenceRequest(server string, id int, body UserActionsSilenceJSONRequestBody) (*http.Request, error) {
+func NewUserActionsSilenceRequest(server string, uuid openapi_types.UUID, body UserActionsSilenceJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewUserActionsSilenceRequestWithBody(server, id, "application/json", bodyReader)
+	return NewUserActionsSilenceRequestWithBody(server, uuid, "application/json", bodyReader)
 }
 
 // NewUserActionsSilenceRequestWithBody generates requests for UserActionsSilence with any type of body
-func NewUserActionsSilenceRequestWithBody(server string, id int, contentType string, body io.Reader) (*http.Request, error) {
+func NewUserActionsSilenceRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -237280,12 +237291,12 @@ func NewUserActionsSilenceRequestWithBody(server string, id int, contentType str
 }
 
 // NewUserActionsUnsilenceRequest generates requests for UserActionsUnsilence
-func NewUserActionsUnsilenceRequest(server string, id int) (*http.Request, error) {
+func NewUserActionsUnsilenceRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -253317,20 +253328,20 @@ type ClientWithResponsesInterface interface {
 	UserActionsUpdateActionsWithResponse(ctx context.Context, body UserActionsUpdateActionsJSONRequestBody, reqEditors ...RequestEditorFn) (*UserActionsUpdateActionsResponse, error)
 
 	// UserActionsRetrieveWithResponse request
-	UserActionsRetrieveWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*UserActionsRetrieveResponse, error)
+	UserActionsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*UserActionsRetrieveResponse, error)
 
 	// UserActionsExecuteActionWithBodyWithResponse request with any body
-	UserActionsExecuteActionWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UserActionsExecuteActionResponse, error)
+	UserActionsExecuteActionWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UserActionsExecuteActionResponse, error)
 
-	UserActionsExecuteActionWithResponse(ctx context.Context, id int, body UserActionsExecuteActionJSONRequestBody, reqEditors ...RequestEditorFn) (*UserActionsExecuteActionResponse, error)
+	UserActionsExecuteActionWithResponse(ctx context.Context, uuid openapi_types.UUID, body UserActionsExecuteActionJSONRequestBody, reqEditors ...RequestEditorFn) (*UserActionsExecuteActionResponse, error)
 
 	// UserActionsSilenceWithBodyWithResponse request with any body
-	UserActionsSilenceWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UserActionsSilenceResponse, error)
+	UserActionsSilenceWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UserActionsSilenceResponse, error)
 
-	UserActionsSilenceWithResponse(ctx context.Context, id int, body UserActionsSilenceJSONRequestBody, reqEditors ...RequestEditorFn) (*UserActionsSilenceResponse, error)
+	UserActionsSilenceWithResponse(ctx context.Context, uuid openapi_types.UUID, body UserActionsSilenceJSONRequestBody, reqEditors ...RequestEditorFn) (*UserActionsSilenceResponse, error)
 
 	// UserActionsUnsilenceWithResponse request
-	UserActionsUnsilenceWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*UserActionsUnsilenceResponse, error)
+	UserActionsUnsilenceWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*UserActionsUnsilenceResponse, error)
 
 	// UserAgreementsListWithResponse request
 	UserAgreementsListWithResponse(ctx context.Context, params *UserAgreementsListParams, reqEditors ...RequestEditorFn) (*UserAgreementsListResponse, error)
@@ -313486,8 +313497,8 @@ func (c *ClientWithResponses) UserActionsUpdateActionsWithResponse(ctx context.C
 }
 
 // UserActionsRetrieveWithResponse request returning *UserActionsRetrieveResponse
-func (c *ClientWithResponses) UserActionsRetrieveWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*UserActionsRetrieveResponse, error) {
-	rsp, err := c.UserActionsRetrieve(ctx, id, reqEditors...)
+func (c *ClientWithResponses) UserActionsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*UserActionsRetrieveResponse, error) {
+	rsp, err := c.UserActionsRetrieve(ctx, uuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -313495,16 +313506,16 @@ func (c *ClientWithResponses) UserActionsRetrieveWithResponse(ctx context.Contex
 }
 
 // UserActionsExecuteActionWithBodyWithResponse request with arbitrary body returning *UserActionsExecuteActionResponse
-func (c *ClientWithResponses) UserActionsExecuteActionWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UserActionsExecuteActionResponse, error) {
-	rsp, err := c.UserActionsExecuteActionWithBody(ctx, id, contentType, body, reqEditors...)
+func (c *ClientWithResponses) UserActionsExecuteActionWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UserActionsExecuteActionResponse, error) {
+	rsp, err := c.UserActionsExecuteActionWithBody(ctx, uuid, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseUserActionsExecuteActionResponse(rsp)
 }
 
-func (c *ClientWithResponses) UserActionsExecuteActionWithResponse(ctx context.Context, id int, body UserActionsExecuteActionJSONRequestBody, reqEditors ...RequestEditorFn) (*UserActionsExecuteActionResponse, error) {
-	rsp, err := c.UserActionsExecuteAction(ctx, id, body, reqEditors...)
+func (c *ClientWithResponses) UserActionsExecuteActionWithResponse(ctx context.Context, uuid openapi_types.UUID, body UserActionsExecuteActionJSONRequestBody, reqEditors ...RequestEditorFn) (*UserActionsExecuteActionResponse, error) {
+	rsp, err := c.UserActionsExecuteAction(ctx, uuid, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -313512,16 +313523,16 @@ func (c *ClientWithResponses) UserActionsExecuteActionWithResponse(ctx context.C
 }
 
 // UserActionsSilenceWithBodyWithResponse request with arbitrary body returning *UserActionsSilenceResponse
-func (c *ClientWithResponses) UserActionsSilenceWithBodyWithResponse(ctx context.Context, id int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UserActionsSilenceResponse, error) {
-	rsp, err := c.UserActionsSilenceWithBody(ctx, id, contentType, body, reqEditors...)
+func (c *ClientWithResponses) UserActionsSilenceWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UserActionsSilenceResponse, error) {
+	rsp, err := c.UserActionsSilenceWithBody(ctx, uuid, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseUserActionsSilenceResponse(rsp)
 }
 
-func (c *ClientWithResponses) UserActionsSilenceWithResponse(ctx context.Context, id int, body UserActionsSilenceJSONRequestBody, reqEditors ...RequestEditorFn) (*UserActionsSilenceResponse, error) {
-	rsp, err := c.UserActionsSilence(ctx, id, body, reqEditors...)
+func (c *ClientWithResponses) UserActionsSilenceWithResponse(ctx context.Context, uuid openapi_types.UUID, body UserActionsSilenceJSONRequestBody, reqEditors ...RequestEditorFn) (*UserActionsSilenceResponse, error) {
+	rsp, err := c.UserActionsSilence(ctx, uuid, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -313529,8 +313540,8 @@ func (c *ClientWithResponses) UserActionsSilenceWithResponse(ctx context.Context
 }
 
 // UserActionsUnsilenceWithResponse request returning *UserActionsUnsilenceResponse
-func (c *ClientWithResponses) UserActionsUnsilenceWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*UserActionsUnsilenceResponse, error) {
-	rsp, err := c.UserActionsUnsilence(ctx, id, reqEditors...)
+func (c *ClientWithResponses) UserActionsUnsilenceWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*UserActionsUnsilenceResponse, error) {
+	rsp, err := c.UserActionsUnsilence(ctx, uuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
