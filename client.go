@@ -29135,6 +29135,15 @@ type UserActionSummary struct {
 	Total     int                    `json:"total"`
 }
 
+// UserAffiliationCount defines model for UserAffiliationCount.
+type UserAffiliationCount struct {
+	// Affiliation Affiliation name
+	Affiliation string `json:"affiliation"`
+
+	// Count Number of users
+	Count int `json:"count"`
+}
+
 // UserAgreement defines model for UserAgreement.
 type UserAgreement struct {
 	AgreementType AgreementTypeEnum   `json:"agreement_type"`
@@ -29149,6 +29158,15 @@ type UserAgreement struct {
 type UserAgreementRequest struct {
 	AgreementType AgreementTypeEnum `json:"agreement_type"`
 	Content       string            `json:"content"`
+}
+
+// UserAuthMethodCount defines model for UserAuthMethodCount.
+type UserAuthMethodCount struct {
+	// Count Number of users
+	Count int `json:"count"`
+
+	// Method Authentication method
+	Method string `json:"method"`
 }
 
 // UserAuthToken defines model for UserAuthToken.
@@ -29212,6 +29230,15 @@ type UserEmailChangeRequest struct {
 	Email openapi_types.Email `json:"email"`
 }
 
+// UserIdentitySourceCount defines model for UserIdentitySourceCount.
+type UserIdentitySourceCount struct {
+	// Count Number of users
+	Count int `json:"count"`
+
+	// IdentitySource Identity source
+	IdentitySource string `json:"identity_source"`
+}
+
 // UserInfo defines model for UserInfo.
 type UserInfo struct {
 	// Shortname A short, unique name for you. It will be used to form your local username on any systems. Should only contain lower-case letters and digits and must start with a letter.
@@ -29261,6 +29288,15 @@ type UserOfferingConsentCreateRequest struct {
 // UserOfferingConsentRequest defines model for UserOfferingConsentRequest.
 type UserOfferingConsentRequest struct {
 	Version *string `json:"version,omitempty"`
+}
+
+// UserOrganizationCount defines model for UserOrganizationCount.
+type UserOrganizationCount struct {
+	// Count Number of users
+	Count int `json:"count"`
+
+	// Organization Organization name
+	Organization string `json:"organization"`
 }
 
 // UserRequest defines model for UserRequest.
@@ -39564,6 +39600,78 @@ type MarketplaceStatsTotalCostOfActiveResourcesPerOfferingListParams struct {
 
 // MarketplaceStatsTotalCostOfActiveResourcesPerOfferingCountParams defines parameters for MarketplaceStatsTotalCostOfActiveResourcesPerOfferingCount.
 type MarketplaceStatsTotalCostOfActiveResourcesPerOfferingCountParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// MarketplaceStatsUserAffiliationCountListParams defines parameters for MarketplaceStatsUserAffiliationCountList.
+type MarketplaceStatsUserAffiliationCountListParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// MarketplaceStatsUserAffiliationCountCountParams defines parameters for MarketplaceStatsUserAffiliationCountCount.
+type MarketplaceStatsUserAffiliationCountCountParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// MarketplaceStatsUserAuthMethodCountListParams defines parameters for MarketplaceStatsUserAuthMethodCountList.
+type MarketplaceStatsUserAuthMethodCountListParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// MarketplaceStatsUserAuthMethodCountCountParams defines parameters for MarketplaceStatsUserAuthMethodCountCount.
+type MarketplaceStatsUserAuthMethodCountCountParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// MarketplaceStatsUserIdentitySourceCountListParams defines parameters for MarketplaceStatsUserIdentitySourceCountList.
+type MarketplaceStatsUserIdentitySourceCountListParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// MarketplaceStatsUserIdentitySourceCountCountParams defines parameters for MarketplaceStatsUserIdentitySourceCountCount.
+type MarketplaceStatsUserIdentitySourceCountCountParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// MarketplaceStatsUserOrganizationCountListParams defines parameters for MarketplaceStatsUserOrganizationCountList.
+type MarketplaceStatsUserOrganizationCountListParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// MarketplaceStatsUserOrganizationCountCountParams defines parameters for MarketplaceStatsUserOrganizationCountCount.
+type MarketplaceStatsUserOrganizationCountCountParams struct {
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
@@ -59613,6 +59721,30 @@ type ClientInterface interface {
 	// MarketplaceStatsTotalCostOfActiveResourcesPerOfferingCount request
 	MarketplaceStatsTotalCostOfActiveResourcesPerOfferingCount(ctx context.Context, params *MarketplaceStatsTotalCostOfActiveResourcesPerOfferingCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceStatsUserAffiliationCountList request
+	MarketplaceStatsUserAffiliationCountList(ctx context.Context, params *MarketplaceStatsUserAffiliationCountListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceStatsUserAffiliationCountCount request
+	MarketplaceStatsUserAffiliationCountCount(ctx context.Context, params *MarketplaceStatsUserAffiliationCountCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceStatsUserAuthMethodCountList request
+	MarketplaceStatsUserAuthMethodCountList(ctx context.Context, params *MarketplaceStatsUserAuthMethodCountListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceStatsUserAuthMethodCountCount request
+	MarketplaceStatsUserAuthMethodCountCount(ctx context.Context, params *MarketplaceStatsUserAuthMethodCountCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceStatsUserIdentitySourceCountList request
+	MarketplaceStatsUserIdentitySourceCountList(ctx context.Context, params *MarketplaceStatsUserIdentitySourceCountListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceStatsUserIdentitySourceCountCount request
+	MarketplaceStatsUserIdentitySourceCountCount(ctx context.Context, params *MarketplaceStatsUserIdentitySourceCountCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceStatsUserOrganizationCountList request
+	MarketplaceStatsUserOrganizationCountList(ctx context.Context, params *MarketplaceStatsUserOrganizationCountListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceStatsUserOrganizationCountCount request
+	MarketplaceStatsUserOrganizationCountCount(ctx context.Context, params *MarketplaceStatsUserOrganizationCountCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceUserOfferingConsentsList request
 	MarketplaceUserOfferingConsentsList(ctx context.Context, params *MarketplaceUserOfferingConsentsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -78562,6 +78694,102 @@ func (c *Client) MarketplaceStatsTotalCostOfActiveResourcesPerOfferingList(ctx c
 
 func (c *Client) MarketplaceStatsTotalCostOfActiveResourcesPerOfferingCount(ctx context.Context, params *MarketplaceStatsTotalCostOfActiveResourcesPerOfferingCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceStatsTotalCostOfActiveResourcesPerOfferingCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceStatsUserAffiliationCountList(ctx context.Context, params *MarketplaceStatsUserAffiliationCountListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceStatsUserAffiliationCountListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceStatsUserAffiliationCountCount(ctx context.Context, params *MarketplaceStatsUserAffiliationCountCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceStatsUserAffiliationCountCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceStatsUserAuthMethodCountList(ctx context.Context, params *MarketplaceStatsUserAuthMethodCountListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceStatsUserAuthMethodCountListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceStatsUserAuthMethodCountCount(ctx context.Context, params *MarketplaceStatsUserAuthMethodCountCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceStatsUserAuthMethodCountCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceStatsUserIdentitySourceCountList(ctx context.Context, params *MarketplaceStatsUserIdentitySourceCountListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceStatsUserIdentitySourceCountListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceStatsUserIdentitySourceCountCount(ctx context.Context, params *MarketplaceStatsUserIdentitySourceCountCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceStatsUserIdentitySourceCountCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceStatsUserOrganizationCountList(ctx context.Context, params *MarketplaceStatsUserOrganizationCountListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceStatsUserOrganizationCountListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceStatsUserOrganizationCountCount(ctx context.Context, params *MarketplaceStatsUserOrganizationCountCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceStatsUserOrganizationCountCountRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -174970,6 +175198,526 @@ func NewMarketplaceStatsTotalCostOfActiveResourcesPerOfferingCountRequest(server
 	return req, nil
 }
 
+// NewMarketplaceStatsUserAffiliationCountListRequest generates requests for MarketplaceStatsUserAffiliationCountList
+func NewMarketplaceStatsUserAffiliationCountListRequest(server string, params *MarketplaceStatsUserAffiliationCountListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-stats/user_affiliation_count/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceStatsUserAffiliationCountCountRequest generates requests for MarketplaceStatsUserAffiliationCountCount
+func NewMarketplaceStatsUserAffiliationCountCountRequest(server string, params *MarketplaceStatsUserAffiliationCountCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-stats/user_affiliation_count/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceStatsUserAuthMethodCountListRequest generates requests for MarketplaceStatsUserAuthMethodCountList
+func NewMarketplaceStatsUserAuthMethodCountListRequest(server string, params *MarketplaceStatsUserAuthMethodCountListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-stats/user_auth_method_count/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceStatsUserAuthMethodCountCountRequest generates requests for MarketplaceStatsUserAuthMethodCountCount
+func NewMarketplaceStatsUserAuthMethodCountCountRequest(server string, params *MarketplaceStatsUserAuthMethodCountCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-stats/user_auth_method_count/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceStatsUserIdentitySourceCountListRequest generates requests for MarketplaceStatsUserIdentitySourceCountList
+func NewMarketplaceStatsUserIdentitySourceCountListRequest(server string, params *MarketplaceStatsUserIdentitySourceCountListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-stats/user_identity_source_count/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceStatsUserIdentitySourceCountCountRequest generates requests for MarketplaceStatsUserIdentitySourceCountCount
+func NewMarketplaceStatsUserIdentitySourceCountCountRequest(server string, params *MarketplaceStatsUserIdentitySourceCountCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-stats/user_identity_source_count/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceStatsUserOrganizationCountListRequest generates requests for MarketplaceStatsUserOrganizationCountList
+func NewMarketplaceStatsUserOrganizationCountListRequest(server string, params *MarketplaceStatsUserOrganizationCountListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-stats/user_organization_count/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceStatsUserOrganizationCountCountRequest generates requests for MarketplaceStatsUserOrganizationCountCount
+func NewMarketplaceStatsUserOrganizationCountCountRequest(server string, params *MarketplaceStatsUserOrganizationCountCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-stats/user_organization_count/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewMarketplaceUserOfferingConsentsListRequest generates requests for MarketplaceUserOfferingConsentsList
 func NewMarketplaceUserOfferingConsentsListRequest(server string, params *MarketplaceUserOfferingConsentsListParams) (*http.Request, error) {
 	var err error
@@ -250844,6 +251592,30 @@ type ClientWithResponsesInterface interface {
 	// MarketplaceStatsTotalCostOfActiveResourcesPerOfferingCountWithResponse request
 	MarketplaceStatsTotalCostOfActiveResourcesPerOfferingCountWithResponse(ctx context.Context, params *MarketplaceStatsTotalCostOfActiveResourcesPerOfferingCountParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsTotalCostOfActiveResourcesPerOfferingCountResponse, error)
 
+	// MarketplaceStatsUserAffiliationCountListWithResponse request
+	MarketplaceStatsUserAffiliationCountListWithResponse(ctx context.Context, params *MarketplaceStatsUserAffiliationCountListParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsUserAffiliationCountListResponse, error)
+
+	// MarketplaceStatsUserAffiliationCountCountWithResponse request
+	MarketplaceStatsUserAffiliationCountCountWithResponse(ctx context.Context, params *MarketplaceStatsUserAffiliationCountCountParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsUserAffiliationCountCountResponse, error)
+
+	// MarketplaceStatsUserAuthMethodCountListWithResponse request
+	MarketplaceStatsUserAuthMethodCountListWithResponse(ctx context.Context, params *MarketplaceStatsUserAuthMethodCountListParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsUserAuthMethodCountListResponse, error)
+
+	// MarketplaceStatsUserAuthMethodCountCountWithResponse request
+	MarketplaceStatsUserAuthMethodCountCountWithResponse(ctx context.Context, params *MarketplaceStatsUserAuthMethodCountCountParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsUserAuthMethodCountCountResponse, error)
+
+	// MarketplaceStatsUserIdentitySourceCountListWithResponse request
+	MarketplaceStatsUserIdentitySourceCountListWithResponse(ctx context.Context, params *MarketplaceStatsUserIdentitySourceCountListParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsUserIdentitySourceCountListResponse, error)
+
+	// MarketplaceStatsUserIdentitySourceCountCountWithResponse request
+	MarketplaceStatsUserIdentitySourceCountCountWithResponse(ctx context.Context, params *MarketplaceStatsUserIdentitySourceCountCountParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsUserIdentitySourceCountCountResponse, error)
+
+	// MarketplaceStatsUserOrganizationCountListWithResponse request
+	MarketplaceStatsUserOrganizationCountListWithResponse(ctx context.Context, params *MarketplaceStatsUserOrganizationCountListParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsUserOrganizationCountListResponse, error)
+
+	// MarketplaceStatsUserOrganizationCountCountWithResponse request
+	MarketplaceStatsUserOrganizationCountCountWithResponse(ctx context.Context, params *MarketplaceStatsUserOrganizationCountCountParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsUserOrganizationCountCountResponse, error)
+
 	// MarketplaceUserOfferingConsentsListWithResponse request
 	MarketplaceUserOfferingConsentsListWithResponse(ctx context.Context, params *MarketplaceUserOfferingConsentsListParams, reqEditors ...RequestEditorFn) (*MarketplaceUserOfferingConsentsListResponse, error)
 
@@ -275229,6 +276001,178 @@ func (r MarketplaceStatsTotalCostOfActiveResourcesPerOfferingCountResponse) Stat
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceStatsTotalCostOfActiveResourcesPerOfferingCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceStatsUserAffiliationCountListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]UserAffiliationCount
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceStatsUserAffiliationCountListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceStatsUserAffiliationCountListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceStatsUserAffiliationCountCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceStatsUserAffiliationCountCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceStatsUserAffiliationCountCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceStatsUserAuthMethodCountListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]UserAuthMethodCount
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceStatsUserAuthMethodCountListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceStatsUserAuthMethodCountListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceStatsUserAuthMethodCountCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceStatsUserAuthMethodCountCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceStatsUserAuthMethodCountCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceStatsUserIdentitySourceCountListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]UserIdentitySourceCount
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceStatsUserIdentitySourceCountListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceStatsUserIdentitySourceCountListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceStatsUserIdentitySourceCountCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceStatsUserIdentitySourceCountCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceStatsUserIdentitySourceCountCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceStatsUserOrganizationCountListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]UserOrganizationCount
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceStatsUserOrganizationCountListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceStatsUserOrganizationCountListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceStatsUserOrganizationCountCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceStatsUserOrganizationCountCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceStatsUserOrganizationCountCountResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -305060,6 +306004,78 @@ func (c *ClientWithResponses) MarketplaceStatsTotalCostOfActiveResourcesPerOffer
 		return nil, err
 	}
 	return ParseMarketplaceStatsTotalCostOfActiveResourcesPerOfferingCountResponse(rsp)
+}
+
+// MarketplaceStatsUserAffiliationCountListWithResponse request returning *MarketplaceStatsUserAffiliationCountListResponse
+func (c *ClientWithResponses) MarketplaceStatsUserAffiliationCountListWithResponse(ctx context.Context, params *MarketplaceStatsUserAffiliationCountListParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsUserAffiliationCountListResponse, error) {
+	rsp, err := c.MarketplaceStatsUserAffiliationCountList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceStatsUserAffiliationCountListResponse(rsp)
+}
+
+// MarketplaceStatsUserAffiliationCountCountWithResponse request returning *MarketplaceStatsUserAffiliationCountCountResponse
+func (c *ClientWithResponses) MarketplaceStatsUserAffiliationCountCountWithResponse(ctx context.Context, params *MarketplaceStatsUserAffiliationCountCountParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsUserAffiliationCountCountResponse, error) {
+	rsp, err := c.MarketplaceStatsUserAffiliationCountCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceStatsUserAffiliationCountCountResponse(rsp)
+}
+
+// MarketplaceStatsUserAuthMethodCountListWithResponse request returning *MarketplaceStatsUserAuthMethodCountListResponse
+func (c *ClientWithResponses) MarketplaceStatsUserAuthMethodCountListWithResponse(ctx context.Context, params *MarketplaceStatsUserAuthMethodCountListParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsUserAuthMethodCountListResponse, error) {
+	rsp, err := c.MarketplaceStatsUserAuthMethodCountList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceStatsUserAuthMethodCountListResponse(rsp)
+}
+
+// MarketplaceStatsUserAuthMethodCountCountWithResponse request returning *MarketplaceStatsUserAuthMethodCountCountResponse
+func (c *ClientWithResponses) MarketplaceStatsUserAuthMethodCountCountWithResponse(ctx context.Context, params *MarketplaceStatsUserAuthMethodCountCountParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsUserAuthMethodCountCountResponse, error) {
+	rsp, err := c.MarketplaceStatsUserAuthMethodCountCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceStatsUserAuthMethodCountCountResponse(rsp)
+}
+
+// MarketplaceStatsUserIdentitySourceCountListWithResponse request returning *MarketplaceStatsUserIdentitySourceCountListResponse
+func (c *ClientWithResponses) MarketplaceStatsUserIdentitySourceCountListWithResponse(ctx context.Context, params *MarketplaceStatsUserIdentitySourceCountListParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsUserIdentitySourceCountListResponse, error) {
+	rsp, err := c.MarketplaceStatsUserIdentitySourceCountList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceStatsUserIdentitySourceCountListResponse(rsp)
+}
+
+// MarketplaceStatsUserIdentitySourceCountCountWithResponse request returning *MarketplaceStatsUserIdentitySourceCountCountResponse
+func (c *ClientWithResponses) MarketplaceStatsUserIdentitySourceCountCountWithResponse(ctx context.Context, params *MarketplaceStatsUserIdentitySourceCountCountParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsUserIdentitySourceCountCountResponse, error) {
+	rsp, err := c.MarketplaceStatsUserIdentitySourceCountCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceStatsUserIdentitySourceCountCountResponse(rsp)
+}
+
+// MarketplaceStatsUserOrganizationCountListWithResponse request returning *MarketplaceStatsUserOrganizationCountListResponse
+func (c *ClientWithResponses) MarketplaceStatsUserOrganizationCountListWithResponse(ctx context.Context, params *MarketplaceStatsUserOrganizationCountListParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsUserOrganizationCountListResponse, error) {
+	rsp, err := c.MarketplaceStatsUserOrganizationCountList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceStatsUserOrganizationCountListResponse(rsp)
+}
+
+// MarketplaceStatsUserOrganizationCountCountWithResponse request returning *MarketplaceStatsUserOrganizationCountCountResponse
+func (c *ClientWithResponses) MarketplaceStatsUserOrganizationCountCountWithResponse(ctx context.Context, params *MarketplaceStatsUserOrganizationCountCountParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsUserOrganizationCountCountResponse, error) {
+	rsp, err := c.MarketplaceStatsUserOrganizationCountCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceStatsUserOrganizationCountCountResponse(rsp)
 }
 
 // MarketplaceUserOfferingConsentsListWithResponse request returning *MarketplaceUserOfferingConsentsListResponse
@@ -337232,6 +338248,174 @@ func ParseMarketplaceStatsTotalCostOfActiveResourcesPerOfferingCountResponse(rsp
 	}
 
 	response := &MarketplaceStatsTotalCostOfActiveResourcesPerOfferingCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceStatsUserAffiliationCountListResponse parses an HTTP response from a MarketplaceStatsUserAffiliationCountListWithResponse call
+func ParseMarketplaceStatsUserAffiliationCountListResponse(rsp *http.Response) (*MarketplaceStatsUserAffiliationCountListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceStatsUserAffiliationCountListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []UserAffiliationCount
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceStatsUserAffiliationCountCountResponse parses an HTTP response from a MarketplaceStatsUserAffiliationCountCountWithResponse call
+func ParseMarketplaceStatsUserAffiliationCountCountResponse(rsp *http.Response) (*MarketplaceStatsUserAffiliationCountCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceStatsUserAffiliationCountCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceStatsUserAuthMethodCountListResponse parses an HTTP response from a MarketplaceStatsUserAuthMethodCountListWithResponse call
+func ParseMarketplaceStatsUserAuthMethodCountListResponse(rsp *http.Response) (*MarketplaceStatsUserAuthMethodCountListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceStatsUserAuthMethodCountListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []UserAuthMethodCount
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceStatsUserAuthMethodCountCountResponse parses an HTTP response from a MarketplaceStatsUserAuthMethodCountCountWithResponse call
+func ParseMarketplaceStatsUserAuthMethodCountCountResponse(rsp *http.Response) (*MarketplaceStatsUserAuthMethodCountCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceStatsUserAuthMethodCountCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceStatsUserIdentitySourceCountListResponse parses an HTTP response from a MarketplaceStatsUserIdentitySourceCountListWithResponse call
+func ParseMarketplaceStatsUserIdentitySourceCountListResponse(rsp *http.Response) (*MarketplaceStatsUserIdentitySourceCountListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceStatsUserIdentitySourceCountListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []UserIdentitySourceCount
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceStatsUserIdentitySourceCountCountResponse parses an HTTP response from a MarketplaceStatsUserIdentitySourceCountCountWithResponse call
+func ParseMarketplaceStatsUserIdentitySourceCountCountResponse(rsp *http.Response) (*MarketplaceStatsUserIdentitySourceCountCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceStatsUserIdentitySourceCountCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceStatsUserOrganizationCountListResponse parses an HTTP response from a MarketplaceStatsUserOrganizationCountListWithResponse call
+func ParseMarketplaceStatsUserOrganizationCountListResponse(rsp *http.Response) (*MarketplaceStatsUserOrganizationCountListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceStatsUserOrganizationCountListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []UserOrganizationCount
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceStatsUserOrganizationCountCountResponse parses an HTTP response from a MarketplaceStatsUserOrganizationCountCountWithResponse call
+func ParseMarketplaceStatsUserOrganizationCountCountResponse(rsp *http.Response) (*MarketplaceStatsUserOrganizationCountCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceStatsUserOrganizationCountCountResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
