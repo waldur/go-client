@@ -19244,6 +19244,9 @@ type OfferingCost struct {
 	// Cost Total cost for the offering
 	Cost float64 `json:"cost"`
 
+	// OfferingName Name of the offering
+	OfferingName string `json:"offering_name"`
+
 	// OfferingUuid UUID of the offering
 	OfferingUuid openapi_types.UUID `json:"offering_uuid"`
 }
