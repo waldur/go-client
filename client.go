@@ -20353,7 +20353,8 @@ type OnboardingVerification struct {
 	ErrorTraceback               *string `json:"error_traceback,omitempty"`
 
 	// ExpiresAt When this verification expires
-	ExpiresAt *time.Time `json:"expires_at"`
+	ExpiresAt      *time.Time                 `json:"expires_at"`
+	Justifications *[]OnboardingJustification `json:"justifications,omitempty"`
 
 	// LegalName Company name(optional, for reference)
 	LegalName *string `json:"legal_name,omitempty"`
