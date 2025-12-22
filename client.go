@@ -16513,6 +16513,9 @@ type GoogleCredentials struct {
 
 // GroupInvitation defines model for GroupInvitation.
 type GroupInvitation struct {
+	// AutoApprove Automatically approve permission requests from users matching email patterns or affiliations
+	AutoApprove *bool `json:"auto_approve,omitempty"`
+
 	// AutoCreateProject Create project and grant project permissions instead of customer permissions
 	AutoCreateProject *bool      `json:"auto_create_project,omitempty"`
 	Created           *time.Time `json:"created,omitempty"`
@@ -16576,6 +16579,9 @@ type GroupInvitation struct {
 
 // GroupInvitationRequest defines model for GroupInvitationRequest.
 type GroupInvitationRequest struct {
+	// AutoApprove Automatically approve permission requests from users matching email patterns or affiliations
+	AutoApprove *bool `json:"auto_approve,omitempty"`
+
 	// AutoCreateProject Create project and grant project permissions instead of customer permissions
 	AutoCreateProject *bool `json:"auto_create_project,omitempty"`
 
@@ -28803,6 +28809,9 @@ type SubNetMappingRequest struct {
 
 // SubmitRequestResponse defines model for SubmitRequestResponse.
 type SubmitRequestResponse struct {
+	// AutoApproved Whether the request was automatically approved
+	AutoApproved bool `json:"auto_approved"`
+
 	// ScopeName Name of the invitation scope
 	ScopeName string `json:"scope_name"`
 
