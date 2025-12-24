@@ -22380,8 +22380,8 @@ type OrderDetails struct {
 	Uuid               *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
-// OrderSetStateErredRequest defines model for OrderSetStateErredRequest.
-type OrderSetStateErredRequest struct {
+// OrderErrorDetailsRequest defines model for OrderErrorDetailsRequest.
+type OrderErrorDetailsRequest struct {
 	ErrorMessage   *string `json:"error_message,omitempty"`
 	ErrorTraceback *string `json:"error_traceback,omitempty"`
 }
@@ -48419,11 +48419,14 @@ type MarketplaceOfferingUsersUpdateRestrictedJSONRequestBody = OfferingUserUpdat
 // MarketplaceOrdersCreateJSONRequestBody defines body for MarketplaceOrdersCreate for application/json ContentType.
 type MarketplaceOrdersCreateJSONRequestBody = OrderCreateRequest
 
+// MarketplaceOrdersRejectByConsumerJSONRequestBody defines body for MarketplaceOrdersRejectByConsumer for application/json ContentType.
+type MarketplaceOrdersRejectByConsumerJSONRequestBody = OrderErrorDetailsRequest
+
 // MarketplaceOrdersSetBackendIdJSONRequestBody defines body for MarketplaceOrdersSetBackendId for application/json ContentType.
 type MarketplaceOrdersSetBackendIdJSONRequestBody = OrderBackendIDRequest
 
 // MarketplaceOrdersSetStateErredJSONRequestBody defines body for MarketplaceOrdersSetStateErred for application/json ContentType.
-type MarketplaceOrdersSetStateErredJSONRequestBody = OrderSetStateErredRequest
+type MarketplaceOrdersSetStateErredJSONRequestBody = OrderErrorDetailsRequest
 
 // MarketplaceOrdersUpdateAttachmentJSONRequestBody defines body for MarketplaceOrdersUpdateAttachment for application/json ContentType.
 type MarketplaceOrdersUpdateAttachmentJSONRequestBody = OrderAttachmentRequest
@@ -58388,8 +58391,10 @@ type ClientInterface interface {
 	// MarketplaceOrdersOfferingRetrieve request
 	MarketplaceOrdersOfferingRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// MarketplaceOrdersRejectByConsumer request
-	MarketplaceOrdersRejectByConsumer(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// MarketplaceOrdersRejectByConsumerWithBody request with any body
+	MarketplaceOrdersRejectByConsumerWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceOrdersRejectByConsumer(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersRejectByConsumerJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceOrdersRejectByProvider request
 	MarketplaceOrdersRejectByProvider(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -72789,8 +72794,20 @@ func (c *Client) MarketplaceOrdersOfferingRetrieve(ctx context.Context, uuid ope
 	return c.Client.Do(req)
 }
 
-func (c *Client) MarketplaceOrdersRejectByConsumer(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceOrdersRejectByConsumerRequest(c.Server, uuid)
+func (c *Client) MarketplaceOrdersRejectByConsumerWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOrdersRejectByConsumerRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOrdersRejectByConsumer(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersRejectByConsumerJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOrdersRejectByConsumerRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -142372,8 +142389,19 @@ func NewMarketplaceOrdersOfferingRetrieveRequest(server string, uuid openapi_typ
 	return req, nil
 }
 
-// NewMarketplaceOrdersRejectByConsumerRequest generates requests for MarketplaceOrdersRejectByConsumer
-func NewMarketplaceOrdersRejectByConsumerRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+// NewMarketplaceOrdersRejectByConsumerRequest calls the generic MarketplaceOrdersRejectByConsumer builder with application/json body
+func NewMarketplaceOrdersRejectByConsumerRequest(server string, uuid openapi_types.UUID, body MarketplaceOrdersRejectByConsumerJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceOrdersRejectByConsumerRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceOrdersRejectByConsumerRequestWithBody generates requests for MarketplaceOrdersRejectByConsumer with any type of body
+func NewMarketplaceOrdersRejectByConsumerRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -142398,10 +142426,12 @@ func NewMarketplaceOrdersRejectByConsumerRequest(server string, uuid openapi_typ
 		return nil, err
 	}
 
-	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	req, err := http.NewRequest("POST", queryURL.String(), body)
 	if err != nil {
 		return nil, err
 	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -250259,8 +250289,10 @@ type ClientWithResponsesInterface interface {
 	// MarketplaceOrdersOfferingRetrieveWithResponse request
 	MarketplaceOrdersOfferingRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOrdersOfferingRetrieveResponse, error)
 
-	// MarketplaceOrdersRejectByConsumerWithResponse request
-	MarketplaceOrdersRejectByConsumerWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOrdersRejectByConsumerResponse, error)
+	// MarketplaceOrdersRejectByConsumerWithBodyWithResponse request with any body
+	MarketplaceOrdersRejectByConsumerWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOrdersRejectByConsumerResponse, error)
+
+	MarketplaceOrdersRejectByConsumerWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersRejectByConsumerJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOrdersRejectByConsumerResponse, error)
 
 	// MarketplaceOrdersRejectByProviderWithResponse request
 	MarketplaceOrdersRejectByProviderWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOrdersRejectByProviderResponse, error)
@@ -301709,9 +301741,17 @@ func (c *ClientWithResponses) MarketplaceOrdersOfferingRetrieveWithResponse(ctx 
 	return ParseMarketplaceOrdersOfferingRetrieveResponse(rsp)
 }
 
-// MarketplaceOrdersRejectByConsumerWithResponse request returning *MarketplaceOrdersRejectByConsumerResponse
-func (c *ClientWithResponses) MarketplaceOrdersRejectByConsumerWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOrdersRejectByConsumerResponse, error) {
-	rsp, err := c.MarketplaceOrdersRejectByConsumer(ctx, uuid, reqEditors...)
+// MarketplaceOrdersRejectByConsumerWithBodyWithResponse request with arbitrary body returning *MarketplaceOrdersRejectByConsumerResponse
+func (c *ClientWithResponses) MarketplaceOrdersRejectByConsumerWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOrdersRejectByConsumerResponse, error) {
+	rsp, err := c.MarketplaceOrdersRejectByConsumerWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOrdersRejectByConsumerResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceOrdersRejectByConsumerWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersRejectByConsumerJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOrdersRejectByConsumerResponse, error) {
+	rsp, err := c.MarketplaceOrdersRejectByConsumer(ctx, uuid, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
