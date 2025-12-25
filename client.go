@@ -3783,6 +3783,9 @@ const (
 	CustomersListParamsFieldSlug                         CustomersListParamsField = "slug"
 	CustomersListParamsFieldSponsorNumber                CustomersListParamsField = "sponsor_number"
 	CustomersListParamsFieldUrl                          CustomersListParamsField = "url"
+	CustomersListParamsFieldUserAffiliations             CustomersListParamsField = "user_affiliations"
+	CustomersListParamsFieldUserEmailPatterns            CustomersListParamsField = "user_email_patterns"
+	CustomersListParamsFieldUserIdentitySources          CustomersListParamsField = "user_identity_sources"
 	CustomersListParamsFieldUsersCount                   CustomersListParamsField = "users_count"
 	CustomersListParamsFieldUuid                         CustomersListParamsField = "uuid"
 	CustomersListParamsFieldVatCode                      CustomersListParamsField = "vat_code"
@@ -3869,6 +3872,9 @@ const (
 	CustomersRetrieveParamsFieldSlug                         CustomersRetrieveParamsField = "slug"
 	CustomersRetrieveParamsFieldSponsorNumber                CustomersRetrieveParamsField = "sponsor_number"
 	CustomersRetrieveParamsFieldUrl                          CustomersRetrieveParamsField = "url"
+	CustomersRetrieveParamsFieldUserAffiliations             CustomersRetrieveParamsField = "user_affiliations"
+	CustomersRetrieveParamsFieldUserEmailPatterns            CustomersRetrieveParamsField = "user_email_patterns"
+	CustomersRetrieveParamsFieldUserIdentitySources          CustomersRetrieveParamsField = "user_identity_sources"
 	CustomersRetrieveParamsFieldUsersCount                   CustomersRetrieveParamsField = "users_count"
 	CustomersRetrieveParamsFieldUuid                         CustomersRetrieveParamsField = "uuid"
 	CustomersRetrieveParamsFieldVatCode                      CustomersRetrieveParamsField = "vat_code"
@@ -5905,6 +5911,9 @@ const (
 	MarketplaceProviderOfferingsListCustomerProjectsListParamsFieldTypeName                             MarketplaceProviderOfferingsListCustomerProjectsListParamsField = "type_name"
 	MarketplaceProviderOfferingsListCustomerProjectsListParamsFieldTypeUuid                             MarketplaceProviderOfferingsListCustomerProjectsListParamsField = "type_uuid"
 	MarketplaceProviderOfferingsListCustomerProjectsListParamsFieldUrl                                  MarketplaceProviderOfferingsListCustomerProjectsListParamsField = "url"
+	MarketplaceProviderOfferingsListCustomerProjectsListParamsFieldUserAffiliations                     MarketplaceProviderOfferingsListCustomerProjectsListParamsField = "user_affiliations"
+	MarketplaceProviderOfferingsListCustomerProjectsListParamsFieldUserEmailPatterns                    MarketplaceProviderOfferingsListCustomerProjectsListParamsField = "user_email_patterns"
+	MarketplaceProviderOfferingsListCustomerProjectsListParamsFieldUserIdentitySources                  MarketplaceProviderOfferingsListCustomerProjectsListParamsField = "user_identity_sources"
 	MarketplaceProviderOfferingsListCustomerProjectsListParamsFieldUuid                                 MarketplaceProviderOfferingsListCustomerProjectsListParamsField = "uuid"
 )
 
@@ -7213,6 +7222,9 @@ const (
 	MarketplaceServiceProvidersProjectsListParamsFieldTypeName                             MarketplaceServiceProvidersProjectsListParamsField = "type_name"
 	MarketplaceServiceProvidersProjectsListParamsFieldTypeUuid                             MarketplaceServiceProvidersProjectsListParamsField = "type_uuid"
 	MarketplaceServiceProvidersProjectsListParamsFieldUrl                                  MarketplaceServiceProvidersProjectsListParamsField = "url"
+	MarketplaceServiceProvidersProjectsListParamsFieldUserAffiliations                     MarketplaceServiceProvidersProjectsListParamsField = "user_affiliations"
+	MarketplaceServiceProvidersProjectsListParamsFieldUserEmailPatterns                    MarketplaceServiceProvidersProjectsListParamsField = "user_email_patterns"
+	MarketplaceServiceProvidersProjectsListParamsFieldUserIdentitySources                  MarketplaceServiceProvidersProjectsListParamsField = "user_identity_sources"
 	MarketplaceServiceProvidersProjectsListParamsFieldUuid                                 MarketplaceServiceProvidersProjectsListParamsField = "uuid"
 )
 
@@ -7754,6 +7766,9 @@ const (
 	OpenportalUnmanagedProjectsListParamsFieldTypeName                             OpenportalUnmanagedProjectsListParamsField = "type_name"
 	OpenportalUnmanagedProjectsListParamsFieldTypeUuid                             OpenportalUnmanagedProjectsListParamsField = "type_uuid"
 	OpenportalUnmanagedProjectsListParamsFieldUrl                                  OpenportalUnmanagedProjectsListParamsField = "url"
+	OpenportalUnmanagedProjectsListParamsFieldUserAffiliations                     OpenportalUnmanagedProjectsListParamsField = "user_affiliations"
+	OpenportalUnmanagedProjectsListParamsFieldUserEmailPatterns                    OpenportalUnmanagedProjectsListParamsField = "user_email_patterns"
+	OpenportalUnmanagedProjectsListParamsFieldUserIdentitySources                  OpenportalUnmanagedProjectsListParamsField = "user_identity_sources"
 	OpenportalUnmanagedProjectsListParamsFieldUuid                                 OpenportalUnmanagedProjectsListParamsField = "uuid"
 )
 
@@ -7832,6 +7847,9 @@ const (
 	OpenportalUnmanagedProjectsRetrieveParamsFieldTypeName                             OpenportalUnmanagedProjectsRetrieveParamsField = "type_name"
 	OpenportalUnmanagedProjectsRetrieveParamsFieldTypeUuid                             OpenportalUnmanagedProjectsRetrieveParamsField = "type_uuid"
 	OpenportalUnmanagedProjectsRetrieveParamsFieldUrl                                  OpenportalUnmanagedProjectsRetrieveParamsField = "url"
+	OpenportalUnmanagedProjectsRetrieveParamsFieldUserAffiliations                     OpenportalUnmanagedProjectsRetrieveParamsField = "user_affiliations"
+	OpenportalUnmanagedProjectsRetrieveParamsFieldUserEmailPatterns                    OpenportalUnmanagedProjectsRetrieveParamsField = "user_email_patterns"
+	OpenportalUnmanagedProjectsRetrieveParamsFieldUserIdentitySources                  OpenportalUnmanagedProjectsRetrieveParamsField = "user_identity_sources"
 	OpenportalUnmanagedProjectsRetrieveParamsFieldUuid                                 OpenportalUnmanagedProjectsRetrieveParamsField = "uuid"
 )
 
@@ -9606,6 +9624,9 @@ const (
 	ProjectsListParamsFieldTypeName                             ProjectsListParamsField = "type_name"
 	ProjectsListParamsFieldTypeUuid                             ProjectsListParamsField = "type_uuid"
 	ProjectsListParamsFieldUrl                                  ProjectsListParamsField = "url"
+	ProjectsListParamsFieldUserAffiliations                     ProjectsListParamsField = "user_affiliations"
+	ProjectsListParamsFieldUserEmailPatterns                    ProjectsListParamsField = "user_email_patterns"
+	ProjectsListParamsFieldUserIdentitySources                  ProjectsListParamsField = "user_identity_sources"
 	ProjectsListParamsFieldUuid                                 ProjectsListParamsField = "uuid"
 )
 
@@ -9690,6 +9711,9 @@ const (
 	ProjectsRetrieveParamsFieldTypeName                             ProjectsRetrieveParamsField = "type_name"
 	ProjectsRetrieveParamsFieldTypeUuid                             ProjectsRetrieveParamsField = "type_uuid"
 	ProjectsRetrieveParamsFieldUrl                                  ProjectsRetrieveParamsField = "url"
+	ProjectsRetrieveParamsFieldUserAffiliations                     ProjectsRetrieveParamsField = "user_affiliations"
+	ProjectsRetrieveParamsFieldUserEmailPatterns                    ProjectsRetrieveParamsField = "user_email_patterns"
+	ProjectsRetrieveParamsFieldUserIdentitySources                  ProjectsRetrieveParamsField = "user_identity_sources"
 	ProjectsRetrieveParamsFieldUuid                                 ProjectsRetrieveParamsField = "uuid"
 )
 
@@ -15282,8 +15306,13 @@ type Customer struct {
 	Slug *string `json:"slug,omitempty"`
 
 	// SponsorNumber External ID of the sponsor covering the costs
-	SponsorNumber *int    `json:"sponsor_number"`
-	Url           *string `json:"url,omitempty"`
+	SponsorNumber     *int        `json:"sponsor_number"`
+	Url               *string     `json:"url,omitempty"`
+	UserAffiliations  interface{} `json:"user_affiliations,omitempty"`
+	UserEmailPatterns interface{} `json:"user_email_patterns,omitempty"`
+
+	// UserIdentitySources List of allowed identity sources (identity providers).
+	UserIdentitySources interface{} `json:"user_identity_sources,omitempty"`
 
 	// UsersCount Number of users with access to this organization
 	UsersCount *int                `json:"users_count,omitempty"`
@@ -15537,7 +15566,12 @@ type CustomerRequest struct {
 	Slug *string `json:"slug,omitempty"`
 
 	// SponsorNumber External ID of the sponsor covering the costs
-	SponsorNumber *int `json:"sponsor_number"`
+	SponsorNumber     *int        `json:"sponsor_number"`
+	UserAffiliations  interface{} `json:"user_affiliations,omitempty"`
+	UserEmailPatterns interface{} `json:"user_email_patterns,omitempty"`
+
+	// UserIdentitySources List of allowed identity sources (identity providers).
+	UserIdentitySources interface{} `json:"user_identity_sources,omitempty"`
 
 	// VatCode VAT number
 	VatCode *string `json:"vat_code,omitempty"`
@@ -15599,7 +15633,12 @@ type CustomerRequestForm struct {
 	Slug *string `json:"slug,omitempty"`
 
 	// SponsorNumber External ID of the sponsor covering the costs
-	SponsorNumber *int `json:"sponsor_number"`
+	SponsorNumber     *int        `json:"sponsor_number"`
+	UserAffiliations  interface{} `json:"user_affiliations,omitempty"`
+	UserEmailPatterns interface{} `json:"user_email_patterns,omitempty"`
+
+	// UserIdentitySources List of allowed identity sources (identity providers).
+	UserIdentitySources interface{} `json:"user_identity_sources,omitempty"`
 
 	// VatCode VAT number
 	VatCode *string `json:"vat_code,omitempty"`
@@ -15661,7 +15700,12 @@ type CustomerRequestMultipart struct {
 	Slug *string `json:"slug,omitempty"`
 
 	// SponsorNumber External ID of the sponsor covering the costs
-	SponsorNumber *int `json:"sponsor_number"`
+	SponsorNumber     *int        `json:"sponsor_number"`
+	UserAffiliations  interface{} `json:"user_affiliations,omitempty"`
+	UserEmailPatterns interface{} `json:"user_email_patterns,omitempty"`
+
+	// UserIdentitySources List of allowed identity sources (identity providers).
+	UserIdentitySources interface{} `json:"user_identity_sources,omitempty"`
 
 	// VatCode VAT number
 	VatCode *string `json:"vat_code,omitempty"`
@@ -16574,7 +16618,10 @@ type GroupInvitation struct {
 	Url               *string             `json:"url,omitempty"`
 	UserAffiliations  interface{}         `json:"user_affiliations,omitempty"`
 	UserEmailPatterns interface{}         `json:"user_email_patterns,omitempty"`
-	Uuid              *openapi_types.UUID `json:"uuid,omitempty"`
+
+	// UserIdentitySources List of allowed identity sources (identity providers).
+	UserIdentitySources interface{}         `json:"user_identity_sources,omitempty"`
+	Uuid                *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // GroupInvitationRequest defines model for GroupInvitationRequest.
@@ -16601,6 +16648,9 @@ type GroupInvitationRequest struct {
 	Scope             *string     `json:"scope,omitempty"`
 	UserAffiliations  interface{} `json:"user_affiliations,omitempty"`
 	UserEmailPatterns interface{} `json:"user_email_patterns,omitempty"`
+
+	// UserIdentitySources List of allowed identity sources (identity providers).
+	UserIdentitySources interface{} `json:"user_identity_sources,omitempty"`
 }
 
 // GuestOsEnum defines model for GuestOsEnum.
@@ -22738,7 +22788,12 @@ type PatchedCustomerRequest struct {
 	Slug *string `json:"slug,omitempty"`
 
 	// SponsorNumber External ID of the sponsor covering the costs
-	SponsorNumber *int `json:"sponsor_number"`
+	SponsorNumber     *int        `json:"sponsor_number"`
+	UserAffiliations  interface{} `json:"user_affiliations,omitempty"`
+	UserEmailPatterns interface{} `json:"user_email_patterns,omitempty"`
+
+	// UserIdentitySources List of allowed identity sources (identity providers).
+	UserIdentitySources interface{} `json:"user_identity_sources,omitempty"`
 
 	// VatCode VAT number
 	VatCode *string `json:"vat_code,omitempty"`
@@ -22800,7 +22855,12 @@ type PatchedCustomerRequestForm struct {
 	Slug *string `json:"slug,omitempty"`
 
 	// SponsorNumber External ID of the sponsor covering the costs
-	SponsorNumber *int `json:"sponsor_number"`
+	SponsorNumber     *int        `json:"sponsor_number"`
+	UserAffiliations  interface{} `json:"user_affiliations,omitempty"`
+	UserEmailPatterns interface{} `json:"user_email_patterns,omitempty"`
+
+	// UserIdentitySources List of allowed identity sources (identity providers).
+	UserIdentitySources interface{} `json:"user_identity_sources,omitempty"`
 
 	// VatCode VAT number
 	VatCode *string `json:"vat_code,omitempty"`
@@ -22862,7 +22922,12 @@ type PatchedCustomerRequestMultipart struct {
 	Slug *string `json:"slug,omitempty"`
 
 	// SponsorNumber External ID of the sponsor covering the costs
-	SponsorNumber *int `json:"sponsor_number"`
+	SponsorNumber     *int        `json:"sponsor_number"`
+	UserAffiliations  interface{} `json:"user_affiliations,omitempty"`
+	UserEmailPatterns interface{} `json:"user_email_patterns,omitempty"`
+
+	// UserIdentitySources List of allowed identity sources (identity providers).
+	UserIdentitySources interface{} `json:"user_identity_sources,omitempty"`
 
 	// VatCode VAT number
 	VatCode *string `json:"vat_code,omitempty"`
@@ -23563,8 +23628,13 @@ type PatchedProjectRequest struct {
 	StaffNotes *string `json:"staff_notes,omitempty"`
 
 	// StartDate Project start date. Cannot be edited after the start date has arrived.
-	StartDate *openapi_types.Date `json:"start_date"`
-	Type      *string             `json:"type"`
+	StartDate         *openapi_types.Date `json:"start_date"`
+	Type              *string             `json:"type"`
+	UserAffiliations  interface{}         `json:"user_affiliations,omitempty"`
+	UserEmailPatterns interface{}         `json:"user_email_patterns,omitempty"`
+
+	// UserIdentitySources List of allowed identity sources (identity providers).
+	UserIdentitySources interface{} `json:"user_identity_sources,omitempty"`
 }
 
 // PatchedProjectRequest_OecdFos2007Code defines model for PatchedProjectRequest.OecdFos2007Code.
@@ -23598,8 +23668,13 @@ type PatchedProjectRequestForm struct {
 	StaffNotes *string `json:"staff_notes,omitempty"`
 
 	// StartDate Project start date. Cannot be edited after the start date has arrived.
-	StartDate *openapi_types.Date `json:"start_date"`
-	Type      *string             `json:"type"`
+	StartDate         *openapi_types.Date `json:"start_date"`
+	Type              *string             `json:"type"`
+	UserAffiliations  interface{}         `json:"user_affiliations,omitempty"`
+	UserEmailPatterns interface{}         `json:"user_email_patterns,omitempty"`
+
+	// UserIdentitySources List of allowed identity sources (identity providers).
+	UserIdentitySources interface{} `json:"user_identity_sources,omitempty"`
 }
 
 // PatchedProjectRequestForm_OecdFos2007Code defines model for PatchedProjectRequestForm.OecdFos2007Code.
@@ -23633,8 +23708,13 @@ type PatchedProjectRequestMultipart struct {
 	StaffNotes *string `json:"staff_notes,omitempty"`
 
 	// StartDate Project start date. Cannot be edited after the start date has arrived.
-	StartDate *openapi_types.Date `json:"start_date"`
-	Type      *string             `json:"type"`
+	StartDate         *openapi_types.Date `json:"start_date"`
+	Type              *string             `json:"type"`
+	UserAffiliations  interface{}         `json:"user_affiliations,omitempty"`
+	UserEmailPatterns interface{}         `json:"user_email_patterns,omitempty"`
+
+	// UserIdentitySources List of allowed identity sources (identity providers).
+	UserIdentitySources interface{} `json:"user_identity_sources,omitempty"`
 }
 
 // PatchedProjectRequestMultipart_OecdFos2007Code defines model for PatchedProjectRequestMultipart.OecdFos2007Code.
@@ -24611,6 +24691,11 @@ type Project struct {
 	TypeName            *string             `json:"type_name"`
 	TypeUuid            *openapi_types.UUID `json:"type_uuid"`
 	Url                 *string             `json:"url,omitempty"`
+	UserAffiliations    interface{}         `json:"user_affiliations,omitempty"`
+	UserEmailPatterns   interface{}         `json:"user_email_patterns,omitempty"`
+
+	// UserIdentitySources List of allowed identity sources (identity providers).
+	UserIdentitySources interface{}         `json:"user_identity_sources,omitempty"`
 	Uuid                *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
@@ -24854,8 +24939,13 @@ type ProjectRequest struct {
 	StaffNotes *string `json:"staff_notes,omitempty"`
 
 	// StartDate Project start date. Cannot be edited after the start date has arrived.
-	StartDate *openapi_types.Date `json:"start_date"`
-	Type      *string             `json:"type"`
+	StartDate         *openapi_types.Date `json:"start_date"`
+	Type              *string             `json:"type"`
+	UserAffiliations  interface{}         `json:"user_affiliations,omitempty"`
+	UserEmailPatterns interface{}         `json:"user_email_patterns,omitempty"`
+
+	// UserIdentitySources List of allowed identity sources (identity providers).
+	UserIdentitySources interface{} `json:"user_identity_sources,omitempty"`
 }
 
 // ProjectRequest_OecdFos2007Code defines model for ProjectRequest.OecdFos2007Code.
@@ -24889,8 +24979,13 @@ type ProjectRequestForm struct {
 	StaffNotes *string `json:"staff_notes,omitempty"`
 
 	// StartDate Project start date. Cannot be edited after the start date has arrived.
-	StartDate *openapi_types.Date `json:"start_date"`
-	Type      *string             `json:"type"`
+	StartDate         *openapi_types.Date `json:"start_date"`
+	Type              *string             `json:"type"`
+	UserAffiliations  interface{}         `json:"user_affiliations,omitempty"`
+	UserEmailPatterns interface{}         `json:"user_email_patterns,omitempty"`
+
+	// UserIdentitySources List of allowed identity sources (identity providers).
+	UserIdentitySources interface{} `json:"user_identity_sources,omitempty"`
 }
 
 // ProjectRequestForm_OecdFos2007Code defines model for ProjectRequestForm.OecdFos2007Code.
@@ -24924,8 +25019,13 @@ type ProjectRequestMultipart struct {
 	StaffNotes *string `json:"staff_notes,omitempty"`
 
 	// StartDate Project start date. Cannot be edited after the start date has arrived.
-	StartDate *openapi_types.Date `json:"start_date"`
-	Type      *string             `json:"type"`
+	StartDate         *openapi_types.Date `json:"start_date"`
+	Type              *string             `json:"type"`
+	UserAffiliations  interface{}         `json:"user_affiliations,omitempty"`
+	UserEmailPatterns interface{}         `json:"user_email_patterns,omitempty"`
+
+	// UserIdentitySources List of allowed identity sources (identity providers).
+	UserIdentitySources interface{} `json:"user_identity_sources,omitempty"`
 }
 
 // ProjectRequestMultipart_OecdFos2007Code defines model for ProjectRequestMultipart.OecdFos2007Code.
@@ -31912,6 +32012,9 @@ type ChecklistsAdminQuestionsListParams struct {
 	ChecklistType *ChecklistsAdminQuestionsListParamsChecklistType `form:"checklist_type,omitempty" json:"checklist_type,omitempty"`
 	ChecklistUuid *openapi_types.UUID                              `form:"checklist_uuid,omitempty" json:"checklist_uuid,omitempty"`
 
+	// HasOnboardingMapping Filter questions that have onboarding metadata mapping
+	HasOnboardingMapping *bool `form:"has_onboarding_mapping,omitempty" json:"has_onboarding_mapping,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
@@ -31928,6 +32031,9 @@ type ChecklistsAdminQuestionsCountParams struct {
 	//
 	ChecklistType *ChecklistsAdminQuestionsCountParamsChecklistType `form:"checklist_type,omitempty" json:"checklist_type,omitempty"`
 	ChecklistUuid *openapi_types.UUID                               `form:"checklist_uuid,omitempty" json:"checklist_uuid,omitempty"`
+
+	// HasOnboardingMapping Filter questions that have onboarding metadata mapping
+	HasOnboardingMapping *bool `form:"has_onboarding_mapping,omitempty" json:"has_onboarding_mapping,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -109618,6 +109724,22 @@ func NewChecklistsAdminQuestionsListRequest(server string, params *ChecklistsAdm
 
 		}
 
+		if params.HasOnboardingMapping != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_onboarding_mapping", runtime.ParamLocationQuery, *params.HasOnboardingMapping); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Page != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
@@ -109702,6 +109824,22 @@ func NewChecklistsAdminQuestionsCountRequest(server string, params *ChecklistsAd
 		if params.ChecklistUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "checklist_uuid", runtime.ParamLocationQuery, *params.ChecklistUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.HasOnboardingMapping != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_onboarding_mapping", runtime.ParamLocationQuery, *params.HasOnboardingMapping); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
