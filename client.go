@@ -15777,6 +15777,48 @@ type DeleteAttachmentsRequest struct {
 	AttachmentIds []openapi_types.UUID `json:"attachment_ids"`
 }
 
+// DemoPreset defines model for DemoPreset.
+type DemoPreset struct {
+	Description  *string         `json:"description,omitempty"`
+	EntityCounts *map[string]int `json:"entity_counts,omitempty"`
+	Name         *string         `json:"name,omitempty"`
+	Scenarios    *[]string       `json:"scenarios,omitempty"`
+	Title        *string         `json:"title,omitempty"`
+	Version      *string         `json:"version,omitempty"`
+}
+
+// DemoPresetLoadRequestRequest defines model for DemoPresetLoadRequestRequest.
+type DemoPresetLoadRequestRequest struct {
+	// CleanupFirst Clean up existing data before loading the preset
+	CleanupFirst *bool `json:"cleanup_first,omitempty"`
+
+	// DryRun Preview changes without applying them
+	DryRun *bool `json:"dry_run,omitempty"`
+
+	// SkipRoles Skip role import/cleanup
+	SkipRoles *bool `json:"skip_roles,omitempty"`
+
+	// SkipUsers Skip user import/cleanup
+	SkipUsers *bool `json:"skip_users,omitempty"`
+}
+
+// DemoPresetLoadResponse defines model for DemoPresetLoadResponse.
+type DemoPresetLoadResponse struct {
+	Message string            `json:"message"`
+	Output  *string           `json:"output,omitempty"`
+	Success bool              `json:"success"`
+	Users   *[]DemoPresetUser `json:"users,omitempty"`
+}
+
+// DemoPresetUser defines model for DemoPresetUser.
+type DemoPresetUser struct {
+	Email     *string `json:"email,omitempty"`
+	IsStaff   *bool   `json:"is_staff,omitempty"`
+	IsSupport *bool   `json:"is_support,omitempty"`
+	Password  string  `json:"password"`
+	Username  string  `json:"username"`
+}
+
 // DependencyLogicOperatorEnum defines model for DependencyLogicOperatorEnum.
 type DependencyLogicOperatorEnum string
 
@@ -17197,9 +17239,12 @@ type Issue struct {
 	Key                      *string             `json:"key,omitempty"`
 
 	// Link Link to issue in support system.
-	Link              *string             `json:"link,omitempty"`
-	Modified          *time.Time          `json:"modified,omitempty"`
-	Priority          *string             `json:"priority,omitempty"`
+	Link     *string    `json:"link,omitempty"`
+	Modified *time.Time `json:"modified,omitempty"`
+	Priority *string    `json:"priority,omitempty"`
+
+	// ProcessingLog Internal processing log for debugging order lifecycle events. Visible only to staff.
+	ProcessingLog     interface{}         `json:"processing_log,omitempty"`
 	Project           *string             `json:"project"`
 	ProjectName       *string             `json:"project_name"`
 	ProjectUuid       *openapi_types.UUID `json:"project_uuid"`
@@ -34839,6 +34884,24 @@ type MarketplaceCustomerServiceAccountsCountParams struct {
 // MarketplaceCustomerServiceAccountsCountParamsState defines parameters for MarketplaceCustomerServiceAccountsCount.
 type MarketplaceCustomerServiceAccountsCountParamsState string
 
+// MarketplaceDemoPresetsListListParams defines parameters for MarketplaceDemoPresetsListList.
+type MarketplaceDemoPresetsListListParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// MarketplaceDemoPresetsListCountParams defines parameters for MarketplaceDemoPresetsListCount.
+type MarketplaceDemoPresetsListCountParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
 // MarketplaceGlobalCategoriesRetrieveParams defines parameters for MarketplaceGlobalCategoriesRetrieve.
 type MarketplaceGlobalCategoriesRetrieveParams struct {
 	// CustomerUuid Filter counts by resources within a specific customer.
@@ -48468,6 +48531,9 @@ type MarketplaceCustomerServiceAccountsPartialUpdateJSONRequestBody = PatchedCus
 // MarketplaceCustomerServiceAccountsUpdateJSONRequestBody defines body for MarketplaceCustomerServiceAccountsUpdate for application/json ContentType.
 type MarketplaceCustomerServiceAccountsUpdateJSONRequestBody = CustomerServiceAccountRequest
 
+// MarketplaceDemoPresetsLoadJSONRequestBody defines body for MarketplaceDemoPresetsLoad for application/json ContentType.
+type MarketplaceDemoPresetsLoadJSONRequestBody = DemoPresetLoadRequestRequest
+
 // MarketplaceOfferingEstimatedCostPoliciesCreateJSONRequestBody defines body for MarketplaceOfferingEstimatedCostPoliciesCreate for application/json ContentType.
 type MarketplaceOfferingEstimatedCostPoliciesCreateJSONRequestBody = OfferingEstimatedCostPolicyRequest
 
@@ -58198,6 +58264,23 @@ type ClientInterface interface {
 
 	// MarketplaceCustomerServiceAccountsRotateApiKey request
 	MarketplaceCustomerServiceAccountsRotateApiKey(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceDemoPresetsInfoRetrieve request
+	MarketplaceDemoPresetsInfoRetrieve(ctx context.Context, name string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceDemoPresetsInfoCount request
+	MarketplaceDemoPresetsInfoCount(ctx context.Context, name string, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceDemoPresetsListList request
+	MarketplaceDemoPresetsListList(ctx context.Context, params *MarketplaceDemoPresetsListListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceDemoPresetsListCount request
+	MarketplaceDemoPresetsListCount(ctx context.Context, params *MarketplaceDemoPresetsListCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceDemoPresetsLoadWithBody request with any body
+	MarketplaceDemoPresetsLoadWithBody(ctx context.Context, name string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceDemoPresetsLoad(ctx context.Context, name string, body MarketplaceDemoPresetsLoadJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceGlobalCategoriesRetrieve request
 	MarketplaceGlobalCategoriesRetrieve(ctx context.Context, params *MarketplaceGlobalCategoriesRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -71564,6 +71647,78 @@ func (c *Client) MarketplaceCustomerServiceAccountsUpdate(ctx context.Context, u
 
 func (c *Client) MarketplaceCustomerServiceAccountsRotateApiKey(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceCustomerServiceAccountsRotateApiKeyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceDemoPresetsInfoRetrieve(ctx context.Context, name string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceDemoPresetsInfoRetrieveRequest(c.Server, name)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceDemoPresetsInfoCount(ctx context.Context, name string, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceDemoPresetsInfoCountRequest(c.Server, name)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceDemoPresetsListList(ctx context.Context, params *MarketplaceDemoPresetsListListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceDemoPresetsListListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceDemoPresetsListCount(ctx context.Context, params *MarketplaceDemoPresetsListCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceDemoPresetsListCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceDemoPresetsLoadWithBody(ctx context.Context, name string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceDemoPresetsLoadRequestWithBody(c.Server, name, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceDemoPresetsLoad(ctx context.Context, name string, body MarketplaceDemoPresetsLoadJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceDemoPresetsLoadRequest(c.Server, name, body)
 	if err != nil {
 		return nil, err
 	}
@@ -135196,6 +135351,251 @@ func NewMarketplaceCustomerServiceAccountsRotateApiKeyRequest(server string, uui
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewMarketplaceDemoPresetsInfoRetrieveRequest generates requests for MarketplaceDemoPresetsInfoRetrieve
+func NewMarketplaceDemoPresetsInfoRetrieveRequest(server string, name string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "name", runtime.ParamLocationPath, name)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-demo-presets/info/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceDemoPresetsInfoCountRequest generates requests for MarketplaceDemoPresetsInfoCount
+func NewMarketplaceDemoPresetsInfoCountRequest(server string, name string) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "name", runtime.ParamLocationPath, name)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-demo-presets/info/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceDemoPresetsListListRequest generates requests for MarketplaceDemoPresetsListList
+func NewMarketplaceDemoPresetsListListRequest(server string, params *MarketplaceDemoPresetsListListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-demo-presets/list/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceDemoPresetsListCountRequest generates requests for MarketplaceDemoPresetsListCount
+func NewMarketplaceDemoPresetsListCountRequest(server string, params *MarketplaceDemoPresetsListCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-demo-presets/list/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceDemoPresetsLoadRequest calls the generic MarketplaceDemoPresetsLoad builder with application/json body
+func NewMarketplaceDemoPresetsLoadRequest(server string, name string, body MarketplaceDemoPresetsLoadJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceDemoPresetsLoadRequestWithBody(server, name, "application/json", bodyReader)
+}
+
+// NewMarketplaceDemoPresetsLoadRequestWithBody generates requests for MarketplaceDemoPresetsLoad with any type of body
+func NewMarketplaceDemoPresetsLoadRequestWithBody(server string, name string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "name", runtime.ParamLocationPath, name)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-demo-presets/load/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -250274,6 +250674,23 @@ type ClientWithResponsesInterface interface {
 	// MarketplaceCustomerServiceAccountsRotateApiKeyWithResponse request
 	MarketplaceCustomerServiceAccountsRotateApiKeyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceCustomerServiceAccountsRotateApiKeyResponse, error)
 
+	// MarketplaceDemoPresetsInfoRetrieveWithResponse request
+	MarketplaceDemoPresetsInfoRetrieveWithResponse(ctx context.Context, name string, reqEditors ...RequestEditorFn) (*MarketplaceDemoPresetsInfoRetrieveResponse, error)
+
+	// MarketplaceDemoPresetsInfoCountWithResponse request
+	MarketplaceDemoPresetsInfoCountWithResponse(ctx context.Context, name string, reqEditors ...RequestEditorFn) (*MarketplaceDemoPresetsInfoCountResponse, error)
+
+	// MarketplaceDemoPresetsListListWithResponse request
+	MarketplaceDemoPresetsListListWithResponse(ctx context.Context, params *MarketplaceDemoPresetsListListParams, reqEditors ...RequestEditorFn) (*MarketplaceDemoPresetsListListResponse, error)
+
+	// MarketplaceDemoPresetsListCountWithResponse request
+	MarketplaceDemoPresetsListCountWithResponse(ctx context.Context, params *MarketplaceDemoPresetsListCountParams, reqEditors ...RequestEditorFn) (*MarketplaceDemoPresetsListCountResponse, error)
+
+	// MarketplaceDemoPresetsLoadWithBodyWithResponse request with any body
+	MarketplaceDemoPresetsLoadWithBodyWithResponse(ctx context.Context, name string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceDemoPresetsLoadResponse, error)
+
+	MarketplaceDemoPresetsLoadWithResponse(ctx context.Context, name string, body MarketplaceDemoPresetsLoadJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceDemoPresetsLoadResponse, error)
+
 	// MarketplaceGlobalCategoriesRetrieveWithResponse request
 	MarketplaceGlobalCategoriesRetrieveWithResponse(ctx context.Context, params *MarketplaceGlobalCategoriesRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceGlobalCategoriesRetrieveResponse, error)
 
@@ -266619,6 +267036,114 @@ func (r MarketplaceCustomerServiceAccountsRotateApiKeyResponse) Status() string 
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceCustomerServiceAccountsRotateApiKeyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceDemoPresetsInfoRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *DemoPreset
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceDemoPresetsInfoRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceDemoPresetsInfoRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceDemoPresetsInfoCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceDemoPresetsInfoCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceDemoPresetsInfoCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceDemoPresetsListListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]DemoPreset
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceDemoPresetsListListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceDemoPresetsListListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceDemoPresetsListCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceDemoPresetsListCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceDemoPresetsListCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceDemoPresetsLoadResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *DemoPresetLoadResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceDemoPresetsLoadResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceDemoPresetsLoadResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -301078,6 +301603,59 @@ func (c *ClientWithResponses) MarketplaceCustomerServiceAccountsRotateApiKeyWith
 	return ParseMarketplaceCustomerServiceAccountsRotateApiKeyResponse(rsp)
 }
 
+// MarketplaceDemoPresetsInfoRetrieveWithResponse request returning *MarketplaceDemoPresetsInfoRetrieveResponse
+func (c *ClientWithResponses) MarketplaceDemoPresetsInfoRetrieveWithResponse(ctx context.Context, name string, reqEditors ...RequestEditorFn) (*MarketplaceDemoPresetsInfoRetrieveResponse, error) {
+	rsp, err := c.MarketplaceDemoPresetsInfoRetrieve(ctx, name, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceDemoPresetsInfoRetrieveResponse(rsp)
+}
+
+// MarketplaceDemoPresetsInfoCountWithResponse request returning *MarketplaceDemoPresetsInfoCountResponse
+func (c *ClientWithResponses) MarketplaceDemoPresetsInfoCountWithResponse(ctx context.Context, name string, reqEditors ...RequestEditorFn) (*MarketplaceDemoPresetsInfoCountResponse, error) {
+	rsp, err := c.MarketplaceDemoPresetsInfoCount(ctx, name, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceDemoPresetsInfoCountResponse(rsp)
+}
+
+// MarketplaceDemoPresetsListListWithResponse request returning *MarketplaceDemoPresetsListListResponse
+func (c *ClientWithResponses) MarketplaceDemoPresetsListListWithResponse(ctx context.Context, params *MarketplaceDemoPresetsListListParams, reqEditors ...RequestEditorFn) (*MarketplaceDemoPresetsListListResponse, error) {
+	rsp, err := c.MarketplaceDemoPresetsListList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceDemoPresetsListListResponse(rsp)
+}
+
+// MarketplaceDemoPresetsListCountWithResponse request returning *MarketplaceDemoPresetsListCountResponse
+func (c *ClientWithResponses) MarketplaceDemoPresetsListCountWithResponse(ctx context.Context, params *MarketplaceDemoPresetsListCountParams, reqEditors ...RequestEditorFn) (*MarketplaceDemoPresetsListCountResponse, error) {
+	rsp, err := c.MarketplaceDemoPresetsListCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceDemoPresetsListCountResponse(rsp)
+}
+
+// MarketplaceDemoPresetsLoadWithBodyWithResponse request with arbitrary body returning *MarketplaceDemoPresetsLoadResponse
+func (c *ClientWithResponses) MarketplaceDemoPresetsLoadWithBodyWithResponse(ctx context.Context, name string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceDemoPresetsLoadResponse, error) {
+	rsp, err := c.MarketplaceDemoPresetsLoadWithBody(ctx, name, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceDemoPresetsLoadResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceDemoPresetsLoadWithResponse(ctx context.Context, name string, body MarketplaceDemoPresetsLoadJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceDemoPresetsLoadResponse, error) {
+	rsp, err := c.MarketplaceDemoPresetsLoad(ctx, name, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceDemoPresetsLoadResponse(rsp)
+}
+
 // MarketplaceGlobalCategoriesRetrieveWithResponse request returning *MarketplaceGlobalCategoriesRetrieveResponse
 func (c *ClientWithResponses) MarketplaceGlobalCategoriesRetrieveWithResponse(ctx context.Context, params *MarketplaceGlobalCategoriesRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceGlobalCategoriesRetrieveResponse, error) {
 	rsp, err := c.MarketplaceGlobalCategoriesRetrieve(ctx, params, reqEditors...)
@@ -328376,6 +328954,116 @@ func ParseMarketplaceCustomerServiceAccountsRotateApiKeyResponse(rsp *http.Respo
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest CustomerServiceAccount
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceDemoPresetsInfoRetrieveResponse parses an HTTP response from a MarketplaceDemoPresetsInfoRetrieveWithResponse call
+func ParseMarketplaceDemoPresetsInfoRetrieveResponse(rsp *http.Response) (*MarketplaceDemoPresetsInfoRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceDemoPresetsInfoRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest DemoPreset
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceDemoPresetsInfoCountResponse parses an HTTP response from a MarketplaceDemoPresetsInfoCountWithResponse call
+func ParseMarketplaceDemoPresetsInfoCountResponse(rsp *http.Response) (*MarketplaceDemoPresetsInfoCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceDemoPresetsInfoCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceDemoPresetsListListResponse parses an HTTP response from a MarketplaceDemoPresetsListListWithResponse call
+func ParseMarketplaceDemoPresetsListListResponse(rsp *http.Response) (*MarketplaceDemoPresetsListListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceDemoPresetsListListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []DemoPreset
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceDemoPresetsListCountResponse parses an HTTP response from a MarketplaceDemoPresetsListCountWithResponse call
+func ParseMarketplaceDemoPresetsListCountResponse(rsp *http.Response) (*MarketplaceDemoPresetsListCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceDemoPresetsListCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceDemoPresetsLoadResponse parses an HTTP response from a MarketplaceDemoPresetsLoadWithResponse call
+func ParseMarketplaceDemoPresetsLoadResponse(rsp *http.Response) (*MarketplaceDemoPresetsLoadResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceDemoPresetsLoadResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest DemoPresetLoadResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
