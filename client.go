@@ -16578,10 +16578,7 @@ type GroupInvitation struct {
 
 	// CustomerUuid UUID of the customer organization
 	CustomerUuid *openapi_types.UUID `json:"customer_uuid,omitempty"`
-
-	// Expires Expiration date and time of the invitation
-	Expires  *time.Time `json:"expires,omitempty"`
-	IsActive *bool      `json:"is_active,omitempty"`
+	IsActive     *bool               `json:"is_active,omitempty"`
 
 	// IsPublic Allow non-authenticated users to see and accept this invitation. Only staff can create public invitations.
 	IsPublic *bool `json:"is_public,omitempty"`
@@ -31476,6 +31473,9 @@ type BookingResourcesListParams struct {
 	// HasTerminateDate Has termination date
 	HasTerminateDate *bool `form:"has_terminate_date,omitempty" json:"has_terminate_date,omitempty"`
 
+	// IsAttached Filter by attached state
+	IsAttached *bool `form:"is_attached,omitempty" json:"is_attached,omitempty"`
+
 	// LexisLinksSupported LEXIS links supported
 	LexisLinksSupported *bool `form:"lexis_links_supported,omitempty" json:"lexis_links_supported,omitempty"`
 
@@ -31610,6 +31610,9 @@ type BookingResourcesCountParams struct {
 
 	// HasTerminateDate Has termination date
 	HasTerminateDate *bool `form:"has_terminate_date,omitempty" json:"has_terminate_date,omitempty"`
+
+	// IsAttached Filter by attached state
+	IsAttached *bool `form:"is_attached,omitempty" json:"is_attached,omitempty"`
 
 	// LexisLinksSupported LEXIS links supported
 	LexisLinksSupported *bool `form:"lexis_links_supported,omitempty" json:"lexis_links_supported,omitempty"`
@@ -37241,6 +37244,9 @@ type MarketplaceProviderResourcesListParams struct {
 	// HasTerminateDate Has termination date
 	HasTerminateDate *bool `form:"has_terminate_date,omitempty" json:"has_terminate_date,omitempty"`
 
+	// IsAttached Filter by attached state
+	IsAttached *bool `form:"is_attached,omitempty" json:"is_attached,omitempty"`
+
 	// LexisLinksSupported LEXIS links supported
 	LexisLinksSupported *bool `form:"lexis_links_supported,omitempty" json:"lexis_links_supported,omitempty"`
 
@@ -37374,6 +37380,9 @@ type MarketplaceProviderResourcesCountParams struct {
 
 	// HasTerminateDate Has termination date
 	HasTerminateDate *bool `form:"has_terminate_date,omitempty" json:"has_terminate_date,omitempty"`
+
+	// IsAttached Filter by attached state
+	IsAttached *bool `form:"is_attached,omitempty" json:"is_attached,omitempty"`
 
 	// LexisLinksSupported LEXIS links supported
 	LexisLinksSupported *bool `form:"lexis_links_supported,omitempty" json:"lexis_links_supported,omitempty"`
@@ -37845,6 +37854,9 @@ type MarketplaceResourcesListParams struct {
 	// HasTerminateDate Has termination date
 	HasTerminateDate *bool `form:"has_terminate_date,omitempty" json:"has_terminate_date,omitempty"`
 
+	// IsAttached Filter by attached state
+	IsAttached *bool `form:"is_attached,omitempty" json:"is_attached,omitempty"`
+
 	// LexisLinksSupported LEXIS links supported
 	LexisLinksSupported *bool `form:"lexis_links_supported,omitempty" json:"lexis_links_supported,omitempty"`
 
@@ -37978,6 +37990,9 @@ type MarketplaceResourcesCountParams struct {
 
 	// HasTerminateDate Has termination date
 	HasTerminateDate *bool `form:"has_terminate_date,omitempty" json:"has_terminate_date,omitempty"`
+
+	// IsAttached Filter by attached state
+	IsAttached *bool `form:"is_attached,omitempty" json:"is_attached,omitempty"`
 
 	// LexisLinksSupported LEXIS links supported
 	LexisLinksSupported *bool `form:"lexis_links_supported,omitempty" json:"lexis_links_supported,omitempty"`
@@ -62663,6 +62678,9 @@ type ClientInterface interface {
 	UserGroupInvitationsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	UserGroupInvitationsCreate(ctx context.Context, body UserGroupInvitationsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// UserGroupInvitationsDestroy request
+	UserGroupInvitationsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UserGroupInvitationsRetrieve request
 	UserGroupInvitationsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -91200,6 +91218,18 @@ func (c *Client) UserGroupInvitationsCreate(ctx context.Context, body UserGroupI
 	return c.Client.Do(req)
 }
 
+func (c *Client) UserGroupInvitationsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUserGroupInvitationsDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) UserGroupInvitationsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewUserGroupInvitationsRetrieveRequest(c.Server, uuid)
 	if err != nil {
@@ -104641,6 +104671,22 @@ func NewBookingResourcesListRequest(server string, params *BookingResourcesListP
 
 		}
 
+		if params.IsAttached != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_attached", runtime.ParamLocationQuery, *params.IsAttached); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.LexisLinksSupported != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "lexis_links_supported", runtime.ParamLocationQuery, *params.LexisLinksSupported); err != nil {
@@ -105317,6 +105363,22 @@ func NewBookingResourcesCountRequest(server string, params *BookingResourcesCoun
 		if params.HasTerminateDate != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_terminate_date", runtime.ParamLocationQuery, *params.HasTerminateDate); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsAttached != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_attached", runtime.ParamLocationQuery, *params.IsAttached); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -154644,6 +154706,22 @@ func NewMarketplaceProviderResourcesListRequest(server string, params *Marketpla
 
 		}
 
+		if params.IsAttached != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_attached", runtime.ParamLocationQuery, *params.IsAttached); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.LexisLinksSupported != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "lexis_links_supported", runtime.ParamLocationQuery, *params.LexisLinksSupported); err != nil {
@@ -155304,6 +155382,22 @@ func NewMarketplaceProviderResourcesCountRequest(server string, params *Marketpl
 		if params.HasTerminateDate != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_terminate_date", runtime.ParamLocationQuery, *params.HasTerminateDate); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsAttached != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_attached", runtime.ParamLocationQuery, *params.IsAttached); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -159601,6 +159695,22 @@ func NewMarketplaceResourcesListRequest(server string, params *MarketplaceResour
 
 		}
 
+		if params.IsAttached != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_attached", runtime.ParamLocationQuery, *params.IsAttached); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.LexisLinksSupported != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "lexis_links_supported", runtime.ParamLocationQuery, *params.LexisLinksSupported); err != nil {
@@ -160261,6 +160371,22 @@ func NewMarketplaceResourcesCountRequest(server string, params *MarketplaceResou
 		if params.HasTerminateDate != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_terminate_date", runtime.ParamLocationQuery, *params.HasTerminateDate); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsAttached != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_attached", runtime.ParamLocationQuery, *params.IsAttached); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -239263,6 +239389,40 @@ func NewUserGroupInvitationsCreateRequestWithBody(server string, contentType str
 	return req, nil
 }
 
+// NewUserGroupInvitationsDestroyRequest generates requests for UserGroupInvitationsDestroy
+func NewUserGroupInvitationsDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/user-group-invitations/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewUserGroupInvitationsRetrieveRequest generates requests for UserGroupInvitationsRetrieve
 func NewUserGroupInvitationsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -254593,6 +254753,9 @@ type ClientWithResponsesInterface interface {
 	UserGroupInvitationsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UserGroupInvitationsCreateResponse, error)
 
 	UserGroupInvitationsCreateWithResponse(ctx context.Context, body UserGroupInvitationsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*UserGroupInvitationsCreateResponse, error)
+
+	// UserGroupInvitationsDestroyWithResponse request
+	UserGroupInvitationsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*UserGroupInvitationsDestroyResponse, error)
 
 	// UserGroupInvitationsRetrieveWithResponse request
 	UserGroupInvitationsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*UserGroupInvitationsRetrieveResponse, error)
@@ -292646,6 +292809,27 @@ func (r UserGroupInvitationsCreateResponse) StatusCode() int {
 	return 0
 }
 
+type UserGroupInvitationsDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r UserGroupInvitationsDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r UserGroupInvitationsDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type UserGroupInvitationsRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -315194,6 +315378,15 @@ func (c *ClientWithResponses) UserGroupInvitationsCreateWithResponse(ctx context
 		return nil, err
 	}
 	return ParseUserGroupInvitationsCreateResponse(rsp)
+}
+
+// UserGroupInvitationsDestroyWithResponse request returning *UserGroupInvitationsDestroyResponse
+func (c *ClientWithResponses) UserGroupInvitationsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*UserGroupInvitationsDestroyResponse, error) {
+	rsp, err := c.UserGroupInvitationsDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUserGroupInvitationsDestroyResponse(rsp)
 }
 
 // UserGroupInvitationsRetrieveWithResponse request returning *UserGroupInvitationsRetrieveResponse
@@ -355599,6 +355792,22 @@ func ParseUserGroupInvitationsCreateResponse(rsp *http.Response) (*UserGroupInvi
 		}
 		response.JSON201 = &dest
 
+	}
+
+	return response, nil
+}
+
+// ParseUserGroupInvitationsDestroyResponse parses an HTTP response from a UserGroupInvitationsDestroyWithResponse call
+func ParseUserGroupInvitationsDestroyResponse(rsp *http.Response) (*UserGroupInvitationsDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &UserGroupInvitationsDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
 	}
 
 	return response, nil
