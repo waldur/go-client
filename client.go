@@ -13868,6 +13868,154 @@ type CategorySerializerForForNestedFieldsRequest struct {
 	Title string `json:"title"`
 }
 
+// CeleryBroker defines model for CeleryBroker.
+type CeleryBroker struct {
+	Alternates *[]string `json:"alternates,omitempty"`
+
+	// ConnectTimeout Connection timeout in seconds
+	ConnectTimeout   *int    `json:"connect_timeout,omitempty"`
+	FailoverStrategy *string `json:"failover_strategy,omitempty"`
+
+	// Heartbeat Heartbeat interval
+	Heartbeat *float64 `json:"heartbeat,omitempty"`
+
+	// Hostname Broker hostname
+	Hostname *string `json:"hostname,omitempty"`
+	Insist   *bool   `json:"insist,omitempty"`
+
+	// LoginMethod Authentication method
+	LoginMethod *string `json:"login_method,omitempty"`
+
+	// Port Broker port
+	Port *int  `json:"port,omitempty"`
+	Ssl  *bool `json:"ssl,omitempty"`
+
+	// Transport Transport protocol
+	Transport *string `json:"transport,omitempty"`
+
+	// TransportOptions Additional transport options
+	TransportOptions *map[string]interface{} `json:"transport_options,omitempty"`
+	UriPrefix        *string                 `json:"uri_prefix,omitempty"`
+
+	// Userid Broker user ID
+	Userid *string `json:"userid,omitempty"`
+
+	// VirtualHost Virtual host
+	VirtualHost *string `json:"virtual_host,omitempty"`
+}
+
+// CeleryScheduledTask defines model for CeleryScheduledTask.
+type CeleryScheduledTask struct {
+	// Eta Estimated time of arrival for the task
+	Eta *string `json:"eta,omitempty"`
+
+	// Priority Task priority level
+	Priority *int `json:"priority,omitempty"`
+
+	// Request Task request details
+	Request *CeleryTask `json:"request,omitempty"`
+}
+
+// CeleryStatsResponse defines model for CeleryStatsResponse.
+type CeleryStatsResponse struct {
+	// Active Currently executing tasks per worker. Keys are worker names, values are lists of active tasks.
+	Active *map[string][]CeleryTask `json:"active"`
+
+	// QueryTask Query results for specific tasks. May be null if no query was performed.
+	QueryTask *map[string]interface{} `json:"query_task"`
+
+	// Reserved Tasks that have been received but not yet started per worker. Keys are worker names, values are lists of reserved tasks.
+	Reserved *map[string][]CeleryTask `json:"reserved"`
+
+	// Revoked IDs of revoked (cancelled) tasks per worker. Keys are worker names, values are lists of task IDs.
+	Revoked *map[string][]string `json:"revoked"`
+
+	// Scheduled Tasks scheduled for future execution per worker. Keys are worker names, values are lists of scheduled tasks with ETA.
+	Scheduled *map[string][]CeleryScheduledTask `json:"scheduled"`
+
+	// Stats Detailed statistics per worker including uptime, pool info, and resource usage. Keys are worker names.
+	Stats *map[string]CeleryWorkerStats `json:"stats"`
+}
+
+// CeleryTask defines model for CeleryTask.
+type CeleryTask struct {
+	// Acknowledged Whether task has been acknowledged
+	Acknowledged *bool `json:"acknowledged,omitempty"`
+
+	// Args Positional arguments passed to the task
+	Args *[]interface{} `json:"args,omitempty"`
+
+	// DeliveryInfo Message delivery information
+	DeliveryInfo *map[string]interface{} `json:"delivery_info,omitempty"`
+
+	// Hostname Worker hostname executing the task
+	Hostname *string `json:"hostname,omitempty"`
+
+	// Id Unique task identifier
+	Id *string `json:"id,omitempty"`
+
+	// Kwargs Keyword arguments passed to the task
+	Kwargs *map[string]interface{} `json:"kwargs,omitempty"`
+
+	// Name Name of the task
+	Name *string `json:"name,omitempty"`
+
+	// TimeStart Unix timestamp when task started
+	TimeStart *float64 `json:"time_start,omitempty"`
+
+	// Type Task type
+	Type *string `json:"type,omitempty"`
+
+	// WorkerPid Worker process ID
+	WorkerPid *int `json:"worker_pid,omitempty"`
+}
+
+// CeleryWorkerPool defines model for CeleryWorkerPool.
+type CeleryWorkerPool struct {
+	// MaxConcurrency Maximum number of concurrent processes
+	MaxConcurrency *int `json:"max_concurrency,omitempty"`
+
+	// MaxTasksPerChild Maximum tasks per child process
+	MaxTasksPerChild *int `json:"max_tasks_per_child,omitempty"`
+
+	// Processes List of worker process IDs
+	Processes             *[]int `json:"processes,omitempty"`
+	PutGuardedBySemaphore *bool  `json:"put_guarded_by_semaphore,omitempty"`
+
+	// Timeouts Timeout values
+	Timeouts *[]int `json:"timeouts,omitempty"`
+
+	// Writes Write statistics
+	Writes *map[string]interface{} `json:"writes,omitempty"`
+}
+
+// CeleryWorkerStats defines model for CeleryWorkerStats.
+type CeleryWorkerStats struct {
+	// Broker Broker connection information
+	Broker *CeleryBroker `json:"broker,omitempty"`
+
+	// Clock Logical clock value
+	Clock *string `json:"clock,omitempty"`
+
+	// Pid Worker process ID
+	Pid *int `json:"pid,omitempty"`
+
+	// Pool Worker pool statistics
+	Pool *CeleryWorkerPool `json:"pool,omitempty"`
+
+	// PrefetchCount Number of tasks prefetched
+	PrefetchCount *int `json:"prefetch_count,omitempty"`
+
+	// Rusage Resource usage statistics
+	Rusage *map[string]interface{} `json:"rusage,omitempty"`
+
+	// Total Total task counts by type
+	Total *map[string]interface{} `json:"total,omitempty"`
+
+	// Uptime Worker uptime in seconds
+	Uptime *float64 `json:"uptime,omitempty"`
+}
+
 // ChatRequestRequest defines model for ChatRequestRequest.
 type ChatRequestRequest struct {
 	// Input User input text for the chat model.
@@ -259655,7 +259803,7 @@ func (r CallRoundsReviewersListResponse) StatusCode() int {
 type CeleryStatsRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *map[string]interface{}
+	JSON200      *CeleryStatsResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -321233,7 +321381,7 @@ func ParseCeleryStatsRetrieveResponse(rsp *http.Response) (*CeleryStatsRetrieveR
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest map[string]interface{}
+		var dest CeleryStatsResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
