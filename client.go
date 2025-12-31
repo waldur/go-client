@@ -24435,6 +24435,9 @@ type PatchedTemplateRequest struct {
 type PatchedUserAgreementRequest struct {
 	AgreementType *AgreementTypeEnum `json:"agreement_type,omitempty"`
 	Content       *string            `json:"content,omitempty"`
+
+	// Language ISO 639-1 language code (e.g., 'en', 'de', 'et'). Leave empty for the default version.
+	Language *string `json:"language,omitempty"`
 }
 
 // PatchedUserInfoRequest defines model for PatchedUserInfoRequest.
@@ -29449,18 +29452,24 @@ type UserAffiliationCount struct {
 
 // UserAgreement defines model for UserAgreement.
 type UserAgreement struct {
-	AgreementType AgreementTypeEnum   `json:"agreement_type"`
-	Content       string              `json:"content"`
-	Created       *time.Time          `json:"created,omitempty"`
-	Modified      *time.Time          `json:"modified,omitempty"`
-	Url           *string             `json:"url,omitempty"`
-	Uuid          *openapi_types.UUID `json:"uuid,omitempty"`
+	AgreementType AgreementTypeEnum `json:"agreement_type"`
+	Content       string            `json:"content"`
+	Created       *time.Time        `json:"created,omitempty"`
+
+	// Language ISO 639-1 language code (e.g., 'en', 'de', 'et'). Leave empty for the default version.
+	Language string              `json:"language"`
+	Modified *time.Time          `json:"modified,omitempty"`
+	Url      *string             `json:"url,omitempty"`
+	Uuid     *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // UserAgreementRequest defines model for UserAgreementRequest.
 type UserAgreementRequest struct {
 	AgreementType AgreementTypeEnum `json:"agreement_type"`
 	Content       string            `json:"content"`
+
+	// Language ISO 639-1 language code (e.g., 'en', 'de', 'et'). Leave empty for the default version.
+	Language string `json:"language"`
 }
 
 // UserAuthMethodCount defines model for UserAuthMethodCount.
