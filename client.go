@@ -10032,6 +10032,7 @@ const (
 	ProposalProtectedCallsListParamsFieldManagerUuid                         ProposalProtectedCallsListParamsField = "manager_uuid"
 	ProposalProtectedCallsListParamsFieldName                                ProposalProtectedCallsListParamsField = "name"
 	ProposalProtectedCallsListParamsFieldOfferings                           ProposalProtectedCallsListParamsField = "offerings"
+	ProposalProtectedCallsListParamsFieldProposalSlugTemplate                ProposalProtectedCallsListParamsField = "proposal_slug_template"
 	ProposalProtectedCallsListParamsFieldReferenceCode                       ProposalProtectedCallsListParamsField = "reference_code"
 	ProposalProtectedCallsListParamsFieldResourceTemplates                   ProposalProtectedCallsListParamsField = "resource_templates"
 	ProposalProtectedCallsListParamsFieldReviewerIdentityVisibleToSubmitters ProposalProtectedCallsListParamsField = "reviewer_identity_visible_to_submitters"
@@ -10130,6 +10131,7 @@ const (
 	ProposalProtectedCallsRetrieveParamsFieldManagerUuid                         ProposalProtectedCallsRetrieveParamsField = "manager_uuid"
 	ProposalProtectedCallsRetrieveParamsFieldName                                ProposalProtectedCallsRetrieveParamsField = "name"
 	ProposalProtectedCallsRetrieveParamsFieldOfferings                           ProposalProtectedCallsRetrieveParamsField = "offerings"
+	ProposalProtectedCallsRetrieveParamsFieldProposalSlugTemplate                ProposalProtectedCallsRetrieveParamsField = "proposal_slug_template"
 	ProposalProtectedCallsRetrieveParamsFieldReferenceCode                       ProposalProtectedCallsRetrieveParamsField = "reference_code"
 	ProposalProtectedCallsRetrieveParamsFieldResourceTemplates                   ProposalProtectedCallsRetrieveParamsField = "resource_templates"
 	ProposalProtectedCallsRetrieveParamsFieldReviewerIdentityVisibleToSubmitters ProposalProtectedCallsRetrieveParamsField = "reviewer_identity_visible_to_submitters"
@@ -23987,7 +23989,10 @@ type PatchedProtectedCallRequest struct {
 	ExternalUrl         *string             `json:"external_url"`
 	FixedDurationInDays *int                `json:"fixed_duration_in_days"`
 	Name                *string             `json:"name,omitempty"`
-	ReferenceCode       *string             `json:"reference_code,omitempty"`
+
+	// ProposalSlugTemplate Template for proposal slugs. Supports: {call_slug}, {round_slug}, {org_slug}, {year}, {month}, {counter}, {counter_padded}. Default: {round_slug}-{counter_padded}
+	ProposalSlugTemplate *string `json:"proposal_slug_template"`
+	ReferenceCode        *string `json:"reference_code,omitempty"`
 
 	// ReviewerIdentityVisibleToSubmitters Whether proposal submitters can see reviewer identities
 	ReviewerIdentityVisibleToSubmitters *bool `json:"reviewer_identity_visible_to_submitters,omitempty"`
@@ -25593,8 +25598,11 @@ type ProtectedCall struct {
 	ManagerUuid             *openapi_types.UUID        `json:"manager_uuid,omitempty"`
 	Name                    *string                    `json:"name,omitempty"`
 	Offerings               *[]NestedRequestedOffering `json:"offerings,omitempty"`
-	ReferenceCode           *string                    `json:"reference_code,omitempty"`
-	ResourceTemplates       *[]CallResourceTemplate    `json:"resource_templates,omitempty"`
+
+	// ProposalSlugTemplate Template for proposal slugs. Supports: {call_slug}, {round_slug}, {org_slug}, {year}, {month}, {counter}, {counter_padded}. Default: {round_slug}-{counter_padded}
+	ProposalSlugTemplate *string                 `json:"proposal_slug_template"`
+	ReferenceCode        *string                 `json:"reference_code,omitempty"`
+	ResourceTemplates    *[]CallResourceTemplate `json:"resource_templates,omitempty"`
 
 	// ReviewerIdentityVisibleToSubmitters Whether proposal submitters can see reviewer identities
 	ReviewerIdentityVisibleToSubmitters *bool `json:"reviewer_identity_visible_to_submitters,omitempty"`
@@ -25623,7 +25631,10 @@ type ProtectedCallRequest struct {
 	FixedDurationInDays *int                `json:"fixed_duration_in_days"`
 	Manager             string              `json:"manager"`
 	Name                string              `json:"name"`
-	ReferenceCode       *string             `json:"reference_code,omitempty"`
+
+	// ProposalSlugTemplate Template for proposal slugs. Supports: {call_slug}, {round_slug}, {org_slug}, {year}, {month}, {counter}, {counter_padded}. Default: {round_slug}-{counter_padded}
+	ProposalSlugTemplate *string `json:"proposal_slug_template"`
+	ReferenceCode        *string `json:"reference_code,omitempty"`
 
 	// ReviewerIdentityVisibleToSubmitters Whether proposal submitters can see reviewer identities
 	ReviewerIdentityVisibleToSubmitters *bool `json:"reviewer_identity_visible_to_submitters,omitempty"`
