@@ -25437,14 +25437,20 @@ type ProposalChecklistAnswerSubmitResponse struct {
 	Detail     string                      `json:"detail"`
 }
 
+// ProposalDetachDocumentsRequest defines model for ProposalDetachDocumentsRequest.
+type ProposalDetachDocumentsRequest struct {
+	Documents []openapi_types.UUID `json:"documents"`
+}
+
 // ProposalDocumentation defines model for ProposalDocumentation.
 type ProposalDocumentation struct {
 	Created *time.Time `json:"created,omitempty"`
 
 	// File Upload supporting documentation in PDF format.
-	File     *string `json:"file"`
-	FileName *string `json:"file_name,omitempty"`
-	FileSize *int    `json:"file_size,omitempty"`
+	File     *string             `json:"file"`
+	FileName *string             `json:"file_name,omitempty"`
+	FileSize *int                `json:"file_size,omitempty"`
+	Uuid     *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // ProposalDocumentationRequest defines model for ProposalDocumentationRequest.
@@ -26400,6 +26406,7 @@ type QuestionWithAnswer struct {
 
 	// AllowedMimeTypes List of allowed MIME types (e.g., ['application/pdf', 'application/msword']). If empty, MIME type validation is not enforced. When both extensions and MIME types are specified, files must match both criteria for security.
 	AllowedMimeTypes interface{}             `json:"allowed_mime_types,omitempty"`
+	DependenciesInfo *map[string]interface{} `json:"dependencies_info"`
 	Description      *string                 `json:"description,omitempty"`
 	ExistingAnswer   *map[string]interface{} `json:"existing_answer"`
 
@@ -26434,6 +26441,7 @@ type QuestionWithAnswerReviewer struct {
 
 	// AlwaysRequiresReview This question always requires review regardless of answer
 	AlwaysRequiresReview *bool                   `json:"always_requires_review,omitempty"`
+	DependenciesInfo     *map[string]interface{} `json:"dependencies_info"`
 	Description          *string                 `json:"description,omitempty"`
 	ExistingAnswer       *map[string]interface{} `json:"existing_answer"`
 
@@ -35787,6 +35795,12 @@ type MarketplaceOfferingUsersRetrieveParams struct {
 // MarketplaceOfferingUsersRetrieveParamsField defines parameters for MarketplaceOfferingUsersRetrieve.
 type MarketplaceOfferingUsersRetrieveParamsField string
 
+// MarketplaceOfferingUsersChecklistRetrieveParams defines parameters for MarketplaceOfferingUsersChecklistRetrieve.
+type MarketplaceOfferingUsersChecklistRetrieveParams struct {
+	// IncludeAll If true, returns all questions including hidden ones (for dynamic form visibility). Default: false.
+	IncludeAll *bool `form:"include_all,omitempty" json:"include_all,omitempty"`
+}
+
 // MarketplaceOfferingUsersSubmitAnswersJSONBody defines parameters for MarketplaceOfferingUsersSubmitAnswers.
 type MarketplaceOfferingUsersSubmitAnswersJSONBody = []AnswerSubmitRequest
 
@@ -40357,6 +40371,12 @@ type OnboardingVerificationsChecklistTemplateCountParams struct {
 	ParentUuid openapi_types.UUID `form:"parent_uuid" json:"parent_uuid"`
 }
 
+// OnboardingVerificationsChecklistRetrieveParams defines parameters for OnboardingVerificationsChecklistRetrieve.
+type OnboardingVerificationsChecklistRetrieveParams struct {
+	// IncludeAll If true, returns all questions including hidden ones (for dynamic form visibility). Default: false.
+	IncludeAll *bool `form:"include_all,omitempty" json:"include_all,omitempty"`
+}
+
 // OnboardingVerificationsSubmitAnswersJSONBody defines parameters for OnboardingVerificationsSubmitAnswers.
 type OnboardingVerificationsSubmitAnswersJSONBody = []AnswerSubmitRequest
 
@@ -40979,6 +40999,12 @@ type OpenportalUnmanagedProjectsRetrieveParams struct {
 
 // OpenportalUnmanagedProjectsRetrieveParamsField defines parameters for OpenportalUnmanagedProjectsRetrieve.
 type OpenportalUnmanagedProjectsRetrieveParamsField string
+
+// OpenportalUnmanagedProjectsChecklistRetrieveParams defines parameters for OpenportalUnmanagedProjectsChecklistRetrieve.
+type OpenportalUnmanagedProjectsChecklistRetrieveParams struct {
+	// IncludeAll If true, returns all questions including hidden ones (for dynamic form visibility). Default: false.
+	IncludeAll *bool `form:"include_all,omitempty" json:"include_all,omitempty"`
+}
 
 // OpenportalUnmanagedProjectsListUsersListParams defines parameters for OpenportalUnmanagedProjectsListUsersList.
 type OpenportalUnmanagedProjectsListUsersListParams struct {
@@ -44176,6 +44202,12 @@ type ProjectsRetrieveParams struct {
 // ProjectsRetrieveParamsField defines parameters for ProjectsRetrieve.
 type ProjectsRetrieveParamsField string
 
+// ProjectsChecklistRetrieveParams defines parameters for ProjectsChecklistRetrieve.
+type ProjectsChecklistRetrieveParams struct {
+	// IncludeAll If true, returns all questions including hidden ones (for dynamic form visibility). Default: false.
+	IncludeAll *bool `form:"include_all,omitempty" json:"include_all,omitempty"`
+}
+
 // ProjectsListUsersListParams defines parameters for ProjectsListUsersList.
 type ProjectsListUsersListParams struct {
 	// Field Fields to include in response
@@ -44382,6 +44414,12 @@ type ProposalProposalsChecklistTemplateRetrieveParams struct {
 type ProposalProposalsChecklistTemplateCountParams struct {
 	// ParentUuid UUID of the parent object (e.g., customer UUID for new projects)
 	ParentUuid openapi_types.UUID `form:"parent_uuid" json:"parent_uuid"`
+}
+
+// ProposalProposalsChecklistRetrieveParams defines parameters for ProposalProposalsChecklistRetrieve.
+type ProposalProposalsChecklistRetrieveParams struct {
+	// IncludeAll If true, returns all questions including hidden ones (for dynamic form visibility). Default: false.
+	IncludeAll *bool `form:"include_all,omitempty" json:"include_all,omitempty"`
 }
 
 // ProposalProposalsListUsersListParams defines parameters for ProposalProposalsListUsersList.
@@ -49756,6 +49794,9 @@ type ProposalProposalsAttachDocumentMultipartRequestBody = ProposalDocumentation
 
 // ProposalProposalsDeleteUserJSONRequestBody defines body for ProposalProposalsDeleteUser for application/json ContentType.
 type ProposalProposalsDeleteUserJSONRequestBody = UserRoleDeleteRequest
+
+// ProposalProposalsDetachDocumentsJSONRequestBody defines body for ProposalProposalsDetachDocuments for application/json ContentType.
+type ProposalProposalsDetachDocumentsJSONRequestBody = ProposalDetachDocumentsRequest
 
 // ProposalProposalsRejectJSONRequestBody defines body for ProposalProposalsReject for application/json ContentType.
 type ProposalProposalsRejectJSONRequestBody = ProposalApproveRequest
@@ -58691,7 +58732,7 @@ type ClientInterface interface {
 	MarketplaceOfferingUsersBeginCreating(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceOfferingUsersChecklistRetrieve request
-	MarketplaceOfferingUsersChecklistRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+	MarketplaceOfferingUsersChecklistRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceOfferingUsersChecklistRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceOfferingUsersChecklistReviewRetrieve request
 	MarketplaceOfferingUsersChecklistReviewRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -60404,7 +60445,7 @@ type ClientInterface interface {
 	OnboardingVerificationsUpdate(ctx context.Context, uuid openapi_types.UUID, body OnboardingVerificationsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OnboardingVerificationsChecklistRetrieve request
-	OnboardingVerificationsChecklistRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+	OnboardingVerificationsChecklistRetrieve(ctx context.Context, uuid openapi_types.UUID, params *OnboardingVerificationsChecklistRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OnboardingVerificationsCompletionStatusRetrieve request
 	OnboardingVerificationsCompletionStatusRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -60673,7 +60714,7 @@ type ClientInterface interface {
 	OpenportalUnmanagedProjectsAddUser(ctx context.Context, uuid openapi_types.UUID, body OpenportalUnmanagedProjectsAddUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenportalUnmanagedProjectsChecklistRetrieve request
-	OpenportalUnmanagedProjectsChecklistRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+	OpenportalUnmanagedProjectsChecklistRetrieve(ctx context.Context, uuid openapi_types.UUID, params *OpenportalUnmanagedProjectsChecklistRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenportalUnmanagedProjectsCompletionStatusRetrieve request
 	OpenportalUnmanagedProjectsCompletionStatusRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -61626,7 +61667,7 @@ type ClientInterface interface {
 	ProjectsAddUser(ctx context.Context, uuid openapi_types.UUID, body ProjectsAddUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProjectsChecklistRetrieve request
-	ProjectsChecklistRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ProjectsChecklistRetrieve(ctx context.Context, uuid openapi_types.UUID, params *ProjectsChecklistRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProjectsCompletionStatusRetrieve request
 	ProjectsCompletionStatusRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -61740,7 +61781,7 @@ type ClientInterface interface {
 	ProposalProposalsAttachDocumentWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsAttachDocumentFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProposalProposalsChecklistRetrieve request
-	ProposalProposalsChecklistRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+	ProposalProposalsChecklistRetrieve(ctx context.Context, uuid openapi_types.UUID, params *ProposalProposalsChecklistRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProposalProposalsChecklistReviewRetrieve request
 	ProposalProposalsChecklistReviewRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -61755,6 +61796,11 @@ type ClientInterface interface {
 	ProposalProposalsDeleteUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	ProposalProposalsDeleteUser(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsDeleteUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProposalProposalsDetachDocumentsWithBody request with any body
+	ProposalProposalsDetachDocumentsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ProposalProposalsDetachDocuments(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsDetachDocumentsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProposalProposalsListUsersList request
 	ProposalProposalsListUsersList(ctx context.Context, uuid openapi_types.UUID, params *ProposalProposalsListUsersListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -72874,8 +72920,8 @@ func (c *Client) MarketplaceOfferingUsersBeginCreating(ctx context.Context, uuid
 	return c.Client.Do(req)
 }
 
-func (c *Client) MarketplaceOfferingUsersChecklistRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceOfferingUsersChecklistRetrieveRequest(c.Server, uuid)
+func (c *Client) MarketplaceOfferingUsersChecklistRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceOfferingUsersChecklistRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingUsersChecklistRetrieveRequest(c.Server, uuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -80410,8 +80456,8 @@ func (c *Client) OnboardingVerificationsUpdate(ctx context.Context, uuid openapi
 	return c.Client.Do(req)
 }
 
-func (c *Client) OnboardingVerificationsChecklistRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOnboardingVerificationsChecklistRetrieveRequest(c.Server, uuid)
+func (c *Client) OnboardingVerificationsChecklistRetrieve(ctx context.Context, uuid openapi_types.UUID, params *OnboardingVerificationsChecklistRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOnboardingVerificationsChecklistRetrieveRequest(c.Server, uuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -81598,8 +81644,8 @@ func (c *Client) OpenportalUnmanagedProjectsAddUser(ctx context.Context, uuid op
 	return c.Client.Do(req)
 }
 
-func (c *Client) OpenportalUnmanagedProjectsChecklistRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOpenportalUnmanagedProjectsChecklistRetrieveRequest(c.Server, uuid)
+func (c *Client) OpenportalUnmanagedProjectsChecklistRetrieve(ctx context.Context, uuid openapi_types.UUID, params *OpenportalUnmanagedProjectsChecklistRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenportalUnmanagedProjectsChecklistRetrieveRequest(c.Server, uuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -85786,8 +85832,8 @@ func (c *Client) ProjectsAddUser(ctx context.Context, uuid openapi_types.UUID, b
 	return c.Client.Do(req)
 }
 
-func (c *Client) ProjectsChecklistRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewProjectsChecklistRetrieveRequest(c.Server, uuid)
+func (c *Client) ProjectsChecklistRetrieve(ctx context.Context, uuid openapi_types.UUID, params *ProjectsChecklistRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProjectsChecklistRetrieveRequest(c.Server, uuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -86290,8 +86336,8 @@ func (c *Client) ProposalProposalsAttachDocumentWithFormdataBody(ctx context.Con
 	return c.Client.Do(req)
 }
 
-func (c *Client) ProposalProposalsChecklistRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewProposalProposalsChecklistRetrieveRequest(c.Server, uuid)
+func (c *Client) ProposalProposalsChecklistRetrieve(ctx context.Context, uuid openapi_types.UUID, params *ProposalProposalsChecklistRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProposalsChecklistRetrieveRequest(c.Server, uuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -86352,6 +86398,30 @@ func (c *Client) ProposalProposalsDeleteUserWithBody(ctx context.Context, uuid o
 
 func (c *Client) ProposalProposalsDeleteUser(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsDeleteUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProposalProposalsDeleteUserRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProposalProposalsDetachDocumentsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProposalsDetachDocumentsRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProposalProposalsDetachDocuments(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsDetachDocumentsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProposalsDetachDocumentsRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -141448,7 +141518,7 @@ func NewMarketplaceOfferingUsersBeginCreatingRequest(server string, uuid openapi
 }
 
 // NewMarketplaceOfferingUsersChecklistRetrieveRequest generates requests for MarketplaceOfferingUsersChecklistRetrieve
-func NewMarketplaceOfferingUsersChecklistRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+func NewMarketplaceOfferingUsersChecklistRetrieveRequest(server string, uuid openapi_types.UUID, params *MarketplaceOfferingUsersChecklistRetrieveParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -141471,6 +141541,28 @@ func NewMarketplaceOfferingUsersChecklistRetrieveRequest(server string, uuid ope
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.IncludeAll != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "include_all", runtime.ParamLocationQuery, *params.IncludeAll); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
 	}
 
 	req, err := http.NewRequest("GET", queryURL.String(), nil)
@@ -180604,7 +180696,7 @@ func NewOnboardingVerificationsUpdateRequestWithBody(server string, uuid openapi
 }
 
 // NewOnboardingVerificationsChecklistRetrieveRequest generates requests for OnboardingVerificationsChecklistRetrieve
-func NewOnboardingVerificationsChecklistRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+func NewOnboardingVerificationsChecklistRetrieveRequest(server string, uuid openapi_types.UUID, params *OnboardingVerificationsChecklistRetrieveParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -180627,6 +180719,28 @@ func NewOnboardingVerificationsChecklistRetrieveRequest(server string, uuid open
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.IncludeAll != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "include_all", runtime.ParamLocationQuery, *params.IncludeAll); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
 	}
 
 	req, err := http.NewRequest("GET", queryURL.String(), nil)
@@ -186573,7 +186687,7 @@ func NewOpenportalUnmanagedProjectsAddUserRequestWithBody(server string, uuid op
 }
 
 // NewOpenportalUnmanagedProjectsChecklistRetrieveRequest generates requests for OpenportalUnmanagedProjectsChecklistRetrieve
-func NewOpenportalUnmanagedProjectsChecklistRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+func NewOpenportalUnmanagedProjectsChecklistRetrieveRequest(server string, uuid openapi_types.UUID, params *OpenportalUnmanagedProjectsChecklistRetrieveParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -186596,6 +186710,28 @@ func NewOpenportalUnmanagedProjectsChecklistRetrieveRequest(server string, uuid 
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.IncludeAll != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "include_all", runtime.ParamLocationQuery, *params.IncludeAll); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
 	}
 
 	req, err := http.NewRequest("GET", queryURL.String(), nil)
@@ -211770,7 +211906,7 @@ func NewProjectsAddUserRequestWithBody(server string, uuid openapi_types.UUID, c
 }
 
 // NewProjectsChecklistRetrieveRequest generates requests for ProjectsChecklistRetrieve
-func NewProjectsChecklistRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+func NewProjectsChecklistRetrieveRequest(server string, uuid openapi_types.UUID, params *ProjectsChecklistRetrieveParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -211793,6 +211929,28 @@ func NewProjectsChecklistRetrieveRequest(server string, uuid openapi_types.UUID)
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.IncludeAll != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "include_all", runtime.ParamLocationQuery, *params.IncludeAll); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
 	}
 
 	req, err := http.NewRequest("GET", queryURL.String(), nil)
@@ -213884,7 +214042,7 @@ func NewProposalProposalsAttachDocumentRequestWithBody(server string, uuid opena
 }
 
 // NewProposalProposalsChecklistRetrieveRequest generates requests for ProposalProposalsChecklistRetrieve
-func NewProposalProposalsChecklistRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+func NewProposalProposalsChecklistRetrieveRequest(server string, uuid openapi_types.UUID, params *ProposalProposalsChecklistRetrieveParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -213907,6 +214065,28 @@ func NewProposalProposalsChecklistRetrieveRequest(server string, uuid openapi_ty
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.IncludeAll != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "include_all", runtime.ParamLocationQuery, *params.IncludeAll); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
 	}
 
 	req, err := http.NewRequest("GET", queryURL.String(), nil)
@@ -214047,6 +214227,53 @@ func NewProposalProposalsDeleteUserRequestWithBody(server string, uuid openapi_t
 	}
 
 	operationPath := fmt.Sprintf("/api/proposal-proposals/%s/delete_user/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewProposalProposalsDetachDocumentsRequest calls the generic ProposalProposalsDetachDocuments builder with application/json body
+func NewProposalProposalsDetachDocumentsRequest(server string, uuid openapi_types.UUID, body ProposalProposalsDetachDocumentsJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewProposalProposalsDetachDocumentsRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewProposalProposalsDetachDocumentsRequestWithBody generates requests for ProposalProposalsDetachDocuments with any type of body
+func NewProposalProposalsDetachDocumentsRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/proposal-proposals/%s/detach_documents/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -251132,7 +251359,7 @@ type ClientWithResponsesInterface interface {
 	MarketplaceOfferingUsersBeginCreatingWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersBeginCreatingResponse, error)
 
 	// MarketplaceOfferingUsersChecklistRetrieveWithResponse request
-	MarketplaceOfferingUsersChecklistRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersChecklistRetrieveResponse, error)
+	MarketplaceOfferingUsersChecklistRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceOfferingUsersChecklistRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersChecklistRetrieveResponse, error)
 
 	// MarketplaceOfferingUsersChecklistReviewRetrieveWithResponse request
 	MarketplaceOfferingUsersChecklistReviewRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersChecklistReviewRetrieveResponse, error)
@@ -252845,7 +253072,7 @@ type ClientWithResponsesInterface interface {
 	OnboardingVerificationsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OnboardingVerificationsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OnboardingVerificationsUpdateResponse, error)
 
 	// OnboardingVerificationsChecklistRetrieveWithResponse request
-	OnboardingVerificationsChecklistRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OnboardingVerificationsChecklistRetrieveResponse, error)
+	OnboardingVerificationsChecklistRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *OnboardingVerificationsChecklistRetrieveParams, reqEditors ...RequestEditorFn) (*OnboardingVerificationsChecklistRetrieveResponse, error)
 
 	// OnboardingVerificationsCompletionStatusRetrieveWithResponse request
 	OnboardingVerificationsCompletionStatusRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OnboardingVerificationsCompletionStatusRetrieveResponse, error)
@@ -253114,7 +253341,7 @@ type ClientWithResponsesInterface interface {
 	OpenportalUnmanagedProjectsAddUserWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenportalUnmanagedProjectsAddUserJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenportalUnmanagedProjectsAddUserResponse, error)
 
 	// OpenportalUnmanagedProjectsChecklistRetrieveWithResponse request
-	OpenportalUnmanagedProjectsChecklistRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenportalUnmanagedProjectsChecklistRetrieveResponse, error)
+	OpenportalUnmanagedProjectsChecklistRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *OpenportalUnmanagedProjectsChecklistRetrieveParams, reqEditors ...RequestEditorFn) (*OpenportalUnmanagedProjectsChecklistRetrieveResponse, error)
 
 	// OpenportalUnmanagedProjectsCompletionStatusRetrieveWithResponse request
 	OpenportalUnmanagedProjectsCompletionStatusRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenportalUnmanagedProjectsCompletionStatusRetrieveResponse, error)
@@ -254067,7 +254294,7 @@ type ClientWithResponsesInterface interface {
 	ProjectsAddUserWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProjectsAddUserJSONRequestBody, reqEditors ...RequestEditorFn) (*ProjectsAddUserResponse, error)
 
 	// ProjectsChecklistRetrieveWithResponse request
-	ProjectsChecklistRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProjectsChecklistRetrieveResponse, error)
+	ProjectsChecklistRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProjectsChecklistRetrieveParams, reqEditors ...RequestEditorFn) (*ProjectsChecklistRetrieveResponse, error)
 
 	// ProjectsCompletionStatusRetrieveWithResponse request
 	ProjectsCompletionStatusRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProjectsCompletionStatusRetrieveResponse, error)
@@ -254181,7 +254408,7 @@ type ClientWithResponsesInterface interface {
 	ProposalProposalsAttachDocumentWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsAttachDocumentFormdataRequestBody, reqEditors ...RequestEditorFn) (*ProposalProposalsAttachDocumentResponse, error)
 
 	// ProposalProposalsChecklistRetrieveWithResponse request
-	ProposalProposalsChecklistRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProposalsChecklistRetrieveResponse, error)
+	ProposalProposalsChecklistRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProposalProposalsChecklistRetrieveParams, reqEditors ...RequestEditorFn) (*ProposalProposalsChecklistRetrieveResponse, error)
 
 	// ProposalProposalsChecklistReviewRetrieveWithResponse request
 	ProposalProposalsChecklistReviewRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProposalsChecklistReviewRetrieveResponse, error)
@@ -254196,6 +254423,11 @@ type ClientWithResponsesInterface interface {
 	ProposalProposalsDeleteUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProposalsDeleteUserResponse, error)
 
 	ProposalProposalsDeleteUserWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsDeleteUserJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProposalsDeleteUserResponse, error)
+
+	// ProposalProposalsDetachDocumentsWithBodyWithResponse request with any body
+	ProposalProposalsDetachDocumentsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProposalsDetachDocumentsResponse, error)
+
+	ProposalProposalsDetachDocumentsWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsDetachDocumentsJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProposalsDetachDocumentsResponse, error)
 
 	// ProposalProposalsListUsersListWithResponse request
 	ProposalProposalsListUsersListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProposalProposalsListUsersListParams, reqEditors ...RequestEditorFn) (*ProposalProposalsListUsersListResponse, error)
@@ -286514,6 +286746,27 @@ func (r ProposalProposalsDeleteUserResponse) StatusCode() int {
 	return 0
 }
 
+type ProposalProposalsDetachDocumentsResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r ProposalProposalsDetachDocumentsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProposalProposalsDetachDocumentsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type ProposalProposalsListUsersListResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -302577,8 +302830,8 @@ func (c *ClientWithResponses) MarketplaceOfferingUsersBeginCreatingWithResponse(
 }
 
 // MarketplaceOfferingUsersChecklistRetrieveWithResponse request returning *MarketplaceOfferingUsersChecklistRetrieveResponse
-func (c *ClientWithResponses) MarketplaceOfferingUsersChecklistRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersChecklistRetrieveResponse, error) {
-	rsp, err := c.MarketplaceOfferingUsersChecklistRetrieve(ctx, uuid, reqEditors...)
+func (c *ClientWithResponses) MarketplaceOfferingUsersChecklistRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceOfferingUsersChecklistRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersChecklistRetrieveResponse, error) {
+	rsp, err := c.MarketplaceOfferingUsersChecklistRetrieve(ctx, uuid, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -308058,8 +308311,8 @@ func (c *ClientWithResponses) OnboardingVerificationsUpdateWithResponse(ctx cont
 }
 
 // OnboardingVerificationsChecklistRetrieveWithResponse request returning *OnboardingVerificationsChecklistRetrieveResponse
-func (c *ClientWithResponses) OnboardingVerificationsChecklistRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OnboardingVerificationsChecklistRetrieveResponse, error) {
-	rsp, err := c.OnboardingVerificationsChecklistRetrieve(ctx, uuid, reqEditors...)
+func (c *ClientWithResponses) OnboardingVerificationsChecklistRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *OnboardingVerificationsChecklistRetrieveParams, reqEditors ...RequestEditorFn) (*OnboardingVerificationsChecklistRetrieveResponse, error) {
+	rsp, err := c.OnboardingVerificationsChecklistRetrieve(ctx, uuid, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -308921,8 +309174,8 @@ func (c *ClientWithResponses) OpenportalUnmanagedProjectsAddUserWithResponse(ctx
 }
 
 // OpenportalUnmanagedProjectsChecklistRetrieveWithResponse request returning *OpenportalUnmanagedProjectsChecklistRetrieveResponse
-func (c *ClientWithResponses) OpenportalUnmanagedProjectsChecklistRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenportalUnmanagedProjectsChecklistRetrieveResponse, error) {
-	rsp, err := c.OpenportalUnmanagedProjectsChecklistRetrieve(ctx, uuid, reqEditors...)
+func (c *ClientWithResponses) OpenportalUnmanagedProjectsChecklistRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *OpenportalUnmanagedProjectsChecklistRetrieveParams, reqEditors ...RequestEditorFn) (*OpenportalUnmanagedProjectsChecklistRetrieveResponse, error) {
+	rsp, err := c.OpenportalUnmanagedProjectsChecklistRetrieve(ctx, uuid, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -311968,8 +312221,8 @@ func (c *ClientWithResponses) ProjectsAddUserWithResponse(ctx context.Context, u
 }
 
 // ProjectsChecklistRetrieveWithResponse request returning *ProjectsChecklistRetrieveResponse
-func (c *ClientWithResponses) ProjectsChecklistRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProjectsChecklistRetrieveResponse, error) {
-	rsp, err := c.ProjectsChecklistRetrieve(ctx, uuid, reqEditors...)
+func (c *ClientWithResponses) ProjectsChecklistRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProjectsChecklistRetrieveParams, reqEditors ...RequestEditorFn) (*ProjectsChecklistRetrieveResponse, error) {
+	rsp, err := c.ProjectsChecklistRetrieve(ctx, uuid, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -312334,8 +312587,8 @@ func (c *ClientWithResponses) ProposalProposalsAttachDocumentWithFormdataBodyWit
 }
 
 // ProposalProposalsChecklistRetrieveWithResponse request returning *ProposalProposalsChecklistRetrieveResponse
-func (c *ClientWithResponses) ProposalProposalsChecklistRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProposalsChecklistRetrieveResponse, error) {
-	rsp, err := c.ProposalProposalsChecklistRetrieve(ctx, uuid, reqEditors...)
+func (c *ClientWithResponses) ProposalProposalsChecklistRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProposalProposalsChecklistRetrieveParams, reqEditors ...RequestEditorFn) (*ProposalProposalsChecklistRetrieveResponse, error) {
+	rsp, err := c.ProposalProposalsChecklistRetrieve(ctx, uuid, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -312384,6 +312637,23 @@ func (c *ClientWithResponses) ProposalProposalsDeleteUserWithResponse(ctx contex
 		return nil, err
 	}
 	return ParseProposalProposalsDeleteUserResponse(rsp)
+}
+
+// ProposalProposalsDetachDocumentsWithBodyWithResponse request with arbitrary body returning *ProposalProposalsDetachDocumentsResponse
+func (c *ClientWithResponses) ProposalProposalsDetachDocumentsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProposalsDetachDocumentsResponse, error) {
+	rsp, err := c.ProposalProposalsDetachDocumentsWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProposalsDetachDocumentsResponse(rsp)
+}
+
+func (c *ClientWithResponses) ProposalProposalsDetachDocumentsWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProposalsDetachDocumentsJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProposalsDetachDocumentsResponse, error) {
+	rsp, err := c.ProposalProposalsDetachDocuments(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProposalsDetachDocumentsResponse(rsp)
 }
 
 // ProposalProposalsListUsersListWithResponse request returning *ProposalProposalsListUsersListResponse
@@ -349387,6 +349657,22 @@ func ParseProposalProposalsDeleteUserResponse(rsp *http.Response) (*ProposalProp
 	}
 
 	response := &ProposalProposalsDeleteUserResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseProposalProposalsDetachDocumentsResponse parses an HTTP response from a ProposalProposalsDetachDocumentsWithResponse call
+func ParseProposalProposalsDetachDocumentsResponse(rsp *http.Response) (*ProposalProposalsDetachDocumentsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProposalProposalsDetachDocumentsResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
