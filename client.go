@@ -1796,14 +1796,21 @@ const (
 // Defines values for QuestionTypeEnum.
 const (
 	QuestionTypeEnumBoolean       QuestionTypeEnum = "boolean"
+	QuestionTypeEnumCountry       QuestionTypeEnum = "country"
 	QuestionTypeEnumDate          QuestionTypeEnum = "date"
+	QuestionTypeEnumDatetime      QuestionTypeEnum = "datetime"
+	QuestionTypeEnumEmail         QuestionTypeEnum = "email"
 	QuestionTypeEnumFile          QuestionTypeEnum = "file"
 	QuestionTypeEnumMultiSelect   QuestionTypeEnum = "multi_select"
 	QuestionTypeEnumMultipleFiles QuestionTypeEnum = "multiple_files"
 	QuestionTypeEnumNumber        QuestionTypeEnum = "number"
+	QuestionTypeEnumPhoneNumber   QuestionTypeEnum = "phone_number"
+	QuestionTypeEnumRating        QuestionTypeEnum = "rating"
 	QuestionTypeEnumSingleSelect  QuestionTypeEnum = "single_select"
 	QuestionTypeEnumTextArea      QuestionTypeEnum = "text_area"
 	QuestionTypeEnumTextInput     QuestionTypeEnum = "text_input"
+	QuestionTypeEnumUrl           QuestionTypeEnum = "url"
+	QuestionTypeEnumYear          QuestionTypeEnum = "year"
 )
 
 // Defines values for RancherCatalogScopeType.
@@ -24063,10 +24070,10 @@ type PatchedQuestionAdminRequest struct {
 	// MaxFilesCount Maximum number of files allowed for MULTIPLE_FILES type questions. If not set, no count limit is enforced.
 	MaxFilesCount *int `json:"max_files_count"`
 
-	// MaxValue Maximum value allowed for NUMBER type questions
+	// MaxValue Maximum value allowed for NUMBER, YEAR, and RATING type questions
 	MaxValue *string `json:"max_value"`
 
-	// MinValue Minimum value allowed for NUMBER type questions
+	// MinValue Minimum value allowed for NUMBER, YEAR, and RATING type questions
 	MinValue *string                               `json:"min_value"`
 	Operator *PatchedQuestionAdminRequest_Operator `json:"operator,omitempty"`
 	Order    *int                                  `json:"order,omitempty"`
@@ -26157,10 +26164,10 @@ type Question struct {
 	// MaxFilesCount Maximum number of files allowed for MULTIPLE_FILES type questions. If not set, no count limit is enforced.
 	MaxFilesCount *int `json:"max_files_count"`
 
-	// MaxValue Maximum value allowed for NUMBER type questions
+	// MaxValue Maximum value allowed for NUMBER, YEAR, and RATING type questions
 	MaxValue *string `json:"max_value"`
 
-	// MinValue Minimum value allowed for NUMBER type questions
+	// MinValue Minimum value allowed for NUMBER, YEAR, and RATING type questions
 	MinValue        *string            `json:"min_value"`
 	Operator        *Question_Operator `json:"operator,omitempty"`
 	Order           *int               `json:"order,omitempty"`
@@ -26221,10 +26228,10 @@ type QuestionAdmin struct {
 	// MaxFilesCount Maximum number of files allowed for MULTIPLE_FILES type questions. If not set, no count limit is enforced.
 	MaxFilesCount *int `json:"max_files_count"`
 
-	// MaxValue Maximum value allowed for NUMBER type questions
+	// MaxValue Maximum value allowed for NUMBER, YEAR, and RATING type questions
 	MaxValue *string `json:"max_value"`
 
-	// MinValue Minimum value allowed for NUMBER type questions
+	// MinValue Minimum value allowed for NUMBER, YEAR, and RATING type questions
 	MinValue        *string                 `json:"min_value"`
 	Operator        *QuestionAdmin_Operator `json:"operator,omitempty"`
 	Order           *int                    `json:"order,omitempty"`
@@ -26284,10 +26291,10 @@ type QuestionAdminRequest struct {
 	// MaxFilesCount Maximum number of files allowed for MULTIPLE_FILES type questions. If not set, no count limit is enforced.
 	MaxFilesCount *int `json:"max_files_count"`
 
-	// MaxValue Maximum value allowed for NUMBER type questions
+	// MaxValue Maximum value allowed for NUMBER, YEAR, and RATING type questions
 	MaxValue *string `json:"max_value"`
 
-	// MinValue Minimum value allowed for NUMBER type questions
+	// MinValue Minimum value allowed for NUMBER, YEAR, and RATING type questions
 	MinValue *string                        `json:"min_value"`
 	Operator *QuestionAdminRequest_Operator `json:"operator,omitempty"`
 	Order    *int                           `json:"order,omitempty"`
@@ -26402,10 +26409,10 @@ type QuestionWithAnswer struct {
 	// MaxFilesCount Maximum number of files allowed for MULTIPLE_FILES type questions. If not set, no count limit is enforced.
 	MaxFilesCount *int `json:"max_files_count"`
 
-	// MaxValue Maximum value allowed for NUMBER type questions
+	// MaxValue Maximum value allowed for NUMBER, YEAR, and RATING type questions
 	MaxValue *string `json:"max_value"`
 
-	// MinValue Minimum value allowed for NUMBER type questions
+	// MinValue Minimum value allowed for NUMBER, YEAR, and RATING type questions
 	MinValue        *string        `json:"min_value"`
 	Order           *int           `json:"order,omitempty"`
 	QuestionOptions *[]interface{} `json:"question_options"`
@@ -26436,10 +26443,10 @@ type QuestionWithAnswerReviewer struct {
 	// MaxFilesCount Maximum number of files allowed for MULTIPLE_FILES type questions. If not set, no count limit is enforced.
 	MaxFilesCount *int `json:"max_files_count"`
 
-	// MaxValue Maximum value allowed for NUMBER type questions
+	// MaxValue Maximum value allowed for NUMBER, YEAR, and RATING type questions
 	MaxValue *string `json:"max_value"`
 
-	// MinValue Minimum value allowed for NUMBER type questions
+	// MinValue Minimum value allowed for NUMBER, YEAR, and RATING type questions
 	MinValue        *string                              `json:"min_value"`
 	Operator        *QuestionWithAnswerReviewer_Operator `json:"operator,omitempty"`
 	Order           *int                                 `json:"order,omitempty"`
