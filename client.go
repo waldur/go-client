@@ -46961,6 +46961,9 @@ type UserActionsCountParamsUrgency string
 type UserAgreementsListParams struct {
 	AgreementType *UserAgreementsListParamsAgreementType `form:"agreement_type,omitempty" json:"agreement_type,omitempty"`
 
+	// Language ISO 639-1 language code (e.g., 'en', 'de', 'et'). Returns requested language or falls back to default version if unavailable.
+	Language *string `form:"language,omitempty" json:"language,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
@@ -46974,6 +46977,9 @@ type UserAgreementsListParamsAgreementType string
 // UserAgreementsCountParams defines parameters for UserAgreementsCount.
 type UserAgreementsCountParams struct {
 	AgreementType *UserAgreementsCountParamsAgreementType `form:"agreement_type,omitempty" json:"agreement_type,omitempty"`
+
+	// Language ISO 639-1 language code (e.g., 'en', 'de', 'et'). Returns requested language or falls back to default version if unavailable.
+	Language *string `form:"language,omitempty" json:"language,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -239248,6 +239254,22 @@ func NewUserAgreementsListRequest(server string, params *UserAgreementsListParam
 
 		}
 
+		if params.Language != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "language", runtime.ParamLocationQuery, *params.Language); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Page != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
@@ -239316,6 +239338,22 @@ func NewUserAgreementsCountRequest(server string, params *UserAgreementsCountPar
 		if params.AgreementType != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "agreement_type", runtime.ParamLocationQuery, *params.AgreementType); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Language != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "language", runtime.ParamLocationQuery, *params.Language); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
