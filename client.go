@@ -18076,7 +18076,7 @@ type MergedPluginOptions struct {
 	// AutoApproveInServiceProviderProjects Skip approval of public offering belonging to the same organization under which the request is done
 	AutoApproveInServiceProviderProjects *bool `json:"auto_approve_in_service_provider_projects,omitempty"`
 
-	// AutoApproveMarketplaceScript If set to False, an order requires manual provider approval
+	// AutoApproveMarketplaceScript If set to False, all orders require manual provider approval, including for service provider owners and staff
 	AutoApproveMarketplaceScript *bool `json:"auto_approve_marketplace_script,omitempty"`
 
 	// AutoApproveRemoteOrders If set to True, an order can be processed without approval
@@ -18261,7 +18261,7 @@ type MergedPluginOptionsRequest struct {
 	// AutoApproveInServiceProviderProjects Skip approval of public offering belonging to the same organization under which the request is done
 	AutoApproveInServiceProviderProjects *bool `json:"auto_approve_in_service_provider_projects,omitempty"`
 
-	// AutoApproveMarketplaceScript If set to False, an order requires manual provider approval
+	// AutoApproveMarketplaceScript If set to False, all orders require manual provider approval, including for service provider owners and staff
 	AutoApproveMarketplaceScript *bool `json:"auto_approve_marketplace_script,omitempty"`
 
 	// AutoApproveRemoteOrders If set to True, an order can be processed without approval
