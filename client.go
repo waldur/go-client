@@ -14541,6 +14541,11 @@ type ConstanceSettings struct {
 	LLMINFERENCESMODEL                             *string              `json:"LLM_INFERENCES_MODEL,omitempty"`
 	LOGINLOGO                                      *string              `json:"LOGIN_LOGO"`
 	LOGINLOGOMULTILINGUAL                          *map[string]*string  `json:"LOGIN_LOGO_MULTILINGUAL,omitempty"`
+	LOGINPAGECAROUSELSLIDES                        *[]interface{}       `json:"LOGIN_PAGE_CAROUSEL_SLIDES,omitempty"`
+	LOGINPAGELAYOUT                                *string              `json:"LOGIN_PAGE_LAYOUT,omitempty"`
+	LOGINPAGENEWS                                  *[]interface{}       `json:"LOGIN_PAGE_NEWS,omitempty"`
+	LOGINPAGESTATS                                 *[]interface{}       `json:"LOGIN_PAGE_STATS,omitempty"`
+	LOGINPAGEVIDEOURL                              *string              `json:"LOGIN_PAGE_VIDEO_URL,omitempty"`
 	MAINTENANCEANNOUNCEMENTNOTIFYBEFOREMINUTES     *int                 `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_BEFORE_MINUTES,omitempty"`
 	MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM            *[]string            `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_SYSTEM,omitempty"`
 	MARKETPLACEHEROIMAGE                           *string              `json:"MARKETPLACE_HERO_IMAGE"`
@@ -14716,6 +14721,11 @@ type ConstanceSettingsRequest struct {
 	LLMINFERENCESMODEL                             *string                         `json:"LLM_INFERENCES_MODEL,omitempty"`
 	LOGINLOGO                                      *openapi_types.File             `json:"LOGIN_LOGO"`
 	LOGINLOGOMULTILINGUAL                          *map[string]*openapi_types.File `json:"LOGIN_LOGO_MULTILINGUAL,omitempty"`
+	LOGINPAGECAROUSELSLIDES                        *[]interface{}                  `json:"LOGIN_PAGE_CAROUSEL_SLIDES,omitempty"`
+	LOGINPAGELAYOUT                                *string                         `json:"LOGIN_PAGE_LAYOUT,omitempty"`
+	LOGINPAGENEWS                                  *[]interface{}                  `json:"LOGIN_PAGE_NEWS,omitempty"`
+	LOGINPAGESTATS                                 *[]interface{}                  `json:"LOGIN_PAGE_STATS,omitempty"`
+	LOGINPAGEVIDEOURL                              *string                         `json:"LOGIN_PAGE_VIDEO_URL,omitempty"`
 	MAINTENANCEANNOUNCEMENTNOTIFYBEFOREMINUTES     *int                            `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_BEFORE_MINUTES,omitempty"`
 	MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM            *[]string                       `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_SYSTEM,omitempty"`
 	MARKETPLACEHEROIMAGE                           *openapi_types.File             `json:"MARKETPLACE_HERO_IMAGE"`
@@ -14891,6 +14901,11 @@ type ConstanceSettingsRequestForm struct {
 	LLMINFERENCESMODEL                             *string                         `json:"LLM_INFERENCES_MODEL,omitempty"`
 	LOGINLOGO                                      *openapi_types.File             `json:"LOGIN_LOGO"`
 	LOGINLOGOMULTILINGUAL                          *map[string]*openapi_types.File `json:"LOGIN_LOGO_MULTILINGUAL,omitempty"`
+	LOGINPAGECAROUSELSLIDES                        *[]interface{}                  `json:"LOGIN_PAGE_CAROUSEL_SLIDES,omitempty"`
+	LOGINPAGELAYOUT                                *string                         `json:"LOGIN_PAGE_LAYOUT,omitempty"`
+	LOGINPAGENEWS                                  *[]interface{}                  `json:"LOGIN_PAGE_NEWS,omitempty"`
+	LOGINPAGESTATS                                 *[]interface{}                  `json:"LOGIN_PAGE_STATS,omitempty"`
+	LOGINPAGEVIDEOURL                              *string                         `json:"LOGIN_PAGE_VIDEO_URL,omitempty"`
 	MAINTENANCEANNOUNCEMENTNOTIFYBEFOREMINUTES     *int                            `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_BEFORE_MINUTES,omitempty"`
 	MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM            *[]string                       `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_SYSTEM,omitempty"`
 	MARKETPLACEHEROIMAGE                           *openapi_types.File             `json:"MARKETPLACE_HERO_IMAGE"`
@@ -15066,6 +15081,11 @@ type ConstanceSettingsRequestMultipart struct {
 	LLMINFERENCESMODEL                             *string                         `json:"LLM_INFERENCES_MODEL,omitempty"`
 	LOGINLOGO                                      *openapi_types.File             `json:"LOGIN_LOGO"`
 	LOGINLOGOMULTILINGUAL                          *map[string]*openapi_types.File `json:"LOGIN_LOGO_MULTILINGUAL,omitempty"`
+	LOGINPAGECAROUSELSLIDES                        *[]interface{}                  `json:"LOGIN_PAGE_CAROUSEL_SLIDES,omitempty"`
+	LOGINPAGELAYOUT                                *string                         `json:"LOGIN_PAGE_LAYOUT,omitempty"`
+	LOGINPAGENEWS                                  *[]interface{}                  `json:"LOGIN_PAGE_NEWS,omitempty"`
+	LOGINPAGESTATS                                 *[]interface{}                  `json:"LOGIN_PAGE_STATS,omitempty"`
+	LOGINPAGEVIDEOURL                              *string                         `json:"LOGIN_PAGE_VIDEO_URL,omitempty"`
 	MAINTENANCEANNOUNCEMENTNOTIFYBEFOREMINUTES     *int                            `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_BEFORE_MINUTES,omitempty"`
 	MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM            *[]string                       `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_SYSTEM,omitempty"`
 	MARKETPLACEHEROIMAGE                           *openapi_types.File             `json:"MARKETPLACE_HERO_IMAGE"`
