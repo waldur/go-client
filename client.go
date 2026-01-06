@@ -59,6 +59,13 @@ const (
 	OnDecision AllocationTimeEnum = "on_decision"
 )
 
+// Defines values for AuthMethodEnum.
+const (
+	ApiToken            AuthMethodEnum = "api_token"
+	Basic               AuthMethodEnum = "basic"
+	PersonalAccessToken AuthMethodEnum = "personal_access_token"
+)
+
 // Defines values for AuthResultStateEnum.
 const (
 	AuthResultStateEnumCanceled   AuthResultStateEnum = "Canceled"
@@ -9279,6 +9286,7 @@ const (
 	OpenstackTenantsListParamsFieldServiceSettingsErrorMessage      OpenstackTenantsListParamsField = "service_settings_error_message"
 	OpenstackTenantsListParamsFieldServiceSettingsState             OpenstackTenantsListParamsField = "service_settings_state"
 	OpenstackTenantsListParamsFieldServiceSettingsUuid              OpenstackTenantsListParamsField = "service_settings_uuid"
+	OpenstackTenantsListParamsFieldSkipCreationOfDefaultSubnet      OpenstackTenantsListParamsField = "skip_creation_of_default_subnet"
 	OpenstackTenantsListParamsFieldState                            OpenstackTenantsListParamsField = "state"
 	OpenstackTenantsListParamsFieldSubnetCidr                       OpenstackTenantsListParamsField = "subnet_cidr"
 	OpenstackTenantsListParamsFieldUrl                              OpenstackTenantsListParamsField = "url"
@@ -9348,6 +9356,7 @@ const (
 	OpenstackTenantsRetrieveParamsFieldServiceSettingsErrorMessage      OpenstackTenantsRetrieveParamsField = "service_settings_error_message"
 	OpenstackTenantsRetrieveParamsFieldServiceSettingsState             OpenstackTenantsRetrieveParamsField = "service_settings_state"
 	OpenstackTenantsRetrieveParamsFieldServiceSettingsUuid              OpenstackTenantsRetrieveParamsField = "service_settings_uuid"
+	OpenstackTenantsRetrieveParamsFieldSkipCreationOfDefaultSubnet      OpenstackTenantsRetrieveParamsField = "skip_creation_of_default_subnet"
 	OpenstackTenantsRetrieveParamsFieldState                            OpenstackTenantsRetrieveParamsField = "state"
 	OpenstackTenantsRetrieveParamsFieldSubnetCidr                       OpenstackTenantsRetrieveParamsField = "subnet_cidr"
 	OpenstackTenantsRetrieveParamsFieldUrl                              OpenstackTenantsRetrieveParamsField = "url"
@@ -12472,6 +12481,119 @@ type Association struct {
 	Uuid           *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
+// AtlassianCredentialsRequest defines model for AtlassianCredentialsRequest.
+type AtlassianCredentialsRequest struct {
+	// ApiUrl Atlassian API URL (e.g., https://your-domain.atlassian.net)
+	ApiUrl string `json:"api_url"`
+
+	// AuthMethod Authentication method to use
+	AuthMethod          AuthMethodEnum       `json:"auth_method"`
+	Email               *openapi_types.Email `json:"email,omitempty"`
+	Password            *string              `json:"password,omitempty"`
+	PersonalAccessToken *string              `json:"personal_access_token,omitempty"`
+	Token               *string              `json:"token,omitempty"`
+	Username            *string              `json:"username,omitempty"`
+	VerifySsl           *bool                `json:"verify_ssl,omitempty"`
+}
+
+// AtlassianCustomFieldResponse defines model for AtlassianCustomFieldResponse.
+type AtlassianCustomFieldResponse struct {
+	ClauseNames *[]string `json:"clause_names,omitempty"`
+	FieldType   *string   `json:"field_type,omitempty"`
+	Id          string    `json:"id"`
+	Name        string    `json:"name"`
+	Required    *bool     `json:"required,omitempty"`
+}
+
+// AtlassianPriorityResponse defines model for AtlassianPriorityResponse.
+type AtlassianPriorityResponse struct {
+	Description *string `json:"description,omitempty"`
+	IconUrl     *string `json:"icon_url,omitempty"`
+	Id          string  `json:"id"`
+	Name        string  `json:"name"`
+}
+
+// AtlassianProjectResponse defines model for AtlassianProjectResponse.
+type AtlassianProjectResponse struct {
+	Description *string `json:"description,omitempty"`
+	Id          string  `json:"id"`
+	Key         string  `json:"key"`
+	Name        string  `json:"name"`
+}
+
+// AtlassianRequestTypeResponse defines model for AtlassianRequestTypeResponse.
+type AtlassianRequestTypeResponse struct {
+	Description *string `json:"description,omitempty"`
+	Id          string  `json:"id"`
+	IssueTypeId *string `json:"issue_type_id,omitempty"`
+	Name        string  `json:"name"`
+}
+
+// AtlassianSettingsPreviewRequest defines model for AtlassianSettingsPreviewRequest.
+type AtlassianSettingsPreviewRequest struct {
+	AffectedResourceField     *string              `json:"affected_resource_field,omitempty"`
+	ApiUrl                    string               `json:"api_url"`
+	AuthMethod                AuthMethodEnum       `json:"auth_method"`
+	CallerField               *string              `json:"caller_field,omitempty"`
+	CustomFieldMappingEnabled *bool                `json:"custom_field_mapping_enabled,omitempty"`
+	Email                     *openapi_types.Email `json:"email,omitempty"`
+	ImpactField               *string              `json:"impact_field,omitempty"`
+	IssueTypes                *[]string            `json:"issue_types,omitempty"`
+	OrganisationField         *string              `json:"organisation_field,omitempty"`
+	Password                  *string              `json:"password,omitempty"`
+	PersonalAccessToken       *string              `json:"personal_access_token,omitempty"`
+	ProjectField              *string              `json:"project_field,omitempty"`
+	ProjectId                 string               `json:"project_id"`
+	ReporterField             *string              `json:"reporter_field,omitempty"`
+	RequestFeedbackField      *string              `json:"request_feedback_field,omitempty"`
+	ResolutionSlaField        *string              `json:"resolution_sla_field,omitempty"`
+	SatisfactionField         *string              `json:"satisfaction_field,omitempty"`
+	SlaField                  *string              `json:"sla_field,omitempty"`
+
+	// SupportTypeMapping Mapping from frontend types to backend request types
+	SupportTypeMapping   *map[string]string `json:"support_type_mapping,omitempty"`
+	TemplateField        *string            `json:"template_field,omitempty"`
+	Token                *string            `json:"token,omitempty"`
+	UseOldApi            *bool              `json:"use_old_api,omitempty"`
+	Username             *string            `json:"username,omitempty"`
+	VerifySsl            *bool              `json:"verify_ssl,omitempty"`
+	WaldurBackendIdField *string            `json:"waldur_backend_id_field,omitempty"`
+}
+
+// AtlassianSettingsSaveRequest defines model for AtlassianSettingsSaveRequest.
+type AtlassianSettingsSaveRequest struct {
+	AffectedResourceField *string        `json:"affected_resource_field,omitempty"`
+	ApiUrl                string         `json:"api_url"`
+	AuthMethod            AuthMethodEnum `json:"auth_method"`
+	CallerField           *string        `json:"caller_field,omitempty"`
+
+	// ConfirmSave Must be True to confirm saving settings
+	ConfirmSave               bool                 `json:"confirm_save"`
+	CustomFieldMappingEnabled *bool                `json:"custom_field_mapping_enabled,omitempty"`
+	Email                     *openapi_types.Email `json:"email,omitempty"`
+	ImpactField               *string              `json:"impact_field,omitempty"`
+	IssueTypes                *[]string            `json:"issue_types,omitempty"`
+	OrganisationField         *string              `json:"organisation_field,omitempty"`
+	Password                  *string              `json:"password,omitempty"`
+	PersonalAccessToken       *string              `json:"personal_access_token,omitempty"`
+	ProjectField              *string              `json:"project_field,omitempty"`
+	ProjectId                 string               `json:"project_id"`
+	ReporterField             *string              `json:"reporter_field,omitempty"`
+	RequestFeedbackField      *string              `json:"request_feedback_field,omitempty"`
+	ResolutionSlaField        *string              `json:"resolution_sla_field,omitempty"`
+	SatisfactionField         *string              `json:"satisfaction_field,omitempty"`
+	SlaField                  *string              `json:"sla_field,omitempty"`
+
+	// SupportTypeMapping Mapping from frontend types to backend request types
+	SupportTypeMapping   *map[string]string `json:"support_type_mapping,omitempty"`
+	TemplateField        *string            `json:"template_field,omitempty"`
+	Token                *string            `json:"token,omitempty"`
+	UseOldApi            *bool              `json:"use_old_api,omitempty"`
+	Username             *string            `json:"username,omitempty"`
+	VerifySsl            *bool              `json:"verify_ssl,omitempty"`
+	WaldurBackendIdField *string            `json:"waldur_backend_id_field,omitempty"`
+}
+
 // Attachment defines model for Attachment.
 type Attachment struct {
 	BackendId          *string             `json:"backend_id,omitempty"`
@@ -12504,6 +12626,9 @@ type AttachmentRequestMultipart struct {
 	File  openapi_types.File `json:"file"`
 	Issue string             `json:"issue"`
 }
+
+// AuthMethodEnum defines model for AuthMethodEnum.
+type AuthMethodEnum string
 
 // AuthResult defines model for AuthResult.
 type AuthResult struct {
@@ -14463,7 +14588,6 @@ type ConstanceSettings struct {
 	ATLASSIANEMAIL                                 *openapi_types.Email `json:"ATLASSIAN_EMAIL,omitempty"`
 	ATLASSIANEXCLUDEDATTACHMENTTYPES               *string              `json:"ATLASSIAN_EXCLUDED_ATTACHMENT_TYPES,omitempty"`
 	ATLASSIANIMPACTFIELD                           *string              `json:"ATLASSIAN_IMPACT_FIELD,omitempty"`
-	ATLASSIANISSUETYPES                            *string              `json:"ATLASSIAN_ISSUE_TYPES,omitempty"`
 	ATLASSIANLINKEDISSUETYPE                       *string              `json:"ATLASSIAN_LINKED_ISSUE_TYPE,omitempty"`
 	ATLASSIANMAPWALDURUSERSTOSERVICEDESKAGENTS     *bool                `json:"ATLASSIAN_MAP_WALDUR_USERS_TO_SERVICEDESK_AGENTS,omitempty"`
 	ATLASSIANOAUTH2ACCESSTOKEN                     *string              `json:"ATLASSIAN_OAUTH2_ACCESS_TOKEN,omitempty"`
@@ -14481,7 +14605,6 @@ type ConstanceSettings struct {
 	ATLASSIANSHAREDUSERNAME                        *bool                `json:"ATLASSIAN_SHARED_USERNAME,omitempty"`
 	ATLASSIANSLAFIELD                              *string              `json:"ATLASSIAN_SLA_FIELD,omitempty"`
 	ATLASSIANSUMMARYTEMPLATE                       *string              `json:"ATLASSIAN_SUMMARY_TEMPLATE,omitempty"`
-	ATLASSIANSUPPORTTYPEMAPPING                    *string              `json:"ATLASSIAN_SUPPORT_TYPE_MAPPING,omitempty"`
 	ATLASSIANTEMPLATEFIELD                         *string              `json:"ATLASSIAN_TEMPLATE_FIELD,omitempty"`
 	ATLASSIANTOKEN                                 *string              `json:"ATLASSIAN_TOKEN,omitempty"`
 	ATLASSIANUSERNAME                              *string              `json:"ATLASSIAN_USERNAME,omitempty"`
@@ -14643,7 +14766,6 @@ type ConstanceSettingsRequest struct {
 	ATLASSIANEMAIL                                 *openapi_types.Email            `json:"ATLASSIAN_EMAIL,omitempty"`
 	ATLASSIANEXCLUDEDATTACHMENTTYPES               *string                         `json:"ATLASSIAN_EXCLUDED_ATTACHMENT_TYPES,omitempty"`
 	ATLASSIANIMPACTFIELD                           *string                         `json:"ATLASSIAN_IMPACT_FIELD,omitempty"`
-	ATLASSIANISSUETYPES                            *string                         `json:"ATLASSIAN_ISSUE_TYPES,omitempty"`
 	ATLASSIANLINKEDISSUETYPE                       *string                         `json:"ATLASSIAN_LINKED_ISSUE_TYPE,omitempty"`
 	ATLASSIANMAPWALDURUSERSTOSERVICEDESKAGENTS     *bool                           `json:"ATLASSIAN_MAP_WALDUR_USERS_TO_SERVICEDESK_AGENTS,omitempty"`
 	ATLASSIANOAUTH2ACCESSTOKEN                     *string                         `json:"ATLASSIAN_OAUTH2_ACCESS_TOKEN,omitempty"`
@@ -14661,7 +14783,6 @@ type ConstanceSettingsRequest struct {
 	ATLASSIANSHAREDUSERNAME                        *bool                           `json:"ATLASSIAN_SHARED_USERNAME,omitempty"`
 	ATLASSIANSLAFIELD                              *string                         `json:"ATLASSIAN_SLA_FIELD,omitempty"`
 	ATLASSIANSUMMARYTEMPLATE                       *string                         `json:"ATLASSIAN_SUMMARY_TEMPLATE,omitempty"`
-	ATLASSIANSUPPORTTYPEMAPPING                    *string                         `json:"ATLASSIAN_SUPPORT_TYPE_MAPPING,omitempty"`
 	ATLASSIANTEMPLATEFIELD                         *string                         `json:"ATLASSIAN_TEMPLATE_FIELD,omitempty"`
 	ATLASSIANTOKEN                                 *string                         `json:"ATLASSIAN_TOKEN,omitempty"`
 	ATLASSIANUSERNAME                              *string                         `json:"ATLASSIAN_USERNAME,omitempty"`
@@ -14823,7 +14944,6 @@ type ConstanceSettingsRequestForm struct {
 	ATLASSIANEMAIL                                 *openapi_types.Email            `json:"ATLASSIAN_EMAIL,omitempty"`
 	ATLASSIANEXCLUDEDATTACHMENTTYPES               *string                         `json:"ATLASSIAN_EXCLUDED_ATTACHMENT_TYPES,omitempty"`
 	ATLASSIANIMPACTFIELD                           *string                         `json:"ATLASSIAN_IMPACT_FIELD,omitempty"`
-	ATLASSIANISSUETYPES                            *string                         `json:"ATLASSIAN_ISSUE_TYPES,omitempty"`
 	ATLASSIANLINKEDISSUETYPE                       *string                         `json:"ATLASSIAN_LINKED_ISSUE_TYPE,omitempty"`
 	ATLASSIANMAPWALDURUSERSTOSERVICEDESKAGENTS     *bool                           `json:"ATLASSIAN_MAP_WALDUR_USERS_TO_SERVICEDESK_AGENTS,omitempty"`
 	ATLASSIANOAUTH2ACCESSTOKEN                     *string                         `json:"ATLASSIAN_OAUTH2_ACCESS_TOKEN,omitempty"`
@@ -14841,7 +14961,6 @@ type ConstanceSettingsRequestForm struct {
 	ATLASSIANSHAREDUSERNAME                        *bool                           `json:"ATLASSIAN_SHARED_USERNAME,omitempty"`
 	ATLASSIANSLAFIELD                              *string                         `json:"ATLASSIAN_SLA_FIELD,omitempty"`
 	ATLASSIANSUMMARYTEMPLATE                       *string                         `json:"ATLASSIAN_SUMMARY_TEMPLATE,omitempty"`
-	ATLASSIANSUPPORTTYPEMAPPING                    *string                         `json:"ATLASSIAN_SUPPORT_TYPE_MAPPING,omitempty"`
 	ATLASSIANTEMPLATEFIELD                         *string                         `json:"ATLASSIAN_TEMPLATE_FIELD,omitempty"`
 	ATLASSIANTOKEN                                 *string                         `json:"ATLASSIAN_TOKEN,omitempty"`
 	ATLASSIANUSERNAME                              *string                         `json:"ATLASSIAN_USERNAME,omitempty"`
@@ -15003,7 +15122,6 @@ type ConstanceSettingsRequestMultipart struct {
 	ATLASSIANEMAIL                                 *openapi_types.Email            `json:"ATLASSIAN_EMAIL,omitempty"`
 	ATLASSIANEXCLUDEDATTACHMENTTYPES               *string                         `json:"ATLASSIAN_EXCLUDED_ATTACHMENT_TYPES,omitempty"`
 	ATLASSIANIMPACTFIELD                           *string                         `json:"ATLASSIAN_IMPACT_FIELD,omitempty"`
-	ATLASSIANISSUETYPES                            *string                         `json:"ATLASSIAN_ISSUE_TYPES,omitempty"`
 	ATLASSIANLINKEDISSUETYPE                       *string                         `json:"ATLASSIAN_LINKED_ISSUE_TYPE,omitempty"`
 	ATLASSIANMAPWALDURUSERSTOSERVICEDESKAGENTS     *bool                           `json:"ATLASSIAN_MAP_WALDUR_USERS_TO_SERVICEDESK_AGENTS,omitempty"`
 	ATLASSIANOAUTH2ACCESSTOKEN                     *string                         `json:"ATLASSIAN_OAUTH2_ACCESS_TOKEN,omitempty"`
@@ -15021,7 +15139,6 @@ type ConstanceSettingsRequestMultipart struct {
 	ATLASSIANSHAREDUSERNAME                        *bool                           `json:"ATLASSIAN_SHARED_USERNAME,omitempty"`
 	ATLASSIANSLAFIELD                              *string                         `json:"ATLASSIAN_SLA_FIELD,omitempty"`
 	ATLASSIANSUMMARYTEMPLATE                       *string                         `json:"ATLASSIAN_SUMMARY_TEMPLATE,omitempty"`
-	ATLASSIANSUPPORTTYPEMAPPING                    *string                         `json:"ATLASSIAN_SUPPORT_TYPE_MAPPING,omitempty"`
 	ATLASSIANTEMPLATEFIELD                         *string                         `json:"ATLASSIAN_TEMPLATE_FIELD,omitempty"`
 	ATLASSIANTOKEN                                 *string                         `json:"ATLASSIAN_TOKEN,omitempty"`
 	ATLASSIANUSERNAME                              *string                         `json:"ATLASSIAN_USERNAME,omitempty"`
@@ -16189,6 +16306,73 @@ type DiscountTypeEnum string
 type DiscountsUpdateRequest struct {
 	// Discounts Dictionary mapping component types to their discount configuration.
 	Discounts map[string]DiscountConfigRequest `json:"discounts"`
+}
+
+// DiscoverCustomFieldsRequestRequest defines model for DiscoverCustomFieldsRequestRequest.
+type DiscoverCustomFieldsRequestRequest struct {
+	// ApiUrl Atlassian API URL (e.g., https://your-domain.atlassian.net)
+	ApiUrl string `json:"api_url"`
+
+	// AuthMethod Authentication method to use
+	AuthMethod          AuthMethodEnum       `json:"auth_method"`
+	Email               *openapi_types.Email `json:"email,omitempty"`
+	Password            *string              `json:"password,omitempty"`
+	PersonalAccessToken *string              `json:"personal_access_token,omitempty"`
+	ProjectId           *string              `json:"project_id,omitempty"`
+
+	// RequestTypeId Optional: Filter fields by request type
+	RequestTypeId *string `json:"request_type_id,omitempty"`
+	Token         *string `json:"token,omitempty"`
+	Username      *string `json:"username,omitempty"`
+	VerifySsl     *bool   `json:"verify_ssl,omitempty"`
+}
+
+// DiscoverPrioritiesRequestRequest defines model for DiscoverPrioritiesRequestRequest.
+type DiscoverPrioritiesRequestRequest struct {
+	// ApiUrl Atlassian API URL (e.g., https://your-domain.atlassian.net)
+	ApiUrl string `json:"api_url"`
+
+	// AuthMethod Authentication method to use
+	AuthMethod          AuthMethodEnum       `json:"auth_method"`
+	Email               *openapi_types.Email `json:"email,omitempty"`
+	Password            *string              `json:"password,omitempty"`
+	PersonalAccessToken *string              `json:"personal_access_token,omitempty"`
+	Token               *string              `json:"token,omitempty"`
+	Username            *string              `json:"username,omitempty"`
+	VerifySsl           *bool                `json:"verify_ssl,omitempty"`
+}
+
+// DiscoverProjectsRequestRequest defines model for DiscoverProjectsRequestRequest.
+type DiscoverProjectsRequestRequest struct {
+	// ApiUrl Atlassian API URL (e.g., https://your-domain.atlassian.net)
+	ApiUrl string `json:"api_url"`
+
+	// AuthMethod Authentication method to use
+	AuthMethod          AuthMethodEnum       `json:"auth_method"`
+	Email               *openapi_types.Email `json:"email,omitempty"`
+	Password            *string              `json:"password,omitempty"`
+	PersonalAccessToken *string              `json:"personal_access_token,omitempty"`
+	Token               *string              `json:"token,omitempty"`
+	Username            *string              `json:"username,omitempty"`
+	VerifySsl           *bool                `json:"verify_ssl,omitempty"`
+}
+
+// DiscoverRequestTypesRequestRequest defines model for DiscoverRequestTypesRequestRequest.
+type DiscoverRequestTypesRequestRequest struct {
+	// ApiUrl Atlassian API URL (e.g., https://your-domain.atlassian.net)
+	ApiUrl string `json:"api_url"`
+
+	// AuthMethod Authentication method to use
+	AuthMethod          AuthMethodEnum       `json:"auth_method"`
+	Email               *openapi_types.Email `json:"email,omitempty"`
+	Password            *string              `json:"password,omitempty"`
+	PersonalAccessToken *string              `json:"personal_access_token,omitempty"`
+
+	// ProjectId Service Desk project ID or key
+	ProjectId string  `json:"project_id"`
+	Token     *string `json:"token,omitempty"`
+	Username  *string `json:"username,omitempty"`
+	VerifySsl *bool   `json:"verify_ssl,omitempty"`
 }
 
 // DiskFormatEnum defines model for DiskFormatEnum.
@@ -22292,6 +22476,7 @@ type OpenStackTenantCreateOrderAttributes struct {
 	SecurityGroups              *[]OpenStackTenantSecurityGroupRequest `json:"security_groups,omitempty"`
 	SkipConnectionExtnet        *bool                                  `json:"skip_connection_extnet,omitempty"`
 	SkipCreationOfDefaultRouter *bool                                  `json:"skip_creation_of_default_router,omitempty"`
+	SkipCreationOfDefaultSubnet *bool                                  `json:"skip_creation_of_default_subnet,omitempty"`
 	SubnetCidr                  *string                                `json:"subnet_cidr,omitempty"`
 }
 
@@ -22325,10 +22510,11 @@ type OpenStackTenantRequest struct {
 	AvailabilityZone *string `json:"availability_zone,omitempty"`
 
 	// DefaultVolumeTypeName Volume type name to use when creating volumes.
-	DefaultVolumeTypeName *string                                `json:"default_volume_type_name,omitempty"`
-	Description           *string                                `json:"description,omitempty"`
-	Name                  string                                 `json:"name"`
-	SecurityGroups        *[]OpenStackTenantSecurityGroupRequest `json:"security_groups,omitempty"`
+	DefaultVolumeTypeName       *string                                `json:"default_volume_type_name,omitempty"`
+	Description                 *string                                `json:"description,omitempty"`
+	Name                        string                                 `json:"name"`
+	SecurityGroups              *[]OpenStackTenantSecurityGroupRequest `json:"security_groups,omitempty"`
+	SkipCreationOfDefaultSubnet *bool                                  `json:"skip_creation_of_default_subnet,omitempty"`
 }
 
 // OpenStackTenantSecurityGroupRequest defines model for OpenStackTenantSecurityGroupRequest.
@@ -23739,10 +23925,11 @@ type PatchedOpenStackTenantRequest struct {
 	AvailabilityZone *string `json:"availability_zone,omitempty"`
 
 	// DefaultVolumeTypeName Volume type name to use when creating volumes.
-	DefaultVolumeTypeName *string                                `json:"default_volume_type_name,omitempty"`
-	Description           *string                                `json:"description,omitempty"`
-	Name                  *string                                `json:"name,omitempty"`
-	SecurityGroups        *[]OpenStackTenantSecurityGroupRequest `json:"security_groups,omitempty"`
+	DefaultVolumeTypeName       *string                                `json:"default_volume_type_name,omitempty"`
+	Description                 *string                                `json:"description,omitempty"`
+	Name                        *string                                `json:"name,omitempty"`
+	SecurityGroups              *[]OpenStackTenantSecurityGroupRequest `json:"security_groups,omitempty"`
+	SkipCreationOfDefaultSubnet *bool                                  `json:"skip_creation_of_default_subnet,omitempty"`
 }
 
 // PatchedOpenStackVolumeRequest defines model for PatchedOpenStackVolumeRequest.
@@ -24255,6 +24442,17 @@ type PatchedRemoteSynchronisationRequest struct {
 	RemoteOrganizationName *string                             `json:"remote_organization_name,omitempty"`
 	RemotelocalcategorySet *[]NestedRemoteLocalCategoryRequest `json:"remotelocalcategory_set,omitempty"`
 	Token                  *string                             `json:"token,omitempty"`
+}
+
+// PatchedRequestTypeAdminRequest defines model for PatchedRequestTypeAdminRequest.
+type PatchedRequestTypeAdminRequest struct {
+	// IsActive Whether this request type is available for issue creation.
+	IsActive      *bool   `json:"is_active,omitempty"`
+	IssueTypeName *string `json:"issue_type_name,omitempty"`
+	Name          *string `json:"name,omitempty"`
+
+	// Order Display order. First type (lowest order) is the default.
+	Order *int `json:"order,omitempty"`
 }
 
 // PatchedRequestedOfferingRequest defines model for PatchedRequestedOfferingRequest.
@@ -27668,6 +27866,48 @@ type ReportSectionRequest struct {
 
 	// Header Section header text
 	Header string `json:"header"`
+}
+
+// RequestType defines model for RequestType.
+type RequestType struct {
+	IssueTypeName string `json:"issue_type_name"`
+	Name          string `json:"name"`
+
+	// Order Display order. First type (lowest order) is the default.
+	Order *int                `json:"order,omitempty"`
+	Url   *string             `json:"url,omitempty"`
+	Uuid  *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// RequestTypeAdmin defines model for RequestTypeAdmin.
+type RequestTypeAdmin struct {
+	// BackendId Backend ID for synced types. Null for manually created types.
+	BackendId   *int    `json:"backend_id"`
+	BackendName *string `json:"backend_name"`
+
+	// IsActive Whether this request type is available for issue creation.
+	IsActive *bool `json:"is_active,omitempty"`
+
+	// IsSynced Returns True if the request type was synced from a backend.
+	IsSynced      *bool  `json:"is_synced,omitempty"`
+	IssueTypeName string `json:"issue_type_name"`
+	Name          string `json:"name"`
+
+	// Order Display order. First type (lowest order) is the default.
+	Order *int                `json:"order,omitempty"`
+	Url   *string             `json:"url,omitempty"`
+	Uuid  *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// RequestTypeAdminRequest defines model for RequestTypeAdminRequest.
+type RequestTypeAdminRequest struct {
+	// IsActive Whether this request type is available for issue creation.
+	IsActive      *bool  `json:"is_active,omitempty"`
+	IssueTypeName string `json:"issue_type_name"`
+	Name          string `json:"name"`
+
+	// Order Display order. First type (lowest order) is the default.
+	Order *int `json:"order,omitempty"`
 }
 
 // RequestTypes defines model for RequestTypes.
@@ -46881,6 +47121,48 @@ type SupportPrioritiesCountParams struct {
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 }
 
+// SupportRequestTypesAdminListParams defines parameters for SupportRequestTypesAdminList.
+type SupportRequestTypesAdminListParams struct {
+	IsActive *bool   `form:"is_active,omitempty" json:"is_active,omitempty"`
+	Name     *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// SupportRequestTypesAdminCountParams defines parameters for SupportRequestTypesAdminCount.
+type SupportRequestTypesAdminCountParams struct {
+	IsActive *bool   `form:"is_active,omitempty" json:"is_active,omitempty"`
+	Name     *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// SupportRequestTypesListParams defines parameters for SupportRequestTypesList.
+type SupportRequestTypesListParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// SupportRequestTypesCountParams defines parameters for SupportRequestTypesCount.
+type SupportRequestTypesCountParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
 // SupportTemplatesListParams defines parameters for SupportTemplatesList.
 type SupportTemplatesListParams struct {
 	// Page A page number within the paginated result set.
@@ -46923,6 +47205,51 @@ type SupportUsersCountParams struct {
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 	User     *int      `form:"user,omitempty" json:"user,omitempty"`
+}
+
+// SupportSettingsAtlassianListParams defines parameters for SupportSettingsAtlassianList.
+type SupportSettingsAtlassianListParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// SupportSettingsAtlassianDiscoverCustomFieldsParams defines parameters for SupportSettingsAtlassianDiscoverCustomFields.
+type SupportSettingsAtlassianDiscoverCustomFieldsParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// SupportSettingsAtlassianDiscoverPrioritiesParams defines parameters for SupportSettingsAtlassianDiscoverPriorities.
+type SupportSettingsAtlassianDiscoverPrioritiesParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// SupportSettingsAtlassianDiscoverProjectsParams defines parameters for SupportSettingsAtlassianDiscoverProjects.
+type SupportSettingsAtlassianDiscoverProjectsParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// SupportSettingsAtlassianDiscoverRequestTypesParams defines parameters for SupportSettingsAtlassianDiscoverRequestTypes.
+type SupportSettingsAtlassianDiscoverRequestTypesParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 }
 
 // UserActionExecutionsListParams defines parameters for UserActionExecutionsList.
@@ -50109,6 +50436,24 @@ type SupportIssuesSyncJSONRequestBody = IssueRequest
 // SupportJiraWebhookJSONRequestBody defines body for SupportJiraWebhook for application/json ContentType.
 type SupportJiraWebhookJSONRequestBody = WebHookReceiverRequest
 
+// SupportRequestTypesAdminCreateJSONRequestBody defines body for SupportRequestTypesAdminCreate for application/json ContentType.
+type SupportRequestTypesAdminCreateJSONRequestBody = RequestTypeAdminRequest
+
+// SupportRequestTypesAdminReorderJSONRequestBody defines body for SupportRequestTypesAdminReorder for application/json ContentType.
+type SupportRequestTypesAdminReorderJSONRequestBody = RequestTypeAdminRequest
+
+// SupportRequestTypesAdminPartialUpdateJSONRequestBody defines body for SupportRequestTypesAdminPartialUpdate for application/json ContentType.
+type SupportRequestTypesAdminPartialUpdateJSONRequestBody = PatchedRequestTypeAdminRequest
+
+// SupportRequestTypesAdminUpdateJSONRequestBody defines body for SupportRequestTypesAdminUpdate for application/json ContentType.
+type SupportRequestTypesAdminUpdateJSONRequestBody = RequestTypeAdminRequest
+
+// SupportRequestTypesAdminActivateJSONRequestBody defines body for SupportRequestTypesAdminActivate for application/json ContentType.
+type SupportRequestTypesAdminActivateJSONRequestBody = RequestTypeAdminRequest
+
+// SupportRequestTypesAdminDeactivateJSONRequestBody defines body for SupportRequestTypesAdminDeactivate for application/json ContentType.
+type SupportRequestTypesAdminDeactivateJSONRequestBody = RequestTypeAdminRequest
+
 // SupportSmaxWebhookJSONRequestBody defines body for SupportSmaxWebhook for application/json ContentType.
 type SupportSmaxWebhookJSONRequestBody = SmaxWebHookReceiverRequest
 
@@ -50126,6 +50471,27 @@ type SupportTemplatesCreateAttachmentsJSONRequestBody = CreateAttachmentsRequest
 
 // SupportTemplatesDeleteAttachmentsJSONRequestBody defines body for SupportTemplatesDeleteAttachments for application/json ContentType.
 type SupportTemplatesDeleteAttachmentsJSONRequestBody = DeleteAttachmentsRequest
+
+// SupportSettingsAtlassianDiscoverCustomFieldsJSONRequestBody defines body for SupportSettingsAtlassianDiscoverCustomFields for application/json ContentType.
+type SupportSettingsAtlassianDiscoverCustomFieldsJSONRequestBody = DiscoverCustomFieldsRequestRequest
+
+// SupportSettingsAtlassianDiscoverPrioritiesJSONRequestBody defines body for SupportSettingsAtlassianDiscoverPriorities for application/json ContentType.
+type SupportSettingsAtlassianDiscoverPrioritiesJSONRequestBody = DiscoverPrioritiesRequestRequest
+
+// SupportSettingsAtlassianDiscoverProjectsJSONRequestBody defines body for SupportSettingsAtlassianDiscoverProjects for application/json ContentType.
+type SupportSettingsAtlassianDiscoverProjectsJSONRequestBody = DiscoverProjectsRequestRequest
+
+// SupportSettingsAtlassianDiscoverRequestTypesJSONRequestBody defines body for SupportSettingsAtlassianDiscoverRequestTypes for application/json ContentType.
+type SupportSettingsAtlassianDiscoverRequestTypesJSONRequestBody = DiscoverRequestTypesRequestRequest
+
+// SupportSettingsAtlassianPreviewSettingsJSONRequestBody defines body for SupportSettingsAtlassianPreviewSettings for application/json ContentType.
+type SupportSettingsAtlassianPreviewSettingsJSONRequestBody = AtlassianSettingsPreviewRequest
+
+// SupportSettingsAtlassianSaveSettingsJSONRequestBody defines body for SupportSettingsAtlassianSaveSettings for application/json ContentType.
+type SupportSettingsAtlassianSaveSettingsJSONRequestBody = AtlassianSettingsSaveRequest
+
+// SupportSettingsAtlassianValidateCredentialsJSONRequestBody defines body for SupportSettingsAtlassianValidateCredentials for application/json ContentType.
+type SupportSettingsAtlassianValidateCredentialsJSONRequestBody = AtlassianCredentialsRequest
 
 // UserActionsBulkSilenceJSONRequestBody defines body for UserActionsBulkSilence for application/json ContentType.
 type UserActionsBulkSilenceJSONRequestBody = SilenceActionRequest
@@ -62856,6 +63222,57 @@ type ClientInterface interface {
 	// SupportPrioritiesRetrieve request
 	SupportPrioritiesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// SupportRequestTypesAdminList request
+	SupportRequestTypesAdminList(ctx context.Context, params *SupportRequestTypesAdminListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// SupportRequestTypesAdminCount request
+	SupportRequestTypesAdminCount(ctx context.Context, params *SupportRequestTypesAdminCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// SupportRequestTypesAdminCreateWithBody request with any body
+	SupportRequestTypesAdminCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	SupportRequestTypesAdminCreate(ctx context.Context, body SupportRequestTypesAdminCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// SupportRequestTypesAdminReorderWithBody request with any body
+	SupportRequestTypesAdminReorderWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	SupportRequestTypesAdminReorder(ctx context.Context, body SupportRequestTypesAdminReorderJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// SupportRequestTypesAdminDestroy request
+	SupportRequestTypesAdminDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// SupportRequestTypesAdminRetrieve request
+	SupportRequestTypesAdminRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// SupportRequestTypesAdminPartialUpdateWithBody request with any body
+	SupportRequestTypesAdminPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	SupportRequestTypesAdminPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body SupportRequestTypesAdminPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// SupportRequestTypesAdminUpdateWithBody request with any body
+	SupportRequestTypesAdminUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	SupportRequestTypesAdminUpdate(ctx context.Context, uuid openapi_types.UUID, body SupportRequestTypesAdminUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// SupportRequestTypesAdminActivateWithBody request with any body
+	SupportRequestTypesAdminActivateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	SupportRequestTypesAdminActivate(ctx context.Context, uuid openapi_types.UUID, body SupportRequestTypesAdminActivateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// SupportRequestTypesAdminDeactivateWithBody request with any body
+	SupportRequestTypesAdminDeactivateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	SupportRequestTypesAdminDeactivate(ctx context.Context, uuid openapi_types.UUID, body SupportRequestTypesAdminDeactivateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// SupportRequestTypesList request
+	SupportRequestTypesList(ctx context.Context, params *SupportRequestTypesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// SupportRequestTypesCount request
+	SupportRequestTypesCount(ctx context.Context, params *SupportRequestTypesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// SupportRequestTypesRetrieve request
+	SupportRequestTypesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// SupportSmaxWebhookWithBody request with any body
 	SupportSmaxWebhookWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -62912,6 +63329,62 @@ type ClientInterface interface {
 
 	// SupportZammadWebhook request
 	SupportZammadWebhook(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// SupportSettingsAtlassianList request
+	SupportSettingsAtlassianList(ctx context.Context, params *SupportSettingsAtlassianListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// SupportSettingsAtlassianCreate request
+	SupportSettingsAtlassianCreate(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// SupportSettingsAtlassianCurrentSettingsRetrieve request
+	SupportSettingsAtlassianCurrentSettingsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// SupportSettingsAtlassianDiscoverCustomFieldsWithBody request with any body
+	SupportSettingsAtlassianDiscoverCustomFieldsWithBody(ctx context.Context, params *SupportSettingsAtlassianDiscoverCustomFieldsParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	SupportSettingsAtlassianDiscoverCustomFields(ctx context.Context, params *SupportSettingsAtlassianDiscoverCustomFieldsParams, body SupportSettingsAtlassianDiscoverCustomFieldsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// SupportSettingsAtlassianDiscoverPrioritiesWithBody request with any body
+	SupportSettingsAtlassianDiscoverPrioritiesWithBody(ctx context.Context, params *SupportSettingsAtlassianDiscoverPrioritiesParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	SupportSettingsAtlassianDiscoverPriorities(ctx context.Context, params *SupportSettingsAtlassianDiscoverPrioritiesParams, body SupportSettingsAtlassianDiscoverPrioritiesJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// SupportSettingsAtlassianDiscoverProjectsWithBody request with any body
+	SupportSettingsAtlassianDiscoverProjectsWithBody(ctx context.Context, params *SupportSettingsAtlassianDiscoverProjectsParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	SupportSettingsAtlassianDiscoverProjects(ctx context.Context, params *SupportSettingsAtlassianDiscoverProjectsParams, body SupportSettingsAtlassianDiscoverProjectsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// SupportSettingsAtlassianDiscoverRequestTypesWithBody request with any body
+	SupportSettingsAtlassianDiscoverRequestTypesWithBody(ctx context.Context, params *SupportSettingsAtlassianDiscoverRequestTypesParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	SupportSettingsAtlassianDiscoverRequestTypes(ctx context.Context, params *SupportSettingsAtlassianDiscoverRequestTypesParams, body SupportSettingsAtlassianDiscoverRequestTypesJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// SupportSettingsAtlassianPreviewSettingsWithBody request with any body
+	SupportSettingsAtlassianPreviewSettingsWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	SupportSettingsAtlassianPreviewSettings(ctx context.Context, body SupportSettingsAtlassianPreviewSettingsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// SupportSettingsAtlassianSaveSettingsWithBody request with any body
+	SupportSettingsAtlassianSaveSettingsWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	SupportSettingsAtlassianSaveSettings(ctx context.Context, body SupportSettingsAtlassianSaveSettingsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// SupportSettingsAtlassianValidateCredentialsWithBody request with any body
+	SupportSettingsAtlassianValidateCredentialsWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	SupportSettingsAtlassianValidateCredentials(ctx context.Context, body SupportSettingsAtlassianValidateCredentialsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// SupportSettingsAtlassianDestroy request
+	SupportSettingsAtlassianDestroy(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// SupportSettingsAtlassianRetrieve request
+	SupportSettingsAtlassianRetrieve(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// SupportSettingsAtlassianPartialUpdate request
+	SupportSettingsAtlassianPartialUpdate(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// SupportSettingsAtlassianUpdate request
+	SupportSettingsAtlassianUpdate(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// SyncIssuesRetrieve request
 	SyncIssuesRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -90964,6 +91437,234 @@ func (c *Client) SupportPrioritiesRetrieve(ctx context.Context, uuid openapi_typ
 	return c.Client.Do(req)
 }
 
+func (c *Client) SupportRequestTypesAdminList(ctx context.Context, params *SupportRequestTypesAdminListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSupportRequestTypesAdminListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SupportRequestTypesAdminCount(ctx context.Context, params *SupportRequestTypesAdminCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSupportRequestTypesAdminCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SupportRequestTypesAdminCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSupportRequestTypesAdminCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SupportRequestTypesAdminCreate(ctx context.Context, body SupportRequestTypesAdminCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSupportRequestTypesAdminCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SupportRequestTypesAdminReorderWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSupportRequestTypesAdminReorderRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SupportRequestTypesAdminReorder(ctx context.Context, body SupportRequestTypesAdminReorderJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSupportRequestTypesAdminReorderRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SupportRequestTypesAdminDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSupportRequestTypesAdminDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SupportRequestTypesAdminRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSupportRequestTypesAdminRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SupportRequestTypesAdminPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSupportRequestTypesAdminPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SupportRequestTypesAdminPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body SupportRequestTypesAdminPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSupportRequestTypesAdminPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SupportRequestTypesAdminUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSupportRequestTypesAdminUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SupportRequestTypesAdminUpdate(ctx context.Context, uuid openapi_types.UUID, body SupportRequestTypesAdminUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSupportRequestTypesAdminUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SupportRequestTypesAdminActivateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSupportRequestTypesAdminActivateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SupportRequestTypesAdminActivate(ctx context.Context, uuid openapi_types.UUID, body SupportRequestTypesAdminActivateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSupportRequestTypesAdminActivateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SupportRequestTypesAdminDeactivateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSupportRequestTypesAdminDeactivateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SupportRequestTypesAdminDeactivate(ctx context.Context, uuid openapi_types.UUID, body SupportRequestTypesAdminDeactivateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSupportRequestTypesAdminDeactivateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SupportRequestTypesList(ctx context.Context, params *SupportRequestTypesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSupportRequestTypesListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SupportRequestTypesCount(ctx context.Context, params *SupportRequestTypesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSupportRequestTypesCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SupportRequestTypesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSupportRequestTypesRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) SupportSmaxWebhookWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewSupportSmaxWebhookRequestWithBody(c.Server, contentType, body)
 	if err != nil {
@@ -91206,6 +91907,258 @@ func (c *Client) SupportUsersRetrieve(ctx context.Context, uuid openapi_types.UU
 
 func (c *Client) SupportZammadWebhook(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewSupportZammadWebhookRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SupportSettingsAtlassianList(ctx context.Context, params *SupportSettingsAtlassianListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSupportSettingsAtlassianListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SupportSettingsAtlassianCreate(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSupportSettingsAtlassianCreateRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SupportSettingsAtlassianCurrentSettingsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSupportSettingsAtlassianCurrentSettingsRetrieveRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SupportSettingsAtlassianDiscoverCustomFieldsWithBody(ctx context.Context, params *SupportSettingsAtlassianDiscoverCustomFieldsParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSupportSettingsAtlassianDiscoverCustomFieldsRequestWithBody(c.Server, params, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SupportSettingsAtlassianDiscoverCustomFields(ctx context.Context, params *SupportSettingsAtlassianDiscoverCustomFieldsParams, body SupportSettingsAtlassianDiscoverCustomFieldsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSupportSettingsAtlassianDiscoverCustomFieldsRequest(c.Server, params, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SupportSettingsAtlassianDiscoverPrioritiesWithBody(ctx context.Context, params *SupportSettingsAtlassianDiscoverPrioritiesParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSupportSettingsAtlassianDiscoverPrioritiesRequestWithBody(c.Server, params, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SupportSettingsAtlassianDiscoverPriorities(ctx context.Context, params *SupportSettingsAtlassianDiscoverPrioritiesParams, body SupportSettingsAtlassianDiscoverPrioritiesJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSupportSettingsAtlassianDiscoverPrioritiesRequest(c.Server, params, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SupportSettingsAtlassianDiscoverProjectsWithBody(ctx context.Context, params *SupportSettingsAtlassianDiscoverProjectsParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSupportSettingsAtlassianDiscoverProjectsRequestWithBody(c.Server, params, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SupportSettingsAtlassianDiscoverProjects(ctx context.Context, params *SupportSettingsAtlassianDiscoverProjectsParams, body SupportSettingsAtlassianDiscoverProjectsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSupportSettingsAtlassianDiscoverProjectsRequest(c.Server, params, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SupportSettingsAtlassianDiscoverRequestTypesWithBody(ctx context.Context, params *SupportSettingsAtlassianDiscoverRequestTypesParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSupportSettingsAtlassianDiscoverRequestTypesRequestWithBody(c.Server, params, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SupportSettingsAtlassianDiscoverRequestTypes(ctx context.Context, params *SupportSettingsAtlassianDiscoverRequestTypesParams, body SupportSettingsAtlassianDiscoverRequestTypesJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSupportSettingsAtlassianDiscoverRequestTypesRequest(c.Server, params, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SupportSettingsAtlassianPreviewSettingsWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSupportSettingsAtlassianPreviewSettingsRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SupportSettingsAtlassianPreviewSettings(ctx context.Context, body SupportSettingsAtlassianPreviewSettingsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSupportSettingsAtlassianPreviewSettingsRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SupportSettingsAtlassianSaveSettingsWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSupportSettingsAtlassianSaveSettingsRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SupportSettingsAtlassianSaveSettings(ctx context.Context, body SupportSettingsAtlassianSaveSettingsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSupportSettingsAtlassianSaveSettingsRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SupportSettingsAtlassianValidateCredentialsWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSupportSettingsAtlassianValidateCredentialsRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SupportSettingsAtlassianValidateCredentials(ctx context.Context, body SupportSettingsAtlassianValidateCredentialsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSupportSettingsAtlassianValidateCredentialsRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SupportSettingsAtlassianDestroy(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSupportSettingsAtlassianDestroyRequest(c.Server, id)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SupportSettingsAtlassianRetrieve(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSupportSettingsAtlassianRetrieveRequest(c.Server, id)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SupportSettingsAtlassianPartialUpdate(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSupportSettingsAtlassianPartialUpdateRequest(c.Server, id)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) SupportSettingsAtlassianUpdate(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewSupportSettingsAtlassianUpdateRequest(c.Server, id)
 	if err != nil {
 		return nil, err
 	}
@@ -237555,6 +238508,700 @@ func NewSupportPrioritiesRetrieveRequest(server string, uuid openapi_types.UUID)
 	return req, nil
 }
 
+// NewSupportRequestTypesAdminListRequest generates requests for SupportRequestTypesAdminList
+func NewSupportRequestTypesAdminListRequest(server string, params *SupportRequestTypesAdminListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/support-request-types-admin/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.IsActive != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_active", runtime.ParamLocationQuery, *params.IsActive); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name", runtime.ParamLocationQuery, *params.Name); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewSupportRequestTypesAdminCountRequest generates requests for SupportRequestTypesAdminCount
+func NewSupportRequestTypesAdminCountRequest(server string, params *SupportRequestTypesAdminCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/support-request-types-admin/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.IsActive != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_active", runtime.ParamLocationQuery, *params.IsActive); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name", runtime.ParamLocationQuery, *params.Name); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewSupportRequestTypesAdminCreateRequest calls the generic SupportRequestTypesAdminCreate builder with application/json body
+func NewSupportRequestTypesAdminCreateRequest(server string, body SupportRequestTypesAdminCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewSupportRequestTypesAdminCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewSupportRequestTypesAdminCreateRequestWithBody generates requests for SupportRequestTypesAdminCreate with any type of body
+func NewSupportRequestTypesAdminCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/support-request-types-admin/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewSupportRequestTypesAdminReorderRequest calls the generic SupportRequestTypesAdminReorder builder with application/json body
+func NewSupportRequestTypesAdminReorderRequest(server string, body SupportRequestTypesAdminReorderJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewSupportRequestTypesAdminReorderRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewSupportRequestTypesAdminReorderRequestWithBody generates requests for SupportRequestTypesAdminReorder with any type of body
+func NewSupportRequestTypesAdminReorderRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/support-request-types-admin/reorder/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewSupportRequestTypesAdminDestroyRequest generates requests for SupportRequestTypesAdminDestroy
+func NewSupportRequestTypesAdminDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/support-request-types-admin/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewSupportRequestTypesAdminRetrieveRequest generates requests for SupportRequestTypesAdminRetrieve
+func NewSupportRequestTypesAdminRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/support-request-types-admin/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewSupportRequestTypesAdminPartialUpdateRequest calls the generic SupportRequestTypesAdminPartialUpdate builder with application/json body
+func NewSupportRequestTypesAdminPartialUpdateRequest(server string, uuid openapi_types.UUID, body SupportRequestTypesAdminPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewSupportRequestTypesAdminPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewSupportRequestTypesAdminPartialUpdateRequestWithBody generates requests for SupportRequestTypesAdminPartialUpdate with any type of body
+func NewSupportRequestTypesAdminPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/support-request-types-admin/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewSupportRequestTypesAdminUpdateRequest calls the generic SupportRequestTypesAdminUpdate builder with application/json body
+func NewSupportRequestTypesAdminUpdateRequest(server string, uuid openapi_types.UUID, body SupportRequestTypesAdminUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewSupportRequestTypesAdminUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewSupportRequestTypesAdminUpdateRequestWithBody generates requests for SupportRequestTypesAdminUpdate with any type of body
+func NewSupportRequestTypesAdminUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/support-request-types-admin/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewSupportRequestTypesAdminActivateRequest calls the generic SupportRequestTypesAdminActivate builder with application/json body
+func NewSupportRequestTypesAdminActivateRequest(server string, uuid openapi_types.UUID, body SupportRequestTypesAdminActivateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewSupportRequestTypesAdminActivateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewSupportRequestTypesAdminActivateRequestWithBody generates requests for SupportRequestTypesAdminActivate with any type of body
+func NewSupportRequestTypesAdminActivateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/support-request-types-admin/%s/activate/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewSupportRequestTypesAdminDeactivateRequest calls the generic SupportRequestTypesAdminDeactivate builder with application/json body
+func NewSupportRequestTypesAdminDeactivateRequest(server string, uuid openapi_types.UUID, body SupportRequestTypesAdminDeactivateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewSupportRequestTypesAdminDeactivateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewSupportRequestTypesAdminDeactivateRequestWithBody generates requests for SupportRequestTypesAdminDeactivate with any type of body
+func NewSupportRequestTypesAdminDeactivateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/support-request-types-admin/%s/deactivate/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewSupportRequestTypesListRequest generates requests for SupportRequestTypesList
+func NewSupportRequestTypesListRequest(server string, params *SupportRequestTypesListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/support-request-types/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewSupportRequestTypesCountRequest generates requests for SupportRequestTypesCount
+func NewSupportRequestTypesCountRequest(server string, params *SupportRequestTypesCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/support-request-types/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewSupportRequestTypesRetrieveRequest generates requests for SupportRequestTypesRetrieve
+func NewSupportRequestTypesRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/support-request-types/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewSupportSmaxWebhookRequest calls the generic SupportSmaxWebhook builder with application/json body
 func NewSupportSmaxWebhookRequest(server string, body SupportSmaxWebhookJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -238328,6 +239975,693 @@ func NewSupportZammadWebhookRequest(server string) (*http.Request, error) {
 	}
 
 	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewSupportSettingsAtlassianListRequest generates requests for SupportSettingsAtlassianList
+func NewSupportSettingsAtlassianListRequest(server string, params *SupportSettingsAtlassianListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/support/settings/atlassian/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewSupportSettingsAtlassianCreateRequest generates requests for SupportSettingsAtlassianCreate
+func NewSupportSettingsAtlassianCreateRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/support/settings/atlassian/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewSupportSettingsAtlassianCurrentSettingsRetrieveRequest generates requests for SupportSettingsAtlassianCurrentSettingsRetrieve
+func NewSupportSettingsAtlassianCurrentSettingsRetrieveRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/support/settings/atlassian/current_settings/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewSupportSettingsAtlassianDiscoverCustomFieldsRequest calls the generic SupportSettingsAtlassianDiscoverCustomFields builder with application/json body
+func NewSupportSettingsAtlassianDiscoverCustomFieldsRequest(server string, params *SupportSettingsAtlassianDiscoverCustomFieldsParams, body SupportSettingsAtlassianDiscoverCustomFieldsJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewSupportSettingsAtlassianDiscoverCustomFieldsRequestWithBody(server, params, "application/json", bodyReader)
+}
+
+// NewSupportSettingsAtlassianDiscoverCustomFieldsRequestWithBody generates requests for SupportSettingsAtlassianDiscoverCustomFields with any type of body
+func NewSupportSettingsAtlassianDiscoverCustomFieldsRequestWithBody(server string, params *SupportSettingsAtlassianDiscoverCustomFieldsParams, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/support/settings/atlassian/discover_custom_fields/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewSupportSettingsAtlassianDiscoverPrioritiesRequest calls the generic SupportSettingsAtlassianDiscoverPriorities builder with application/json body
+func NewSupportSettingsAtlassianDiscoverPrioritiesRequest(server string, params *SupportSettingsAtlassianDiscoverPrioritiesParams, body SupportSettingsAtlassianDiscoverPrioritiesJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewSupportSettingsAtlassianDiscoverPrioritiesRequestWithBody(server, params, "application/json", bodyReader)
+}
+
+// NewSupportSettingsAtlassianDiscoverPrioritiesRequestWithBody generates requests for SupportSettingsAtlassianDiscoverPriorities with any type of body
+func NewSupportSettingsAtlassianDiscoverPrioritiesRequestWithBody(server string, params *SupportSettingsAtlassianDiscoverPrioritiesParams, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/support/settings/atlassian/discover_priorities/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewSupportSettingsAtlassianDiscoverProjectsRequest calls the generic SupportSettingsAtlassianDiscoverProjects builder with application/json body
+func NewSupportSettingsAtlassianDiscoverProjectsRequest(server string, params *SupportSettingsAtlassianDiscoverProjectsParams, body SupportSettingsAtlassianDiscoverProjectsJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewSupportSettingsAtlassianDiscoverProjectsRequestWithBody(server, params, "application/json", bodyReader)
+}
+
+// NewSupportSettingsAtlassianDiscoverProjectsRequestWithBody generates requests for SupportSettingsAtlassianDiscoverProjects with any type of body
+func NewSupportSettingsAtlassianDiscoverProjectsRequestWithBody(server string, params *SupportSettingsAtlassianDiscoverProjectsParams, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/support/settings/atlassian/discover_projects/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewSupportSettingsAtlassianDiscoverRequestTypesRequest calls the generic SupportSettingsAtlassianDiscoverRequestTypes builder with application/json body
+func NewSupportSettingsAtlassianDiscoverRequestTypesRequest(server string, params *SupportSettingsAtlassianDiscoverRequestTypesParams, body SupportSettingsAtlassianDiscoverRequestTypesJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewSupportSettingsAtlassianDiscoverRequestTypesRequestWithBody(server, params, "application/json", bodyReader)
+}
+
+// NewSupportSettingsAtlassianDiscoverRequestTypesRequestWithBody generates requests for SupportSettingsAtlassianDiscoverRequestTypes with any type of body
+func NewSupportSettingsAtlassianDiscoverRequestTypesRequestWithBody(server string, params *SupportSettingsAtlassianDiscoverRequestTypesParams, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/support/settings/atlassian/discover_request_types/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewSupportSettingsAtlassianPreviewSettingsRequest calls the generic SupportSettingsAtlassianPreviewSettings builder with application/json body
+func NewSupportSettingsAtlassianPreviewSettingsRequest(server string, body SupportSettingsAtlassianPreviewSettingsJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewSupportSettingsAtlassianPreviewSettingsRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewSupportSettingsAtlassianPreviewSettingsRequestWithBody generates requests for SupportSettingsAtlassianPreviewSettings with any type of body
+func NewSupportSettingsAtlassianPreviewSettingsRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/support/settings/atlassian/preview_settings/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewSupportSettingsAtlassianSaveSettingsRequest calls the generic SupportSettingsAtlassianSaveSettings builder with application/json body
+func NewSupportSettingsAtlassianSaveSettingsRequest(server string, body SupportSettingsAtlassianSaveSettingsJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewSupportSettingsAtlassianSaveSettingsRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewSupportSettingsAtlassianSaveSettingsRequestWithBody generates requests for SupportSettingsAtlassianSaveSettings with any type of body
+func NewSupportSettingsAtlassianSaveSettingsRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/support/settings/atlassian/save_settings/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewSupportSettingsAtlassianValidateCredentialsRequest calls the generic SupportSettingsAtlassianValidateCredentials builder with application/json body
+func NewSupportSettingsAtlassianValidateCredentialsRequest(server string, body SupportSettingsAtlassianValidateCredentialsJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewSupportSettingsAtlassianValidateCredentialsRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewSupportSettingsAtlassianValidateCredentialsRequestWithBody generates requests for SupportSettingsAtlassianValidateCredentials with any type of body
+func NewSupportSettingsAtlassianValidateCredentialsRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/support/settings/atlassian/validate_credentials/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewSupportSettingsAtlassianDestroyRequest generates requests for SupportSettingsAtlassianDestroy
+func NewSupportSettingsAtlassianDestroyRequest(server string, id int) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/support/settings/atlassian/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewSupportSettingsAtlassianRetrieveRequest generates requests for SupportSettingsAtlassianRetrieve
+func NewSupportSettingsAtlassianRetrieveRequest(server string, id int) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/support/settings/atlassian/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewSupportSettingsAtlassianPartialUpdateRequest generates requests for SupportSettingsAtlassianPartialUpdate
+func NewSupportSettingsAtlassianPartialUpdateRequest(server string, id int) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/support/settings/atlassian/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewSupportSettingsAtlassianUpdateRequest generates requests for SupportSettingsAtlassianUpdate
+func NewSupportSettingsAtlassianUpdateRequest(server string, id int) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "id", runtime.ParamLocationPath, id)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/support/settings/atlassian/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
@@ -255483,6 +257817,57 @@ type ClientWithResponsesInterface interface {
 	// SupportPrioritiesRetrieveWithResponse request
 	SupportPrioritiesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*SupportPrioritiesRetrieveResponse, error)
 
+	// SupportRequestTypesAdminListWithResponse request
+	SupportRequestTypesAdminListWithResponse(ctx context.Context, params *SupportRequestTypesAdminListParams, reqEditors ...RequestEditorFn) (*SupportRequestTypesAdminListResponse, error)
+
+	// SupportRequestTypesAdminCountWithResponse request
+	SupportRequestTypesAdminCountWithResponse(ctx context.Context, params *SupportRequestTypesAdminCountParams, reqEditors ...RequestEditorFn) (*SupportRequestTypesAdminCountResponse, error)
+
+	// SupportRequestTypesAdminCreateWithBodyWithResponse request with any body
+	SupportRequestTypesAdminCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SupportRequestTypesAdminCreateResponse, error)
+
+	SupportRequestTypesAdminCreateWithResponse(ctx context.Context, body SupportRequestTypesAdminCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*SupportRequestTypesAdminCreateResponse, error)
+
+	// SupportRequestTypesAdminReorderWithBodyWithResponse request with any body
+	SupportRequestTypesAdminReorderWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SupportRequestTypesAdminReorderResponse, error)
+
+	SupportRequestTypesAdminReorderWithResponse(ctx context.Context, body SupportRequestTypesAdminReorderJSONRequestBody, reqEditors ...RequestEditorFn) (*SupportRequestTypesAdminReorderResponse, error)
+
+	// SupportRequestTypesAdminDestroyWithResponse request
+	SupportRequestTypesAdminDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*SupportRequestTypesAdminDestroyResponse, error)
+
+	// SupportRequestTypesAdminRetrieveWithResponse request
+	SupportRequestTypesAdminRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*SupportRequestTypesAdminRetrieveResponse, error)
+
+	// SupportRequestTypesAdminPartialUpdateWithBodyWithResponse request with any body
+	SupportRequestTypesAdminPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SupportRequestTypesAdminPartialUpdateResponse, error)
+
+	SupportRequestTypesAdminPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body SupportRequestTypesAdminPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*SupportRequestTypesAdminPartialUpdateResponse, error)
+
+	// SupportRequestTypesAdminUpdateWithBodyWithResponse request with any body
+	SupportRequestTypesAdminUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SupportRequestTypesAdminUpdateResponse, error)
+
+	SupportRequestTypesAdminUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body SupportRequestTypesAdminUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*SupportRequestTypesAdminUpdateResponse, error)
+
+	// SupportRequestTypesAdminActivateWithBodyWithResponse request with any body
+	SupportRequestTypesAdminActivateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SupportRequestTypesAdminActivateResponse, error)
+
+	SupportRequestTypesAdminActivateWithResponse(ctx context.Context, uuid openapi_types.UUID, body SupportRequestTypesAdminActivateJSONRequestBody, reqEditors ...RequestEditorFn) (*SupportRequestTypesAdminActivateResponse, error)
+
+	// SupportRequestTypesAdminDeactivateWithBodyWithResponse request with any body
+	SupportRequestTypesAdminDeactivateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SupportRequestTypesAdminDeactivateResponse, error)
+
+	SupportRequestTypesAdminDeactivateWithResponse(ctx context.Context, uuid openapi_types.UUID, body SupportRequestTypesAdminDeactivateJSONRequestBody, reqEditors ...RequestEditorFn) (*SupportRequestTypesAdminDeactivateResponse, error)
+
+	// SupportRequestTypesListWithResponse request
+	SupportRequestTypesListWithResponse(ctx context.Context, params *SupportRequestTypesListParams, reqEditors ...RequestEditorFn) (*SupportRequestTypesListResponse, error)
+
+	// SupportRequestTypesCountWithResponse request
+	SupportRequestTypesCountWithResponse(ctx context.Context, params *SupportRequestTypesCountParams, reqEditors ...RequestEditorFn) (*SupportRequestTypesCountResponse, error)
+
+	// SupportRequestTypesRetrieveWithResponse request
+	SupportRequestTypesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*SupportRequestTypesRetrieveResponse, error)
+
 	// SupportSmaxWebhookWithBodyWithResponse request with any body
 	SupportSmaxWebhookWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SupportSmaxWebhookResponse, error)
 
@@ -255539,6 +257924,62 @@ type ClientWithResponsesInterface interface {
 
 	// SupportZammadWebhookWithResponse request
 	SupportZammadWebhookWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*SupportZammadWebhookResponse, error)
+
+	// SupportSettingsAtlassianListWithResponse request
+	SupportSettingsAtlassianListWithResponse(ctx context.Context, params *SupportSettingsAtlassianListParams, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianListResponse, error)
+
+	// SupportSettingsAtlassianCreateWithResponse request
+	SupportSettingsAtlassianCreateWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianCreateResponse, error)
+
+	// SupportSettingsAtlassianCurrentSettingsRetrieveWithResponse request
+	SupportSettingsAtlassianCurrentSettingsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianCurrentSettingsRetrieveResponse, error)
+
+	// SupportSettingsAtlassianDiscoverCustomFieldsWithBodyWithResponse request with any body
+	SupportSettingsAtlassianDiscoverCustomFieldsWithBodyWithResponse(ctx context.Context, params *SupportSettingsAtlassianDiscoverCustomFieldsParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianDiscoverCustomFieldsResponse, error)
+
+	SupportSettingsAtlassianDiscoverCustomFieldsWithResponse(ctx context.Context, params *SupportSettingsAtlassianDiscoverCustomFieldsParams, body SupportSettingsAtlassianDiscoverCustomFieldsJSONRequestBody, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianDiscoverCustomFieldsResponse, error)
+
+	// SupportSettingsAtlassianDiscoverPrioritiesWithBodyWithResponse request with any body
+	SupportSettingsAtlassianDiscoverPrioritiesWithBodyWithResponse(ctx context.Context, params *SupportSettingsAtlassianDiscoverPrioritiesParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianDiscoverPrioritiesResponse, error)
+
+	SupportSettingsAtlassianDiscoverPrioritiesWithResponse(ctx context.Context, params *SupportSettingsAtlassianDiscoverPrioritiesParams, body SupportSettingsAtlassianDiscoverPrioritiesJSONRequestBody, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianDiscoverPrioritiesResponse, error)
+
+	// SupportSettingsAtlassianDiscoverProjectsWithBodyWithResponse request with any body
+	SupportSettingsAtlassianDiscoverProjectsWithBodyWithResponse(ctx context.Context, params *SupportSettingsAtlassianDiscoverProjectsParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianDiscoverProjectsResponse, error)
+
+	SupportSettingsAtlassianDiscoverProjectsWithResponse(ctx context.Context, params *SupportSettingsAtlassianDiscoverProjectsParams, body SupportSettingsAtlassianDiscoverProjectsJSONRequestBody, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianDiscoverProjectsResponse, error)
+
+	// SupportSettingsAtlassianDiscoverRequestTypesWithBodyWithResponse request with any body
+	SupportSettingsAtlassianDiscoverRequestTypesWithBodyWithResponse(ctx context.Context, params *SupportSettingsAtlassianDiscoverRequestTypesParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianDiscoverRequestTypesResponse, error)
+
+	SupportSettingsAtlassianDiscoverRequestTypesWithResponse(ctx context.Context, params *SupportSettingsAtlassianDiscoverRequestTypesParams, body SupportSettingsAtlassianDiscoverRequestTypesJSONRequestBody, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianDiscoverRequestTypesResponse, error)
+
+	// SupportSettingsAtlassianPreviewSettingsWithBodyWithResponse request with any body
+	SupportSettingsAtlassianPreviewSettingsWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianPreviewSettingsResponse, error)
+
+	SupportSettingsAtlassianPreviewSettingsWithResponse(ctx context.Context, body SupportSettingsAtlassianPreviewSettingsJSONRequestBody, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianPreviewSettingsResponse, error)
+
+	// SupportSettingsAtlassianSaveSettingsWithBodyWithResponse request with any body
+	SupportSettingsAtlassianSaveSettingsWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianSaveSettingsResponse, error)
+
+	SupportSettingsAtlassianSaveSettingsWithResponse(ctx context.Context, body SupportSettingsAtlassianSaveSettingsJSONRequestBody, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianSaveSettingsResponse, error)
+
+	// SupportSettingsAtlassianValidateCredentialsWithBodyWithResponse request with any body
+	SupportSettingsAtlassianValidateCredentialsWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianValidateCredentialsResponse, error)
+
+	SupportSettingsAtlassianValidateCredentialsWithResponse(ctx context.Context, body SupportSettingsAtlassianValidateCredentialsJSONRequestBody, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianValidateCredentialsResponse, error)
+
+	// SupportSettingsAtlassianDestroyWithResponse request
+	SupportSettingsAtlassianDestroyWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianDestroyResponse, error)
+
+	// SupportSettingsAtlassianRetrieveWithResponse request
+	SupportSettingsAtlassianRetrieveWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianRetrieveResponse, error)
+
+	// SupportSettingsAtlassianPartialUpdateWithResponse request
+	SupportSettingsAtlassianPartialUpdateWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianPartialUpdateResponse, error)
+
+	// SupportSettingsAtlassianUpdateWithResponse request
+	SupportSettingsAtlassianUpdateWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianUpdateResponse, error)
 
 	// SyncIssuesRetrieveWithResponse request
 	SyncIssuesRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*SyncIssuesRetrieveResponse, error)
@@ -292891,6 +295332,289 @@ func (r SupportPrioritiesRetrieveResponse) StatusCode() int {
 	return 0
 }
 
+type SupportRequestTypesAdminListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]RequestTypeAdmin
+}
+
+// Status returns HTTPResponse.Status
+func (r SupportRequestTypesAdminListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r SupportRequestTypesAdminListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type SupportRequestTypesAdminCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r SupportRequestTypesAdminCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r SupportRequestTypesAdminCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type SupportRequestTypesAdminCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *RequestTypeAdmin
+}
+
+// Status returns HTTPResponse.Status
+func (r SupportRequestTypesAdminCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r SupportRequestTypesAdminCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type SupportRequestTypesAdminReorderResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *RequestTypeAdmin
+}
+
+// Status returns HTTPResponse.Status
+func (r SupportRequestTypesAdminReorderResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r SupportRequestTypesAdminReorderResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type SupportRequestTypesAdminDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r SupportRequestTypesAdminDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r SupportRequestTypesAdminDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type SupportRequestTypesAdminRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *RequestTypeAdmin
+}
+
+// Status returns HTTPResponse.Status
+func (r SupportRequestTypesAdminRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r SupportRequestTypesAdminRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type SupportRequestTypesAdminPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *RequestTypeAdmin
+}
+
+// Status returns HTTPResponse.Status
+func (r SupportRequestTypesAdminPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r SupportRequestTypesAdminPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type SupportRequestTypesAdminUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *RequestTypeAdmin
+}
+
+// Status returns HTTPResponse.Status
+func (r SupportRequestTypesAdminUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r SupportRequestTypesAdminUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type SupportRequestTypesAdminActivateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *RequestTypeAdmin
+}
+
+// Status returns HTTPResponse.Status
+func (r SupportRequestTypesAdminActivateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r SupportRequestTypesAdminActivateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type SupportRequestTypesAdminDeactivateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *RequestTypeAdmin
+}
+
+// Status returns HTTPResponse.Status
+func (r SupportRequestTypesAdminDeactivateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r SupportRequestTypesAdminDeactivateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type SupportRequestTypesListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]RequestType
+}
+
+// Status returns HTTPResponse.Status
+func (r SupportRequestTypesListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r SupportRequestTypesListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type SupportRequestTypesCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r SupportRequestTypesCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r SupportRequestTypesCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type SupportRequestTypesRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *RequestType
+}
+
+// Status returns HTTPResponse.Status
+func (r SupportRequestTypesRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r SupportRequestTypesRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type SupportSmaxWebhookResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -293209,6 +295933,304 @@ func (r SupportZammadWebhookResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r SupportZammadWebhookResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type SupportSettingsAtlassianListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r SupportSettingsAtlassianListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r SupportSettingsAtlassianListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type SupportSettingsAtlassianCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r SupportSettingsAtlassianCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r SupportSettingsAtlassianCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type SupportSettingsAtlassianCurrentSettingsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r SupportSettingsAtlassianCurrentSettingsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r SupportSettingsAtlassianCurrentSettingsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type SupportSettingsAtlassianDiscoverCustomFieldsResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]AtlassianCustomFieldResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r SupportSettingsAtlassianDiscoverCustomFieldsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r SupportSettingsAtlassianDiscoverCustomFieldsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type SupportSettingsAtlassianDiscoverPrioritiesResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]AtlassianPriorityResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r SupportSettingsAtlassianDiscoverPrioritiesResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r SupportSettingsAtlassianDiscoverPrioritiesResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type SupportSettingsAtlassianDiscoverProjectsResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]AtlassianProjectResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r SupportSettingsAtlassianDiscoverProjectsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r SupportSettingsAtlassianDiscoverProjectsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type SupportSettingsAtlassianDiscoverRequestTypesResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]AtlassianRequestTypeResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r SupportSettingsAtlassianDiscoverRequestTypesResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r SupportSettingsAtlassianDiscoverRequestTypesResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type SupportSettingsAtlassianPreviewSettingsResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r SupportSettingsAtlassianPreviewSettingsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r SupportSettingsAtlassianPreviewSettingsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type SupportSettingsAtlassianSaveSettingsResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r SupportSettingsAtlassianSaveSettingsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r SupportSettingsAtlassianSaveSettingsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type SupportSettingsAtlassianValidateCredentialsResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r SupportSettingsAtlassianValidateCredentialsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r SupportSettingsAtlassianValidateCredentialsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type SupportSettingsAtlassianDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r SupportSettingsAtlassianDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r SupportSettingsAtlassianDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type SupportSettingsAtlassianRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r SupportSettingsAtlassianRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r SupportSettingsAtlassianRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type SupportSettingsAtlassianPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r SupportSettingsAtlassianPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r SupportSettingsAtlassianPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type SupportSettingsAtlassianUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r SupportSettingsAtlassianUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r SupportSettingsAtlassianUpdateResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -315966,6 +318988,171 @@ func (c *ClientWithResponses) SupportPrioritiesRetrieveWithResponse(ctx context.
 	return ParseSupportPrioritiesRetrieveResponse(rsp)
 }
 
+// SupportRequestTypesAdminListWithResponse request returning *SupportRequestTypesAdminListResponse
+func (c *ClientWithResponses) SupportRequestTypesAdminListWithResponse(ctx context.Context, params *SupportRequestTypesAdminListParams, reqEditors ...RequestEditorFn) (*SupportRequestTypesAdminListResponse, error) {
+	rsp, err := c.SupportRequestTypesAdminList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSupportRequestTypesAdminListResponse(rsp)
+}
+
+// SupportRequestTypesAdminCountWithResponse request returning *SupportRequestTypesAdminCountResponse
+func (c *ClientWithResponses) SupportRequestTypesAdminCountWithResponse(ctx context.Context, params *SupportRequestTypesAdminCountParams, reqEditors ...RequestEditorFn) (*SupportRequestTypesAdminCountResponse, error) {
+	rsp, err := c.SupportRequestTypesAdminCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSupportRequestTypesAdminCountResponse(rsp)
+}
+
+// SupportRequestTypesAdminCreateWithBodyWithResponse request with arbitrary body returning *SupportRequestTypesAdminCreateResponse
+func (c *ClientWithResponses) SupportRequestTypesAdminCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SupportRequestTypesAdminCreateResponse, error) {
+	rsp, err := c.SupportRequestTypesAdminCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSupportRequestTypesAdminCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) SupportRequestTypesAdminCreateWithResponse(ctx context.Context, body SupportRequestTypesAdminCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*SupportRequestTypesAdminCreateResponse, error) {
+	rsp, err := c.SupportRequestTypesAdminCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSupportRequestTypesAdminCreateResponse(rsp)
+}
+
+// SupportRequestTypesAdminReorderWithBodyWithResponse request with arbitrary body returning *SupportRequestTypesAdminReorderResponse
+func (c *ClientWithResponses) SupportRequestTypesAdminReorderWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SupportRequestTypesAdminReorderResponse, error) {
+	rsp, err := c.SupportRequestTypesAdminReorderWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSupportRequestTypesAdminReorderResponse(rsp)
+}
+
+func (c *ClientWithResponses) SupportRequestTypesAdminReorderWithResponse(ctx context.Context, body SupportRequestTypesAdminReorderJSONRequestBody, reqEditors ...RequestEditorFn) (*SupportRequestTypesAdminReorderResponse, error) {
+	rsp, err := c.SupportRequestTypesAdminReorder(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSupportRequestTypesAdminReorderResponse(rsp)
+}
+
+// SupportRequestTypesAdminDestroyWithResponse request returning *SupportRequestTypesAdminDestroyResponse
+func (c *ClientWithResponses) SupportRequestTypesAdminDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*SupportRequestTypesAdminDestroyResponse, error) {
+	rsp, err := c.SupportRequestTypesAdminDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSupportRequestTypesAdminDestroyResponse(rsp)
+}
+
+// SupportRequestTypesAdminRetrieveWithResponse request returning *SupportRequestTypesAdminRetrieveResponse
+func (c *ClientWithResponses) SupportRequestTypesAdminRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*SupportRequestTypesAdminRetrieveResponse, error) {
+	rsp, err := c.SupportRequestTypesAdminRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSupportRequestTypesAdminRetrieveResponse(rsp)
+}
+
+// SupportRequestTypesAdminPartialUpdateWithBodyWithResponse request with arbitrary body returning *SupportRequestTypesAdminPartialUpdateResponse
+func (c *ClientWithResponses) SupportRequestTypesAdminPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SupportRequestTypesAdminPartialUpdateResponse, error) {
+	rsp, err := c.SupportRequestTypesAdminPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSupportRequestTypesAdminPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) SupportRequestTypesAdminPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body SupportRequestTypesAdminPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*SupportRequestTypesAdminPartialUpdateResponse, error) {
+	rsp, err := c.SupportRequestTypesAdminPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSupportRequestTypesAdminPartialUpdateResponse(rsp)
+}
+
+// SupportRequestTypesAdminUpdateWithBodyWithResponse request with arbitrary body returning *SupportRequestTypesAdminUpdateResponse
+func (c *ClientWithResponses) SupportRequestTypesAdminUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SupportRequestTypesAdminUpdateResponse, error) {
+	rsp, err := c.SupportRequestTypesAdminUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSupportRequestTypesAdminUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) SupportRequestTypesAdminUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body SupportRequestTypesAdminUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*SupportRequestTypesAdminUpdateResponse, error) {
+	rsp, err := c.SupportRequestTypesAdminUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSupportRequestTypesAdminUpdateResponse(rsp)
+}
+
+// SupportRequestTypesAdminActivateWithBodyWithResponse request with arbitrary body returning *SupportRequestTypesAdminActivateResponse
+func (c *ClientWithResponses) SupportRequestTypesAdminActivateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SupportRequestTypesAdminActivateResponse, error) {
+	rsp, err := c.SupportRequestTypesAdminActivateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSupportRequestTypesAdminActivateResponse(rsp)
+}
+
+func (c *ClientWithResponses) SupportRequestTypesAdminActivateWithResponse(ctx context.Context, uuid openapi_types.UUID, body SupportRequestTypesAdminActivateJSONRequestBody, reqEditors ...RequestEditorFn) (*SupportRequestTypesAdminActivateResponse, error) {
+	rsp, err := c.SupportRequestTypesAdminActivate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSupportRequestTypesAdminActivateResponse(rsp)
+}
+
+// SupportRequestTypesAdminDeactivateWithBodyWithResponse request with arbitrary body returning *SupportRequestTypesAdminDeactivateResponse
+func (c *ClientWithResponses) SupportRequestTypesAdminDeactivateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SupportRequestTypesAdminDeactivateResponse, error) {
+	rsp, err := c.SupportRequestTypesAdminDeactivateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSupportRequestTypesAdminDeactivateResponse(rsp)
+}
+
+func (c *ClientWithResponses) SupportRequestTypesAdminDeactivateWithResponse(ctx context.Context, uuid openapi_types.UUID, body SupportRequestTypesAdminDeactivateJSONRequestBody, reqEditors ...RequestEditorFn) (*SupportRequestTypesAdminDeactivateResponse, error) {
+	rsp, err := c.SupportRequestTypesAdminDeactivate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSupportRequestTypesAdminDeactivateResponse(rsp)
+}
+
+// SupportRequestTypesListWithResponse request returning *SupportRequestTypesListResponse
+func (c *ClientWithResponses) SupportRequestTypesListWithResponse(ctx context.Context, params *SupportRequestTypesListParams, reqEditors ...RequestEditorFn) (*SupportRequestTypesListResponse, error) {
+	rsp, err := c.SupportRequestTypesList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSupportRequestTypesListResponse(rsp)
+}
+
+// SupportRequestTypesCountWithResponse request returning *SupportRequestTypesCountResponse
+func (c *ClientWithResponses) SupportRequestTypesCountWithResponse(ctx context.Context, params *SupportRequestTypesCountParams, reqEditors ...RequestEditorFn) (*SupportRequestTypesCountResponse, error) {
+	rsp, err := c.SupportRequestTypesCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSupportRequestTypesCountResponse(rsp)
+}
+
+// SupportRequestTypesRetrieveWithResponse request returning *SupportRequestTypesRetrieveResponse
+func (c *ClientWithResponses) SupportRequestTypesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*SupportRequestTypesRetrieveResponse, error) {
+	rsp, err := c.SupportRequestTypesRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSupportRequestTypesRetrieveResponse(rsp)
+}
+
 // SupportSmaxWebhookWithBodyWithResponse request with arbitrary body returning *SupportSmaxWebhookResponse
 func (c *ClientWithResponses) SupportSmaxWebhookWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SupportSmaxWebhookResponse, error) {
 	rsp, err := c.SupportSmaxWebhookWithBody(ctx, contentType, body, reqEditors...)
@@ -316147,6 +319334,188 @@ func (c *ClientWithResponses) SupportZammadWebhookWithResponse(ctx context.Conte
 		return nil, err
 	}
 	return ParseSupportZammadWebhookResponse(rsp)
+}
+
+// SupportSettingsAtlassianListWithResponse request returning *SupportSettingsAtlassianListResponse
+func (c *ClientWithResponses) SupportSettingsAtlassianListWithResponse(ctx context.Context, params *SupportSettingsAtlassianListParams, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianListResponse, error) {
+	rsp, err := c.SupportSettingsAtlassianList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSupportSettingsAtlassianListResponse(rsp)
+}
+
+// SupportSettingsAtlassianCreateWithResponse request returning *SupportSettingsAtlassianCreateResponse
+func (c *ClientWithResponses) SupportSettingsAtlassianCreateWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianCreateResponse, error) {
+	rsp, err := c.SupportSettingsAtlassianCreate(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSupportSettingsAtlassianCreateResponse(rsp)
+}
+
+// SupportSettingsAtlassianCurrentSettingsRetrieveWithResponse request returning *SupportSettingsAtlassianCurrentSettingsRetrieveResponse
+func (c *ClientWithResponses) SupportSettingsAtlassianCurrentSettingsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianCurrentSettingsRetrieveResponse, error) {
+	rsp, err := c.SupportSettingsAtlassianCurrentSettingsRetrieve(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSupportSettingsAtlassianCurrentSettingsRetrieveResponse(rsp)
+}
+
+// SupportSettingsAtlassianDiscoverCustomFieldsWithBodyWithResponse request with arbitrary body returning *SupportSettingsAtlassianDiscoverCustomFieldsResponse
+func (c *ClientWithResponses) SupportSettingsAtlassianDiscoverCustomFieldsWithBodyWithResponse(ctx context.Context, params *SupportSettingsAtlassianDiscoverCustomFieldsParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianDiscoverCustomFieldsResponse, error) {
+	rsp, err := c.SupportSettingsAtlassianDiscoverCustomFieldsWithBody(ctx, params, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSupportSettingsAtlassianDiscoverCustomFieldsResponse(rsp)
+}
+
+func (c *ClientWithResponses) SupportSettingsAtlassianDiscoverCustomFieldsWithResponse(ctx context.Context, params *SupportSettingsAtlassianDiscoverCustomFieldsParams, body SupportSettingsAtlassianDiscoverCustomFieldsJSONRequestBody, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianDiscoverCustomFieldsResponse, error) {
+	rsp, err := c.SupportSettingsAtlassianDiscoverCustomFields(ctx, params, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSupportSettingsAtlassianDiscoverCustomFieldsResponse(rsp)
+}
+
+// SupportSettingsAtlassianDiscoverPrioritiesWithBodyWithResponse request with arbitrary body returning *SupportSettingsAtlassianDiscoverPrioritiesResponse
+func (c *ClientWithResponses) SupportSettingsAtlassianDiscoverPrioritiesWithBodyWithResponse(ctx context.Context, params *SupportSettingsAtlassianDiscoverPrioritiesParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianDiscoverPrioritiesResponse, error) {
+	rsp, err := c.SupportSettingsAtlassianDiscoverPrioritiesWithBody(ctx, params, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSupportSettingsAtlassianDiscoverPrioritiesResponse(rsp)
+}
+
+func (c *ClientWithResponses) SupportSettingsAtlassianDiscoverPrioritiesWithResponse(ctx context.Context, params *SupportSettingsAtlassianDiscoverPrioritiesParams, body SupportSettingsAtlassianDiscoverPrioritiesJSONRequestBody, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianDiscoverPrioritiesResponse, error) {
+	rsp, err := c.SupportSettingsAtlassianDiscoverPriorities(ctx, params, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSupportSettingsAtlassianDiscoverPrioritiesResponse(rsp)
+}
+
+// SupportSettingsAtlassianDiscoverProjectsWithBodyWithResponse request with arbitrary body returning *SupportSettingsAtlassianDiscoverProjectsResponse
+func (c *ClientWithResponses) SupportSettingsAtlassianDiscoverProjectsWithBodyWithResponse(ctx context.Context, params *SupportSettingsAtlassianDiscoverProjectsParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianDiscoverProjectsResponse, error) {
+	rsp, err := c.SupportSettingsAtlassianDiscoverProjectsWithBody(ctx, params, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSupportSettingsAtlassianDiscoverProjectsResponse(rsp)
+}
+
+func (c *ClientWithResponses) SupportSettingsAtlassianDiscoverProjectsWithResponse(ctx context.Context, params *SupportSettingsAtlassianDiscoverProjectsParams, body SupportSettingsAtlassianDiscoverProjectsJSONRequestBody, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianDiscoverProjectsResponse, error) {
+	rsp, err := c.SupportSettingsAtlassianDiscoverProjects(ctx, params, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSupportSettingsAtlassianDiscoverProjectsResponse(rsp)
+}
+
+// SupportSettingsAtlassianDiscoverRequestTypesWithBodyWithResponse request with arbitrary body returning *SupportSettingsAtlassianDiscoverRequestTypesResponse
+func (c *ClientWithResponses) SupportSettingsAtlassianDiscoverRequestTypesWithBodyWithResponse(ctx context.Context, params *SupportSettingsAtlassianDiscoverRequestTypesParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianDiscoverRequestTypesResponse, error) {
+	rsp, err := c.SupportSettingsAtlassianDiscoverRequestTypesWithBody(ctx, params, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSupportSettingsAtlassianDiscoverRequestTypesResponse(rsp)
+}
+
+func (c *ClientWithResponses) SupportSettingsAtlassianDiscoverRequestTypesWithResponse(ctx context.Context, params *SupportSettingsAtlassianDiscoverRequestTypesParams, body SupportSettingsAtlassianDiscoverRequestTypesJSONRequestBody, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianDiscoverRequestTypesResponse, error) {
+	rsp, err := c.SupportSettingsAtlassianDiscoverRequestTypes(ctx, params, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSupportSettingsAtlassianDiscoverRequestTypesResponse(rsp)
+}
+
+// SupportSettingsAtlassianPreviewSettingsWithBodyWithResponse request with arbitrary body returning *SupportSettingsAtlassianPreviewSettingsResponse
+func (c *ClientWithResponses) SupportSettingsAtlassianPreviewSettingsWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianPreviewSettingsResponse, error) {
+	rsp, err := c.SupportSettingsAtlassianPreviewSettingsWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSupportSettingsAtlassianPreviewSettingsResponse(rsp)
+}
+
+func (c *ClientWithResponses) SupportSettingsAtlassianPreviewSettingsWithResponse(ctx context.Context, body SupportSettingsAtlassianPreviewSettingsJSONRequestBody, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianPreviewSettingsResponse, error) {
+	rsp, err := c.SupportSettingsAtlassianPreviewSettings(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSupportSettingsAtlassianPreviewSettingsResponse(rsp)
+}
+
+// SupportSettingsAtlassianSaveSettingsWithBodyWithResponse request with arbitrary body returning *SupportSettingsAtlassianSaveSettingsResponse
+func (c *ClientWithResponses) SupportSettingsAtlassianSaveSettingsWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianSaveSettingsResponse, error) {
+	rsp, err := c.SupportSettingsAtlassianSaveSettingsWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSupportSettingsAtlassianSaveSettingsResponse(rsp)
+}
+
+func (c *ClientWithResponses) SupportSettingsAtlassianSaveSettingsWithResponse(ctx context.Context, body SupportSettingsAtlassianSaveSettingsJSONRequestBody, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianSaveSettingsResponse, error) {
+	rsp, err := c.SupportSettingsAtlassianSaveSettings(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSupportSettingsAtlassianSaveSettingsResponse(rsp)
+}
+
+// SupportSettingsAtlassianValidateCredentialsWithBodyWithResponse request with arbitrary body returning *SupportSettingsAtlassianValidateCredentialsResponse
+func (c *ClientWithResponses) SupportSettingsAtlassianValidateCredentialsWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianValidateCredentialsResponse, error) {
+	rsp, err := c.SupportSettingsAtlassianValidateCredentialsWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSupportSettingsAtlassianValidateCredentialsResponse(rsp)
+}
+
+func (c *ClientWithResponses) SupportSettingsAtlassianValidateCredentialsWithResponse(ctx context.Context, body SupportSettingsAtlassianValidateCredentialsJSONRequestBody, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianValidateCredentialsResponse, error) {
+	rsp, err := c.SupportSettingsAtlassianValidateCredentials(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSupportSettingsAtlassianValidateCredentialsResponse(rsp)
+}
+
+// SupportSettingsAtlassianDestroyWithResponse request returning *SupportSettingsAtlassianDestroyResponse
+func (c *ClientWithResponses) SupportSettingsAtlassianDestroyWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianDestroyResponse, error) {
+	rsp, err := c.SupportSettingsAtlassianDestroy(ctx, id, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSupportSettingsAtlassianDestroyResponse(rsp)
+}
+
+// SupportSettingsAtlassianRetrieveWithResponse request returning *SupportSettingsAtlassianRetrieveResponse
+func (c *ClientWithResponses) SupportSettingsAtlassianRetrieveWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianRetrieveResponse, error) {
+	rsp, err := c.SupportSettingsAtlassianRetrieve(ctx, id, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSupportSettingsAtlassianRetrieveResponse(rsp)
+}
+
+// SupportSettingsAtlassianPartialUpdateWithResponse request returning *SupportSettingsAtlassianPartialUpdateResponse
+func (c *ClientWithResponses) SupportSettingsAtlassianPartialUpdateWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianPartialUpdateResponse, error) {
+	rsp, err := c.SupportSettingsAtlassianPartialUpdate(ctx, id, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSupportSettingsAtlassianPartialUpdateResponse(rsp)
+}
+
+// SupportSettingsAtlassianUpdateWithResponse request returning *SupportSettingsAtlassianUpdateResponse
+func (c *ClientWithResponses) SupportSettingsAtlassianUpdateWithResponse(ctx context.Context, id int, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianUpdateResponse, error) {
+	rsp, err := c.SupportSettingsAtlassianUpdate(ctx, id, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseSupportSettingsAtlassianUpdateResponse(rsp)
 }
 
 // SyncIssuesRetrieveWithResponse request returning *SyncIssuesRetrieveResponse
@@ -356026,6 +359395,314 @@ func ParseSupportPrioritiesRetrieveResponse(rsp *http.Response) (*SupportPriorit
 	return response, nil
 }
 
+// ParseSupportRequestTypesAdminListResponse parses an HTTP response from a SupportRequestTypesAdminListWithResponse call
+func ParseSupportRequestTypesAdminListResponse(rsp *http.Response) (*SupportRequestTypesAdminListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &SupportRequestTypesAdminListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []RequestTypeAdmin
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseSupportRequestTypesAdminCountResponse parses an HTTP response from a SupportRequestTypesAdminCountWithResponse call
+func ParseSupportRequestTypesAdminCountResponse(rsp *http.Response) (*SupportRequestTypesAdminCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &SupportRequestTypesAdminCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseSupportRequestTypesAdminCreateResponse parses an HTTP response from a SupportRequestTypesAdminCreateWithResponse call
+func ParseSupportRequestTypesAdminCreateResponse(rsp *http.Response) (*SupportRequestTypesAdminCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &SupportRequestTypesAdminCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest RequestTypeAdmin
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseSupportRequestTypesAdminReorderResponse parses an HTTP response from a SupportRequestTypesAdminReorderWithResponse call
+func ParseSupportRequestTypesAdminReorderResponse(rsp *http.Response) (*SupportRequestTypesAdminReorderResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &SupportRequestTypesAdminReorderResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest RequestTypeAdmin
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseSupportRequestTypesAdminDestroyResponse parses an HTTP response from a SupportRequestTypesAdminDestroyWithResponse call
+func ParseSupportRequestTypesAdminDestroyResponse(rsp *http.Response) (*SupportRequestTypesAdminDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &SupportRequestTypesAdminDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseSupportRequestTypesAdminRetrieveResponse parses an HTTP response from a SupportRequestTypesAdminRetrieveWithResponse call
+func ParseSupportRequestTypesAdminRetrieveResponse(rsp *http.Response) (*SupportRequestTypesAdminRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &SupportRequestTypesAdminRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest RequestTypeAdmin
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseSupportRequestTypesAdminPartialUpdateResponse parses an HTTP response from a SupportRequestTypesAdminPartialUpdateWithResponse call
+func ParseSupportRequestTypesAdminPartialUpdateResponse(rsp *http.Response) (*SupportRequestTypesAdminPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &SupportRequestTypesAdminPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest RequestTypeAdmin
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseSupportRequestTypesAdminUpdateResponse parses an HTTP response from a SupportRequestTypesAdminUpdateWithResponse call
+func ParseSupportRequestTypesAdminUpdateResponse(rsp *http.Response) (*SupportRequestTypesAdminUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &SupportRequestTypesAdminUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest RequestTypeAdmin
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseSupportRequestTypesAdminActivateResponse parses an HTTP response from a SupportRequestTypesAdminActivateWithResponse call
+func ParseSupportRequestTypesAdminActivateResponse(rsp *http.Response) (*SupportRequestTypesAdminActivateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &SupportRequestTypesAdminActivateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest RequestTypeAdmin
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseSupportRequestTypesAdminDeactivateResponse parses an HTTP response from a SupportRequestTypesAdminDeactivateWithResponse call
+func ParseSupportRequestTypesAdminDeactivateResponse(rsp *http.Response) (*SupportRequestTypesAdminDeactivateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &SupportRequestTypesAdminDeactivateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest RequestTypeAdmin
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseSupportRequestTypesListResponse parses an HTTP response from a SupportRequestTypesListWithResponse call
+func ParseSupportRequestTypesListResponse(rsp *http.Response) (*SupportRequestTypesListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &SupportRequestTypesListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []RequestType
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseSupportRequestTypesCountResponse parses an HTTP response from a SupportRequestTypesCountWithResponse call
+func ParseSupportRequestTypesCountResponse(rsp *http.Response) (*SupportRequestTypesCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &SupportRequestTypesCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseSupportRequestTypesRetrieveResponse parses an HTTP response from a SupportRequestTypesRetrieveWithResponse call
+func ParseSupportRequestTypesRetrieveResponse(rsp *http.Response) (*SupportRequestTypesRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &SupportRequestTypesRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest RequestType
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseSupportSmaxWebhookResponse parses an HTTP response from a SupportSmaxWebhookWithResponse call
 func ParseSupportSmaxWebhookResponse(rsp *http.Response) (*SupportSmaxWebhookResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -356349,6 +360026,270 @@ func ParseSupportZammadWebhookResponse(rsp *http.Response) (*SupportZammadWebhoo
 	}
 
 	response := &SupportZammadWebhookResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseSupportSettingsAtlassianListResponse parses an HTTP response from a SupportSettingsAtlassianListWithResponse call
+func ParseSupportSettingsAtlassianListResponse(rsp *http.Response) (*SupportSettingsAtlassianListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &SupportSettingsAtlassianListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseSupportSettingsAtlassianCreateResponse parses an HTTP response from a SupportSettingsAtlassianCreateWithResponse call
+func ParseSupportSettingsAtlassianCreateResponse(rsp *http.Response) (*SupportSettingsAtlassianCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &SupportSettingsAtlassianCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseSupportSettingsAtlassianCurrentSettingsRetrieveResponse parses an HTTP response from a SupportSettingsAtlassianCurrentSettingsRetrieveWithResponse call
+func ParseSupportSettingsAtlassianCurrentSettingsRetrieveResponse(rsp *http.Response) (*SupportSettingsAtlassianCurrentSettingsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &SupportSettingsAtlassianCurrentSettingsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseSupportSettingsAtlassianDiscoverCustomFieldsResponse parses an HTTP response from a SupportSettingsAtlassianDiscoverCustomFieldsWithResponse call
+func ParseSupportSettingsAtlassianDiscoverCustomFieldsResponse(rsp *http.Response) (*SupportSettingsAtlassianDiscoverCustomFieldsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &SupportSettingsAtlassianDiscoverCustomFieldsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []AtlassianCustomFieldResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseSupportSettingsAtlassianDiscoverPrioritiesResponse parses an HTTP response from a SupportSettingsAtlassianDiscoverPrioritiesWithResponse call
+func ParseSupportSettingsAtlassianDiscoverPrioritiesResponse(rsp *http.Response) (*SupportSettingsAtlassianDiscoverPrioritiesResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &SupportSettingsAtlassianDiscoverPrioritiesResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []AtlassianPriorityResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseSupportSettingsAtlassianDiscoverProjectsResponse parses an HTTP response from a SupportSettingsAtlassianDiscoverProjectsWithResponse call
+func ParseSupportSettingsAtlassianDiscoverProjectsResponse(rsp *http.Response) (*SupportSettingsAtlassianDiscoverProjectsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &SupportSettingsAtlassianDiscoverProjectsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []AtlassianProjectResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseSupportSettingsAtlassianDiscoverRequestTypesResponse parses an HTTP response from a SupportSettingsAtlassianDiscoverRequestTypesWithResponse call
+func ParseSupportSettingsAtlassianDiscoverRequestTypesResponse(rsp *http.Response) (*SupportSettingsAtlassianDiscoverRequestTypesResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &SupportSettingsAtlassianDiscoverRequestTypesResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []AtlassianRequestTypeResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseSupportSettingsAtlassianPreviewSettingsResponse parses an HTTP response from a SupportSettingsAtlassianPreviewSettingsWithResponse call
+func ParseSupportSettingsAtlassianPreviewSettingsResponse(rsp *http.Response) (*SupportSettingsAtlassianPreviewSettingsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &SupportSettingsAtlassianPreviewSettingsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseSupportSettingsAtlassianSaveSettingsResponse parses an HTTP response from a SupportSettingsAtlassianSaveSettingsWithResponse call
+func ParseSupportSettingsAtlassianSaveSettingsResponse(rsp *http.Response) (*SupportSettingsAtlassianSaveSettingsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &SupportSettingsAtlassianSaveSettingsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseSupportSettingsAtlassianValidateCredentialsResponse parses an HTTP response from a SupportSettingsAtlassianValidateCredentialsWithResponse call
+func ParseSupportSettingsAtlassianValidateCredentialsResponse(rsp *http.Response) (*SupportSettingsAtlassianValidateCredentialsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &SupportSettingsAtlassianValidateCredentialsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseSupportSettingsAtlassianDestroyResponse parses an HTTP response from a SupportSettingsAtlassianDestroyWithResponse call
+func ParseSupportSettingsAtlassianDestroyResponse(rsp *http.Response) (*SupportSettingsAtlassianDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &SupportSettingsAtlassianDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseSupportSettingsAtlassianRetrieveResponse parses an HTTP response from a SupportSettingsAtlassianRetrieveWithResponse call
+func ParseSupportSettingsAtlassianRetrieveResponse(rsp *http.Response) (*SupportSettingsAtlassianRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &SupportSettingsAtlassianRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseSupportSettingsAtlassianPartialUpdateResponse parses an HTTP response from a SupportSettingsAtlassianPartialUpdateWithResponse call
+func ParseSupportSettingsAtlassianPartialUpdateResponse(rsp *http.Response) (*SupportSettingsAtlassianPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &SupportSettingsAtlassianPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseSupportSettingsAtlassianUpdateResponse parses an HTTP response from a SupportSettingsAtlassianUpdateWithResponse call
+func ParseSupportSettingsAtlassianUpdateResponse(rsp *http.Response) (*SupportSettingsAtlassianUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &SupportSettingsAtlassianUpdateResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
