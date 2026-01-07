@@ -18325,6 +18325,9 @@ type MergedPluginOptions struct {
 	// DeploymentMode Rancher deployment mode
 	DeploymentMode *DeploymentModeEnum `json:"deployment_mode,omitempty"`
 
+	// DisableAutoapprove If set to True, orders for this offering will always require manual approval, overriding auto_approve_in_service_provider_projects
+	DisableAutoapprove *bool `json:"disable_autoapprove,omitempty"`
+
 	// EnableDisplayOfOrderActionsForServiceProvider Enable display of order actions for service provider
 	EnableDisplayOfOrderActionsForServiceProvider *bool `json:"enable_display_of_order_actions_for_service_provider,omitempty"`
 
@@ -18509,6 +18512,9 @@ type MergedPluginOptionsRequest struct {
 
 	// DeploymentMode Rancher deployment mode
 	DeploymentMode *DeploymentModeEnum `json:"deployment_mode,omitempty"`
+
+	// DisableAutoapprove If set to True, orders for this offering will always require manual approval, overriding auto_approve_in_service_provider_projects
+	DisableAutoapprove *bool `json:"disable_autoapprove,omitempty"`
 
 	// EnableDisplayOfOrderActionsForServiceProvider Enable display of order actions for service provider
 	EnableDisplayOfOrderActionsForServiceProvider *bool `json:"enable_display_of_order_actions_for_service_provider,omitempty"`
