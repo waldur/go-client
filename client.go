@@ -9277,6 +9277,7 @@ const (
 	OpenstackTenantsListParamsFieldServiceSettingsErrorMessage      OpenstackTenantsListParamsField = "service_settings_error_message"
 	OpenstackTenantsListParamsFieldServiceSettingsState             OpenstackTenantsListParamsField = "service_settings_state"
 	OpenstackTenantsListParamsFieldServiceSettingsUuid              OpenstackTenantsListParamsField = "service_settings_uuid"
+	OpenstackTenantsListParamsFieldSkipCreationOfDefaultRouter      OpenstackTenantsListParamsField = "skip_creation_of_default_router"
 	OpenstackTenantsListParamsFieldSkipCreationOfDefaultSubnet      OpenstackTenantsListParamsField = "skip_creation_of_default_subnet"
 	OpenstackTenantsListParamsFieldState                            OpenstackTenantsListParamsField = "state"
 	OpenstackTenantsListParamsFieldSubnetCidr                       OpenstackTenantsListParamsField = "subnet_cidr"
@@ -9347,6 +9348,7 @@ const (
 	OpenstackTenantsRetrieveParamsFieldServiceSettingsErrorMessage      OpenstackTenantsRetrieveParamsField = "service_settings_error_message"
 	OpenstackTenantsRetrieveParamsFieldServiceSettingsState             OpenstackTenantsRetrieveParamsField = "service_settings_state"
 	OpenstackTenantsRetrieveParamsFieldServiceSettingsUuid              OpenstackTenantsRetrieveParamsField = "service_settings_uuid"
+	OpenstackTenantsRetrieveParamsFieldSkipCreationOfDefaultRouter      OpenstackTenantsRetrieveParamsField = "skip_creation_of_default_router"
 	OpenstackTenantsRetrieveParamsFieldSkipCreationOfDefaultSubnet      OpenstackTenantsRetrieveParamsField = "skip_creation_of_default_subnet"
 	OpenstackTenantsRetrieveParamsFieldState                            OpenstackTenantsRetrieveParamsField = "state"
 	OpenstackTenantsRetrieveParamsFieldSubnetCidr                       OpenstackTenantsRetrieveParamsField = "subnet_cidr"
@@ -22466,6 +22468,7 @@ type OpenStackTenant struct {
 	ServiceSettingsErrorMessage      *string                 `json:"service_settings_error_message,omitempty"`
 	ServiceSettingsState             *string                 `json:"service_settings_state,omitempty"`
 	ServiceSettingsUuid              *openapi_types.UUID     `json:"service_settings_uuid,omitempty"`
+	SkipCreationOfDefaultRouter      *bool                   `json:"skip_creation_of_default_router,omitempty"`
 	State                            *CoreStates             `json:"state,omitempty"`
 	Url                              *string                 `json:"url,omitempty"`
 
@@ -22530,6 +22533,7 @@ type OpenStackTenantRequest struct {
 	Description                 *string                                `json:"description,omitempty"`
 	Name                        string                                 `json:"name"`
 	SecurityGroups              *[]OpenStackTenantSecurityGroupRequest `json:"security_groups,omitempty"`
+	SkipCreationOfDefaultRouter *bool                                  `json:"skip_creation_of_default_router,omitempty"`
 	SkipCreationOfDefaultSubnet *bool                                  `json:"skip_creation_of_default_subnet,omitempty"`
 }
 
@@ -23945,6 +23949,7 @@ type PatchedOpenStackTenantRequest struct {
 	Description                 *string                                `json:"description,omitempty"`
 	Name                        *string                                `json:"name,omitempty"`
 	SecurityGroups              *[]OpenStackTenantSecurityGroupRequest `json:"security_groups,omitempty"`
+	SkipCreationOfDefaultRouter *bool                                  `json:"skip_creation_of_default_router,omitempty"`
 	SkipCreationOfDefaultSubnet *bool                                  `json:"skip_creation_of_default_subnet,omitempty"`
 }
 
