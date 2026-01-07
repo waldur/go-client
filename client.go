@@ -1269,10 +1269,10 @@ const (
 	InvoiceStateEnumPending  InvoiceStateEnum = "pending"
 )
 
-// Defines values for IssueStatusTypeEnum.
+// Defines values for IssueStatusType.
 const (
-	IssueStatusTypeEnumN0 IssueStatusTypeEnum = 0
-	IssueStatusTypeEnumN1 IssueStatusTypeEnum = 1
+	IssueStatusTypeN0 IssueStatusType = 0
+	IssueStatusTypeN1 IssueStatusType = 1
 )
 
 // Defines values for IssueTypeEnum.
@@ -2179,15 +2179,6 @@ const (
 const (
 	Form WebHookContentTypeEnum = "form"
 	Json WebHookContentTypeEnum = "json"
-)
-
-// Defines values for WebhookEventEnum.
-const (
-	CommentCreated   WebhookEventEnum = "comment_created"
-	CommentDeleted   WebhookEventEnum = "comment_deleted"
-	CommentUpdated   WebhookEventEnum = "comment_updated"
-	JiraIssueDeleted WebhookEventEnum = "jira:issue_deleted"
-	JiraIssueUpdated WebhookEventEnum = "jira:issue_updated"
 )
 
 // Defines values for WidgetEnum.
@@ -12531,24 +12522,27 @@ type AtlassianRequestTypeResponse struct {
 
 // AtlassianSettingsPreviewRequest defines model for AtlassianSettingsPreviewRequest.
 type AtlassianSettingsPreviewRequest struct {
-	AffectedResourceField     *string              `json:"affected_resource_field,omitempty"`
-	ApiUrl                    string               `json:"api_url"`
-	AuthMethod                AuthMethodEnum       `json:"auth_method"`
-	CallerField               *string              `json:"caller_field,omitempty"`
-	CustomFieldMappingEnabled *bool                `json:"custom_field_mapping_enabled,omitempty"`
-	Email                     *openapi_types.Email `json:"email,omitempty"`
-	ImpactField               *string              `json:"impact_field,omitempty"`
-	IssueTypes                *[]string            `json:"issue_types,omitempty"`
-	OrganisationField         *string              `json:"organisation_field,omitempty"`
-	Password                  *string              `json:"password,omitempty"`
-	PersonalAccessToken       *string              `json:"personal_access_token,omitempty"`
-	ProjectField              *string              `json:"project_field,omitempty"`
-	ProjectId                 string               `json:"project_id"`
-	ReporterField             *string              `json:"reporter_field,omitempty"`
-	RequestFeedbackField      *string              `json:"request_feedback_field,omitempty"`
-	ResolutionSlaField        *string              `json:"resolution_sla_field,omitempty"`
-	SatisfactionField         *string              `json:"satisfaction_field,omitempty"`
-	SlaField                  *string              `json:"sla_field,omitempty"`
+	AffectedResourceField     *string        `json:"affected_resource_field,omitempty"`
+	ApiUrl                    string         `json:"api_url"`
+	AuthMethod                AuthMethodEnum `json:"auth_method"`
+	CallerField               *string        `json:"caller_field,omitempty"`
+	CustomFieldMappingEnabled *bool          `json:"custom_field_mapping_enabled,omitempty"`
+
+	// DefaultOfferingIssueType Default issue type for marketplace request-based orders
+	DefaultOfferingIssueType *string              `json:"default_offering_issue_type,omitempty"`
+	Email                    *openapi_types.Email `json:"email,omitempty"`
+	ImpactField              *string              `json:"impact_field,omitempty"`
+	IssueTypes               *[]string            `json:"issue_types,omitempty"`
+	OrganisationField        *string              `json:"organisation_field,omitempty"`
+	Password                 *string              `json:"password,omitempty"`
+	PersonalAccessToken      *string              `json:"personal_access_token,omitempty"`
+	ProjectField             *string              `json:"project_field,omitempty"`
+	ProjectId                string               `json:"project_id"`
+	ReporterField            *string              `json:"reporter_field,omitempty"`
+	RequestFeedbackField     *string              `json:"request_feedback_field,omitempty"`
+	ResolutionSlaField       *string              `json:"resolution_sla_field,omitempty"`
+	SatisfactionField        *string              `json:"satisfaction_field,omitempty"`
+	SlaField                 *string              `json:"sla_field,omitempty"`
 
 	// SupportTypeMapping Mapping from frontend types to backend request types
 	SupportTypeMapping   *map[string]string `json:"support_type_mapping,omitempty"`
@@ -12568,21 +12562,24 @@ type AtlassianSettingsSaveRequest struct {
 	CallerField           *string        `json:"caller_field,omitempty"`
 
 	// ConfirmSave Must be True to confirm saving settings
-	ConfirmSave               bool                 `json:"confirm_save"`
-	CustomFieldMappingEnabled *bool                `json:"custom_field_mapping_enabled,omitempty"`
-	Email                     *openapi_types.Email `json:"email,omitempty"`
-	ImpactField               *string              `json:"impact_field,omitempty"`
-	IssueTypes                *[]string            `json:"issue_types,omitempty"`
-	OrganisationField         *string              `json:"organisation_field,omitempty"`
-	Password                  *string              `json:"password,omitempty"`
-	PersonalAccessToken       *string              `json:"personal_access_token,omitempty"`
-	ProjectField              *string              `json:"project_field,omitempty"`
-	ProjectId                 string               `json:"project_id"`
-	ReporterField             *string              `json:"reporter_field,omitempty"`
-	RequestFeedbackField      *string              `json:"request_feedback_field,omitempty"`
-	ResolutionSlaField        *string              `json:"resolution_sla_field,omitempty"`
-	SatisfactionField         *string              `json:"satisfaction_field,omitempty"`
-	SlaField                  *string              `json:"sla_field,omitempty"`
+	ConfirmSave               bool  `json:"confirm_save"`
+	CustomFieldMappingEnabled *bool `json:"custom_field_mapping_enabled,omitempty"`
+
+	// DefaultOfferingIssueType Default issue type for marketplace request-based orders
+	DefaultOfferingIssueType *string              `json:"default_offering_issue_type,omitempty"`
+	Email                    *openapi_types.Email `json:"email,omitempty"`
+	ImpactField              *string              `json:"impact_field,omitempty"`
+	IssueTypes               *[]string            `json:"issue_types,omitempty"`
+	OrganisationField        *string              `json:"organisation_field,omitempty"`
+	Password                 *string              `json:"password,omitempty"`
+	PersonalAccessToken      *string              `json:"personal_access_token,omitempty"`
+	ProjectField             *string              `json:"project_field,omitempty"`
+	ProjectId                string               `json:"project_id"`
+	ReporterField            *string              `json:"reporter_field,omitempty"`
+	RequestFeedbackField     *string              `json:"request_feedback_field,omitempty"`
+	ResolutionSlaField       *string              `json:"resolution_sla_field,omitempty"`
+	SatisfactionField        *string              `json:"satisfaction_field,omitempty"`
+	SlaField                 *string              `json:"sla_field,omitempty"`
 
 	// SupportTypeMapping Mapping from frontend types to backend request types
 	SupportTypeMapping   *map[string]string `json:"support_type_mapping,omitempty"`
@@ -17606,7 +17603,19 @@ type Issue struct {
 	// Link Link to issue in support system.
 	Link     *string    `json:"link,omitempty"`
 	Modified *time.Time `json:"modified,omitempty"`
-	Priority *string    `json:"priority,omitempty"`
+
+	// OrderCustomerUuid Return order's customer UUID if the issue's resource is an Order.
+	OrderCustomerUuid *string `json:"order_customer_uuid"`
+
+	// OrderProjectUuid Return order's project UUID if the issue's resource is an Order.
+	OrderProjectUuid *string `json:"order_project_uuid"`
+
+	// OrderResourceName Return order's resource name if the issue's resource is an Order.
+	OrderResourceName *string `json:"order_resource_name"`
+
+	// OrderUuid Return order UUID if the issue's resource is an Order.
+	OrderUuid *string `json:"order_uuid"`
+	Priority  *string `json:"priority,omitempty"`
 
 	// ProcessingLog Internal processing log for debugging order lifecycle events. Visible only to staff.
 	ProcessingLog     interface{}         `json:"processing_log,omitempty"`
@@ -17658,22 +17667,29 @@ type IssueRequest struct {
 // IssueStatus defines model for IssueStatus.
 type IssueStatus struct {
 	// Name Status name in Jira.
-	Name        string               `json:"name"`
-	Type        *IssueStatusTypeEnum `json:"type,omitempty"`
-	TypeDisplay *string              `json:"type_display,omitempty"`
-	Url         *string              `json:"url,omitempty"`
-	Uuid        *openapi_types.UUID  `json:"uuid,omitempty"`
+	Name        string              `json:"name"`
+	Type        *IssueStatusType    `json:"type,omitempty"`
+	TypeDisplay *string             `json:"type_display,omitempty"`
+	Url         *string             `json:"url,omitempty"`
+	Uuid        *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
-// IssueStatusRequest defines model for IssueStatusRequest.
-type IssueStatusRequest struct {
+// IssueStatusCreate defines model for IssueStatusCreate.
+type IssueStatusCreate struct {
 	// Name Status name in Jira.
-	Name string               `json:"name"`
-	Type *IssueStatusTypeEnum `json:"type,omitempty"`
+	Name string           `json:"name"`
+	Type *IssueStatusType `json:"type,omitempty"`
 }
 
-// IssueStatusTypeEnum defines model for IssueStatusTypeEnum.
-type IssueStatusTypeEnum int
+// IssueStatusCreateRequest defines model for IssueStatusCreateRequest.
+type IssueStatusCreateRequest struct {
+	// Name Status name in Jira.
+	Name string           `json:"name"`
+	Type *IssueStatusType `json:"type,omitempty"`
+}
+
+// IssueStatusType defines model for IssueStatusType.
+type IssueStatusType int
 
 // IssueTypeEnum defines model for IssueTypeEnum.
 type IssueTypeEnum string
@@ -23476,8 +23492,8 @@ type PatchedIssueRequest struct {
 // PatchedIssueStatusRequest defines model for PatchedIssueStatusRequest.
 type PatchedIssueStatusRequest struct {
 	// Name Status name in Jira.
-	Name *string              `json:"name,omitempty"`
-	Type *IssueStatusTypeEnum `json:"type,omitempty"`
+	Name *string          `json:"name,omitempty"`
+	Type *IssueStatusType `json:"type,omitempty"`
 }
 
 // PatchedKeycloakUserGroupMembershipRequest defines model for PatchedKeycloakUserGroupMembershipRequest.
@@ -30499,11 +30515,11 @@ type WebHookContentTypeEnum string
 
 // WebHookReceiver defines model for WebHookReceiver.
 type WebHookReceiver struct {
-	Changelog          *JiraChangelog   `json:"changelog,omitempty"`
-	Comment            *JiraComment     `json:"comment,omitempty"`
-	Issue              JiraIssue        `json:"issue"`
-	IssueEventTypeName *string          `json:"issue_event_type_name,omitempty"`
-	WebhookEvent       WebhookEventEnum `json:"webhookEvent"`
+	Changelog          *JiraChangelog `json:"changelog,omitempty"`
+	Comment            *JiraComment   `json:"comment,omitempty"`
+	Issue              JiraIssue      `json:"issue"`
+	IssueEventTypeName *string        `json:"issue_event_type_name,omitempty"`
+	WebhookEvent       string         `json:"webhookEvent"`
 }
 
 // WebHookReceiverRequest defines model for WebHookReceiverRequest.
@@ -30512,7 +30528,7 @@ type WebHookReceiverRequest struct {
 	Comment            *JiraCommentRequest   `json:"comment,omitempty"`
 	Issue              JiraIssueRequest      `json:"issue"`
 	IssueEventTypeName *string               `json:"issue_event_type_name,omitempty"`
-	WebhookEvent       WebhookEventEnum      `json:"webhookEvent"`
+	WebhookEvent       string                `json:"webhookEvent"`
 }
 
 // WebHookRequest defines model for WebHookRequest.
@@ -30523,9 +30539,6 @@ type WebHookRequest struct {
 	EventTypes     *[]EventTypesEnum       `json:"event_types,omitempty"`
 	IsActive       *bool                   `json:"is_active,omitempty"`
 }
-
-// WebhookEventEnum defines model for WebhookEventEnum.
-type WebhookEventEnum string
 
 // WidgetEnum defines model for WidgetEnum.
 type WidgetEnum string
@@ -50410,13 +50423,13 @@ type SupportCommentsUpdateJSONRequestBody = CommentRequest
 type SupportFeedbacksCreateJSONRequestBody = CreateFeedbackRequest
 
 // SupportIssueStatusesCreateJSONRequestBody defines body for SupportIssueStatusesCreate for application/json ContentType.
-type SupportIssueStatusesCreateJSONRequestBody = IssueStatusRequest
+type SupportIssueStatusesCreateJSONRequestBody = IssueStatusCreateRequest
 
 // SupportIssueStatusesPartialUpdateJSONRequestBody defines body for SupportIssueStatusesPartialUpdate for application/json ContentType.
 type SupportIssueStatusesPartialUpdateJSONRequestBody = PatchedIssueStatusRequest
 
 // SupportIssueStatusesUpdateJSONRequestBody defines body for SupportIssueStatusesUpdate for application/json ContentType.
-type SupportIssueStatusesUpdateJSONRequestBody = IssueStatusRequest
+type SupportIssueStatusesUpdateJSONRequestBody = IssueStatusCreateRequest
 
 // SupportIssuesCreateJSONRequestBody defines body for SupportIssuesCreate for application/json ContentType.
 type SupportIssuesCreateJSONRequestBody = IssueRequest
@@ -294943,7 +294956,7 @@ func (r SupportIssueStatusesCountResponse) StatusCode() int {
 type SupportIssueStatusesCreateResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON201      *IssueStatus
+	JSON201      *IssueStatusCreate
 }
 
 // Status returns HTTPResponse.Status
@@ -295030,7 +295043,7 @@ func (r SupportIssueStatusesPartialUpdateResponse) StatusCode() int {
 type SupportIssueStatusesUpdateResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *IssueStatus
+	JSON200      *IssueStatusCreate
 }
 
 // Status returns HTTPResponse.Status
@@ -358982,7 +358995,7 @@ func ParseSupportIssueStatusesCreateResponse(rsp *http.Response) (*SupportIssueS
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest IssueStatus
+		var dest IssueStatusCreate
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -359076,7 +359089,7 @@ func ParseSupportIssueStatusesUpdateResponse(rsp *http.Response) (*SupportIssueS
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest IssueStatus
+		var dest IssueStatusCreate
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
