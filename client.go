@@ -8103,6 +8103,7 @@ const (
 	OpenstackFloatingIpsListParamsFieldProjectName                      OpenstackFloatingIpsListParamsField = "project_name"
 	OpenstackFloatingIpsListParamsFieldProjectUuid                      OpenstackFloatingIpsListParamsField = "project_uuid"
 	OpenstackFloatingIpsListParamsFieldResourceType                     OpenstackFloatingIpsListParamsField = "resource_type"
+	OpenstackFloatingIpsListParamsFieldRouter                           OpenstackFloatingIpsListParamsField = "router"
 	OpenstackFloatingIpsListParamsFieldRuntimeState                     OpenstackFloatingIpsListParamsField = "runtime_state"
 	OpenstackFloatingIpsListParamsFieldServiceName                      OpenstackFloatingIpsListParamsField = "service_name"
 	OpenstackFloatingIpsListParamsFieldServiceSettings                  OpenstackFloatingIpsListParamsField = "service_settings"
@@ -8178,6 +8179,7 @@ const (
 	OpenstackFloatingIpsRetrieveParamsFieldProjectName                      OpenstackFloatingIpsRetrieveParamsField = "project_name"
 	OpenstackFloatingIpsRetrieveParamsFieldProjectUuid                      OpenstackFloatingIpsRetrieveParamsField = "project_uuid"
 	OpenstackFloatingIpsRetrieveParamsFieldResourceType                     OpenstackFloatingIpsRetrieveParamsField = "resource_type"
+	OpenstackFloatingIpsRetrieveParamsFieldRouter                           OpenstackFloatingIpsRetrieveParamsField = "router"
 	OpenstackFloatingIpsRetrieveParamsFieldRuntimeState                     OpenstackFloatingIpsRetrieveParamsField = "runtime_state"
 	OpenstackFloatingIpsRetrieveParamsFieldServiceName                      OpenstackFloatingIpsRetrieveParamsField = "service_name"
 	OpenstackFloatingIpsRetrieveParamsFieldServiceSettings                  OpenstackFloatingIpsRetrieveParamsField = "service_settings"
@@ -8716,6 +8718,30 @@ const (
 	OpenstackRoutersListParamsFieldTenantUuid                       OpenstackRoutersListParamsField = "tenant_uuid"
 	OpenstackRoutersListParamsFieldUrl                              OpenstackRoutersListParamsField = "url"
 	OpenstackRoutersListParamsFieldUuid                             OpenstackRoutersListParamsField = "uuid"
+)
+
+// Defines values for OpenstackRoutersListParamsState.
+const (
+	OpenstackRoutersListParamsStateN1 OpenstackRoutersListParamsState = 1
+	OpenstackRoutersListParamsStateN2 OpenstackRoutersListParamsState = 2
+	OpenstackRoutersListParamsStateN3 OpenstackRoutersListParamsState = 3
+	OpenstackRoutersListParamsStateN4 OpenstackRoutersListParamsState = 4
+	OpenstackRoutersListParamsStateN5 OpenstackRoutersListParamsState = 5
+	OpenstackRoutersListParamsStateN6 OpenstackRoutersListParamsState = 6
+	OpenstackRoutersListParamsStateN7 OpenstackRoutersListParamsState = 7
+	OpenstackRoutersListParamsStateN8 OpenstackRoutersListParamsState = 8
+)
+
+// Defines values for OpenstackRoutersCountParamsState.
+const (
+	OpenstackRoutersCountParamsStateN1 OpenstackRoutersCountParamsState = 1
+	OpenstackRoutersCountParamsStateN2 OpenstackRoutersCountParamsState = 2
+	OpenstackRoutersCountParamsStateN3 OpenstackRoutersCountParamsState = 3
+	OpenstackRoutersCountParamsStateN4 OpenstackRoutersCountParamsState = 4
+	OpenstackRoutersCountParamsStateN5 OpenstackRoutersCountParamsState = 5
+	OpenstackRoutersCountParamsStateN6 OpenstackRoutersCountParamsState = 6
+	OpenstackRoutersCountParamsStateN7 OpenstackRoutersCountParamsState = 7
+	OpenstackRoutersCountParamsStateN8 OpenstackRoutersCountParamsState = 8
 )
 
 // Defines values for OpenstackRoutersRetrieveParamsField.
@@ -21233,6 +21259,12 @@ type OpenStackFloatingIPAttachRequest struct {
 type OpenStackFloatingIPDescriptionUpdateRequest struct {
 	// Description New floating IP description.
 	Description *string `json:"description,omitempty"`
+}
+
+// OpenStackFloatingIPRequest defines model for OpenStackFloatingIPRequest.
+type OpenStackFloatingIPRequest struct {
+	// Router Optional router to use for external network detection
+	Router *string `json:"router"`
 }
 
 // OpenStackImage defines model for OpenStackImage.
@@ -42676,7 +42708,8 @@ type OpenstackRoutersListParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize *PageSize                        `form:"page_size,omitempty" json:"page_size,omitempty"`
+	State    *OpenstackRoutersListParamsState `form:"state,omitempty" json:"state,omitempty"`
 
 	// Tenant Tenant URL
 	Tenant *string `form:"tenant,omitempty" json:"tenant,omitempty"`
@@ -42687,6 +42720,9 @@ type OpenstackRoutersListParams struct {
 
 // OpenstackRoutersListParamsField defines parameters for OpenstackRoutersList.
 type OpenstackRoutersListParamsField string
+
+// OpenstackRoutersListParamsState defines parameters for OpenstackRoutersList.
+type OpenstackRoutersListParamsState int
 
 // OpenstackRoutersCountParams defines parameters for OpenstackRoutersCount.
 type OpenstackRoutersCountParams struct {
@@ -42700,7 +42736,8 @@ type OpenstackRoutersCountParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize *PageSize                         `form:"page_size,omitempty" json:"page_size,omitempty"`
+	State    *OpenstackRoutersCountParamsState `form:"state,omitempty" json:"state,omitempty"`
 
 	// Tenant Tenant URL
 	Tenant *string `form:"tenant,omitempty" json:"tenant,omitempty"`
@@ -42708,6 +42745,9 @@ type OpenstackRoutersCountParams struct {
 	// TenantUuid Tenant UUID
 	TenantUuid *openapi_types.UUID `form:"tenant_uuid,omitempty" json:"tenant_uuid,omitempty"`
 }
+
+// OpenstackRoutersCountParamsState defines parameters for OpenstackRoutersCount.
+type OpenstackRoutersCountParamsState int
 
 // OpenstackRoutersRetrieveParams defines parameters for OpenstackRoutersRetrieve.
 type OpenstackRoutersRetrieveParams struct {
@@ -49994,6 +50034,9 @@ type OpenstackTenantsUpdateJSONRequestBody = OpenStackTenantRequest
 
 // OpenstackTenantsChangePasswordJSONRequestBody defines body for OpenstackTenantsChangePassword for application/json ContentType.
 type OpenstackTenantsChangePasswordJSONRequestBody = OpenStackTenantChangePasswordRequest
+
+// OpenstackTenantsCreateFloatingIpJSONRequestBody defines body for OpenstackTenantsCreateFloatingIp for application/json ContentType.
+type OpenstackTenantsCreateFloatingIpJSONRequestBody = OpenStackFloatingIPRequest
 
 // OpenstackTenantsCreateNetworkJSONRequestBody defines body for OpenstackTenantsCreateNetwork for application/json ContentType.
 type OpenstackTenantsCreateNetworkJSONRequestBody = OpenStackNetworkRequest
@@ -61749,8 +61792,10 @@ type ClientInterface interface {
 
 	OpenstackTenantsChangePassword(ctx context.Context, uuid openapi_types.UUID, body OpenstackTenantsChangePasswordJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// OpenstackTenantsCreateFloatingIp request
-	OpenstackTenantsCreateFloatingIp(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// OpenstackTenantsCreateFloatingIpWithBody request with any body
+	OpenstackTenantsCreateFloatingIpWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	OpenstackTenantsCreateFloatingIp(ctx context.Context, uuid openapi_types.UUID, body OpenstackTenantsCreateFloatingIpJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenstackTenantsCreateNetworkWithBody request with any body
 	OpenstackTenantsCreateNetworkWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -84897,8 +84942,20 @@ func (c *Client) OpenstackTenantsChangePassword(ctx context.Context, uuid openap
 	return c.Client.Do(req)
 }
 
-func (c *Client) OpenstackTenantsCreateFloatingIp(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOpenstackTenantsCreateFloatingIpRequest(c.Server, uuid)
+func (c *Client) OpenstackTenantsCreateFloatingIpWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackTenantsCreateFloatingIpRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OpenstackTenantsCreateFloatingIp(ctx context.Context, uuid openapi_types.UUID, body OpenstackTenantsCreateFloatingIpJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenstackTenantsCreateFloatingIpRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -198967,6 +199024,22 @@ func NewOpenstackRoutersListRequest(server string, params *OpenstackRoutersListP
 
 		}
 
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "state", runtime.ParamLocationQuery, *params.State); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Tenant != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tenant", runtime.ParamLocationQuery, *params.Tenant); err != nil {
@@ -199083,6 +199156,22 @@ func NewOpenstackRoutersCountRequest(server string, params *OpenstackRoutersCoun
 		if params.PageSize != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "state", runtime.ParamLocationQuery, *params.State); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -205859,8 +205948,19 @@ func NewOpenstackTenantsChangePasswordRequestWithBody(server string, uuid openap
 	return req, nil
 }
 
-// NewOpenstackTenantsCreateFloatingIpRequest generates requests for OpenstackTenantsCreateFloatingIp
-func NewOpenstackTenantsCreateFloatingIpRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+// NewOpenstackTenantsCreateFloatingIpRequest calls the generic OpenstackTenantsCreateFloatingIp builder with application/json body
+func NewOpenstackTenantsCreateFloatingIpRequest(server string, uuid openapi_types.UUID, body OpenstackTenantsCreateFloatingIpJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOpenstackTenantsCreateFloatingIpRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewOpenstackTenantsCreateFloatingIpRequestWithBody generates requests for OpenstackTenantsCreateFloatingIp with any type of body
+func NewOpenstackTenantsCreateFloatingIpRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -205885,10 +205985,12 @@ func NewOpenstackTenantsCreateFloatingIpRequest(server string, uuid openapi_type
 		return nil, err
 	}
 
-	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	req, err := http.NewRequest("POST", queryURL.String(), body)
 	if err != nil {
 		return nil, err
 	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -256344,8 +256446,10 @@ type ClientWithResponsesInterface interface {
 
 	OpenstackTenantsChangePasswordWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackTenantsChangePasswordJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackTenantsChangePasswordResponse, error)
 
-	// OpenstackTenantsCreateFloatingIpWithResponse request
-	OpenstackTenantsCreateFloatingIpWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackTenantsCreateFloatingIpResponse, error)
+	// OpenstackTenantsCreateFloatingIpWithBodyWithResponse request with any body
+	OpenstackTenantsCreateFloatingIpWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackTenantsCreateFloatingIpResponse, error)
+
+	OpenstackTenantsCreateFloatingIpWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackTenantsCreateFloatingIpJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackTenantsCreateFloatingIpResponse, error)
 
 	// OpenstackTenantsCreateNetworkWithBodyWithResponse request with any body
 	OpenstackTenantsCreateNetworkWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackTenantsCreateNetworkResponse, error)
@@ -314233,9 +314337,17 @@ func (c *ClientWithResponses) OpenstackTenantsChangePasswordWithResponse(ctx con
 	return ParseOpenstackTenantsChangePasswordResponse(rsp)
 }
 
-// OpenstackTenantsCreateFloatingIpWithResponse request returning *OpenstackTenantsCreateFloatingIpResponse
-func (c *ClientWithResponses) OpenstackTenantsCreateFloatingIpWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenstackTenantsCreateFloatingIpResponse, error) {
-	rsp, err := c.OpenstackTenantsCreateFloatingIp(ctx, uuid, reqEditors...)
+// OpenstackTenantsCreateFloatingIpWithBodyWithResponse request with arbitrary body returning *OpenstackTenantsCreateFloatingIpResponse
+func (c *ClientWithResponses) OpenstackTenantsCreateFloatingIpWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenstackTenantsCreateFloatingIpResponse, error) {
+	rsp, err := c.OpenstackTenantsCreateFloatingIpWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenstackTenantsCreateFloatingIpResponse(rsp)
+}
+
+func (c *ClientWithResponses) OpenstackTenantsCreateFloatingIpWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenstackTenantsCreateFloatingIpJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenstackTenantsCreateFloatingIpResponse, error) {
+	rsp, err := c.OpenstackTenantsCreateFloatingIp(ctx, uuid, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
