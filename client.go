@@ -244,8 +244,9 @@ const (
 
 // Defines values for ChecklistTypeEnum.
 const (
-	ChecklistTypeEnumCustomerOnboarding ChecklistTypeEnum = "customer_onboarding"
 	ChecklistTypeEnumOfferingCompliance ChecklistTypeEnum = "offering_compliance"
+	ChecklistTypeEnumOnboardingCustomer ChecklistTypeEnum = "onboarding_customer"
+	ChecklistTypeEnumOnboardingIntent   ChecklistTypeEnum = "onboarding_intent"
 	ChecklistTypeEnumProjectCompliance  ChecklistTypeEnum = "project_compliance"
 	ChecklistTypeEnumProjectMetadata    ChecklistTypeEnum = "project_metadata"
 	ChecklistTypeEnumProposalCompliance ChecklistTypeEnum = "proposal_compliance"
@@ -3983,8 +3984,9 @@ const (
 
 // Defines values for ChecklistsAdminQuestionsListParamsChecklistType.
 const (
-	ChecklistsAdminQuestionsListParamsChecklistTypeCustomerOnboarding ChecklistsAdminQuestionsListParamsChecklistType = "customer_onboarding"
 	ChecklistsAdminQuestionsListParamsChecklistTypeOfferingCompliance ChecklistsAdminQuestionsListParamsChecklistType = "offering_compliance"
+	ChecklistsAdminQuestionsListParamsChecklistTypeOnboardingCustomer ChecklistsAdminQuestionsListParamsChecklistType = "onboarding_customer"
+	ChecklistsAdminQuestionsListParamsChecklistTypeOnboardingIntent   ChecklistsAdminQuestionsListParamsChecklistType = "onboarding_intent"
 	ChecklistsAdminQuestionsListParamsChecklistTypeProjectCompliance  ChecklistsAdminQuestionsListParamsChecklistType = "project_compliance"
 	ChecklistsAdminQuestionsListParamsChecklistTypeProjectMetadata    ChecklistsAdminQuestionsListParamsChecklistType = "project_metadata"
 	ChecklistsAdminQuestionsListParamsChecklistTypeProposalCompliance ChecklistsAdminQuestionsListParamsChecklistType = "proposal_compliance"
@@ -3992,8 +3994,9 @@ const (
 
 // Defines values for ChecklistsAdminQuestionsCountParamsChecklistType.
 const (
-	ChecklistsAdminQuestionsCountParamsChecklistTypeCustomerOnboarding ChecklistsAdminQuestionsCountParamsChecklistType = "customer_onboarding"
 	ChecklistsAdminQuestionsCountParamsChecklistTypeOfferingCompliance ChecklistsAdminQuestionsCountParamsChecklistType = "offering_compliance"
+	ChecklistsAdminQuestionsCountParamsChecklistTypeOnboardingCustomer ChecklistsAdminQuestionsCountParamsChecklistType = "onboarding_customer"
+	ChecklistsAdminQuestionsCountParamsChecklistTypeOnboardingIntent   ChecklistsAdminQuestionsCountParamsChecklistType = "onboarding_intent"
 	ChecklistsAdminQuestionsCountParamsChecklistTypeProjectCompliance  ChecklistsAdminQuestionsCountParamsChecklistType = "project_compliance"
 	ChecklistsAdminQuestionsCountParamsChecklistTypeProjectMetadata    ChecklistsAdminQuestionsCountParamsChecklistType = "project_metadata"
 	ChecklistsAdminQuestionsCountParamsChecklistTypeProposalCompliance ChecklistsAdminQuestionsCountParamsChecklistType = "proposal_compliance"
@@ -4001,8 +4004,9 @@ const (
 
 // Defines values for ChecklistsAdminListParamsChecklistType.
 const (
-	ChecklistsAdminListParamsChecklistTypeCustomerOnboarding ChecklistsAdminListParamsChecklistType = "customer_onboarding"
 	ChecklistsAdminListParamsChecklistTypeOfferingCompliance ChecklistsAdminListParamsChecklistType = "offering_compliance"
+	ChecklistsAdminListParamsChecklistTypeOnboardingCustomer ChecklistsAdminListParamsChecklistType = "onboarding_customer"
+	ChecklistsAdminListParamsChecklistTypeOnboardingIntent   ChecklistsAdminListParamsChecklistType = "onboarding_intent"
 	ChecklistsAdminListParamsChecklistTypeProjectCompliance  ChecklistsAdminListParamsChecklistType = "project_compliance"
 	ChecklistsAdminListParamsChecklistTypeProjectMetadata    ChecklistsAdminListParamsChecklistType = "project_metadata"
 	ChecklistsAdminListParamsChecklistTypeProposalCompliance ChecklistsAdminListParamsChecklistType = "proposal_compliance"
@@ -4010,8 +4014,9 @@ const (
 
 // Defines values for ChecklistsAdminListParamsChecklistTypeIn.
 const (
-	ChecklistsAdminListParamsChecklistTypeInCustomerOnboarding ChecklistsAdminListParamsChecklistTypeIn = "customer_onboarding"
 	ChecklistsAdminListParamsChecklistTypeInOfferingCompliance ChecklistsAdminListParamsChecklistTypeIn = "offering_compliance"
+	ChecklistsAdminListParamsChecklistTypeInOnboardingCustomer ChecklistsAdminListParamsChecklistTypeIn = "onboarding_customer"
+	ChecklistsAdminListParamsChecklistTypeInOnboardingIntent   ChecklistsAdminListParamsChecklistTypeIn = "onboarding_intent"
 	ChecklistsAdminListParamsChecklistTypeInProjectCompliance  ChecklistsAdminListParamsChecklistTypeIn = "project_compliance"
 	ChecklistsAdminListParamsChecklistTypeInProjectMetadata    ChecklistsAdminListParamsChecklistTypeIn = "project_metadata"
 	ChecklistsAdminListParamsChecklistTypeInProposalCompliance ChecklistsAdminListParamsChecklistTypeIn = "proposal_compliance"
@@ -4019,8 +4024,9 @@ const (
 
 // Defines values for ChecklistsAdminCountParamsChecklistType.
 const (
-	ChecklistsAdminCountParamsChecklistTypeCustomerOnboarding ChecklistsAdminCountParamsChecklistType = "customer_onboarding"
 	ChecklistsAdminCountParamsChecklistTypeOfferingCompliance ChecklistsAdminCountParamsChecklistType = "offering_compliance"
+	ChecklistsAdminCountParamsChecklistTypeOnboardingCustomer ChecklistsAdminCountParamsChecklistType = "onboarding_customer"
+	ChecklistsAdminCountParamsChecklistTypeOnboardingIntent   ChecklistsAdminCountParamsChecklistType = "onboarding_intent"
 	ChecklistsAdminCountParamsChecklistTypeProjectCompliance  ChecklistsAdminCountParamsChecklistType = "project_compliance"
 	ChecklistsAdminCountParamsChecklistTypeProjectMetadata    ChecklistsAdminCountParamsChecklistType = "project_metadata"
 	ChecklistsAdminCountParamsChecklistTypeProposalCompliance ChecklistsAdminCountParamsChecklistType = "proposal_compliance"
@@ -4028,8 +4034,9 @@ const (
 
 // Defines values for ChecklistsAdminCountParamsChecklistTypeIn.
 const (
-	ChecklistsAdminCountParamsChecklistTypeInCustomerOnboarding ChecklistsAdminCountParamsChecklistTypeIn = "customer_onboarding"
 	ChecklistsAdminCountParamsChecklistTypeInOfferingCompliance ChecklistsAdminCountParamsChecklistTypeIn = "offering_compliance"
+	ChecklistsAdminCountParamsChecklistTypeInOnboardingCustomer ChecklistsAdminCountParamsChecklistTypeIn = "onboarding_customer"
+	ChecklistsAdminCountParamsChecklistTypeInOnboardingIntent   ChecklistsAdminCountParamsChecklistTypeIn = "onboarding_intent"
 	ChecklistsAdminCountParamsChecklistTypeInProjectCompliance  ChecklistsAdminCountParamsChecklistTypeIn = "project_compliance"
 	ChecklistsAdminCountParamsChecklistTypeInProjectMetadata    ChecklistsAdminCountParamsChecklistTypeIn = "project_metadata"
 	ChecklistsAdminCountParamsChecklistTypeInProposalCompliance ChecklistsAdminCountParamsChecklistTypeIn = "proposal_compliance"
@@ -4037,8 +4044,9 @@ const (
 
 // Defines values for ChecklistsAdminChecklistQuestionsParamsChecklistType.
 const (
-	ChecklistsAdminChecklistQuestionsParamsChecklistTypeCustomerOnboarding ChecklistsAdminChecklistQuestionsParamsChecklistType = "customer_onboarding"
 	ChecklistsAdminChecklistQuestionsParamsChecklistTypeOfferingCompliance ChecklistsAdminChecklistQuestionsParamsChecklistType = "offering_compliance"
+	ChecklistsAdminChecklistQuestionsParamsChecklistTypeOnboardingCustomer ChecklistsAdminChecklistQuestionsParamsChecklistType = "onboarding_customer"
+	ChecklistsAdminChecklistQuestionsParamsChecklistTypeOnboardingIntent   ChecklistsAdminChecklistQuestionsParamsChecklistType = "onboarding_intent"
 	ChecklistsAdminChecklistQuestionsParamsChecklistTypeProjectCompliance  ChecklistsAdminChecklistQuestionsParamsChecklistType = "project_compliance"
 	ChecklistsAdminChecklistQuestionsParamsChecklistTypeProjectMetadata    ChecklistsAdminChecklistQuestionsParamsChecklistType = "project_metadata"
 	ChecklistsAdminChecklistQuestionsParamsChecklistTypeProposalCompliance ChecklistsAdminChecklistQuestionsParamsChecklistType = "proposal_compliance"
@@ -4046,8 +4054,9 @@ const (
 
 // Defines values for ChecklistsAdminChecklistQuestionsParamsChecklistTypeIn.
 const (
-	CustomerOnboarding ChecklistsAdminChecklistQuestionsParamsChecklistTypeIn = "customer_onboarding"
 	OfferingCompliance ChecklistsAdminChecklistQuestionsParamsChecklistTypeIn = "offering_compliance"
+	OnboardingCustomer ChecklistsAdminChecklistQuestionsParamsChecklistTypeIn = "onboarding_customer"
+	OnboardingIntent   ChecklistsAdminChecklistQuestionsParamsChecklistTypeIn = "onboarding_intent"
 	ProjectCompliance  ChecklistsAdminChecklistQuestionsParamsChecklistTypeIn = "project_compliance"
 	ProjectMetadata    ChecklistsAdminChecklistQuestionsParamsChecklistTypeIn = "project_metadata"
 	ProposalCompliance ChecklistsAdminChecklistQuestionsParamsChecklistTypeIn = "proposal_compliance"
@@ -8071,6 +8080,32 @@ const (
 	MarketplaceUserOfferingConsentsCountParamsOMinusRevocationDate MarketplaceUserOfferingConsentsCountParamsO = "-revocation_date"
 	MarketplaceUserOfferingConsentsCountParamsOModified            MarketplaceUserOfferingConsentsCountParamsO = "modified"
 	MarketplaceUserOfferingConsentsCountParamsORevocationDate      MarketplaceUserOfferingConsentsCountParamsO = "revocation_date"
+)
+
+// Defines values for OnboardingVerificationsAvailableChecklistsRetrieveParamsChecklistType.
+const (
+	OnboardingVerificationsAvailableChecklistsRetrieveParamsChecklistTypeAll      OnboardingVerificationsAvailableChecklistsRetrieveParamsChecklistType = "all"
+	OnboardingVerificationsAvailableChecklistsRetrieveParamsChecklistTypeCustomer OnboardingVerificationsAvailableChecklistsRetrieveParamsChecklistType = "customer"
+	OnboardingVerificationsAvailableChecklistsRetrieveParamsChecklistTypeIntent   OnboardingVerificationsAvailableChecklistsRetrieveParamsChecklistType = "intent"
+)
+
+// Defines values for OnboardingVerificationsAvailableChecklistsCountParamsChecklistType.
+const (
+	OnboardingVerificationsAvailableChecklistsCountParamsChecklistTypeAll      OnboardingVerificationsAvailableChecklistsCountParamsChecklistType = "all"
+	OnboardingVerificationsAvailableChecklistsCountParamsChecklistTypeCustomer OnboardingVerificationsAvailableChecklistsCountParamsChecklistType = "customer"
+	OnboardingVerificationsAvailableChecklistsCountParamsChecklistTypeIntent   OnboardingVerificationsAvailableChecklistsCountParamsChecklistType = "intent"
+)
+
+// Defines values for OnboardingVerificationsChecklistRetrieveParamsChecklistType.
+const (
+	OnboardingVerificationsChecklistRetrieveParamsChecklistTypeCustomer OnboardingVerificationsChecklistRetrieveParamsChecklistType = "customer"
+	OnboardingVerificationsChecklistRetrieveParamsChecklistTypeIntent   OnboardingVerificationsChecklistRetrieveParamsChecklistType = "intent"
+)
+
+// Defines values for OnboardingVerificationsCompletionStatusRetrieveParamsChecklistType.
+const (
+	OnboardingVerificationsCompletionStatusRetrieveParamsChecklistTypeCustomer OnboardingVerificationsCompletionStatusRetrieveParamsChecklistType = "customer"
+	OnboardingVerificationsCompletionStatusRetrieveParamsChecklistTypeIntent   OnboardingVerificationsCompletionStatusRetrieveParamsChecklistType = "intent"
 )
 
 // Defines values for OpenportalAllocationsListParamsField.
@@ -13701,6 +13736,12 @@ type AvailableChecklist struct {
 	Uuid           *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
+// AvailableChecklistsResponse defines model for AvailableChecklistsResponse.
+type AvailableChecklistsResponse struct {
+	CustomerChecklist *map[string]interface{} `json:"customer_checklist"`
+	IntentChecklist   *map[string]interface{} `json:"intent_checklist"`
+}
+
 // AwsImage defines model for AwsImage.
 type AwsImage struct {
 	Name   string              `json:"name"`
@@ -16036,7 +16077,8 @@ type ConstanceSettings struct {
 	ONBOARDINGBOLAGSVERKETCLIENTSECRET             *string              `json:"ONBOARDING_BOLAGSVERKET_CLIENT_SECRET,omitempty"`
 	ONBOARDINGBOLAGSVERKETTOKENAPIURL              *string              `json:"ONBOARDING_BOLAGSVERKET_TOKEN_API_URL,omitempty"`
 	ONBOARDINGBREGAPIURL                           *string              `json:"ONBOARDING_BREG_API_URL,omitempty"`
-	ONBOARDINGCOUNTRY                              *string              `json:"ONBOARDING_COUNTRY,omitempty"`
+	ONBOARDINGSUPPORTEDCOUNTRIES                   *[]string            `json:"ONBOARDING_SUPPORTED_COUNTRIES,omitempty"`
+	ONBOARDINGVALIDATIONMETHODS                    *[]string            `json:"ONBOARDING_VALIDATION_METHODS,omitempty"`
 	ONBOARDINGVERIFICATIONEXPIRYHOURS              *int                 `json:"ONBOARDING_VERIFICATION_EXPIRY_HOURS,omitempty"`
 	ONBOARDINGWICOAPIURL                           *string              `json:"ONBOARDING_WICO_API_URL,omitempty"`
 	ONBOARDINGWICOTOKEN                            *string              `json:"ONBOARDING_WICO_TOKEN,omitempty"`
@@ -16229,7 +16271,8 @@ type ConstanceSettingsRequest struct {
 	ONBOARDINGBOLAGSVERKETCLIENTSECRET             *string                         `json:"ONBOARDING_BOLAGSVERKET_CLIENT_SECRET,omitempty"`
 	ONBOARDINGBOLAGSVERKETTOKENAPIURL              *string                         `json:"ONBOARDING_BOLAGSVERKET_TOKEN_API_URL,omitempty"`
 	ONBOARDINGBREGAPIURL                           *string                         `json:"ONBOARDING_BREG_API_URL,omitempty"`
-	ONBOARDINGCOUNTRY                              *string                         `json:"ONBOARDING_COUNTRY,omitempty"`
+	ONBOARDINGSUPPORTEDCOUNTRIES                   *[]string                       `json:"ONBOARDING_SUPPORTED_COUNTRIES,omitempty"`
+	ONBOARDINGVALIDATIONMETHODS                    *[]string                       `json:"ONBOARDING_VALIDATION_METHODS,omitempty"`
 	ONBOARDINGVERIFICATIONEXPIRYHOURS              *int                            `json:"ONBOARDING_VERIFICATION_EXPIRY_HOURS,omitempty"`
 	ONBOARDINGWICOAPIURL                           *string                         `json:"ONBOARDING_WICO_API_URL,omitempty"`
 	ONBOARDINGWICOTOKEN                            *string                         `json:"ONBOARDING_WICO_TOKEN,omitempty"`
@@ -16422,7 +16465,8 @@ type ConstanceSettingsRequestForm struct {
 	ONBOARDINGBOLAGSVERKETCLIENTSECRET             *string                         `json:"ONBOARDING_BOLAGSVERKET_CLIENT_SECRET,omitempty"`
 	ONBOARDINGBOLAGSVERKETTOKENAPIURL              *string                         `json:"ONBOARDING_BOLAGSVERKET_TOKEN_API_URL,omitempty"`
 	ONBOARDINGBREGAPIURL                           *string                         `json:"ONBOARDING_BREG_API_URL,omitempty"`
-	ONBOARDINGCOUNTRY                              *string                         `json:"ONBOARDING_COUNTRY,omitempty"`
+	ONBOARDINGSUPPORTEDCOUNTRIES                   *[]string                       `json:"ONBOARDING_SUPPORTED_COUNTRIES,omitempty"`
+	ONBOARDINGVALIDATIONMETHODS                    *[]string                       `json:"ONBOARDING_VALIDATION_METHODS,omitempty"`
 	ONBOARDINGVERIFICATIONEXPIRYHOURS              *int                            `json:"ONBOARDING_VERIFICATION_EXPIRY_HOURS,omitempty"`
 	ONBOARDINGWICOAPIURL                           *string                         `json:"ONBOARDING_WICO_API_URL,omitempty"`
 	ONBOARDINGWICOTOKEN                            *string                         `json:"ONBOARDING_WICO_TOKEN,omitempty"`
@@ -16615,7 +16659,8 @@ type ConstanceSettingsRequestMultipart struct {
 	ONBOARDINGBOLAGSVERKETCLIENTSECRET             *string                         `json:"ONBOARDING_BOLAGSVERKET_CLIENT_SECRET,omitempty"`
 	ONBOARDINGBOLAGSVERKETTOKENAPIURL              *string                         `json:"ONBOARDING_BOLAGSVERKET_TOKEN_API_URL,omitempty"`
 	ONBOARDINGBREGAPIURL                           *string                         `json:"ONBOARDING_BREG_API_URL,omitempty"`
-	ONBOARDINGCOUNTRY                              *string                         `json:"ONBOARDING_COUNTRY,omitempty"`
+	ONBOARDINGSUPPORTEDCOUNTRIES                   *[]string                       `json:"ONBOARDING_SUPPORTED_COUNTRIES,omitempty"`
+	ONBOARDINGVALIDATIONMETHODS                    *[]string                       `json:"ONBOARDING_VALIDATION_METHODS,omitempty"`
 	ONBOARDINGVERIFICATIONEXPIRYHOURS              *int                            `json:"ONBOARDING_VERIFICATION_EXPIRY_HOURS,omitempty"`
 	ONBOARDINGWICOAPIURL                           *string                         `json:"ONBOARDING_WICO_API_URL,omitempty"`
 	ONBOARDINGWICOTOKEN                            *string                         `json:"ONBOARDING_WICO_TOKEN,omitempty"`
@@ -22312,8 +22357,8 @@ type OfferingUserUpdateRestrictionRequest struct {
 
 // OnboardingCompanyValidationRequestRequest defines model for OnboardingCompanyValidationRequestRequest.
 type OnboardingCompanyValidationRequestRequest struct {
-	// Country ISO country code (e.g., 'EE' for Estonia)
-	Country string `json:"country"`
+	// Country ISO country code (e.g., 'EE', 'AT') - optional, for display context
+	Country *string `json:"country,omitempty"`
 
 	// IsManualValidation Indicates if the validation is to be performed manually
 	IsManualValidation *bool `json:"is_manual_validation,omitempty"`
@@ -22323,37 +22368,14 @@ type OnboardingCompanyValidationRequestRequest struct {
 
 	// LegalPersonIdentifier Official company registration code
 	LegalPersonIdentifier *string `json:"legal_person_identifier,omitempty"`
+
+	// ValidationMethod Automatic validation method (e.g., 'ariregister', 'wirtschaftscompass', 'bolagsverket'). Leave empty for manual validation.
+	ValidationMethod *OnboardingCompanyValidationRequestRequest_ValidationMethod `json:"validation_method,omitempty"`
 }
 
-// OnboardingCountryChecklistConfiguration defines model for OnboardingCountryChecklistConfiguration.
-type OnboardingCountryChecklistConfiguration struct {
-	// Checklist Checklist to use for this country's onboarding
-	Checklist     string              `json:"checklist"`
-	ChecklistName *string             `json:"checklist_name,omitempty"`
-	ChecklistUuid *openapi_types.UUID `json:"checklist_uuid,omitempty"`
-
-	// Country ISO country code (e.g., 'EE' for Estonia)
-	Country string     `json:"country"`
-	Created *time.Time `json:"created,omitempty"`
-
-	// IsActive Whether this country configuration is active
-	IsActive  *bool               `json:"is_active,omitempty"`
-	Modified  *time.Time          `json:"modified,omitempty"`
-	Questions *[]QuestionAdmin    `json:"questions,omitempty"`
-	Url       *string             `json:"url,omitempty"`
-	Uuid      *openapi_types.UUID `json:"uuid,omitempty"`
-}
-
-// OnboardingCountryChecklistConfigurationRequest defines model for OnboardingCountryChecklistConfigurationRequest.
-type OnboardingCountryChecklistConfigurationRequest struct {
-	// Checklist Checklist to use for this country's onboarding
-	Checklist string `json:"checklist"`
-
-	// Country ISO country code (e.g., 'EE' for Estonia)
-	Country string `json:"country"`
-
-	// IsActive Whether this country configuration is active
-	IsActive *bool `json:"is_active,omitempty"`
+// OnboardingCompanyValidationRequestRequest_ValidationMethod Automatic validation method (e.g., 'ariregister', 'wirtschaftscompass', 'bolagsverket'). Leave empty for manual validation.
+type OnboardingCompanyValidationRequestRequest_ValidationMethod struct {
+	union json.RawMessage
 }
 
 // OnboardingJustification defines model for OnboardingJustification.
@@ -22487,8 +22509,8 @@ type OnboardingVerification struct {
 	// CanCustomerBeCreated Boolean indicating if a customer can be created from this verification
 	CanCustomerBeCreated *bool `json:"can_customer_be_created,omitempty"`
 
-	// Country ISO country code (e.g., 'EE' for Estonia)
-	Country string     `json:"country"`
+	// Country ISO country code (e.g., 'EE', 'AT') for context. Can be inferred from validation_method.
+	Country *string    `json:"country,omitempty"`
 	Created *time.Time `json:"created,omitempty"`
 
 	// Customer Customer created after successful validation
@@ -22540,8 +22562,8 @@ type OnboardingVerification struct {
 
 // OnboardingVerificationRequest defines model for OnboardingVerificationRequest.
 type OnboardingVerificationRequest struct {
-	// Country ISO country code (e.g., 'EE' for Estonia)
-	Country string `json:"country"`
+	// Country ISO country code (e.g., 'EE', 'AT') for context. Can be inferred from validation_method.
+	Country *string `json:"country,omitempty"`
 
 	// ExpiresAt When this verification expires
 	ExpiresAt *time.Time `json:"expires_at"`
@@ -25591,18 +25613,6 @@ type PatchedOfferingUserServiceProviderCommentRequest struct {
 	ServiceProviderCommentUrl *string `json:"service_provider_comment_url,omitempty"`
 }
 
-// PatchedOnboardingCountryChecklistConfigurationRequest defines model for PatchedOnboardingCountryChecklistConfigurationRequest.
-type PatchedOnboardingCountryChecklistConfigurationRequest struct {
-	// Checklist Checklist to use for this country's onboarding
-	Checklist *string `json:"checklist,omitempty"`
-
-	// Country ISO country code (e.g., 'EE' for Estonia)
-	Country *string `json:"country,omitempty"`
-
-	// IsActive Whether this country configuration is active
-	IsActive *bool `json:"is_active,omitempty"`
-}
-
 // PatchedOnboardingJustificationRequest defines model for PatchedOnboardingJustificationRequest.
 type PatchedOnboardingJustificationRequest struct {
 	// UserJustification User's explanation for why they should be authorized
@@ -25622,7 +25632,7 @@ type PatchedOnboardingQuestionMetadataRequest struct {
 
 // PatchedOnboardingVerificationRequest defines model for PatchedOnboardingVerificationRequest.
 type PatchedOnboardingVerificationRequest struct {
-	// Country ISO country code (e.g., 'EE' for Estonia)
+	// Country ISO country code (e.g., 'EE', 'AT') for context. Can be inferred from validation_method.
 	Country *string `json:"country,omitempty"`
 
 	// ExpiresAt When this verification expires
@@ -43242,30 +43252,6 @@ type NotificationMessagesCountParams struct {
 	Query *string `form:"query,omitempty" json:"query,omitempty"`
 }
 
-// OnboardingCountryConfigsListParams defines parameters for OnboardingCountryConfigsList.
-type OnboardingCountryConfigsListParams struct {
-	Country  *string `form:"country,omitempty" json:"country,omitempty"`
-	IsActive *bool   `form:"is_active,omitempty" json:"is_active,omitempty"`
-
-	// Page A page number within the paginated result set.
-	Page *Page `form:"page,omitempty" json:"page,omitempty"`
-
-	// PageSize Number of results to return per page.
-	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-}
-
-// OnboardingCountryConfigsCountParams defines parameters for OnboardingCountryConfigsCount.
-type OnboardingCountryConfigsCountParams struct {
-	Country  *string `form:"country,omitempty" json:"country,omitempty"`
-	IsActive *bool   `form:"is_active,omitempty" json:"is_active,omitempty"`
-
-	// Page A page number within the paginated result set.
-	Page *Page `form:"page,omitempty" json:"page,omitempty"`
-
-	// PageSize Number of results to return per page.
-	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-}
-
 // OnboardingJustificationsListParams defines parameters for OnboardingJustificationsList.
 type OnboardingJustificationsListParams struct {
 	// Page A page number within the paginated result set.
@@ -43362,6 +43348,24 @@ type OnboardingVerificationsCountParams struct {
 	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
 }
 
+// OnboardingVerificationsAvailableChecklistsRetrieveParams defines parameters for OnboardingVerificationsAvailableChecklistsRetrieve.
+type OnboardingVerificationsAvailableChecklistsRetrieveParams struct {
+	// ChecklistType Type of checklist to retrieve (customer, intent, or all). Defaults to all.
+	ChecklistType *OnboardingVerificationsAvailableChecklistsRetrieveParamsChecklistType `form:"checklist_type,omitempty" json:"checklist_type,omitempty"`
+}
+
+// OnboardingVerificationsAvailableChecklistsRetrieveParamsChecklistType defines parameters for OnboardingVerificationsAvailableChecklistsRetrieve.
+type OnboardingVerificationsAvailableChecklistsRetrieveParamsChecklistType string
+
+// OnboardingVerificationsAvailableChecklistsCountParams defines parameters for OnboardingVerificationsAvailableChecklistsCount.
+type OnboardingVerificationsAvailableChecklistsCountParams struct {
+	// ChecklistType Type of checklist to retrieve (customer, intent, or all). Defaults to all.
+	ChecklistType *OnboardingVerificationsAvailableChecklistsCountParamsChecklistType `form:"checklist_type,omitempty" json:"checklist_type,omitempty"`
+}
+
+// OnboardingVerificationsAvailableChecklistsCountParamsChecklistType defines parameters for OnboardingVerificationsAvailableChecklistsCount.
+type OnboardingVerificationsAvailableChecklistsCountParamsChecklistType string
+
 // OnboardingVerificationsChecklistTemplateRetrieveParams defines parameters for OnboardingVerificationsChecklistTemplateRetrieve.
 type OnboardingVerificationsChecklistTemplateRetrieveParams struct {
 	// ParentUuid UUID of the parent object (e.g., customer UUID for new projects)
@@ -43376,9 +43380,24 @@ type OnboardingVerificationsChecklistTemplateCountParams struct {
 
 // OnboardingVerificationsChecklistRetrieveParams defines parameters for OnboardingVerificationsChecklistRetrieve.
 type OnboardingVerificationsChecklistRetrieveParams struct {
-	// IncludeAll If true, returns all questions including hidden ones (for dynamic form visibility). Default: false.
+	// ChecklistType Type of checklist to retrieve (customer or intent). Defaults to intent.
+	ChecklistType *OnboardingVerificationsChecklistRetrieveParamsChecklistType `form:"checklist_type,omitempty" json:"checklist_type,omitempty"`
+
+	// IncludeAll If true, returns all questions including hidden ones.
 	IncludeAll *bool `form:"include_all,omitempty" json:"include_all,omitempty"`
 }
+
+// OnboardingVerificationsChecklistRetrieveParamsChecklistType defines parameters for OnboardingVerificationsChecklistRetrieve.
+type OnboardingVerificationsChecklistRetrieveParamsChecklistType string
+
+// OnboardingVerificationsCompletionStatusRetrieveParams defines parameters for OnboardingVerificationsCompletionStatusRetrieve.
+type OnboardingVerificationsCompletionStatusRetrieveParams struct {
+	// ChecklistType Type of checklist to retrieve (customer or intent). Defaults to intent.
+	ChecklistType *OnboardingVerificationsCompletionStatusRetrieveParamsChecklistType `form:"checklist_type,omitempty" json:"checklist_type,omitempty"`
+}
+
+// OnboardingVerificationsCompletionStatusRetrieveParamsChecklistType defines parameters for OnboardingVerificationsCompletionStatusRetrieve.
+type OnboardingVerificationsCompletionStatusRetrieveParamsChecklistType string
 
 // OnboardingVerificationsSubmitAnswersJSONBody defines parameters for OnboardingVerificationsSubmitAnswers.
 type OnboardingVerificationsSubmitAnswersJSONBody = []AnswerSubmitRequest
@@ -52856,15 +52875,6 @@ type NotificationMessagesPartialUpdateJSONRequestBody = PatchedNotificationReque
 // NotificationMessagesUpdateJSONRequestBody defines body for NotificationMessagesUpdate for application/json ContentType.
 type NotificationMessagesUpdateJSONRequestBody = NotificationRequest
 
-// OnboardingCountryConfigsCreateJSONRequestBody defines body for OnboardingCountryConfigsCreate for application/json ContentType.
-type OnboardingCountryConfigsCreateJSONRequestBody = OnboardingCountryChecklistConfigurationRequest
-
-// OnboardingCountryConfigsPartialUpdateJSONRequestBody defines body for OnboardingCountryConfigsPartialUpdate for application/json ContentType.
-type OnboardingCountryConfigsPartialUpdateJSONRequestBody = PatchedOnboardingCountryChecklistConfigurationRequest
-
-// OnboardingCountryConfigsUpdateJSONRequestBody defines body for OnboardingCountryConfigsUpdate for application/json ContentType.
-type OnboardingCountryConfigsUpdateJSONRequestBody = OnboardingCountryChecklistConfigurationRequest
-
 // OnboardingJustificationsCreateJSONRequestBody defines body for OnboardingJustificationsCreate for application/json ContentType.
 type OnboardingJustificationsCreateJSONRequestBody = OnboardingJustificationRequest
 
@@ -55255,6 +55265,68 @@ func (t OfferingCreateRequestMultipart_Country) MarshalJSON() ([]byte, error) {
 }
 
 func (t *OfferingCreateRequestMultipart_Country) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsValidationMethodEnum returns the union data inside the OnboardingCompanyValidationRequestRequest_ValidationMethod as a ValidationMethodEnum
+func (t OnboardingCompanyValidationRequestRequest_ValidationMethod) AsValidationMethodEnum() (ValidationMethodEnum, error) {
+	var body ValidationMethodEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromValidationMethodEnum overwrites any union data inside the OnboardingCompanyValidationRequestRequest_ValidationMethod as the provided ValidationMethodEnum
+func (t *OnboardingCompanyValidationRequestRequest_ValidationMethod) FromValidationMethodEnum(v ValidationMethodEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeValidationMethodEnum performs a merge with any union data inside the OnboardingCompanyValidationRequestRequest_ValidationMethod, using the provided ValidationMethodEnum
+func (t *OnboardingCompanyValidationRequestRequest_ValidationMethod) MergeValidationMethodEnum(v ValidationMethodEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsBlankEnum returns the union data inside the OnboardingCompanyValidationRequestRequest_ValidationMethod as a BlankEnum
+func (t OnboardingCompanyValidationRequestRequest_ValidationMethod) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the OnboardingCompanyValidationRequestRequest_ValidationMethod as the provided BlankEnum
+func (t *OnboardingCompanyValidationRequestRequest_ValidationMethod) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the OnboardingCompanyValidationRequestRequest_ValidationMethod, using the provided BlankEnum
+func (t *OnboardingCompanyValidationRequestRequest_ValidationMethod) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t OnboardingCompanyValidationRequestRequest_ValidationMethod) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *OnboardingCompanyValidationRequestRequest_ValidationMethod) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -64236,33 +64308,6 @@ type ClientInterface interface {
 	// NotificationMessagesEnable request
 	NotificationMessagesEnable(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// OnboardingCountryConfigsList request
-	OnboardingCountryConfigsList(ctx context.Context, params *OnboardingCountryConfigsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// OnboardingCountryConfigsCount request
-	OnboardingCountryConfigsCount(ctx context.Context, params *OnboardingCountryConfigsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// OnboardingCountryConfigsCreateWithBody request with any body
-	OnboardingCountryConfigsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	OnboardingCountryConfigsCreate(ctx context.Context, body OnboardingCountryConfigsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// OnboardingCountryConfigsDestroy request
-	OnboardingCountryConfigsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// OnboardingCountryConfigsRetrieve request
-	OnboardingCountryConfigsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// OnboardingCountryConfigsPartialUpdateWithBody request with any body
-	OnboardingCountryConfigsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	OnboardingCountryConfigsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body OnboardingCountryConfigsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// OnboardingCountryConfigsUpdateWithBody request with any body
-	OnboardingCountryConfigsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	OnboardingCountryConfigsUpdate(ctx context.Context, uuid openapi_types.UUID, body OnboardingCountryConfigsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
 	// OnboardingJustificationsList request
 	OnboardingJustificationsList(ctx context.Context, params *OnboardingJustificationsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -64350,6 +64395,12 @@ type ClientInterface interface {
 
 	OnboardingVerificationsCreate(ctx context.Context, body OnboardingVerificationsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// OnboardingVerificationsAvailableChecklistsRetrieve request
+	OnboardingVerificationsAvailableChecklistsRetrieve(ctx context.Context, params *OnboardingVerificationsAvailableChecklistsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OnboardingVerificationsAvailableChecklistsCount request
+	OnboardingVerificationsAvailableChecklistsCount(ctx context.Context, params *OnboardingVerificationsAvailableChecklistsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// OnboardingVerificationsChecklistTemplateRetrieve request
 	OnboardingVerificationsChecklistTemplateRetrieve(ctx context.Context, params *OnboardingVerificationsChecklistTemplateRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -64381,7 +64432,7 @@ type ClientInterface interface {
 	OnboardingVerificationsChecklistRetrieve(ctx context.Context, uuid openapi_types.UUID, params *OnboardingVerificationsChecklistRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OnboardingVerificationsCompletionStatusRetrieve request
-	OnboardingVerificationsCompletionStatusRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+	OnboardingVerificationsCompletionStatusRetrieve(ctx context.Context, uuid openapi_types.UUID, params *OnboardingVerificationsCompletionStatusRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OnboardingVerificationsCreateCustomer request
 	OnboardingVerificationsCreateCustomer(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -85110,126 +85161,6 @@ func (c *Client) NotificationMessagesEnable(ctx context.Context, uuid openapi_ty
 	return c.Client.Do(req)
 }
 
-func (c *Client) OnboardingCountryConfigsList(ctx context.Context, params *OnboardingCountryConfigsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOnboardingCountryConfigsListRequest(c.Server, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) OnboardingCountryConfigsCount(ctx context.Context, params *OnboardingCountryConfigsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOnboardingCountryConfigsCountRequest(c.Server, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) OnboardingCountryConfigsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOnboardingCountryConfigsCreateRequestWithBody(c.Server, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) OnboardingCountryConfigsCreate(ctx context.Context, body OnboardingCountryConfigsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOnboardingCountryConfigsCreateRequest(c.Server, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) OnboardingCountryConfigsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOnboardingCountryConfigsDestroyRequest(c.Server, uuid)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) OnboardingCountryConfigsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOnboardingCountryConfigsRetrieveRequest(c.Server, uuid)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) OnboardingCountryConfigsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOnboardingCountryConfigsPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) OnboardingCountryConfigsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body OnboardingCountryConfigsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOnboardingCountryConfigsPartialUpdateRequest(c.Server, uuid, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) OnboardingCountryConfigsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOnboardingCountryConfigsUpdateRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) OnboardingCountryConfigsUpdate(ctx context.Context, uuid openapi_types.UUID, body OnboardingCountryConfigsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOnboardingCountryConfigsUpdateRequest(c.Server, uuid, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
 func (c *Client) OnboardingJustificationsList(ctx context.Context, params *OnboardingJustificationsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOnboardingJustificationsListRequest(c.Server, params)
 	if err != nil {
@@ -85626,6 +85557,30 @@ func (c *Client) OnboardingVerificationsCreate(ctx context.Context, body Onboard
 	return c.Client.Do(req)
 }
 
+func (c *Client) OnboardingVerificationsAvailableChecklistsRetrieve(ctx context.Context, params *OnboardingVerificationsAvailableChecklistsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOnboardingVerificationsAvailableChecklistsRetrieveRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OnboardingVerificationsAvailableChecklistsCount(ctx context.Context, params *OnboardingVerificationsAvailableChecklistsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOnboardingVerificationsAvailableChecklistsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) OnboardingVerificationsChecklistTemplateRetrieve(ctx context.Context, params *OnboardingVerificationsChecklistTemplateRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOnboardingVerificationsChecklistTemplateRetrieveRequest(c.Server, params)
 	if err != nil {
@@ -85758,8 +85713,8 @@ func (c *Client) OnboardingVerificationsChecklistRetrieve(ctx context.Context, u
 	return c.Client.Do(req)
 }
 
-func (c *Client) OnboardingVerificationsCompletionStatusRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewOnboardingVerificationsCompletionStatusRetrieveRequest(c.Server, uuid)
+func (c *Client) OnboardingVerificationsCompletionStatusRetrieve(ctx context.Context, uuid openapi_types.UUID, params *OnboardingVerificationsCompletionStatusRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOnboardingVerificationsCompletionStatusRetrieveRequest(c.Server, uuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -189893,402 +189848,6 @@ func NewNotificationMessagesEnableRequest(server string, uuid openapi_types.UUID
 	return req, nil
 }
 
-// NewOnboardingCountryConfigsListRequest generates requests for OnboardingCountryConfigsList
-func NewOnboardingCountryConfigsListRequest(server string, params *OnboardingCountryConfigsListParams) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/onboarding-country-configs/")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if params.Country != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "country", runtime.ParamLocationQuery, *params.Country); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.IsActive != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_active", runtime.ParamLocationQuery, *params.IsActive); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Page != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.PageSize != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewOnboardingCountryConfigsCountRequest generates requests for OnboardingCountryConfigsCount
-func NewOnboardingCountryConfigsCountRequest(server string, params *OnboardingCountryConfigsCountParams) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/onboarding-country-configs/")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if params.Country != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "country", runtime.ParamLocationQuery, *params.Country); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.IsActive != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_active", runtime.ParamLocationQuery, *params.IsActive); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Page != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.PageSize != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
-	}
-
-	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewOnboardingCountryConfigsCreateRequest calls the generic OnboardingCountryConfigsCreate builder with application/json body
-func NewOnboardingCountryConfigsCreateRequest(server string, body OnboardingCountryConfigsCreateJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewOnboardingCountryConfigsCreateRequestWithBody(server, "application/json", bodyReader)
-}
-
-// NewOnboardingCountryConfigsCreateRequestWithBody generates requests for OnboardingCountryConfigsCreate with any type of body
-func NewOnboardingCountryConfigsCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/onboarding-country-configs/")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("POST", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewOnboardingCountryConfigsDestroyRequest generates requests for OnboardingCountryConfigsDestroy
-func NewOnboardingCountryConfigsDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/onboarding-country-configs/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewOnboardingCountryConfigsRetrieveRequest generates requests for OnboardingCountryConfigsRetrieve
-func NewOnboardingCountryConfigsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/onboarding-country-configs/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewOnboardingCountryConfigsPartialUpdateRequest calls the generic OnboardingCountryConfigsPartialUpdate builder with application/json body
-func NewOnboardingCountryConfigsPartialUpdateRequest(server string, uuid openapi_types.UUID, body OnboardingCountryConfigsPartialUpdateJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewOnboardingCountryConfigsPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewOnboardingCountryConfigsPartialUpdateRequestWithBody generates requests for OnboardingCountryConfigsPartialUpdate with any type of body
-func NewOnboardingCountryConfigsPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/onboarding-country-configs/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("PATCH", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewOnboardingCountryConfigsUpdateRequest calls the generic OnboardingCountryConfigsUpdate builder with application/json body
-func NewOnboardingCountryConfigsUpdateRequest(server string, uuid openapi_types.UUID, body OnboardingCountryConfigsUpdateJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewOnboardingCountryConfigsUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewOnboardingCountryConfigsUpdateRequestWithBody generates requests for OnboardingCountryConfigsUpdate with any type of body
-func NewOnboardingCountryConfigsUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/onboarding-country-configs/%s/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("PUT", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
 // NewOnboardingJustificationsListRequest generates requests for OnboardingJustificationsList
 func NewOnboardingJustificationsListRequest(server string, params *OnboardingJustificationsListParams) (*http.Request, error) {
 	var err error
@@ -191699,6 +191258,104 @@ func NewOnboardingVerificationsCreateRequestWithBody(server string, contentType 
 	return req, nil
 }
 
+// NewOnboardingVerificationsAvailableChecklistsRetrieveRequest generates requests for OnboardingVerificationsAvailableChecklistsRetrieve
+func NewOnboardingVerificationsAvailableChecklistsRetrieveRequest(server string, params *OnboardingVerificationsAvailableChecklistsRetrieveParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/onboarding-verifications/available_checklists/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.ChecklistType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "checklist_type", runtime.ParamLocationQuery, *params.ChecklistType); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOnboardingVerificationsAvailableChecklistsCountRequest generates requests for OnboardingVerificationsAvailableChecklistsCount
+func NewOnboardingVerificationsAvailableChecklistsCountRequest(server string, params *OnboardingVerificationsAvailableChecklistsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/onboarding-verifications/available_checklists/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.ChecklistType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "checklist_type", runtime.ParamLocationQuery, *params.ChecklistType); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewOnboardingVerificationsChecklistTemplateRetrieveRequest generates requests for OnboardingVerificationsChecklistTemplateRetrieve
 func NewOnboardingVerificationsChecklistTemplateRetrieveRequest(server string, params *OnboardingVerificationsChecklistTemplateRetrieveParams) (*http.Request, error) {
 	var err error
@@ -192020,6 +191677,22 @@ func NewOnboardingVerificationsChecklistRetrieveRequest(server string, uuid open
 	if params != nil {
 		queryValues := queryURL.Query()
 
+		if params.ChecklistType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "checklist_type", runtime.ParamLocationQuery, *params.ChecklistType); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.IncludeAll != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "include_all", runtime.ParamLocationQuery, *params.IncludeAll); err != nil {
@@ -192048,7 +191721,7 @@ func NewOnboardingVerificationsChecklistRetrieveRequest(server string, uuid open
 }
 
 // NewOnboardingVerificationsCompletionStatusRetrieveRequest generates requests for OnboardingVerificationsCompletionStatusRetrieve
-func NewOnboardingVerificationsCompletionStatusRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+func NewOnboardingVerificationsCompletionStatusRetrieveRequest(server string, uuid openapi_types.UUID, params *OnboardingVerificationsCompletionStatusRetrieveParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -192071,6 +191744,28 @@ func NewOnboardingVerificationsCompletionStatusRetrieveRequest(server string, uu
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.ChecklistType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "checklist_type", runtime.ParamLocationQuery, *params.ChecklistType); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
 	}
 
 	req, err := http.NewRequest("GET", queryURL.String(), nil)
@@ -271269,33 +270964,6 @@ type ClientWithResponsesInterface interface {
 	// NotificationMessagesEnableWithResponse request
 	NotificationMessagesEnableWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*NotificationMessagesEnableResponse, error)
 
-	// OnboardingCountryConfigsListWithResponse request
-	OnboardingCountryConfigsListWithResponse(ctx context.Context, params *OnboardingCountryConfigsListParams, reqEditors ...RequestEditorFn) (*OnboardingCountryConfigsListResponse, error)
-
-	// OnboardingCountryConfigsCountWithResponse request
-	OnboardingCountryConfigsCountWithResponse(ctx context.Context, params *OnboardingCountryConfigsCountParams, reqEditors ...RequestEditorFn) (*OnboardingCountryConfigsCountResponse, error)
-
-	// OnboardingCountryConfigsCreateWithBodyWithResponse request with any body
-	OnboardingCountryConfigsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OnboardingCountryConfigsCreateResponse, error)
-
-	OnboardingCountryConfigsCreateWithResponse(ctx context.Context, body OnboardingCountryConfigsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*OnboardingCountryConfigsCreateResponse, error)
-
-	// OnboardingCountryConfigsDestroyWithResponse request
-	OnboardingCountryConfigsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OnboardingCountryConfigsDestroyResponse, error)
-
-	// OnboardingCountryConfigsRetrieveWithResponse request
-	OnboardingCountryConfigsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OnboardingCountryConfigsRetrieveResponse, error)
-
-	// OnboardingCountryConfigsPartialUpdateWithBodyWithResponse request with any body
-	OnboardingCountryConfigsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OnboardingCountryConfigsPartialUpdateResponse, error)
-
-	OnboardingCountryConfigsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OnboardingCountryConfigsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OnboardingCountryConfigsPartialUpdateResponse, error)
-
-	// OnboardingCountryConfigsUpdateWithBodyWithResponse request with any body
-	OnboardingCountryConfigsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OnboardingCountryConfigsUpdateResponse, error)
-
-	OnboardingCountryConfigsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OnboardingCountryConfigsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OnboardingCountryConfigsUpdateResponse, error)
-
 	// OnboardingJustificationsListWithResponse request
 	OnboardingJustificationsListWithResponse(ctx context.Context, params *OnboardingJustificationsListParams, reqEditors ...RequestEditorFn) (*OnboardingJustificationsListResponse, error)
 
@@ -271383,6 +271051,12 @@ type ClientWithResponsesInterface interface {
 
 	OnboardingVerificationsCreateWithResponse(ctx context.Context, body OnboardingVerificationsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*OnboardingVerificationsCreateResponse, error)
 
+	// OnboardingVerificationsAvailableChecklistsRetrieveWithResponse request
+	OnboardingVerificationsAvailableChecklistsRetrieveWithResponse(ctx context.Context, params *OnboardingVerificationsAvailableChecklistsRetrieveParams, reqEditors ...RequestEditorFn) (*OnboardingVerificationsAvailableChecklistsRetrieveResponse, error)
+
+	// OnboardingVerificationsAvailableChecklistsCountWithResponse request
+	OnboardingVerificationsAvailableChecklistsCountWithResponse(ctx context.Context, params *OnboardingVerificationsAvailableChecklistsCountParams, reqEditors ...RequestEditorFn) (*OnboardingVerificationsAvailableChecklistsCountResponse, error)
+
 	// OnboardingVerificationsChecklistTemplateRetrieveWithResponse request
 	OnboardingVerificationsChecklistTemplateRetrieveWithResponse(ctx context.Context, params *OnboardingVerificationsChecklistTemplateRetrieveParams, reqEditors ...RequestEditorFn) (*OnboardingVerificationsChecklistTemplateRetrieveResponse, error)
 
@@ -271414,7 +271088,7 @@ type ClientWithResponsesInterface interface {
 	OnboardingVerificationsChecklistRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *OnboardingVerificationsChecklistRetrieveParams, reqEditors ...RequestEditorFn) (*OnboardingVerificationsChecklistRetrieveResponse, error)
 
 	// OnboardingVerificationsCompletionStatusRetrieveWithResponse request
-	OnboardingVerificationsCompletionStatusRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OnboardingVerificationsCompletionStatusRetrieveResponse, error)
+	OnboardingVerificationsCompletionStatusRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *OnboardingVerificationsCompletionStatusRetrieveParams, reqEditors ...RequestEditorFn) (*OnboardingVerificationsCompletionStatusRetrieveResponse, error)
 
 	// OnboardingVerificationsCreateCustomerWithResponse request
 	OnboardingVerificationsCreateCustomerWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OnboardingVerificationsCreateCustomerResponse, error)
@@ -298121,158 +297795,6 @@ func (r NotificationMessagesEnableResponse) StatusCode() int {
 	return 0
 }
 
-type OnboardingCountryConfigsListResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *[]OnboardingCountryChecklistConfiguration
-}
-
-// Status returns HTTPResponse.Status
-func (r OnboardingCountryConfigsListResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r OnboardingCountryConfigsListResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type OnboardingCountryConfigsCountResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// Status returns HTTPResponse.Status
-func (r OnboardingCountryConfigsCountResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r OnboardingCountryConfigsCountResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type OnboardingCountryConfigsCreateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON201      *OnboardingCountryChecklistConfiguration
-}
-
-// Status returns HTTPResponse.Status
-func (r OnboardingCountryConfigsCreateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r OnboardingCountryConfigsCreateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type OnboardingCountryConfigsDestroyResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-}
-
-// Status returns HTTPResponse.Status
-func (r OnboardingCountryConfigsDestroyResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r OnboardingCountryConfigsDestroyResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type OnboardingCountryConfigsRetrieveResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *OnboardingCountryChecklistConfiguration
-}
-
-// Status returns HTTPResponse.Status
-func (r OnboardingCountryConfigsRetrieveResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r OnboardingCountryConfigsRetrieveResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type OnboardingCountryConfigsPartialUpdateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *OnboardingCountryChecklistConfiguration
-}
-
-// Status returns HTTPResponse.Status
-func (r OnboardingCountryConfigsPartialUpdateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r OnboardingCountryConfigsPartialUpdateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type OnboardingCountryConfigsUpdateResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *OnboardingCountryChecklistConfiguration
-}
-
-// Status returns HTTPResponse.Status
-func (r OnboardingCountryConfigsUpdateResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r OnboardingCountryConfigsUpdateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
 type OnboardingJustificationsListResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -298730,6 +298252,49 @@ func (r OnboardingVerificationsCreateResponse) StatusCode() int {
 	return 0
 }
 
+type OnboardingVerificationsAvailableChecklistsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *AvailableChecklistsResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OnboardingVerificationsAvailableChecklistsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OnboardingVerificationsAvailableChecklistsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OnboardingVerificationsAvailableChecklistsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r OnboardingVerificationsAvailableChecklistsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OnboardingVerificationsAvailableChecklistsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type OnboardingVerificationsChecklistTemplateRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -298888,8 +298453,6 @@ type OnboardingVerificationsChecklistRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *ChecklistResponse
-	JSON400      *interface{}
-	JSON404      *interface{}
 }
 
 // Status returns HTTPResponse.Status
@@ -298912,8 +298475,6 @@ type OnboardingVerificationsCompletionStatusRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *ChecklistCompletion
-	JSON400      *interface{}
-	JSON404      *interface{}
 }
 
 // Status returns HTTPResponse.Status
@@ -298979,9 +298540,7 @@ func (r OnboardingVerificationsRunValidationResponse) StatusCode() int {
 type OnboardingVerificationsSubmitAnswersResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *AnswerSubmitResponse
-	JSON400      *interface{}
-	JSON404      *interface{}
+	JSON200      *OnboardingVerification
 }
 
 // Status returns HTTPResponse.Status
@@ -330839,93 +330398,6 @@ func (c *ClientWithResponses) NotificationMessagesEnableWithResponse(ctx context
 	return ParseNotificationMessagesEnableResponse(rsp)
 }
 
-// OnboardingCountryConfigsListWithResponse request returning *OnboardingCountryConfigsListResponse
-func (c *ClientWithResponses) OnboardingCountryConfigsListWithResponse(ctx context.Context, params *OnboardingCountryConfigsListParams, reqEditors ...RequestEditorFn) (*OnboardingCountryConfigsListResponse, error) {
-	rsp, err := c.OnboardingCountryConfigsList(ctx, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseOnboardingCountryConfigsListResponse(rsp)
-}
-
-// OnboardingCountryConfigsCountWithResponse request returning *OnboardingCountryConfigsCountResponse
-func (c *ClientWithResponses) OnboardingCountryConfigsCountWithResponse(ctx context.Context, params *OnboardingCountryConfigsCountParams, reqEditors ...RequestEditorFn) (*OnboardingCountryConfigsCountResponse, error) {
-	rsp, err := c.OnboardingCountryConfigsCount(ctx, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseOnboardingCountryConfigsCountResponse(rsp)
-}
-
-// OnboardingCountryConfigsCreateWithBodyWithResponse request with arbitrary body returning *OnboardingCountryConfigsCreateResponse
-func (c *ClientWithResponses) OnboardingCountryConfigsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OnboardingCountryConfigsCreateResponse, error) {
-	rsp, err := c.OnboardingCountryConfigsCreateWithBody(ctx, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseOnboardingCountryConfigsCreateResponse(rsp)
-}
-
-func (c *ClientWithResponses) OnboardingCountryConfigsCreateWithResponse(ctx context.Context, body OnboardingCountryConfigsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*OnboardingCountryConfigsCreateResponse, error) {
-	rsp, err := c.OnboardingCountryConfigsCreate(ctx, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseOnboardingCountryConfigsCreateResponse(rsp)
-}
-
-// OnboardingCountryConfigsDestroyWithResponse request returning *OnboardingCountryConfigsDestroyResponse
-func (c *ClientWithResponses) OnboardingCountryConfigsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OnboardingCountryConfigsDestroyResponse, error) {
-	rsp, err := c.OnboardingCountryConfigsDestroy(ctx, uuid, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseOnboardingCountryConfigsDestroyResponse(rsp)
-}
-
-// OnboardingCountryConfigsRetrieveWithResponse request returning *OnboardingCountryConfigsRetrieveResponse
-func (c *ClientWithResponses) OnboardingCountryConfigsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OnboardingCountryConfigsRetrieveResponse, error) {
-	rsp, err := c.OnboardingCountryConfigsRetrieve(ctx, uuid, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseOnboardingCountryConfigsRetrieveResponse(rsp)
-}
-
-// OnboardingCountryConfigsPartialUpdateWithBodyWithResponse request with arbitrary body returning *OnboardingCountryConfigsPartialUpdateResponse
-func (c *ClientWithResponses) OnboardingCountryConfigsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OnboardingCountryConfigsPartialUpdateResponse, error) {
-	rsp, err := c.OnboardingCountryConfigsPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseOnboardingCountryConfigsPartialUpdateResponse(rsp)
-}
-
-func (c *ClientWithResponses) OnboardingCountryConfigsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OnboardingCountryConfigsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OnboardingCountryConfigsPartialUpdateResponse, error) {
-	rsp, err := c.OnboardingCountryConfigsPartialUpdate(ctx, uuid, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseOnboardingCountryConfigsPartialUpdateResponse(rsp)
-}
-
-// OnboardingCountryConfigsUpdateWithBodyWithResponse request with arbitrary body returning *OnboardingCountryConfigsUpdateResponse
-func (c *ClientWithResponses) OnboardingCountryConfigsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OnboardingCountryConfigsUpdateResponse, error) {
-	rsp, err := c.OnboardingCountryConfigsUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseOnboardingCountryConfigsUpdateResponse(rsp)
-}
-
-func (c *ClientWithResponses) OnboardingCountryConfigsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body OnboardingCountryConfigsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OnboardingCountryConfigsUpdateResponse, error) {
-	rsp, err := c.OnboardingCountryConfigsUpdate(ctx, uuid, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseOnboardingCountryConfigsUpdateResponse(rsp)
-}
-
 // OnboardingJustificationsListWithResponse request returning *OnboardingJustificationsListResponse
 func (c *ClientWithResponses) OnboardingJustificationsListWithResponse(ctx context.Context, params *OnboardingJustificationsListParams, reqEditors ...RequestEditorFn) (*OnboardingJustificationsListResponse, error) {
 	rsp, err := c.OnboardingJustificationsList(ctx, params, reqEditors...)
@@ -331211,6 +330683,24 @@ func (c *ClientWithResponses) OnboardingVerificationsCreateWithResponse(ctx cont
 	return ParseOnboardingVerificationsCreateResponse(rsp)
 }
 
+// OnboardingVerificationsAvailableChecklistsRetrieveWithResponse request returning *OnboardingVerificationsAvailableChecklistsRetrieveResponse
+func (c *ClientWithResponses) OnboardingVerificationsAvailableChecklistsRetrieveWithResponse(ctx context.Context, params *OnboardingVerificationsAvailableChecklistsRetrieveParams, reqEditors ...RequestEditorFn) (*OnboardingVerificationsAvailableChecklistsRetrieveResponse, error) {
+	rsp, err := c.OnboardingVerificationsAvailableChecklistsRetrieve(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOnboardingVerificationsAvailableChecklistsRetrieveResponse(rsp)
+}
+
+// OnboardingVerificationsAvailableChecklistsCountWithResponse request returning *OnboardingVerificationsAvailableChecklistsCountResponse
+func (c *ClientWithResponses) OnboardingVerificationsAvailableChecklistsCountWithResponse(ctx context.Context, params *OnboardingVerificationsAvailableChecklistsCountParams, reqEditors ...RequestEditorFn) (*OnboardingVerificationsAvailableChecklistsCountResponse, error) {
+	rsp, err := c.OnboardingVerificationsAvailableChecklistsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOnboardingVerificationsAvailableChecklistsCountResponse(rsp)
+}
+
 // OnboardingVerificationsChecklistTemplateRetrieveWithResponse request returning *OnboardingVerificationsChecklistTemplateRetrieveResponse
 func (c *ClientWithResponses) OnboardingVerificationsChecklistTemplateRetrieveWithResponse(ctx context.Context, params *OnboardingVerificationsChecklistTemplateRetrieveParams, reqEditors ...RequestEditorFn) (*OnboardingVerificationsChecklistTemplateRetrieveResponse, error) {
 	rsp, err := c.OnboardingVerificationsChecklistTemplateRetrieve(ctx, params, reqEditors...)
@@ -331308,8 +330798,8 @@ func (c *ClientWithResponses) OnboardingVerificationsChecklistRetrieveWithRespon
 }
 
 // OnboardingVerificationsCompletionStatusRetrieveWithResponse request returning *OnboardingVerificationsCompletionStatusRetrieveResponse
-func (c *ClientWithResponses) OnboardingVerificationsCompletionStatusRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OnboardingVerificationsCompletionStatusRetrieveResponse, error) {
-	rsp, err := c.OnboardingVerificationsCompletionStatusRetrieve(ctx, uuid, reqEditors...)
+func (c *ClientWithResponses) OnboardingVerificationsCompletionStatusRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *OnboardingVerificationsCompletionStatusRetrieveParams, reqEditors ...RequestEditorFn) (*OnboardingVerificationsCompletionStatusRetrieveResponse, error) {
+	rsp, err := c.OnboardingVerificationsCompletionStatusRetrieve(ctx, uuid, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -366388,168 +365878,6 @@ func ParseNotificationMessagesEnableResponse(rsp *http.Response) (*NotificationM
 	return response, nil
 }
 
-// ParseOnboardingCountryConfigsListResponse parses an HTTP response from a OnboardingCountryConfigsListWithResponse call
-func ParseOnboardingCountryConfigsListResponse(rsp *http.Response) (*OnboardingCountryConfigsListResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &OnboardingCountryConfigsListResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []OnboardingCountryChecklistConfiguration
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseOnboardingCountryConfigsCountResponse parses an HTTP response from a OnboardingCountryConfigsCountWithResponse call
-func ParseOnboardingCountryConfigsCountResponse(rsp *http.Response) (*OnboardingCountryConfigsCountResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &OnboardingCountryConfigsCountResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	return response, nil
-}
-
-// ParseOnboardingCountryConfigsCreateResponse parses an HTTP response from a OnboardingCountryConfigsCreateWithResponse call
-func ParseOnboardingCountryConfigsCreateResponse(rsp *http.Response) (*OnboardingCountryConfigsCreateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &OnboardingCountryConfigsCreateResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest OnboardingCountryChecklistConfiguration
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON201 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseOnboardingCountryConfigsDestroyResponse parses an HTTP response from a OnboardingCountryConfigsDestroyWithResponse call
-func ParseOnboardingCountryConfigsDestroyResponse(rsp *http.Response) (*OnboardingCountryConfigsDestroyResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &OnboardingCountryConfigsDestroyResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	return response, nil
-}
-
-// ParseOnboardingCountryConfigsRetrieveResponse parses an HTTP response from a OnboardingCountryConfigsRetrieveWithResponse call
-func ParseOnboardingCountryConfigsRetrieveResponse(rsp *http.Response) (*OnboardingCountryConfigsRetrieveResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &OnboardingCountryConfigsRetrieveResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest OnboardingCountryChecklistConfiguration
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseOnboardingCountryConfigsPartialUpdateResponse parses an HTTP response from a OnboardingCountryConfigsPartialUpdateWithResponse call
-func ParseOnboardingCountryConfigsPartialUpdateResponse(rsp *http.Response) (*OnboardingCountryConfigsPartialUpdateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &OnboardingCountryConfigsPartialUpdateResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest OnboardingCountryChecklistConfiguration
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseOnboardingCountryConfigsUpdateResponse parses an HTTP response from a OnboardingCountryConfigsUpdateWithResponse call
-func ParseOnboardingCountryConfigsUpdateResponse(rsp *http.Response) (*OnboardingCountryConfigsUpdateResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &OnboardingCountryConfigsUpdateResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest OnboardingCountryChecklistConfiguration
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
 // ParseOnboardingJustificationsListResponse parses an HTTP response from a OnboardingJustificationsListWithResponse call
 func ParseOnboardingJustificationsListResponse(rsp *http.Response) (*OnboardingJustificationsListResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -367046,6 +366374,48 @@ func ParseOnboardingVerificationsCreateResponse(rsp *http.Response) (*Onboarding
 	return response, nil
 }
 
+// ParseOnboardingVerificationsAvailableChecklistsRetrieveResponse parses an HTTP response from a OnboardingVerificationsAvailableChecklistsRetrieveWithResponse call
+func ParseOnboardingVerificationsAvailableChecklistsRetrieveResponse(rsp *http.Response) (*OnboardingVerificationsAvailableChecklistsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OnboardingVerificationsAvailableChecklistsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest AvailableChecklistsResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOnboardingVerificationsAvailableChecklistsCountResponse parses an HTTP response from a OnboardingVerificationsAvailableChecklistsCountWithResponse call
+func ParseOnboardingVerificationsAvailableChecklistsCountResponse(rsp *http.Response) (*OnboardingVerificationsAvailableChecklistsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OnboardingVerificationsAvailableChecklistsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
 // ParseOnboardingVerificationsChecklistTemplateRetrieveResponse parses an HTTP response from a OnboardingVerificationsChecklistTemplateRetrieveWithResponse call
 func ParseOnboardingVerificationsChecklistTemplateRetrieveResponse(rsp *http.Response) (*OnboardingVerificationsChecklistTemplateRetrieveResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -367243,20 +366613,6 @@ func ParseOnboardingVerificationsChecklistRetrieveResponse(rsp *http.Response) (
 		}
 		response.JSON200 = &dest
 
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest interface{}
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest interface{}
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON404 = &dest
-
 	}
 
 	return response, nil
@@ -367282,20 +366638,6 @@ func ParseOnboardingVerificationsCompletionStatusRetrieveResponse(rsp *http.Resp
 			return nil, err
 		}
 		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest interface{}
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest interface{}
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON404 = &dest
 
 	}
 
@@ -367369,25 +366711,11 @@ func ParseOnboardingVerificationsSubmitAnswersResponse(rsp *http.Response) (*Onb
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest AnswerSubmitResponse
+		var dest OnboardingVerification
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest interface{}
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest interface{}
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON404 = &dest
 
 	}
 
