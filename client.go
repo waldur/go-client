@@ -22360,9 +22360,6 @@ type OnboardingCompanyValidationRequestRequest struct {
 	// Country ISO country code (e.g., 'EE', 'AT') - optional, for display context
 	Country *string `json:"country,omitempty"`
 
-	// IsManualValidation Indicates if the validation is to be performed manually
-	IsManualValidation *bool `json:"is_manual_validation,omitempty"`
-
 	// LegalName Company name (optional)
 	LegalName *string `json:"legal_name,omitempty"`
 
@@ -30709,6 +30706,72 @@ type RmqConnection_SourceIp struct {
 	union json.RawMessage
 }
 
+// RmqPurgeResponse defines model for RmqPurgeResponse.
+type RmqPurgeResponse struct {
+	// PurgedMessages Total number of messages that were purged
+	PurgedMessages *int `json:"purged_messages,omitempty"`
+
+	// PurgedQueues Number of queues that were purged
+	PurgedQueues *int `json:"purged_queues,omitempty"`
+}
+
+// RmqQueueStats defines model for RmqQueueStats.
+type RmqQueueStats struct {
+	// Consumers Number of active consumers for this queue
+	Consumers *int `json:"consumers,omitempty"`
+
+	// Messages Total number of messages in the queue
+	Messages *int `json:"messages,omitempty"`
+
+	// MessagesReady Number of messages ready for delivery
+	MessagesReady *int `json:"messages_ready,omitempty"`
+
+	// MessagesUnacknowledged Number of messages awaiting acknowledgement
+	MessagesUnacknowledged *int `json:"messages_unacknowledged,omitempty"`
+
+	// Name Queue name (e.g., 'subscription_{uuid}_offering_{uuid}_{type}')
+	Name *string `json:"name,omitempty"`
+
+	// ObjectType Parsed object type from queue name (e.g., 'resource', 'order')
+	ObjectType *string `json:"object_type"`
+
+	// OfferingUuid Parsed offering UUID from queue name
+	OfferingUuid *string `json:"offering_uuid"`
+
+	// SubscriptionUuid Parsed subscription UUID from queue name
+	SubscriptionUuid *string `json:"subscription_uuid"`
+}
+
+// RmqStatsError defines model for RmqStatsError.
+type RmqStatsError struct {
+	// Error Error message describing what went wrong
+	Error *string `json:"error,omitempty"`
+}
+
+// RmqStatsResponse defines model for RmqStatsResponse.
+type RmqStatsResponse struct {
+	// TotalMessages Total messages across all subscription queues
+	TotalMessages *int `json:"total_messages,omitempty"`
+
+	// TotalQueues Total number of subscription queues
+	TotalQueues *int `json:"total_queues,omitempty"`
+
+	// Vhosts List of vhosts with their subscription queues
+	Vhosts *[]RmqVhostStats `json:"vhosts,omitempty"`
+}
+
+// RmqStatsUser defines model for RmqStatsUser.
+type RmqStatsUser struct {
+	// FullName User's full name
+	FullName *string `json:"full_name,omitempty"`
+
+	// Username Waldur username
+	Username *string `json:"username,omitempty"`
+
+	// Uuid Waldur user UUID
+	Uuid *string `json:"uuid,omitempty"`
+}
+
 // RmqSubscription defines model for RmqSubscription.
 type RmqSubscription struct {
 	Created *time.Time `json:"created,omitempty"`
@@ -30740,6 +30803,21 @@ type RmqVHostStatsItem struct {
 	Name          *string            `json:"name,omitempty"`
 	Subscriptions *[]RmqSubscription `json:"subscriptions,omitempty"`
 	WaldurUser    *RmqWaldurUser     `json:"waldur_user,omitempty"`
+}
+
+// RmqVhostStats defines model for RmqVhostStats.
+type RmqVhostStats struct {
+	// Name Virtual host name (corresponds to Waldur user UUID)
+	Name *string `json:"name,omitempty"`
+
+	// Queues List of subscription queues in this vhost
+	Queues *[]RmqQueueStats `json:"queues,omitempty"`
+
+	// TotalMessages Total messages across all queues in this vhost
+	TotalMessages *int `json:"total_messages,omitempty"`
+
+	// User Waldur user associated with this vhost
+	User *RmqStatsUser `json:"user"`
 }
 
 // RmqWaldurUser defines model for RmqWaldurUser.
@@ -31866,7 +31944,8 @@ type TimeSeriesToSData struct {
 // ToSConsentDashboard defines model for ToSConsentDashboard.
 type ToSConsentDashboard struct {
 	// AcceptedConsentsCount Number of accepted consents
-	AcceptedConsentsCount *int `json:"accepted_consents_count,omitempty"`
+	AcceptedConsentsCount    *int                 `json:"accepted_consents_count,omitempty"`
+	AcceptedConsentsOverTime *[]TimeSeriesToSData `json:"accepted_consents_over_time,omitempty"`
 
 	// ActiveUsersCount Number of active users
 	ActiveUsersCount    *int                 `json:"active_users_count,omitempty"`
@@ -66161,6 +66240,12 @@ type ClientInterface interface {
 
 	Query(ctx context.Context, body QueryJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// RabbitmqStatsDestroy request
+	RabbitmqStatsDestroy(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// RabbitmqStatsRetrieve request
+	RabbitmqStatsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// RabbitmqUserStatsList request
 	RabbitmqUserStatsList(ctx context.Context, params *RabbitmqUserStatsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -93335,6 +93420,30 @@ func (c *Client) QueryWithBody(ctx context.Context, contentType string, body io.
 
 func (c *Client) Query(ctx context.Context, body QueryJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewQueryRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) RabbitmqStatsDestroy(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewRabbitmqStatsDestroyRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) RabbitmqStatsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewRabbitmqStatsRetrieveRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -233603,6 +233712,60 @@ func NewQueryRequestWithBody(server string, contentType string, body io.Reader) 
 	return req, nil
 }
 
+// NewRabbitmqStatsDestroyRequest generates requests for RabbitmqStatsDestroy
+func NewRabbitmqStatsDestroyRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/rabbitmq-stats/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewRabbitmqStatsRetrieveRequest generates requests for RabbitmqStatsRetrieve
+func NewRabbitmqStatsRetrieveRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/rabbitmq-stats/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewRabbitmqUserStatsListRequest generates requests for RabbitmqUserStatsList
 func NewRabbitmqUserStatsListRequest(server string, params *RabbitmqUserStatsListParams) (*http.Request, error) {
 	var err error
@@ -272817,6 +272980,12 @@ type ClientWithResponsesInterface interface {
 
 	QueryWithResponse(ctx context.Context, body QueryJSONRequestBody, reqEditors ...RequestEditorFn) (*QueryResponse, error)
 
+	// RabbitmqStatsDestroyWithResponse request
+	RabbitmqStatsDestroyWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*RabbitmqStatsDestroyResponse, error)
+
+	// RabbitmqStatsRetrieveWithResponse request
+	RabbitmqStatsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*RabbitmqStatsRetrieveResponse, error)
+
 	// RabbitmqUserStatsListWithResponse request
 	RabbitmqUserStatsListWithResponse(ctx context.Context, params *RabbitmqUserStatsListParams, reqEditors ...RequestEditorFn) (*RabbitmqUserStatsListResponse, error)
 
@@ -308409,6 +308578,54 @@ func (r QueryResponse) StatusCode() int {
 	return 0
 }
 
+type RabbitmqStatsDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *RmqPurgeResponse
+	JSON400      *RmqStatsError
+	JSON404      *RmqStatsError
+	JSON503      *RmqStatsError
+}
+
+// Status returns HTTPResponse.Status
+func (r RabbitmqStatsDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r RabbitmqStatsDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type RabbitmqStatsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *RmqStatsResponse
+	JSON503      *RmqStatsError
+}
+
+// Status returns HTTPResponse.Status
+func (r RabbitmqStatsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r RabbitmqStatsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type RabbitmqUserStatsListResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -336341,6 +336558,24 @@ func (c *ClientWithResponses) QueryWithResponse(ctx context.Context, body QueryJ
 		return nil, err
 	}
 	return ParseQueryResponse(rsp)
+}
+
+// RabbitmqStatsDestroyWithResponse request returning *RabbitmqStatsDestroyResponse
+func (c *ClientWithResponses) RabbitmqStatsDestroyWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*RabbitmqStatsDestroyResponse, error) {
+	rsp, err := c.RabbitmqStatsDestroy(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseRabbitmqStatsDestroyResponse(rsp)
+}
+
+// RabbitmqStatsRetrieveWithResponse request returning *RabbitmqStatsRetrieveResponse
+func (c *ClientWithResponses) RabbitmqStatsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*RabbitmqStatsRetrieveResponse, error) {
+	rsp, err := c.RabbitmqStatsRetrieve(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseRabbitmqStatsRetrieveResponse(rsp)
 }
 
 // RabbitmqUserStatsListWithResponse request returning *RabbitmqUserStatsListResponse
@@ -377014,6 +377249,86 @@ func ParseQueryResponse(rsp *http.Response) (*QueryResponse, error) {
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseRabbitmqStatsDestroyResponse parses an HTTP response from a RabbitmqStatsDestroyWithResponse call
+func ParseRabbitmqStatsDestroyResponse(rsp *http.Response) (*RabbitmqStatsDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &RabbitmqStatsDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest RmqPurgeResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest RmqStatsError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest RmqStatsError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
+		var dest RmqStatsError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON503 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseRabbitmqStatsRetrieveResponse parses an HTTP response from a RabbitmqStatsRetrieveWithResponse call
+func ParseRabbitmqStatsRetrieveResponse(rsp *http.Response) (*RabbitmqStatsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &RabbitmqStatsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest RmqStatsResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
+		var dest RmqStatsError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON503 = &dest
 
 	}
 
