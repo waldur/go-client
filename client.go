@@ -9332,26 +9332,26 @@ const (
 
 // Defines values for OpenstackRoutersListParamsState.
 const (
-	OpenstackRoutersListParamsStateN1 OpenstackRoutersListParamsState = 1
-	OpenstackRoutersListParamsStateN2 OpenstackRoutersListParamsState = 2
-	OpenstackRoutersListParamsStateN3 OpenstackRoutersListParamsState = 3
-	OpenstackRoutersListParamsStateN4 OpenstackRoutersListParamsState = 4
-	OpenstackRoutersListParamsStateN5 OpenstackRoutersListParamsState = 5
-	OpenstackRoutersListParamsStateN6 OpenstackRoutersListParamsState = 6
-	OpenstackRoutersListParamsStateN7 OpenstackRoutersListParamsState = 7
-	OpenstackRoutersListParamsStateN8 OpenstackRoutersListParamsState = 8
+	OpenstackRoutersListParamsStateCREATING          OpenstackRoutersListParamsState = "CREATING"
+	OpenstackRoutersListParamsStateCREATIONSCHEDULED OpenstackRoutersListParamsState = "CREATION_SCHEDULED"
+	OpenstackRoutersListParamsStateDELETING          OpenstackRoutersListParamsState = "DELETING"
+	OpenstackRoutersListParamsStateDELETIONSCHEDULED OpenstackRoutersListParamsState = "DELETION_SCHEDULED"
+	OpenstackRoutersListParamsStateERRED             OpenstackRoutersListParamsState = "ERRED"
+	OpenstackRoutersListParamsStateOK                OpenstackRoutersListParamsState = "OK"
+	OpenstackRoutersListParamsStateUPDATESCHEDULED   OpenstackRoutersListParamsState = "UPDATE_SCHEDULED"
+	OpenstackRoutersListParamsStateUPDATING          OpenstackRoutersListParamsState = "UPDATING"
 )
 
 // Defines values for OpenstackRoutersCountParamsState.
 const (
-	OpenstackRoutersCountParamsStateN1 OpenstackRoutersCountParamsState = 1
-	OpenstackRoutersCountParamsStateN2 OpenstackRoutersCountParamsState = 2
-	OpenstackRoutersCountParamsStateN3 OpenstackRoutersCountParamsState = 3
-	OpenstackRoutersCountParamsStateN4 OpenstackRoutersCountParamsState = 4
-	OpenstackRoutersCountParamsStateN5 OpenstackRoutersCountParamsState = 5
-	OpenstackRoutersCountParamsStateN6 OpenstackRoutersCountParamsState = 6
-	OpenstackRoutersCountParamsStateN7 OpenstackRoutersCountParamsState = 7
-	OpenstackRoutersCountParamsStateN8 OpenstackRoutersCountParamsState = 8
+	OpenstackRoutersCountParamsStateCREATING          OpenstackRoutersCountParamsState = "CREATING"
+	OpenstackRoutersCountParamsStateCREATIONSCHEDULED OpenstackRoutersCountParamsState = "CREATION_SCHEDULED"
+	OpenstackRoutersCountParamsStateDELETING          OpenstackRoutersCountParamsState = "DELETING"
+	OpenstackRoutersCountParamsStateDELETIONSCHEDULED OpenstackRoutersCountParamsState = "DELETION_SCHEDULED"
+	OpenstackRoutersCountParamsStateERRED             OpenstackRoutersCountParamsState = "ERRED"
+	OpenstackRoutersCountParamsStateOK                OpenstackRoutersCountParamsState = "OK"
+	OpenstackRoutersCountParamsStateUPDATESCHEDULED   OpenstackRoutersCountParamsState = "UPDATE_SCHEDULED"
+	OpenstackRoutersCountParamsStateUPDATING          OpenstackRoutersCountParamsState = "UPDATING"
 )
 
 // Defines values for OpenstackRoutersRetrieveParamsField.
@@ -20128,6 +20128,9 @@ type MergedPluginOptions struct {
 	// RequiredTeamRoleForProvisioning Required user role in a project for provisioning of resources
 	RequiredTeamRoleForProvisioning *string `json:"required_team_role_for_provisioning,omitempty"`
 
+	// ResourceExpirationThreshold Resource expiration threshold in days.
+	ResourceExpirationThreshold *int `json:"resource_expiration_threshold,omitempty"`
+
 	// ScratchProjectDirectory HEAppE scratch project directory
 	ScratchProjectDirectory *string `json:"scratch_project_directory,omitempty"`
 
@@ -20315,6 +20318,9 @@ type MergedPluginOptionsRequest struct {
 
 	// RequiredTeamRoleForProvisioning Required user role in a project for provisioning of resources
 	RequiredTeamRoleForProvisioning *string `json:"required_team_role_for_provisioning,omitempty"`
+
+	// ResourceExpirationThreshold Resource expiration threshold in days.
+	ResourceExpirationThreshold *int `json:"resource_expiration_threshold,omitempty"`
 
 	// ScratchProjectDirectory HEAppE scratch project directory
 	ScratchProjectDirectory *string `json:"scratch_project_directory,omitempty"`
@@ -28424,6 +28430,7 @@ type QuestionAdmin struct {
 	AlwaysShowGuidance *bool               `json:"always_show_guidance,omitempty"`
 	Checklist          string              `json:"checklist"`
 	ChecklistName      *string             `json:"checklist_name,omitempty"`
+	ChecklistType      *string             `json:"checklist_type,omitempty"`
 	ChecklistUuid      *openapi_types.UUID `json:"checklist_uuid,omitempty"`
 
 	// DependencyLogicOperator Defines how multiple dependencies are evaluated. AND: All dependencies must be satisfied. OR: At least one dependency must be satisfied.
@@ -45511,8 +45518,11 @@ type OpenstackRoutersListParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize *PageSize                        `form:"page_size,omitempty" json:"page_size,omitempty"`
-	State    *OpenstackRoutersListParamsState `form:"state,omitempty" json:"state,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// State State
+	//
+	State *[]OpenstackRoutersListParamsState `form:"state,omitempty" json:"state,omitempty"`
 
 	// Tenant Tenant URL
 	Tenant *string `form:"tenant,omitempty" json:"tenant,omitempty"`
@@ -45525,7 +45535,7 @@ type OpenstackRoutersListParams struct {
 type OpenstackRoutersListParamsField string
 
 // OpenstackRoutersListParamsState defines parameters for OpenstackRoutersList.
-type OpenstackRoutersListParamsState int
+type OpenstackRoutersListParamsState string
 
 // OpenstackRoutersCountParams defines parameters for OpenstackRoutersCount.
 type OpenstackRoutersCountParams struct {
@@ -45539,8 +45549,11 @@ type OpenstackRoutersCountParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize *PageSize                         `form:"page_size,omitempty" json:"page_size,omitempty"`
-	State    *OpenstackRoutersCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// State State
+	//
+	State *[]OpenstackRoutersCountParamsState `form:"state,omitempty" json:"state,omitempty"`
 
 	// Tenant Tenant URL
 	Tenant *string `form:"tenant,omitempty" json:"tenant,omitempty"`
@@ -45550,7 +45563,7 @@ type OpenstackRoutersCountParams struct {
 }
 
 // OpenstackRoutersCountParamsState defines parameters for OpenstackRoutersCount.
-type OpenstackRoutersCountParamsState int
+type OpenstackRoutersCountParamsState string
 
 // OpenstackRoutersRetrieveParams defines parameters for OpenstackRoutersRetrieve.
 type OpenstackRoutersRetrieveParams struct {
@@ -300202,9 +300215,6 @@ type OpenportalUnmanagedProjectsMoveProjectResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *Project
-	JSON400      *struct {
-		NonFieldErrors *[]string `json:"non_field_errors,omitempty"`
-	}
 }
 
 // Status returns HTTPResponse.Status
@@ -305714,9 +305724,6 @@ type ProjectsMoveProjectResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	JSON200      *Project
-	JSON400      *struct {
-		NonFieldErrors *[]string `json:"non_field_errors,omitempty"`
-	}
 }
 
 // Status returns HTTPResponse.Status
@@ -368486,15 +368493,6 @@ func ParseOpenportalUnmanagedProjectsMoveProjectResponse(rsp *http.Response) (*O
 		}
 		response.JSON200 = &dest
 
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest struct {
-			NonFieldErrors *[]string `json:"non_field_errors,omitempty"`
-		}
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
 	}
 
 	return response, nil
@@ -374090,15 +374088,6 @@ func ParseProjectsMoveProjectResponse(rsp *http.Response) (*ProjectsMoveProjectR
 			return nil, err
 		}
 		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest struct {
-			NonFieldErrors *[]string `json:"non_field_errors,omitempty"`
-		}
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
 
 	}
 
