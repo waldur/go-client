@@ -15462,6 +15462,24 @@ type ChatRequestRequest struct {
 	Input string `json:"input"`
 }
 
+// ChatResponse defines model for ChatResponse.
+type ChatResponse struct {
+	// C Content payload.
+	C *string `json:"c,omitempty"`
+
+	// E Error message.
+	E *string `json:"e,omitempty"`
+
+	// K Component Alias (e.g. 'markdown', 'code').
+	K *string `json:"k,omitempty"`
+
+	// M System metadata.
+	M *map[string]interface{} `json:"m,omitempty"`
+
+	// T Tag or language for dynamic blocks.
+	T *string `json:"t,omitempty"`
+}
+
 // CheckUniqueBackendIDRequest defines model for CheckUniqueBackendIDRequest.
 type CheckUniqueBackendIDRequest struct {
 	// BackendId Backend identifier to check
@@ -61232,9 +61250,6 @@ type ClientInterface interface {
 	// CeleryStatsRetrieve request
 	CeleryStatsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// ChatInvoke request
-	ChatInvoke(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
-
 	// ChatStreamWithBody request with any body
 	ChatStreamWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -71412,18 +71427,6 @@ func (c *Client) CallRoundsReviewersList(ctx context.Context, uuid openapi_types
 
 func (c *Client) CeleryStatsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCeleryStatsRetrieveRequest(c.Server)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) ChatInvoke(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewChatInvokeRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -118516,33 +118519,6 @@ func NewCeleryStatsRetrieveRequest(server string) (*http.Request, error) {
 	}
 
 	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewChatInvokeRequest generates requests for ChatInvoke
-func NewChatInvokeRequest(server string) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/chat/invoke/")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("POST", queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
@@ -267972,9 +267948,6 @@ type ClientWithResponsesInterface interface {
 	// CeleryStatsRetrieveWithResponse request
 	CeleryStatsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*CeleryStatsRetrieveResponse, error)
 
-	// ChatInvokeWithResponse request
-	ChatInvokeWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ChatInvokeResponse, error)
-
 	// ChatStreamWithBodyWithResponse request with any body
 	ChatStreamWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatStreamResponse, error)
 
@@ -279474,28 +279447,6 @@ func (r CeleryStatsRetrieveResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r CeleryStatsRetrieveResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type ChatInvokeResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *string
-}
-
-// Status returns HTTPResponse.Status
-func (r ChatInvokeResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r ChatInvokeResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -320548,15 +320499,6 @@ func (c *ClientWithResponses) CeleryStatsRetrieveWithResponse(ctx context.Contex
 	return ParseCeleryStatsRetrieveResponse(rsp)
 }
 
-// ChatInvokeWithResponse request returning *ChatInvokeResponse
-func (c *ClientWithResponses) ChatInvokeWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ChatInvokeResponse, error) {
-	rsp, err := c.ChatInvoke(ctx, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseChatInvokeResponse(rsp)
-}
-
 // ChatStreamWithBodyWithResponse request with arbitrary body returning *ChatStreamResponse
 func (c *ClientWithResponses) ChatStreamWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatStreamResponse, error) {
 	rsp, err := c.ChatStreamWithBody(ctx, contentType, body, reqEditors...)
@@ -346666,32 +346608,6 @@ func ParseCeleryStatsRetrieveResponse(rsp *http.Response) (*CeleryStatsRetrieveR
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest CeleryStatsResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseChatInvokeResponse parses an HTTP response from a ChatInvokeWithResponse call
-func ParseChatInvokeResponse(rsp *http.Response) (*ChatInvokeResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &ChatInvokeResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest string
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
