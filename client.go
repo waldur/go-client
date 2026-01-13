@@ -18658,6 +18658,9 @@ type IPMappingRequest struct {
 
 // IdentityProvider defines model for IdentityProvider.
 type IdentityProvider struct {
+	// AllowedRedirects List of allowed redirect URLs for OAuth authentication. URLs must be exact matches (origin only: scheme + domain + port). HTTPS required except for localhost. No wildcards, paths, query params, or fragments. Example: ["https://portal1.example.com", "https://portal2.example.com:8443"]. If empty, falls back to HOMEPORT_URL setting.
+	AllowedRedirects interface{} `json:"allowed_redirects,omitempty"`
+
 	// AttributeMapping A JSON object mapping Waldur User model fields to OIDC claims. Example: {"first_name": "given_name", "last_name": "family_name", "email": "email"}
 	AttributeMapping interface{} `json:"attribute_mapping,omitempty"`
 
@@ -18709,6 +18712,9 @@ type IdentityProvider struct {
 
 // IdentityProviderRequest defines model for IdentityProviderRequest.
 type IdentityProviderRequest struct {
+	// AllowedRedirects List of allowed redirect URLs for OAuth authentication. URLs must be exact matches (origin only: scheme + domain + port). HTTPS required except for localhost. No wildcards, paths, query params, or fragments. Example: ["https://portal1.example.com", "https://portal2.example.com:8443"]. If empty, falls back to HOMEPORT_URL setting.
+	AllowedRedirects interface{} `json:"allowed_redirects,omitempty"`
+
 	// AttributeMapping A JSON object mapping Waldur User model fields to OIDC claims. Example: {"first_name": "given_name", "last_name": "family_name", "email": "email"}
 	AttributeMapping interface{} `json:"attribute_mapping,omitempty"`
 
@@ -25245,6 +25251,9 @@ type PatchedFirecrestJobRequest struct {
 
 // PatchedIdentityProviderRequest defines model for PatchedIdentityProviderRequest.
 type PatchedIdentityProviderRequest struct {
+	// AllowedRedirects List of allowed redirect URLs for OAuth authentication. URLs must be exact matches (origin only: scheme + domain + port). HTTPS required except for localhost. No wildcards, paths, query params, or fragments. Example: ["https://portal1.example.com", "https://portal2.example.com:8443"]. If empty, falls back to HOMEPORT_URL setting.
+	AllowedRedirects interface{} `json:"allowed_redirects,omitempty"`
+
 	// AttributeMapping A JSON object mapping Waldur User model fields to OIDC claims. Example: {"first_name": "given_name", "last_name": "family_name", "email": "email"}
 	AttributeMapping interface{} `json:"attribute_mapping,omitempty"`
 
@@ -32145,22 +32154,24 @@ type UserAction struct {
 	Modified              *time.Time          `json:"modified,omitempty"`
 	OfferingName          *string             `json:"offering_name,omitempty"`
 	OfferingType          *string             `json:"offering_type,omitempty"`
+	OfferingUuid          *openapi_types.UUID `json:"offering_uuid"`
+	OrderType             *string             `json:"order_type,omitempty"`
 	OrganizationName      *string             `json:"organization_name,omitempty"`
 	OrganizationUuid      *openapi_types.UUID `json:"organization_uuid"`
 	ProjectName           *string             `json:"project_name,omitempty"`
 	ProjectUuid           *openapi_types.UUID `json:"project_uuid"`
 	RelatedObjectName     *string             `json:"related_object_name,omitempty"`
 	RelatedObjectType     *string             `json:"related_object_type,omitempty"`
+	ResourceName          *string             `json:"resource_name,omitempty"`
+	ResourceUuid          *openapi_types.UUID `json:"resource_uuid"`
 
 	// RouteName UI-Router state name for navigation
-	RouteName *string `json:"route_name,omitempty"`
-
-	// RouteParams Parameters for route navigation
-	RouteParams   *string             `json:"route_params,omitempty"`
-	SilencedUntil *time.Time          `json:"silenced_until"`
-	Title         string              `json:"title"`
-	Urgency       UrgencyEnum         `json:"urgency"`
-	Uuid          *openapi_types.UUID `json:"uuid,omitempty"`
+	RouteName     *string                 `json:"route_name,omitempty"`
+	RouteParams   *map[string]interface{} `json:"route_params,omitempty"`
+	SilencedUntil *time.Time              `json:"silenced_until"`
+	Title         string                  `json:"title"`
+	Urgency       UrgencyEnum             `json:"urgency"`
+	Uuid          *openapi_types.UUID     `json:"uuid,omitempty"`
 }
 
 // UserActionExecution defines model for UserActionExecution.
