@@ -13064,6 +13064,39 @@ type AccessSubnetRequest struct {
 // AccountNameGenerationPolicyEnum defines model for AccountNameGenerationPolicyEnum.
 type AccountNameGenerationPolicyEnum = interface{}
 
+// ActiveQueriesStats defines model for ActiveQueriesStats.
+type ActiveQueriesStats struct {
+	// Count Number of currently active queries
+	Count *int `json:"count,omitempty"`
+
+	// LongestDurationSeconds Duration of the longest running query in seconds
+	LongestDurationSeconds *float64 `json:"longest_duration_seconds,omitempty"`
+
+	// Queries List of active queries
+	Queries *[]ActiveQuery `json:"queries,omitempty"`
+
+	// WaitingOnLocks Number of queries waiting on locks
+	WaitingOnLocks *int `json:"waiting_on_locks,omitempty"`
+}
+
+// ActiveQuery defines model for ActiveQuery.
+type ActiveQuery struct {
+	// DurationSeconds Query duration in seconds
+	DurationSeconds *float64 `json:"duration_seconds,omitempty"`
+
+	// Pid Process ID
+	Pid *int `json:"pid,omitempty"`
+
+	// QueryPreview First 100 characters of the query
+	QueryPreview *string `json:"query_preview,omitempty"`
+
+	// State Query state
+	State *string `json:"state,omitempty"`
+
+	// WaitEventType Type of event the query is waiting for
+	WaitEventType *string `json:"wait_event_type"`
+}
+
 // AdminAnnouncement defines model for AdminAnnouncement.
 type AdminAnnouncement struct {
 	ActiveFrom                   *time.Time `json:"active_from,omitempty"`
@@ -13130,6 +13163,60 @@ type AffinityMatrixResponse struct {
 // AffinityMethodEnum defines model for AffinityMethodEnum.
 type AffinityMethodEnum string
 
+// AgentConnectionInfo defines model for AgentConnectionInfo.
+type AgentConnectionInfo struct {
+	// EventSubscriptions Event subscriptions with connection status
+	EventSubscriptions *[]AgentEventSubscriptionWithConnection `json:"event_subscriptions,omitempty"`
+
+	// LastRestarted When the agent was last restarted
+	LastRestarted *time.Time `json:"last_restarted,omitempty"`
+
+	// Name Agent name
+	Name *string `json:"name,omitempty"`
+
+	// OfferingName Associated offering name
+	OfferingName *string `json:"offering_name,omitempty"`
+
+	// OfferingUuid Associated offering UUID
+	OfferingUuid *openapi_types.UUID `json:"offering_uuid,omitempty"`
+
+	// Queues RabbitMQ queues for this agent's offering
+	Queues *[]AgentQueueInfo `json:"queues,omitempty"`
+
+	// Services Services running within this agent
+	Services *[]AgentServiceStatus `json:"services,omitempty"`
+
+	// Uuid Agent identity UUID
+	Uuid *openapi_types.UUID `json:"uuid,omitempty"`
+
+	// Version Agent version
+	Version *string `json:"version"`
+}
+
+// AgentConnectionStatsResponse defines model for AgentConnectionStatsResponse.
+type AgentConnectionStatsResponse struct {
+	// Agents List of agents with connection status
+	Agents *[]AgentConnectionInfo `json:"agents,omitempty"`
+
+	// Summary Summary statistics
+	Summary *AgentConnectionSummary `json:"summary,omitempty"`
+}
+
+// AgentConnectionSummary defines model for AgentConnectionSummary.
+type AgentConnectionSummary struct {
+	// ConnectedAgents Number of agents with active RMQ connections
+	ConnectedAgents *int `json:"connected_agents,omitempty"`
+
+	// DisconnectedAgents Number of agents without active connections
+	DisconnectedAgents *int `json:"disconnected_agents,omitempty"`
+
+	// TotalAgents Total number of registered agents
+	TotalAgents *int `json:"total_agents,omitempty"`
+
+	// TotalQueuedMessages Total messages across all agent queues
+	TotalQueuedMessages *int `json:"total_queued_messages,omitempty"`
+}
+
 // AgentEventSubscriptionCreateRequest defines model for AgentEventSubscriptionCreateRequest.
 type AgentEventSubscriptionCreateRequest struct {
 	// Description Optional description for the event subscription
@@ -13139,22 +13226,39 @@ type AgentEventSubscriptionCreateRequest struct {
 	ObservableObjectType ObservableObjectTypeEnum `json:"observable_object_type"`
 }
 
+// AgentEventSubscriptionWithConnection defines model for AgentEventSubscriptionWithConnection.
+type AgentEventSubscriptionWithConnection struct {
+	// Created When the subscription was created
+	Created *time.Time `json:"created,omitempty"`
+
+	// ObservableObjects List of observable object configurations
+	ObservableObjects interface{} `json:"observable_objects,omitempty"`
+
+	// RmqConnection RabbitMQ connection status for this subscription
+	RmqConnection *AgentRmqConnection `json:"rmq_connection"`
+
+	// Uuid Event subscription UUID
+	Uuid *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
 // AgentIdentity defines model for AgentIdentity.
 type AgentIdentity struct {
 	ConfigFileContent *string `json:"config_file_content"`
 
 	// ConfigFilePath Example: '/etc/waldur/agent.yaml'
-	ConfigFilePath *string               `json:"config_file_path"`
-	Created        *time.Time            `json:"created,omitempty"`
-	Dependencies   interface{}           `json:"dependencies,omitempty"`
-	LastRestarted  *time.Time            `json:"last_restarted,omitempty"`
-	Modified       *time.Time            `json:"modified,omitempty"`
-	Name           string                `json:"name"`
-	Offering       openapi_types.UUID    `json:"offering"`
-	Services       *[]NestedAgentService `json:"services,omitempty"`
-	Url            *string               `json:"url,omitempty"`
-	Uuid           *openapi_types.UUID   `json:"uuid,omitempty"`
-	Version        *string               `json:"version"`
+	ConfigFilePath *string     `json:"config_file_path"`
+	Created        *time.Time  `json:"created,omitempty"`
+	Dependencies   interface{} `json:"dependencies,omitempty"`
+	LastRestarted  *time.Time  `json:"last_restarted,omitempty"`
+	Modified       *time.Time  `json:"modified,omitempty"`
+	Name           string      `json:"name"`
+
+	// Offering UUID of an offering with type 'Marketplace.Slurm'. Only site-agent offerings are accepted.
+	Offering openapi_types.UUID    `json:"offering"`
+	Services *[]NestedAgentService `json:"services,omitempty"`
+	Url      *string               `json:"url,omitempty"`
+	Uuid     *openapi_types.UUID   `json:"uuid,omitempty"`
+	Version  *string               `json:"version"`
 }
 
 // AgentIdentityRequest defines model for AgentIdentityRequest.
@@ -13162,12 +13266,14 @@ type AgentIdentityRequest struct {
 	ConfigFileContent *string `json:"config_file_content"`
 
 	// ConfigFilePath Example: '/etc/waldur/agent.yaml'
-	ConfigFilePath *string            `json:"config_file_path"`
-	Dependencies   interface{}        `json:"dependencies,omitempty"`
-	LastRestarted  *time.Time         `json:"last_restarted,omitempty"`
-	Name           string             `json:"name"`
-	Offering       openapi_types.UUID `json:"offering"`
-	Version        *string            `json:"version"`
+	ConfigFilePath *string     `json:"config_file_path"`
+	Dependencies   interface{} `json:"dependencies,omitempty"`
+	LastRestarted  *time.Time  `json:"last_restarted,omitempty"`
+	Name           string      `json:"name"`
+
+	// Offering UUID of an offering with type 'Marketplace.Slurm'. Only site-agent offerings are accepted.
+	Offering openapi_types.UUID `json:"offering"`
+	Version  *string            `json:"version"`
 }
 
 // AgentProcessor defines model for AgentProcessor.
@@ -13191,6 +13297,42 @@ type AgentProcessorCreateRequest struct {
 	BackendType    string  `json:"backend_type"`
 	BackendVersion *string `json:"backend_version"`
 	Name           string  `json:"name"`
+}
+
+// AgentQueueInfo defines model for AgentQueueInfo.
+type AgentQueueInfo struct {
+	// Consumers Number of active consumers
+	Consumers *int `json:"consumers,omitempty"`
+
+	// Messages Number of messages in queue
+	Messages *int `json:"messages,omitempty"`
+
+	// Name Queue name
+	Name *string `json:"name,omitempty"`
+
+	// ObjectType Parsed object type from queue name
+	ObjectType *string `json:"object_type"`
+}
+
+// AgentRmqConnection defines model for AgentRmqConnection.
+type AgentRmqConnection struct {
+	// Connected Whether the agent has an active connection
+	Connected *bool `json:"connected,omitempty"`
+
+	// ConnectedAt Connection establishment timestamp
+	ConnectedAt *time.Time `json:"connected_at"`
+
+	// RecvOct Bytes received on this connection
+	RecvOct *int `json:"recv_oct"`
+
+	// SendOct Bytes sent on this connection
+	SendOct *int `json:"send_oct"`
+
+	// SourceIp Client IP address of active connection
+	SourceIp *string `json:"source_ip"`
+
+	// State Connection state: 'running', 'blocked', 'blocking'
+	State *string `json:"state"`
 }
 
 // AgentService defines model for AgentService.
@@ -13221,6 +13363,48 @@ type AgentServiceState string
 type AgentServiceStatisticsRequest struct {
 	// Statistics Statistics data to be stored for the service
 	Statistics interface{} `json:"statistics"`
+}
+
+// AgentServiceStatus defines model for AgentServiceStatus.
+type AgentServiceStatus struct {
+	// Modified Last modification timestamp
+	Modified *time.Time `json:"modified,omitempty"`
+
+	// Name Service name
+	Name *string `json:"name,omitempty"`
+
+	// State Service state: ACTIVE, IDLE, or ERROR
+	State *string `json:"state,omitempty"`
+
+	// Uuid Service UUID
+	Uuid *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// AgentStatsResponse defines model for AgentStatsResponse.
+type AgentStatsResponse struct {
+	// Identities Statistics about agent identities
+	Identities map[string]interface{} `json:"identities"`
+
+	// Processors Statistics about agent processors
+	Processors map[string]interface{} `json:"processors"`
+
+	// Services Statistics about agent services
+	Services map[string]interface{} `json:"services"`
+}
+
+// AgentTaskStatsResponse defines model for AgentTaskStatsResponse.
+type AgentTaskStatsResponse struct {
+	// ActiveTasks Currently running agent-related tasks
+	ActiveTasks []map[string]interface{} `json:"active_tasks"`
+
+	// Error Error message if task inspection failed
+	Error *string `json:"error,omitempty"`
+
+	// ReservedTasks Reserved agent-related tasks
+	ReservedTasks []map[string]interface{} `json:"reserved_tasks"`
+
+	// ScheduledTasks Scheduled agent-related tasks
+	ScheduledTasks []map[string]interface{} `json:"scheduled_tasks"`
 }
 
 // AgentTypeEnum defines model for AgentTypeEnum.
@@ -14749,6 +14933,21 @@ type COIStatusUpdateRequest struct {
 // COIStatusUpdateStatusEnum defines model for COIStatusUpdateStatusEnum.
 type COIStatusUpdateStatusEnum string
 
+// CachePerformance defines model for CachePerformance.
+type CachePerformance struct {
+	// BufferCacheHitRatio Buffer cache hit ratio percentage (should be >99%)
+	BufferCacheHitRatio *float64 `json:"buffer_cache_hit_ratio"`
+
+	// EffectiveCacheSize Configured effective_cache_size setting
+	EffectiveCacheSize *string `json:"effective_cache_size,omitempty"`
+
+	// IndexHitRatio Index cache hit ratio percentage
+	IndexHitRatio *float64 `json:"index_hit_ratio"`
+
+	// SharedBuffers Configured shared_buffers setting
+	SharedBuffers *string `json:"shared_buffers,omitempty"`
+}
+
 // CallAssignmentConfiguration defines model for CallAssignmentConfiguration.
 type CallAssignmentConfiguration struct {
 	// AssignmentExpirationDays Days until assignment invitation expires if not responded to.
@@ -15627,6 +15826,27 @@ type ChecklistTemplate struct {
 // ChecklistTypeEnum defines model for ChecklistTypeEnum.
 type ChecklistTypeEnum string
 
+// CleanupRequestRequest defines model for CleanupRequestRequest.
+type CleanupRequestRequest struct {
+	// DryRun If true, only return what would be deleted without actually deleting
+	DryRun *bool `json:"dry_run,omitempty"`
+
+	// OlderThanHours Delete entries older than this many hours
+	OlderThanHours *int `json:"older_than_hours,omitempty"`
+}
+
+// CleanupResponse defines model for CleanupResponse.
+type CleanupResponse struct {
+	// DeletedCount Number of items deleted (or would be deleted in dry run)
+	DeletedCount int `json:"deleted_count"`
+
+	// DryRun Whether this was a dry run
+	DryRun bool `json:"dry_run"`
+
+	// Items List of deleted (or to-be-deleted) items
+	Items []map[string]interface{} `json:"items"`
+}
+
 // ClusterSecurityGroup defines model for ClusterSecurityGroup.
 type ClusterSecurityGroup struct {
 	Description *string                           `json:"description,omitempty"`
@@ -15963,6 +16183,27 @@ type ConflictSummaryResponse struct {
 	ByStatus   map[string]int `json:"by_status"`
 	ByType     map[string]int `json:"by_type"`
 	Total      int            `json:"total"`
+}
+
+// ConnectionStats defines model for ConnectionStats.
+type ConnectionStats struct {
+	// Active Number of active connections
+	Active *int `json:"active,omitempty"`
+
+	// Idle Number of idle connections
+	Idle *int `json:"idle,omitempty"`
+
+	// IdleInTransaction Number of connections idle in transaction
+	IdleInTransaction *int `json:"idle_in_transaction,omitempty"`
+
+	// MaxConnections Maximum allowed connections
+	MaxConnections *int `json:"max_connections,omitempty"`
+
+	// UtilizationPercent Percentage of max connections in use
+	UtilizationPercent *float64 `json:"utilization_percent,omitempty"`
+
+	// Waiting Number of connections waiting for a lock
+	Waiting *int `json:"waiting,omitempty"`
 }
 
 // ConsoleUrl defines model for ConsoleUrl.
@@ -17550,6 +17791,54 @@ type DataVolumeRequest struct {
 	VolumeType *string `json:"volume_type"`
 }
 
+// DatabaseSizeStats defines model for DatabaseSizeStats.
+type DatabaseSizeStats struct {
+	// DataSizeBytes Size of data excluding indexes in bytes
+	DataSizeBytes *int `json:"data_size_bytes,omitempty"`
+
+	// DatabaseName Name of the database
+	DatabaseName *string `json:"database_name,omitempty"`
+
+	// IndexSizeBytes Total size of all indexes in bytes
+	IndexSizeBytes *int `json:"index_size_bytes,omitempty"`
+
+	// TotalSizeBytes Total database size in bytes
+	TotalSizeBytes *int `json:"total_size_bytes,omitempty"`
+}
+
+// DatabaseStatsResponse defines model for DatabaseStatsResponse.
+type DatabaseStatsResponse struct {
+	// ActiveQueries Currently running queries
+	ActiveQueries *ActiveQueriesStats `json:"active_queries,omitempty"`
+
+	// CachePerformance Cache hit ratios and memory settings
+	CachePerformance *CachePerformance `json:"cache_performance,omitempty"`
+
+	// Connections Connection statistics
+	Connections *ConnectionStats `json:"connections,omitempty"`
+
+	// DatabaseSize Database size information
+	DatabaseSize *DatabaseSizeStats `json:"database_size,omitempty"`
+
+	// Locks Current lock statistics
+	Locks *LockStats `json:"locks,omitempty"`
+
+	// Maintenance Vacuum and maintenance statistics
+	Maintenance *MaintenanceStats `json:"maintenance,omitempty"`
+
+	// QueryPerformance Query performance indicators
+	QueryPerformance *QueryPerformance `json:"query_performance,omitempty"`
+
+	// Replication Replication status (if applicable)
+	Replication *ReplicationStats `json:"replication,omitempty"`
+
+	// TableStats Top largest tables by size
+	TableStats *[]TableSize `json:"table_stats,omitempty"`
+
+	// Transactions Transaction commit/rollback statistics
+	Transactions *TransactionStats `json:"transactions,omitempty"`
+}
+
 // DecidingEntityEnum defines model for DecidingEntityEnum.
 type DecidingEntityEnum string
 
@@ -17984,9 +18273,11 @@ type EventStats struct {
 
 // EventSubscription defines model for EventSubscription.
 type EventSubscription struct {
-	Created           *time.Time  `json:"created,omitempty"`
-	Description       *string     `json:"description,omitempty"`
-	Modified          *time.Time  `json:"modified,omitempty"`
+	Created     *time.Time `json:"created,omitempty"`
+	Description *string    `json:"description,omitempty"`
+	Modified    *time.Time `json:"modified,omitempty"`
+
+	// ObservableObjects List of objects to observe. Each item must have 'object_type' (one of: order, user_role, resource, offering_user, importable_resources, service_account, course_account, resource_periodic_limits) and optionally 'object_id' (integer). Example: [{"object_type": "resource"}, {"object_type": "order", "object_id": 123}]
 	ObservableObjects interface{} `json:"observable_objects,omitempty"`
 
 	// SourceIp An IPv4 or IPv6 address.
@@ -18014,7 +18305,9 @@ type EventSubscription_SourceIp struct {
 
 // EventSubscriptionRequest defines model for EventSubscriptionRequest.
 type EventSubscriptionRequest struct {
-	Description       *string     `json:"description,omitempty"`
+	Description *string `json:"description,omitempty"`
+
+	// ObservableObjects List of objects to observe. Each item must have 'object_type' (one of: order, user_role, resource, offering_user, importable_resources, service_account, course_account, resource_periodic_limits) and optionally 'object_id' (integer). Example: [{"object_type": "resource"}, {"object_type": "order", "object_id": 123}]
 	ObservableObjects interface{} `json:"observable_objects,omitempty"`
 }
 
@@ -19588,6 +19881,18 @@ type LinkToInvoiceRequest struct {
 	Invoice string `json:"invoice"`
 }
 
+// LockStats defines model for LockStats.
+type LockStats struct {
+	// AccessExclusiveLocks Number of AccessExclusive locks (blocks all access)
+	AccessExclusiveLocks *int `json:"access_exclusive_locks,omitempty"`
+
+	// TotalLocks Total number of locks currently held
+	TotalLocks *int `json:"total_locks,omitempty"`
+
+	// WaitingLocks Number of locks being waited for
+	WaitingLocks *int `json:"waiting_locks,omitempty"`
+}
+
 // Logout defines model for Logout.
 type Logout struct {
 	// LogoutUrl URL to redirect to after logout
@@ -19734,6 +20039,24 @@ type MaintenanceAnnouncementTemplateRequest struct {
 
 	// ServiceProvider Service provider announcing the maintenance
 	ServiceProvider string `json:"service_provider"`
+}
+
+// MaintenanceStats defines model for MaintenanceStats.
+type MaintenanceStats struct {
+	// DeadTupleRatioPercent Ratio of dead tuples to total tuples
+	DeadTupleRatioPercent *float64 `json:"dead_tuple_ratio_percent"`
+
+	// OldestTransactionAge Age of the oldest transaction in transactions
+	OldestTransactionAge *int `json:"oldest_transaction_age"`
+
+	// TablesNeedingVacuum Number of tables with high dead tuple ratio
+	TablesNeedingVacuum *int `json:"tables_needing_vacuum,omitempty"`
+
+	// TotalDeadTuples Total estimated dead tuples across all tables
+	TotalDeadTuples *int `json:"total_dead_tuples,omitempty"`
+
+	// TotalLiveTuples Total estimated live tuples across all tables
+	TotalLiveTuples *int `json:"total_live_tuples,omitempty"`
 }
 
 // MaintenanceTypeEnum defines model for MaintenanceTypeEnum.
@@ -28357,6 +28680,27 @@ type PullMarketplaceScriptResourceRequest struct {
 // QosStrategyEnum defines model for QosStrategyEnum.
 type QosStrategyEnum string
 
+// QueryPerformance defines model for QueryPerformance.
+type QueryPerformance struct {
+	// IndexScanCount Total index scans
+	IndexScanCount *int `json:"index_scan_count,omitempty"`
+
+	// IndexScanRows Total rows fetched by index scans
+	IndexScanRows *int `json:"index_scan_rows,omitempty"`
+
+	// SeqScanCount Total sequential scans (potentially expensive)
+	SeqScanCount *int `json:"seq_scan_count,omitempty"`
+
+	// SeqScanRows Total rows fetched by sequential scans
+	SeqScanRows *int `json:"seq_scan_rows,omitempty"`
+
+	// TempFilesBytes Total size of temporary files in bytes
+	TempFilesBytes *int `json:"temp_files_bytes,omitempty"`
+
+	// TempFilesCount Number of temporary files created
+	TempFilesCount *int `json:"temp_files_count,omitempty"`
+}
+
 // QueryRequest defines model for QueryRequest.
 type QueryRequest struct {
 	// Query Search query string
@@ -29875,6 +30219,18 @@ type RemoveSoftwareCatalogRequest struct {
 	OfferingCatalogUuid openapi_types.UUID `json:"offering_catalog_uuid"`
 }
 
+// ReplicationStats defines model for ReplicationStats.
+type ReplicationStats struct {
+	// IsReplica Whether this database is a replica
+	IsReplica *bool `json:"is_replica,omitempty"`
+
+	// ReplicationLagBytes Replication lag in bytes (only for replicas)
+	ReplicationLagBytes *int `json:"replication_lag_bytes"`
+
+	// WalBytes Write-ahead log size in bytes
+	WalBytes *int `json:"wal_bytes"`
+}
+
 // ReportSection defines model for ReportSection.
 type ReportSection struct {
 	// Body Section body content
@@ -30722,26 +31078,164 @@ type ReviewerSuggestionRequest struct {
 // ReviewerSuggestionStatusEnum defines model for ReviewerSuggestionStatusEnum.
 type ReviewerSuggestionStatusEnum string
 
-// RmqConnection defines model for RmqConnection.
-type RmqConnection struct {
-	// SourceIp An IPv4 or IPv6 address.
-	SourceIp *RmqConnection_SourceIp `json:"source_ip,omitempty"`
-	Vhost    *string                 `json:"vhost,omitempty"`
+// RmqClientProperties defines model for RmqClientProperties.
+type RmqClientProperties struct {
+	// Platform Client platform (e.g., 'Python 3.11')
+	Platform *string `json:"platform"`
+
+	// Product Client product name (e.g., 'pika', 'amqp-client')
+	Product *string `json:"product"`
+
+	// Version Client library version
+	Version *string `json:"version"`
 }
 
-// RmqConnectionSourceIp0 defines model for .
-type RmqConnectionSourceIp0 = string
+// RmqEnrichedConnection defines model for RmqEnrichedConnection.
+type RmqEnrichedConnection struct {
+	// Channels Number of channels on this connection
+	Channels *int `json:"channels,omitempty"`
 
-// RmqConnectionSourceIp1 defines model for .
-type RmqConnectionSourceIp1 = string
+	// ClientProperties Client identification properties
+	ClientProperties *RmqClientProperties `json:"client_properties"`
 
-// RmqConnection_SourceIp An IPv4 or IPv6 address.
-type RmqConnection_SourceIp struct {
-	union json.RawMessage
+	// ConnectedAt Connection establishment timestamp
+	ConnectedAt *time.Time `json:"connected_at"`
+
+	// RecvOct Bytes received on this connection
+	RecvOct *int `json:"recv_oct,omitempty"`
+
+	// SendOct Bytes sent on this connection
+	SendOct *int `json:"send_oct,omitempty"`
+
+	// SourceIp Client IP address
+	SourceIp *string `json:"source_ip,omitempty"`
+
+	// State Connection state: 'running', 'blocked', 'blocking'
+	State *string `json:"state,omitempty"`
+
+	// Timeout Heartbeat timeout in seconds
+	Timeout *int `json:"timeout"`
+
+	// Vhost Virtual host name
+	Vhost *string `json:"vhost,omitempty"`
+}
+
+// RmqEnrichedUserStatsItem defines model for RmqEnrichedUserStatsItem.
+type RmqEnrichedUserStatsItem struct {
+	// Connections List of active connections with detailed statistics
+	Connections *[]RmqEnrichedConnection `json:"connections,omitempty"`
+
+	// Username RabbitMQ username (corresponds to EventSubscription UUID)
+	Username *string `json:"username,omitempty"`
+}
+
+// RmqListener defines model for RmqListener.
+type RmqListener struct {
+	// Port Listening port number
+	Port *int `json:"port,omitempty"`
+
+	// Protocol Protocol name (e.g., 'amqp', 'http', 'clustering')
+	Protocol *string `json:"protocol,omitempty"`
+}
+
+// RmqMessageStats defines model for RmqMessageStats.
+type RmqMessageStats struct {
+	// Ack Total messages acknowledged by consumers
+	Ack *int `json:"ack,omitempty"`
+
+	// AckRate Messages acknowledged per second
+	AckRate *float64 `json:"ack_rate,omitempty"`
+
+	// Confirm Total messages confirmed by broker
+	Confirm *int `json:"confirm,omitempty"`
+
+	// ConfirmRate Messages confirmed per second
+	ConfirmRate *float64 `json:"confirm_rate,omitempty"`
+
+	// Deliver Total messages delivered to consumers
+	Deliver *int `json:"deliver,omitempty"`
+
+	// DeliverRate Messages delivered per second
+	DeliverRate *float64 `json:"deliver_rate,omitempty"`
+
+	// Publish Total messages published
+	Publish *int `json:"publish,omitempty"`
+
+	// PublishRate Messages published per second
+	PublishRate *float64 `json:"publish_rate,omitempty"`
+}
+
+// RmqObjectTotals defines model for RmqObjectTotals.
+type RmqObjectTotals struct {
+	// Channels Total active channels
+	Channels *int `json:"channels,omitempty"`
+
+	// Connections Total active connections
+	Connections *int `json:"connections,omitempty"`
+
+	// Consumers Total active consumers
+	Consumers *int `json:"consumers,omitempty"`
+
+	// Exchanges Total exchanges
+	Exchanges *int `json:"exchanges,omitempty"`
+
+	// Queues Total queues
+	Queues *int `json:"queues,omitempty"`
+}
+
+// RmqOverview defines model for RmqOverview.
+type RmqOverview struct {
+	// ClusterName Name of the RabbitMQ cluster
+	ClusterName *string `json:"cluster_name,omitempty"`
+
+	// ErlangVersion Erlang/OTP runtime version
+	ErlangVersion *string `json:"erlang_version,omitempty"`
+
+	// Listeners Active protocol listeners
+	Listeners *[]RmqListener `json:"listeners,omitempty"`
+
+	// MessageStats Message throughput statistics with rates
+	MessageStats *RmqMessageStats `json:"message_stats,omitempty"`
+
+	// Node Current RabbitMQ node name
+	Node *string `json:"node,omitempty"`
+
+	// ObjectTotals Counts of connections, channels, queues, etc.
+	ObjectTotals *RmqObjectTotals `json:"object_totals,omitempty"`
+
+	// QueueTotals Global queue message counts
+	QueueTotals *RmqQueueTotals `json:"queue_totals,omitempty"`
+
+	// RabbitmqVersion RabbitMQ server version
+	RabbitmqVersion *string `json:"rabbitmq_version,omitempty"`
+}
+
+// RmqPurgeRequestRequest defines model for RmqPurgeRequestRequest.
+type RmqPurgeRequestRequest struct {
+	// DeleteAllSubscriptionQueues If true, delete all subscription queues across all vhosts
+	DeleteAllSubscriptionQueues *bool `json:"delete_all_subscription_queues,omitempty"`
+
+	// DeleteQueue If true, delete the queue(s) entirely instead of just purging messages
+	DeleteQueue *bool `json:"delete_queue,omitempty"`
+
+	// PurgeAllSubscriptionQueues If true, purge all subscription queues across all vhosts
+	PurgeAllSubscriptionQueues *bool `json:"purge_all_subscription_queues,omitempty"`
+
+	// QueueName Specific queue name (requires vhost)
+	QueueName *string `json:"queue_name,omitempty"`
+
+	// QueuePattern Glob pattern to match queue names (e.g., '*_resource'). Requires vhost.
+	QueuePattern *string `json:"queue_pattern,omitempty"`
+
+	// Vhost Virtual host name containing the queue(s)
+	Vhost *string `json:"vhost,omitempty"`
 }
 
 // RmqPurgeResponse defines model for RmqPurgeResponse.
 type RmqPurgeResponse struct {
+	// DeletedQueues Number of queues that were deleted
+	DeletedQueues *int `json:"deleted_queues,omitempty"`
+
 	// PurgedMessages Total number of messages that were purged
 	PurgedMessages *int `json:"purged_messages,omitempty"`
 
@@ -30753,6 +31247,27 @@ type RmqPurgeResponse struct {
 type RmqQueueStats struct {
 	// Consumers Number of active consumers for this queue
 	Consumers *int `json:"consumers,omitempty"`
+
+	// DeadLetterExchange Dead letter exchange name
+	DeadLetterExchange *string `json:"dead_letter_exchange"`
+
+	// DeadLetterRoutingKey Dead letter routing key
+	DeadLetterRoutingKey *string `json:"dead_letter_routing_key"`
+
+	// Expires Queue TTL - auto-delete after idle in milliseconds
+	Expires *int `json:"expires"`
+
+	// MaxLength Maximum number of messages in queue
+	MaxLength *int `json:"max_length"`
+
+	// MaxLengthBytes Maximum total size of messages in bytes
+	MaxLengthBytes *int `json:"max_length_bytes"`
+
+	// MaxPriority Maximum priority level (1-255)
+	MaxPriority *int `json:"max_priority"`
+
+	// MessageTtl Message TTL in milliseconds
+	MessageTtl *int `json:"message_ttl"`
 
 	// Messages Total number of messages in the queue
 	Messages *int `json:"messages,omitempty"`
@@ -30772,8 +31287,29 @@ type RmqQueueStats struct {
 	// OfferingUuid Parsed offering UUID from queue name
 	OfferingUuid *string `json:"offering_uuid"`
 
+	// Overflow Behavior when full: 'drop-head', 'reject-publish', or 'reject-publish-dlx'
+	Overflow *string `json:"overflow"`
+
+	// QueueMode Queue mode: 'default' or 'lazy'
+	QueueMode *string `json:"queue_mode"`
+
+	// QueueType Queue type: 'classic', 'quorum', or 'stream'
+	QueueType *string `json:"queue_type"`
+
 	// SubscriptionUuid Parsed subscription UUID from queue name
 	SubscriptionUuid *string `json:"subscription_uuid"`
+}
+
+// RmqQueueTotals defines model for RmqQueueTotals.
+type RmqQueueTotals struct {
+	// Messages Total messages across all queues
+	Messages *int `json:"messages,omitempty"`
+
+	// MessagesReady Messages ready for delivery
+	MessagesReady *int `json:"messages_ready,omitempty"`
+
+	// MessagesUnacknowledged Messages awaiting acknowledgement
+	MessagesUnacknowledged *int `json:"messages_unacknowledged,omitempty"`
 }
 
 // RmqStatsError defines model for RmqStatsError.
@@ -30824,12 +31360,6 @@ type RmqSubscriptionSourceIp1 = string
 // RmqSubscription_SourceIp An IPv4 or IPv6 address.
 type RmqSubscription_SourceIp struct {
 	union json.RawMessage
-}
-
-// RmqUserStatsItem defines model for RmqUserStatsItem.
-type RmqUserStatsItem struct {
-	Connections *[]RmqConnection `json:"connections,omitempty"`
-	Username    *string          `json:"username,omitempty"`
 }
 
 // RmqVHostStatsItem defines model for RmqVHostStatsItem.
@@ -32010,6 +32540,21 @@ type TokenRequest struct {
 type TotalCustomerCost struct {
 	Price *float64 `json:"price,omitempty"`
 	Total *float64 `json:"total,omitempty"`
+}
+
+// TransactionStats defines model for TransactionStats.
+type TransactionStats struct {
+	// Committed Total committed transactions
+	Committed *int `json:"committed,omitempty"`
+
+	// Deadlocks Total number of deadlocks detected
+	Deadlocks *int `json:"deadlocks,omitempty"`
+
+	// RollbackRatioPercent Percentage of transactions that were rolled back
+	RollbackRatioPercent *float64 `json:"rollback_ratio_percent,omitempty"`
+
+	// RolledBack Total rolled back transactions
+	RolledBack *int `json:"rolled_back,omitempty"`
 }
 
 // TriggerCOIDetectionJobTypeEnum defines model for TriggerCOIDetectionJobTypeEnum.
@@ -42442,6 +42987,9 @@ type MarketplaceSiteAgentIdentitiesListParams struct {
 	Name          *string             `form:"name,omitempty" json:"name,omitempty"`
 	OfferingUuid  *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 
+	// Orphaned Has no services
+	Orphaned *bool `form:"orphaned,omitempty" json:"orphaned,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
@@ -42456,6 +43004,9 @@ type MarketplaceSiteAgentIdentitiesCountParams struct {
 	LastRestarted *time.Time          `form:"last_restarted,omitempty" json:"last_restarted,omitempty"`
 	Name          *string             `form:"name,omitempty" json:"name,omitempty"`
 	OfferingUuid  *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// Orphaned Has no services
+	Orphaned *bool `form:"orphaned,omitempty" json:"orphaned,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -42473,12 +43024,18 @@ type MarketplaceSiteAgentProcessorsListParams struct {
 	// LastRun Last run after
 	LastRun *time.Time `form:"last_run,omitempty" json:"last_run,omitempty"`
 
+	// LastRunBefore Last run before
+	LastRunBefore *time.Time `form:"last_run_before,omitempty" json:"last_run_before,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
 	PageSize    *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
 	ServiceUuid *openapi_types.UUID `form:"service_uuid,omitempty" json:"service_uuid,omitempty"`
+
+	// Stale Last run more than 1 hour ago
+	Stale *bool `form:"stale,omitempty" json:"stale,omitempty"`
 }
 
 // MarketplaceSiteAgentProcessorsCountParams defines parameters for MarketplaceSiteAgentProcessorsCount.
@@ -42489,12 +43046,18 @@ type MarketplaceSiteAgentProcessorsCountParams struct {
 	// LastRun Last run after
 	LastRun *time.Time `form:"last_run,omitempty" json:"last_run,omitempty"`
 
+	// LastRunBefore Last run before
+	LastRunBefore *time.Time `form:"last_run_before,omitempty" json:"last_run_before,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
 	PageSize    *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
 	ServiceUuid *openapi_types.UUID `form:"service_uuid,omitempty" json:"service_uuid,omitempty"`
+
+	// Stale Last run more than 1 hour ago
+	Stale *bool `form:"stale,omitempty" json:"stale,omitempty"`
 }
 
 // MarketplaceSiteAgentServicesListParams defines parameters for MarketplaceSiteAgentServicesList.
@@ -42502,12 +43065,21 @@ type MarketplaceSiteAgentServicesListParams struct {
 	IdentityUuid *openapi_types.UUID `form:"identity_uuid,omitempty" json:"identity_uuid,omitempty"`
 	Mode         *string             `form:"mode,omitempty" json:"mode,omitempty"`
 
+	// ModifiedAfter Modified after
+	ModifiedAfter *time.Time `form:"modified_after,omitempty" json:"modified_after,omitempty"`
+
+	// ModifiedBefore Modified before
+	ModifiedBefore *time.Time `form:"modified_before,omitempty" json:"modified_before,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize *PageSize                                      `form:"page_size,omitempty" json:"page_size,omitempty"`
-	State    *[]MarketplaceSiteAgentServicesListParamsState `form:"state,omitempty" json:"state,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Stale Inactive for more than 24 hours
+	Stale *bool                                          `form:"stale,omitempty" json:"stale,omitempty"`
+	State *[]MarketplaceSiteAgentServicesListParamsState `form:"state,omitempty" json:"state,omitempty"`
 }
 
 // MarketplaceSiteAgentServicesListParamsState defines parameters for MarketplaceSiteAgentServicesList.
@@ -42518,12 +43090,21 @@ type MarketplaceSiteAgentServicesCountParams struct {
 	IdentityUuid *openapi_types.UUID `form:"identity_uuid,omitempty" json:"identity_uuid,omitempty"`
 	Mode         *string             `form:"mode,omitempty" json:"mode,omitempty"`
 
+	// ModifiedAfter Modified after
+	ModifiedAfter *time.Time `form:"modified_after,omitempty" json:"modified_after,omitempty"`
+
+	// ModifiedBefore Modified before
+	ModifiedBefore *time.Time `form:"modified_before,omitempty" json:"modified_before,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize *PageSize                                       `form:"page_size,omitempty" json:"page_size,omitempty"`
-	State    *[]MarketplaceSiteAgentServicesCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Stale Inactive for more than 24 hours
+	Stale *bool                                           `form:"stale,omitempty" json:"stale,omitempty"`
+	State *[]MarketplaceSiteAgentServicesCountParamsState `form:"state,omitempty" json:"state,omitempty"`
 }
 
 // MarketplaceSiteAgentServicesCountParamsState defines parameters for MarketplaceSiteAgentServicesCount.
@@ -52924,6 +53505,9 @@ type MarketplaceServiceProvidersUpdateUserJSONRequestBody = UserRoleUpdateReques
 // MarketplaceSiteAgentIdentitiesCreateJSONRequestBody defines body for MarketplaceSiteAgentIdentitiesCreate for application/json ContentType.
 type MarketplaceSiteAgentIdentitiesCreateJSONRequestBody = AgentIdentityRequest
 
+// MarketplaceSiteAgentIdentitiesCleanupOrphanedJSONRequestBody defines body for MarketplaceSiteAgentIdentitiesCleanupOrphaned for application/json ContentType.
+type MarketplaceSiteAgentIdentitiesCleanupOrphanedJSONRequestBody = CleanupRequestRequest
+
 // MarketplaceSiteAgentIdentitiesUpdateJSONRequestBody defines body for MarketplaceSiteAgentIdentitiesUpdate for application/json ContentType.
 type MarketplaceSiteAgentIdentitiesUpdateJSONRequestBody = AgentIdentityRequest
 
@@ -52932,6 +53516,9 @@ type MarketplaceSiteAgentIdentitiesRegisterEventSubscriptionJSONRequestBody = Ag
 
 // MarketplaceSiteAgentIdentitiesRegisterServiceJSONRequestBody defines body for MarketplaceSiteAgentIdentitiesRegisterService for application/json ContentType.
 type MarketplaceSiteAgentIdentitiesRegisterServiceJSONRequestBody = AgentServiceCreateRequest
+
+// MarketplaceSiteAgentServicesCleanupStaleJSONRequestBody defines body for MarketplaceSiteAgentServicesCleanupStale for application/json ContentType.
+type MarketplaceSiteAgentServicesCleanupStaleJSONRequestBody = CleanupRequestRequest
 
 // MarketplaceSiteAgentServicesRegisterProcessorJSONRequestBody defines body for MarketplaceSiteAgentServicesRegisterProcessor for application/json ContentType.
 type MarketplaceSiteAgentServicesRegisterProcessorJSONRequestBody = AgentProcessorCreateRequest
@@ -53610,6 +54197,9 @@ type ProposalReviewsSubmitJSONRequestBody = ReviewSubmitRequest
 
 // QueryJSONRequestBody defines body for Query for application/json ContentType.
 type QueryJSONRequestBody = QueryRequest
+
+// RabbitmqStatsJSONRequestBody defines body for RabbitmqStats for application/json ContentType.
+type RabbitmqStatsJSONRequestBody = RmqPurgeRequestRequest
 
 // RancherAppsCreateJSONRequestBody defines body for RancherAppsCreate for application/json ContentType.
 type RancherAppsCreateJSONRequestBody = RancherApplicationRequest
@@ -60038,68 +60628,6 @@ func (t *RemoteResourceSyncStatus_RemoteState) UnmarshalJSON(b []byte) error {
 	return err
 }
 
-// AsRmqConnectionSourceIp0 returns the union data inside the RmqConnection_SourceIp as a RmqConnectionSourceIp0
-func (t RmqConnection_SourceIp) AsRmqConnectionSourceIp0() (RmqConnectionSourceIp0, error) {
-	var body RmqConnectionSourceIp0
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromRmqConnectionSourceIp0 overwrites any union data inside the RmqConnection_SourceIp as the provided RmqConnectionSourceIp0
-func (t *RmqConnection_SourceIp) FromRmqConnectionSourceIp0(v RmqConnectionSourceIp0) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeRmqConnectionSourceIp0 performs a merge with any union data inside the RmqConnection_SourceIp, using the provided RmqConnectionSourceIp0
-func (t *RmqConnection_SourceIp) MergeRmqConnectionSourceIp0(v RmqConnectionSourceIp0) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsRmqConnectionSourceIp1 returns the union data inside the RmqConnection_SourceIp as a RmqConnectionSourceIp1
-func (t RmqConnection_SourceIp) AsRmqConnectionSourceIp1() (RmqConnectionSourceIp1, error) {
-	var body RmqConnectionSourceIp1
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromRmqConnectionSourceIp1 overwrites any union data inside the RmqConnection_SourceIp as the provided RmqConnectionSourceIp1
-func (t *RmqConnection_SourceIp) FromRmqConnectionSourceIp1(v RmqConnectionSourceIp1) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeRmqConnectionSourceIp1 performs a merge with any union data inside the RmqConnection_SourceIp, using the provided RmqConnectionSourceIp1
-func (t *RmqConnection_SourceIp) MergeRmqConnectionSourceIp1(v RmqConnectionSourceIp1) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t RmqConnection_SourceIp) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *RmqConnection_SourceIp) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
 // AsRmqSubscriptionSourceIp0 returns the union data inside the RmqSubscription_SourceIp as a RmqSubscriptionSourceIp0
 func (t RmqSubscription_SourceIp) AsRmqSubscriptionSourceIp0() (RmqSubscriptionSourceIp0, error) {
 	var body RmqSubscriptionSourceIp0
@@ -61651,8 +62179,8 @@ type ClientInterface interface {
 	// DailyQuotasRetrieve request
 	DailyQuotasRetrieve(ctx context.Context, params *DailyQuotasRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// DatabaseStatsList request
-	DatabaseStatsList(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// DatabaseStatsRetrieve request
+	DatabaseStatsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// DigitaloceanDropletsList request
 	DigitaloceanDropletsList(ctx context.Context, params *DigitaloceanDropletsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -63956,6 +64484,9 @@ type ClientInterface interface {
 
 	MarketplaceServiceProvidersUpdateUser(ctx context.Context, uuid openapi_types.UUID, body MarketplaceServiceProvidersUpdateUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceSiteAgentConnectionStatsRetrieve request
+	MarketplaceSiteAgentConnectionStatsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceSiteAgentIdentitiesList request
 	MarketplaceSiteAgentIdentitiesList(ctx context.Context, params *MarketplaceSiteAgentIdentitiesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -63966,6 +64497,11 @@ type ClientInterface interface {
 	MarketplaceSiteAgentIdentitiesCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	MarketplaceSiteAgentIdentitiesCreate(ctx context.Context, body MarketplaceSiteAgentIdentitiesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSiteAgentIdentitiesCleanupOrphanedWithBody request with any body
+	MarketplaceSiteAgentIdentitiesCleanupOrphanedWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceSiteAgentIdentitiesCleanupOrphaned(ctx context.Context, body MarketplaceSiteAgentIdentitiesCleanupOrphanedJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceSiteAgentIdentitiesDestroy request
 	MarketplaceSiteAgentIdentitiesDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -63994,6 +64530,9 @@ type ClientInterface interface {
 	// MarketplaceSiteAgentProcessorsCount request
 	MarketplaceSiteAgentProcessorsCount(ctx context.Context, params *MarketplaceSiteAgentProcessorsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceSiteAgentProcessorsDestroy request
+	MarketplaceSiteAgentProcessorsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceSiteAgentProcessorsRetrieve request
 	MarketplaceSiteAgentProcessorsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -64002,6 +64541,14 @@ type ClientInterface interface {
 
 	// MarketplaceSiteAgentServicesCount request
 	MarketplaceSiteAgentServicesCount(ctx context.Context, params *MarketplaceSiteAgentServicesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSiteAgentServicesCleanupStaleWithBody request with any body
+	MarketplaceSiteAgentServicesCleanupStaleWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceSiteAgentServicesCleanupStale(ctx context.Context, body MarketplaceSiteAgentServicesCleanupStaleJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSiteAgentServicesDestroy request
+	MarketplaceSiteAgentServicesDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceSiteAgentServicesRetrieve request
 	MarketplaceSiteAgentServicesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -64015,6 +64562,12 @@ type ClientInterface interface {
 	MarketplaceSiteAgentServicesSetStatisticsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	MarketplaceSiteAgentServicesSetStatistics(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSiteAgentServicesSetStatisticsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSiteAgentStatsRetrieve request
+	MarketplaceSiteAgentStatsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSiteAgentTaskStatsRetrieve request
+	MarketplaceSiteAgentTaskStatsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceSlurmPeriodicUsagePoliciesList request
 	MarketplaceSlurmPeriodicUsagePoliciesList(ctx context.Context, params *MarketplaceSlurmPeriodicUsagePoliciesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -66279,11 +66832,16 @@ type ClientInterface interface {
 
 	Query(ctx context.Context, body QueryJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// RabbitmqStatsDestroy request
-	RabbitmqStatsDestroy(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// RabbitmqOverviewRetrieve request
+	RabbitmqOverviewRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// RabbitmqStatsRetrieve request
 	RabbitmqStatsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// RabbitmqStatsWithBody request with any body
+	RabbitmqStatsWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	RabbitmqStats(ctx context.Context, body RabbitmqStatsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// RabbitmqUserStatsList request
 	RabbitmqUserStatsList(ctx context.Context, params *RabbitmqUserStatsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -73141,8 +73699,8 @@ func (c *Client) DailyQuotasRetrieve(ctx context.Context, params *DailyQuotasRet
 	return c.Client.Do(req)
 }
 
-func (c *Client) DatabaseStatsList(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewDatabaseStatsListRequest(c.Server)
+func (c *Client) DatabaseStatsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDatabaseStatsRetrieveRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -83293,6 +83851,18 @@ func (c *Client) MarketplaceServiceProvidersUpdateUser(ctx context.Context, uuid
 	return c.Client.Do(req)
 }
 
+func (c *Client) MarketplaceSiteAgentConnectionStatsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSiteAgentConnectionStatsRetrieveRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) MarketplaceSiteAgentIdentitiesList(ctx context.Context, params *MarketplaceSiteAgentIdentitiesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceSiteAgentIdentitiesListRequest(c.Server, params)
 	if err != nil {
@@ -83331,6 +83901,30 @@ func (c *Client) MarketplaceSiteAgentIdentitiesCreateWithBody(ctx context.Contex
 
 func (c *Client) MarketplaceSiteAgentIdentitiesCreate(ctx context.Context, body MarketplaceSiteAgentIdentitiesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceSiteAgentIdentitiesCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSiteAgentIdentitiesCleanupOrphanedWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSiteAgentIdentitiesCleanupOrphanedRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSiteAgentIdentitiesCleanupOrphaned(ctx context.Context, body MarketplaceSiteAgentIdentitiesCleanupOrphanedJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSiteAgentIdentitiesCleanupOrphanedRequest(c.Server, body)
 	if err != nil {
 		return nil, err
 	}
@@ -83461,6 +84055,18 @@ func (c *Client) MarketplaceSiteAgentProcessorsCount(ctx context.Context, params
 	return c.Client.Do(req)
 }
 
+func (c *Client) MarketplaceSiteAgentProcessorsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSiteAgentProcessorsDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) MarketplaceSiteAgentProcessorsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceSiteAgentProcessorsRetrieveRequest(c.Server, uuid)
 	if err != nil {
@@ -83487,6 +84093,42 @@ func (c *Client) MarketplaceSiteAgentServicesList(ctx context.Context, params *M
 
 func (c *Client) MarketplaceSiteAgentServicesCount(ctx context.Context, params *MarketplaceSiteAgentServicesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceSiteAgentServicesCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSiteAgentServicesCleanupStaleWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSiteAgentServicesCleanupStaleRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSiteAgentServicesCleanupStale(ctx context.Context, body MarketplaceSiteAgentServicesCleanupStaleJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSiteAgentServicesCleanupStaleRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSiteAgentServicesDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSiteAgentServicesDestroyRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -83547,6 +84189,30 @@ func (c *Client) MarketplaceSiteAgentServicesSetStatisticsWithBody(ctx context.C
 
 func (c *Client) MarketplaceSiteAgentServicesSetStatistics(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSiteAgentServicesSetStatisticsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceSiteAgentServicesSetStatisticsRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSiteAgentStatsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSiteAgentStatsRetrieveRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSiteAgentTaskStatsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSiteAgentTaskStatsRetrieveRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -93457,8 +94123,8 @@ func (c *Client) Query(ctx context.Context, body QueryJSONRequestBody, reqEditor
 	return c.Client.Do(req)
 }
 
-func (c *Client) RabbitmqStatsDestroy(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewRabbitmqStatsDestroyRequest(c.Server)
+func (c *Client) RabbitmqOverviewRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewRabbitmqOverviewRetrieveRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -93471,6 +94137,30 @@ func (c *Client) RabbitmqStatsDestroy(ctx context.Context, reqEditors ...Request
 
 func (c *Client) RabbitmqStatsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewRabbitmqStatsRetrieveRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) RabbitmqStatsWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewRabbitmqStatsRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) RabbitmqStats(ctx context.Context, body RabbitmqStatsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewRabbitmqStatsRequest(c.Server, body)
 	if err != nil {
 		return nil, err
 	}
@@ -126429,8 +127119,8 @@ func NewDailyQuotasRetrieveRequest(server string, params *DailyQuotasRetrievePar
 	return req, nil
 }
 
-// NewDatabaseStatsListRequest generates requests for DatabaseStatsList
-func NewDatabaseStatsListRequest(server string) (*http.Request, error) {
+// NewDatabaseStatsRetrieveRequest generates requests for DatabaseStatsRetrieve
+func NewDatabaseStatsRetrieveRequest(server string) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -180923,6 +181613,33 @@ func NewMarketplaceServiceProvidersUpdateUserRequestWithBody(server string, uuid
 	return req, nil
 }
 
+// NewMarketplaceSiteAgentConnectionStatsRetrieveRequest generates requests for MarketplaceSiteAgentConnectionStatsRetrieve
+func NewMarketplaceSiteAgentConnectionStatsRetrieveRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-site-agent-connection-stats/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewMarketplaceSiteAgentIdentitiesListRequest generates requests for MarketplaceSiteAgentIdentitiesList
 func NewMarketplaceSiteAgentIdentitiesListRequest(server string, params *MarketplaceSiteAgentIdentitiesListParams) (*http.Request, error) {
 	var err error
@@ -180980,6 +181697,22 @@ func NewMarketplaceSiteAgentIdentitiesListRequest(server string, params *Marketp
 		if params.OfferingUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Orphaned != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "orphaned", runtime.ParamLocationQuery, *params.Orphaned); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -181122,6 +181855,22 @@ func NewMarketplaceSiteAgentIdentitiesCountRequest(server string, params *Market
 
 		}
 
+		if params.Orphaned != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "orphaned", runtime.ParamLocationQuery, *params.Orphaned); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Page != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
@@ -181202,6 +181951,46 @@ func NewMarketplaceSiteAgentIdentitiesCreateRequestWithBody(server string, conte
 	}
 
 	operationPath := fmt.Sprintf("/api/marketplace-site-agent-identities/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceSiteAgentIdentitiesCleanupOrphanedRequest calls the generic MarketplaceSiteAgentIdentitiesCleanupOrphaned builder with application/json body
+func NewMarketplaceSiteAgentIdentitiesCleanupOrphanedRequest(server string, body MarketplaceSiteAgentIdentitiesCleanupOrphanedJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceSiteAgentIdentitiesCleanupOrphanedRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewMarketplaceSiteAgentIdentitiesCleanupOrphanedRequestWithBody generates requests for MarketplaceSiteAgentIdentitiesCleanupOrphaned with any type of body
+func NewMarketplaceSiteAgentIdentitiesCleanupOrphanedRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-site-agent-identities/cleanup_orphaned/")
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -181500,6 +182289,22 @@ func NewMarketplaceSiteAgentProcessorsListRequest(server string, params *Marketp
 
 		}
 
+		if params.LastRunBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "last_run_before", runtime.ParamLocationQuery, *params.LastRunBefore); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Page != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
@@ -181535,6 +182340,22 @@ func NewMarketplaceSiteAgentProcessorsListRequest(server string, params *Marketp
 		if params.ServiceUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "service_uuid", runtime.ParamLocationQuery, *params.ServiceUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Stale != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "stale", runtime.ParamLocationQuery, *params.Stale); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -181629,6 +182450,22 @@ func NewMarketplaceSiteAgentProcessorsCountRequest(server string, params *Market
 
 		}
 
+		if params.LastRunBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "last_run_before", runtime.ParamLocationQuery, *params.LastRunBefore); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Page != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
@@ -181677,10 +182514,60 @@ func NewMarketplaceSiteAgentProcessorsCountRequest(server string, params *Market
 
 		}
 
+		if params.Stale != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "stale", runtime.ParamLocationQuery, *params.Stale); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		queryURL.RawQuery = queryValues.Encode()
 	}
 
 	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceSiteAgentProcessorsDestroyRequest generates requests for MarketplaceSiteAgentProcessorsDestroy
+func NewMarketplaceSiteAgentProcessorsDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-site-agent-processors/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
@@ -181776,6 +182663,38 @@ func NewMarketplaceSiteAgentServicesListRequest(server string, params *Marketpla
 
 		}
 
+		if params.ModifiedAfter != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "modified_after", runtime.ParamLocationQuery, *params.ModifiedAfter); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ModifiedBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "modified_before", runtime.ParamLocationQuery, *params.ModifiedBefore); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Page != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
@@ -181795,6 +182714,22 @@ func NewMarketplaceSiteAgentServicesListRequest(server string, params *Marketpla
 		if params.PageSize != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Stale != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "stale", runtime.ParamLocationQuery, *params.Stale); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -181889,6 +182824,38 @@ func NewMarketplaceSiteAgentServicesCountRequest(server string, params *Marketpl
 
 		}
 
+		if params.ModifiedAfter != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "modified_after", runtime.ParamLocationQuery, *params.ModifiedAfter); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ModifiedBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "modified_before", runtime.ParamLocationQuery, *params.ModifiedBefore); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Page != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
@@ -181908,6 +182875,22 @@ func NewMarketplaceSiteAgentServicesCountRequest(server string, params *Marketpl
 		if params.PageSize != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Stale != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "stale", runtime.ParamLocationQuery, *params.Stale); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -181941,6 +182924,80 @@ func NewMarketplaceSiteAgentServicesCountRequest(server string, params *Marketpl
 	}
 
 	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceSiteAgentServicesCleanupStaleRequest calls the generic MarketplaceSiteAgentServicesCleanupStale builder with application/json body
+func NewMarketplaceSiteAgentServicesCleanupStaleRequest(server string, body MarketplaceSiteAgentServicesCleanupStaleJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceSiteAgentServicesCleanupStaleRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewMarketplaceSiteAgentServicesCleanupStaleRequestWithBody generates requests for MarketplaceSiteAgentServicesCleanupStale with any type of body
+func NewMarketplaceSiteAgentServicesCleanupStaleRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-site-agent-services/cleanup_stale/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceSiteAgentServicesDestroyRequest generates requests for MarketplaceSiteAgentServicesDestroy
+func NewMarketplaceSiteAgentServicesDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-site-agent-services/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
@@ -182072,6 +183129,60 @@ func NewMarketplaceSiteAgentServicesSetStatisticsRequestWithBody(server string, 
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceSiteAgentStatsRetrieveRequest generates requests for MarketplaceSiteAgentStatsRetrieve
+func NewMarketplaceSiteAgentStatsRetrieveRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-site-agent-stats/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceSiteAgentTaskStatsRetrieveRequest generates requests for MarketplaceSiteAgentTaskStatsRetrieve
+func NewMarketplaceSiteAgentTaskStatsRetrieveRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-site-agent-task-stats/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
 
 	return req, nil
 }
@@ -233712,8 +234823,8 @@ func NewQueryRequestWithBody(server string, contentType string, body io.Reader) 
 	return req, nil
 }
 
-// NewRabbitmqStatsDestroyRequest generates requests for RabbitmqStatsDestroy
-func NewRabbitmqStatsDestroyRequest(server string) (*http.Request, error) {
+// NewRabbitmqOverviewRetrieveRequest generates requests for RabbitmqOverviewRetrieve
+func NewRabbitmqOverviewRetrieveRequest(server string) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -233721,7 +234832,7 @@ func NewRabbitmqStatsDestroyRequest(server string) (*http.Request, error) {
 		return nil, err
 	}
 
-	operationPath := fmt.Sprintf("/api/rabbitmq-stats/")
+	operationPath := fmt.Sprintf("/api/rabbitmq-overview/")
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -233731,7 +234842,7 @@ func NewRabbitmqStatsDestroyRequest(server string) (*http.Request, error) {
 		return nil, err
 	}
 
-	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
@@ -233762,6 +234873,46 @@ func NewRabbitmqStatsRetrieveRequest(server string) (*http.Request, error) {
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewRabbitmqStatsRequest calls the generic RabbitmqStats builder with application/json body
+func NewRabbitmqStatsRequest(server string, body RabbitmqStatsJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewRabbitmqStatsRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewRabbitmqStatsRequestWithBody generates requests for RabbitmqStats with any type of body
+func NewRabbitmqStatsRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/rabbitmq-stats/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -268349,8 +269500,8 @@ type ClientWithResponsesInterface interface {
 	// DailyQuotasRetrieveWithResponse request
 	DailyQuotasRetrieveWithResponse(ctx context.Context, params *DailyQuotasRetrieveParams, reqEditors ...RequestEditorFn) (*DailyQuotasRetrieveResponse, error)
 
-	// DatabaseStatsListWithResponse request
-	DatabaseStatsListWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DatabaseStatsListResponse, error)
+	// DatabaseStatsRetrieveWithResponse request
+	DatabaseStatsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DatabaseStatsRetrieveResponse, error)
 
 	// DigitaloceanDropletsListWithResponse request
 	DigitaloceanDropletsListWithResponse(ctx context.Context, params *DigitaloceanDropletsListParams, reqEditors ...RequestEditorFn) (*DigitaloceanDropletsListResponse, error)
@@ -270654,6 +271805,9 @@ type ClientWithResponsesInterface interface {
 
 	MarketplaceServiceProvidersUpdateUserWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceServiceProvidersUpdateUserJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersUpdateUserResponse, error)
 
+	// MarketplaceSiteAgentConnectionStatsRetrieveWithResponse request
+	MarketplaceSiteAgentConnectionStatsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentConnectionStatsRetrieveResponse, error)
+
 	// MarketplaceSiteAgentIdentitiesListWithResponse request
 	MarketplaceSiteAgentIdentitiesListWithResponse(ctx context.Context, params *MarketplaceSiteAgentIdentitiesListParams, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentIdentitiesListResponse, error)
 
@@ -270664,6 +271818,11 @@ type ClientWithResponsesInterface interface {
 	MarketplaceSiteAgentIdentitiesCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentIdentitiesCreateResponse, error)
 
 	MarketplaceSiteAgentIdentitiesCreateWithResponse(ctx context.Context, body MarketplaceSiteAgentIdentitiesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentIdentitiesCreateResponse, error)
+
+	// MarketplaceSiteAgentIdentitiesCleanupOrphanedWithBodyWithResponse request with any body
+	MarketplaceSiteAgentIdentitiesCleanupOrphanedWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentIdentitiesCleanupOrphanedResponse, error)
+
+	MarketplaceSiteAgentIdentitiesCleanupOrphanedWithResponse(ctx context.Context, body MarketplaceSiteAgentIdentitiesCleanupOrphanedJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentIdentitiesCleanupOrphanedResponse, error)
 
 	// MarketplaceSiteAgentIdentitiesDestroyWithResponse request
 	MarketplaceSiteAgentIdentitiesDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentIdentitiesDestroyResponse, error)
@@ -270692,6 +271851,9 @@ type ClientWithResponsesInterface interface {
 	// MarketplaceSiteAgentProcessorsCountWithResponse request
 	MarketplaceSiteAgentProcessorsCountWithResponse(ctx context.Context, params *MarketplaceSiteAgentProcessorsCountParams, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentProcessorsCountResponse, error)
 
+	// MarketplaceSiteAgentProcessorsDestroyWithResponse request
+	MarketplaceSiteAgentProcessorsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentProcessorsDestroyResponse, error)
+
 	// MarketplaceSiteAgentProcessorsRetrieveWithResponse request
 	MarketplaceSiteAgentProcessorsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentProcessorsRetrieveResponse, error)
 
@@ -270700,6 +271862,14 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceSiteAgentServicesCountWithResponse request
 	MarketplaceSiteAgentServicesCountWithResponse(ctx context.Context, params *MarketplaceSiteAgentServicesCountParams, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentServicesCountResponse, error)
+
+	// MarketplaceSiteAgentServicesCleanupStaleWithBodyWithResponse request with any body
+	MarketplaceSiteAgentServicesCleanupStaleWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentServicesCleanupStaleResponse, error)
+
+	MarketplaceSiteAgentServicesCleanupStaleWithResponse(ctx context.Context, body MarketplaceSiteAgentServicesCleanupStaleJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentServicesCleanupStaleResponse, error)
+
+	// MarketplaceSiteAgentServicesDestroyWithResponse request
+	MarketplaceSiteAgentServicesDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentServicesDestroyResponse, error)
 
 	// MarketplaceSiteAgentServicesRetrieveWithResponse request
 	MarketplaceSiteAgentServicesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentServicesRetrieveResponse, error)
@@ -270713,6 +271883,12 @@ type ClientWithResponsesInterface interface {
 	MarketplaceSiteAgentServicesSetStatisticsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentServicesSetStatisticsResponse, error)
 
 	MarketplaceSiteAgentServicesSetStatisticsWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSiteAgentServicesSetStatisticsJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentServicesSetStatisticsResponse, error)
+
+	// MarketplaceSiteAgentStatsRetrieveWithResponse request
+	MarketplaceSiteAgentStatsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentStatsRetrieveResponse, error)
+
+	// MarketplaceSiteAgentTaskStatsRetrieveWithResponse request
+	MarketplaceSiteAgentTaskStatsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentTaskStatsRetrieveResponse, error)
 
 	// MarketplaceSlurmPeriodicUsagePoliciesListWithResponse request
 	MarketplaceSlurmPeriodicUsagePoliciesListWithResponse(ctx context.Context, params *MarketplaceSlurmPeriodicUsagePoliciesListParams, reqEditors ...RequestEditorFn) (*MarketplaceSlurmPeriodicUsagePoliciesListResponse, error)
@@ -272977,11 +274153,16 @@ type ClientWithResponsesInterface interface {
 
 	QueryWithResponse(ctx context.Context, body QueryJSONRequestBody, reqEditors ...RequestEditorFn) (*QueryResponse, error)
 
-	// RabbitmqStatsDestroyWithResponse request
-	RabbitmqStatsDestroyWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*RabbitmqStatsDestroyResponse, error)
+	// RabbitmqOverviewRetrieveWithResponse request
+	RabbitmqOverviewRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*RabbitmqOverviewRetrieveResponse, error)
 
 	// RabbitmqStatsRetrieveWithResponse request
 	RabbitmqStatsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*RabbitmqStatsRetrieveResponse, error)
+
+	// RabbitmqStatsWithBodyWithResponse request with any body
+	RabbitmqStatsWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*RabbitmqStatsResponse, error)
+
+	RabbitmqStatsWithResponse(ctx context.Context, body RabbitmqStatsJSONRequestBody, reqEditors ...RequestEditorFn) (*RabbitmqStatsResponse, error)
 
 	// RabbitmqUserStatsListWithResponse request
 	RabbitmqUserStatsListWithResponse(ctx context.Context, params *RabbitmqUserStatsListParams, reqEditors ...RequestEditorFn) (*RabbitmqUserStatsListResponse, error)
@@ -281585,14 +282766,14 @@ func (r DailyQuotasRetrieveResponse) StatusCode() int {
 	return 0
 }
 
-type DatabaseStatsListResponse struct {
+type DatabaseStatsRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *[]TableSize
+	JSON200      *DatabaseStatsResponse
 }
 
 // Status returns HTTPResponse.Status
-func (r DatabaseStatsListResponse) Status() string {
+func (r DatabaseStatsRetrieveResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -281600,7 +282781,7 @@ func (r DatabaseStatsListResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r DatabaseStatsListResponse) StatusCode() int {
+func (r DatabaseStatsRetrieveResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -294908,6 +296089,29 @@ func (r MarketplaceServiceProvidersUpdateUserResponse) StatusCode() int {
 	return 0
 }
 
+type MarketplaceSiteAgentConnectionStatsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *AgentConnectionStatsResponse
+	JSON503      *interface{}
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSiteAgentConnectionStatsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSiteAgentConnectionStatsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type MarketplaceSiteAgentIdentitiesListResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -294967,6 +296171,28 @@ func (r MarketplaceSiteAgentIdentitiesCreateResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceSiteAgentIdentitiesCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSiteAgentIdentitiesCleanupOrphanedResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CleanupResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSiteAgentIdentitiesCleanupOrphanedResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSiteAgentIdentitiesCleanupOrphanedResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -295127,6 +296353,27 @@ func (r MarketplaceSiteAgentProcessorsCountResponse) StatusCode() int {
 	return 0
 }
 
+type MarketplaceSiteAgentProcessorsDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSiteAgentProcessorsDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSiteAgentProcessorsDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type MarketplaceSiteAgentProcessorsRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -295186,6 +296433,49 @@ func (r MarketplaceSiteAgentServicesCountResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceSiteAgentServicesCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSiteAgentServicesCleanupStaleResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CleanupResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSiteAgentServicesCleanupStaleResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSiteAgentServicesCleanupStaleResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSiteAgentServicesDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSiteAgentServicesDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSiteAgentServicesDestroyResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -295253,6 +296543,50 @@ func (r MarketplaceSiteAgentServicesSetStatisticsResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceSiteAgentServicesSetStatisticsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSiteAgentStatsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *AgentStatsResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSiteAgentStatsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSiteAgentStatsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSiteAgentTaskStatsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *AgentTaskStatsResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSiteAgentTaskStatsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSiteAgentTaskStatsRetrieveResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -308547,17 +309881,15 @@ func (r QueryResponse) StatusCode() int {
 	return 0
 }
 
-type RabbitmqStatsDestroyResponse struct {
+type RabbitmqOverviewRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *RmqPurgeResponse
-	JSON400      *RmqStatsError
-	JSON404      *RmqStatsError
+	JSON200      *RmqOverview
 	JSON503      *RmqStatsError
 }
 
 // Status returns HTTPResponse.Status
-func (r RabbitmqStatsDestroyResponse) Status() string {
+func (r RabbitmqOverviewRetrieveResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -308565,7 +309897,7 @@ func (r RabbitmqStatsDestroyResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r RabbitmqStatsDestroyResponse) StatusCode() int {
+func (r RabbitmqOverviewRetrieveResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -308595,10 +309927,35 @@ func (r RabbitmqStatsRetrieveResponse) StatusCode() int {
 	return 0
 }
 
+type RabbitmqStatsResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *RmqPurgeResponse
+	JSON400      *RmqStatsError
+	JSON404      *RmqStatsError
+	JSON503      *RmqStatsError
+}
+
+// Status returns HTTPResponse.Status
+func (r RabbitmqStatsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r RabbitmqStatsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type RabbitmqUserStatsListResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *[]RmqUserStatsItem
+	JSON200      *[]RmqEnrichedUserStatsItem
 }
 
 // Status returns HTTPResponse.Status
@@ -321734,13 +323091,13 @@ func (c *ClientWithResponses) DailyQuotasRetrieveWithResponse(ctx context.Contex
 	return ParseDailyQuotasRetrieveResponse(rsp)
 }
 
-// DatabaseStatsListWithResponse request returning *DatabaseStatsListResponse
-func (c *ClientWithResponses) DatabaseStatsListWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DatabaseStatsListResponse, error) {
-	rsp, err := c.DatabaseStatsList(ctx, reqEditors...)
+// DatabaseStatsRetrieveWithResponse request returning *DatabaseStatsRetrieveResponse
+func (c *ClientWithResponses) DatabaseStatsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DatabaseStatsRetrieveResponse, error) {
+	rsp, err := c.DatabaseStatsRetrieve(ctx, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseDatabaseStatsListResponse(rsp)
+	return ParseDatabaseStatsRetrieveResponse(rsp)
 }
 
 // DigitaloceanDropletsListWithResponse request returning *DigitaloceanDropletsListResponse
@@ -329115,6 +330472,15 @@ func (c *ClientWithResponses) MarketplaceServiceProvidersUpdateUserWithResponse(
 	return ParseMarketplaceServiceProvidersUpdateUserResponse(rsp)
 }
 
+// MarketplaceSiteAgentConnectionStatsRetrieveWithResponse request returning *MarketplaceSiteAgentConnectionStatsRetrieveResponse
+func (c *ClientWithResponses) MarketplaceSiteAgentConnectionStatsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentConnectionStatsRetrieveResponse, error) {
+	rsp, err := c.MarketplaceSiteAgentConnectionStatsRetrieve(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSiteAgentConnectionStatsRetrieveResponse(rsp)
+}
+
 // MarketplaceSiteAgentIdentitiesListWithResponse request returning *MarketplaceSiteAgentIdentitiesListResponse
 func (c *ClientWithResponses) MarketplaceSiteAgentIdentitiesListWithResponse(ctx context.Context, params *MarketplaceSiteAgentIdentitiesListParams, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentIdentitiesListResponse, error) {
 	rsp, err := c.MarketplaceSiteAgentIdentitiesList(ctx, params, reqEditors...)
@@ -329148,6 +330514,23 @@ func (c *ClientWithResponses) MarketplaceSiteAgentIdentitiesCreateWithResponse(c
 		return nil, err
 	}
 	return ParseMarketplaceSiteAgentIdentitiesCreateResponse(rsp)
+}
+
+// MarketplaceSiteAgentIdentitiesCleanupOrphanedWithBodyWithResponse request with arbitrary body returning *MarketplaceSiteAgentIdentitiesCleanupOrphanedResponse
+func (c *ClientWithResponses) MarketplaceSiteAgentIdentitiesCleanupOrphanedWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentIdentitiesCleanupOrphanedResponse, error) {
+	rsp, err := c.MarketplaceSiteAgentIdentitiesCleanupOrphanedWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSiteAgentIdentitiesCleanupOrphanedResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceSiteAgentIdentitiesCleanupOrphanedWithResponse(ctx context.Context, body MarketplaceSiteAgentIdentitiesCleanupOrphanedJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentIdentitiesCleanupOrphanedResponse, error) {
+	rsp, err := c.MarketplaceSiteAgentIdentitiesCleanupOrphaned(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSiteAgentIdentitiesCleanupOrphanedResponse(rsp)
 }
 
 // MarketplaceSiteAgentIdentitiesDestroyWithResponse request returning *MarketplaceSiteAgentIdentitiesDestroyResponse
@@ -329237,6 +330620,15 @@ func (c *ClientWithResponses) MarketplaceSiteAgentProcessorsCountWithResponse(ct
 	return ParseMarketplaceSiteAgentProcessorsCountResponse(rsp)
 }
 
+// MarketplaceSiteAgentProcessorsDestroyWithResponse request returning *MarketplaceSiteAgentProcessorsDestroyResponse
+func (c *ClientWithResponses) MarketplaceSiteAgentProcessorsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentProcessorsDestroyResponse, error) {
+	rsp, err := c.MarketplaceSiteAgentProcessorsDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSiteAgentProcessorsDestroyResponse(rsp)
+}
+
 // MarketplaceSiteAgentProcessorsRetrieveWithResponse request returning *MarketplaceSiteAgentProcessorsRetrieveResponse
 func (c *ClientWithResponses) MarketplaceSiteAgentProcessorsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentProcessorsRetrieveResponse, error) {
 	rsp, err := c.MarketplaceSiteAgentProcessorsRetrieve(ctx, uuid, reqEditors...)
@@ -329262,6 +330654,32 @@ func (c *ClientWithResponses) MarketplaceSiteAgentServicesCountWithResponse(ctx 
 		return nil, err
 	}
 	return ParseMarketplaceSiteAgentServicesCountResponse(rsp)
+}
+
+// MarketplaceSiteAgentServicesCleanupStaleWithBodyWithResponse request with arbitrary body returning *MarketplaceSiteAgentServicesCleanupStaleResponse
+func (c *ClientWithResponses) MarketplaceSiteAgentServicesCleanupStaleWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentServicesCleanupStaleResponse, error) {
+	rsp, err := c.MarketplaceSiteAgentServicesCleanupStaleWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSiteAgentServicesCleanupStaleResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceSiteAgentServicesCleanupStaleWithResponse(ctx context.Context, body MarketplaceSiteAgentServicesCleanupStaleJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentServicesCleanupStaleResponse, error) {
+	rsp, err := c.MarketplaceSiteAgentServicesCleanupStale(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSiteAgentServicesCleanupStaleResponse(rsp)
+}
+
+// MarketplaceSiteAgentServicesDestroyWithResponse request returning *MarketplaceSiteAgentServicesDestroyResponse
+func (c *ClientWithResponses) MarketplaceSiteAgentServicesDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentServicesDestroyResponse, error) {
+	rsp, err := c.MarketplaceSiteAgentServicesDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSiteAgentServicesDestroyResponse(rsp)
 }
 
 // MarketplaceSiteAgentServicesRetrieveWithResponse request returning *MarketplaceSiteAgentServicesRetrieveResponse
@@ -329305,6 +330723,24 @@ func (c *ClientWithResponses) MarketplaceSiteAgentServicesSetStatisticsWithRespo
 		return nil, err
 	}
 	return ParseMarketplaceSiteAgentServicesSetStatisticsResponse(rsp)
+}
+
+// MarketplaceSiteAgentStatsRetrieveWithResponse request returning *MarketplaceSiteAgentStatsRetrieveResponse
+func (c *ClientWithResponses) MarketplaceSiteAgentStatsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentStatsRetrieveResponse, error) {
+	rsp, err := c.MarketplaceSiteAgentStatsRetrieve(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSiteAgentStatsRetrieveResponse(rsp)
+}
+
+// MarketplaceSiteAgentTaskStatsRetrieveWithResponse request returning *MarketplaceSiteAgentTaskStatsRetrieveResponse
+func (c *ClientWithResponses) MarketplaceSiteAgentTaskStatsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentTaskStatsRetrieveResponse, error) {
+	rsp, err := c.MarketplaceSiteAgentTaskStatsRetrieve(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSiteAgentTaskStatsRetrieveResponse(rsp)
 }
 
 // MarketplaceSlurmPeriodicUsagePoliciesListWithResponse request returning *MarketplaceSlurmPeriodicUsagePoliciesListResponse
@@ -336520,13 +337956,13 @@ func (c *ClientWithResponses) QueryWithResponse(ctx context.Context, body QueryJ
 	return ParseQueryResponse(rsp)
 }
 
-// RabbitmqStatsDestroyWithResponse request returning *RabbitmqStatsDestroyResponse
-func (c *ClientWithResponses) RabbitmqStatsDestroyWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*RabbitmqStatsDestroyResponse, error) {
-	rsp, err := c.RabbitmqStatsDestroy(ctx, reqEditors...)
+// RabbitmqOverviewRetrieveWithResponse request returning *RabbitmqOverviewRetrieveResponse
+func (c *ClientWithResponses) RabbitmqOverviewRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*RabbitmqOverviewRetrieveResponse, error) {
+	rsp, err := c.RabbitmqOverviewRetrieve(ctx, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseRabbitmqStatsDestroyResponse(rsp)
+	return ParseRabbitmqOverviewRetrieveResponse(rsp)
 }
 
 // RabbitmqStatsRetrieveWithResponse request returning *RabbitmqStatsRetrieveResponse
@@ -336536,6 +337972,23 @@ func (c *ClientWithResponses) RabbitmqStatsRetrieveWithResponse(ctx context.Cont
 		return nil, err
 	}
 	return ParseRabbitmqStatsRetrieveResponse(rsp)
+}
+
+// RabbitmqStatsWithBodyWithResponse request with arbitrary body returning *RabbitmqStatsResponse
+func (c *ClientWithResponses) RabbitmqStatsWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*RabbitmqStatsResponse, error) {
+	rsp, err := c.RabbitmqStatsWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseRabbitmqStatsResponse(rsp)
+}
+
+func (c *ClientWithResponses) RabbitmqStatsWithResponse(ctx context.Context, body RabbitmqStatsJSONRequestBody, reqEditors ...RequestEditorFn) (*RabbitmqStatsResponse, error) {
+	rsp, err := c.RabbitmqStats(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseRabbitmqStatsResponse(rsp)
 }
 
 // RabbitmqUserStatsListWithResponse request returning *RabbitmqUserStatsListResponse
@@ -348898,22 +350351,22 @@ func ParseDailyQuotasRetrieveResponse(rsp *http.Response) (*DailyQuotasRetrieveR
 	return response, nil
 }
 
-// ParseDatabaseStatsListResponse parses an HTTP response from a DatabaseStatsListWithResponse call
-func ParseDatabaseStatsListResponse(rsp *http.Response) (*DatabaseStatsListResponse, error) {
+// ParseDatabaseStatsRetrieveResponse parses an HTTP response from a DatabaseStatsRetrieveWithResponse call
+func ParseDatabaseStatsRetrieveResponse(rsp *http.Response) (*DatabaseStatsRetrieveResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &DatabaseStatsListResponse{
+	response := &DatabaseStatsRetrieveResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []TableSize
+		var dest DatabaseStatsResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -362906,6 +364359,39 @@ func ParseMarketplaceServiceProvidersUpdateUserResponse(rsp *http.Response) (*Ma
 	return response, nil
 }
 
+// ParseMarketplaceSiteAgentConnectionStatsRetrieveResponse parses an HTTP response from a MarketplaceSiteAgentConnectionStatsRetrieveWithResponse call
+func ParseMarketplaceSiteAgentConnectionStatsRetrieveResponse(rsp *http.Response) (*MarketplaceSiteAgentConnectionStatsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSiteAgentConnectionStatsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest AgentConnectionStatsResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
+		var dest interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON503 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseMarketplaceSiteAgentIdentitiesListResponse parses an HTTP response from a MarketplaceSiteAgentIdentitiesListWithResponse call
 func ParseMarketplaceSiteAgentIdentitiesListResponse(rsp *http.Response) (*MarketplaceSiteAgentIdentitiesListResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -362968,6 +364454,32 @@ func ParseMarketplaceSiteAgentIdentitiesCreateResponse(rsp *http.Response) (*Mar
 			return nil, err
 		}
 		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSiteAgentIdentitiesCleanupOrphanedResponse parses an HTTP response from a MarketplaceSiteAgentIdentitiesCleanupOrphanedWithResponse call
+func ParseMarketplaceSiteAgentIdentitiesCleanupOrphanedResponse(rsp *http.Response) (*MarketplaceSiteAgentIdentitiesCleanupOrphanedResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSiteAgentIdentitiesCleanupOrphanedResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CleanupResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
 
 	}
 
@@ -363150,6 +364662,22 @@ func ParseMarketplaceSiteAgentProcessorsCountResponse(rsp *http.Response) (*Mark
 	return response, nil
 }
 
+// ParseMarketplaceSiteAgentProcessorsDestroyResponse parses an HTTP response from a MarketplaceSiteAgentProcessorsDestroyWithResponse call
+func ParseMarketplaceSiteAgentProcessorsDestroyResponse(rsp *http.Response) (*MarketplaceSiteAgentProcessorsDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSiteAgentProcessorsDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
 // ParseMarketplaceSiteAgentProcessorsRetrieveResponse parses an HTTP response from a MarketplaceSiteAgentProcessorsRetrieveWithResponse call
 func ParseMarketplaceSiteAgentProcessorsRetrieveResponse(rsp *http.Response) (*MarketplaceSiteAgentProcessorsRetrieveResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -363211,6 +364739,48 @@ func ParseMarketplaceSiteAgentServicesCountResponse(rsp *http.Response) (*Market
 	}
 
 	response := &MarketplaceSiteAgentServicesCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSiteAgentServicesCleanupStaleResponse parses an HTTP response from a MarketplaceSiteAgentServicesCleanupStaleWithResponse call
+func ParseMarketplaceSiteAgentServicesCleanupStaleResponse(rsp *http.Response) (*MarketplaceSiteAgentServicesCleanupStaleResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSiteAgentServicesCleanupStaleResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CleanupResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSiteAgentServicesDestroyResponse parses an HTTP response from a MarketplaceSiteAgentServicesDestroyWithResponse call
+func ParseMarketplaceSiteAgentServicesDestroyResponse(rsp *http.Response) (*MarketplaceSiteAgentServicesDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSiteAgentServicesDestroyResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
@@ -363293,6 +364863,58 @@ func ParseMarketplaceSiteAgentServicesSetStatisticsResponse(rsp *http.Response) 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest AgentService
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSiteAgentStatsRetrieveResponse parses an HTTP response from a MarketplaceSiteAgentStatsRetrieveWithResponse call
+func ParseMarketplaceSiteAgentStatsRetrieveResponse(rsp *http.Response) (*MarketplaceSiteAgentStatsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSiteAgentStatsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest AgentStatsResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSiteAgentTaskStatsRetrieveResponse parses an HTTP response from a MarketplaceSiteAgentTaskStatsRetrieveWithResponse call
+func ParseMarketplaceSiteAgentTaskStatsRetrieveResponse(rsp *http.Response) (*MarketplaceSiteAgentTaskStatsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSiteAgentTaskStatsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest AgentTaskStatsResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -377171,40 +378793,26 @@ func ParseQueryResponse(rsp *http.Response) (*QueryResponse, error) {
 	return response, nil
 }
 
-// ParseRabbitmqStatsDestroyResponse parses an HTTP response from a RabbitmqStatsDestroyWithResponse call
-func ParseRabbitmqStatsDestroyResponse(rsp *http.Response) (*RabbitmqStatsDestroyResponse, error) {
+// ParseRabbitmqOverviewRetrieveResponse parses an HTTP response from a RabbitmqOverviewRetrieveWithResponse call
+func ParseRabbitmqOverviewRetrieveResponse(rsp *http.Response) (*RabbitmqOverviewRetrieveResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &RabbitmqStatsDestroyResponse{
+	response := &RabbitmqOverviewRetrieveResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest RmqPurgeResponse
+		var dest RmqOverview
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
 		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest RmqStatsError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
-		var dest RmqStatsError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON404 = &dest
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
 		var dest RmqStatsError
@@ -377251,6 +378859,53 @@ func ParseRabbitmqStatsRetrieveResponse(rsp *http.Response) (*RabbitmqStatsRetri
 	return response, nil
 }
 
+// ParseRabbitmqStatsResponse parses an HTTP response from a RabbitmqStatsWithResponse call
+func ParseRabbitmqStatsResponse(rsp *http.Response) (*RabbitmqStatsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &RabbitmqStatsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest RmqPurgeResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest RmqStatsError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest RmqStatsError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
+		var dest RmqStatsError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON503 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseRabbitmqUserStatsListResponse parses an HTTP response from a RabbitmqUserStatsListWithResponse call
 func ParseRabbitmqUserStatsListResponse(rsp *http.Response) (*RabbitmqUserStatsListResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -377266,7 +378921,7 @@ func ParseRabbitmqUserStatsListResponse(rsp *http.Response) (*RabbitmqUserStatsL
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest []RmqUserStatsItem
+		var dest []RmqEnrichedUserStatsItem
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
