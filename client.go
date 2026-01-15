@@ -2373,10 +2373,10 @@ const (
 
 // Defines values for ValidationMethodEnum.
 const (
-	Ariregister        ValidationMethodEnum = "ariregister"
-	Bolagsverket       ValidationMethodEnum = "bolagsverket"
-	Breg               ValidationMethodEnum = "breg"
-	Wirtschaftscompass ValidationMethodEnum = "wirtschaftscompass"
+	ValidationMethodEnumAriregister        ValidationMethodEnum = "ariregister"
+	ValidationMethodEnumBolagsverket       ValidationMethodEnum = "bolagsverket"
+	ValidationMethodEnumBreg               ValidationMethodEnum = "breg"
+	ValidationMethodEnumWirtschaftscompass ValidationMethodEnum = "wirtschaftscompass"
 )
 
 // Defines values for VenueTypeEnum.
@@ -5739,6 +5739,7 @@ const (
 
 // Defines values for MarketplaceOfferingUsersListParamsField.
 const (
+	MarketplaceOfferingUsersListParamsFieldConsentData               MarketplaceOfferingUsersListParamsField = "consent_data"
 	MarketplaceOfferingUsersListParamsFieldCreated                   MarketplaceOfferingUsersListParamsField = "created"
 	MarketplaceOfferingUsersListParamsFieldCustomerName              MarketplaceOfferingUsersListParamsField = "customer_name"
 	MarketplaceOfferingUsersListParamsFieldCustomerUuid              MarketplaceOfferingUsersListParamsField = "customer_uuid"
@@ -5813,6 +5814,7 @@ const (
 
 // Defines values for MarketplaceOfferingUsersRetrieveParamsField.
 const (
+	MarketplaceOfferingUsersRetrieveParamsFieldConsentData               MarketplaceOfferingUsersRetrieveParamsField = "consent_data"
 	MarketplaceOfferingUsersRetrieveParamsFieldCreated                   MarketplaceOfferingUsersRetrieveParamsField = "created"
 	MarketplaceOfferingUsersRetrieveParamsFieldCustomerName              MarketplaceOfferingUsersRetrieveParamsField = "customer_name"
 	MarketplaceOfferingUsersRetrieveParamsFieldCustomerUuid              MarketplaceOfferingUsersRetrieveParamsField = "customer_uuid"
@@ -8106,6 +8108,14 @@ const (
 const (
 	OnboardingVerificationsCompletionStatusRetrieveParamsChecklistTypeCustomer OnboardingVerificationsCompletionStatusRetrieveParamsChecklistType = "customer"
 	OnboardingVerificationsCompletionStatusRetrieveParamsChecklistTypeIntent   OnboardingVerificationsCompletionStatusRetrieveParamsChecklistType = "intent"
+)
+
+// Defines values for OnboardingPersonIdentifierFieldsRetrieveParamsValidationMethod.
+const (
+	OnboardingPersonIdentifierFieldsRetrieveParamsValidationMethodAriregister        OnboardingPersonIdentifierFieldsRetrieveParamsValidationMethod = "ariregister"
+	OnboardingPersonIdentifierFieldsRetrieveParamsValidationMethodBolagsverket       OnboardingPersonIdentifierFieldsRetrieveParamsValidationMethod = "bolagsverket"
+	OnboardingPersonIdentifierFieldsRetrieveParamsValidationMethodBreg               OnboardingPersonIdentifierFieldsRetrieveParamsValidationMethod = "breg"
+	OnboardingPersonIdentifierFieldsRetrieveParamsValidationMethodWirtschaftscompass OnboardingPersonIdentifierFieldsRetrieveParamsValidationMethod = "wirtschaftscompass"
 )
 
 // Defines values for OpenportalAllocationsListParamsField.
@@ -16336,7 +16346,6 @@ type ConstanceSettings struct {
 	ONBOARDINGBOLAGSVERKETCLIENTSECRET             *string              `json:"ONBOARDING_BOLAGSVERKET_CLIENT_SECRET,omitempty"`
 	ONBOARDINGBOLAGSVERKETTOKENAPIURL              *string              `json:"ONBOARDING_BOLAGSVERKET_TOKEN_API_URL,omitempty"`
 	ONBOARDINGBREGAPIURL                           *string              `json:"ONBOARDING_BREG_API_URL,omitempty"`
-	ONBOARDINGSUPPORTEDCOUNTRIES                   *[]string            `json:"ONBOARDING_SUPPORTED_COUNTRIES,omitempty"`
 	ONBOARDINGVALIDATIONMETHODS                    *[]string            `json:"ONBOARDING_VALIDATION_METHODS,omitempty"`
 	ONBOARDINGVERIFICATIONEXPIRYHOURS              *int                 `json:"ONBOARDING_VERIFICATION_EXPIRY_HOURS,omitempty"`
 	ONBOARDINGWICOAPIURL                           *string              `json:"ONBOARDING_WICO_API_URL,omitempty"`
@@ -16530,7 +16539,6 @@ type ConstanceSettingsRequest struct {
 	ONBOARDINGBOLAGSVERKETCLIENTSECRET             *string                         `json:"ONBOARDING_BOLAGSVERKET_CLIENT_SECRET,omitempty"`
 	ONBOARDINGBOLAGSVERKETTOKENAPIURL              *string                         `json:"ONBOARDING_BOLAGSVERKET_TOKEN_API_URL,omitempty"`
 	ONBOARDINGBREGAPIURL                           *string                         `json:"ONBOARDING_BREG_API_URL,omitempty"`
-	ONBOARDINGSUPPORTEDCOUNTRIES                   *[]string                       `json:"ONBOARDING_SUPPORTED_COUNTRIES,omitempty"`
 	ONBOARDINGVALIDATIONMETHODS                    *[]string                       `json:"ONBOARDING_VALIDATION_METHODS,omitempty"`
 	ONBOARDINGVERIFICATIONEXPIRYHOURS              *int                            `json:"ONBOARDING_VERIFICATION_EXPIRY_HOURS,omitempty"`
 	ONBOARDINGWICOAPIURL                           *string                         `json:"ONBOARDING_WICO_API_URL,omitempty"`
@@ -16724,7 +16732,6 @@ type ConstanceSettingsRequestForm struct {
 	ONBOARDINGBOLAGSVERKETCLIENTSECRET             *string                         `json:"ONBOARDING_BOLAGSVERKET_CLIENT_SECRET,omitempty"`
 	ONBOARDINGBOLAGSVERKETTOKENAPIURL              *string                         `json:"ONBOARDING_BOLAGSVERKET_TOKEN_API_URL,omitempty"`
 	ONBOARDINGBREGAPIURL                           *string                         `json:"ONBOARDING_BREG_API_URL,omitempty"`
-	ONBOARDINGSUPPORTEDCOUNTRIES                   *[]string                       `json:"ONBOARDING_SUPPORTED_COUNTRIES,omitempty"`
 	ONBOARDINGVALIDATIONMETHODS                    *[]string                       `json:"ONBOARDING_VALIDATION_METHODS,omitempty"`
 	ONBOARDINGVERIFICATIONEXPIRYHOURS              *int                            `json:"ONBOARDING_VERIFICATION_EXPIRY_HOURS,omitempty"`
 	ONBOARDINGWICOAPIURL                           *string                         `json:"ONBOARDING_WICO_API_URL,omitempty"`
@@ -16918,7 +16925,6 @@ type ConstanceSettingsRequestMultipart struct {
 	ONBOARDINGBOLAGSVERKETCLIENTSECRET             *string                         `json:"ONBOARDING_BOLAGSVERKET_CLIENT_SECRET,omitempty"`
 	ONBOARDINGBOLAGSVERKETTOKENAPIURL              *string                         `json:"ONBOARDING_BOLAGSVERKET_TOKEN_API_URL,omitempty"`
 	ONBOARDINGBREGAPIURL                           *string                         `json:"ONBOARDING_BREG_API_URL,omitempty"`
-	ONBOARDINGSUPPORTEDCOUNTRIES                   *[]string                       `json:"ONBOARDING_SUPPORTED_COUNTRIES,omitempty"`
 	ONBOARDINGVALIDATIONMETHODS                    *[]string                       `json:"ONBOARDING_VALIDATION_METHODS,omitempty"`
 	ONBOARDINGVERIFICATIONEXPIRYHOURS              *int                            `json:"ONBOARDING_VERIFICATION_EXPIRY_HOURS,omitempty"`
 	ONBOARDINGWICOAPIURL                           *string                         `json:"ONBOARDING_WICO_API_URL,omitempty"`
@@ -22620,6 +22626,8 @@ type OfferingUsagePolicyRequest struct {
 
 // OfferingUser defines model for OfferingUser.
 type OfferingUser struct {
+	// ConsentData User consent data including uuid, version, and agreement_date
+	ConsentData  *map[string]string  `json:"consent_data"`
 	Created      *time.Time          `json:"created,omitempty"`
 	CustomerName *string             `json:"customer_name,omitempty"`
 	CustomerUuid *openapi_types.UUID `json:"customer_uuid,omitempty"`
@@ -22844,14 +22852,14 @@ type OnboardingRunValidationRequestRequest struct {
 	// BirthDate User's birth date (temporary workaround for Austrian validation)
 	BirthDate *openapi_types.Date `json:"birth_date"`
 
+	// CivilNumber Personal identifier (temporary workaround for Estonian civil_number)
+	CivilNumber *string `json:"civil_number,omitempty"`
+
 	// FirstName User's first name (temporary workaround for Austrian validation)
 	FirstName *string `json:"first_name,omitempty"`
 
 	// LastName User's last name (temporary workaround for Austrian validation)
 	LastName *string `json:"last_name,omitempty"`
-
-	// PersonIdentifier Personal identifier (temporary workaround for Estonian civil_number)
-	PersonIdentifier *string `json:"person_identifier,omitempty"`
 }
 
 // OnboardingVerification defines model for OnboardingVerification.
@@ -27247,6 +27255,15 @@ type PermissionRequest struct {
 	State              *string             `json:"state,omitempty"`
 	Url                *string             `json:"url,omitempty"`
 	Uuid               *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// PersonIdentifierFieldsResponse defines model for PersonIdentifierFieldsResponse.
+type PersonIdentifierFieldsResponse struct {
+	// PersonIdentifierFields Field specification for person identification. For simple identifiers: {type: 'string', field: 'civil_number', ...}. For composite identifiers: {type: 'object', fields: {...}}
+	PersonIdentifierFields map[string]interface{} `json:"person_identifier_fields"`
+
+	// ValidationMethod The validation method identifier
+	ValidationMethod string `json:"validation_method"`
 }
 
 // PlanComponent defines model for PlanComponent.
@@ -44097,6 +44114,15 @@ type OnboardingVerificationsCompletionStatusRetrieveParamsChecklistType string
 
 // OnboardingVerificationsSubmitAnswersJSONBody defines parameters for OnboardingVerificationsSubmitAnswers.
 type OnboardingVerificationsSubmitAnswersJSONBody = []AnswerSubmitRequest
+
+// OnboardingPersonIdentifierFieldsRetrieveParams defines parameters for OnboardingPersonIdentifierFieldsRetrieve.
+type OnboardingPersonIdentifierFieldsRetrieveParams struct {
+	// ValidationMethod Validation method identifier
+	ValidationMethod OnboardingPersonIdentifierFieldsRetrieveParamsValidationMethod `form:"validation_method" json:"validation_method"`
+}
+
+// OnboardingPersonIdentifierFieldsRetrieveParamsValidationMethod defines parameters for OnboardingPersonIdentifierFieldsRetrieve.
+type OnboardingPersonIdentifierFieldsRetrieveParamsValidationMethod string
 
 // OpenportalAllocationUserUsageListParams defines parameters for OpenportalAllocationUserUsageList.
 type OpenportalAllocationUserUsageListParams struct {
@@ -65117,6 +65143,9 @@ type ClientInterface interface {
 	OnboardingVerificationsSubmitAnswersWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	OnboardingVerificationsSubmitAnswers(ctx context.Context, uuid openapi_types.UUID, body OnboardingVerificationsSubmitAnswersJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OnboardingPersonIdentifierFieldsRetrieve request
+	OnboardingPersonIdentifierFieldsRetrieve(ctx context.Context, params *OnboardingPersonIdentifierFieldsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OnboardingSupportedCountriesRetrieve request
 	OnboardingSupportedCountriesRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -86553,6 +86582,18 @@ func (c *Client) OnboardingVerificationsSubmitAnswersWithBody(ctx context.Contex
 
 func (c *Client) OnboardingVerificationsSubmitAnswers(ctx context.Context, uuid openapi_types.UUID, body OnboardingVerificationsSubmitAnswersJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOnboardingVerificationsSubmitAnswersRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) OnboardingPersonIdentifierFieldsRetrieve(ctx context.Context, params *OnboardingPersonIdentifierFieldsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOnboardingPersonIdentifierFieldsRetrieveRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -193124,6 +193165,51 @@ func NewOnboardingVerificationsSubmitAnswersRequestWithBody(server string, uuid 
 	return req, nil
 }
 
+// NewOnboardingPersonIdentifierFieldsRetrieveRequest generates requests for OnboardingPersonIdentifierFieldsRetrieve
+func NewOnboardingPersonIdentifierFieldsRetrieveRequest(server string, params *OnboardingPersonIdentifierFieldsRetrieveParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/onboarding/person-identifier-fields/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "validation_method", runtime.ParamLocationQuery, params.ValidationMethod); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewOnboardingSupportedCountriesRetrieveRequest generates requests for OnboardingSupportedCountriesRetrieve
 func NewOnboardingSupportedCountriesRetrieveRequest(server string) (*http.Request, error) {
 	var err error
@@ -272439,6 +272525,9 @@ type ClientWithResponsesInterface interface {
 
 	OnboardingVerificationsSubmitAnswersWithResponse(ctx context.Context, uuid openapi_types.UUID, body OnboardingVerificationsSubmitAnswersJSONRequestBody, reqEditors ...RequestEditorFn) (*OnboardingVerificationsSubmitAnswersResponse, error)
 
+	// OnboardingPersonIdentifierFieldsRetrieveWithResponse request
+	OnboardingPersonIdentifierFieldsRetrieveWithResponse(ctx context.Context, params *OnboardingPersonIdentifierFieldsRetrieveParams, reqEditors ...RequestEditorFn) (*OnboardingPersonIdentifierFieldsRetrieveResponse, error)
+
 	// OnboardingSupportedCountriesRetrieveWithResponse request
 	OnboardingSupportedCountriesRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*OnboardingSupportedCountriesRetrieveResponse, error)
 
@@ -300031,6 +300120,28 @@ func (r OnboardingVerificationsSubmitAnswersResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r OnboardingVerificationsSubmitAnswersResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type OnboardingPersonIdentifierFieldsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *PersonIdentifierFieldsResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r OnboardingPersonIdentifierFieldsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OnboardingPersonIdentifierFieldsRetrieveResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -332460,6 +332571,15 @@ func (c *ClientWithResponses) OnboardingVerificationsSubmitAnswersWithResponse(c
 		return nil, err
 	}
 	return ParseOnboardingVerificationsSubmitAnswersResponse(rsp)
+}
+
+// OnboardingPersonIdentifierFieldsRetrieveWithResponse request returning *OnboardingPersonIdentifierFieldsRetrieveResponse
+func (c *ClientWithResponses) OnboardingPersonIdentifierFieldsRetrieveWithResponse(ctx context.Context, params *OnboardingPersonIdentifierFieldsRetrieveParams, reqEditors ...RequestEditorFn) (*OnboardingPersonIdentifierFieldsRetrieveResponse, error) {
+	rsp, err := c.OnboardingPersonIdentifierFieldsRetrieve(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOnboardingPersonIdentifierFieldsRetrieveResponse(rsp)
 }
 
 // OnboardingSupportedCountriesRetrieveWithResponse request returning *OnboardingSupportedCountriesRetrieveResponse
@@ -368503,6 +368623,32 @@ func ParseOnboardingVerificationsSubmitAnswersResponse(rsp *http.Response) (*Onb
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest OnboardingVerification
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOnboardingPersonIdentifierFieldsRetrieveResponse parses an HTTP response from a OnboardingPersonIdentifierFieldsRetrieveWithResponse call
+func ParseOnboardingPersonIdentifierFieldsRetrieveResponse(rsp *http.Response) (*OnboardingPersonIdentifierFieldsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OnboardingPersonIdentifierFieldsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest PersonIdentifierFieldsResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
