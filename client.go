@@ -16400,6 +16400,12 @@ type ConstanceSettings struct {
 	TELEMETRYURL                                   *string              `json:"TELEMETRY_URL,omitempty"`
 	TELEMETRYVERSION                               *int                 `json:"TELEMETRY_VERSION,omitempty"`
 	THUMBNAILSIZE                                  *string              `json:"THUMBNAIL_SIZE,omitempty"`
+	USERACTIONSDEFAULTEXPIRATIONREMINDERS          *[]string            `json:"USER_ACTIONS_DEFAULT_EXPIRATION_REMINDERS,omitempty"`
+	USERACTIONSENABLED                             *bool                `json:"USER_ACTIONS_ENABLED,omitempty"`
+	USERACTIONSEXECUTIONRETENTIONDAYS              *int                 `json:"USER_ACTIONS_EXECUTION_RETENTION_DAYS,omitempty"`
+	USERACTIONSHIGHURGENCYNOTIFICATION             *bool                `json:"USER_ACTIONS_HIGH_URGENCY_NOTIFICATION,omitempty"`
+	USERACTIONSNOTIFICATIONTHRESHOLD               *int                 `json:"USER_ACTIONS_NOTIFICATION_THRESHOLD,omitempty"`
+	USERACTIONSPENDINGORDERHOURS                   *int                 `json:"USER_ACTIONS_PENDING_ORDER_HOURS,omitempty"`
 	USERTABLECOLUMNS                               *string              `json:"USER_TABLE_COLUMNS,omitempty"`
 	WALDURAUTHSOCIALROLECLAIM                      *string              `json:"WALDUR_AUTH_SOCIAL_ROLE_CLAIM,omitempty"`
 	WALDURSUPPORTACTIVEBACKENDTYPE                 *string              `json:"WALDUR_SUPPORT_ACTIVE_BACKEND_TYPE,omitempty"`
@@ -16593,6 +16599,12 @@ type ConstanceSettingsRequest struct {
 	TELEMETRYURL                                   *string                         `json:"TELEMETRY_URL,omitempty"`
 	TELEMETRYVERSION                               *int                            `json:"TELEMETRY_VERSION,omitempty"`
 	THUMBNAILSIZE                                  *string                         `json:"THUMBNAIL_SIZE,omitempty"`
+	USERACTIONSDEFAULTEXPIRATIONREMINDERS          *[]string                       `json:"USER_ACTIONS_DEFAULT_EXPIRATION_REMINDERS,omitempty"`
+	USERACTIONSENABLED                             *bool                           `json:"USER_ACTIONS_ENABLED,omitempty"`
+	USERACTIONSEXECUTIONRETENTIONDAYS              *int                            `json:"USER_ACTIONS_EXECUTION_RETENTION_DAYS,omitempty"`
+	USERACTIONSHIGHURGENCYNOTIFICATION             *bool                           `json:"USER_ACTIONS_HIGH_URGENCY_NOTIFICATION,omitempty"`
+	USERACTIONSNOTIFICATIONTHRESHOLD               *int                            `json:"USER_ACTIONS_NOTIFICATION_THRESHOLD,omitempty"`
+	USERACTIONSPENDINGORDERHOURS                   *int                            `json:"USER_ACTIONS_PENDING_ORDER_HOURS,omitempty"`
 	USERTABLECOLUMNS                               *string                         `json:"USER_TABLE_COLUMNS,omitempty"`
 	WALDURAUTHSOCIALROLECLAIM                      *string                         `json:"WALDUR_AUTH_SOCIAL_ROLE_CLAIM,omitempty"`
 	WALDURSUPPORTACTIVEBACKENDTYPE                 *string                         `json:"WALDUR_SUPPORT_ACTIVE_BACKEND_TYPE,omitempty"`
@@ -16786,6 +16798,12 @@ type ConstanceSettingsRequestForm struct {
 	TELEMETRYURL                                   *string                         `json:"TELEMETRY_URL,omitempty"`
 	TELEMETRYVERSION                               *int                            `json:"TELEMETRY_VERSION,omitempty"`
 	THUMBNAILSIZE                                  *string                         `json:"THUMBNAIL_SIZE,omitempty"`
+	USERACTIONSDEFAULTEXPIRATIONREMINDERS          *[]string                       `json:"USER_ACTIONS_DEFAULT_EXPIRATION_REMINDERS,omitempty"`
+	USERACTIONSENABLED                             *bool                           `json:"USER_ACTIONS_ENABLED,omitempty"`
+	USERACTIONSEXECUTIONRETENTIONDAYS              *int                            `json:"USER_ACTIONS_EXECUTION_RETENTION_DAYS,omitempty"`
+	USERACTIONSHIGHURGENCYNOTIFICATION             *bool                           `json:"USER_ACTIONS_HIGH_URGENCY_NOTIFICATION,omitempty"`
+	USERACTIONSNOTIFICATIONTHRESHOLD               *int                            `json:"USER_ACTIONS_NOTIFICATION_THRESHOLD,omitempty"`
+	USERACTIONSPENDINGORDERHOURS                   *int                            `json:"USER_ACTIONS_PENDING_ORDER_HOURS,omitempty"`
 	USERTABLECOLUMNS                               *string                         `json:"USER_TABLE_COLUMNS,omitempty"`
 	WALDURAUTHSOCIALROLECLAIM                      *string                         `json:"WALDUR_AUTH_SOCIAL_ROLE_CLAIM,omitempty"`
 	WALDURSUPPORTACTIVEBACKENDTYPE                 *string                         `json:"WALDUR_SUPPORT_ACTIVE_BACKEND_TYPE,omitempty"`
@@ -16979,6 +16997,12 @@ type ConstanceSettingsRequestMultipart struct {
 	TELEMETRYURL                                   *string                         `json:"TELEMETRY_URL,omitempty"`
 	TELEMETRYVERSION                               *int                            `json:"TELEMETRY_VERSION,omitempty"`
 	THUMBNAILSIZE                                  *string                         `json:"THUMBNAIL_SIZE,omitempty"`
+	USERACTIONSDEFAULTEXPIRATIONREMINDERS          *[]string                       `json:"USER_ACTIONS_DEFAULT_EXPIRATION_REMINDERS,omitempty"`
+	USERACTIONSENABLED                             *bool                           `json:"USER_ACTIONS_ENABLED,omitempty"`
+	USERACTIONSEXECUTIONRETENTIONDAYS              *int                            `json:"USER_ACTIONS_EXECUTION_RETENTION_DAYS,omitempty"`
+	USERACTIONSHIGHURGENCYNOTIFICATION             *bool                           `json:"USER_ACTIONS_HIGH_URGENCY_NOTIFICATION,omitempty"`
+	USERACTIONSNOTIFICATIONTHRESHOLD               *int                            `json:"USER_ACTIONS_NOTIFICATION_THRESHOLD,omitempty"`
+	USERACTIONSPENDINGORDERHOURS                   *int                            `json:"USER_ACTIONS_PENDING_ORDER_HOURS,omitempty"`
 	USERTABLECOLUMNS                               *string                         `json:"USER_TABLE_COLUMNS,omitempty"`
 	WALDURAUTHSOCIALROLECLAIM                      *string                         `json:"WALDUR_AUTH_SOCIAL_ROLE_CLAIM,omitempty"`
 	WALDURSUPPORTACTIVEBACKENDTYPE                 *string                         `json:"WALDUR_SUPPORT_ACTIVE_BACKEND_TYPE,omitempty"`
@@ -32557,6 +32581,15 @@ type ToSConsentDashboard struct {
 type TokenRequest struct {
 	// Token Authentication token for invitation acceptance
 	Token string `json:"token"`
+}
+
+// ToolExecuteRequest defines model for ToolExecuteRequest.
+type ToolExecuteRequest struct {
+	// Arguments Tool arguments.
+	Arguments interface{} `json:"arguments,omitempty"`
+
+	// Tool Name of the tool to execute.
+	Tool string `json:"tool"`
 }
 
 // TotalCustomerCost defines model for TotalCustomerCost.
@@ -52625,6 +52658,9 @@ type CallReviewerPoolsAcceptJSONRequestBody = CallReviewerPoolsAcceptJSONBody
 // CallReviewerPoolsDeclineJSONRequestBody defines body for CallReviewerPoolsDecline for application/json ContentType.
 type CallReviewerPoolsDeclineJSONRequestBody = InvitationDeclineRequest
 
+// ChatToolsExecuteJSONRequestBody defines body for ChatToolsExecute for application/json ContentType.
+type ChatToolsExecuteJSONRequestBody = ToolExecuteRequest
+
 // ChatStreamJSONRequestBody defines body for ChatStream for application/json ContentType.
 type ChatStreamJSONRequestBody = ChatRequestRequest
 
@@ -61833,6 +61869,14 @@ type ClientInterface interface {
 
 	// CeleryStatsRetrieve request
 	CeleryStatsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChatToolsExecuteWithBody request with any body
+	ChatToolsExecuteWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ChatToolsExecute(ctx context.Context, body ChatToolsExecuteJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChatInvoke request
+	ChatInvoke(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ChatStreamWithBody request with any body
 	ChatStreamWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -72044,6 +72088,42 @@ func (c *Client) CallRoundsReviewersList(ctx context.Context, uuid openapi_types
 
 func (c *Client) CeleryStatsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCeleryStatsRetrieveRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChatToolsExecuteWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatToolsExecuteRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChatToolsExecute(ctx context.Context, body ChatToolsExecuteJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatToolsExecuteRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChatInvoke(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatInvokeRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -119280,6 +119360,73 @@ func NewCeleryStatsRetrieveRequest(server string) (*http.Request, error) {
 	}
 
 	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewChatToolsExecuteRequest calls the generic ChatToolsExecute builder with application/json body
+func NewChatToolsExecuteRequest(server string, body ChatToolsExecuteJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewChatToolsExecuteRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewChatToolsExecuteRequestWithBody generates requests for ChatToolsExecute with any type of body
+func NewChatToolsExecuteRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/chat-tools/execute/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewChatInvokeRequest generates requests for ChatInvoke
+func NewChatInvokeRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/chat/invoke/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
@@ -269215,6 +269362,14 @@ type ClientWithResponsesInterface interface {
 	// CeleryStatsRetrieveWithResponse request
 	CeleryStatsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*CeleryStatsRetrieveResponse, error)
 
+	// ChatToolsExecuteWithBodyWithResponse request with any body
+	ChatToolsExecuteWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatToolsExecuteResponse, error)
+
+	ChatToolsExecuteWithResponse(ctx context.Context, body ChatToolsExecuteJSONRequestBody, reqEditors ...RequestEditorFn) (*ChatToolsExecuteResponse, error)
+
+	// ChatInvokeWithResponse request
+	ChatInvokeWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ChatInvokeResponse, error)
+
 	// ChatStreamWithBodyWithResponse request with any body
 	ChatStreamWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatStreamResponse, error)
 
@@ -280747,6 +280902,50 @@ func (r CeleryStatsRetrieveResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r CeleryStatsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChatToolsExecuteResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *map[string]interface{}
+}
+
+// Status returns HTTPResponse.Status
+func (r ChatToolsExecuteResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChatToolsExecuteResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChatInvokeResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *string
+}
+
+// Status returns HTTPResponse.Status
+func (r ChatInvokeResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChatInvokeResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -321991,6 +322190,32 @@ func (c *ClientWithResponses) CeleryStatsRetrieveWithResponse(ctx context.Contex
 	return ParseCeleryStatsRetrieveResponse(rsp)
 }
 
+// ChatToolsExecuteWithBodyWithResponse request with arbitrary body returning *ChatToolsExecuteResponse
+func (c *ClientWithResponses) ChatToolsExecuteWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatToolsExecuteResponse, error) {
+	rsp, err := c.ChatToolsExecuteWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChatToolsExecuteResponse(rsp)
+}
+
+func (c *ClientWithResponses) ChatToolsExecuteWithResponse(ctx context.Context, body ChatToolsExecuteJSONRequestBody, reqEditors ...RequestEditorFn) (*ChatToolsExecuteResponse, error) {
+	rsp, err := c.ChatToolsExecute(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChatToolsExecuteResponse(rsp)
+}
+
+// ChatInvokeWithResponse request returning *ChatInvokeResponse
+func (c *ClientWithResponses) ChatInvokeWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ChatInvokeResponse, error) {
+	rsp, err := c.ChatInvoke(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChatInvokeResponse(rsp)
+}
+
 // ChatStreamWithBodyWithResponse request with arbitrary body returning *ChatStreamResponse
 func (c *ClientWithResponses) ChatStreamWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatStreamResponse, error) {
 	rsp, err := c.ChatStreamWithBody(ctx, contentType, body, reqEditors...)
@@ -348205,6 +348430,58 @@ func ParseCeleryStatsRetrieveResponse(rsp *http.Response) (*CeleryStatsRetrieveR
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest CeleryStatsResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseChatToolsExecuteResponse parses an HTTP response from a ChatToolsExecuteWithResponse call
+func ParseChatToolsExecuteResponse(rsp *http.Response) (*ChatToolsExecuteResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChatToolsExecuteResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest map[string]interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseChatInvokeResponse parses an HTTP response from a ChatInvokeWithResponse call
+func ParseChatInvokeResponse(rsp *http.Response) (*ChatInvokeResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChatInvokeResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest string
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
