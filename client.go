@@ -20484,6 +20484,9 @@ type MergedPluginOptions struct {
 	// SupportsPausing If set to True, it will be possible to pause resources
 	SupportsPausing *bool `json:"supports_pausing,omitempty"`
 
+	// UniqueResourcePerAttribute Attribute name to enforce uniqueness per value. E.g., 'storage_data_type' ensures only one resource per storage type per project.
+	UniqueResourcePerAttribute *string `json:"unique_resource_per_attribute,omitempty"`
+
 	// UsernameAnonymizedPrefix GLAuth prefix for anonymized usernames
 	UsernameAnonymizedPrefix *string `json:"username_anonymized_prefix,omitempty"`
 
@@ -20674,6 +20677,9 @@ type MergedPluginOptionsRequest struct {
 
 	// SupportsPausing If set to True, it will be possible to pause resources
 	SupportsPausing *bool `json:"supports_pausing,omitempty"`
+
+	// UniqueResourcePerAttribute Attribute name to enforce uniqueness per value. E.g., 'storage_data_type' ensures only one resource per storage type per project.
+	UniqueResourcePerAttribute *string `json:"unique_resource_per_attribute,omitempty"`
 
 	// UsernameAnonymizedPrefix GLAuth prefix for anonymized usernames
 	UsernameAnonymizedPrefix *string `json:"username_anonymized_prefix,omitempty"`
