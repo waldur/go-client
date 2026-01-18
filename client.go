@@ -15836,6 +15836,66 @@ type ChecklistTemplate struct {
 // ChecklistTypeEnum defines model for ChecklistTypeEnum.
 type ChecklistTypeEnum string
 
+// CircuitBreakerConfig defines model for CircuitBreakerConfig.
+type CircuitBreakerConfig struct {
+	// FailureThreshold Number of failures before opening circuit
+	FailureThreshold *int `json:"failure_threshold,omitempty"`
+
+	// RecoveryTimeout Seconds to wait before attempting recovery
+	RecoveryTimeout *int `json:"recovery_timeout,omitempty"`
+
+	// SuccessThreshold Successful calls needed in half-open state to close
+	SuccessThreshold *int `json:"success_threshold,omitempty"`
+}
+
+// CircuitBreakerReset defines model for CircuitBreakerReset.
+type CircuitBreakerReset struct {
+	// State New circuit breaker state after reset
+	State *string `json:"state,omitempty"`
+
+	// Status Operation status
+	Status *string `json:"status,omitempty"`
+}
+
+// CircuitBreakerStateChange defines model for CircuitBreakerStateChange.
+type CircuitBreakerStateChange struct {
+	// FromState Previous state
+	FromState *string `json:"from_state"`
+
+	// Reason Reason for state change
+	Reason *string `json:"reason,omitempty"`
+
+	// Timestamp Unix timestamp of state change
+	Timestamp *float64 `json:"timestamp,omitempty"`
+
+	// ToState New state
+	ToState *string `json:"to_state,omitempty"`
+}
+
+// CircuitBreakerStatus defines model for CircuitBreakerStatus.
+type CircuitBreakerStatus struct {
+	// Config Circuit breaker configuration
+	Config *CircuitBreakerConfig `json:"config,omitempty"`
+
+	// FailureCount Number of consecutive failures
+	FailureCount *int `json:"failure_count,omitempty"`
+
+	// LastFailureTime Unix timestamp of last failure
+	LastFailureTime *float64 `json:"last_failure_time"`
+
+	// LastStateChange Unix timestamp of last state change
+	LastStateChange *float64 `json:"last_state_change"`
+
+	// State Current state: closed, open, or half_open
+	State *string `json:"state,omitempty"`
+
+	// StateHistory Recent state transitions (last 50)
+	StateHistory *[]CircuitBreakerStateChange `json:"state_history,omitempty"`
+
+	// SuccessCount Successful calls since last state change
+	SuccessCount *int `json:"success_count,omitempty"`
+}
+
 // CleanupRequestRequest defines model for CleanupRequestRequest.
 type CleanupRequestRequest struct {
 	// DryRun If true, only return what would be deleted without actually deleting
@@ -17813,6 +17873,24 @@ type CustomerUser struct {
 	Uuid     *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
+// DLQQueue defines model for DLQQueue.
+type DLQQueue struct {
+	// Consumers Number of consumers attached
+	Consumers *int `json:"consumers,omitempty"`
+
+	// Messages Total messages in DLQ
+	Messages *int `json:"messages,omitempty"`
+
+	// MessagesReady Messages ready for delivery
+	MessagesReady *int `json:"messages_ready,omitempty"`
+
+	// QueueName DLQ queue name
+	QueueName *string `json:"queue_name,omitempty"`
+
+	// Vhost Virtual host name
+	Vhost *string `json:"vhost,omitempty"`
+}
+
 // DataVolumeRequest defines model for DataVolumeRequest.
 type DataVolumeRequest struct {
 	Filesystem *string `json:"filesystem,omitempty"`
@@ -17867,6 +17945,21 @@ type DatabaseStatsResponse struct {
 
 	// Transactions Transaction commit/rollback statistics
 	Transactions *TransactionStats `json:"transactions,omitempty"`
+}
+
+// DeadLetterQueue defines model for DeadLetterQueue.
+type DeadLetterQueue struct {
+	// DlqCount Number of DLQ queues found
+	DlqCount *int `json:"dlq_count,omitempty"`
+
+	// DlqQueues List of DLQ queues with their statistics
+	DlqQueues *[]DLQQueue `json:"dlq_queues,omitempty"`
+
+	// Note Informational note about DLQs
+	Note *string `json:"note,omitempty"`
+
+	// TotalDlqMessages Total messages across all DLQs
+	TotalDlqMessages *int `json:"total_dlq_messages,omitempty"`
 }
 
 // DecidingEntityEnum defines model for DecidingEntityEnum.
@@ -20956,6 +21049,27 @@ type MessageResponse struct {
 	Message string `json:"message"`
 }
 
+// MessageStateCache defines model for MessageStateCache.
+type MessageStateCache struct {
+	// CacheTtl Cache TTL in seconds
+	CacheTtl *int `json:"cache_ttl,omitempty"`
+
+	// Description Cache description
+	Description *string `json:"description,omitempty"`
+
+	// Filter Applied filters
+	Filter *MessageStateCacheFilter `json:"filter,omitempty"`
+}
+
+// MessageStateCacheFilter defines model for MessageStateCacheFilter.
+type MessageStateCacheFilter struct {
+	// MessageType Filter by message type
+	MessageType *string `json:"message_type"`
+
+	// ResourceUuid Filter by resource UUID
+	ResourceUuid *string `json:"resource_uuid"`
+}
+
 // MessageTemplate defines model for MessageTemplate.
 type MessageTemplate struct {
 	Body    string              `json:"body"`
@@ -20970,6 +21084,12 @@ type MessageTemplateRequest struct {
 	Body    string `json:"body"`
 	Name    string `json:"name"`
 	Subject string `json:"subject"`
+}
+
+// MetricsReset defines model for MetricsReset.
+type MetricsReset struct {
+	// Status Operation status
+	Status *string `json:"status,omitempty"`
 }
 
 // MigrationCreate defines model for MigrationCreate.
@@ -28719,6 +28839,78 @@ type PublicOfferingDetails_ScopeState struct {
 	union json.RawMessage
 }
 
+// PublishingMetrics defines model for PublishingMetrics.
+type PublishingMetrics struct {
+	// AvgPublishTimeMs Average message publish latency in milliseconds
+	AvgPublishTimeMs *float64 `json:"avg_publish_time_ms,omitempty"`
+
+	// CircuitBreakerTrips Number of times circuit breaker opened
+	CircuitBreakerTrips *int `json:"circuit_breaker_trips,omitempty"`
+
+	// LastPublishTime Unix timestamp of last publish attempt
+	LastPublishTime *float64 `json:"last_publish_time"`
+
+	// MessagesFailed Total failed message attempts
+	MessagesFailed *int `json:"messages_failed,omitempty"`
+
+	// MessagesRetried Messages that required retry
+	MessagesRetried *int `json:"messages_retried,omitempty"`
+
+	// MessagesSent Total messages successfully sent
+	MessagesSent *int `json:"messages_sent,omitempty"`
+
+	// MessagesSkipped Messages skipped due to circuit breaker
+	MessagesSkipped *int `json:"messages_skipped,omitempty"`
+
+	// RateLimiterRejections Messages rejected by rate limiter
+	RateLimiterRejections *int `json:"rate_limiter_rejections,omitempty"`
+}
+
+// PubsubCircuitBreakerSummary defines model for PubsubCircuitBreakerSummary.
+type PubsubCircuitBreakerSummary struct {
+	// FailureCount Number of consecutive failures
+	FailureCount *int `json:"failure_count,omitempty"`
+
+	// Healthy Whether circuit breaker is in healthy state (closed)
+	Healthy *bool `json:"healthy,omitempty"`
+
+	// State Current state: closed, open, or half_open
+	State *string `json:"state,omitempty"`
+}
+
+// PubsubMetricsSummary defines model for PubsubMetricsSummary.
+type PubsubMetricsSummary struct {
+	// AvgLatencyMs Average publish latency in milliseconds
+	AvgLatencyMs *float64 `json:"avg_latency_ms,omitempty"`
+
+	// FailureRate Failure rate as percentage string
+	FailureRate *string `json:"failure_rate,omitempty"`
+
+	// MessagesFailed Total messages failed
+	MessagesFailed *int `json:"messages_failed,omitempty"`
+
+	// MessagesSent Total messages sent
+	MessagesSent *int `json:"messages_sent,omitempty"`
+}
+
+// PubsubOverview defines model for PubsubOverview.
+type PubsubOverview struct {
+	// CircuitBreaker Circuit breaker summary
+	CircuitBreaker *PubsubCircuitBreakerSummary `json:"circuit_breaker,omitempty"`
+
+	// HealthStatus Overall health: healthy, degraded, or critical
+	HealthStatus *string `json:"health_status,omitempty"`
+
+	// Issues List of current issues affecting health
+	Issues *[]string `json:"issues,omitempty"`
+
+	// LastUpdated Timestamp when overview was generated
+	LastUpdated *time.Time `json:"last_updated,omitempty"`
+
+	// Metrics Publishing metrics summary
+	Metrics *PubsubMetricsSummary `json:"metrics,omitempty"`
+}
+
 // PullMarketplaceScriptResourceRequest defines model for PullMarketplaceScriptResourceRequest.
 type PullMarketplaceScriptResourceRequest struct {
 	ResourceUuid openapi_types.UUID `json:"resource_uuid"`
@@ -32442,6 +32634,21 @@ type SubresourceOffering struct {
 	Uuid *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
+// SubscriptionQueuesOverview defines model for SubscriptionQueuesOverview.
+type SubscriptionQueuesOverview struct {
+	// TopQueuesByMessages Top 10 queues by message count
+	TopQueuesByMessages *[]TopQueue `json:"top_queues_by_messages,omitempty"`
+
+	// TotalMessages Total messages across all subscription queues
+	TotalMessages *int `json:"total_messages,omitempty"`
+
+	// TotalQueues Total number of subscription queues
+	TotalQueues *int `json:"total_queues,omitempty"`
+
+	// TotalVhosts Total number of vhosts with subscription queues
+	TotalVhosts *int `json:"total_vhosts,omitempty"`
+}
+
 // SuggestAlternativeReviewers defines model for SuggestAlternativeReviewers.
 type SuggestAlternativeReviewers struct {
 	// Suggestions List of alternative reviewers with affinity scores
@@ -32590,6 +32797,21 @@ type ToolExecuteRequest struct {
 
 	// Tool Name of the tool to execute.
 	Tool string `json:"tool"`
+}
+
+// TopQueue defines model for TopQueue.
+type TopQueue struct {
+	// Consumers Number of consumers attached
+	Consumers *int `json:"consumers,omitempty"`
+
+	// Messages Number of messages in queue
+	Messages *int `json:"messages,omitempty"`
+
+	// Name Queue name
+	Name *string `json:"name,omitempty"`
+
+	// Vhost Virtual host name
+	Vhost *string `json:"vhost,omitempty"`
 }
 
 // TotalCustomerCost defines model for TotalCustomerCost.
@@ -62258,6 +62480,30 @@ type ClientInterface interface {
 	// DatabaseStatsRetrieve request
 	DatabaseStatsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// DebugPubsubCircuitBreakerRetrieve request
+	DebugPubsubCircuitBreakerRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// DebugPubsubCircuitBreakerReset request
+	DebugPubsubCircuitBreakerReset(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// DebugPubsubDeadLetterQueueRetrieve request
+	DebugPubsubDeadLetterQueueRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// DebugPubsubMessageStateCacheRetrieve request
+	DebugPubsubMessageStateCacheRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// DebugPubsubMetricsRetrieve request
+	DebugPubsubMetricsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// DebugPubsubMetricsReset request
+	DebugPubsubMetricsReset(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// DebugPubsubOverviewRetrieve request
+	DebugPubsubOverviewRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// DebugPubsubQueuesRetrieve request
+	DebugPubsubQueuesRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// DigitaloceanDropletsList request
 	DigitaloceanDropletsList(ctx context.Context, params *DigitaloceanDropletsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -73816,6 +74062,102 @@ func (c *Client) DailyQuotasRetrieve(ctx context.Context, params *DailyQuotasRet
 
 func (c *Client) DatabaseStatsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewDatabaseStatsRetrieveRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DebugPubsubCircuitBreakerRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDebugPubsubCircuitBreakerRetrieveRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DebugPubsubCircuitBreakerReset(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDebugPubsubCircuitBreakerResetRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DebugPubsubDeadLetterQueueRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDebugPubsubDeadLetterQueueRetrieveRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DebugPubsubMessageStateCacheRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDebugPubsubMessageStateCacheRetrieveRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DebugPubsubMetricsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDebugPubsubMetricsRetrieveRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DebugPubsubMetricsReset(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDebugPubsubMetricsResetRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DebugPubsubOverviewRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDebugPubsubOverviewRetrieveRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DebugPubsubQueuesRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDebugPubsubQueuesRetrieveRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -127323,6 +127665,222 @@ func NewDatabaseStatsRetrieveRequest(server string) (*http.Request, error) {
 	}
 
 	operationPath := fmt.Sprintf("/api/database-stats/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewDebugPubsubCircuitBreakerRetrieveRequest generates requests for DebugPubsubCircuitBreakerRetrieve
+func NewDebugPubsubCircuitBreakerRetrieveRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/debug/pubsub/circuit_breaker/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewDebugPubsubCircuitBreakerResetRequest generates requests for DebugPubsubCircuitBreakerReset
+func NewDebugPubsubCircuitBreakerResetRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/debug/pubsub/circuit_breaker_reset/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewDebugPubsubDeadLetterQueueRetrieveRequest generates requests for DebugPubsubDeadLetterQueueRetrieve
+func NewDebugPubsubDeadLetterQueueRetrieveRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/debug/pubsub/dead_letter_queue/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewDebugPubsubMessageStateCacheRetrieveRequest generates requests for DebugPubsubMessageStateCacheRetrieve
+func NewDebugPubsubMessageStateCacheRetrieveRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/debug/pubsub/message_state_cache/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewDebugPubsubMetricsRetrieveRequest generates requests for DebugPubsubMetricsRetrieve
+func NewDebugPubsubMetricsRetrieveRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/debug/pubsub/metrics/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewDebugPubsubMetricsResetRequest generates requests for DebugPubsubMetricsReset
+func NewDebugPubsubMetricsResetRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/debug/pubsub/metrics_reset/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewDebugPubsubOverviewRetrieveRequest generates requests for DebugPubsubOverviewRetrieve
+func NewDebugPubsubOverviewRetrieveRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/debug/pubsub/overview/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewDebugPubsubQueuesRetrieveRequest generates requests for DebugPubsubQueuesRetrieve
+func NewDebugPubsubQueuesRetrieveRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/debug/pubsub/queues/")
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -269750,6 +270308,30 @@ type ClientWithResponsesInterface interface {
 	// DatabaseStatsRetrieveWithResponse request
 	DatabaseStatsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DatabaseStatsRetrieveResponse, error)
 
+	// DebugPubsubCircuitBreakerRetrieveWithResponse request
+	DebugPubsubCircuitBreakerRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DebugPubsubCircuitBreakerRetrieveResponse, error)
+
+	// DebugPubsubCircuitBreakerResetWithResponse request
+	DebugPubsubCircuitBreakerResetWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DebugPubsubCircuitBreakerResetResponse, error)
+
+	// DebugPubsubDeadLetterQueueRetrieveWithResponse request
+	DebugPubsubDeadLetterQueueRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DebugPubsubDeadLetterQueueRetrieveResponse, error)
+
+	// DebugPubsubMessageStateCacheRetrieveWithResponse request
+	DebugPubsubMessageStateCacheRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DebugPubsubMessageStateCacheRetrieveResponse, error)
+
+	// DebugPubsubMetricsRetrieveWithResponse request
+	DebugPubsubMetricsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DebugPubsubMetricsRetrieveResponse, error)
+
+	// DebugPubsubMetricsResetWithResponse request
+	DebugPubsubMetricsResetWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DebugPubsubMetricsResetResponse, error)
+
+	// DebugPubsubOverviewRetrieveWithResponse request
+	DebugPubsubOverviewRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DebugPubsubOverviewRetrieveResponse, error)
+
+	// DebugPubsubQueuesRetrieveWithResponse request
+	DebugPubsubQueuesRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DebugPubsubQueuesRetrieveResponse, error)
+
 	// DigitaloceanDropletsListWithResponse request
 	DigitaloceanDropletsListWithResponse(ctx context.Context, params *DigitaloceanDropletsListParams, reqEditors ...RequestEditorFn) (*DigitaloceanDropletsListResponse, error)
 
@@ -283076,6 +283658,184 @@ func (r DatabaseStatsRetrieveResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r DatabaseStatsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type DebugPubsubCircuitBreakerRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CircuitBreakerStatus
+}
+
+// Status returns HTTPResponse.Status
+func (r DebugPubsubCircuitBreakerRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DebugPubsubCircuitBreakerRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type DebugPubsubCircuitBreakerResetResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CircuitBreakerReset
+}
+
+// Status returns HTTPResponse.Status
+func (r DebugPubsubCircuitBreakerResetResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DebugPubsubCircuitBreakerResetResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type DebugPubsubDeadLetterQueueRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *DeadLetterQueue
+	JSON503      *RmqStatsError
+}
+
+// Status returns HTTPResponse.Status
+func (r DebugPubsubDeadLetterQueueRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DebugPubsubDeadLetterQueueRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type DebugPubsubMessageStateCacheRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *MessageStateCache
+}
+
+// Status returns HTTPResponse.Status
+func (r DebugPubsubMessageStateCacheRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DebugPubsubMessageStateCacheRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type DebugPubsubMetricsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *PublishingMetrics
+}
+
+// Status returns HTTPResponse.Status
+func (r DebugPubsubMetricsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DebugPubsubMetricsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type DebugPubsubMetricsResetResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *MetricsReset
+}
+
+// Status returns HTTPResponse.Status
+func (r DebugPubsubMetricsResetResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DebugPubsubMetricsResetResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type DebugPubsubOverviewRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *PubsubOverview
+}
+
+// Status returns HTTPResponse.Status
+func (r DebugPubsubOverviewRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DebugPubsubOverviewRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type DebugPubsubQueuesRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SubscriptionQueuesOverview
+	JSON503      *RmqStatsError
+}
+
+// Status returns HTTPResponse.Status
+func (r DebugPubsubQueuesRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DebugPubsubQueuesRetrieveResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -323442,6 +324202,78 @@ func (c *ClientWithResponses) DatabaseStatsRetrieveWithResponse(ctx context.Cont
 	return ParseDatabaseStatsRetrieveResponse(rsp)
 }
 
+// DebugPubsubCircuitBreakerRetrieveWithResponse request returning *DebugPubsubCircuitBreakerRetrieveResponse
+func (c *ClientWithResponses) DebugPubsubCircuitBreakerRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DebugPubsubCircuitBreakerRetrieveResponse, error) {
+	rsp, err := c.DebugPubsubCircuitBreakerRetrieve(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDebugPubsubCircuitBreakerRetrieveResponse(rsp)
+}
+
+// DebugPubsubCircuitBreakerResetWithResponse request returning *DebugPubsubCircuitBreakerResetResponse
+func (c *ClientWithResponses) DebugPubsubCircuitBreakerResetWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DebugPubsubCircuitBreakerResetResponse, error) {
+	rsp, err := c.DebugPubsubCircuitBreakerReset(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDebugPubsubCircuitBreakerResetResponse(rsp)
+}
+
+// DebugPubsubDeadLetterQueueRetrieveWithResponse request returning *DebugPubsubDeadLetterQueueRetrieveResponse
+func (c *ClientWithResponses) DebugPubsubDeadLetterQueueRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DebugPubsubDeadLetterQueueRetrieveResponse, error) {
+	rsp, err := c.DebugPubsubDeadLetterQueueRetrieve(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDebugPubsubDeadLetterQueueRetrieveResponse(rsp)
+}
+
+// DebugPubsubMessageStateCacheRetrieveWithResponse request returning *DebugPubsubMessageStateCacheRetrieveResponse
+func (c *ClientWithResponses) DebugPubsubMessageStateCacheRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DebugPubsubMessageStateCacheRetrieveResponse, error) {
+	rsp, err := c.DebugPubsubMessageStateCacheRetrieve(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDebugPubsubMessageStateCacheRetrieveResponse(rsp)
+}
+
+// DebugPubsubMetricsRetrieveWithResponse request returning *DebugPubsubMetricsRetrieveResponse
+func (c *ClientWithResponses) DebugPubsubMetricsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DebugPubsubMetricsRetrieveResponse, error) {
+	rsp, err := c.DebugPubsubMetricsRetrieve(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDebugPubsubMetricsRetrieveResponse(rsp)
+}
+
+// DebugPubsubMetricsResetWithResponse request returning *DebugPubsubMetricsResetResponse
+func (c *ClientWithResponses) DebugPubsubMetricsResetWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DebugPubsubMetricsResetResponse, error) {
+	rsp, err := c.DebugPubsubMetricsReset(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDebugPubsubMetricsResetResponse(rsp)
+}
+
+// DebugPubsubOverviewRetrieveWithResponse request returning *DebugPubsubOverviewRetrieveResponse
+func (c *ClientWithResponses) DebugPubsubOverviewRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DebugPubsubOverviewRetrieveResponse, error) {
+	rsp, err := c.DebugPubsubOverviewRetrieve(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDebugPubsubOverviewRetrieveResponse(rsp)
+}
+
+// DebugPubsubQueuesRetrieveWithResponse request returning *DebugPubsubQueuesRetrieveResponse
+func (c *ClientWithResponses) DebugPubsubQueuesRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DebugPubsubQueuesRetrieveResponse, error) {
+	rsp, err := c.DebugPubsubQueuesRetrieve(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDebugPubsubQueuesRetrieveResponse(rsp)
+}
+
 // DigitaloceanDropletsListWithResponse request returning *DigitaloceanDropletsListResponse
 func (c *ClientWithResponses) DigitaloceanDropletsListWithResponse(ctx context.Context, params *DigitaloceanDropletsListParams, reqEditors ...RequestEditorFn) (*DigitaloceanDropletsListResponse, error) {
 	rsp, err := c.DigitaloceanDropletsList(ctx, params, reqEditors...)
@@ -350774,6 +351606,228 @@ func ParseDatabaseStatsRetrieveResponse(rsp *http.Response) (*DatabaseStatsRetri
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseDebugPubsubCircuitBreakerRetrieveResponse parses an HTTP response from a DebugPubsubCircuitBreakerRetrieveWithResponse call
+func ParseDebugPubsubCircuitBreakerRetrieveResponse(rsp *http.Response) (*DebugPubsubCircuitBreakerRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DebugPubsubCircuitBreakerRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CircuitBreakerStatus
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseDebugPubsubCircuitBreakerResetResponse parses an HTTP response from a DebugPubsubCircuitBreakerResetWithResponse call
+func ParseDebugPubsubCircuitBreakerResetResponse(rsp *http.Response) (*DebugPubsubCircuitBreakerResetResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DebugPubsubCircuitBreakerResetResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CircuitBreakerReset
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseDebugPubsubDeadLetterQueueRetrieveResponse parses an HTTP response from a DebugPubsubDeadLetterQueueRetrieveWithResponse call
+func ParseDebugPubsubDeadLetterQueueRetrieveResponse(rsp *http.Response) (*DebugPubsubDeadLetterQueueRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DebugPubsubDeadLetterQueueRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest DeadLetterQueue
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
+		var dest RmqStatsError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON503 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseDebugPubsubMessageStateCacheRetrieveResponse parses an HTTP response from a DebugPubsubMessageStateCacheRetrieveWithResponse call
+func ParseDebugPubsubMessageStateCacheRetrieveResponse(rsp *http.Response) (*DebugPubsubMessageStateCacheRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DebugPubsubMessageStateCacheRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest MessageStateCache
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseDebugPubsubMetricsRetrieveResponse parses an HTTP response from a DebugPubsubMetricsRetrieveWithResponse call
+func ParseDebugPubsubMetricsRetrieveResponse(rsp *http.Response) (*DebugPubsubMetricsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DebugPubsubMetricsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest PublishingMetrics
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseDebugPubsubMetricsResetResponse parses an HTTP response from a DebugPubsubMetricsResetWithResponse call
+func ParseDebugPubsubMetricsResetResponse(rsp *http.Response) (*DebugPubsubMetricsResetResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DebugPubsubMetricsResetResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest MetricsReset
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseDebugPubsubOverviewRetrieveResponse parses an HTTP response from a DebugPubsubOverviewRetrieveWithResponse call
+func ParseDebugPubsubOverviewRetrieveResponse(rsp *http.Response) (*DebugPubsubOverviewRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DebugPubsubOverviewRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest PubsubOverview
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseDebugPubsubQueuesRetrieveResponse parses an HTTP response from a DebugPubsubQueuesRetrieveWithResponse call
+func ParseDebugPubsubQueuesRetrieveResponse(rsp *http.Response) (*DebugPubsubQueuesRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DebugPubsubQueuesRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SubscriptionQueuesOverview
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
+		var dest RmqStatsError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON503 = &dest
 
 	}
 
