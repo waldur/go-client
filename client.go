@@ -15679,11 +15679,20 @@ type ChatResponse struct {
 	// E Error message.
 	E *string `json:"e,omitempty"`
 
-	// K Component Alias (e.g. 'markdown', 'code').
+	// H Table headers.
+	H *[]interface{} `json:"h,omitempty"`
+
+	// K Component Alias (e.g. 'markdown', 'code', 'table').
 	K *string `json:"k,omitempty"`
 
 	// M System metadata.
 	M *map[string]interface{} `json:"m,omitempty"`
+
+	// N Total row count.
+	N *int `json:"n,omitempty"`
+
+	// R Table rows.
+	R *[]interface{} `json:"r,omitempty"`
 
 	// T Tag or language for dynamic blocks.
 	T *string `json:"t,omitempty"`
