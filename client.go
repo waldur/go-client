@@ -19183,6 +19183,32 @@ type ImportResourceRequest struct {
 	Project openapi_types.UUID `json:"project"`
 }
 
+// ImportUsageItemRequest defines model for ImportUsageItemRequest.
+type ImportUsageItemRequest struct {
+	ArticleCode         *string             `json:"article_code,omitempty"`
+	CustomerName        *string             `json:"customer_name,omitempty"`
+	CustomerUuid        *openapi_types.UUID `json:"customer_uuid,omitempty"`
+	Name                string              `json:"name"`
+	OfferingName        *string             `json:"offering_name,omitempty"`
+	PlanName            *string             `json:"plan_name,omitempty"`
+	ServiceProviderName *string             `json:"service_provider_name,omitempty"`
+	UnitPrice           string              `json:"unit_price"`
+}
+
+// ImportUsageRequest defines model for ImportUsageRequest.
+type ImportUsageRequest struct {
+	Items []ImportUsageItemRequest `json:"items"`
+	Month int                      `json:"month"`
+	Year  int                      `json:"year"`
+}
+
+// ImportUsageResponse defines model for ImportUsageResponse.
+type ImportUsageResponse struct {
+	Created int                 `json:"created"`
+	Errors  []map[string]string `json:"errors"`
+	Skipped int                 `json:"skipped"`
+}
+
 // ImportableResource defines model for ImportableResource.
 type ImportableResource struct {
 	// BackendId Backend identifier of the resource
@@ -19464,7 +19490,7 @@ type InvoiceItem struct {
 	Name         *string             `json:"name,omitempty"`
 	Price        *float64            `json:"price,omitempty"`
 	ProjectName  *string             `json:"project_name,omitempty"`
-	ProjectUuid  *openapi_types.UUID `json:"project_uuid,omitempty"`
+	ProjectUuid  *openapi_types.UUID `json:"project_uuid"`
 	Quantity     *string             `json:"quantity,omitempty"`
 	Resource     *string             `json:"resource"`
 	ResourceName *string             `json:"resource_name,omitempty"`
@@ -19494,7 +19520,9 @@ type InvoiceItemCompensationRequest struct {
 
 // InvoiceItemDetail defines model for InvoiceItemDetail.
 type InvoiceItemDetail struct {
-	ArticleCode *string `json:"article_code,omitempty"`
+	ArticleCode  *string             `json:"article_code,omitempty"`
+	CustomerName *string             `json:"customer_name,omitempty"`
+	CustomerUuid *openapi_types.UUID `json:"customer_uuid,omitempty"`
 
 	// Details Stores data about scope
 	Details interface{} `json:"details,omitempty"`
@@ -19508,6 +19536,9 @@ type InvoiceItemDetail struct {
 	Name                  *string             `json:"name,omitempty"`
 	OfferingComponentType *string             `json:"offering_component_type"`
 	OfferingUuid          *openapi_types.UUID `json:"offering_uuid,omitempty"`
+	Price                 *float64            `json:"price,omitempty"`
+	ProjectName           *string             `json:"project_name,omitempty"`
+	ProjectUuid           *openapi_types.UUID `json:"project_uuid"`
 	Quantity              *string             `json:"quantity,omitempty"`
 	Resource              *string             `json:"resource"`
 
@@ -53014,6 +53045,9 @@ type InvoiceItemsMigrateToJSONRequestBody = InvoiceItemMigrateToRequest
 // InvoiceSendFinancialReportByMailJSONRequestBody defines body for InvoiceSendFinancialReportByMail for application/json ContentType.
 type InvoiceSendFinancialReportByMailJSONRequestBody = FinancialReportEmailRequest
 
+// InvoicesImportUsageJSONRequestBody defines body for InvoicesImportUsage for application/json ContentType.
+type InvoicesImportUsageJSONRequestBody = ImportUsageRequest
+
 // InvoicesPaidJSONRequestBody defines body for InvoicesPaid for application/json ContentType.
 type InvoicesPaidJSONRequestBody = PaidRequest
 
@@ -62756,6 +62790,11 @@ type ClientInterface interface {
 
 	// InvoicesGrowthCount request
 	InvoicesGrowthCount(ctx context.Context, params *InvoicesGrowthCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// InvoicesImportUsageWithBody request with any body
+	InvoicesImportUsageWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	InvoicesImportUsage(ctx context.Context, body InvoicesImportUsageJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// InvoicesRetrieve request
 	InvoicesRetrieve(ctx context.Context, uuid openapi_types.UUID, params *InvoicesRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -75552,6 +75591,30 @@ func (c *Client) InvoicesGrowthRetrieve(ctx context.Context, params *InvoicesGro
 
 func (c *Client) InvoicesGrowthCount(ctx context.Context, params *InvoicesGrowthCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewInvoicesGrowthCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) InvoicesImportUsageWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewInvoicesImportUsageRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) InvoicesImportUsage(ctx context.Context, body InvoicesImportUsageJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewInvoicesImportUsageRequest(c.Server, body)
 	if err != nil {
 		return nil, err
 	}
@@ -136694,6 +136757,46 @@ func NewInvoicesGrowthCountRequest(server string, params *InvoicesGrowthCountPar
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewInvoicesImportUsageRequest calls the generic InvoicesImportUsage builder with application/json body
+func NewInvoicesImportUsageRequest(server string, body InvoicesImportUsageJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewInvoicesImportUsageRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewInvoicesImportUsageRequestWithBody generates requests for InvoicesImportUsage with any type of body
+func NewInvoicesImportUsageRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/invoices/import_usage/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -270031,6 +270134,11 @@ type ClientWithResponsesInterface interface {
 	// InvoicesGrowthCountWithResponse request
 	InvoicesGrowthCountWithResponse(ctx context.Context, params *InvoicesGrowthCountParams, reqEditors ...RequestEditorFn) (*InvoicesGrowthCountResponse, error)
 
+	// InvoicesImportUsageWithBodyWithResponse request with any body
+	InvoicesImportUsageWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*InvoicesImportUsageResponse, error)
+
+	InvoicesImportUsageWithResponse(ctx context.Context, body InvoicesImportUsageJSONRequestBody, reqEditors ...RequestEditorFn) (*InvoicesImportUsageResponse, error)
+
 	// InvoicesRetrieveWithResponse request
 	InvoicesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *InvoicesRetrieveParams, reqEditors ...RequestEditorFn) (*InvoicesRetrieveResponse, error)
 
@@ -285430,6 +285538,28 @@ func (r InvoicesGrowthCountResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r InvoicesGrowthCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type InvoicesImportUsageResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ImportUsageResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r InvoicesImportUsageResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r InvoicesImportUsageResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -324556,6 +324686,23 @@ func (c *ClientWithResponses) InvoicesGrowthCountWithResponse(ctx context.Contex
 	return ParseInvoicesGrowthCountResponse(rsp)
 }
 
+// InvoicesImportUsageWithBodyWithResponse request with arbitrary body returning *InvoicesImportUsageResponse
+func (c *ClientWithResponses) InvoicesImportUsageWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*InvoicesImportUsageResponse, error) {
+	rsp, err := c.InvoicesImportUsageWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseInvoicesImportUsageResponse(rsp)
+}
+
+func (c *ClientWithResponses) InvoicesImportUsageWithResponse(ctx context.Context, body InvoicesImportUsageJSONRequestBody, reqEditors ...RequestEditorFn) (*InvoicesImportUsageResponse, error) {
+	rsp, err := c.InvoicesImportUsage(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseInvoicesImportUsageResponse(rsp)
+}
+
 // InvoicesRetrieveWithResponse request returning *InvoicesRetrieveResponse
 func (c *ClientWithResponses) InvoicesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *InvoicesRetrieveParams, reqEditors ...RequestEditorFn) (*InvoicesRetrieveResponse, error) {
 	rsp, err := c.InvoicesRetrieve(ctx, uuid, params, reqEditors...)
@@ -353206,6 +353353,32 @@ func ParseInvoicesGrowthCountResponse(rsp *http.Response) (*InvoicesGrowthCountR
 	response := &InvoicesGrowthCountResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseInvoicesImportUsageResponse parses an HTTP response from a InvoicesImportUsageWithResponse call
+func ParseInvoicesImportUsageResponse(rsp *http.Response) (*InvoicesImportUsageResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &InvoicesImportUsageResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ImportUsageResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
