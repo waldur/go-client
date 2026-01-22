@@ -572,6 +572,16 @@ const (
 	ByCallManager DecidingEntityEnum = "by_call_manager"
 )
 
+// Defines values for DefaultPermissionEnum.
+const (
+	N2770 DefaultPermissionEnum = "2770"
+	N2775 DefaultPermissionEnum = "2775"
+	N2777 DefaultPermissionEnum = "2777"
+	N770  DefaultPermissionEnum = "770"
+	N775  DefaultPermissionEnum = "775"
+	N777  DefaultPermissionEnum = "777"
+)
+
 // Defines values for DependencyLogicOperatorEnum.
 const (
 	And DependencyLogicOperatorEnum = "and"
@@ -1646,6 +1656,7 @@ const (
 	OptionFieldTypeEnumSelectString                     OptionFieldTypeEnum = "select_string"
 	OptionFieldTypeEnumSelectStringMulti                OptionFieldTypeEnum = "select_string_multi"
 	OptionFieldTypeEnumSingleDatacenterK8sConfig        OptionFieldTypeEnum = "single_datacenter_k8s_config"
+	OptionFieldTypeEnumStorageFolderManager             OptionFieldTypeEnum = "storage_folder_manager"
 	OptionFieldTypeEnumString                           OptionFieldTypeEnum = "string"
 	OptionFieldTypeEnumText                             OptionFieldTypeEnum = "text"
 	OptionFieldTypeEnumTime                             OptionFieldTypeEnum = "time"
@@ -17942,6 +17953,9 @@ type DeadLetterQueue struct {
 // DecidingEntityEnum defines model for DecidingEntityEnum.
 type DecidingEntityEnum string
 
+// DefaultPermissionEnum defines model for DefaultPermissionEnum.
+type DefaultPermissionEnum string
+
 // DeleteAttachmentsRequest defines model for DeleteAttachmentsRequest.
 type DeleteAttachmentsRequest struct {
 	AttachmentIds []openapi_types.UUID `json:"attachment_ids"`
@@ -24914,6 +24928,7 @@ type OptionField struct {
 	Max                       *int                       `json:"max,omitempty"`
 	Min                       *int                       `json:"min,omitempty"`
 	Required                  *bool                      `json:"required,omitempty"`
+	StorageFolderConfig       *StorageFolderConfig       `json:"storage_folder_config,omitempty"`
 	Type                      OptionFieldTypeEnum        `json:"type"`
 }
 
@@ -24929,6 +24944,7 @@ type OptionFieldRequest struct {
 	Max                       *int                              `json:"max,omitempty"`
 	Min                       *int                              `json:"min,omitempty"`
 	Required                  *bool                             `json:"required,omitempty"`
+	StorageFolderConfig       *StorageFolderConfigRequest       `json:"storage_folder_config,omitempty"`
 	Type                      OptionFieldTypeEnum               `json:"type"`
 }
 
@@ -32591,6 +32607,42 @@ type SshKeyRequest struct {
 type StateTransitionError struct {
 	// Detail Error message to be displayed to the user
 	Detail string `json:"detail"`
+}
+
+// StorageDataType defines model for StorageDataType.
+type StorageDataType struct {
+	Key   string `json:"key"`
+	Label string `json:"label"`
+}
+
+// StorageDataTypeRequest defines model for StorageDataTypeRequest.
+type StorageDataTypeRequest struct {
+	Key   string `json:"key"`
+	Label string `json:"label"`
+}
+
+// StorageFolderConfig defines model for StorageFolderConfig.
+type StorageFolderConfig struct {
+	ComponentType              string   `json:"component_type"`
+	DefaultHardQuotaMultiplier *float64 `json:"default_hard_quota_multiplier,omitempty"`
+
+	// DefaultPermission Default permission to auto-select
+	DefaultPermission   *DefaultPermissionEnum `json:"default_permission,omitempty"`
+	InodeHardMultiplier *int                   `json:"inode_hard_multiplier,omitempty"`
+	InodeSoftMultiplier *int                   `json:"inode_soft_multiplier,omitempty"`
+	StorageDataTypes    []StorageDataType      `json:"storage_data_types"`
+}
+
+// StorageFolderConfigRequest defines model for StorageFolderConfigRequest.
+type StorageFolderConfigRequest struct {
+	ComponentType              string   `json:"component_type"`
+	DefaultHardQuotaMultiplier *float64 `json:"default_hard_quota_multiplier,omitempty"`
+
+	// DefaultPermission Default permission to auto-select
+	DefaultPermission   *DefaultPermissionEnum   `json:"default_permission,omitempty"`
+	InodeHardMultiplier *int                     `json:"inode_hard_multiplier,omitempty"`
+	InodeSoftMultiplier *int                     `json:"inode_soft_multiplier,omitempty"`
+	StorageDataTypes    []StorageDataTypeRequest `json:"storage_data_types"`
 }
 
 // StorageModeEnum defines model for StorageModeEnum.
