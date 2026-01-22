@@ -23468,7 +23468,8 @@ type OpenStackFloatingIPRequest struct {
 
 // OpenStackImage defines model for OpenStackImage.
 type OpenStackImage struct {
-	BackendId string `json:"backend_id"`
+	BackendCreatedAt *time.Time `json:"backend_created_at"`
+	BackendId        string     `json:"backend_id"`
 
 	// MinDisk Minimum disk size in MiB
 	MinDisk *int `json:"min_disk,omitempty"`
@@ -45811,6 +45812,9 @@ type OpenstackImagesListParams struct {
 	// SettingsUuid Settings UUID
 	SettingsUuid *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
 
+	// ShowDuplicateNames Show duplicate image names
+	ShowDuplicateNames *bool `form:"show_duplicate_names,omitempty" json:"show_duplicate_names,omitempty"`
+
 	// Tenant Tenant URL
 	Tenant *string `form:"tenant,omitempty" json:"tenant,omitempty"`
 
@@ -45840,6 +45844,9 @@ type OpenstackImagesCountParams struct {
 
 	// SettingsUuid Settings UUID
 	SettingsUuid *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
+
+	// ShowDuplicateNames Show duplicate image names
+	ShowDuplicateNames *bool `form:"show_duplicate_names,omitempty" json:"show_duplicate_names,omitempty"`
 
 	// Tenant Tenant URL
 	Tenant *string `form:"tenant,omitempty" json:"tenant,omitempty"`
@@ -205353,6 +205360,22 @@ func NewOpenstackImagesListRequest(server string, params *OpenstackImagesListPar
 
 		}
 
+		if params.ShowDuplicateNames != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "show_duplicate_names", runtime.ParamLocationQuery, *params.ShowDuplicateNames); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Tenant != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tenant", runtime.ParamLocationQuery, *params.Tenant); err != nil {
@@ -205517,6 +205540,22 @@ func NewOpenstackImagesCountRequest(server string, params *OpenstackImagesCountP
 		if params.SettingsUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "settings_uuid", runtime.ParamLocationQuery, *params.SettingsUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ShowDuplicateNames != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "show_duplicate_names", runtime.ParamLocationQuery, *params.ShowDuplicateNames); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
