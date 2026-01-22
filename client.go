@@ -3499,6 +3499,7 @@ const (
 	BookingOfferingsListParamsFieldSlug                      BookingOfferingsListParamsField = "slug"
 	BookingOfferingsListParamsFieldSoftwareCatalogs          BookingOfferingsListParamsField = "software_catalogs"
 	BookingOfferingsListParamsFieldState                     BookingOfferingsListParamsField = "state"
+	BookingOfferingsListParamsFieldTags                      BookingOfferingsListParamsField = "tags"
 	BookingOfferingsListParamsFieldThumbnail                 BookingOfferingsListParamsField = "thumbnail"
 	BookingOfferingsListParamsFieldTotalCost                 BookingOfferingsListParamsField = "total_cost"
 	BookingOfferingsListParamsFieldTotalCostEstimated        BookingOfferingsListParamsField = "total_cost_estimated"
@@ -3571,6 +3572,7 @@ const (
 	BookingOfferingsRetrieveParamsFieldSlug                      BookingOfferingsRetrieveParamsField = "slug"
 	BookingOfferingsRetrieveParamsFieldSoftwareCatalogs          BookingOfferingsRetrieveParamsField = "software_catalogs"
 	BookingOfferingsRetrieveParamsFieldState                     BookingOfferingsRetrieveParamsField = "state"
+	BookingOfferingsRetrieveParamsFieldTags                      BookingOfferingsRetrieveParamsField = "tags"
 	BookingOfferingsRetrieveParamsFieldThumbnail                 BookingOfferingsRetrieveParamsField = "thumbnail"
 	BookingOfferingsRetrieveParamsFieldTotalCost                 BookingOfferingsRetrieveParamsField = "total_cost"
 	BookingOfferingsRetrieveParamsFieldTotalCostEstimated        BookingOfferingsRetrieveParamsField = "total_cost_estimated"
@@ -6158,6 +6160,7 @@ const (
 	MarketplaceProviderOfferingsListParamsFieldSlug                      MarketplaceProviderOfferingsListParamsField = "slug"
 	MarketplaceProviderOfferingsListParamsFieldSoftwareCatalogs          MarketplaceProviderOfferingsListParamsField = "software_catalogs"
 	MarketplaceProviderOfferingsListParamsFieldState                     MarketplaceProviderOfferingsListParamsField = "state"
+	MarketplaceProviderOfferingsListParamsFieldTags                      MarketplaceProviderOfferingsListParamsField = "tags"
 	MarketplaceProviderOfferingsListParamsFieldThumbnail                 MarketplaceProviderOfferingsListParamsField = "thumbnail"
 	MarketplaceProviderOfferingsListParamsFieldTotalCost                 MarketplaceProviderOfferingsListParamsField = "total_cost"
 	MarketplaceProviderOfferingsListParamsFieldTotalCostEstimated        MarketplaceProviderOfferingsListParamsField = "total_cost_estimated"
@@ -6339,6 +6342,7 @@ const (
 	MarketplaceProviderOfferingsRetrieveParamsFieldSlug                      MarketplaceProviderOfferingsRetrieveParamsField = "slug"
 	MarketplaceProviderOfferingsRetrieveParamsFieldSoftwareCatalogs          MarketplaceProviderOfferingsRetrieveParamsField = "software_catalogs"
 	MarketplaceProviderOfferingsRetrieveParamsFieldState                     MarketplaceProviderOfferingsRetrieveParamsField = "state"
+	MarketplaceProviderOfferingsRetrieveParamsFieldTags                      MarketplaceProviderOfferingsRetrieveParamsField = "tags"
 	MarketplaceProviderOfferingsRetrieveParamsFieldThumbnail                 MarketplaceProviderOfferingsRetrieveParamsField = "thumbnail"
 	MarketplaceProviderOfferingsRetrieveParamsFieldTotalCost                 MarketplaceProviderOfferingsRetrieveParamsField = "total_cost"
 	MarketplaceProviderOfferingsRetrieveParamsFieldTotalCostEstimated        MarketplaceProviderOfferingsRetrieveParamsField = "total_cost_estimated"
@@ -6773,6 +6777,7 @@ const (
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldSlug                      MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "slug"
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldSoftwareCatalogs          MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "software_catalogs"
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldState                     MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "state"
+	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldTags                      MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "tags"
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldThumbnail                 MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "thumbnail"
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldTotalCost                 MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "total_cost"
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsFieldTotalCostEstimated        MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParamsField = "total_cost_estimated"
@@ -7084,6 +7089,7 @@ const (
 	MarketplacePublicOfferingsListParamsFieldSlug                      MarketplacePublicOfferingsListParamsField = "slug"
 	MarketplacePublicOfferingsListParamsFieldSoftwareCatalogs          MarketplacePublicOfferingsListParamsField = "software_catalogs"
 	MarketplacePublicOfferingsListParamsFieldState                     MarketplacePublicOfferingsListParamsField = "state"
+	MarketplacePublicOfferingsListParamsFieldTags                      MarketplacePublicOfferingsListParamsField = "tags"
 	MarketplacePublicOfferingsListParamsFieldThumbnail                 MarketplacePublicOfferingsListParamsField = "thumbnail"
 	MarketplacePublicOfferingsListParamsFieldTotalCost                 MarketplacePublicOfferingsListParamsField = "total_cost"
 	MarketplacePublicOfferingsListParamsFieldTotalCostEstimated        MarketplacePublicOfferingsListParamsField = "total_cost_estimated"
@@ -7212,6 +7218,7 @@ const (
 	MarketplacePublicOfferingsRetrieveParamsFieldSlug                      MarketplacePublicOfferingsRetrieveParamsField = "slug"
 	MarketplacePublicOfferingsRetrieveParamsFieldSoftwareCatalogs          MarketplacePublicOfferingsRetrieveParamsField = "software_catalogs"
 	MarketplacePublicOfferingsRetrieveParamsFieldState                     MarketplacePublicOfferingsRetrieveParamsField = "state"
+	MarketplacePublicOfferingsRetrieveParamsFieldTags                      MarketplacePublicOfferingsRetrieveParamsField = "tags"
 	MarketplacePublicOfferingsRetrieveParamsFieldThumbnail                 MarketplacePublicOfferingsRetrieveParamsField = "thumbnail"
 	MarketplacePublicOfferingsRetrieveParamsFieldTotalCost                 MarketplacePublicOfferingsRetrieveParamsField = "total_cost"
 	MarketplacePublicOfferingsRetrieveParamsFieldTotalCostEstimated        MarketplacePublicOfferingsRetrieveParamsField = "total_cost_estimated"
@@ -21653,6 +21660,12 @@ type NestedSoftwareVersion struct {
 	Version     string                  `json:"version"`
 }
 
+// NestedTag defines model for NestedTag.
+type NestedTag struct {
+	Name *string             `json:"name,omitempty"`
+	Uuid *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
 // NetworkRBACPolicy defines model for NetworkRBACPolicy.
 type NetworkRBACPolicy struct {
 	BackendId   *string    `json:"backend_id,omitempty"`
@@ -21819,6 +21832,7 @@ type Offering struct {
 	Slug               *string                  `json:"slug,omitempty"`
 	SoftwareCatalogs   *[]NestedSoftwareCatalog `json:"software_catalogs,omitempty"`
 	State              *OfferingState           `json:"state,omitempty"`
+	Tags               *[]NestedTag             `json:"tags,omitempty"`
 	Thumbnail          *string                  `json:"thumbnail"`
 	TotalCost          *int                     `json:"total_cost"`
 	TotalCostEstimated *int                     `json:"total_cost_estimated"`
@@ -27067,6 +27081,12 @@ type PatchedSoftwarePackageRequest struct {
 	ParentSoftware *string `json:"parent_software"`
 }
 
+// PatchedTagRequest defines model for PatchedTagRequest.
+type PatchedTagRequest struct {
+	Description *string `json:"description,omitempty"`
+	Name        *string `json:"name,omitempty"`
+}
+
 // PatchedTemplateRequest defines model for PatchedTemplateRequest.
 type PatchedTemplateRequest struct {
 	Description *string        `json:"description,omitempty"`
@@ -28501,6 +28521,7 @@ type ProviderOfferingDetails struct {
 	Slug               *string                  `json:"slug,omitempty"`
 	SoftwareCatalogs   *[]NestedSoftwareCatalog `json:"software_catalogs,omitempty"`
 	State              *OfferingState           `json:"state,omitempty"`
+	Tags               *[]NestedTag             `json:"tags,omitempty"`
 	Thumbnail          *string                  `json:"thumbnail"`
 	TotalCost          *int                     `json:"total_cost"`
 	TotalCostEstimated *int                     `json:"total_cost_estimated"`
@@ -28795,6 +28816,7 @@ type PublicOfferingDetails struct {
 	Slug               *string                  `json:"slug,omitempty"`
 	SoftwareCatalogs   *[]NestedSoftwareCatalog `json:"software_catalogs,omitempty"`
 	State              *OfferingState           `json:"state,omitempty"`
+	Tags               *[]NestedTag             `json:"tags,omitempty"`
 	Thumbnail          *string                  `json:"thumbnail"`
 	TotalCost          *int                     `json:"total_cost"`
 	TotalCostEstimated *int                     `json:"total_cost_estimated"`
@@ -32675,6 +32697,35 @@ type TableSize struct {
 
 	// TotalSize Total size of the table in bytes
 	TotalSize *int `json:"total_size,omitempty"`
+}
+
+// Tag defines model for Tag.
+type Tag struct {
+	Created           *time.Time `json:"created,omitempty"`
+	CreatedByFullName *string    `json:"created_by_full_name,omitempty"`
+
+	// CreatedByUsername Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
+	CreatedByUsername *string `json:"created_by_username,omitempty"`
+	Description       *string `json:"description,omitempty"`
+	Name              string  `json:"name"`
+
+	// OfferingCount Return offering count filtered by user permissions.
+	// Staff sees all offerings.
+	// Service providers see their own + active/paused/archived public offerings.
+	OfferingCount *int                `json:"offering_count,omitempty"`
+	Url           *string             `json:"url,omitempty"`
+	Uuid          *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// TagRequest defines model for TagRequest.
+type TagRequest struct {
+	Description *string `json:"description,omitempty"`
+	Name        string  `json:"name"`
+}
+
+// TagsRequest defines model for TagsRequest.
+type TagsRequest struct {
+	Tags *[]openapi_types.UUID `json:"tags,omitempty"`
 }
 
 // Template defines model for Template.
@@ -40226,6 +40277,18 @@ type MarketplaceProviderOfferingsListParams struct {
 	//
 	State *[]MarketplaceProviderOfferingsListParamsState `form:"state,omitempty" json:"state,omitempty"`
 
+	// Tag Tag UUID (OR logic)
+	Tag *[]openapi_types.UUID `form:"tag,omitempty" json:"tag,omitempty"`
+
+	// TagName Tag name (OR logic)
+	TagName *[]string `form:"tag_name,omitempty" json:"tag_name,omitempty"`
+
+	// TagNamesAnd Tag names with AND logic (comma-separated)
+	TagNamesAnd *string `form:"tag_names_and,omitempty" json:"tag_names_and,omitempty"`
+
+	// TagsAnd Tag UUIDs with AND logic (comma-separated)
+	TagsAnd *string `form:"tags_and,omitempty" json:"tags_and,omitempty"`
+
 	// Type Offering type
 	Type *[]string `form:"type,omitempty" json:"type,omitempty"`
 
@@ -40340,6 +40403,18 @@ type MarketplaceProviderOfferingsCountParams struct {
 	//
 	State *[]MarketplaceProviderOfferingsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
 
+	// Tag Tag UUID (OR logic)
+	Tag *[]openapi_types.UUID `form:"tag,omitempty" json:"tag,omitempty"`
+
+	// TagName Tag name (OR logic)
+	TagName *[]string `form:"tag_name,omitempty" json:"tag_name,omitempty"`
+
+	// TagNamesAnd Tag names with AND logic (comma-separated)
+	TagNamesAnd *string `form:"tag_names_and,omitempty" json:"tag_names_and,omitempty"`
+
+	// TagsAnd Tag UUIDs with AND logic (comma-separated)
+	TagsAnd *string `form:"tags_and,omitempty" json:"tags_and,omitempty"`
+
 	// Type Offering type
 	Type *[]string `form:"type,omitempty" json:"type,omitempty"`
 
@@ -40451,6 +40526,18 @@ type MarketplaceProviderOfferingsGroupsListParams struct {
 	//
 	State *[]MarketplaceProviderOfferingsGroupsListParamsState `form:"state,omitempty" json:"state,omitempty"`
 
+	// Tag Tag UUID (OR logic)
+	Tag *[]openapi_types.UUID `form:"tag,omitempty" json:"tag,omitempty"`
+
+	// TagName Tag name (OR logic)
+	TagName *[]string `form:"tag_name,omitempty" json:"tag_name,omitempty"`
+
+	// TagNamesAnd Tag names with AND logic (comma-separated)
+	TagNamesAnd *string `form:"tag_names_and,omitempty" json:"tag_names_and,omitempty"`
+
+	// TagsAnd Tag UUIDs with AND logic (comma-separated)
+	TagsAnd *string `form:"tags_and,omitempty" json:"tags_and,omitempty"`
+
 	// Type Offering type
 	Type *[]string `form:"type,omitempty" json:"type,omitempty"`
 
@@ -40561,6 +40648,18 @@ type MarketplaceProviderOfferingsGroupsCountParams struct {
 	// State Offering state
 	//
 	State *[]MarketplaceProviderOfferingsGroupsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Tag Tag UUID (OR logic)
+	Tag *[]openapi_types.UUID `form:"tag,omitempty" json:"tag,omitempty"`
+
+	// TagName Tag name (OR logic)
+	TagName *[]string `form:"tag_name,omitempty" json:"tag_name,omitempty"`
+
+	// TagNamesAnd Tag names with AND logic (comma-separated)
+	TagNamesAnd *string `form:"tag_names_and,omitempty" json:"tag_names_and,omitempty"`
+
+	// TagsAnd Tag UUIDs with AND logic (comma-separated)
+	TagsAnd *string `form:"tags_and,omitempty" json:"tags_and,omitempty"`
 
 	// Type Offering type
 	Type *[]string `form:"type,omitempty" json:"type,omitempty"`
@@ -40687,6 +40786,18 @@ type MarketplaceProviderOfferingsComponentStatsListParams struct {
 	//
 	State *[]MarketplaceProviderOfferingsComponentStatsListParamsState `form:"state,omitempty" json:"state,omitempty"`
 
+	// Tag Tag UUID (OR logic)
+	Tag *[]openapi_types.UUID `form:"tag,omitempty" json:"tag,omitempty"`
+
+	// TagName Tag name (OR logic)
+	TagName *[]string `form:"tag_name,omitempty" json:"tag_name,omitempty"`
+
+	// TagNamesAnd Tag names with AND logic (comma-separated)
+	TagNamesAnd *string `form:"tag_names_and,omitempty" json:"tag_names_and,omitempty"`
+
+	// TagsAnd Tag UUIDs with AND logic (comma-separated)
+	TagsAnd *string `form:"tags_and,omitempty" json:"tags_and,omitempty"`
+
 	// Type Offering type
 	Type *[]string `form:"type,omitempty" json:"type,omitempty"`
 
@@ -40805,6 +40916,18 @@ type MarketplaceProviderOfferingsCostsListParams struct {
 	//
 	State *[]MarketplaceProviderOfferingsCostsListParamsState `form:"state,omitempty" json:"state,omitempty"`
 
+	// Tag Tag UUID (OR logic)
+	Tag *[]openapi_types.UUID `form:"tag,omitempty" json:"tag,omitempty"`
+
+	// TagName Tag name (OR logic)
+	TagName *[]string `form:"tag_name,omitempty" json:"tag_name,omitempty"`
+
+	// TagNamesAnd Tag names with AND logic (comma-separated)
+	TagNamesAnd *string `form:"tag_names_and,omitempty" json:"tag_names_and,omitempty"`
+
+	// TagsAnd Tag UUIDs with AND logic (comma-separated)
+	TagsAnd *string `form:"tags_and,omitempty" json:"tags_and,omitempty"`
+
 	// Type Offering type
 	Type *[]string `form:"type,omitempty" json:"type,omitempty"`
 
@@ -40916,6 +41039,18 @@ type MarketplaceProviderOfferingsCustomersListParams struct {
 	// State Offering state
 	//
 	State *[]MarketplaceProviderOfferingsCustomersListParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Tag Tag UUID (OR logic)
+	Tag *[]openapi_types.UUID `form:"tag,omitempty" json:"tag,omitempty"`
+
+	// TagName Tag name (OR logic)
+	TagName *[]string `form:"tag_name,omitempty" json:"tag_name,omitempty"`
+
+	// TagNamesAnd Tag names with AND logic (comma-separated)
+	TagNamesAnd *string `form:"tag_names_and,omitempty" json:"tag_names_and,omitempty"`
+
+	// TagsAnd Tag UUIDs with AND logic (comma-separated)
+	TagsAnd *string `form:"tags_and,omitempty" json:"tags_and,omitempty"`
 
 	// Type Offering type
 	Type *[]string `form:"type,omitempty" json:"type,omitempty"`
@@ -41039,6 +41174,18 @@ type MarketplaceProviderOfferingsListCourseAccountsListParams struct {
 	// State Offering state
 	//
 	State *[]MarketplaceProviderOfferingsListCourseAccountsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Tag Tag UUID (OR logic)
+	Tag *[]openapi_types.UUID `form:"tag,omitempty" json:"tag,omitempty"`
+
+	// TagName Tag name (OR logic)
+	TagName *[]string `form:"tag_name,omitempty" json:"tag_name,omitempty"`
+
+	// TagNamesAnd Tag names with AND logic (comma-separated)
+	TagNamesAnd *string `form:"tag_names_and,omitempty" json:"tag_names_and,omitempty"`
+
+	// TagsAnd Tag UUIDs with AND logic (comma-separated)
+	TagsAnd *string `form:"tags_and,omitempty" json:"tags_and,omitempty"`
 
 	// Type Offering type
 	Type *[]string `form:"type,omitempty" json:"type,omitempty"`
@@ -41165,6 +41312,18 @@ type MarketplaceProviderOfferingsListCustomerServiceAccountsListParams struct {
 	//
 	State *[]MarketplaceProviderOfferingsListCustomerServiceAccountsListParamsState `form:"state,omitempty" json:"state,omitempty"`
 
+	// Tag Tag UUID (OR logic)
+	Tag *[]openapi_types.UUID `form:"tag,omitempty" json:"tag,omitempty"`
+
+	// TagName Tag name (OR logic)
+	TagName *[]string `form:"tag_name,omitempty" json:"tag_name,omitempty"`
+
+	// TagNamesAnd Tag names with AND logic (comma-separated)
+	TagNamesAnd *string `form:"tag_names_and,omitempty" json:"tag_names_and,omitempty"`
+
+	// TagsAnd Tag UUIDs with AND logic (comma-separated)
+	TagsAnd *string `form:"tags_and,omitempty" json:"tags_and,omitempty"`
+
 	// Type Offering type
 	Type *[]string `form:"type,omitempty" json:"type,omitempty"`
 
@@ -41289,6 +41448,18 @@ type MarketplaceProviderOfferingsListProjectServiceAccountsListParams struct {
 	// State Offering state
 	//
 	State *[]MarketplaceProviderOfferingsListProjectServiceAccountsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Tag Tag UUID (OR logic)
+	Tag *[]openapi_types.UUID `form:"tag,omitempty" json:"tag,omitempty"`
+
+	// TagName Tag name (OR logic)
+	TagName *[]string `form:"tag_name,omitempty" json:"tag_name,omitempty"`
+
+	// TagNamesAnd Tag names with AND logic (comma-separated)
+	TagNamesAnd *string `form:"tag_names_and,omitempty" json:"tag_names_and,omitempty"`
+
+	// TagsAnd Tag UUIDs with AND logic (comma-separated)
+	TagsAnd *string `form:"tags_and,omitempty" json:"tags_and,omitempty"`
 
 	// Type Offering type
 	Type *[]string `form:"type,omitempty" json:"type,omitempty"`
@@ -41755,6 +41926,18 @@ type MarketplacePublicOfferingsListParams struct {
 	//
 	State *[]MarketplacePublicOfferingsListParamsState `form:"state,omitempty" json:"state,omitempty"`
 
+	// Tag Tag UUID (OR logic)
+	Tag *[]openapi_types.UUID `form:"tag,omitempty" json:"tag,omitempty"`
+
+	// TagName Tag name (OR logic)
+	TagName *[]string `form:"tag_name,omitempty" json:"tag_name,omitempty"`
+
+	// TagNamesAnd Tag names with AND logic (comma-separated)
+	TagNamesAnd *string `form:"tag_names_and,omitempty" json:"tag_names_and,omitempty"`
+
+	// TagsAnd Tag UUIDs with AND logic (comma-separated)
+	TagsAnd *string `form:"tags_and,omitempty" json:"tags_and,omitempty"`
+
 	// Type Offering type
 	Type *[]string `form:"type,omitempty" json:"type,omitempty"`
 
@@ -41868,6 +42051,18 @@ type MarketplacePublicOfferingsCountParams struct {
 	// State Offering state
 	//
 	State *[]MarketplacePublicOfferingsCountParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Tag Tag UUID (OR logic)
+	Tag *[]openapi_types.UUID `form:"tag,omitempty" json:"tag,omitempty"`
+
+	// TagName Tag name (OR logic)
+	TagName *[]string `form:"tag_name,omitempty" json:"tag_name,omitempty"`
+
+	// TagNamesAnd Tag names with AND logic (comma-separated)
+	TagNamesAnd *string `form:"tag_names_and,omitempty" json:"tag_names_and,omitempty"`
+
+	// TagsAnd Tag UUIDs with AND logic (comma-separated)
+	TagsAnd *string `form:"tags_and,omitempty" json:"tags_and,omitempty"`
 
 	// Type Offering type
 	Type *[]string `form:"type,omitempty" json:"type,omitempty"`
@@ -42832,6 +43027,18 @@ type MarketplaceServiceProvidersOfferingsListParams struct {
 	// State Offering state
 	//
 	State *[]MarketplaceServiceProvidersOfferingsListParamsState `form:"state,omitempty" json:"state,omitempty"`
+
+	// Tag Tag UUID (OR logic)
+	Tag *[]openapi_types.UUID `form:"tag,omitempty" json:"tag,omitempty"`
+
+	// TagName Tag name (OR logic)
+	TagName *[]string `form:"tag_name,omitempty" json:"tag_name,omitempty"`
+
+	// TagNamesAnd Tag names with AND logic (comma-separated)
+	TagNamesAnd *string `form:"tag_names_and,omitempty" json:"tag_names_and,omitempty"`
+
+	// TagsAnd Tag UUIDs with AND logic (comma-separated)
+	TagsAnd *string `form:"tags_and,omitempty" json:"tags_and,omitempty"`
 
 	// Type Offering type
 	Type *[]string `form:"type,omitempty" json:"type,omitempty"`
@@ -44007,6 +44214,30 @@ type MarketplaceStatsUserOrganizationCountListParams struct {
 
 // MarketplaceStatsUserOrganizationCountCountParams defines parameters for MarketplaceStatsUserOrganizationCountCount.
 type MarketplaceStatsUserOrganizationCountCountParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// MarketplaceTagsListParams defines parameters for MarketplaceTagsList.
+type MarketplaceTagsListParams struct {
+	CreatedBy *openapi_types.UUID `form:"created_by,omitempty" json:"created_by,omitempty"`
+	Name      *string             `form:"name,omitempty" json:"name,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// MarketplaceTagsCountParams defines parameters for MarketplaceTagsCount.
+type MarketplaceTagsCountParams struct {
+	CreatedBy *openapi_types.UUID `form:"created_by,omitempty" json:"created_by,omitempty"`
+	Name      *string             `form:"name,omitempty" json:"name,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
@@ -53498,6 +53729,9 @@ type MarketplaceProviderOfferingsUpdateResourceOptionsJSONRequestBody = Offering
 // MarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateJSONRequestBody defines body for MarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdate for application/json ContentType.
 type MarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateJSONRequestBody = PatchedOfferingSoftwareCatalogUpdateRequest
 
+// MarketplaceProviderOfferingsUpdateTagsJSONRequestBody defines body for MarketplaceProviderOfferingsUpdateTags for application/json ContentType.
+type MarketplaceProviderOfferingsUpdateTagsJSONRequestBody = TagsRequest
+
 // MarketplaceProviderOfferingsUpdateThumbnailJSONRequestBody defines body for MarketplaceProviderOfferingsUpdateThumbnail for application/json ContentType.
 type MarketplaceProviderOfferingsUpdateThumbnailJSONRequestBody = OfferingThumbnailRequest
 
@@ -53776,6 +54010,15 @@ type MarketplaceSoftwarePackagesPartialUpdateJSONRequestBody = PatchedSoftwarePa
 
 // MarketplaceSoftwarePackagesUpdateJSONRequestBody defines body for MarketplaceSoftwarePackagesUpdate for application/json ContentType.
 type MarketplaceSoftwarePackagesUpdateJSONRequestBody = SoftwarePackageRequest
+
+// MarketplaceTagsCreateJSONRequestBody defines body for MarketplaceTagsCreate for application/json ContentType.
+type MarketplaceTagsCreateJSONRequestBody = TagRequest
+
+// MarketplaceTagsPartialUpdateJSONRequestBody defines body for MarketplaceTagsPartialUpdate for application/json ContentType.
+type MarketplaceTagsPartialUpdateJSONRequestBody = PatchedTagRequest
+
+// MarketplaceTagsUpdateJSONRequestBody defines body for MarketplaceTagsUpdate for application/json ContentType.
+type MarketplaceTagsUpdateJSONRequestBody = TagRequest
 
 // MarketplaceUserOfferingConsentsCreateJSONRequestBody defines body for MarketplaceUserOfferingConsentsCreate for application/json ContentType.
 type MarketplaceUserOfferingConsentsCreateJSONRequestBody = UserOfferingConsentCreateRequest
@@ -63964,6 +64207,9 @@ type ClientInterface interface {
 	// MarketplaceProviderOfferingsDeleteOrganizationGroups request
 	MarketplaceProviderOfferingsDeleteOrganizationGroups(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceProviderOfferingsDeleteTags request
+	MarketplaceProviderOfferingsDeleteTags(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceProviderOfferingsDeleteThumbnail request
 	MarketplaceProviderOfferingsDeleteThumbnail(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -64132,6 +64378,11 @@ type ClientInterface interface {
 	MarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	MarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProviderOfferingsUpdateTagsWithBody request with any body
+	MarketplaceProviderOfferingsUpdateTagsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceProviderOfferingsUpdateTags(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateTagsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceProviderOfferingsUpdateThumbnailWithBody request with any body
 	MarketplaceProviderOfferingsUpdateThumbnailWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -65087,6 +65338,33 @@ type ClientInterface interface {
 
 	// MarketplaceStatsUserOrganizationCountCount request
 	MarketplaceStatsUserOrganizationCountCount(ctx context.Context, params *MarketplaceStatsUserOrganizationCountCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceTagsList request
+	MarketplaceTagsList(ctx context.Context, params *MarketplaceTagsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceTagsCount request
+	MarketplaceTagsCount(ctx context.Context, params *MarketplaceTagsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceTagsCreateWithBody request with any body
+	MarketplaceTagsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceTagsCreate(ctx context.Context, body MarketplaceTagsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceTagsDestroy request
+	MarketplaceTagsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceTagsRetrieve request
+	MarketplaceTagsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceTagsPartialUpdateWithBody request with any body
+	MarketplaceTagsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceTagsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceTagsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceTagsUpdateWithBody request with any body
+	MarketplaceTagsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceTagsUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceTagsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceUserOfferingConsentsList request
 	MarketplaceUserOfferingConsentsList(ctx context.Context, params *MarketplaceUserOfferingConsentsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -80722,6 +81000,18 @@ func (c *Client) MarketplaceProviderOfferingsDeleteOrganizationGroups(ctx contex
 	return c.Client.Do(req)
 }
 
+func (c *Client) MarketplaceProviderOfferingsDeleteTags(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsDeleteTagsRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) MarketplaceProviderOfferingsDeleteThumbnail(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProviderOfferingsDeleteThumbnailRequest(c.Server, uuid)
 	if err != nil {
@@ -81480,6 +81770,30 @@ func (c *Client) MarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateW
 
 func (c *Client) MarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderOfferingsUpdateTagsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsUpdateTagsRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderOfferingsUpdateTags(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateTagsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsUpdateTagsRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -85644,6 +85958,126 @@ func (c *Client) MarketplaceStatsUserOrganizationCountList(ctx context.Context, 
 
 func (c *Client) MarketplaceStatsUserOrganizationCountCount(ctx context.Context, params *MarketplaceStatsUserOrganizationCountCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceStatsUserOrganizationCountCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceTagsList(ctx context.Context, params *MarketplaceTagsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceTagsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceTagsCount(ctx context.Context, params *MarketplaceTagsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceTagsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceTagsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceTagsCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceTagsCreate(ctx context.Context, body MarketplaceTagsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceTagsCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceTagsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceTagsDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceTagsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceTagsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceTagsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceTagsPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceTagsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceTagsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceTagsPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceTagsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceTagsUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceTagsUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceTagsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceTagsUpdateRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -159161,6 +159595,70 @@ func NewMarketplaceProviderOfferingsListRequest(server string, params *Marketpla
 
 		}
 
+		if params.Tag != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tag", runtime.ParamLocationQuery, *params.Tag); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TagName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tag_name", runtime.ParamLocationQuery, *params.TagName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TagNamesAnd != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tag_names_and", runtime.ParamLocationQuery, *params.TagNamesAnd); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TagsAnd != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tags_and", runtime.ParamLocationQuery, *params.TagsAnd); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Type != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "type", runtime.ParamLocationQuery, *params.Type); err != nil {
@@ -159725,6 +160223,70 @@ func NewMarketplaceProviderOfferingsCountRequest(server string, params *Marketpl
 		if params.State != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "state", runtime.ParamLocationQuery, *params.State); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Tag != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tag", runtime.ParamLocationQuery, *params.Tag); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TagName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tag_name", runtime.ParamLocationQuery, *params.TagName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TagNamesAnd != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tag_names_and", runtime.ParamLocationQuery, *params.TagNamesAnd); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TagsAnd != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tags_and", runtime.ParamLocationQuery, *params.TagsAnd); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -160366,6 +160928,70 @@ func NewMarketplaceProviderOfferingsGroupsListRequest(server string, params *Mar
 
 		}
 
+		if params.Tag != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tag", runtime.ParamLocationQuery, *params.Tag); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TagName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tag_name", runtime.ParamLocationQuery, *params.TagName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TagNamesAnd != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tag_names_and", runtime.ParamLocationQuery, *params.TagNamesAnd); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TagsAnd != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tags_and", runtime.ParamLocationQuery, *params.TagsAnd); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Type != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "type", runtime.ParamLocationQuery, *params.Type); err != nil {
@@ -160930,6 +161556,70 @@ func NewMarketplaceProviderOfferingsGroupsCountRequest(server string, params *Ma
 		if params.State != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "state", runtime.ParamLocationQuery, *params.State); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Tag != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tag", runtime.ParamLocationQuery, *params.Tag); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TagName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tag_name", runtime.ParamLocationQuery, *params.TagName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TagNamesAnd != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tag_names_and", runtime.ParamLocationQuery, *params.TagNamesAnd); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TagsAnd != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tags_and", runtime.ParamLocationQuery, *params.TagsAnd); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -161992,6 +162682,70 @@ func NewMarketplaceProviderOfferingsComponentStatsListRequest(server string, uui
 
 		}
 
+		if params.Tag != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tag", runtime.ParamLocationQuery, *params.Tag); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TagName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tag_name", runtime.ParamLocationQuery, *params.TagName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TagNamesAnd != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tag_names_and", runtime.ParamLocationQuery, *params.TagNamesAnd); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TagsAnd != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tags_and", runtime.ParamLocationQuery, *params.TagsAnd); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Type != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "type", runtime.ParamLocationQuery, *params.Type); err != nil {
@@ -162611,6 +163365,70 @@ func NewMarketplaceProviderOfferingsCostsListRequest(server string, uuid openapi
 		if params.State != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "state", runtime.ParamLocationQuery, *params.State); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Tag != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tag", runtime.ParamLocationQuery, *params.Tag); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TagName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tag_name", runtime.ParamLocationQuery, *params.TagName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TagNamesAnd != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tag_names_and", runtime.ParamLocationQuery, *params.TagNamesAnd); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TagsAnd != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tags_and", runtime.ParamLocationQuery, *params.TagsAnd); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -163271,6 +164089,70 @@ func NewMarketplaceProviderOfferingsCustomersListRequest(server string, uuid ope
 
 		}
 
+		if params.Tag != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tag", runtime.ParamLocationQuery, *params.Tag); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TagName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tag_name", runtime.ParamLocationQuery, *params.TagName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TagNamesAnd != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tag_names_and", runtime.ParamLocationQuery, *params.TagNamesAnd); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TagsAnd != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tags_and", runtime.ParamLocationQuery, *params.TagsAnd); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Type != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "type", runtime.ParamLocationQuery, *params.Type); err != nil {
@@ -163444,6 +164326,40 @@ func NewMarketplaceProviderOfferingsDeleteOrganizationGroupsRequest(server strin
 	}
 
 	operationPath := fmt.Sprintf("/api/marketplace-provider-offerings/%s/delete_organization_groups/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceProviderOfferingsDeleteTagsRequest generates requests for MarketplaceProviderOfferingsDeleteTags
+func NewMarketplaceProviderOfferingsDeleteTagsRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-offerings/%s/delete_tags/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -164285,6 +165201,70 @@ func NewMarketplaceProviderOfferingsListCourseAccountsListRequest(server string,
 
 		}
 
+		if params.Tag != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tag", runtime.ParamLocationQuery, *params.Tag); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TagName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tag_name", runtime.ParamLocationQuery, *params.TagName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TagNamesAnd != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tag_names_and", runtime.ParamLocationQuery, *params.TagNamesAnd); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TagsAnd != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tags_and", runtime.ParamLocationQuery, *params.TagsAnd); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Type != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "type", runtime.ParamLocationQuery, *params.Type); err != nil {
@@ -164957,6 +165937,70 @@ func NewMarketplaceProviderOfferingsListCustomerServiceAccountsListRequest(serve
 
 		}
 
+		if params.Tag != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tag", runtime.ParamLocationQuery, *params.Tag); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TagName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tag_name", runtime.ParamLocationQuery, *params.TagName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TagNamesAnd != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tag_names_and", runtime.ParamLocationQuery, *params.TagNamesAnd); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TagsAnd != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tags_and", runtime.ParamLocationQuery, *params.TagsAnd); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Type != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "type", runtime.ParamLocationQuery, *params.Type); err != nil {
@@ -165616,6 +166660,70 @@ func NewMarketplaceProviderOfferingsListProjectServiceAccountsListRequest(server
 		if params.State != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "state", runtime.ParamLocationQuery, *params.State); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Tag != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tag", runtime.ParamLocationQuery, *params.Tag); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TagName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tag_name", runtime.ParamLocationQuery, *params.TagName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TagNamesAnd != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tag_names_and", runtime.ParamLocationQuery, *params.TagNamesAnd); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TagsAnd != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tags_and", runtime.ParamLocationQuery, *params.TagsAnd); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -167198,6 +168306,53 @@ func NewMarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateRequestWit
 	}
 
 	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceProviderOfferingsUpdateTagsRequest calls the generic MarketplaceProviderOfferingsUpdateTags builder with application/json body
+func NewMarketplaceProviderOfferingsUpdateTagsRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateTagsJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceProviderOfferingsUpdateTagsRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceProviderOfferingsUpdateTagsRequestWithBody generates requests for MarketplaceProviderOfferingsUpdateTags with any type of body
+func NewMarketplaceProviderOfferingsUpdateTagsRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-offerings/%s/update_tags/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
 	if err != nil {
 		return nil, err
 	}
@@ -170614,6 +171769,70 @@ func NewMarketplacePublicOfferingsListRequest(server string, params *Marketplace
 
 		}
 
+		if params.Tag != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tag", runtime.ParamLocationQuery, *params.Tag); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TagName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tag_name", runtime.ParamLocationQuery, *params.TagName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TagNamesAnd != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tag_names_and", runtime.ParamLocationQuery, *params.TagNamesAnd); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TagsAnd != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tags_and", runtime.ParamLocationQuery, *params.TagsAnd); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Type != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "type", runtime.ParamLocationQuery, *params.Type); err != nil {
@@ -171178,6 +172397,70 @@ func NewMarketplacePublicOfferingsCountRequest(server string, params *Marketplac
 		if params.State != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "state", runtime.ParamLocationQuery, *params.State); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Tag != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tag", runtime.ParamLocationQuery, *params.Tag); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TagName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tag_name", runtime.ParamLocationQuery, *params.TagName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TagNamesAnd != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tag_names_and", runtime.ParamLocationQuery, *params.TagNamesAnd); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TagsAnd != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tags_and", runtime.ParamLocationQuery, *params.TagsAnd); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -179130,6 +180413,70 @@ func NewMarketplaceServiceProvidersOfferingsListRequest(server string, servicePr
 		if params.State != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "state", runtime.ParamLocationQuery, *params.State); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Tag != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tag", runtime.ParamLocationQuery, *params.Tag); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TagName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tag_name", runtime.ParamLocationQuery, *params.TagName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TagNamesAnd != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tag_names_and", runtime.ParamLocationQuery, *params.TagNamesAnd); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.TagsAnd != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tags_and", runtime.ParamLocationQuery, *params.TagsAnd); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -189282,6 +190629,402 @@ func NewMarketplaceStatsUserOrganizationCountCountRequest(server string, params 
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewMarketplaceTagsListRequest generates requests for MarketplaceTagsList
+func NewMarketplaceTagsListRequest(server string, params *MarketplaceTagsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-tags/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.CreatedBy != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "created_by", runtime.ParamLocationQuery, *params.CreatedBy); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name", runtime.ParamLocationQuery, *params.Name); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceTagsCountRequest generates requests for MarketplaceTagsCount
+func NewMarketplaceTagsCountRequest(server string, params *MarketplaceTagsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-tags/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.CreatedBy != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "created_by", runtime.ParamLocationQuery, *params.CreatedBy); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "name", runtime.ParamLocationQuery, *params.Name); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceTagsCreateRequest calls the generic MarketplaceTagsCreate builder with application/json body
+func NewMarketplaceTagsCreateRequest(server string, body MarketplaceTagsCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceTagsCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewMarketplaceTagsCreateRequestWithBody generates requests for MarketplaceTagsCreate with any type of body
+func NewMarketplaceTagsCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-tags/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceTagsDestroyRequest generates requests for MarketplaceTagsDestroy
+func NewMarketplaceTagsDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-tags/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceTagsRetrieveRequest generates requests for MarketplaceTagsRetrieve
+func NewMarketplaceTagsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-tags/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceTagsPartialUpdateRequest calls the generic MarketplaceTagsPartialUpdate builder with application/json body
+func NewMarketplaceTagsPartialUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceTagsPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceTagsPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceTagsPartialUpdateRequestWithBody generates requests for MarketplaceTagsPartialUpdate with any type of body
+func NewMarketplaceTagsPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-tags/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceTagsUpdateRequest calls the generic MarketplaceTagsUpdate builder with application/json body
+func NewMarketplaceTagsUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceTagsUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceTagsUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceTagsUpdateRequestWithBody generates requests for MarketplaceTagsUpdate with any type of body
+func NewMarketplaceTagsUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-tags/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -271307,6 +273050,9 @@ type ClientWithResponsesInterface interface {
 	// MarketplaceProviderOfferingsDeleteOrganizationGroupsWithResponse request
 	MarketplaceProviderOfferingsDeleteOrganizationGroupsWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsDeleteOrganizationGroupsResponse, error)
 
+	// MarketplaceProviderOfferingsDeleteTagsWithResponse request
+	MarketplaceProviderOfferingsDeleteTagsWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsDeleteTagsResponse, error)
+
 	// MarketplaceProviderOfferingsDeleteThumbnailWithResponse request
 	MarketplaceProviderOfferingsDeleteThumbnailWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsDeleteThumbnailResponse, error)
 
@@ -271475,6 +273221,11 @@ type ClientWithResponsesInterface interface {
 	MarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateResponse, error)
 
 	MarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateResponse, error)
+
+	// MarketplaceProviderOfferingsUpdateTagsWithBodyWithResponse request with any body
+	MarketplaceProviderOfferingsUpdateTagsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateTagsResponse, error)
+
+	MarketplaceProviderOfferingsUpdateTagsWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateTagsJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateTagsResponse, error)
 
 	// MarketplaceProviderOfferingsUpdateThumbnailWithBodyWithResponse request with any body
 	MarketplaceProviderOfferingsUpdateThumbnailWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateThumbnailResponse, error)
@@ -272430,6 +274181,33 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceStatsUserOrganizationCountCountWithResponse request
 	MarketplaceStatsUserOrganizationCountCountWithResponse(ctx context.Context, params *MarketplaceStatsUserOrganizationCountCountParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsUserOrganizationCountCountResponse, error)
+
+	// MarketplaceTagsListWithResponse request
+	MarketplaceTagsListWithResponse(ctx context.Context, params *MarketplaceTagsListParams, reqEditors ...RequestEditorFn) (*MarketplaceTagsListResponse, error)
+
+	// MarketplaceTagsCountWithResponse request
+	MarketplaceTagsCountWithResponse(ctx context.Context, params *MarketplaceTagsCountParams, reqEditors ...RequestEditorFn) (*MarketplaceTagsCountResponse, error)
+
+	// MarketplaceTagsCreateWithBodyWithResponse request with any body
+	MarketplaceTagsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceTagsCreateResponse, error)
+
+	MarketplaceTagsCreateWithResponse(ctx context.Context, body MarketplaceTagsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceTagsCreateResponse, error)
+
+	// MarketplaceTagsDestroyWithResponse request
+	MarketplaceTagsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceTagsDestroyResponse, error)
+
+	// MarketplaceTagsRetrieveWithResponse request
+	MarketplaceTagsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceTagsRetrieveResponse, error)
+
+	// MarketplaceTagsPartialUpdateWithBodyWithResponse request with any body
+	MarketplaceTagsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceTagsPartialUpdateResponse, error)
+
+	MarketplaceTagsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceTagsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceTagsPartialUpdateResponse, error)
+
+	// MarketplaceTagsUpdateWithBodyWithResponse request with any body
+	MarketplaceTagsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceTagsUpdateResponse, error)
+
+	MarketplaceTagsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceTagsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceTagsUpdateResponse, error)
 
 	// MarketplaceUserOfferingConsentsListWithResponse request
 	MarketplaceUserOfferingConsentsListWithResponse(ctx context.Context, params *MarketplaceUserOfferingConsentsListParams, reqEditors ...RequestEditorFn) (*MarketplaceUserOfferingConsentsListResponse, error)
@@ -292317,6 +294095,27 @@ func (r MarketplaceProviderOfferingsDeleteOrganizationGroupsResponse) StatusCode
 	return 0
 }
 
+type MarketplaceProviderOfferingsDeleteTagsResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderOfferingsDeleteTagsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderOfferingsDeleteTagsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type MarketplaceProviderOfferingsDeleteThumbnailResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -293197,6 +294996,27 @@ func (r MarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateResponse) 
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceProviderOfferingsUpdateTagsResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderOfferingsUpdateTagsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderOfferingsUpdateTagsResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -298896,6 +300716,158 @@ func (r MarketplaceStatsUserOrganizationCountCountResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceStatsUserOrganizationCountCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceTagsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]Tag
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceTagsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceTagsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceTagsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceTagsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceTagsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceTagsCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *Tag
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceTagsCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceTagsCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceTagsDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceTagsDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceTagsDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceTagsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *Tag
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceTagsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceTagsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceTagsPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *Tag
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceTagsPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceTagsPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceTagsUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *Tag
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceTagsUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceTagsUpdateResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -328415,6 +330387,15 @@ func (c *ClientWithResponses) MarketplaceProviderOfferingsDeleteOrganizationGrou
 	return ParseMarketplaceProviderOfferingsDeleteOrganizationGroupsResponse(rsp)
 }
 
+// MarketplaceProviderOfferingsDeleteTagsWithResponse request returning *MarketplaceProviderOfferingsDeleteTagsResponse
+func (c *ClientWithResponses) MarketplaceProviderOfferingsDeleteTagsWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsDeleteTagsResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsDeleteTags(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsDeleteTagsResponse(rsp)
+}
+
 // MarketplaceProviderOfferingsDeleteThumbnailWithResponse request returning *MarketplaceProviderOfferingsDeleteThumbnailResponse
 func (c *ClientWithResponses) MarketplaceProviderOfferingsDeleteThumbnailWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsDeleteThumbnailResponse, error) {
 	rsp, err := c.MarketplaceProviderOfferingsDeleteThumbnail(ctx, uuid, reqEditors...)
@@ -328966,6 +330947,23 @@ func (c *ClientWithResponses) MarketplaceProviderOfferingsUpdateSoftwareCatalogP
 		return nil, err
 	}
 	return ParseMarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateResponse(rsp)
+}
+
+// MarketplaceProviderOfferingsUpdateTagsWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderOfferingsUpdateTagsResponse
+func (c *ClientWithResponses) MarketplaceProviderOfferingsUpdateTagsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateTagsResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsUpdateTagsWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsUpdateTagsResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceProviderOfferingsUpdateTagsWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateTagsJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateTagsResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsUpdateTags(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsUpdateTagsResponse(rsp)
 }
 
 // MarketplaceProviderOfferingsUpdateThumbnailWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderOfferingsUpdateThumbnailResponse
@@ -332003,6 +334001,93 @@ func (c *ClientWithResponses) MarketplaceStatsUserOrganizationCountCountWithResp
 		return nil, err
 	}
 	return ParseMarketplaceStatsUserOrganizationCountCountResponse(rsp)
+}
+
+// MarketplaceTagsListWithResponse request returning *MarketplaceTagsListResponse
+func (c *ClientWithResponses) MarketplaceTagsListWithResponse(ctx context.Context, params *MarketplaceTagsListParams, reqEditors ...RequestEditorFn) (*MarketplaceTagsListResponse, error) {
+	rsp, err := c.MarketplaceTagsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceTagsListResponse(rsp)
+}
+
+// MarketplaceTagsCountWithResponse request returning *MarketplaceTagsCountResponse
+func (c *ClientWithResponses) MarketplaceTagsCountWithResponse(ctx context.Context, params *MarketplaceTagsCountParams, reqEditors ...RequestEditorFn) (*MarketplaceTagsCountResponse, error) {
+	rsp, err := c.MarketplaceTagsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceTagsCountResponse(rsp)
+}
+
+// MarketplaceTagsCreateWithBodyWithResponse request with arbitrary body returning *MarketplaceTagsCreateResponse
+func (c *ClientWithResponses) MarketplaceTagsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceTagsCreateResponse, error) {
+	rsp, err := c.MarketplaceTagsCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceTagsCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceTagsCreateWithResponse(ctx context.Context, body MarketplaceTagsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceTagsCreateResponse, error) {
+	rsp, err := c.MarketplaceTagsCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceTagsCreateResponse(rsp)
+}
+
+// MarketplaceTagsDestroyWithResponse request returning *MarketplaceTagsDestroyResponse
+func (c *ClientWithResponses) MarketplaceTagsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceTagsDestroyResponse, error) {
+	rsp, err := c.MarketplaceTagsDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceTagsDestroyResponse(rsp)
+}
+
+// MarketplaceTagsRetrieveWithResponse request returning *MarketplaceTagsRetrieveResponse
+func (c *ClientWithResponses) MarketplaceTagsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceTagsRetrieveResponse, error) {
+	rsp, err := c.MarketplaceTagsRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceTagsRetrieveResponse(rsp)
+}
+
+// MarketplaceTagsPartialUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceTagsPartialUpdateResponse
+func (c *ClientWithResponses) MarketplaceTagsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceTagsPartialUpdateResponse, error) {
+	rsp, err := c.MarketplaceTagsPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceTagsPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceTagsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceTagsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceTagsPartialUpdateResponse, error) {
+	rsp, err := c.MarketplaceTagsPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceTagsPartialUpdateResponse(rsp)
+}
+
+// MarketplaceTagsUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceTagsUpdateResponse
+func (c *ClientWithResponses) MarketplaceTagsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceTagsUpdateResponse, error) {
+	rsp, err := c.MarketplaceTagsUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceTagsUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceTagsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceTagsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceTagsUpdateResponse, error) {
+	rsp, err := c.MarketplaceTagsUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceTagsUpdateResponse(rsp)
 }
 
 // MarketplaceUserOfferingConsentsListWithResponse request returning *MarketplaceUserOfferingConsentsListResponse
@@ -360425,6 +362510,22 @@ func ParseMarketplaceProviderOfferingsDeleteOrganizationGroupsResponse(rsp *http
 	return response, nil
 }
 
+// ParseMarketplaceProviderOfferingsDeleteTagsResponse parses an HTTP response from a MarketplaceProviderOfferingsDeleteTagsWithResponse call
+func ParseMarketplaceProviderOfferingsDeleteTagsResponse(rsp *http.Response) (*MarketplaceProviderOfferingsDeleteTagsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderOfferingsDeleteTagsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
 // ParseMarketplaceProviderOfferingsDeleteThumbnailResponse parses an HTTP response from a MarketplaceProviderOfferingsDeleteThumbnailWithResponse call
 func ParseMarketplaceProviderOfferingsDeleteThumbnailResponse(rsp *http.Response) (*MarketplaceProviderOfferingsDeleteThumbnailResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -361299,6 +363400,22 @@ func ParseMarketplaceProviderOfferingsUpdateSoftwareCatalogPartialUpdateResponse
 		}
 		response.JSON200 = &dest
 
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProviderOfferingsUpdateTagsResponse parses an HTTP response from a MarketplaceProviderOfferingsUpdateTagsWithResponse call
+func ParseMarketplaceProviderOfferingsUpdateTagsResponse(rsp *http.Response) (*MarketplaceProviderOfferingsUpdateTagsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderOfferingsUpdateTagsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
 	}
 
 	return response, nil
@@ -367424,6 +369541,168 @@ func ParseMarketplaceStatsUserOrganizationCountCountResponse(rsp *http.Response)
 	response := &MarketplaceStatsUserOrganizationCountCountResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceTagsListResponse parses an HTTP response from a MarketplaceTagsListWithResponse call
+func ParseMarketplaceTagsListResponse(rsp *http.Response) (*MarketplaceTagsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceTagsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []Tag
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceTagsCountResponse parses an HTTP response from a MarketplaceTagsCountWithResponse call
+func ParseMarketplaceTagsCountResponse(rsp *http.Response) (*MarketplaceTagsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceTagsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceTagsCreateResponse parses an HTTP response from a MarketplaceTagsCreateWithResponse call
+func ParseMarketplaceTagsCreateResponse(rsp *http.Response) (*MarketplaceTagsCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceTagsCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest Tag
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceTagsDestroyResponse parses an HTTP response from a MarketplaceTagsDestroyWithResponse call
+func ParseMarketplaceTagsDestroyResponse(rsp *http.Response) (*MarketplaceTagsDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceTagsDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceTagsRetrieveResponse parses an HTTP response from a MarketplaceTagsRetrieveWithResponse call
+func ParseMarketplaceTagsRetrieveResponse(rsp *http.Response) (*MarketplaceTagsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceTagsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest Tag
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceTagsPartialUpdateResponse parses an HTTP response from a MarketplaceTagsPartialUpdateWithResponse call
+func ParseMarketplaceTagsPartialUpdateResponse(rsp *http.Response) (*MarketplaceTagsPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceTagsPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest Tag
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceTagsUpdateResponse parses an HTTP response from a MarketplaceTagsUpdateWithResponse call
+func ParseMarketplaceTagsUpdateResponse(rsp *http.Response) (*MarketplaceTagsUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceTagsUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest Tag
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
