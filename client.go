@@ -23,6 +23,22 @@ const (
 	WaldurOIDCAuthScopes = "waldurOIDCAuth.Scopes"
 )
 
+// Defines values for AccessTypeEnum.
+const (
+	AccessTypeEnumStaff           AccessTypeEnum = "staff"
+	AccessTypeEnumStaffAndSupport AccessTypeEnum = "staff_and_support"
+	AccessTypeEnumSupport         AccessTypeEnum = "support"
+)
+
+// Defines values for AccessorTypeEnum.
+const (
+	AccessorTypeEnumOrganizationMember AccessorTypeEnum = "organization_member"
+	AccessorTypeEnumSelf               AccessorTypeEnum = "self"
+	AccessorTypeEnumServiceProvider    AccessorTypeEnum = "service_provider"
+	AccessorTypeEnumStaff              AccessorTypeEnum = "staff"
+	AccessorTypeEnumSupport            AccessorTypeEnum = "support"
+)
+
 // Defines values for AdminAnnouncementTypeEnum.
 const (
 	AdminAnnouncementTypeEnumDanger      AdminAnnouncementTypeEnum = "danger"
@@ -932,6 +948,7 @@ const (
 	EventMetadataResponseEventGroupsUpdateOfCreditByStaff                            EventMetadataResponseEventGroups = "update_of_credit_by_staff"
 	EventMetadataResponseEventGroupsUserActivated                                    EventMetadataResponseEventGroups = "user_activated"
 	EventMetadataResponseEventGroupsUserCreationSucceeded                            EventMetadataResponseEventGroups = "user_creation_succeeded"
+	EventMetadataResponseEventGroupsUserDataAccessed                                 EventMetadataResponseEventGroups = "user_data_accessed"
 	EventMetadataResponseEventGroupsUserDeactivated                                  EventMetadataResponseEventGroups = "user_deactivated"
 	EventMetadataResponseEventGroupsUserDeactivatedNoRoles                           EventMetadataResponseEventGroups = "user_deactivated_no_roles"
 	EventMetadataResponseEventGroupsUserDeletionSucceeded                            EventMetadataResponseEventGroups = "user_deletion_succeeded"
@@ -1196,6 +1213,7 @@ const (
 	EventTypesEnumUpdateOfCreditByStaff                            EventTypesEnum = "update_of_credit_by_staff"
 	EventTypesEnumUserActivated                                    EventTypesEnum = "user_activated"
 	EventTypesEnumUserCreationSucceeded                            EventTypesEnum = "user_creation_succeeded"
+	EventTypesEnumUserDataAccessed                                 EventTypesEnum = "user_data_accessed"
 	EventTypesEnumUserDeactivated                                  EventTypesEnum = "user_deactivated"
 	EventTypesEnumUserDeactivatedNoRoles                           EventTypesEnum = "user_deactivated_no_roles"
 	EventTypesEnumUserDeletionSucceeded                            EventTypesEnum = "user_deletion_succeeded"
@@ -1214,6 +1232,14 @@ const (
 	ExecutionStateEnumOK         ExecutionStateEnum = "OK"
 	ExecutionStateEnumProcessing ExecutionStateEnum = "Processing"
 	ExecutionStateEnumScheduled  ExecutionStateEnum = "Scheduled"
+)
+
+// Defines values for GenderEnum.
+const (
+	GenderEnumN0 GenderEnum = 0
+	GenderEnumN1 GenderEnum = 1
+	GenderEnumN2 GenderEnum = 2
+	GenderEnumN9 GenderEnum = 9
 )
 
 // Defines values for GenerateSuggestionsRequestSourceEnum.
@@ -4489,6 +4515,48 @@ const (
 	CustomersListUsersListParamsOUsername       CustomersListUsersListParamsO = "username"
 )
 
+// Defines values for DataAccessLogsListParamsAccessorType.
+const (
+	DataAccessLogsListParamsAccessorTypeOrganizationMember DataAccessLogsListParamsAccessorType = "organization_member"
+	DataAccessLogsListParamsAccessorTypeSelf               DataAccessLogsListParamsAccessorType = "self"
+	DataAccessLogsListParamsAccessorTypeServiceProvider    DataAccessLogsListParamsAccessorType = "service_provider"
+	DataAccessLogsListParamsAccessorTypeStaff              DataAccessLogsListParamsAccessorType = "staff"
+	DataAccessLogsListParamsAccessorTypeSupport            DataAccessLogsListParamsAccessorType = "support"
+)
+
+// Defines values for DataAccessLogsListParamsO.
+const (
+	DataAccessLogsListParamsOAccessorType          DataAccessLogsListParamsO = "accessor_type"
+	DataAccessLogsListParamsOAccessorUsername      DataAccessLogsListParamsO = "accessor_username"
+	DataAccessLogsListParamsOMinusAccessorType     DataAccessLogsListParamsO = "-accessor_type"
+	DataAccessLogsListParamsOMinusAccessorUsername DataAccessLogsListParamsO = "-accessor_username"
+	DataAccessLogsListParamsOMinusTimestamp        DataAccessLogsListParamsO = "-timestamp"
+	DataAccessLogsListParamsOMinusUserUsername     DataAccessLogsListParamsO = "-user_username"
+	DataAccessLogsListParamsOTimestamp             DataAccessLogsListParamsO = "timestamp"
+	DataAccessLogsListParamsOUserUsername          DataAccessLogsListParamsO = "user_username"
+)
+
+// Defines values for DataAccessLogsCountParamsAccessorType.
+const (
+	DataAccessLogsCountParamsAccessorTypeOrganizationMember DataAccessLogsCountParamsAccessorType = "organization_member"
+	DataAccessLogsCountParamsAccessorTypeSelf               DataAccessLogsCountParamsAccessorType = "self"
+	DataAccessLogsCountParamsAccessorTypeServiceProvider    DataAccessLogsCountParamsAccessorType = "service_provider"
+	DataAccessLogsCountParamsAccessorTypeStaff              DataAccessLogsCountParamsAccessorType = "staff"
+	DataAccessLogsCountParamsAccessorTypeSupport            DataAccessLogsCountParamsAccessorType = "support"
+)
+
+// Defines values for DataAccessLogsCountParamsO.
+const (
+	DataAccessLogsCountParamsOAccessorType          DataAccessLogsCountParamsO = "accessor_type"
+	DataAccessLogsCountParamsOAccessorUsername      DataAccessLogsCountParamsO = "accessor_username"
+	DataAccessLogsCountParamsOMinusAccessorType     DataAccessLogsCountParamsO = "-accessor_type"
+	DataAccessLogsCountParamsOMinusAccessorUsername DataAccessLogsCountParamsO = "-accessor_username"
+	DataAccessLogsCountParamsOMinusTimestamp        DataAccessLogsCountParamsO = "-timestamp"
+	DataAccessLogsCountParamsOMinusUserUsername     DataAccessLogsCountParamsO = "-user_username"
+	DataAccessLogsCountParamsOTimestamp             DataAccessLogsCountParamsO = "timestamp"
+	DataAccessLogsCountParamsOUserUsername          DataAccessLogsCountParamsO = "user_username"
+)
+
 // Defines values for DigitaloceanDropletsListParamsField.
 const (
 	DigitaloceanDropletsListParamsFieldAccessUrl                        DigitaloceanDropletsListParamsField = "access_url"
@@ -5769,8 +5837,24 @@ const (
 	MarketplaceOfferingUsersListParamsFieldState                     MarketplaceOfferingUsersListParamsField = "state"
 	MarketplaceOfferingUsersListParamsFieldUrl                       MarketplaceOfferingUsersListParamsField = "url"
 	MarketplaceOfferingUsersListParamsFieldUser                      MarketplaceOfferingUsersListParamsField = "user"
+	MarketplaceOfferingUsersListParamsFieldUserAffiliations          MarketplaceOfferingUsersListParamsField = "user_affiliations"
+	MarketplaceOfferingUsersListParamsFieldUserBirthDate             MarketplaceOfferingUsersListParamsField = "user_birth_date"
+	MarketplaceOfferingUsersListParamsFieldUserCivilNumber           MarketplaceOfferingUsersListParamsField = "user_civil_number"
+	MarketplaceOfferingUsersListParamsFieldUserCountryOfResidence    MarketplaceOfferingUsersListParamsField = "user_country_of_residence"
+	MarketplaceOfferingUsersListParamsFieldUserEdupersonAssurance    MarketplaceOfferingUsersListParamsField = "user_eduperson_assurance"
 	MarketplaceOfferingUsersListParamsFieldUserEmail                 MarketplaceOfferingUsersListParamsField = "user_email"
 	MarketplaceOfferingUsersListParamsFieldUserFullName              MarketplaceOfferingUsersListParamsField = "user_full_name"
+	MarketplaceOfferingUsersListParamsFieldUserGender                MarketplaceOfferingUsersListParamsField = "user_gender"
+	MarketplaceOfferingUsersListParamsFieldUserIdentitySource        MarketplaceOfferingUsersListParamsField = "user_identity_source"
+	MarketplaceOfferingUsersListParamsFieldUserJobTitle              MarketplaceOfferingUsersListParamsField = "user_job_title"
+	MarketplaceOfferingUsersListParamsFieldUserNationalities         MarketplaceOfferingUsersListParamsField = "user_nationalities"
+	MarketplaceOfferingUsersListParamsFieldUserNationality           MarketplaceOfferingUsersListParamsField = "user_nationality"
+	MarketplaceOfferingUsersListParamsFieldUserOrganization          MarketplaceOfferingUsersListParamsField = "user_organization"
+	MarketplaceOfferingUsersListParamsFieldUserOrganizationCountry   MarketplaceOfferingUsersListParamsField = "user_organization_country"
+	MarketplaceOfferingUsersListParamsFieldUserOrganizationType      MarketplaceOfferingUsersListParamsField = "user_organization_type"
+	MarketplaceOfferingUsersListParamsFieldUserPersonalTitle         MarketplaceOfferingUsersListParamsField = "user_personal_title"
+	MarketplaceOfferingUsersListParamsFieldUserPhoneNumber           MarketplaceOfferingUsersListParamsField = "user_phone_number"
+	MarketplaceOfferingUsersListParamsFieldUserPlaceOfBirth          MarketplaceOfferingUsersListParamsField = "user_place_of_birth"
 	MarketplaceOfferingUsersListParamsFieldUserUsername              MarketplaceOfferingUsersListParamsField = "user_username"
 	MarketplaceOfferingUsersListParamsFieldUserUuid                  MarketplaceOfferingUsersListParamsField = "user_uuid"
 	MarketplaceOfferingUsersListParamsFieldUsername                  MarketplaceOfferingUsersListParamsField = "username"
@@ -5844,8 +5928,24 @@ const (
 	MarketplaceOfferingUsersRetrieveParamsFieldState                     MarketplaceOfferingUsersRetrieveParamsField = "state"
 	MarketplaceOfferingUsersRetrieveParamsFieldUrl                       MarketplaceOfferingUsersRetrieveParamsField = "url"
 	MarketplaceOfferingUsersRetrieveParamsFieldUser                      MarketplaceOfferingUsersRetrieveParamsField = "user"
+	MarketplaceOfferingUsersRetrieveParamsFieldUserAffiliations          MarketplaceOfferingUsersRetrieveParamsField = "user_affiliations"
+	MarketplaceOfferingUsersRetrieveParamsFieldUserBirthDate             MarketplaceOfferingUsersRetrieveParamsField = "user_birth_date"
+	MarketplaceOfferingUsersRetrieveParamsFieldUserCivilNumber           MarketplaceOfferingUsersRetrieveParamsField = "user_civil_number"
+	MarketplaceOfferingUsersRetrieveParamsFieldUserCountryOfResidence    MarketplaceOfferingUsersRetrieveParamsField = "user_country_of_residence"
+	MarketplaceOfferingUsersRetrieveParamsFieldUserEdupersonAssurance    MarketplaceOfferingUsersRetrieveParamsField = "user_eduperson_assurance"
 	MarketplaceOfferingUsersRetrieveParamsFieldUserEmail                 MarketplaceOfferingUsersRetrieveParamsField = "user_email"
 	MarketplaceOfferingUsersRetrieveParamsFieldUserFullName              MarketplaceOfferingUsersRetrieveParamsField = "user_full_name"
+	MarketplaceOfferingUsersRetrieveParamsFieldUserGender                MarketplaceOfferingUsersRetrieveParamsField = "user_gender"
+	MarketplaceOfferingUsersRetrieveParamsFieldUserIdentitySource        MarketplaceOfferingUsersRetrieveParamsField = "user_identity_source"
+	MarketplaceOfferingUsersRetrieveParamsFieldUserJobTitle              MarketplaceOfferingUsersRetrieveParamsField = "user_job_title"
+	MarketplaceOfferingUsersRetrieveParamsFieldUserNationalities         MarketplaceOfferingUsersRetrieveParamsField = "user_nationalities"
+	MarketplaceOfferingUsersRetrieveParamsFieldUserNationality           MarketplaceOfferingUsersRetrieveParamsField = "user_nationality"
+	MarketplaceOfferingUsersRetrieveParamsFieldUserOrganization          MarketplaceOfferingUsersRetrieveParamsField = "user_organization"
+	MarketplaceOfferingUsersRetrieveParamsFieldUserOrganizationCountry   MarketplaceOfferingUsersRetrieveParamsField = "user_organization_country"
+	MarketplaceOfferingUsersRetrieveParamsFieldUserOrganizationType      MarketplaceOfferingUsersRetrieveParamsField = "user_organization_type"
+	MarketplaceOfferingUsersRetrieveParamsFieldUserPersonalTitle         MarketplaceOfferingUsersRetrieveParamsField = "user_personal_title"
+	MarketplaceOfferingUsersRetrieveParamsFieldUserPhoneNumber           MarketplaceOfferingUsersRetrieveParamsField = "user_phone_number"
+	MarketplaceOfferingUsersRetrieveParamsFieldUserPlaceOfBirth          MarketplaceOfferingUsersRetrieveParamsField = "user_place_of_birth"
 	MarketplaceOfferingUsersRetrieveParamsFieldUserUsername              MarketplaceOfferingUsersRetrieveParamsField = "user_username"
 	MarketplaceOfferingUsersRetrieveParamsFieldUserUuid                  MarketplaceOfferingUsersRetrieveParamsField = "user_uuid"
 	MarketplaceOfferingUsersRetrieveParamsFieldUsername                  MarketplaceOfferingUsersRetrieveParamsField = "username"
@@ -6557,11 +6657,14 @@ const (
 	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldAgreementDate                 MarketplaceProviderOfferingsListCustomerUsersListParamsField = "agreement_date"
 	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldBirthDate                     MarketplaceProviderOfferingsListCustomerUsersListParamsField = "birth_date"
 	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldCivilNumber                   MarketplaceProviderOfferingsListCustomerUsersListParamsField = "civil_number"
+	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldCountryOfResidence            MarketplaceProviderOfferingsListCustomerUsersListParamsField = "country_of_residence"
 	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldDateJoined                    MarketplaceProviderOfferingsListCustomerUsersListParamsField = "date_joined"
 	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldDescription                   MarketplaceProviderOfferingsListCustomerUsersListParamsField = "description"
+	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldEdupersonAssurance            MarketplaceProviderOfferingsListCustomerUsersListParamsField = "eduperson_assurance"
 	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldEmail                         MarketplaceProviderOfferingsListCustomerUsersListParamsField = "email"
 	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldFirstName                     MarketplaceProviderOfferingsListCustomerUsersListParamsField = "first_name"
 	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldFullName                      MarketplaceProviderOfferingsListCustomerUsersListParamsField = "full_name"
+	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldGender                        MarketplaceProviderOfferingsListCustomerUsersListParamsField = "gender"
 	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldHasActiveSession              MarketplaceProviderOfferingsListCustomerUsersListParamsField = "has_active_session"
 	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldIdentityProviderFields        MarketplaceProviderOfferingsListCustomerUsersListParamsField = "identity_provider_fields"
 	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldIdentityProviderLabel         MarketplaceProviderOfferingsListCustomerUsersListParamsField = "identity_provider_label"
@@ -6575,11 +6678,17 @@ const (
 	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldIsSupport                     MarketplaceProviderOfferingsListCustomerUsersListParamsField = "is_support"
 	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldJobTitle                      MarketplaceProviderOfferingsListCustomerUsersListParamsField = "job_title"
 	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldLastName                      MarketplaceProviderOfferingsListCustomerUsersListParamsField = "last_name"
+	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldNationalities                 MarketplaceProviderOfferingsListCustomerUsersListParamsField = "nationalities"
+	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldNationality                   MarketplaceProviderOfferingsListCustomerUsersListParamsField = "nationality"
 	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldNativeName                    MarketplaceProviderOfferingsListCustomerUsersListParamsField = "native_name"
 	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldNotificationsEnabled          MarketplaceProviderOfferingsListCustomerUsersListParamsField = "notifications_enabled"
 	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldOrganization                  MarketplaceProviderOfferingsListCustomerUsersListParamsField = "organization"
+	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldOrganizationCountry           MarketplaceProviderOfferingsListCustomerUsersListParamsField = "organization_country"
+	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldOrganizationType              MarketplaceProviderOfferingsListCustomerUsersListParamsField = "organization_type"
 	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldPermissions                   MarketplaceProviderOfferingsListCustomerUsersListParamsField = "permissions"
+	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldPersonalTitle                 MarketplaceProviderOfferingsListCustomerUsersListParamsField = "personal_title"
 	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldPhoneNumber                   MarketplaceProviderOfferingsListCustomerUsersListParamsField = "phone_number"
+	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldPlaceOfBirth                  MarketplaceProviderOfferingsListCustomerUsersListParamsField = "place_of_birth"
 	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldPreferredLanguage             MarketplaceProviderOfferingsListCustomerUsersListParamsField = "preferred_language"
 	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldRegistrationMethod            MarketplaceProviderOfferingsListCustomerUsersListParamsField = "registration_method"
 	MarketplaceProviderOfferingsListCustomerUsersListParamsFieldRequestedEmail                MarketplaceProviderOfferingsListCustomerUsersListParamsField = "requested_email"
@@ -7973,9 +8082,9 @@ const (
 
 // Defines values for MarketplaceSiteAgentServicesCountParamsState.
 const (
-	MarketplaceSiteAgentServicesCountParamsStateN1 MarketplaceSiteAgentServicesCountParamsState = "1"
-	MarketplaceSiteAgentServicesCountParamsStateN2 MarketplaceSiteAgentServicesCountParamsState = "2"
-	MarketplaceSiteAgentServicesCountParamsStateN3 MarketplaceSiteAgentServicesCountParamsState = "3"
+	N1 MarketplaceSiteAgentServicesCountParamsState = "1"
+	N2 MarketplaceSiteAgentServicesCountParamsState = "2"
+	N3 MarketplaceSiteAgentServicesCountParamsState = "3"
 )
 
 // Defines values for MarketplaceSoftwareCatalogsListParamsO.
@@ -10701,6 +10810,7 @@ const (
 	ProposalProtectedCallsListParamsFieldEndDate                             ProposalProtectedCallsListParamsField = "end_date"
 	ProposalProtectedCallsListParamsFieldExternalUrl                         ProposalProtectedCallsListParamsField = "external_url"
 	ProposalProtectedCallsListParamsFieldFixedDurationInDays                 ProposalProtectedCallsListParamsField = "fixed_duration_in_days"
+	ProposalProtectedCallsListParamsFieldHasEligibilityRestrictions          ProposalProtectedCallsListParamsField = "has_eligibility_restrictions"
 	ProposalProtectedCallsListParamsFieldManager                             ProposalProtectedCallsListParamsField = "manager"
 	ProposalProtectedCallsListParamsFieldManagerUuid                         ProposalProtectedCallsListParamsField = "manager_uuid"
 	ProposalProtectedCallsListParamsFieldName                                ProposalProtectedCallsListParamsField = "name"
@@ -10715,6 +10825,12 @@ const (
 	ProposalProtectedCallsListParamsFieldStartDate                           ProposalProtectedCallsListParamsField = "start_date"
 	ProposalProtectedCallsListParamsFieldState                               ProposalProtectedCallsListParamsField = "state"
 	ProposalProtectedCallsListParamsFieldUrl                                 ProposalProtectedCallsListParamsField = "url"
+	ProposalProtectedCallsListParamsFieldUserAffiliations                    ProposalProtectedCallsListParamsField = "user_affiliations"
+	ProposalProtectedCallsListParamsFieldUserAssuranceLevels                 ProposalProtectedCallsListParamsField = "user_assurance_levels"
+	ProposalProtectedCallsListParamsFieldUserEmailPatterns                   ProposalProtectedCallsListParamsField = "user_email_patterns"
+	ProposalProtectedCallsListParamsFieldUserIdentitySources                 ProposalProtectedCallsListParamsField = "user_identity_sources"
+	ProposalProtectedCallsListParamsFieldUserNationalities                   ProposalProtectedCallsListParamsField = "user_nationalities"
+	ProposalProtectedCallsListParamsFieldUserOrganizationTypes               ProposalProtectedCallsListParamsField = "user_organization_types"
 	ProposalProtectedCallsListParamsFieldUuid                                ProposalProtectedCallsListParamsField = "uuid"
 )
 
@@ -10800,6 +10916,7 @@ const (
 	ProposalProtectedCallsRetrieveParamsFieldEndDate                             ProposalProtectedCallsRetrieveParamsField = "end_date"
 	ProposalProtectedCallsRetrieveParamsFieldExternalUrl                         ProposalProtectedCallsRetrieveParamsField = "external_url"
 	ProposalProtectedCallsRetrieveParamsFieldFixedDurationInDays                 ProposalProtectedCallsRetrieveParamsField = "fixed_duration_in_days"
+	ProposalProtectedCallsRetrieveParamsFieldHasEligibilityRestrictions          ProposalProtectedCallsRetrieveParamsField = "has_eligibility_restrictions"
 	ProposalProtectedCallsRetrieveParamsFieldManager                             ProposalProtectedCallsRetrieveParamsField = "manager"
 	ProposalProtectedCallsRetrieveParamsFieldManagerUuid                         ProposalProtectedCallsRetrieveParamsField = "manager_uuid"
 	ProposalProtectedCallsRetrieveParamsFieldName                                ProposalProtectedCallsRetrieveParamsField = "name"
@@ -10814,6 +10931,12 @@ const (
 	ProposalProtectedCallsRetrieveParamsFieldStartDate                           ProposalProtectedCallsRetrieveParamsField = "start_date"
 	ProposalProtectedCallsRetrieveParamsFieldState                               ProposalProtectedCallsRetrieveParamsField = "state"
 	ProposalProtectedCallsRetrieveParamsFieldUrl                                 ProposalProtectedCallsRetrieveParamsField = "url"
+	ProposalProtectedCallsRetrieveParamsFieldUserAffiliations                    ProposalProtectedCallsRetrieveParamsField = "user_affiliations"
+	ProposalProtectedCallsRetrieveParamsFieldUserAssuranceLevels                 ProposalProtectedCallsRetrieveParamsField = "user_assurance_levels"
+	ProposalProtectedCallsRetrieveParamsFieldUserEmailPatterns                   ProposalProtectedCallsRetrieveParamsField = "user_email_patterns"
+	ProposalProtectedCallsRetrieveParamsFieldUserIdentitySources                 ProposalProtectedCallsRetrieveParamsField = "user_identity_sources"
+	ProposalProtectedCallsRetrieveParamsFieldUserNationalities                   ProposalProtectedCallsRetrieveParamsField = "user_nationalities"
+	ProposalProtectedCallsRetrieveParamsFieldUserOrganizationTypes               ProposalProtectedCallsRetrieveParamsField = "user_organization_types"
 	ProposalProtectedCallsRetrieveParamsFieldUuid                                ProposalProtectedCallsRetrieveParamsField = "uuid"
 )
 
@@ -10947,6 +11070,7 @@ const (
 	ProposalPublicCallsListParamsFieldEndDate                             ProposalPublicCallsListParamsField = "end_date"
 	ProposalPublicCallsListParamsFieldExternalUrl                         ProposalPublicCallsListParamsField = "external_url"
 	ProposalPublicCallsListParamsFieldFixedDurationInDays                 ProposalPublicCallsListParamsField = "fixed_duration_in_days"
+	ProposalPublicCallsListParamsFieldHasEligibilityRestrictions          ProposalPublicCallsListParamsField = "has_eligibility_restrictions"
 	ProposalPublicCallsListParamsFieldManager                             ProposalPublicCallsListParamsField = "manager"
 	ProposalPublicCallsListParamsFieldManagerUuid                         ProposalPublicCallsListParamsField = "manager_uuid"
 	ProposalPublicCallsListParamsFieldName                                ProposalPublicCallsListParamsField = "name"
@@ -11007,6 +11131,7 @@ const (
 	ProposalPublicCallsRetrieveParamsFieldEndDate                             ProposalPublicCallsRetrieveParamsField = "end_date"
 	ProposalPublicCallsRetrieveParamsFieldExternalUrl                         ProposalPublicCallsRetrieveParamsField = "external_url"
 	ProposalPublicCallsRetrieveParamsFieldFixedDurationInDays                 ProposalPublicCallsRetrieveParamsField = "fixed_duration_in_days"
+	ProposalPublicCallsRetrieveParamsFieldHasEligibilityRestrictions          ProposalPublicCallsRetrieveParamsField = "has_eligibility_restrictions"
 	ProposalPublicCallsRetrieveParamsFieldManager                             ProposalPublicCallsRetrieveParamsField = "manager"
 	ProposalPublicCallsRetrieveParamsFieldManagerUuid                         ProposalPublicCallsRetrieveParamsField = "manager_uuid"
 	ProposalPublicCallsRetrieveParamsFieldName                                ProposalPublicCallsRetrieveParamsField = "name"
@@ -12531,11 +12656,14 @@ const (
 	UsersListParamsFieldAgreementDate                 UsersListParamsField = "agreement_date"
 	UsersListParamsFieldBirthDate                     UsersListParamsField = "birth_date"
 	UsersListParamsFieldCivilNumber                   UsersListParamsField = "civil_number"
+	UsersListParamsFieldCountryOfResidence            UsersListParamsField = "country_of_residence"
 	UsersListParamsFieldDateJoined                    UsersListParamsField = "date_joined"
 	UsersListParamsFieldDescription                   UsersListParamsField = "description"
+	UsersListParamsFieldEdupersonAssurance            UsersListParamsField = "eduperson_assurance"
 	UsersListParamsFieldEmail                         UsersListParamsField = "email"
 	UsersListParamsFieldFirstName                     UsersListParamsField = "first_name"
 	UsersListParamsFieldFullName                      UsersListParamsField = "full_name"
+	UsersListParamsFieldGender                        UsersListParamsField = "gender"
 	UsersListParamsFieldHasActiveSession              UsersListParamsField = "has_active_session"
 	UsersListParamsFieldIdentityProviderFields        UsersListParamsField = "identity_provider_fields"
 	UsersListParamsFieldIdentityProviderLabel         UsersListParamsField = "identity_provider_label"
@@ -12549,11 +12677,17 @@ const (
 	UsersListParamsFieldIsSupport                     UsersListParamsField = "is_support"
 	UsersListParamsFieldJobTitle                      UsersListParamsField = "job_title"
 	UsersListParamsFieldLastName                      UsersListParamsField = "last_name"
+	UsersListParamsFieldNationalities                 UsersListParamsField = "nationalities"
+	UsersListParamsFieldNationality                   UsersListParamsField = "nationality"
 	UsersListParamsFieldNativeName                    UsersListParamsField = "native_name"
 	UsersListParamsFieldNotificationsEnabled          UsersListParamsField = "notifications_enabled"
 	UsersListParamsFieldOrganization                  UsersListParamsField = "organization"
+	UsersListParamsFieldOrganizationCountry           UsersListParamsField = "organization_country"
+	UsersListParamsFieldOrganizationType              UsersListParamsField = "organization_type"
 	UsersListParamsFieldPermissions                   UsersListParamsField = "permissions"
+	UsersListParamsFieldPersonalTitle                 UsersListParamsField = "personal_title"
 	UsersListParamsFieldPhoneNumber                   UsersListParamsField = "phone_number"
+	UsersListParamsFieldPlaceOfBirth                  UsersListParamsField = "place_of_birth"
 	UsersListParamsFieldPreferredLanguage             UsersListParamsField = "preferred_language"
 	UsersListParamsFieldRegistrationMethod            UsersListParamsField = "registration_method"
 	UsersListParamsFieldRequestedEmail                UsersListParamsField = "requested_email"
@@ -12629,11 +12763,14 @@ const (
 	UsersMeRetrieveParamsFieldAgreementDate                 UsersMeRetrieveParamsField = "agreement_date"
 	UsersMeRetrieveParamsFieldBirthDate                     UsersMeRetrieveParamsField = "birth_date"
 	UsersMeRetrieveParamsFieldCivilNumber                   UsersMeRetrieveParamsField = "civil_number"
+	UsersMeRetrieveParamsFieldCountryOfResidence            UsersMeRetrieveParamsField = "country_of_residence"
 	UsersMeRetrieveParamsFieldDateJoined                    UsersMeRetrieveParamsField = "date_joined"
 	UsersMeRetrieveParamsFieldDescription                   UsersMeRetrieveParamsField = "description"
+	UsersMeRetrieveParamsFieldEdupersonAssurance            UsersMeRetrieveParamsField = "eduperson_assurance"
 	UsersMeRetrieveParamsFieldEmail                         UsersMeRetrieveParamsField = "email"
 	UsersMeRetrieveParamsFieldFirstName                     UsersMeRetrieveParamsField = "first_name"
 	UsersMeRetrieveParamsFieldFullName                      UsersMeRetrieveParamsField = "full_name"
+	UsersMeRetrieveParamsFieldGender                        UsersMeRetrieveParamsField = "gender"
 	UsersMeRetrieveParamsFieldHasActiveSession              UsersMeRetrieveParamsField = "has_active_session"
 	UsersMeRetrieveParamsFieldIdentityProviderFields        UsersMeRetrieveParamsField = "identity_provider_fields"
 	UsersMeRetrieveParamsFieldIdentityProviderLabel         UsersMeRetrieveParamsField = "identity_provider_label"
@@ -12647,11 +12784,17 @@ const (
 	UsersMeRetrieveParamsFieldIsSupport                     UsersMeRetrieveParamsField = "is_support"
 	UsersMeRetrieveParamsFieldJobTitle                      UsersMeRetrieveParamsField = "job_title"
 	UsersMeRetrieveParamsFieldLastName                      UsersMeRetrieveParamsField = "last_name"
+	UsersMeRetrieveParamsFieldNationalities                 UsersMeRetrieveParamsField = "nationalities"
+	UsersMeRetrieveParamsFieldNationality                   UsersMeRetrieveParamsField = "nationality"
 	UsersMeRetrieveParamsFieldNativeName                    UsersMeRetrieveParamsField = "native_name"
 	UsersMeRetrieveParamsFieldNotificationsEnabled          UsersMeRetrieveParamsField = "notifications_enabled"
 	UsersMeRetrieveParamsFieldOrganization                  UsersMeRetrieveParamsField = "organization"
+	UsersMeRetrieveParamsFieldOrganizationCountry           UsersMeRetrieveParamsField = "organization_country"
+	UsersMeRetrieveParamsFieldOrganizationType              UsersMeRetrieveParamsField = "organization_type"
 	UsersMeRetrieveParamsFieldPermissions                   UsersMeRetrieveParamsField = "permissions"
+	UsersMeRetrieveParamsFieldPersonalTitle                 UsersMeRetrieveParamsField = "personal_title"
 	UsersMeRetrieveParamsFieldPhoneNumber                   UsersMeRetrieveParamsField = "phone_number"
+	UsersMeRetrieveParamsFieldPlaceOfBirth                  UsersMeRetrieveParamsField = "place_of_birth"
 	UsersMeRetrieveParamsFieldPreferredLanguage             UsersMeRetrieveParamsField = "preferred_language"
 	UsersMeRetrieveParamsFieldRegistrationMethod            UsersMeRetrieveParamsField = "registration_method"
 	UsersMeRetrieveParamsFieldRequestedEmail                UsersMeRetrieveParamsField = "requested_email"
@@ -12671,11 +12814,14 @@ const (
 	UsersRetrieveParamsFieldAgreementDate                 UsersRetrieveParamsField = "agreement_date"
 	UsersRetrieveParamsFieldBirthDate                     UsersRetrieveParamsField = "birth_date"
 	UsersRetrieveParamsFieldCivilNumber                   UsersRetrieveParamsField = "civil_number"
+	UsersRetrieveParamsFieldCountryOfResidence            UsersRetrieveParamsField = "country_of_residence"
 	UsersRetrieveParamsFieldDateJoined                    UsersRetrieveParamsField = "date_joined"
 	UsersRetrieveParamsFieldDescription                   UsersRetrieveParamsField = "description"
+	UsersRetrieveParamsFieldEdupersonAssurance            UsersRetrieveParamsField = "eduperson_assurance"
 	UsersRetrieveParamsFieldEmail                         UsersRetrieveParamsField = "email"
 	UsersRetrieveParamsFieldFirstName                     UsersRetrieveParamsField = "first_name"
 	UsersRetrieveParamsFieldFullName                      UsersRetrieveParamsField = "full_name"
+	UsersRetrieveParamsFieldGender                        UsersRetrieveParamsField = "gender"
 	UsersRetrieveParamsFieldHasActiveSession              UsersRetrieveParamsField = "has_active_session"
 	UsersRetrieveParamsFieldIdentityProviderFields        UsersRetrieveParamsField = "identity_provider_fields"
 	UsersRetrieveParamsFieldIdentityProviderLabel         UsersRetrieveParamsField = "identity_provider_label"
@@ -12689,11 +12835,17 @@ const (
 	UsersRetrieveParamsFieldIsSupport                     UsersRetrieveParamsField = "is_support"
 	UsersRetrieveParamsFieldJobTitle                      UsersRetrieveParamsField = "job_title"
 	UsersRetrieveParamsFieldLastName                      UsersRetrieveParamsField = "last_name"
+	UsersRetrieveParamsFieldNationalities                 UsersRetrieveParamsField = "nationalities"
+	UsersRetrieveParamsFieldNationality                   UsersRetrieveParamsField = "nationality"
 	UsersRetrieveParamsFieldNativeName                    UsersRetrieveParamsField = "native_name"
 	UsersRetrieveParamsFieldNotificationsEnabled          UsersRetrieveParamsField = "notifications_enabled"
 	UsersRetrieveParamsFieldOrganization                  UsersRetrieveParamsField = "organization"
+	UsersRetrieveParamsFieldOrganizationCountry           UsersRetrieveParamsField = "organization_country"
+	UsersRetrieveParamsFieldOrganizationType              UsersRetrieveParamsField = "organization_type"
 	UsersRetrieveParamsFieldPermissions                   UsersRetrieveParamsField = "permissions"
+	UsersRetrieveParamsFieldPersonalTitle                 UsersRetrieveParamsField = "personal_title"
 	UsersRetrieveParamsFieldPhoneNumber                   UsersRetrieveParamsField = "phone_number"
+	UsersRetrieveParamsFieldPlaceOfBirth                  UsersRetrieveParamsField = "place_of_birth"
 	UsersRetrieveParamsFieldPreferredLanguage             UsersRetrieveParamsField = "preferred_language"
 	UsersRetrieveParamsFieldRegistrationMethod            UsersRetrieveParamsField = "registration_method"
 	UsersRetrieveParamsFieldRequestedEmail                UsersRetrieveParamsField = "requested_email"
@@ -12704,6 +12856,34 @@ const (
 	UsersRetrieveParamsFieldUrl                           UsersRetrieveParamsField = "url"
 	UsersRetrieveParamsFieldUsername                      UsersRetrieveParamsField = "username"
 	UsersRetrieveParamsFieldUuid                          UsersRetrieveParamsField = "uuid"
+)
+
+// Defines values for UsersDataAccessHistoryListParamsO.
+const (
+	UsersDataAccessHistoryListParamsODescription             UsersDataAccessHistoryListParamsO = "description"
+	UsersDataAccessHistoryListParamsOEmail                   UsersDataAccessHistoryListParamsO = "email"
+	UsersDataAccessHistoryListParamsOFullName                UsersDataAccessHistoryListParamsO = "full_name"
+	UsersDataAccessHistoryListParamsOIsActive                UsersDataAccessHistoryListParamsO = "is_active"
+	UsersDataAccessHistoryListParamsOIsStaff                 UsersDataAccessHistoryListParamsO = "is_staff"
+	UsersDataAccessHistoryListParamsOIsSupport               UsersDataAccessHistoryListParamsO = "is_support"
+	UsersDataAccessHistoryListParamsOJobTitle                UsersDataAccessHistoryListParamsO = "job_title"
+	UsersDataAccessHistoryListParamsOMinusDescription        UsersDataAccessHistoryListParamsO = "-description"
+	UsersDataAccessHistoryListParamsOMinusEmail              UsersDataAccessHistoryListParamsO = "-email"
+	UsersDataAccessHistoryListParamsOMinusFullName           UsersDataAccessHistoryListParamsO = "-full_name"
+	UsersDataAccessHistoryListParamsOMinusIsActive           UsersDataAccessHistoryListParamsO = "-is_active"
+	UsersDataAccessHistoryListParamsOMinusIsStaff            UsersDataAccessHistoryListParamsO = "-is_staff"
+	UsersDataAccessHistoryListParamsOMinusIsSupport          UsersDataAccessHistoryListParamsO = "-is_support"
+	UsersDataAccessHistoryListParamsOMinusJobTitle           UsersDataAccessHistoryListParamsO = "-job_title"
+	UsersDataAccessHistoryListParamsOMinusNativeName         UsersDataAccessHistoryListParamsO = "-native_name"
+	UsersDataAccessHistoryListParamsOMinusOrganization       UsersDataAccessHistoryListParamsO = "-organization"
+	UsersDataAccessHistoryListParamsOMinusPhoneNumber        UsersDataAccessHistoryListParamsO = "-phone_number"
+	UsersDataAccessHistoryListParamsOMinusRegistrationMethod UsersDataAccessHistoryListParamsO = "-registration_method"
+	UsersDataAccessHistoryListParamsOMinusUsername           UsersDataAccessHistoryListParamsO = "-username"
+	UsersDataAccessHistoryListParamsONativeName              UsersDataAccessHistoryListParamsO = "native_name"
+	UsersDataAccessHistoryListParamsOOrganization            UsersDataAccessHistoryListParamsO = "organization"
+	UsersDataAccessHistoryListParamsOPhoneNumber             UsersDataAccessHistoryListParamsO = "phone_number"
+	UsersDataAccessHistoryListParamsORegistrationMethod      UsersDataAccessHistoryListParamsO = "registration_method"
+	UsersDataAccessHistoryListParamsOUsername                UsersDataAccessHistoryListParamsO = "username"
 )
 
 // Defines values for VmwareDisksListParamsField.
@@ -13089,6 +13269,19 @@ type AccessSubnetRequest struct {
 	Inet        string  `json:"inet"`
 }
 
+// AccessTypeEnum defines model for AccessTypeEnum.
+type AccessTypeEnum string
+
+// AccessorTypeEnum defines model for AccessorTypeEnum.
+type AccessorTypeEnum string
+
+// AccessorUser defines model for AccessorUser.
+type AccessorUser struct {
+	FullName string             `json:"full_name"`
+	Username string             `json:"username"`
+	Uuid     openapi_types.UUID `json:"uuid"`
+}
+
 // AccountNameGenerationPolicyEnum defines model for AccountNameGenerationPolicyEnum.
 type AccountNameGenerationPolicyEnum = interface{}
 
@@ -13161,6 +13354,22 @@ type AdminAnnouncementRequest struct {
 
 // AdminAnnouncementTypeEnum defines model for AdminAnnouncementTypeEnum.
 type AdminAnnouncementTypeEnum string
+
+// AdminUser defines model for AdminUser.
+type AdminUser struct {
+	AccessType AccessTypeEnum     `json:"access_type"`
+	FullName   string             `json:"full_name"`
+	UserUuid   openapi_types.UUID `json:"user_uuid"`
+	Username   string             `json:"username"`
+}
+
+// AdministrativeAccess defines model for AdministrativeAccess.
+type AdministrativeAccess struct {
+	Description  string       `json:"description"`
+	StaffCount   *int         `json:"staff_count,omitempty"`
+	SupportCount *int         `json:"support_count,omitempty"`
+	Users        *[]AdminUser `json:"users,omitempty"`
+}
 
 // AffiliationTypeEnum defines model for AffiliationTypeEnum.
 type AffiliationTypeEnum string
@@ -14976,6 +15185,52 @@ type CachePerformance struct {
 	SharedBuffers *string `json:"shared_buffers,omitempty"`
 }
 
+// CallApplicantAttributeConfig defines model for CallApplicantAttributeConfig.
+type CallApplicantAttributeConfig struct {
+	CallName                  *string             `json:"call_name,omitempty"`
+	CallUuid                  *openapi_types.UUID `json:"call_uuid,omitempty"`
+	ExposeAffiliations        *bool               `json:"expose_affiliations,omitempty"`
+	ExposeCountryOfResidence  *bool               `json:"expose_country_of_residence,omitempty"`
+	ExposeEdupersonAssurance  *bool               `json:"expose_eduperson_assurance,omitempty"`
+	ExposeEmail               *bool               `json:"expose_email,omitempty"`
+	ExposeFullName            *bool               `json:"expose_full_name,omitempty"`
+	ExposeIdentitySource      *bool               `json:"expose_identity_source,omitempty"`
+	ExposeNationalities       *bool               `json:"expose_nationalities,omitempty"`
+	ExposeNationality         *bool               `json:"expose_nationality,omitempty"`
+	ExposeOrganization        *bool               `json:"expose_organization,omitempty"`
+	ExposeOrganizationCountry *bool               `json:"expose_organization_country,omitempty"`
+	ExposeOrganizationType    *bool               `json:"expose_organization_type,omitempty"`
+
+	// ExposedFields Return list of currently exposed field names.
+	ExposedFields *[]string `json:"exposed_fields,omitempty"`
+
+	// IsDefault Return True if this is a default (unsaved) config.
+	IsDefault *bool `json:"is_default,omitempty"`
+
+	// ReviewersSeeApplicantDetails If True, reviewers see applicant identity. If False, proposals are anonymized for reviewers.
+	ReviewersSeeApplicantDetails *bool               `json:"reviewers_see_applicant_details,omitempty"`
+	Uuid                         *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// CallApplicantAttributeConfigRequest defines model for CallApplicantAttributeConfigRequest.
+type CallApplicantAttributeConfigRequest struct {
+	Call                      *openapi_types.UUID `json:"call,omitempty"`
+	ExposeAffiliations        *bool               `json:"expose_affiliations,omitempty"`
+	ExposeCountryOfResidence  *bool               `json:"expose_country_of_residence,omitempty"`
+	ExposeEdupersonAssurance  *bool               `json:"expose_eduperson_assurance,omitempty"`
+	ExposeEmail               *bool               `json:"expose_email,omitempty"`
+	ExposeFullName            *bool               `json:"expose_full_name,omitempty"`
+	ExposeIdentitySource      *bool               `json:"expose_identity_source,omitempty"`
+	ExposeNationalities       *bool               `json:"expose_nationalities,omitempty"`
+	ExposeNationality         *bool               `json:"expose_nationality,omitempty"`
+	ExposeOrganization        *bool               `json:"expose_organization,omitempty"`
+	ExposeOrganizationCountry *bool               `json:"expose_organization_country,omitempty"`
+	ExposeOrganizationType    *bool               `json:"expose_organization_type,omitempty"`
+
+	// ReviewersSeeApplicantDetails If True, reviewers see applicant identity. If False, proposals are anonymized for reviewers.
+	ReviewersSeeApplicantDetails *bool `json:"reviewers_see_applicant_details,omitempty"`
+}
+
 // CallAssignmentConfiguration defines model for CallAssignmentConfiguration.
 type CallAssignmentConfiguration struct {
 	// AssignmentExpirationDays Days until assignment invitation expires if not responded to.
@@ -16321,6 +16576,7 @@ type ConstanceSettings struct {
 	CURRENCYNAME                                   *string              `json:"CURRENCY_NAME,omitempty"`
 	DEACTIVATEUSERIFNOROLES                        *bool                `json:"DEACTIVATE_USER_IF_NO_ROLES,omitempty"`
 	DEFAULTIDP                                     *string              `json:"DEFAULT_IDP,omitempty"`
+	DEFAULTOFFERINGUSERATTRIBUTES                  *[]string            `json:"DEFAULT_OFFERING_USER_ATTRIBUTES,omitempty"`
 	DISABLEDOFFERINGTYPES                          *[]string            `json:"DISABLED_OFFERING_TYPES,omitempty"`
 	DISABLEDARKTHEME                               *bool                `json:"DISABLE_DARK_THEME,omitempty"`
 	DISABLESENDINGNOTIFICATIONSABOUTRESOURCEUPDATE *bool                `json:"DISABLE_SENDING_NOTIFICATIONS_ABOUT_RESOURCE_UPDATE,omitempty"`
@@ -16331,6 +16587,7 @@ type ConstanceSettings struct {
 	DOCKERSCRIPTDIR                                *string              `json:"DOCKER_SCRIPT_DIR,omitempty"`
 	DOCKERVOLUMENAME                               *string              `json:"DOCKER_VOLUME_NAME,omitempty"`
 	DOCSURL                                        *string              `json:"DOCS_URL,omitempty"`
+	ENABLEDUSERPROFILEATTRIBUTES                   *[]string            `json:"ENABLED_USER_PROFILE_ATTRIBUTES,omitempty"`
 	ENABLEMOCKCOURSEACCOUNTBACKEND                 *bool                `json:"ENABLE_MOCK_COURSE_ACCOUNT_BACKEND,omitempty"`
 	ENABLEMOCKSERVICEACCOUNTBACKEND                *bool                `json:"ENABLE_MOCK_SERVICE_ACCOUNT_BACKEND,omitempty"`
 	ENABLEORDERSTARTDATE                           *bool                `json:"ENABLE_ORDER_START_DATE,omitempty"`
@@ -16352,6 +16609,7 @@ type ConstanceSettings struct {
 	HEROLINKLABEL                                  *string              `json:"HERO_LINK_LABEL,omitempty"`
 	HEROLINKURL                                    *string              `json:"HERO_LINK_URL,omitempty"`
 	HOMEPORTURL                                    *string              `json:"HOMEPORT_URL,omitempty"`
+	INVITATIONALLOWEDFIELDS                        *[]string            `json:"INVITATION_ALLOWED_FIELDS,omitempty"`
 	INVITATIONDISABLEMULTIPLEROLES                 *bool                `json:"INVITATION_DISABLE_MULTIPLE_ROLES,omitempty"`
 	K8SCONFIGPATH                                  *string              `json:"K8S_CONFIG_PATH,omitempty"`
 	K8SJOBTIMEOUT                                  *int                 `json:"K8S_JOB_TIMEOUT,omitempty"`
@@ -16454,6 +16712,9 @@ type ConstanceSettings struct {
 	USERACTIONSHIGHURGENCYNOTIFICATION             *bool                `json:"USER_ACTIONS_HIGH_URGENCY_NOTIFICATION,omitempty"`
 	USERACTIONSNOTIFICATIONTHRESHOLD               *int                 `json:"USER_ACTIONS_NOTIFICATION_THRESHOLD,omitempty"`
 	USERACTIONSPENDINGORDERHOURS                   *int                 `json:"USER_ACTIONS_PENDING_ORDER_HOURS,omitempty"`
+	USERDATAACCESSLOGGINGENABLED                   *bool                `json:"USER_DATA_ACCESS_LOGGING_ENABLED,omitempty"`
+	USERDATAACCESSLOGRETENTIONDAYS                 *int                 `json:"USER_DATA_ACCESS_LOG_RETENTION_DAYS,omitempty"`
+	USERDATAACCESSLOGSELFACCESS                    *bool                `json:"USER_DATA_ACCESS_LOG_SELF_ACCESS,omitempty"`
 	USERTABLECOLUMNS                               *string              `json:"USER_TABLE_COLUMNS,omitempty"`
 	WALDURAUTHSOCIALROLECLAIM                      *string              `json:"WALDUR_AUTH_SOCIAL_ROLE_CLAIM,omitempty"`
 	WALDURSUPPORTACTIVEBACKENDTYPE                 *string              `json:"WALDUR_SUPPORT_ACTIVE_BACKEND_TYPE,omitempty"`
@@ -16520,6 +16781,7 @@ type ConstanceSettingsRequest struct {
 	CURRENCYNAME                                   *string                         `json:"CURRENCY_NAME,omitempty"`
 	DEACTIVATEUSERIFNOROLES                        *bool                           `json:"DEACTIVATE_USER_IF_NO_ROLES,omitempty"`
 	DEFAULTIDP                                     *string                         `json:"DEFAULT_IDP,omitempty"`
+	DEFAULTOFFERINGUSERATTRIBUTES                  *[]string                       `json:"DEFAULT_OFFERING_USER_ATTRIBUTES,omitempty"`
 	DISABLEDOFFERINGTYPES                          *[]string                       `json:"DISABLED_OFFERING_TYPES,omitempty"`
 	DISABLEDARKTHEME                               *bool                           `json:"DISABLE_DARK_THEME,omitempty"`
 	DISABLESENDINGNOTIFICATIONSABOUTRESOURCEUPDATE *bool                           `json:"DISABLE_SENDING_NOTIFICATIONS_ABOUT_RESOURCE_UPDATE,omitempty"`
@@ -16530,6 +16792,7 @@ type ConstanceSettingsRequest struct {
 	DOCKERSCRIPTDIR                                *string                         `json:"DOCKER_SCRIPT_DIR,omitempty"`
 	DOCKERVOLUMENAME                               *string                         `json:"DOCKER_VOLUME_NAME,omitempty"`
 	DOCSURL                                        *string                         `json:"DOCS_URL,omitempty"`
+	ENABLEDUSERPROFILEATTRIBUTES                   *[]string                       `json:"ENABLED_USER_PROFILE_ATTRIBUTES,omitempty"`
 	ENABLEMOCKCOURSEACCOUNTBACKEND                 *bool                           `json:"ENABLE_MOCK_COURSE_ACCOUNT_BACKEND,omitempty"`
 	ENABLEMOCKSERVICEACCOUNTBACKEND                *bool                           `json:"ENABLE_MOCK_SERVICE_ACCOUNT_BACKEND,omitempty"`
 	ENABLEORDERSTARTDATE                           *bool                           `json:"ENABLE_ORDER_START_DATE,omitempty"`
@@ -16551,6 +16814,7 @@ type ConstanceSettingsRequest struct {
 	HEROLINKLABEL                                  *string                         `json:"HERO_LINK_LABEL,omitempty"`
 	HEROLINKURL                                    *string                         `json:"HERO_LINK_URL,omitempty"`
 	HOMEPORTURL                                    *string                         `json:"HOMEPORT_URL,omitempty"`
+	INVITATIONALLOWEDFIELDS                        *[]string                       `json:"INVITATION_ALLOWED_FIELDS,omitempty"`
 	INVITATIONDISABLEMULTIPLEROLES                 *bool                           `json:"INVITATION_DISABLE_MULTIPLE_ROLES,omitempty"`
 	K8SCONFIGPATH                                  *string                         `json:"K8S_CONFIG_PATH,omitempty"`
 	K8SJOBTIMEOUT                                  *int                            `json:"K8S_JOB_TIMEOUT,omitempty"`
@@ -16653,6 +16917,9 @@ type ConstanceSettingsRequest struct {
 	USERACTIONSHIGHURGENCYNOTIFICATION             *bool                           `json:"USER_ACTIONS_HIGH_URGENCY_NOTIFICATION,omitempty"`
 	USERACTIONSNOTIFICATIONTHRESHOLD               *int                            `json:"USER_ACTIONS_NOTIFICATION_THRESHOLD,omitempty"`
 	USERACTIONSPENDINGORDERHOURS                   *int                            `json:"USER_ACTIONS_PENDING_ORDER_HOURS,omitempty"`
+	USERDATAACCESSLOGGINGENABLED                   *bool                           `json:"USER_DATA_ACCESS_LOGGING_ENABLED,omitempty"`
+	USERDATAACCESSLOGRETENTIONDAYS                 *int                            `json:"USER_DATA_ACCESS_LOG_RETENTION_DAYS,omitempty"`
+	USERDATAACCESSLOGSELFACCESS                    *bool                           `json:"USER_DATA_ACCESS_LOG_SELF_ACCESS,omitempty"`
 	USERTABLECOLUMNS                               *string                         `json:"USER_TABLE_COLUMNS,omitempty"`
 	WALDURAUTHSOCIALROLECLAIM                      *string                         `json:"WALDUR_AUTH_SOCIAL_ROLE_CLAIM,omitempty"`
 	WALDURSUPPORTACTIVEBACKENDTYPE                 *string                         `json:"WALDUR_SUPPORT_ACTIVE_BACKEND_TYPE,omitempty"`
@@ -16719,6 +16986,7 @@ type ConstanceSettingsRequestForm struct {
 	CURRENCYNAME                                   *string                         `json:"CURRENCY_NAME,omitempty"`
 	DEACTIVATEUSERIFNOROLES                        *bool                           `json:"DEACTIVATE_USER_IF_NO_ROLES,omitempty"`
 	DEFAULTIDP                                     *string                         `json:"DEFAULT_IDP,omitempty"`
+	DEFAULTOFFERINGUSERATTRIBUTES                  *[]string                       `json:"DEFAULT_OFFERING_USER_ATTRIBUTES,omitempty"`
 	DISABLEDOFFERINGTYPES                          *[]string                       `json:"DISABLED_OFFERING_TYPES,omitempty"`
 	DISABLEDARKTHEME                               *bool                           `json:"DISABLE_DARK_THEME,omitempty"`
 	DISABLESENDINGNOTIFICATIONSABOUTRESOURCEUPDATE *bool                           `json:"DISABLE_SENDING_NOTIFICATIONS_ABOUT_RESOURCE_UPDATE,omitempty"`
@@ -16729,6 +16997,7 @@ type ConstanceSettingsRequestForm struct {
 	DOCKERSCRIPTDIR                                *string                         `json:"DOCKER_SCRIPT_DIR,omitempty"`
 	DOCKERVOLUMENAME                               *string                         `json:"DOCKER_VOLUME_NAME,omitempty"`
 	DOCSURL                                        *string                         `json:"DOCS_URL,omitempty"`
+	ENABLEDUSERPROFILEATTRIBUTES                   *[]string                       `json:"ENABLED_USER_PROFILE_ATTRIBUTES,omitempty"`
 	ENABLEMOCKCOURSEACCOUNTBACKEND                 *bool                           `json:"ENABLE_MOCK_COURSE_ACCOUNT_BACKEND,omitempty"`
 	ENABLEMOCKSERVICEACCOUNTBACKEND                *bool                           `json:"ENABLE_MOCK_SERVICE_ACCOUNT_BACKEND,omitempty"`
 	ENABLEORDERSTARTDATE                           *bool                           `json:"ENABLE_ORDER_START_DATE,omitempty"`
@@ -16750,6 +17019,7 @@ type ConstanceSettingsRequestForm struct {
 	HEROLINKLABEL                                  *string                         `json:"HERO_LINK_LABEL,omitempty"`
 	HEROLINKURL                                    *string                         `json:"HERO_LINK_URL,omitempty"`
 	HOMEPORTURL                                    *string                         `json:"HOMEPORT_URL,omitempty"`
+	INVITATIONALLOWEDFIELDS                        *[]string                       `json:"INVITATION_ALLOWED_FIELDS,omitempty"`
 	INVITATIONDISABLEMULTIPLEROLES                 *bool                           `json:"INVITATION_DISABLE_MULTIPLE_ROLES,omitempty"`
 	K8SCONFIGPATH                                  *string                         `json:"K8S_CONFIG_PATH,omitempty"`
 	K8SJOBTIMEOUT                                  *int                            `json:"K8S_JOB_TIMEOUT,omitempty"`
@@ -16852,6 +17122,9 @@ type ConstanceSettingsRequestForm struct {
 	USERACTIONSHIGHURGENCYNOTIFICATION             *bool                           `json:"USER_ACTIONS_HIGH_URGENCY_NOTIFICATION,omitempty"`
 	USERACTIONSNOTIFICATIONTHRESHOLD               *int                            `json:"USER_ACTIONS_NOTIFICATION_THRESHOLD,omitempty"`
 	USERACTIONSPENDINGORDERHOURS                   *int                            `json:"USER_ACTIONS_PENDING_ORDER_HOURS,omitempty"`
+	USERDATAACCESSLOGGINGENABLED                   *bool                           `json:"USER_DATA_ACCESS_LOGGING_ENABLED,omitempty"`
+	USERDATAACCESSLOGRETENTIONDAYS                 *int                            `json:"USER_DATA_ACCESS_LOG_RETENTION_DAYS,omitempty"`
+	USERDATAACCESSLOGSELFACCESS                    *bool                           `json:"USER_DATA_ACCESS_LOG_SELF_ACCESS,omitempty"`
 	USERTABLECOLUMNS                               *string                         `json:"USER_TABLE_COLUMNS,omitempty"`
 	WALDURAUTHSOCIALROLECLAIM                      *string                         `json:"WALDUR_AUTH_SOCIAL_ROLE_CLAIM,omitempty"`
 	WALDURSUPPORTACTIVEBACKENDTYPE                 *string                         `json:"WALDUR_SUPPORT_ACTIVE_BACKEND_TYPE,omitempty"`
@@ -16918,6 +17191,7 @@ type ConstanceSettingsRequestMultipart struct {
 	CURRENCYNAME                                   *string                         `json:"CURRENCY_NAME,omitempty"`
 	DEACTIVATEUSERIFNOROLES                        *bool                           `json:"DEACTIVATE_USER_IF_NO_ROLES,omitempty"`
 	DEFAULTIDP                                     *string                         `json:"DEFAULT_IDP,omitempty"`
+	DEFAULTOFFERINGUSERATTRIBUTES                  *[]string                       `json:"DEFAULT_OFFERING_USER_ATTRIBUTES,omitempty"`
 	DISABLEDOFFERINGTYPES                          *[]string                       `json:"DISABLED_OFFERING_TYPES,omitempty"`
 	DISABLEDARKTHEME                               *bool                           `json:"DISABLE_DARK_THEME,omitempty"`
 	DISABLESENDINGNOTIFICATIONSABOUTRESOURCEUPDATE *bool                           `json:"DISABLE_SENDING_NOTIFICATIONS_ABOUT_RESOURCE_UPDATE,omitempty"`
@@ -16928,6 +17202,7 @@ type ConstanceSettingsRequestMultipart struct {
 	DOCKERSCRIPTDIR                                *string                         `json:"DOCKER_SCRIPT_DIR,omitempty"`
 	DOCKERVOLUMENAME                               *string                         `json:"DOCKER_VOLUME_NAME,omitempty"`
 	DOCSURL                                        *string                         `json:"DOCS_URL,omitempty"`
+	ENABLEDUSERPROFILEATTRIBUTES                   *[]string                       `json:"ENABLED_USER_PROFILE_ATTRIBUTES,omitempty"`
 	ENABLEMOCKCOURSEACCOUNTBACKEND                 *bool                           `json:"ENABLE_MOCK_COURSE_ACCOUNT_BACKEND,omitempty"`
 	ENABLEMOCKSERVICEACCOUNTBACKEND                *bool                           `json:"ENABLE_MOCK_SERVICE_ACCOUNT_BACKEND,omitempty"`
 	ENABLEORDERSTARTDATE                           *bool                           `json:"ENABLE_ORDER_START_DATE,omitempty"`
@@ -16949,6 +17224,7 @@ type ConstanceSettingsRequestMultipart struct {
 	HEROLINKLABEL                                  *string                         `json:"HERO_LINK_LABEL,omitempty"`
 	HEROLINKURL                                    *string                         `json:"HERO_LINK_URL,omitempty"`
 	HOMEPORTURL                                    *string                         `json:"HOMEPORT_URL,omitempty"`
+	INVITATIONALLOWEDFIELDS                        *[]string                       `json:"INVITATION_ALLOWED_FIELDS,omitempty"`
 	INVITATIONDISABLEMULTIPLEROLES                 *bool                           `json:"INVITATION_DISABLE_MULTIPLE_ROLES,omitempty"`
 	K8SCONFIGPATH                                  *string                         `json:"K8S_CONFIG_PATH,omitempty"`
 	K8SJOBTIMEOUT                                  *int                            `json:"K8S_JOB_TIMEOUT,omitempty"`
@@ -17051,6 +17327,9 @@ type ConstanceSettingsRequestMultipart struct {
 	USERACTIONSHIGHURGENCYNOTIFICATION             *bool                           `json:"USER_ACTIONS_HIGH_URGENCY_NOTIFICATION,omitempty"`
 	USERACTIONSNOTIFICATIONTHRESHOLD               *int                            `json:"USER_ACTIONS_NOTIFICATION_THRESHOLD,omitempty"`
 	USERACTIONSPENDINGORDERHOURS                   *int                            `json:"USER_ACTIONS_PENDING_ORDER_HOURS,omitempty"`
+	USERDATAACCESSLOGGINGENABLED                   *bool                           `json:"USER_DATA_ACCESS_LOGGING_ENABLED,omitempty"`
+	USERDATAACCESSLOGRETENTIONDAYS                 *int                            `json:"USER_DATA_ACCESS_LOG_RETENTION_DAYS,omitempty"`
+	USERDATAACCESSLOGSELFACCESS                    *bool                           `json:"USER_DATA_ACCESS_LOG_SELF_ACCESS,omitempty"`
 	USERTABLECOLUMNS                               *string                         `json:"USER_TABLE_COLUMNS,omitempty"`
 	WALDURAUTHSOCIALROLECLAIM                      *string                         `json:"WALDUR_AUTH_SOCIAL_ROLE_CLAIM,omitempty"`
 	WALDURSUPPORTACTIVEBACKENDTYPE                 *string                         `json:"WALDUR_SUPPORT_ACTIVE_BACKEND_TYPE,omitempty"`
@@ -17879,6 +18158,13 @@ type DLQQueue struct {
 	Vhost *string `json:"vhost,omitempty"`
 }
 
+// DataAccessSummary defines model for DataAccessSummary.
+type DataAccessSummary struct {
+	TotalAdministrativeAccess *int `json:"total_administrative_access"`
+	TotalOrganizationalAccess int  `json:"total_organizational_access"`
+	TotalProviderAccess       int  `json:"total_provider_access"`
+}
+
 // DataVolumeRequest defines model for DataVolumeRequest.
 type DataVolumeRequest struct {
 	Filesystem *string `json:"filesystem,omitempty"`
@@ -18293,6 +18579,12 @@ type DryRunStateEnum int
 
 // DryRunTypeEnum defines model for DryRunTypeEnum.
 type DryRunTypeEnum string
+
+// EligibilityCheck defines model for EligibilityCheck.
+type EligibilityCheck struct {
+	IsEligible   bool     `json:"is_eligible"`
+	Restrictions []string `json:"restrictions"`
+}
 
 // EmailHook defines model for EmailHook.
 type EmailHook struct {
@@ -18856,6 +19148,9 @@ type FreeipaProfileRequest struct {
 	Username string `json:"username"`
 }
 
+// GenderEnum defines model for GenderEnum.
+type GenderEnum int
+
 // GenerateAssignmentsRequest defines model for GenerateAssignmentsRequest.
 type GenerateAssignmentsRequest struct {
 	// ProposalUuids Specific proposal UUIDs to generate assignments for. If empty, generates for all submitted proposals needing reviewers.
@@ -18912,6 +19207,31 @@ type GenericOrderAttributes struct {
 	// Name The name of the resource to be created. Will be displayed in the portal.
 	Name                 *string                `json:"name,omitempty"`
 	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
+// GlobalUserDataAccessLog defines model for GlobalUserDataAccessLog.
+type GlobalUserDataAccessLog struct {
+	AccessedFields []string               `json:"accessed_fields"`
+	Accessor       AccessorUser           `json:"accessor"`
+	AccessorType   AccessorTypeEnum       `json:"accessor_type"`
+	Context        map[string]interface{} `json:"context"`
+
+	// IpAddress An IPv4 or IPv6 address.
+	IpAddress *GlobalUserDataAccessLog_IpAddress `json:"ip_address"`
+	Timestamp time.Time                          `json:"timestamp"`
+	User      TargetUser                         `json:"user"`
+	Uuid      openapi_types.UUID                 `json:"uuid"`
+}
+
+// GlobalUserDataAccessLogIpAddress0 defines model for .
+type GlobalUserDataAccessLogIpAddress0 = string
+
+// GlobalUserDataAccessLogIpAddress1 defines model for .
+type GlobalUserDataAccessLogIpAddress1 = string
+
+// GlobalUserDataAccessLog_IpAddress An IPv4 or IPv6 address.
+type GlobalUserDataAccessLog_IpAddress struct {
+	union json.RawMessage
 }
 
 // GoogleCalendar defines model for GoogleCalendar.
@@ -22831,18 +23151,113 @@ type OfferingUser struct {
 	ServiceProviderComment *string `json:"service_provider_comment,omitempty"`
 
 	// ServiceProviderCommentUrl URL link for additional information or actions related to service provider comment
-	ServiceProviderCommentUrl *string              `json:"service_provider_comment_url,omitempty"`
-	State                     *OfferingUserState   `json:"state,omitempty"`
-	Url                       *string              `json:"url,omitempty"`
-	User                      *string              `json:"user,omitempty"`
-	UserEmail                 *openapi_types.Email `json:"user_email,omitempty"`
-	UserFullName              *string              `json:"user_full_name,omitempty"`
+	ServiceProviderCommentUrl *string            `json:"service_provider_comment_url,omitempty"`
+	State                     *OfferingUserState `json:"state,omitempty"`
+	Url                       *string            `json:"url,omitempty"`
+	User                      *string            `json:"user,omitempty"`
+
+	// UserAffiliations Person's affiliation within organization such as student, faculty, staff.
+	UserAffiliations       interface{}         `json:"user_affiliations,omitempty"`
+	UserBirthDate          *openapi_types.Date `json:"user_birth_date"`
+	UserCivilNumber        *string             `json:"user_civil_number"`
+	UserCountryOfResidence *string             `json:"user_country_of_residence,omitempty"`
+
+	// UserEdupersonAssurance REFEDS assurance profile URIs from identity provider
+	UserEdupersonAssurance interface{}          `json:"user_eduperson_assurance,omitempty"`
+	UserEmail              *openapi_types.Email `json:"user_email,omitempty"`
+	UserFullName           *string              `json:"user_full_name,omitempty"`
+
+	// UserGender ISO 5218 gender code
+	UserGender *OfferingUser_UserGender `json:"user_gender"`
+
+	// UserIdentitySource Indicates what identity provider was used.
+	UserIdentitySource *string `json:"user_identity_source,omitempty"`
+	UserJobTitle       *string `json:"user_job_title,omitempty"`
+
+	// UserNationalities List of all citizenships (ISO 3166-1 alpha-2 codes)
+	UserNationalities interface{} `json:"user_nationalities,omitempty"`
+
+	// UserNationality Primary citizenship (ISO 3166-1 alpha-2 code)
+	UserNationality         *string `json:"user_nationality,omitempty"`
+	UserOrganization        *string `json:"user_organization,omitempty"`
+	UserOrganizationCountry *string `json:"user_organization_country,omitempty"`
+
+	// UserOrganizationType SCHAC URN (e.g., urn:schac:homeOrganizationType:int:university)
+	UserOrganizationType *string `json:"user_organization_type,omitempty"`
+
+	// UserPersonalTitle Honorific title (Mr, Ms, Dr, Prof, etc.)
+	UserPersonalTitle *string `json:"user_personal_title,omitempty"`
+	UserPhoneNumber   *string `json:"user_phone_number,omitempty"`
+	UserPlaceOfBirth  *string `json:"user_place_of_birth,omitempty"`
 
 	// UserUsername Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
 	UserUsername *string             `json:"user_username,omitempty"`
 	UserUuid     *openapi_types.UUID `json:"user_uuid,omitempty"`
 	Username     *string             `json:"username"`
 	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// OfferingUser_UserGender ISO 5218 gender code
+type OfferingUser_UserGender struct {
+	union json.RawMessage
+}
+
+// OfferingUserAttributeConfig defines model for OfferingUserAttributeConfig.
+type OfferingUserAttributeConfig struct {
+	Created                   *time.Time `json:"created,omitempty"`
+	ExposeAffiliations        *bool      `json:"expose_affiliations,omitempty"`
+	ExposeBirthDate           *bool      `json:"expose_birth_date,omitempty"`
+	ExposeCivilNumber         *bool      `json:"expose_civil_number,omitempty"`
+	ExposeCountryOfResidence  *bool      `json:"expose_country_of_residence,omitempty"`
+	ExposeEdupersonAssurance  *bool      `json:"expose_eduperson_assurance,omitempty"`
+	ExposeEmail               *bool      `json:"expose_email,omitempty"`
+	ExposeFullName            *bool      `json:"expose_full_name,omitempty"`
+	ExposeGender              *bool      `json:"expose_gender,omitempty"`
+	ExposeIdentitySource      *bool      `json:"expose_identity_source,omitempty"`
+	ExposeJobTitle            *bool      `json:"expose_job_title,omitempty"`
+	ExposeNationalities       *bool      `json:"expose_nationalities,omitempty"`
+	ExposeNationality         *bool      `json:"expose_nationality,omitempty"`
+	ExposeOrganization        *bool      `json:"expose_organization,omitempty"`
+	ExposeOrganizationCountry *bool      `json:"expose_organization_country,omitempty"`
+	ExposeOrganizationType    *bool      `json:"expose_organization_type,omitempty"`
+	ExposePersonalTitle       *bool      `json:"expose_personal_title,omitempty"`
+	ExposePhoneNumber         *bool      `json:"expose_phone_number,omitempty"`
+	ExposePlaceOfBirth        *bool      `json:"expose_place_of_birth,omitempty"`
+	ExposeUsername            *bool      `json:"expose_username,omitempty"`
+
+	// ExposedFields Return list of field names currently configured for exposure.
+	ExposedFields *[]string `json:"exposed_fields,omitempty"`
+
+	// IsDefault Return True if this is a default (unsaved) config.
+	IsDefault    *bool               `json:"is_default,omitempty"`
+	Modified     *time.Time          `json:"modified,omitempty"`
+	OfferingName *string             `json:"offering_name,omitempty"`
+	OfferingUuid *openapi_types.UUID `json:"offering_uuid,omitempty"`
+	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// OfferingUserAttributeConfigRequest defines model for OfferingUserAttributeConfigRequest.
+type OfferingUserAttributeConfigRequest struct {
+	ExposeAffiliations        *bool               `json:"expose_affiliations,omitempty"`
+	ExposeBirthDate           *bool               `json:"expose_birth_date,omitempty"`
+	ExposeCivilNumber         *bool               `json:"expose_civil_number,omitempty"`
+	ExposeCountryOfResidence  *bool               `json:"expose_country_of_residence,omitempty"`
+	ExposeEdupersonAssurance  *bool               `json:"expose_eduperson_assurance,omitempty"`
+	ExposeEmail               *bool               `json:"expose_email,omitempty"`
+	ExposeFullName            *bool               `json:"expose_full_name,omitempty"`
+	ExposeGender              *bool               `json:"expose_gender,omitempty"`
+	ExposeIdentitySource      *bool               `json:"expose_identity_source,omitempty"`
+	ExposeJobTitle            *bool               `json:"expose_job_title,omitempty"`
+	ExposeNationalities       *bool               `json:"expose_nationalities,omitempty"`
+	ExposeNationality         *bool               `json:"expose_nationality,omitempty"`
+	ExposeOrganization        *bool               `json:"expose_organization,omitempty"`
+	ExposeOrganizationCountry *bool               `json:"expose_organization_country,omitempty"`
+	ExposeOrganizationType    *bool               `json:"expose_organization_type,omitempty"`
+	ExposePersonalTitle       *bool               `json:"expose_personal_title,omitempty"`
+	ExposePhoneNumber         *bool               `json:"expose_phone_number,omitempty"`
+	ExposePlaceOfBirth        *bool               `json:"expose_place_of_birth,omitempty"`
+	ExposeUsername            *bool               `json:"expose_username,omitempty"`
+	Offering                  *openapi_types.UUID `json:"offering,omitempty"`
 }
 
 // OfferingUserRequest defines model for OfferingUserRequest.
@@ -25161,6 +25576,22 @@ type OrganizationGroupsRequest struct {
 	OrganizationGroups *[]string `json:"organization_groups,omitempty"`
 }
 
+// OrganizationalAccess defines model for OrganizationalAccess.
+type OrganizationalAccess struct {
+	ScopeName string               `json:"scope_name"`
+	ScopeType string               `json:"scope_type"`
+	ScopeUuid openapi_types.UUID   `json:"scope_uuid"`
+	Users     []OrganizationalUser `json:"users"`
+}
+
+// OrganizationalUser defines model for OrganizationalUser.
+type OrganizationalUser struct {
+	FullName string             `json:"full_name"`
+	Role     *string            `json:"role"`
+	UserUuid openapi_types.UUID `json:"user_uuid"`
+	Username string             `json:"username"`
+}
+
 // PaidRequest defines model for PaidRequest.
 type PaidRequest struct {
 	Date  openapi_types.Date  `json:"date"`
@@ -25258,6 +25689,25 @@ type PatchedBroadcastMessageRequest struct {
 	Query   interface{}         `json:"query,omitempty"`
 	SendAt  *openapi_types.Date `json:"send_at"`
 	Subject *string             `json:"subject,omitempty"`
+}
+
+// PatchedCallApplicantAttributeConfigRequest defines model for PatchedCallApplicantAttributeConfigRequest.
+type PatchedCallApplicantAttributeConfigRequest struct {
+	Call                      *openapi_types.UUID `json:"call,omitempty"`
+	ExposeAffiliations        *bool               `json:"expose_affiliations,omitempty"`
+	ExposeCountryOfResidence  *bool               `json:"expose_country_of_residence,omitempty"`
+	ExposeEdupersonAssurance  *bool               `json:"expose_eduperson_assurance,omitempty"`
+	ExposeEmail               *bool               `json:"expose_email,omitempty"`
+	ExposeFullName            *bool               `json:"expose_full_name,omitempty"`
+	ExposeIdentitySource      *bool               `json:"expose_identity_source,omitempty"`
+	ExposeNationalities       *bool               `json:"expose_nationalities,omitempty"`
+	ExposeNationality         *bool               `json:"expose_nationality,omitempty"`
+	ExposeOrganization        *bool               `json:"expose_organization,omitempty"`
+	ExposeOrganizationCountry *bool               `json:"expose_organization_country,omitempty"`
+	ExposeOrganizationType    *bool               `json:"expose_organization_type,omitempty"`
+
+	// ReviewersSeeApplicantDetails If True, reviewers see applicant identity. If False, proposals are anonymized for reviewers.
+	ReviewersSeeApplicantDetails *bool `json:"reviewers_see_applicant_details,omitempty"`
 }
 
 // PatchedCallAssignmentConfigurationRequest defines model for PatchedCallAssignmentConfigurationRequest.
@@ -26109,6 +26559,30 @@ type PatchedOfferingUsagePolicyRequest struct {
 	Scope              *string     `json:"scope,omitempty"`
 }
 
+// PatchedOfferingUserAttributeConfigRequest defines model for PatchedOfferingUserAttributeConfigRequest.
+type PatchedOfferingUserAttributeConfigRequest struct {
+	ExposeAffiliations        *bool               `json:"expose_affiliations,omitempty"`
+	ExposeBirthDate           *bool               `json:"expose_birth_date,omitempty"`
+	ExposeCivilNumber         *bool               `json:"expose_civil_number,omitempty"`
+	ExposeCountryOfResidence  *bool               `json:"expose_country_of_residence,omitempty"`
+	ExposeEdupersonAssurance  *bool               `json:"expose_eduperson_assurance,omitempty"`
+	ExposeEmail               *bool               `json:"expose_email,omitempty"`
+	ExposeFullName            *bool               `json:"expose_full_name,omitempty"`
+	ExposeGender              *bool               `json:"expose_gender,omitempty"`
+	ExposeIdentitySource      *bool               `json:"expose_identity_source,omitempty"`
+	ExposeJobTitle            *bool               `json:"expose_job_title,omitempty"`
+	ExposeNationalities       *bool               `json:"expose_nationalities,omitempty"`
+	ExposeNationality         *bool               `json:"expose_nationality,omitempty"`
+	ExposeOrganization        *bool               `json:"expose_organization,omitempty"`
+	ExposeOrganizationCountry *bool               `json:"expose_organization_country,omitempty"`
+	ExposeOrganizationType    *bool               `json:"expose_organization_type,omitempty"`
+	ExposePersonalTitle       *bool               `json:"expose_personal_title,omitempty"`
+	ExposePhoneNumber         *bool               `json:"expose_phone_number,omitempty"`
+	ExposePlaceOfBirth        *bool               `json:"expose_place_of_birth,omitempty"`
+	ExposeUsername            *bool               `json:"expose_username,omitempty"`
+	Offering                  *openapi_types.UUID `json:"offering,omitempty"`
+}
+
 // PatchedOfferingUserRequest defines model for PatchedOfferingUserRequest.
 type PatchedOfferingUserRequest struct {
 	Offering     *string             `json:"offering,omitempty"`
@@ -26561,6 +27035,24 @@ type PatchedProtectedCallRequest struct {
 
 	// Slug URL-friendly identifier. Only editable by staff users.
 	Slug *string `json:"slug,omitempty"`
+
+	// UserAffiliations List of allowed affiliations. User must have one.
+	UserAffiliations interface{} `json:"user_affiliations,omitempty"`
+
+	// UserAssuranceLevels List of required assurance URIs (REFEDS). User must have ALL of these.
+	UserAssuranceLevels interface{} `json:"user_assurance_levels,omitempty"`
+
+	// UserEmailPatterns List of email regex patterns. User must match one.
+	UserEmailPatterns interface{} `json:"user_email_patterns,omitempty"`
+
+	// UserIdentitySources List of allowed identity sources (identity providers).
+	UserIdentitySources interface{} `json:"user_identity_sources,omitempty"`
+
+	// UserNationalities List of allowed nationality codes (ISO 3166-1 alpha-2). User must have one.
+	UserNationalities interface{} `json:"user_nationalities,omitempty"`
+
+	// UserOrganizationTypes List of allowed organization type URNs (SCHAC). User must match one.
+	UserOrganizationTypes interface{} `json:"user_organization_types,omitempty"`
 }
 
 // PatchedProtectedRoundRequest defines model for PatchedProtectedRoundRequest.
@@ -27135,11 +27627,18 @@ type PatchedUserOfferingConsentRequest struct {
 // PatchedUserRequest defines model for PatchedUserRequest.
 type PatchedUserRequest struct {
 	// AgreeWithPolicy User must agree with the policy to register.
-	AgreeWithPolicy *bool               `json:"agree_with_policy,omitempty"`
-	BirthDate       *openapi_types.Date `json:"birth_date"`
-	Description     *string             `json:"description,omitempty"`
-	FirstName       *string             `json:"first_name,omitempty"`
-	Image           *openapi_types.File `json:"image"`
+	AgreeWithPolicy    *bool               `json:"agree_with_policy,omitempty"`
+	BirthDate          *openapi_types.Date `json:"birth_date"`
+	CountryOfResidence *string             `json:"country_of_residence,omitempty"`
+	Description        *string             `json:"description,omitempty"`
+
+	// EdupersonAssurance REFEDS assurance profile URIs from identity provider
+	EdupersonAssurance interface{} `json:"eduperson_assurance,omitempty"`
+	FirstName          *string     `json:"first_name,omitempty"`
+
+	// Gender ISO 5218 gender code
+	Gender *PatchedUserRequest_Gender `json:"gender"`
+	Image  *openapi_types.File        `json:"image"`
 
 	// IsActive Designates whether this user should be treated as active. Unselect this instead of deleting accounts.
 	IsActive *bool `json:"is_active,omitempty"`
@@ -27148,16 +27647,30 @@ type PatchedUserRequest struct {
 	IsStaff *bool `json:"is_staff,omitempty"`
 
 	// IsSupport Designates whether the user is a global support user.
-	IsSupport  *bool   `json:"is_support,omitempty"`
-	JobTitle   *string `json:"job_title,omitempty"`
-	LastName   *string `json:"last_name,omitempty"`
-	NativeName *string `json:"native_name,omitempty"`
+	IsSupport *bool   `json:"is_support,omitempty"`
+	JobTitle  *string `json:"job_title,omitempty"`
+	LastName  *string `json:"last_name,omitempty"`
+
+	// Nationalities List of all citizenships (ISO 3166-1 alpha-2 codes)
+	Nationalities interface{} `json:"nationalities,omitempty"`
+
+	// Nationality Primary citizenship (ISO 3166-1 alpha-2 code)
+	Nationality *string `json:"nationality,omitempty"`
+	NativeName  *string `json:"native_name,omitempty"`
 
 	// NotificationsEnabled Designates whether the user is allowed to receive email notifications.
 	NotificationsEnabled *bool   `json:"notifications_enabled,omitempty"`
 	Organization         *string `json:"organization,omitempty"`
-	PhoneNumber          *string `json:"phone_number,omitempty"`
-	PreferredLanguage    *string `json:"preferred_language,omitempty"`
+	OrganizationCountry  *string `json:"organization_country,omitempty"`
+
+	// OrganizationType SCHAC URN (e.g., urn:schac:homeOrganizationType:int:university)
+	OrganizationType *string `json:"organization_type,omitempty"`
+
+	// PersonalTitle Honorific title (Mr, Ms, Dr, Prof, etc.)
+	PersonalTitle     *string `json:"personal_title,omitempty"`
+	PhoneNumber       *string `json:"phone_number,omitempty"`
+	PlaceOfBirth      *string `json:"place_of_birth,omitempty"`
+	PreferredLanguage *string `json:"preferred_language,omitempty"`
 
 	// Slug URL-friendly identifier. Only editable by staff users.
 	Slug *string `json:"slug,omitempty"`
@@ -27167,16 +27680,28 @@ type PatchedUserRequest struct {
 
 	// Username Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
 	Username *string `json:"username,omitempty"`
+}
+
+// PatchedUserRequest_Gender ISO 5218 gender code
+type PatchedUserRequest_Gender struct {
+	union json.RawMessage
 }
 
 // PatchedUserRequestForm defines model for PatchedUserRequestForm.
 type PatchedUserRequestForm struct {
 	// AgreeWithPolicy User must agree with the policy to register.
-	AgreeWithPolicy *bool               `json:"agree_with_policy,omitempty"`
-	BirthDate       *openapi_types.Date `json:"birth_date"`
-	Description     *string             `json:"description,omitempty"`
-	FirstName       *string             `json:"first_name,omitempty"`
-	Image           *openapi_types.File `json:"image"`
+	AgreeWithPolicy    *bool               `json:"agree_with_policy,omitempty"`
+	BirthDate          *openapi_types.Date `json:"birth_date"`
+	CountryOfResidence *string             `json:"country_of_residence,omitempty"`
+	Description        *string             `json:"description,omitempty"`
+
+	// EdupersonAssurance REFEDS assurance profile URIs from identity provider
+	EdupersonAssurance interface{} `json:"eduperson_assurance,omitempty"`
+	FirstName          *string     `json:"first_name,omitempty"`
+
+	// Gender ISO 5218 gender code
+	Gender *PatchedUserRequestForm_Gender `json:"gender"`
+	Image  *openapi_types.File            `json:"image"`
 
 	// IsActive Designates whether this user should be treated as active. Unselect this instead of deleting accounts.
 	IsActive *bool `json:"is_active,omitempty"`
@@ -27185,16 +27710,30 @@ type PatchedUserRequestForm struct {
 	IsStaff *bool `json:"is_staff,omitempty"`
 
 	// IsSupport Designates whether the user is a global support user.
-	IsSupport  *bool   `json:"is_support,omitempty"`
-	JobTitle   *string `json:"job_title,omitempty"`
-	LastName   *string `json:"last_name,omitempty"`
-	NativeName *string `json:"native_name,omitempty"`
+	IsSupport *bool   `json:"is_support,omitempty"`
+	JobTitle  *string `json:"job_title,omitempty"`
+	LastName  *string `json:"last_name,omitempty"`
+
+	// Nationalities List of all citizenships (ISO 3166-1 alpha-2 codes)
+	Nationalities interface{} `json:"nationalities,omitempty"`
+
+	// Nationality Primary citizenship (ISO 3166-1 alpha-2 code)
+	Nationality *string `json:"nationality,omitempty"`
+	NativeName  *string `json:"native_name,omitempty"`
 
 	// NotificationsEnabled Designates whether the user is allowed to receive email notifications.
 	NotificationsEnabled *bool   `json:"notifications_enabled,omitempty"`
 	Organization         *string `json:"organization,omitempty"`
-	PhoneNumber          *string `json:"phone_number,omitempty"`
-	PreferredLanguage    *string `json:"preferred_language,omitempty"`
+	OrganizationCountry  *string `json:"organization_country,omitempty"`
+
+	// OrganizationType SCHAC URN (e.g., urn:schac:homeOrganizationType:int:university)
+	OrganizationType *string `json:"organization_type,omitempty"`
+
+	// PersonalTitle Honorific title (Mr, Ms, Dr, Prof, etc.)
+	PersonalTitle     *string `json:"personal_title,omitempty"`
+	PhoneNumber       *string `json:"phone_number,omitempty"`
+	PlaceOfBirth      *string `json:"place_of_birth,omitempty"`
+	PreferredLanguage *string `json:"preferred_language,omitempty"`
 
 	// Slug URL-friendly identifier. Only editable by staff users.
 	Slug *string `json:"slug,omitempty"`
@@ -27206,14 +27745,26 @@ type PatchedUserRequestForm struct {
 	Username *string `json:"username,omitempty"`
 }
 
+// PatchedUserRequestForm_Gender ISO 5218 gender code
+type PatchedUserRequestForm_Gender struct {
+	union json.RawMessage
+}
+
 // PatchedUserRequestMultipart defines model for PatchedUserRequestMultipart.
 type PatchedUserRequestMultipart struct {
 	// AgreeWithPolicy User must agree with the policy to register.
-	AgreeWithPolicy *bool               `json:"agree_with_policy,omitempty"`
-	BirthDate       *openapi_types.Date `json:"birth_date"`
-	Description     *string             `json:"description,omitempty"`
-	FirstName       *string             `json:"first_name,omitempty"`
-	Image           *openapi_types.File `json:"image"`
+	AgreeWithPolicy    *bool               `json:"agree_with_policy,omitempty"`
+	BirthDate          *openapi_types.Date `json:"birth_date"`
+	CountryOfResidence *string             `json:"country_of_residence,omitempty"`
+	Description        *string             `json:"description,omitempty"`
+
+	// EdupersonAssurance REFEDS assurance profile URIs from identity provider
+	EdupersonAssurance interface{} `json:"eduperson_assurance,omitempty"`
+	FirstName          *string     `json:"first_name,omitempty"`
+
+	// Gender ISO 5218 gender code
+	Gender *PatchedUserRequestMultipart_Gender `json:"gender"`
+	Image  *openapi_types.File                 `json:"image"`
 
 	// IsActive Designates whether this user should be treated as active. Unselect this instead of deleting accounts.
 	IsActive *bool `json:"is_active,omitempty"`
@@ -27222,16 +27773,30 @@ type PatchedUserRequestMultipart struct {
 	IsStaff *bool `json:"is_staff,omitempty"`
 
 	// IsSupport Designates whether the user is a global support user.
-	IsSupport  *bool   `json:"is_support,omitempty"`
-	JobTitle   *string `json:"job_title,omitempty"`
-	LastName   *string `json:"last_name,omitempty"`
-	NativeName *string `json:"native_name,omitempty"`
+	IsSupport *bool   `json:"is_support,omitempty"`
+	JobTitle  *string `json:"job_title,omitempty"`
+	LastName  *string `json:"last_name,omitempty"`
+
+	// Nationalities List of all citizenships (ISO 3166-1 alpha-2 codes)
+	Nationalities interface{} `json:"nationalities,omitempty"`
+
+	// Nationality Primary citizenship (ISO 3166-1 alpha-2 code)
+	Nationality *string `json:"nationality,omitempty"`
+	NativeName  *string `json:"native_name,omitempty"`
 
 	// NotificationsEnabled Designates whether the user is allowed to receive email notifications.
 	NotificationsEnabled *bool   `json:"notifications_enabled,omitempty"`
 	Organization         *string `json:"organization,omitempty"`
-	PhoneNumber          *string `json:"phone_number,omitempty"`
-	PreferredLanguage    *string `json:"preferred_language,omitempty"`
+	OrganizationCountry  *string `json:"organization_country,omitempty"`
+
+	// OrganizationType SCHAC URN (e.g., urn:schac:homeOrganizationType:int:university)
+	OrganizationType *string `json:"organization_type,omitempty"`
+
+	// PersonalTitle Honorific title (Mr, Ms, Dr, Prof, etc.)
+	PersonalTitle     *string `json:"personal_title,omitempty"`
+	PhoneNumber       *string `json:"phone_number,omitempty"`
+	PlaceOfBirth      *string `json:"place_of_birth,omitempty"`
+	PreferredLanguage *string `json:"preferred_language,omitempty"`
 
 	// Slug URL-friendly identifier. Only editable by staff users.
 	Slug *string `json:"slug,omitempty"`
@@ -27241,6 +27806,11 @@ type PatchedUserRequestMultipart struct {
 
 	// Username Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
 	Username *string `json:"username,omitempty"`
+}
+
+// PatchedUserRequestMultipart_Gender ISO 5218 gender code
+type PatchedUserRequestMultipart_Gender struct {
+	union json.RawMessage
 }
 
 // PatchedVmwareVirtualMachineRequest defines model for PatchedVmwareVirtualMachineRequest.
@@ -28295,21 +28865,24 @@ type ProtectedCall struct {
 	BackendId *string `json:"backend_id,omitempty"`
 
 	// ComplianceChecklist Compliance checklist that proposals must complete before submission
-	ComplianceChecklist     *openapi_types.UUID        `json:"compliance_checklist"`
-	ComplianceChecklistName *string                    `json:"compliance_checklist_name,omitempty"`
-	Created                 *time.Time                 `json:"created,omitempty"`
-	CreatedBy               *string                    `json:"created_by"`
-	CustomerName            *string                    `json:"customer_name,omitempty"`
-	CustomerUuid            *openapi_types.UUID        `json:"customer_uuid,omitempty"`
-	Description             *string                    `json:"description,omitempty"`
-	Documents               *[]CallDocument            `json:"documents,omitempty"`
-	EndDate                 *time.Time                 `json:"end_date,omitempty"`
-	ExternalUrl             *string                    `json:"external_url"`
-	FixedDurationInDays     *int                       `json:"fixed_duration_in_days"`
-	Manager                 *string                    `json:"manager,omitempty"`
-	ManagerUuid             *openapi_types.UUID        `json:"manager_uuid,omitempty"`
-	Name                    *string                    `json:"name,omitempty"`
-	Offerings               *[]NestedRequestedOffering `json:"offerings,omitempty"`
+	ComplianceChecklist     *openapi_types.UUID `json:"compliance_checklist"`
+	ComplianceChecklistName *string             `json:"compliance_checklist_name,omitempty"`
+	Created                 *time.Time          `json:"created,omitempty"`
+	CreatedBy               *string             `json:"created_by"`
+	CustomerName            *string             `json:"customer_name,omitempty"`
+	CustomerUuid            *openapi_types.UUID `json:"customer_uuid,omitempty"`
+	Description             *string             `json:"description,omitempty"`
+	Documents               *[]CallDocument     `json:"documents,omitempty"`
+	EndDate                 *time.Time          `json:"end_date,omitempty"`
+	ExternalUrl             *string             `json:"external_url"`
+	FixedDurationInDays     *int                `json:"fixed_duration_in_days"`
+
+	// HasEligibilityRestrictions Check if call has any eligibility restrictions configured.
+	HasEligibilityRestrictions *bool                      `json:"has_eligibility_restrictions,omitempty"`
+	Manager                    *string                    `json:"manager,omitempty"`
+	ManagerUuid                *openapi_types.UUID        `json:"manager_uuid,omitempty"`
+	Name                       *string                    `json:"name,omitempty"`
+	Offerings                  *[]NestedRequestedOffering `json:"offerings,omitempty"`
 
 	// ProposalSlugTemplate Template for proposal slugs. Supports: {call_slug}, {round_slug}, {org_slug}, {year}, {month}, {counter}, {counter_padded}. Default: {round_slug}-{counter_padded}
 	ProposalSlugTemplate *string                 `json:"proposal_slug_template"`
@@ -28324,11 +28897,29 @@ type ProtectedCall struct {
 	Rounds                     *[]NestedRound `json:"rounds,omitempty"`
 
 	// Slug URL-friendly identifier. Only editable by staff users.
-	Slug      *string             `json:"slug,omitempty"`
-	StartDate *time.Time          `json:"start_date,omitempty"`
-	State     *CallStates         `json:"state,omitempty"`
-	Url       *string             `json:"url,omitempty"`
-	Uuid      *openapi_types.UUID `json:"uuid,omitempty"`
+	Slug      *string     `json:"slug,omitempty"`
+	StartDate *time.Time  `json:"start_date,omitempty"`
+	State     *CallStates `json:"state,omitempty"`
+	Url       *string     `json:"url,omitempty"`
+
+	// UserAffiliations List of allowed affiliations. User must have one.
+	UserAffiliations interface{} `json:"user_affiliations,omitempty"`
+
+	// UserAssuranceLevels List of required assurance URIs (REFEDS). User must have ALL of these.
+	UserAssuranceLevels interface{} `json:"user_assurance_levels,omitempty"`
+
+	// UserEmailPatterns List of email regex patterns. User must match one.
+	UserEmailPatterns interface{} `json:"user_email_patterns,omitempty"`
+
+	// UserIdentitySources List of allowed identity sources (identity providers).
+	UserIdentitySources interface{} `json:"user_identity_sources,omitempty"`
+
+	// UserNationalities List of allowed nationality codes (ISO 3166-1 alpha-2). User must have one.
+	UserNationalities interface{} `json:"user_nationalities,omitempty"`
+
+	// UserOrganizationTypes List of allowed organization type URNs (SCHAC). User must match one.
+	UserOrganizationTypes interface{}         `json:"user_organization_types,omitempty"`
+	Uuid                  *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // ProtectedCallRequest defines model for ProtectedCallRequest.
@@ -28356,6 +28947,24 @@ type ProtectedCallRequest struct {
 
 	// Slug URL-friendly identifier. Only editable by staff users.
 	Slug *string `json:"slug,omitempty"`
+
+	// UserAffiliations List of allowed affiliations. User must have one.
+	UserAffiliations interface{} `json:"user_affiliations,omitempty"`
+
+	// UserAssuranceLevels List of required assurance URIs (REFEDS). User must have ALL of these.
+	UserAssuranceLevels interface{} `json:"user_assurance_levels,omitempty"`
+
+	// UserEmailPatterns List of email regex patterns. User must match one.
+	UserEmailPatterns interface{} `json:"user_email_patterns,omitempty"`
+
+	// UserIdentitySources List of allowed identity sources (identity providers).
+	UserIdentitySources interface{} `json:"user_identity_sources,omitempty"`
+
+	// UserNationalities List of allowed nationality codes (ISO 3166-1 alpha-2). User must have one.
+	UserNationalities interface{} `json:"user_nationalities,omitempty"`
+
+	// UserOrganizationTypes List of allowed organization type URNs (SCHAC). User must match one.
+	UserOrganizationTypes interface{} `json:"user_organization_types,omitempty"`
 }
 
 // ProtectedProposalList defines model for ProtectedProposalList.
@@ -28654,6 +29263,14 @@ type ProviderRequestedResource struct {
 	Uuid                     *openapi_types.UUID      `json:"uuid,omitempty"`
 }
 
+// ProviderTeamUser defines model for ProviderTeamUser.
+type ProviderTeamUser struct {
+	FullName string             `json:"full_name"`
+	Role     *string            `json:"role"`
+	UserUuid openapi_types.UUID `json:"user_uuid"`
+	Username string             `json:"username"`
+}
+
 // ProviderUser defines model for ProviderUser.
 type ProviderUser struct {
 	Email    *openapi_types.Email `json:"email,omitempty"`
@@ -28674,12 +29291,15 @@ type PublicCall struct {
 	ExternalUrl  *string             `json:"external_url"`
 
 	// FixedDurationInDays Fixed duration in days that applies to all proposals in this call
-	FixedDurationInDays *int                       `json:"fixed_duration_in_days"`
-	Manager             *string                    `json:"manager,omitempty"`
-	ManagerUuid         *openapi_types.UUID        `json:"manager_uuid,omitempty"`
-	Name                *string                    `json:"name,omitempty"`
-	Offerings           *[]NestedRequestedOffering `json:"offerings,omitempty"`
-	ResourceTemplates   *[]CallResourceTemplate    `json:"resource_templates,omitempty"`
+	FixedDurationInDays *int `json:"fixed_duration_in_days"`
+
+	// HasEligibilityRestrictions Check if call has any eligibility restrictions configured.
+	HasEligibilityRestrictions *bool                      `json:"has_eligibility_restrictions,omitempty"`
+	Manager                    *string                    `json:"manager,omitempty"`
+	ManagerUuid                *openapi_types.UUID        `json:"manager_uuid,omitempty"`
+	Name                       *string                    `json:"name,omitempty"`
+	Offerings                  *[]NestedRequestedOffering `json:"offerings,omitempty"`
+	ResourceTemplates          *[]CallResourceTemplate    `json:"resource_templates,omitempty"`
 
 	// ReviewerIdentityVisibleToSubmitters Whether proposal applicants can see reviewer identities. If False, reviewers appear as 'Reviewer 1', 'Reviewer 2', etc.
 	ReviewerIdentityVisibleToSubmitters *bool `json:"reviewer_identity_visible_to_submitters,omitempty"`
@@ -32046,6 +32666,18 @@ type ServiceProvider struct {
 	Uuid                 *openapi_types.UUID  `json:"uuid,omitempty"`
 }
 
+// ServiceProviderAccess defines model for ServiceProviderAccess.
+type ServiceProviderAccess struct {
+	ConsentDate    *string             `json:"consent_date"`
+	ConsentVersion *string             `json:"consent_version"`
+	ExposedFields  []string            `json:"exposed_fields"`
+	OfferingName   string              `json:"offering_name"`
+	OfferingUuid   openapi_types.UUID  `json:"offering_uuid"`
+	ProviderName   *string             `json:"provider_name"`
+	ProviderTeam   *[]ProviderTeamUser `json:"provider_team,omitempty"`
+	ProviderUuid   *openapi_types.UUID `json:"provider_uuid"`
+}
+
 // ServiceProviderApiSecretCode defines model for ServiceProviderApiSecretCode.
 type ServiceProviderApiSecretCode struct {
 	// ApiSecretCode API secret code for authenticating service provider requests
@@ -32781,6 +33413,13 @@ type TagsRequest struct {
 	Tags *[]openapi_types.UUID `json:"tags,omitempty"`
 }
 
+// TargetUser defines model for TargetUser.
+type TargetUser struct {
+	FullName string             `json:"full_name"`
+	Username string             `json:"username"`
+	Uuid     openapi_types.UUID `json:"uuid"`
+}
+
 // Template defines model for Template.
 type Template struct {
 	Attachments *[]TemplateAttachment `json:"attachments,omitempty"`
@@ -32986,19 +33625,26 @@ type User struct {
 	Affiliations interface{} `json:"affiliations,omitempty"`
 
 	// AgreementDate Indicates when the user has agreed with the policy.
-	AgreementDate                 *time.Time           `json:"agreement_date"`
-	BirthDate                     *openapi_types.Date  `json:"birth_date"`
-	CivilNumber                   *string              `json:"civil_number"`
-	DateJoined                    *time.Time           `json:"date_joined,omitempty"`
-	Description                   *string              `json:"description,omitempty"`
-	Email                         *openapi_types.Email `json:"email,omitempty"`
-	FirstName                     *string              `json:"first_name,omitempty"`
-	FullName                      *string              `json:"full_name,omitempty"`
-	HasActiveSession              *bool                `json:"has_active_session,omitempty"`
-	IdentityProviderFields        *[]string            `json:"identity_provider_fields,omitempty"`
-	IdentityProviderLabel         *string              `json:"identity_provider_label,omitempty"`
-	IdentityProviderManagementUrl *string              `json:"identity_provider_management_url,omitempty"`
-	IdentityProviderName          *string              `json:"identity_provider_name,omitempty"`
+	AgreementDate      *time.Time          `json:"agreement_date"`
+	BirthDate          *openapi_types.Date `json:"birth_date"`
+	CivilNumber        *string             `json:"civil_number"`
+	CountryOfResidence *string             `json:"country_of_residence,omitempty"`
+	DateJoined         *time.Time          `json:"date_joined,omitempty"`
+	Description        *string             `json:"description,omitempty"`
+
+	// EdupersonAssurance REFEDS assurance profile URIs from identity provider
+	EdupersonAssurance interface{}          `json:"eduperson_assurance,omitempty"`
+	Email              *openapi_types.Email `json:"email,omitempty"`
+	FirstName          *string              `json:"first_name,omitempty"`
+	FullName           *string              `json:"full_name,omitempty"`
+
+	// Gender ISO 5218 gender code
+	Gender                        *User_Gender `json:"gender"`
+	HasActiveSession              *bool        `json:"has_active_session,omitempty"`
+	IdentityProviderFields        *[]string    `json:"identity_provider_fields,omitempty"`
+	IdentityProviderLabel         *string      `json:"identity_provider_label,omitempty"`
+	IdentityProviderManagementUrl *string      `json:"identity_provider_management_url,omitempty"`
+	IdentityProviderName          *string      `json:"identity_provider_name,omitempty"`
 
 	// IdentitySource Indicates what identity provider was used.
 	IdentitySource *string `json:"identity_source,omitempty"`
@@ -33012,17 +33658,31 @@ type User struct {
 	IsStaff *bool `json:"is_staff,omitempty"`
 
 	// IsSupport Designates whether the user is a global support user.
-	IsSupport  *bool   `json:"is_support,omitempty"`
-	JobTitle   *string `json:"job_title,omitempty"`
-	LastName   *string `json:"last_name,omitempty"`
-	NativeName *string `json:"native_name,omitempty"`
+	IsSupport *bool   `json:"is_support,omitempty"`
+	JobTitle  *string `json:"job_title,omitempty"`
+	LastName  *string `json:"last_name,omitempty"`
+
+	// Nationalities List of all citizenships (ISO 3166-1 alpha-2 codes)
+	Nationalities interface{} `json:"nationalities,omitempty"`
+
+	// Nationality Primary citizenship (ISO 3166-1 alpha-2 code)
+	Nationality *string `json:"nationality,omitempty"`
+	NativeName  *string `json:"native_name,omitempty"`
 
 	// NotificationsEnabled Designates whether the user is allowed to receive email notifications.
-	NotificationsEnabled *bool         `json:"notifications_enabled,omitempty"`
-	Organization         *string       `json:"organization,omitempty"`
-	Permissions          *[]Permission `json:"permissions,omitempty"`
-	PhoneNumber          *string       `json:"phone_number,omitempty"`
-	PreferredLanguage    *string       `json:"preferred_language,omitempty"`
+	NotificationsEnabled *bool   `json:"notifications_enabled,omitempty"`
+	Organization         *string `json:"organization,omitempty"`
+	OrganizationCountry  *string `json:"organization_country,omitempty"`
+
+	// OrganizationType SCHAC URN (e.g., urn:schac:homeOrganizationType:int:university)
+	OrganizationType *string       `json:"organization_type,omitempty"`
+	Permissions      *[]Permission `json:"permissions,omitempty"`
+
+	// PersonalTitle Honorific title (Mr, Ms, Dr, Prof, etc.)
+	PersonalTitle     *string `json:"personal_title,omitempty"`
+	PhoneNumber       *string `json:"phone_number,omitempty"`
+	PlaceOfBirth      *string `json:"place_of_birth,omitempty"`
+	PreferredLanguage *string `json:"preferred_language,omitempty"`
 
 	// RegistrationMethod Indicates what registration method was used.
 	RegistrationMethod *string `json:"registration_method,omitempty"`
@@ -33040,6 +33700,11 @@ type User struct {
 	// Username Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
 	Username *string             `json:"username,omitempty"`
 	Uuid     *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// User_Gender ISO 5218 gender code
+type User_Gender struct {
+	union json.RawMessage
 }
 
 // UserAction defines model for UserAction.
@@ -33203,6 +33868,39 @@ type UserConsentInfo struct {
 	Version       *string             `json:"version,omitempty"`
 }
 
+// UserDataAccess defines model for UserDataAccess.
+type UserDataAccess struct {
+	AdministrativeAccess  AdministrativeAccess    `json:"administrative_access"`
+	OrganizationalAccess  []OrganizationalAccess  `json:"organizational_access"`
+	ServiceProviderAccess []ServiceProviderAccess `json:"service_provider_access"`
+	Summary               DataAccessSummary       `json:"summary"`
+}
+
+// UserDataAccessLog defines model for UserDataAccessLog.
+type UserDataAccessLog struct {
+	AccessedFields   []string                `json:"accessed_fields"`
+	Accessor         *AccessorUser           `json:"accessor,omitempty"`
+	AccessorCategory *string                 `json:"accessor_category,omitempty"`
+	AccessorType     AccessorTypeEnum        `json:"accessor_type"`
+	Context          *map[string]interface{} `json:"context,omitempty"`
+
+	// IpAddress An IPv4 or IPv6 address.
+	IpAddress *UserDataAccessLog_IpAddress `json:"ip_address"`
+	Timestamp time.Time                    `json:"timestamp"`
+	Uuid      openapi_types.UUID           `json:"uuid"`
+}
+
+// UserDataAccessLogIpAddress0 defines model for .
+type UserDataAccessLogIpAddress0 = string
+
+// UserDataAccessLogIpAddress1 defines model for .
+type UserDataAccessLogIpAddress1 = string
+
+// UserDataAccessLog_IpAddress An IPv4 or IPv6 address.
+type UserDataAccessLog_IpAddress struct {
+	union json.RawMessage
+}
+
 // UserEmailChangeRequest defines model for UserEmailChangeRequest.
 type UserEmailChangeRequest struct {
 	Email openapi_types.Email `json:"email"`
@@ -33233,18 +33931,21 @@ type UserInfoRequest struct {
 
 // UserOfferingConsent defines model for UserOfferingConsent.
 type UserOfferingConsent struct {
-	AgreementDate     *time.Time           `json:"agreement_date,omitempty"`
-	Created           *time.Time           `json:"created,omitempty"`
-	HasConsent        *bool                `json:"has_consent,omitempty"`
-	Modified          *time.Time           `json:"modified,omitempty"`
-	OfferingName      *string              `json:"offering_name,omitempty"`
-	OfferingSlug      *string              `json:"offering_slug,omitempty"`
-	OfferingUrl       *string              `json:"offering_url,omitempty"`
-	OfferingUuid      *openapi_types.UUID  `json:"offering_uuid,omitempty"`
-	RequiresReconsent *bool                `json:"requires_reconsent,omitempty"`
-	RevocationDate    *time.Time           `json:"revocation_date"`
-	UserEmail         *openapi_types.Email `json:"user_email,omitempty"`
-	UserFullName      *string              `json:"user_full_name,omitempty"`
+	AgreementDate *time.Time `json:"agreement_date,omitempty"`
+
+	// CollectedAttributes List of user attributes that will be shared with service provider
+	CollectedAttributes *[]string            `json:"collected_attributes,omitempty"`
+	Created             *time.Time           `json:"created,omitempty"`
+	HasConsent          *bool                `json:"has_consent,omitempty"`
+	Modified            *time.Time           `json:"modified,omitempty"`
+	OfferingName        *string              `json:"offering_name,omitempty"`
+	OfferingSlug        *string              `json:"offering_slug,omitempty"`
+	OfferingUrl         *string              `json:"offering_url,omitempty"`
+	OfferingUuid        *openapi_types.UUID  `json:"offering_uuid,omitempty"`
+	RequiresReconsent   *bool                `json:"requires_reconsent,omitempty"`
+	RevocationDate      *time.Time           `json:"revocation_date"`
+	UserEmail           *openapi_types.Email `json:"user_email,omitempty"`
+	UserFullName        *string              `json:"user_full_name,omitempty"`
 
 	// UserUsername Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
 	UserUsername *string             `json:"user_username,omitempty"`
@@ -33280,12 +33981,19 @@ type UserOrganizationCount struct {
 // UserRequest defines model for UserRequest.
 type UserRequest struct {
 	// AgreeWithPolicy User must agree with the policy to register.
-	AgreeWithPolicy *bool               `json:"agree_with_policy,omitempty"`
-	BirthDate       *openapi_types.Date `json:"birth_date"`
-	Description     *string             `json:"description,omitempty"`
-	Email           openapi_types.Email `json:"email"`
-	FirstName       *string             `json:"first_name,omitempty"`
-	Image           *openapi_types.File `json:"image"`
+	AgreeWithPolicy    *bool               `json:"agree_with_policy,omitempty"`
+	BirthDate          *openapi_types.Date `json:"birth_date"`
+	CountryOfResidence *string             `json:"country_of_residence,omitempty"`
+	Description        *string             `json:"description,omitempty"`
+
+	// EdupersonAssurance REFEDS assurance profile URIs from identity provider
+	EdupersonAssurance interface{}         `json:"eduperson_assurance,omitempty"`
+	Email              openapi_types.Email `json:"email"`
+	FirstName          *string             `json:"first_name,omitempty"`
+
+	// Gender ISO 5218 gender code
+	Gender *UserRequest_Gender `json:"gender"`
+	Image  *openapi_types.File `json:"image"`
 
 	// IsActive Designates whether this user should be treated as active. Unselect this instead of deleting accounts.
 	IsActive *bool `json:"is_active,omitempty"`
@@ -33294,16 +34002,30 @@ type UserRequest struct {
 	IsStaff *bool `json:"is_staff,omitempty"`
 
 	// IsSupport Designates whether the user is a global support user.
-	IsSupport  *bool   `json:"is_support,omitempty"`
-	JobTitle   *string `json:"job_title,omitempty"`
-	LastName   *string `json:"last_name,omitempty"`
-	NativeName *string `json:"native_name,omitempty"`
+	IsSupport *bool   `json:"is_support,omitempty"`
+	JobTitle  *string `json:"job_title,omitempty"`
+	LastName  *string `json:"last_name,omitempty"`
+
+	// Nationalities List of all citizenships (ISO 3166-1 alpha-2 codes)
+	Nationalities interface{} `json:"nationalities,omitempty"`
+
+	// Nationality Primary citizenship (ISO 3166-1 alpha-2 code)
+	Nationality *string `json:"nationality,omitempty"`
+	NativeName  *string `json:"native_name,omitempty"`
 
 	// NotificationsEnabled Designates whether the user is allowed to receive email notifications.
 	NotificationsEnabled *bool   `json:"notifications_enabled,omitempty"`
 	Organization         *string `json:"organization,omitempty"`
-	PhoneNumber          *string `json:"phone_number,omitempty"`
-	PreferredLanguage    *string `json:"preferred_language,omitempty"`
+	OrganizationCountry  *string `json:"organization_country,omitempty"`
+
+	// OrganizationType SCHAC URN (e.g., urn:schac:homeOrganizationType:int:university)
+	OrganizationType *string `json:"organization_type,omitempty"`
+
+	// PersonalTitle Honorific title (Mr, Ms, Dr, Prof, etc.)
+	PersonalTitle     *string `json:"personal_title,omitempty"`
+	PhoneNumber       *string `json:"phone_number,omitempty"`
+	PlaceOfBirth      *string `json:"place_of_birth,omitempty"`
+	PreferredLanguage *string `json:"preferred_language,omitempty"`
 
 	// Slug URL-friendly identifier. Only editable by staff users.
 	Slug *string `json:"slug,omitempty"`
@@ -33313,17 +34035,29 @@ type UserRequest struct {
 
 	// Username Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
 	Username string `json:"username"`
+}
+
+// UserRequest_Gender ISO 5218 gender code
+type UserRequest_Gender struct {
+	union json.RawMessage
 }
 
 // UserRequestForm defines model for UserRequestForm.
 type UserRequestForm struct {
 	// AgreeWithPolicy User must agree with the policy to register.
-	AgreeWithPolicy *bool               `json:"agree_with_policy,omitempty"`
-	BirthDate       *openapi_types.Date `json:"birth_date"`
-	Description     *string             `json:"description,omitempty"`
-	Email           openapi_types.Email `json:"email"`
-	FirstName       *string             `json:"first_name,omitempty"`
-	Image           *openapi_types.File `json:"image"`
+	AgreeWithPolicy    *bool               `json:"agree_with_policy,omitempty"`
+	BirthDate          *openapi_types.Date `json:"birth_date"`
+	CountryOfResidence *string             `json:"country_of_residence,omitempty"`
+	Description        *string             `json:"description,omitempty"`
+
+	// EdupersonAssurance REFEDS assurance profile URIs from identity provider
+	EdupersonAssurance interface{}         `json:"eduperson_assurance,omitempty"`
+	Email              openapi_types.Email `json:"email"`
+	FirstName          *string             `json:"first_name,omitempty"`
+
+	// Gender ISO 5218 gender code
+	Gender *UserRequestForm_Gender `json:"gender"`
+	Image  *openapi_types.File     `json:"image"`
 
 	// IsActive Designates whether this user should be treated as active. Unselect this instead of deleting accounts.
 	IsActive *bool `json:"is_active,omitempty"`
@@ -33332,16 +34066,30 @@ type UserRequestForm struct {
 	IsStaff *bool `json:"is_staff,omitempty"`
 
 	// IsSupport Designates whether the user is a global support user.
-	IsSupport  *bool   `json:"is_support,omitempty"`
-	JobTitle   *string `json:"job_title,omitempty"`
-	LastName   *string `json:"last_name,omitempty"`
-	NativeName *string `json:"native_name,omitempty"`
+	IsSupport *bool   `json:"is_support,omitempty"`
+	JobTitle  *string `json:"job_title,omitempty"`
+	LastName  *string `json:"last_name,omitempty"`
+
+	// Nationalities List of all citizenships (ISO 3166-1 alpha-2 codes)
+	Nationalities interface{} `json:"nationalities,omitempty"`
+
+	// Nationality Primary citizenship (ISO 3166-1 alpha-2 code)
+	Nationality *string `json:"nationality,omitempty"`
+	NativeName  *string `json:"native_name,omitempty"`
 
 	// NotificationsEnabled Designates whether the user is allowed to receive email notifications.
 	NotificationsEnabled *bool   `json:"notifications_enabled,omitempty"`
 	Organization         *string `json:"organization,omitempty"`
-	PhoneNumber          *string `json:"phone_number,omitempty"`
-	PreferredLanguage    *string `json:"preferred_language,omitempty"`
+	OrganizationCountry  *string `json:"organization_country,omitempty"`
+
+	// OrganizationType SCHAC URN (e.g., urn:schac:homeOrganizationType:int:university)
+	OrganizationType *string `json:"organization_type,omitempty"`
+
+	// PersonalTitle Honorific title (Mr, Ms, Dr, Prof, etc.)
+	PersonalTitle     *string `json:"personal_title,omitempty"`
+	PhoneNumber       *string `json:"phone_number,omitempty"`
+	PlaceOfBirth      *string `json:"place_of_birth,omitempty"`
+	PreferredLanguage *string `json:"preferred_language,omitempty"`
 
 	// Slug URL-friendly identifier. Only editable by staff users.
 	Slug *string `json:"slug,omitempty"`
@@ -33353,15 +34101,27 @@ type UserRequestForm struct {
 	Username string `json:"username"`
 }
 
+// UserRequestForm_Gender ISO 5218 gender code
+type UserRequestForm_Gender struct {
+	union json.RawMessage
+}
+
 // UserRequestMultipart defines model for UserRequestMultipart.
 type UserRequestMultipart struct {
 	// AgreeWithPolicy User must agree with the policy to register.
-	AgreeWithPolicy *bool               `json:"agree_with_policy,omitempty"`
-	BirthDate       *openapi_types.Date `json:"birth_date"`
-	Description     *string             `json:"description,omitempty"`
-	Email           openapi_types.Email `json:"email"`
-	FirstName       *string             `json:"first_name,omitempty"`
-	Image           *openapi_types.File `json:"image"`
+	AgreeWithPolicy    *bool               `json:"agree_with_policy,omitempty"`
+	BirthDate          *openapi_types.Date `json:"birth_date"`
+	CountryOfResidence *string             `json:"country_of_residence,omitempty"`
+	Description        *string             `json:"description,omitempty"`
+
+	// EdupersonAssurance REFEDS assurance profile URIs from identity provider
+	EdupersonAssurance interface{}         `json:"eduperson_assurance,omitempty"`
+	Email              openapi_types.Email `json:"email"`
+	FirstName          *string             `json:"first_name,omitempty"`
+
+	// Gender ISO 5218 gender code
+	Gender *UserRequestMultipart_Gender `json:"gender"`
+	Image  *openapi_types.File          `json:"image"`
 
 	// IsActive Designates whether this user should be treated as active. Unselect this instead of deleting accounts.
 	IsActive *bool `json:"is_active,omitempty"`
@@ -33370,16 +34130,30 @@ type UserRequestMultipart struct {
 	IsStaff *bool `json:"is_staff,omitempty"`
 
 	// IsSupport Designates whether the user is a global support user.
-	IsSupport  *bool   `json:"is_support,omitempty"`
-	JobTitle   *string `json:"job_title,omitempty"`
-	LastName   *string `json:"last_name,omitempty"`
-	NativeName *string `json:"native_name,omitempty"`
+	IsSupport *bool   `json:"is_support,omitempty"`
+	JobTitle  *string `json:"job_title,omitempty"`
+	LastName  *string `json:"last_name,omitempty"`
+
+	// Nationalities List of all citizenships (ISO 3166-1 alpha-2 codes)
+	Nationalities interface{} `json:"nationalities,omitempty"`
+
+	// Nationality Primary citizenship (ISO 3166-1 alpha-2 code)
+	Nationality *string `json:"nationality,omitempty"`
+	NativeName  *string `json:"native_name,omitempty"`
 
 	// NotificationsEnabled Designates whether the user is allowed to receive email notifications.
 	NotificationsEnabled *bool   `json:"notifications_enabled,omitempty"`
 	Organization         *string `json:"organization,omitempty"`
-	PhoneNumber          *string `json:"phone_number,omitempty"`
-	PreferredLanguage    *string `json:"preferred_language,omitempty"`
+	OrganizationCountry  *string `json:"organization_country,omitempty"`
+
+	// OrganizationType SCHAC URN (e.g., urn:schac:homeOrganizationType:int:university)
+	OrganizationType *string `json:"organization_type,omitempty"`
+
+	// PersonalTitle Honorific title (Mr, Ms, Dr, Prof, etc.)
+	PersonalTitle     *string `json:"personal_title,omitempty"`
+	PhoneNumber       *string `json:"phone_number,omitempty"`
+	PlaceOfBirth      *string `json:"place_of_birth,omitempty"`
+	PreferredLanguage *string `json:"preferred_language,omitempty"`
 
 	// Slug URL-friendly identifier. Only editable by staff users.
 	Slug *string `json:"slug,omitempty"`
@@ -33389,6 +34163,11 @@ type UserRequestMultipart struct {
 
 	// Username Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
 	Username string `json:"username"`
+}
+
+// UserRequestMultipart_Gender ISO 5218 gender code
+type UserRequestMultipart_Gender struct {
+	union json.RawMessage
 }
 
 // UserRoleCreateRequest defines model for UserRoleCreateRequest.
@@ -36872,6 +37651,62 @@ type DailyQuotasRetrieveParams struct {
 	// Start Start date in format YYYY-MM-DD
 	Start *openapi_types.Date `form:"start,omitempty" json:"start,omitempty"`
 }
+
+// DataAccessLogsListParams defines parameters for DataAccessLogsList.
+type DataAccessLogsListParams struct {
+	// AccessorType Type of accessor
+	//
+	AccessorType *DataAccessLogsListParamsAccessorType `form:"accessor_type,omitempty" json:"accessor_type,omitempty"`
+	AccessorUuid *openapi_types.UUID                   `form:"accessor_uuid,omitempty" json:"accessor_uuid,omitempty"`
+	EndDate      *openapi_types.Date                   `form:"end_date,omitempty" json:"end_date,omitempty"`
+
+	// O Ordering
+	//
+	O *[]DataAccessLogsListParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize  *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Query     *string             `form:"query,omitempty" json:"query,omitempty"`
+	StartDate *openapi_types.Date `form:"start_date,omitempty" json:"start_date,omitempty"`
+	UserUuid  *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
+}
+
+// DataAccessLogsListParamsAccessorType defines parameters for DataAccessLogsList.
+type DataAccessLogsListParamsAccessorType string
+
+// DataAccessLogsListParamsO defines parameters for DataAccessLogsList.
+type DataAccessLogsListParamsO string
+
+// DataAccessLogsCountParams defines parameters for DataAccessLogsCount.
+type DataAccessLogsCountParams struct {
+	// AccessorType Type of accessor
+	//
+	AccessorType *DataAccessLogsCountParamsAccessorType `form:"accessor_type,omitempty" json:"accessor_type,omitempty"`
+	AccessorUuid *openapi_types.UUID                    `form:"accessor_uuid,omitempty" json:"accessor_uuid,omitempty"`
+	EndDate      *openapi_types.Date                    `form:"end_date,omitempty" json:"end_date,omitempty"`
+
+	// O Ordering
+	//
+	O *[]DataAccessLogsCountParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize  *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Query     *string             `form:"query,omitempty" json:"query,omitempty"`
+	StartDate *openapi_types.Date `form:"start_date,omitempty" json:"start_date,omitempty"`
+	UserUuid  *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
+}
+
+// DataAccessLogsCountParamsAccessorType defines parameters for DataAccessLogsCount.
+type DataAccessLogsCountParamsAccessorType string
+
+// DataAccessLogsCountParamsO defines parameters for DataAccessLogsCount.
+type DataAccessLogsCountParamsO string
 
 // DigitaloceanDropletsListParams defines parameters for DigitaloceanDropletsList.
 type DigitaloceanDropletsListParams struct {
@@ -52208,6 +53043,92 @@ type UsersRetrieveParams struct {
 // UsersRetrieveParamsField defines parameters for UsersRetrieve.
 type UsersRetrieveParamsField string
 
+// UsersDataAccessHistoryListParams defines parameters for UsersDataAccessHistoryList.
+type UsersDataAccessHistoryListParams struct {
+	// AccessorType Filter by accessor type (staff, support, organization_member, self)
+	AccessorType *string `form:"accessor_type,omitempty" json:"accessor_type,omitempty"`
+
+	// AgreementDate Agreement date after
+	AgreementDate *time.Time `form:"agreement_date,omitempty" json:"agreement_date,omitempty"`
+	CivilNumber   *string    `form:"civil_number,omitempty" json:"civil_number,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// DateJoined Date joined after
+	DateJoined  *time.Time `form:"date_joined,omitempty" json:"date_joined,omitempty"`
+	Description *string    `form:"description,omitempty" json:"description,omitempty"`
+
+	// Email Email
+	Email *string `form:"email,omitempty" json:"email,omitempty"`
+
+	// EndDate Filter logs until this date (inclusive)
+	EndDate *openapi_types.Date `form:"end_date,omitempty" json:"end_date,omitempty"`
+
+	// FullName Full name
+	FullName *string `form:"full_name,omitempty" json:"full_name,omitempty"`
+
+	// IsActive Is active
+	IsActive *bool `form:"is_active,omitempty" json:"is_active,omitempty"`
+
+	// IsStaff Is staff
+	IsStaff *bool `form:"is_staff,omitempty" json:"is_staff,omitempty"`
+
+	// IsSupport Is support
+	IsSupport *bool `form:"is_support,omitempty" json:"is_support,omitempty"`
+
+	// JobTitle Job title
+	JobTitle *string `form:"job_title,omitempty" json:"job_title,omitempty"`
+
+	// Modified Date modified after
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// NativeName Native name
+	NativeName *string `form:"native_name,omitempty" json:"native_name,omitempty"`
+
+	// O Ordering
+	//
+	O *[]UsersDataAccessHistoryListParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// Organization Organization
+	Organization *string `form:"organization,omitempty" json:"organization,omitempty"`
+
+	// OrganizationRoles Organization roles
+	OrganizationRoles *string `form:"organization_roles,omitempty" json:"organization_roles,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize    *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PhoneNumber *string   `form:"phone_number,omitempty" json:"phone_number,omitempty"`
+
+	// ProjectRoles Project roles
+	ProjectRoles *string `form:"project_roles,omitempty" json:"project_roles,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// Query Filter by first name, last name, civil number, username or email
+	Query              *string `form:"query,omitempty" json:"query,omitempty"`
+	RegistrationMethod *string `form:"registration_method,omitempty" json:"registration_method,omitempty"`
+
+	// StartDate Filter logs from this date (inclusive)
+	StartDate *openapi_types.Date `form:"start_date,omitempty" json:"start_date,omitempty"`
+
+	// UserKeyword User keyword
+	UserKeyword *string `form:"user_keyword,omitempty" json:"user_keyword,omitempty"`
+
+	// Username Username (exact)
+	Username *string `form:"username,omitempty" json:"username,omitempty"`
+
+	// UsernameList Comma-separated usernames
+	UsernameList *string `form:"username_list,omitempty" json:"username_list,omitempty"`
+}
+
+// UsersDataAccessHistoryListParamsO defines parameters for UsersDataAccessHistoryList.
+type UsersDataAccessHistoryListParamsO string
+
 // VmwareClustersListParams defines parameters for VmwareClustersList.
 type VmwareClustersListParams struct {
 	// CustomerUuid Customer UUID
@@ -53743,6 +54664,15 @@ type MarketplaceProviderOfferingsRemoveSoftwareCatalogJSONRequestBody = RemoveSo
 // MarketplaceProviderOfferingsSetBackendMetadataJSONRequestBody defines body for MarketplaceProviderOfferingsSetBackendMetadata for application/json ContentType.
 type MarketplaceProviderOfferingsSetBackendMetadataJSONRequestBody = OfferingBackendMetadataRequest
 
+// MarketplaceProviderOfferingsUpdateUserAttributeConfigPartialUpdateJSONRequestBody defines body for MarketplaceProviderOfferingsUpdateUserAttributeConfigPartialUpdate for application/json ContentType.
+type MarketplaceProviderOfferingsUpdateUserAttributeConfigPartialUpdateJSONRequestBody = PatchedOfferingUserAttributeConfigRequest
+
+// MarketplaceProviderOfferingsUpdateUserAttributeConfigJSONRequestBody defines body for MarketplaceProviderOfferingsUpdateUserAttributeConfig for application/json ContentType.
+type MarketplaceProviderOfferingsUpdateUserAttributeConfigJSONRequestBody = OfferingUserAttributeConfigRequest
+
+// MarketplaceProviderOfferingsUpdateUserAttributeConfigUpdateJSONRequestBody defines body for MarketplaceProviderOfferingsUpdateUserAttributeConfigUpdate for application/json ContentType.
+type MarketplaceProviderOfferingsUpdateUserAttributeConfigUpdateJSONRequestBody = OfferingUserAttributeConfigRequest
+
 // MarketplaceProviderOfferingsUpdateAttributesJSONRequestBody defines body for MarketplaceProviderOfferingsUpdateAttributes for application/json ContentType.
 type MarketplaceProviderOfferingsUpdateAttributesJSONRequestBody MarketplaceProviderOfferingsUpdateAttributesJSONBody
 
@@ -54705,6 +55635,12 @@ type ProposalProtectedCallsRoundsCloseJSONRequestBody = ProtectedCallRequest
 
 // ProposalProtectedCallsSendAllAssignmentsJSONRequestBody defines body for ProposalProtectedCallsSendAllAssignments for application/json ContentType.
 type ProposalProtectedCallsSendAllAssignmentsJSONRequestBody = SendAllAssignmentBatchesRequest
+
+// ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateJSONRequestBody defines body for ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdate for application/json ContentType.
+type ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateJSONRequestBody = PatchedCallApplicantAttributeConfigRequest
+
+// ProposalProtectedCallsUpdateApplicantAttributeConfigJSONRequestBody defines body for ProposalProtectedCallsUpdateApplicantAttributeConfig for application/json ContentType.
+type ProposalProtectedCallsUpdateApplicantAttributeConfigJSONRequestBody = CallApplicantAttributeConfigRequest
 
 // ProposalProtectedCallsUpdateUserJSONRequestBody defines body for ProposalProtectedCallsUpdateUser for application/json ContentType.
 type ProposalProtectedCallsUpdateUserJSONRequestBody = UserRoleUpdateRequest
@@ -55746,6 +56682,68 @@ func (t *EventSubscription_SourceIp) UnmarshalJSON(b []byte) error {
 	return err
 }
 
+// AsGlobalUserDataAccessLogIpAddress0 returns the union data inside the GlobalUserDataAccessLog_IpAddress as a GlobalUserDataAccessLogIpAddress0
+func (t GlobalUserDataAccessLog_IpAddress) AsGlobalUserDataAccessLogIpAddress0() (GlobalUserDataAccessLogIpAddress0, error) {
+	var body GlobalUserDataAccessLogIpAddress0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromGlobalUserDataAccessLogIpAddress0 overwrites any union data inside the GlobalUserDataAccessLog_IpAddress as the provided GlobalUserDataAccessLogIpAddress0
+func (t *GlobalUserDataAccessLog_IpAddress) FromGlobalUserDataAccessLogIpAddress0(v GlobalUserDataAccessLogIpAddress0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeGlobalUserDataAccessLogIpAddress0 performs a merge with any union data inside the GlobalUserDataAccessLog_IpAddress, using the provided GlobalUserDataAccessLogIpAddress0
+func (t *GlobalUserDataAccessLog_IpAddress) MergeGlobalUserDataAccessLogIpAddress0(v GlobalUserDataAccessLogIpAddress0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsGlobalUserDataAccessLogIpAddress1 returns the union data inside the GlobalUserDataAccessLog_IpAddress as a GlobalUserDataAccessLogIpAddress1
+func (t GlobalUserDataAccessLog_IpAddress) AsGlobalUserDataAccessLogIpAddress1() (GlobalUserDataAccessLogIpAddress1, error) {
+	var body GlobalUserDataAccessLogIpAddress1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromGlobalUserDataAccessLogIpAddress1 overwrites any union data inside the GlobalUserDataAccessLog_IpAddress as the provided GlobalUserDataAccessLogIpAddress1
+func (t *GlobalUserDataAccessLog_IpAddress) FromGlobalUserDataAccessLogIpAddress1(v GlobalUserDataAccessLogIpAddress1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeGlobalUserDataAccessLogIpAddress1 performs a merge with any union data inside the GlobalUserDataAccessLog_IpAddress, using the provided GlobalUserDataAccessLogIpAddress1
+func (t *GlobalUserDataAccessLog_IpAddress) MergeGlobalUserDataAccessLogIpAddress1(v GlobalUserDataAccessLogIpAddress1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t GlobalUserDataAccessLog_IpAddress) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *GlobalUserDataAccessLog_IpAddress) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsAccountNameGenerationPolicyEnum returns the union data inside the MergedPluginOptions_AccountNameGenerationPolicy as a AccountNameGenerationPolicyEnum
 func (t MergedPluginOptions_AccountNameGenerationPolicy) AsAccountNameGenerationPolicyEnum() (AccountNameGenerationPolicyEnum, error) {
 	var body AccountNameGenerationPolicyEnum
@@ -56502,6 +57500,68 @@ func (t OfferingCreateRequestMultipart_Country) MarshalJSON() ([]byte, error) {
 }
 
 func (t *OfferingCreateRequestMultipart_Country) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsGenderEnum returns the union data inside the OfferingUser_UserGender as a GenderEnum
+func (t OfferingUser_UserGender) AsGenderEnum() (GenderEnum, error) {
+	var body GenderEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromGenderEnum overwrites any union data inside the OfferingUser_UserGender as the provided GenderEnum
+func (t *OfferingUser_UserGender) FromGenderEnum(v GenderEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeGenderEnum performs a merge with any union data inside the OfferingUser_UserGender, using the provided GenderEnum
+func (t *OfferingUser_UserGender) MergeGenderEnum(v GenderEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the OfferingUser_UserGender as a NullEnum
+func (t OfferingUser_UserGender) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the OfferingUser_UserGender as the provided NullEnum
+func (t *OfferingUser_UserGender) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the OfferingUser_UserGender, using the provided NullEnum
+func (t *OfferingUser_UserGender) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t OfferingUser_UserGender) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *OfferingUser_UserGender) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -59236,6 +60296,192 @@ func (t *PatchedRancherServiceRequest_ClusterIp) UnmarshalJSON(b []byte) error {
 	return err
 }
 
+// AsGenderEnum returns the union data inside the PatchedUserRequest_Gender as a GenderEnum
+func (t PatchedUserRequest_Gender) AsGenderEnum() (GenderEnum, error) {
+	var body GenderEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromGenderEnum overwrites any union data inside the PatchedUserRequest_Gender as the provided GenderEnum
+func (t *PatchedUserRequest_Gender) FromGenderEnum(v GenderEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeGenderEnum performs a merge with any union data inside the PatchedUserRequest_Gender, using the provided GenderEnum
+func (t *PatchedUserRequest_Gender) MergeGenderEnum(v GenderEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the PatchedUserRequest_Gender as a NullEnum
+func (t PatchedUserRequest_Gender) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the PatchedUserRequest_Gender as the provided NullEnum
+func (t *PatchedUserRequest_Gender) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the PatchedUserRequest_Gender, using the provided NullEnum
+func (t *PatchedUserRequest_Gender) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t PatchedUserRequest_Gender) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *PatchedUserRequest_Gender) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsGenderEnum returns the union data inside the PatchedUserRequestForm_Gender as a GenderEnum
+func (t PatchedUserRequestForm_Gender) AsGenderEnum() (GenderEnum, error) {
+	var body GenderEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromGenderEnum overwrites any union data inside the PatchedUserRequestForm_Gender as the provided GenderEnum
+func (t *PatchedUserRequestForm_Gender) FromGenderEnum(v GenderEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeGenderEnum performs a merge with any union data inside the PatchedUserRequestForm_Gender, using the provided GenderEnum
+func (t *PatchedUserRequestForm_Gender) MergeGenderEnum(v GenderEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the PatchedUserRequestForm_Gender as a NullEnum
+func (t PatchedUserRequestForm_Gender) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the PatchedUserRequestForm_Gender as the provided NullEnum
+func (t *PatchedUserRequestForm_Gender) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the PatchedUserRequestForm_Gender, using the provided NullEnum
+func (t *PatchedUserRequestForm_Gender) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t PatchedUserRequestForm_Gender) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *PatchedUserRequestForm_Gender) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsGenderEnum returns the union data inside the PatchedUserRequestMultipart_Gender as a GenderEnum
+func (t PatchedUserRequestMultipart_Gender) AsGenderEnum() (GenderEnum, error) {
+	var body GenderEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromGenderEnum overwrites any union data inside the PatchedUserRequestMultipart_Gender as the provided GenderEnum
+func (t *PatchedUserRequestMultipart_Gender) FromGenderEnum(v GenderEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeGenderEnum performs a merge with any union data inside the PatchedUserRequestMultipart_Gender, using the provided GenderEnum
+func (t *PatchedUserRequestMultipart_Gender) MergeGenderEnum(v GenderEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the PatchedUserRequestMultipart_Gender as a NullEnum
+func (t PatchedUserRequestMultipart_Gender) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the PatchedUserRequestMultipart_Gender as the provided NullEnum
+func (t *PatchedUserRequestMultipart_Gender) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the PatchedUserRequestMultipart_Gender, using the provided NullEnum
+func (t *PatchedUserRequestMultipart_Gender) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t PatchedUserRequestMultipart_Gender) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *PatchedUserRequestMultipart_Gender) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsOecdFos2007CodeEnum returns the union data inside the Project_OecdFos2007Code as a OecdFos2007CodeEnum
 func (t Project_OecdFos2007Code) AsOecdFos2007CodeEnum() (OecdFos2007CodeEnum, error) {
 	var body OecdFos2007CodeEnum
@@ -61304,6 +62550,316 @@ func (t *UpdateOfferingComponentRequest_LimitPeriod) UnmarshalJSON(b []byte) err
 	return err
 }
 
+// AsGenderEnum returns the union data inside the User_Gender as a GenderEnum
+func (t User_Gender) AsGenderEnum() (GenderEnum, error) {
+	var body GenderEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromGenderEnum overwrites any union data inside the User_Gender as the provided GenderEnum
+func (t *User_Gender) FromGenderEnum(v GenderEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeGenderEnum performs a merge with any union data inside the User_Gender, using the provided GenderEnum
+func (t *User_Gender) MergeGenderEnum(v GenderEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the User_Gender as a NullEnum
+func (t User_Gender) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the User_Gender as the provided NullEnum
+func (t *User_Gender) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the User_Gender, using the provided NullEnum
+func (t *User_Gender) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t User_Gender) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *User_Gender) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsUserDataAccessLogIpAddress0 returns the union data inside the UserDataAccessLog_IpAddress as a UserDataAccessLogIpAddress0
+func (t UserDataAccessLog_IpAddress) AsUserDataAccessLogIpAddress0() (UserDataAccessLogIpAddress0, error) {
+	var body UserDataAccessLogIpAddress0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromUserDataAccessLogIpAddress0 overwrites any union data inside the UserDataAccessLog_IpAddress as the provided UserDataAccessLogIpAddress0
+func (t *UserDataAccessLog_IpAddress) FromUserDataAccessLogIpAddress0(v UserDataAccessLogIpAddress0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeUserDataAccessLogIpAddress0 performs a merge with any union data inside the UserDataAccessLog_IpAddress, using the provided UserDataAccessLogIpAddress0
+func (t *UserDataAccessLog_IpAddress) MergeUserDataAccessLogIpAddress0(v UserDataAccessLogIpAddress0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsUserDataAccessLogIpAddress1 returns the union data inside the UserDataAccessLog_IpAddress as a UserDataAccessLogIpAddress1
+func (t UserDataAccessLog_IpAddress) AsUserDataAccessLogIpAddress1() (UserDataAccessLogIpAddress1, error) {
+	var body UserDataAccessLogIpAddress1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromUserDataAccessLogIpAddress1 overwrites any union data inside the UserDataAccessLog_IpAddress as the provided UserDataAccessLogIpAddress1
+func (t *UserDataAccessLog_IpAddress) FromUserDataAccessLogIpAddress1(v UserDataAccessLogIpAddress1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeUserDataAccessLogIpAddress1 performs a merge with any union data inside the UserDataAccessLog_IpAddress, using the provided UserDataAccessLogIpAddress1
+func (t *UserDataAccessLog_IpAddress) MergeUserDataAccessLogIpAddress1(v UserDataAccessLogIpAddress1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t UserDataAccessLog_IpAddress) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *UserDataAccessLog_IpAddress) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsGenderEnum returns the union data inside the UserRequest_Gender as a GenderEnum
+func (t UserRequest_Gender) AsGenderEnum() (GenderEnum, error) {
+	var body GenderEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromGenderEnum overwrites any union data inside the UserRequest_Gender as the provided GenderEnum
+func (t *UserRequest_Gender) FromGenderEnum(v GenderEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeGenderEnum performs a merge with any union data inside the UserRequest_Gender, using the provided GenderEnum
+func (t *UserRequest_Gender) MergeGenderEnum(v GenderEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the UserRequest_Gender as a NullEnum
+func (t UserRequest_Gender) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the UserRequest_Gender as the provided NullEnum
+func (t *UserRequest_Gender) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the UserRequest_Gender, using the provided NullEnum
+func (t *UserRequest_Gender) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t UserRequest_Gender) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *UserRequest_Gender) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsGenderEnum returns the union data inside the UserRequestForm_Gender as a GenderEnum
+func (t UserRequestForm_Gender) AsGenderEnum() (GenderEnum, error) {
+	var body GenderEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromGenderEnum overwrites any union data inside the UserRequestForm_Gender as the provided GenderEnum
+func (t *UserRequestForm_Gender) FromGenderEnum(v GenderEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeGenderEnum performs a merge with any union data inside the UserRequestForm_Gender, using the provided GenderEnum
+func (t *UserRequestForm_Gender) MergeGenderEnum(v GenderEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the UserRequestForm_Gender as a NullEnum
+func (t UserRequestForm_Gender) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the UserRequestForm_Gender as the provided NullEnum
+func (t *UserRequestForm_Gender) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the UserRequestForm_Gender, using the provided NullEnum
+func (t *UserRequestForm_Gender) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t UserRequestForm_Gender) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *UserRequestForm_Gender) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsGenderEnum returns the union data inside the UserRequestMultipart_Gender as a GenderEnum
+func (t UserRequestMultipart_Gender) AsGenderEnum() (GenderEnum, error) {
+	var body GenderEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromGenderEnum overwrites any union data inside the UserRequestMultipart_Gender as the provided GenderEnum
+func (t *UserRequestMultipart_Gender) FromGenderEnum(v GenderEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeGenderEnum performs a merge with any union data inside the UserRequestMultipart_Gender, using the provided GenderEnum
+func (t *UserRequestMultipart_Gender) MergeGenderEnum(v GenderEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the UserRequestMultipart_Gender as a NullEnum
+func (t UserRequestMultipart_Gender) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the UserRequestMultipart_Gender as the provided NullEnum
+func (t *UserRequestMultipart_Gender) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the UserRequestMultipart_Gender, using the provided NullEnum
+func (t *UserRequestMultipart_Gender) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t UserRequestMultipart_Gender) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *UserRequestMultipart_Gender) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsGuestOsEnum returns the union data inside the VmwareVirtualMachine_GuestOs as a GuestOsEnum
 func (t VmwareVirtualMachine_GuestOs) AsGuestOsEnum() (GuestOsEnum, error) {
 	var body GuestOsEnum
@@ -62679,6 +64235,18 @@ type ClientInterface interface {
 
 	// DailyQuotasRetrieve request
 	DailyQuotasRetrieve(ctx context.Context, params *DailyQuotasRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// DataAccessLogsList request
+	DataAccessLogsList(ctx context.Context, params *DataAccessLogsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// DataAccessLogsCount request
+	DataAccessLogsCount(ctx context.Context, params *DataAccessLogsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// DataAccessLogsDestroy request
+	DataAccessLogsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// DataAccessLogsRetrieve request
+	DataAccessLogsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// DatabaseStatsRetrieve request
 	DatabaseStatsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -64255,6 +65823,9 @@ type ClientInterface interface {
 	// MarketplaceProviderOfferingsCustomersList request
 	MarketplaceProviderOfferingsCustomersList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsCustomersListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceProviderOfferingsDeleteUserAttributeConfigDestroy request
+	MarketplaceProviderOfferingsDeleteUserAttributeConfigDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceProviderOfferingsDeleteEndpointWithBody request with any body
 	MarketplaceProviderOfferingsDeleteEndpointWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -64371,6 +65942,21 @@ type ClientInterface interface {
 	// MarketplaceProviderOfferingsUnpause request
 	MarketplaceProviderOfferingsUnpause(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceProviderOfferingsUpdateUserAttributeConfigPartialUpdateWithBody request with any body
+	MarketplaceProviderOfferingsUpdateUserAttributeConfigPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceProviderOfferingsUpdateUserAttributeConfigPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateUserAttributeConfigPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProviderOfferingsUpdateUserAttributeConfigWithBody request with any body
+	MarketplaceProviderOfferingsUpdateUserAttributeConfigWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceProviderOfferingsUpdateUserAttributeConfig(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateUserAttributeConfigJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProviderOfferingsUpdateUserAttributeConfigUpdateWithBody request with any body
+	MarketplaceProviderOfferingsUpdateUserAttributeConfigUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceProviderOfferingsUpdateUserAttributeConfigUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateUserAttributeConfigUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceProviderOfferingsUpdateAttributesWithBody request with any body
 	MarketplaceProviderOfferingsUpdateAttributesWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -64454,6 +66040,9 @@ type ClientInterface interface {
 	MarketplaceProviderOfferingsUpdateUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	MarketplaceProviderOfferingsUpdateUser(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProviderOfferingsUserAttributeConfigRetrieve request
+	MarketplaceProviderOfferingsUserAttributeConfigRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceProviderOfferingsUserHasResourceAccessRetrieve request
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -67121,6 +68710,9 @@ type ClientInterface interface {
 	// ProposalProtectedCallsAffinityMatrixRetrieve request
 	ProposalProtectedCallsAffinityMatrixRetrieve(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsAffinityMatrixRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// ProposalProtectedCallsApplicantAttributeConfigRetrieve request
+	ProposalProtectedCallsApplicantAttributeConfigRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// ProposalProtectedCallsArchive request
 	ProposalProtectedCallsArchive(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -67155,6 +68747,9 @@ type ClientInterface interface {
 	ProposalProtectedCallsCreateManualAssignmentWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	ProposalProtectedCallsCreateManualAssignment(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsCreateManualAssignmentJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProposalProtectedCallsDeleteApplicantAttributeConfigDestroy request
+	ProposalProtectedCallsDeleteApplicantAttributeConfigDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProposalProtectedCallsDeleteUserWithBody request with any body
 	ProposalProtectedCallsDeleteUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -67304,6 +68899,16 @@ type ClientInterface interface {
 	// ProposalProtectedCallsSuggestionsList request
 	ProposalProtectedCallsSuggestionsList(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsSuggestionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateWithBody request with any body
+	ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProposalProtectedCallsUpdateApplicantAttributeConfigWithBody request with any body
+	ProposalProtectedCallsUpdateApplicantAttributeConfigWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ProposalProtectedCallsUpdateApplicantAttributeConfig(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsUpdateApplicantAttributeConfigJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// ProposalProtectedCallsUpdateUserWithBody request with any body
 	ProposalProtectedCallsUpdateUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -67317,6 +68922,9 @@ type ClientInterface interface {
 
 	// ProposalPublicCallsRetrieve request
 	ProposalPublicCallsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *ProposalPublicCallsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProposalPublicCallsCheckEligibilityRetrieve request
+	ProposalPublicCallsCheckEligibilityRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProposalRequestedOfferingsList request
 	ProposalRequestedOfferingsList(ctx context.Context, params *ProposalRequestedOfferingsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -68817,6 +70425,12 @@ type ClientInterface interface {
 	UsersChangePasswordWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	UsersChangePassword(ctx context.Context, uuid openapi_types.UUID, body UsersChangePasswordJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// UsersDataAccessRetrieve request
+	UsersDataAccessRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// UsersDataAccessHistoryList request
+	UsersDataAccessHistoryList(ctx context.Context, uuid openapi_types.UUID, params *UsersDataAccessHistoryListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UsersPullRemoteUser request
 	UsersPullRemoteUser(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -74137,6 +75751,54 @@ func (c *Client) CustomersUpdateUser(ctx context.Context, uuid openapi_types.UUI
 
 func (c *Client) DailyQuotasRetrieve(ctx context.Context, params *DailyQuotasRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewDailyQuotasRetrieveRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DataAccessLogsList(ctx context.Context, params *DataAccessLogsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDataAccessLogsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DataAccessLogsCount(ctx context.Context, params *DataAccessLogsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDataAccessLogsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DataAccessLogsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDataAccessLogsDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DataAccessLogsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDataAccessLogsRetrieveRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -81011,6 +82673,18 @@ func (c *Client) MarketplaceProviderOfferingsCustomersList(ctx context.Context, 
 	return c.Client.Do(req)
 }
 
+func (c *Client) MarketplaceProviderOfferingsDeleteUserAttributeConfigDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsDeleteUserAttributeConfigDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) MarketplaceProviderOfferingsDeleteEndpointWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProviderOfferingsDeleteEndpointRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
@@ -81515,6 +83189,78 @@ func (c *Client) MarketplaceProviderOfferingsUnpause(ctx context.Context, uuid o
 	return c.Client.Do(req)
 }
 
+func (c *Client) MarketplaceProviderOfferingsUpdateUserAttributeConfigPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsUpdateUserAttributeConfigPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderOfferingsUpdateUserAttributeConfigPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateUserAttributeConfigPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsUpdateUserAttributeConfigPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderOfferingsUpdateUserAttributeConfigWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsUpdateUserAttributeConfigRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderOfferingsUpdateUserAttributeConfig(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateUserAttributeConfigJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsUpdateUserAttributeConfigRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderOfferingsUpdateUserAttributeConfigUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsUpdateUserAttributeConfigUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderOfferingsUpdateUserAttributeConfigUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateUserAttributeConfigUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsUpdateUserAttributeConfigUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) MarketplaceProviderOfferingsUpdateAttributesWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProviderOfferingsUpdateAttributesRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
@@ -81913,6 +83659,18 @@ func (c *Client) MarketplaceProviderOfferingsUpdateUserWithBody(ctx context.Cont
 
 func (c *Client) MarketplaceProviderOfferingsUpdateUser(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProviderOfferingsUpdateUserRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceProviderOfferingsUserAttributeConfigRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsUserAttributeConfigRetrieveRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -93623,6 +95381,18 @@ func (c *Client) ProposalProtectedCallsAffinityMatrixRetrieve(ctx context.Contex
 	return c.Client.Do(req)
 }
 
+func (c *Client) ProposalProtectedCallsApplicantAttributeConfigRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProtectedCallsApplicantAttributeConfigRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) ProposalProtectedCallsArchive(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProposalProtectedCallsArchiveRequest(c.Server, uuid)
 	if err != nil {
@@ -93769,6 +95539,18 @@ func (c *Client) ProposalProtectedCallsCreateManualAssignmentWithBody(ctx contex
 
 func (c *Client) ProposalProtectedCallsCreateManualAssignment(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsCreateManualAssignmentJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProposalProtectedCallsCreateManualAssignmentRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProposalProtectedCallsDeleteApplicantAttributeConfigDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProtectedCallsDeleteApplicantAttributeConfigDestroyRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -94451,6 +96233,54 @@ func (c *Client) ProposalProtectedCallsSuggestionsList(ctx context.Context, uuid
 	return c.Client.Do(req)
 }
 
+func (c *Client) ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProposalProtectedCallsUpdateApplicantAttributeConfigWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProtectedCallsUpdateApplicantAttributeConfigRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProposalProtectedCallsUpdateApplicantAttributeConfig(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsUpdateApplicantAttributeConfigJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProtectedCallsUpdateApplicantAttributeConfigRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) ProposalProtectedCallsUpdateUserWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProposalProtectedCallsUpdateUserRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
@@ -94501,6 +96331,18 @@ func (c *Client) ProposalPublicCallsCount(ctx context.Context, params *ProposalP
 
 func (c *Client) ProposalPublicCallsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *ProposalPublicCallsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProposalPublicCallsRetrieveRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ProposalPublicCallsCheckEligibilityRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalPublicCallsCheckEligibilityRetrieveRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -101077,6 +102919,30 @@ func (c *Client) UsersChangePasswordWithBody(ctx context.Context, uuid openapi_t
 
 func (c *Client) UsersChangePassword(ctx context.Context, uuid openapi_types.UUID, body UsersChangePasswordJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewUsersChangePasswordRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UsersDataAccessRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUsersDataAccessRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UsersDataAccessHistoryList(ctx context.Context, uuid openapi_types.UUID, params *UsersDataAccessHistoryListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUsersDataAccessHistoryListRequest(c.Server, uuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -127547,6 +129413,428 @@ func NewDailyQuotasRetrieveRequest(server string, params *DailyQuotasRetrievePar
 		}
 
 		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewDataAccessLogsListRequest generates requests for DataAccessLogsList
+func NewDataAccessLogsListRequest(server string, params *DataAccessLogsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/data-access-logs/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.AccessorType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "accessor_type", runtime.ParamLocationQuery, *params.AccessorType); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.AccessorUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "accessor_uuid", runtime.ParamLocationQuery, *params.AccessorUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.EndDate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "end_date", runtime.ParamLocationQuery, *params.EndDate); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "query", runtime.ParamLocationQuery, *params.Query); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.StartDate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "start_date", runtime.ParamLocationQuery, *params.StartDate); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UserUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_uuid", runtime.ParamLocationQuery, *params.UserUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewDataAccessLogsCountRequest generates requests for DataAccessLogsCount
+func NewDataAccessLogsCountRequest(server string, params *DataAccessLogsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/data-access-logs/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.AccessorType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "accessor_type", runtime.ParamLocationQuery, *params.AccessorType); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.AccessorUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "accessor_uuid", runtime.ParamLocationQuery, *params.AccessorUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.EndDate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "end_date", runtime.ParamLocationQuery, *params.EndDate); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "query", runtime.ParamLocationQuery, *params.Query); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.StartDate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "start_date", runtime.ParamLocationQuery, *params.StartDate); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UserUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_uuid", runtime.ParamLocationQuery, *params.UserUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewDataAccessLogsDestroyRequest generates requests for DataAccessLogsDestroy
+func NewDataAccessLogsDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/data-access-logs/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewDataAccessLogsRetrieveRequest generates requests for DataAccessLogsRetrieve
+func NewDataAccessLogsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/data-access-logs/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
 	}
 
 	req, err := http.NewRequest("GET", queryURL.String(), nil)
@@ -164287,6 +166575,40 @@ func NewMarketplaceProviderOfferingsCustomersListRequest(server string, uuid ope
 	return req, nil
 }
 
+// NewMarketplaceProviderOfferingsDeleteUserAttributeConfigDestroyRequest generates requests for MarketplaceProviderOfferingsDeleteUserAttributeConfigDestroy
+func NewMarketplaceProviderOfferingsDeleteUserAttributeConfigDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-offerings/%s/delete-user-attribute-config/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewMarketplaceProviderOfferingsDeleteEndpointRequest calls the generic MarketplaceProviderOfferingsDeleteEndpoint builder with application/json body
 func NewMarketplaceProviderOfferingsDeleteEndpointRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderOfferingsDeleteEndpointJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -167752,6 +170074,147 @@ func NewMarketplaceProviderOfferingsUnpauseRequest(server string, uuid openapi_t
 	return req, nil
 }
 
+// NewMarketplaceProviderOfferingsUpdateUserAttributeConfigPartialUpdateRequest calls the generic MarketplaceProviderOfferingsUpdateUserAttributeConfigPartialUpdate builder with application/json body
+func NewMarketplaceProviderOfferingsUpdateUserAttributeConfigPartialUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateUserAttributeConfigPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceProviderOfferingsUpdateUserAttributeConfigPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceProviderOfferingsUpdateUserAttributeConfigPartialUpdateRequestWithBody generates requests for MarketplaceProviderOfferingsUpdateUserAttributeConfigPartialUpdate with any type of body
+func NewMarketplaceProviderOfferingsUpdateUserAttributeConfigPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-offerings/%s/update-user-attribute-config/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceProviderOfferingsUpdateUserAttributeConfigRequest calls the generic MarketplaceProviderOfferingsUpdateUserAttributeConfig builder with application/json body
+func NewMarketplaceProviderOfferingsUpdateUserAttributeConfigRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateUserAttributeConfigJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceProviderOfferingsUpdateUserAttributeConfigRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceProviderOfferingsUpdateUserAttributeConfigRequestWithBody generates requests for MarketplaceProviderOfferingsUpdateUserAttributeConfig with any type of body
+func NewMarketplaceProviderOfferingsUpdateUserAttributeConfigRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-offerings/%s/update-user-attribute-config/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceProviderOfferingsUpdateUserAttributeConfigUpdateRequest calls the generic MarketplaceProviderOfferingsUpdateUserAttributeConfigUpdate builder with application/json body
+func NewMarketplaceProviderOfferingsUpdateUserAttributeConfigUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateUserAttributeConfigUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceProviderOfferingsUpdateUserAttributeConfigUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceProviderOfferingsUpdateUserAttributeConfigUpdateRequestWithBody generates requests for MarketplaceProviderOfferingsUpdateUserAttributeConfigUpdate with any type of body
+func NewMarketplaceProviderOfferingsUpdateUserAttributeConfigUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-offerings/%s/update-user-attribute-config/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewMarketplaceProviderOfferingsUpdateAttributesRequest calls the generic MarketplaceProviderOfferingsUpdateAttributes builder with application/json body
 func NewMarketplaceProviderOfferingsUpdateAttributesRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateAttributesJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -168522,6 +170985,40 @@ func NewMarketplaceProviderOfferingsUpdateUserRequestWithBody(server string, uui
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceProviderOfferingsUserAttributeConfigRetrieveRequest generates requests for MarketplaceProviderOfferingsUserAttributeConfigRetrieve
+func NewMarketplaceProviderOfferingsUserAttributeConfigRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-offerings/%s/user-attribute-config/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
 
 	return req, nil
 }
@@ -230725,6 +233222,40 @@ func NewProposalProtectedCallsAffinityMatrixRetrieveRequest(server string, uuid 
 	return req, nil
 }
 
+// NewProposalProtectedCallsApplicantAttributeConfigRetrieveRequest generates requests for ProposalProtectedCallsApplicantAttributeConfigRetrieve
+func NewProposalProtectedCallsApplicantAttributeConfigRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/proposal-protected-calls/%s/applicant_attribute_config/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewProposalProtectedCallsArchiveRequest generates requests for ProposalProtectedCallsArchive
 func NewProposalProtectedCallsArchiveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -231261,6 +233792,40 @@ func NewProposalProtectedCallsCreateManualAssignmentRequestWithBody(server strin
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewProposalProtectedCallsDeleteApplicantAttributeConfigDestroyRequest generates requests for ProposalProtectedCallsDeleteApplicantAttributeConfigDestroy
+func NewProposalProtectedCallsDeleteApplicantAttributeConfigDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/proposal-protected-calls/%s/delete_applicant_attribute_config/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
 
 	return req, nil
 }
@@ -233941,6 +236506,100 @@ func NewProposalProtectedCallsSuggestionsListRequest(server string, uuid openapi
 	return req, nil
 }
 
+// NewProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateRequest calls the generic ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdate builder with application/json body
+func NewProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateRequest(server string, uuid openapi_types.UUID, body ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateRequestWithBody generates requests for ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdate with any type of body
+func NewProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/proposal-protected-calls/%s/update_applicant_attribute_config/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewProposalProtectedCallsUpdateApplicantAttributeConfigRequest calls the generic ProposalProtectedCallsUpdateApplicantAttributeConfig builder with application/json body
+func NewProposalProtectedCallsUpdateApplicantAttributeConfigRequest(server string, uuid openapi_types.UUID, body ProposalProtectedCallsUpdateApplicantAttributeConfigJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewProposalProtectedCallsUpdateApplicantAttributeConfigRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewProposalProtectedCallsUpdateApplicantAttributeConfigRequestWithBody generates requests for ProposalProtectedCallsUpdateApplicantAttributeConfig with any type of body
+func NewProposalProtectedCallsUpdateApplicantAttributeConfigRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/proposal-protected-calls/%s/update_applicant_attribute_config/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewProposalProtectedCallsUpdateUserRequest calls the generic ProposalProtectedCallsUpdateUser builder with application/json body
 func NewProposalProtectedCallsUpdateUserRequest(server string, uuid openapi_types.UUID, body ProposalProtectedCallsUpdateUserJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -234468,6 +237127,40 @@ func NewProposalPublicCallsRetrieveRequest(server string, uuid openapi_types.UUI
 		}
 
 		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewProposalPublicCallsCheckEligibilityRetrieveRequest generates requests for ProposalPublicCallsCheckEligibilityRetrieve
+func NewProposalPublicCallsCheckEligibilityRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/proposal-public-calls/%s/check_eligibility/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
 	}
 
 	req, err := http.NewRequest("GET", queryURL.String(), nil)
@@ -265139,6 +267832,544 @@ func NewUsersChangePasswordRequestWithBody(server string, uuid openapi_types.UUI
 	return req, nil
 }
 
+// NewUsersDataAccessRetrieveRequest generates requests for UsersDataAccessRetrieve
+func NewUsersDataAccessRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/users/%s/data_access/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewUsersDataAccessHistoryListRequest generates requests for UsersDataAccessHistoryList
+func NewUsersDataAccessHistoryListRequest(server string, uuid openapi_types.UUID, params *UsersDataAccessHistoryListParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/users/%s/data_access_history/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.AccessorType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "accessor_type", runtime.ParamLocationQuery, *params.AccessorType); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.AgreementDate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "agreement_date", runtime.ParamLocationQuery, *params.AgreementDate); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CivilNumber != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "civil_number", runtime.ParamLocationQuery, *params.CivilNumber); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer_uuid", runtime.ParamLocationQuery, *params.CustomerUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.DateJoined != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "date_joined", runtime.ParamLocationQuery, *params.DateJoined); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Description != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "description", runtime.ParamLocationQuery, *params.Description); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Email != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "email", runtime.ParamLocationQuery, *params.Email); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.EndDate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "end_date", runtime.ParamLocationQuery, *params.EndDate); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.FullName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "full_name", runtime.ParamLocationQuery, *params.FullName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsActive != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_active", runtime.ParamLocationQuery, *params.IsActive); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsStaff != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_staff", runtime.ParamLocationQuery, *params.IsStaff); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsSupport != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_support", runtime.ParamLocationQuery, *params.IsSupport); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.JobTitle != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "job_title", runtime.ParamLocationQuery, *params.JobTitle); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Modified != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "modified", runtime.ParamLocationQuery, *params.Modified); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.NativeName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "native_name", runtime.ParamLocationQuery, *params.NativeName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Organization != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "organization", runtime.ParamLocationQuery, *params.Organization); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OrganizationRoles != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "organization_roles", runtime.ParamLocationQuery, *params.OrganizationRoles); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PhoneNumber != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "phone_number", runtime.ParamLocationQuery, *params.PhoneNumber); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectRoles != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_roles", runtime.ParamLocationQuery, *params.ProjectRoles); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_uuid", runtime.ParamLocationQuery, *params.ProjectUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "query", runtime.ParamLocationQuery, *params.Query); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.RegistrationMethod != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "registration_method", runtime.ParamLocationQuery, *params.RegistrationMethod); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.StartDate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "start_date", runtime.ParamLocationQuery, *params.StartDate); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UserKeyword != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_keyword", runtime.ParamLocationQuery, *params.UserKeyword); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Username != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "username", runtime.ParamLocationQuery, *params.Username); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UsernameList != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "username_list", runtime.ParamLocationQuery, *params.UsernameList); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewUsersPullRemoteUserRequest generates requests for UsersPullRemoteUser
 func NewUsersPullRemoteUserRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -271555,6 +274786,18 @@ type ClientWithResponsesInterface interface {
 	// DailyQuotasRetrieveWithResponse request
 	DailyQuotasRetrieveWithResponse(ctx context.Context, params *DailyQuotasRetrieveParams, reqEditors ...RequestEditorFn) (*DailyQuotasRetrieveResponse, error)
 
+	// DataAccessLogsListWithResponse request
+	DataAccessLogsListWithResponse(ctx context.Context, params *DataAccessLogsListParams, reqEditors ...RequestEditorFn) (*DataAccessLogsListResponse, error)
+
+	// DataAccessLogsCountWithResponse request
+	DataAccessLogsCountWithResponse(ctx context.Context, params *DataAccessLogsCountParams, reqEditors ...RequestEditorFn) (*DataAccessLogsCountResponse, error)
+
+	// DataAccessLogsDestroyWithResponse request
+	DataAccessLogsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*DataAccessLogsDestroyResponse, error)
+
+	// DataAccessLogsRetrieveWithResponse request
+	DataAccessLogsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*DataAccessLogsRetrieveResponse, error)
+
 	// DatabaseStatsRetrieveWithResponse request
 	DatabaseStatsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DatabaseStatsRetrieveResponse, error)
 
@@ -273130,6 +276373,9 @@ type ClientWithResponsesInterface interface {
 	// MarketplaceProviderOfferingsCustomersListWithResponse request
 	MarketplaceProviderOfferingsCustomersListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsCustomersListParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsCustomersListResponse, error)
 
+	// MarketplaceProviderOfferingsDeleteUserAttributeConfigDestroyWithResponse request
+	MarketplaceProviderOfferingsDeleteUserAttributeConfigDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsDeleteUserAttributeConfigDestroyResponse, error)
+
 	// MarketplaceProviderOfferingsDeleteEndpointWithBodyWithResponse request with any body
 	MarketplaceProviderOfferingsDeleteEndpointWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsDeleteEndpointResponse, error)
 
@@ -273246,6 +276492,21 @@ type ClientWithResponsesInterface interface {
 	// MarketplaceProviderOfferingsUnpauseWithResponse request
 	MarketplaceProviderOfferingsUnpauseWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUnpauseResponse, error)
 
+	// MarketplaceProviderOfferingsUpdateUserAttributeConfigPartialUpdateWithBodyWithResponse request with any body
+	MarketplaceProviderOfferingsUpdateUserAttributeConfigPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateUserAttributeConfigPartialUpdateResponse, error)
+
+	MarketplaceProviderOfferingsUpdateUserAttributeConfigPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateUserAttributeConfigPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateUserAttributeConfigPartialUpdateResponse, error)
+
+	// MarketplaceProviderOfferingsUpdateUserAttributeConfigWithBodyWithResponse request with any body
+	MarketplaceProviderOfferingsUpdateUserAttributeConfigWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateUserAttributeConfigResponse, error)
+
+	MarketplaceProviderOfferingsUpdateUserAttributeConfigWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateUserAttributeConfigJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateUserAttributeConfigResponse, error)
+
+	// MarketplaceProviderOfferingsUpdateUserAttributeConfigUpdateWithBodyWithResponse request with any body
+	MarketplaceProviderOfferingsUpdateUserAttributeConfigUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateUserAttributeConfigUpdateResponse, error)
+
+	MarketplaceProviderOfferingsUpdateUserAttributeConfigUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateUserAttributeConfigUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateUserAttributeConfigUpdateResponse, error)
+
 	// MarketplaceProviderOfferingsUpdateAttributesWithBodyWithResponse request with any body
 	MarketplaceProviderOfferingsUpdateAttributesWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateAttributesResponse, error)
 
@@ -273329,6 +276590,9 @@ type ClientWithResponsesInterface interface {
 	MarketplaceProviderOfferingsUpdateUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateUserResponse, error)
 
 	MarketplaceProviderOfferingsUpdateUserWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateUserJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateUserResponse, error)
+
+	// MarketplaceProviderOfferingsUserAttributeConfigRetrieveWithResponse request
+	MarketplaceProviderOfferingsUserAttributeConfigRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUserAttributeConfigRetrieveResponse, error)
 
 	// MarketplaceProviderOfferingsUserHasResourceAccessRetrieveWithResponse request
 	MarketplaceProviderOfferingsUserHasResourceAccessRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsUserHasResourceAccessRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUserHasResourceAccessRetrieveResponse, error)
@@ -275996,6 +279260,9 @@ type ClientWithResponsesInterface interface {
 	// ProposalProtectedCallsAffinityMatrixRetrieveWithResponse request
 	ProposalProtectedCallsAffinityMatrixRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsAffinityMatrixRetrieveParams, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsAffinityMatrixRetrieveResponse, error)
 
+	// ProposalProtectedCallsApplicantAttributeConfigRetrieveWithResponse request
+	ProposalProtectedCallsApplicantAttributeConfigRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsApplicantAttributeConfigRetrieveResponse, error)
+
 	// ProposalProtectedCallsArchiveWithResponse request
 	ProposalProtectedCallsArchiveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsArchiveResponse, error)
 
@@ -276030,6 +279297,9 @@ type ClientWithResponsesInterface interface {
 	ProposalProtectedCallsCreateManualAssignmentWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsCreateManualAssignmentResponse, error)
 
 	ProposalProtectedCallsCreateManualAssignmentWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsCreateManualAssignmentJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsCreateManualAssignmentResponse, error)
+
+	// ProposalProtectedCallsDeleteApplicantAttributeConfigDestroyWithResponse request
+	ProposalProtectedCallsDeleteApplicantAttributeConfigDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsDeleteApplicantAttributeConfigDestroyResponse, error)
 
 	// ProposalProtectedCallsDeleteUserWithBodyWithResponse request with any body
 	ProposalProtectedCallsDeleteUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsDeleteUserResponse, error)
@@ -276179,6 +279449,16 @@ type ClientWithResponsesInterface interface {
 	// ProposalProtectedCallsSuggestionsListWithResponse request
 	ProposalProtectedCallsSuggestionsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsSuggestionsListParams, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsSuggestionsListResponse, error)
 
+	// ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateWithBodyWithResponse request with any body
+	ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateResponse, error)
+
+	ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateResponse, error)
+
+	// ProposalProtectedCallsUpdateApplicantAttributeConfigWithBodyWithResponse request with any body
+	ProposalProtectedCallsUpdateApplicantAttributeConfigWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsUpdateApplicantAttributeConfigResponse, error)
+
+	ProposalProtectedCallsUpdateApplicantAttributeConfigWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsUpdateApplicantAttributeConfigJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsUpdateApplicantAttributeConfigResponse, error)
+
 	// ProposalProtectedCallsUpdateUserWithBodyWithResponse request with any body
 	ProposalProtectedCallsUpdateUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsUpdateUserResponse, error)
 
@@ -276192,6 +279472,9 @@ type ClientWithResponsesInterface interface {
 
 	// ProposalPublicCallsRetrieveWithResponse request
 	ProposalPublicCallsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProposalPublicCallsRetrieveParams, reqEditors ...RequestEditorFn) (*ProposalPublicCallsRetrieveResponse, error)
+
+	// ProposalPublicCallsCheckEligibilityRetrieveWithResponse request
+	ProposalPublicCallsCheckEligibilityRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalPublicCallsCheckEligibilityRetrieveResponse, error)
 
 	// ProposalRequestedOfferingsListWithResponse request
 	ProposalRequestedOfferingsListWithResponse(ctx context.Context, params *ProposalRequestedOfferingsListParams, reqEditors ...RequestEditorFn) (*ProposalRequestedOfferingsListResponse, error)
@@ -277692,6 +280975,12 @@ type ClientWithResponsesInterface interface {
 	UsersChangePasswordWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UsersChangePasswordResponse, error)
 
 	UsersChangePasswordWithResponse(ctx context.Context, uuid openapi_types.UUID, body UsersChangePasswordJSONRequestBody, reqEditors ...RequestEditorFn) (*UsersChangePasswordResponse, error)
+
+	// UsersDataAccessRetrieveWithResponse request
+	UsersDataAccessRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*UsersDataAccessRetrieveResponse, error)
+
+	// UsersDataAccessHistoryListWithResponse request
+	UsersDataAccessHistoryListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *UsersDataAccessHistoryListParams, reqEditors ...RequestEditorFn) (*UsersDataAccessHistoryListResponse, error)
 
 	// UsersPullRemoteUserWithResponse request
 	UsersPullRemoteUserWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*UsersPullRemoteUserResponse, error)
@@ -284774,6 +288063,92 @@ func (r DailyQuotasRetrieveResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r DailyQuotasRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type DataAccessLogsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]GlobalUserDataAccessLog
+}
+
+// Status returns HTTPResponse.Status
+func (r DataAccessLogsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DataAccessLogsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type DataAccessLogsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r DataAccessLogsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DataAccessLogsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type DataAccessLogsDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r DataAccessLogsDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DataAccessLogsDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type DataAccessLogsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *GlobalUserDataAccessLog
+}
+
+// Status returns HTTPResponse.Status
+func (r DataAccessLogsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DataAccessLogsRetrieveResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -294123,6 +297498,27 @@ func (r MarketplaceProviderOfferingsCustomersListResponse) StatusCode() int {
 	return 0
 }
 
+type MarketplaceProviderOfferingsDeleteUserAttributeConfigDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderOfferingsDeleteUserAttributeConfigDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderOfferingsDeleteUserAttributeConfigDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type MarketplaceProviderOfferingsDeleteEndpointResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -294818,6 +298214,72 @@ func (r MarketplaceProviderOfferingsUnpauseResponse) StatusCode() int {
 	return 0
 }
 
+type MarketplaceProviderOfferingsUpdateUserAttributeConfigPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OfferingUserAttributeConfig
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderOfferingsUpdateUserAttributeConfigPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderOfferingsUpdateUserAttributeConfigPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceProviderOfferingsUpdateUserAttributeConfigResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OfferingUserAttributeConfig
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderOfferingsUpdateUserAttributeConfigResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderOfferingsUpdateUserAttributeConfigResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceProviderOfferingsUpdateUserAttributeConfigUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OfferingUserAttributeConfig
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderOfferingsUpdateUserAttributeConfigUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderOfferingsUpdateUserAttributeConfigUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type MarketplaceProviderOfferingsUpdateAttributesResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -295151,6 +298613,28 @@ func (r MarketplaceProviderOfferingsUpdateUserResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceProviderOfferingsUpdateUserResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceProviderOfferingsUserAttributeConfigRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OfferingUserAttributeConfig
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderOfferingsUserAttributeConfigRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderOfferingsUserAttributeConfigRetrieveResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -310722,6 +314206,28 @@ func (r ProposalProtectedCallsAffinityMatrixRetrieveResponse) StatusCode() int {
 	return 0
 }
 
+type ProposalProtectedCallsApplicantAttributeConfigRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CallApplicantAttributeConfig
+}
+
+// Status returns HTTPResponse.Status
+func (r ProposalProtectedCallsApplicantAttributeConfigRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProposalProtectedCallsApplicantAttributeConfigRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type ProposalProtectedCallsArchiveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -310913,6 +314419,27 @@ func (r ProposalProtectedCallsCreateManualAssignmentResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r ProposalProtectedCallsCreateManualAssignmentResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ProposalProtectedCallsDeleteApplicantAttributeConfigDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r ProposalProtectedCallsDeleteApplicantAttributeConfigDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProposalProtectedCallsDeleteApplicantAttributeConfigDestroyResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -311706,6 +315233,50 @@ func (r ProposalProtectedCallsSuggestionsListResponse) StatusCode() int {
 	return 0
 }
 
+type ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CallApplicantAttributeConfig
+}
+
+// Status returns HTTPResponse.Status
+func (r ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ProposalProtectedCallsUpdateApplicantAttributeConfigResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CallApplicantAttributeConfig
+}
+
+// Status returns HTTPResponse.Status
+func (r ProposalProtectedCallsUpdateApplicantAttributeConfigResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProposalProtectedCallsUpdateApplicantAttributeConfigResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type ProposalProtectedCallsUpdateUserResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -311787,6 +315358,28 @@ func (r ProposalPublicCallsRetrieveResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r ProposalPublicCallsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ProposalPublicCallsCheckEligibilityRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *EligibilityCheck
+}
+
+// Status returns HTTPResponse.Status
+func (r ProposalPublicCallsCheckEligibilityRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProposalPublicCallsCheckEligibilityRetrieveResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -320557,6 +324150,50 @@ func (r UsersChangePasswordResponse) StatusCode() int {
 	return 0
 }
 
+type UsersDataAccessRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *UserDataAccess
+}
+
+// Status returns HTTPResponse.Status
+func (r UsersDataAccessRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r UsersDataAccessRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type UsersDataAccessHistoryListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]UserDataAccessLog
+}
+
+// Status returns HTTPResponse.Status
+func (r UsersDataAccessHistoryListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r UsersDataAccessHistoryListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type UsersPullRemoteUserResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -325434,6 +329071,42 @@ func (c *ClientWithResponses) DailyQuotasRetrieveWithResponse(ctx context.Contex
 		return nil, err
 	}
 	return ParseDailyQuotasRetrieveResponse(rsp)
+}
+
+// DataAccessLogsListWithResponse request returning *DataAccessLogsListResponse
+func (c *ClientWithResponses) DataAccessLogsListWithResponse(ctx context.Context, params *DataAccessLogsListParams, reqEditors ...RequestEditorFn) (*DataAccessLogsListResponse, error) {
+	rsp, err := c.DataAccessLogsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDataAccessLogsListResponse(rsp)
+}
+
+// DataAccessLogsCountWithResponse request returning *DataAccessLogsCountResponse
+func (c *ClientWithResponses) DataAccessLogsCountWithResponse(ctx context.Context, params *DataAccessLogsCountParams, reqEditors ...RequestEditorFn) (*DataAccessLogsCountResponse, error) {
+	rsp, err := c.DataAccessLogsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDataAccessLogsCountResponse(rsp)
+}
+
+// DataAccessLogsDestroyWithResponse request returning *DataAccessLogsDestroyResponse
+func (c *ClientWithResponses) DataAccessLogsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*DataAccessLogsDestroyResponse, error) {
+	rsp, err := c.DataAccessLogsDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDataAccessLogsDestroyResponse(rsp)
+}
+
+// DataAccessLogsRetrieveWithResponse request returning *DataAccessLogsRetrieveResponse
+func (c *ClientWithResponses) DataAccessLogsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*DataAccessLogsRetrieveResponse, error) {
+	rsp, err := c.DataAccessLogsRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDataAccessLogsRetrieveResponse(rsp)
 }
 
 // DatabaseStatsRetrieveWithResponse request returning *DatabaseStatsRetrieveResponse
@@ -330443,6 +334116,15 @@ func (c *ClientWithResponses) MarketplaceProviderOfferingsCustomersListWithRespo
 	return ParseMarketplaceProviderOfferingsCustomersListResponse(rsp)
 }
 
+// MarketplaceProviderOfferingsDeleteUserAttributeConfigDestroyWithResponse request returning *MarketplaceProviderOfferingsDeleteUserAttributeConfigDestroyResponse
+func (c *ClientWithResponses) MarketplaceProviderOfferingsDeleteUserAttributeConfigDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsDeleteUserAttributeConfigDestroyResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsDeleteUserAttributeConfigDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsDeleteUserAttributeConfigDestroyResponse(rsp)
+}
+
 // MarketplaceProviderOfferingsDeleteEndpointWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderOfferingsDeleteEndpointResponse
 func (c *ClientWithResponses) MarketplaceProviderOfferingsDeleteEndpointWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsDeleteEndpointResponse, error) {
 	rsp, err := c.MarketplaceProviderOfferingsDeleteEndpointWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -330811,6 +334493,57 @@ func (c *ClientWithResponses) MarketplaceProviderOfferingsUnpauseWithResponse(ct
 	return ParseMarketplaceProviderOfferingsUnpauseResponse(rsp)
 }
 
+// MarketplaceProviderOfferingsUpdateUserAttributeConfigPartialUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderOfferingsUpdateUserAttributeConfigPartialUpdateResponse
+func (c *ClientWithResponses) MarketplaceProviderOfferingsUpdateUserAttributeConfigPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateUserAttributeConfigPartialUpdateResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsUpdateUserAttributeConfigPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsUpdateUserAttributeConfigPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceProviderOfferingsUpdateUserAttributeConfigPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateUserAttributeConfigPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateUserAttributeConfigPartialUpdateResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsUpdateUserAttributeConfigPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsUpdateUserAttributeConfigPartialUpdateResponse(rsp)
+}
+
+// MarketplaceProviderOfferingsUpdateUserAttributeConfigWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderOfferingsUpdateUserAttributeConfigResponse
+func (c *ClientWithResponses) MarketplaceProviderOfferingsUpdateUserAttributeConfigWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateUserAttributeConfigResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsUpdateUserAttributeConfigWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsUpdateUserAttributeConfigResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceProviderOfferingsUpdateUserAttributeConfigWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateUserAttributeConfigJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateUserAttributeConfigResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsUpdateUserAttributeConfig(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsUpdateUserAttributeConfigResponse(rsp)
+}
+
+// MarketplaceProviderOfferingsUpdateUserAttributeConfigUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderOfferingsUpdateUserAttributeConfigUpdateResponse
+func (c *ClientWithResponses) MarketplaceProviderOfferingsUpdateUserAttributeConfigUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateUserAttributeConfigUpdateResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsUpdateUserAttributeConfigUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsUpdateUserAttributeConfigUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceProviderOfferingsUpdateUserAttributeConfigUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsUpdateUserAttributeConfigUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateUserAttributeConfigUpdateResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsUpdateUserAttributeConfigUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsUpdateUserAttributeConfigUpdateResponse(rsp)
+}
+
 // MarketplaceProviderOfferingsUpdateAttributesWithBodyWithResponse request with arbitrary body returning *MarketplaceProviderOfferingsUpdateAttributesResponse
 func (c *ClientWithResponses) MarketplaceProviderOfferingsUpdateAttributesWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUpdateAttributesResponse, error) {
 	rsp, err := c.MarketplaceProviderOfferingsUpdateAttributesWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -331097,6 +334830,15 @@ func (c *ClientWithResponses) MarketplaceProviderOfferingsUpdateUserWithResponse
 		return nil, err
 	}
 	return ParseMarketplaceProviderOfferingsUpdateUserResponse(rsp)
+}
+
+// MarketplaceProviderOfferingsUserAttributeConfigRetrieveWithResponse request returning *MarketplaceProviderOfferingsUserAttributeConfigRetrieveResponse
+func (c *ClientWithResponses) MarketplaceProviderOfferingsUserAttributeConfigRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsUserAttributeConfigRetrieveResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsUserAttributeConfigRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsUserAttributeConfigRetrieveResponse(rsp)
 }
 
 // MarketplaceProviderOfferingsUserHasResourceAccessRetrieveWithResponse request returning *MarketplaceProviderOfferingsUserHasResourceAccessRetrieveResponse
@@ -339615,6 +343357,15 @@ func (c *ClientWithResponses) ProposalProtectedCallsAffinityMatrixRetrieveWithRe
 	return ParseProposalProtectedCallsAffinityMatrixRetrieveResponse(rsp)
 }
 
+// ProposalProtectedCallsApplicantAttributeConfigRetrieveWithResponse request returning *ProposalProtectedCallsApplicantAttributeConfigRetrieveResponse
+func (c *ClientWithResponses) ProposalProtectedCallsApplicantAttributeConfigRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsApplicantAttributeConfigRetrieveResponse, error) {
+	rsp, err := c.ProposalProtectedCallsApplicantAttributeConfigRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProtectedCallsApplicantAttributeConfigRetrieveResponse(rsp)
+}
+
 // ProposalProtectedCallsArchiveWithResponse request returning *ProposalProtectedCallsArchiveResponse
 func (c *ClientWithResponses) ProposalProtectedCallsArchiveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsArchiveResponse, error) {
 	rsp, err := c.ProposalProtectedCallsArchive(ctx, uuid, reqEditors...)
@@ -339726,6 +343477,15 @@ func (c *ClientWithResponses) ProposalProtectedCallsCreateManualAssignmentWithRe
 		return nil, err
 	}
 	return ParseProposalProtectedCallsCreateManualAssignmentResponse(rsp)
+}
+
+// ProposalProtectedCallsDeleteApplicantAttributeConfigDestroyWithResponse request returning *ProposalProtectedCallsDeleteApplicantAttributeConfigDestroyResponse
+func (c *ClientWithResponses) ProposalProtectedCallsDeleteApplicantAttributeConfigDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsDeleteApplicantAttributeConfigDestroyResponse, error) {
+	rsp, err := c.ProposalProtectedCallsDeleteApplicantAttributeConfigDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProtectedCallsDeleteApplicantAttributeConfigDestroyResponse(rsp)
 }
 
 // ProposalProtectedCallsDeleteUserWithBodyWithResponse request with arbitrary body returning *ProposalProtectedCallsDeleteUserResponse
@@ -340212,6 +343972,40 @@ func (c *ClientWithResponses) ProposalProtectedCallsSuggestionsListWithResponse(
 	return ParseProposalProtectedCallsSuggestionsListResponse(rsp)
 }
 
+// ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateWithBodyWithResponse request with arbitrary body returning *ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateResponse
+func (c *ClientWithResponses) ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateResponse, error) {
+	rsp, err := c.ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateResponse, error) {
+	rsp, err := c.ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateResponse(rsp)
+}
+
+// ProposalProtectedCallsUpdateApplicantAttributeConfigWithBodyWithResponse request with arbitrary body returning *ProposalProtectedCallsUpdateApplicantAttributeConfigResponse
+func (c *ClientWithResponses) ProposalProtectedCallsUpdateApplicantAttributeConfigWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsUpdateApplicantAttributeConfigResponse, error) {
+	rsp, err := c.ProposalProtectedCallsUpdateApplicantAttributeConfigWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProtectedCallsUpdateApplicantAttributeConfigResponse(rsp)
+}
+
+func (c *ClientWithResponses) ProposalProtectedCallsUpdateApplicantAttributeConfigWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsUpdateApplicantAttributeConfigJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsUpdateApplicantAttributeConfigResponse, error) {
+	rsp, err := c.ProposalProtectedCallsUpdateApplicantAttributeConfig(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProtectedCallsUpdateApplicantAttributeConfigResponse(rsp)
+}
+
 // ProposalProtectedCallsUpdateUserWithBodyWithResponse request with arbitrary body returning *ProposalProtectedCallsUpdateUserResponse
 func (c *ClientWithResponses) ProposalProtectedCallsUpdateUserWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsUpdateUserResponse, error) {
 	rsp, err := c.ProposalProtectedCallsUpdateUserWithBody(ctx, uuid, contentType, body, reqEditors...)
@@ -340254,6 +344048,15 @@ func (c *ClientWithResponses) ProposalPublicCallsRetrieveWithResponse(ctx contex
 		return nil, err
 	}
 	return ParseProposalPublicCallsRetrieveResponse(rsp)
+}
+
+// ProposalPublicCallsCheckEligibilityRetrieveWithResponse request returning *ProposalPublicCallsCheckEligibilityRetrieveResponse
+func (c *ClientWithResponses) ProposalPublicCallsCheckEligibilityRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalPublicCallsCheckEligibilityRetrieveResponse, error) {
+	rsp, err := c.ProposalPublicCallsCheckEligibilityRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalPublicCallsCheckEligibilityRetrieveResponse(rsp)
 }
 
 // ProposalRequestedOfferingsListWithResponse request returning *ProposalRequestedOfferingsListResponse
@@ -345042,6 +348845,24 @@ func (c *ClientWithResponses) UsersChangePasswordWithResponse(ctx context.Contex
 		return nil, err
 	}
 	return ParseUsersChangePasswordResponse(rsp)
+}
+
+// UsersDataAccessRetrieveWithResponse request returning *UsersDataAccessRetrieveResponse
+func (c *ClientWithResponses) UsersDataAccessRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*UsersDataAccessRetrieveResponse, error) {
+	rsp, err := c.UsersDataAccessRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUsersDataAccessRetrieveResponse(rsp)
+}
+
+// UsersDataAccessHistoryListWithResponse request returning *UsersDataAccessHistoryListResponse
+func (c *ClientWithResponses) UsersDataAccessHistoryListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *UsersDataAccessHistoryListParams, reqEditors ...RequestEditorFn) (*UsersDataAccessHistoryListResponse, error) {
+	rsp, err := c.UsersDataAccessHistoryList(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUsersDataAccessHistoryListResponse(rsp)
 }
 
 // UsersPullRemoteUserWithResponse request returning *UsersPullRemoteUserResponse
@@ -352787,6 +356608,90 @@ func ParseDailyQuotasRetrieveResponse(rsp *http.Response) (*DailyQuotasRetrieveR
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest map[string][]int
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseDataAccessLogsListResponse parses an HTTP response from a DataAccessLogsListWithResponse call
+func ParseDataAccessLogsListResponse(rsp *http.Response) (*DataAccessLogsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DataAccessLogsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []GlobalUserDataAccessLog
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseDataAccessLogsCountResponse parses an HTTP response from a DataAccessLogsCountWithResponse call
+func ParseDataAccessLogsCountResponse(rsp *http.Response) (*DataAccessLogsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DataAccessLogsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseDataAccessLogsDestroyResponse parses an HTTP response from a DataAccessLogsDestroyWithResponse call
+func ParseDataAccessLogsDestroyResponse(rsp *http.Response) (*DataAccessLogsDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DataAccessLogsDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseDataAccessLogsRetrieveResponse parses an HTTP response from a DataAccessLogsRetrieveWithResponse call
+func ParseDataAccessLogsRetrieveResponse(rsp *http.Response) (*DataAccessLogsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DataAccessLogsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest GlobalUserDataAccessLog
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -362553,6 +366458,22 @@ func ParseMarketplaceProviderOfferingsCustomersListResponse(rsp *http.Response) 
 	return response, nil
 }
 
+// ParseMarketplaceProviderOfferingsDeleteUserAttributeConfigDestroyResponse parses an HTTP response from a MarketplaceProviderOfferingsDeleteUserAttributeConfigDestroyWithResponse call
+func ParseMarketplaceProviderOfferingsDeleteUserAttributeConfigDestroyResponse(rsp *http.Response) (*MarketplaceProviderOfferingsDeleteUserAttributeConfigDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderOfferingsDeleteUserAttributeConfigDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
 // ParseMarketplaceProviderOfferingsDeleteEndpointResponse parses an HTTP response from a MarketplaceProviderOfferingsDeleteEndpointWithResponse call
 func ParseMarketplaceProviderOfferingsDeleteEndpointResponse(rsp *http.Response) (*MarketplaceProviderOfferingsDeleteEndpointResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -363268,6 +367189,84 @@ func ParseMarketplaceProviderOfferingsUnpauseResponse(rsp *http.Response) (*Mark
 	return response, nil
 }
 
+// ParseMarketplaceProviderOfferingsUpdateUserAttributeConfigPartialUpdateResponse parses an HTTP response from a MarketplaceProviderOfferingsUpdateUserAttributeConfigPartialUpdateWithResponse call
+func ParseMarketplaceProviderOfferingsUpdateUserAttributeConfigPartialUpdateResponse(rsp *http.Response) (*MarketplaceProviderOfferingsUpdateUserAttributeConfigPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderOfferingsUpdateUserAttributeConfigPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OfferingUserAttributeConfig
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProviderOfferingsUpdateUserAttributeConfigResponse parses an HTTP response from a MarketplaceProviderOfferingsUpdateUserAttributeConfigWithResponse call
+func ParseMarketplaceProviderOfferingsUpdateUserAttributeConfigResponse(rsp *http.Response) (*MarketplaceProviderOfferingsUpdateUserAttributeConfigResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderOfferingsUpdateUserAttributeConfigResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OfferingUserAttributeConfig
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProviderOfferingsUpdateUserAttributeConfigUpdateResponse parses an HTTP response from a MarketplaceProviderOfferingsUpdateUserAttributeConfigUpdateWithResponse call
+func ParseMarketplaceProviderOfferingsUpdateUserAttributeConfigUpdateResponse(rsp *http.Response) (*MarketplaceProviderOfferingsUpdateUserAttributeConfigUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderOfferingsUpdateUserAttributeConfigUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OfferingUserAttributeConfig
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseMarketplaceProviderOfferingsUpdateAttributesResponse parses an HTTP response from a MarketplaceProviderOfferingsUpdateAttributesWithResponse call
 func ParseMarketplaceProviderOfferingsUpdateAttributesResponse(rsp *http.Response) (*MarketplaceProviderOfferingsUpdateAttributesResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -363544,6 +367543,32 @@ func ParseMarketplaceProviderOfferingsUpdateUserResponse(rsp *http.Response) (*M
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest UserRoleExpirationTime
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProviderOfferingsUserAttributeConfigRetrieveResponse parses an HTTP response from a MarketplaceProviderOfferingsUserAttributeConfigRetrieveWithResponse call
+func ParseMarketplaceProviderOfferingsUserAttributeConfigRetrieveResponse(rsp *http.Response) (*MarketplaceProviderOfferingsUserAttributeConfigRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderOfferingsUserAttributeConfigRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OfferingUserAttributeConfig
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -379979,6 +384004,32 @@ func ParseProposalProtectedCallsAffinityMatrixRetrieveResponse(rsp *http.Respons
 	return response, nil
 }
 
+// ParseProposalProtectedCallsApplicantAttributeConfigRetrieveResponse parses an HTTP response from a ProposalProtectedCallsApplicantAttributeConfigRetrieveWithResponse call
+func ParseProposalProtectedCallsApplicantAttributeConfigRetrieveResponse(rsp *http.Response) (*ProposalProtectedCallsApplicantAttributeConfigRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProposalProtectedCallsApplicantAttributeConfigRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CallApplicantAttributeConfig
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseProposalProtectedCallsArchiveResponse parses an HTTP response from a ProposalProtectedCallsArchiveWithResponse call
 func ParseProposalProtectedCallsArchiveResponse(rsp *http.Response) (*ProposalProtectedCallsArchiveResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -380198,6 +384249,22 @@ func ParseProposalProtectedCallsCreateManualAssignmentResponse(rsp *http.Respons
 		}
 		response.JSON200 = &dest
 
+	}
+
+	return response, nil
+}
+
+// ParseProposalProtectedCallsDeleteApplicantAttributeConfigDestroyResponse parses an HTTP response from a ProposalProtectedCallsDeleteApplicantAttributeConfigDestroyWithResponse call
+func ParseProposalProtectedCallsDeleteApplicantAttributeConfigDestroyResponse(rsp *http.Response) (*ProposalProtectedCallsDeleteApplicantAttributeConfigDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProposalProtectedCallsDeleteApplicantAttributeConfigDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
 	}
 
 	return response, nil
@@ -381089,6 +385156,58 @@ func ParseProposalProtectedCallsSuggestionsListResponse(rsp *http.Response) (*Pr
 	return response, nil
 }
 
+// ParseProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateResponse parses an HTTP response from a ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateWithResponse call
+func ParseProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateResponse(rsp *http.Response) (*ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProposalProtectedCallsUpdateApplicantAttributeConfigPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CallApplicantAttributeConfig
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseProposalProtectedCallsUpdateApplicantAttributeConfigResponse parses an HTTP response from a ProposalProtectedCallsUpdateApplicantAttributeConfigWithResponse call
+func ParseProposalProtectedCallsUpdateApplicantAttributeConfigResponse(rsp *http.Response) (*ProposalProtectedCallsUpdateApplicantAttributeConfigResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProposalProtectedCallsUpdateApplicantAttributeConfigResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CallApplicantAttributeConfig
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseProposalProtectedCallsUpdateUserResponse parses an HTTP response from a ProposalProtectedCallsUpdateUserWithResponse call
 func ParseProposalProtectedCallsUpdateUserResponse(rsp *http.Response) (*ProposalProtectedCallsUpdateUserResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -381173,6 +385292,32 @@ func ParseProposalPublicCallsRetrieveResponse(rsp *http.Response) (*ProposalPubl
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest PublicCall
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseProposalPublicCallsCheckEligibilityRetrieveResponse parses an HTTP response from a ProposalPublicCallsCheckEligibilityRetrieveWithResponse call
+func ParseProposalPublicCallsCheckEligibilityRetrieveResponse(rsp *http.Response) (*ProposalPublicCallsCheckEligibilityRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProposalPublicCallsCheckEligibilityRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest EligibilityCheck
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -390298,6 +394443,58 @@ func ParseUsersChangePasswordResponse(rsp *http.Response) (*UsersChangePasswordR
 	response := &UsersChangePasswordResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseUsersDataAccessRetrieveResponse parses an HTTP response from a UsersDataAccessRetrieveWithResponse call
+func ParseUsersDataAccessRetrieveResponse(rsp *http.Response) (*UsersDataAccessRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &UsersDataAccessRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest UserDataAccess
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseUsersDataAccessHistoryListResponse parses an HTTP response from a UsersDataAccessHistoryListWithResponse call
+func ParseUsersDataAccessHistoryListResponse(rsp *http.Response) (*UsersDataAccessHistoryListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &UsersDataAccessHistoryListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []UserDataAccessLog
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
