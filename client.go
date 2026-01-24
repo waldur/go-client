@@ -12807,6 +12807,174 @@ const (
 	UsersMeRetrieveParamsFieldUuid                          UsersMeRetrieveParamsField = "uuid"
 )
 
+// Defines values for UsersUserActiveStatusCountListParamsO.
+const (
+	UsersUserActiveStatusCountListParamsODescription             UsersUserActiveStatusCountListParamsO = "description"
+	UsersUserActiveStatusCountListParamsOEmail                   UsersUserActiveStatusCountListParamsO = "email"
+	UsersUserActiveStatusCountListParamsOFullName                UsersUserActiveStatusCountListParamsO = "full_name"
+	UsersUserActiveStatusCountListParamsOIsActive                UsersUserActiveStatusCountListParamsO = "is_active"
+	UsersUserActiveStatusCountListParamsOIsStaff                 UsersUserActiveStatusCountListParamsO = "is_staff"
+	UsersUserActiveStatusCountListParamsOIsSupport               UsersUserActiveStatusCountListParamsO = "is_support"
+	UsersUserActiveStatusCountListParamsOJobTitle                UsersUserActiveStatusCountListParamsO = "job_title"
+	UsersUserActiveStatusCountListParamsOMinusDescription        UsersUserActiveStatusCountListParamsO = "-description"
+	UsersUserActiveStatusCountListParamsOMinusEmail              UsersUserActiveStatusCountListParamsO = "-email"
+	UsersUserActiveStatusCountListParamsOMinusFullName           UsersUserActiveStatusCountListParamsO = "-full_name"
+	UsersUserActiveStatusCountListParamsOMinusIsActive           UsersUserActiveStatusCountListParamsO = "-is_active"
+	UsersUserActiveStatusCountListParamsOMinusIsStaff            UsersUserActiveStatusCountListParamsO = "-is_staff"
+	UsersUserActiveStatusCountListParamsOMinusIsSupport          UsersUserActiveStatusCountListParamsO = "-is_support"
+	UsersUserActiveStatusCountListParamsOMinusJobTitle           UsersUserActiveStatusCountListParamsO = "-job_title"
+	UsersUserActiveStatusCountListParamsOMinusNativeName         UsersUserActiveStatusCountListParamsO = "-native_name"
+	UsersUserActiveStatusCountListParamsOMinusOrganization       UsersUserActiveStatusCountListParamsO = "-organization"
+	UsersUserActiveStatusCountListParamsOMinusPhoneNumber        UsersUserActiveStatusCountListParamsO = "-phone_number"
+	UsersUserActiveStatusCountListParamsOMinusRegistrationMethod UsersUserActiveStatusCountListParamsO = "-registration_method"
+	UsersUserActiveStatusCountListParamsOMinusUsername           UsersUserActiveStatusCountListParamsO = "-username"
+	UsersUserActiveStatusCountListParamsONativeName              UsersUserActiveStatusCountListParamsO = "native_name"
+	UsersUserActiveStatusCountListParamsOOrganization            UsersUserActiveStatusCountListParamsO = "organization"
+	UsersUserActiveStatusCountListParamsOPhoneNumber             UsersUserActiveStatusCountListParamsO = "phone_number"
+	UsersUserActiveStatusCountListParamsORegistrationMethod      UsersUserActiveStatusCountListParamsO = "registration_method"
+	UsersUserActiveStatusCountListParamsOUsername                UsersUserActiveStatusCountListParamsO = "username"
+)
+
+// Defines values for UsersUserActiveStatusCountCountParamsO.
+const (
+	UsersUserActiveStatusCountCountParamsODescription             UsersUserActiveStatusCountCountParamsO = "description"
+	UsersUserActiveStatusCountCountParamsOEmail                   UsersUserActiveStatusCountCountParamsO = "email"
+	UsersUserActiveStatusCountCountParamsOFullName                UsersUserActiveStatusCountCountParamsO = "full_name"
+	UsersUserActiveStatusCountCountParamsOIsActive                UsersUserActiveStatusCountCountParamsO = "is_active"
+	UsersUserActiveStatusCountCountParamsOIsStaff                 UsersUserActiveStatusCountCountParamsO = "is_staff"
+	UsersUserActiveStatusCountCountParamsOIsSupport               UsersUserActiveStatusCountCountParamsO = "is_support"
+	UsersUserActiveStatusCountCountParamsOJobTitle                UsersUserActiveStatusCountCountParamsO = "job_title"
+	UsersUserActiveStatusCountCountParamsOMinusDescription        UsersUserActiveStatusCountCountParamsO = "-description"
+	UsersUserActiveStatusCountCountParamsOMinusEmail              UsersUserActiveStatusCountCountParamsO = "-email"
+	UsersUserActiveStatusCountCountParamsOMinusFullName           UsersUserActiveStatusCountCountParamsO = "-full_name"
+	UsersUserActiveStatusCountCountParamsOMinusIsActive           UsersUserActiveStatusCountCountParamsO = "-is_active"
+	UsersUserActiveStatusCountCountParamsOMinusIsStaff            UsersUserActiveStatusCountCountParamsO = "-is_staff"
+	UsersUserActiveStatusCountCountParamsOMinusIsSupport          UsersUserActiveStatusCountCountParamsO = "-is_support"
+	UsersUserActiveStatusCountCountParamsOMinusJobTitle           UsersUserActiveStatusCountCountParamsO = "-job_title"
+	UsersUserActiveStatusCountCountParamsOMinusNativeName         UsersUserActiveStatusCountCountParamsO = "-native_name"
+	UsersUserActiveStatusCountCountParamsOMinusOrganization       UsersUserActiveStatusCountCountParamsO = "-organization"
+	UsersUserActiveStatusCountCountParamsOMinusPhoneNumber        UsersUserActiveStatusCountCountParamsO = "-phone_number"
+	UsersUserActiveStatusCountCountParamsOMinusRegistrationMethod UsersUserActiveStatusCountCountParamsO = "-registration_method"
+	UsersUserActiveStatusCountCountParamsOMinusUsername           UsersUserActiveStatusCountCountParamsO = "-username"
+	UsersUserActiveStatusCountCountParamsONativeName              UsersUserActiveStatusCountCountParamsO = "native_name"
+	UsersUserActiveStatusCountCountParamsOOrganization            UsersUserActiveStatusCountCountParamsO = "organization"
+	UsersUserActiveStatusCountCountParamsOPhoneNumber             UsersUserActiveStatusCountCountParamsO = "phone_number"
+	UsersUserActiveStatusCountCountParamsORegistrationMethod      UsersUserActiveStatusCountCountParamsO = "registration_method"
+	UsersUserActiveStatusCountCountParamsOUsername                UsersUserActiveStatusCountCountParamsO = "username"
+)
+
+// Defines values for UsersUserLanguageCountListParamsO.
+const (
+	UsersUserLanguageCountListParamsODescription             UsersUserLanguageCountListParamsO = "description"
+	UsersUserLanguageCountListParamsOEmail                   UsersUserLanguageCountListParamsO = "email"
+	UsersUserLanguageCountListParamsOFullName                UsersUserLanguageCountListParamsO = "full_name"
+	UsersUserLanguageCountListParamsOIsActive                UsersUserLanguageCountListParamsO = "is_active"
+	UsersUserLanguageCountListParamsOIsStaff                 UsersUserLanguageCountListParamsO = "is_staff"
+	UsersUserLanguageCountListParamsOIsSupport               UsersUserLanguageCountListParamsO = "is_support"
+	UsersUserLanguageCountListParamsOJobTitle                UsersUserLanguageCountListParamsO = "job_title"
+	UsersUserLanguageCountListParamsOMinusDescription        UsersUserLanguageCountListParamsO = "-description"
+	UsersUserLanguageCountListParamsOMinusEmail              UsersUserLanguageCountListParamsO = "-email"
+	UsersUserLanguageCountListParamsOMinusFullName           UsersUserLanguageCountListParamsO = "-full_name"
+	UsersUserLanguageCountListParamsOMinusIsActive           UsersUserLanguageCountListParamsO = "-is_active"
+	UsersUserLanguageCountListParamsOMinusIsStaff            UsersUserLanguageCountListParamsO = "-is_staff"
+	UsersUserLanguageCountListParamsOMinusIsSupport          UsersUserLanguageCountListParamsO = "-is_support"
+	UsersUserLanguageCountListParamsOMinusJobTitle           UsersUserLanguageCountListParamsO = "-job_title"
+	UsersUserLanguageCountListParamsOMinusNativeName         UsersUserLanguageCountListParamsO = "-native_name"
+	UsersUserLanguageCountListParamsOMinusOrganization       UsersUserLanguageCountListParamsO = "-organization"
+	UsersUserLanguageCountListParamsOMinusPhoneNumber        UsersUserLanguageCountListParamsO = "-phone_number"
+	UsersUserLanguageCountListParamsOMinusRegistrationMethod UsersUserLanguageCountListParamsO = "-registration_method"
+	UsersUserLanguageCountListParamsOMinusUsername           UsersUserLanguageCountListParamsO = "-username"
+	UsersUserLanguageCountListParamsONativeName              UsersUserLanguageCountListParamsO = "native_name"
+	UsersUserLanguageCountListParamsOOrganization            UsersUserLanguageCountListParamsO = "organization"
+	UsersUserLanguageCountListParamsOPhoneNumber             UsersUserLanguageCountListParamsO = "phone_number"
+	UsersUserLanguageCountListParamsORegistrationMethod      UsersUserLanguageCountListParamsO = "registration_method"
+	UsersUserLanguageCountListParamsOUsername                UsersUserLanguageCountListParamsO = "username"
+)
+
+// Defines values for UsersUserLanguageCountCountParamsO.
+const (
+	UsersUserLanguageCountCountParamsODescription             UsersUserLanguageCountCountParamsO = "description"
+	UsersUserLanguageCountCountParamsOEmail                   UsersUserLanguageCountCountParamsO = "email"
+	UsersUserLanguageCountCountParamsOFullName                UsersUserLanguageCountCountParamsO = "full_name"
+	UsersUserLanguageCountCountParamsOIsActive                UsersUserLanguageCountCountParamsO = "is_active"
+	UsersUserLanguageCountCountParamsOIsStaff                 UsersUserLanguageCountCountParamsO = "is_staff"
+	UsersUserLanguageCountCountParamsOIsSupport               UsersUserLanguageCountCountParamsO = "is_support"
+	UsersUserLanguageCountCountParamsOJobTitle                UsersUserLanguageCountCountParamsO = "job_title"
+	UsersUserLanguageCountCountParamsOMinusDescription        UsersUserLanguageCountCountParamsO = "-description"
+	UsersUserLanguageCountCountParamsOMinusEmail              UsersUserLanguageCountCountParamsO = "-email"
+	UsersUserLanguageCountCountParamsOMinusFullName           UsersUserLanguageCountCountParamsO = "-full_name"
+	UsersUserLanguageCountCountParamsOMinusIsActive           UsersUserLanguageCountCountParamsO = "-is_active"
+	UsersUserLanguageCountCountParamsOMinusIsStaff            UsersUserLanguageCountCountParamsO = "-is_staff"
+	UsersUserLanguageCountCountParamsOMinusIsSupport          UsersUserLanguageCountCountParamsO = "-is_support"
+	UsersUserLanguageCountCountParamsOMinusJobTitle           UsersUserLanguageCountCountParamsO = "-job_title"
+	UsersUserLanguageCountCountParamsOMinusNativeName         UsersUserLanguageCountCountParamsO = "-native_name"
+	UsersUserLanguageCountCountParamsOMinusOrganization       UsersUserLanguageCountCountParamsO = "-organization"
+	UsersUserLanguageCountCountParamsOMinusPhoneNumber        UsersUserLanguageCountCountParamsO = "-phone_number"
+	UsersUserLanguageCountCountParamsOMinusRegistrationMethod UsersUserLanguageCountCountParamsO = "-registration_method"
+	UsersUserLanguageCountCountParamsOMinusUsername           UsersUserLanguageCountCountParamsO = "-username"
+	UsersUserLanguageCountCountParamsONativeName              UsersUserLanguageCountCountParamsO = "native_name"
+	UsersUserLanguageCountCountParamsOOrganization            UsersUserLanguageCountCountParamsO = "organization"
+	UsersUserLanguageCountCountParamsOPhoneNumber             UsersUserLanguageCountCountParamsO = "phone_number"
+	UsersUserLanguageCountCountParamsORegistrationMethod      UsersUserLanguageCountCountParamsO = "registration_method"
+	UsersUserLanguageCountCountParamsOUsername                UsersUserLanguageCountCountParamsO = "username"
+)
+
+// Defines values for UsersUserRegistrationTrendListParamsO.
+const (
+	UsersUserRegistrationTrendListParamsODescription             UsersUserRegistrationTrendListParamsO = "description"
+	UsersUserRegistrationTrendListParamsOEmail                   UsersUserRegistrationTrendListParamsO = "email"
+	UsersUserRegistrationTrendListParamsOFullName                UsersUserRegistrationTrendListParamsO = "full_name"
+	UsersUserRegistrationTrendListParamsOIsActive                UsersUserRegistrationTrendListParamsO = "is_active"
+	UsersUserRegistrationTrendListParamsOIsStaff                 UsersUserRegistrationTrendListParamsO = "is_staff"
+	UsersUserRegistrationTrendListParamsOIsSupport               UsersUserRegistrationTrendListParamsO = "is_support"
+	UsersUserRegistrationTrendListParamsOJobTitle                UsersUserRegistrationTrendListParamsO = "job_title"
+	UsersUserRegistrationTrendListParamsOMinusDescription        UsersUserRegistrationTrendListParamsO = "-description"
+	UsersUserRegistrationTrendListParamsOMinusEmail              UsersUserRegistrationTrendListParamsO = "-email"
+	UsersUserRegistrationTrendListParamsOMinusFullName           UsersUserRegistrationTrendListParamsO = "-full_name"
+	UsersUserRegistrationTrendListParamsOMinusIsActive           UsersUserRegistrationTrendListParamsO = "-is_active"
+	UsersUserRegistrationTrendListParamsOMinusIsStaff            UsersUserRegistrationTrendListParamsO = "-is_staff"
+	UsersUserRegistrationTrendListParamsOMinusIsSupport          UsersUserRegistrationTrendListParamsO = "-is_support"
+	UsersUserRegistrationTrendListParamsOMinusJobTitle           UsersUserRegistrationTrendListParamsO = "-job_title"
+	UsersUserRegistrationTrendListParamsOMinusNativeName         UsersUserRegistrationTrendListParamsO = "-native_name"
+	UsersUserRegistrationTrendListParamsOMinusOrganization       UsersUserRegistrationTrendListParamsO = "-organization"
+	UsersUserRegistrationTrendListParamsOMinusPhoneNumber        UsersUserRegistrationTrendListParamsO = "-phone_number"
+	UsersUserRegistrationTrendListParamsOMinusRegistrationMethod UsersUserRegistrationTrendListParamsO = "-registration_method"
+	UsersUserRegistrationTrendListParamsOMinusUsername           UsersUserRegistrationTrendListParamsO = "-username"
+	UsersUserRegistrationTrendListParamsONativeName              UsersUserRegistrationTrendListParamsO = "native_name"
+	UsersUserRegistrationTrendListParamsOOrganization            UsersUserRegistrationTrendListParamsO = "organization"
+	UsersUserRegistrationTrendListParamsOPhoneNumber             UsersUserRegistrationTrendListParamsO = "phone_number"
+	UsersUserRegistrationTrendListParamsORegistrationMethod      UsersUserRegistrationTrendListParamsO = "registration_method"
+	UsersUserRegistrationTrendListParamsOUsername                UsersUserRegistrationTrendListParamsO = "username"
+)
+
+// Defines values for UsersUserRegistrationTrendCountParamsO.
+const (
+	UsersUserRegistrationTrendCountParamsODescription             UsersUserRegistrationTrendCountParamsO = "description"
+	UsersUserRegistrationTrendCountParamsOEmail                   UsersUserRegistrationTrendCountParamsO = "email"
+	UsersUserRegistrationTrendCountParamsOFullName                UsersUserRegistrationTrendCountParamsO = "full_name"
+	UsersUserRegistrationTrendCountParamsOIsActive                UsersUserRegistrationTrendCountParamsO = "is_active"
+	UsersUserRegistrationTrendCountParamsOIsStaff                 UsersUserRegistrationTrendCountParamsO = "is_staff"
+	UsersUserRegistrationTrendCountParamsOIsSupport               UsersUserRegistrationTrendCountParamsO = "is_support"
+	UsersUserRegistrationTrendCountParamsOJobTitle                UsersUserRegistrationTrendCountParamsO = "job_title"
+	UsersUserRegistrationTrendCountParamsOMinusDescription        UsersUserRegistrationTrendCountParamsO = "-description"
+	UsersUserRegistrationTrendCountParamsOMinusEmail              UsersUserRegistrationTrendCountParamsO = "-email"
+	UsersUserRegistrationTrendCountParamsOMinusFullName           UsersUserRegistrationTrendCountParamsO = "-full_name"
+	UsersUserRegistrationTrendCountParamsOMinusIsActive           UsersUserRegistrationTrendCountParamsO = "-is_active"
+	UsersUserRegistrationTrendCountParamsOMinusIsStaff            UsersUserRegistrationTrendCountParamsO = "-is_staff"
+	UsersUserRegistrationTrendCountParamsOMinusIsSupport          UsersUserRegistrationTrendCountParamsO = "-is_support"
+	UsersUserRegistrationTrendCountParamsOMinusJobTitle           UsersUserRegistrationTrendCountParamsO = "-job_title"
+	UsersUserRegistrationTrendCountParamsOMinusNativeName         UsersUserRegistrationTrendCountParamsO = "-native_name"
+	UsersUserRegistrationTrendCountParamsOMinusOrganization       UsersUserRegistrationTrendCountParamsO = "-organization"
+	UsersUserRegistrationTrendCountParamsOMinusPhoneNumber        UsersUserRegistrationTrendCountParamsO = "-phone_number"
+	UsersUserRegistrationTrendCountParamsOMinusRegistrationMethod UsersUserRegistrationTrendCountParamsO = "-registration_method"
+	UsersUserRegistrationTrendCountParamsOMinusUsername           UsersUserRegistrationTrendCountParamsO = "-username"
+	UsersUserRegistrationTrendCountParamsONativeName              UsersUserRegistrationTrendCountParamsO = "native_name"
+	UsersUserRegistrationTrendCountParamsOOrganization            UsersUserRegistrationTrendCountParamsO = "organization"
+	UsersUserRegistrationTrendCountParamsOPhoneNumber             UsersUserRegistrationTrendCountParamsO = "phone_number"
+	UsersUserRegistrationTrendCountParamsORegistrationMethod      UsersUserRegistrationTrendCountParamsO = "registration_method"
+	UsersUserRegistrationTrendCountParamsOUsername                UsersUserRegistrationTrendCountParamsO = "username"
+)
+
 // Defines values for UsersRetrieveParamsField.
 const (
 	UsersRetrieveParamsFieldAffiliations                  UsersRetrieveParamsField = "affiliations"
@@ -33772,6 +33940,12 @@ type UserActionSummary struct {
 	Total     int                    `json:"total"`
 }
 
+// UserActiveStatusCount defines model for UserActiveStatusCount.
+type UserActiveStatusCount struct {
+	Count  int    `json:"count"`
+	Status string `json:"status"`
+}
+
 // UserAffiliationCount defines model for UserAffiliationCount.
 type UserAffiliationCount struct {
 	// Affiliation Affiliation name
@@ -33929,6 +34103,12 @@ type UserInfoRequest struct {
 	User      string  `json:"user"`
 }
 
+// UserLanguageCount defines model for UserLanguageCount.
+type UserLanguageCount struct {
+	Count    int    `json:"count"`
+	Language string `json:"language"`
+}
+
 // UserOfferingConsent defines model for UserOfferingConsent.
 type UserOfferingConsent struct {
 	AgreementDate *time.Time `json:"agreement_date,omitempty"`
@@ -33976,6 +34156,12 @@ type UserOrganizationCount struct {
 
 	// Organization Organization name
 	Organization string `json:"organization"`
+}
+
+// UserRegistrationTrend defines model for UserRegistrationTrend.
+type UserRegistrationTrend struct {
+	Count int    `json:"count"`
+	Month string `json:"month"`
 }
 
 // UserRequest defines model for UserRequest.
@@ -53035,6 +53221,468 @@ type UsersMeRetrieveParams struct {
 // UsersMeRetrieveParamsField defines parameters for UsersMeRetrieve.
 type UsersMeRetrieveParamsField string
 
+// UsersUserActiveStatusCountListParams defines parameters for UsersUserActiveStatusCountList.
+type UsersUserActiveStatusCountListParams struct {
+	// AgreementDate Agreement date after
+	AgreementDate *time.Time `form:"agreement_date,omitempty" json:"agreement_date,omitempty"`
+	CivilNumber   *string    `form:"civil_number,omitempty" json:"civil_number,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// DateJoined Date joined after
+	DateJoined  *time.Time `form:"date_joined,omitempty" json:"date_joined,omitempty"`
+	Description *string    `form:"description,omitempty" json:"description,omitempty"`
+
+	// Email Email
+	Email *string `form:"email,omitempty" json:"email,omitempty"`
+
+	// FullName Full name
+	FullName *string `form:"full_name,omitempty" json:"full_name,omitempty"`
+
+	// IsActive Is active
+	IsActive *bool `form:"is_active,omitempty" json:"is_active,omitempty"`
+
+	// IsStaff Is staff
+	IsStaff *bool `form:"is_staff,omitempty" json:"is_staff,omitempty"`
+
+	// IsSupport Is support
+	IsSupport *bool `form:"is_support,omitempty" json:"is_support,omitempty"`
+
+	// JobTitle Job title
+	JobTitle *string `form:"job_title,omitempty" json:"job_title,omitempty"`
+
+	// Modified Date modified after
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// NativeName Native name
+	NativeName *string `form:"native_name,omitempty" json:"native_name,omitempty"`
+
+	// O Ordering
+	//
+	O *[]UsersUserActiveStatusCountListParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// Organization Organization
+	Organization *string `form:"organization,omitempty" json:"organization,omitempty"`
+
+	// OrganizationRoles Organization roles
+	OrganizationRoles *string `form:"organization_roles,omitempty" json:"organization_roles,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize    *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PhoneNumber *string   `form:"phone_number,omitempty" json:"phone_number,omitempty"`
+
+	// ProjectRoles Project roles
+	ProjectRoles *string `form:"project_roles,omitempty" json:"project_roles,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// Query Filter by first name, last name, civil number, username or email
+	Query              *string `form:"query,omitempty" json:"query,omitempty"`
+	RegistrationMethod *string `form:"registration_method,omitempty" json:"registration_method,omitempty"`
+
+	// UserKeyword User keyword
+	UserKeyword *string `form:"user_keyword,omitempty" json:"user_keyword,omitempty"`
+
+	// Username Username (exact)
+	Username *string `form:"username,omitempty" json:"username,omitempty"`
+
+	// UsernameList Comma-separated usernames
+	UsernameList *string `form:"username_list,omitempty" json:"username_list,omitempty"`
+}
+
+// UsersUserActiveStatusCountListParamsO defines parameters for UsersUserActiveStatusCountList.
+type UsersUserActiveStatusCountListParamsO string
+
+// UsersUserActiveStatusCountCountParams defines parameters for UsersUserActiveStatusCountCount.
+type UsersUserActiveStatusCountCountParams struct {
+	// AgreementDate Agreement date after
+	AgreementDate *time.Time `form:"agreement_date,omitempty" json:"agreement_date,omitempty"`
+	CivilNumber   *string    `form:"civil_number,omitempty" json:"civil_number,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// DateJoined Date joined after
+	DateJoined  *time.Time `form:"date_joined,omitempty" json:"date_joined,omitempty"`
+	Description *string    `form:"description,omitempty" json:"description,omitempty"`
+
+	// Email Email
+	Email *string `form:"email,omitempty" json:"email,omitempty"`
+
+	// FullName Full name
+	FullName *string `form:"full_name,omitempty" json:"full_name,omitempty"`
+
+	// IsActive Is active
+	IsActive *bool `form:"is_active,omitempty" json:"is_active,omitempty"`
+
+	// IsStaff Is staff
+	IsStaff *bool `form:"is_staff,omitempty" json:"is_staff,omitempty"`
+
+	// IsSupport Is support
+	IsSupport *bool `form:"is_support,omitempty" json:"is_support,omitempty"`
+
+	// JobTitle Job title
+	JobTitle *string `form:"job_title,omitempty" json:"job_title,omitempty"`
+
+	// Modified Date modified after
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// NativeName Native name
+	NativeName *string `form:"native_name,omitempty" json:"native_name,omitempty"`
+
+	// O Ordering
+	//
+	O *[]UsersUserActiveStatusCountCountParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// Organization Organization
+	Organization *string `form:"organization,omitempty" json:"organization,omitempty"`
+
+	// OrganizationRoles Organization roles
+	OrganizationRoles *string `form:"organization_roles,omitempty" json:"organization_roles,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize    *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PhoneNumber *string   `form:"phone_number,omitempty" json:"phone_number,omitempty"`
+
+	// ProjectRoles Project roles
+	ProjectRoles *string `form:"project_roles,omitempty" json:"project_roles,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// Query Filter by first name, last name, civil number, username or email
+	Query              *string `form:"query,omitempty" json:"query,omitempty"`
+	RegistrationMethod *string `form:"registration_method,omitempty" json:"registration_method,omitempty"`
+
+	// UserKeyword User keyword
+	UserKeyword *string `form:"user_keyword,omitempty" json:"user_keyword,omitempty"`
+
+	// Username Username (exact)
+	Username *string `form:"username,omitempty" json:"username,omitempty"`
+
+	// UsernameList Comma-separated usernames
+	UsernameList *string `form:"username_list,omitempty" json:"username_list,omitempty"`
+}
+
+// UsersUserActiveStatusCountCountParamsO defines parameters for UsersUserActiveStatusCountCount.
+type UsersUserActiveStatusCountCountParamsO string
+
+// UsersUserLanguageCountListParams defines parameters for UsersUserLanguageCountList.
+type UsersUserLanguageCountListParams struct {
+	// AgreementDate Agreement date after
+	AgreementDate *time.Time `form:"agreement_date,omitempty" json:"agreement_date,omitempty"`
+	CivilNumber   *string    `form:"civil_number,omitempty" json:"civil_number,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// DateJoined Date joined after
+	DateJoined  *time.Time `form:"date_joined,omitempty" json:"date_joined,omitempty"`
+	Description *string    `form:"description,omitempty" json:"description,omitempty"`
+
+	// Email Email
+	Email *string `form:"email,omitempty" json:"email,omitempty"`
+
+	// FullName Full name
+	FullName *string `form:"full_name,omitempty" json:"full_name,omitempty"`
+
+	// IsActive Is active
+	IsActive *bool `form:"is_active,omitempty" json:"is_active,omitempty"`
+
+	// IsStaff Is staff
+	IsStaff *bool `form:"is_staff,omitempty" json:"is_staff,omitempty"`
+
+	// IsSupport Is support
+	IsSupport *bool `form:"is_support,omitempty" json:"is_support,omitempty"`
+
+	// JobTitle Job title
+	JobTitle *string `form:"job_title,omitempty" json:"job_title,omitempty"`
+
+	// Modified Date modified after
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// NativeName Native name
+	NativeName *string `form:"native_name,omitempty" json:"native_name,omitempty"`
+
+	// O Ordering
+	//
+	O *[]UsersUserLanguageCountListParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// Organization Organization
+	Organization *string `form:"organization,omitempty" json:"organization,omitempty"`
+
+	// OrganizationRoles Organization roles
+	OrganizationRoles *string `form:"organization_roles,omitempty" json:"organization_roles,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize    *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PhoneNumber *string   `form:"phone_number,omitempty" json:"phone_number,omitempty"`
+
+	// ProjectRoles Project roles
+	ProjectRoles *string `form:"project_roles,omitempty" json:"project_roles,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// Query Filter by first name, last name, civil number, username or email
+	Query              *string `form:"query,omitempty" json:"query,omitempty"`
+	RegistrationMethod *string `form:"registration_method,omitempty" json:"registration_method,omitempty"`
+
+	// UserKeyword User keyword
+	UserKeyword *string `form:"user_keyword,omitempty" json:"user_keyword,omitempty"`
+
+	// Username Username (exact)
+	Username *string `form:"username,omitempty" json:"username,omitempty"`
+
+	// UsernameList Comma-separated usernames
+	UsernameList *string `form:"username_list,omitempty" json:"username_list,omitempty"`
+}
+
+// UsersUserLanguageCountListParamsO defines parameters for UsersUserLanguageCountList.
+type UsersUserLanguageCountListParamsO string
+
+// UsersUserLanguageCountCountParams defines parameters for UsersUserLanguageCountCount.
+type UsersUserLanguageCountCountParams struct {
+	// AgreementDate Agreement date after
+	AgreementDate *time.Time `form:"agreement_date,omitempty" json:"agreement_date,omitempty"`
+	CivilNumber   *string    `form:"civil_number,omitempty" json:"civil_number,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// DateJoined Date joined after
+	DateJoined  *time.Time `form:"date_joined,omitempty" json:"date_joined,omitempty"`
+	Description *string    `form:"description,omitempty" json:"description,omitempty"`
+
+	// Email Email
+	Email *string `form:"email,omitempty" json:"email,omitempty"`
+
+	// FullName Full name
+	FullName *string `form:"full_name,omitempty" json:"full_name,omitempty"`
+
+	// IsActive Is active
+	IsActive *bool `form:"is_active,omitempty" json:"is_active,omitempty"`
+
+	// IsStaff Is staff
+	IsStaff *bool `form:"is_staff,omitempty" json:"is_staff,omitempty"`
+
+	// IsSupport Is support
+	IsSupport *bool `form:"is_support,omitempty" json:"is_support,omitempty"`
+
+	// JobTitle Job title
+	JobTitle *string `form:"job_title,omitempty" json:"job_title,omitempty"`
+
+	// Modified Date modified after
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// NativeName Native name
+	NativeName *string `form:"native_name,omitempty" json:"native_name,omitempty"`
+
+	// O Ordering
+	//
+	O *[]UsersUserLanguageCountCountParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// Organization Organization
+	Organization *string `form:"organization,omitempty" json:"organization,omitempty"`
+
+	// OrganizationRoles Organization roles
+	OrganizationRoles *string `form:"organization_roles,omitempty" json:"organization_roles,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize    *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PhoneNumber *string   `form:"phone_number,omitempty" json:"phone_number,omitempty"`
+
+	// ProjectRoles Project roles
+	ProjectRoles *string `form:"project_roles,omitempty" json:"project_roles,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// Query Filter by first name, last name, civil number, username or email
+	Query              *string `form:"query,omitempty" json:"query,omitempty"`
+	RegistrationMethod *string `form:"registration_method,omitempty" json:"registration_method,omitempty"`
+
+	// UserKeyword User keyword
+	UserKeyword *string `form:"user_keyword,omitempty" json:"user_keyword,omitempty"`
+
+	// Username Username (exact)
+	Username *string `form:"username,omitempty" json:"username,omitempty"`
+
+	// UsernameList Comma-separated usernames
+	UsernameList *string `form:"username_list,omitempty" json:"username_list,omitempty"`
+}
+
+// UsersUserLanguageCountCountParamsO defines parameters for UsersUserLanguageCountCount.
+type UsersUserLanguageCountCountParamsO string
+
+// UsersUserRegistrationTrendListParams defines parameters for UsersUserRegistrationTrendList.
+type UsersUserRegistrationTrendListParams struct {
+	// AgreementDate Agreement date after
+	AgreementDate *time.Time `form:"agreement_date,omitempty" json:"agreement_date,omitempty"`
+	CivilNumber   *string    `form:"civil_number,omitempty" json:"civil_number,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// DateJoined Date joined after
+	DateJoined  *time.Time `form:"date_joined,omitempty" json:"date_joined,omitempty"`
+	Description *string    `form:"description,omitempty" json:"description,omitempty"`
+
+	// Email Email
+	Email *string `form:"email,omitempty" json:"email,omitempty"`
+
+	// FullName Full name
+	FullName *string `form:"full_name,omitempty" json:"full_name,omitempty"`
+
+	// IsActive Is active
+	IsActive *bool `form:"is_active,omitempty" json:"is_active,omitempty"`
+
+	// IsStaff Is staff
+	IsStaff *bool `form:"is_staff,omitempty" json:"is_staff,omitempty"`
+
+	// IsSupport Is support
+	IsSupport *bool `form:"is_support,omitempty" json:"is_support,omitempty"`
+
+	// JobTitle Job title
+	JobTitle *string `form:"job_title,omitempty" json:"job_title,omitempty"`
+
+	// Modified Date modified after
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// NativeName Native name
+	NativeName *string `form:"native_name,omitempty" json:"native_name,omitempty"`
+
+	// O Ordering
+	//
+	O *[]UsersUserRegistrationTrendListParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// Organization Organization
+	Organization *string `form:"organization,omitempty" json:"organization,omitempty"`
+
+	// OrganizationRoles Organization roles
+	OrganizationRoles *string `form:"organization_roles,omitempty" json:"organization_roles,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize    *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PhoneNumber *string   `form:"phone_number,omitempty" json:"phone_number,omitempty"`
+
+	// ProjectRoles Project roles
+	ProjectRoles *string `form:"project_roles,omitempty" json:"project_roles,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// Query Filter by first name, last name, civil number, username or email
+	Query              *string `form:"query,omitempty" json:"query,omitempty"`
+	RegistrationMethod *string `form:"registration_method,omitempty" json:"registration_method,omitempty"`
+
+	// UserKeyword User keyword
+	UserKeyword *string `form:"user_keyword,omitempty" json:"user_keyword,omitempty"`
+
+	// Username Username (exact)
+	Username *string `form:"username,omitempty" json:"username,omitempty"`
+
+	// UsernameList Comma-separated usernames
+	UsernameList *string `form:"username_list,omitempty" json:"username_list,omitempty"`
+}
+
+// UsersUserRegistrationTrendListParamsO defines parameters for UsersUserRegistrationTrendList.
+type UsersUserRegistrationTrendListParamsO string
+
+// UsersUserRegistrationTrendCountParams defines parameters for UsersUserRegistrationTrendCount.
+type UsersUserRegistrationTrendCountParams struct {
+	// AgreementDate Agreement date after
+	AgreementDate *time.Time `form:"agreement_date,omitempty" json:"agreement_date,omitempty"`
+	CivilNumber   *string    `form:"civil_number,omitempty" json:"civil_number,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// DateJoined Date joined after
+	DateJoined  *time.Time `form:"date_joined,omitempty" json:"date_joined,omitempty"`
+	Description *string    `form:"description,omitempty" json:"description,omitempty"`
+
+	// Email Email
+	Email *string `form:"email,omitempty" json:"email,omitempty"`
+
+	// FullName Full name
+	FullName *string `form:"full_name,omitempty" json:"full_name,omitempty"`
+
+	// IsActive Is active
+	IsActive *bool `form:"is_active,omitempty" json:"is_active,omitempty"`
+
+	// IsStaff Is staff
+	IsStaff *bool `form:"is_staff,omitempty" json:"is_staff,omitempty"`
+
+	// IsSupport Is support
+	IsSupport *bool `form:"is_support,omitempty" json:"is_support,omitempty"`
+
+	// JobTitle Job title
+	JobTitle *string `form:"job_title,omitempty" json:"job_title,omitempty"`
+
+	// Modified Date modified after
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// NativeName Native name
+	NativeName *string `form:"native_name,omitempty" json:"native_name,omitempty"`
+
+	// O Ordering
+	//
+	O *[]UsersUserRegistrationTrendCountParamsO `form:"o,omitempty" json:"o,omitempty"`
+
+	// Organization Organization
+	Organization *string `form:"organization,omitempty" json:"organization,omitempty"`
+
+	// OrganizationRoles Organization roles
+	OrganizationRoles *string `form:"organization_roles,omitempty" json:"organization_roles,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize    *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PhoneNumber *string   `form:"phone_number,omitempty" json:"phone_number,omitempty"`
+
+	// ProjectRoles Project roles
+	ProjectRoles *string `form:"project_roles,omitempty" json:"project_roles,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// Query Filter by first name, last name, civil number, username or email
+	Query              *string `form:"query,omitempty" json:"query,omitempty"`
+	RegistrationMethod *string `form:"registration_method,omitempty" json:"registration_method,omitempty"`
+
+	// UserKeyword User keyword
+	UserKeyword *string `form:"user_keyword,omitempty" json:"user_keyword,omitempty"`
+
+	// Username Username (exact)
+	Username *string `form:"username,omitempty" json:"username,omitempty"`
+
+	// UsernameList Comma-separated usernames
+	UsernameList *string `form:"username_list,omitempty" json:"username_list,omitempty"`
+}
+
+// UsersUserRegistrationTrendCountParamsO defines parameters for UsersUserRegistrationTrendCount.
+type UsersUserRegistrationTrendCountParamsO string
+
 // UsersRetrieveParams defines parameters for UsersRetrieve.
 type UsersRetrieveParams struct {
 	Field *[]UsersRetrieveParamsField `form:"field,omitempty" json:"field,omitempty"`
@@ -70392,6 +71040,24 @@ type ClientInterface interface {
 
 	// UsersMeCount request
 	UsersMeCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// UsersUserActiveStatusCountList request
+	UsersUserActiveStatusCountList(ctx context.Context, params *UsersUserActiveStatusCountListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// UsersUserActiveStatusCountCount request
+	UsersUserActiveStatusCountCount(ctx context.Context, params *UsersUserActiveStatusCountCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// UsersUserLanguageCountList request
+	UsersUserLanguageCountList(ctx context.Context, params *UsersUserLanguageCountListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// UsersUserLanguageCountCount request
+	UsersUserLanguageCountCount(ctx context.Context, params *UsersUserLanguageCountCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// UsersUserRegistrationTrendList request
+	UsersUserRegistrationTrendList(ctx context.Context, params *UsersUserRegistrationTrendListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// UsersUserRegistrationTrendCount request
+	UsersUserRegistrationTrendCount(ctx context.Context, params *UsersUserRegistrationTrendCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UsersDestroy request
 	UsersDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -102763,6 +103429,78 @@ func (c *Client) UsersMeRetrieve(ctx context.Context, params *UsersMeRetrievePar
 
 func (c *Client) UsersMeCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewUsersMeCountRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UsersUserActiveStatusCountList(ctx context.Context, params *UsersUserActiveStatusCountListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUsersUserActiveStatusCountListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UsersUserActiveStatusCountCount(ctx context.Context, params *UsersUserActiveStatusCountCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUsersUserActiveStatusCountCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UsersUserLanguageCountList(ctx context.Context, params *UsersUserLanguageCountListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUsersUserLanguageCountListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UsersUserLanguageCountCount(ctx context.Context, params *UsersUserLanguageCountCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUsersUserLanguageCountCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UsersUserRegistrationTrendList(ctx context.Context, params *UsersUserRegistrationTrendListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUsersUserRegistrationTrendListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UsersUserRegistrationTrendCount(ctx context.Context, params *UsersUserRegistrationTrendCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUsersUserRegistrationTrendCountRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -267498,6 +268236,2700 @@ func NewUsersMeCountRequest(server string) (*http.Request, error) {
 	return req, nil
 }
 
+// NewUsersUserActiveStatusCountListRequest generates requests for UsersUserActiveStatusCountList
+func NewUsersUserActiveStatusCountListRequest(server string, params *UsersUserActiveStatusCountListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/users/user_active_status_count/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.AgreementDate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "agreement_date", runtime.ParamLocationQuery, *params.AgreementDate); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CivilNumber != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "civil_number", runtime.ParamLocationQuery, *params.CivilNumber); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer_uuid", runtime.ParamLocationQuery, *params.CustomerUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.DateJoined != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "date_joined", runtime.ParamLocationQuery, *params.DateJoined); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Description != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "description", runtime.ParamLocationQuery, *params.Description); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Email != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "email", runtime.ParamLocationQuery, *params.Email); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.FullName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "full_name", runtime.ParamLocationQuery, *params.FullName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsActive != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_active", runtime.ParamLocationQuery, *params.IsActive); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsStaff != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_staff", runtime.ParamLocationQuery, *params.IsStaff); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsSupport != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_support", runtime.ParamLocationQuery, *params.IsSupport); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.JobTitle != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "job_title", runtime.ParamLocationQuery, *params.JobTitle); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Modified != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "modified", runtime.ParamLocationQuery, *params.Modified); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.NativeName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "native_name", runtime.ParamLocationQuery, *params.NativeName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Organization != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "organization", runtime.ParamLocationQuery, *params.Organization); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OrganizationRoles != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "organization_roles", runtime.ParamLocationQuery, *params.OrganizationRoles); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PhoneNumber != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "phone_number", runtime.ParamLocationQuery, *params.PhoneNumber); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectRoles != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_roles", runtime.ParamLocationQuery, *params.ProjectRoles); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_uuid", runtime.ParamLocationQuery, *params.ProjectUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "query", runtime.ParamLocationQuery, *params.Query); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.RegistrationMethod != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "registration_method", runtime.ParamLocationQuery, *params.RegistrationMethod); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UserKeyword != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_keyword", runtime.ParamLocationQuery, *params.UserKeyword); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Username != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "username", runtime.ParamLocationQuery, *params.Username); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UsernameList != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "username_list", runtime.ParamLocationQuery, *params.UsernameList); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewUsersUserActiveStatusCountCountRequest generates requests for UsersUserActiveStatusCountCount
+func NewUsersUserActiveStatusCountCountRequest(server string, params *UsersUserActiveStatusCountCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/users/user_active_status_count/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.AgreementDate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "agreement_date", runtime.ParamLocationQuery, *params.AgreementDate); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CivilNumber != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "civil_number", runtime.ParamLocationQuery, *params.CivilNumber); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer_uuid", runtime.ParamLocationQuery, *params.CustomerUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.DateJoined != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "date_joined", runtime.ParamLocationQuery, *params.DateJoined); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Description != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "description", runtime.ParamLocationQuery, *params.Description); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Email != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "email", runtime.ParamLocationQuery, *params.Email); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.FullName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "full_name", runtime.ParamLocationQuery, *params.FullName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsActive != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_active", runtime.ParamLocationQuery, *params.IsActive); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsStaff != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_staff", runtime.ParamLocationQuery, *params.IsStaff); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsSupport != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_support", runtime.ParamLocationQuery, *params.IsSupport); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.JobTitle != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "job_title", runtime.ParamLocationQuery, *params.JobTitle); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Modified != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "modified", runtime.ParamLocationQuery, *params.Modified); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.NativeName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "native_name", runtime.ParamLocationQuery, *params.NativeName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Organization != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "organization", runtime.ParamLocationQuery, *params.Organization); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OrganizationRoles != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "organization_roles", runtime.ParamLocationQuery, *params.OrganizationRoles); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PhoneNumber != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "phone_number", runtime.ParamLocationQuery, *params.PhoneNumber); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectRoles != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_roles", runtime.ParamLocationQuery, *params.ProjectRoles); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_uuid", runtime.ParamLocationQuery, *params.ProjectUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "query", runtime.ParamLocationQuery, *params.Query); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.RegistrationMethod != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "registration_method", runtime.ParamLocationQuery, *params.RegistrationMethod); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UserKeyword != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_keyword", runtime.ParamLocationQuery, *params.UserKeyword); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Username != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "username", runtime.ParamLocationQuery, *params.Username); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UsernameList != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "username_list", runtime.ParamLocationQuery, *params.UsernameList); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewUsersUserLanguageCountListRequest generates requests for UsersUserLanguageCountList
+func NewUsersUserLanguageCountListRequest(server string, params *UsersUserLanguageCountListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/users/user_language_count/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.AgreementDate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "agreement_date", runtime.ParamLocationQuery, *params.AgreementDate); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CivilNumber != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "civil_number", runtime.ParamLocationQuery, *params.CivilNumber); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer_uuid", runtime.ParamLocationQuery, *params.CustomerUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.DateJoined != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "date_joined", runtime.ParamLocationQuery, *params.DateJoined); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Description != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "description", runtime.ParamLocationQuery, *params.Description); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Email != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "email", runtime.ParamLocationQuery, *params.Email); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.FullName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "full_name", runtime.ParamLocationQuery, *params.FullName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsActive != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_active", runtime.ParamLocationQuery, *params.IsActive); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsStaff != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_staff", runtime.ParamLocationQuery, *params.IsStaff); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsSupport != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_support", runtime.ParamLocationQuery, *params.IsSupport); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.JobTitle != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "job_title", runtime.ParamLocationQuery, *params.JobTitle); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Modified != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "modified", runtime.ParamLocationQuery, *params.Modified); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.NativeName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "native_name", runtime.ParamLocationQuery, *params.NativeName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Organization != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "organization", runtime.ParamLocationQuery, *params.Organization); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OrganizationRoles != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "organization_roles", runtime.ParamLocationQuery, *params.OrganizationRoles); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PhoneNumber != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "phone_number", runtime.ParamLocationQuery, *params.PhoneNumber); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectRoles != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_roles", runtime.ParamLocationQuery, *params.ProjectRoles); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_uuid", runtime.ParamLocationQuery, *params.ProjectUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "query", runtime.ParamLocationQuery, *params.Query); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.RegistrationMethod != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "registration_method", runtime.ParamLocationQuery, *params.RegistrationMethod); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UserKeyword != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_keyword", runtime.ParamLocationQuery, *params.UserKeyword); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Username != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "username", runtime.ParamLocationQuery, *params.Username); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UsernameList != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "username_list", runtime.ParamLocationQuery, *params.UsernameList); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewUsersUserLanguageCountCountRequest generates requests for UsersUserLanguageCountCount
+func NewUsersUserLanguageCountCountRequest(server string, params *UsersUserLanguageCountCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/users/user_language_count/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.AgreementDate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "agreement_date", runtime.ParamLocationQuery, *params.AgreementDate); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CivilNumber != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "civil_number", runtime.ParamLocationQuery, *params.CivilNumber); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer_uuid", runtime.ParamLocationQuery, *params.CustomerUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.DateJoined != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "date_joined", runtime.ParamLocationQuery, *params.DateJoined); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Description != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "description", runtime.ParamLocationQuery, *params.Description); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Email != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "email", runtime.ParamLocationQuery, *params.Email); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.FullName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "full_name", runtime.ParamLocationQuery, *params.FullName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsActive != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_active", runtime.ParamLocationQuery, *params.IsActive); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsStaff != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_staff", runtime.ParamLocationQuery, *params.IsStaff); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsSupport != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_support", runtime.ParamLocationQuery, *params.IsSupport); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.JobTitle != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "job_title", runtime.ParamLocationQuery, *params.JobTitle); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Modified != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "modified", runtime.ParamLocationQuery, *params.Modified); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.NativeName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "native_name", runtime.ParamLocationQuery, *params.NativeName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Organization != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "organization", runtime.ParamLocationQuery, *params.Organization); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OrganizationRoles != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "organization_roles", runtime.ParamLocationQuery, *params.OrganizationRoles); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PhoneNumber != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "phone_number", runtime.ParamLocationQuery, *params.PhoneNumber); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectRoles != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_roles", runtime.ParamLocationQuery, *params.ProjectRoles); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_uuid", runtime.ParamLocationQuery, *params.ProjectUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "query", runtime.ParamLocationQuery, *params.Query); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.RegistrationMethod != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "registration_method", runtime.ParamLocationQuery, *params.RegistrationMethod); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UserKeyword != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_keyword", runtime.ParamLocationQuery, *params.UserKeyword); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Username != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "username", runtime.ParamLocationQuery, *params.Username); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UsernameList != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "username_list", runtime.ParamLocationQuery, *params.UsernameList); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewUsersUserRegistrationTrendListRequest generates requests for UsersUserRegistrationTrendList
+func NewUsersUserRegistrationTrendListRequest(server string, params *UsersUserRegistrationTrendListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/users/user_registration_trend/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.AgreementDate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "agreement_date", runtime.ParamLocationQuery, *params.AgreementDate); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CivilNumber != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "civil_number", runtime.ParamLocationQuery, *params.CivilNumber); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer_uuid", runtime.ParamLocationQuery, *params.CustomerUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.DateJoined != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "date_joined", runtime.ParamLocationQuery, *params.DateJoined); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Description != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "description", runtime.ParamLocationQuery, *params.Description); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Email != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "email", runtime.ParamLocationQuery, *params.Email); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.FullName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "full_name", runtime.ParamLocationQuery, *params.FullName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsActive != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_active", runtime.ParamLocationQuery, *params.IsActive); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsStaff != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_staff", runtime.ParamLocationQuery, *params.IsStaff); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsSupport != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_support", runtime.ParamLocationQuery, *params.IsSupport); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.JobTitle != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "job_title", runtime.ParamLocationQuery, *params.JobTitle); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Modified != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "modified", runtime.ParamLocationQuery, *params.Modified); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.NativeName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "native_name", runtime.ParamLocationQuery, *params.NativeName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Organization != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "organization", runtime.ParamLocationQuery, *params.Organization); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OrganizationRoles != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "organization_roles", runtime.ParamLocationQuery, *params.OrganizationRoles); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PhoneNumber != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "phone_number", runtime.ParamLocationQuery, *params.PhoneNumber); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectRoles != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_roles", runtime.ParamLocationQuery, *params.ProjectRoles); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_uuid", runtime.ParamLocationQuery, *params.ProjectUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "query", runtime.ParamLocationQuery, *params.Query); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.RegistrationMethod != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "registration_method", runtime.ParamLocationQuery, *params.RegistrationMethod); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UserKeyword != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_keyword", runtime.ParamLocationQuery, *params.UserKeyword); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Username != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "username", runtime.ParamLocationQuery, *params.Username); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UsernameList != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "username_list", runtime.ParamLocationQuery, *params.UsernameList); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewUsersUserRegistrationTrendCountRequest generates requests for UsersUserRegistrationTrendCount
+func NewUsersUserRegistrationTrendCountRequest(server string, params *UsersUserRegistrationTrendCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/users/user_registration_trend/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.AgreementDate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "agreement_date", runtime.ParamLocationQuery, *params.AgreementDate); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CivilNumber != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "civil_number", runtime.ParamLocationQuery, *params.CivilNumber); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer_uuid", runtime.ParamLocationQuery, *params.CustomerUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.DateJoined != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "date_joined", runtime.ParamLocationQuery, *params.DateJoined); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Description != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "description", runtime.ParamLocationQuery, *params.Description); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Email != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "email", runtime.ParamLocationQuery, *params.Email); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.FullName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "full_name", runtime.ParamLocationQuery, *params.FullName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsActive != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_active", runtime.ParamLocationQuery, *params.IsActive); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsStaff != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_staff", runtime.ParamLocationQuery, *params.IsStaff); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsSupport != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_support", runtime.ParamLocationQuery, *params.IsSupport); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.JobTitle != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "job_title", runtime.ParamLocationQuery, *params.JobTitle); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Modified != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "modified", runtime.ParamLocationQuery, *params.Modified); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.NativeName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "native_name", runtime.ParamLocationQuery, *params.NativeName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Organization != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "organization", runtime.ParamLocationQuery, *params.Organization); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OrganizationRoles != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "organization_roles", runtime.ParamLocationQuery, *params.OrganizationRoles); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PhoneNumber != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "phone_number", runtime.ParamLocationQuery, *params.PhoneNumber); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectRoles != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_roles", runtime.ParamLocationQuery, *params.ProjectRoles); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_uuid", runtime.ParamLocationQuery, *params.ProjectUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "query", runtime.ParamLocationQuery, *params.Query); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.RegistrationMethod != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "registration_method", runtime.ParamLocationQuery, *params.RegistrationMethod); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UserKeyword != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_keyword", runtime.ParamLocationQuery, *params.UserKeyword); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Username != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "username", runtime.ParamLocationQuery, *params.Username); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.UsernameList != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "username_list", runtime.ParamLocationQuery, *params.UsernameList); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewUsersDestroyRequest generates requests for UsersDestroy
 func NewUsersDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -280942,6 +284374,24 @@ type ClientWithResponsesInterface interface {
 
 	// UsersMeCountWithResponse request
 	UsersMeCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*UsersMeCountResponse, error)
+
+	// UsersUserActiveStatusCountListWithResponse request
+	UsersUserActiveStatusCountListWithResponse(ctx context.Context, params *UsersUserActiveStatusCountListParams, reqEditors ...RequestEditorFn) (*UsersUserActiveStatusCountListResponse, error)
+
+	// UsersUserActiveStatusCountCountWithResponse request
+	UsersUserActiveStatusCountCountWithResponse(ctx context.Context, params *UsersUserActiveStatusCountCountParams, reqEditors ...RequestEditorFn) (*UsersUserActiveStatusCountCountResponse, error)
+
+	// UsersUserLanguageCountListWithResponse request
+	UsersUserLanguageCountListWithResponse(ctx context.Context, params *UsersUserLanguageCountListParams, reqEditors ...RequestEditorFn) (*UsersUserLanguageCountListResponse, error)
+
+	// UsersUserLanguageCountCountWithResponse request
+	UsersUserLanguageCountCountWithResponse(ctx context.Context, params *UsersUserLanguageCountCountParams, reqEditors ...RequestEditorFn) (*UsersUserLanguageCountCountResponse, error)
+
+	// UsersUserRegistrationTrendListWithResponse request
+	UsersUserRegistrationTrendListWithResponse(ctx context.Context, params *UsersUserRegistrationTrendListParams, reqEditors ...RequestEditorFn) (*UsersUserRegistrationTrendListResponse, error)
+
+	// UsersUserRegistrationTrendCountWithResponse request
+	UsersUserRegistrationTrendCountWithResponse(ctx context.Context, params *UsersUserRegistrationTrendCountParams, reqEditors ...RequestEditorFn) (*UsersUserRegistrationTrendCountResponse, error)
 
 	// UsersDestroyWithResponse request
 	UsersDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*UsersDestroyResponse, error)
@@ -324000,6 +327450,135 @@ func (r UsersMeCountResponse) StatusCode() int {
 	return 0
 }
 
+type UsersUserActiveStatusCountListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]UserActiveStatusCount
+}
+
+// Status returns HTTPResponse.Status
+func (r UsersUserActiveStatusCountListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r UsersUserActiveStatusCountListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type UsersUserActiveStatusCountCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r UsersUserActiveStatusCountCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r UsersUserActiveStatusCountCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type UsersUserLanguageCountListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]UserLanguageCount
+}
+
+// Status returns HTTPResponse.Status
+func (r UsersUserLanguageCountListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r UsersUserLanguageCountListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type UsersUserLanguageCountCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r UsersUserLanguageCountCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r UsersUserLanguageCountCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type UsersUserRegistrationTrendListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]UserRegistrationTrend
+}
+
+// Status returns HTTPResponse.Status
+func (r UsersUserRegistrationTrendListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r UsersUserRegistrationTrendListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type UsersUserRegistrationTrendCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r UsersUserRegistrationTrendCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r UsersUserRegistrationTrendCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type UsersDestroyResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -348734,6 +352313,60 @@ func (c *ClientWithResponses) UsersMeCountWithResponse(ctx context.Context, reqE
 		return nil, err
 	}
 	return ParseUsersMeCountResponse(rsp)
+}
+
+// UsersUserActiveStatusCountListWithResponse request returning *UsersUserActiveStatusCountListResponse
+func (c *ClientWithResponses) UsersUserActiveStatusCountListWithResponse(ctx context.Context, params *UsersUserActiveStatusCountListParams, reqEditors ...RequestEditorFn) (*UsersUserActiveStatusCountListResponse, error) {
+	rsp, err := c.UsersUserActiveStatusCountList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUsersUserActiveStatusCountListResponse(rsp)
+}
+
+// UsersUserActiveStatusCountCountWithResponse request returning *UsersUserActiveStatusCountCountResponse
+func (c *ClientWithResponses) UsersUserActiveStatusCountCountWithResponse(ctx context.Context, params *UsersUserActiveStatusCountCountParams, reqEditors ...RequestEditorFn) (*UsersUserActiveStatusCountCountResponse, error) {
+	rsp, err := c.UsersUserActiveStatusCountCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUsersUserActiveStatusCountCountResponse(rsp)
+}
+
+// UsersUserLanguageCountListWithResponse request returning *UsersUserLanguageCountListResponse
+func (c *ClientWithResponses) UsersUserLanguageCountListWithResponse(ctx context.Context, params *UsersUserLanguageCountListParams, reqEditors ...RequestEditorFn) (*UsersUserLanguageCountListResponse, error) {
+	rsp, err := c.UsersUserLanguageCountList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUsersUserLanguageCountListResponse(rsp)
+}
+
+// UsersUserLanguageCountCountWithResponse request returning *UsersUserLanguageCountCountResponse
+func (c *ClientWithResponses) UsersUserLanguageCountCountWithResponse(ctx context.Context, params *UsersUserLanguageCountCountParams, reqEditors ...RequestEditorFn) (*UsersUserLanguageCountCountResponse, error) {
+	rsp, err := c.UsersUserLanguageCountCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUsersUserLanguageCountCountResponse(rsp)
+}
+
+// UsersUserRegistrationTrendListWithResponse request returning *UsersUserRegistrationTrendListResponse
+func (c *ClientWithResponses) UsersUserRegistrationTrendListWithResponse(ctx context.Context, params *UsersUserRegistrationTrendListParams, reqEditors ...RequestEditorFn) (*UsersUserRegistrationTrendListResponse, error) {
+	rsp, err := c.UsersUserRegistrationTrendList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUsersUserRegistrationTrendListResponse(rsp)
+}
+
+// UsersUserRegistrationTrendCountWithResponse request returning *UsersUserRegistrationTrendCountResponse
+func (c *ClientWithResponses) UsersUserRegistrationTrendCountWithResponse(ctx context.Context, params *UsersUserRegistrationTrendCountParams, reqEditors ...RequestEditorFn) (*UsersUserRegistrationTrendCountResponse, error) {
+	rsp, err := c.UsersUserRegistrationTrendCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUsersUserRegistrationTrendCountResponse(rsp)
 }
 
 // UsersDestroyWithResponse request returning *UsersDestroyResponse
@@ -394299,6 +397932,132 @@ func ParseUsersMeCountResponse(rsp *http.Response) (*UsersMeCountResponse, error
 	}
 
 	response := &UsersMeCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseUsersUserActiveStatusCountListResponse parses an HTTP response from a UsersUserActiveStatusCountListWithResponse call
+func ParseUsersUserActiveStatusCountListResponse(rsp *http.Response) (*UsersUserActiveStatusCountListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &UsersUserActiveStatusCountListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []UserActiveStatusCount
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseUsersUserActiveStatusCountCountResponse parses an HTTP response from a UsersUserActiveStatusCountCountWithResponse call
+func ParseUsersUserActiveStatusCountCountResponse(rsp *http.Response) (*UsersUserActiveStatusCountCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &UsersUserActiveStatusCountCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseUsersUserLanguageCountListResponse parses an HTTP response from a UsersUserLanguageCountListWithResponse call
+func ParseUsersUserLanguageCountListResponse(rsp *http.Response) (*UsersUserLanguageCountListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &UsersUserLanguageCountListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []UserLanguageCount
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseUsersUserLanguageCountCountResponse parses an HTTP response from a UsersUserLanguageCountCountWithResponse call
+func ParseUsersUserLanguageCountCountResponse(rsp *http.Response) (*UsersUserLanguageCountCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &UsersUserLanguageCountCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseUsersUserRegistrationTrendListResponse parses an HTTP response from a UsersUserRegistrationTrendListWithResponse call
+func ParseUsersUserRegistrationTrendListResponse(rsp *http.Response) (*UsersUserRegistrationTrendListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &UsersUserRegistrationTrendListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []UserRegistrationTrend
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseUsersUserRegistrationTrendCountResponse parses an HTTP response from a UsersUserRegistrationTrendCountWithResponse call
+func ParseUsersUserRegistrationTrendCountResponse(rsp *http.Response) (*UsersUserRegistrationTrendCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &UsersUserRegistrationTrendCountResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
