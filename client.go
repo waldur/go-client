@@ -4731,6 +4731,18 @@ const (
 	EmailLogsCountParamsOSubject      EmailLogsCountParamsO = "subject"
 )
 
+// Defines values for EventSubscriptionQueuesListParamsO.
+const (
+	EventSubscriptionQueuesListParamsOCreated      EventSubscriptionQueuesListParamsO = "created"
+	EventSubscriptionQueuesListParamsOMinusCreated EventSubscriptionQueuesListParamsO = "-created"
+)
+
+// Defines values for EventSubscriptionQueuesCountParamsO.
+const (
+	EventSubscriptionQueuesCountParamsOCreated      EventSubscriptionQueuesCountParamsO = "created"
+	EventSubscriptionQueuesCountParamsOMinusCreated EventSubscriptionQueuesCountParamsO = "-created"
+)
+
 // Defines values for EventSubscriptionsListParamsO.
 const (
 	EventSubscriptionsListParamsOCreated      EventSubscriptionsListParamsO = "created"
@@ -18932,15 +18944,13 @@ type EventSubscription_SourceIp struct {
 
 // EventSubscriptionQueue defines model for EventSubscriptionQueue.
 type EventSubscriptionQueue struct {
-	Created               *time.Time          `json:"created,omitempty"`
-	EventSubscription     *string             `json:"event_subscription,omitempty"`
-	EventSubscriptionUuid *openapi_types.UUID `json:"event_subscription_uuid,omitempty"`
+	Created               *time.Time `json:"created,omitempty"`
+	EventSubscription     *string    `json:"event_subscription,omitempty"`
+	EventSubscriptionUuid *string    `json:"event_subscription_uuid,omitempty"`
 
 	// ObjectType Observable object type (e.g., 'resource', 'order')
-	ObjectType string `json:"object_type"`
-
-	// OfferingUuid UUID of the offering this queue receives events for
-	OfferingUuid openapi_types.UUID  `json:"offering_uuid"`
+	ObjectType   string              `json:"object_type"`
+	OfferingUuid *string             `json:"offering_uuid,omitempty"`
 	QueueName    *string             `json:"queue_name,omitempty"`
 	Url          *string             `json:"url,omitempty"`
 	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
@@ -38433,6 +38443,46 @@ type EmailLogsCountParams struct {
 // EmailLogsCountParamsO defines parameters for EmailLogsCount.
 type EmailLogsCountParamsO string
 
+// EventSubscriptionQueuesListParams defines parameters for EventSubscriptionQueuesList.
+type EventSubscriptionQueuesListParams struct {
+	EventSubscriptionUuid *openapi_types.UUID `form:"event_subscription_uuid,omitempty" json:"event_subscription_uuid,omitempty"`
+
+	// O Ordering
+	//
+	O            *[]EventSubscriptionQueuesListParamsO `form:"o,omitempty" json:"o,omitempty"`
+	ObjectType   *string                               `form:"object_type,omitempty" json:"object_type,omitempty"`
+	OfferingUuid *openapi_types.UUID                   `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// EventSubscriptionQueuesListParamsO defines parameters for EventSubscriptionQueuesList.
+type EventSubscriptionQueuesListParamsO string
+
+// EventSubscriptionQueuesCountParams defines parameters for EventSubscriptionQueuesCount.
+type EventSubscriptionQueuesCountParams struct {
+	EventSubscriptionUuid *openapi_types.UUID `form:"event_subscription_uuid,omitempty" json:"event_subscription_uuid,omitempty"`
+
+	// O Ordering
+	//
+	O            *[]EventSubscriptionQueuesCountParamsO `form:"o,omitempty" json:"o,omitempty"`
+	ObjectType   *string                                `form:"object_type,omitempty" json:"object_type,omitempty"`
+	OfferingUuid *openapi_types.UUID                    `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// EventSubscriptionQueuesCountParamsO defines parameters for EventSubscriptionQueuesCount.
+type EventSubscriptionQueuesCountParamsO string
+
 // EventSubscriptionsListParams defines parameters for EventSubscriptionsList.
 type EventSubscriptionsListParams struct {
 	// O Ordering
@@ -55168,6 +55218,9 @@ type DigitaloceanDropletsResizeJSONRequestBody = DigitalOceanDropletResizeReques
 // EventSubscriptionsCreateJSONRequestBody defines body for EventSubscriptionsCreate for application/json ContentType.
 type EventSubscriptionsCreateJSONRequestBody = EventSubscriptionRequest
 
+// EventSubscriptionsCreateQueueJSONRequestBody defines body for EventSubscriptionsCreateQueue for application/json ContentType.
+type EventSubscriptionsCreateQueueJSONRequestBody = EventSubscriptionQueueCreateRequest
+
 // ExternalLinksCreateJSONRequestBody defines body for ExternalLinksCreate for application/json ContentType.
 type ExternalLinksCreateJSONRequestBody = ExternalLinkRequest
 
@@ -55944,9 +55997,6 @@ type MarketplaceSiteAgentIdentitiesCleanupOrphanedJSONRequestBody = CleanupReque
 
 // MarketplaceSiteAgentIdentitiesUpdateJSONRequestBody defines body for MarketplaceSiteAgentIdentitiesUpdate for application/json ContentType.
 type MarketplaceSiteAgentIdentitiesUpdateJSONRequestBody = AgentIdentityRequest
-
-// MarketplaceSiteAgentIdentitiesCreateQueueJSONRequestBody defines body for MarketplaceSiteAgentIdentitiesCreateQueue for application/json ContentType.
-type MarketplaceSiteAgentIdentitiesCreateQueueJSONRequestBody = EventSubscriptionQueueCreateRequest
 
 // MarketplaceSiteAgentIdentitiesRegisterEventSubscriptionJSONRequestBody defines body for MarketplaceSiteAgentIdentitiesRegisterEventSubscription for application/json ContentType.
 type MarketplaceSiteAgentIdentitiesRegisterEventSubscriptionJSONRequestBody = AgentEventSubscriptionCreateRequest
@@ -65348,6 +65398,18 @@ type ClientInterface interface {
 	// EmailLogsRetrieve request
 	EmailLogsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// EventSubscriptionQueuesList request
+	EventSubscriptionQueuesList(ctx context.Context, params *EventSubscriptionQueuesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// EventSubscriptionQueuesCount request
+	EventSubscriptionQueuesCount(ctx context.Context, params *EventSubscriptionQueuesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// EventSubscriptionQueuesDestroy request
+	EventSubscriptionQueuesDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// EventSubscriptionQueuesRetrieve request
+	EventSubscriptionQueuesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// EventSubscriptionsList request
 	EventSubscriptionsList(ctx context.Context, params *EventSubscriptionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -65364,6 +65426,11 @@ type ClientInterface interface {
 
 	// EventSubscriptionsRetrieve request
 	EventSubscriptionsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// EventSubscriptionsCreateQueueWithBody request with any body
+	EventSubscriptionsCreateQueueWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	EventSubscriptionsCreateQueue(ctx context.Context, uuid openapi_types.UUID, body EventSubscriptionsCreateQueueJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// EventsStatsList request
 	EventsStatsList(ctx context.Context, params *EventsStatsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -67640,11 +67707,6 @@ type ClientInterface interface {
 	MarketplaceSiteAgentIdentitiesUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	MarketplaceSiteAgentIdentitiesUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSiteAgentIdentitiesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// MarketplaceSiteAgentIdentitiesCreateQueueWithBody request with any body
-	MarketplaceSiteAgentIdentitiesCreateQueueWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	MarketplaceSiteAgentIdentitiesCreateQueue(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSiteAgentIdentitiesCreateQueueJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceSiteAgentIdentitiesRegisterEventSubscriptionWithBody request with any body
 	MarketplaceSiteAgentIdentitiesRegisterEventSubscriptionWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -77324,6 +77386,54 @@ func (c *Client) EmailLogsRetrieve(ctx context.Context, uuid openapi_types.UUID,
 	return c.Client.Do(req)
 }
 
+func (c *Client) EventSubscriptionQueuesList(ctx context.Context, params *EventSubscriptionQueuesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewEventSubscriptionQueuesListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) EventSubscriptionQueuesCount(ctx context.Context, params *EventSubscriptionQueuesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewEventSubscriptionQueuesCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) EventSubscriptionQueuesDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewEventSubscriptionQueuesDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) EventSubscriptionQueuesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewEventSubscriptionQueuesRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) EventSubscriptionsList(ctx context.Context, params *EventSubscriptionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewEventSubscriptionsListRequest(c.Server, params)
 	if err != nil {
@@ -77386,6 +77496,30 @@ func (c *Client) EventSubscriptionsDestroy(ctx context.Context, uuid openapi_typ
 
 func (c *Client) EventSubscriptionsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewEventSubscriptionsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) EventSubscriptionsCreateQueueWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewEventSubscriptionsCreateQueueRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) EventSubscriptionsCreateQueue(ctx context.Context, uuid openapi_types.UUID, body EventSubscriptionsCreateQueueJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewEventSubscriptionsCreateQueueRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -87442,30 +87576,6 @@ func (c *Client) MarketplaceSiteAgentIdentitiesUpdateWithBody(ctx context.Contex
 
 func (c *Client) MarketplaceSiteAgentIdentitiesUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSiteAgentIdentitiesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceSiteAgentIdentitiesUpdateRequest(c.Server, uuid, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceSiteAgentIdentitiesCreateQueueWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceSiteAgentIdentitiesCreateQueueRequestWithBody(c.Server, uuid, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) MarketplaceSiteAgentIdentitiesCreateQueue(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSiteAgentIdentitiesCreateQueueJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewMarketplaceSiteAgentIdentitiesCreateQueueRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -133798,6 +133908,332 @@ func NewEmailLogsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.
 	return req, nil
 }
 
+// NewEventSubscriptionQueuesListRequest generates requests for EventSubscriptionQueuesList
+func NewEventSubscriptionQueuesListRequest(server string, params *EventSubscriptionQueuesListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/event-subscription-queues/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.EventSubscriptionUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "event_subscription_uuid", runtime.ParamLocationQuery, *params.EventSubscriptionUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ObjectType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "object_type", runtime.ParamLocationQuery, *params.ObjectType); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewEventSubscriptionQueuesCountRequest generates requests for EventSubscriptionQueuesCount
+func NewEventSubscriptionQueuesCountRequest(server string, params *EventSubscriptionQueuesCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/event-subscription-queues/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.EventSubscriptionUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "event_subscription_uuid", runtime.ParamLocationQuery, *params.EventSubscriptionUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", false, "o", runtime.ParamLocationQuery, *params.O); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ObjectType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "object_type", runtime.ParamLocationQuery, *params.ObjectType); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewEventSubscriptionQueuesDestroyRequest generates requests for EventSubscriptionQueuesDestroy
+func NewEventSubscriptionQueuesDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/event-subscription-queues/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewEventSubscriptionQueuesRetrieveRequest generates requests for EventSubscriptionQueuesRetrieve
+func NewEventSubscriptionQueuesRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/event-subscription-queues/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewEventSubscriptionsListRequest generates requests for EventSubscriptionsList
 func NewEventSubscriptionsListRequest(server string, params *EventSubscriptionsListParams) (*http.Request, error) {
 	var err error
@@ -134128,6 +134564,53 @@ func NewEventSubscriptionsRetrieveRequest(server string, uuid openapi_types.UUID
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewEventSubscriptionsCreateQueueRequest calls the generic EventSubscriptionsCreateQueue builder with application/json body
+func NewEventSubscriptionsCreateQueueRequest(server string, uuid openapi_types.UUID, body EventSubscriptionsCreateQueueJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewEventSubscriptionsCreateQueueRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewEventSubscriptionsCreateQueueRequestWithBody generates requests for EventSubscriptionsCreateQueue with any type of body
+func NewEventSubscriptionsCreateQueueRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/event-subscriptions/%s/create_queue/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -187647,53 +188130,6 @@ func NewMarketplaceSiteAgentIdentitiesUpdateRequestWithBody(server string, uuid 
 	}
 
 	req, err := http.NewRequest("PUT", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewMarketplaceSiteAgentIdentitiesCreateQueueRequest calls the generic MarketplaceSiteAgentIdentitiesCreateQueue builder with application/json body
-func NewMarketplaceSiteAgentIdentitiesCreateQueueRequest(server string, uuid openapi_types.UUID, body MarketplaceSiteAgentIdentitiesCreateQueueJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewMarketplaceSiteAgentIdentitiesCreateQueueRequestWithBody(server, uuid, "application/json", bodyReader)
-}
-
-// NewMarketplaceSiteAgentIdentitiesCreateQueueRequestWithBody generates requests for MarketplaceSiteAgentIdentitiesCreateQueue with any type of body
-func NewMarketplaceSiteAgentIdentitiesCreateQueueRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/marketplace-site-agent-identities/%s/create_queue/", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("POST", queryURL.String(), body)
 	if err != nil {
 		return nil, err
 	}
@@ -279788,6 +280224,18 @@ type ClientWithResponsesInterface interface {
 	// EmailLogsRetrieveWithResponse request
 	EmailLogsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*EmailLogsRetrieveResponse, error)
 
+	// EventSubscriptionQueuesListWithResponse request
+	EventSubscriptionQueuesListWithResponse(ctx context.Context, params *EventSubscriptionQueuesListParams, reqEditors ...RequestEditorFn) (*EventSubscriptionQueuesListResponse, error)
+
+	// EventSubscriptionQueuesCountWithResponse request
+	EventSubscriptionQueuesCountWithResponse(ctx context.Context, params *EventSubscriptionQueuesCountParams, reqEditors ...RequestEditorFn) (*EventSubscriptionQueuesCountResponse, error)
+
+	// EventSubscriptionQueuesDestroyWithResponse request
+	EventSubscriptionQueuesDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*EventSubscriptionQueuesDestroyResponse, error)
+
+	// EventSubscriptionQueuesRetrieveWithResponse request
+	EventSubscriptionQueuesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*EventSubscriptionQueuesRetrieveResponse, error)
+
 	// EventSubscriptionsListWithResponse request
 	EventSubscriptionsListWithResponse(ctx context.Context, params *EventSubscriptionsListParams, reqEditors ...RequestEditorFn) (*EventSubscriptionsListResponse, error)
 
@@ -279804,6 +280252,11 @@ type ClientWithResponsesInterface interface {
 
 	// EventSubscriptionsRetrieveWithResponse request
 	EventSubscriptionsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*EventSubscriptionsRetrieveResponse, error)
+
+	// EventSubscriptionsCreateQueueWithBodyWithResponse request with any body
+	EventSubscriptionsCreateQueueWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*EventSubscriptionsCreateQueueResponse, error)
+
+	EventSubscriptionsCreateQueueWithResponse(ctx context.Context, uuid openapi_types.UUID, body EventSubscriptionsCreateQueueJSONRequestBody, reqEditors ...RequestEditorFn) (*EventSubscriptionsCreateQueueResponse, error)
 
 	// EventsStatsListWithResponse request
 	EventsStatsListWithResponse(ctx context.Context, params *EventsStatsListParams, reqEditors ...RequestEditorFn) (*EventsStatsListResponse, error)
@@ -282080,11 +282533,6 @@ type ClientWithResponsesInterface interface {
 	MarketplaceSiteAgentIdentitiesUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentIdentitiesUpdateResponse, error)
 
 	MarketplaceSiteAgentIdentitiesUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSiteAgentIdentitiesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentIdentitiesUpdateResponse, error)
-
-	// MarketplaceSiteAgentIdentitiesCreateQueueWithBodyWithResponse request with any body
-	MarketplaceSiteAgentIdentitiesCreateQueueWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentIdentitiesCreateQueueResponse, error)
-
-	MarketplaceSiteAgentIdentitiesCreateQueueWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSiteAgentIdentitiesCreateQueueJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentIdentitiesCreateQueueResponse, error)
 
 	// MarketplaceSiteAgentIdentitiesRegisterEventSubscriptionWithBodyWithResponse request with any body
 	MarketplaceSiteAgentIdentitiesRegisterEventSubscriptionWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentIdentitiesRegisterEventSubscriptionResponse, error)
@@ -293843,6 +294291,92 @@ func (r EmailLogsRetrieveResponse) StatusCode() int {
 	return 0
 }
 
+type EventSubscriptionQueuesListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]EventSubscriptionQueue
+}
+
+// Status returns HTTPResponse.Status
+func (r EventSubscriptionQueuesListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r EventSubscriptionQueuesListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type EventSubscriptionQueuesCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r EventSubscriptionQueuesCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r EventSubscriptionQueuesCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type EventSubscriptionQueuesDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r EventSubscriptionQueuesDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r EventSubscriptionQueuesDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type EventSubscriptionQueuesRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *EventSubscriptionQueue
+}
+
+// Status returns HTTPResponse.Status
+func (r EventSubscriptionQueuesRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r EventSubscriptionQueuesRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type EventSubscriptionsListResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -293945,6 +294479,29 @@ func (r EventSubscriptionsRetrieveResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r EventSubscriptionsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type EventSubscriptionsCreateQueueResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *EventSubscriptionQueue
+	JSON201      *EventSubscriptionQueue
+}
+
+// Status returns HTTPResponse.Status
+func (r EventSubscriptionsCreateQueueResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r EventSubscriptionsCreateQueueResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -306997,29 +307554,6 @@ func (r MarketplaceSiteAgentIdentitiesUpdateResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceSiteAgentIdentitiesUpdateResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type MarketplaceSiteAgentIdentitiesCreateQueueResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *EventSubscriptionQueue
-	JSON201      *EventSubscriptionQueue
-}
-
-// Status returns HTTPResponse.Status
-func (r MarketplaceSiteAgentIdentitiesCreateQueueResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r MarketplaceSiteAgentIdentitiesCreateQueueResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -334856,6 +335390,42 @@ func (c *ClientWithResponses) EmailLogsRetrieveWithResponse(ctx context.Context,
 	return ParseEmailLogsRetrieveResponse(rsp)
 }
 
+// EventSubscriptionQueuesListWithResponse request returning *EventSubscriptionQueuesListResponse
+func (c *ClientWithResponses) EventSubscriptionQueuesListWithResponse(ctx context.Context, params *EventSubscriptionQueuesListParams, reqEditors ...RequestEditorFn) (*EventSubscriptionQueuesListResponse, error) {
+	rsp, err := c.EventSubscriptionQueuesList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseEventSubscriptionQueuesListResponse(rsp)
+}
+
+// EventSubscriptionQueuesCountWithResponse request returning *EventSubscriptionQueuesCountResponse
+func (c *ClientWithResponses) EventSubscriptionQueuesCountWithResponse(ctx context.Context, params *EventSubscriptionQueuesCountParams, reqEditors ...RequestEditorFn) (*EventSubscriptionQueuesCountResponse, error) {
+	rsp, err := c.EventSubscriptionQueuesCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseEventSubscriptionQueuesCountResponse(rsp)
+}
+
+// EventSubscriptionQueuesDestroyWithResponse request returning *EventSubscriptionQueuesDestroyResponse
+func (c *ClientWithResponses) EventSubscriptionQueuesDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*EventSubscriptionQueuesDestroyResponse, error) {
+	rsp, err := c.EventSubscriptionQueuesDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseEventSubscriptionQueuesDestroyResponse(rsp)
+}
+
+// EventSubscriptionQueuesRetrieveWithResponse request returning *EventSubscriptionQueuesRetrieveResponse
+func (c *ClientWithResponses) EventSubscriptionQueuesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*EventSubscriptionQueuesRetrieveResponse, error) {
+	rsp, err := c.EventSubscriptionQueuesRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseEventSubscriptionQueuesRetrieveResponse(rsp)
+}
+
 // EventSubscriptionsListWithResponse request returning *EventSubscriptionsListResponse
 func (c *ClientWithResponses) EventSubscriptionsListWithResponse(ctx context.Context, params *EventSubscriptionsListParams, reqEditors ...RequestEditorFn) (*EventSubscriptionsListResponse, error) {
 	rsp, err := c.EventSubscriptionsList(ctx, params, reqEditors...)
@@ -334907,6 +335477,23 @@ func (c *ClientWithResponses) EventSubscriptionsRetrieveWithResponse(ctx context
 		return nil, err
 	}
 	return ParseEventSubscriptionsRetrieveResponse(rsp)
+}
+
+// EventSubscriptionsCreateQueueWithBodyWithResponse request with arbitrary body returning *EventSubscriptionsCreateQueueResponse
+func (c *ClientWithResponses) EventSubscriptionsCreateQueueWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*EventSubscriptionsCreateQueueResponse, error) {
+	rsp, err := c.EventSubscriptionsCreateQueueWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseEventSubscriptionsCreateQueueResponse(rsp)
+}
+
+func (c *ClientWithResponses) EventSubscriptionsCreateQueueWithResponse(ctx context.Context, uuid openapi_types.UUID, body EventSubscriptionsCreateQueueJSONRequestBody, reqEditors ...RequestEditorFn) (*EventSubscriptionsCreateQueueResponse, error) {
+	rsp, err := c.EventSubscriptionsCreateQueue(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseEventSubscriptionsCreateQueueResponse(rsp)
 }
 
 // EventsStatsListWithResponse request returning *EventsStatsListResponse
@@ -342211,23 +342798,6 @@ func (c *ClientWithResponses) MarketplaceSiteAgentIdentitiesUpdateWithResponse(c
 		return nil, err
 	}
 	return ParseMarketplaceSiteAgentIdentitiesUpdateResponse(rsp)
-}
-
-// MarketplaceSiteAgentIdentitiesCreateQueueWithBodyWithResponse request with arbitrary body returning *MarketplaceSiteAgentIdentitiesCreateQueueResponse
-func (c *ClientWithResponses) MarketplaceSiteAgentIdentitiesCreateQueueWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentIdentitiesCreateQueueResponse, error) {
-	rsp, err := c.MarketplaceSiteAgentIdentitiesCreateQueueWithBody(ctx, uuid, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceSiteAgentIdentitiesCreateQueueResponse(rsp)
-}
-
-func (c *ClientWithResponses) MarketplaceSiteAgentIdentitiesCreateQueueWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSiteAgentIdentitiesCreateQueueJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentIdentitiesCreateQueueResponse, error) {
-	rsp, err := c.MarketplaceSiteAgentIdentitiesCreateQueue(ctx, uuid, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseMarketplaceSiteAgentIdentitiesCreateQueueResponse(rsp)
 }
 
 // MarketplaceSiteAgentIdentitiesRegisterEventSubscriptionWithBodyWithResponse request with arbitrary body returning *MarketplaceSiteAgentIdentitiesRegisterEventSubscriptionResponse
@@ -363112,6 +363682,90 @@ func ParseEmailLogsRetrieveResponse(rsp *http.Response) (*EmailLogsRetrieveRespo
 	return response, nil
 }
 
+// ParseEventSubscriptionQueuesListResponse parses an HTTP response from a EventSubscriptionQueuesListWithResponse call
+func ParseEventSubscriptionQueuesListResponse(rsp *http.Response) (*EventSubscriptionQueuesListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &EventSubscriptionQueuesListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []EventSubscriptionQueue
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseEventSubscriptionQueuesCountResponse parses an HTTP response from a EventSubscriptionQueuesCountWithResponse call
+func ParseEventSubscriptionQueuesCountResponse(rsp *http.Response) (*EventSubscriptionQueuesCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &EventSubscriptionQueuesCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseEventSubscriptionQueuesDestroyResponse parses an HTTP response from a EventSubscriptionQueuesDestroyWithResponse call
+func ParseEventSubscriptionQueuesDestroyResponse(rsp *http.Response) (*EventSubscriptionQueuesDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &EventSubscriptionQueuesDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseEventSubscriptionQueuesRetrieveResponse parses an HTTP response from a EventSubscriptionQueuesRetrieveWithResponse call
+func ParseEventSubscriptionQueuesRetrieveResponse(rsp *http.Response) (*EventSubscriptionQueuesRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &EventSubscriptionQueuesRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest EventSubscriptionQueue
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseEventSubscriptionsListResponse parses an HTTP response from a EventSubscriptionsListWithResponse call
 func ParseEventSubscriptionsListResponse(rsp *http.Response) (*EventSubscriptionsListResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -363216,6 +363870,39 @@ func ParseEventSubscriptionsRetrieveResponse(rsp *http.Response) (*EventSubscrip
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseEventSubscriptionsCreateQueueResponse parses an HTTP response from a EventSubscriptionsCreateQueueWithResponse call
+func ParseEventSubscriptionsCreateQueueResponse(rsp *http.Response) (*EventSubscriptionsCreateQueueResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &EventSubscriptionsCreateQueueResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest EventSubscriptionQueue
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest EventSubscriptionQueue
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
 
 	}
 
@@ -376979,39 +377666,6 @@ func ParseMarketplaceSiteAgentIdentitiesUpdateResponse(rsp *http.Response) (*Mar
 			return nil, err
 		}
 		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseMarketplaceSiteAgentIdentitiesCreateQueueResponse parses an HTTP response from a MarketplaceSiteAgentIdentitiesCreateQueueWithResponse call
-func ParseMarketplaceSiteAgentIdentitiesCreateQueueResponse(rsp *http.Response) (*MarketplaceSiteAgentIdentitiesCreateQueueResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &MarketplaceSiteAgentIdentitiesCreateQueueResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest EventSubscriptionQueue
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest EventSubscriptionQueue
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON201 = &dest
 
 	}
 
