@@ -18688,6 +18688,33 @@ type DiscoverCustomFieldsRequestRequest struct {
 	VerifySsl     *bool   `json:"verify_ssl,omitempty"`
 }
 
+// DiscoverMetadataRequestRequest defines model for DiscoverMetadataRequestRequest.
+type DiscoverMetadataRequestRequest struct {
+	// DiscoveryUrl OIDC discovery URL (e.g., https://idp.example.com/.well-known/openid-configuration)
+	DiscoveryUrl string `json:"discovery_url"`
+
+	// VerifySsl Whether to verify SSL certificate
+	VerifySsl *bool `json:"verify_ssl,omitempty"`
+}
+
+// DiscoverMetadataResponse defines model for DiscoverMetadataResponse.
+type DiscoverMetadataResponse struct {
+	// ClaimsSupported List of claims supported by the OIDC provider
+	ClaimsSupported []string `json:"claims_supported"`
+
+	// Endpoints OIDC endpoints (authorization, token, userinfo, logout)
+	Endpoints map[string]string `json:"endpoints"`
+
+	// ScopesSupported List of scopes supported by the OIDC provider
+	ScopesSupported []string `json:"scopes_supported"`
+
+	// SuggestedScopes Recommended scopes to request based on claim mappings
+	SuggestedScopes []string `json:"suggested_scopes"`
+
+	// WaldurFields Waldur User fields with suggested OIDC claim mappings
+	WaldurFields []WaldurFieldSuggestion `json:"waldur_fields"`
+}
+
 // DiscoverPrioritiesRequestRequest defines model for DiscoverPrioritiesRequestRequest.
 type DiscoverPrioritiesRequestRequest struct {
 	// ApiUrl Atlassian API URL (e.g., https://your-domain.atlassian.net)
@@ -18893,6 +18920,47 @@ type EventSubscriptionSourceIp1 = string
 // EventSubscription_SourceIp An IPv4 or IPv6 address.
 type EventSubscription_SourceIp struct {
 	union json.RawMessage
+}
+
+// EventSubscriptionQueue defines model for EventSubscriptionQueue.
+type EventSubscriptionQueue struct {
+	Created               *time.Time          `json:"created,omitempty"`
+	EventSubscription     *string             `json:"event_subscription,omitempty"`
+	EventSubscriptionUuid *openapi_types.UUID `json:"event_subscription_uuid,omitempty"`
+
+	// ObjectType Observable object type (e.g., 'resource', 'order')
+	ObjectType string `json:"object_type"`
+
+	// OfferingUuid UUID of the offering this queue receives events for
+	OfferingUuid openapi_types.UUID  `json:"offering_uuid"`
+	QueueName    *string             `json:"queue_name,omitempty"`
+	Url          *string             `json:"url,omitempty"`
+	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
+	Vhost        *string             `json:"vhost,omitempty"`
+}
+
+// EventSubscriptionQueueCreateRequest defines model for EventSubscriptionQueueCreateRequest.
+type EventSubscriptionQueueCreateRequest struct {
+	// ObjectType Type of observable object (e.g., 'resource', 'order')
+	ObjectType ObservableObjectTypeEnum `json:"object_type"`
+
+	// OfferingUuid UUID of the offering to receive events for
+	OfferingUuid openapi_types.UUID `json:"offering_uuid"`
+}
+
+// EventSubscriptionQueuesOverview defines model for EventSubscriptionQueuesOverview.
+type EventSubscriptionQueuesOverview struct {
+	// TopQueuesByMessages Top 10 queues by message count
+	TopQueuesByMessages *[]TopQueue `json:"top_queues_by_messages,omitempty"`
+
+	// TotalMessages Total messages across all subscription queues
+	TotalMessages *int `json:"total_messages,omitempty"`
+
+	// TotalQueues Total number of subscription queues
+	TotalQueues *int `json:"total_queues,omitempty"`
+
+	// TotalVhosts Total number of vhosts with subscription queues
+	TotalVhosts *int `json:"total_vhosts,omitempty"`
 }
 
 // EventSubscriptionRequest defines model for EventSubscriptionRequest.
@@ -33631,21 +33699,6 @@ type SubresourceOffering struct {
 	Uuid *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
-// SubscriptionQueuesOverview defines model for SubscriptionQueuesOverview.
-type SubscriptionQueuesOverview struct {
-	// TopQueuesByMessages Top 10 queues by message count
-	TopQueuesByMessages *[]TopQueue `json:"top_queues_by_messages,omitempty"`
-
-	// TotalMessages Total messages across all subscription queues
-	TotalMessages *int `json:"total_messages,omitempty"`
-
-	// TotalQueues Total number of subscription queues
-	TotalQueues *int `json:"total_queues,omitempty"`
-
-	// TotalVhosts Total number of vhosts with subscription queues
-	TotalVhosts *int `json:"total_vhosts,omitempty"`
-}
-
 // SuggestAlternativeReviewers defines model for SuggestAlternativeReviewers.
 type SuggestAlternativeReviewers struct {
 	// Suggestions List of alternative reviewers with affinity scores
@@ -34964,6 +35017,21 @@ type VolumeTypeMapping struct {
 type VolumeTypeMappingRequest struct {
 	DstTypeUuid openapi_types.UUID `json:"dst_type_uuid"`
 	SrcTypeUuid openapi_types.UUID `json:"src_type_uuid"`
+}
+
+// WaldurFieldSuggestion defines model for WaldurFieldSuggestion.
+type WaldurFieldSuggestion struct {
+	// AvailableClaims Claims from this IdP that match the suggestions
+	AvailableClaims []string `json:"available_claims"`
+
+	// Description Human-readable field description
+	Description string `json:"description"`
+
+	// Field Waldur User model field name
+	Field string `json:"field"`
+
+	// SuggestedClaims OIDC claims that could map to this field, ordered by likelihood
+	SuggestedClaims []string `json:"suggested_claims"`
 }
 
 // WebHook defines model for WebHook.
@@ -55134,6 +55202,12 @@ type HooksWebUpdateJSONRequestBody = WebHookRequest
 // IdentityProvidersCreateJSONRequestBody defines body for IdentityProvidersCreate for application/json ContentType.
 type IdentityProvidersCreateJSONRequestBody = IdentityProviderRequest
 
+// IdentityProvidersDiscoverMetadataJSONRequestBody defines body for IdentityProvidersDiscoverMetadata for application/json ContentType.
+type IdentityProvidersDiscoverMetadataJSONRequestBody = DiscoverMetadataRequestRequest
+
+// IdentityProvidersGenerateMappingJSONRequestBody defines body for IdentityProvidersGenerateMapping for application/json ContentType.
+type IdentityProvidersGenerateMappingJSONRequestBody = DiscoverMetadataRequestRequest
+
 // IdentityProvidersPartialUpdateJSONRequestBody defines body for IdentityProvidersPartialUpdate for application/json ContentType.
 type IdentityProvidersPartialUpdateJSONRequestBody = PatchedIdentityProviderRequest
 
@@ -55847,6 +55921,9 @@ type MarketplaceSiteAgentIdentitiesCleanupOrphanedJSONRequestBody = CleanupReque
 
 // MarketplaceSiteAgentIdentitiesUpdateJSONRequestBody defines body for MarketplaceSiteAgentIdentitiesUpdate for application/json ContentType.
 type MarketplaceSiteAgentIdentitiesUpdateJSONRequestBody = AgentIdentityRequest
+
+// MarketplaceSiteAgentIdentitiesCreateQueueJSONRequestBody defines body for MarketplaceSiteAgentIdentitiesCreateQueue for application/json ContentType.
+type MarketplaceSiteAgentIdentitiesCreateQueueJSONRequestBody = EventSubscriptionQueueCreateRequest
 
 // MarketplaceSiteAgentIdentitiesRegisterEventSubscriptionJSONRequestBody defines body for MarketplaceSiteAgentIdentitiesRegisterEventSubscription for application/json ContentType.
 type MarketplaceSiteAgentIdentitiesRegisterEventSubscriptionJSONRequestBody = AgentEventSubscriptionCreateRequest
@@ -65468,6 +65545,16 @@ type ClientInterface interface {
 
 	IdentityProvidersCreate(ctx context.Context, body IdentityProvidersCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// IdentityProvidersDiscoverMetadataWithBody request with any body
+	IdentityProvidersDiscoverMetadataWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	IdentityProvidersDiscoverMetadata(ctx context.Context, body IdentityProvidersDiscoverMetadataJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// IdentityProvidersGenerateMappingWithBody request with any body
+	IdentityProvidersGenerateMappingWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	IdentityProvidersGenerateMapping(ctx context.Context, body IdentityProvidersGenerateMappingJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// IdentityProvidersDestroy request
 	IdentityProvidersDestroy(ctx context.Context, provider string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -67530,6 +67617,11 @@ type ClientInterface interface {
 	MarketplaceSiteAgentIdentitiesUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	MarketplaceSiteAgentIdentitiesUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSiteAgentIdentitiesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceSiteAgentIdentitiesCreateQueueWithBody request with any body
+	MarketplaceSiteAgentIdentitiesCreateQueueWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceSiteAgentIdentitiesCreateQueue(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSiteAgentIdentitiesCreateQueueJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceSiteAgentIdentitiesRegisterEventSubscriptionWithBody request with any body
 	MarketplaceSiteAgentIdentitiesRegisterEventSubscriptionWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -78151,6 +78243,54 @@ func (c *Client) IdentityProvidersCreate(ctx context.Context, body IdentityProvi
 	return c.Client.Do(req)
 }
 
+func (c *Client) IdentityProvidersDiscoverMetadataWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewIdentityProvidersDiscoverMetadataRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) IdentityProvidersDiscoverMetadata(ctx context.Context, body IdentityProvidersDiscoverMetadataJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewIdentityProvidersDiscoverMetadataRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) IdentityProvidersGenerateMappingWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewIdentityProvidersGenerateMappingRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) IdentityProvidersGenerateMapping(ctx context.Context, body IdentityProvidersGenerateMappingJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewIdentityProvidersGenerateMappingRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) IdentityProvidersDestroy(ctx context.Context, provider string, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewIdentityProvidersDestroyRequest(c.Server, provider)
 	if err != nil {
@@ -87273,6 +87413,30 @@ func (c *Client) MarketplaceSiteAgentIdentitiesUpdateWithBody(ctx context.Contex
 
 func (c *Client) MarketplaceSiteAgentIdentitiesUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSiteAgentIdentitiesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceSiteAgentIdentitiesUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSiteAgentIdentitiesCreateQueueWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSiteAgentIdentitiesCreateQueueRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceSiteAgentIdentitiesCreateQueue(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSiteAgentIdentitiesCreateQueueJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSiteAgentIdentitiesCreateQueueRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -138399,6 +138563,86 @@ func NewIdentityProvidersCreateRequestWithBody(server string, contentType string
 	return req, nil
 }
 
+// NewIdentityProvidersDiscoverMetadataRequest calls the generic IdentityProvidersDiscoverMetadata builder with application/json body
+func NewIdentityProvidersDiscoverMetadataRequest(server string, body IdentityProvidersDiscoverMetadataJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewIdentityProvidersDiscoverMetadataRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewIdentityProvidersDiscoverMetadataRequestWithBody generates requests for IdentityProvidersDiscoverMetadata with any type of body
+func NewIdentityProvidersDiscoverMetadataRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/identity-providers/discover_metadata/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewIdentityProvidersGenerateMappingRequest calls the generic IdentityProvidersGenerateMapping builder with application/json body
+func NewIdentityProvidersGenerateMappingRequest(server string, body IdentityProvidersGenerateMappingJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewIdentityProvidersGenerateMappingRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewIdentityProvidersGenerateMappingRequestWithBody generates requests for IdentityProvidersGenerateMapping with any type of body
+func NewIdentityProvidersGenerateMappingRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/identity-providers/generate-mapping/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewIdentityProvidersDestroyRequest generates requests for IdentityProvidersDestroy
 func NewIdentityProvidersDestroyRequest(server string, provider string) (*http.Request, error) {
 	var err error
@@ -187350,6 +187594,53 @@ func NewMarketplaceSiteAgentIdentitiesUpdateRequestWithBody(server string, uuid 
 	}
 
 	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceSiteAgentIdentitiesCreateQueueRequest calls the generic MarketplaceSiteAgentIdentitiesCreateQueue builder with application/json body
+func NewMarketplaceSiteAgentIdentitiesCreateQueueRequest(server string, uuid openapi_types.UUID, body MarketplaceSiteAgentIdentitiesCreateQueueJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceSiteAgentIdentitiesCreateQueueRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceSiteAgentIdentitiesCreateQueueRequestWithBody generates requests for MarketplaceSiteAgentIdentitiesCreateQueue with any type of body
+func NewMarketplaceSiteAgentIdentitiesCreateQueueRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-site-agent-identities/%s/create_queue/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
 	if err != nil {
 		return nil, err
 	}
@@ -279610,6 +279901,16 @@ type ClientWithResponsesInterface interface {
 
 	IdentityProvidersCreateWithResponse(ctx context.Context, body IdentityProvidersCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*IdentityProvidersCreateResponse, error)
 
+	// IdentityProvidersDiscoverMetadataWithBodyWithResponse request with any body
+	IdentityProvidersDiscoverMetadataWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*IdentityProvidersDiscoverMetadataResponse, error)
+
+	IdentityProvidersDiscoverMetadataWithResponse(ctx context.Context, body IdentityProvidersDiscoverMetadataJSONRequestBody, reqEditors ...RequestEditorFn) (*IdentityProvidersDiscoverMetadataResponse, error)
+
+	// IdentityProvidersGenerateMappingWithBodyWithResponse request with any body
+	IdentityProvidersGenerateMappingWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*IdentityProvidersGenerateMappingResponse, error)
+
+	IdentityProvidersGenerateMappingWithResponse(ctx context.Context, body IdentityProvidersGenerateMappingJSONRequestBody, reqEditors ...RequestEditorFn) (*IdentityProvidersGenerateMappingResponse, error)
+
 	// IdentityProvidersDestroyWithResponse request
 	IdentityProvidersDestroyWithResponse(ctx context.Context, provider string, reqEditors ...RequestEditorFn) (*IdentityProvidersDestroyResponse, error)
 
@@ -281672,6 +281973,11 @@ type ClientWithResponsesInterface interface {
 	MarketplaceSiteAgentIdentitiesUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentIdentitiesUpdateResponse, error)
 
 	MarketplaceSiteAgentIdentitiesUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSiteAgentIdentitiesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentIdentitiesUpdateResponse, error)
+
+	// MarketplaceSiteAgentIdentitiesCreateQueueWithBodyWithResponse request with any body
+	MarketplaceSiteAgentIdentitiesCreateQueueWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentIdentitiesCreateQueueResponse, error)
+
+	MarketplaceSiteAgentIdentitiesCreateQueueWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSiteAgentIdentitiesCreateQueueJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentIdentitiesCreateQueueResponse, error)
 
 	// MarketplaceSiteAgentIdentitiesRegisterEventSubscriptionWithBodyWithResponse request with any body
 	MarketplaceSiteAgentIdentitiesRegisterEventSubscriptionWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentIdentitiesRegisterEventSubscriptionResponse, error)
@@ -292865,7 +293171,7 @@ func (r DebugPubsubOverviewRetrieveResponse) StatusCode() int {
 type DebugPubsubQueuesRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *SubscriptionQueuesOverview
+	JSON200      *EventSubscriptionQueuesOverview
 	JSON503      *RmqStatsError
 }
 
@@ -294759,6 +295065,56 @@ func (r IdentityProvidersCreateResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r IdentityProvidersCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type IdentityProvidersDiscoverMetadataResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *DiscoverMetadataResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r IdentityProvidersDiscoverMetadataResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r IdentityProvidersDiscoverMetadataResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type IdentityProvidersGenerateMappingResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *struct {
+		// AttributeMapping Suggested mapping of Waldur fields to OIDC claims
+		AttributeMapping *map[string]string `json:"attribute_mapping,omitempty"`
+
+		// ExtraScope Suggested scopes to request (space-separated)
+		ExtraScope *string `json:"extra_scope,omitempty"`
+	}
+}
+
+// Status returns HTTPResponse.Status
+func (r IdentityProvidersGenerateMappingResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r IdentityProvidersGenerateMappingResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -306528,6 +306884,29 @@ func (r MarketplaceSiteAgentIdentitiesUpdateResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceSiteAgentIdentitiesUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceSiteAgentIdentitiesCreateQueueResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *EventSubscriptionQueue
+	JSON201      *EventSubscriptionQueue
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSiteAgentIdentitiesCreateQueueResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSiteAgentIdentitiesCreateQueueResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -335015,6 +335394,40 @@ func (c *ClientWithResponses) IdentityProvidersCreateWithResponse(ctx context.Co
 	return ParseIdentityProvidersCreateResponse(rsp)
 }
 
+// IdentityProvidersDiscoverMetadataWithBodyWithResponse request with arbitrary body returning *IdentityProvidersDiscoverMetadataResponse
+func (c *ClientWithResponses) IdentityProvidersDiscoverMetadataWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*IdentityProvidersDiscoverMetadataResponse, error) {
+	rsp, err := c.IdentityProvidersDiscoverMetadataWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseIdentityProvidersDiscoverMetadataResponse(rsp)
+}
+
+func (c *ClientWithResponses) IdentityProvidersDiscoverMetadataWithResponse(ctx context.Context, body IdentityProvidersDiscoverMetadataJSONRequestBody, reqEditors ...RequestEditorFn) (*IdentityProvidersDiscoverMetadataResponse, error) {
+	rsp, err := c.IdentityProvidersDiscoverMetadata(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseIdentityProvidersDiscoverMetadataResponse(rsp)
+}
+
+// IdentityProvidersGenerateMappingWithBodyWithResponse request with arbitrary body returning *IdentityProvidersGenerateMappingResponse
+func (c *ClientWithResponses) IdentityProvidersGenerateMappingWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*IdentityProvidersGenerateMappingResponse, error) {
+	rsp, err := c.IdentityProvidersGenerateMappingWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseIdentityProvidersGenerateMappingResponse(rsp)
+}
+
+func (c *ClientWithResponses) IdentityProvidersGenerateMappingWithResponse(ctx context.Context, body IdentityProvidersGenerateMappingJSONRequestBody, reqEditors ...RequestEditorFn) (*IdentityProvidersGenerateMappingResponse, error) {
+	rsp, err := c.IdentityProvidersGenerateMapping(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseIdentityProvidersGenerateMappingResponse(rsp)
+}
+
 // IdentityProvidersDestroyWithResponse request returning *IdentityProvidersDestroyResponse
 func (c *ClientWithResponses) IdentityProvidersDestroyWithResponse(ctx context.Context, provider string, reqEditors ...RequestEditorFn) (*IdentityProvidersDestroyResponse, error) {
 	rsp, err := c.IdentityProvidersDestroy(ctx, provider, reqEditors...)
@@ -341642,6 +342055,23 @@ func (c *ClientWithResponses) MarketplaceSiteAgentIdentitiesUpdateWithResponse(c
 		return nil, err
 	}
 	return ParseMarketplaceSiteAgentIdentitiesUpdateResponse(rsp)
+}
+
+// MarketplaceSiteAgentIdentitiesCreateQueueWithBodyWithResponse request with arbitrary body returning *MarketplaceSiteAgentIdentitiesCreateQueueResponse
+func (c *ClientWithResponses) MarketplaceSiteAgentIdentitiesCreateQueueWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentIdentitiesCreateQueueResponse, error) {
+	rsp, err := c.MarketplaceSiteAgentIdentitiesCreateQueueWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSiteAgentIdentitiesCreateQueueResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceSiteAgentIdentitiesCreateQueueWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceSiteAgentIdentitiesCreateQueueJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentIdentitiesCreateQueueResponse, error) {
+	rsp, err := c.MarketplaceSiteAgentIdentitiesCreateQueue(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSiteAgentIdentitiesCreateQueueResponse(rsp)
 }
 
 // MarketplaceSiteAgentIdentitiesRegisterEventSubscriptionWithBodyWithResponse request with arbitrary body returning *MarketplaceSiteAgentIdentitiesRegisterEventSubscriptionResponse
@@ -361950,7 +362380,7 @@ func ParseDebugPubsubQueuesRetrieveResponse(rsp *http.Response) (*DebugPubsubQue
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest SubscriptionQueuesOverview
+		var dest EventSubscriptionQueuesOverview
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -363884,6 +364314,64 @@ func ParseIdentityProvidersCreateResponse(rsp *http.Response) (*IdentityProvider
 			return nil, err
 		}
 		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseIdentityProvidersDiscoverMetadataResponse parses an HTTP response from a IdentityProvidersDiscoverMetadataWithResponse call
+func ParseIdentityProvidersDiscoverMetadataResponse(rsp *http.Response) (*IdentityProvidersDiscoverMetadataResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &IdentityProvidersDiscoverMetadataResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest DiscoverMetadataResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseIdentityProvidersGenerateMappingResponse parses an HTTP response from a IdentityProvidersGenerateMappingWithResponse call
+func ParseIdentityProvidersGenerateMappingResponse(rsp *http.Response) (*IdentityProvidersGenerateMappingResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &IdentityProvidersGenerateMappingResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest struct {
+			// AttributeMapping Suggested mapping of Waldur fields to OIDC claims
+			AttributeMapping *map[string]string `json:"attribute_mapping,omitempty"`
+
+			// ExtraScope Suggested scopes to request (space-separated)
+			ExtraScope *string `json:"extra_scope,omitempty"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
 
 	}
 
@@ -376317,6 +376805,39 @@ func ParseMarketplaceSiteAgentIdentitiesUpdateResponse(rsp *http.Response) (*Mar
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSiteAgentIdentitiesCreateQueueResponse parses an HTTP response from a MarketplaceSiteAgentIdentitiesCreateQueueWithResponse call
+func ParseMarketplaceSiteAgentIdentitiesCreateQueueResponse(rsp *http.Response) (*MarketplaceSiteAgentIdentitiesCreateQueueResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSiteAgentIdentitiesCreateQueueResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest EventSubscriptionQueue
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest EventSubscriptionQueue
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
 
 	}
 
