@@ -16761,6 +16761,7 @@ type ConstanceSettings struct {
 	ENABLEORDERSTARTDATE                           *bool                `json:"ENABLE_ORDER_START_DATE,omitempty"`
 	ENABLESTALERESOURCENOTIFICATIONS               *bool                `json:"ENABLE_STALE_RESOURCE_NOTIFICATIONS,omitempty"`
 	ENABLESTRICTCHECKACCEPTINGINVITATION           *bool                `json:"ENABLE_STRICT_CHECK_ACCEPTING_INVITATION,omitempty"`
+	ENFORCEMANDATORYUSERATTRIBUTES                 *bool                `json:"ENFORCE_MANDATORY_USER_ATTRIBUTES,omitempty"`
 	ENFORCEUSERCONSENTFOROFFERINGS                 *bool                `json:"ENFORCE_USER_CONSENT_FOR_OFFERINGS,omitempty"`
 	FAVICON                                        *string              `json:"FAVICON"`
 	FREEIPABLACKLISTEDUSERNAMES                    *[]string            `json:"FREEIPA_BLACKLISTED_USERNAMES,omitempty"`
@@ -16798,6 +16799,7 @@ type ConstanceSettings struct {
 	LOGINPAGEVIDEOURL                              *string              `json:"LOGIN_PAGE_VIDEO_URL,omitempty"`
 	MAINTENANCEANNOUNCEMENTNOTIFYBEFOREMINUTES     *int                 `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_BEFORE_MINUTES,omitempty"`
 	MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM            *[]string            `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_SYSTEM,omitempty"`
+	MANDATORYUSERATTRIBUTES                        *[]string            `json:"MANDATORY_USER_ATTRIBUTES,omitempty"`
 	MARKETPLACEHEROIMAGE                           *string              `json:"MARKETPLACE_HERO_IMAGE"`
 	MARKETPLACELANDINGPAGE                         *string              `json:"MARKETPLACE_LANDING_PAGE,omitempty"`
 	NOTIFYABOUTRESOURCECHANGE                      *bool                `json:"NOTIFY_ABOUT_RESOURCE_CHANGE,omitempty"`
@@ -16966,6 +16968,7 @@ type ConstanceSettingsRequest struct {
 	ENABLEORDERSTARTDATE                           *bool                           `json:"ENABLE_ORDER_START_DATE,omitempty"`
 	ENABLESTALERESOURCENOTIFICATIONS               *bool                           `json:"ENABLE_STALE_RESOURCE_NOTIFICATIONS,omitempty"`
 	ENABLESTRICTCHECKACCEPTINGINVITATION           *bool                           `json:"ENABLE_STRICT_CHECK_ACCEPTING_INVITATION,omitempty"`
+	ENFORCEMANDATORYUSERATTRIBUTES                 *bool                           `json:"ENFORCE_MANDATORY_USER_ATTRIBUTES,omitempty"`
 	ENFORCEUSERCONSENTFOROFFERINGS                 *bool                           `json:"ENFORCE_USER_CONSENT_FOR_OFFERINGS,omitempty"`
 	FAVICON                                        *openapi_types.File             `json:"FAVICON"`
 	FREEIPABLACKLISTEDUSERNAMES                    *[]string                       `json:"FREEIPA_BLACKLISTED_USERNAMES,omitempty"`
@@ -17003,6 +17006,7 @@ type ConstanceSettingsRequest struct {
 	LOGINPAGEVIDEOURL                              *string                         `json:"LOGIN_PAGE_VIDEO_URL,omitempty"`
 	MAINTENANCEANNOUNCEMENTNOTIFYBEFOREMINUTES     *int                            `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_BEFORE_MINUTES,omitempty"`
 	MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM            *[]string                       `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_SYSTEM,omitempty"`
+	MANDATORYUSERATTRIBUTES                        *[]string                       `json:"MANDATORY_USER_ATTRIBUTES,omitempty"`
 	MARKETPLACEHEROIMAGE                           *openapi_types.File             `json:"MARKETPLACE_HERO_IMAGE"`
 	MARKETPLACELANDINGPAGE                         *string                         `json:"MARKETPLACE_LANDING_PAGE,omitempty"`
 	NOTIFYABOUTRESOURCECHANGE                      *bool                           `json:"NOTIFY_ABOUT_RESOURCE_CHANGE,omitempty"`
@@ -17171,6 +17175,7 @@ type ConstanceSettingsRequestForm struct {
 	ENABLEORDERSTARTDATE                           *bool                           `json:"ENABLE_ORDER_START_DATE,omitempty"`
 	ENABLESTALERESOURCENOTIFICATIONS               *bool                           `json:"ENABLE_STALE_RESOURCE_NOTIFICATIONS,omitempty"`
 	ENABLESTRICTCHECKACCEPTINGINVITATION           *bool                           `json:"ENABLE_STRICT_CHECK_ACCEPTING_INVITATION,omitempty"`
+	ENFORCEMANDATORYUSERATTRIBUTES                 *bool                           `json:"ENFORCE_MANDATORY_USER_ATTRIBUTES,omitempty"`
 	ENFORCEUSERCONSENTFOROFFERINGS                 *bool                           `json:"ENFORCE_USER_CONSENT_FOR_OFFERINGS,omitempty"`
 	FAVICON                                        *openapi_types.File             `json:"FAVICON"`
 	FREEIPABLACKLISTEDUSERNAMES                    *[]string                       `json:"FREEIPA_BLACKLISTED_USERNAMES,omitempty"`
@@ -17208,6 +17213,7 @@ type ConstanceSettingsRequestForm struct {
 	LOGINPAGEVIDEOURL                              *string                         `json:"LOGIN_PAGE_VIDEO_URL,omitempty"`
 	MAINTENANCEANNOUNCEMENTNOTIFYBEFOREMINUTES     *int                            `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_BEFORE_MINUTES,omitempty"`
 	MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM            *[]string                       `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_SYSTEM,omitempty"`
+	MANDATORYUSERATTRIBUTES                        *[]string                       `json:"MANDATORY_USER_ATTRIBUTES,omitempty"`
 	MARKETPLACEHEROIMAGE                           *openapi_types.File             `json:"MARKETPLACE_HERO_IMAGE"`
 	MARKETPLACELANDINGPAGE                         *string                         `json:"MARKETPLACE_LANDING_PAGE,omitempty"`
 	NOTIFYABOUTRESOURCECHANGE                      *bool                           `json:"NOTIFY_ABOUT_RESOURCE_CHANGE,omitempty"`
@@ -17376,6 +17382,7 @@ type ConstanceSettingsRequestMultipart struct {
 	ENABLEORDERSTARTDATE                           *bool                           `json:"ENABLE_ORDER_START_DATE,omitempty"`
 	ENABLESTALERESOURCENOTIFICATIONS               *bool                           `json:"ENABLE_STALE_RESOURCE_NOTIFICATIONS,omitempty"`
 	ENABLESTRICTCHECKACCEPTINGINVITATION           *bool                           `json:"ENABLE_STRICT_CHECK_ACCEPTING_INVITATION,omitempty"`
+	ENFORCEMANDATORYUSERATTRIBUTES                 *bool                           `json:"ENFORCE_MANDATORY_USER_ATTRIBUTES,omitempty"`
 	ENFORCEUSERCONSENTFOROFFERINGS                 *bool                           `json:"ENFORCE_USER_CONSENT_FOR_OFFERINGS,omitempty"`
 	FAVICON                                        *openapi_types.File             `json:"FAVICON"`
 	FREEIPABLACKLISTEDUSERNAMES                    *[]string                       `json:"FREEIPA_BLACKLISTED_USERNAMES,omitempty"`
@@ -17413,6 +17420,7 @@ type ConstanceSettingsRequestMultipart struct {
 	LOGINPAGEVIDEOURL                              *string                         `json:"LOGIN_PAGE_VIDEO_URL,omitempty"`
 	MAINTENANCEANNOUNCEMENTNOTIFYBEFOREMINUTES     *int                            `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_BEFORE_MINUTES,omitempty"`
 	MAINTENANCEANNOUNCEMENTNOTIFYSYSTEM            *[]string                       `json:"MAINTENANCE_ANNOUNCEMENT_NOTIFY_SYSTEM,omitempty"`
+	MANDATORYUSERATTRIBUTES                        *[]string                       `json:"MANDATORY_USER_ATTRIBUTES,omitempty"`
 	MARKETPLACEHEROIMAGE                           *openapi_types.File             `json:"MARKETPLACE_HERO_IMAGE"`
 	MARKETPLACELANDINGPAGE                         *string                         `json:"MARKETPLACE_LANDING_PAGE,omitempty"`
 	NOTIFYABOUTRESOURCECHANGE                      *bool                           `json:"NOTIFY_ABOUT_RESOURCE_CHANGE,omitempty"`
@@ -28388,6 +28396,21 @@ type Priority struct {
 
 // ProficiencyLevelEnum defines model for ProficiencyLevelEnum.
 type ProficiencyLevelEnum string
+
+// ProfileCompleteness defines model for ProfileCompleteness.
+type ProfileCompleteness struct {
+	// EnforcementEnabled Whether enforcement of mandatory attributes is enabled.
+	EnforcementEnabled bool `json:"enforcement_enabled"`
+
+	// IsComplete Whether all mandatory profile fields are filled.
+	IsComplete bool `json:"is_complete"`
+
+	// MandatoryFields List of all mandatory fields.
+	MandatoryFields []string `json:"mandatory_fields"`
+
+	// MissingFields List of mandatory fields that are missing.
+	MissingFields []string `json:"missing_fields"`
+}
 
 // Project defines model for Project.
 type Project struct {
@@ -71405,6 +71428,12 @@ type ClientInterface interface {
 	// UsersMeCount request
 	UsersMeCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// UsersProfileCompletenessRetrieve request
+	UsersProfileCompletenessRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// UsersProfileCompletenessCount request
+	UsersProfileCompletenessCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// UsersUserActiveStatusCountList request
 	UsersUserActiveStatusCountList(ctx context.Context, params *UsersUserActiveStatusCountListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -103985,6 +104014,30 @@ func (c *Client) UsersMeRetrieve(ctx context.Context, params *UsersMeRetrievePar
 
 func (c *Client) UsersMeCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewUsersMeCountRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UsersProfileCompletenessRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUsersProfileCompletenessRetrieveRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) UsersProfileCompletenessCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUsersProfileCompletenessCountRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -269577,6 +269630,60 @@ func NewUsersMeCountRequest(server string) (*http.Request, error) {
 	return req, nil
 }
 
+// NewUsersProfileCompletenessRetrieveRequest generates requests for UsersProfileCompletenessRetrieve
+func NewUsersProfileCompletenessRetrieveRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/users/profile_completeness/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewUsersProfileCompletenessCountRequest generates requests for UsersProfileCompletenessCount
+func NewUsersProfileCompletenessCountRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/users/profile_completeness/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewUsersUserActiveStatusCountListRequest generates requests for UsersUserActiveStatusCountList
 func NewUsersUserActiveStatusCountListRequest(server string, params *UsersUserActiveStatusCountListParams) (*http.Request, error) {
 	var err error
@@ -285760,6 +285867,12 @@ type ClientWithResponsesInterface interface {
 
 	// UsersMeCountWithResponse request
 	UsersMeCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*UsersMeCountResponse, error)
+
+	// UsersProfileCompletenessRetrieveWithResponse request
+	UsersProfileCompletenessRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*UsersProfileCompletenessRetrieveResponse, error)
+
+	// UsersProfileCompletenessCountWithResponse request
+	UsersProfileCompletenessCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*UsersProfileCompletenessCountResponse, error)
 
 	// UsersUserActiveStatusCountListWithResponse request
 	UsersUserActiveStatusCountListWithResponse(ctx context.Context, params *UsersUserActiveStatusCountListParams, reqEditors ...RequestEditorFn) (*UsersUserActiveStatusCountListResponse, error)
@@ -329124,6 +329237,49 @@ func (r UsersMeCountResponse) StatusCode() int {
 	return 0
 }
 
+type UsersProfileCompletenessRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ProfileCompleteness
+}
+
+// Status returns HTTPResponse.Status
+func (r UsersProfileCompletenessRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r UsersProfileCompletenessRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type UsersProfileCompletenessCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r UsersProfileCompletenessCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r UsersProfileCompletenessCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type UsersUserActiveStatusCountListResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -354128,6 +354284,24 @@ func (c *ClientWithResponses) UsersMeCountWithResponse(ctx context.Context, reqE
 		return nil, err
 	}
 	return ParseUsersMeCountResponse(rsp)
+}
+
+// UsersProfileCompletenessRetrieveWithResponse request returning *UsersProfileCompletenessRetrieveResponse
+func (c *ClientWithResponses) UsersProfileCompletenessRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*UsersProfileCompletenessRetrieveResponse, error) {
+	rsp, err := c.UsersProfileCompletenessRetrieve(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUsersProfileCompletenessRetrieveResponse(rsp)
+}
+
+// UsersProfileCompletenessCountWithResponse request returning *UsersProfileCompletenessCountResponse
+func (c *ClientWithResponses) UsersProfileCompletenessCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*UsersProfileCompletenessCountResponse, error) {
+	rsp, err := c.UsersProfileCompletenessCount(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUsersProfileCompletenessCountResponse(rsp)
 }
 
 // UsersUserActiveStatusCountListWithResponse request returning *UsersUserActiveStatusCountListResponse
@@ -400048,6 +400222,48 @@ func ParseUsersMeCountResponse(rsp *http.Response) (*UsersMeCountResponse, error
 	}
 
 	response := &UsersMeCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseUsersProfileCompletenessRetrieveResponse parses an HTTP response from a UsersProfileCompletenessRetrieveWithResponse call
+func ParseUsersProfileCompletenessRetrieveResponse(rsp *http.Response) (*UsersProfileCompletenessRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &UsersProfileCompletenessRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ProfileCompleteness
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseUsersProfileCompletenessCountResponse parses an HTTP response from a UsersProfileCompletenessCountWithResponse call
+func ParseUsersProfileCompletenessCountResponse(rsp *http.Response) (*UsersProfileCompletenessCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &UsersProfileCompletenessCountResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
