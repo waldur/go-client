@@ -18381,6 +18381,9 @@ type DailyOrderStats struct {
 	// Date Date of the statistics
 	Date openapi_types.Date `json:"date"`
 
+	// Revenue Revenue from create/update orders
+	Revenue *string `json:"revenue"`
+
 	// Total Total number of orders
 	Total int `json:"total"`
 
@@ -25888,6 +25891,9 @@ type OrderStatsSummary struct {
 
 	// TotalCost Total cost of orders
 	TotalCost *string `json:"total_cost"`
+
+	// TotalRevenue Total revenue from create/update orders
+	TotalRevenue *string `json:"total_revenue"`
 }
 
 // OrderUUID defines model for OrderUUID.
