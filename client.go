@@ -3525,6 +3525,7 @@ const (
 	BookingOfferingsListParamsFieldHasComplianceRequirements BookingOfferingsListParamsField = "has_compliance_requirements"
 	BookingOfferingsListParamsFieldImage                     BookingOfferingsListParamsField = "image"
 	BookingOfferingsListParamsFieldIntegrationGuide          BookingOfferingsListParamsField = "integration_guide"
+	BookingOfferingsListParamsFieldIsAccessible              BookingOfferingsListParamsField = "is_accessible"
 	BookingOfferingsListParamsFieldLatitude                  BookingOfferingsListParamsField = "latitude"
 	BookingOfferingsListParamsFieldLongitude                 BookingOfferingsListParamsField = "longitude"
 	BookingOfferingsListParamsFieldName                      BookingOfferingsListParamsField = "name"
@@ -3598,6 +3599,7 @@ const (
 	BookingOfferingsRetrieveParamsFieldHasComplianceRequirements BookingOfferingsRetrieveParamsField = "has_compliance_requirements"
 	BookingOfferingsRetrieveParamsFieldImage                     BookingOfferingsRetrieveParamsField = "image"
 	BookingOfferingsRetrieveParamsFieldIntegrationGuide          BookingOfferingsRetrieveParamsField = "integration_guide"
+	BookingOfferingsRetrieveParamsFieldIsAccessible              BookingOfferingsRetrieveParamsField = "is_accessible"
 	BookingOfferingsRetrieveParamsFieldLatitude                  BookingOfferingsRetrieveParamsField = "latitude"
 	BookingOfferingsRetrieveParamsFieldLongitude                 BookingOfferingsRetrieveParamsField = "longitude"
 	BookingOfferingsRetrieveParamsFieldName                      BookingOfferingsRetrieveParamsField = "name"
@@ -7246,6 +7248,7 @@ const (
 	MarketplacePublicOfferingsListParamsFieldHasComplianceRequirements MarketplacePublicOfferingsListParamsField = "has_compliance_requirements"
 	MarketplacePublicOfferingsListParamsFieldImage                     MarketplacePublicOfferingsListParamsField = "image"
 	MarketplacePublicOfferingsListParamsFieldIntegrationGuide          MarketplacePublicOfferingsListParamsField = "integration_guide"
+	MarketplacePublicOfferingsListParamsFieldIsAccessible              MarketplacePublicOfferingsListParamsField = "is_accessible"
 	MarketplacePublicOfferingsListParamsFieldLatitude                  MarketplacePublicOfferingsListParamsField = "latitude"
 	MarketplacePublicOfferingsListParamsFieldLongitude                 MarketplacePublicOfferingsListParamsField = "longitude"
 	MarketplacePublicOfferingsListParamsFieldName                      MarketplacePublicOfferingsListParamsField = "name"
@@ -7375,6 +7378,7 @@ const (
 	MarketplacePublicOfferingsRetrieveParamsFieldHasComplianceRequirements MarketplacePublicOfferingsRetrieveParamsField = "has_compliance_requirements"
 	MarketplacePublicOfferingsRetrieveParamsFieldImage                     MarketplacePublicOfferingsRetrieveParamsField = "image"
 	MarketplacePublicOfferingsRetrieveParamsFieldIntegrationGuide          MarketplacePublicOfferingsRetrieveParamsField = "integration_guide"
+	MarketplacePublicOfferingsRetrieveParamsFieldIsAccessible              MarketplacePublicOfferingsRetrieveParamsField = "is_accessible"
 	MarketplacePublicOfferingsRetrieveParamsFieldLatitude                  MarketplacePublicOfferingsRetrieveParamsField = "latitude"
 	MarketplacePublicOfferingsRetrieveParamsFieldLongitude                 MarketplacePublicOfferingsRetrieveParamsField = "longitude"
 	MarketplacePublicOfferingsRetrieveParamsFieldName                      MarketplacePublicOfferingsRetrieveParamsField = "name"
@@ -16897,6 +16901,9 @@ type ConstanceSettings struct {
 	LLMINFERENCESAPIURL                            *string              `json:"LLM_INFERENCES_API_URL,omitempty"`
 	LLMINFERENCESBACKENDTYPE                       *string              `json:"LLM_INFERENCES_BACKEND_TYPE,omitempty"`
 	LLMINFERENCESMODEL                             *string              `json:"LLM_INFERENCES_MODEL,omitempty"`
+	LLMTOKENLIMITDAILY                             *int                 `json:"LLM_TOKEN_LIMIT_DAILY,omitempty"`
+	LLMTOKENLIMITMONTHLY                           *int                 `json:"LLM_TOKEN_LIMIT_MONTHLY,omitempty"`
+	LLMTOKENLIMITWEEKLY                            *int                 `json:"LLM_TOKEN_LIMIT_WEEKLY,omitempty"`
 	LOGINLOGO                                      *string              `json:"LOGIN_LOGO"`
 	LOGINLOGOMULTILINGUAL                          *map[string]*string  `json:"LOGIN_LOGO_MULTILINGUAL,omitempty"`
 	LOGINPAGECAROUSELSLIDES                        *[]interface{}       `json:"LOGIN_PAGE_CAROUSEL_SLIDES,omitempty"`
@@ -16943,6 +16950,7 @@ type ConstanceSettings struct {
 	PROJECTENDDATEMANDATORY                        *bool                `json:"PROJECT_END_DATE_MANDATORY,omitempty"`
 	PROPOSALREVIEWDURATION                         *int                 `json:"PROPOSAL_REVIEW_DURATION,omitempty"`
 	RANCHERUSERNAMEINPUTLABEL                      *string              `json:"RANCHER_USERNAME_INPUT_LABEL,omitempty"`
+	RESTRICTEDOFFERINGVISIBILITYMODE               *string              `json:"RESTRICTED_OFFERING_VISIBILITY_MODE,omitempty"`
 	REVIEWERPROFILESENABLED                        *bool                `json:"REVIEWER_PROFILES_ENABLED,omitempty"`
 	SCRIPTRUNMODE                                  *string              `json:"SCRIPT_RUN_MODE,omitempty"`
 	SEMANTICSCHOLARAPIKEY                          *string              `json:"SEMANTIC_SCHOLAR_API_KEY,omitempty"`
@@ -16980,6 +16988,11 @@ type ConstanceSettings struct {
 	SOFTWARECATALOGSPACKVERSION                    *string              `json:"SOFTWARE_CATALOG_SPACK_VERSION,omitempty"`
 	SOFTWARECATALOGUPDATEEXISTINGPACKAGES          *bool                `json:"SOFTWARE_CATALOG_UPDATE_EXISTING_PACKAGES,omitempty"`
 	SUPPORTPORTALURL                               *string              `json:"SUPPORT_PORTAL_URL,omitempty"`
+	TABLEGROWTHMINSIZEBYTES                        *int                 `json:"TABLE_GROWTH_MIN_SIZE_BYTES,omitempty"`
+	TABLEGROWTHMONITORINGENABLED                   *bool                `json:"TABLE_GROWTH_MONITORING_ENABLED,omitempty"`
+	TABLEGROWTHMONTHLYTHRESHOLDPERCENT             *int                 `json:"TABLE_GROWTH_MONTHLY_THRESHOLD_PERCENT,omitempty"`
+	TABLEGROWTHRETENTIONDAYS                       *int                 `json:"TABLE_GROWTH_RETENTION_DAYS,omitempty"`
+	TABLEGROWTHWEEKLYTHRESHOLDPERCENT              *int                 `json:"TABLE_GROWTH_WEEKLY_THRESHOLD_PERCENT,omitempty"`
 	TELEMETRYURL                                   *string              `json:"TELEMETRY_URL,omitempty"`
 	TELEMETRYVERSION                               *int                 `json:"TELEMETRY_VERSION,omitempty"`
 	THUMBNAILSIZE                                  *string              `json:"THUMBNAIL_SIZE,omitempty"`
@@ -17104,6 +17117,9 @@ type ConstanceSettingsRequest struct {
 	LLMINFERENCESAPIURL                            *string                         `json:"LLM_INFERENCES_API_URL,omitempty"`
 	LLMINFERENCESBACKENDTYPE                       *string                         `json:"LLM_INFERENCES_BACKEND_TYPE,omitempty"`
 	LLMINFERENCESMODEL                             *string                         `json:"LLM_INFERENCES_MODEL,omitempty"`
+	LLMTOKENLIMITDAILY                             *int                            `json:"LLM_TOKEN_LIMIT_DAILY,omitempty"`
+	LLMTOKENLIMITMONTHLY                           *int                            `json:"LLM_TOKEN_LIMIT_MONTHLY,omitempty"`
+	LLMTOKENLIMITWEEKLY                            *int                            `json:"LLM_TOKEN_LIMIT_WEEKLY,omitempty"`
 	LOGINLOGO                                      *openapi_types.File             `json:"LOGIN_LOGO"`
 	LOGINLOGOMULTILINGUAL                          *map[string]*openapi_types.File `json:"LOGIN_LOGO_MULTILINGUAL,omitempty"`
 	LOGINPAGECAROUSELSLIDES                        *[]interface{}                  `json:"LOGIN_PAGE_CAROUSEL_SLIDES,omitempty"`
@@ -17150,6 +17166,7 @@ type ConstanceSettingsRequest struct {
 	PROJECTENDDATEMANDATORY                        *bool                           `json:"PROJECT_END_DATE_MANDATORY,omitempty"`
 	PROPOSALREVIEWDURATION                         *int                            `json:"PROPOSAL_REVIEW_DURATION,omitempty"`
 	RANCHERUSERNAMEINPUTLABEL                      *string                         `json:"RANCHER_USERNAME_INPUT_LABEL,omitempty"`
+	RESTRICTEDOFFERINGVISIBILITYMODE               *string                         `json:"RESTRICTED_OFFERING_VISIBILITY_MODE,omitempty"`
 	REVIEWERPROFILESENABLED                        *bool                           `json:"REVIEWER_PROFILES_ENABLED,omitempty"`
 	SCRIPTRUNMODE                                  *string                         `json:"SCRIPT_RUN_MODE,omitempty"`
 	SEMANTICSCHOLARAPIKEY                          *string                         `json:"SEMANTIC_SCHOLAR_API_KEY,omitempty"`
@@ -17187,6 +17204,11 @@ type ConstanceSettingsRequest struct {
 	SOFTWARECATALOGSPACKVERSION                    *string                         `json:"SOFTWARE_CATALOG_SPACK_VERSION,omitempty"`
 	SOFTWARECATALOGUPDATEEXISTINGPACKAGES          *bool                           `json:"SOFTWARE_CATALOG_UPDATE_EXISTING_PACKAGES,omitempty"`
 	SUPPORTPORTALURL                               *string                         `json:"SUPPORT_PORTAL_URL,omitempty"`
+	TABLEGROWTHMINSIZEBYTES                        *int                            `json:"TABLE_GROWTH_MIN_SIZE_BYTES,omitempty"`
+	TABLEGROWTHMONITORINGENABLED                   *bool                           `json:"TABLE_GROWTH_MONITORING_ENABLED,omitempty"`
+	TABLEGROWTHMONTHLYTHRESHOLDPERCENT             *int                            `json:"TABLE_GROWTH_MONTHLY_THRESHOLD_PERCENT,omitempty"`
+	TABLEGROWTHRETENTIONDAYS                       *int                            `json:"TABLE_GROWTH_RETENTION_DAYS,omitempty"`
+	TABLEGROWTHWEEKLYTHRESHOLDPERCENT              *int                            `json:"TABLE_GROWTH_WEEKLY_THRESHOLD_PERCENT,omitempty"`
 	TELEMETRYURL                                   *string                         `json:"TELEMETRY_URL,omitempty"`
 	TELEMETRYVERSION                               *int                            `json:"TELEMETRY_VERSION,omitempty"`
 	THUMBNAILSIZE                                  *string                         `json:"THUMBNAIL_SIZE,omitempty"`
@@ -17311,6 +17333,9 @@ type ConstanceSettingsRequestForm struct {
 	LLMINFERENCESAPIURL                            *string                         `json:"LLM_INFERENCES_API_URL,omitempty"`
 	LLMINFERENCESBACKENDTYPE                       *string                         `json:"LLM_INFERENCES_BACKEND_TYPE,omitempty"`
 	LLMINFERENCESMODEL                             *string                         `json:"LLM_INFERENCES_MODEL,omitempty"`
+	LLMTOKENLIMITDAILY                             *int                            `json:"LLM_TOKEN_LIMIT_DAILY,omitempty"`
+	LLMTOKENLIMITMONTHLY                           *int                            `json:"LLM_TOKEN_LIMIT_MONTHLY,omitempty"`
+	LLMTOKENLIMITWEEKLY                            *int                            `json:"LLM_TOKEN_LIMIT_WEEKLY,omitempty"`
 	LOGINLOGO                                      *openapi_types.File             `json:"LOGIN_LOGO"`
 	LOGINLOGOMULTILINGUAL                          *map[string]*openapi_types.File `json:"LOGIN_LOGO_MULTILINGUAL,omitempty"`
 	LOGINPAGECAROUSELSLIDES                        *[]interface{}                  `json:"LOGIN_PAGE_CAROUSEL_SLIDES,omitempty"`
@@ -17357,6 +17382,7 @@ type ConstanceSettingsRequestForm struct {
 	PROJECTENDDATEMANDATORY                        *bool                           `json:"PROJECT_END_DATE_MANDATORY,omitempty"`
 	PROPOSALREVIEWDURATION                         *int                            `json:"PROPOSAL_REVIEW_DURATION,omitempty"`
 	RANCHERUSERNAMEINPUTLABEL                      *string                         `json:"RANCHER_USERNAME_INPUT_LABEL,omitempty"`
+	RESTRICTEDOFFERINGVISIBILITYMODE               *string                         `json:"RESTRICTED_OFFERING_VISIBILITY_MODE,omitempty"`
 	REVIEWERPROFILESENABLED                        *bool                           `json:"REVIEWER_PROFILES_ENABLED,omitempty"`
 	SCRIPTRUNMODE                                  *string                         `json:"SCRIPT_RUN_MODE,omitempty"`
 	SEMANTICSCHOLARAPIKEY                          *string                         `json:"SEMANTIC_SCHOLAR_API_KEY,omitempty"`
@@ -17394,6 +17420,11 @@ type ConstanceSettingsRequestForm struct {
 	SOFTWARECATALOGSPACKVERSION                    *string                         `json:"SOFTWARE_CATALOG_SPACK_VERSION,omitempty"`
 	SOFTWARECATALOGUPDATEEXISTINGPACKAGES          *bool                           `json:"SOFTWARE_CATALOG_UPDATE_EXISTING_PACKAGES,omitempty"`
 	SUPPORTPORTALURL                               *string                         `json:"SUPPORT_PORTAL_URL,omitempty"`
+	TABLEGROWTHMINSIZEBYTES                        *int                            `json:"TABLE_GROWTH_MIN_SIZE_BYTES,omitempty"`
+	TABLEGROWTHMONITORINGENABLED                   *bool                           `json:"TABLE_GROWTH_MONITORING_ENABLED,omitempty"`
+	TABLEGROWTHMONTHLYTHRESHOLDPERCENT             *int                            `json:"TABLE_GROWTH_MONTHLY_THRESHOLD_PERCENT,omitempty"`
+	TABLEGROWTHRETENTIONDAYS                       *int                            `json:"TABLE_GROWTH_RETENTION_DAYS,omitempty"`
+	TABLEGROWTHWEEKLYTHRESHOLDPERCENT              *int                            `json:"TABLE_GROWTH_WEEKLY_THRESHOLD_PERCENT,omitempty"`
 	TELEMETRYURL                                   *string                         `json:"TELEMETRY_URL,omitempty"`
 	TELEMETRYVERSION                               *int                            `json:"TELEMETRY_VERSION,omitempty"`
 	THUMBNAILSIZE                                  *string                         `json:"THUMBNAIL_SIZE,omitempty"`
@@ -17518,6 +17549,9 @@ type ConstanceSettingsRequestMultipart struct {
 	LLMINFERENCESAPIURL                            *string                         `json:"LLM_INFERENCES_API_URL,omitempty"`
 	LLMINFERENCESBACKENDTYPE                       *string                         `json:"LLM_INFERENCES_BACKEND_TYPE,omitempty"`
 	LLMINFERENCESMODEL                             *string                         `json:"LLM_INFERENCES_MODEL,omitempty"`
+	LLMTOKENLIMITDAILY                             *int                            `json:"LLM_TOKEN_LIMIT_DAILY,omitempty"`
+	LLMTOKENLIMITMONTHLY                           *int                            `json:"LLM_TOKEN_LIMIT_MONTHLY,omitempty"`
+	LLMTOKENLIMITWEEKLY                            *int                            `json:"LLM_TOKEN_LIMIT_WEEKLY,omitempty"`
 	LOGINLOGO                                      *openapi_types.File             `json:"LOGIN_LOGO"`
 	LOGINLOGOMULTILINGUAL                          *map[string]*openapi_types.File `json:"LOGIN_LOGO_MULTILINGUAL,omitempty"`
 	LOGINPAGECAROUSELSLIDES                        *[]interface{}                  `json:"LOGIN_PAGE_CAROUSEL_SLIDES,omitempty"`
@@ -17564,6 +17598,7 @@ type ConstanceSettingsRequestMultipart struct {
 	PROJECTENDDATEMANDATORY                        *bool                           `json:"PROJECT_END_DATE_MANDATORY,omitempty"`
 	PROPOSALREVIEWDURATION                         *int                            `json:"PROPOSAL_REVIEW_DURATION,omitempty"`
 	RANCHERUSERNAMEINPUTLABEL                      *string                         `json:"RANCHER_USERNAME_INPUT_LABEL,omitempty"`
+	RESTRICTEDOFFERINGVISIBILITYMODE               *string                         `json:"RESTRICTED_OFFERING_VISIBILITY_MODE,omitempty"`
 	REVIEWERPROFILESENABLED                        *bool                           `json:"REVIEWER_PROFILES_ENABLED,omitempty"`
 	SCRIPTRUNMODE                                  *string                         `json:"SCRIPT_RUN_MODE,omitempty"`
 	SEMANTICSCHOLARAPIKEY                          *string                         `json:"SEMANTIC_SCHOLAR_API_KEY,omitempty"`
@@ -17601,6 +17636,11 @@ type ConstanceSettingsRequestMultipart struct {
 	SOFTWARECATALOGSPACKVERSION                    *string                         `json:"SOFTWARE_CATALOG_SPACK_VERSION,omitempty"`
 	SOFTWARECATALOGUPDATEEXISTINGPACKAGES          *bool                           `json:"SOFTWARE_CATALOG_UPDATE_EXISTING_PACKAGES,omitempty"`
 	SUPPORTPORTALURL                               *string                         `json:"SUPPORT_PORTAL_URL,omitempty"`
+	TABLEGROWTHMINSIZEBYTES                        *int                            `json:"TABLE_GROWTH_MIN_SIZE_BYTES,omitempty"`
+	TABLEGROWTHMONITORINGENABLED                   *bool                           `json:"TABLE_GROWTH_MONITORING_ENABLED,omitempty"`
+	TABLEGROWTHMONTHLYTHRESHOLDPERCENT             *int                            `json:"TABLE_GROWTH_MONTHLY_THRESHOLD_PERCENT,omitempty"`
+	TABLEGROWTHRETENTIONDAYS                       *int                            `json:"TABLE_GROWTH_RETENTION_DAYS,omitempty"`
+	TABLEGROWTHWEEKLYTHRESHOLDPERCENT              *int                            `json:"TABLE_GROWTH_WEEKLY_THRESHOLD_PERCENT,omitempty"`
 	TELEMETRYURL                                   *string                         `json:"TELEMETRY_URL,omitempty"`
 	TELEMETRYVERSION                               *int                            `json:"TELEMETRY_VERSION,omitempty"`
 	THUMBNAILSIZE                                  *string                         `json:"THUMBNAIL_SIZE,omitempty"`
@@ -18442,6 +18482,18 @@ type DLQQueue struct {
 
 	// Vhost Virtual host name
 	Vhost *string `json:"vhost,omitempty"`
+}
+
+// DailyMaintenanceStats defines model for DailyMaintenanceStats.
+type DailyMaintenanceStats struct {
+	// ByState Maintenance counts grouped by state
+	ByState map[string]int `json:"by_state"`
+
+	// Count Number of maintenances on this day
+	Count int `json:"count"`
+
+	// Date Date
+	Date openapi_types.Date `json:"date"`
 }
 
 // DailyOrderStats defines model for DailyOrderStats.
@@ -20882,6 +20934,27 @@ type MaintenanceAnnouncementTemplateRequest struct {
 	ServiceProvider string `json:"service_provider"`
 }
 
+// MaintenanceProviderStats defines model for MaintenanceProviderStats.
+type MaintenanceProviderStats struct {
+	// Active Active maintenances
+	Active int `json:"active"`
+
+	// Completed Completed maintenances
+	Completed int `json:"completed"`
+
+	// Name Service provider name
+	Name string `json:"name"`
+
+	// Scheduled Scheduled maintenances
+	Scheduled int `json:"scheduled"`
+
+	// Total Total maintenances
+	Total int `json:"total"`
+
+	// Uuid Service provider UUID
+	Uuid string `json:"uuid"`
+}
+
 // MaintenanceStats defines model for MaintenanceStats.
 type MaintenanceStats struct {
 	// DeadTupleRatioPercent Ratio of dead tuples to total tuples
@@ -20898,6 +20971,48 @@ type MaintenanceStats struct {
 
 	// TotalLiveTuples Total estimated live tuples across all tables
 	TotalLiveTuples *int `json:"total_live_tuples,omitempty"`
+}
+
+// MaintenanceStatsResponse defines model for MaintenanceStatsResponse.
+type MaintenanceStatsResponse struct {
+	// ByImpactLevel Total counts grouped by max impact level
+	ByImpactLevel map[string]int `json:"by_impact_level"`
+
+	// ByState Total counts grouped by state
+	ByState map[string]int `json:"by_state"`
+
+	// ByType Total counts grouped by maintenance type
+	ByType map[string]int `json:"by_type"`
+
+	// Daily Daily breakdown
+	Daily []DailyMaintenanceStats `json:"daily"`
+
+	// Providers Statistics per provider
+	Providers []MaintenanceProviderStats `json:"providers"`
+
+	// Summary Summary statistics
+	Summary MaintenanceStatsSummary `json:"summary"`
+}
+
+// MaintenanceStatsSummary defines model for MaintenanceStatsSummary.
+type MaintenanceStatsSummary struct {
+	// Active Number of currently active maintenances
+	Active int `json:"active"`
+
+	// AverageDurationHours Average duration of completed maintenances in hours
+	AverageDurationHours *float64 `json:"average_duration_hours"`
+
+	// Completed Number of completed maintenances
+	Completed int `json:"completed"`
+
+	// OnTimeCompletionRate Percentage of maintenances completed on time
+	OnTimeCompletionRate *float64 `json:"on_time_completion_rate"`
+
+	// Scheduled Number of scheduled maintenances
+	Scheduled int `json:"scheduled"`
+
+	// Total Total number of maintenance announcements
+	Total int `json:"total"`
 }
 
 // MaintenanceTypeEnum defines model for MaintenanceTypeEnum.
@@ -22519,6 +22634,7 @@ type Offering struct {
 	HasComplianceRequirements *bool                 `json:"has_compliance_requirements,omitempty"`
 	Image                     *string               `json:"image"`
 	IntegrationGuide          *string               `json:"integration_guide,omitempty"`
+	IsAccessible              *bool                 `json:"is_accessible,omitempty"`
 	Latitude                  *float64              `json:"latitude"`
 	Longitude                 *float64              `json:"longitude"`
 	Name                      *string               `json:"name,omitempty"`
@@ -29906,6 +30022,7 @@ type PublicOfferingDetails struct {
 	HasComplianceRequirements *bool                             `json:"has_compliance_requirements,omitempty"`
 	Image                     *string                           `json:"image"`
 	IntegrationGuide          *string                           `json:"integration_guide,omitempty"`
+	IsAccessible              *bool                             `json:"is_accessible,omitempty"`
 	Latitude                  *float64                          `json:"latitude"`
 	Longitude                 *float64                          `json:"longitude"`
 	Name                      *string                           `json:"name,omitempty"`
@@ -33384,6 +33501,21 @@ type SetOfferingsUsernameRequest struct {
 	Username string `json:"username"`
 }
 
+// SetTokenQuotaRequest defines model for SetTokenQuotaRequest.
+type SetTokenQuotaRequest struct {
+	// DailyLimit Daily token limit. Omit or null = system default, -1 = unlimited.
+	DailyLimit *int `json:"daily_limit"`
+
+	// MonthlyLimit Monthly token limit. Omit or null = system default, -1 = unlimited.
+	MonthlyLimit *int `json:"monthly_limit"`
+
+	// UserUuid UUID of the user to set quota for.
+	UserUuid openapi_types.UUID `json:"user_uuid"`
+
+	// WeeklyLimit Weekly token limit. Omit or null = system default, -1 = unlimited.
+	WeeklyLimit *int `json:"weekly_limit"`
+}
+
 // SettingsMetadataResponse defines model for SettingsMetadataResponse.
 type SettingsMetadataResponse struct {
 	// Settings List of settings sections with configuration items
@@ -34046,6 +34178,60 @@ type SupportedCountriesResponse struct {
 // SyncStatusEnum defines model for SyncStatusEnum.
 type SyncStatusEnum string
 
+// TableGrowthStats defines model for TableGrowthStats.
+type TableGrowthStats struct {
+	// CurrentDataSize Current data-only size in bytes
+	CurrentDataSize int `json:"current_data_size"`
+
+	// CurrentRowEstimate Current estimated row count
+	CurrentRowEstimate *int `json:"current_row_estimate"`
+
+	// CurrentTotalSize Current total size including indexes in bytes
+	CurrentTotalSize int `json:"current_total_size"`
+
+	// MonthAgoRowEstimate Row estimate from 30 days ago
+	MonthAgoRowEstimate *int `json:"month_ago_row_estimate"`
+
+	// MonthAgoTotalSize Total size from 30 days ago in bytes
+	MonthAgoTotalSize *int `json:"month_ago_total_size"`
+
+	// MonthlyGrowthPercent Percentage growth over the past month
+	MonthlyGrowthPercent *float64 `json:"monthly_growth_percent"`
+
+	// MonthlyRowGrowthPercent Percentage row count growth over the past month
+	MonthlyRowGrowthPercent *float64 `json:"monthly_row_growth_percent"`
+
+	// TableName Name of the database table
+	TableName string `json:"table_name"`
+
+	// WeekAgoRowEstimate Row estimate from 7 days ago
+	WeekAgoRowEstimate *int `json:"week_ago_row_estimate"`
+
+	// WeekAgoTotalSize Total size from 7 days ago in bytes
+	WeekAgoTotalSize *int `json:"week_ago_total_size"`
+
+	// WeeklyGrowthPercent Percentage growth over the past week
+	WeeklyGrowthPercent *float64 `json:"weekly_growth_percent"`
+
+	// WeeklyRowGrowthPercent Percentage row count growth over the past week
+	WeeklyRowGrowthPercent *float64 `json:"weekly_row_growth_percent"`
+}
+
+// TableGrowthStatsResponse defines model for TableGrowthStatsResponse.
+type TableGrowthStatsResponse struct {
+	// Date Current date of the statistics
+	Date openapi_types.Date `json:"date"`
+
+	// MonthlyThresholdPercent Configured monthly growth alert threshold
+	MonthlyThresholdPercent int `json:"monthly_threshold_percent"`
+
+	// Tables Table growth statistics sorted by growth rate
+	Tables []TableGrowthStats `json:"tables"`
+
+	// WeeklyThresholdPercent Configured weekly growth alert threshold
+	WeeklyThresholdPercent int `json:"weekly_threshold_percent"`
+}
+
 // TableSize defines model for TableSize.
 type TableSize struct {
 	// DataSize Size of the actual data in bytes
@@ -34178,6 +34364,48 @@ type ToSConsentDashboard struct {
 
 	// TotalUsersCount Total number of users
 	TotalUsersCount *int `json:"total_users_count,omitempty"`
+}
+
+// TokenQuotaUsageResponse defines model for TokenQuotaUsageResponse.
+type TokenQuotaUsageResponse struct {
+	// DailyLimit Daily token limit (non-negative integer). Null uses system default. -1 means unlimited.
+	DailyLimit *int `json:"daily_limit"`
+
+	// DailyRemaining Get remaining daily tokens.
+	DailyRemaining *int `json:"daily_remaining"`
+
+	// DailyResetAt Calculate next midnight (00:00:00).
+	DailyResetAt *time.Time `json:"daily_reset_at,omitempty"`
+
+	// DailySystemDefault Get system default daily token limit from constance config.
+	DailySystemDefault *int `json:"daily_system_default,omitempty"`
+	DailyUsage         *int `json:"daily_usage,omitempty"`
+
+	// MonthlyLimit Monthly token limit (non-negative integer). Null uses system default. -1 means unlimited.
+	MonthlyLimit *int `json:"monthly_limit"`
+
+	// MonthlyRemaining Get remaining monthly tokens.
+	MonthlyRemaining *int `json:"monthly_remaining"`
+
+	// MonthlyResetAt Calculate first day of next month at midnight.
+	MonthlyResetAt *time.Time `json:"monthly_reset_at,omitempty"`
+
+	// MonthlySystemDefault Get system default monthly token limit from constance config.
+	MonthlySystemDefault *int `json:"monthly_system_default,omitempty"`
+	MonthlyUsage         *int `json:"monthly_usage,omitempty"`
+
+	// WeeklyLimit Weekly token limit (non-negative integer). Null uses system default. -1 means unlimited.
+	WeeklyLimit *int `json:"weekly_limit"`
+
+	// WeeklyRemaining Get remaining weekly tokens.
+	WeeklyRemaining *int `json:"weekly_remaining"`
+
+	// WeeklyResetAt Calculate next Monday at midnight.
+	WeeklyResetAt *time.Time `json:"weekly_reset_at,omitempty"`
+
+	// WeeklySystemDefault Get system default weekly token limit from constance config.
+	WeeklySystemDefault *int `json:"weekly_system_default,omitempty"`
+	WeeklyUsage         *int `json:"weekly_usage,omitempty"`
 }
 
 // TokenRequest defines model for TokenRequest.
@@ -37486,6 +37714,12 @@ type CallRoundsReviewersListParams struct {
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 }
 
+// ChatQuotaUsageRetrieveParams defines parameters for ChatQuotaUsageRetrieve.
+type ChatQuotaUsageRetrieveParams struct {
+	// UserUuid UUID of user to view quota for (staff/support only). Omit to view your own quota.
+	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
+}
+
 // ChecklistsAdminQuestionDependenciesListParams defines parameters for ChecklistsAdminQuestionDependenciesList.
 type ChecklistsAdminQuestionDependenciesListParams struct {
 	DependsOnQuestionUuid *openapi_types.UUID `form:"depends_on_question_uuid,omitempty" json:"depends_on_question_uuid,omitempty"`
@@ -39946,6 +40180,30 @@ type MaintenanceAnnouncementsCountParamsO string
 
 // MaintenanceAnnouncementsCountParamsState defines parameters for MaintenanceAnnouncementsCount.
 type MaintenanceAnnouncementsCountParamsState string
+
+// MaintenanceAnnouncementsMaintenanceStatsRetrieveParams defines parameters for MaintenanceAnnouncementsMaintenanceStatsRetrieve.
+type MaintenanceAnnouncementsMaintenanceStatsRetrieveParams struct {
+	// End End date in YYYY-MM-DD format. Defaults to 30 days in the future.
+	End *string `form:"end,omitempty" json:"end,omitempty"`
+
+	// ProviderUuid Filter by service provider UUID.
+	ProviderUuid *string `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
+
+	// Start Start date in YYYY-MM-DD format. Defaults to 90 days ago.
+	Start *string `form:"start,omitempty" json:"start,omitempty"`
+}
+
+// MaintenanceAnnouncementsMaintenanceStatsCountParams defines parameters for MaintenanceAnnouncementsMaintenanceStatsCount.
+type MaintenanceAnnouncementsMaintenanceStatsCountParams struct {
+	// End End date in YYYY-MM-DD format. Defaults to 30 days in the future.
+	End *string `form:"end,omitempty" json:"end,omitempty"`
+
+	// ProviderUuid Filter by service provider UUID.
+	ProviderUuid *string `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
+
+	// Start Start date in YYYY-MM-DD format. Defaults to 90 days ago.
+	Start *string `form:"start,omitempty" json:"start,omitempty"`
+}
 
 // ManagedRancherClusterResourcesListParams defines parameters for ManagedRancherClusterResourcesList.
 type ManagedRancherClusterResourcesListParams struct {
@@ -55661,6 +55919,9 @@ type CallReviewerPoolsAcceptJSONRequestBody = CallReviewerPoolsAcceptJSONBody
 // CallReviewerPoolsDeclineJSONRequestBody defines body for CallReviewerPoolsDecline for application/json ContentType.
 type CallReviewerPoolsDeclineJSONRequestBody = InvitationDeclineRequest
 
+// ChatQuotaSetQuotaJSONRequestBody defines body for ChatQuotaSetQuota for application/json ContentType.
+type ChatQuotaSetQuotaJSONRequestBody = SetTokenQuotaRequest
+
 // ChatToolsExecuteJSONRequestBody defines body for ChatToolsExecute for application/json ContentType.
 type ChatToolsExecuteJSONRequestBody = ToolExecuteRequest
 
@@ -57538,6 +57799,9 @@ type SlurmJobsUpdateFormdataRequestBody = FirecrestJobRequestForm
 
 // SlurmJobsUpdateMultipartRequestBody defines body for SlurmJobsUpdate for multipart/form-data ContentType.
 type SlurmJobsUpdateMultipartRequestBody = FirecrestJobRequestMultipart
+
+// StatsQueryJSONRequestBody defines body for StatsQuery for application/json ContentType.
+type StatsQueryJSONRequestBody = QueryRequest
 
 // SupportAttachmentsCreateJSONRequestBody defines body for SupportAttachmentsCreate for application/json ContentType.
 type SupportAttachmentsCreateJSONRequestBody = AttachmentRequest
@@ -65511,13 +65775,18 @@ type ClientInterface interface {
 	// CeleryStatsRetrieve request
 	CeleryStatsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// ChatQuotaSetQuotaWithBody request with any body
+	ChatQuotaSetQuotaWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	ChatQuotaSetQuota(ctx context.Context, body ChatQuotaSetQuotaJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ChatQuotaUsageRetrieve request
+	ChatQuotaUsageRetrieve(ctx context.Context, params *ChatQuotaUsageRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// ChatToolsExecuteWithBody request with any body
 	ChatToolsExecuteWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	ChatToolsExecute(ctx context.Context, body ChatToolsExecuteJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// ChatInvoke request
-	ChatInvoke(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ChatStreamWithBody request with any body
 	ChatStreamWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -66534,6 +66803,12 @@ type ClientInterface interface {
 	MaintenanceAnnouncementsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	MaintenanceAnnouncementsCreate(ctx context.Context, body MaintenanceAnnouncementsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MaintenanceAnnouncementsMaintenanceStatsRetrieve request
+	MaintenanceAnnouncementsMaintenanceStatsRetrieve(ctx context.Context, params *MaintenanceAnnouncementsMaintenanceStatsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MaintenanceAnnouncementsMaintenanceStatsCount request
+	MaintenanceAnnouncementsMaintenanceStatsCount(ctx context.Context, params *MaintenanceAnnouncementsMaintenanceStatsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MaintenanceAnnouncementsDestroy request
 	MaintenanceAnnouncementsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -71571,6 +71846,20 @@ type ClientInterface interface {
 	// SlurmJobsUnlink request
 	SlurmJobsUnlink(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// StatsCeleryRetrieve request
+	StatsCeleryRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// StatsDatabaseRetrieve request
+	StatsDatabaseRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// StatsQueryWithBody request with any body
+	StatsQueryWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	StatsQuery(ctx context.Context, body StatsQueryJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// StatsTableGrowthRetrieve request
+	StatsTableGrowthRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// SupportAttachmentsList request
 	SupportAttachmentsList(ctx context.Context, params *SupportAttachmentsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -75931,6 +76220,42 @@ func (c *Client) CeleryStatsRetrieve(ctx context.Context, reqEditors ...RequestE
 	return c.Client.Do(req)
 }
 
+func (c *Client) ChatQuotaSetQuotaWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatQuotaSetQuotaRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChatQuotaSetQuota(ctx context.Context, body ChatQuotaSetQuotaJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatQuotaSetQuotaRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) ChatQuotaUsageRetrieve(ctx context.Context, params *ChatQuotaUsageRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatQuotaUsageRetrieveRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) ChatToolsExecuteWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewChatToolsExecuteRequestWithBody(c.Server, contentType, body)
 	if err != nil {
@@ -75945,18 +76270,6 @@ func (c *Client) ChatToolsExecuteWithBody(ctx context.Context, contentType strin
 
 func (c *Client) ChatToolsExecute(ctx context.Context, body ChatToolsExecuteJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewChatToolsExecuteRequest(c.Server, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) ChatInvoke(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewChatInvokeRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -80385,6 +80698,30 @@ func (c *Client) MaintenanceAnnouncementsCreateWithBody(ctx context.Context, con
 
 func (c *Client) MaintenanceAnnouncementsCreate(ctx context.Context, body MaintenanceAnnouncementsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMaintenanceAnnouncementsCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MaintenanceAnnouncementsMaintenanceStatsRetrieve(ctx context.Context, params *MaintenanceAnnouncementsMaintenanceStatsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMaintenanceAnnouncementsMaintenanceStatsRetrieveRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MaintenanceAnnouncementsMaintenanceStatsCount(ctx context.Context, params *MaintenanceAnnouncementsMaintenanceStatsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMaintenanceAnnouncementsMaintenanceStatsCountRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -102523,6 +102860,66 @@ func (c *Client) SlurmJobsUnlink(ctx context.Context, uuid openapi_types.UUID, r
 	return c.Client.Do(req)
 }
 
+func (c *Client) StatsCeleryRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewStatsCeleryRetrieveRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) StatsDatabaseRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewStatsDatabaseRetrieveRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) StatsQueryWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewStatsQueryRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) StatsQuery(ctx context.Context, body StatsQueryJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewStatsQueryRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) StatsTableGrowthRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewStatsTableGrowthRetrieveRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) SupportAttachmentsList(ctx context.Context, params *SupportAttachmentsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewSupportAttachmentsListRequest(c.Server, params)
 	if err != nil {
@@ -124004,6 +124401,95 @@ func NewCeleryStatsRetrieveRequest(server string) (*http.Request, error) {
 	return req, nil
 }
 
+// NewChatQuotaSetQuotaRequest calls the generic ChatQuotaSetQuota builder with application/json body
+func NewChatQuotaSetQuotaRequest(server string, body ChatQuotaSetQuotaJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewChatQuotaSetQuotaRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewChatQuotaSetQuotaRequestWithBody generates requests for ChatQuotaSetQuota with any type of body
+func NewChatQuotaSetQuotaRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/chat-quota/set_quota/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewChatQuotaUsageRetrieveRequest generates requests for ChatQuotaUsageRetrieve
+func NewChatQuotaUsageRetrieveRequest(server string, params *ChatQuotaUsageRetrieveParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/chat-quota/usage/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.UserUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "user_uuid", runtime.ParamLocationQuery, *params.UserUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewChatToolsExecuteRequest calls the generic ChatToolsExecute builder with application/json body
 func NewChatToolsExecuteRequest(server string, body ChatToolsExecuteJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -124040,33 +124526,6 @@ func NewChatToolsExecuteRequestWithBody(server string, contentType string, body 
 	}
 
 	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewChatInvokeRequest generates requests for ChatInvoke
-func NewChatInvokeRequest(server string) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/api/chat/invoke/")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("POST", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
 
 	return req, nil
 }
@@ -146537,6 +146996,168 @@ func NewMaintenanceAnnouncementsCreateRequestWithBody(server string, contentType
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMaintenanceAnnouncementsMaintenanceStatsRetrieveRequest generates requests for MaintenanceAnnouncementsMaintenanceStatsRetrieve
+func NewMaintenanceAnnouncementsMaintenanceStatsRetrieveRequest(server string, params *MaintenanceAnnouncementsMaintenanceStatsRetrieveParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/maintenance-announcements/maintenance_stats/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.End != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "end", runtime.ParamLocationQuery, *params.End); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProviderUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "provider_uuid", runtime.ParamLocationQuery, *params.ProviderUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Start != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "start", runtime.ParamLocationQuery, *params.Start); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMaintenanceAnnouncementsMaintenanceStatsCountRequest generates requests for MaintenanceAnnouncementsMaintenanceStatsCount
+func NewMaintenanceAnnouncementsMaintenanceStatsCountRequest(server string, params *MaintenanceAnnouncementsMaintenanceStatsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/maintenance-announcements/maintenance_stats/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.End != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "end", runtime.ParamLocationQuery, *params.End); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProviderUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "provider_uuid", runtime.ParamLocationQuery, *params.ProviderUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Start != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "start", runtime.ParamLocationQuery, *params.Start); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
 
 	return req, nil
 }
@@ -261907,6 +262528,127 @@ func NewSlurmJobsUnlinkRequest(server string, uuid openapi_types.UUID) (*http.Re
 	return req, nil
 }
 
+// NewStatsCeleryRetrieveRequest generates requests for StatsCeleryRetrieve
+func NewStatsCeleryRetrieveRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/stats/celery/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewStatsDatabaseRetrieveRequest generates requests for StatsDatabaseRetrieve
+func NewStatsDatabaseRetrieveRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/stats/database/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewStatsQueryRequest calls the generic StatsQuery builder with application/json body
+func NewStatsQueryRequest(server string, body StatsQueryJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewStatsQueryRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewStatsQueryRequestWithBody generates requests for StatsQuery with any type of body
+func NewStatsQueryRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/stats/query/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewStatsTableGrowthRetrieveRequest generates requests for StatsTableGrowthRetrieve
+func NewStatsTableGrowthRetrieveRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/stats/table-growth/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewSupportAttachmentsListRequest generates requests for SupportAttachmentsList
 func NewSupportAttachmentsListRequest(server string, params *SupportAttachmentsListParams) (*http.Request, error) {
 	var err error
@@ -282166,13 +282908,18 @@ type ClientWithResponsesInterface interface {
 	// CeleryStatsRetrieveWithResponse request
 	CeleryStatsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*CeleryStatsRetrieveResponse, error)
 
+	// ChatQuotaSetQuotaWithBodyWithResponse request with any body
+	ChatQuotaSetQuotaWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatQuotaSetQuotaResponse, error)
+
+	ChatQuotaSetQuotaWithResponse(ctx context.Context, body ChatQuotaSetQuotaJSONRequestBody, reqEditors ...RequestEditorFn) (*ChatQuotaSetQuotaResponse, error)
+
+	// ChatQuotaUsageRetrieveWithResponse request
+	ChatQuotaUsageRetrieveWithResponse(ctx context.Context, params *ChatQuotaUsageRetrieveParams, reqEditors ...RequestEditorFn) (*ChatQuotaUsageRetrieveResponse, error)
+
 	// ChatToolsExecuteWithBodyWithResponse request with any body
 	ChatToolsExecuteWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatToolsExecuteResponse, error)
 
 	ChatToolsExecuteWithResponse(ctx context.Context, body ChatToolsExecuteJSONRequestBody, reqEditors ...RequestEditorFn) (*ChatToolsExecuteResponse, error)
-
-	// ChatInvokeWithResponse request
-	ChatInvokeWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ChatInvokeResponse, error)
 
 	// ChatStreamWithBodyWithResponse request with any body
 	ChatStreamWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatStreamResponse, error)
@@ -283189,6 +283936,12 @@ type ClientWithResponsesInterface interface {
 	MaintenanceAnnouncementsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MaintenanceAnnouncementsCreateResponse, error)
 
 	MaintenanceAnnouncementsCreateWithResponse(ctx context.Context, body MaintenanceAnnouncementsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MaintenanceAnnouncementsCreateResponse, error)
+
+	// MaintenanceAnnouncementsMaintenanceStatsRetrieveWithResponse request
+	MaintenanceAnnouncementsMaintenanceStatsRetrieveWithResponse(ctx context.Context, params *MaintenanceAnnouncementsMaintenanceStatsRetrieveParams, reqEditors ...RequestEditorFn) (*MaintenanceAnnouncementsMaintenanceStatsRetrieveResponse, error)
+
+	// MaintenanceAnnouncementsMaintenanceStatsCountWithResponse request
+	MaintenanceAnnouncementsMaintenanceStatsCountWithResponse(ctx context.Context, params *MaintenanceAnnouncementsMaintenanceStatsCountParams, reqEditors ...RequestEditorFn) (*MaintenanceAnnouncementsMaintenanceStatsCountResponse, error)
 
 	// MaintenanceAnnouncementsDestroyWithResponse request
 	MaintenanceAnnouncementsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MaintenanceAnnouncementsDestroyResponse, error)
@@ -288225,6 +288978,20 @@ type ClientWithResponsesInterface interface {
 
 	// SlurmJobsUnlinkWithResponse request
 	SlurmJobsUnlinkWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*SlurmJobsUnlinkResponse, error)
+
+	// StatsCeleryRetrieveWithResponse request
+	StatsCeleryRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*StatsCeleryRetrieveResponse, error)
+
+	// StatsDatabaseRetrieveWithResponse request
+	StatsDatabaseRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*StatsDatabaseRetrieveResponse, error)
+
+	// StatsQueryWithBodyWithResponse request with any body
+	StatsQueryWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*StatsQueryResponse, error)
+
+	StatsQueryWithResponse(ctx context.Context, body StatsQueryJSONRequestBody, reqEditors ...RequestEditorFn) (*StatsQueryResponse, error)
+
+	// StatsTableGrowthRetrieveWithResponse request
+	StatsTableGrowthRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*StatsTableGrowthRetrieveResponse, error)
 
 	// SupportAttachmentsListWithResponse request
 	SupportAttachmentsListWithResponse(ctx context.Context, params *SupportAttachmentsListParams, reqEditors ...RequestEditorFn) (*SupportAttachmentsListResponse, error)
@@ -293904,6 +294671,49 @@ func (r CeleryStatsRetrieveResponse) StatusCode() int {
 	return 0
 }
 
+type ChatQuotaSetQuotaResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r ChatQuotaSetQuotaResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChatQuotaSetQuotaResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type ChatQuotaUsageRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *TokenQuotaUsageResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r ChatQuotaUsageRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChatQuotaUsageRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type ChatToolsExecuteResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -293920,28 +294730,6 @@ func (r ChatToolsExecuteResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r ChatToolsExecuteResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type ChatInvokeResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *string
-}
-
-// Status returns HTTPResponse.Status
-func (r ChatInvokeResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r ChatInvokeResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -299976,6 +300764,49 @@ func (r MaintenanceAnnouncementsCreateResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MaintenanceAnnouncementsCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MaintenanceAnnouncementsMaintenanceStatsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *MaintenanceStatsResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r MaintenanceAnnouncementsMaintenanceStatsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MaintenanceAnnouncementsMaintenanceStatsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MaintenanceAnnouncementsMaintenanceStatsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MaintenanceAnnouncementsMaintenanceStatsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MaintenanceAnnouncementsMaintenanceStatsCountResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -329275,6 +330106,94 @@ func (r SlurmJobsUnlinkResponse) StatusCode() int {
 	return 0
 }
 
+type StatsCeleryRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CeleryStatsResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r StatsCeleryRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r StatsCeleryRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type StatsDatabaseRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *DatabaseStatsResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r StatsDatabaseRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r StatsDatabaseRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type StatsQueryResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]interface{}
+}
+
+// Status returns HTTPResponse.Status
+func (r StatsQueryResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r StatsQueryResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type StatsTableGrowthRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *TableGrowthStatsResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r StatsTableGrowthRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r StatsTableGrowthRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type SupportAttachmentsListResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -336458,6 +337377,32 @@ func (c *ClientWithResponses) CeleryStatsRetrieveWithResponse(ctx context.Contex
 	return ParseCeleryStatsRetrieveResponse(rsp)
 }
 
+// ChatQuotaSetQuotaWithBodyWithResponse request with arbitrary body returning *ChatQuotaSetQuotaResponse
+func (c *ClientWithResponses) ChatQuotaSetQuotaWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatQuotaSetQuotaResponse, error) {
+	rsp, err := c.ChatQuotaSetQuotaWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChatQuotaSetQuotaResponse(rsp)
+}
+
+func (c *ClientWithResponses) ChatQuotaSetQuotaWithResponse(ctx context.Context, body ChatQuotaSetQuotaJSONRequestBody, reqEditors ...RequestEditorFn) (*ChatQuotaSetQuotaResponse, error) {
+	rsp, err := c.ChatQuotaSetQuota(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChatQuotaSetQuotaResponse(rsp)
+}
+
+// ChatQuotaUsageRetrieveWithResponse request returning *ChatQuotaUsageRetrieveResponse
+func (c *ClientWithResponses) ChatQuotaUsageRetrieveWithResponse(ctx context.Context, params *ChatQuotaUsageRetrieveParams, reqEditors ...RequestEditorFn) (*ChatQuotaUsageRetrieveResponse, error) {
+	rsp, err := c.ChatQuotaUsageRetrieve(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChatQuotaUsageRetrieveResponse(rsp)
+}
+
 // ChatToolsExecuteWithBodyWithResponse request with arbitrary body returning *ChatToolsExecuteResponse
 func (c *ClientWithResponses) ChatToolsExecuteWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ChatToolsExecuteResponse, error) {
 	rsp, err := c.ChatToolsExecuteWithBody(ctx, contentType, body, reqEditors...)
@@ -336473,15 +337418,6 @@ func (c *ClientWithResponses) ChatToolsExecuteWithResponse(ctx context.Context, 
 		return nil, err
 	}
 	return ParseChatToolsExecuteResponse(rsp)
-}
-
-// ChatInvokeWithResponse request returning *ChatInvokeResponse
-func (c *ClientWithResponses) ChatInvokeWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ChatInvokeResponse, error) {
-	rsp, err := c.ChatInvoke(ctx, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseChatInvokeResponse(rsp)
 }
 
 // ChatStreamWithBodyWithResponse request with arbitrary body returning *ChatStreamResponse
@@ -339712,6 +340648,24 @@ func (c *ClientWithResponses) MaintenanceAnnouncementsCreateWithResponse(ctx con
 		return nil, err
 	}
 	return ParseMaintenanceAnnouncementsCreateResponse(rsp)
+}
+
+// MaintenanceAnnouncementsMaintenanceStatsRetrieveWithResponse request returning *MaintenanceAnnouncementsMaintenanceStatsRetrieveResponse
+func (c *ClientWithResponses) MaintenanceAnnouncementsMaintenanceStatsRetrieveWithResponse(ctx context.Context, params *MaintenanceAnnouncementsMaintenanceStatsRetrieveParams, reqEditors ...RequestEditorFn) (*MaintenanceAnnouncementsMaintenanceStatsRetrieveResponse, error) {
+	rsp, err := c.MaintenanceAnnouncementsMaintenanceStatsRetrieve(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMaintenanceAnnouncementsMaintenanceStatsRetrieveResponse(rsp)
+}
+
+// MaintenanceAnnouncementsMaintenanceStatsCountWithResponse request returning *MaintenanceAnnouncementsMaintenanceStatsCountResponse
+func (c *ClientWithResponses) MaintenanceAnnouncementsMaintenanceStatsCountWithResponse(ctx context.Context, params *MaintenanceAnnouncementsMaintenanceStatsCountParams, reqEditors ...RequestEditorFn) (*MaintenanceAnnouncementsMaintenanceStatsCountResponse, error) {
+	rsp, err := c.MaintenanceAnnouncementsMaintenanceStatsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMaintenanceAnnouncementsMaintenanceStatsCountResponse(rsp)
 }
 
 // MaintenanceAnnouncementsDestroyWithResponse request returning *MaintenanceAnnouncementsDestroyResponse
@@ -355814,6 +356768,50 @@ func (c *ClientWithResponses) SlurmJobsUnlinkWithResponse(ctx context.Context, u
 	return ParseSlurmJobsUnlinkResponse(rsp)
 }
 
+// StatsCeleryRetrieveWithResponse request returning *StatsCeleryRetrieveResponse
+func (c *ClientWithResponses) StatsCeleryRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*StatsCeleryRetrieveResponse, error) {
+	rsp, err := c.StatsCeleryRetrieve(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseStatsCeleryRetrieveResponse(rsp)
+}
+
+// StatsDatabaseRetrieveWithResponse request returning *StatsDatabaseRetrieveResponse
+func (c *ClientWithResponses) StatsDatabaseRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*StatsDatabaseRetrieveResponse, error) {
+	rsp, err := c.StatsDatabaseRetrieve(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseStatsDatabaseRetrieveResponse(rsp)
+}
+
+// StatsQueryWithBodyWithResponse request with arbitrary body returning *StatsQueryResponse
+func (c *ClientWithResponses) StatsQueryWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*StatsQueryResponse, error) {
+	rsp, err := c.StatsQueryWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseStatsQueryResponse(rsp)
+}
+
+func (c *ClientWithResponses) StatsQueryWithResponse(ctx context.Context, body StatsQueryJSONRequestBody, reqEditors ...RequestEditorFn) (*StatsQueryResponse, error) {
+	rsp, err := c.StatsQuery(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseStatsQueryResponse(rsp)
+}
+
+// StatsTableGrowthRetrieveWithResponse request returning *StatsTableGrowthRetrieveResponse
+func (c *ClientWithResponses) StatsTableGrowthRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*StatsTableGrowthRetrieveResponse, error) {
+	rsp, err := c.StatsTableGrowthRetrieve(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseStatsTableGrowthRetrieveResponse(rsp)
+}
+
 // SupportAttachmentsListWithResponse request returning *SupportAttachmentsListResponse
 func (c *ClientWithResponses) SupportAttachmentsListWithResponse(ctx context.Context, params *SupportAttachmentsListParams, reqEditors ...RequestEditorFn) (*SupportAttachmentsListResponse, error) {
 	rsp, err := c.SupportAttachmentsList(ctx, params, reqEditors...)
@@ -363302,6 +364300,48 @@ func ParseCeleryStatsRetrieveResponse(rsp *http.Response) (*CeleryStatsRetrieveR
 	return response, nil
 }
 
+// ParseChatQuotaSetQuotaResponse parses an HTTP response from a ChatQuotaSetQuotaWithResponse call
+func ParseChatQuotaSetQuotaResponse(rsp *http.Response) (*ChatQuotaSetQuotaResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChatQuotaSetQuotaResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseChatQuotaUsageRetrieveResponse parses an HTTP response from a ChatQuotaUsageRetrieveWithResponse call
+func ParseChatQuotaUsageRetrieveResponse(rsp *http.Response) (*ChatQuotaUsageRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChatQuotaUsageRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest TokenQuotaUsageResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseChatToolsExecuteResponse parses an HTTP response from a ChatToolsExecuteWithResponse call
 func ParseChatToolsExecuteResponse(rsp *http.Response) (*ChatToolsExecuteResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -363318,32 +364358,6 @@ func ParseChatToolsExecuteResponse(rsp *http.Response) (*ChatToolsExecuteRespons
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest map[string]interface{}
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseChatInvokeResponse parses an HTTP response from a ChatInvokeWithResponse call
-func ParseChatInvokeResponse(rsp *http.Response) (*ChatInvokeResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &ChatInvokeResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest string
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -369694,6 +370708,48 @@ func ParseMaintenanceAnnouncementsCreateResponse(rsp *http.Response) (*Maintenan
 		}
 		response.JSON201 = &dest
 
+	}
+
+	return response, nil
+}
+
+// ParseMaintenanceAnnouncementsMaintenanceStatsRetrieveResponse parses an HTTP response from a MaintenanceAnnouncementsMaintenanceStatsRetrieveWithResponse call
+func ParseMaintenanceAnnouncementsMaintenanceStatsRetrieveResponse(rsp *http.Response) (*MaintenanceAnnouncementsMaintenanceStatsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MaintenanceAnnouncementsMaintenanceStatsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest MaintenanceStatsResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMaintenanceAnnouncementsMaintenanceStatsCountResponse parses an HTTP response from a MaintenanceAnnouncementsMaintenanceStatsCountWithResponse call
+func ParseMaintenanceAnnouncementsMaintenanceStatsCountResponse(rsp *http.Response) (*MaintenanceAnnouncementsMaintenanceStatsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MaintenanceAnnouncementsMaintenanceStatsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
 	}
 
 	return response, nil
@@ -400560,6 +401616,110 @@ func ParseSlurmJobsUnlinkResponse(rsp *http.Response) (*SlurmJobsUnlinkResponse,
 	response := &SlurmJobsUnlinkResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseStatsCeleryRetrieveResponse parses an HTTP response from a StatsCeleryRetrieveWithResponse call
+func ParseStatsCeleryRetrieveResponse(rsp *http.Response) (*StatsCeleryRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &StatsCeleryRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CeleryStatsResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseStatsDatabaseRetrieveResponse parses an HTTP response from a StatsDatabaseRetrieveWithResponse call
+func ParseStatsDatabaseRetrieveResponse(rsp *http.Response) (*StatsDatabaseRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &StatsDatabaseRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest DatabaseStatsResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseStatsQueryResponse parses an HTTP response from a StatsQueryWithResponse call
+func ParseStatsQueryResponse(rsp *http.Response) (*StatsQueryResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &StatsQueryResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseStatsTableGrowthRetrieveResponse parses an HTTP response from a StatsTableGrowthRetrieveWithResponse call
+func ParseStatsTableGrowthRetrieveResponse(rsp *http.Response) (*StatsTableGrowthRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &StatsTableGrowthRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest TableGrowthStatsResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
