@@ -22848,6 +22848,7 @@ type OfferingCreateRequest struct {
 	Name              string                                    `json:"name"`
 	Options           *OfferingOptionsRequest                   `json:"options,omitempty"`
 	Plans             *[]BaseProviderPlanRequest                `json:"plans,omitempty"`
+	PluginOptions     *MergedPluginOptionsRequest               `json:"plugin_options,omitempty"`
 	PrivacyPolicyLink *string                                   `json:"privacy_policy_link,omitempty"`
 	ResourceOptions   *OfferingOptionsRequest                   `json:"resource_options,omitempty"`
 
@@ -22895,6 +22896,7 @@ type OfferingCreateRequestForm struct {
 	Name              string                                    `json:"name"`
 	Options           *OfferingOptionsRequest                   `json:"options,omitempty"`
 	Plans             *[]BaseProviderPlanRequest                `json:"plans,omitempty"`
+	PluginOptions     *MergedPluginOptionsRequest               `json:"plugin_options,omitempty"`
 	PrivacyPolicyLink *string                                   `json:"privacy_policy_link,omitempty"`
 	ResourceOptions   *OfferingOptionsRequest                   `json:"resource_options,omitempty"`
 
@@ -22942,6 +22944,7 @@ type OfferingCreateRequestMultipart struct {
 	Name              string                                    `json:"name"`
 	Options           *OfferingOptionsRequest                   `json:"options,omitempty"`
 	Plans             *[]BaseProviderPlanRequest                `json:"plans,omitempty"`
+	PluginOptions     *MergedPluginOptionsRequest               `json:"plugin_options,omitempty"`
 	PrivacyPolicyLink *string                                   `json:"privacy_policy_link,omitempty"`
 	ResourceOptions   *OfferingOptionsRequest                   `json:"resource_options,omitempty"`
 
