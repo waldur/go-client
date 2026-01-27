@@ -22372,7 +22372,6 @@ type NestedSoftwareTarget struct {
 type NestedSoftwareVersion struct {
 	Extensions                     *[]interface{}          `json:"extensions,omitempty"`
 	Module                         *map[string]interface{} `json:"module,omitempty"`
-	Modulename                     *string                 `json:"modulename,omitempty"`
 	ReleaseDate                    *openapi_types.Date     `json:"release_date"`
 	RequiredModules                *[]interface{}          `json:"required_modules,omitempty"`
 	Targets                        *[]NestedSoftwareTarget `json:"targets,omitempty"`
@@ -33895,7 +33894,6 @@ type SoftwareVersion struct {
 	Metadata                       interface{}             `json:"metadata,omitempty"`
 	Modified                       *time.Time              `json:"modified,omitempty"`
 	Module                         *map[string]interface{} `json:"module,omitempty"`
-	Modulename                     *string                 `json:"modulename,omitempty"`
 	PackageName                    *string                 `json:"package_name,omitempty"`
 	ReleaseDate                    *openapi_types.Date     `json:"release_date"`
 	RequiredModules                *[]interface{}          `json:"required_modules,omitempty"`
