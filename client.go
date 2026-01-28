@@ -1702,6 +1702,14 @@ const (
 	OptionFieldTypeEnumTime                             OptionFieldTypeEnum = "time"
 )
 
+// Defines values for OptionValidatorTypeEnum.
+const (
+	Gt  OptionValidatorTypeEnum = "gt"
+	Gte OptionValidatorTypeEnum = "gte"
+	Lt  OptionValidatorTypeEnum = "lt"
+	Lte OptionValidatorTypeEnum = "lte"
+)
+
 // Defines values for OrderState.
 const (
 	OrderStateCanceled         OrderState = "canceled"
@@ -13926,6 +13934,27 @@ type AgentTaskStatsResponse struct {
 // AgentTypeEnum defines model for AgentTypeEnum.
 type AgentTypeEnum string
 
+// AggregatedUsageTrend defines model for AggregatedUsageTrend.
+type AggregatedUsageTrend struct {
+	// ComponentCount Number of component usage records
+	ComponentCount int `json:"component_count"`
+
+	// Month Month (1-12)
+	Month int `json:"month"`
+
+	// Period Period in YYYY-MM format
+	Period string `json:"period"`
+
+	// ResourceCount Number of distinct resources with usage
+	ResourceCount int `json:"resource_count"`
+
+	// TotalUsage Total usage across all components
+	TotalUsage string `json:"total_usage"`
+
+	// Year Year
+	Year int `json:"year"`
+}
+
 // AgreementTypeEnum defines model for AgreementTypeEnum.
 type AgreementTypeEnum string
 
@@ -25879,6 +25908,7 @@ type OptionField struct {
 	Required                  *bool                      `json:"required,omitempty"`
 	StorageFolderConfig       *StorageFolderConfig       `json:"storage_folder_config,omitempty"`
 	Type                      OptionFieldTypeEnum        `json:"type"`
+	Validators                *[]OptionValidator         `json:"validators,omitempty"`
 }
 
 // OptionFieldRequest defines model for OptionFieldRequest.
@@ -25895,10 +25925,26 @@ type OptionFieldRequest struct {
 	Required                  *bool                             `json:"required,omitempty"`
 	StorageFolderConfig       *StorageFolderConfigRequest       `json:"storage_folder_config,omitempty"`
 	Type                      OptionFieldTypeEnum               `json:"type"`
+	Validators                *[]OptionValidatorRequest         `json:"validators,omitempty"`
 }
 
 // OptionFieldTypeEnum defines model for OptionFieldTypeEnum.
 type OptionFieldTypeEnum string
+
+// OptionValidator defines model for OptionValidator.
+type OptionValidator struct {
+	TargetField string                  `json:"target_field"`
+	Type        OptionValidatorTypeEnum `json:"type"`
+}
+
+// OptionValidatorRequest defines model for OptionValidatorRequest.
+type OptionValidatorRequest struct {
+	TargetField string                  `json:"target_field"`
+	Type        OptionValidatorTypeEnum `json:"type"`
+}
+
+// OptionValidatorTypeEnum defines model for OptionValidatorTypeEnum.
+type OptionValidatorTypeEnum string
 
 // OrcidCallbackRequest defines model for OrcidCallbackRequest.
 type OrcidCallbackRequest struct {
@@ -46120,6 +46166,24 @@ type MarketplaceSoftwareVersionsCountParams struct {
 
 // MarketplaceSoftwareVersionsCountParamsO defines parameters for MarketplaceSoftwareVersionsCount.
 type MarketplaceSoftwareVersionsCountParamsO string
+
+// MarketplaceStatsAggregatedUsageTrendsListParams defines parameters for MarketplaceStatsAggregatedUsageTrendsList.
+type MarketplaceStatsAggregatedUsageTrendsListParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// MarketplaceStatsAggregatedUsageTrendsCountParams defines parameters for MarketplaceStatsAggregatedUsageTrendsCount.
+type MarketplaceStatsAggregatedUsageTrendsCountParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
 
 // MarketplaceStatsComponentUsagesListParams defines parameters for MarketplaceStatsComponentUsagesList.
 type MarketplaceStatsComponentUsagesListParams struct {
@@ -68950,6 +69014,12 @@ type ClientInterface interface {
 	// MarketplaceSoftwareVersionsUpdate request
 	MarketplaceSoftwareVersionsUpdate(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceStatsAggregatedUsageTrendsList request
+	MarketplaceStatsAggregatedUsageTrendsList(ctx context.Context, params *MarketplaceStatsAggregatedUsageTrendsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceStatsAggregatedUsageTrendsCount request
+	MarketplaceStatsAggregatedUsageTrendsCount(ctx context.Context, params *MarketplaceStatsAggregatedUsageTrendsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceStatsComponentUsagesList request
 	MarketplaceStatsComponentUsagesList(ctx context.Context, params *MarketplaceStatsComponentUsagesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -89626,6 +89696,30 @@ func (c *Client) MarketplaceSoftwareVersionsPartialUpdate(ctx context.Context, u
 
 func (c *Client) MarketplaceSoftwareVersionsUpdate(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceSoftwareVersionsUpdateRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceStatsAggregatedUsageTrendsList(ctx context.Context, params *MarketplaceStatsAggregatedUsageTrendsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceStatsAggregatedUsageTrendsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceStatsAggregatedUsageTrendsCount(ctx context.Context, params *MarketplaceStatsAggregatedUsageTrendsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceStatsAggregatedUsageTrendsCountRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -195282,6 +195376,136 @@ func NewMarketplaceSoftwareVersionsUpdateRequest(server string, uuid openapi_typ
 	return req, nil
 }
 
+// NewMarketplaceStatsAggregatedUsageTrendsListRequest generates requests for MarketplaceStatsAggregatedUsageTrendsList
+func NewMarketplaceStatsAggregatedUsageTrendsListRequest(server string, params *MarketplaceStatsAggregatedUsageTrendsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-stats/aggregated_usage_trends/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceStatsAggregatedUsageTrendsCountRequest generates requests for MarketplaceStatsAggregatedUsageTrendsCount
+func NewMarketplaceStatsAggregatedUsageTrendsCountRequest(server string, params *MarketplaceStatsAggregatedUsageTrendsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-stats/aggregated_usage_trends/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewMarketplaceStatsComponentUsagesListRequest generates requests for MarketplaceStatsComponentUsagesList
 func NewMarketplaceStatsComponentUsagesListRequest(server string, params *MarketplaceStatsComponentUsagesListParams) (*http.Request, error) {
 	var err error
@@ -286899,6 +287123,12 @@ type ClientWithResponsesInterface interface {
 	// MarketplaceSoftwareVersionsUpdateWithResponse request
 	MarketplaceSoftwareVersionsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceSoftwareVersionsUpdateResponse, error)
 
+	// MarketplaceStatsAggregatedUsageTrendsListWithResponse request
+	MarketplaceStatsAggregatedUsageTrendsListWithResponse(ctx context.Context, params *MarketplaceStatsAggregatedUsageTrendsListParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsAggregatedUsageTrendsListResponse, error)
+
+	// MarketplaceStatsAggregatedUsageTrendsCountWithResponse request
+	MarketplaceStatsAggregatedUsageTrendsCountWithResponse(ctx context.Context, params *MarketplaceStatsAggregatedUsageTrendsCountParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsAggregatedUsageTrendsCountResponse, error)
+
 	// MarketplaceStatsComponentUsagesListWithResponse request
 	MarketplaceStatsComponentUsagesListWithResponse(ctx context.Context, params *MarketplaceStatsComponentUsagesListParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsComponentUsagesListResponse, error)
 
@@ -313123,6 +313353,49 @@ func (r MarketplaceSoftwareVersionsUpdateResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceSoftwareVersionsUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceStatsAggregatedUsageTrendsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]AggregatedUsageTrend
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceStatsAggregatedUsageTrendsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceStatsAggregatedUsageTrendsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceStatsAggregatedUsageTrendsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceStatsAggregatedUsageTrendsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceStatsAggregatedUsageTrendsCountResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -348309,6 +348582,24 @@ func (c *ClientWithResponses) MarketplaceSoftwareVersionsUpdateWithResponse(ctx 
 		return nil, err
 	}
 	return ParseMarketplaceSoftwareVersionsUpdateResponse(rsp)
+}
+
+// MarketplaceStatsAggregatedUsageTrendsListWithResponse request returning *MarketplaceStatsAggregatedUsageTrendsListResponse
+func (c *ClientWithResponses) MarketplaceStatsAggregatedUsageTrendsListWithResponse(ctx context.Context, params *MarketplaceStatsAggregatedUsageTrendsListParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsAggregatedUsageTrendsListResponse, error) {
+	rsp, err := c.MarketplaceStatsAggregatedUsageTrendsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceStatsAggregatedUsageTrendsListResponse(rsp)
+}
+
+// MarketplaceStatsAggregatedUsageTrendsCountWithResponse request returning *MarketplaceStatsAggregatedUsageTrendsCountResponse
+func (c *ClientWithResponses) MarketplaceStatsAggregatedUsageTrendsCountWithResponse(ctx context.Context, params *MarketplaceStatsAggregatedUsageTrendsCountParams, reqEditors ...RequestEditorFn) (*MarketplaceStatsAggregatedUsageTrendsCountResponse, error) {
+	rsp, err := c.MarketplaceStatsAggregatedUsageTrendsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceStatsAggregatedUsageTrendsCountResponse(rsp)
 }
 
 // MarketplaceStatsComponentUsagesListWithResponse request returning *MarketplaceStatsComponentUsagesListResponse
@@ -384233,6 +384524,48 @@ func ParseMarketplaceSoftwareVersionsUpdateResponse(rsp *http.Response) (*Market
 		}
 		response.JSON200 = &dest
 
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceStatsAggregatedUsageTrendsListResponse parses an HTTP response from a MarketplaceStatsAggregatedUsageTrendsListWithResponse call
+func ParseMarketplaceStatsAggregatedUsageTrendsListResponse(rsp *http.Response) (*MarketplaceStatsAggregatedUsageTrendsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceStatsAggregatedUsageTrendsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []AggregatedUsageTrend
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceStatsAggregatedUsageTrendsCountResponse parses an HTTP response from a MarketplaceStatsAggregatedUsageTrendsCountWithResponse call
+func ParseMarketplaceStatsAggregatedUsageTrendsCountResponse(rsp *http.Response) (*MarketplaceStatsAggregatedUsageTrendsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceStatsAggregatedUsageTrendsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
 	}
 
 	return response, nil
