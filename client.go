@@ -3690,6 +3690,7 @@ const (
 	BookingResourcesListParamsFieldModified                   BookingResourcesListParamsField = "modified"
 	BookingResourcesListParamsFieldName                       BookingResourcesListParamsField = "name"
 	BookingResourcesListParamsFieldOffering                   BookingResourcesListParamsField = "offering"
+	BookingResourcesListParamsFieldOfferingBackendId          BookingResourcesListParamsField = "offering_backend_id"
 	BookingResourcesListParamsFieldOfferingBillable           BookingResourcesListParamsField = "offering_billable"
 	BookingResourcesListParamsFieldOfferingComponents         BookingResourcesListParamsField = "offering_components"
 	BookingResourcesListParamsFieldOfferingDescription        BookingResourcesListParamsField = "offering_description"
@@ -3849,6 +3850,7 @@ const (
 	BookingResourcesRetrieveParamsFieldModified                   BookingResourcesRetrieveParamsField = "modified"
 	BookingResourcesRetrieveParamsFieldName                       BookingResourcesRetrieveParamsField = "name"
 	BookingResourcesRetrieveParamsFieldOffering                   BookingResourcesRetrieveParamsField = "offering"
+	BookingResourcesRetrieveParamsFieldOfferingBackendId          BookingResourcesRetrieveParamsField = "offering_backend_id"
 	BookingResourcesRetrieveParamsFieldOfferingBillable           BookingResourcesRetrieveParamsField = "offering_billable"
 	BookingResourcesRetrieveParamsFieldOfferingComponents         BookingResourcesRetrieveParamsField = "offering_components"
 	BookingResourcesRetrieveParamsFieldOfferingDescription        BookingResourcesRetrieveParamsField = "offering_description"
@@ -5236,6 +5238,7 @@ const (
 	ManagedRancherClusterResourcesListParamsFieldModified                  ManagedRancherClusterResourcesListParamsField = "modified"
 	ManagedRancherClusterResourcesListParamsFieldName                      ManagedRancherClusterResourcesListParamsField = "name"
 	ManagedRancherClusterResourcesListParamsFieldOffering                  ManagedRancherClusterResourcesListParamsField = "offering"
+	ManagedRancherClusterResourcesListParamsFieldOfferingBackendId         ManagedRancherClusterResourcesListParamsField = "offering_backend_id"
 	ManagedRancherClusterResourcesListParamsFieldOfferingBillable          ManagedRancherClusterResourcesListParamsField = "offering_billable"
 	ManagedRancherClusterResourcesListParamsFieldOfferingComponents        ManagedRancherClusterResourcesListParamsField = "offering_components"
 	ManagedRancherClusterResourcesListParamsFieldOfferingDescription       ManagedRancherClusterResourcesListParamsField = "offering_description"
@@ -5318,6 +5321,7 @@ const (
 	ManagedRancherClusterResourcesRetrieveParamsFieldModified                  ManagedRancherClusterResourcesRetrieveParamsField = "modified"
 	ManagedRancherClusterResourcesRetrieveParamsFieldName                      ManagedRancherClusterResourcesRetrieveParamsField = "name"
 	ManagedRancherClusterResourcesRetrieveParamsFieldOffering                  ManagedRancherClusterResourcesRetrieveParamsField = "offering"
+	ManagedRancherClusterResourcesRetrieveParamsFieldOfferingBackendId         ManagedRancherClusterResourcesRetrieveParamsField = "offering_backend_id"
 	ManagedRancherClusterResourcesRetrieveParamsFieldOfferingBillable          ManagedRancherClusterResourcesRetrieveParamsField = "offering_billable"
 	ManagedRancherClusterResourcesRetrieveParamsFieldOfferingComponents        ManagedRancherClusterResourcesRetrieveParamsField = "offering_components"
 	ManagedRancherClusterResourcesRetrieveParamsFieldOfferingDescription       ManagedRancherClusterResourcesRetrieveParamsField = "offering_description"
@@ -7034,6 +7038,7 @@ const (
 	MarketplaceProviderResourcesListParamsFieldModified                  MarketplaceProviderResourcesListParamsField = "modified"
 	MarketplaceProviderResourcesListParamsFieldName                      MarketplaceProviderResourcesListParamsField = "name"
 	MarketplaceProviderResourcesListParamsFieldOffering                  MarketplaceProviderResourcesListParamsField = "offering"
+	MarketplaceProviderResourcesListParamsFieldOfferingBackendId         MarketplaceProviderResourcesListParamsField = "offering_backend_id"
 	MarketplaceProviderResourcesListParamsFieldOfferingBillable          MarketplaceProviderResourcesListParamsField = "offering_billable"
 	MarketplaceProviderResourcesListParamsFieldOfferingComponents        MarketplaceProviderResourcesListParamsField = "offering_components"
 	MarketplaceProviderResourcesListParamsFieldOfferingDescription       MarketplaceProviderResourcesListParamsField = "offering_description"
@@ -7190,6 +7195,7 @@ const (
 	MarketplaceProviderResourcesRetrieveParamsFieldModified                  MarketplaceProviderResourcesRetrieveParamsField = "modified"
 	MarketplaceProviderResourcesRetrieveParamsFieldName                      MarketplaceProviderResourcesRetrieveParamsField = "name"
 	MarketplaceProviderResourcesRetrieveParamsFieldOffering                  MarketplaceProviderResourcesRetrieveParamsField = "offering"
+	MarketplaceProviderResourcesRetrieveParamsFieldOfferingBackendId         MarketplaceProviderResourcesRetrieveParamsField = "offering_backend_id"
 	MarketplaceProviderResourcesRetrieveParamsFieldOfferingBillable          MarketplaceProviderResourcesRetrieveParamsField = "offering_billable"
 	MarketplaceProviderResourcesRetrieveParamsFieldOfferingComponents        MarketplaceProviderResourcesRetrieveParamsField = "offering_components"
 	MarketplaceProviderResourcesRetrieveParamsFieldOfferingDescription       MarketplaceProviderResourcesRetrieveParamsField = "offering_description"
@@ -7515,6 +7521,7 @@ const (
 	MarketplaceResourcesListParamsFieldModified                  MarketplaceResourcesListParamsField = "modified"
 	MarketplaceResourcesListParamsFieldName                      MarketplaceResourcesListParamsField = "name"
 	MarketplaceResourcesListParamsFieldOffering                  MarketplaceResourcesListParamsField = "offering"
+	MarketplaceResourcesListParamsFieldOfferingBackendId         MarketplaceResourcesListParamsField = "offering_backend_id"
 	MarketplaceResourcesListParamsFieldOfferingBillable          MarketplaceResourcesListParamsField = "offering_billable"
 	MarketplaceResourcesListParamsFieldOfferingComponents        MarketplaceResourcesListParamsField = "offering_components"
 	MarketplaceResourcesListParamsFieldOfferingDescription       MarketplaceResourcesListParamsField = "offering_description"
@@ -7671,6 +7678,7 @@ const (
 	MarketplaceResourcesRetrieveParamsFieldModified                  MarketplaceResourcesRetrieveParamsField = "modified"
 	MarketplaceResourcesRetrieveParamsFieldName                      MarketplaceResourcesRetrieveParamsField = "name"
 	MarketplaceResourcesRetrieveParamsFieldOffering                  MarketplaceResourcesRetrieveParamsField = "offering"
+	MarketplaceResourcesRetrieveParamsFieldOfferingBackendId         MarketplaceResourcesRetrieveParamsField = "offering_backend_id"
 	MarketplaceResourcesRetrieveParamsFieldOfferingBillable          MarketplaceResourcesRetrieveParamsField = "offering_billable"
 	MarketplaceResourcesRetrieveParamsFieldOfferingComponents        MarketplaceResourcesRetrieveParamsField = "offering_components"
 	MarketplaceResourcesRetrieveParamsFieldOfferingDescription       MarketplaceResourcesRetrieveParamsField = "offering_description"
@@ -10837,6 +10845,7 @@ const (
 	PromotionsCampaignsResourcesListParamsFieldModified                  PromotionsCampaignsResourcesListParamsField = "modified"
 	PromotionsCampaignsResourcesListParamsFieldName                      PromotionsCampaignsResourcesListParamsField = "name"
 	PromotionsCampaignsResourcesListParamsFieldOffering                  PromotionsCampaignsResourcesListParamsField = "offering"
+	PromotionsCampaignsResourcesListParamsFieldOfferingBackendId         PromotionsCampaignsResourcesListParamsField = "offering_backend_id"
 	PromotionsCampaignsResourcesListParamsFieldOfferingBillable          PromotionsCampaignsResourcesListParamsField = "offering_billable"
 	PromotionsCampaignsResourcesListParamsFieldOfferingComponents        PromotionsCampaignsResourcesListParamsField = "offering_components"
 	PromotionsCampaignsResourcesListParamsFieldOfferingDescription       PromotionsCampaignsResourcesListParamsField = "offering_description"
@@ -15357,6 +15366,7 @@ type BookingResource struct {
 	Modified           *time.Time          `json:"modified,omitempty"`
 	Name               *string             `json:"name,omitempty"`
 	Offering           *string             `json:"offering,omitempty"`
+	OfferingBackendId  *string             `json:"offering_backend_id,omitempty"`
 
 	// OfferingBillable Purchase and usage is invoiced.
 	OfferingBillable    *bool                `json:"offering_billable,omitempty"`
@@ -26252,6 +26262,24 @@ type OrderUUID struct {
 	OrderUuid *openapi_types.UUID `json:"order_uuid,omitempty"`
 }
 
+// OrderUpdate defines model for OrderUpdate.
+type OrderUpdate struct {
+	Attributes interface{}     `json:"attributes,omitempty"`
+	Limits     *map[string]int `json:"limits,omitempty"`
+
+	// StartDate Enables delayed processing of resource provisioning order.
+	StartDate *openapi_types.Date `json:"start_date"`
+}
+
+// OrderUpdateRequest defines model for OrderUpdateRequest.
+type OrderUpdateRequest struct {
+	Attributes interface{}     `json:"attributes,omitempty"`
+	Limits     *map[string]int `json:"limits,omitempty"`
+
+	// StartDate Enables delayed processing of resource provisioning order.
+	StartDate *openapi_types.Date `json:"start_date"`
+}
+
 // OrganizationGroup defines model for OrganizationGroup.
 type OrganizationGroup struct {
 	// CustomersCount Number of customers in this organization group
@@ -27460,6 +27488,15 @@ type PatchedOpenStackVolumeRequest struct {
 	Bootable    *bool   `json:"bootable,omitempty"`
 	Description *string `json:"description,omitempty"`
 	Name        *string `json:"name,omitempty"`
+}
+
+// PatchedOrderUpdateRequest defines model for PatchedOrderUpdateRequest.
+type PatchedOrderUpdateRequest struct {
+	Attributes interface{}     `json:"attributes,omitempty"`
+	Limits     *map[string]int `json:"limits,omitempty"`
+
+	// StartDate Enables delayed processing of resource provisioning order.
+	StartDate *openapi_types.Date `json:"start_date"`
 }
 
 // PatchedOrganizationGroupRequest defines model for PatchedOrganizationGroupRequest.
@@ -32036,6 +32073,7 @@ type Resource struct {
 	Modified           *time.Time          `json:"modified,omitempty"`
 	Name               *string             `json:"name,omitempty"`
 	Offering           *string             `json:"offering,omitempty"`
+	OfferingBackendId  *string             `json:"offering_backend_id,omitempty"`
 
 	// OfferingBillable Purchase and usage is invoiced.
 	OfferingBillable    *bool                `json:"offering_billable,omitempty"`
@@ -57201,6 +57239,12 @@ type MarketplaceOfferingUsersUpdateRestrictedJSONRequestBody = OfferingUserUpdat
 // MarketplaceOrdersCreateJSONRequestBody defines body for MarketplaceOrdersCreate for application/json ContentType.
 type MarketplaceOrdersCreateJSONRequestBody = OrderCreateRequest
 
+// MarketplaceOrdersPartialUpdateJSONRequestBody defines body for MarketplaceOrdersPartialUpdate for application/json ContentType.
+type MarketplaceOrdersPartialUpdateJSONRequestBody = PatchedOrderUpdateRequest
+
+// MarketplaceOrdersUpdateJSONRequestBody defines body for MarketplaceOrdersUpdate for application/json ContentType.
+type MarketplaceOrdersUpdateJSONRequestBody = OrderUpdateRequest
+
 // MarketplaceOrdersRejectByConsumerJSONRequestBody defines body for MarketplaceOrdersRejectByConsumer for application/json ContentType.
 type MarketplaceOrdersRejectByConsumerJSONRequestBody = OrderErrorDetailsRequest
 
@@ -68270,6 +68314,16 @@ type ClientInterface interface {
 
 	// MarketplaceOrdersRetrieve request
 	MarketplaceOrdersRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceOrdersRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOrdersPartialUpdateWithBody request with any body
+	MarketplaceOrdersPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceOrdersPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOrdersUpdateWithBody request with any body
+	MarketplaceOrdersUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	MarketplaceOrdersUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceOrdersApproveByConsumer request
 	MarketplaceOrdersApproveByConsumer(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -84572,6 +84626,54 @@ func (c *Client) MarketplaceOrdersDestroy(ctx context.Context, uuid openapi_type
 
 func (c *Client) MarketplaceOrdersRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceOrdersRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceOrdersRetrieveRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOrdersPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOrdersPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOrdersPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOrdersPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOrdersUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOrdersUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) MarketplaceOrdersUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOrdersUpdateRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -163542,6 +163644,100 @@ func NewMarketplaceOrdersRetrieveRequest(server string, uuid openapi_types.UUID,
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewMarketplaceOrdersPartialUpdateRequest calls the generic MarketplaceOrdersPartialUpdate builder with application/json body
+func NewMarketplaceOrdersPartialUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceOrdersPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceOrdersPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceOrdersPartialUpdateRequestWithBody generates requests for MarketplaceOrdersPartialUpdate with any type of body
+func NewMarketplaceOrdersPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-orders/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceOrdersUpdateRequest calls the generic MarketplaceOrdersUpdate builder with application/json body
+func NewMarketplaceOrdersUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceOrdersUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceOrdersUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceOrdersUpdateRequestWithBody generates requests for MarketplaceOrdersUpdate with any type of body
+func NewMarketplaceOrdersUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-orders/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -289384,6 +289580,16 @@ type ClientWithResponsesInterface interface {
 	// MarketplaceOrdersRetrieveWithResponse request
 	MarketplaceOrdersRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceOrdersRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceOrdersRetrieveResponse, error)
 
+	// MarketplaceOrdersPartialUpdateWithBodyWithResponse request with any body
+	MarketplaceOrdersPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOrdersPartialUpdateResponse, error)
+
+	MarketplaceOrdersPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOrdersPartialUpdateResponse, error)
+
+	// MarketplaceOrdersUpdateWithBodyWithResponse request with any body
+	MarketplaceOrdersUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOrdersUpdateResponse, error)
+
+	MarketplaceOrdersUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOrdersUpdateResponse, error)
+
 	// MarketplaceOrdersApproveByConsumerWithResponse request
 	MarketplaceOrdersApproveByConsumerWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOrdersApproveByConsumerResponse, error)
 
@@ -309731,6 +309937,50 @@ func (r MarketplaceOrdersRetrieveResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r MarketplaceOrdersRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceOrdersPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OrderUpdate
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOrdersPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOrdersPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type MarketplaceOrdersUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OrderUpdate
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOrdersUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOrdersUpdateResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -348399,6 +348649,40 @@ func (c *ClientWithResponses) MarketplaceOrdersRetrieveWithResponse(ctx context.
 	return ParseMarketplaceOrdersRetrieveResponse(rsp)
 }
 
+// MarketplaceOrdersPartialUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceOrdersPartialUpdateResponse
+func (c *ClientWithResponses) MarketplaceOrdersPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOrdersPartialUpdateResponse, error) {
+	rsp, err := c.MarketplaceOrdersPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOrdersPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceOrdersPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOrdersPartialUpdateResponse, error) {
+	rsp, err := c.MarketplaceOrdersPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOrdersPartialUpdateResponse(rsp)
+}
+
+// MarketplaceOrdersUpdateWithBodyWithResponse request with arbitrary body returning *MarketplaceOrdersUpdateResponse
+func (c *ClientWithResponses) MarketplaceOrdersUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOrdersUpdateResponse, error) {
+	rsp, err := c.MarketplaceOrdersUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOrdersUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) MarketplaceOrdersUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOrdersUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOrdersUpdateResponse, error) {
+	rsp, err := c.MarketplaceOrdersUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOrdersUpdateResponse(rsp)
+}
+
 // MarketplaceOrdersApproveByConsumerWithResponse request returning *MarketplaceOrdersApproveByConsumerResponse
 func (c *ClientWithResponses) MarketplaceOrdersApproveByConsumerWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOrdersApproveByConsumerResponse, error) {
 	rsp, err := c.MarketplaceOrdersApproveByConsumer(ctx, uuid, reqEditors...)
@@ -380961,6 +381245,58 @@ func ParseMarketplaceOrdersRetrieveResponse(rsp *http.Response) (*MarketplaceOrd
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest OrderDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOrdersPartialUpdateResponse parses an HTTP response from a MarketplaceOrdersPartialUpdateWithResponse call
+func ParseMarketplaceOrdersPartialUpdateResponse(rsp *http.Response) (*MarketplaceOrdersPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOrdersPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OrderUpdate
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOrdersUpdateResponse parses an HTTP response from a MarketplaceOrdersUpdateWithResponse call
+func ParseMarketplaceOrdersUpdateResponse(rsp *http.Response) (*MarketplaceOrdersUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOrdersUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OrderUpdate
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
