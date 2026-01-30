@@ -1250,6 +1250,13 @@ const (
 	ExecutionStateEnumScheduled  ExecutionStateEnum = "Scheduled"
 )
 
+// Defines values for FrequencyEnum.
+const (
+	Biweekly FrequencyEnum = "biweekly"
+	Monthly  FrequencyEnum = "monthly"
+	Weekly   FrequencyEnum = "weekly"
+)
+
 // Defines values for GenderEnum.
 const (
 	GenderEnumN0 GenderEnum = 0
@@ -17078,6 +17085,10 @@ type ConstanceSettings struct {
 	RANCHERUSERNAMEINPUTLABEL                      *string              `json:"RANCHER_USERNAME_INPUT_LABEL,omitempty"`
 	RESTRICTEDOFFERINGVISIBILITYMODE               *string              `json:"RESTRICTED_OFFERING_VISIBILITY_MODE,omitempty"`
 	REVIEWERPROFILESENABLED                        *bool                `json:"REVIEWER_PROFILES_ENABLED,omitempty"`
+	SCIMAPIKEY                                     *string              `json:"SCIM_API_KEY,omitempty"`
+	SCIMAPIURL                                     *string              `json:"SCIM_API_URL,omitempty"`
+	SCIMMEMBERSHIPSYNCENABLED                      *bool                `json:"SCIM_MEMBERSHIP_SYNC_ENABLED,omitempty"`
+	SCIMURNNAMESPACE                               *string              `json:"SCIM_URN_NAMESPACE,omitempty"`
 	SCRIPTRUNMODE                                  *string              `json:"SCRIPT_RUN_MODE,omitempty"`
 	SEMANTICSCHOLARAPIKEY                          *string              `json:"SEMANTIC_SCHOLAR_API_KEY,omitempty"`
 	SHORTPAGETITLE                                 *string              `json:"SHORT_PAGE_TITLE,omitempty"`
@@ -17295,6 +17306,10 @@ type ConstanceSettingsRequest struct {
 	RANCHERUSERNAMEINPUTLABEL                      *string                         `json:"RANCHER_USERNAME_INPUT_LABEL,omitempty"`
 	RESTRICTEDOFFERINGVISIBILITYMODE               *string                         `json:"RESTRICTED_OFFERING_VISIBILITY_MODE,omitempty"`
 	REVIEWERPROFILESENABLED                        *bool                           `json:"REVIEWER_PROFILES_ENABLED,omitempty"`
+	SCIMAPIKEY                                     *string                         `json:"SCIM_API_KEY,omitempty"`
+	SCIMAPIURL                                     *string                         `json:"SCIM_API_URL,omitempty"`
+	SCIMMEMBERSHIPSYNCENABLED                      *bool                           `json:"SCIM_MEMBERSHIP_SYNC_ENABLED,omitempty"`
+	SCIMURNNAMESPACE                               *string                         `json:"SCIM_URN_NAMESPACE,omitempty"`
 	SCRIPTRUNMODE                                  *string                         `json:"SCRIPT_RUN_MODE,omitempty"`
 	SEMANTICSCHOLARAPIKEY                          *string                         `json:"SEMANTIC_SCHOLAR_API_KEY,omitempty"`
 	SHORTPAGETITLE                                 *string                         `json:"SHORT_PAGE_TITLE,omitempty"`
@@ -17512,6 +17527,10 @@ type ConstanceSettingsRequestForm struct {
 	RANCHERUSERNAMEINPUTLABEL                      *string                         `json:"RANCHER_USERNAME_INPUT_LABEL,omitempty"`
 	RESTRICTEDOFFERINGVISIBILITYMODE               *string                         `json:"RESTRICTED_OFFERING_VISIBILITY_MODE,omitempty"`
 	REVIEWERPROFILESENABLED                        *bool                           `json:"REVIEWER_PROFILES_ENABLED,omitempty"`
+	SCIMAPIKEY                                     *string                         `json:"SCIM_API_KEY,omitempty"`
+	SCIMAPIURL                                     *string                         `json:"SCIM_API_URL,omitempty"`
+	SCIMMEMBERSHIPSYNCENABLED                      *bool                           `json:"SCIM_MEMBERSHIP_SYNC_ENABLED,omitempty"`
+	SCIMURNNAMESPACE                               *string                         `json:"SCIM_URN_NAMESPACE,omitempty"`
 	SCRIPTRUNMODE                                  *string                         `json:"SCRIPT_RUN_MODE,omitempty"`
 	SEMANTICSCHOLARAPIKEY                          *string                         `json:"SEMANTIC_SCHOLAR_API_KEY,omitempty"`
 	SHORTPAGETITLE                                 *string                         `json:"SHORT_PAGE_TITLE,omitempty"`
@@ -17729,6 +17748,10 @@ type ConstanceSettingsRequestMultipart struct {
 	RANCHERUSERNAMEINPUTLABEL                      *string                         `json:"RANCHER_USERNAME_INPUT_LABEL,omitempty"`
 	RESTRICTEDOFFERINGVISIBILITYMODE               *string                         `json:"RESTRICTED_OFFERING_VISIBILITY_MODE,omitempty"`
 	REVIEWERPROFILESENABLED                        *bool                           `json:"REVIEWER_PROFILES_ENABLED,omitempty"`
+	SCIMAPIKEY                                     *string                         `json:"SCIM_API_KEY,omitempty"`
+	SCIMAPIURL                                     *string                         `json:"SCIM_API_URL,omitempty"`
+	SCIMMEMBERSHIPSYNCENABLED                      *bool                           `json:"SCIM_MEMBERSHIP_SYNC_ENABLED,omitempty"`
+	SCIMURNNAMESPACE                               *string                         `json:"SCIM_URN_NAMESPACE,omitempty"`
 	SCRIPTRUNMODE                                  *string                         `json:"SCRIPT_RUN_MODE,omitempty"`
 	SEMANTICSCHOLARAPIKEY                          *string                         `json:"SEMANTIC_SCHOLAR_API_KEY,omitempty"`
 	SHORTPAGETITLE                                 *string                         `json:"SHORT_PAGE_TITLE,omitempty"`
@@ -19720,6 +19743,9 @@ type FreeipaProfileRequest struct {
 	// Username Letters, numbers and ./+/-/_ characters
 	Username string `json:"username"`
 }
+
+// FrequencyEnum defines model for FrequencyEnum.
+type FrequencyEnum string
 
 // GenderEnum defines model for GenderEnum.
 type GenderEnum int
@@ -27565,6 +27591,20 @@ type PatchedProjectCreditRequest struct {
 	Value                                       *string                      `json:"value,omitempty"`
 }
 
+// PatchedProjectDigestConfigRequest defines model for PatchedProjectDigestConfigRequest.
+type PatchedProjectDigestConfigRequest struct {
+	// DayOfMonth For monthly: day of month (1-28)
+	DayOfMonth *int `json:"day_of_month,omitempty"`
+
+	// DayOfWeek For weekly/biweekly: 0=Sunday..6=Saturday
+	DayOfWeek *int `json:"day_of_week,omitempty"`
+
+	// EnabledSections List of section keys to include. Empty means all.
+	EnabledSections *string        `json:"enabled_sections,omitempty"`
+	Frequency       *FrequencyEnum `json:"frequency,omitempty"`
+	IsEnabled       *bool          `json:"is_enabled,omitempty"`
+}
+
 // PatchedProjectEstimatedCostPolicyRequest defines model for PatchedProjectEstimatedCostPolicyRequest.
 type PatchedProjectEstimatedCostPolicyRequest struct {
 	Actions   *string `json:"actions,omitempty"`
@@ -29029,6 +29069,50 @@ type ProjectDetailsResponse struct {
 	ProjectsRequiringReview *int             `json:"projects_requiring_review,omitempty"`
 	ProjectsWithCompletions *int             `json:"projects_with_completions,omitempty"`
 	TotalProjects           *int             `json:"total_projects,omitempty"`
+}
+
+// ProjectDigestConfig defines model for ProjectDigestConfig.
+type ProjectDigestConfig struct {
+	AvailableSections *[]map[string]string `json:"available_sections,omitempty"`
+
+	// DayOfMonth For monthly: day of month (1-28)
+	DayOfMonth *int `json:"day_of_month,omitempty"`
+
+	// DayOfWeek For weekly/biweekly: 0=Sunday..6=Saturday
+	DayOfWeek *int `json:"day_of_week,omitempty"`
+
+	// EnabledSections List of section keys to include. Empty means all.
+	EnabledSections *string             `json:"enabled_sections,omitempty"`
+	Frequency       *FrequencyEnum      `json:"frequency,omitempty"`
+	IsEnabled       *bool               `json:"is_enabled,omitempty"`
+	LastSentAt      *time.Time          `json:"last_sent_at"`
+	Uuid            *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// ProjectDigestConfigRequest defines model for ProjectDigestConfigRequest.
+type ProjectDigestConfigRequest struct {
+	// DayOfMonth For monthly: day of month (1-28)
+	DayOfMonth *int `json:"day_of_month,omitempty"`
+
+	// DayOfWeek For weekly/biweekly: 0=Sunday..6=Saturday
+	DayOfWeek *int `json:"day_of_week,omitempty"`
+
+	// EnabledSections List of section keys to include. Empty means all.
+	EnabledSections *string        `json:"enabled_sections,omitempty"`
+	Frequency       *FrequencyEnum `json:"frequency,omitempty"`
+	IsEnabled       *bool          `json:"is_enabled,omitempty"`
+}
+
+// ProjectDigestPreviewRequest defines model for ProjectDigestPreviewRequest.
+type ProjectDigestPreviewRequest struct {
+	ProjectUuid openapi_types.UUID `json:"project_uuid"`
+}
+
+// ProjectDigestPreviewResponse defines model for ProjectDigestPreviewResponse.
+type ProjectDigestPreviewResponse struct {
+	HtmlBody string `json:"html_body"`
+	Subject  string `json:"subject"`
+	TextBody string `json:"text_body"`
 }
 
 // ProjectEstimatedCostPolicy defines model for ProjectEstimatedCostPolicy.
@@ -33492,6 +33576,11 @@ type Saml2LogoutCompleteRequest struct {
 type Saml2Provider struct {
 	Name string `json:"name"`
 	Url  string `json:"url"`
+}
+
+// ScimSyncAllResponse defines model for ScimSyncAllResponse.
+type ScimSyncAllResponse struct {
+	Detail string `json:"detail"`
 }
 
 // Screenshot defines model for Screenshot.
@@ -56984,6 +57073,15 @@ type CustomersAddUserJSONRequestBody = UserRoleCreateRequest
 // CustomersDeleteUserJSONRequestBody defines body for CustomersDeleteUser for application/json ContentType.
 type CustomersDeleteUserJSONRequestBody = UserRoleDeleteRequest
 
+// CustomersProjectDigestConfigPreviewJSONRequestBody defines body for CustomersProjectDigestConfigPreview for application/json ContentType.
+type CustomersProjectDigestConfigPreviewJSONRequestBody = ProjectDigestPreviewRequest
+
+// CustomersUpdateProjectDigestConfigPartialUpdateJSONRequestBody defines body for CustomersUpdateProjectDigestConfigPartialUpdate for application/json ContentType.
+type CustomersUpdateProjectDigestConfigPartialUpdateJSONRequestBody = PatchedProjectDigestConfigRequest
+
+// CustomersUpdateProjectDigestConfigUpdateJSONRequestBody defines body for CustomersUpdateProjectDigestConfigUpdate for application/json ContentType.
+type CustomersUpdateProjectDigestConfigUpdateJSONRequestBody = ProjectDigestConfigRequest
+
 // CustomersUpdateOrganizationGroupsJSONRequestBody defines body for CustomersUpdateOrganizationGroups for application/json ContentType.
 type CustomersUpdateOrganizationGroupsJSONRequestBody = OrganizationGroupsRequest
 
@@ -67082,8 +67180,29 @@ type ClientInterface interface {
 	// CustomersListUsersList request
 	CustomersListUsersList(ctx context.Context, uuid openapi_types.UUID, params *CustomersListUsersListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// CustomersProjectDigestConfigRetrieve request
+	CustomersProjectDigestConfigRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// CustomersProjectDigestConfigPreviewWithBody request with any body
+	CustomersProjectDigestConfigPreviewWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	CustomersProjectDigestConfigPreview(ctx context.Context, uuid openapi_types.UUID, body CustomersProjectDigestConfigPreviewJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// CustomersProjectDigestConfigSendTest request
+	CustomersProjectDigestConfigSendTest(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// CustomersStatsRetrieve request
 	CustomersStatsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *CustomersStatsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// CustomersUpdateProjectDigestConfigPartialUpdateWithBody request with any body
+	CustomersUpdateProjectDigestConfigPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	CustomersUpdateProjectDigestConfigPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body CustomersUpdateProjectDigestConfigPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// CustomersUpdateProjectDigestConfigUpdateWithBody request with any body
+	CustomersUpdateProjectDigestConfigUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	CustomersUpdateProjectDigestConfigUpdate(ctx context.Context, uuid openapi_types.UUID, body CustomersUpdateProjectDigestConfigUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// CustomersUpdateOrganizationGroupsWithBody request with any body
 	CustomersUpdateOrganizationGroupsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -73475,6 +73594,9 @@ type ClientInterface interface {
 	// UsersProfileCompletenessCount request
 	UsersProfileCompletenessCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// UsersScimSyncAll request
+	UsersScimSyncAll(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// UsersUserActiveStatusCountList request
 	UsersUserActiveStatusCountList(ctx context.Context, params *UsersUserActiveStatusCountListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -78843,8 +78965,104 @@ func (c *Client) CustomersListUsersList(ctx context.Context, uuid openapi_types.
 	return c.Client.Do(req)
 }
 
+func (c *Client) CustomersProjectDigestConfigRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCustomersProjectDigestConfigRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CustomersProjectDigestConfigPreviewWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCustomersProjectDigestConfigPreviewRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CustomersProjectDigestConfigPreview(ctx context.Context, uuid openapi_types.UUID, body CustomersProjectDigestConfigPreviewJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCustomersProjectDigestConfigPreviewRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CustomersProjectDigestConfigSendTest(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCustomersProjectDigestConfigSendTestRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) CustomersStatsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *CustomersStatsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCustomersStatsRetrieveRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CustomersUpdateProjectDigestConfigPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCustomersUpdateProjectDigestConfigPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CustomersUpdateProjectDigestConfigPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body CustomersUpdateProjectDigestConfigPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCustomersUpdateProjectDigestConfigPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CustomersUpdateProjectDigestConfigUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCustomersUpdateProjectDigestConfigUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) CustomersUpdateProjectDigestConfigUpdate(ctx context.Context, uuid openapi_types.UUID, body CustomersUpdateProjectDigestConfigUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewCustomersUpdateProjectDigestConfigUpdateRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -106851,6 +107069,18 @@ func (c *Client) UsersProfileCompletenessCount(ctx context.Context, reqEditors .
 	return c.Client.Do(req)
 }
 
+func (c *Client) UsersScimSyncAll(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUsersScimSyncAllRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) UsersUserActiveStatusCountList(ctx context.Context, params *UsersUserActiveStatusCountListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewUsersUserActiveStatusCountListRequest(c.Server, params)
 	if err != nil {
@@ -133792,6 +134022,121 @@ func NewCustomersListUsersListRequest(server string, uuid openapi_types.UUID, pa
 	return req, nil
 }
 
+// NewCustomersProjectDigestConfigRetrieveRequest generates requests for CustomersProjectDigestConfigRetrieve
+func NewCustomersProjectDigestConfigRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/customers/%s/project-digest-config/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewCustomersProjectDigestConfigPreviewRequest calls the generic CustomersProjectDigestConfigPreview builder with application/json body
+func NewCustomersProjectDigestConfigPreviewRequest(server string, uuid openapi_types.UUID, body CustomersProjectDigestConfigPreviewJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewCustomersProjectDigestConfigPreviewRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewCustomersProjectDigestConfigPreviewRequestWithBody generates requests for CustomersProjectDigestConfigPreview with any type of body
+func NewCustomersProjectDigestConfigPreviewRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/customers/%s/project-digest-config/preview/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewCustomersProjectDigestConfigSendTestRequest generates requests for CustomersProjectDigestConfigSendTest
+func NewCustomersProjectDigestConfigSendTestRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/customers/%s/project-digest-config/send-test/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewCustomersStatsRetrieveRequest generates requests for CustomersStatsRetrieve
 func NewCustomersStatsRetrieveRequest(server string, uuid openapi_types.UUID, params *CustomersStatsRetrieveParams) (*http.Request, error) {
 	var err error
@@ -133844,6 +134189,100 @@ func NewCustomersStatsRetrieveRequest(server string, uuid openapi_types.UUID, pa
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewCustomersUpdateProjectDigestConfigPartialUpdateRequest calls the generic CustomersUpdateProjectDigestConfigPartialUpdate builder with application/json body
+func NewCustomersUpdateProjectDigestConfigPartialUpdateRequest(server string, uuid openapi_types.UUID, body CustomersUpdateProjectDigestConfigPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewCustomersUpdateProjectDigestConfigPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewCustomersUpdateProjectDigestConfigPartialUpdateRequestWithBody generates requests for CustomersUpdateProjectDigestConfigPartialUpdate with any type of body
+func NewCustomersUpdateProjectDigestConfigPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/customers/%s/update-project-digest-config/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewCustomersUpdateProjectDigestConfigUpdateRequest calls the generic CustomersUpdateProjectDigestConfigUpdate builder with application/json body
+func NewCustomersUpdateProjectDigestConfigUpdateRequest(server string, uuid openapi_types.UUID, body CustomersUpdateProjectDigestConfigUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewCustomersUpdateProjectDigestConfigUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewCustomersUpdateProjectDigestConfigUpdateRequestWithBody generates requests for CustomersUpdateProjectDigestConfigUpdate with any type of body
+func NewCustomersUpdateProjectDigestConfigUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/customers/%s/update-project-digest-config/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -278296,6 +278735,33 @@ func NewUsersProfileCompletenessCountRequest(server string) (*http.Request, erro
 	return req, nil
 }
 
+// NewUsersScimSyncAllRequest generates requests for UsersScimSyncAll
+func NewUsersScimSyncAllRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/users/scim_sync_all/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewUsersUserActiveStatusCountListRequest generates requests for UsersUserActiveStatusCountList
 func NewUsersUserActiveStatusCountListRequest(server string, params *UsersUserActiveStatusCountListParams) (*http.Request, error) {
 	var err error
@@ -288813,8 +289279,29 @@ type ClientWithResponsesInterface interface {
 	// CustomersListUsersListWithResponse request
 	CustomersListUsersListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *CustomersListUsersListParams, reqEditors ...RequestEditorFn) (*CustomersListUsersListResponse, error)
 
+	// CustomersProjectDigestConfigRetrieveWithResponse request
+	CustomersProjectDigestConfigRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*CustomersProjectDigestConfigRetrieveResponse, error)
+
+	// CustomersProjectDigestConfigPreviewWithBodyWithResponse request with any body
+	CustomersProjectDigestConfigPreviewWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CustomersProjectDigestConfigPreviewResponse, error)
+
+	CustomersProjectDigestConfigPreviewWithResponse(ctx context.Context, uuid openapi_types.UUID, body CustomersProjectDigestConfigPreviewJSONRequestBody, reqEditors ...RequestEditorFn) (*CustomersProjectDigestConfigPreviewResponse, error)
+
+	// CustomersProjectDigestConfigSendTestWithResponse request
+	CustomersProjectDigestConfigSendTestWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*CustomersProjectDigestConfigSendTestResponse, error)
+
 	// CustomersStatsRetrieveWithResponse request
 	CustomersStatsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *CustomersStatsRetrieveParams, reqEditors ...RequestEditorFn) (*CustomersStatsRetrieveResponse, error)
+
+	// CustomersUpdateProjectDigestConfigPartialUpdateWithBodyWithResponse request with any body
+	CustomersUpdateProjectDigestConfigPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CustomersUpdateProjectDigestConfigPartialUpdateResponse, error)
+
+	CustomersUpdateProjectDigestConfigPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body CustomersUpdateProjectDigestConfigPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*CustomersUpdateProjectDigestConfigPartialUpdateResponse, error)
+
+	// CustomersUpdateProjectDigestConfigUpdateWithBodyWithResponse request with any body
+	CustomersUpdateProjectDigestConfigUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CustomersUpdateProjectDigestConfigUpdateResponse, error)
+
+	CustomersUpdateProjectDigestConfigUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body CustomersUpdateProjectDigestConfigUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*CustomersUpdateProjectDigestConfigUpdateResponse, error)
 
 	// CustomersUpdateOrganizationGroupsWithBodyWithResponse request with any body
 	CustomersUpdateOrganizationGroupsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CustomersUpdateOrganizationGroupsResponse, error)
@@ -295205,6 +295692,9 @@ type ClientWithResponsesInterface interface {
 
 	// UsersProfileCompletenessCountWithResponse request
 	UsersProfileCompletenessCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*UsersProfileCompletenessCountResponse, error)
+
+	// UsersScimSyncAllWithResponse request
+	UsersScimSyncAllWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*UsersScimSyncAllResponse, error)
 
 	// UsersUserActiveStatusCountListWithResponse request
 	UsersUserActiveStatusCountListWithResponse(ctx context.Context, params *UsersUserActiveStatusCountListParams, reqEditors ...RequestEditorFn) (*UsersUserActiveStatusCountListResponse, error)
@@ -302336,6 +302826,71 @@ func (r CustomersListUsersListResponse) StatusCode() int {
 	return 0
 }
 
+type CustomersProjectDigestConfigRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ProjectDigestConfig
+}
+
+// Status returns HTTPResponse.Status
+func (r CustomersProjectDigestConfigRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r CustomersProjectDigestConfigRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type CustomersProjectDigestConfigPreviewResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ProjectDigestPreviewResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r CustomersProjectDigestConfigPreviewResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r CustomersProjectDigestConfigPreviewResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type CustomersProjectDigestConfigSendTestResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r CustomersProjectDigestConfigSendTestResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r CustomersProjectDigestConfigSendTestResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type CustomersStatsRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -302352,6 +302907,50 @@ func (r CustomersStatsRetrieveResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r CustomersStatsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type CustomersUpdateProjectDigestConfigPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ProjectDigestConfig
+}
+
+// Status returns HTTPResponse.Status
+func (r CustomersUpdateProjectDigestConfigPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r CustomersUpdateProjectDigestConfigPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type CustomersUpdateProjectDigestConfigUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ProjectDigestConfig
+}
+
+// Status returns HTTPResponse.Status
+func (r CustomersUpdateProjectDigestConfigUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r CustomersUpdateProjectDigestConfigUpdateResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -339805,6 +340404,28 @@ func (r UsersProfileCompletenessCountResponse) StatusCode() int {
 	return 0
 }
 
+type UsersScimSyncAllResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ScimSyncAllResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r UsersScimSyncAllResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r UsersScimSyncAllResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type UsersUserActiveStatusCountListResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -345036,6 +345657,41 @@ func (c *ClientWithResponses) CustomersListUsersListWithResponse(ctx context.Con
 	return ParseCustomersListUsersListResponse(rsp)
 }
 
+// CustomersProjectDigestConfigRetrieveWithResponse request returning *CustomersProjectDigestConfigRetrieveResponse
+func (c *ClientWithResponses) CustomersProjectDigestConfigRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*CustomersProjectDigestConfigRetrieveResponse, error) {
+	rsp, err := c.CustomersProjectDigestConfigRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCustomersProjectDigestConfigRetrieveResponse(rsp)
+}
+
+// CustomersProjectDigestConfigPreviewWithBodyWithResponse request with arbitrary body returning *CustomersProjectDigestConfigPreviewResponse
+func (c *ClientWithResponses) CustomersProjectDigestConfigPreviewWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CustomersProjectDigestConfigPreviewResponse, error) {
+	rsp, err := c.CustomersProjectDigestConfigPreviewWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCustomersProjectDigestConfigPreviewResponse(rsp)
+}
+
+func (c *ClientWithResponses) CustomersProjectDigestConfigPreviewWithResponse(ctx context.Context, uuid openapi_types.UUID, body CustomersProjectDigestConfigPreviewJSONRequestBody, reqEditors ...RequestEditorFn) (*CustomersProjectDigestConfigPreviewResponse, error) {
+	rsp, err := c.CustomersProjectDigestConfigPreview(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCustomersProjectDigestConfigPreviewResponse(rsp)
+}
+
+// CustomersProjectDigestConfigSendTestWithResponse request returning *CustomersProjectDigestConfigSendTestResponse
+func (c *ClientWithResponses) CustomersProjectDigestConfigSendTestWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*CustomersProjectDigestConfigSendTestResponse, error) {
+	rsp, err := c.CustomersProjectDigestConfigSendTest(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCustomersProjectDigestConfigSendTestResponse(rsp)
+}
+
 // CustomersStatsRetrieveWithResponse request returning *CustomersStatsRetrieveResponse
 func (c *ClientWithResponses) CustomersStatsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *CustomersStatsRetrieveParams, reqEditors ...RequestEditorFn) (*CustomersStatsRetrieveResponse, error) {
 	rsp, err := c.CustomersStatsRetrieve(ctx, uuid, params, reqEditors...)
@@ -345043,6 +345699,40 @@ func (c *ClientWithResponses) CustomersStatsRetrieveWithResponse(ctx context.Con
 		return nil, err
 	}
 	return ParseCustomersStatsRetrieveResponse(rsp)
+}
+
+// CustomersUpdateProjectDigestConfigPartialUpdateWithBodyWithResponse request with arbitrary body returning *CustomersUpdateProjectDigestConfigPartialUpdateResponse
+func (c *ClientWithResponses) CustomersUpdateProjectDigestConfigPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CustomersUpdateProjectDigestConfigPartialUpdateResponse, error) {
+	rsp, err := c.CustomersUpdateProjectDigestConfigPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCustomersUpdateProjectDigestConfigPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) CustomersUpdateProjectDigestConfigPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body CustomersUpdateProjectDigestConfigPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*CustomersUpdateProjectDigestConfigPartialUpdateResponse, error) {
+	rsp, err := c.CustomersUpdateProjectDigestConfigPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCustomersUpdateProjectDigestConfigPartialUpdateResponse(rsp)
+}
+
+// CustomersUpdateProjectDigestConfigUpdateWithBodyWithResponse request with arbitrary body returning *CustomersUpdateProjectDigestConfigUpdateResponse
+func (c *ClientWithResponses) CustomersUpdateProjectDigestConfigUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CustomersUpdateProjectDigestConfigUpdateResponse, error) {
+	rsp, err := c.CustomersUpdateProjectDigestConfigUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCustomersUpdateProjectDigestConfigUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) CustomersUpdateProjectDigestConfigUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body CustomersUpdateProjectDigestConfigUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*CustomersUpdateProjectDigestConfigUpdateResponse, error) {
+	rsp, err := c.CustomersUpdateProjectDigestConfigUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseCustomersUpdateProjectDigestConfigUpdateResponse(rsp)
 }
 
 // CustomersUpdateOrganizationGroupsWithBodyWithResponse request with arbitrary body returning *CustomersUpdateOrganizationGroupsResponse
@@ -365433,6 +366123,15 @@ func (c *ClientWithResponses) UsersProfileCompletenessCountWithResponse(ctx cont
 	return ParseUsersProfileCompletenessCountResponse(rsp)
 }
 
+// UsersScimSyncAllWithResponse request returning *UsersScimSyncAllResponse
+func (c *ClientWithResponses) UsersScimSyncAllWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*UsersScimSyncAllResponse, error) {
+	rsp, err := c.UsersScimSyncAll(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUsersScimSyncAllResponse(rsp)
+}
+
 // UsersUserActiveStatusCountListWithResponse request returning *UsersUserActiveStatusCountListResponse
 func (c *ClientWithResponses) UsersUserActiveStatusCountListWithResponse(ctx context.Context, params *UsersUserActiveStatusCountListParams, reqEditors ...RequestEditorFn) (*UsersUserActiveStatusCountListResponse, error) {
 	rsp, err := c.UsersUserActiveStatusCountList(ctx, params, reqEditors...)
@@ -373375,6 +374074,74 @@ func ParseCustomersListUsersListResponse(rsp *http.Response) (*CustomersListUser
 	return response, nil
 }
 
+// ParseCustomersProjectDigestConfigRetrieveResponse parses an HTTP response from a CustomersProjectDigestConfigRetrieveWithResponse call
+func ParseCustomersProjectDigestConfigRetrieveResponse(rsp *http.Response) (*CustomersProjectDigestConfigRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &CustomersProjectDigestConfigRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ProjectDigestConfig
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseCustomersProjectDigestConfigPreviewResponse parses an HTTP response from a CustomersProjectDigestConfigPreviewWithResponse call
+func ParseCustomersProjectDigestConfigPreviewResponse(rsp *http.Response) (*CustomersProjectDigestConfigPreviewResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &CustomersProjectDigestConfigPreviewResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ProjectDigestPreviewResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseCustomersProjectDigestConfigSendTestResponse parses an HTTP response from a CustomersProjectDigestConfigSendTestWithResponse call
+func ParseCustomersProjectDigestConfigSendTestResponse(rsp *http.Response) (*CustomersProjectDigestConfigSendTestResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &CustomersProjectDigestConfigSendTestResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
 // ParseCustomersStatsRetrieveResponse parses an HTTP response from a CustomersStatsRetrieveWithResponse call
 func ParseCustomersStatsRetrieveResponse(rsp *http.Response) (*CustomersStatsRetrieveResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -373391,6 +374158,58 @@ func ParseCustomersStatsRetrieveResponse(rsp *http.Response) (*CustomersStatsRet
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest ComponentsUsageStats
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseCustomersUpdateProjectDigestConfigPartialUpdateResponse parses an HTTP response from a CustomersUpdateProjectDigestConfigPartialUpdateWithResponse call
+func ParseCustomersUpdateProjectDigestConfigPartialUpdateResponse(rsp *http.Response) (*CustomersUpdateProjectDigestConfigPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &CustomersUpdateProjectDigestConfigPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ProjectDigestConfig
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseCustomersUpdateProjectDigestConfigUpdateResponse parses an HTTP response from a CustomersUpdateProjectDigestConfigUpdateWithResponse call
+func ParseCustomersUpdateProjectDigestConfigUpdateResponse(rsp *http.Response) (*CustomersUpdateProjectDigestConfigUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &CustomersUpdateProjectDigestConfigUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ProjectDigestConfig
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -412765,6 +413584,32 @@ func ParseUsersProfileCompletenessCountResponse(rsp *http.Response) (*UsersProfi
 	response := &UsersProfileCompletenessCountResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseUsersScimSyncAllResponse parses an HTTP response from a UsersScimSyncAllWithResponse call
+func ParseUsersScimSyncAllResponse(rsp *http.Response) (*UsersScimSyncAllResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &UsersScimSyncAllResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ScimSyncAllResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
