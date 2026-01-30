@@ -28308,11 +28308,11 @@ type PatchedSlurmPeriodicUsagePolicyRequest struct {
 	ApplyToAll *bool `json:"apply_to_all,omitempty"`
 
 	// CarryoverEnabled Enable unused allocation carryover to next period
-	CarryoverEnabled   *bool                                  `json:"carryover_enabled,omitempty"`
-	ComponentLimitsSet *[]NestedOfferingComponentLimitRequest `json:"component_limits_set,omitempty"`
+	CarryoverEnabled *bool `json:"carryover_enabled,omitempty"`
 
-	// FairshareDecayHalfLife Fairshare decay half-life in days (matches SLURM PriorityDecayHalfLife)
-	FairshareDecayHalfLife *int `json:"fairshare_decay_half_life,omitempty"`
+	// CarryoverFactor Maximum percentage of base allocation that can carry over from unused previous period (0-100)
+	CarryoverFactor    *int                                   `json:"carryover_factor,omitempty"`
+	ComponentLimitsSet *[]NestedOfferingComponentLimitRequest `json:"component_limits_set,omitempty"`
 
 	// GraceRatio Grace period ratio (0.2 = 20% overconsumption allowed)
 	GraceRatio *float64 `json:"grace_ratio,omitempty"`
@@ -34060,6 +34060,9 @@ type SlurmCommandHistory struct {
 
 // SlurmCommandResultRequest defines model for SlurmCommandResultRequest.
 type SlurmCommandResultRequest struct {
+	// CommandsExecuted List of shell commands actually executed by the site agent
+	CommandsExecuted *[]string `json:"commands_executed,omitempty"`
+
 	// ErrorMessage Error message if the command failed
 	ErrorMessage *string `json:"error_message,omitempty"`
 
@@ -34087,15 +34090,15 @@ type SlurmPeriodicUsagePolicy struct {
 	ApplyToAll *bool `json:"apply_to_all,omitempty"`
 
 	// CarryoverEnabled Enable unused allocation carryover to next period
-	CarryoverEnabled   *bool                          `json:"carryover_enabled,omitempty"`
+	CarryoverEnabled *bool `json:"carryover_enabled,omitempty"`
+
+	// CarryoverFactor Maximum percentage of base allocation that can carry over from unused previous period (0-100)
+	CarryoverFactor    *int                           `json:"carryover_factor,omitempty"`
 	ComponentLimitsSet []NestedOfferingComponentLimit `json:"component_limits_set"`
 	Created            *time.Time                     `json:"created,omitempty"`
 	CreatedByFullName  *string                        `json:"created_by_full_name,omitempty"`
 	CreatedByUsername  *string                        `json:"created_by_username,omitempty"`
-
-	// FairshareDecayHalfLife Fairshare decay half-life in days (matches SLURM PriorityDecayHalfLife)
-	FairshareDecayHalfLife *int       `json:"fairshare_decay_half_life,omitempty"`
-	FiredDatetime          *time.Time `json:"fired_datetime,omitempty"`
+	FiredDatetime      *time.Time                     `json:"fired_datetime,omitempty"`
 
 	// GraceRatio Grace period ratio (0.2 = 20% overconsumption allowed)
 	GraceRatio *float64 `json:"grace_ratio,omitempty"`
@@ -34136,11 +34139,11 @@ type SlurmPeriodicUsagePolicyRequest struct {
 	ApplyToAll *bool `json:"apply_to_all,omitempty"`
 
 	// CarryoverEnabled Enable unused allocation carryover to next period
-	CarryoverEnabled   *bool                                 `json:"carryover_enabled,omitempty"`
-	ComponentLimitsSet []NestedOfferingComponentLimitRequest `json:"component_limits_set"`
+	CarryoverEnabled *bool `json:"carryover_enabled,omitempty"`
 
-	// FairshareDecayHalfLife Fairshare decay half-life in days (matches SLURM PriorityDecayHalfLife)
-	FairshareDecayHalfLife *int `json:"fairshare_decay_half_life,omitempty"`
+	// CarryoverFactor Maximum percentage of base allocation that can carry over from unused previous period (0-100)
+	CarryoverFactor    *int                                  `json:"carryover_factor,omitempty"`
+	ComponentLimitsSet []NestedOfferingComponentLimitRequest `json:"component_limits_set"`
 
 	// GraceRatio Grace period ratio (0.2 = 20% overconsumption allowed)
 	GraceRatio *float64 `json:"grace_ratio,omitempty"`
@@ -34170,13 +34173,12 @@ type SlurmPeriodicUsagePolicyRequest struct {
 // SlurmPolicyCarryover defines model for SlurmPolicyCarryover.
 type SlurmPolicyCarryover struct {
 	BaseAllocation  float64 `json:"base_allocation"`
-	DaysElapsed     int     `json:"days_elapsed"`
-	DecayFactor     float64 `json:"decay_factor"`
-	EffectiveUsage  float64 `json:"effective_usage"`
-	HalfLife        int     `json:"half_life"`
+	Carryover       float64 `json:"carryover"`
+	CarryoverCap    float64 `json:"carryover_cap"`
+	CarryoverFactor int     `json:"carryover_factor"`
 	PreviousUsage   float64 `json:"previous_usage"`
 	TotalAllocation float64 `json:"total_allocation"`
-	UnusedCarryover float64 `json:"unused_carryover"`
+	Unused          float64 `json:"unused"`
 }
 
 // SlurmPolicyDateProjection defines model for SlurmPolicyDateProjection.
@@ -34281,17 +34283,14 @@ type SlurmPolicyPreviewRequestRequest struct {
 	// CarryoverEnabled Whether unused allocation carries over to next period
 	CarryoverEnabled *bool `json:"carryover_enabled,omitempty"`
 
+	// CarryoverFactor Maximum percentage of base allocation that can carry over (0-100)
+	CarryoverFactor *int `json:"carryover_factor,omitempty"`
+
 	// CurrentUsage Current usage in this period (manual input or from resource)
 	CurrentUsage *float64 `json:"current_usage,omitempty"`
 
 	// DailyUsageRate Average daily usage rate for projections
 	DailyUsageRate *float64 `json:"daily_usage_rate,omitempty"`
-
-	// DaysElapsed Days elapsed since previous period (90 for quarterly)
-	DaysElapsed *int `json:"days_elapsed,omitempty"`
-
-	// FairshareDecayHalfLife Decay half-life in days for fairshare calculations
-	FairshareDecayHalfLife *int `json:"fairshare_decay_half_life,omitempty"`
 
 	// GraceRatio Grace ratio for overconsumption allowance (0.2 = 20%)
 	GraceRatio *float64 `json:"grace_ratio,omitempty"`
@@ -34310,6 +34309,7 @@ type SlurmPolicyPreviewResponse struct {
 	BillingPeriodStart  *openapi_types.Date         `json:"billing_period_start,omitempty"`
 	Carryover           *SlurmPolicyCarryover       `json:"carryover"`
 	CarryoverEnabled    bool                        `json:"carryover_enabled"`
+	CarryoverFactor     int                         `json:"carryover_factor"`
 	CommandHistory      *[]SlurmCommandHistory      `json:"command_history,omitempty"`
 	CurrentQosStatus    *CurrentQosStatusEnum       `json:"current_qos_status,omitempty"`
 	CurrentUsage        *float64                    `json:"current_usage,omitempty"`
@@ -34317,7 +34317,6 @@ type SlurmPolicyPreviewResponse struct {
 	DateProjections     *SlurmPolicyDateProjections `json:"date_projections,omitempty"`
 	EffectiveAllocation float64                     `json:"effective_allocation"`
 	GraceRatio          float64                     `json:"grace_ratio"`
-	HalfLife            int                         `json:"half_life"`
 	PreviewCommands     *[]SlurmCommand             `json:"preview_commands,omitempty"`
 	Thresholds          SlurmPolicyThresholds       `json:"thresholds"`
 	UsagePercentage     *float64                    `json:"usage_percentage,omitempty"`
