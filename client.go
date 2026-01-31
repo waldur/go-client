@@ -1252,9 +1252,9 @@ const (
 
 // Defines values for FrequencyEnum.
 const (
-	Biweekly FrequencyEnum = "biweekly"
-	Monthly  FrequencyEnum = "monthly"
-	Weekly   FrequencyEnum = "weekly"
+	FrequencyEnumBiweekly FrequencyEnum = "biweekly"
+	FrequencyEnumMonthly  FrequencyEnum = "monthly"
+	FrequencyEnumWeekly   FrequencyEnum = "weekly"
 )
 
 // Defines values for GenderEnum.
@@ -1271,6 +1271,12 @@ const (
 	GenerateSuggestionsRequestSourceEnumCallDescription   GenerateSuggestionsRequestSourceEnum = "call_description"
 	GenerateSuggestionsRequestSourceEnumCustomKeywords    GenerateSuggestionsRequestSourceEnum = "custom_keywords"
 	GenerateSuggestionsRequestSourceEnumSelectedProposals GenerateSuggestionsRequestSourceEnum = "selected_proposals"
+)
+
+// Defines values for GrowthPeriodEnum.
+const (
+	GrowthPeriodEnumMonthly GrowthPeriodEnum = "monthly"
+	GrowthPeriodEnumWeekly  GrowthPeriodEnum = "weekly"
 )
 
 // Defines values for GuestOsEnum.
@@ -1745,14 +1751,6 @@ const (
 	PaymentTypeEnumPaymentGwMonthly PaymentTypeEnum = "payment_gw_monthly"
 )
 
-// Defines values for PeriodEnum.
-const (
-	PeriodEnumN1 PeriodEnum = 1
-	PeriodEnumN2 PeriodEnum = 2
-	PeriodEnumN3 PeriodEnum = 3
-	PeriodEnumN4 PeriodEnum = 4
-)
-
 // Defines values for PermissionMetadataResponsePermissionMap.
 const (
 	PermissionMetadataResponsePermissionMapACCESSSUBNETCREATE                      PermissionMetadataResponsePermissionMap = "ACCESS_SUBNET.CREATE"
@@ -2015,6 +2013,14 @@ const (
 // Defines values for PolicyEnum.
 const (
 	Affinity PolicyEnum = "affinity"
+)
+
+// Defines values for PolicyPeriodEnum.
+const (
+	PolicyPeriodEnumN1 PolicyPeriodEnum = 1
+	PolicyPeriodEnumN2 PolicyPeriodEnum = 2
+	PolicyPeriodEnumN3 PolicyPeriodEnum = 3
+	PolicyPeriodEnumN4 PolicyPeriodEnum = 4
 )
 
 // Defines values for PolicyTypeEnum.
@@ -18281,7 +18287,7 @@ type CustomerEstimatedCostPolicy struct {
 
 	// Options Fields for saving actions extra data. Keys are name of actions.
 	Options    interface{}         `json:"options,omitempty"`
-	Period     *PeriodEnum         `json:"period,omitempty"`
+	Period     *PolicyPeriodEnum   `json:"period,omitempty"`
 	PeriodName *string             `json:"period_name,omitempty"`
 	Scope      string              `json:"scope"`
 	ScopeName  *string             `json:"scope_name,omitempty"`
@@ -18296,9 +18302,9 @@ type CustomerEstimatedCostPolicyRequest struct {
 	LimitCost int    `json:"limit_cost"`
 
 	// Options Fields for saving actions extra data. Keys are name of actions.
-	Options interface{} `json:"options,omitempty"`
-	Period  *PeriodEnum `json:"period,omitempty"`
-	Scope   string      `json:"scope"`
+	Options interface{}       `json:"options,omitempty"`
+	Period  *PolicyPeriodEnum `json:"period,omitempty"`
+	Scope   string            `json:"scope"`
 }
 
 // CustomerIndustryFlagStats defines model for CustomerIndustryFlagStats.
@@ -19957,6 +19963,9 @@ type GroupInvitationRequest struct {
 	// UserIdentitySources List of allowed identity sources (identity providers).
 	UserIdentitySources interface{} `json:"user_identity_sources,omitempty"`
 }
+
+// GrowthPeriodEnum defines model for GrowthPeriodEnum.
+type GrowthPeriodEnum string
 
 // GuestOsEnum defines model for GuestOsEnum.
 type GuestOsEnum string
@@ -22318,7 +22327,7 @@ type NestedColumn_Widget struct {
 type NestedCustomerUsagePolicyComponent struct {
 	Component  openapi_types.UUID `json:"component"`
 	Limit      int                `json:"limit"`
-	Period     *PeriodEnum        `json:"period,omitempty"`
+	Period     *PolicyPeriodEnum  `json:"period,omitempty"`
 	PeriodName *string            `json:"period_name,omitempty"`
 	Type       *string            `json:"type,omitempty"`
 }
@@ -22327,7 +22336,7 @@ type NestedCustomerUsagePolicyComponent struct {
 type NestedCustomerUsagePolicyComponentRequest struct {
 	Component openapi_types.UUID `json:"component"`
 	Limit     int                `json:"limit"`
-	Period    *PeriodEnum        `json:"period,omitempty"`
+	Period    *PolicyPeriodEnum  `json:"period,omitempty"`
 }
 
 // NestedEndpoint defines model for NestedEndpoint.
@@ -23170,7 +23179,7 @@ type OfferingEstimatedCostPolicy struct {
 	// Options Fields for saving actions extra data. Keys are name of actions.
 	Options            interface{}         `json:"options,omitempty"`
 	OrganizationGroups *[]string           `json:"organization_groups,omitempty"`
-	Period             *PeriodEnum         `json:"period,omitempty"`
+	Period             *PolicyPeriodEnum   `json:"period,omitempty"`
 	PeriodName         *string             `json:"period_name,omitempty"`
 	Scope              string              `json:"scope"`
 	ScopeName          *string             `json:"scope_name,omitempty"`
@@ -23188,10 +23197,10 @@ type OfferingEstimatedCostPolicyRequest struct {
 	LimitCost  int   `json:"limit_cost"`
 
 	// Options Fields for saving actions extra data. Keys are name of actions.
-	Options            interface{} `json:"options,omitempty"`
-	OrganizationGroups *[]string   `json:"organization_groups,omitempty"`
-	Period             *PeriodEnum `json:"period,omitempty"`
-	Scope              string      `json:"scope"`
+	Options            interface{}       `json:"options,omitempty"`
+	OrganizationGroups *[]string         `json:"organization_groups,omitempty"`
+	Period             *PolicyPeriodEnum `json:"period,omitempty"`
+	Scope              string            `json:"scope"`
 }
 
 // OfferingExportData defines model for OfferingExportData.
@@ -23791,7 +23800,7 @@ type OfferingUsagePolicy struct {
 	// Options Fields for saving actions extra data. Keys are name of actions.
 	Options            interface{}         `json:"options,omitempty"`
 	OrganizationGroups *[]string           `json:"organization_groups,omitempty"`
-	Period             *PeriodEnum         `json:"period,omitempty"`
+	Period             *PolicyPeriodEnum   `json:"period,omitempty"`
 	PeriodName         *string             `json:"period_name,omitempty"`
 	Scope              string              `json:"scope"`
 	ScopeName          *string             `json:"scope_name,omitempty"`
@@ -23809,10 +23818,10 @@ type OfferingUsagePolicyRequest struct {
 	ComponentLimitsSet []NestedOfferingComponentLimitRequest `json:"component_limits_set"`
 
 	// Options Fields for saving actions extra data. Keys are name of actions.
-	Options            interface{} `json:"options,omitempty"`
-	OrganizationGroups *[]string   `json:"organization_groups,omitempty"`
-	Period             *PeriodEnum `json:"period,omitempty"`
-	Scope              string      `json:"scope"`
+	Options            interface{}       `json:"options,omitempty"`
+	OrganizationGroups *[]string         `json:"organization_groups,omitempty"`
+	Period             *PolicyPeriodEnum `json:"period,omitempty"`
+	Scope              string            `json:"scope"`
 }
 
 // OfferingUser defines model for OfferingUser.
@@ -26699,9 +26708,9 @@ type PatchedCustomerEstimatedCostPolicyRequest struct {
 	LimitCost *int    `json:"limit_cost,omitempty"`
 
 	// Options Fields for saving actions extra data. Keys are name of actions.
-	Options interface{} `json:"options,omitempty"`
-	Period  *PeriodEnum `json:"period,omitempty"`
-	Scope   *string     `json:"scope,omitempty"`
+	Options interface{}       `json:"options,omitempty"`
+	Period  *PolicyPeriodEnum `json:"period,omitempty"`
+	Scope   *string           `json:"scope,omitempty"`
 }
 
 // PatchedCustomerRequest defines model for PatchedCustomerRequest.
@@ -27224,10 +27233,10 @@ type PatchedOfferingEstimatedCostPolicyRequest struct {
 	LimitCost  *int  `json:"limit_cost,omitempty"`
 
 	// Options Fields for saving actions extra data. Keys are name of actions.
-	Options            interface{} `json:"options,omitempty"`
-	OrganizationGroups *[]string   `json:"organization_groups,omitempty"`
-	Period             *PeriodEnum `json:"period,omitempty"`
-	Scope              *string     `json:"scope,omitempty"`
+	Options            interface{}       `json:"options,omitempty"`
+	OrganizationGroups *[]string         `json:"organization_groups,omitempty"`
+	Period             *PolicyPeriodEnum `json:"period,omitempty"`
+	Scope              *string           `json:"scope,omitempty"`
 }
 
 // PatchedOfferingPartitionUpdateRequest defines model for PatchedOfferingPartitionUpdateRequest.
@@ -27325,10 +27334,10 @@ type PatchedOfferingUsagePolicyRequest struct {
 	ComponentLimitsSet *[]NestedOfferingComponentLimitRequest `json:"component_limits_set,omitempty"`
 
 	// Options Fields for saving actions extra data. Keys are name of actions.
-	Options            interface{} `json:"options,omitempty"`
-	OrganizationGroups *[]string   `json:"organization_groups,omitempty"`
-	Period             *PeriodEnum `json:"period,omitempty"`
-	Scope              *string     `json:"scope,omitempty"`
+	Options            interface{}       `json:"options,omitempty"`
+	OrganizationGroups *[]string         `json:"organization_groups,omitempty"`
+	Period             *PolicyPeriodEnum `json:"period,omitempty"`
+	Scope              *string           `json:"scope,omitempty"`
 }
 
 // PatchedOfferingUserAttributeConfigRequest defines model for PatchedOfferingUserAttributeConfigRequest.
@@ -27611,9 +27620,9 @@ type PatchedProjectEstimatedCostPolicyRequest struct {
 	LimitCost *int    `json:"limit_cost,omitempty"`
 
 	// Options Fields for saving actions extra data. Keys are name of actions.
-	Options interface{} `json:"options,omitempty"`
-	Period  *PeriodEnum `json:"period,omitempty"`
-	Scope   *string     `json:"scope,omitempty"`
+	Options interface{}       `json:"options,omitempty"`
+	Period  *PolicyPeriodEnum `json:"period,omitempty"`
+	Scope   *string           `json:"scope,omitempty"`
 }
 
 // PatchedProjectInfoRequest defines model for PatchedProjectInfoRequest.
@@ -28321,9 +28330,9 @@ type PatchedSlurmPeriodicUsagePolicyRequest struct {
 	LimitType *LimitTypeEnum `json:"limit_type,omitempty"`
 
 	// Options Fields for saving actions extra data. Keys are name of actions.
-	Options            interface{} `json:"options,omitempty"`
-	OrganizationGroups *[]string   `json:"organization_groups,omitempty"`
-	Period             *PeriodEnum `json:"period,omitempty"`
+	Options            interface{}       `json:"options,omitempty"`
+	OrganizationGroups *[]string         `json:"organization_groups,omitempty"`
+	Period             *PolicyPeriodEnum `json:"period,omitempty"`
 
 	// QosStrategy QoS management strategy
 	QosStrategy *QosStrategyEnum `json:"qos_strategy,omitempty"`
@@ -28713,9 +28722,6 @@ type PaymentURLRequest struct {
 	PaymentUrl *string `json:"payment_url,omitempty"`
 }
 
-// PeriodEnum defines model for PeriodEnum.
-type PeriodEnum int
-
 // Permission defines model for Permission.
 type Permission struct {
 	Created           *time.Time          `json:"created,omitempty"`
@@ -28867,6 +28873,9 @@ type PluginOfferingType struct {
 
 // PolicyEnum defines model for PolicyEnum.
 type PolicyEnum string
+
+// PolicyPeriodEnum defines model for PolicyPeriodEnum.
+type PolicyPeriodEnum int
 
 // PolicyTypeEnum defines model for PolicyTypeEnum.
 type PolicyTypeEnum string
@@ -29129,7 +29138,7 @@ type ProjectEstimatedCostPolicy struct {
 
 	// Options Fields for saving actions extra data. Keys are name of actions.
 	Options       interface{}         `json:"options,omitempty"`
-	Period        *PeriodEnum         `json:"period,omitempty"`
+	Period        *PolicyPeriodEnum   `json:"period,omitempty"`
 	PeriodName    *string             `json:"period_name,omitempty"`
 	ProjectCredit *float64            `json:"project_credit"`
 	Scope         string              `json:"scope"`
@@ -29145,9 +29154,9 @@ type ProjectEstimatedCostPolicyRequest struct {
 	LimitCost int    `json:"limit_cost"`
 
 	// Options Fields for saving actions extra data. Keys are name of actions.
-	Options interface{} `json:"options,omitempty"`
-	Period  *PeriodEnum `json:"period,omitempty"`
-	Scope   string      `json:"scope"`
+	Options interface{}       `json:"options,omitempty"`
+	Period  *PolicyPeriodEnum `json:"period,omitempty"`
+	Scope   string            `json:"scope"`
 }
 
 // ProjectHyperlinkRequest defines model for ProjectHyperlinkRequest.
@@ -34108,10 +34117,10 @@ type SlurmPeriodicUsagePolicy struct {
 	LimitType *LimitTypeEnum `json:"limit_type,omitempty"`
 
 	// Options Fields for saving actions extra data. Keys are name of actions.
-	Options            interface{} `json:"options,omitempty"`
-	OrganizationGroups *[]string   `json:"organization_groups,omitempty"`
-	Period             *PeriodEnum `json:"period,omitempty"`
-	PeriodName         *string     `json:"period_name,omitempty"`
+	Options            interface{}       `json:"options,omitempty"`
+	OrganizationGroups *[]string         `json:"organization_groups,omitempty"`
+	Period             *PolicyPeriodEnum `json:"period,omitempty"`
+	PeriodName         *string           `json:"period_name,omitempty"`
 
 	// QosStrategy QoS management strategy
 	QosStrategy *QosStrategyEnum `json:"qos_strategy,omitempty"`
@@ -34152,9 +34161,9 @@ type SlurmPeriodicUsagePolicyRequest struct {
 	LimitType *LimitTypeEnum `json:"limit_type,omitempty"`
 
 	// Options Fields for saving actions extra data. Keys are name of actions.
-	Options            interface{} `json:"options,omitempty"`
-	OrganizationGroups *[]string   `json:"organization_groups,omitempty"`
-	Period             *PeriodEnum `json:"period,omitempty"`
+	Options            interface{}       `json:"options,omitempty"`
+	OrganizationGroups *[]string         `json:"organization_groups,omitempty"`
+	Period             *PolicyPeriodEnum `json:"period,omitempty"`
 
 	// QosStrategy QoS management strategy
 	QosStrategy *QosStrategyEnum `json:"qos_strategy,omitempty"`
@@ -34647,6 +34656,21 @@ type SupportedCountriesResponse struct {
 // SyncStatusEnum defines model for SyncStatusEnum.
 type SyncStatusEnum string
 
+// TableGrowthAlert defines model for TableGrowthAlert.
+type TableGrowthAlert struct {
+	// GrowthPercent Actual growth percentage observed
+	GrowthPercent float64 `json:"growth_percent"`
+
+	// Period Growth period that exceeded the threshold
+	Period GrowthPeriodEnum `json:"period"`
+
+	// TableName Name of the table triggering the alert
+	TableName string `json:"table_name"`
+
+	// Threshold Configured threshold that was exceeded
+	Threshold int `json:"threshold"`
+}
+
 // TableGrowthStats defines model for TableGrowthStats.
 type TableGrowthStats struct {
 	// CurrentDataSize Current data-only size in bytes
@@ -34688,6 +34712,9 @@ type TableGrowthStats struct {
 
 // TableGrowthStatsResponse defines model for TableGrowthStatsResponse.
 type TableGrowthStatsResponse struct {
+	// Alerts List of tables that exceeded configured growth thresholds
+	Alerts []TableGrowthAlert `json:"alerts"`
+
 	// Date Current date of the statistics
 	Date openapi_types.Date `json:"date"`
 
