@@ -100,6 +100,14 @@ const (
 	Under5k AmountRangeEnum = "under_5k"
 )
 
+// Defines values for ArrowBillingSyncStateEnum.
+const (
+	ArrowBillingSyncStateEnumN1 ArrowBillingSyncStateEnum = 1
+	ArrowBillingSyncStateEnumN2 ArrowBillingSyncStateEnum = 2
+	ArrowBillingSyncStateEnumN3 ArrowBillingSyncStateEnum = 3
+	ArrowBillingSyncStateEnumN4 ArrowBillingSyncStateEnum = 4
+)
+
 // Defines values for AssignmentBatchStatus.
 const (
 	AssignmentBatchStatusCancelled AssignmentBatchStatus = "cancelled"
@@ -1498,6 +1506,12 @@ const (
 	InvitationStatusEnumDeclined InvitationStatusEnum = "declined"
 	InvitationStatusEnumExpired  InvitationStatusEnum = "expired"
 	InvitationStatusEnumPending  InvitationStatusEnum = "pending"
+)
+
+// Defines values for InvoicePriceSourceEnum.
+const (
+	Buy  InvoicePriceSourceEnum = "buy"
+	Sell InvoicePriceSourceEnum = "sell"
 )
 
 // Defines values for InvoiceStateEnum.
@@ -8281,9 +8295,9 @@ const (
 
 // Defines values for MarketplaceSiteAgentServicesCountParamsState.
 const (
-	N1 MarketplaceSiteAgentServicesCountParamsState = "1"
-	N2 MarketplaceSiteAgentServicesCountParamsState = "2"
-	N3 MarketplaceSiteAgentServicesCountParamsState = "3"
+	MarketplaceSiteAgentServicesCountParamsStateN1 MarketplaceSiteAgentServicesCountParamsState = "1"
+	MarketplaceSiteAgentServicesCountParamsStateN2 MarketplaceSiteAgentServicesCountParamsState = "2"
+	MarketplaceSiteAgentServicesCountParamsStateN3 MarketplaceSiteAgentServicesCountParamsState = "3"
 )
 
 // Defines values for MarketplaceSoftwareCatalogsListParamsO.
@@ -14176,6 +14190,486 @@ type AnswerSubmitResponse struct {
 	Detail     string              `json:"detail"`
 }
 
+// ArrowBillingLine defines model for ArrowBillingLine.
+type ArrowBillingLine struct {
+	BuyPrice       *string `json:"buy_price"`
+	Classification string  `json:"classification"`
+
+	// LicenseReference Arrow license reference. Used to fetch consumption data.
+	LicenseReference      string  `json:"license_reference"`
+	OfferSku              string  `json:"offer_sku"`
+	Quantity              *string `json:"quantity"`
+	SellPrice             *string `json:"sell_price"`
+	SubscriptionReference string  `json:"subscription_reference"`
+	VendorName            string  `json:"vendor_name"`
+}
+
+// ArrowBillingSync defines model for ArrowBillingSync.
+type ArrowBillingSync struct {
+	// ArrowReference Arrow customer ID (e.g., 'XSP661245')
+	ArrowReference *string `json:"arrow_reference,omitempty"`
+
+	// ArrowState Arrow billing state (pending/validated)
+	ArrowState *string `json:"arrow_state,omitempty"`
+
+	// BuyTotal Total buy amount
+	BuyTotal *string    `json:"buy_total,omitempty"`
+	Created  *time.Time `json:"created,omitempty"`
+
+	// Currency Currency code
+	Currency            *string             `json:"currency,omitempty"`
+	CustomerMapping     *string             `json:"customer_mapping,omitempty"`
+	CustomerMappingUuid *openapi_types.UUID `json:"customer_mapping_uuid,omitempty"`
+
+	// ErrorMessage Error message if sync failed
+	ErrorMessage *string                 `json:"error_message,omitempty"`
+	InvoiceUuid  *openapi_types.UUID     `json:"invoice_uuid,omitempty"`
+	Items        *[]ArrowBillingSyncItem `json:"items,omitempty"`
+	Modified     *time.Time              `json:"modified,omitempty"`
+
+	// ReconciledAt When reconciliation was applied
+	ReconciledAt *time.Time `json:"reconciled_at"`
+
+	// ReportPeriod Report period in YYYY-MM format
+	ReportPeriod *string `json:"report_period,omitempty"`
+
+	// SellTotal Total sell amount
+	SellTotal *string `json:"sell_total,omitempty"`
+
+	// State Waldur sync state
+	State        *ArrowBillingSyncStateEnum `json:"state,omitempty"`
+	StateDisplay *string                    `json:"state_display,omitempty"`
+
+	// StatementReference Arrow statement ID
+	StatementReference *string `json:"statement_reference,omitempty"`
+
+	// SyncedAt When billing was last synced
+	SyncedAt *time.Time          `json:"synced_at"`
+	Url      *string             `json:"url,omitempty"`
+	Uuid     *openapi_types.UUID `json:"uuid,omitempty"`
+
+	// ValidatedAt When Arrow validated the billing
+	ValidatedAt        *time.Time `json:"validated_at"`
+	WaldurCustomerName *string    `json:"waldur_customer_name,omitempty"`
+}
+
+// ArrowBillingSyncItem defines model for ArrowBillingSyncItem.
+type ArrowBillingSyncItem struct {
+	// ArrowLineReference Arrow line ID
+	ArrowLineReference *string `json:"arrow_line_reference,omitempty"`
+
+	// Classification Classification (IAAS/SAAS)
+	Classification       *string             `json:"classification,omitempty"`
+	CompensationItemUuid *openapi_types.UUID `json:"compensation_item_uuid,omitempty"`
+	Created              *time.Time          `json:"created,omitempty"`
+
+	// Description Line item description
+	Description     *string             `json:"description,omitempty"`
+	InvoiceItemUuid *openapi_types.UUID `json:"invoice_item_uuid,omitempty"`
+
+	// OriginalPrice Original price for reconciliation tracking
+	OriginalPrice *string `json:"original_price,omitempty"`
+
+	// Quantity Quantity
+	Quantity *string `json:"quantity,omitempty"`
+
+	// SubscriptionReference Arrow subscription reference
+	SubscriptionReference *string             `json:"subscription_reference,omitempty"`
+	Uuid                  *openapi_types.UUID `json:"uuid,omitempty"`
+
+	// VendorName Vendor name (e.g., Microsoft)
+	VendorName *string `json:"vendor_name,omitempty"`
+}
+
+// ArrowBillingSyncItemDetail defines model for ArrowBillingSyncItemDetail.
+type ArrowBillingSyncItemDetail struct {
+	// ArrowLineReference Arrow line ID
+	ArrowLineReference *string             `json:"arrow_line_reference,omitempty"`
+	BillingSync        *string             `json:"billing_sync,omitempty"`
+	BillingSyncUuid    *openapi_types.UUID `json:"billing_sync_uuid,omitempty"`
+
+	// Classification Classification (IAAS/SAAS)
+	Classification       *string             `json:"classification,omitempty"`
+	CompensationItemUuid *openapi_types.UUID `json:"compensation_item_uuid,omitempty"`
+	Created              *time.Time          `json:"created,omitempty"`
+
+	// Description Line item description
+	Description     *string             `json:"description,omitempty"`
+	HasCompensation *bool               `json:"has_compensation,omitempty"`
+	InvoiceItemUuid *openapi_types.UUID `json:"invoice_item_uuid,omitempty"`
+
+	// OriginalPrice Original price for reconciliation tracking
+	OriginalPrice *string `json:"original_price,omitempty"`
+
+	// Quantity Quantity
+	Quantity *string `json:"quantity,omitempty"`
+
+	// ReportPeriod Report period in YYYY-MM format
+	ReportPeriod *string `json:"report_period,omitempty"`
+
+	// SubscriptionReference Arrow subscription reference
+	SubscriptionReference *string             `json:"subscription_reference,omitempty"`
+	Url                   *string             `json:"url,omitempty"`
+	Uuid                  *openapi_types.UUID `json:"uuid,omitempty"`
+
+	// VendorName Vendor name (e.g., Microsoft)
+	VendorName *string `json:"vendor_name,omitempty"`
+}
+
+// ArrowBillingSyncStateEnum defines model for ArrowBillingSyncStateEnum.
+type ArrowBillingSyncStateEnum int
+
+// ArrowConsumptionLine defines model for ArrowConsumptionLine.
+type ArrowConsumptionLine struct {
+	BuyPrice *string `json:"buy_price"`
+
+	// Error Error message if fetch failed.
+	Error *string `json:"error"`
+
+	// LicenseReference Arrow license reference (same as resource backend_id).
+	LicenseReference string  `json:"license_reference"`
+	Period           string  `json:"period"`
+	ResourceName     *string `json:"resource_name"`
+
+	// ResourceUuid UUID of the Waldur resource.
+	ResourceUuid *string `json:"resource_uuid"`
+	SellPrice    *string `json:"sell_price"`
+}
+
+// ArrowConsumptionRecord defines model for ArrowConsumptionRecord.
+type ArrowConsumptionRecord struct {
+	AdjustmentAmount *string `json:"adjustment_amount"`
+
+	// BillingPeriod First day of the billing month
+	BillingPeriod        *openapi_types.Date `json:"billing_period,omitempty"`
+	CompensationItemUuid *openapi_types.UUID `json:"compensation_item_uuid,omitempty"`
+
+	// ConsumedBuy Consumed buy amount from Consumption API
+	ConsumedBuy *string `json:"consumed_buy,omitempty"`
+
+	// ConsumedSell Consumed sell amount from Consumption API
+	ConsumedSell *string             `json:"consumed_sell,omitempty"`
+	Created      *time.Time          `json:"created,omitempty"`
+	CustomerName *string             `json:"customer_name,omitempty"`
+	CustomerUuid *openapi_types.UUID `json:"customer_uuid,omitempty"`
+
+	// FinalBuy Final buy amount from billing export
+	FinalBuy *string `json:"final_buy"`
+
+	// FinalSell Final sell amount from billing export
+	FinalSell *string `json:"final_sell"`
+
+	// FinalizedAt When billing export data arrived
+	FinalizedAt     *time.Time          `json:"finalized_at"`
+	InvoiceItemUuid *openapi_types.UUID `json:"invoice_item_uuid,omitempty"`
+	IsFinalized     *bool               `json:"is_finalized,omitempty"`
+	IsReconciled    *bool               `json:"is_reconciled,omitempty"`
+
+	// LastSyncAt When consumption was last synced from API
+	LastSyncAt *time.Time `json:"last_sync_at"`
+
+	// LicenseReference Arrow license reference (e.g., 'XSP12345')
+	LicenseReference *string             `json:"license_reference,omitempty"`
+	Modified         *time.Time          `json:"modified,omitempty"`
+	ProjectName      *string             `json:"project_name,omitempty"`
+	ProjectUuid      *openapi_types.UUID `json:"project_uuid,omitempty"`
+
+	// RawData Raw consumption data for debugging
+	RawData interface{} `json:"raw_data,omitempty"`
+
+	// ReconciledAt When reconciliation was applied
+	ReconciledAt *time.Time          `json:"reconciled_at"`
+	Resource     *string             `json:"resource,omitempty"`
+	ResourceName *string             `json:"resource_name,omitempty"`
+	ResourceUuid *openapi_types.UUID `json:"resource_uuid,omitempty"`
+	Url          *string             `json:"url,omitempty"`
+	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// ArrowCredentialsRequest defines model for ArrowCredentialsRequest.
+type ArrowCredentialsRequest struct {
+	// ApiKey Arrow API Key
+	ApiKey string `json:"api_key"`
+
+	// ApiUrl Arrow API base URL
+	ApiUrl string `json:"api_url"`
+}
+
+// ArrowCredentialsValidationResponse defines model for ArrowCredentialsValidationResponse.
+type ArrowCredentialsValidationResponse struct {
+	Error       *string                 `json:"error,omitempty"`
+	Message     *string                 `json:"message,omitempty"`
+	PartnerInfo *map[string]interface{} `json:"partner_info,omitempty"`
+	Valid       bool                    `json:"valid"`
+}
+
+// ArrowCustomerDiscovery defines model for ArrowCustomerDiscovery.
+type ArrowCustomerDiscovery struct {
+	City        *string `json:"city,omitempty"`
+	CompanyName string  `json:"companyName"`
+	CountryCode *string `json:"countryCode,omitempty"`
+	Email       *string `json:"email,omitempty"`
+	Reference   string  `json:"reference"`
+}
+
+// ArrowCustomerMapping defines model for ArrowCustomerMapping.
+type ArrowCustomerMapping struct {
+	// ArrowCompanyName Arrow company name
+	ArrowCompanyName *string `json:"arrow_company_name,omitempty"`
+
+	// ArrowReference Arrow customer ID (e.g., 'XSP661245')
+	ArrowReference string     `json:"arrow_reference"`
+	Created        *time.Time `json:"created,omitempty"`
+
+	// IsActive Whether this mapping is active
+	IsActive           *bool               `json:"is_active,omitempty"`
+	Modified           *time.Time          `json:"modified,omitempty"`
+	Settings           string              `json:"settings"`
+	SettingsUuid       *openapi_types.UUID `json:"settings_uuid,omitempty"`
+	Url                *string             `json:"url,omitempty"`
+	Uuid               *openapi_types.UUID `json:"uuid,omitempty"`
+	WaldurCustomer     string              `json:"waldur_customer"`
+	WaldurCustomerName *string             `json:"waldur_customer_name,omitempty"`
+	WaldurCustomerUuid *openapi_types.UUID `json:"waldur_customer_uuid,omitempty"`
+}
+
+// ArrowCustomerMappingCreate defines model for ArrowCustomerMappingCreate.
+type ArrowCustomerMappingCreate struct {
+	// ArrowCompanyName Arrow company name
+	ArrowCompanyName *string `json:"arrow_company_name,omitempty"`
+
+	// ArrowReference Arrow customer ID (e.g., 'XSP661245')
+	ArrowReference string     `json:"arrow_reference"`
+	Created        *time.Time `json:"created,omitempty"`
+
+	// IsActive Whether this mapping is active
+	IsActive           *bool               `json:"is_active,omitempty"`
+	Modified           *time.Time          `json:"modified,omitempty"`
+	Settings           openapi_types.UUID  `json:"settings"`
+	SettingsUuid       *openapi_types.UUID `json:"settings_uuid,omitempty"`
+	Url                *string             `json:"url,omitempty"`
+	Uuid               *openapi_types.UUID `json:"uuid,omitempty"`
+	WaldurCustomer     openapi_types.UUID  `json:"waldur_customer"`
+	WaldurCustomerName *string             `json:"waldur_customer_name,omitempty"`
+	WaldurCustomerUuid *openapi_types.UUID `json:"waldur_customer_uuid,omitempty"`
+}
+
+// ArrowCustomerMappingCreateRequest defines model for ArrowCustomerMappingCreateRequest.
+type ArrowCustomerMappingCreateRequest struct {
+	// ArrowCompanyName Arrow company name
+	ArrowCompanyName *string `json:"arrow_company_name,omitempty"`
+
+	// ArrowReference Arrow customer ID (e.g., 'XSP661245')
+	ArrowReference string `json:"arrow_reference"`
+
+	// IsActive Whether this mapping is active
+	IsActive       *bool              `json:"is_active,omitempty"`
+	Settings       openapi_types.UUID `json:"settings"`
+	WaldurCustomer openapi_types.UUID `json:"waldur_customer"`
+}
+
+// ArrowCustomerMappingRequest defines model for ArrowCustomerMappingRequest.
+type ArrowCustomerMappingRequest struct {
+	// ArrowCompanyName Arrow company name
+	ArrowCompanyName *string `json:"arrow_company_name,omitempty"`
+
+	// ArrowReference Arrow customer ID (e.g., 'XSP661245')
+	ArrowReference string `json:"arrow_reference"`
+
+	// IsActive Whether this mapping is active
+	IsActive       *bool  `json:"is_active,omitempty"`
+	Settings       string `json:"settings"`
+	WaldurCustomer string `json:"waldur_customer"`
+}
+
+// ArrowLicense defines model for ArrowLicense.
+type ArrowLicense struct {
+	FriendlyName string `json:"friendly_name"`
+
+	// LicenseReference Arrow license reference (e.g., XSP12345). Use this as resource backend_id.
+	LicenseReference string `json:"license_reference"`
+	OfferName        string `json:"offer_name"`
+	OfferSku         string `json:"offer_sku"`
+	VendorName       string `json:"vendor_name"`
+}
+
+// ArrowSettings defines model for ArrowSettings.
+type ArrowSettings struct {
+	// ApiKey Arrow API Key (leave empty on update to keep current)
+	ApiKey *string `json:"api_key,omitempty"`
+
+	// ApiUrl Arrow API base URL
+	ApiUrl string `json:"api_url"`
+
+	// ClassificationFilter Filter for IaaS/SaaS classification
+	ClassificationFilter *string    `json:"classification_filter,omitempty"`
+	Created              *time.Time `json:"created,omitempty"`
+
+	// ExportTypeReference Billing export template reference
+	ExportTypeReference *string `json:"export_type_reference,omitempty"`
+
+	// InvoicePriceSource Which price to use for invoice items: sell or buy
+	InvoicePriceSource *InvoicePriceSourceEnum `json:"invoice_price_source,omitempty"`
+
+	// IsActive Whether this settings record is active
+	IsActive *bool      `json:"is_active,omitempty"`
+	Modified *time.Time `json:"modified,omitempty"`
+
+	// PartnerName Arrow partner name (discovered from API)
+	PartnerName *string `json:"partner_name,omitempty"`
+
+	// PartnerReference Arrow partner reference (discovered from API)
+	PartnerReference *string `json:"partner_reference,omitempty"`
+
+	// SyncEnabled Whether automatic billing sync is enabled
+	SyncEnabled *bool               `json:"sync_enabled,omitempty"`
+	Url         *string             `json:"url,omitempty"`
+	Uuid        *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// ArrowSettingsCreate defines model for ArrowSettingsCreate.
+type ArrowSettingsCreate struct {
+	// ApiUrl Arrow API base URL
+	ApiUrl string `json:"api_url"`
+
+	// ClassificationFilter Filter for IaaS/SaaS classification
+	ClassificationFilter *string    `json:"classification_filter,omitempty"`
+	Created              *time.Time `json:"created,omitempty"`
+
+	// ExportTypeReference Billing export template reference
+	ExportTypeReference *string `json:"export_type_reference,omitempty"`
+
+	// InvoicePriceSource Which price to use for invoice items: sell or buy
+	InvoicePriceSource *InvoicePriceSourceEnum `json:"invoice_price_source,omitempty"`
+
+	// IsActive Whether this settings record is active
+	IsActive *bool      `json:"is_active,omitempty"`
+	Modified *time.Time `json:"modified,omitempty"`
+
+	// PartnerName Arrow partner name (discovered from API)
+	PartnerName *string `json:"partner_name,omitempty"`
+
+	// PartnerReference Arrow partner reference (discovered from API)
+	PartnerReference *string `json:"partner_reference,omitempty"`
+
+	// SyncEnabled Whether automatic billing sync is enabled
+	SyncEnabled *bool               `json:"sync_enabled,omitempty"`
+	Url         *string             `json:"url,omitempty"`
+	Uuid        *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// ArrowSettingsCreateRequest defines model for ArrowSettingsCreateRequest.
+type ArrowSettingsCreateRequest struct {
+	// ApiKey Arrow API Key (required for creation)
+	ApiKey *string `json:"api_key,omitempty"`
+
+	// ApiUrl Arrow API base URL
+	ApiUrl string `json:"api_url"`
+
+	// ClassificationFilter Filter for IaaS/SaaS classification
+	ClassificationFilter *string `json:"classification_filter,omitempty"`
+
+	// ExportTypeReference Billing export template reference
+	ExportTypeReference *string `json:"export_type_reference,omitempty"`
+
+	// InvoicePriceSource Which price to use for invoice items: sell or buy
+	InvoicePriceSource *InvoicePriceSourceEnum `json:"invoice_price_source,omitempty"`
+
+	// IsActive Whether this settings record is active
+	IsActive *bool `json:"is_active,omitempty"`
+
+	// SyncEnabled Whether automatic billing sync is enabled
+	SyncEnabled *bool `json:"sync_enabled,omitempty"`
+}
+
+// ArrowSettingsRequest defines model for ArrowSettingsRequest.
+type ArrowSettingsRequest struct {
+	// ApiKey Arrow API Key (leave empty on update to keep current)
+	ApiKey *string `json:"api_key,omitempty"`
+
+	// ApiUrl Arrow API base URL
+	ApiUrl string `json:"api_url"`
+
+	// ClassificationFilter Filter for IaaS/SaaS classification
+	ClassificationFilter *string `json:"classification_filter,omitempty"`
+
+	// ExportTypeReference Billing export template reference
+	ExportTypeReference *string `json:"export_type_reference,omitempty"`
+
+	// InvoicePriceSource Which price to use for invoice items: sell or buy
+	InvoicePriceSource *InvoicePriceSourceEnum `json:"invoice_price_source,omitempty"`
+
+	// IsActive Whether this settings record is active
+	IsActive *bool `json:"is_active,omitempty"`
+
+	// SyncEnabled Whether automatic billing sync is enabled
+	SyncEnabled *bool `json:"sync_enabled,omitempty"`
+}
+
+// ArrowVendorOfferingMapping defines model for ArrowVendorOfferingMapping.
+type ArrowVendorOfferingMapping struct {
+	// ArrowVendorName Arrow vendor name (e.g., 'Microsoft', 'Amazon Web Services')
+	ArrowVendorName string     `json:"arrow_vendor_name"`
+	Created         *time.Time `json:"created,omitempty"`
+
+	// IsActive Whether this mapping is active
+	IsActive *bool      `json:"is_active,omitempty"`
+	Modified *time.Time `json:"modified,omitempty"`
+
+	// Offering Waldur marketplace offering for this vendor
+	Offering     string              `json:"offering"`
+	OfferingName *string             `json:"offering_name,omitempty"`
+	OfferingType *string             `json:"offering_type,omitempty"`
+	OfferingUuid *openapi_types.UUID `json:"offering_uuid,omitempty"`
+	Settings     string              `json:"settings"`
+	SettingsUuid *openapi_types.UUID `json:"settings_uuid,omitempty"`
+	Url          *string             `json:"url,omitempty"`
+	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// ArrowVendorOfferingMappingCreate defines model for ArrowVendorOfferingMappingCreate.
+type ArrowVendorOfferingMappingCreate struct {
+	// ArrowVendorName Arrow vendor name (e.g., 'Microsoft', 'Amazon Web Services')
+	ArrowVendorName string     `json:"arrow_vendor_name"`
+	Created         *time.Time `json:"created,omitempty"`
+
+	// IsActive Whether this mapping is active
+	IsActive     *bool               `json:"is_active,omitempty"`
+	Modified     *time.Time          `json:"modified,omitempty"`
+	Offering     openapi_types.UUID  `json:"offering"`
+	OfferingName *string             `json:"offering_name,omitempty"`
+	OfferingType *string             `json:"offering_type,omitempty"`
+	OfferingUuid *openapi_types.UUID `json:"offering_uuid,omitempty"`
+	Settings     openapi_types.UUID  `json:"settings"`
+	SettingsUuid *openapi_types.UUID `json:"settings_uuid,omitempty"`
+	Url          *string             `json:"url,omitempty"`
+	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// ArrowVendorOfferingMappingCreateRequest defines model for ArrowVendorOfferingMappingCreateRequest.
+type ArrowVendorOfferingMappingCreateRequest struct {
+	// ArrowVendorName Arrow vendor name (e.g., 'Microsoft', 'Amazon Web Services')
+	ArrowVendorName string `json:"arrow_vendor_name"`
+
+	// IsActive Whether this mapping is active
+	IsActive *bool              `json:"is_active,omitempty"`
+	Offering openapi_types.UUID `json:"offering"`
+	Settings openapi_types.UUID `json:"settings"`
+}
+
+// ArrowVendorOfferingMappingRequest defines model for ArrowVendorOfferingMappingRequest.
+type ArrowVendorOfferingMappingRequest struct {
+	// ArrowVendorName Arrow vendor name (e.g., 'Microsoft', 'Amazon Web Services')
+	ArrowVendorName string `json:"arrow_vendor_name"`
+
+	// IsActive Whether this mapping is active
+	IsActive *bool `json:"is_active,omitempty"`
+
+	// Offering Waldur marketplace offering for this vendor
+	Offering string `json:"offering"`
+	Settings string `json:"settings"`
+}
+
 // AssignmentBatch defines model for AssignmentBatch.
 type AssignmentBatch struct {
 	Call     *string             `json:"call,omitempty"`
@@ -14561,6 +15055,14 @@ type AuthToken struct {
 
 	// UserUsername Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
 	UserUsername *string `json:"user_username,omitempty"`
+}
+
+// AvailableArrowCustomersResponse defines model for AvailableArrowCustomersResponse.
+type AvailableArrowCustomersResponse struct {
+	ArrowCustomers  []ArrowCustomerDiscovery    `json:"arrow_customers"`
+	SettingsUuid    openapi_types.UUID          `json:"settings_uuid"`
+	Suggestions     []CustomerMappingSuggestion `json:"suggestions"`
+	WaldurCustomers []WaldurCustomerBrief       `json:"waldur_customers"`
 }
 
 // AvailableChecklist defines model for AvailableChecklist.
@@ -16557,6 +17059,29 @@ type CircuitBreakerStatus struct {
 	SuccessCount *int `json:"success_count,omitempty"`
 }
 
+// CleanupConsumptionRequestRequest defines model for CleanupConsumptionRequestRequest.
+type CleanupConsumptionRequestRequest struct {
+	DryRun          *bool `json:"dry_run,omitempty"`
+	OnlyFinalized   *bool `json:"only_finalized,omitempty"`
+	OnlyUnfinalized *bool `json:"only_unfinalized,omitempty"`
+
+	// PeriodFrom YYYY-MM format
+	PeriodFrom *string `json:"period_from,omitempty"`
+
+	// PeriodTo YYYY-MM format
+	PeriodTo     *string             `json:"period_to,omitempty"`
+	ResourceUuid *openapi_types.UUID `json:"resource_uuid,omitempty"`
+}
+
+// CleanupConsumptionResponse defines model for CleanupConsumptionResponse.
+type CleanupConsumptionResponse struct {
+	CompensationItemsAffected int  `json:"compensation_items_affected"`
+	DryRun                    bool `json:"dry_run"`
+	InvoiceItemsAffected      int  `json:"invoice_items_affected"`
+	RecordsDeleted            int  `json:"records_deleted"`
+	RecordsToDelete           int  `json:"records_to_delete"`
+}
+
 // CleanupRequestRequest defines model for CleanupRequestRequest.
 type CleanupRequestRequest struct {
 	// DryRun If true, only return what would be deleted without actually deleting
@@ -16946,6 +17471,11 @@ type ConsoleUrl struct {
 type ConstanceSettings struct {
 	ANONYMOUSUSERCANVIEWOFFERINGS                  *bool                `json:"ANONYMOUS_USER_CAN_VIEW_OFFERINGS,omitempty"`
 	ANONYMOUSUSERCANVIEWPLANS                      *bool                `json:"ANONYMOUS_USER_CAN_VIEW_PLANS,omitempty"`
+	ARROWAUTORECONCILIATION                        *bool                `json:"ARROW_AUTO_RECONCILIATION,omitempty"`
+	ARROWBILLINGCHECKINTERVALHOURS                 *int                 `json:"ARROW_BILLING_CHECK_INTERVAL_HOURS,omitempty"`
+	ARROWCONSUMPTIONSYNCENABLED                    *bool                `json:"ARROW_CONSUMPTION_SYNC_ENABLED,omitempty"`
+	ARROWCONSUMPTIONSYNCINTERVALHOURS              *int                 `json:"ARROW_CONSUMPTION_SYNC_INTERVAL_HOURS,omitempty"`
+	ARROWSYNCINTERVALHOURS                         *int                 `json:"ARROW_SYNC_INTERVAL_HOURS,omitempty"`
 	ATLASSIANAFFECTEDRESOURCEFIELD                 *string              `json:"ATLASSIAN_AFFECTED_RESOURCE_FIELD,omitempty"`
 	ATLASSIANAPIURL                                *string              `json:"ATLASSIAN_API_URL,omitempty"`
 	ATLASSIANCALLERFIELD                           *string              `json:"ATLASSIAN_CALLER_FIELD,omitempty"`
@@ -17167,6 +17697,11 @@ type ConstanceSettings struct {
 type ConstanceSettingsRequest struct {
 	ANONYMOUSUSERCANVIEWOFFERINGS                  *bool                           `json:"ANONYMOUS_USER_CAN_VIEW_OFFERINGS,omitempty"`
 	ANONYMOUSUSERCANVIEWPLANS                      *bool                           `json:"ANONYMOUS_USER_CAN_VIEW_PLANS,omitempty"`
+	ARROWAUTORECONCILIATION                        *bool                           `json:"ARROW_AUTO_RECONCILIATION,omitempty"`
+	ARROWBILLINGCHECKINTERVALHOURS                 *int                            `json:"ARROW_BILLING_CHECK_INTERVAL_HOURS,omitempty"`
+	ARROWCONSUMPTIONSYNCENABLED                    *bool                           `json:"ARROW_CONSUMPTION_SYNC_ENABLED,omitempty"`
+	ARROWCONSUMPTIONSYNCINTERVALHOURS              *int                            `json:"ARROW_CONSUMPTION_SYNC_INTERVAL_HOURS,omitempty"`
+	ARROWSYNCINTERVALHOURS                         *int                            `json:"ARROW_SYNC_INTERVAL_HOURS,omitempty"`
 	ATLASSIANAFFECTEDRESOURCEFIELD                 *string                         `json:"ATLASSIAN_AFFECTED_RESOURCE_FIELD,omitempty"`
 	ATLASSIANAPIURL                                *string                         `json:"ATLASSIAN_API_URL,omitempty"`
 	ATLASSIANCALLERFIELD                           *string                         `json:"ATLASSIAN_CALLER_FIELD,omitempty"`
@@ -17388,6 +17923,11 @@ type ConstanceSettingsRequest struct {
 type ConstanceSettingsRequestForm struct {
 	ANONYMOUSUSERCANVIEWOFFERINGS                  *bool                           `json:"ANONYMOUS_USER_CAN_VIEW_OFFERINGS,omitempty"`
 	ANONYMOUSUSERCANVIEWPLANS                      *bool                           `json:"ANONYMOUS_USER_CAN_VIEW_PLANS,omitempty"`
+	ARROWAUTORECONCILIATION                        *bool                           `json:"ARROW_AUTO_RECONCILIATION,omitempty"`
+	ARROWBILLINGCHECKINTERVALHOURS                 *int                            `json:"ARROW_BILLING_CHECK_INTERVAL_HOURS,omitempty"`
+	ARROWCONSUMPTIONSYNCENABLED                    *bool                           `json:"ARROW_CONSUMPTION_SYNC_ENABLED,omitempty"`
+	ARROWCONSUMPTIONSYNCINTERVALHOURS              *int                            `json:"ARROW_CONSUMPTION_SYNC_INTERVAL_HOURS,omitempty"`
+	ARROWSYNCINTERVALHOURS                         *int                            `json:"ARROW_SYNC_INTERVAL_HOURS,omitempty"`
 	ATLASSIANAFFECTEDRESOURCEFIELD                 *string                         `json:"ATLASSIAN_AFFECTED_RESOURCE_FIELD,omitempty"`
 	ATLASSIANAPIURL                                *string                         `json:"ATLASSIAN_API_URL,omitempty"`
 	ATLASSIANCALLERFIELD                           *string                         `json:"ATLASSIAN_CALLER_FIELD,omitempty"`
@@ -17609,6 +18149,11 @@ type ConstanceSettingsRequestForm struct {
 type ConstanceSettingsRequestMultipart struct {
 	ANONYMOUSUSERCANVIEWOFFERINGS                  *bool                           `json:"ANONYMOUS_USER_CAN_VIEW_OFFERINGS,omitempty"`
 	ANONYMOUSUSERCANVIEWPLANS                      *bool                           `json:"ANONYMOUS_USER_CAN_VIEW_PLANS,omitempty"`
+	ARROWAUTORECONCILIATION                        *bool                           `json:"ARROW_AUTO_RECONCILIATION,omitempty"`
+	ARROWBILLINGCHECKINTERVALHOURS                 *int                            `json:"ARROW_BILLING_CHECK_INTERVAL_HOURS,omitempty"`
+	ARROWCONSUMPTIONSYNCENABLED                    *bool                           `json:"ARROW_CONSUMPTION_SYNC_ENABLED,omitempty"`
+	ARROWCONSUMPTIONSYNCINTERVALHOURS              *int                            `json:"ARROW_CONSUMPTION_SYNC_INTERVAL_HOURS,omitempty"`
+	ARROWSYNCINTERVALHOURS                         *int                            `json:"ARROW_SYNC_INTERVAL_HOURS,omitempty"`
 	ATLASSIANAFFECTEDRESOURCEFIELD                 *string                         `json:"ATLASSIAN_AFFECTED_RESOURCE_FIELD,omitempty"`
 	ATLASSIANAPIURL                                *string                         `json:"ATLASSIAN_API_URL,omitempty"`
 	ATLASSIANCALLERFIELD                           *string                         `json:"ATLASSIAN_CALLER_FIELD,omitempty"`
@@ -17824,6 +18369,25 @@ type ConstanceSettingsRequestMultipart struct {
 	ZAMMADCOMMENTPREFIX                            *string                         `json:"ZAMMAD_COMMENT_PREFIX,omitempty"`
 	ZAMMADGROUP                                    *string                         `json:"ZAMMAD_GROUP,omitempty"`
 	ZAMMADTOKEN                                    *string                         `json:"ZAMMAD_TOKEN,omitempty"`
+}
+
+// ConsumptionStatisticsResponse defines model for ConsumptionStatisticsResponse.
+type ConsumptionStatisticsResponse struct {
+	FinalizedRecords  int               `json:"finalized_records"`
+	PendingRecords    int               `json:"pending_records"`
+	PeriodBreakdown   []PeriodBreakdown `json:"period_breakdown"`
+	ReconciledRecords int               `json:"reconciled_records"`
+	TotalAdjustments  string            `json:"total_adjustments"`
+	TotalConsumedSell string            `json:"total_consumed_sell"`
+	TotalRecords      int               `json:"total_records"`
+}
+
+// ConsumptionStatusResponse defines model for ConsumptionStatusResponse.
+type ConsumptionStatusResponse struct {
+	GlobalSyncEnabled   bool                `json:"global_sync_enabled"`
+	LastSyncRun         *time.Time          `json:"last_sync_run"`
+	SettingsSyncEnabled bool                `json:"settings_sync_enabled"`
+	SettingsUuid        *openapi_types.UUID `json:"settings_uuid"`
 }
 
 // ContainerFormatEnum defines model for ContainerFormatEnum.
@@ -18191,6 +18755,47 @@ type Customer_Country struct {
 	union json.RawMessage
 }
 
+// CustomerBillingSummaryBillingSync defines model for CustomerBillingSummaryBillingSync.
+type CustomerBillingSummaryBillingSync struct {
+	Created      time.Time          `json:"created"`
+	ItemsCount   int                `json:"items_count"`
+	ReportPeriod string             `json:"report_period"`
+	SellTotal    *string            `json:"sell_total"`
+	State        string             `json:"state"`
+	Uuid         openapi_types.UUID `json:"uuid"`
+}
+
+// CustomerBillingSummaryConsumptionRecord defines model for CustomerBillingSummaryConsumptionRecord.
+type CustomerBillingSummaryConsumptionRecord struct {
+	BillingPeriod    openapi_types.Date `json:"billing_period"`
+	ConsumedSell     string             `json:"consumed_sell"`
+	FinalSell        *string            `json:"final_sell"`
+	IsFinalized      bool               `json:"is_finalized"`
+	IsReconciled     bool               `json:"is_reconciled"`
+	LicenseReference string             `json:"license_reference"`
+	ResourceName     *string            `json:"resource_name"`
+	Uuid             openapi_types.UUID `json:"uuid"`
+}
+
+// CustomerBillingSummaryResponse defines model for CustomerBillingSummaryResponse.
+type CustomerBillingSummaryResponse struct {
+	ArrowCompanyName         string                                    `json:"arrow_company_name"`
+	ArrowReference           string                                    `json:"arrow_reference"`
+	CustomerMappingUuid      openapi_types.UUID                        `json:"customer_mapping_uuid"`
+	FinalizedRecords         int                                       `json:"finalized_records"`
+	PendingRecords           int                                       `json:"pending_records"`
+	RecentBillingSyncs       []CustomerBillingSummaryBillingSync       `json:"recent_billing_syncs"`
+	RecentConsumptionRecords []CustomerBillingSummaryConsumptionRecord `json:"recent_consumption_records"`
+	ReconciledRecords        int                                       `json:"reconciled_records"`
+	TotalBillingSell         *string                                   `json:"total_billing_sell"`
+	TotalBillingSyncs        int                                       `json:"total_billing_syncs"`
+	TotalConsumedSell        string                                    `json:"total_consumed_sell"`
+	TotalConsumptionRecords  int                                       `json:"total_consumption_records"`
+	TotalFinalSell           *string                                   `json:"total_final_sell"`
+	WaldurCustomerName       string                                    `json:"waldur_customer_name"`
+	WaldurCustomerUuid       openapi_types.UUID                        `json:"waldur_customer_uuid"`
+}
+
 // CustomerComponentUsagePolicy defines model for CustomerComponentUsagePolicy.
 type CustomerComponentUsagePolicy struct {
 	Actions            string                               `json:"actions"`
@@ -18323,6 +18928,20 @@ type CustomerIndustryFlagStats struct {
 
 	// Uuid UUID from the record
 	Uuid *string `json:"uuid,omitempty"`
+}
+
+// CustomerMappingInputRequest defines model for CustomerMappingInputRequest.
+type CustomerMappingInputRequest struct {
+	ArrowReference     string             `json:"arrow_reference"`
+	WaldurCustomerUuid openapi_types.UUID `json:"waldur_customer_uuid"`
+}
+
+// CustomerMappingSuggestion defines model for CustomerMappingSuggestion.
+type CustomerMappingSuggestion struct {
+	ArrowCustomer           ArrowCustomerDiscovery `json:"arrow_customer"`
+	Confidence              *float64               `json:"confidence,omitempty"`
+	ExistingMapping         *bool                  `json:"existing_mapping,omitempty"`
+	SuggestedWaldurCustomer *WaldurCustomerBrief   `json:"suggested_waldur_customer,omitempty"`
 }
 
 // CustomerMemberCount defines model for CustomerMemberCount.
@@ -19035,6 +19654,38 @@ type DiscoverCustomFieldsRequestRequest struct {
 	VerifySsl     *bool   `json:"verify_ssl,omitempty"`
 }
 
+// DiscoverCustomersRequestRequest defines model for DiscoverCustomersRequestRequest.
+type DiscoverCustomersRequestRequest struct {
+	// ApiKey Arrow API Key
+	ApiKey string `json:"api_key"`
+
+	// ApiUrl Arrow API base URL
+	ApiUrl string `json:"api_url"`
+}
+
+// DiscoverCustomersResponse defines model for DiscoverCustomersResponse.
+type DiscoverCustomersResponse struct {
+	ArrowCustomers  []ArrowCustomerDiscovery    `json:"arrow_customers"`
+	Suggestions     []CustomerMappingSuggestion `json:"suggestions"`
+	WaldurCustomers []WaldurCustomerBrief       `json:"waldur_customers"`
+}
+
+// DiscoverLicensesResponse defines model for DiscoverLicensesResponse.
+type DiscoverLicensesResponse struct {
+	// ArrowLicenses Arrow licenses from billing export for this customer.
+	ArrowLicenses       []ArrowLicense     `json:"arrow_licenses"`
+	ArrowReference      string             `json:"arrow_reference"`
+	CustomerMappingUuid openapi_types.UUID `json:"customer_mapping_uuid"`
+	Error               *string            `json:"error"`
+
+	// Suggestions Suggested matches based on name similarity.
+	Suggestions        []LicenseSuggestion `json:"suggestions"`
+	WaldurCustomerName string              `json:"waldur_customer_name"`
+
+	// WaldurResources Waldur resources for this customer.
+	WaldurResources []WaldurResourceForLinking `json:"waldur_resources"`
+}
+
 // DiscoverMetadataRequestRequest defines model for DiscoverMetadataRequestRequest.
 type DiscoverMetadataRequestRequest struct {
 	// DiscoveryUrl OIDC discovery URL (e.g., https://idp.example.com/.well-known/openid-configuration)
@@ -19623,6 +20274,79 @@ type Feedback struct {
 	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
+// FetchBillingExportRequestRequest defines model for FetchBillingExportRequestRequest.
+type FetchBillingExportRequestRequest struct {
+	Classification *string `json:"classification,omitempty"`
+
+	// PeriodFrom YYYY-MM format
+	PeriodFrom string `json:"period_from"`
+
+	// PeriodTo YYYY-MM format
+	PeriodTo string `json:"period_to"`
+}
+
+// FetchBillingExportResponse defines model for FetchBillingExportResponse.
+type FetchBillingExportResponse struct {
+	Classification string                   `json:"classification"`
+	Data           []map[string]interface{} `json:"data"`
+	PeriodFrom     string                   `json:"period_from"`
+	PeriodTo       string                   `json:"period_to"`
+	RowCount       int                      `json:"row_count"`
+}
+
+// FetchConsumptionRequestRequest defines model for FetchConsumptionRequestRequest.
+type FetchConsumptionRequestRequest struct {
+	LicenseReference string `json:"license_reference"`
+
+	// Period YYYY-MM format
+	Period string `json:"period"`
+}
+
+// FetchConsumptionResponse defines model for FetchConsumptionResponse.
+type FetchConsumptionResponse struct {
+	Data             []map[string]interface{} `json:"data"`
+	LicenseReference string                   `json:"license_reference"`
+	Period           string                   `json:"period"`
+	RowCount         int                      `json:"row_count"`
+}
+
+// FetchCustomerArrowDataResponse defines model for FetchCustomerArrowDataResponse.
+type FetchCustomerArrowDataResponse struct {
+	ArrowCompanyName     string                 `json:"arrow_company_name"`
+	ArrowReference       string                 `json:"arrow_reference"`
+	BillingAvailable     bool                   `json:"billing_available"`
+	BillingLines         []ArrowBillingLine     `json:"billing_lines"`
+	BillingTotalBuy      *string                `json:"billing_total_buy"`
+	BillingTotalSell     *string                `json:"billing_total_sell"`
+	ConsumptionLines     []ArrowConsumptionLine `json:"consumption_lines"`
+	ConsumptionTotalBuy  *string                `json:"consumption_total_buy"`
+	ConsumptionTotalSell *string                `json:"consumption_total_sell"`
+	CustomerMappingUuid  openapi_types.UUID     `json:"customer_mapping_uuid"`
+	Error                *string                `json:"error"`
+
+	// MatchedResources Number of resources for which consumption was successfully fetched.
+	MatchedResources int    `json:"matched_resources"`
+	Period           string `json:"period"`
+
+	// ResourcesWithBackendId Number of resources with backend_id set (Arrow license reference).
+	ResourcesWithBackendId int `json:"resources_with_backend_id"`
+
+	// TotalCustomerResources Total number of resources for this customer in Waldur.
+	TotalCustomerResources int    `json:"total_customer_resources"`
+	WaldurCustomerName     string `json:"waldur_customer_name"`
+}
+
+// FetchLicenseInfoRequestRequest defines model for FetchLicenseInfoRequestRequest.
+type FetchLicenseInfoRequestRequest struct {
+	LicenseReference string `json:"license_reference"`
+}
+
+// FetchLicenseInfoResponse defines model for FetchLicenseInfoResponse.
+type FetchLicenseInfoResponse struct {
+	// Data Raw license data from Arrow API
+	Data map[string]interface{} `json:"data"`
+}
+
 // FinancialReport defines model for FinancialReport.
 type FinancialReport struct {
 	Abbreviation         *string              `json:"abbreviation,omitempty"`
@@ -20117,6 +20841,31 @@ type ImpactLevelDisplayEnum string
 // ImpactLevelEnum defines model for ImpactLevelEnum.
 type ImpactLevelEnum int
 
+// ImportLicenseRequestRequest defines model for ImportLicenseRequestRequest.
+type ImportLicenseRequestRequest struct {
+	// LicenseName Name for the new resource. Defaults to license_reference if not provided.
+	LicenseName *string `json:"license_name,omitempty"`
+
+	// LicenseReference Arrow license reference (e.g., XSP12345). Will be set as backend_id.
+	LicenseReference string `json:"license_reference"`
+
+	// OfferingUuid UUID of the Waldur offering to create the resource under.
+	OfferingUuid openapi_types.UUID `json:"offering_uuid"`
+
+	// ProjectUuid UUID of the project to create the resource in.
+	ProjectUuid openapi_types.UUID `json:"project_uuid"`
+}
+
+// ImportLicenseResponse defines model for ImportLicenseResponse.
+type ImportLicenseResponse struct {
+	LicenseReference string             `json:"license_reference"`
+	OfferingName     string             `json:"offering_name"`
+	ProjectName      string             `json:"project_name"`
+	ResourceName     string             `json:"resource_name"`
+	ResourceUuid     openapi_types.UUID `json:"resource_uuid"`
+	Success          bool               `json:"success"`
+}
+
 // ImportPublicationsRequest defines model for ImportPublicationsRequest.
 type ImportPublicationsRequest struct {
 	// Doi DOI of publication to import (required if source is 'doi')
@@ -20493,6 +21242,7 @@ type InvoiceItemDetail struct {
 	MeasuredUnit          *string             `json:"measured_unit,omitempty"`
 	Name                  *string             `json:"name,omitempty"`
 	OfferingComponentType *string             `json:"offering_component_type"`
+	OfferingName          *string             `json:"offering_name"`
 	OfferingUuid          *openapi_types.UUID `json:"offering_uuid,omitempty"`
 	Price                 *float64            `json:"price,omitempty"`
 	ProjectName           *string             `json:"project_name,omitempty"`
@@ -20590,6 +21340,9 @@ type InvoiceItemUpdateRequest struct {
 	Start     *time.Time `json:"start,omitempty"`
 	UnitPrice *string    `json:"unit_price,omitempty"`
 }
+
+// InvoicePriceSourceEnum defines model for InvoicePriceSourceEnum.
+type InvoicePriceSourceEnum string
 
 // InvoiceStateEnum defines model for InvoiceStateEnum.
 type InvoiceStateEnum string
@@ -20933,6 +21686,16 @@ type LexisLinkRequest struct {
 	HeappeProjectId *int `json:"heappe_project_id"`
 }
 
+// LicenseSuggestion defines model for LicenseSuggestion.
+type LicenseSuggestion struct {
+	// Confidence Confidence score (0-1) based on name similarity.
+	Confidence       float64            `json:"confidence"`
+	LicenseName      string             `json:"license_name"`
+	LicenseReference string             `json:"license_reference"`
+	ResourceName     string             `json:"resource_name"`
+	ResourceUuid     openapi_types.UUID `json:"resource_uuid"`
+}
+
 // LimitPeriodEnum defines model for LimitPeriodEnum.
 type LimitPeriodEnum string
 
@@ -20942,6 +21705,24 @@ type LimitTypeEnum string
 // LinkOpenstackRequest defines model for LinkOpenstackRequest.
 type LinkOpenstackRequest struct {
 	Instance *string `json:"instance,omitempty"`
+}
+
+// LinkResourceRequestRequest defines model for LinkResourceRequestRequest.
+type LinkResourceRequestRequest struct {
+	// LicenseReference Arrow license reference to set as backend_id (e.g., XSP12345).
+	LicenseReference string `json:"license_reference"`
+
+	// ResourceUuid UUID of the Waldur resource to link.
+	ResourceUuid openapi_types.UUID `json:"resource_uuid"`
+}
+
+// LinkResourceResponse defines model for LinkResourceResponse.
+type LinkResourceResponse struct {
+	LicenseReference  string             `json:"license_reference"`
+	PreviousBackendId string             `json:"previous_backend_id"`
+	ResourceName      string             `json:"resource_name"`
+	ResourceUuid      openapi_types.UUID `json:"resource_uuid"`
+	Success           bool               `json:"success"`
 }
 
 // LinkToInvoice defines model for LinkToInvoice.
@@ -26418,6 +27199,57 @@ type PatchedAllocationRequest struct {
 	NodeLimit   *int64  `json:"node_limit,omitempty"`
 }
 
+// PatchedArrowCustomerMappingRequest defines model for PatchedArrowCustomerMappingRequest.
+type PatchedArrowCustomerMappingRequest struct {
+	// ArrowCompanyName Arrow company name
+	ArrowCompanyName *string `json:"arrow_company_name,omitempty"`
+
+	// ArrowReference Arrow customer ID (e.g., 'XSP661245')
+	ArrowReference *string `json:"arrow_reference,omitempty"`
+
+	// IsActive Whether this mapping is active
+	IsActive       *bool   `json:"is_active,omitempty"`
+	Settings       *string `json:"settings,omitempty"`
+	WaldurCustomer *string `json:"waldur_customer,omitempty"`
+}
+
+// PatchedArrowSettingsRequest defines model for PatchedArrowSettingsRequest.
+type PatchedArrowSettingsRequest struct {
+	// ApiKey Arrow API Key (leave empty on update to keep current)
+	ApiKey *string `json:"api_key,omitempty"`
+
+	// ApiUrl Arrow API base URL
+	ApiUrl *string `json:"api_url,omitempty"`
+
+	// ClassificationFilter Filter for IaaS/SaaS classification
+	ClassificationFilter *string `json:"classification_filter,omitempty"`
+
+	// ExportTypeReference Billing export template reference
+	ExportTypeReference *string `json:"export_type_reference,omitempty"`
+
+	// InvoicePriceSource Which price to use for invoice items: sell or buy
+	InvoicePriceSource *InvoicePriceSourceEnum `json:"invoice_price_source,omitempty"`
+
+	// IsActive Whether this settings record is active
+	IsActive *bool `json:"is_active,omitempty"`
+
+	// SyncEnabled Whether automatic billing sync is enabled
+	SyncEnabled *bool `json:"sync_enabled,omitempty"`
+}
+
+// PatchedArrowVendorOfferingMappingRequest defines model for PatchedArrowVendorOfferingMappingRequest.
+type PatchedArrowVendorOfferingMappingRequest struct {
+	// ArrowVendorName Arrow vendor name (e.g., 'Microsoft', 'Amazon Web Services')
+	ArrowVendorName *string `json:"arrow_vendor_name,omitempty"`
+
+	// IsActive Whether this mapping is active
+	IsActive *bool `json:"is_active,omitempty"`
+
+	// Offering Waldur marketplace offering for this vendor
+	Offering *string `json:"offering,omitempty"`
+	Settings *string `json:"settings,omitempty"`
+}
+
 // PatchedAssignmentBatchRequest defines model for PatchedAssignmentBatchRequest.
 type PatchedAssignmentBatchRequest struct {
 	// ManagerNotes Optional notes from call manager to reviewer.
@@ -28722,6 +29554,26 @@ type PaymentURLRequest struct {
 	PaymentUrl *string `json:"payment_url,omitempty"`
 }
 
+// PendingRecord defines model for PendingRecord.
+type PendingRecord struct {
+	BillingPeriod    openapi_types.Date `json:"billing_period"`
+	ConsumedSell     string             `json:"consumed_sell"`
+	LastSyncAt       *time.Time         `json:"last_sync_at"`
+	LicenseReference string             `json:"license_reference"`
+	ResourceName     string             `json:"resource_name"`
+	ResourceUuid     openapi_types.UUID `json:"resource_uuid"`
+	Uuid             openapi_types.UUID `json:"uuid"`
+}
+
+// PeriodBreakdown defines model for PeriodBreakdown.
+type PeriodBreakdown struct {
+	ConsumedSell    string `json:"consumed_sell"`
+	Count           int    `json:"count"`
+	FinalizedCount  int    `json:"finalized_count"`
+	Period          string `json:"period"`
+	ReconciledCount int    `json:"reconciled_count"`
+}
+
 // Permission defines model for Permission.
 type Permission struct {
 	Created           *time.Time          `json:"created,omitempty"`
@@ -28879,6 +29731,28 @@ type PolicyPeriodEnum int
 
 // PolicyTypeEnum defines model for PolicyTypeEnum.
 type PolicyTypeEnum string
+
+// PreviewSettingsRequestRequest defines model for PreviewSettingsRequestRequest.
+type PreviewSettingsRequestRequest struct {
+	// ApiKey Arrow API Key
+	ApiKey string `json:"api_key"`
+
+	// ApiUrl Arrow API base URL
+	ApiUrl               string  `json:"api_url"`
+	ClassificationFilter *string `json:"classification_filter,omitempty"`
+	ExportTypeReference  *string `json:"export_type_reference,omitempty"`
+	SyncEnabled          *bool   `json:"sync_enabled,omitempty"`
+}
+
+// PreviewSettingsResponse defines model for PreviewSettingsResponse.
+type PreviewSettingsResponse struct {
+	ApiUrl               string `json:"api_url"`
+	ClassificationFilter string `json:"classification_filter"`
+	ExportTypeReference  string `json:"export_type_reference"`
+	PartnerName          string `json:"partner_name"`
+	PartnerReference     string `json:"partner_reference"`
+	SyncEnabled          bool   `json:"sync_enabled"`
+}
 
 // PricesUpdateRequest defines model for PricesUpdateRequest.
 type PricesUpdateRequest struct {
@@ -31744,6 +32618,15 @@ type ReassignItemResponse struct {
 	NewItemUuid  openapi_types.UUID `json:"new_item_uuid"`
 }
 
+// ReconcileRequestRequest defines model for ReconcileRequestRequest.
+type ReconcileRequestRequest struct {
+	// Force Force reconciliation even if not validated
+	Force        *bool               `json:"force,omitempty"`
+	Month        int                 `json:"month"`
+	SettingsUuid *openapi_types.UUID `json:"settings_uuid,omitempty"`
+	Year         int                 `json:"year"`
+}
+
 // ReferenceNumberRequest defines model for ReferenceNumberRequest.
 type ReferenceNumberRequest struct {
 	// ReferenceNumber Reference number associated with the invoice.
@@ -33587,6 +34470,26 @@ type Saml2Provider struct {
 	Url  string `json:"url"`
 }
 
+// SaveSettingsRequestRequest defines model for SaveSettingsRequestRequest.
+type SaveSettingsRequestRequest struct {
+	// ApiKey Arrow API Key
+	ApiKey string `json:"api_key"`
+
+	// ApiUrl Arrow API base URL
+	ApiUrl               string                         `json:"api_url"`
+	ClassificationFilter *string                        `json:"classification_filter,omitempty"`
+	CustomerMappings     *[]CustomerMappingInputRequest `json:"customer_mappings,omitempty"`
+	ExportTypeReference  *string                        `json:"export_type_reference,omitempty"`
+	SyncEnabled          *bool                          `json:"sync_enabled,omitempty"`
+}
+
+// SaveSettingsResponse defines model for SaveSettingsResponse.
+type SaveSettingsResponse struct {
+	MappingsCreated int                `json:"mappings_created"`
+	Message         string             `json:"message"`
+	SettingsUuid    openapi_types.UUID `json:"settings_uuid"`
+}
+
 // ScimSyncAllResponse defines model for ScimSyncAllResponse.
 type ScimSyncAllResponse struct {
 	Detail string `json:"detail"`
@@ -34653,6 +35556,80 @@ type SupportedCountriesResponse struct {
 	SupportedCountries []string `json:"supported_countries"`
 }
 
+// SyncFromArrowRequestRequest defines model for SyncFromArrowRequestRequest.
+type SyncFromArrowRequestRequest struct {
+	SettingsUuid *openapi_types.UUID `json:"settings_uuid,omitempty"`
+}
+
+// SyncPauseRequestRequest defines model for SyncPauseRequestRequest.
+type SyncPauseRequestRequest struct {
+	PauseGlobal  *bool               `json:"pause_global,omitempty"`
+	SettingsUuid *openapi_types.UUID `json:"settings_uuid,omitempty"`
+}
+
+// SyncPauseResponse defines model for SyncPauseResponse.
+type SyncPauseResponse struct {
+	// Paused List of paused items
+	Paused *[]string `json:"paused,omitempty"`
+
+	// Resumed List of resumed items
+	Resumed *[]string `json:"resumed,omitempty"`
+}
+
+// SyncResourceHistoricalConsumptionRequestRequest defines model for SyncResourceHistoricalConsumptionRequestRequest.
+type SyncResourceHistoricalConsumptionRequestRequest struct {
+	// PeriodFrom Start period in YYYY-MM format. Defaults to 12 months ago.
+	PeriodFrom *string `json:"period_from,omitempty"`
+
+	// PeriodTo End period in YYYY-MM format. Defaults to current month.
+	PeriodTo *string `json:"period_to,omitempty"`
+
+	// ResourceUuid UUID of the resource to sync
+	ResourceUuid openapi_types.UUID `json:"resource_uuid"`
+}
+
+// SyncResourceHistoricalConsumptionResponse defines model for SyncResourceHistoricalConsumptionResponse.
+type SyncResourceHistoricalConsumptionResponse struct {
+	Errors         []map[string]interface{} `json:"errors"`
+	PeriodsSkipped int                      `json:"periods_skipped"`
+	PeriodsSynced  int                      `json:"periods_synced"`
+	ResourceName   string                   `json:"resource_name"`
+	ResourceUuid   openapi_types.UUID       `json:"resource_uuid"`
+}
+
+// SyncResourcesRequestRequest defines model for SyncResourcesRequestRequest.
+type SyncResourcesRequestRequest struct {
+	// ForceImport If True, auto-create Waldur Customers and Projects from Arrow data. Each Arrow customer gets a Waldur Customer with an 'Arrow Azure Subscriptions' project.
+	ForceImport *bool `json:"force_import,omitempty"`
+
+	// OfferingUuid Offering UUID for creating new resources
+	OfferingUuid *openapi_types.UUID `json:"offering_uuid,omitempty"`
+
+	// PeriodFrom Start period in YYYY-MM format (default: 6 months ago, Arrow max)
+	PeriodFrom *string `json:"period_from,omitempty"`
+
+	// PeriodTo End period in YYYY-MM format (default: current month)
+	PeriodTo *string `json:"period_to,omitempty"`
+
+	// ProjectUuid Project UUID for creating new resources (ignored if force_import=True)
+	ProjectUuid  *openapi_types.UUID `json:"project_uuid,omitempty"`
+	SettingsUuid *openapi_types.UUID `json:"settings_uuid,omitempty"`
+}
+
+// SyncResourcesResponse defines model for SyncResourcesResponse.
+type SyncResourcesResponse struct {
+	Created             int                       `json:"created"`
+	CustomersCreated    *int                      `json:"customers_created,omitempty"`
+	Errors              *[]map[string]interface{} `json:"errors,omitempty"`
+	InvoiceItemsCreated *int                      `json:"invoice_items_created,omitempty"`
+	InvoicesCreated     *int                      `json:"invoices_created,omitempty"`
+	MappingsCreated     *int                      `json:"mappings_created,omitempty"`
+	OrdersCreated       *int                      `json:"orders_created,omitempty"`
+	ProjectsCreated     *int                      `json:"projects_created,omitempty"`
+	Synced              int                       `json:"synced"`
+	Updated             int                       `json:"updated"`
+}
+
 // SyncStatusEnum defines model for SyncStatusEnum.
 type SyncStatusEnum string
 
@@ -34961,6 +35938,23 @@ type TriggerCOIDetectionJobTypeEnum string
 // TriggerCOIDetectionRequest defines model for TriggerCOIDetectionRequest.
 type TriggerCOIDetectionRequest struct {
 	JobType *TriggerCOIDetectionJobTypeEnum `json:"job_type,omitempty"`
+}
+
+// TriggerConsumptionSyncRequestRequest defines model for TriggerConsumptionSyncRequestRequest.
+type TriggerConsumptionSyncRequestRequest struct {
+	Month int `json:"month"`
+
+	// ResourceUuid Sync specific resource only
+	ResourceUuid *openapi_types.UUID `json:"resource_uuid,omitempty"`
+	SettingsUuid *openapi_types.UUID `json:"settings_uuid,omitempty"`
+	Year         int                 `json:"year"`
+}
+
+// TriggerSyncRequestRequest defines model for TriggerSyncRequestRequest.
+type TriggerSyncRequestRequest struct {
+	Month        int                 `json:"month"`
+	SettingsUuid *openapi_types.UUID `json:"settings_uuid,omitempty"`
+	Year         int                 `json:"year"`
 }
 
 // UnsilenceActionResponse defines model for UnsilenceActionResponse.
@@ -35676,6 +36670,12 @@ type ValidationDecisionEnum string
 // ValidationMethodEnum defines model for ValidationMethodEnum.
 type ValidationMethodEnum string
 
+// VendorNameChoice defines model for VendorNameChoice.
+type VendorNameChoice struct {
+	Label string `json:"label"`
+	Value string `json:"value"`
+}
+
 // VenueTypeEnum defines model for VenueTypeEnum.
 type VenueTypeEnum string
 
@@ -36089,6 +37089,13 @@ type VolumeTypeMappingRequest struct {
 	SrcTypeUuid openapi_types.UUID `json:"src_type_uuid"`
 }
 
+// WaldurCustomerBrief defines model for WaldurCustomerBrief.
+type WaldurCustomerBrief struct {
+	Abbreviation *string            `json:"abbreviation,omitempty"`
+	Name         string             `json:"name"`
+	Uuid         openapi_types.UUID `json:"uuid"`
+}
+
 // WaldurFieldSuggestion defines model for WaldurFieldSuggestion.
 type WaldurFieldSuggestion struct {
 	// AvailableClaims Claims from this IdP that match the suggestions
@@ -36102,6 +37109,17 @@ type WaldurFieldSuggestion struct {
 
 	// SuggestedClaims OIDC claims that could map to this field, ordered by likelihood
 	SuggestedClaims []string `json:"suggested_claims"`
+}
+
+// WaldurResourceForLinking defines model for WaldurResourceForLinking.
+type WaldurResourceForLinking struct {
+	// BackendId Current backend_id (Arrow license reference if linked).
+	BackendId    string             `json:"backend_id"`
+	Name         string             `json:"name"`
+	OfferingName string             `json:"offering_name"`
+	ProjectName  string             `json:"project_name"`
+	State        string             `json:"state"`
+	Uuid         openapi_types.UUID `json:"uuid"`
 }
 
 // WebHook defines model for WebHook.
@@ -36289,6 +37307,280 @@ type AdminAnnouncementsRetrieveParams struct {
 
 // AdminAnnouncementsRetrieveParamsField defines parameters for AdminAnnouncementsRetrieve.
 type AdminAnnouncementsRetrieveParamsField string
+
+// AdminArrowBillingSyncItemsListParams defines parameters for AdminArrowBillingSyncItemsList.
+type AdminArrowBillingSyncItemsListParams struct {
+	ArrowLineReference *string             `form:"arrow_line_reference,omitempty" json:"arrow_line_reference,omitempty"`
+	BillingSync        *string             `form:"billing_sync,omitempty" json:"billing_sync,omitempty"`
+	BillingSyncUuid    *openapi_types.UUID `form:"billing_sync_uuid,omitempty" json:"billing_sync_uuid,omitempty"`
+	Classification     *string             `form:"classification,omitempty" json:"classification,omitempty"`
+	HasCompensation    *bool               `form:"has_compensation,omitempty" json:"has_compensation,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize              *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ReportPeriod          *string   `form:"report_period,omitempty" json:"report_period,omitempty"`
+	SubscriptionReference *string   `form:"subscription_reference,omitempty" json:"subscription_reference,omitempty"`
+	VendorName            *string   `form:"vendor_name,omitempty" json:"vendor_name,omitempty"`
+}
+
+// AdminArrowBillingSyncItemsCountParams defines parameters for AdminArrowBillingSyncItemsCount.
+type AdminArrowBillingSyncItemsCountParams struct {
+	ArrowLineReference *string             `form:"arrow_line_reference,omitempty" json:"arrow_line_reference,omitempty"`
+	BillingSync        *string             `form:"billing_sync,omitempty" json:"billing_sync,omitempty"`
+	BillingSyncUuid    *openapi_types.UUID `form:"billing_sync_uuid,omitempty" json:"billing_sync_uuid,omitempty"`
+	Classification     *string             `form:"classification,omitempty" json:"classification,omitempty"`
+	HasCompensation    *bool               `form:"has_compensation,omitempty" json:"has_compensation,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize              *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ReportPeriod          *string   `form:"report_period,omitempty" json:"report_period,omitempty"`
+	SubscriptionReference *string   `form:"subscription_reference,omitempty" json:"subscription_reference,omitempty"`
+	VendorName            *string   `form:"vendor_name,omitempty" json:"vendor_name,omitempty"`
+}
+
+// AdminArrowBillingSyncsListParams defines parameters for AdminArrowBillingSyncsList.
+type AdminArrowBillingSyncsListParams struct {
+	ArrowState          *string             `form:"arrow_state,omitempty" json:"arrow_state,omitempty"`
+	CustomerMapping     *string             `form:"customer_mapping,omitempty" json:"customer_mapping,omitempty"`
+	CustomerMappingUuid *openapi_types.UUID `form:"customer_mapping_uuid,omitempty" json:"customer_mapping_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize           *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ReportPeriod       *string             `form:"report_period,omitempty" json:"report_period,omitempty"`
+	ReportPeriodFrom   *string             `form:"report_period_from,omitempty" json:"report_period_from,omitempty"`
+	ReportPeriodTo     *string             `form:"report_period_to,omitempty" json:"report_period_to,omitempty"`
+	SettingsUuid       *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
+	State              *int                `form:"state,omitempty" json:"state,omitempty"`
+	StatementReference *string             `form:"statement_reference,omitempty" json:"statement_reference,omitempty"`
+}
+
+// AdminArrowBillingSyncsCountParams defines parameters for AdminArrowBillingSyncsCount.
+type AdminArrowBillingSyncsCountParams struct {
+	ArrowState          *string             `form:"arrow_state,omitempty" json:"arrow_state,omitempty"`
+	CustomerMapping     *string             `form:"customer_mapping,omitempty" json:"customer_mapping,omitempty"`
+	CustomerMappingUuid *openapi_types.UUID `form:"customer_mapping_uuid,omitempty" json:"customer_mapping_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize           *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ReportPeriod       *string             `form:"report_period,omitempty" json:"report_period,omitempty"`
+	ReportPeriodFrom   *string             `form:"report_period_from,omitempty" json:"report_period_from,omitempty"`
+	ReportPeriodTo     *string             `form:"report_period_to,omitempty" json:"report_period_to,omitempty"`
+	SettingsUuid       *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
+	State              *int                `form:"state,omitempty" json:"state,omitempty"`
+	StatementReference *string             `form:"statement_reference,omitempty" json:"statement_reference,omitempty"`
+}
+
+// AdminArrowBillingSyncsPendingRecordsListParams defines parameters for AdminArrowBillingSyncsPendingRecordsList.
+type AdminArrowBillingSyncsPendingRecordsListParams struct {
+	ArrowState          *string             `form:"arrow_state,omitempty" json:"arrow_state,omitempty"`
+	CustomerMapping     *string             `form:"customer_mapping,omitempty" json:"customer_mapping,omitempty"`
+	CustomerMappingUuid *openapi_types.UUID `form:"customer_mapping_uuid,omitempty" json:"customer_mapping_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize           *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ReportPeriod       *string             `form:"report_period,omitempty" json:"report_period,omitempty"`
+	ReportPeriodFrom   *string             `form:"report_period_from,omitempty" json:"report_period_from,omitempty"`
+	ReportPeriodTo     *string             `form:"report_period_to,omitempty" json:"report_period_to,omitempty"`
+	SettingsUuid       *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
+	State              *int                `form:"state,omitempty" json:"state,omitempty"`
+	StatementReference *string             `form:"statement_reference,omitempty" json:"statement_reference,omitempty"`
+}
+
+// AdminArrowBillingSyncsPendingRecordsCountParams defines parameters for AdminArrowBillingSyncsPendingRecordsCount.
+type AdminArrowBillingSyncsPendingRecordsCountParams struct {
+	ArrowState          *string             `form:"arrow_state,omitempty" json:"arrow_state,omitempty"`
+	CustomerMapping     *string             `form:"customer_mapping,omitempty" json:"customer_mapping,omitempty"`
+	CustomerMappingUuid *openapi_types.UUID `form:"customer_mapping_uuid,omitempty" json:"customer_mapping_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize           *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ReportPeriod       *string             `form:"report_period,omitempty" json:"report_period,omitempty"`
+	ReportPeriodFrom   *string             `form:"report_period_from,omitempty" json:"report_period_from,omitempty"`
+	ReportPeriodTo     *string             `form:"report_period_to,omitempty" json:"report_period_to,omitempty"`
+	SettingsUuid       *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
+	State              *int                `form:"state,omitempty" json:"state,omitempty"`
+	StatementReference *string             `form:"statement_reference,omitempty" json:"statement_reference,omitempty"`
+}
+
+// AdminArrowConsumptionRecordsListParams defines parameters for AdminArrowConsumptionRecordsList.
+type AdminArrowConsumptionRecordsListParams struct {
+	BillingPeriod     *openapi_types.Date `form:"billing_period,omitempty" json:"billing_period,omitempty"`
+	BillingPeriodFrom *openapi_types.Date `form:"billing_period_from,omitempty" json:"billing_period_from,omitempty"`
+	BillingPeriodTo   *openapi_types.Date `form:"billing_period_to,omitempty" json:"billing_period_to,omitempty"`
+	CustomerUuid      *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+	IsFinalized       *bool               `form:"is_finalized,omitempty" json:"is_finalized,omitempty"`
+	IsReconciled      *bool               `form:"is_reconciled,omitempty" json:"is_reconciled,omitempty"`
+	LicenseReference  *string             `form:"license_reference,omitempty" json:"license_reference,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ProjectUuid  *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	Resource     *string             `form:"resource,omitempty" json:"resource,omitempty"`
+	ResourceUuid *openapi_types.UUID `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
+}
+
+// AdminArrowConsumptionRecordsCountParams defines parameters for AdminArrowConsumptionRecordsCount.
+type AdminArrowConsumptionRecordsCountParams struct {
+	BillingPeriod     *openapi_types.Date `form:"billing_period,omitempty" json:"billing_period,omitempty"`
+	BillingPeriodFrom *openapi_types.Date `form:"billing_period_from,omitempty" json:"billing_period_from,omitempty"`
+	BillingPeriodTo   *openapi_types.Date `form:"billing_period_to,omitempty" json:"billing_period_to,omitempty"`
+	CustomerUuid      *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+	IsFinalized       *bool               `form:"is_finalized,omitempty" json:"is_finalized,omitempty"`
+	IsReconciled      *bool               `form:"is_reconciled,omitempty" json:"is_reconciled,omitempty"`
+	LicenseReference  *string             `form:"license_reference,omitempty" json:"license_reference,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ProjectUuid  *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+	Resource     *string             `form:"resource,omitempty" json:"resource,omitempty"`
+	ResourceUuid *openapi_types.UUID `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
+}
+
+// AdminArrowCustomerMappingsListParams defines parameters for AdminArrowCustomerMappingsList.
+type AdminArrowCustomerMappingsListParams struct {
+	ArrowCompanyName *string `form:"arrow_company_name,omitempty" json:"arrow_company_name,omitempty"`
+	ArrowReference   *string `form:"arrow_reference,omitempty" json:"arrow_reference,omitempty"`
+	IsActive         *bool   `form:"is_active,omitempty" json:"is_active,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize           *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Settings           *string             `form:"settings,omitempty" json:"settings,omitempty"`
+	SettingsUuid       *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
+	WaldurCustomer     *string             `form:"waldur_customer,omitempty" json:"waldur_customer,omitempty"`
+	WaldurCustomerUuid *openapi_types.UUID `form:"waldur_customer_uuid,omitempty" json:"waldur_customer_uuid,omitempty"`
+}
+
+// AdminArrowCustomerMappingsCountParams defines parameters for AdminArrowCustomerMappingsCount.
+type AdminArrowCustomerMappingsCountParams struct {
+	ArrowCompanyName *string `form:"arrow_company_name,omitempty" json:"arrow_company_name,omitempty"`
+	ArrowReference   *string `form:"arrow_reference,omitempty" json:"arrow_reference,omitempty"`
+	IsActive         *bool   `form:"is_active,omitempty" json:"is_active,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize           *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Settings           *string             `form:"settings,omitempty" json:"settings,omitempty"`
+	SettingsUuid       *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
+	WaldurCustomer     *string             `form:"waldur_customer,omitempty" json:"waldur_customer,omitempty"`
+	WaldurCustomerUuid *openapi_types.UUID `form:"waldur_customer_uuid,omitempty" json:"waldur_customer_uuid,omitempty"`
+}
+
+// AdminArrowSettingsListParams defines parameters for AdminArrowSettingsList.
+type AdminArrowSettingsListParams struct {
+	IsActive *bool `form:"is_active,omitempty" json:"is_active,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize    *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	SyncEnabled *bool     `form:"sync_enabled,omitempty" json:"sync_enabled,omitempty"`
+}
+
+// AdminArrowSettingsCountParams defines parameters for AdminArrowSettingsCount.
+type AdminArrowSettingsCountParams struct {
+	IsActive *bool `form:"is_active,omitempty" json:"is_active,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize    *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	SyncEnabled *bool     `form:"sync_enabled,omitempty" json:"sync_enabled,omitempty"`
+}
+
+// AdminArrowVendorOfferingMappingsListParams defines parameters for AdminArrowVendorOfferingMappingsList.
+type AdminArrowVendorOfferingMappingsListParams struct {
+	ArrowVendorName *string             `form:"arrow_vendor_name,omitempty" json:"arrow_vendor_name,omitempty"`
+	IsActive        *bool               `form:"is_active,omitempty" json:"is_active,omitempty"`
+	Offering        *string             `form:"offering,omitempty" json:"offering,omitempty"`
+	OfferingUuid    *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Settings     *string             `form:"settings,omitempty" json:"settings,omitempty"`
+	SettingsUuid *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
+}
+
+// AdminArrowVendorOfferingMappingsCountParams defines parameters for AdminArrowVendorOfferingMappingsCount.
+type AdminArrowVendorOfferingMappingsCountParams struct {
+	ArrowVendorName *string             `form:"arrow_vendor_name,omitempty" json:"arrow_vendor_name,omitempty"`
+	IsActive        *bool               `form:"is_active,omitempty" json:"is_active,omitempty"`
+	Offering        *string             `form:"offering,omitempty" json:"offering,omitempty"`
+	OfferingUuid    *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Settings     *string             `form:"settings,omitempty" json:"settings,omitempty"`
+	SettingsUuid *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
+}
+
+// AdminArrowVendorOfferingMappingsVendorChoicesListParams defines parameters for AdminArrowVendorOfferingMappingsVendorChoicesList.
+type AdminArrowVendorOfferingMappingsVendorChoicesListParams struct {
+	ArrowVendorName *string             `form:"arrow_vendor_name,omitempty" json:"arrow_vendor_name,omitempty"`
+	IsActive        *bool               `form:"is_active,omitempty" json:"is_active,omitempty"`
+	Offering        *string             `form:"offering,omitempty" json:"offering,omitempty"`
+	OfferingUuid    *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Settings     *string             `form:"settings,omitempty" json:"settings,omitempty"`
+	SettingsUuid *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
+}
+
+// AdminArrowVendorOfferingMappingsVendorChoicesCountParams defines parameters for AdminArrowVendorOfferingMappingsVendorChoicesCount.
+type AdminArrowVendorOfferingMappingsVendorChoicesCountParams struct {
+	ArrowVendorName *string             `form:"arrow_vendor_name,omitempty" json:"arrow_vendor_name,omitempty"`
+	IsActive        *bool               `form:"is_active,omitempty" json:"is_active,omitempty"`
+	Offering        *string             `form:"offering,omitempty" json:"offering,omitempty"`
+	OfferingUuid    *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize     *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Settings     *string             `form:"settings,omitempty" json:"settings,omitempty"`
+	SettingsUuid *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
+}
 
 // AssignmentBatchesListParams defines parameters for AssignmentBatchesList.
 type AssignmentBatchesListParams struct {
@@ -56781,6 +58073,90 @@ type AdminAnnouncementsPartialUpdateJSONRequestBody = PatchedAdminAnnouncementRe
 // AdminAnnouncementsUpdateJSONRequestBody defines body for AdminAnnouncementsUpdate for application/json ContentType.
 type AdminAnnouncementsUpdateJSONRequestBody = AdminAnnouncementRequest
 
+// AdminArrowBillingSyncsCleanupConsumptionJSONRequestBody defines body for AdminArrowBillingSyncsCleanupConsumption for application/json ContentType.
+type AdminArrowBillingSyncsCleanupConsumptionJSONRequestBody = CleanupConsumptionRequestRequest
+
+// AdminArrowBillingSyncsFetchBillingExportJSONRequestBody defines body for AdminArrowBillingSyncsFetchBillingExport for application/json ContentType.
+type AdminArrowBillingSyncsFetchBillingExportJSONRequestBody = FetchBillingExportRequestRequest
+
+// AdminArrowBillingSyncsFetchConsumptionJSONRequestBody defines body for AdminArrowBillingSyncsFetchConsumption for application/json ContentType.
+type AdminArrowBillingSyncsFetchConsumptionJSONRequestBody = FetchConsumptionRequestRequest
+
+// AdminArrowBillingSyncsFetchLicenseInfoJSONRequestBody defines body for AdminArrowBillingSyncsFetchLicenseInfo for application/json ContentType.
+type AdminArrowBillingSyncsFetchLicenseInfoJSONRequestBody = FetchLicenseInfoRequestRequest
+
+// AdminArrowBillingSyncsPauseSyncJSONRequestBody defines body for AdminArrowBillingSyncsPauseSync for application/json ContentType.
+type AdminArrowBillingSyncsPauseSyncJSONRequestBody = SyncPauseRequestRequest
+
+// AdminArrowBillingSyncsReconcileJSONRequestBody defines body for AdminArrowBillingSyncsReconcile for application/json ContentType.
+type AdminArrowBillingSyncsReconcileJSONRequestBody = ReconcileRequestRequest
+
+// AdminArrowBillingSyncsResumeSyncJSONRequestBody defines body for AdminArrowBillingSyncsResumeSync for application/json ContentType.
+type AdminArrowBillingSyncsResumeSyncJSONRequestBody = SyncPauseRequestRequest
+
+// AdminArrowBillingSyncsSyncResourceHistoricalConsumptionJSONRequestBody defines body for AdminArrowBillingSyncsSyncResourceHistoricalConsumption for application/json ContentType.
+type AdminArrowBillingSyncsSyncResourceHistoricalConsumptionJSONRequestBody = SyncResourceHistoricalConsumptionRequestRequest
+
+// AdminArrowBillingSyncsSyncResourcesJSONRequestBody defines body for AdminArrowBillingSyncsSyncResources for application/json ContentType.
+type AdminArrowBillingSyncsSyncResourcesJSONRequestBody = SyncResourcesRequestRequest
+
+// AdminArrowBillingSyncsTriggerConsumptionSyncJSONRequestBody defines body for AdminArrowBillingSyncsTriggerConsumptionSync for application/json ContentType.
+type AdminArrowBillingSyncsTriggerConsumptionSyncJSONRequestBody = TriggerConsumptionSyncRequestRequest
+
+// AdminArrowBillingSyncsTriggerReconciliationJSONRequestBody defines body for AdminArrowBillingSyncsTriggerReconciliation for application/json ContentType.
+type AdminArrowBillingSyncsTriggerReconciliationJSONRequestBody = ReconcileRequestRequest
+
+// AdminArrowBillingSyncsTriggerSyncJSONRequestBody defines body for AdminArrowBillingSyncsTriggerSync for application/json ContentType.
+type AdminArrowBillingSyncsTriggerSyncJSONRequestBody = TriggerSyncRequestRequest
+
+// AdminArrowCustomerMappingsCreateJSONRequestBody defines body for AdminArrowCustomerMappingsCreate for application/json ContentType.
+type AdminArrowCustomerMappingsCreateJSONRequestBody = ArrowCustomerMappingCreateRequest
+
+// AdminArrowCustomerMappingsSyncFromArrowJSONRequestBody defines body for AdminArrowCustomerMappingsSyncFromArrow for application/json ContentType.
+type AdminArrowCustomerMappingsSyncFromArrowJSONRequestBody = SyncFromArrowRequestRequest
+
+// AdminArrowCustomerMappingsPartialUpdateJSONRequestBody defines body for AdminArrowCustomerMappingsPartialUpdate for application/json ContentType.
+type AdminArrowCustomerMappingsPartialUpdateJSONRequestBody = PatchedArrowCustomerMappingRequest
+
+// AdminArrowCustomerMappingsUpdateJSONRequestBody defines body for AdminArrowCustomerMappingsUpdate for application/json ContentType.
+type AdminArrowCustomerMappingsUpdateJSONRequestBody = ArrowCustomerMappingRequest
+
+// AdminArrowCustomerMappingsImportLicenseJSONRequestBody defines body for AdminArrowCustomerMappingsImportLicense for application/json ContentType.
+type AdminArrowCustomerMappingsImportLicenseJSONRequestBody = ImportLicenseRequestRequest
+
+// AdminArrowCustomerMappingsLinkResourceJSONRequestBody defines body for AdminArrowCustomerMappingsLinkResource for application/json ContentType.
+type AdminArrowCustomerMappingsLinkResourceJSONRequestBody = LinkResourceRequestRequest
+
+// AdminArrowSettingsCreateJSONRequestBody defines body for AdminArrowSettingsCreate for application/json ContentType.
+type AdminArrowSettingsCreateJSONRequestBody = ArrowSettingsCreateRequest
+
+// AdminArrowSettingsDiscoverCustomersJSONRequestBody defines body for AdminArrowSettingsDiscoverCustomers for application/json ContentType.
+type AdminArrowSettingsDiscoverCustomersJSONRequestBody = DiscoverCustomersRequestRequest
+
+// AdminArrowSettingsPreviewSettingsJSONRequestBody defines body for AdminArrowSettingsPreviewSettings for application/json ContentType.
+type AdminArrowSettingsPreviewSettingsJSONRequestBody = PreviewSettingsRequestRequest
+
+// AdminArrowSettingsSaveSettingsJSONRequestBody defines body for AdminArrowSettingsSaveSettings for application/json ContentType.
+type AdminArrowSettingsSaveSettingsJSONRequestBody = SaveSettingsRequestRequest
+
+// AdminArrowSettingsValidateCredentialsJSONRequestBody defines body for AdminArrowSettingsValidateCredentials for application/json ContentType.
+type AdminArrowSettingsValidateCredentialsJSONRequestBody = ArrowCredentialsRequest
+
+// AdminArrowSettingsPartialUpdateJSONRequestBody defines body for AdminArrowSettingsPartialUpdate for application/json ContentType.
+type AdminArrowSettingsPartialUpdateJSONRequestBody = PatchedArrowSettingsRequest
+
+// AdminArrowSettingsUpdateJSONRequestBody defines body for AdminArrowSettingsUpdate for application/json ContentType.
+type AdminArrowSettingsUpdateJSONRequestBody = ArrowSettingsRequest
+
+// AdminArrowVendorOfferingMappingsCreateJSONRequestBody defines body for AdminArrowVendorOfferingMappingsCreate for application/json ContentType.
+type AdminArrowVendorOfferingMappingsCreateJSONRequestBody = ArrowVendorOfferingMappingCreateRequest
+
+// AdminArrowVendorOfferingMappingsPartialUpdateJSONRequestBody defines body for AdminArrowVendorOfferingMappingsPartialUpdate for application/json ContentType.
+type AdminArrowVendorOfferingMappingsPartialUpdateJSONRequestBody = PatchedArrowVendorOfferingMappingRequest
+
+// AdminArrowVendorOfferingMappingsUpdateJSONRequestBody defines body for AdminArrowVendorOfferingMappingsUpdate for application/json ContentType.
+type AdminArrowVendorOfferingMappingsUpdateJSONRequestBody = ArrowVendorOfferingMappingRequest
+
 // AssignmentBatchesCreateJSONRequestBody defines body for AssignmentBatchesCreate for application/json ContentType.
 type AssignmentBatchesCreateJSONRequestBody = AssignmentBatchRequest
 
@@ -66136,6 +67512,248 @@ type ClientInterface interface {
 
 	AdminAnnouncementsUpdate(ctx context.Context, uuid openapi_types.UUID, body AdminAnnouncementsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// AdminArrowBillingSyncItemsList request
+	AdminArrowBillingSyncItemsList(ctx context.Context, params *AdminArrowBillingSyncItemsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowBillingSyncItemsCount request
+	AdminArrowBillingSyncItemsCount(ctx context.Context, params *AdminArrowBillingSyncItemsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowBillingSyncItemsRetrieve request
+	AdminArrowBillingSyncItemsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowBillingSyncsList request
+	AdminArrowBillingSyncsList(ctx context.Context, params *AdminArrowBillingSyncsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowBillingSyncsCount request
+	AdminArrowBillingSyncsCount(ctx context.Context, params *AdminArrowBillingSyncsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowBillingSyncsCleanupConsumptionWithBody request with any body
+	AdminArrowBillingSyncsCleanupConsumptionWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	AdminArrowBillingSyncsCleanupConsumption(ctx context.Context, body AdminArrowBillingSyncsCleanupConsumptionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowBillingSyncsConsumptionStatisticsRetrieve request
+	AdminArrowBillingSyncsConsumptionStatisticsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowBillingSyncsConsumptionStatisticsCount request
+	AdminArrowBillingSyncsConsumptionStatisticsCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowBillingSyncsConsumptionStatusRetrieve request
+	AdminArrowBillingSyncsConsumptionStatusRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowBillingSyncsConsumptionStatusCount request
+	AdminArrowBillingSyncsConsumptionStatusCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowBillingSyncsFetchBillingExportWithBody request with any body
+	AdminArrowBillingSyncsFetchBillingExportWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	AdminArrowBillingSyncsFetchBillingExport(ctx context.Context, body AdminArrowBillingSyncsFetchBillingExportJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowBillingSyncsFetchConsumptionWithBody request with any body
+	AdminArrowBillingSyncsFetchConsumptionWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	AdminArrowBillingSyncsFetchConsumption(ctx context.Context, body AdminArrowBillingSyncsFetchConsumptionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowBillingSyncsFetchLicenseInfoWithBody request with any body
+	AdminArrowBillingSyncsFetchLicenseInfoWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	AdminArrowBillingSyncsFetchLicenseInfo(ctx context.Context, body AdminArrowBillingSyncsFetchLicenseInfoJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowBillingSyncsPauseSyncWithBody request with any body
+	AdminArrowBillingSyncsPauseSyncWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	AdminArrowBillingSyncsPauseSync(ctx context.Context, body AdminArrowBillingSyncsPauseSyncJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowBillingSyncsPendingRecordsList request
+	AdminArrowBillingSyncsPendingRecordsList(ctx context.Context, params *AdminArrowBillingSyncsPendingRecordsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowBillingSyncsPendingRecordsCount request
+	AdminArrowBillingSyncsPendingRecordsCount(ctx context.Context, params *AdminArrowBillingSyncsPendingRecordsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowBillingSyncsReconcileWithBody request with any body
+	AdminArrowBillingSyncsReconcileWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	AdminArrowBillingSyncsReconcile(ctx context.Context, body AdminArrowBillingSyncsReconcileJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowBillingSyncsResumeSyncWithBody request with any body
+	AdminArrowBillingSyncsResumeSyncWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	AdminArrowBillingSyncsResumeSync(ctx context.Context, body AdminArrowBillingSyncsResumeSyncJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowBillingSyncsSyncResourceHistoricalConsumptionWithBody request with any body
+	AdminArrowBillingSyncsSyncResourceHistoricalConsumptionWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	AdminArrowBillingSyncsSyncResourceHistoricalConsumption(ctx context.Context, body AdminArrowBillingSyncsSyncResourceHistoricalConsumptionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowBillingSyncsSyncResourcesWithBody request with any body
+	AdminArrowBillingSyncsSyncResourcesWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	AdminArrowBillingSyncsSyncResources(ctx context.Context, body AdminArrowBillingSyncsSyncResourcesJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowBillingSyncsTriggerConsumptionSyncWithBody request with any body
+	AdminArrowBillingSyncsTriggerConsumptionSyncWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	AdminArrowBillingSyncsTriggerConsumptionSync(ctx context.Context, body AdminArrowBillingSyncsTriggerConsumptionSyncJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowBillingSyncsTriggerReconciliationWithBody request with any body
+	AdminArrowBillingSyncsTriggerReconciliationWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	AdminArrowBillingSyncsTriggerReconciliation(ctx context.Context, body AdminArrowBillingSyncsTriggerReconciliationJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowBillingSyncsTriggerSyncWithBody request with any body
+	AdminArrowBillingSyncsTriggerSyncWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	AdminArrowBillingSyncsTriggerSync(ctx context.Context, body AdminArrowBillingSyncsTriggerSyncJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowBillingSyncsRetrieve request
+	AdminArrowBillingSyncsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowConsumptionRecordsList request
+	AdminArrowConsumptionRecordsList(ctx context.Context, params *AdminArrowConsumptionRecordsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowConsumptionRecordsCount request
+	AdminArrowConsumptionRecordsCount(ctx context.Context, params *AdminArrowConsumptionRecordsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowConsumptionRecordsRetrieve request
+	AdminArrowConsumptionRecordsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowCustomerMappingsList request
+	AdminArrowCustomerMappingsList(ctx context.Context, params *AdminArrowCustomerMappingsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowCustomerMappingsCount request
+	AdminArrowCustomerMappingsCount(ctx context.Context, params *AdminArrowCustomerMappingsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowCustomerMappingsCreateWithBody request with any body
+	AdminArrowCustomerMappingsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	AdminArrowCustomerMappingsCreate(ctx context.Context, body AdminArrowCustomerMappingsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowCustomerMappingsAvailableCustomersRetrieve request
+	AdminArrowCustomerMappingsAvailableCustomersRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowCustomerMappingsAvailableCustomersCount request
+	AdminArrowCustomerMappingsAvailableCustomersCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowCustomerMappingsSyncFromArrowWithBody request with any body
+	AdminArrowCustomerMappingsSyncFromArrowWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	AdminArrowCustomerMappingsSyncFromArrow(ctx context.Context, body AdminArrowCustomerMappingsSyncFromArrowJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowCustomerMappingsDestroy request
+	AdminArrowCustomerMappingsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowCustomerMappingsRetrieve request
+	AdminArrowCustomerMappingsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowCustomerMappingsPartialUpdateWithBody request with any body
+	AdminArrowCustomerMappingsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	AdminArrowCustomerMappingsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body AdminArrowCustomerMappingsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowCustomerMappingsUpdateWithBody request with any body
+	AdminArrowCustomerMappingsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	AdminArrowCustomerMappingsUpdate(ctx context.Context, uuid openapi_types.UUID, body AdminArrowCustomerMappingsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowCustomerMappingsBillingSummaryRetrieve request
+	AdminArrowCustomerMappingsBillingSummaryRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowCustomerMappingsDiscoverLicensesRetrieve request
+	AdminArrowCustomerMappingsDiscoverLicensesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowCustomerMappingsFetchArrowDataRetrieve request
+	AdminArrowCustomerMappingsFetchArrowDataRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowCustomerMappingsImportLicenseWithBody request with any body
+	AdminArrowCustomerMappingsImportLicenseWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	AdminArrowCustomerMappingsImportLicense(ctx context.Context, uuid openapi_types.UUID, body AdminArrowCustomerMappingsImportLicenseJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowCustomerMappingsLinkResourceWithBody request with any body
+	AdminArrowCustomerMappingsLinkResourceWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	AdminArrowCustomerMappingsLinkResource(ctx context.Context, uuid openapi_types.UUID, body AdminArrowCustomerMappingsLinkResourceJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowSettingsList request
+	AdminArrowSettingsList(ctx context.Context, params *AdminArrowSettingsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowSettingsCount request
+	AdminArrowSettingsCount(ctx context.Context, params *AdminArrowSettingsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowSettingsCreateWithBody request with any body
+	AdminArrowSettingsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	AdminArrowSettingsCreate(ctx context.Context, body AdminArrowSettingsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowSettingsDiscoverCustomersWithBody request with any body
+	AdminArrowSettingsDiscoverCustomersWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	AdminArrowSettingsDiscoverCustomers(ctx context.Context, body AdminArrowSettingsDiscoverCustomersJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowSettingsPreviewSettingsWithBody request with any body
+	AdminArrowSettingsPreviewSettingsWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	AdminArrowSettingsPreviewSettings(ctx context.Context, body AdminArrowSettingsPreviewSettingsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowSettingsSaveSettingsWithBody request with any body
+	AdminArrowSettingsSaveSettingsWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	AdminArrowSettingsSaveSettings(ctx context.Context, body AdminArrowSettingsSaveSettingsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowSettingsValidateCredentialsWithBody request with any body
+	AdminArrowSettingsValidateCredentialsWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	AdminArrowSettingsValidateCredentials(ctx context.Context, body AdminArrowSettingsValidateCredentialsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowSettingsDestroy request
+	AdminArrowSettingsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowSettingsRetrieve request
+	AdminArrowSettingsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowSettingsPartialUpdateWithBody request with any body
+	AdminArrowSettingsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	AdminArrowSettingsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body AdminArrowSettingsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowSettingsUpdateWithBody request with any body
+	AdminArrowSettingsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	AdminArrowSettingsUpdate(ctx context.Context, uuid openapi_types.UUID, body AdminArrowSettingsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowVendorOfferingMappingsList request
+	AdminArrowVendorOfferingMappingsList(ctx context.Context, params *AdminArrowVendorOfferingMappingsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowVendorOfferingMappingsCount request
+	AdminArrowVendorOfferingMappingsCount(ctx context.Context, params *AdminArrowVendorOfferingMappingsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowVendorOfferingMappingsCreateWithBody request with any body
+	AdminArrowVendorOfferingMappingsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	AdminArrowVendorOfferingMappingsCreate(ctx context.Context, body AdminArrowVendorOfferingMappingsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowVendorOfferingMappingsVendorChoicesList request
+	AdminArrowVendorOfferingMappingsVendorChoicesList(ctx context.Context, params *AdminArrowVendorOfferingMappingsVendorChoicesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowVendorOfferingMappingsVendorChoicesCount request
+	AdminArrowVendorOfferingMappingsVendorChoicesCount(ctx context.Context, params *AdminArrowVendorOfferingMappingsVendorChoicesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowVendorOfferingMappingsDestroy request
+	AdminArrowVendorOfferingMappingsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowVendorOfferingMappingsRetrieve request
+	AdminArrowVendorOfferingMappingsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowVendorOfferingMappingsPartialUpdateWithBody request with any body
+	AdminArrowVendorOfferingMappingsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	AdminArrowVendorOfferingMappingsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body AdminArrowVendorOfferingMappingsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowVendorOfferingMappingsUpdateWithBody request with any body
+	AdminArrowVendorOfferingMappingsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	AdminArrowVendorOfferingMappingsUpdate(ctx context.Context, uuid openapi_types.UUID, body AdminArrowVendorOfferingMappingsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// AssignmentBatchesList request
 	AssignmentBatchesList(ctx context.Context, params *AssignmentBatchesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -74301,6 +75919,1086 @@ func (c *Client) AdminAnnouncementsUpdateWithBody(ctx context.Context, uuid open
 
 func (c *Client) AdminAnnouncementsUpdate(ctx context.Context, uuid openapi_types.UUID, body AdminAnnouncementsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewAdminAnnouncementsUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowBillingSyncItemsList(ctx context.Context, params *AdminArrowBillingSyncItemsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowBillingSyncItemsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowBillingSyncItemsCount(ctx context.Context, params *AdminArrowBillingSyncItemsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowBillingSyncItemsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowBillingSyncItemsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowBillingSyncItemsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowBillingSyncsList(ctx context.Context, params *AdminArrowBillingSyncsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowBillingSyncsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowBillingSyncsCount(ctx context.Context, params *AdminArrowBillingSyncsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowBillingSyncsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowBillingSyncsCleanupConsumptionWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowBillingSyncsCleanupConsumptionRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowBillingSyncsCleanupConsumption(ctx context.Context, body AdminArrowBillingSyncsCleanupConsumptionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowBillingSyncsCleanupConsumptionRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowBillingSyncsConsumptionStatisticsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowBillingSyncsConsumptionStatisticsRetrieveRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowBillingSyncsConsumptionStatisticsCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowBillingSyncsConsumptionStatisticsCountRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowBillingSyncsConsumptionStatusRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowBillingSyncsConsumptionStatusRetrieveRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowBillingSyncsConsumptionStatusCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowBillingSyncsConsumptionStatusCountRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowBillingSyncsFetchBillingExportWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowBillingSyncsFetchBillingExportRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowBillingSyncsFetchBillingExport(ctx context.Context, body AdminArrowBillingSyncsFetchBillingExportJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowBillingSyncsFetchBillingExportRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowBillingSyncsFetchConsumptionWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowBillingSyncsFetchConsumptionRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowBillingSyncsFetchConsumption(ctx context.Context, body AdminArrowBillingSyncsFetchConsumptionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowBillingSyncsFetchConsumptionRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowBillingSyncsFetchLicenseInfoWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowBillingSyncsFetchLicenseInfoRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowBillingSyncsFetchLicenseInfo(ctx context.Context, body AdminArrowBillingSyncsFetchLicenseInfoJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowBillingSyncsFetchLicenseInfoRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowBillingSyncsPauseSyncWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowBillingSyncsPauseSyncRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowBillingSyncsPauseSync(ctx context.Context, body AdminArrowBillingSyncsPauseSyncJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowBillingSyncsPauseSyncRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowBillingSyncsPendingRecordsList(ctx context.Context, params *AdminArrowBillingSyncsPendingRecordsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowBillingSyncsPendingRecordsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowBillingSyncsPendingRecordsCount(ctx context.Context, params *AdminArrowBillingSyncsPendingRecordsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowBillingSyncsPendingRecordsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowBillingSyncsReconcileWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowBillingSyncsReconcileRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowBillingSyncsReconcile(ctx context.Context, body AdminArrowBillingSyncsReconcileJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowBillingSyncsReconcileRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowBillingSyncsResumeSyncWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowBillingSyncsResumeSyncRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowBillingSyncsResumeSync(ctx context.Context, body AdminArrowBillingSyncsResumeSyncJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowBillingSyncsResumeSyncRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowBillingSyncsSyncResourceHistoricalConsumptionWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowBillingSyncsSyncResourceHistoricalConsumptionRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowBillingSyncsSyncResourceHistoricalConsumption(ctx context.Context, body AdminArrowBillingSyncsSyncResourceHistoricalConsumptionJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowBillingSyncsSyncResourceHistoricalConsumptionRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowBillingSyncsSyncResourcesWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowBillingSyncsSyncResourcesRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowBillingSyncsSyncResources(ctx context.Context, body AdminArrowBillingSyncsSyncResourcesJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowBillingSyncsSyncResourcesRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowBillingSyncsTriggerConsumptionSyncWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowBillingSyncsTriggerConsumptionSyncRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowBillingSyncsTriggerConsumptionSync(ctx context.Context, body AdminArrowBillingSyncsTriggerConsumptionSyncJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowBillingSyncsTriggerConsumptionSyncRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowBillingSyncsTriggerReconciliationWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowBillingSyncsTriggerReconciliationRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowBillingSyncsTriggerReconciliation(ctx context.Context, body AdminArrowBillingSyncsTriggerReconciliationJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowBillingSyncsTriggerReconciliationRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowBillingSyncsTriggerSyncWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowBillingSyncsTriggerSyncRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowBillingSyncsTriggerSync(ctx context.Context, body AdminArrowBillingSyncsTriggerSyncJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowBillingSyncsTriggerSyncRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowBillingSyncsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowBillingSyncsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowConsumptionRecordsList(ctx context.Context, params *AdminArrowConsumptionRecordsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowConsumptionRecordsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowConsumptionRecordsCount(ctx context.Context, params *AdminArrowConsumptionRecordsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowConsumptionRecordsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowConsumptionRecordsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowConsumptionRecordsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowCustomerMappingsList(ctx context.Context, params *AdminArrowCustomerMappingsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowCustomerMappingsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowCustomerMappingsCount(ctx context.Context, params *AdminArrowCustomerMappingsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowCustomerMappingsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowCustomerMappingsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowCustomerMappingsCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowCustomerMappingsCreate(ctx context.Context, body AdminArrowCustomerMappingsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowCustomerMappingsCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowCustomerMappingsAvailableCustomersRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowCustomerMappingsAvailableCustomersRetrieveRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowCustomerMappingsAvailableCustomersCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowCustomerMappingsAvailableCustomersCountRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowCustomerMappingsSyncFromArrowWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowCustomerMappingsSyncFromArrowRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowCustomerMappingsSyncFromArrow(ctx context.Context, body AdminArrowCustomerMappingsSyncFromArrowJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowCustomerMappingsSyncFromArrowRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowCustomerMappingsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowCustomerMappingsDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowCustomerMappingsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowCustomerMappingsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowCustomerMappingsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowCustomerMappingsPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowCustomerMappingsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body AdminArrowCustomerMappingsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowCustomerMappingsPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowCustomerMappingsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowCustomerMappingsUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowCustomerMappingsUpdate(ctx context.Context, uuid openapi_types.UUID, body AdminArrowCustomerMappingsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowCustomerMappingsUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowCustomerMappingsBillingSummaryRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowCustomerMappingsBillingSummaryRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowCustomerMappingsDiscoverLicensesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowCustomerMappingsDiscoverLicensesRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowCustomerMappingsFetchArrowDataRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowCustomerMappingsFetchArrowDataRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowCustomerMappingsImportLicenseWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowCustomerMappingsImportLicenseRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowCustomerMappingsImportLicense(ctx context.Context, uuid openapi_types.UUID, body AdminArrowCustomerMappingsImportLicenseJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowCustomerMappingsImportLicenseRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowCustomerMappingsLinkResourceWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowCustomerMappingsLinkResourceRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowCustomerMappingsLinkResource(ctx context.Context, uuid openapi_types.UUID, body AdminArrowCustomerMappingsLinkResourceJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowCustomerMappingsLinkResourceRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowSettingsList(ctx context.Context, params *AdminArrowSettingsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowSettingsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowSettingsCount(ctx context.Context, params *AdminArrowSettingsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowSettingsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowSettingsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowSettingsCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowSettingsCreate(ctx context.Context, body AdminArrowSettingsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowSettingsCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowSettingsDiscoverCustomersWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowSettingsDiscoverCustomersRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowSettingsDiscoverCustomers(ctx context.Context, body AdminArrowSettingsDiscoverCustomersJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowSettingsDiscoverCustomersRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowSettingsPreviewSettingsWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowSettingsPreviewSettingsRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowSettingsPreviewSettings(ctx context.Context, body AdminArrowSettingsPreviewSettingsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowSettingsPreviewSettingsRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowSettingsSaveSettingsWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowSettingsSaveSettingsRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowSettingsSaveSettings(ctx context.Context, body AdminArrowSettingsSaveSettingsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowSettingsSaveSettingsRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowSettingsValidateCredentialsWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowSettingsValidateCredentialsRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowSettingsValidateCredentials(ctx context.Context, body AdminArrowSettingsValidateCredentialsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowSettingsValidateCredentialsRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowSettingsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowSettingsDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowSettingsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowSettingsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowSettingsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowSettingsPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowSettingsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body AdminArrowSettingsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowSettingsPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowSettingsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowSettingsUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowSettingsUpdate(ctx context.Context, uuid openapi_types.UUID, body AdminArrowSettingsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowSettingsUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowVendorOfferingMappingsList(ctx context.Context, params *AdminArrowVendorOfferingMappingsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowVendorOfferingMappingsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowVendorOfferingMappingsCount(ctx context.Context, params *AdminArrowVendorOfferingMappingsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowVendorOfferingMappingsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowVendorOfferingMappingsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowVendorOfferingMappingsCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowVendorOfferingMappingsCreate(ctx context.Context, body AdminArrowVendorOfferingMappingsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowVendorOfferingMappingsCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowVendorOfferingMappingsVendorChoicesList(ctx context.Context, params *AdminArrowVendorOfferingMappingsVendorChoicesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowVendorOfferingMappingsVendorChoicesListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowVendorOfferingMappingsVendorChoicesCount(ctx context.Context, params *AdminArrowVendorOfferingMappingsVendorChoicesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowVendorOfferingMappingsVendorChoicesCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowVendorOfferingMappingsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowVendorOfferingMappingsDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowVendorOfferingMappingsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowVendorOfferingMappingsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowVendorOfferingMappingsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowVendorOfferingMappingsPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowVendorOfferingMappingsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body AdminArrowVendorOfferingMappingsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowVendorOfferingMappingsPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowVendorOfferingMappingsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowVendorOfferingMappingsUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) AdminArrowVendorOfferingMappingsUpdate(ctx context.Context, uuid openapi_types.UUID, body AdminArrowVendorOfferingMappingsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowVendorOfferingMappingsUpdateRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -109616,6 +112314,4616 @@ func NewAdminAnnouncementsUpdateRequestWithBody(server string, uuid openapi_type
 	}
 
 	operationPath := fmt.Sprintf("/api/admin-announcements/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewAdminArrowBillingSyncItemsListRequest generates requests for AdminArrowBillingSyncItemsList
+func NewAdminArrowBillingSyncItemsListRequest(server string, params *AdminArrowBillingSyncItemsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/billing-sync-items/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.ArrowLineReference != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "arrow_line_reference", runtime.ParamLocationQuery, *params.ArrowLineReference); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.BillingSync != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "billing_sync", runtime.ParamLocationQuery, *params.BillingSync); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.BillingSyncUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "billing_sync_uuid", runtime.ParamLocationQuery, *params.BillingSyncUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Classification != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "classification", runtime.ParamLocationQuery, *params.Classification); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.HasCompensation != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_compensation", runtime.ParamLocationQuery, *params.HasCompensation); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ReportPeriod != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "report_period", runtime.ParamLocationQuery, *params.ReportPeriod); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.SubscriptionReference != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "subscription_reference", runtime.ParamLocationQuery, *params.SubscriptionReference); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.VendorName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "vendor_name", runtime.ParamLocationQuery, *params.VendorName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAdminArrowBillingSyncItemsCountRequest generates requests for AdminArrowBillingSyncItemsCount
+func NewAdminArrowBillingSyncItemsCountRequest(server string, params *AdminArrowBillingSyncItemsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/billing-sync-items/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.ArrowLineReference != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "arrow_line_reference", runtime.ParamLocationQuery, *params.ArrowLineReference); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.BillingSync != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "billing_sync", runtime.ParamLocationQuery, *params.BillingSync); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.BillingSyncUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "billing_sync_uuid", runtime.ParamLocationQuery, *params.BillingSyncUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Classification != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "classification", runtime.ParamLocationQuery, *params.Classification); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.HasCompensation != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "has_compensation", runtime.ParamLocationQuery, *params.HasCompensation); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ReportPeriod != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "report_period", runtime.ParamLocationQuery, *params.ReportPeriod); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.SubscriptionReference != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "subscription_reference", runtime.ParamLocationQuery, *params.SubscriptionReference); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.VendorName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "vendor_name", runtime.ParamLocationQuery, *params.VendorName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAdminArrowBillingSyncItemsRetrieveRequest generates requests for AdminArrowBillingSyncItemsRetrieve
+func NewAdminArrowBillingSyncItemsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/billing-sync-items/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAdminArrowBillingSyncsListRequest generates requests for AdminArrowBillingSyncsList
+func NewAdminArrowBillingSyncsListRequest(server string, params *AdminArrowBillingSyncsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/billing-syncs/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.ArrowState != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "arrow_state", runtime.ParamLocationQuery, *params.ArrowState); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerMapping != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer_mapping", runtime.ParamLocationQuery, *params.CustomerMapping); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerMappingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer_mapping_uuid", runtime.ParamLocationQuery, *params.CustomerMappingUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ReportPeriod != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "report_period", runtime.ParamLocationQuery, *params.ReportPeriod); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ReportPeriodFrom != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "report_period_from", runtime.ParamLocationQuery, *params.ReportPeriodFrom); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ReportPeriodTo != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "report_period_to", runtime.ParamLocationQuery, *params.ReportPeriodTo); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.SettingsUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "settings_uuid", runtime.ParamLocationQuery, *params.SettingsUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "state", runtime.ParamLocationQuery, *params.State); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.StatementReference != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "statement_reference", runtime.ParamLocationQuery, *params.StatementReference); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAdminArrowBillingSyncsCountRequest generates requests for AdminArrowBillingSyncsCount
+func NewAdminArrowBillingSyncsCountRequest(server string, params *AdminArrowBillingSyncsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/billing-syncs/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.ArrowState != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "arrow_state", runtime.ParamLocationQuery, *params.ArrowState); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerMapping != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer_mapping", runtime.ParamLocationQuery, *params.CustomerMapping); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerMappingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer_mapping_uuid", runtime.ParamLocationQuery, *params.CustomerMappingUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ReportPeriod != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "report_period", runtime.ParamLocationQuery, *params.ReportPeriod); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ReportPeriodFrom != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "report_period_from", runtime.ParamLocationQuery, *params.ReportPeriodFrom); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ReportPeriodTo != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "report_period_to", runtime.ParamLocationQuery, *params.ReportPeriodTo); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.SettingsUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "settings_uuid", runtime.ParamLocationQuery, *params.SettingsUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "state", runtime.ParamLocationQuery, *params.State); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.StatementReference != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "statement_reference", runtime.ParamLocationQuery, *params.StatementReference); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAdminArrowBillingSyncsCleanupConsumptionRequest calls the generic AdminArrowBillingSyncsCleanupConsumption builder with application/json body
+func NewAdminArrowBillingSyncsCleanupConsumptionRequest(server string, body AdminArrowBillingSyncsCleanupConsumptionJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewAdminArrowBillingSyncsCleanupConsumptionRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewAdminArrowBillingSyncsCleanupConsumptionRequestWithBody generates requests for AdminArrowBillingSyncsCleanupConsumption with any type of body
+func NewAdminArrowBillingSyncsCleanupConsumptionRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/billing-syncs/cleanup_consumption/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewAdminArrowBillingSyncsConsumptionStatisticsRetrieveRequest generates requests for AdminArrowBillingSyncsConsumptionStatisticsRetrieve
+func NewAdminArrowBillingSyncsConsumptionStatisticsRetrieveRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/billing-syncs/consumption_statistics/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAdminArrowBillingSyncsConsumptionStatisticsCountRequest generates requests for AdminArrowBillingSyncsConsumptionStatisticsCount
+func NewAdminArrowBillingSyncsConsumptionStatisticsCountRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/billing-syncs/consumption_statistics/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAdminArrowBillingSyncsConsumptionStatusRetrieveRequest generates requests for AdminArrowBillingSyncsConsumptionStatusRetrieve
+func NewAdminArrowBillingSyncsConsumptionStatusRetrieveRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/billing-syncs/consumption_status/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAdminArrowBillingSyncsConsumptionStatusCountRequest generates requests for AdminArrowBillingSyncsConsumptionStatusCount
+func NewAdminArrowBillingSyncsConsumptionStatusCountRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/billing-syncs/consumption_status/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAdminArrowBillingSyncsFetchBillingExportRequest calls the generic AdminArrowBillingSyncsFetchBillingExport builder with application/json body
+func NewAdminArrowBillingSyncsFetchBillingExportRequest(server string, body AdminArrowBillingSyncsFetchBillingExportJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewAdminArrowBillingSyncsFetchBillingExportRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewAdminArrowBillingSyncsFetchBillingExportRequestWithBody generates requests for AdminArrowBillingSyncsFetchBillingExport with any type of body
+func NewAdminArrowBillingSyncsFetchBillingExportRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/billing-syncs/fetch_billing_export/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewAdminArrowBillingSyncsFetchConsumptionRequest calls the generic AdminArrowBillingSyncsFetchConsumption builder with application/json body
+func NewAdminArrowBillingSyncsFetchConsumptionRequest(server string, body AdminArrowBillingSyncsFetchConsumptionJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewAdminArrowBillingSyncsFetchConsumptionRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewAdminArrowBillingSyncsFetchConsumptionRequestWithBody generates requests for AdminArrowBillingSyncsFetchConsumption with any type of body
+func NewAdminArrowBillingSyncsFetchConsumptionRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/billing-syncs/fetch_consumption/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewAdminArrowBillingSyncsFetchLicenseInfoRequest calls the generic AdminArrowBillingSyncsFetchLicenseInfo builder with application/json body
+func NewAdminArrowBillingSyncsFetchLicenseInfoRequest(server string, body AdminArrowBillingSyncsFetchLicenseInfoJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewAdminArrowBillingSyncsFetchLicenseInfoRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewAdminArrowBillingSyncsFetchLicenseInfoRequestWithBody generates requests for AdminArrowBillingSyncsFetchLicenseInfo with any type of body
+func NewAdminArrowBillingSyncsFetchLicenseInfoRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/billing-syncs/fetch_license_info/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewAdminArrowBillingSyncsPauseSyncRequest calls the generic AdminArrowBillingSyncsPauseSync builder with application/json body
+func NewAdminArrowBillingSyncsPauseSyncRequest(server string, body AdminArrowBillingSyncsPauseSyncJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewAdminArrowBillingSyncsPauseSyncRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewAdminArrowBillingSyncsPauseSyncRequestWithBody generates requests for AdminArrowBillingSyncsPauseSync with any type of body
+func NewAdminArrowBillingSyncsPauseSyncRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/billing-syncs/pause_sync/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewAdminArrowBillingSyncsPendingRecordsListRequest generates requests for AdminArrowBillingSyncsPendingRecordsList
+func NewAdminArrowBillingSyncsPendingRecordsListRequest(server string, params *AdminArrowBillingSyncsPendingRecordsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/billing-syncs/pending_records/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.ArrowState != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "arrow_state", runtime.ParamLocationQuery, *params.ArrowState); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerMapping != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer_mapping", runtime.ParamLocationQuery, *params.CustomerMapping); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerMappingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer_mapping_uuid", runtime.ParamLocationQuery, *params.CustomerMappingUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ReportPeriod != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "report_period", runtime.ParamLocationQuery, *params.ReportPeriod); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ReportPeriodFrom != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "report_period_from", runtime.ParamLocationQuery, *params.ReportPeriodFrom); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ReportPeriodTo != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "report_period_to", runtime.ParamLocationQuery, *params.ReportPeriodTo); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.SettingsUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "settings_uuid", runtime.ParamLocationQuery, *params.SettingsUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "state", runtime.ParamLocationQuery, *params.State); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.StatementReference != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "statement_reference", runtime.ParamLocationQuery, *params.StatementReference); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAdminArrowBillingSyncsPendingRecordsCountRequest generates requests for AdminArrowBillingSyncsPendingRecordsCount
+func NewAdminArrowBillingSyncsPendingRecordsCountRequest(server string, params *AdminArrowBillingSyncsPendingRecordsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/billing-syncs/pending_records/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.ArrowState != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "arrow_state", runtime.ParamLocationQuery, *params.ArrowState); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerMapping != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer_mapping", runtime.ParamLocationQuery, *params.CustomerMapping); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerMappingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer_mapping_uuid", runtime.ParamLocationQuery, *params.CustomerMappingUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ReportPeriod != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "report_period", runtime.ParamLocationQuery, *params.ReportPeriod); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ReportPeriodFrom != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "report_period_from", runtime.ParamLocationQuery, *params.ReportPeriodFrom); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ReportPeriodTo != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "report_period_to", runtime.ParamLocationQuery, *params.ReportPeriodTo); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.SettingsUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "settings_uuid", runtime.ParamLocationQuery, *params.SettingsUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "state", runtime.ParamLocationQuery, *params.State); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.StatementReference != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "statement_reference", runtime.ParamLocationQuery, *params.StatementReference); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAdminArrowBillingSyncsReconcileRequest calls the generic AdminArrowBillingSyncsReconcile builder with application/json body
+func NewAdminArrowBillingSyncsReconcileRequest(server string, body AdminArrowBillingSyncsReconcileJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewAdminArrowBillingSyncsReconcileRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewAdminArrowBillingSyncsReconcileRequestWithBody generates requests for AdminArrowBillingSyncsReconcile with any type of body
+func NewAdminArrowBillingSyncsReconcileRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/billing-syncs/reconcile/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewAdminArrowBillingSyncsResumeSyncRequest calls the generic AdminArrowBillingSyncsResumeSync builder with application/json body
+func NewAdminArrowBillingSyncsResumeSyncRequest(server string, body AdminArrowBillingSyncsResumeSyncJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewAdminArrowBillingSyncsResumeSyncRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewAdminArrowBillingSyncsResumeSyncRequestWithBody generates requests for AdminArrowBillingSyncsResumeSync with any type of body
+func NewAdminArrowBillingSyncsResumeSyncRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/billing-syncs/resume_sync/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewAdminArrowBillingSyncsSyncResourceHistoricalConsumptionRequest calls the generic AdminArrowBillingSyncsSyncResourceHistoricalConsumption builder with application/json body
+func NewAdminArrowBillingSyncsSyncResourceHistoricalConsumptionRequest(server string, body AdminArrowBillingSyncsSyncResourceHistoricalConsumptionJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewAdminArrowBillingSyncsSyncResourceHistoricalConsumptionRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewAdminArrowBillingSyncsSyncResourceHistoricalConsumptionRequestWithBody generates requests for AdminArrowBillingSyncsSyncResourceHistoricalConsumption with any type of body
+func NewAdminArrowBillingSyncsSyncResourceHistoricalConsumptionRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/billing-syncs/sync_resource_historical_consumption/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewAdminArrowBillingSyncsSyncResourcesRequest calls the generic AdminArrowBillingSyncsSyncResources builder with application/json body
+func NewAdminArrowBillingSyncsSyncResourcesRequest(server string, body AdminArrowBillingSyncsSyncResourcesJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewAdminArrowBillingSyncsSyncResourcesRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewAdminArrowBillingSyncsSyncResourcesRequestWithBody generates requests for AdminArrowBillingSyncsSyncResources with any type of body
+func NewAdminArrowBillingSyncsSyncResourcesRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/billing-syncs/sync_resources/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewAdminArrowBillingSyncsTriggerConsumptionSyncRequest calls the generic AdminArrowBillingSyncsTriggerConsumptionSync builder with application/json body
+func NewAdminArrowBillingSyncsTriggerConsumptionSyncRequest(server string, body AdminArrowBillingSyncsTriggerConsumptionSyncJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewAdminArrowBillingSyncsTriggerConsumptionSyncRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewAdminArrowBillingSyncsTriggerConsumptionSyncRequestWithBody generates requests for AdminArrowBillingSyncsTriggerConsumptionSync with any type of body
+func NewAdminArrowBillingSyncsTriggerConsumptionSyncRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/billing-syncs/trigger_consumption_sync/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewAdminArrowBillingSyncsTriggerReconciliationRequest calls the generic AdminArrowBillingSyncsTriggerReconciliation builder with application/json body
+func NewAdminArrowBillingSyncsTriggerReconciliationRequest(server string, body AdminArrowBillingSyncsTriggerReconciliationJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewAdminArrowBillingSyncsTriggerReconciliationRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewAdminArrowBillingSyncsTriggerReconciliationRequestWithBody generates requests for AdminArrowBillingSyncsTriggerReconciliation with any type of body
+func NewAdminArrowBillingSyncsTriggerReconciliationRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/billing-syncs/trigger_reconciliation/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewAdminArrowBillingSyncsTriggerSyncRequest calls the generic AdminArrowBillingSyncsTriggerSync builder with application/json body
+func NewAdminArrowBillingSyncsTriggerSyncRequest(server string, body AdminArrowBillingSyncsTriggerSyncJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewAdminArrowBillingSyncsTriggerSyncRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewAdminArrowBillingSyncsTriggerSyncRequestWithBody generates requests for AdminArrowBillingSyncsTriggerSync with any type of body
+func NewAdminArrowBillingSyncsTriggerSyncRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/billing-syncs/trigger_sync/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewAdminArrowBillingSyncsRetrieveRequest generates requests for AdminArrowBillingSyncsRetrieve
+func NewAdminArrowBillingSyncsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/billing-syncs/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAdminArrowConsumptionRecordsListRequest generates requests for AdminArrowConsumptionRecordsList
+func NewAdminArrowConsumptionRecordsListRequest(server string, params *AdminArrowConsumptionRecordsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/consumption-records/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.BillingPeriod != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "billing_period", runtime.ParamLocationQuery, *params.BillingPeriod); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.BillingPeriodFrom != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "billing_period_from", runtime.ParamLocationQuery, *params.BillingPeriodFrom); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.BillingPeriodTo != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "billing_period_to", runtime.ParamLocationQuery, *params.BillingPeriodTo); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer_uuid", runtime.ParamLocationQuery, *params.CustomerUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsFinalized != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_finalized", runtime.ParamLocationQuery, *params.IsFinalized); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsReconciled != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_reconciled", runtime.ParamLocationQuery, *params.IsReconciled); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.LicenseReference != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "license_reference", runtime.ParamLocationQuery, *params.LicenseReference); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_uuid", runtime.ParamLocationQuery, *params.ProjectUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Resource != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "resource", runtime.ParamLocationQuery, *params.Resource); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ResourceUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "resource_uuid", runtime.ParamLocationQuery, *params.ResourceUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAdminArrowConsumptionRecordsCountRequest generates requests for AdminArrowConsumptionRecordsCount
+func NewAdminArrowConsumptionRecordsCountRequest(server string, params *AdminArrowConsumptionRecordsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/consumption-records/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.BillingPeriod != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "billing_period", runtime.ParamLocationQuery, *params.BillingPeriod); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.BillingPeriodFrom != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "billing_period_from", runtime.ParamLocationQuery, *params.BillingPeriodFrom); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.BillingPeriodTo != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "billing_period_to", runtime.ParamLocationQuery, *params.BillingPeriodTo); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "customer_uuid", runtime.ParamLocationQuery, *params.CustomerUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsFinalized != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_finalized", runtime.ParamLocationQuery, *params.IsFinalized); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsReconciled != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_reconciled", runtime.ParamLocationQuery, *params.IsReconciled); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.LicenseReference != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "license_reference", runtime.ParamLocationQuery, *params.LicenseReference); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "project_uuid", runtime.ParamLocationQuery, *params.ProjectUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Resource != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "resource", runtime.ParamLocationQuery, *params.Resource); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ResourceUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "resource_uuid", runtime.ParamLocationQuery, *params.ResourceUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAdminArrowConsumptionRecordsRetrieveRequest generates requests for AdminArrowConsumptionRecordsRetrieve
+func NewAdminArrowConsumptionRecordsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/consumption-records/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAdminArrowCustomerMappingsListRequest generates requests for AdminArrowCustomerMappingsList
+func NewAdminArrowCustomerMappingsListRequest(server string, params *AdminArrowCustomerMappingsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/customer-mappings/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.ArrowCompanyName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "arrow_company_name", runtime.ParamLocationQuery, *params.ArrowCompanyName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ArrowReference != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "arrow_reference", runtime.ParamLocationQuery, *params.ArrowReference); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsActive != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_active", runtime.ParamLocationQuery, *params.IsActive); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Settings != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "settings", runtime.ParamLocationQuery, *params.Settings); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.SettingsUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "settings_uuid", runtime.ParamLocationQuery, *params.SettingsUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.WaldurCustomer != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "waldur_customer", runtime.ParamLocationQuery, *params.WaldurCustomer); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.WaldurCustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "waldur_customer_uuid", runtime.ParamLocationQuery, *params.WaldurCustomerUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAdminArrowCustomerMappingsCountRequest generates requests for AdminArrowCustomerMappingsCount
+func NewAdminArrowCustomerMappingsCountRequest(server string, params *AdminArrowCustomerMappingsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/customer-mappings/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.ArrowCompanyName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "arrow_company_name", runtime.ParamLocationQuery, *params.ArrowCompanyName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.ArrowReference != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "arrow_reference", runtime.ParamLocationQuery, *params.ArrowReference); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsActive != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_active", runtime.ParamLocationQuery, *params.IsActive); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Settings != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "settings", runtime.ParamLocationQuery, *params.Settings); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.SettingsUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "settings_uuid", runtime.ParamLocationQuery, *params.SettingsUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.WaldurCustomer != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "waldur_customer", runtime.ParamLocationQuery, *params.WaldurCustomer); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.WaldurCustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "waldur_customer_uuid", runtime.ParamLocationQuery, *params.WaldurCustomerUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAdminArrowCustomerMappingsCreateRequest calls the generic AdminArrowCustomerMappingsCreate builder with application/json body
+func NewAdminArrowCustomerMappingsCreateRequest(server string, body AdminArrowCustomerMappingsCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewAdminArrowCustomerMappingsCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewAdminArrowCustomerMappingsCreateRequestWithBody generates requests for AdminArrowCustomerMappingsCreate with any type of body
+func NewAdminArrowCustomerMappingsCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/customer-mappings/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewAdminArrowCustomerMappingsAvailableCustomersRetrieveRequest generates requests for AdminArrowCustomerMappingsAvailableCustomersRetrieve
+func NewAdminArrowCustomerMappingsAvailableCustomersRetrieveRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/customer-mappings/available_customers/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAdminArrowCustomerMappingsAvailableCustomersCountRequest generates requests for AdminArrowCustomerMappingsAvailableCustomersCount
+func NewAdminArrowCustomerMappingsAvailableCustomersCountRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/customer-mappings/available_customers/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAdminArrowCustomerMappingsSyncFromArrowRequest calls the generic AdminArrowCustomerMappingsSyncFromArrow builder with application/json body
+func NewAdminArrowCustomerMappingsSyncFromArrowRequest(server string, body AdminArrowCustomerMappingsSyncFromArrowJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewAdminArrowCustomerMappingsSyncFromArrowRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewAdminArrowCustomerMappingsSyncFromArrowRequestWithBody generates requests for AdminArrowCustomerMappingsSyncFromArrow with any type of body
+func NewAdminArrowCustomerMappingsSyncFromArrowRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/customer-mappings/sync_from_arrow/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewAdminArrowCustomerMappingsDestroyRequest generates requests for AdminArrowCustomerMappingsDestroy
+func NewAdminArrowCustomerMappingsDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/customer-mappings/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAdminArrowCustomerMappingsRetrieveRequest generates requests for AdminArrowCustomerMappingsRetrieve
+func NewAdminArrowCustomerMappingsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/customer-mappings/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAdminArrowCustomerMappingsPartialUpdateRequest calls the generic AdminArrowCustomerMappingsPartialUpdate builder with application/json body
+func NewAdminArrowCustomerMappingsPartialUpdateRequest(server string, uuid openapi_types.UUID, body AdminArrowCustomerMappingsPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewAdminArrowCustomerMappingsPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewAdminArrowCustomerMappingsPartialUpdateRequestWithBody generates requests for AdminArrowCustomerMappingsPartialUpdate with any type of body
+func NewAdminArrowCustomerMappingsPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/customer-mappings/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewAdminArrowCustomerMappingsUpdateRequest calls the generic AdminArrowCustomerMappingsUpdate builder with application/json body
+func NewAdminArrowCustomerMappingsUpdateRequest(server string, uuid openapi_types.UUID, body AdminArrowCustomerMappingsUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewAdminArrowCustomerMappingsUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewAdminArrowCustomerMappingsUpdateRequestWithBody generates requests for AdminArrowCustomerMappingsUpdate with any type of body
+func NewAdminArrowCustomerMappingsUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/customer-mappings/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewAdminArrowCustomerMappingsBillingSummaryRetrieveRequest generates requests for AdminArrowCustomerMappingsBillingSummaryRetrieve
+func NewAdminArrowCustomerMappingsBillingSummaryRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/customer-mappings/%s/billing_summary/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAdminArrowCustomerMappingsDiscoverLicensesRetrieveRequest generates requests for AdminArrowCustomerMappingsDiscoverLicensesRetrieve
+func NewAdminArrowCustomerMappingsDiscoverLicensesRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/customer-mappings/%s/discover_licenses/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAdminArrowCustomerMappingsFetchArrowDataRetrieveRequest generates requests for AdminArrowCustomerMappingsFetchArrowDataRetrieve
+func NewAdminArrowCustomerMappingsFetchArrowDataRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/customer-mappings/%s/fetch_arrow_data/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAdminArrowCustomerMappingsImportLicenseRequest calls the generic AdminArrowCustomerMappingsImportLicense builder with application/json body
+func NewAdminArrowCustomerMappingsImportLicenseRequest(server string, uuid openapi_types.UUID, body AdminArrowCustomerMappingsImportLicenseJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewAdminArrowCustomerMappingsImportLicenseRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewAdminArrowCustomerMappingsImportLicenseRequestWithBody generates requests for AdminArrowCustomerMappingsImportLicense with any type of body
+func NewAdminArrowCustomerMappingsImportLicenseRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/customer-mappings/%s/import_license/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewAdminArrowCustomerMappingsLinkResourceRequest calls the generic AdminArrowCustomerMappingsLinkResource builder with application/json body
+func NewAdminArrowCustomerMappingsLinkResourceRequest(server string, uuid openapi_types.UUID, body AdminArrowCustomerMappingsLinkResourceJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewAdminArrowCustomerMappingsLinkResourceRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewAdminArrowCustomerMappingsLinkResourceRequestWithBody generates requests for AdminArrowCustomerMappingsLinkResource with any type of body
+func NewAdminArrowCustomerMappingsLinkResourceRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/customer-mappings/%s/link_resource/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewAdminArrowSettingsListRequest generates requests for AdminArrowSettingsList
+func NewAdminArrowSettingsListRequest(server string, params *AdminArrowSettingsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/settings/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.IsActive != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_active", runtime.ParamLocationQuery, *params.IsActive); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.SyncEnabled != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "sync_enabled", runtime.ParamLocationQuery, *params.SyncEnabled); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAdminArrowSettingsCountRequest generates requests for AdminArrowSettingsCount
+func NewAdminArrowSettingsCountRequest(server string, params *AdminArrowSettingsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/settings/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.IsActive != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_active", runtime.ParamLocationQuery, *params.IsActive); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.SyncEnabled != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "sync_enabled", runtime.ParamLocationQuery, *params.SyncEnabled); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAdminArrowSettingsCreateRequest calls the generic AdminArrowSettingsCreate builder with application/json body
+func NewAdminArrowSettingsCreateRequest(server string, body AdminArrowSettingsCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewAdminArrowSettingsCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewAdminArrowSettingsCreateRequestWithBody generates requests for AdminArrowSettingsCreate with any type of body
+func NewAdminArrowSettingsCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/settings/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewAdminArrowSettingsDiscoverCustomersRequest calls the generic AdminArrowSettingsDiscoverCustomers builder with application/json body
+func NewAdminArrowSettingsDiscoverCustomersRequest(server string, body AdminArrowSettingsDiscoverCustomersJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewAdminArrowSettingsDiscoverCustomersRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewAdminArrowSettingsDiscoverCustomersRequestWithBody generates requests for AdminArrowSettingsDiscoverCustomers with any type of body
+func NewAdminArrowSettingsDiscoverCustomersRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/settings/discover_customers/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewAdminArrowSettingsPreviewSettingsRequest calls the generic AdminArrowSettingsPreviewSettings builder with application/json body
+func NewAdminArrowSettingsPreviewSettingsRequest(server string, body AdminArrowSettingsPreviewSettingsJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewAdminArrowSettingsPreviewSettingsRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewAdminArrowSettingsPreviewSettingsRequestWithBody generates requests for AdminArrowSettingsPreviewSettings with any type of body
+func NewAdminArrowSettingsPreviewSettingsRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/settings/preview_settings/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewAdminArrowSettingsSaveSettingsRequest calls the generic AdminArrowSettingsSaveSettings builder with application/json body
+func NewAdminArrowSettingsSaveSettingsRequest(server string, body AdminArrowSettingsSaveSettingsJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewAdminArrowSettingsSaveSettingsRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewAdminArrowSettingsSaveSettingsRequestWithBody generates requests for AdminArrowSettingsSaveSettings with any type of body
+func NewAdminArrowSettingsSaveSettingsRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/settings/save_settings/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewAdminArrowSettingsValidateCredentialsRequest calls the generic AdminArrowSettingsValidateCredentials builder with application/json body
+func NewAdminArrowSettingsValidateCredentialsRequest(server string, body AdminArrowSettingsValidateCredentialsJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewAdminArrowSettingsValidateCredentialsRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewAdminArrowSettingsValidateCredentialsRequestWithBody generates requests for AdminArrowSettingsValidateCredentials with any type of body
+func NewAdminArrowSettingsValidateCredentialsRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/settings/validate_credentials/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewAdminArrowSettingsDestroyRequest generates requests for AdminArrowSettingsDestroy
+func NewAdminArrowSettingsDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/settings/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAdminArrowSettingsRetrieveRequest generates requests for AdminArrowSettingsRetrieve
+func NewAdminArrowSettingsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/settings/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAdminArrowSettingsPartialUpdateRequest calls the generic AdminArrowSettingsPartialUpdate builder with application/json body
+func NewAdminArrowSettingsPartialUpdateRequest(server string, uuid openapi_types.UUID, body AdminArrowSettingsPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewAdminArrowSettingsPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewAdminArrowSettingsPartialUpdateRequestWithBody generates requests for AdminArrowSettingsPartialUpdate with any type of body
+func NewAdminArrowSettingsPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/settings/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewAdminArrowSettingsUpdateRequest calls the generic AdminArrowSettingsUpdate builder with application/json body
+func NewAdminArrowSettingsUpdateRequest(server string, uuid openapi_types.UUID, body AdminArrowSettingsUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewAdminArrowSettingsUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewAdminArrowSettingsUpdateRequestWithBody generates requests for AdminArrowSettingsUpdate with any type of body
+func NewAdminArrowSettingsUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/settings/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PUT", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewAdminArrowVendorOfferingMappingsListRequest generates requests for AdminArrowVendorOfferingMappingsList
+func NewAdminArrowVendorOfferingMappingsListRequest(server string, params *AdminArrowVendorOfferingMappingsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/vendor-offering-mappings/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.ArrowVendorName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "arrow_vendor_name", runtime.ParamLocationQuery, *params.ArrowVendorName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsActive != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_active", runtime.ParamLocationQuery, *params.IsActive); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Offering != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering", runtime.ParamLocationQuery, *params.Offering); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Settings != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "settings", runtime.ParamLocationQuery, *params.Settings); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.SettingsUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "settings_uuid", runtime.ParamLocationQuery, *params.SettingsUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAdminArrowVendorOfferingMappingsCountRequest generates requests for AdminArrowVendorOfferingMappingsCount
+func NewAdminArrowVendorOfferingMappingsCountRequest(server string, params *AdminArrowVendorOfferingMappingsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/vendor-offering-mappings/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.ArrowVendorName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "arrow_vendor_name", runtime.ParamLocationQuery, *params.ArrowVendorName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsActive != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_active", runtime.ParamLocationQuery, *params.IsActive); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Offering != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering", runtime.ParamLocationQuery, *params.Offering); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Settings != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "settings", runtime.ParamLocationQuery, *params.Settings); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.SettingsUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "settings_uuid", runtime.ParamLocationQuery, *params.SettingsUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAdminArrowVendorOfferingMappingsCreateRequest calls the generic AdminArrowVendorOfferingMappingsCreate builder with application/json body
+func NewAdminArrowVendorOfferingMappingsCreateRequest(server string, body AdminArrowVendorOfferingMappingsCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewAdminArrowVendorOfferingMappingsCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewAdminArrowVendorOfferingMappingsCreateRequestWithBody generates requests for AdminArrowVendorOfferingMappingsCreate with any type of body
+func NewAdminArrowVendorOfferingMappingsCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/vendor-offering-mappings/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewAdminArrowVendorOfferingMappingsVendorChoicesListRequest generates requests for AdminArrowVendorOfferingMappingsVendorChoicesList
+func NewAdminArrowVendorOfferingMappingsVendorChoicesListRequest(server string, params *AdminArrowVendorOfferingMappingsVendorChoicesListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/vendor-offering-mappings/vendor_choices/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.ArrowVendorName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "arrow_vendor_name", runtime.ParamLocationQuery, *params.ArrowVendorName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsActive != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_active", runtime.ParamLocationQuery, *params.IsActive); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Offering != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering", runtime.ParamLocationQuery, *params.Offering); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Settings != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "settings", runtime.ParamLocationQuery, *params.Settings); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.SettingsUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "settings_uuid", runtime.ParamLocationQuery, *params.SettingsUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAdminArrowVendorOfferingMappingsVendorChoicesCountRequest generates requests for AdminArrowVendorOfferingMappingsVendorChoicesCount
+func NewAdminArrowVendorOfferingMappingsVendorChoicesCountRequest(server string, params *AdminArrowVendorOfferingMappingsVendorChoicesCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/vendor-offering-mappings/vendor_choices/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.ArrowVendorName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "arrow_vendor_name", runtime.ParamLocationQuery, *params.ArrowVendorName); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.IsActive != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "is_active", runtime.ParamLocationQuery, *params.IsActive); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Offering != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering", runtime.ParamLocationQuery, *params.Offering); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "offering_uuid", runtime.ParamLocationQuery, *params.OfferingUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page_size", runtime.ParamLocationQuery, *params.PageSize); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Settings != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "settings", runtime.ParamLocationQuery, *params.Settings); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.SettingsUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "settings_uuid", runtime.ParamLocationQuery, *params.SettingsUuid); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("HEAD", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAdminArrowVendorOfferingMappingsDestroyRequest generates requests for AdminArrowVendorOfferingMappingsDestroy
+func NewAdminArrowVendorOfferingMappingsDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/vendor-offering-mappings/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("DELETE", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAdminArrowVendorOfferingMappingsRetrieveRequest generates requests for AdminArrowVendorOfferingMappingsRetrieve
+func NewAdminArrowVendorOfferingMappingsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/vendor-offering-mappings/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAdminArrowVendorOfferingMappingsPartialUpdateRequest calls the generic AdminArrowVendorOfferingMappingsPartialUpdate builder with application/json body
+func NewAdminArrowVendorOfferingMappingsPartialUpdateRequest(server string, uuid openapi_types.UUID, body AdminArrowVendorOfferingMappingsPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewAdminArrowVendorOfferingMappingsPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewAdminArrowVendorOfferingMappingsPartialUpdateRequestWithBody generates requests for AdminArrowVendorOfferingMappingsPartialUpdate with any type of body
+func NewAdminArrowVendorOfferingMappingsPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/vendor-offering-mappings/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("PATCH", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewAdminArrowVendorOfferingMappingsUpdateRequest calls the generic AdminArrowVendorOfferingMappingsUpdate builder with application/json body
+func NewAdminArrowVendorOfferingMappingsUpdateRequest(server string, uuid openapi_types.UUID, body AdminArrowVendorOfferingMappingsUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewAdminArrowVendorOfferingMappingsUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewAdminArrowVendorOfferingMappingsUpdateRequestWithBody generates requests for AdminArrowVendorOfferingMappingsUpdate with any type of body
+func NewAdminArrowVendorOfferingMappingsUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "uuid", runtime.ParamLocationPath, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/vendor-offering-mappings/%s/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -288235,6 +295543,248 @@ type ClientWithResponsesInterface interface {
 
 	AdminAnnouncementsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body AdminAnnouncementsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminAnnouncementsUpdateResponse, error)
 
+	// AdminArrowBillingSyncItemsListWithResponse request
+	AdminArrowBillingSyncItemsListWithResponse(ctx context.Context, params *AdminArrowBillingSyncItemsListParams, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncItemsListResponse, error)
+
+	// AdminArrowBillingSyncItemsCountWithResponse request
+	AdminArrowBillingSyncItemsCountWithResponse(ctx context.Context, params *AdminArrowBillingSyncItemsCountParams, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncItemsCountResponse, error)
+
+	// AdminArrowBillingSyncItemsRetrieveWithResponse request
+	AdminArrowBillingSyncItemsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncItemsRetrieveResponse, error)
+
+	// AdminArrowBillingSyncsListWithResponse request
+	AdminArrowBillingSyncsListWithResponse(ctx context.Context, params *AdminArrowBillingSyncsListParams, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsListResponse, error)
+
+	// AdminArrowBillingSyncsCountWithResponse request
+	AdminArrowBillingSyncsCountWithResponse(ctx context.Context, params *AdminArrowBillingSyncsCountParams, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsCountResponse, error)
+
+	// AdminArrowBillingSyncsCleanupConsumptionWithBodyWithResponse request with any body
+	AdminArrowBillingSyncsCleanupConsumptionWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsCleanupConsumptionResponse, error)
+
+	AdminArrowBillingSyncsCleanupConsumptionWithResponse(ctx context.Context, body AdminArrowBillingSyncsCleanupConsumptionJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsCleanupConsumptionResponse, error)
+
+	// AdminArrowBillingSyncsConsumptionStatisticsRetrieveWithResponse request
+	AdminArrowBillingSyncsConsumptionStatisticsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsConsumptionStatisticsRetrieveResponse, error)
+
+	// AdminArrowBillingSyncsConsumptionStatisticsCountWithResponse request
+	AdminArrowBillingSyncsConsumptionStatisticsCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsConsumptionStatisticsCountResponse, error)
+
+	// AdminArrowBillingSyncsConsumptionStatusRetrieveWithResponse request
+	AdminArrowBillingSyncsConsumptionStatusRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsConsumptionStatusRetrieveResponse, error)
+
+	// AdminArrowBillingSyncsConsumptionStatusCountWithResponse request
+	AdminArrowBillingSyncsConsumptionStatusCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsConsumptionStatusCountResponse, error)
+
+	// AdminArrowBillingSyncsFetchBillingExportWithBodyWithResponse request with any body
+	AdminArrowBillingSyncsFetchBillingExportWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsFetchBillingExportResponse, error)
+
+	AdminArrowBillingSyncsFetchBillingExportWithResponse(ctx context.Context, body AdminArrowBillingSyncsFetchBillingExportJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsFetchBillingExportResponse, error)
+
+	// AdminArrowBillingSyncsFetchConsumptionWithBodyWithResponse request with any body
+	AdminArrowBillingSyncsFetchConsumptionWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsFetchConsumptionResponse, error)
+
+	AdminArrowBillingSyncsFetchConsumptionWithResponse(ctx context.Context, body AdminArrowBillingSyncsFetchConsumptionJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsFetchConsumptionResponse, error)
+
+	// AdminArrowBillingSyncsFetchLicenseInfoWithBodyWithResponse request with any body
+	AdminArrowBillingSyncsFetchLicenseInfoWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsFetchLicenseInfoResponse, error)
+
+	AdminArrowBillingSyncsFetchLicenseInfoWithResponse(ctx context.Context, body AdminArrowBillingSyncsFetchLicenseInfoJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsFetchLicenseInfoResponse, error)
+
+	// AdminArrowBillingSyncsPauseSyncWithBodyWithResponse request with any body
+	AdminArrowBillingSyncsPauseSyncWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsPauseSyncResponse, error)
+
+	AdminArrowBillingSyncsPauseSyncWithResponse(ctx context.Context, body AdminArrowBillingSyncsPauseSyncJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsPauseSyncResponse, error)
+
+	// AdminArrowBillingSyncsPendingRecordsListWithResponse request
+	AdminArrowBillingSyncsPendingRecordsListWithResponse(ctx context.Context, params *AdminArrowBillingSyncsPendingRecordsListParams, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsPendingRecordsListResponse, error)
+
+	// AdminArrowBillingSyncsPendingRecordsCountWithResponse request
+	AdminArrowBillingSyncsPendingRecordsCountWithResponse(ctx context.Context, params *AdminArrowBillingSyncsPendingRecordsCountParams, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsPendingRecordsCountResponse, error)
+
+	// AdminArrowBillingSyncsReconcileWithBodyWithResponse request with any body
+	AdminArrowBillingSyncsReconcileWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsReconcileResponse, error)
+
+	AdminArrowBillingSyncsReconcileWithResponse(ctx context.Context, body AdminArrowBillingSyncsReconcileJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsReconcileResponse, error)
+
+	// AdminArrowBillingSyncsResumeSyncWithBodyWithResponse request with any body
+	AdminArrowBillingSyncsResumeSyncWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsResumeSyncResponse, error)
+
+	AdminArrowBillingSyncsResumeSyncWithResponse(ctx context.Context, body AdminArrowBillingSyncsResumeSyncJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsResumeSyncResponse, error)
+
+	// AdminArrowBillingSyncsSyncResourceHistoricalConsumptionWithBodyWithResponse request with any body
+	AdminArrowBillingSyncsSyncResourceHistoricalConsumptionWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsSyncResourceHistoricalConsumptionResponse, error)
+
+	AdminArrowBillingSyncsSyncResourceHistoricalConsumptionWithResponse(ctx context.Context, body AdminArrowBillingSyncsSyncResourceHistoricalConsumptionJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsSyncResourceHistoricalConsumptionResponse, error)
+
+	// AdminArrowBillingSyncsSyncResourcesWithBodyWithResponse request with any body
+	AdminArrowBillingSyncsSyncResourcesWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsSyncResourcesResponse, error)
+
+	AdminArrowBillingSyncsSyncResourcesWithResponse(ctx context.Context, body AdminArrowBillingSyncsSyncResourcesJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsSyncResourcesResponse, error)
+
+	// AdminArrowBillingSyncsTriggerConsumptionSyncWithBodyWithResponse request with any body
+	AdminArrowBillingSyncsTriggerConsumptionSyncWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsTriggerConsumptionSyncResponse, error)
+
+	AdminArrowBillingSyncsTriggerConsumptionSyncWithResponse(ctx context.Context, body AdminArrowBillingSyncsTriggerConsumptionSyncJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsTriggerConsumptionSyncResponse, error)
+
+	// AdminArrowBillingSyncsTriggerReconciliationWithBodyWithResponse request with any body
+	AdminArrowBillingSyncsTriggerReconciliationWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsTriggerReconciliationResponse, error)
+
+	AdminArrowBillingSyncsTriggerReconciliationWithResponse(ctx context.Context, body AdminArrowBillingSyncsTriggerReconciliationJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsTriggerReconciliationResponse, error)
+
+	// AdminArrowBillingSyncsTriggerSyncWithBodyWithResponse request with any body
+	AdminArrowBillingSyncsTriggerSyncWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsTriggerSyncResponse, error)
+
+	AdminArrowBillingSyncsTriggerSyncWithResponse(ctx context.Context, body AdminArrowBillingSyncsTriggerSyncJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsTriggerSyncResponse, error)
+
+	// AdminArrowBillingSyncsRetrieveWithResponse request
+	AdminArrowBillingSyncsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsRetrieveResponse, error)
+
+	// AdminArrowConsumptionRecordsListWithResponse request
+	AdminArrowConsumptionRecordsListWithResponse(ctx context.Context, params *AdminArrowConsumptionRecordsListParams, reqEditors ...RequestEditorFn) (*AdminArrowConsumptionRecordsListResponse, error)
+
+	// AdminArrowConsumptionRecordsCountWithResponse request
+	AdminArrowConsumptionRecordsCountWithResponse(ctx context.Context, params *AdminArrowConsumptionRecordsCountParams, reqEditors ...RequestEditorFn) (*AdminArrowConsumptionRecordsCountResponse, error)
+
+	// AdminArrowConsumptionRecordsRetrieveWithResponse request
+	AdminArrowConsumptionRecordsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AdminArrowConsumptionRecordsRetrieveResponse, error)
+
+	// AdminArrowCustomerMappingsListWithResponse request
+	AdminArrowCustomerMappingsListWithResponse(ctx context.Context, params *AdminArrowCustomerMappingsListParams, reqEditors ...RequestEditorFn) (*AdminArrowCustomerMappingsListResponse, error)
+
+	// AdminArrowCustomerMappingsCountWithResponse request
+	AdminArrowCustomerMappingsCountWithResponse(ctx context.Context, params *AdminArrowCustomerMappingsCountParams, reqEditors ...RequestEditorFn) (*AdminArrowCustomerMappingsCountResponse, error)
+
+	// AdminArrowCustomerMappingsCreateWithBodyWithResponse request with any body
+	AdminArrowCustomerMappingsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowCustomerMappingsCreateResponse, error)
+
+	AdminArrowCustomerMappingsCreateWithResponse(ctx context.Context, body AdminArrowCustomerMappingsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowCustomerMappingsCreateResponse, error)
+
+	// AdminArrowCustomerMappingsAvailableCustomersRetrieveWithResponse request
+	AdminArrowCustomerMappingsAvailableCustomersRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*AdminArrowCustomerMappingsAvailableCustomersRetrieveResponse, error)
+
+	// AdminArrowCustomerMappingsAvailableCustomersCountWithResponse request
+	AdminArrowCustomerMappingsAvailableCustomersCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*AdminArrowCustomerMappingsAvailableCustomersCountResponse, error)
+
+	// AdminArrowCustomerMappingsSyncFromArrowWithBodyWithResponse request with any body
+	AdminArrowCustomerMappingsSyncFromArrowWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowCustomerMappingsSyncFromArrowResponse, error)
+
+	AdminArrowCustomerMappingsSyncFromArrowWithResponse(ctx context.Context, body AdminArrowCustomerMappingsSyncFromArrowJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowCustomerMappingsSyncFromArrowResponse, error)
+
+	// AdminArrowCustomerMappingsDestroyWithResponse request
+	AdminArrowCustomerMappingsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AdminArrowCustomerMappingsDestroyResponse, error)
+
+	// AdminArrowCustomerMappingsRetrieveWithResponse request
+	AdminArrowCustomerMappingsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AdminArrowCustomerMappingsRetrieveResponse, error)
+
+	// AdminArrowCustomerMappingsPartialUpdateWithBodyWithResponse request with any body
+	AdminArrowCustomerMappingsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowCustomerMappingsPartialUpdateResponse, error)
+
+	AdminArrowCustomerMappingsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body AdminArrowCustomerMappingsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowCustomerMappingsPartialUpdateResponse, error)
+
+	// AdminArrowCustomerMappingsUpdateWithBodyWithResponse request with any body
+	AdminArrowCustomerMappingsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowCustomerMappingsUpdateResponse, error)
+
+	AdminArrowCustomerMappingsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body AdminArrowCustomerMappingsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowCustomerMappingsUpdateResponse, error)
+
+	// AdminArrowCustomerMappingsBillingSummaryRetrieveWithResponse request
+	AdminArrowCustomerMappingsBillingSummaryRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AdminArrowCustomerMappingsBillingSummaryRetrieveResponse, error)
+
+	// AdminArrowCustomerMappingsDiscoverLicensesRetrieveWithResponse request
+	AdminArrowCustomerMappingsDiscoverLicensesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AdminArrowCustomerMappingsDiscoverLicensesRetrieveResponse, error)
+
+	// AdminArrowCustomerMappingsFetchArrowDataRetrieveWithResponse request
+	AdminArrowCustomerMappingsFetchArrowDataRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AdminArrowCustomerMappingsFetchArrowDataRetrieveResponse, error)
+
+	// AdminArrowCustomerMappingsImportLicenseWithBodyWithResponse request with any body
+	AdminArrowCustomerMappingsImportLicenseWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowCustomerMappingsImportLicenseResponse, error)
+
+	AdminArrowCustomerMappingsImportLicenseWithResponse(ctx context.Context, uuid openapi_types.UUID, body AdminArrowCustomerMappingsImportLicenseJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowCustomerMappingsImportLicenseResponse, error)
+
+	// AdminArrowCustomerMappingsLinkResourceWithBodyWithResponse request with any body
+	AdminArrowCustomerMappingsLinkResourceWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowCustomerMappingsLinkResourceResponse, error)
+
+	AdminArrowCustomerMappingsLinkResourceWithResponse(ctx context.Context, uuid openapi_types.UUID, body AdminArrowCustomerMappingsLinkResourceJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowCustomerMappingsLinkResourceResponse, error)
+
+	// AdminArrowSettingsListWithResponse request
+	AdminArrowSettingsListWithResponse(ctx context.Context, params *AdminArrowSettingsListParams, reqEditors ...RequestEditorFn) (*AdminArrowSettingsListResponse, error)
+
+	// AdminArrowSettingsCountWithResponse request
+	AdminArrowSettingsCountWithResponse(ctx context.Context, params *AdminArrowSettingsCountParams, reqEditors ...RequestEditorFn) (*AdminArrowSettingsCountResponse, error)
+
+	// AdminArrowSettingsCreateWithBodyWithResponse request with any body
+	AdminArrowSettingsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowSettingsCreateResponse, error)
+
+	AdminArrowSettingsCreateWithResponse(ctx context.Context, body AdminArrowSettingsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowSettingsCreateResponse, error)
+
+	// AdminArrowSettingsDiscoverCustomersWithBodyWithResponse request with any body
+	AdminArrowSettingsDiscoverCustomersWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowSettingsDiscoverCustomersResponse, error)
+
+	AdminArrowSettingsDiscoverCustomersWithResponse(ctx context.Context, body AdminArrowSettingsDiscoverCustomersJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowSettingsDiscoverCustomersResponse, error)
+
+	// AdminArrowSettingsPreviewSettingsWithBodyWithResponse request with any body
+	AdminArrowSettingsPreviewSettingsWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowSettingsPreviewSettingsResponse, error)
+
+	AdminArrowSettingsPreviewSettingsWithResponse(ctx context.Context, body AdminArrowSettingsPreviewSettingsJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowSettingsPreviewSettingsResponse, error)
+
+	// AdminArrowSettingsSaveSettingsWithBodyWithResponse request with any body
+	AdminArrowSettingsSaveSettingsWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowSettingsSaveSettingsResponse, error)
+
+	AdminArrowSettingsSaveSettingsWithResponse(ctx context.Context, body AdminArrowSettingsSaveSettingsJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowSettingsSaveSettingsResponse, error)
+
+	// AdminArrowSettingsValidateCredentialsWithBodyWithResponse request with any body
+	AdminArrowSettingsValidateCredentialsWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowSettingsValidateCredentialsResponse, error)
+
+	AdminArrowSettingsValidateCredentialsWithResponse(ctx context.Context, body AdminArrowSettingsValidateCredentialsJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowSettingsValidateCredentialsResponse, error)
+
+	// AdminArrowSettingsDestroyWithResponse request
+	AdminArrowSettingsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AdminArrowSettingsDestroyResponse, error)
+
+	// AdminArrowSettingsRetrieveWithResponse request
+	AdminArrowSettingsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AdminArrowSettingsRetrieveResponse, error)
+
+	// AdminArrowSettingsPartialUpdateWithBodyWithResponse request with any body
+	AdminArrowSettingsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowSettingsPartialUpdateResponse, error)
+
+	AdminArrowSettingsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body AdminArrowSettingsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowSettingsPartialUpdateResponse, error)
+
+	// AdminArrowSettingsUpdateWithBodyWithResponse request with any body
+	AdminArrowSettingsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowSettingsUpdateResponse, error)
+
+	AdminArrowSettingsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body AdminArrowSettingsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowSettingsUpdateResponse, error)
+
+	// AdminArrowVendorOfferingMappingsListWithResponse request
+	AdminArrowVendorOfferingMappingsListWithResponse(ctx context.Context, params *AdminArrowVendorOfferingMappingsListParams, reqEditors ...RequestEditorFn) (*AdminArrowVendorOfferingMappingsListResponse, error)
+
+	// AdminArrowVendorOfferingMappingsCountWithResponse request
+	AdminArrowVendorOfferingMappingsCountWithResponse(ctx context.Context, params *AdminArrowVendorOfferingMappingsCountParams, reqEditors ...RequestEditorFn) (*AdminArrowVendorOfferingMappingsCountResponse, error)
+
+	// AdminArrowVendorOfferingMappingsCreateWithBodyWithResponse request with any body
+	AdminArrowVendorOfferingMappingsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowVendorOfferingMappingsCreateResponse, error)
+
+	AdminArrowVendorOfferingMappingsCreateWithResponse(ctx context.Context, body AdminArrowVendorOfferingMappingsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowVendorOfferingMappingsCreateResponse, error)
+
+	// AdminArrowVendorOfferingMappingsVendorChoicesListWithResponse request
+	AdminArrowVendorOfferingMappingsVendorChoicesListWithResponse(ctx context.Context, params *AdminArrowVendorOfferingMappingsVendorChoicesListParams, reqEditors ...RequestEditorFn) (*AdminArrowVendorOfferingMappingsVendorChoicesListResponse, error)
+
+	// AdminArrowVendorOfferingMappingsVendorChoicesCountWithResponse request
+	AdminArrowVendorOfferingMappingsVendorChoicesCountWithResponse(ctx context.Context, params *AdminArrowVendorOfferingMappingsVendorChoicesCountParams, reqEditors ...RequestEditorFn) (*AdminArrowVendorOfferingMappingsVendorChoicesCountResponse, error)
+
+	// AdminArrowVendorOfferingMappingsDestroyWithResponse request
+	AdminArrowVendorOfferingMappingsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AdminArrowVendorOfferingMappingsDestroyResponse, error)
+
+	// AdminArrowVendorOfferingMappingsRetrieveWithResponse request
+	AdminArrowVendorOfferingMappingsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AdminArrowVendorOfferingMappingsRetrieveResponse, error)
+
+	// AdminArrowVendorOfferingMappingsPartialUpdateWithBodyWithResponse request with any body
+	AdminArrowVendorOfferingMappingsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowVendorOfferingMappingsPartialUpdateResponse, error)
+
+	AdminArrowVendorOfferingMappingsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body AdminArrowVendorOfferingMappingsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowVendorOfferingMappingsPartialUpdateResponse, error)
+
+	// AdminArrowVendorOfferingMappingsUpdateWithBodyWithResponse request with any body
+	AdminArrowVendorOfferingMappingsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowVendorOfferingMappingsUpdateResponse, error)
+
+	AdminArrowVendorOfferingMappingsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body AdminArrowVendorOfferingMappingsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowVendorOfferingMappingsUpdateResponse, error)
+
 	// AssignmentBatchesListWithResponse request
 	AssignmentBatchesListWithResponse(ctx context.Context, params *AssignmentBatchesListParams, reqEditors ...RequestEditorFn) (*AssignmentBatchesListResponse, error)
 
@@ -296553,6 +304103,1351 @@ func (r AdminAnnouncementsUpdateResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r AdminAnnouncementsUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowBillingSyncItemsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]ArrowBillingSyncItemDetail
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowBillingSyncItemsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowBillingSyncItemsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowBillingSyncItemsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowBillingSyncItemsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowBillingSyncItemsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowBillingSyncItemsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ArrowBillingSyncItemDetail
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowBillingSyncItemsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowBillingSyncItemsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowBillingSyncsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]ArrowBillingSync
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowBillingSyncsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowBillingSyncsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowBillingSyncsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowBillingSyncsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowBillingSyncsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowBillingSyncsCleanupConsumptionResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CleanupConsumptionResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowBillingSyncsCleanupConsumptionResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowBillingSyncsCleanupConsumptionResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowBillingSyncsConsumptionStatisticsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ConsumptionStatisticsResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowBillingSyncsConsumptionStatisticsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowBillingSyncsConsumptionStatisticsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowBillingSyncsConsumptionStatisticsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowBillingSyncsConsumptionStatisticsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowBillingSyncsConsumptionStatisticsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowBillingSyncsConsumptionStatusRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ConsumptionStatusResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowBillingSyncsConsumptionStatusRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowBillingSyncsConsumptionStatusRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowBillingSyncsConsumptionStatusCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowBillingSyncsConsumptionStatusCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowBillingSyncsConsumptionStatusCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowBillingSyncsFetchBillingExportResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *FetchBillingExportResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowBillingSyncsFetchBillingExportResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowBillingSyncsFetchBillingExportResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowBillingSyncsFetchConsumptionResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *FetchConsumptionResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowBillingSyncsFetchConsumptionResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowBillingSyncsFetchConsumptionResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowBillingSyncsFetchLicenseInfoResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *FetchLicenseInfoResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowBillingSyncsFetchLicenseInfoResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowBillingSyncsFetchLicenseInfoResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowBillingSyncsPauseSyncResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SyncPauseResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowBillingSyncsPauseSyncResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowBillingSyncsPauseSyncResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowBillingSyncsPendingRecordsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]PendingRecord
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowBillingSyncsPendingRecordsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowBillingSyncsPendingRecordsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowBillingSyncsPendingRecordsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowBillingSyncsPendingRecordsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowBillingSyncsPendingRecordsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowBillingSyncsReconcileResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowBillingSyncsReconcileResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowBillingSyncsReconcileResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowBillingSyncsResumeSyncResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SyncPauseResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowBillingSyncsResumeSyncResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowBillingSyncsResumeSyncResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowBillingSyncsSyncResourceHistoricalConsumptionResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SyncResourceHistoricalConsumptionResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowBillingSyncsSyncResourceHistoricalConsumptionResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowBillingSyncsSyncResourceHistoricalConsumptionResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowBillingSyncsSyncResourcesResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SyncResourcesResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowBillingSyncsSyncResourcesResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowBillingSyncsSyncResourcesResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowBillingSyncsTriggerConsumptionSyncResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowBillingSyncsTriggerConsumptionSyncResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowBillingSyncsTriggerConsumptionSyncResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowBillingSyncsTriggerReconciliationResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowBillingSyncsTriggerReconciliationResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowBillingSyncsTriggerReconciliationResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowBillingSyncsTriggerSyncResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowBillingSyncsTriggerSyncResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowBillingSyncsTriggerSyncResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowBillingSyncsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ArrowBillingSync
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowBillingSyncsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowBillingSyncsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowConsumptionRecordsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]ArrowConsumptionRecord
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowConsumptionRecordsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowConsumptionRecordsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowConsumptionRecordsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowConsumptionRecordsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowConsumptionRecordsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowConsumptionRecordsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ArrowConsumptionRecord
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowConsumptionRecordsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowConsumptionRecordsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowCustomerMappingsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]ArrowCustomerMapping
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowCustomerMappingsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowCustomerMappingsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowCustomerMappingsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowCustomerMappingsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowCustomerMappingsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowCustomerMappingsCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *ArrowCustomerMappingCreate
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowCustomerMappingsCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowCustomerMappingsCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowCustomerMappingsAvailableCustomersRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *AvailableArrowCustomersResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowCustomerMappingsAvailableCustomersRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowCustomerMappingsAvailableCustomersRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowCustomerMappingsAvailableCustomersCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowCustomerMappingsAvailableCustomersCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowCustomerMappingsAvailableCustomersCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowCustomerMappingsSyncFromArrowResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowCustomerMappingsSyncFromArrowResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowCustomerMappingsSyncFromArrowResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowCustomerMappingsDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowCustomerMappingsDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowCustomerMappingsDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowCustomerMappingsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ArrowCustomerMapping
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowCustomerMappingsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowCustomerMappingsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowCustomerMappingsPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ArrowCustomerMapping
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowCustomerMappingsPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowCustomerMappingsPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowCustomerMappingsUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ArrowCustomerMapping
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowCustomerMappingsUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowCustomerMappingsUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowCustomerMappingsBillingSummaryRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *CustomerBillingSummaryResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowCustomerMappingsBillingSummaryRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowCustomerMappingsBillingSummaryRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowCustomerMappingsDiscoverLicensesRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *DiscoverLicensesResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowCustomerMappingsDiscoverLicensesRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowCustomerMappingsDiscoverLicensesRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowCustomerMappingsFetchArrowDataRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *FetchCustomerArrowDataResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowCustomerMappingsFetchArrowDataRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowCustomerMappingsFetchArrowDataRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowCustomerMappingsImportLicenseResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ImportLicenseResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowCustomerMappingsImportLicenseResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowCustomerMappingsImportLicenseResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowCustomerMappingsLinkResourceResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *LinkResourceResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowCustomerMappingsLinkResourceResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowCustomerMappingsLinkResourceResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowSettingsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]ArrowSettings
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowSettingsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowSettingsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowSettingsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowSettingsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowSettingsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowSettingsCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *ArrowSettingsCreate
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowSettingsCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowSettingsCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowSettingsDiscoverCustomersResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *DiscoverCustomersResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowSettingsDiscoverCustomersResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowSettingsDiscoverCustomersResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowSettingsPreviewSettingsResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *PreviewSettingsResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowSettingsPreviewSettingsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowSettingsPreviewSettingsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowSettingsSaveSettingsResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *SaveSettingsResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowSettingsSaveSettingsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowSettingsSaveSettingsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowSettingsValidateCredentialsResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ArrowCredentialsValidationResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowSettingsValidateCredentialsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowSettingsValidateCredentialsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowSettingsDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowSettingsDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowSettingsDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowSettingsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ArrowSettings
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowSettingsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowSettingsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowSettingsPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ArrowSettings
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowSettingsPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowSettingsPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowSettingsUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ArrowSettings
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowSettingsUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowSettingsUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowVendorOfferingMappingsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]ArrowVendorOfferingMapping
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowVendorOfferingMappingsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowVendorOfferingMappingsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowVendorOfferingMappingsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowVendorOfferingMappingsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowVendorOfferingMappingsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowVendorOfferingMappingsCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON201      *ArrowVendorOfferingMappingCreate
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowVendorOfferingMappingsCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowVendorOfferingMappingsCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowVendorOfferingMappingsVendorChoicesListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *[]VendorNameChoice
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowVendorOfferingMappingsVendorChoicesListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowVendorOfferingMappingsVendorChoicesListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowVendorOfferingMappingsVendorChoicesCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowVendorOfferingMappingsVendorChoicesCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowVendorOfferingMappingsVendorChoicesCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowVendorOfferingMappingsDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowVendorOfferingMappingsDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowVendorOfferingMappingsDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowVendorOfferingMappingsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ArrowVendorOfferingMapping
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowVendorOfferingMappingsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowVendorOfferingMappingsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowVendorOfferingMappingsPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ArrowVendorOfferingMapping
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowVendorOfferingMappingsPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowVendorOfferingMappingsPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type AdminArrowVendorOfferingMappingsUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ArrowVendorOfferingMapping
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowVendorOfferingMappingsUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowVendorOfferingMappingsUpdateResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -342273,6 +351168,788 @@ func (c *ClientWithResponses) AdminAnnouncementsUpdateWithResponse(ctx context.C
 	return ParseAdminAnnouncementsUpdateResponse(rsp)
 }
 
+// AdminArrowBillingSyncItemsListWithResponse request returning *AdminArrowBillingSyncItemsListResponse
+func (c *ClientWithResponses) AdminArrowBillingSyncItemsListWithResponse(ctx context.Context, params *AdminArrowBillingSyncItemsListParams, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncItemsListResponse, error) {
+	rsp, err := c.AdminArrowBillingSyncItemsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowBillingSyncItemsListResponse(rsp)
+}
+
+// AdminArrowBillingSyncItemsCountWithResponse request returning *AdminArrowBillingSyncItemsCountResponse
+func (c *ClientWithResponses) AdminArrowBillingSyncItemsCountWithResponse(ctx context.Context, params *AdminArrowBillingSyncItemsCountParams, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncItemsCountResponse, error) {
+	rsp, err := c.AdminArrowBillingSyncItemsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowBillingSyncItemsCountResponse(rsp)
+}
+
+// AdminArrowBillingSyncItemsRetrieveWithResponse request returning *AdminArrowBillingSyncItemsRetrieveResponse
+func (c *ClientWithResponses) AdminArrowBillingSyncItemsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncItemsRetrieveResponse, error) {
+	rsp, err := c.AdminArrowBillingSyncItemsRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowBillingSyncItemsRetrieveResponse(rsp)
+}
+
+// AdminArrowBillingSyncsListWithResponse request returning *AdminArrowBillingSyncsListResponse
+func (c *ClientWithResponses) AdminArrowBillingSyncsListWithResponse(ctx context.Context, params *AdminArrowBillingSyncsListParams, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsListResponse, error) {
+	rsp, err := c.AdminArrowBillingSyncsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowBillingSyncsListResponse(rsp)
+}
+
+// AdminArrowBillingSyncsCountWithResponse request returning *AdminArrowBillingSyncsCountResponse
+func (c *ClientWithResponses) AdminArrowBillingSyncsCountWithResponse(ctx context.Context, params *AdminArrowBillingSyncsCountParams, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsCountResponse, error) {
+	rsp, err := c.AdminArrowBillingSyncsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowBillingSyncsCountResponse(rsp)
+}
+
+// AdminArrowBillingSyncsCleanupConsumptionWithBodyWithResponse request with arbitrary body returning *AdminArrowBillingSyncsCleanupConsumptionResponse
+func (c *ClientWithResponses) AdminArrowBillingSyncsCleanupConsumptionWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsCleanupConsumptionResponse, error) {
+	rsp, err := c.AdminArrowBillingSyncsCleanupConsumptionWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowBillingSyncsCleanupConsumptionResponse(rsp)
+}
+
+func (c *ClientWithResponses) AdminArrowBillingSyncsCleanupConsumptionWithResponse(ctx context.Context, body AdminArrowBillingSyncsCleanupConsumptionJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsCleanupConsumptionResponse, error) {
+	rsp, err := c.AdminArrowBillingSyncsCleanupConsumption(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowBillingSyncsCleanupConsumptionResponse(rsp)
+}
+
+// AdminArrowBillingSyncsConsumptionStatisticsRetrieveWithResponse request returning *AdminArrowBillingSyncsConsumptionStatisticsRetrieveResponse
+func (c *ClientWithResponses) AdminArrowBillingSyncsConsumptionStatisticsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsConsumptionStatisticsRetrieveResponse, error) {
+	rsp, err := c.AdminArrowBillingSyncsConsumptionStatisticsRetrieve(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowBillingSyncsConsumptionStatisticsRetrieveResponse(rsp)
+}
+
+// AdminArrowBillingSyncsConsumptionStatisticsCountWithResponse request returning *AdminArrowBillingSyncsConsumptionStatisticsCountResponse
+func (c *ClientWithResponses) AdminArrowBillingSyncsConsumptionStatisticsCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsConsumptionStatisticsCountResponse, error) {
+	rsp, err := c.AdminArrowBillingSyncsConsumptionStatisticsCount(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowBillingSyncsConsumptionStatisticsCountResponse(rsp)
+}
+
+// AdminArrowBillingSyncsConsumptionStatusRetrieveWithResponse request returning *AdminArrowBillingSyncsConsumptionStatusRetrieveResponse
+func (c *ClientWithResponses) AdminArrowBillingSyncsConsumptionStatusRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsConsumptionStatusRetrieveResponse, error) {
+	rsp, err := c.AdminArrowBillingSyncsConsumptionStatusRetrieve(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowBillingSyncsConsumptionStatusRetrieveResponse(rsp)
+}
+
+// AdminArrowBillingSyncsConsumptionStatusCountWithResponse request returning *AdminArrowBillingSyncsConsumptionStatusCountResponse
+func (c *ClientWithResponses) AdminArrowBillingSyncsConsumptionStatusCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsConsumptionStatusCountResponse, error) {
+	rsp, err := c.AdminArrowBillingSyncsConsumptionStatusCount(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowBillingSyncsConsumptionStatusCountResponse(rsp)
+}
+
+// AdminArrowBillingSyncsFetchBillingExportWithBodyWithResponse request with arbitrary body returning *AdminArrowBillingSyncsFetchBillingExportResponse
+func (c *ClientWithResponses) AdminArrowBillingSyncsFetchBillingExportWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsFetchBillingExportResponse, error) {
+	rsp, err := c.AdminArrowBillingSyncsFetchBillingExportWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowBillingSyncsFetchBillingExportResponse(rsp)
+}
+
+func (c *ClientWithResponses) AdminArrowBillingSyncsFetchBillingExportWithResponse(ctx context.Context, body AdminArrowBillingSyncsFetchBillingExportJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsFetchBillingExportResponse, error) {
+	rsp, err := c.AdminArrowBillingSyncsFetchBillingExport(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowBillingSyncsFetchBillingExportResponse(rsp)
+}
+
+// AdminArrowBillingSyncsFetchConsumptionWithBodyWithResponse request with arbitrary body returning *AdminArrowBillingSyncsFetchConsumptionResponse
+func (c *ClientWithResponses) AdminArrowBillingSyncsFetchConsumptionWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsFetchConsumptionResponse, error) {
+	rsp, err := c.AdminArrowBillingSyncsFetchConsumptionWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowBillingSyncsFetchConsumptionResponse(rsp)
+}
+
+func (c *ClientWithResponses) AdminArrowBillingSyncsFetchConsumptionWithResponse(ctx context.Context, body AdminArrowBillingSyncsFetchConsumptionJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsFetchConsumptionResponse, error) {
+	rsp, err := c.AdminArrowBillingSyncsFetchConsumption(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowBillingSyncsFetchConsumptionResponse(rsp)
+}
+
+// AdminArrowBillingSyncsFetchLicenseInfoWithBodyWithResponse request with arbitrary body returning *AdminArrowBillingSyncsFetchLicenseInfoResponse
+func (c *ClientWithResponses) AdminArrowBillingSyncsFetchLicenseInfoWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsFetchLicenseInfoResponse, error) {
+	rsp, err := c.AdminArrowBillingSyncsFetchLicenseInfoWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowBillingSyncsFetchLicenseInfoResponse(rsp)
+}
+
+func (c *ClientWithResponses) AdminArrowBillingSyncsFetchLicenseInfoWithResponse(ctx context.Context, body AdminArrowBillingSyncsFetchLicenseInfoJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsFetchLicenseInfoResponse, error) {
+	rsp, err := c.AdminArrowBillingSyncsFetchLicenseInfo(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowBillingSyncsFetchLicenseInfoResponse(rsp)
+}
+
+// AdminArrowBillingSyncsPauseSyncWithBodyWithResponse request with arbitrary body returning *AdminArrowBillingSyncsPauseSyncResponse
+func (c *ClientWithResponses) AdminArrowBillingSyncsPauseSyncWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsPauseSyncResponse, error) {
+	rsp, err := c.AdminArrowBillingSyncsPauseSyncWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowBillingSyncsPauseSyncResponse(rsp)
+}
+
+func (c *ClientWithResponses) AdminArrowBillingSyncsPauseSyncWithResponse(ctx context.Context, body AdminArrowBillingSyncsPauseSyncJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsPauseSyncResponse, error) {
+	rsp, err := c.AdminArrowBillingSyncsPauseSync(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowBillingSyncsPauseSyncResponse(rsp)
+}
+
+// AdminArrowBillingSyncsPendingRecordsListWithResponse request returning *AdminArrowBillingSyncsPendingRecordsListResponse
+func (c *ClientWithResponses) AdminArrowBillingSyncsPendingRecordsListWithResponse(ctx context.Context, params *AdminArrowBillingSyncsPendingRecordsListParams, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsPendingRecordsListResponse, error) {
+	rsp, err := c.AdminArrowBillingSyncsPendingRecordsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowBillingSyncsPendingRecordsListResponse(rsp)
+}
+
+// AdminArrowBillingSyncsPendingRecordsCountWithResponse request returning *AdminArrowBillingSyncsPendingRecordsCountResponse
+func (c *ClientWithResponses) AdminArrowBillingSyncsPendingRecordsCountWithResponse(ctx context.Context, params *AdminArrowBillingSyncsPendingRecordsCountParams, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsPendingRecordsCountResponse, error) {
+	rsp, err := c.AdminArrowBillingSyncsPendingRecordsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowBillingSyncsPendingRecordsCountResponse(rsp)
+}
+
+// AdminArrowBillingSyncsReconcileWithBodyWithResponse request with arbitrary body returning *AdminArrowBillingSyncsReconcileResponse
+func (c *ClientWithResponses) AdminArrowBillingSyncsReconcileWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsReconcileResponse, error) {
+	rsp, err := c.AdminArrowBillingSyncsReconcileWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowBillingSyncsReconcileResponse(rsp)
+}
+
+func (c *ClientWithResponses) AdminArrowBillingSyncsReconcileWithResponse(ctx context.Context, body AdminArrowBillingSyncsReconcileJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsReconcileResponse, error) {
+	rsp, err := c.AdminArrowBillingSyncsReconcile(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowBillingSyncsReconcileResponse(rsp)
+}
+
+// AdminArrowBillingSyncsResumeSyncWithBodyWithResponse request with arbitrary body returning *AdminArrowBillingSyncsResumeSyncResponse
+func (c *ClientWithResponses) AdminArrowBillingSyncsResumeSyncWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsResumeSyncResponse, error) {
+	rsp, err := c.AdminArrowBillingSyncsResumeSyncWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowBillingSyncsResumeSyncResponse(rsp)
+}
+
+func (c *ClientWithResponses) AdminArrowBillingSyncsResumeSyncWithResponse(ctx context.Context, body AdminArrowBillingSyncsResumeSyncJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsResumeSyncResponse, error) {
+	rsp, err := c.AdminArrowBillingSyncsResumeSync(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowBillingSyncsResumeSyncResponse(rsp)
+}
+
+// AdminArrowBillingSyncsSyncResourceHistoricalConsumptionWithBodyWithResponse request with arbitrary body returning *AdminArrowBillingSyncsSyncResourceHistoricalConsumptionResponse
+func (c *ClientWithResponses) AdminArrowBillingSyncsSyncResourceHistoricalConsumptionWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsSyncResourceHistoricalConsumptionResponse, error) {
+	rsp, err := c.AdminArrowBillingSyncsSyncResourceHistoricalConsumptionWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowBillingSyncsSyncResourceHistoricalConsumptionResponse(rsp)
+}
+
+func (c *ClientWithResponses) AdminArrowBillingSyncsSyncResourceHistoricalConsumptionWithResponse(ctx context.Context, body AdminArrowBillingSyncsSyncResourceHistoricalConsumptionJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsSyncResourceHistoricalConsumptionResponse, error) {
+	rsp, err := c.AdminArrowBillingSyncsSyncResourceHistoricalConsumption(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowBillingSyncsSyncResourceHistoricalConsumptionResponse(rsp)
+}
+
+// AdminArrowBillingSyncsSyncResourcesWithBodyWithResponse request with arbitrary body returning *AdminArrowBillingSyncsSyncResourcesResponse
+func (c *ClientWithResponses) AdminArrowBillingSyncsSyncResourcesWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsSyncResourcesResponse, error) {
+	rsp, err := c.AdminArrowBillingSyncsSyncResourcesWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowBillingSyncsSyncResourcesResponse(rsp)
+}
+
+func (c *ClientWithResponses) AdminArrowBillingSyncsSyncResourcesWithResponse(ctx context.Context, body AdminArrowBillingSyncsSyncResourcesJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsSyncResourcesResponse, error) {
+	rsp, err := c.AdminArrowBillingSyncsSyncResources(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowBillingSyncsSyncResourcesResponse(rsp)
+}
+
+// AdminArrowBillingSyncsTriggerConsumptionSyncWithBodyWithResponse request with arbitrary body returning *AdminArrowBillingSyncsTriggerConsumptionSyncResponse
+func (c *ClientWithResponses) AdminArrowBillingSyncsTriggerConsumptionSyncWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsTriggerConsumptionSyncResponse, error) {
+	rsp, err := c.AdminArrowBillingSyncsTriggerConsumptionSyncWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowBillingSyncsTriggerConsumptionSyncResponse(rsp)
+}
+
+func (c *ClientWithResponses) AdminArrowBillingSyncsTriggerConsumptionSyncWithResponse(ctx context.Context, body AdminArrowBillingSyncsTriggerConsumptionSyncJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsTriggerConsumptionSyncResponse, error) {
+	rsp, err := c.AdminArrowBillingSyncsTriggerConsumptionSync(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowBillingSyncsTriggerConsumptionSyncResponse(rsp)
+}
+
+// AdminArrowBillingSyncsTriggerReconciliationWithBodyWithResponse request with arbitrary body returning *AdminArrowBillingSyncsTriggerReconciliationResponse
+func (c *ClientWithResponses) AdminArrowBillingSyncsTriggerReconciliationWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsTriggerReconciliationResponse, error) {
+	rsp, err := c.AdminArrowBillingSyncsTriggerReconciliationWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowBillingSyncsTriggerReconciliationResponse(rsp)
+}
+
+func (c *ClientWithResponses) AdminArrowBillingSyncsTriggerReconciliationWithResponse(ctx context.Context, body AdminArrowBillingSyncsTriggerReconciliationJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsTriggerReconciliationResponse, error) {
+	rsp, err := c.AdminArrowBillingSyncsTriggerReconciliation(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowBillingSyncsTriggerReconciliationResponse(rsp)
+}
+
+// AdminArrowBillingSyncsTriggerSyncWithBodyWithResponse request with arbitrary body returning *AdminArrowBillingSyncsTriggerSyncResponse
+func (c *ClientWithResponses) AdminArrowBillingSyncsTriggerSyncWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsTriggerSyncResponse, error) {
+	rsp, err := c.AdminArrowBillingSyncsTriggerSyncWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowBillingSyncsTriggerSyncResponse(rsp)
+}
+
+func (c *ClientWithResponses) AdminArrowBillingSyncsTriggerSyncWithResponse(ctx context.Context, body AdminArrowBillingSyncsTriggerSyncJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsTriggerSyncResponse, error) {
+	rsp, err := c.AdminArrowBillingSyncsTriggerSync(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowBillingSyncsTriggerSyncResponse(rsp)
+}
+
+// AdminArrowBillingSyncsRetrieveWithResponse request returning *AdminArrowBillingSyncsRetrieveResponse
+func (c *ClientWithResponses) AdminArrowBillingSyncsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsRetrieveResponse, error) {
+	rsp, err := c.AdminArrowBillingSyncsRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowBillingSyncsRetrieveResponse(rsp)
+}
+
+// AdminArrowConsumptionRecordsListWithResponse request returning *AdminArrowConsumptionRecordsListResponse
+func (c *ClientWithResponses) AdminArrowConsumptionRecordsListWithResponse(ctx context.Context, params *AdminArrowConsumptionRecordsListParams, reqEditors ...RequestEditorFn) (*AdminArrowConsumptionRecordsListResponse, error) {
+	rsp, err := c.AdminArrowConsumptionRecordsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowConsumptionRecordsListResponse(rsp)
+}
+
+// AdminArrowConsumptionRecordsCountWithResponse request returning *AdminArrowConsumptionRecordsCountResponse
+func (c *ClientWithResponses) AdminArrowConsumptionRecordsCountWithResponse(ctx context.Context, params *AdminArrowConsumptionRecordsCountParams, reqEditors ...RequestEditorFn) (*AdminArrowConsumptionRecordsCountResponse, error) {
+	rsp, err := c.AdminArrowConsumptionRecordsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowConsumptionRecordsCountResponse(rsp)
+}
+
+// AdminArrowConsumptionRecordsRetrieveWithResponse request returning *AdminArrowConsumptionRecordsRetrieveResponse
+func (c *ClientWithResponses) AdminArrowConsumptionRecordsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AdminArrowConsumptionRecordsRetrieveResponse, error) {
+	rsp, err := c.AdminArrowConsumptionRecordsRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowConsumptionRecordsRetrieveResponse(rsp)
+}
+
+// AdminArrowCustomerMappingsListWithResponse request returning *AdminArrowCustomerMappingsListResponse
+func (c *ClientWithResponses) AdminArrowCustomerMappingsListWithResponse(ctx context.Context, params *AdminArrowCustomerMappingsListParams, reqEditors ...RequestEditorFn) (*AdminArrowCustomerMappingsListResponse, error) {
+	rsp, err := c.AdminArrowCustomerMappingsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowCustomerMappingsListResponse(rsp)
+}
+
+// AdminArrowCustomerMappingsCountWithResponse request returning *AdminArrowCustomerMappingsCountResponse
+func (c *ClientWithResponses) AdminArrowCustomerMappingsCountWithResponse(ctx context.Context, params *AdminArrowCustomerMappingsCountParams, reqEditors ...RequestEditorFn) (*AdminArrowCustomerMappingsCountResponse, error) {
+	rsp, err := c.AdminArrowCustomerMappingsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowCustomerMappingsCountResponse(rsp)
+}
+
+// AdminArrowCustomerMappingsCreateWithBodyWithResponse request with arbitrary body returning *AdminArrowCustomerMappingsCreateResponse
+func (c *ClientWithResponses) AdminArrowCustomerMappingsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowCustomerMappingsCreateResponse, error) {
+	rsp, err := c.AdminArrowCustomerMappingsCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowCustomerMappingsCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) AdminArrowCustomerMappingsCreateWithResponse(ctx context.Context, body AdminArrowCustomerMappingsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowCustomerMappingsCreateResponse, error) {
+	rsp, err := c.AdminArrowCustomerMappingsCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowCustomerMappingsCreateResponse(rsp)
+}
+
+// AdminArrowCustomerMappingsAvailableCustomersRetrieveWithResponse request returning *AdminArrowCustomerMappingsAvailableCustomersRetrieveResponse
+func (c *ClientWithResponses) AdminArrowCustomerMappingsAvailableCustomersRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*AdminArrowCustomerMappingsAvailableCustomersRetrieveResponse, error) {
+	rsp, err := c.AdminArrowCustomerMappingsAvailableCustomersRetrieve(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowCustomerMappingsAvailableCustomersRetrieveResponse(rsp)
+}
+
+// AdminArrowCustomerMappingsAvailableCustomersCountWithResponse request returning *AdminArrowCustomerMappingsAvailableCustomersCountResponse
+func (c *ClientWithResponses) AdminArrowCustomerMappingsAvailableCustomersCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*AdminArrowCustomerMappingsAvailableCustomersCountResponse, error) {
+	rsp, err := c.AdminArrowCustomerMappingsAvailableCustomersCount(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowCustomerMappingsAvailableCustomersCountResponse(rsp)
+}
+
+// AdminArrowCustomerMappingsSyncFromArrowWithBodyWithResponse request with arbitrary body returning *AdminArrowCustomerMappingsSyncFromArrowResponse
+func (c *ClientWithResponses) AdminArrowCustomerMappingsSyncFromArrowWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowCustomerMappingsSyncFromArrowResponse, error) {
+	rsp, err := c.AdminArrowCustomerMappingsSyncFromArrowWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowCustomerMappingsSyncFromArrowResponse(rsp)
+}
+
+func (c *ClientWithResponses) AdminArrowCustomerMappingsSyncFromArrowWithResponse(ctx context.Context, body AdminArrowCustomerMappingsSyncFromArrowJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowCustomerMappingsSyncFromArrowResponse, error) {
+	rsp, err := c.AdminArrowCustomerMappingsSyncFromArrow(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowCustomerMappingsSyncFromArrowResponse(rsp)
+}
+
+// AdminArrowCustomerMappingsDestroyWithResponse request returning *AdminArrowCustomerMappingsDestroyResponse
+func (c *ClientWithResponses) AdminArrowCustomerMappingsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AdminArrowCustomerMappingsDestroyResponse, error) {
+	rsp, err := c.AdminArrowCustomerMappingsDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowCustomerMappingsDestroyResponse(rsp)
+}
+
+// AdminArrowCustomerMappingsRetrieveWithResponse request returning *AdminArrowCustomerMappingsRetrieveResponse
+func (c *ClientWithResponses) AdminArrowCustomerMappingsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AdminArrowCustomerMappingsRetrieveResponse, error) {
+	rsp, err := c.AdminArrowCustomerMappingsRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowCustomerMappingsRetrieveResponse(rsp)
+}
+
+// AdminArrowCustomerMappingsPartialUpdateWithBodyWithResponse request with arbitrary body returning *AdminArrowCustomerMappingsPartialUpdateResponse
+func (c *ClientWithResponses) AdminArrowCustomerMappingsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowCustomerMappingsPartialUpdateResponse, error) {
+	rsp, err := c.AdminArrowCustomerMappingsPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowCustomerMappingsPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) AdminArrowCustomerMappingsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body AdminArrowCustomerMappingsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowCustomerMappingsPartialUpdateResponse, error) {
+	rsp, err := c.AdminArrowCustomerMappingsPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowCustomerMappingsPartialUpdateResponse(rsp)
+}
+
+// AdminArrowCustomerMappingsUpdateWithBodyWithResponse request with arbitrary body returning *AdminArrowCustomerMappingsUpdateResponse
+func (c *ClientWithResponses) AdminArrowCustomerMappingsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowCustomerMappingsUpdateResponse, error) {
+	rsp, err := c.AdminArrowCustomerMappingsUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowCustomerMappingsUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) AdminArrowCustomerMappingsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body AdminArrowCustomerMappingsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowCustomerMappingsUpdateResponse, error) {
+	rsp, err := c.AdminArrowCustomerMappingsUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowCustomerMappingsUpdateResponse(rsp)
+}
+
+// AdminArrowCustomerMappingsBillingSummaryRetrieveWithResponse request returning *AdminArrowCustomerMappingsBillingSummaryRetrieveResponse
+func (c *ClientWithResponses) AdminArrowCustomerMappingsBillingSummaryRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AdminArrowCustomerMappingsBillingSummaryRetrieveResponse, error) {
+	rsp, err := c.AdminArrowCustomerMappingsBillingSummaryRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowCustomerMappingsBillingSummaryRetrieveResponse(rsp)
+}
+
+// AdminArrowCustomerMappingsDiscoverLicensesRetrieveWithResponse request returning *AdminArrowCustomerMappingsDiscoverLicensesRetrieveResponse
+func (c *ClientWithResponses) AdminArrowCustomerMappingsDiscoverLicensesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AdminArrowCustomerMappingsDiscoverLicensesRetrieveResponse, error) {
+	rsp, err := c.AdminArrowCustomerMappingsDiscoverLicensesRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowCustomerMappingsDiscoverLicensesRetrieveResponse(rsp)
+}
+
+// AdminArrowCustomerMappingsFetchArrowDataRetrieveWithResponse request returning *AdminArrowCustomerMappingsFetchArrowDataRetrieveResponse
+func (c *ClientWithResponses) AdminArrowCustomerMappingsFetchArrowDataRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AdminArrowCustomerMappingsFetchArrowDataRetrieveResponse, error) {
+	rsp, err := c.AdminArrowCustomerMappingsFetchArrowDataRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowCustomerMappingsFetchArrowDataRetrieveResponse(rsp)
+}
+
+// AdminArrowCustomerMappingsImportLicenseWithBodyWithResponse request with arbitrary body returning *AdminArrowCustomerMappingsImportLicenseResponse
+func (c *ClientWithResponses) AdminArrowCustomerMappingsImportLicenseWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowCustomerMappingsImportLicenseResponse, error) {
+	rsp, err := c.AdminArrowCustomerMappingsImportLicenseWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowCustomerMappingsImportLicenseResponse(rsp)
+}
+
+func (c *ClientWithResponses) AdminArrowCustomerMappingsImportLicenseWithResponse(ctx context.Context, uuid openapi_types.UUID, body AdminArrowCustomerMappingsImportLicenseJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowCustomerMappingsImportLicenseResponse, error) {
+	rsp, err := c.AdminArrowCustomerMappingsImportLicense(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowCustomerMappingsImportLicenseResponse(rsp)
+}
+
+// AdminArrowCustomerMappingsLinkResourceWithBodyWithResponse request with arbitrary body returning *AdminArrowCustomerMappingsLinkResourceResponse
+func (c *ClientWithResponses) AdminArrowCustomerMappingsLinkResourceWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowCustomerMappingsLinkResourceResponse, error) {
+	rsp, err := c.AdminArrowCustomerMappingsLinkResourceWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowCustomerMappingsLinkResourceResponse(rsp)
+}
+
+func (c *ClientWithResponses) AdminArrowCustomerMappingsLinkResourceWithResponse(ctx context.Context, uuid openapi_types.UUID, body AdminArrowCustomerMappingsLinkResourceJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowCustomerMappingsLinkResourceResponse, error) {
+	rsp, err := c.AdminArrowCustomerMappingsLinkResource(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowCustomerMappingsLinkResourceResponse(rsp)
+}
+
+// AdminArrowSettingsListWithResponse request returning *AdminArrowSettingsListResponse
+func (c *ClientWithResponses) AdminArrowSettingsListWithResponse(ctx context.Context, params *AdminArrowSettingsListParams, reqEditors ...RequestEditorFn) (*AdminArrowSettingsListResponse, error) {
+	rsp, err := c.AdminArrowSettingsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowSettingsListResponse(rsp)
+}
+
+// AdminArrowSettingsCountWithResponse request returning *AdminArrowSettingsCountResponse
+func (c *ClientWithResponses) AdminArrowSettingsCountWithResponse(ctx context.Context, params *AdminArrowSettingsCountParams, reqEditors ...RequestEditorFn) (*AdminArrowSettingsCountResponse, error) {
+	rsp, err := c.AdminArrowSettingsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowSettingsCountResponse(rsp)
+}
+
+// AdminArrowSettingsCreateWithBodyWithResponse request with arbitrary body returning *AdminArrowSettingsCreateResponse
+func (c *ClientWithResponses) AdminArrowSettingsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowSettingsCreateResponse, error) {
+	rsp, err := c.AdminArrowSettingsCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowSettingsCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) AdminArrowSettingsCreateWithResponse(ctx context.Context, body AdminArrowSettingsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowSettingsCreateResponse, error) {
+	rsp, err := c.AdminArrowSettingsCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowSettingsCreateResponse(rsp)
+}
+
+// AdminArrowSettingsDiscoverCustomersWithBodyWithResponse request with arbitrary body returning *AdminArrowSettingsDiscoverCustomersResponse
+func (c *ClientWithResponses) AdminArrowSettingsDiscoverCustomersWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowSettingsDiscoverCustomersResponse, error) {
+	rsp, err := c.AdminArrowSettingsDiscoverCustomersWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowSettingsDiscoverCustomersResponse(rsp)
+}
+
+func (c *ClientWithResponses) AdminArrowSettingsDiscoverCustomersWithResponse(ctx context.Context, body AdminArrowSettingsDiscoverCustomersJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowSettingsDiscoverCustomersResponse, error) {
+	rsp, err := c.AdminArrowSettingsDiscoverCustomers(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowSettingsDiscoverCustomersResponse(rsp)
+}
+
+// AdminArrowSettingsPreviewSettingsWithBodyWithResponse request with arbitrary body returning *AdminArrowSettingsPreviewSettingsResponse
+func (c *ClientWithResponses) AdminArrowSettingsPreviewSettingsWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowSettingsPreviewSettingsResponse, error) {
+	rsp, err := c.AdminArrowSettingsPreviewSettingsWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowSettingsPreviewSettingsResponse(rsp)
+}
+
+func (c *ClientWithResponses) AdminArrowSettingsPreviewSettingsWithResponse(ctx context.Context, body AdminArrowSettingsPreviewSettingsJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowSettingsPreviewSettingsResponse, error) {
+	rsp, err := c.AdminArrowSettingsPreviewSettings(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowSettingsPreviewSettingsResponse(rsp)
+}
+
+// AdminArrowSettingsSaveSettingsWithBodyWithResponse request with arbitrary body returning *AdminArrowSettingsSaveSettingsResponse
+func (c *ClientWithResponses) AdminArrowSettingsSaveSettingsWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowSettingsSaveSettingsResponse, error) {
+	rsp, err := c.AdminArrowSettingsSaveSettingsWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowSettingsSaveSettingsResponse(rsp)
+}
+
+func (c *ClientWithResponses) AdminArrowSettingsSaveSettingsWithResponse(ctx context.Context, body AdminArrowSettingsSaveSettingsJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowSettingsSaveSettingsResponse, error) {
+	rsp, err := c.AdminArrowSettingsSaveSettings(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowSettingsSaveSettingsResponse(rsp)
+}
+
+// AdminArrowSettingsValidateCredentialsWithBodyWithResponse request with arbitrary body returning *AdminArrowSettingsValidateCredentialsResponse
+func (c *ClientWithResponses) AdminArrowSettingsValidateCredentialsWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowSettingsValidateCredentialsResponse, error) {
+	rsp, err := c.AdminArrowSettingsValidateCredentialsWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowSettingsValidateCredentialsResponse(rsp)
+}
+
+func (c *ClientWithResponses) AdminArrowSettingsValidateCredentialsWithResponse(ctx context.Context, body AdminArrowSettingsValidateCredentialsJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowSettingsValidateCredentialsResponse, error) {
+	rsp, err := c.AdminArrowSettingsValidateCredentials(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowSettingsValidateCredentialsResponse(rsp)
+}
+
+// AdminArrowSettingsDestroyWithResponse request returning *AdminArrowSettingsDestroyResponse
+func (c *ClientWithResponses) AdminArrowSettingsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AdminArrowSettingsDestroyResponse, error) {
+	rsp, err := c.AdminArrowSettingsDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowSettingsDestroyResponse(rsp)
+}
+
+// AdminArrowSettingsRetrieveWithResponse request returning *AdminArrowSettingsRetrieveResponse
+func (c *ClientWithResponses) AdminArrowSettingsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AdminArrowSettingsRetrieveResponse, error) {
+	rsp, err := c.AdminArrowSettingsRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowSettingsRetrieveResponse(rsp)
+}
+
+// AdminArrowSettingsPartialUpdateWithBodyWithResponse request with arbitrary body returning *AdminArrowSettingsPartialUpdateResponse
+func (c *ClientWithResponses) AdminArrowSettingsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowSettingsPartialUpdateResponse, error) {
+	rsp, err := c.AdminArrowSettingsPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowSettingsPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) AdminArrowSettingsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body AdminArrowSettingsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowSettingsPartialUpdateResponse, error) {
+	rsp, err := c.AdminArrowSettingsPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowSettingsPartialUpdateResponse(rsp)
+}
+
+// AdminArrowSettingsUpdateWithBodyWithResponse request with arbitrary body returning *AdminArrowSettingsUpdateResponse
+func (c *ClientWithResponses) AdminArrowSettingsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowSettingsUpdateResponse, error) {
+	rsp, err := c.AdminArrowSettingsUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowSettingsUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) AdminArrowSettingsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body AdminArrowSettingsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowSettingsUpdateResponse, error) {
+	rsp, err := c.AdminArrowSettingsUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowSettingsUpdateResponse(rsp)
+}
+
+// AdminArrowVendorOfferingMappingsListWithResponse request returning *AdminArrowVendorOfferingMappingsListResponse
+func (c *ClientWithResponses) AdminArrowVendorOfferingMappingsListWithResponse(ctx context.Context, params *AdminArrowVendorOfferingMappingsListParams, reqEditors ...RequestEditorFn) (*AdminArrowVendorOfferingMappingsListResponse, error) {
+	rsp, err := c.AdminArrowVendorOfferingMappingsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowVendorOfferingMappingsListResponse(rsp)
+}
+
+// AdminArrowVendorOfferingMappingsCountWithResponse request returning *AdminArrowVendorOfferingMappingsCountResponse
+func (c *ClientWithResponses) AdminArrowVendorOfferingMappingsCountWithResponse(ctx context.Context, params *AdminArrowVendorOfferingMappingsCountParams, reqEditors ...RequestEditorFn) (*AdminArrowVendorOfferingMappingsCountResponse, error) {
+	rsp, err := c.AdminArrowVendorOfferingMappingsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowVendorOfferingMappingsCountResponse(rsp)
+}
+
+// AdminArrowVendorOfferingMappingsCreateWithBodyWithResponse request with arbitrary body returning *AdminArrowVendorOfferingMappingsCreateResponse
+func (c *ClientWithResponses) AdminArrowVendorOfferingMappingsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowVendorOfferingMappingsCreateResponse, error) {
+	rsp, err := c.AdminArrowVendorOfferingMappingsCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowVendorOfferingMappingsCreateResponse(rsp)
+}
+
+func (c *ClientWithResponses) AdminArrowVendorOfferingMappingsCreateWithResponse(ctx context.Context, body AdminArrowVendorOfferingMappingsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowVendorOfferingMappingsCreateResponse, error) {
+	rsp, err := c.AdminArrowVendorOfferingMappingsCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowVendorOfferingMappingsCreateResponse(rsp)
+}
+
+// AdminArrowVendorOfferingMappingsVendorChoicesListWithResponse request returning *AdminArrowVendorOfferingMappingsVendorChoicesListResponse
+func (c *ClientWithResponses) AdminArrowVendorOfferingMappingsVendorChoicesListWithResponse(ctx context.Context, params *AdminArrowVendorOfferingMappingsVendorChoicesListParams, reqEditors ...RequestEditorFn) (*AdminArrowVendorOfferingMappingsVendorChoicesListResponse, error) {
+	rsp, err := c.AdminArrowVendorOfferingMappingsVendorChoicesList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowVendorOfferingMappingsVendorChoicesListResponse(rsp)
+}
+
+// AdminArrowVendorOfferingMappingsVendorChoicesCountWithResponse request returning *AdminArrowVendorOfferingMappingsVendorChoicesCountResponse
+func (c *ClientWithResponses) AdminArrowVendorOfferingMappingsVendorChoicesCountWithResponse(ctx context.Context, params *AdminArrowVendorOfferingMappingsVendorChoicesCountParams, reqEditors ...RequestEditorFn) (*AdminArrowVendorOfferingMappingsVendorChoicesCountResponse, error) {
+	rsp, err := c.AdminArrowVendorOfferingMappingsVendorChoicesCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowVendorOfferingMappingsVendorChoicesCountResponse(rsp)
+}
+
+// AdminArrowVendorOfferingMappingsDestroyWithResponse request returning *AdminArrowVendorOfferingMappingsDestroyResponse
+func (c *ClientWithResponses) AdminArrowVendorOfferingMappingsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AdminArrowVendorOfferingMappingsDestroyResponse, error) {
+	rsp, err := c.AdminArrowVendorOfferingMappingsDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowVendorOfferingMappingsDestroyResponse(rsp)
+}
+
+// AdminArrowVendorOfferingMappingsRetrieveWithResponse request returning *AdminArrowVendorOfferingMappingsRetrieveResponse
+func (c *ClientWithResponses) AdminArrowVendorOfferingMappingsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*AdminArrowVendorOfferingMappingsRetrieveResponse, error) {
+	rsp, err := c.AdminArrowVendorOfferingMappingsRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowVendorOfferingMappingsRetrieveResponse(rsp)
+}
+
+// AdminArrowVendorOfferingMappingsPartialUpdateWithBodyWithResponse request with arbitrary body returning *AdminArrowVendorOfferingMappingsPartialUpdateResponse
+func (c *ClientWithResponses) AdminArrowVendorOfferingMappingsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowVendorOfferingMappingsPartialUpdateResponse, error) {
+	rsp, err := c.AdminArrowVendorOfferingMappingsPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowVendorOfferingMappingsPartialUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) AdminArrowVendorOfferingMappingsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body AdminArrowVendorOfferingMappingsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowVendorOfferingMappingsPartialUpdateResponse, error) {
+	rsp, err := c.AdminArrowVendorOfferingMappingsPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowVendorOfferingMappingsPartialUpdateResponse(rsp)
+}
+
+// AdminArrowVendorOfferingMappingsUpdateWithBodyWithResponse request with arbitrary body returning *AdminArrowVendorOfferingMappingsUpdateResponse
+func (c *ClientWithResponses) AdminArrowVendorOfferingMappingsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowVendorOfferingMappingsUpdateResponse, error) {
+	rsp, err := c.AdminArrowVendorOfferingMappingsUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowVendorOfferingMappingsUpdateResponse(rsp)
+}
+
+func (c *ClientWithResponses) AdminArrowVendorOfferingMappingsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body AdminArrowVendorOfferingMappingsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowVendorOfferingMappingsUpdateResponse, error) {
+	rsp, err := c.AdminArrowVendorOfferingMappingsUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowVendorOfferingMappingsUpdateResponse(rsp)
+}
+
 // AssignmentBatchesListWithResponse request returning *AssignmentBatchesListResponse
 func (c *ClientWithResponses) AssignmentBatchesListWithResponse(ctx context.Context, params *AssignmentBatchesListParams, reqEditors ...RequestEditorFn) (*AssignmentBatchesListResponse, error) {
 	rsp, err := c.AssignmentBatchesList(ctx, params, reqEditors...)
@@ -367483,6 +377160,1428 @@ func ParseAdminAnnouncementsUpdateResponse(rsp *http.Response) (*AdminAnnounceme
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest AdminAnnouncement
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowBillingSyncItemsListResponse parses an HTTP response from a AdminArrowBillingSyncItemsListWithResponse call
+func ParseAdminArrowBillingSyncItemsListResponse(rsp *http.Response) (*AdminArrowBillingSyncItemsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowBillingSyncItemsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []ArrowBillingSyncItemDetail
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowBillingSyncItemsCountResponse parses an HTTP response from a AdminArrowBillingSyncItemsCountWithResponse call
+func ParseAdminArrowBillingSyncItemsCountResponse(rsp *http.Response) (*AdminArrowBillingSyncItemsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowBillingSyncItemsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowBillingSyncItemsRetrieveResponse parses an HTTP response from a AdminArrowBillingSyncItemsRetrieveWithResponse call
+func ParseAdminArrowBillingSyncItemsRetrieveResponse(rsp *http.Response) (*AdminArrowBillingSyncItemsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowBillingSyncItemsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ArrowBillingSyncItemDetail
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowBillingSyncsListResponse parses an HTTP response from a AdminArrowBillingSyncsListWithResponse call
+func ParseAdminArrowBillingSyncsListResponse(rsp *http.Response) (*AdminArrowBillingSyncsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowBillingSyncsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []ArrowBillingSync
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowBillingSyncsCountResponse parses an HTTP response from a AdminArrowBillingSyncsCountWithResponse call
+func ParseAdminArrowBillingSyncsCountResponse(rsp *http.Response) (*AdminArrowBillingSyncsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowBillingSyncsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowBillingSyncsCleanupConsumptionResponse parses an HTTP response from a AdminArrowBillingSyncsCleanupConsumptionWithResponse call
+func ParseAdminArrowBillingSyncsCleanupConsumptionResponse(rsp *http.Response) (*AdminArrowBillingSyncsCleanupConsumptionResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowBillingSyncsCleanupConsumptionResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CleanupConsumptionResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowBillingSyncsConsumptionStatisticsRetrieveResponse parses an HTTP response from a AdminArrowBillingSyncsConsumptionStatisticsRetrieveWithResponse call
+func ParseAdminArrowBillingSyncsConsumptionStatisticsRetrieveResponse(rsp *http.Response) (*AdminArrowBillingSyncsConsumptionStatisticsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowBillingSyncsConsumptionStatisticsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ConsumptionStatisticsResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowBillingSyncsConsumptionStatisticsCountResponse parses an HTTP response from a AdminArrowBillingSyncsConsumptionStatisticsCountWithResponse call
+func ParseAdminArrowBillingSyncsConsumptionStatisticsCountResponse(rsp *http.Response) (*AdminArrowBillingSyncsConsumptionStatisticsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowBillingSyncsConsumptionStatisticsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowBillingSyncsConsumptionStatusRetrieveResponse parses an HTTP response from a AdminArrowBillingSyncsConsumptionStatusRetrieveWithResponse call
+func ParseAdminArrowBillingSyncsConsumptionStatusRetrieveResponse(rsp *http.Response) (*AdminArrowBillingSyncsConsumptionStatusRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowBillingSyncsConsumptionStatusRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ConsumptionStatusResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowBillingSyncsConsumptionStatusCountResponse parses an HTTP response from a AdminArrowBillingSyncsConsumptionStatusCountWithResponse call
+func ParseAdminArrowBillingSyncsConsumptionStatusCountResponse(rsp *http.Response) (*AdminArrowBillingSyncsConsumptionStatusCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowBillingSyncsConsumptionStatusCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowBillingSyncsFetchBillingExportResponse parses an HTTP response from a AdminArrowBillingSyncsFetchBillingExportWithResponse call
+func ParseAdminArrowBillingSyncsFetchBillingExportResponse(rsp *http.Response) (*AdminArrowBillingSyncsFetchBillingExportResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowBillingSyncsFetchBillingExportResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest FetchBillingExportResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowBillingSyncsFetchConsumptionResponse parses an HTTP response from a AdminArrowBillingSyncsFetchConsumptionWithResponse call
+func ParseAdminArrowBillingSyncsFetchConsumptionResponse(rsp *http.Response) (*AdminArrowBillingSyncsFetchConsumptionResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowBillingSyncsFetchConsumptionResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest FetchConsumptionResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowBillingSyncsFetchLicenseInfoResponse parses an HTTP response from a AdminArrowBillingSyncsFetchLicenseInfoWithResponse call
+func ParseAdminArrowBillingSyncsFetchLicenseInfoResponse(rsp *http.Response) (*AdminArrowBillingSyncsFetchLicenseInfoResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowBillingSyncsFetchLicenseInfoResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest FetchLicenseInfoResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowBillingSyncsPauseSyncResponse parses an HTTP response from a AdminArrowBillingSyncsPauseSyncWithResponse call
+func ParseAdminArrowBillingSyncsPauseSyncResponse(rsp *http.Response) (*AdminArrowBillingSyncsPauseSyncResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowBillingSyncsPauseSyncResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SyncPauseResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowBillingSyncsPendingRecordsListResponse parses an HTTP response from a AdminArrowBillingSyncsPendingRecordsListWithResponse call
+func ParseAdminArrowBillingSyncsPendingRecordsListResponse(rsp *http.Response) (*AdminArrowBillingSyncsPendingRecordsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowBillingSyncsPendingRecordsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []PendingRecord
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowBillingSyncsPendingRecordsCountResponse parses an HTTP response from a AdminArrowBillingSyncsPendingRecordsCountWithResponse call
+func ParseAdminArrowBillingSyncsPendingRecordsCountResponse(rsp *http.Response) (*AdminArrowBillingSyncsPendingRecordsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowBillingSyncsPendingRecordsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowBillingSyncsReconcileResponse parses an HTTP response from a AdminArrowBillingSyncsReconcileWithResponse call
+func ParseAdminArrowBillingSyncsReconcileResponse(rsp *http.Response) (*AdminArrowBillingSyncsReconcileResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowBillingSyncsReconcileResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowBillingSyncsResumeSyncResponse parses an HTTP response from a AdminArrowBillingSyncsResumeSyncWithResponse call
+func ParseAdminArrowBillingSyncsResumeSyncResponse(rsp *http.Response) (*AdminArrowBillingSyncsResumeSyncResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowBillingSyncsResumeSyncResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SyncPauseResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowBillingSyncsSyncResourceHistoricalConsumptionResponse parses an HTTP response from a AdminArrowBillingSyncsSyncResourceHistoricalConsumptionWithResponse call
+func ParseAdminArrowBillingSyncsSyncResourceHistoricalConsumptionResponse(rsp *http.Response) (*AdminArrowBillingSyncsSyncResourceHistoricalConsumptionResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowBillingSyncsSyncResourceHistoricalConsumptionResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SyncResourceHistoricalConsumptionResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowBillingSyncsSyncResourcesResponse parses an HTTP response from a AdminArrowBillingSyncsSyncResourcesWithResponse call
+func ParseAdminArrowBillingSyncsSyncResourcesResponse(rsp *http.Response) (*AdminArrowBillingSyncsSyncResourcesResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowBillingSyncsSyncResourcesResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SyncResourcesResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowBillingSyncsTriggerConsumptionSyncResponse parses an HTTP response from a AdminArrowBillingSyncsTriggerConsumptionSyncWithResponse call
+func ParseAdminArrowBillingSyncsTriggerConsumptionSyncResponse(rsp *http.Response) (*AdminArrowBillingSyncsTriggerConsumptionSyncResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowBillingSyncsTriggerConsumptionSyncResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowBillingSyncsTriggerReconciliationResponse parses an HTTP response from a AdminArrowBillingSyncsTriggerReconciliationWithResponse call
+func ParseAdminArrowBillingSyncsTriggerReconciliationResponse(rsp *http.Response) (*AdminArrowBillingSyncsTriggerReconciliationResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowBillingSyncsTriggerReconciliationResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowBillingSyncsTriggerSyncResponse parses an HTTP response from a AdminArrowBillingSyncsTriggerSyncWithResponse call
+func ParseAdminArrowBillingSyncsTriggerSyncResponse(rsp *http.Response) (*AdminArrowBillingSyncsTriggerSyncResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowBillingSyncsTriggerSyncResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowBillingSyncsRetrieveResponse parses an HTTP response from a AdminArrowBillingSyncsRetrieveWithResponse call
+func ParseAdminArrowBillingSyncsRetrieveResponse(rsp *http.Response) (*AdminArrowBillingSyncsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowBillingSyncsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ArrowBillingSync
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowConsumptionRecordsListResponse parses an HTTP response from a AdminArrowConsumptionRecordsListWithResponse call
+func ParseAdminArrowConsumptionRecordsListResponse(rsp *http.Response) (*AdminArrowConsumptionRecordsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowConsumptionRecordsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []ArrowConsumptionRecord
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowConsumptionRecordsCountResponse parses an HTTP response from a AdminArrowConsumptionRecordsCountWithResponse call
+func ParseAdminArrowConsumptionRecordsCountResponse(rsp *http.Response) (*AdminArrowConsumptionRecordsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowConsumptionRecordsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowConsumptionRecordsRetrieveResponse parses an HTTP response from a AdminArrowConsumptionRecordsRetrieveWithResponse call
+func ParseAdminArrowConsumptionRecordsRetrieveResponse(rsp *http.Response) (*AdminArrowConsumptionRecordsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowConsumptionRecordsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ArrowConsumptionRecord
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowCustomerMappingsListResponse parses an HTTP response from a AdminArrowCustomerMappingsListWithResponse call
+func ParseAdminArrowCustomerMappingsListResponse(rsp *http.Response) (*AdminArrowCustomerMappingsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowCustomerMappingsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []ArrowCustomerMapping
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowCustomerMappingsCountResponse parses an HTTP response from a AdminArrowCustomerMappingsCountWithResponse call
+func ParseAdminArrowCustomerMappingsCountResponse(rsp *http.Response) (*AdminArrowCustomerMappingsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowCustomerMappingsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowCustomerMappingsCreateResponse parses an HTTP response from a AdminArrowCustomerMappingsCreateWithResponse call
+func ParseAdminArrowCustomerMappingsCreateResponse(rsp *http.Response) (*AdminArrowCustomerMappingsCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowCustomerMappingsCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest ArrowCustomerMappingCreate
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowCustomerMappingsAvailableCustomersRetrieveResponse parses an HTTP response from a AdminArrowCustomerMappingsAvailableCustomersRetrieveWithResponse call
+func ParseAdminArrowCustomerMappingsAvailableCustomersRetrieveResponse(rsp *http.Response) (*AdminArrowCustomerMappingsAvailableCustomersRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowCustomerMappingsAvailableCustomersRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest AvailableArrowCustomersResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowCustomerMappingsAvailableCustomersCountResponse parses an HTTP response from a AdminArrowCustomerMappingsAvailableCustomersCountWithResponse call
+func ParseAdminArrowCustomerMappingsAvailableCustomersCountResponse(rsp *http.Response) (*AdminArrowCustomerMappingsAvailableCustomersCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowCustomerMappingsAvailableCustomersCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowCustomerMappingsSyncFromArrowResponse parses an HTTP response from a AdminArrowCustomerMappingsSyncFromArrowWithResponse call
+func ParseAdminArrowCustomerMappingsSyncFromArrowResponse(rsp *http.Response) (*AdminArrowCustomerMappingsSyncFromArrowResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowCustomerMappingsSyncFromArrowResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowCustomerMappingsDestroyResponse parses an HTTP response from a AdminArrowCustomerMappingsDestroyWithResponse call
+func ParseAdminArrowCustomerMappingsDestroyResponse(rsp *http.Response) (*AdminArrowCustomerMappingsDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowCustomerMappingsDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowCustomerMappingsRetrieveResponse parses an HTTP response from a AdminArrowCustomerMappingsRetrieveWithResponse call
+func ParseAdminArrowCustomerMappingsRetrieveResponse(rsp *http.Response) (*AdminArrowCustomerMappingsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowCustomerMappingsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ArrowCustomerMapping
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowCustomerMappingsPartialUpdateResponse parses an HTTP response from a AdminArrowCustomerMappingsPartialUpdateWithResponse call
+func ParseAdminArrowCustomerMappingsPartialUpdateResponse(rsp *http.Response) (*AdminArrowCustomerMappingsPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowCustomerMappingsPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ArrowCustomerMapping
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowCustomerMappingsUpdateResponse parses an HTTP response from a AdminArrowCustomerMappingsUpdateWithResponse call
+func ParseAdminArrowCustomerMappingsUpdateResponse(rsp *http.Response) (*AdminArrowCustomerMappingsUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowCustomerMappingsUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ArrowCustomerMapping
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowCustomerMappingsBillingSummaryRetrieveResponse parses an HTTP response from a AdminArrowCustomerMappingsBillingSummaryRetrieveWithResponse call
+func ParseAdminArrowCustomerMappingsBillingSummaryRetrieveResponse(rsp *http.Response) (*AdminArrowCustomerMappingsBillingSummaryRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowCustomerMappingsBillingSummaryRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest CustomerBillingSummaryResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowCustomerMappingsDiscoverLicensesRetrieveResponse parses an HTTP response from a AdminArrowCustomerMappingsDiscoverLicensesRetrieveWithResponse call
+func ParseAdminArrowCustomerMappingsDiscoverLicensesRetrieveResponse(rsp *http.Response) (*AdminArrowCustomerMappingsDiscoverLicensesRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowCustomerMappingsDiscoverLicensesRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest DiscoverLicensesResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowCustomerMappingsFetchArrowDataRetrieveResponse parses an HTTP response from a AdminArrowCustomerMappingsFetchArrowDataRetrieveWithResponse call
+func ParseAdminArrowCustomerMappingsFetchArrowDataRetrieveResponse(rsp *http.Response) (*AdminArrowCustomerMappingsFetchArrowDataRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowCustomerMappingsFetchArrowDataRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest FetchCustomerArrowDataResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowCustomerMappingsImportLicenseResponse parses an HTTP response from a AdminArrowCustomerMappingsImportLicenseWithResponse call
+func ParseAdminArrowCustomerMappingsImportLicenseResponse(rsp *http.Response) (*AdminArrowCustomerMappingsImportLicenseResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowCustomerMappingsImportLicenseResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ImportLicenseResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowCustomerMappingsLinkResourceResponse parses an HTTP response from a AdminArrowCustomerMappingsLinkResourceWithResponse call
+func ParseAdminArrowCustomerMappingsLinkResourceResponse(rsp *http.Response) (*AdminArrowCustomerMappingsLinkResourceResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowCustomerMappingsLinkResourceResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest LinkResourceResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowSettingsListResponse parses an HTTP response from a AdminArrowSettingsListWithResponse call
+func ParseAdminArrowSettingsListResponse(rsp *http.Response) (*AdminArrowSettingsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowSettingsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []ArrowSettings
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowSettingsCountResponse parses an HTTP response from a AdminArrowSettingsCountWithResponse call
+func ParseAdminArrowSettingsCountResponse(rsp *http.Response) (*AdminArrowSettingsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowSettingsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowSettingsCreateResponse parses an HTTP response from a AdminArrowSettingsCreateWithResponse call
+func ParseAdminArrowSettingsCreateResponse(rsp *http.Response) (*AdminArrowSettingsCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowSettingsCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest ArrowSettingsCreate
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowSettingsDiscoverCustomersResponse parses an HTTP response from a AdminArrowSettingsDiscoverCustomersWithResponse call
+func ParseAdminArrowSettingsDiscoverCustomersResponse(rsp *http.Response) (*AdminArrowSettingsDiscoverCustomersResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowSettingsDiscoverCustomersResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest DiscoverCustomersResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowSettingsPreviewSettingsResponse parses an HTTP response from a AdminArrowSettingsPreviewSettingsWithResponse call
+func ParseAdminArrowSettingsPreviewSettingsResponse(rsp *http.Response) (*AdminArrowSettingsPreviewSettingsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowSettingsPreviewSettingsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest PreviewSettingsResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowSettingsSaveSettingsResponse parses an HTTP response from a AdminArrowSettingsSaveSettingsWithResponse call
+func ParseAdminArrowSettingsSaveSettingsResponse(rsp *http.Response) (*AdminArrowSettingsSaveSettingsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowSettingsSaveSettingsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest SaveSettingsResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowSettingsValidateCredentialsResponse parses an HTTP response from a AdminArrowSettingsValidateCredentialsWithResponse call
+func ParseAdminArrowSettingsValidateCredentialsResponse(rsp *http.Response) (*AdminArrowSettingsValidateCredentialsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowSettingsValidateCredentialsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ArrowCredentialsValidationResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowSettingsDestroyResponse parses an HTTP response from a AdminArrowSettingsDestroyWithResponse call
+func ParseAdminArrowSettingsDestroyResponse(rsp *http.Response) (*AdminArrowSettingsDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowSettingsDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowSettingsRetrieveResponse parses an HTTP response from a AdminArrowSettingsRetrieveWithResponse call
+func ParseAdminArrowSettingsRetrieveResponse(rsp *http.Response) (*AdminArrowSettingsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowSettingsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ArrowSettings
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowSettingsPartialUpdateResponse parses an HTTP response from a AdminArrowSettingsPartialUpdateWithResponse call
+func ParseAdminArrowSettingsPartialUpdateResponse(rsp *http.Response) (*AdminArrowSettingsPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowSettingsPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ArrowSettings
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowSettingsUpdateResponse parses an HTTP response from a AdminArrowSettingsUpdateWithResponse call
+func ParseAdminArrowSettingsUpdateResponse(rsp *http.Response) (*AdminArrowSettingsUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowSettingsUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ArrowSettings
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowVendorOfferingMappingsListResponse parses an HTTP response from a AdminArrowVendorOfferingMappingsListWithResponse call
+func ParseAdminArrowVendorOfferingMappingsListResponse(rsp *http.Response) (*AdminArrowVendorOfferingMappingsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowVendorOfferingMappingsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []ArrowVendorOfferingMapping
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowVendorOfferingMappingsCountResponse parses an HTTP response from a AdminArrowVendorOfferingMappingsCountWithResponse call
+func ParseAdminArrowVendorOfferingMappingsCountResponse(rsp *http.Response) (*AdminArrowVendorOfferingMappingsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowVendorOfferingMappingsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowVendorOfferingMappingsCreateResponse parses an HTTP response from a AdminArrowVendorOfferingMappingsCreateWithResponse call
+func ParseAdminArrowVendorOfferingMappingsCreateResponse(rsp *http.Response) (*AdminArrowVendorOfferingMappingsCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowVendorOfferingMappingsCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest ArrowVendorOfferingMappingCreate
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowVendorOfferingMappingsVendorChoicesListResponse parses an HTTP response from a AdminArrowVendorOfferingMappingsVendorChoicesListWithResponse call
+func ParseAdminArrowVendorOfferingMappingsVendorChoicesListResponse(rsp *http.Response) (*AdminArrowVendorOfferingMappingsVendorChoicesListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowVendorOfferingMappingsVendorChoicesListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []VendorNameChoice
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowVendorOfferingMappingsVendorChoicesCountResponse parses an HTTP response from a AdminArrowVendorOfferingMappingsVendorChoicesCountWithResponse call
+func ParseAdminArrowVendorOfferingMappingsVendorChoicesCountResponse(rsp *http.Response) (*AdminArrowVendorOfferingMappingsVendorChoicesCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowVendorOfferingMappingsVendorChoicesCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowVendorOfferingMappingsDestroyResponse parses an HTTP response from a AdminArrowVendorOfferingMappingsDestroyWithResponse call
+func ParseAdminArrowVendorOfferingMappingsDestroyResponse(rsp *http.Response) (*AdminArrowVendorOfferingMappingsDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowVendorOfferingMappingsDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowVendorOfferingMappingsRetrieveResponse parses an HTTP response from a AdminArrowVendorOfferingMappingsRetrieveWithResponse call
+func ParseAdminArrowVendorOfferingMappingsRetrieveResponse(rsp *http.Response) (*AdminArrowVendorOfferingMappingsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowVendorOfferingMappingsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ArrowVendorOfferingMapping
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowVendorOfferingMappingsPartialUpdateResponse parses an HTTP response from a AdminArrowVendorOfferingMappingsPartialUpdateWithResponse call
+func ParseAdminArrowVendorOfferingMappingsPartialUpdateResponse(rsp *http.Response) (*AdminArrowVendorOfferingMappingsPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowVendorOfferingMappingsPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ArrowVendorOfferingMapping
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowVendorOfferingMappingsUpdateResponse parses an HTTP response from a AdminArrowVendorOfferingMappingsUpdateWithResponse call
+func ParseAdminArrowVendorOfferingMappingsUpdateResponse(rsp *http.Response) (*AdminArrowVendorOfferingMappingsUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowVendorOfferingMappingsUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ArrowVendorOfferingMapping
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
