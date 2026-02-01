@@ -28438,10 +28438,8 @@ type PatchedProjectDigestConfigRequest struct {
 	DayOfMonth *int `json:"day_of_month,omitempty"`
 
 	// DayOfWeek For weekly/biweekly: 0=Sunday..6=Saturday
-	DayOfWeek *int `json:"day_of_week,omitempty"`
-
-	// EnabledSections List of section keys to include. Empty means all.
-	EnabledSections *string        `json:"enabled_sections,omitempty"`
+	DayOfWeek       *int           `json:"day_of_week,omitempty"`
+	EnabledSections *[]string      `json:"enabled_sections,omitempty"`
 	Frequency       *FrequencyEnum `json:"frequency,omitempty"`
 	IsEnabled       *bool          `json:"is_enabled,omitempty"`
 }
@@ -29962,10 +29960,8 @@ type ProjectDigestConfig struct {
 	DayOfMonth *int `json:"day_of_month,omitempty"`
 
 	// DayOfWeek For weekly/biweekly: 0=Sunday..6=Saturday
-	DayOfWeek *int `json:"day_of_week,omitempty"`
-
-	// EnabledSections List of section keys to include. Empty means all.
-	EnabledSections *string             `json:"enabled_sections,omitempty"`
+	DayOfWeek       *int                `json:"day_of_week,omitempty"`
+	EnabledSections *[]string           `json:"enabled_sections,omitempty"`
 	Frequency       *FrequencyEnum      `json:"frequency,omitempty"`
 	IsEnabled       *bool               `json:"is_enabled,omitempty"`
 	LastSentAt      *time.Time          `json:"last_sent_at"`
@@ -29978,10 +29974,8 @@ type ProjectDigestConfigRequest struct {
 	DayOfMonth *int `json:"day_of_month,omitempty"`
 
 	// DayOfWeek For weekly/biweekly: 0=Sunday..6=Saturday
-	DayOfWeek *int `json:"day_of_week,omitempty"`
-
-	// EnabledSections List of section keys to include. Empty means all.
-	EnabledSections *string        `json:"enabled_sections,omitempty"`
+	DayOfWeek       *int           `json:"day_of_week,omitempty"`
+	EnabledSections *[]string      `json:"enabled_sections,omitempty"`
 	Frequency       *FrequencyEnum `json:"frequency,omitempty"`
 	IsEnabled       *bool          `json:"is_enabled,omitempty"`
 }
